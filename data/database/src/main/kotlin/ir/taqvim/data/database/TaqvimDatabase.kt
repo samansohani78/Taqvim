@@ -45,6 +45,8 @@ abstract class TaqvimDatabase : RoomDatabase() {
 
     abstract fun diagnosticsDao(): DiagnosticsDao
 
+    abstract fun backupDao(): BackupDao
+
     companion object {
         /** Database file name. */
         const val NAME: String = "taqvim.db"
