@@ -147,8 +147,9 @@ matrix (T-005). ADR-0001…0005.
 **Open risks**
 1. ~~EPL-1.0 test-only exception for `junit:junit` (ADR-0005) awaits owner confirmation.~~ Confirmed 2026-09-13.
 2. T-003 acceptance ("workflows green on main") requires pushing to GitHub; not yet pushed (push not approved as of 2026-09-13).
-3. Google Maven (dl.google.com) is unreachable from the development network without a proxy/VPN; new
-   AndroidX/Google dependencies cannot be fetched locally until it is reachable.
+3. ~~Google Maven (dl.google.com) is unreachable from the development network without a proxy/VPN; new
+   AndroidX/Google dependencies cannot be fetched locally until it is reachable.~~ Reachable again on 2026-09-13
+   (HTTP 200); the license gate still reads POMs cache-first in case it becomes unreachable.
 4. The development machine (14 GB) crashed from OOM during unbounded builds; builds are now budgeted and run
    inside a capped systemd scope (ADR-0004 §9). Full gates take ~2–3 min warm.
 5. detekt 1.23 and Robolectric 4.17 need a JDK 21 toolchain (ADR-0004 §6, §8); Robolectric emulates API 36.
