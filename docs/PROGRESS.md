@@ -30,7 +30,7 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 | T-303 | Holiday determination & workday basics | TODO | | | |
 | T-304 | Search index | TODO | | | |
 | T-305 | Repository impl (`:data:events`) | TODO | | | |
-| D-01 | Dataset JSON Schema + validator CLI | TODO | | | |
+| D-01 | Dataset JSON Schema + validator CLI | DONE | main@ad81460 | U: DatasetValidatorTest — valid sample covering all 8 rule types, 30 invalid fixtures each reporting exactly one issue (all 6 issue kinds: malformed JSON, schema, duplicate id, unknown/self reference, day out of range, invalid validity), cross-file ids/references, semantic checks skipped on schema errors, fuzz 10 000 random/mutated documents without a crash (35 tests) · DatasetCliTest — exit codes 0/1/2 | `dataset/events.v1.json` (draft 2020-12, rule `type` discriminator via if/then so one defect = one error) + `dataset/README.md`; `./gradlew :tools:dataset:validate`. Dependency: networknt json-schema-validator 3.0.7 (Apache-2.0, Jackson 3); license gate 452 modules, 0 violations. Day ranges use each calendar's longest month (exact per-year checks come with D-08 generation) |
 | D-02 | Iran official holidays 1403–1406 | TODO | | | |
 | D-03 | Afghanistan set | TODO | | | |
 | D-04 | Nepal set | TODO | | | |

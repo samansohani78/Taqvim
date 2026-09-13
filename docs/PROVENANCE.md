@@ -178,6 +178,14 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Used by:** `core/calendar/src/test/resources/golden/persian/*` (T-102); lunar-month columns reserved for T-104/D-07;
   holidays for D-02.
 
+### D-01 — Dataset schema and validator
+- **Files:** `dataset/events.v1.json`, `dataset/README.md`, `tools/dataset/`
+- **Origin:** own work from docs/PLAN.md §4.2 (`EventDefinition`) and §5.2–5.3; no external dataset, schema or code
+  was used. Test fixtures under `tools/dataset/src/test/resources/dataset/` are synthetic (`example.org` citations,
+  placeholder titles) and contain no real-world facts.
+- **Dependency:** networknt json-schema-validator 3.0.7 (Apache-2.0), used through its public API only.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+
 ## Golden fixtures
 
 Format: every file under `src/test/resources/golden/` starts with a `# source/url/retrieved/page/reviewer`
