@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="tools_title">ابزارها</string>
+  <string name="tools_loading">در حال بارگیری ابزارها</string>
+  <string name="tools_tab_converter">تبدیل</string>
+  <string name="tools_tab_distance">فاصله</string>
+  <string name="tools_tab_duration">مدت</string>
+  <string name="tools_tab_time_zones">ساعت‌ها</string>
+  <string name="tools_tab_qr">کد QR</string>
+
+  <string name="tools_calendar_persian">هجری شمسی</string>
+  <string name="tools_calendar_islamic">هجری قمری</string>
+  <string name="tools_calendar_gregorian">میلادی</string>
+  <string name="tools_calendar_nepali">بیکرم سمبت</string>
+  <string name="tools_not_recognized">در این متن تاریخی پیدا نشد</string>
+
+  <string name="tools_converter_input">تاریخ</string>
+  <string name="tools_converter_hint">مثلاً ۱۴۰۵/۶/۲۲، ۲۲ شهریور ۱۴۰۵ یا فردا</string>
+  <string name="tools_converter_today">امروز</string>
+
+  <string name="tools_distance_from">از</string>
+  <string name="tools_distance_to">تا</string>
+  <string name="tools_distance_backward">تاریخ دوم پیش از تاریخ اول است.</string>
+  <string name="tools_distance_days">روز</string>
+  <string name="tools_distance_weeks">هفته و روز</string>
+  <string name="tools_distance_period">در تقویم %1$s</string>
+  <string name="tools_distance_years">سال</string>
+  <string name="tools_distance_months">ماه</string>
+  <string name="tools_distance_workdays">روزهای کاری، بدون روز آخر</string>
+  <string name="tools_workdays_not_configured">برای شمارش روزهای کاری، تعطیلات آخر هفته و مناسبت‌ها را در تنظیمات مشخص کنید.</string>
+  <string name="tools_workdays_too_long">روزهای کاری تا ده سال شمرده می‌شوند.</string>
+
+  <string name="tools_duration_input">عبارت</string>
+  <string name="tools_duration_hint">مثلاً ۲ ساعت و ۳۰ دقیقه یا (۱ ساعت − ۵ دقیقه) × ۳</string>
+  <string name="tools_duration_negative">نتیجه منفی است.</string>
+  <string name="tools_duration_hours">ساعت</string>
+  <string name="tools_duration_minutes">دقیقه</string>
+  <string name="tools_duration_seconds">ثانیه</string>
+  <string name="tools_duration_total_hours">جمع ساعت‌ها</string>
+  <string name="tools_duration_total_minutes">جمع دقیقه‌ها</string>
+  <string name="tools_duration_error_character">نویسه یا واژهٔ ناشناخته در جایگاه %1$d</string>
+  <string name="tools_duration_error_token">مقدار یا عملگری در جایگاه %1$d کم است</string>
+  <string name="tools_duration_error_unit">پس از عدد جایگاه %1$d یکایی مانند روز، ساعت، دقیقه یا ثانیه بنویسید</string>
+  <string name="tools_duration_error_parenthesis">پرانتز بی‌جفت در جایگاه %1$d</string>
+  <string name="tools_duration_error_division">تقسیم بر صفر در جایگاه %1$d</string>
+  <string name="tools_duration_error_large">نتیجه بیش از ۱۰۰٬۰۰۰ روز است.</string>
+  <string name="tools_duration_error_complex">عبارت بیش از حد طولانی یا تودرتو است.</string>
+
+  <string name="tools_zone_search">افزودن شهر یا منطقهٔ زمانی</string>
+  <string name="tools_zone_add">افزودن %1$s</string>
+  <string name="tools_zone_remove">حذف %1$s</string>
+  <string name="tools_zone_home">منطقهٔ زمانی شما</string>
+  <string name="tools_zone_previous_day">روز قبل</string>
+  <string name="tools_zone_next_day">روز بعد</string>
+  <string name="tools_zone_days_later">%1$s روز بعد</string>
+  <string name="tools_zone_days_earlier">%1$s روز قبل</string>
+
+  <string name="tools_qr_input">متن یا پیوند</string>
+  <string name="tools_qr_empty">برای ساختن کد QR متنی بنویسید.</string>
+  <string name="tools_qr_too_long">این متن برای کد QR بیش از حد طولانی است.</string>
+  <string name="tools_qr_image">کد QR متن</string>
+  <string name="tools_qr_share">هم‌رسانی کد QR</string>
+</resources>

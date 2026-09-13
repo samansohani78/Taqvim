@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="tools_title">Tools</string>
+  <string name="tools_loading">Loading tools</string>
+  <string name="tools_tab_converter">Convert</string>
+  <string name="tools_tab_distance">Distance</string>
+  <string name="tools_tab_duration">Duration</string>
+  <string name="tools_tab_time_zones">Clocks</string>
+  <string name="tools_tab_qr">QR code</string>
+
+  <string name="tools_calendar_persian">Solar Hijri</string>
+  <string name="tools_calendar_islamic">Lunar Hijri</string>
+  <string name="tools_calendar_gregorian">Gregorian</string>
+  <string name="tools_calendar_nepali">Bikram Sambat</string>
+  <string name="tools_date_numeric_iso" translatable="false">%1$s · %2$s</string>
+  <string name="tools_not_recognized">No date found in this text</string>
+
+  <string name="tools_converter_input">Date</string>
+  <string name="tools_converter_hint">For example 1405/6/22, 12 March 2026 or tomorrow</string>
+  <string name="tools_converter_today">Today</string>
+
+  <string name="tools_distance_from">From</string>
+  <string name="tools_distance_to">To</string>
+  <string name="tools_distance_backward">The second date is before the first.</string>
+  <string name="tools_distance_days">Days</string>
+  <string name="tools_distance_weeks">Weeks and days</string>
+  <string name="tools_value_plus" translatable="false">%1$s + %2$s</string>
+  <string name="tools_distance_period">In the %1$s calendar</string>
+  <string name="tools_distance_years">Years</string>
+  <string name="tools_distance_months">Months</string>
+  <string name="tools_distance_workdays">Workdays, without the last day</string>
+  <string name="tools_workdays_not_configured">Set your weekend and holidays in settings to count workdays.</string>
+  <string name="tools_workdays_too_long">Workdays are counted for up to ten years.</string>
+
+  <string name="tools_duration_input">Expression</string>
+  <string name="tools_duration_hint">For example 1d 2h + 30m or (1h − 5m) × 3</string>
+  <string name="tools_duration_negative">The result is negative.</string>
+  <string name="tools_duration_hours">Hours</string>
+  <string name="tools_duration_minutes">Minutes</string>
+  <string name="tools_duration_seconds">Seconds</string>
+  <string name="tools_duration_total_hours">Total hours</string>
+  <string name="tools_duration_total_minutes">Total minutes</string>
+  <string name="tools_duration_error_character">Unknown character or word at position %1$d</string>
+  <string name="tools_duration_error_token">A value or operator is missing at position %1$d</string>
+  <string name="tools_duration_error_unit">Add a unit such as d, h, m or s after the number at position %1$d</string>
+  <string name="tools_duration_error_parenthesis">Unmatched parenthesis at position %1$d</string>
+  <string name="tools_duration_error_division">Division by zero at position %1$d</string>
+  <string name="tools_duration_error_large">The result is longer than 100,000 days.</string>
+  <string name="tools_duration_error_complex">The expression is too long or too deeply nested.</string>
+
+  <string name="tools_zone_search">Add a city or time zone</string>
+  <string name="tools_zone_add">Add %1$s</string>
+  <string name="tools_zone_remove">Remove %1$s</string>
+  <string name="tools_zone_home">Your time zone</string>
+  <string name="tools_zone_offset" translatable="false">UTC%1$s</string>
+  <string name="tools_zone_previous_day">Previous day</string>
+  <string name="tools_zone_next_day">Next day</string>
+  <string name="tools_zone_days_later">%1$s days later</string>
+  <string name="tools_zone_days_earlier">%1$s days earlier</string>
+
+  <string name="tools_qr_input">Text or link</string>
+  <string name="tools_qr_empty">Type something to make a QR code.</string>
+  <string name="tools_qr_too_long">This text is too long for a QR code.</string>
+  <string name="tools_qr_image">QR code of the text</string>
+  <string name="tools_qr_share">Share QR code</string>
+</resources>
