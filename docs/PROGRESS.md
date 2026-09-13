@@ -10,7 +10,7 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 | T-002 | Architecture rules (Konsist) | DONE | main@3ea66ba | Konsist: ArchitectureKonsistTest (9 rules on real code), ArchitectureRulesTest (15 unit), KonsistFixturesTest (7 end-to-end, planted violations) | package↔module, layering (imports + build scripts), Android-free pure core, files ≤400 / functions ≤50 lines, ViewModel/UiState contract, no global mutable state. `!!`/`try`/`as` → detekt + T-004 lint; complexity ≤12 → detekt |
 | T-003 | CI workflows | DONE (local) | main@8587d6b | L: actionlint (4 workflows + composite action) · local: CycloneDX SBOM (192 runtime components, no test deps), signed release APK verified by apksigner (v2), full gate green | pr.yml (static+SARIF, unit+Kover, Roborazzi verify, license gate + LGPL canary negative test, dataset, assemble, actionlint), instrumented.yml (API 26/30/33/36, KVM), benchmark.yml (nightly), release.yml (signed AAB/APK, git-cliff changelog, SBOM). **"Green on main" pending first push to GitHub** |
 | T-004 | Custom lint module | DONE | main@c3fc147 | L: SourceRuleDetectorsTest (6), StateTextAndBackDetectorsTest (8), TaqvimIssueRegistryTest (3) — LintDetectorTest positive/negative per rule; Konsist: string-literal unit test | NoDoubleBang, NoTryCatch, UseRunCatching (quick fix), NoUnsafeCast, NoHardcodedNonLatinText, HardcodedComposeText (added: quality bar forbids hard-coded UI text), NoGlobalMutableState, PreferPredictiveBack (Kotlin + manifest); active in every module, full gate green |
-| T-005 | Test infrastructure (`:core:testing`) | TODO | | | |
+| T-005 | Test infrastructure (`:core:testing`) | DONE | main@e10a0a2 | U: GoldenFilesTest, SnapshotAndTimeFakesTest, ScreenshotMatrixTest · R: ScreenshotEnvironmentRobolectricTest · S: ui_testing_self_test (1 reference) · Konsist: FixtureProvenanceKonsistTest | Golden fixtures with provenance header + repo audit, snapshots, FakeClock/FakeTimeZone, 54-environment screenshot matrix (phone/tablet/fold at mdpi), `:core:ui-testing` (ADR-0004 §2). Composables excluded from Kover (ADR-0004 §10) |
 | T-100 | Value types | TODO | | | |
 | T-101 | Gregorian ↔ JDN (A-01) | TODO | | | |
 | T-102 | Persian calendar (A-02) | TODO | | | |
@@ -120,4 +120,35 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 
 ## Epic summaries
 
-_None yet._
+### Epic 0 — Foundation & Delivery Pipeline (completed 2026-09-13)
+
+**Shipped:** ~45-module Gradle skeleton with build-logic conventions and latest-stable catalog (T-000);
+dependency license gate with scope-aware allow-list, cache-first POM resolution and LGPL canary negative test
+(T-001); Konsist architecture suite (T-002); PR / instrumented / benchmark / release workflows with signed
+builds, changelog and CycloneDX SBOM (T-003); 8 custom lint rules active in every module (T-004); test
+infrastructure — cited golden fixtures with repo audit, snapshots, time fakes, 54-environment screenshot
+matrix (T-005). ADR-0001…0005.
+
+**Tests by type**
+
+| Type | Count |
+|---|---|
+| Unit (JVM / host, JUnit 6 + Kotest) | 101 |
+| Robolectric | 3 |
+| Lint detector (`LintDetectorTest`) | 17 |
+| Konsist architecture | 33 |
+| Screenshot references (Roborazzi) | 1 |
+| Static gates | spotless, detekt, Android Lint + custom rules, Konsist, license gate, Kover |
+
+**Coverage:** every module with code ≥ 99.4 % line (Kover); root merged gate (≥ 85 %) and `:core:*` gates
+(≥ 95 % line / ≥ 90 % branch) pass. **Benchmarks:** none yet (startup Macrobenchmark skeleton; T-1801).
+**License gate:** 437 external modules, 0 violations.
+
+**Open risks**
+1. EPL-1.0 test-only exception for `junit:junit` (ADR-0005) awaits owner confirmation.
+2. T-003 acceptance ("workflows green on main") requires pushing to GitHub; not yet pushed.
+3. Google Maven (dl.google.com) is unreachable from the development network without a proxy/VPN; new
+   AndroidX/Google dependencies cannot be fetched locally until it is reachable.
+4. The development machine (14 GB) crashed from OOM during unbounded builds; builds are now budgeted and run
+   inside a capped systemd scope (ADR-0004 §9). Full gates take ~2–3 min warm.
+5. detekt 1.23 and Robolectric 4.17 need a JDK 21 toolchain (ADR-0004 §6, §8); Robolectric emulates API 36.

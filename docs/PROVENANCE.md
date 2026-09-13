@@ -38,4 +38,10 @@ _No entries yet._
 
 ## Golden fixtures
 
-_No entries yet._
+Format: every file under `src/test/resources/golden/` starts with a `# source/url/retrieved/page/reviewer`
+header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the build otherwise.
+
+### core/testing — `golden/sample/valid-fixture.csv`
+- **Task:** T-005 (self-test of the fixture loader)
+- **Source:** synthetic data written for this repository; contains no external facts.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
