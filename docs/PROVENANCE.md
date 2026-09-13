@@ -125,7 +125,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 
 ## Datasets
 
-_No entries yet._
+### T-200 — Language table (`languages.properties`)
+- **Module / files:** `core/i18n/src/main/resources/ir/taqvim/core/i18n/languages.properties`
+- **Task:** T-200; decisions in docs/adr/0007-launch-languages.md
+- **Source:** Unicode CLDR 48 via the ICU4J 78.3 public API (Unicode-3.0; notice in `licenses/ICU-LICENSE.txt`),
+  retrieved 2026-09-13. Fields: native name, likely script, direction, region week data (first day, weekend), short
+  date pattern, AM/PM, two-item "and" list pattern, standalone wide month names (Gregorian, Persian, Islamic).
+- **Extraction:** a one-off Java program (`LanguageTableGen.java`, run from the session scratchpad against
+  `icu4j-78.3.jar` on JDK 21) that calls only public ICU4J APIs and writes the resource. Its logic is reproduced
+  in `LanguageTableCldrOracleTest`, which re-verifies every CLDR-derived value against ICU4J on each test run.
+- **Not from CLDR:** numerals, calendar order, prayer method and Asr convention are product defaults (ADR-0007).
+- **Gaps:** values CLDR only provides as generic or English fallbacks were omitted (docs/DATA_TODO.md DT-004…DT-007).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ## Golden fixtures
 
