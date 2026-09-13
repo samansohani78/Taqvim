@@ -10,6 +10,8 @@ dependencies {
     implementation(libs.compose.gradlePlugin)
     implementation(libs.serialization.gradlePlugin)
     implementation(libs.ksp.gradlePlugin)
+    // Proto DataStore in :data:preferences (T-600) applies com.google.protobuf.
+    implementation(libs.protobuf.gradlePlugin)
     implementation(libs.spotless.gradlePlugin)
     implementation(libs.kover.gradlePlugin)
     implementation(libs.roborazzi.gradlePlugin)

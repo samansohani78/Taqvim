@@ -88,6 +88,8 @@ internal val GENERATED_CLASS_PATTERNS =
         "*_Impl",
         "*_Impl$*",
         "*.generated.*",
+        // protoc output (UserPrefs messages, T-600).
+        "ir.taqvim.data.preferences.proto.*",
     )
 
 /**

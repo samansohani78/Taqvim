@@ -1,0 +1,95 @@
+// Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+// Proprietary and confidential. See the LICENSE file in the repository root.
+//
+// User preferences (docs/PLAN.md §4.4, T-600). Enum values mirror :core:model / :core:i18n enums by name after the
+// prefix; value 0 is always UNSPECIFIED so that missing or unknown values fall back to language defaults.
+
+syntax = "proto3";
+
+package taqvim.preferences;
+
+option java_package = "ir.taqvim.data.preferences.proto";
+option java_multiple_files = true;
+
+enum CalendarSystemProto {
+  CALENDAR_SYSTEM_UNSPECIFIED = 0;
+  CALENDAR_SYSTEM_PERSIAN = 1;
+  CALENDAR_SYSTEM_ISLAMIC = 2;
+  CALENDAR_SYSTEM_GREGORIAN = 3;
+  CALENDAR_SYSTEM_NEPALI = 4;
+}
+
+enum NumeralSystemProto {
+  NUMERAL_SYSTEM_UNSPECIFIED = 0;
+  NUMERAL_SYSTEM_LATIN = 1;
+  NUMERAL_SYSTEM_PERSIAN = 2;
+  NUMERAL_SYSTEM_EASTERN_ARABIC = 3;
+  NUMERAL_SYSTEM_DEVANAGARI = 4;
+  NUMERAL_SYSTEM_TAMIL = 5;
+}
+
+enum WeekdayProto {
+  WEEKDAY_UNSPECIFIED = 0;
+  WEEKDAY_MONDAY = 1;
+  WEEKDAY_TUESDAY = 2;
+  WEEKDAY_WEDNESDAY = 3;
+  WEEKDAY_THURSDAY = 4;
+  WEEKDAY_FRIDAY = 5;
+  WEEKDAY_SATURDAY = 6;
+  WEEKDAY_SUNDAY = 7;
+}
+
+enum PrayerMethodProto {
+  PRAYER_METHOD_UNSPECIFIED = 0;
+  PRAYER_METHOD_MWL = 1;
+  PRAYER_METHOD_ISNA = 2;
+  PRAYER_METHOD_EGYPT = 3;
+  PRAYER_METHOD_MAKKAH = 4;
+  PRAYER_METHOD_KARACHI = 5;
+  PRAYER_METHOD_TEHRAN = 6;
+  PRAYER_METHOD_JAFARI = 7;
+  PRAYER_METHOD_SINGAPORE = 8;
+  PRAYER_METHOD_FRANCE = 9;
+  PRAYER_METHOD_RUSSIA = 10;
+}
+
+enum AsrJuristicProto {
+  ASR_JURISTIC_UNSPECIFIED = 0;
+  ASR_JURISTIC_STANDARD = 1;
+  ASR_JURISTIC_HANAFI = 2;
+}
+
+enum IslamicVariantProto {
+  ISLAMIC_VARIANT_UNSPECIFIED = 0;
+  ISLAMIC_VARIANT_IRAN_OFFICIAL = 1;
+  ISLAMIC_VARIANT_UMM_AL_QURA = 2;
+  ISLAMIC_VARIANT_TABULAR_16 = 3;
+  ISLAMIC_VARIANT_TABULAR_15 = 4;
+  ISLAMIC_VARIANT_CALCULATED_OBSERVATIONAL = 5;
+}
+
+enum ThemeModeProto {
+  THEME_MODE_UNSPECIFIED = 0;
+  THEME_MODE_SYSTEM = 1;
+  THEME_MODE_LIGHT = 2;
+  THEME_MODE_DARK = 3;
+  THEME_MODE_BLACK = 4;
+}
+
+message UserPrefs {
+  // 0 = never initialised; see UserPrefsMigration.CURRENT_SCHEMA_VERSION.
+  int32 schema_version = 1;
+  string language_code = 2;
+  // Calendars in priority order; the first is the main calendar.
+  repeated CalendarSystemProto calendars = 3;
+  NumeralSystemProto numerals = 4;
+  WeekdayProto week_start = 5;
+  repeated WeekdayProto weekend = 6;
+  PrayerMethodProto prayer_method = 7;
+  AsrJuristicProto asr_juristic = 8;
+  IslamicVariantProto islamic_variant = 9;
+  ThemeModeProto theme_mode = 10;
+  int32 hijri_offset_days = 11;
+  // Epoch milliseconds when the Hijri offset was set; 0 = no offset.
+  int64 hijri_offset_set_at_epoch_millis = 12;
+}
