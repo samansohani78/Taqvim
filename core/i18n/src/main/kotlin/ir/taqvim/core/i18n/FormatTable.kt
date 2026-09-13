@@ -68,10 +68,34 @@ public data class LanguageFormats(
 public object FormatTable {
     private const val RESOURCE = "formats.properties"
 
+    /**
+     * Product overrides of CLDR full date patterns (docs/adr/0014-persian-long-date-pattern.md). CLDR 48 gives `fa`
+     * and `prs` the Persian-calendar pattern `y MMMM d, EEEE` (year first, Latin comma); Taqvim uses the language's own
+     * CLDR Gregorian full pattern instead. Every other pattern is CLDR data as generated.
+     */
+    internal val PRODUCT_DATE_PATTERNS: Map<Pair<String, CalendarSystem>, String> =
+        mapOf(
+            ("fa" to CalendarSystem.PERSIAN) to "EEEE d MMMM y",
+            ("prs" to CalendarSystem.PERSIAN) to "EEEE d MMMM y",
+        )
+
     /** Formatting data by language code, for every language of [LanguageTable]. */
     public val formats: Map<String, LanguageFormats> by lazy {
-        FormatTableParser.parse(loadResource(), LanguageTable.languages.map { it.code })
+        FormatTableParser
+            .parse(loadResource(), LanguageTable.languages.map { it.code })
+            .mapValues { (code, formats) -> withProductPatterns(code, formats) }
     }
+
+    private fun withProductPatterns(
+        code: String,
+        formats: LanguageFormats,
+    ): LanguageFormats =
+        formats.copy(
+            datePatterns =
+                formats.datePatterns.mapValues { (calendar, cldr) ->
+                    PRODUCT_DATE_PATTERNS[code to calendar] ?: cldr
+                },
+        )
 
     /** Formatting data of [language]. */
     public fun of(language: LanguageSpec): LanguageFormats =

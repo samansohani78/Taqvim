@@ -2,7 +2,7 @@
 # Sunday 2026-09-13 = 1405-06-22 SH = 1448-04-01 AH (Iran official calendar 1405)
 # NEPALI uses the placeholder date 2083-05-28 (structure only, not a verified conversion)
 # language<TAB>calendar<TAB>style<TAB>text
-fa	PERSIAN	LONG	۱۴۰۵ شهریور ۲۲, یکشنبه
+fa	PERSIAN	LONG	یکشنبه ۲۲ شهریور ۱۴۰۵
 fa	PERSIAN	NUMERIC	۱۴۰۵/۶/۲۲
 fa	PERSIAN	ISO	1405-06-22
 fa	ISLAMIC	LONG	یکشنبه ۱ ربیع‌الثانی ۱۴۴۸ ه‍.ق.
@@ -14,7 +14,7 @@ fa	GREGORIAN	ISO	2026-09-13
 fa	NEPALI	LONG	یکشنبه ۲۸ ۵ ۲۰۸۳
 fa	NEPALI	NUMERIC	۲۰۸۳/۵/۲۸
 fa	NEPALI	ISO	2083-05-28
-prs	PERSIAN	LONG	۱۴۰۵ سنبلهٔ ۲۲, یکشنبه
+prs	PERSIAN	LONG	یکشنبه ۲۲ سنبلهٔ ۱۴۰۵
 prs	PERSIAN	NUMERIC	۱۴۰۵/۶/۲۲
 prs	PERSIAN	ISO	1405-06-22
 prs	ISLAMIC	LONG	یکشنبه ۱ ربیع‌الثانی ۱۴۴۸ ه‍.ق.

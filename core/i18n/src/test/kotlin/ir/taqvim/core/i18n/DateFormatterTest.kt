@@ -16,6 +16,7 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Weekday
 import java.text.FieldPosition
+import java.util.Properties
 import kotlin.random.Random
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.Test
@@ -87,10 +88,40 @@ class DateFormatterTest {
         shouldThrow<IllegalArgumentException> { render("d Q") }
     }
 
+    @Test
+    fun `Persian long dates in fa and prs use the language's CLDR Gregorian pattern (ADR-0014)`() {
+        FormatTable.PRODUCT_DATE_PATTERNS.keys shouldBe
+            setOf("fa" to CalendarSystem.PERSIAN, "prs" to CalendarSystem.PERSIAN)
+        val generated = FormatTableParser.parse(loadGeneratedFormats(), listOf("fa", "prs"))
+        FormatTable.PRODUCT_DATE_PATTERNS.forEach { (key, pattern) ->
+            val (code, calendar) = key
+            val cldr = generated.getValue(code)
+            pattern shouldBe cldr.datePatterns.getValue(CalendarSystem.GREGORIAN)
+            cldr.datePatterns.getValue(calendar) shouldBe "y MMMM d, EEEE"
+            FormatTable.formats
+                .getValue(code)
+                .datePatterns
+                .getValue(calendar) shouldBe pattern
+        }
+
+        val date = CalendarDate(CalendarSystem.PERSIAN, 1405, 6, 22)
+        DateFormatter.format(date, sunday, language("fa"), DateStyle.LONG) shouldBe
+            Numerals.localizeDigits("یکشنبه 22 شهریور 1405", NumeralSystem.PERSIAN)
+    }
+
+    /** The generated CLDR table as stored, before product overrides. */
+    private fun loadGeneratedFormats(): Map<String, String> {
+        val stream = requireNotNull(FormatTable::class.java.getResourceAsStream("formats.properties"))
+        val properties = Properties()
+        stream.reader(Charsets.UTF_8).use { properties.load(it) }
+        return properties.stringPropertyNames().associateWith { properties.getProperty(it) }
+    }
+
     @TestFactory
     fun `long dates match ICU4J wherever the language has complete data`(): List<DynamicTest> =
         LanguageTable.languages.flatMap { language ->
             ORACLE_CALENDARS
+                .filter { (calendar, _) -> (language.code to calendar) !in FormatTable.PRODUCT_DATE_PATTERNS }
                 .filter { (calendar, _) -> hasCompleteData(FormatTable.of(language), calendar) }
                 .map { (calendar, years) ->
                     DynamicTest.dynamicTest("${language.code} $calendar") { compareWithIcu(language, calendar, years) }
