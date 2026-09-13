@@ -37,3 +37,18 @@ table would have 27–32 days.
   source, and the user offset exists for exactly that case.
 - Adding a newly published year to the table can change estimated dates just outside the old range; tests pin only
   published data and structural invariants (29/30-day months, continuity, round-trips).
+
+## Addendum (2026-09-13): A-06 implemented and calibrated
+
+A-06 is implemented in `:core:astronomy` (`Yallop`, `ObservationalMonthStarts`): a month has 29 days when the crescent
+passes Yallop's test on the evening of its 29th day, otherwise 30; the table feeds `IranIslamicCalendar`.
+
+Measured against the 25 published Iranian month starts (Ramadan 1446 – Shawwal 1448), a single site at Tehran with
+class C agrees on 19 (every miss is one day late); at class D 20. Requiring a sighting at any of five cities across
+Iran (Tehran, Mashhad, Zahedan, Bandar Abbas, Shiraz) at class D or better agrees on 23 (92 %), which meets the plan's
+90 % criterion and is published as `IranCrescentCalibration`.
+
+This calibration is a fit to a small sample and does not describe the official procedure. It must be re-validated
+(and the test threshold kept) whenever further official calendars are added (DT-002); generic single-site use keeps
+class C as its default.
+

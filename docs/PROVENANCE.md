@@ -176,6 +176,35 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### A-06 — Calculated-observational Islamic months (Yallop)
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/` — `CrescentVisibility.kt`,
+  `ObservationalMonthStarts.kt` (tables consumed by `IranIslamicCalendar`, A-05)
+- **Task:** T-104
+- **Spec:** docs/PLAN.md §6 A-06 — Yallop criterion evaluated at the chosen location on day 29; tabular fallback
+- **References used (public only):**
+  1. B. D. Yallop, "A Method for Predicting the First Sighting of the New Crescent Moon", NAO Technical Note No. 69,
+     HM Nautical Almanac Office, https://astronomycenter.net/pdf/yallop_1997.pdf (retrieved 2026-09-13): definitions
+     of ARCL/ARCV (§2), eq. (3.6) and the topocentric width (3.8)–(3.10), best time Tb = Ts + 4/9 lag (4.1), classes
+     A–F (Table 5).
+  2. cosinekitty/astronomy 2.1.19 (MIT), public API only: geocentric vectors, rotation to the equator of date,
+     airless horizon coordinates, rise/set searches. Earth equatorial radius 6378.137 km (WGS 84) for the parallax.
+- **Implementation note:** own work. Month rule: a month has 29 days when the crescent is rated at the chosen class or
+  better on the evening of its 29th day at the chosen place, otherwise 30; counting starts two months earlier from the
+  tabular calendar so an off-by-one start settles before the first returned month.
+- **Validation:** Yallop Table 4 (295 observations: q from ARCV and W′, class groups, width from parallax and ARCL);
+  real evenings around a new moon; agreement with the official Iranian month starts (A-05) and within a day of
+  Umm al-Qura (A-04).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-303 / T-304 — Holiday determination and event search index
+- **Module / files:** `core/events/src/main/kotlin/ir/taqvim/core/events/HolidayCalendar.kt`, `EventSearchIndex.kt`,
+  `SearchTypes.kt`; golden test `data/events/src/test/.../OfficialHolidaysGoldenTest.kt`
+- **Origin:** own work from docs/PLAN.md T-303/T-304 on the T-300 engine and T-203 normalization; search tests use
+  synthetic data only. The holiday golden test uses the Calendar Center daily fixtures (T-102) and the D-02 dataset.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
@@ -353,4 +382,9 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 - One file per city (31): the Institute of Geophysics' official religious times for 1405 SH (`docs/sources/<City>1405.pdf`,
   SHA-256 and the coordinates stated in each document in the header), extracted with `pdftotext -layout` and validated
   (365 days per city, time order, identical coordinates on every monthly page).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+
+### core/astronomy — `golden/yallop/yallop-1997-table4.csv` (T-104, A-06)
+- Yallop, NAO Technical Note 69, Table 4 (295 observations, pages 5–10), extracted with `pdftotext -layout`; PDF SHA-256 in
+  the header. Entries 251/252 (q = −0.014) keep the note's own group B.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
