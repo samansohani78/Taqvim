@@ -6,8 +6,18 @@ dependencies {
     implementation(projects.core.model)
     // Generated OfficialEvents exposes EventDefinition (D-08).
     api(projects.core.events)
+    // T-305: personal and iCalendar tables, preferences and device instances are combined with the dataset.
+    api(projects.data.database)
+    api(projects.data.preferences)
+    api(projects.data.deviceCalendar)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+
     // Nowruz-week golden test of the workday engine (T-504) on the generated official events.
     testImplementation(projects.core.workdays)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
 }
 
 // Official daily rows extracted from the Calendar Center's calendars (golden fixtures of :core:calendar), for T-303.
