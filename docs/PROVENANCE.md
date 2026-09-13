@@ -215,6 +215,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1400 — Converter, distance, duration calculator, time zones and QR
+- **Module / files:** `feature/tools/src/main/kotlin/ir/taqvim/feature/tools/`
+- **Task:** T-1400
+- **References used (public only):**
+  1. ISO/IEC 18004 (QR code) through ZXing core 3.5.4 (Apache-2.0, https://github.com/zxing/zxing), public API only
+     (`Encoder.encode`, error correction M, UTF-8 with ECI); tests decode with ZXing's `QRCodeReader`.
+  2. IANA time zone database via kotlinx-datetime / java.time; localized zone names from `java.util.TimeZone
+     .getDisplayName` (runtime CLDR data).
+  3. Android developer documentation: `androidx.core.content.FileProvider`, `Intent.ACTION_SEND`/`createChooser`.
+  4. The committed T-500 parser, T-101…T-106 calendars, T-202 formatters and T-504 `WorkdayCalculator`.
+- **Implementation note:** own work; the duration grammar and its unit words are Taqvim's design; test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1000 — Personal event editor
 - **Module / files:** `feature/events/src/main/kotlin/ir/taqvim/feature/events/`
 - **Task:** T-1000
