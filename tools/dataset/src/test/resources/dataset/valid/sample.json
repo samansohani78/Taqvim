@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "test.base",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture"
+    },
+    {
+      "id": "test.lunar",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture"
+    },
+    {
+      "id": "test.relative",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "CULTURAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "RelativeToEvent",
+        "eventId": "test.base",
+        "offsetDays": 12
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture"
+    },
+    {
+      "id": "test.nth-weekday",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 11,
+        "weekday": "THURSDAY",
+        "n": 4
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture",
+      "aliases": [
+        "sample alias"
+      ]
+    },
+    {
+      "id": "test.last-weekday",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "LastWeekdayOfMonth",
+        "month": 9,
+        "weekday": "FRIDAY",
+        "offsetDays": -1
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture"
+    },
+    {
+      "id": "test.last-day",
+      "calendar": "NEPALI",
+      "source": "NEPAL_OFFICIAL",
+      "category": "CULTURAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "LastDayOfMonth",
+        "month": 12
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture"
+    },
+    {
+      "id": "test.single",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "Single",
+        "year": 1405,
+        "month": 12,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture",
+      "validity": {
+        "calendar": "PERSIAN",
+        "fromYear": 1405,
+        "toYear": 1405,
+        "citation": {
+          "url": "https://example.org/law.pdf",
+          "title": "Synthetic validity source"
+        }
+      }
+    },
+    {
+      "id": "test.day-of-year",
+      "calendar": "PERSIAN",
+      "source": "ANCIENT_IRAN",
+      "category": "CULTURAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "NthDayOfYear",
+        "n": 366
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture",
+      "flags": [
+        "HALF_DAY"
+      ]
+    },
+    {
+      "id": "test.equinox",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "ASTRONOMICAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "Astronomical",
+        "kind": "MARCH_EQUINOX",
+        "offsetDays": 0,
+        "timeZone": "Asia/Tehran"
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture",
+      "links": {
+        "reference": "https://example.org/equinox"
+      }
+    }
+  ]
+}

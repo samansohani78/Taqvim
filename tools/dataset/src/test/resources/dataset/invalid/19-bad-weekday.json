@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "test.base",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "LastWeekdayOfMonth",
+        "month": 1,
+        "weekday": "FUNDAY"
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "test-fixture"
+    }
+  ]
+}

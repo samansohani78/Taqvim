@@ -1,0 +1,572 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://taqvim.ir/dataset/events.v1.json",
+  "title": "Taqvim event dataset, version 1",
+  "description": "One dataset file of holidays and observances; every record carries a citation (docs/PLAN.md §4.2, §5). Cross-record rules (unique ids, existing referenced events, day ranges per calendar, validity years) are enforced by :tools:dataset.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "events"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    }
+  },
+  "$defs": {
+    "eventId": {
+      "description": "Stable slug: lowercase dot-separated segments, e.g. ir.nowruz.1",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+)+$",
+      "maxLength": 96
+    },
+    "calendar": {
+      "enum": [
+        "PERSIAN",
+        "ISLAMIC",
+        "GREGORIAN",
+        "NEPALI"
+      ]
+    },
+    "source": {
+      "enum": [
+        "IRAN_OFFICIAL",
+        "AFGHANISTAN_OFFICIAL",
+        "NEPAL_OFFICIAL",
+        "INTERNATIONAL",
+        "ANCIENT_IRAN"
+      ]
+    },
+    "category": {
+      "enum": [
+        "NATIONAL",
+        "RELIGIOUS",
+        "INTERNATIONAL",
+        "CULTURAL",
+        "ASTRONOMICAL"
+      ]
+    },
+    "flag": {
+      "enum": [
+        "ALWAYS_DISPLAYED",
+        "HALF_DAY"
+      ]
+    },
+    "weekday": {
+      "enum": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ]
+    },
+    "astroKind": {
+      "enum": [
+        "MARCH_EQUINOX",
+        "JUNE_SOLSTICE",
+        "SEPTEMBER_EQUINOX",
+        "DECEMBER_SOLSTICE",
+        "NEW_MOON",
+        "FULL_MOON"
+      ]
+    },
+    "month": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "day": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 32
+    },
+    "year": {
+      "type": "integer",
+      "minimum": -9999,
+      "maximum": 9999
+    },
+    "offsetDays": {
+      "type": "integer",
+      "minimum": -366,
+      "maximum": 366
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "httpUrl": {
+      "type": "string",
+      "pattern": "^https?://[^\\s]+$"
+    },
+    "languageTag": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+    },
+    "localizedText": {
+      "description": "Language tag → text; Persian (fa) is mandatory.",
+      "type": "object",
+      "required": [
+        "fa"
+      ],
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/languageTag"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      }
+    },
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "title"
+      ],
+      "properties": {
+        "url": {
+          "$ref": "#/$defs/httpUrl"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "page": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retrieved": {
+          "$ref": "#/$defs/date"
+        }
+      }
+    },
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calendar",
+        "citation"
+      ],
+      "properties": {
+        "calendar": {
+          "$ref": "#/$defs/calendar"
+        },
+        "fromYear": {
+          "$ref": "#/$defs/year"
+        },
+        "toYear": {
+          "$ref": "#/$defs/year"
+        },
+        "citation": {
+          "$ref": "#/$defs/citation"
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "Fixed",
+            "NthWeekdayOfMonth",
+            "LastWeekdayOfMonth",
+            "LastDayOfMonth",
+            "Single",
+            "NthDayOfYear",
+            "RelativeToEvent",
+            "Astronomical"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "Fixed"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleFixed"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "NthWeekdayOfMonth"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleNthWeekdayOfMonth"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "LastWeekdayOfMonth"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleLastWeekdayOfMonth"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "LastDayOfMonth"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleLastDayOfMonth"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "Single"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleSingle"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "NthDayOfYear"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleNthDayOfYear"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "RelativeToEvent"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleRelativeToEvent"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "Astronomical"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleAstronomical"
+          }
+        }
+      ]
+    },
+    "ruleFixed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "month",
+        "day"
+      ],
+      "properties": {
+        "type": {
+          "const": "Fixed"
+        },
+        "month": {
+          "$ref": "#/$defs/month"
+        },
+        "day": {
+          "$ref": "#/$defs/day"
+        }
+      }
+    },
+    "ruleNthWeekdayOfMonth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "month",
+        "weekday",
+        "n"
+      ],
+      "properties": {
+        "type": {
+          "const": "NthWeekdayOfMonth"
+        },
+        "month": {
+          "$ref": "#/$defs/month"
+        },
+        "weekday": {
+          "$ref": "#/$defs/weekday"
+        },
+        "n": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        }
+      }
+    },
+    "ruleLastWeekdayOfMonth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "month",
+        "weekday"
+      ],
+      "properties": {
+        "type": {
+          "const": "LastWeekdayOfMonth"
+        },
+        "month": {
+          "$ref": "#/$defs/month"
+        },
+        "weekday": {
+          "$ref": "#/$defs/weekday"
+        },
+        "offsetDays": {
+          "$ref": "#/$defs/offsetDays"
+        }
+      }
+    },
+    "ruleLastDayOfMonth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "month"
+      ],
+      "properties": {
+        "type": {
+          "const": "LastDayOfMonth"
+        },
+        "month": {
+          "$ref": "#/$defs/month"
+        }
+      }
+    },
+    "ruleSingle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "year",
+        "month",
+        "day"
+      ],
+      "properties": {
+        "type": {
+          "const": "Single"
+        },
+        "year": {
+          "$ref": "#/$defs/year"
+        },
+        "month": {
+          "$ref": "#/$defs/month"
+        },
+        "day": {
+          "$ref": "#/$defs/day"
+        }
+      }
+    },
+    "ruleNthDayOfYear": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "n"
+      ],
+      "properties": {
+        "type": {
+          "const": "NthDayOfYear"
+        },
+        "n": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 366
+        }
+      }
+    },
+    "ruleRelativeToEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "eventId",
+        "offsetDays"
+      ],
+      "properties": {
+        "type": {
+          "const": "RelativeToEvent"
+        },
+        "eventId": {
+          "$ref": "#/$defs/eventId"
+        },
+        "offsetDays": {
+          "$ref": "#/$defs/offsetDays"
+        }
+      }
+    },
+    "ruleAstronomical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "kind",
+        "offsetDays",
+        "timeZone"
+      ],
+      "properties": {
+        "type": {
+          "const": "Astronomical"
+        },
+        "kind": {
+          "$ref": "#/$defs/astroKind"
+        },
+        "offsetDays": {
+          "$ref": "#/$defs/offsetDays"
+        },
+        "timeZone": {
+          "type": "string",
+          "pattern": "^[A-Za-z]+(/[A-Za-z0-9_+-]+)*$"
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "calendar",
+        "source",
+        "category",
+        "isHoliday",
+        "title",
+        "rule",
+        "citations",
+        "updated",
+        "reviewedBy"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/eventId"
+        },
+        "calendar": {
+          "$ref": "#/$defs/calendar"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "category": {
+          "$ref": "#/$defs/category"
+        },
+        "isHoliday": {
+          "type": "boolean"
+        },
+        "title": {
+          "$ref": "#/$defs/localizedText"
+        },
+        "rule": {
+          "$ref": "#/$defs/rule"
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "flags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/flag"
+          }
+        },
+        "aliases": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "citations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/citation"
+          }
+        },
+        "links": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/httpUrl"
+          }
+        },
+        "updated": {
+          "$ref": "#/$defs/date"
+        },
+        "reviewedBy": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
