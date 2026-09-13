@@ -216,6 +216,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-602 — Device calendar adapter
+- **Module / files:** `data/device-calendar/src/main/kotlin/ir/taqvim/data/devicecalendar/` — `DeviceEventMapping.kt`,
+  `CalendarInstancesSource.kt`, `DeviceCalendarRepository.kt`
+- **Task:** T-602
+- **References used (public only):** Android developer documentation — `CalendarContract.Instances` (content URI with
+  begin/end segments; `EVENT_ID`, `CALENDAR_ID`, `TITLE`, `BEGIN`, `END`, `ALL_DAY`, `DISPLAY_COLOR`, `VISIBLE`),
+  `CalendarContract.Events` (`DELETED`; all-day events use the UTC time zone), `CalendarContract.AUTHORITY`,
+  `ContentResolver.registerContentObserver`, `ContentObserver`, the `READ_CALENDAR` permission.
+- **Implementation note:** own work. Tests use a synthetic `ContentProvider` registered through Robolectric; no real
+  calendar data.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-604 — Alarm scheduler
 - **Module / files:** `data/scheduler/src/main/kotlin/ir/taqvim/data/scheduler/`
 - **Origin:** own work from docs/PLAN.md T-604. References: Android developer documentation for `AlarmManager`
