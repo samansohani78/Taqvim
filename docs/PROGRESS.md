@@ -6,7 +6,7 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 | Task | Title | Status | Branch/Commit | Tests added | Notes |
 |---|---|---|---|---|---|
 | T-000 | Repository bootstrap | DONE | main@f34ecdb | R: MainActivityTest · U: AppModuleTest (Koin graph verify), TaqvimIssueRegistryTest · L: ProjectStructureKonsistTest; spotless/detekt/lint/Kover gates green | ADR-0001–0004. Tests & detekt on JDK 21 toolchain; build resource budget after local OOM crashes (ADR-0004 §9) |
-| T-001 | License gate | DONE | main@d6c7ac3 | U: AllowListParserTest, SpdxNormalizerTest, PomLicensesTest (XXE, parent inheritance, cache lookup), LicensePolicyTest, ClassificationAndCodecTest · Negative: LGPL canary (`-Ptaqvim.licenseGate.canary=true`) rejected | 427 modules, 0 violations. ADR-0005: jakarta.annotation-api substitution, trove4j excluded, **EPL-1.0 test-only exception pending owner confirmation**; kxml2 MIT override. Google Maven unreachable from dev network → POMs read cache-first |
+| T-001 | License gate | DONE | main@d6c7ac3 | U: AllowListParserTest, SpdxNormalizerTest, PomLicensesTest (XXE, parent inheritance, cache lookup), LicensePolicyTest, ClassificationAndCodecTest · Negative: LGPL canary (`-Ptaqvim.licenseGate.canary=true`) rejected | 427 modules, 0 violations. ADR-0005: jakarta.annotation-api substitution, trove4j excluded, EPL-1.0 test-only exception confirmed by owner 2026-09-13; kxml2 MIT override. Google Maven unreachable from dev network → POMs read cache-first |
 | T-002 | Architecture rules (Konsist) | DONE | main@3ea66ba | Konsist: ArchitectureKonsistTest (10 rules on real code), ArchitectureRulesTest (17 unit), KonsistFixturesTest (8 end-to-end, planted violations) | package↔module, layering (imports + build scripts), Android-free pure core, files ≤400 / functions ≤50 lines, ViewModel/UiState contract, no global mutable state. `!!`/`try`/`as` → detekt + T-004 lint; complexity ≤12 → detekt. Rule 10 (main@0b13c78): expression-bodied `@Test` must declare `: Unit` |
 | T-003 | CI workflows | DONE (local) | main@8587d6b | L: actionlint (4 workflows + composite action) · local: CycloneDX SBOM (192 runtime components, no test deps), signed release APK verified by apksigner (v2), full gate green | pr.yml (static+SARIF, unit+Kover, Roborazzi verify, license gate + LGPL canary negative test, dataset, assemble, actionlint), instrumented.yml (API 26/30/33/36, KVM), benchmark.yml (nightly), release.yml (signed AAB/APK, git-cliff changelog, SBOM). **"Green on main" pending first push to GitHub** |
 | T-004 | Custom lint module | DONE | main@c3fc147 | L: SourceRuleDetectorsTest (6), StateTextAndBackDetectorsTest (8), TaqvimIssueRegistryTest (3) — LintDetectorTest positive/negative per rule; Konsist: string-literal unit test | NoDoubleBang, NoTryCatch, UseRunCatching (quick fix), NoUnsafeCast, NoHardcodedNonLatinText, HardcodedComposeText (added: quality bar forbids hard-coded UI text), NoGlobalMutableState, PreferPredictiveBack (Kotlin + manifest); active in every module, full gate green |
@@ -145,8 +145,8 @@ matrix (T-005). ADR-0001…0005.
 **License gate:** 437 external modules, 0 violations.
 
 **Open risks**
-1. EPL-1.0 test-only exception for `junit:junit` (ADR-0005) awaits owner confirmation.
-2. T-003 acceptance ("workflows green on main") requires pushing to GitHub; not yet pushed.
+1. ~~EPL-1.0 test-only exception for `junit:junit` (ADR-0005) awaits owner confirmation.~~ Confirmed 2026-09-13.
+2. T-003 acceptance ("workflows green on main") requires pushing to GitHub; not yet pushed (push not approved as of 2026-09-13).
 3. Google Maven (dl.google.com) is unreachable from the development network without a proxy/VPN; new
    AndroidX/Google dependencies cannot be fetched locally until it is reachable.
 4. The development machine (14 GB) crashed from OOM during unbounded builds; builds are now budgeted and run

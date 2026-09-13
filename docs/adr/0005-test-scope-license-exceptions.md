@@ -1,7 +1,7 @@
 # ADR-0005: Test-scope license findings from the first license-gate scan
 
-- **Status:** Accepted — the EPL-1.0 exception is **pending owner confirmation** because it widens the
-  fixed allow-list (ADR-0003).
+- **Status:** Accepted. The EPL-1.0 test-only exception, which widens the fixed allow-list (ADR-0003), was
+  **confirmed by the owner on 2026-09-13**.
 - **Date:** 2026-09-13
 - **Plan reference:** docs/PLAN.md §0.1 (dependency gate), T-001
 
@@ -46,7 +46,6 @@ ever appears on a runtime or build classpath.
 ## Consequences
 
 - `config/license/allowed-licenses.json` gains `{ "id": "EPL-1.0", "scopes": ["test"] }`.
-- If the owner rejects the EPL-1.0 exception, the alternatives are to drop Robolectric/Compose UI
-  Test/Macrobenchmark (conflicts with the fixed stack) or accept a red license gate; that trade-off needs
-  an owner decision.
+- Owner confirmation (2026-09-13): EPL-1.0 stays allowed in the `test` scope only; any runtime or build
+  appearance still fails the gate.
 - New substitutions or exclusions for license reasons must be added here.
