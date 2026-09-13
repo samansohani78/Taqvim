@@ -70,6 +70,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### A-05 — Iranian official lunar Hijri calendar
+- **Module / files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/` — `IranIslamicCalendar.kt`,
+  `IslamicMonthTable.kt`, `IranOfficialMonthStarts.kt`, `HijriDateResolver.kt`
+- **Task:** T-104 (A-06 deferred, ADR-0009)
+- **Spec:** docs/PLAN.md §6 A-05; design ADR-0009 (tabular estimate aligned at the table edges; precedence official >
+  user offset > estimate; ±2-day offset expiring after 30 days)
+- **Data:** month starts Ramadan 1446 – Shawwal 1448 from the Calendar Center's official calendars of 1404 and 1405 SH
+  (see the "Iran official calendar sources" dataset entry). Ramadan 1446's start is derived from the 1404 calendar
+  printing 20 Ramadan on 1 Farvardin 1404; its 29-day length from 1 Shawwal on 11 Farvardin.
+- **Validation:** every day of the official 1404/1405 calendars (730 lunar dates), the 26 published month starts and
+  lengths, structural invariants for 1440–1455, 100 000 random round-trips.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
@@ -202,4 +216,9 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
   Iran official lunar Hijri date, Gregorian date, official holiday flag, page (`Calendar-1404.pdf`, `Calendar-1405.pdf`).
 - `official-nowruz-instants.csv` — moment of the vernal equinox printed on the title page of each official calendar.
 - `century-boundaries.csv` — weekdays of 1 Farvardin 1, 101, 1301, 1401 and 29 Esfand 100, 200, 1400 (`century15th.pdf`).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+
+### core/calendar — `golden/islamic-iran/official-month-starts-1446-1448.csv` (T-104)
+- First day (Gregorian and Solar Hijri) and length of each official Iranian lunar month, Ramadan 1446 – Shawwal 1448,
+  from `Calendar-1404.pdf` and `Calendar-1405.pdf`; the Ramadan 1446 row is derived as described in A-05.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
