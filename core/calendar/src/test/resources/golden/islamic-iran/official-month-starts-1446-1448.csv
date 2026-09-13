@@ -1,0 +1,33 @@
+# source: University of Tehran, Institute of Geophysics, Calendar Center — Official calendar of Iran 1404 and 1405 SH (Calendar-1404.pdf, Calendar-1405.pdf), first days of the Iranian official lunar Hijri months
+# url: https://calendar.ut.ac.ir/Fa/
+# retrieved: 2026-09-13
+# page: 4-16
+# reviewer: pending
+# notes: owner-supplied PDF sha256=057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945 / 8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c; extracted with pdftotext -bbox (see docs/PROVENANCE.md) and validated for day, weekday, lunar-month and Gregorian continuity; the Ramadan 1446 row is derived: the 1404 calendar prints 20 Ramadan 1446 on 1 Farvardin 1404 (page 4), so Ramadan began 19 days earlier, and 1 Shawwal 1446 on 11 Farvardin gives it 29 days
+hijri_month,first_day_gregorian,first_day_persian,length_days
+1446-09,2025-03-02,1403-12-12,29
+1446-10,2025-03-31,1404-01-11,29
+1446-11,2025-04-29,1404-02-09,29
+1446-12,2025-05-28,1404-03-07,30
+1447-01,2025-06-27,1404-04-06,29
+1447-02,2025-07-26,1404-05-04,30
+1447-03,2025-08-25,1404-06-03,30
+1447-04,2025-09-24,1404-07-02,29
+1447-05,2025-10-23,1404-08-01,30
+1447-06,2025-11-22,1404-09-01,30
+1447-07,2025-12-22,1404-10-01,30
+1447-08,2026-01-21,1404-11-01,29
+1447-09,2026-02-19,1404-11-30,30
+1447-10,2026-03-21,1405-01-01,29
+1447-11,2026-04-19,1405-01-30,29
+1447-12,2026-05-18,1405-02-28,29
+1448-01,2026-06-16,1405-03-26,30
+1448-02,2026-07-16,1405-04-25,29
+1448-03,2026-08-14,1405-05-23,30
+1448-04,2026-09-13,1405-06-22,29
+1448-05,2026-10-12,1405-07-20,30
+1448-06,2026-11-11,1405-08-20,30
+1448-07,2026-12-11,1405-09-20,30
+1448-08,2027-01-10,1405-10-20,29
+1448-09,2027-02-08,1405-11-19,30
+1448-10,2027-03-10,1405-12-19,
