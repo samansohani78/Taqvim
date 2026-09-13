@@ -215,6 +215,14 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-800 — Calendar screen state and use cases
+- **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/`; `:app` adapters
+  `app/src/main/kotlin/ir/taqvim/app/di/CalendarAdapters.kt`, `TimesAdapters.kt`
+- **Origin:** own work from docs/PLAN.md T-800 on `:core:calendar` month arithmetic (T-106), the T-305 events
+  repository, the T-304 search index and the T-600 preferences; tests use synthetic data and the generated dataset.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1003 — iCalendar import, export and subscriptions
 - **Module / files:** `data/events/src/main/kotlin/ir/taqvim/data/events/ics/`; RDATE and X- property support in
   `core/ics` (`IcsModel.kt`, `IcsReader.kt`, `IcsWriter.kt`); Room schema 2 in `data/database`
