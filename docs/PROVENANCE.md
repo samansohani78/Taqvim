@@ -221,6 +221,15 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-504 — Workday engine
+- **Module / files:** `core/workdays/src/main/kotlin/ir/taqvim/core/workdays/WorkdayCalculator.kt`; golden test
+  `data/events/src/test/kotlin/ir/taqvim/data/events/NowruzWorkdaysGoldenTest.kt`
+- **Origin:** own work from docs/PLAN.md T-504 on HolidayCalendar (T-303). The synthetic test profile contains no
+  real-world data; the golden test uses the D-02/D-08 generated official events and the Calendar Center daily
+  fixtures (T-102). Its Friday weekend is a test setting, not official data.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100

@@ -51,7 +51,7 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 | T-501 | Text date detector (F-04) | TODO | | | |
 | T-502 | ICS reader/writer (F-05) | TODO | | | |
 | T-503 | Recurrence engine | TODO | | | |
-| T-504 | Workday engine (F-07) | TODO | | | |
+| T-504 | Workday engine (F-07) | DONE | main@d19884b | U: WorkdayCalculatorTest — 100 cases (50 addWorkdays, 50 workdaysBetween) against an independent java.time loop, next/previous/zero semantics, profile options (sources, half-day policy, personal leave), no-workday profile → typed failure · P: addWorkdays lands on a workday (104 tests) · G: NowruzWorkdaysGoldenTest (`:data:events`) — first 14 days of Farvardin 1404/1405 and Farvardin workday counts with the generated official holidays (30) | Built on HolidayCalendar (T-303); weekend is a user parameter; workdaysBetween half-open, next/previous strict, addWorkdays(d, 0) → d or next workday; NoWorkday after 3 660 non-working days |
 | T-600 | Proto DataStore | TODO | | | |
 | T-601 | Room schema & DAOs | TODO | | | |
 | T-602 | Device calendar adapter | TODO | | | |
