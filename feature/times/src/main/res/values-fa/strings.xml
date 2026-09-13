@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="times_title">اوقات شرعی</string>
+  <string name="times_prayer_fajr">اذان صبح</string>
+  <string name="times_prayer_sunrise">طلوع آفتاب</string>
+  <string name="times_prayer_dhuhr">اذان ظهر</string>
+  <string name="times_prayer_asr">عصر</string>
+  <string name="times_prayer_sunset">غروب آفتاب</string>
+  <string name="times_prayer_maghrib">اذان مغرب</string>
+  <string name="times_prayer_isha">عشا</string>
+  <string name="times_prayer_midnight">نیمه‌شب شرعی</string>
+  <string name="times_previous_day">روز قبل</string>
+  <string name="times_next_day">روز بعد</string>
+  <string name="times_today">امروز</string>
+  <string name="times_show_all">نمایش همه اوقات</string>
+  <string name="times_show_fewer">نمایش کمتر</string>
+  <string name="times_next_prayer">%2$s تا %1$s</string>
+  <string name="times_next_prayer_progress">زمان باقی تا %1$s</string>
+  <string name="times_sun_path">مسیر خورشید از طلوع %1$s تا غروب %2$s</string>
+  <string name="times_polar_day">خورشید در این روز غروب نمی‌کند و اوقات شرعی قابل محاسبه نیست.</string>
+  <string name="times_polar_night">خورشید در این روز طلوع نمی‌کند و اوقات شرعی قابل محاسبه نیست.</string>
+  <string name="times_no_location_title">مکانی انتخاب نشده است</string>
+  <string name="times_no_location_message">برای دیدن اوقات شرعی، شهری انتخاب کنید یا از موقعیت خود استفاده کنید.</string>
+  <string name="times_loading">در حال بارگذاری اوقات شرعی</string>
+  <string name="times_print_report">چاپ گزارش ماهانه</string>
+  <string name="times_report_title">اوقات شرعی %1$s، از %2$s تا %3$s</string>
+  <string name="times_report_date">تاریخ</string>
+  <string name="times_report_job">اوقات شرعی تقویم</string>
+</resources>
