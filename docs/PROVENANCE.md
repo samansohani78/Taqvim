@@ -194,6 +194,8 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Validation:** Yallop Table 4 (295 observations: q from ARCV and W′, class groups, width from parallax and ARCL);
   real evenings around a new moon; agreement with the official Iranian month starts (A-05) and within a day of
   Umm al-Qura (A-04).
+- **Calibration:** `IranCrescentCalibration` (any of five cities, class D) was chosen by measuring agreement with
+  the 25 published Iranian month starts (23/25); see the ADR-0009 addendum.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
