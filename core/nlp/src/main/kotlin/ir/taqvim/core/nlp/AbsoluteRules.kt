@@ -112,10 +112,13 @@ internal class AbsoluteRules(
         val day = tokens[shape.day].number
         if (calendar == null || day == null) return null
         val year = shape.year?.let { tokens[it].number }
+        // Like numeric dates, a year far from the reference is implausible ("#4521 is due March 26, 2028").
+        val distance = year?.let { abs(it - calendar.fromJdn(context.reference).year) } ?: 0
         val jdn =
-            (if (year != null) exact(calendar, year, month, day) else nearest(calendar, month, day)) ?: return null
+            (if (year != null) exact(calendar, year, month, day) else nearest(calendar, month, day))
+                ?.takeIf { distance <= MAX_YEAR_DISTANCE } ?: return null
         val used = listOfNotNull(shape.day, shape.year, monthTokens.first, monthTokens.last)
-        val base = if (year != null) NAMED_CONFIDENCE else YEARLESS_CONFIDENCE
+        val base = if (year != null) NAMED_CONFIDENCE - distance / DISTANCE_SCALE else YEARLESS_CONFIDENCE
         val range = used.min()..used.max()
         return Candidate(range, jdn, system, base + weekdayAdjustment(range, jdn), ParseKind.ABSOLUTE)
     }

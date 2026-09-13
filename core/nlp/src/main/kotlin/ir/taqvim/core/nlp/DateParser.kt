@@ -15,7 +15,9 @@ import ir.taqvim.core.model.Jdn
  */
 public object DateParser {
     private const val MAX_CONFIDENCE = 0.99
-    private val RANKING =
+
+    /** Best first: higher confidence, then the longer span, then the earlier one. */
+    internal val RANKING: Comparator<ParseResult> =
         compareByDescending<ParseResult> { it.confidence }
             .thenByDescending { it.span.last - it.span.first }
             .thenBy { it.span.first }
@@ -24,13 +26,28 @@ public object DateParser {
     public fun parse(
         text: String,
         context: ParseContext,
+    ): List<ParseResult> = parse(text, context, ParseKind.entries.toSet())
+
+    /**
+     * Readings of [text] of the given [kinds] only, best first; rule families that cannot produce them are skipped.
+     * Ranges are built from the written dates and from whichever other kinds are included.
+     */
+    internal fun parse(
+        text: String,
+        context: ParseContext,
+        kinds: Set<ParseKind>,
     ): List<ParseResult> {
         val tokens = Tokenizer.tokenize(text)
         val single =
-            AbsoluteRules(tokens, context).candidates() +
-                RelativeRules(tokens, context).candidates() +
-                AnchoredRules(tokens, text, context).candidates()
-        return (single + RangeRules(tokens, context).combine(single))
+            buildList {
+                if (ParseKind.ABSOLUTE in kinds || ParseKind.RANGE in kinds) {
+                    addAll(AbsoluteRules(tokens, context).candidates())
+                }
+                if (ParseKind.RELATIVE in kinds) addAll(RelativeRules(tokens, context).candidates())
+                if (ParseKind.ANCHORED in kinds) addAll(AnchoredRules(tokens, text, context).candidates())
+            }
+        val ranges = if (ParseKind.RANGE in kinds) RangeRules(tokens, context).combine(single) else emptyList()
+        return (single.filter { it.kind in kinds } + ranges)
             .map { it.toResult(tokens, context) }
             .sortedWith(RANKING)
             .distinctBy { Triple(it.span, it.jdn, it.end?.jdn) }

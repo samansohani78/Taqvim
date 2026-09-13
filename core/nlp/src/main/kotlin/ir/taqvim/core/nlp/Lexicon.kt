@@ -106,6 +106,18 @@ internal object Lexicon {
             .mapValues { it.value.toSet() }
     }
 
+    /** Keys of words that can begin a relative or anchored phrase: first words of concepts, numbers and weekdays. */
+    private val seedWords: Set<String> by lazy {
+        val firstWords =
+            Concept.entries.flatMap { concept ->
+                entries[concept.property].orEmpty().split('|').map { key(it.trim().substringBefore(' ')) }
+            }
+        (firstWords + numberWords.keys + weekdays.keys).filter { it.isNotEmpty() }.toSet()
+    }
+
+    /** Whether [token] is a word that can begin a relative or anchored phrase (a seed of the T-501 scanner). */
+    fun isSeedWord(token: Token): Boolean = token.type == TokenType.WORD && token.key in seedWords
+
     /** Matching key: letters and digits of [text] through [PersianText.searchKey]. */
     fun key(text: String): String =
         PersianText.searchKey(
