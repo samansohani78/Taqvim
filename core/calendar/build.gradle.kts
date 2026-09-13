@@ -4,6 +4,8 @@ plugins {
 
 dependencies {
     api(projects.core.model)
+    // kotlinx.datetime types (LocalDate, TimeZone, Instant) appear in the public bridge API (T-107).
+    api(libs.kotlinx.datetime)
     // ICU4J is a validation oracle only (docs/PLAN.md §6); never a runtime dependency of :core:calendar.
     testImplementation(libs.icu4j)
 }
