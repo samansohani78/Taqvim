@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 
 /**
- * Table-driven tests for T-106 utilities on the Gregorian and Islamic calendars. Persian (29/30 Esfand) and Nepali
- * (32-day months) rows are added with T-102 and T-105.
+ * Table-driven tests for T-106 utilities on the Gregorian and Islamic calendars. Persian rows (29/30 Esfand) are in
+ * [PersianCalendarMathTest]; Nepali rows (32-day months) are added with T-105.
  */
 class CalendarMathTest {
     private val gregorian = GregorianCalendarSystem
