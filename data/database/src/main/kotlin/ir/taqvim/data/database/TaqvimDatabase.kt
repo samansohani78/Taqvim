@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+package ir.taqvim.data.database
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+
+/** The personal-data database (docs/PLAN.md §4.3, T-601). Schemas are exported to `data/database/schemas`. */
+@Database(
+    entities = [
+        PersonalEventEntity::class,
+        EventRecurrenceEntity::class,
+        ReminderEntity::class,
+        ScheduledAlarmEntity::class,
+        ShiftRotationEntity::class,
+        ShiftRotationRecordEntity::class,
+        IcsSubscriptionEntity::class,
+        IcsEventCacheEntity::class,
+        DeviceEventCacheEntity::class,
+        WorkdayProfileEntity::class,
+        DiagnosticsLogEntity::class,
+    ],
+    version = TaqvimMigrations.LATEST_VERSION,
+    exportSchema = true,
+)
+@TypeConverters(CollectionConverters::class, CalendarConverters::class)
+abstract class TaqvimDatabase : RoomDatabase() {
+    abstract fun personalEventDao(): PersonalEventDao
+
+    abstract fun reminderDao(): ReminderDao
+
+    abstract fun shiftRotationDao(): ShiftRotationDao
+
+    abstract fun workdayProfileDao(): WorkdayProfileDao
+
+    abstract fun icsSubscriptionDao(): IcsSubscriptionDao
+
+    abstract fun deviceEventDao(): DeviceEventDao
+
+    abstract fun diagnosticsDao(): DiagnosticsDao
+
+    companion object {
+        /** Database file name. */
+        const val NAME: String = "taqvim.db"
+
+        /** The app database with every migration; create one per process. */
+        fun build(context: Context): TaqvimDatabase =
+            TaqvimMigrations.ALL
+                .fold(Room.databaseBuilder(context, TaqvimDatabase::class.java, NAME)) { builder, migration ->
+                    builder.addMigrations(migration)
+                }.build()
+    }
+}
+
+/**
+ * Schema migrations. Every schema change bumps [LATEST_VERSION], commits the exported schema JSON and adds a
+ * [Migration] from the previous version to [ALL]; `TaqvimDatabaseMigrationTest` migrates every exported version to the
+ * latest.
+ */
+object TaqvimMigrations {
+    /** Current schema version. */
+    const val LATEST_VERSION: Int = 1
+
+    /** Migrations between consecutive versions, oldest first. */
+    val ALL: List<Migration> = emptyList()
+}
