@@ -1,0 +1,12 @@
+# Default owner for everything.
+*                        @samansohani78
+
+# Build, license gate and CI require owner review.
+/build-logic/            @samansohani78
+/gradle/                 @samansohani78
+/config/license/         @samansohani78
+/.github/workflows/      @samansohani78
+
+# Dataset changes require a citation and owner review (D-09).
+/dataset/                @samansohani78
+/docs/PROVENANCE.md      @samansohani78

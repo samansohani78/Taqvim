@@ -1,0 +1,23 @@
+# Gradle / Kotlin
+.gradle/
+build/
+.kotlin/
+local.properties
+
+# IDE
+.idea/*
+!.idea/codeStyles/
+*.iml
+.vscode/
+
+# Android
+captures/
+*.apk
+*.aab
+*.keystore
+*.jks
+!debug.keystore
+
+# OS
+.DS_Store
+Thumbs.db

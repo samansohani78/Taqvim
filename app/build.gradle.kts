@@ -1,0 +1,69 @@
+plugins {
+    alias(libs.plugins.taqvim.android.application)
+    alias(libs.plugins.taqvim.android.compose)
+}
+
+android {
+    namespace = "ir.taqvim.app"
+    defaultConfig {
+        applicationId = "ir.taqvim.app"
+        versionCode = 1
+        versionName = "0.1.0"
+    }
+    buildTypes {
+        create("benchmark") {
+            initWith(getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
+    }
+}
+
+dependencies {
+    implementation(projects.core.model)
+    implementation(projects.core.calendar)
+    implementation(projects.core.events)
+    implementation(projects.core.praytimes)
+    implementation(projects.core.astronomy)
+    implementation(projects.core.i18n)
+    implementation(projects.core.nlp)
+    implementation(projects.core.ics)
+    implementation(projects.core.workdays)
+    implementation(projects.core.ui)
+
+    implementation(projects.data.preferences)
+    implementation(projects.data.database)
+    implementation(projects.data.events)
+    implementation(projects.data.deviceCalendar)
+    implementation(projects.data.location)
+    implementation(projects.data.scheduler)
+
+    implementation(projects.feature.calendar)
+    implementation(projects.feature.timeline)
+    implementation(projects.feature.month)
+    implementation(projects.feature.year)
+    implementation(projects.feature.agenda)
+    implementation(projects.feature.events)
+    implementation(projects.feature.times)
+    implementation(projects.feature.astronomy)
+    implementation(projects.feature.map)
+    implementation(projects.feature.compass)
+    implementation(projects.feature.tools)
+    implementation(projects.feature.settings)
+    implementation(projects.feature.about)
+    implementation(projects.feature.widgets)
+    implementation(projects.feature.notification)
+    implementation(projects.feature.wallpaper)
+    implementation(projects.feature.search)
+    implementation(projects.feature.backup)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.profileinstaller)
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
+    testImplementation(libs.koin.test)
+}

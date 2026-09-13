@@ -1,0 +1,4 @@
+/*
+ * Copyright (c) $YEAR Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */

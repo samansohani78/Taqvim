@@ -1,0 +1,31 @@
+name: Holiday / event data correction
+description: A holiday, observance or Hijri date is wrong or missing.
+labels: ["dataset", "triage"]
+body:
+  - type: input
+    id: event
+    attributes:
+      label: Event and date
+      placeholder: "e.g. Eid al-Fitr, 1405-01-11"
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Event source
+      options: ["Iran official", "Afghanistan official", "Nepal official", "International (UN)", "Ancient Iranian", "Islamic (Hijri) dates"]
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What is wrong and what is correct?
+    validations:
+      required: true
+  - type: input
+    id: citation
+    attributes:
+      label: Primary source (required)
+      description: URL of the official publication, with page number. Corrections without a primary source cannot be accepted.
+    validations:
+      required: true

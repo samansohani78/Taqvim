@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits", ":dependencyDashboard"],
+  "timezone": "Asia/Tehran",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 10,
+  "semanticCommitType": "build",
+  "semanticCommitScope": "deps",
+  "packageRules": [
+    {
+      "description": "Only stable releases",
+      "matchDatasources": ["maven"],
+      "allowedVersions": "!/(alpha|beta|rc|dev|snapshot|eap|M\\d+|preview)/i"
+    },
+    {
+      "description": "Kotlin, Compose compiler and KSP move together",
+      "groupName": "kotlin",
+      "matchPackageNames": ["org.jetbrains.kotlin{/,}**", "com.google.devtools.ksp{/,}**"]
+    },
+    {
+      "description": "AGP and Lint share a release train",
+      "groupName": "android-gradle-plugin",
+      "matchPackageNames": ["com.android.tools.build{/,}**", "com.android.tools.lint{/,}**"]
+    },
+    {
+      "description": "detekt's embedded Kotlin version is pinned to the detekt release",
+      "matchPackageNames": ["org.jetbrains.kotlin:kotlin-compiler-embeddable"],
+      "matchDepNames": ["detekt-kotlin"],
+      "enabled": false
+    },
+    {
+      "groupName": "github-actions",
+      "matchManagers": ["github-actions"],
+      "pinDigests": true
+    }
+  ]
+}

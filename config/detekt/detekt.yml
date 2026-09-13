@@ -1,0 +1,90 @@
+# Taqvim detekt configuration — builds upon detekt defaults.
+# Thresholds implement the quality bar in docs/PLAN.md §0.2 / T-002:
+# functions ≤ 50 lines, cyclomatic complexity ≤ 12, no `!!`, no unsafe casts, no raw catch.
+# File length (≤ 400 lines) is enforced by Konsist (detekt has no per-file line rule).
+
+config:
+  validation: true
+
+complexity:
+  LongMethod:
+    active: true
+    threshold: 50
+  CyclomaticComplexMethod:
+    active: true
+    threshold: 12
+    ignoreSimpleWhenEntries: false
+  LargeClass:
+    active: true
+    threshold: 400
+  LongParameterList:
+    active: true
+    functionThreshold: 8
+    constructorThreshold: 12
+    ignoreDefaultParameters: true
+    ignoreAnnotated: ['Composable']
+  TooManyFunctions:
+    active: true
+    thresholdInFiles: 30
+    thresholdInClasses: 25
+    thresholdInInterfaces: 25
+    thresholdInObjects: 25
+    ignorePrivate: true
+
+potential-bugs:
+  UnsafeCallOnNullableType:
+    active: true
+  UnsafeCast:
+    active: true
+  CastNullableToNonNullableType:
+    active: true
+  LateinitUsage:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: true
+  SwallowedException:
+    active: true
+  ThrowingExceptionsWithoutMessageOrCause:
+    active: true
+
+naming:
+  FunctionNaming:
+    active: true
+    ignoreAnnotated: ['Composable']
+    excludes: ['**/test/**', '**/androidTest/**']
+  TopLevelPropertyNaming:
+    active: true
+
+style:
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
+    excludeCommentStatements: true
+  MagicNumber:
+    active: true
+    ignorePropertyDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreAnnotated: ['Composable', 'Preview']
+    excludes: ['**/test/**', '**/androidTest/**', '**/*.kts']
+  WildcardImport:
+    active: true
+  ReturnCount:
+    active: true
+    max: 3
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated: ['Preview']
+  ForbiddenComment:
+    active: true
+    comments:
+      - reason: 'Resolve FIXMEs before merging.'
+        value: 'FIXME:'
+      - reason: 'STOPSHIP must not be merged.'
+        value: 'STOPSHIP:'
+  VarCouldBeVal:
+    active: true
+  DataClassContainsFunctions:
+    active: false
