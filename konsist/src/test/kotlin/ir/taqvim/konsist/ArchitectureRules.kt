@@ -92,6 +92,9 @@ object ArchitectureRules {
     private val EXPOSED_MUTABLE_STREAM =
         Regex("""^(MutableStateFlow|MutableSharedFlow|MutableLiveData|LiveData|MutableState)\b""")
     private val MUTABLE_TYPE = Regex("""^(Mutable\w*|Array<|\w+Array\b|ArrayList|HashMap|HashSet|LinkedHashMap)""")
+
+    /** String literals are data, not state: a Regex constant mentioning `MutableStateFlow` is not mutable. */
+    private val STRING_LITERAL = Regex("\"\"\"[\\s\\S]*?\"\"\"|\"(?:\\\\.|[^\"\\\\])*\"")
     private val MUTABLE_HOLDER =
         Regex("""\b(mutable\w*Of|Mutable[A-Z]\w*|ArrayList|HashMap|HashSet|LinkedHashMap|Atomic[A-Z]\w*)\b""")
 
@@ -206,7 +209,7 @@ object ArchitectureRules {
                     "${property.location}: $scope property '${property.name}' is a var"
                 }
 
-                MUTABLE_HOLDER.containsMatchIn(property.declaration) -> {
+                MUTABLE_HOLDER.containsMatchIn(property.declaration.replace(STRING_LITERAL, "\"\"")) -> {
                     "${property.location}: $scope property '${property.name}' holds mutable state"
                 }
 

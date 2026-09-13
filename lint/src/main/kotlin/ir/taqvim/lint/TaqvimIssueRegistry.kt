@@ -11,7 +11,17 @@ import com.android.tools.lint.detector.api.Issue
 
 /** Registers Taqvim's custom lint issues (T-004). */
 class TaqvimIssueRegistry : IssueRegistry() {
-    override val issues: List<Issue> = emptyList()
+    override val issues: List<Issue> =
+        listOf(
+            NoDoubleBangDetector.ISSUE,
+            TryCatchDetector.NO_TRY_CATCH,
+            TryCatchDetector.USE_RUN_CATCHING,
+            NoUnsafeCastDetector.ISSUE,
+            HardcodedTextDetector.NON_LATIN_TEXT,
+            HardcodedTextDetector.COMPOSE_TEXT,
+            NoGlobalMutableStateDetector.ISSUE,
+            PreferPredictiveBackDetector.ISSUE,
+        )
 
     override val api: Int = CURRENT_API
 

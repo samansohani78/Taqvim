@@ -207,6 +207,25 @@ class ArchitectureRulesTest {
     }
 
     @Test
+    fun `mutable-sounding words inside string literals are not state`() {
+        val regexConstant = "private val HOLDER = Regex(\"\"\"\\b(MutableStateFlow|mutableListOf)\\b\"\"\")"
+        val message = "val HINT = \"Use MutableStateFlow in a ViewModel\""
+        val real = "val state = MutableStateFlow(0) // \"quoted\""
+
+        val violations =
+            ArchitectureRules.globalMutableStateViolations(
+                topLevel =
+                    listOf(
+                        property("HOLDER", declaration = regexConstant),
+                        property("HINT", declaration = message),
+                    ),
+                objectMembers = listOf(property("state", declaration = real)),
+            )
+
+        violations.single() shouldContain "object property 'state' holds mutable state"
+    }
+
+    @Test
     fun `module paths are derived from the source location`() {
         KonsistFacts.modulePathOf("/repo", "/repo/core/ui-testing/src/main/kotlin/A.kt") shouldBe ":core:ui-testing"
         KonsistFacts.modulePathOf("/repo/", "/repo/app/src/test/kotlin/B.kt") shouldBe ":app"
