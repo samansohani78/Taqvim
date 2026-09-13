@@ -215,6 +215,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-701 — Design-system components
+- **Module / files:** `core/ui/src/main/kotlin/ir/taqvim/core/ui/component/`
+- **Task:** T-701
+- **References used (public only):** Jetpack Compose and Material 3 public APIs (Apache-2.0) — `Layout`,
+  `Canvas`/`DrawScope`, semantics properties, `TopAppBar`, `SegmentedButton`, `ModalBottomSheet`. The moon phase is an
+  orthographic view of a lit sphere (terminator = half ellipse with semi-axis |1 − 2k|·r for illuminated fraction k),
+  derived from the geometry.
+- **Implementation note:** own work; no GPL/LGPL UI code used or consulted; screenshot sample texts are synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-603 — City catalog, collation and device location
 - **Module / files:** `data/location/src/main/kotlin/ir/taqvim/data/location/` — `CityCatalog.kt`,
   `CityTableParser.kt`, `DeviceLocator.kt`, `PlatformGeocoder.kt`
