@@ -51,4 +51,3 @@ Iran (Tehran, Mashhad, Zahedan, Bandar Abbas, Shiraz) at class D or better agree
 This calibration is a fit to a small sample and does not describe the official procedure. It must be re-validated
 (and the test threshold kept) whenever further official calendars are added (DT-002); generic single-site use keeps
 class C as its default.
-
