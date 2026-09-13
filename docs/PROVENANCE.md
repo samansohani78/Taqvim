@@ -153,6 +153,29 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### A-14 — Houses, lots and ascendant
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Houses.kt`
+- **Task:** T-405
+- **References used (public only):**
+  1. J. Meeus, *Astronomical Algorithms*, 2nd ed. (Willmann-Bell, 1998) — ecliptic ↔ equatorial conversion (ch. 13)
+     and the standard expressions for the ascendant and midheaven from the local sidereal angle, latitude and
+     obliquity.
+  2. NOAA Global Monitoring Laboratory, Solar Calculations spreadsheet (as used for A-09) — mean obliquity series and
+     the 0.00256·cos Ω correction.
+  3. The Placidus definition: each intermediate cusp is the ecliptic point lying one or two thirds of its diurnal
+     (houses 11–12) or nocturnal (houses 2–3) semi-arc from the meridian — general astrological-astronomy knowledge; no
+     code or tables copied.
+  4. cosinekitty/astronomy 2.1.19 (MIT), public API only: `siderealTime` and the A-13 façade (Sun/Moon longitudes, Sun
+     altitude for day/night charts).
+- **Implementation note:** own work. Cusps are found by fixed-point iteration on the point's declination (30
+  iterations); Placidus is undefined (`null`) where |latitude| ≥ 90° − obliquity. Lots: day Fortune = ASC + Moon − Sun,
+  Spirit = ASC − Moon + Sun; the formulas swap at night.
+- **Validation:** property tests against the definitions (ascendant on the eastern horizon, midheaven hour angle 0,
+  cusps 11/12 at ⅓ and ⅔ semi-arc, ordering and oppositions) for 1950–2050 and latitudes ±60°. Published charts are
+  pending (DT-018).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### A-10 — Prayer times
 - **Module / files:** `core/praytimes/src/main/kotlin/ir/taqvim/core/praytimes/` — `PrayerTimesCalculator.kt`,
   `PrayerMethodParameters.kt` (on the A-09 `NoaaSolarCalculator`)
