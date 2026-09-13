@@ -34,6 +34,7 @@ internal fun Project.configureTestTasks() {
             languageVersion.set(JavaLanguageVersion.of(TaqvimBuild.JAVA_RELEASE))
         }
     val limiter = forkedJvmLimiter()
+    val updateSnapshots = providers.gradleProperty(UPDATE_SNAPSHOTS_PROPERTY).orElse("false")
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
         // One fork per test task, capped heap, and a build-wide cap on concurrent forks (ADR-0004 §9).
@@ -46,12 +47,16 @@ internal fun Project.configureTestTasks() {
         // Robolectric's SDK 36 FileDescriptor interceptor (ApplicationSharedMemory) needs these on any modern JDK.
         jvmArgs("--add-exports=java.base/jdk.internal.access=ALL-UNNAMED", "--add-opens=java.base/java.io=ALL-UNNAMED")
         systemProperty("kotest.framework.dump.config", "false")
+        systemProperty(UPDATE_SNAPSHOTS_PROPERTY, updateSnapshots.get())
         testLogging {
             events(TestLogEvent.FAILED, TestLogEvent.SKIPPED)
             exceptionFormat = TestExceptionFormat.FULL
         }
     }
 }
+
+/** Gradle and system property that lets `SnapshotVerifier` (core:testing) rewrite snapshots. */
+private const val UPDATE_SNAPSHOTS_PROPERTY = "taqvim.updateSnapshots"
 
 /** Base test dependencies for every module with Kotlin code. */
 internal fun Project.addBaseTestDependencies() {

@@ -84,6 +84,15 @@ Gradle daemon (5.5 GB RSS) and the desktop session was lost. The build is theref
 CI runners (4 vCPU / 16 GB) may raise the limits with `-Dorg.gradle.workers.max` and
 `-Ptaqvim.maxForkedJvms`.
 
+### 10. Composables are excluded from Kover coverage
+The `:core:*` gate requires 95 % line and 90 % branch coverage. The Compose compiler adds
+recomposition-skipping branches (`$changed` bitmasks, `skipToGroupEnd`) to every `@Composable` function; a
+JVM test that composes once cannot reach them. The first Android core module (`:core:ui-testing`) had every
+hand-written branch covered, yet reached only 78.6 % branch coverage because of three generated branches in
+one composable. Functions annotated `@Composable` are therefore excluded from Kover (module and merged
+reports). They are verified by what the plan prescribes for UI: Roborazzi screenshot matrices, Compose UI
+tests and Robolectric tests. Non-composable UI logic (state holders, formatters, painters) stays under the gate.
+
 ## Consequences
 
 - The Konsist rules must list `:core:ui` and `:core:ui-testing` as the only Android modules under

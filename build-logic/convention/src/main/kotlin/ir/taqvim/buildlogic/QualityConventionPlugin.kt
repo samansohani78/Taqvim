@@ -38,7 +38,12 @@ private fun Project.configureModuleCoverage() {
     val core = isCoreModule
     extensions.configure<KoverProjectExtension> {
         reports {
-            filters { excludes { classes(GENERATED_CLASS_PATTERNS) } }
+            filters {
+                excludes {
+                    classes(GENERATED_CLASS_PATTERNS)
+                    annotatedBy(*EXCLUDED_ANNOTATIONS)
+                }
+            }
             if (core) {
                 verify {
                     rule("Core line coverage") { minBound(CORE_LINE_COVERAGE) }
@@ -84,6 +89,12 @@ internal val GENERATED_CLASS_PATTERNS =
         "*_Impl$*",
         "*.generated.*",
     )
+
+/**
+ * Composables are verified by screenshot and UI tests; their compiler-generated recomposition-skip branches
+ * cannot be reached by JVM tests, so they are excluded from Kover coverage (ADR-0004 §10).
+ */
+internal val EXCLUDED_ANNOTATIONS = arrayOf("androidx.compose.runtime.Composable")
 
 private const val CORE_LINE_COVERAGE = 95
 private const val CORE_BRANCH_COVERAGE = 90

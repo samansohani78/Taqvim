@@ -23,6 +23,8 @@ class ClassificationAndCodecTest {
             Triple(":app", "debugScreenshotTestRuntimeClasspath", LicenseScope.TEST),
             Triple(":benchmark", "benchmarkRuntimeClasspath", LicenseScope.TEST),
             Triple(":konsist", "runtimeClasspath", LicenseScope.TEST),
+            Triple(":core:testing", "runtimeClasspath", LicenseScope.TEST),
+            Triple(":core:ui-testing", "releaseRuntimeClasspath", LicenseScope.TEST),
             Triple(":lint", "runtimeClasspath", LicenseScope.BUILD),
             Triple(":tools:dataset", "runtimeClasspath", LicenseScope.BUILD),
             Triple(":data:database", "kspDebugProcessorClasspath", LicenseScope.BUILD),

@@ -65,6 +65,8 @@ style:
     excludeCommentStatements: true
   MagicNumber:
     active: true
+    # Enum entries are declarative data (e.g. screenshot device sizes from docs/PLAN.md T-005).
+    ignoreEnums: true
     ignorePropertyDeclaration: true
     ignoreCompanionObjectPropertyDeclaration: true
     ignoreAnnotated: ['Composable', 'Preview']

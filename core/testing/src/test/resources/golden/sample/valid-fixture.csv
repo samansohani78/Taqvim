@@ -1,0 +1,7 @@
+# source: Taqvim test infrastructure self-test
+# url: https://github.com/samansohani78/Taqvim/blob/main/core/testing/README.md
+# retrieved: 2026-09-13
+# reviewer: Saman Sohani
+# notes: Synthetic fixture exercising GoldenFile.load; contains no external data.
+key,value
+answer,42

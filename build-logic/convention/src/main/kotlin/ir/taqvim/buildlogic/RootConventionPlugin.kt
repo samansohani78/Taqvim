@@ -132,7 +132,12 @@ private fun Project.configureMergedCoverage() {
     }
     extensions.configure<KoverProjectExtension> {
         reports {
-            filters { excludes { classes(GENERATED_CLASS_PATTERNS) } }
+            filters {
+                excludes {
+                    classes(GENERATED_CLASS_PATTERNS)
+                    annotatedBy(*EXCLUDED_ANNOTATIONS)
+                }
+            }
             verify {
                 rule("Overall line coverage") { minBound(OVERALL_LINE_COVERAGE) }
             }

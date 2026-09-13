@@ -112,7 +112,7 @@ object ConfigurationClassifier {
     /** Resolvable configuration used by the CI negative test to inject a forbidden dependency. */
     const val CANARY_CONFIGURATION = "licenseGateCanaryClasspath"
 
-    private val TEST_ONLY_PROJECTS = setOf(":benchmark", ":konsist")
+    private val TEST_ONLY_PROJECTS = setOf(":benchmark", ":konsist", ":core:testing", ":core:ui-testing")
     private val BUILD_ONLY_PROJECTS = setOf(":lint", ":tools:dataset")
     private val TEST_MARKERS = listOf("unittest", "androidtest", "screenshottest", "testfixtures")
 
