@@ -1,0 +1,841 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "ir.holiday.nowruz-1",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "آغاز نوروز"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.nowruz-2",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید نوروز"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.nowruz-3",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید نوروز"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 3
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.nowruz-4",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید نوروز"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 4
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.islamic-republic-day",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "روز جمهوری اسلامی ایران"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.nature-day",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "روز طبیعت"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 13
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.khomeini-demise",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "رحلت حضرت امام خمینی رهبر کبیر انقلاب و بنیان‌گذار جمهوری اسلامی ایران"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 14
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "6",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "5",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.khordad-15-uprising",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "قیام خونین ۱۵ خرداد"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "6",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "5",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.revolution-victory",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "پیروزی انقلاب اسلامی ایران و سقوط نظام شاهنشاهی"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 22
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "14",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "13",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.oil-nationalization",
+      "calendar": "PERSIAN",
+      "source": "IRAN_OFFICIAL",
+      "category": "NATIONAL",
+      "isHoliday": true,
+      "title": {
+        "fa": "روز ملی شدن صنعت نفت ایران"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "15",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "14",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.tasua",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "تاسوعای حسینی"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 9
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "7",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "6",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.ashura",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عاشورای حسینی"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "7",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "6",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.arbaeen",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "اربعین حسینی"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "8",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "7",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.prophet-demise-imam-hasan-martyrdom",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 28
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "8",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "7",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.imam-reza-martyrdom",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "شهادت حضرت امام رضا علیه السلام"
+      },
+      "rule": {
+        "type": "LastDayOfMonth",
+        "month": 2
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "9",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "7",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.imam-hasan-askari-martyrdom",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "شهادت حضرت امام حسن عسکری علیه السلام و آغاز امامت حضرت ولی عصر (عجل الله تعالی فرجه)"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 8
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "9",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "7",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.prophet-imam-sadiq-birth",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "ولادت حضرت رسول اکرم صلی الله علیه و آله و ولادت حضرت امام جعفر صادق علیه السلام"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 17
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "9",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "8",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.fatima-martyrdom",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "شهادت حضرت فاطمه زهرا سلام الله علیها"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 3
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "12",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "10",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.imam-ali-birth",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "ولادت حضرت امام علی علیه السلام"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 13
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "13",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "12",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.mabath",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "مبعث حضرت رسول اکرم صلی الله علیه و آله"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 27
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "13",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "12",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.imam-mahdi-birth",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "ولادت حضرت قائم عجل الله تعالی فرجه"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "14",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "13",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.imam-ali-martyrdom",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "شهادت حضرت امام علی علیه السلام"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4, 15",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "14",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.eid-al-fitr",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید سعید فطر"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3, 14",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.eid-al-fitr-holiday",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "تعطیل به مناسبت عید سعید فطر"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3, 14",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.imam-sadiq-martyrdom",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "شهادت حضرت امام جعفر صادق علیه السلام"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "5",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.eid-al-adha",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید سعید قربان"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "6",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "5",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.holiday.eid-al-ghadir",
+      "calendar": "ISLAMIC",
+      "source": "IRAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید سعید غدیر خم"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+          "page": "6",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+          "page": "5",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending"
+    }
+  ]
+}

@@ -18,6 +18,13 @@ tasks.register<JavaExec>("validate") {
     args(datasetDirectory.file("events.v1.json").asFile.path, datasetDirectory.asFile.path)
 }
 
+// Official daily rows extracted from the Calendar Center's calendars (golden fixtures of :core:calendar, T-102).
+val officialDaysDirectory = rootProject.layout.projectDirectory.dir("core/calendar/src/test/resources/golden/persian")
+
 tasks.withType<Test>().configureEach {
     systemProperty("taqvim.dataset.schema", datasetDirectory.file("events.v1.json").asFile.path)
+    systemProperty("taqvim.dataset.directory", datasetDirectory.asFile.path)
+    systemProperty("taqvim.official.days.directory", officialDaysDirectory.asFile.path)
+    inputs.dir(datasetDirectory).withPathSensitivity(PathSensitivity.RELATIVE)
+    inputs.dir(officialDaysDirectory).withPathSensitivity(PathSensitivity.RELATIVE)
 }
