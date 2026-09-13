@@ -200,6 +200,16 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Dependency:** networknt json-schema-validator 3.0.7 (Apache-2.0), used through its public API only.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 
+### D-02 — Iran official holidays (`dataset/iran/iran-official-holidays.json`)
+- **Source:** University of Tehran Calendar Center, official calendars of 1404 and 1405 SH (`docs/sources`, checksums in
+  `docs/sources/MANIFEST.md`); days marked "(تعطیل)".
+- **Method:** titles are the official Persian wording; only PDF text-layer artefacts were corrected (lam-alef ligature,
+  ی/ک, spacing, words split across lines). Where one cell held several occasions, the holiday was attributed using the
+  other year (lunar holidays move by about 11 days) or the rendered page. Rules were derived from both years and checked
+  date by date against the extracted daily rows (26/26 holidays in each year). No translations: there is no primary
+  source for them.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending (sign-off checklist in D-02).
+
 ## Golden fixtures
 
 Format: every file under `src/test/resources/golden/` starts with a `# source/url/retrieved/page/reviewer`
