@@ -6,6 +6,7 @@ package ir.taqvim.feature.calendar
 
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
 import kotlinx.collections.immutable.ImmutableList
@@ -41,6 +42,18 @@ data class CalendarContent(
     /** Events of [selectedDay]; `null` while they load. */
     val dayDetails: DayDetails?,
     val search: CalendarSearch,
+    val islamicVariant: IslamicVariant,
+    /** App language code for month names, digits and spoken dates. */
+    val languageCode: String,
+    val showWeekNumbers: Boolean,
+    /** Loaded events of the shown month and the months either side of it (pager prefetch); others are loading. */
+    val months: ImmutableList<MonthEvents>,
+)
+
+/** The six grid weeks of the month [offset] (see [CalendarContent.monthOffset]) with their events. */
+data class MonthEvents(
+    val offset: Int,
+    val days: ImmutableList<CalendarDay>,
 )
 
 /** The events of one day as shown in the day details. */

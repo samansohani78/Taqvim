@@ -58,6 +58,11 @@ sealed interface CalendarAction {
     data class OpenEvent(
         val event: DayEventItem,
     ) : Event
+
+    /** Tap on a week number: open the timeline at the week beginning on [firstDay]. */
+    data class OpenWeek(
+        val firstDay: Jdn,
+    ) : Event
 }
 
 /** Messages the calendar screen shows in a snackbar; the UI maps them to string resources. */
@@ -78,5 +83,10 @@ sealed interface CalendarEffect {
 
     data class ShowSnackbar(
         val message: CalendarMessage,
+    ) : CalendarEffect
+
+    /** Open the timeline at the week that begins on [firstDay] (T-801 week-number column). */
+    data class NavigateToTimeline(
+        val firstDay: Jdn,
     ) : CalendarEffect
 }

@@ -8,6 +8,7 @@ import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,6 +28,7 @@ internal val PERSIAN_FIRST =
         calendars = listOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN, CalendarSystem.ISLAMIC),
         weekStart = Weekday.SATURDAY,
         islamicVariant = IslamicVariant.IRAN_OFFICIAL,
+        languageCode = "fa",
     )
 
 internal class FakeSettingsSource(
@@ -45,15 +47,29 @@ internal class FakeTodaySource(
     override fun today(): Flow<Jdn> = state.filterNotNull()
 }
 
-/** One official event per day; days in [holidays] are holidays. */
-internal class FakeDaySource : CalendarDaySource {
+/** One official event per day; days in [holidays] are holidays. Also serves ranges of days (T-801). */
+internal class FakeDaySource :
+    CalendarDaySource,
+    CalendarMonthSource {
     val holidays = MutableStateFlow(emptySet<Jdn>())
 
-    override fun day(jdn: Jdn): Flow<CalendarDay> =
-        holidays.map { holidays ->
-            val holiday = jdn in holidays
-            CalendarDay(jdn, holiday, isWeekend = false, listOf(eventOn(jdn, holiday)))
-        }
+    /** Every range requested through [days], in order. */
+    val requestedRanges = mutableListOf<JdnRange>()
+
+    override fun day(jdn: Jdn): Flow<CalendarDay> = holidays.map { dayOf(jdn, it) }
+
+    override fun days(range: JdnRange): Flow<List<CalendarDay>> {
+        requestedRanges += range
+        return holidays.map { holidays -> range.map { dayOf(it, holidays) } }
+    }
+
+    private fun dayOf(
+        jdn: Jdn,
+        holidays: Set<Jdn>,
+    ): CalendarDay {
+        val holiday = jdn in holidays
+        return CalendarDay(jdn, holiday, isWeekend = false, listOf(eventOn(jdn, holiday)))
+    }
 
     companion object {
         fun eventOn(

@@ -22,7 +22,8 @@ import ir.taqvim.core.model.Jdn
 class CalendarCalendars(
     val settings: CalendarSettings,
 ) {
-    private val arithmetic: List<CalendarArithmetic> =
+    /** Arithmetic of the available calendars, in the order of [systems]. */
+    val arithmetic: List<CalendarArithmetic> =
         settings.calendars
             .distinct()
             .mapNotNull { arithmeticFor(it, settings.islamicVariant) }

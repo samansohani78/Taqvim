@@ -55,7 +55,7 @@ class CalendarViewModelTest {
 
     private fun TestScope.viewModel(): CalendarViewModel {
         val search = SearchEventsUseCase(searchSource, UnconfinedTestDispatcher(testScheduler))
-        return CalendarViewModel(settings, todaySource, days, search)
+        return CalendarViewModel(settings, todaySource, days, days, search)
     }
 
     private suspend fun ReceiveTurbine<CalendarUiState>.awaitContent(

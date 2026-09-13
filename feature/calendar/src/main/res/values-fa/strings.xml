@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="calendar_title">تقویم</string>
+  <string name="calendar_loading">در حال بارگذاری تقویم</string>
+  <string name="calendar_month_title">%1$s %2$s</string>
+  <string name="calendar_month_range">%1$s – %2$s</string>
+  <string name="calendar_separator">"، "</string>
+  <string name="calendar_today">امروز</string>
+  <string name="calendar_holiday">تعطیل</string>
+  <plurals name="calendar_events">
+    <item quantity="one">%1$s رویداد</item>
+    <item quantity="other">%1$s رویداد</item>
+  </plurals>
+  <string name="calendar_new_event">رویداد جدید</string>
+  <string name="calendar_week_number">هفتهٔ %1$s</string>
+</resources>

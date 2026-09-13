@@ -7,15 +7,20 @@ package ir.taqvim.feature.calendar
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
 import kotlinx.coroutines.flow.Flow
 
-/** The preferences the calendar screen reacts to (T-800). */
+/** The preferences the calendar screen reacts to (T-800, T-801). */
 data class CalendarSettings(
     /** The user's calendars in order; the first available one is the primary calendar. */
     val calendars: List<CalendarSystem>,
     val weekStart: Weekday,
     val islamicVariant: IslamicVariant,
+    /** App language code (e.g. `fa`): month names, digits and spoken dates of the month pager. */
+    val languageCode: String,
+    /** Whether the month pager shows a week-number column (T-801). */
+    val showWeekNumbers: Boolean = false,
 )
 
 /** Where an event shown on a day comes from. */
@@ -61,6 +66,11 @@ fun interface CalendarSettingsSource {
 /** The events of one day; re-emits when they change. Implemented in `:app` over the events repository. */
 fun interface CalendarDaySource {
     fun day(jdn: Jdn): Flow<CalendarDay>
+}
+
+/** The events of a range of days in day order; re-emits when they change. Implemented in `:app` (T-801). */
+fun interface CalendarMonthSource {
+    fun days(range: JdnRange): Flow<List<CalendarDay>>
 }
 
 /** Event search in the app language. Implemented in `:app` over the event search index. */

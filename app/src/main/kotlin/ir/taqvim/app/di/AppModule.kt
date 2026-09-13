@@ -13,6 +13,7 @@ import ir.taqvim.data.devicecalendar.InstancesSource
 import ir.taqvim.data.events.eventsDataModule
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarDaySource
+import ir.taqvim.feature.calendar.CalendarMonthSource
 import ir.taqvim.feature.calendar.CalendarSettingsSource
 import ir.taqvim.feature.calendar.EventSearchSource
 import ir.taqvim.feature.calendar.calendarFeatureModule
@@ -53,9 +54,11 @@ val appDataModule =
         single<InstancesSource> { CalendarInstancesSource(androidContext()) }
         single { DeviceCalendarRepository(get(), get()) }
         single<CalendarSettingsSource> { PreferencesCalendarSettingsSource(get()) }
-        single<CalendarDaySource> {
+        single {
             RepositoryCalendarDaySource(get(), get<UserPreferencesRepository>().preferences.map { it.languageCode })
         }
+        single<CalendarDaySource> { get<RepositoryCalendarDaySource>() }
+        single<CalendarMonthSource> { get<RepositoryCalendarDaySource>() }
         single<EventSearchSource> {
             val preferences = get<UserPreferencesRepository>()
             OfficialEventSearchSource(language = { preferences.preferences.first().languageCode }, today = get())

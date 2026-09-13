@@ -11,12 +11,14 @@ import ir.taqvim.core.events.EventLookup
 import ir.taqvim.core.events.EventSearchIndex
 import ir.taqvim.core.events.SearchQuery
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarDay
 import ir.taqvim.feature.calendar.CalendarDaySource
+import ir.taqvim.feature.calendar.CalendarMonthSource
 import ir.taqvim.feature.calendar.CalendarSettings
 import ir.taqvim.feature.calendar.CalendarSettingsSource
 import ir.taqvim.feature.calendar.DayEventItem
@@ -34,17 +36,23 @@ internal class PreferencesCalendarSettingsSource(
 ) : CalendarSettingsSource {
     override fun settings(): Flow<CalendarSettings> =
         preferences.preferences
-            .map { CalendarSettings(it.calendars, it.weekStart, it.islamicVariant) }
+            .map { CalendarSettings(it.calendars, it.weekStart, it.islamicVariant, it.languageCode) }
             .distinctUntilChanged()
 }
 
-/** Day events for the calendar screen from the events repository (T-305), titled in [language]. */
+/** Day events for the calendar screen and its month pager from the events repository (T-305), titled in [language]. */
 internal class RepositoryCalendarDaySource(
     private val events: EventsRepository,
     private val language: Flow<String>,
-) : CalendarDaySource {
+) : CalendarDaySource,
+    CalendarMonthSource {
     override fun day(jdn: Jdn): Flow<CalendarDay> =
         combine(events.day(jdn), language.distinctUntilChanged()) { day, language -> day.toCalendarDay(language) }
+
+    override fun days(range: JdnRange): Flow<List<CalendarDay>> =
+        combine(events.days(range), language.distinctUntilChanged()) { days, language ->
+            days.map { it.toCalendarDay(language) }
+        }
 }
 
 /** These events for the calendar screen: dataset events (holidays first), then personal, device and feed events. */
