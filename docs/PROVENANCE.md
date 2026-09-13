@@ -84,6 +84,22 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-300 — Event rule engine
+- **Module / files:** `core/events/src/main/kotlin/ir/taqvim/core/events/` — `EventDefinition.kt`, `EventRule.kt`,
+  `OccurrenceCalculator.kt`
+- **Task:** T-300
+- **Spec:** docs/PLAN.md §4.2 (`EventDefinition`, `EventRule`, `Occurrence`) and T-300; own implementation on top of
+  the `:core:calendar` utilities (T-106) — no external code or data.
+- **Behaviour choices:** a `Fixed`/`Single` day that does not exist in a year (e.g. 30 Esfand in a common year) has no
+  occurrence; `LastWeekdayOfMonth` offsets and `Astronomical` offsets may leave the month but keep the rule year;
+  `RelativeToEvent` resolves across calendars and rejects cycles, self references and unknown targets up front;
+  astronomical instants come from an injected `AstronomicalEventSource` (implemented by T-403).
+- **Validation oracles:** java.time (Gregorian weekday/day-of-year rules), ICU4J 78.3 `IslamicCalendar(ISLAMIC_CIVIL)`
+  and `PersianCalendar` (test scope only); the official 1404 calendar's "last Friday of Ramadan" for the Iranian lunar
+  calendar.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
