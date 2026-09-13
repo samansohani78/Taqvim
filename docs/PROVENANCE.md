@@ -215,6 +215,22 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1003 — iCalendar import, export and subscriptions
+- **Module / files:** `data/events/src/main/kotlin/ir/taqvim/data/events/ics/`; RDATE and X- property support in
+  `core/ics` (`IcsModel.kt`, `IcsReader.kt`, `IcsWriter.kt`); Room schema 2 in `data/database`
+- **Task:** T-1003; decisions in ADR-0013
+- **References used (public only):**
+  1. IETF RFC 5545, https://www.rfc-editor.org/rfc/rfc5545 — §3.3.10 (RECUR, UNTIL value type), §3.8.5.1–3 (EXDATE,
+     RDATE, RRULE), §3.8.8.2 (non-standard properties), §3.6.6 (VALARM).
+  2. IETF RFC 9110, https://www.rfc-editor.org/rfc/rfc9110 — §8.8.2–8.8.3 (Last-Modified, ETag), §13.1.2–13.1.3
+     (If-None-Match, If-Modified-Since), §15.4.5 (304). RFC 7529 (RSCALE) considered and not used.
+  3. Android developer documentation: `ContentResolver.openInputStream`/`openOutputStream` (SAF), `HttpURLConnection`,
+     WorkManager `PeriodicWorkRequest`/`Constraints`/`CoroutineWorker`, Room `withTransaction`.
+- **Implementation note:** own work; no iCalendar or HTTP-caching library code used or consulted. `X-TAQVIM-RECURRENCE`
+  is Taqvim's own format. The fixture is synthetic; HTTP tests use the JDK's `com.sun.net.httpserver`.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1100 — Times tab and monthly report
 - **Module / files:** `feature/times/src/main/kotlin/ir/taqvim/feature/times/`
 - **Task:** T-1100
