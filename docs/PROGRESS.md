@@ -7,7 +7,7 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 |---|---|---|---|---|---|
 | T-000 | Repository bootstrap | DONE | main@f34ecdb | R: MainActivityTest · U: AppModuleTest (Koin graph verify), TaqvimIssueRegistryTest · L: ProjectStructureKonsistTest; spotless/detekt/lint/Kover gates green | ADR-0001–0004. Tests & detekt on JDK 21 toolchain; build resource budget after local OOM crashes (ADR-0004 §9) |
 | T-001 | License gate | DONE | main@d6c7ac3 | U: AllowListParserTest, SpdxNormalizerTest, PomLicensesTest (XXE, parent inheritance, cache lookup), LicensePolicyTest, ClassificationAndCodecTest · Negative: LGPL canary (`-Ptaqvim.licenseGate.canary=true`) rejected | 427 modules, 0 violations. ADR-0005: jakarta.annotation-api substitution, trove4j excluded, **EPL-1.0 test-only exception pending owner confirmation**; kxml2 MIT override. Google Maven unreachable from dev network → POMs read cache-first |
-| T-002 | Architecture rules (Konsist) | TODO | | | |
+| T-002 | Architecture rules (Konsist) | DONE | main@3ea66ba | Konsist: ArchitectureKonsistTest (9 rules on real code), ArchitectureRulesTest (15 unit), KonsistFixturesTest (7 end-to-end, planted violations) | package↔module, layering (imports + build scripts), Android-free pure core, files ≤400 / functions ≤50 lines, ViewModel/UiState contract, no global mutable state. `!!`/`try`/`as` → detekt + T-004 lint; complexity ≤12 → detekt |
 | T-003 | CI workflows | TODO | | | |
 | T-004 | Custom lint module | TODO | | | |
 | T-005 | Test infrastructure (`:core:testing`) | TODO | | | |
