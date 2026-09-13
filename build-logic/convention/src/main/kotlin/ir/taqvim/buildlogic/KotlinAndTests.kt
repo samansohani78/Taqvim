@@ -35,6 +35,7 @@ internal fun Project.configureTestTasks() {
         }
     val limiter = forkedJvmLimiter()
     val updateSnapshots = providers.gradleProperty(UPDATE_SNAPSHOTS_PROPERTY).orElse("false")
+    val propertyIterations = providers.gradleProperty(PROPERTY_ITERATIONS_PROPERTY).orElse("1000")
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
         // One fork per test task, capped heap, and a build-wide cap on concurrent forks (ADR-0004 §9).
@@ -48,6 +49,7 @@ internal fun Project.configureTestTasks() {
         jvmArgs("--add-exports=java.base/jdk.internal.access=ALL-UNNAMED", "--add-opens=java.base/java.io=ALL-UNNAMED")
         systemProperty("kotest.framework.dump.config", "false")
         systemProperty(UPDATE_SNAPSHOTS_PROPERTY, updateSnapshots.get())
+        systemProperty(PROPERTY_ITERATIONS_PROPERTY, propertyIterations.get())
         testLogging {
             events(TestLogEvent.FAILED, TestLogEvent.SKIPPED)
             exceptionFormat = TestExceptionFormat.FULL
@@ -57,6 +59,9 @@ internal fun Project.configureTestTasks() {
 
 /** Gradle and system property that lets `SnapshotVerifier` (core:testing) rewrite snapshots. */
 private const val UPDATE_SNAPSHOTS_PROPERTY = "taqvim.updateSnapshots"
+
+/** Property-test iteration budget: 1 000 by default, 10 000 nightly (plan §8.1; core:testing PropertyTesting). */
+private const val PROPERTY_ITERATIONS_PROPERTY = "taqvim.propertyIterations"
 
 /** Base test dependencies for every module with Kotlin code. */
 internal fun Project.addBaseTestDependencies() {
