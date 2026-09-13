@@ -100,6 +100,82 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### A-09 — Solar position (NOAA)
+- **Module / files:** `core/praytimes/src/main/kotlin/ir/taqvim/core/praytimes/NoaaSolarCalculator.kt`
+- **Task:** T-400
+- **Spec:** docs/PLAN.md §6 A-09
+- **References used (public only):**
+  1. NOAA Global Monitoring Laboratory, "NOAA Solar Calculations" spreadsheet (day version),
+     https://gml.noaa.gov/grad/solcalc/NOAA_Solar_Calculations_day.ods (retrieved 2026-09-13; US government work,
+     public domain). Formulas transcribed column by column: Julian century, geometric mean longitude/anomaly,
+     eccentricity, equation of centre, apparent longitude, obliquity, declination, equation of time, sunrise hour angle
+     (zenith 90.833°), solar noon, true solar time, hour angle, zenith, refraction, azimuth.
+  2. NOAA GML, "Solar Calculation Details", https://gml.noaa.gov/grad/solcalc/calcdetails.html (retrieved 2026-09-13) —
+     method after J. Meeus, *Astronomical Algorithms*; stated validity 1901–2099.
+- **Implementation note:** own Kotlin transcription; additions beyond the spreadsheet are argument clamping (no NaN),
+  a defined azimuth when the Sun is at the zenith or the observer at a pole, and `null` rise/set on polar days/nights.
+- **Validation oracle:** the spreadsheet's own cached results for its sample (40°N, 105°W, UTC−7, 2010-06-21, 240 rows).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-202 — CLDR plural-rule evaluator
+- **Module / files:** `core/i18n/src/main/kotlin/ir/taqvim/core/i18n/PluralRules.kt`
+- **Task:** T-202
+- **References used (public only):** Unicode Technical Standard #35, Part 3 "Numbers", section "Language Plural Rules"
+  (https://www.unicode.org/reports/tr35/tr35-numbers.html) — rule syntax and operands; integer operands only.
+- **Validation oracle:** ICU4J 78.3 `PluralRules` for all 24 launch languages, n = 0…1000 plus large values.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-301 / T-302 — Event lookup cache and visibility policy
+- **Module / files:** `core/events/src/main/kotlin/ir/taqvim/core/events/EventLookup.kt`, `EventVisibilityPolicy.kt`
+- **Origin:** own work from docs/PLAN.md T-301/T-302 on the T-300 rule engine; no external code or data. The Iranian
+  lunar date used in the lookup test comes from the A-05 official table.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### A-11 — Qibla and great-circle distance
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/GreatCircle.kt`
+- **Task:** T-402
+- **Spec:** docs/PLAN.md §6 A-11 — great-circle initial bearing to the Kaaba (21.4225°N, 39.8262°E)
+- **Implementation note:** own spherical formulas (haversine distance, atan2 initial bearing, IUGG mean Earth radius);
+  validated against an independent vector (cross-product) formulation; city coordinates in tests are rounded sample
+  inputs, not official values.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### A-13 — Astronomy façade
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/` — `Sky.kt`, `SkyTypes.kt`, `Eclipses.kt`
+- **Task:** T-403
+- **References:** cosinekitty/astronomy 2.1.19 (MIT), public API only, https://github.com/cosinekitty/astronomy; kept as
+  an implementation detail behind Taqvim types.
+- **Validation:** NASA GSFC eclipse catalogs 2024–2030; official Iranian equinox instants 1404/1405 (see fixtures).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### A-10 — Prayer times
+- **Module / files:** `core/praytimes/src/main/kotlin/ir/taqvim/core/praytimes/` — `PrayerTimesCalculator.kt`,
+  `PrayerMethodParameters.kt` (on the A-09 `NoaaSolarCalculator`)
+- **Task:** T-401
+- **Spec:** docs/PLAN.md §6 A-10 — method angles (MWL 18/17, ISNA 15/15, Egypt 19.5/17.5, Makkah 18.5 and Isha
+  90 min after Maghrib, Karachi 18/18, Tehran 17.7/14 with Maghrib 4.5°, Jafari 16/14 with Maghrib 4°, Singapore
+  20/18, France 12/12, Russia 16/15), Asr shadow factor 1 or 2, high-latitude options and midnight intervals.
+- **References used (public only):**
+  1. The plan's method table above.
+  2. University of Tehran Institute of Geophysics / Calendar Center, note "Determining Fajr on white nights"
+     (`docs/sources/اذان صبح در شب_های سفید.pdf`, retrieved 2026-09-13): where Fajr cannot be computed, Imsak is
+     12 hours after Dhuhr and Fajr half an hour after Imsak (`HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS`).
+- **Implementation note:** own work. Events are found from the NOAA hour-angle equation and refined by re-evaluating the
+  Sun at the event time (3 iterations); times are rounded to the nearest minute. The high-latitude portions are
+  defined here from the option names in the plan: the night runs from sunset to sunrise; Fajr is no earlier than
+  sunrise − portion × night and Isha no later than sunset + portion × night, with portion ½, ⅐ or angle/60. No
+  prayer-time library code (GPL/LGPL or otherwise) was consulted.
+- **Validation:** Institute of Geophysics official 1405 timetables for 31 Iranian cities (365 days each): Fajr,
+  sunrise, Dhuhr, sunset and Maghrib within 1 minute and midnight (middle of sunset→Fajr) within 2 minutes with the
+  TEHRAN method; polar day/night, high-latitude rules, Makkah Isha, Hanafi Asr, midnight modes and time ordering.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
@@ -226,6 +302,13 @@ Persian-calendar or prayer-times GPL/LGPL library.
   source for them.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending (sign-off checklist in D-02).
 
+### core/i18n — `formats.properties` (T-202)
+- **Source:** Unicode CLDR 48 through the ICU4J 78.3 public API (Unicode-3.0), retrieved 2026-09-13: full date
+  patterns, weekday and month names, era abbreviations (Gregorian, Persian, Islamic), plural rules, relative-time
+  patterns, day/hour/minute unit patterns and "and" list patterns for the 24 launch languages.
+- **Generator:** a one-off program (scratchpad `FormatTableGen.java`, same approach as T-200) that omits values ICU only
+  provides by root/English fallback; every stored value is re-checked against ICU4J by the T-202 oracle tests.
+
 ## Golden fixtures
 
 Format: every file under `src/test/resources/golden/` starts with a `# source/url/retrieved/page/reviewer`
@@ -247,4 +330,22 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 ### core/calendar — `golden/islamic-iran/official-month-starts-1446-1448.csv` (T-104)
 - First day (Gregorian and Solar Hijri) and length of each official Iranian lunar month, Ramadan 1446 – Shawwal 1448,
   from `Calendar-1404.pdf` and `Calendar-1405.pdf`; the Ramadan 1446 row is derived as described in A-05.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+
+### core/praytimes — `golden/noaa/noaa-solar-day-2010-06-21.csv` (T-400)
+- NOAA Solar Calculations spreadsheet (day), cached results of its sample inputs; no values were computed by Taqvim.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+
+### core/astronomy — `golden/nasa/*`, `golden/iran/official-equinox-instants.csv` (T-403)
+- `solar-eclipses-2024-2030.csv`, `lunar-eclipses-2024-2030.csv`: NASA GSFC Five Millennium Catalogs of Solar/Lunar
+  Eclipses, https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html and https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html
+  (retrieved 2026-09-13; public domain; page SHA-256 in the headers).
+- `official-equinox-instants.csv`: vernal equinox instants printed in the Calendar Center's official calendars 1404 and
+  1405 (`docs/sources`, SHA-256 in the header).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+
+### core/praytimes — `golden/iran-prayer-times-1405/*.csv` (T-401)
+- One file per city (31): the Institute of Geophysics' official religious times for 1405 SH (`docs/sources/<City>1405.pdf`,
+  SHA-256 and the coordinates stated in each document in the header), extracted with `pdftotext -layout` and validated
+  (365 days per city, time order, identical coordinates on every monthly page).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
