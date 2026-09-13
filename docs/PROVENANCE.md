@@ -244,6 +244,21 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-406 / T-407 — Tithi, planetary hours, animal year and photography panel
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/` — `Tithi.kt`, `PlanetaryHours.kt`,
+  `AnimalYear.kt`, `IntervalSearch.kt`, `PhotographyPanel.kt`
+- **Tasks:** T-406, T-407
+- **References used (public only):**
+  1. Animal-year cycle anchor (2020 = Rat): Hong Kong Observatory, Gregorian–lunar calendar conversion tables,
+     https://www.hko.gov.hk/en/gts/time/conversion.htm (retrieved 2026-09-13).
+  2. Planetary hours: the traditional Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon) and weekday
+     rulers — general astronomical-history knowledge; no code or data copied.
+  3. cosinekitty/astronomy 2.1.19 (MIT), public API via the A-13 façade.
+- **Implementation note:** own work. Tithi is computed from modern geocentric longitudes (a documented deviation from
+  the plan's Surya Siddhanta method); golden and blue hours use the plan's apparent solar altitude bands.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
