@@ -56,6 +56,73 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### A-03 — Islamic tabular calendar (types I and II)
+- **Module / files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/TabularIslamicCalendar.kt`
+- **Task:** T-103
+- **Spec:** docs/PLAN.md §6 A-03 (30-year cycle, type II "16" and type I "15", civil epoch JD 1 948 439.5)
+- **References used (public only):**
+  1. R. H. van Gent, "The Islamic Calendar — Tabular Islamic calendars", Utrecht University,
+     https://webspace.science.uu.nl/~gent0113/islam/islam_tabcal.htm (leap-year patterns of the arithmetic
+     variants; civil epoch 16 July 622 Julian).
+  2. E. M. Reingold and N. Dershowitz, *Calendrical Calculations*, 3rd ed., Cambridge University Press, 2008,
+     ch. 6 (structure of the arithmetic Islamic calendar: 354/355-day years, alternating 30/29-day months).
+- **Implementation note:** all arithmetic is derived directly from the definition (leap-year set per cycle,
+  cumulative leap counts, month alternation); no closed-form formula was copied.
+- **Validation oracle:** ICU4J 78.3 `IslamicCalendar(ISLAMIC_CIVIL)` for type II (100 000 random days). ICU has
+  no type I variant; type I is validated through its exact relationship to type II (dates differ by one day
+  only in cycle year 16) and round-trip properties.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### A-04 — Umm al-Qura calendar
+- **Module / files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/UmmAlQuraCalendar.kt`
+- **Task:** T-103
+- **Spec:** docs/PLAN.md §6 A-04; deviation ADR-0006 (embedded table instead of runtime ICU4J)
+- **Data origin:** month lengths for AH 1300–1600 obtained through ICU4J 78.3's public API
+  (`IslamicCalendar(ISLAMIC_UMALQURA)`, license Unicode-3.0); notice in `licenses/ICU-LICENSE.txt`, text retrieved
+  from https://www.unicode.org/license.txt on 2026-09-13. No ICU source code was copied.
+- **Validation oracle:** ICU4J 78.3 — every tabulated month (start and length) and 100 000 random days across
+  AH 1200–1700; published Umm al-Qura tables are ICU's own source.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-107 — kotlinx.datetime bridge
+- **Module / files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/DateTimeBridge.kt`
+- **References used (public only):** kotlinx-datetime API documentation (epoch day 0 = 1970-01-01);
+  JDN 2 440 588 for 1970-01-01 follows from A-01 (verified by `GregorianCalendarSystem` and a property test).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+
+### T-201 — Numerals
+- **Module / files:** `core/i18n/src/main/kotlin/ir/taqvim/core/i18n/Numerals.kt`
+- **Task:** T-201
+- **References used (public only):**
+  1. The Unicode Standard 16.0, code charts for Arabic (U+0600), Arabic Extended digits (U+06F0), Devanagari
+     (U+0900) and Tamil (U+0B80), including the Tamil number signs ௰ ௱ ௲ (U+0BF0–U+0BF2),
+     https://www.unicode.org/charts/ (retrieved 2026-09-13).
+  2. Unicode CLDR number symbols (decimal and group separators per locale; Indian grouping pattern
+     `#,##,##0`), https://cldr.unicode.org/ (Unicode License v3).
+- **Implementation note:** own implementation from the digit code-point layout; traditional Tamil uses a
+  multiplier-sign decomposition derived from the sign values above.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-203 — Persian text normalization & fuzzy matching
+- **Module / files:** `core/i18n/src/main/kotlin/ir/taqvim/core/i18n/PersianText.kt`
+- **Task:** T-203
+- **References used (public only):**
+  1. The Unicode Standard 16.0, Arabic block chart and chapter 9.2 "Arabic" (yeh/kaf letter variants, tatweel,
+     harakat, ZWNJ/ZWJ behaviour), https://www.unicode.org/charts/PDF/U0600.pdf (retrieved 2026-09-13).
+  2. Institute of Standards and Industrial Research of Iran, ISIRI 6219 *Information Technology — Persian
+     Information Interchange and Display Mechanism* (Farsi yeh U+06CC and keheh U+06A9 as the canonical letters).
+  3. F. J. Damerau, "A technique for computer detection and correction of spelling errors", *Communications of
+     the ACM* 7(3):171–176, 1964, https://doi.org/10.1145/363958.363994; V. I. Levenshtein, "Binary codes
+     capable of correcting deletions, insertions, and reversals", *Soviet Physics Doklady* 10(8):707, 1966.
+- **Implementation note:** optimal string alignment (restricted Damerau–Levenshtein) dynamic programme with
+  three rolling rows and a row-minimum early exit; own implementation from the published recurrence.
+- **Test data:** the 100 normalization/fuzzy pairs were written for this repository; they contain no external data.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ## Datasets
 
 _No entries yet._
