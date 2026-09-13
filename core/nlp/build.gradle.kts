@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     api(projects.core.model)
-    implementation(projects.core.calendar)
-    implementation(projects.core.i18n)
+    // CalendarArithmetic and LanguageSpec appear in the public parser API (ParseContext).
+    api(projects.core.calendar)
+    api(projects.core.i18n)
 }
