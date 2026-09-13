@@ -41,6 +41,7 @@ class TaqvimIssueRegistryTest {
                 "HardcodedComposeText",
                 "NoGlobalMutableState",
                 "PreferPredictiveBack",
+                "MissingFarsiTranslation",
             ),
             ids,
         )

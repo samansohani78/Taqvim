@@ -23,6 +23,10 @@ android {
         }
     }
     buildTypes {
+        getByName("debug") {
+            // en-XA (accented, expanded) and ar-XB (mirrored RTL) pseudo-locales catch untranslated or clipped text.
+            isPseudoLocalesEnabled = true
+        }
         getByName("release") {
             signingConfig = signingConfigs.findByName("release")
         }

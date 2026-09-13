@@ -21,6 +21,7 @@ class TaqvimIssueRegistry : IssueRegistry() {
             HardcodedTextDetector.COMPOSE_TEXT,
             NoGlobalMutableStateDetector.ISSUE,
             PreferPredictiveBackDetector.ISSUE,
+            MissingFarsiTranslationDetector.ISSUE,
         )
 
     override val api: Int = CURRENT_API
