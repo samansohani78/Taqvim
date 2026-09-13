@@ -5,6 +5,7 @@
 package ir.taqvim.buildlogic
 
 import com.android.build.api.dsl.Lint
+import ir.taqvim.buildlogic.license.registerLicenseCoordinatesTask
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import org.gradle.api.Plugin
@@ -24,6 +25,8 @@ class QualityConventionPlugin : Plugin<Project> {
             pluginManager.apply("org.jetbrains.kotlinx.kover")
             configureDetekt()
             configureModuleCoverage()
+            registerLicenseCoordinatesTask()
+            substituteNonPermissiveTestDependencies()
             if (path != ":lint" && configurations.findByName("lintChecks") != null) {
                 dependencies { "lintChecks"(project(":lint")) }
             }
@@ -45,6 +48,21 @@ private fun Project.configureModuleCoverage() {
         }
     }
     tasks.matching { it.name == "check" }.configureEach { dependsOn("koverVerify") }
+}
+
+/**
+ * Replaces transitive dependencies whose license is not on the allow-list with API-identical, allowed
+ * artifacts (ADR-0005). `javax.annotation-api` (CDDL-1.1 / GPL-2.0-CPE, pulled in by Android test tooling)
+ * becomes `jakarta.annotation-api` 1.3.5 (EPL-2.0), which ships the same `javax.annotation` package.
+ */
+private fun Project.substituteNonPermissiveTestDependencies() {
+    configurations.configureEach {
+        resolutionStrategy.dependencySubstitution {
+            substitute(module("javax.annotation:javax.annotation-api"))
+                .using(module("jakarta.annotation:jakarta.annotation-api:1.3.5"))
+                .because("License policy: CDDL/GPL is not allowed; same javax.annotation API under EPL-2.0 (ADR-0005)")
+        }
+    }
 }
 
 /** Shared Android/JVM lint configuration: warnings are errors (reports, incl. SARIF, are always generated). */

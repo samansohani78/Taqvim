@@ -6,11 +6,17 @@ package ir.taqvim.buildlogic
 
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.spotless.LineEnding
+import ir.taqvim.buildlogic.license.ConfigurationClassifier
+import ir.taqvim.buildlogic.license.LICENSE_COORDINATES_PATH
+import ir.taqvim.buildlogic.license.LicenseCheckTask
+import ir.taqvim.buildlogic.license.LicenseReportTask
+import ir.taqvim.buildlogic.license.registerLicenseCoordinatesTask
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.register
 
 /**
  * Root project: repository-wide formatting (Spotless + ktlint), merged coverage with the overall
@@ -23,6 +29,7 @@ class RootConventionPlugin : Plugin<Project> {
             pluginManager.apply("base")
             configureSpotless()
             configureMergedCoverage()
+            configureLicenseGate()
             tasks.register("konsistTest") {
                 group = "verification"
                 description = "Runs the Konsist architecture rule suite."
@@ -65,6 +72,54 @@ private fun Project.configureSpotless() {
         }
     }
 }
+
+/**
+ * License gate (T-001, ADR-0003): each module's `licenseDependencies` records external modules per scope,
+ * `licenseReport` resolves their POM licenses, and `licenseCheck` applies the allow-list.
+ * `-Ptaqvim.licenseGate.canary=true` injects a known LGPL artifact so CI can prove the gate fails.
+ */
+private fun Project.configureLicenseGate() {
+    if (providers.gradleProperty("taqvim.licenseGate.canary").orNull == "true") addLicenseCanary()
+    registerLicenseCoordinatesTask()
+    val modules = allprojects.filter { it.buildFile.exists() }
+    val report =
+        tasks.register<LicenseReportTask>("licenseReport") {
+            group = "verification"
+            description = "Resolves the licenses of every external dependency of every module."
+            dependsOn(
+                modules.map {
+                    if (it ==
+                        it.rootProject
+                    ) {
+                        ":licenseDependencies"
+                    } else {
+                        "${it.path}:licenseDependencies"
+                    }
+                },
+            )
+            coordinateFiles.from(modules.map { it.layout.buildDirectory.file(LICENSE_COORDINATES_PATH) })
+            reportFile.set(layout.buildDirectory.file("reports/licenses/license-report.json"))
+        }
+    tasks.register<LicenseCheckTask>("licenseCheck") {
+        group = "verification"
+        description = "Fails when a dependency license is not on config/license/allowed-licenses.json."
+        reportFile.set(report.flatMap { it.reportFile })
+        allowListFile.set(layout.projectDirectory.file("config/license/allowed-licenses.json"))
+        resultFile.set(layout.buildDirectory.file("reports/licenses/license-check.txt"))
+    }
+}
+
+private fun Project.addLicenseCanary() {
+    val canaryScope = configurations.dependencyScope("licenseGateCanary")
+    configurations.resolvable(ConfigurationClassifier.CANARY_CONFIGURATION) {
+        extendsFrom(canaryScope.get())
+        requestJvmRuntime(objects)
+    }
+    dependencies.add("licenseGateCanary", LICENSE_CANARY_DEPENDENCY)
+}
+
+/** LGPL-2.1-or-later on Maven Central; never added to a real module. */
+private const val LICENSE_CANARY_DEPENDENCY = "org.mariadb.jdbc:mariadb-java-client:3.5.10"
 
 /** Modules without production classes or unsupported by Kover. */
 private val COVERAGE_EXCLUDED_PROJECTS = setOf(":benchmark", ":konsist")

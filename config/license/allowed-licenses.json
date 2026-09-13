@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "description": "Taqvim dependency license allow-list. Policy: docs/adr/0003-license-policy.md. Scopes: runtime (shipped), build (annotation processors, lint checks, compiler plugins), test (unit/instrumented/benchmark only).",
+  "licenses": [
+    {
+      "id": "Apache-2.0",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "MIT",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "BSD-2-Clause",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "BSD-3-Clause",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "ISC",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "Unicode-3.0",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "Unicode-DFS-2016",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "CC0-1.0",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "LicenseRef-Public-Domain",
+      "scopes": [
+        "runtime",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "EPL-2.0",
+      "scopes": [
+        "test"
+      ]
+    },
+    {
+      "id": "EPL-1.0",
+      "scopes": [
+        "test"
+      ],
+      "adr": "docs/adr/0005-test-scope-license-exceptions.md (junit:junit 4.x, required by Robolectric/Compose UI Test/Macrobenchmark)"
+    }
+  ],
+  "overrides": [
+    {
+      "module": "net.sf.kxml:kxml2",
+      "license": "MIT",
+      "versions": "*",
+      "evidence": "https://github.com/kobjects/kxml2/blob/master/license.txt",
+      "note": "POM declares 'BSD style' + 'Public Domain'; upstream license text is the MIT license (verified 2026-09-13)."
+    }
+  ]
+}

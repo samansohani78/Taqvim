@@ -107,6 +107,15 @@ private fun Configuration.configureDetektResolution(
     kotlinVersion: String,
     objects: ObjectFactory,
 ) {
+    requestJvmRuntime(objects)
+    // Keep detekt on the Kotlin compiler it was built with; KGP alignment would otherwise upgrade it.
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.jetbrains.kotlin") useVersion(kotlinVersion)
+    }
+}
+
+/** Requests the standard JVM runtime variant, so tool classpaths resolve unambiguously in any project type. */
+internal fun Configuration.requestJvmRuntime(objects: ObjectFactory) {
     attributes {
         attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
         attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
@@ -117,9 +126,5 @@ private fun Configuration.configureDetektResolution(
             objects.named(TargetJvmEnvironment.STANDARD_JVM),
         )
         attribute(KotlinPlatformType.attribute, KotlinPlatformType.jvm)
-    }
-    // Keep detekt on the Kotlin compiler it was built with; KGP alignment would otherwise upgrade it.
-    resolutionStrategy.eachDependency {
-        if (requested.group == "org.jetbrains.kotlin") useVersion(kotlinVersion)
     }
 }
