@@ -215,6 +215,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1000 — Personal event editor
+- **Module / files:** `feature/events/src/main/kotlin/ir/taqvim/feature/events/`
+- **Task:** T-1000
+- **References used (public only):** Jetpack Compose and Material 3 public APIs (Apache-2.0) — `OutlinedTextField`,
+  `FilterChip`, `FlowRow`, `ModalBottomSheet`, `AlertDialog`, selection semantics; built on T-503 `RecurrenceRule`
+  (ADR-0011), T-500 `DateParser`, T-202 formatters and T-701 components.
+- **Implementation note:** own work; validation limits, reminder presets and the color palette are product choices in
+  `EventValidator`/`EditorPresenter`. Test data synthetic; no GPL/LGPL calendar or UI code consulted.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-801 — Month pager
 - **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/` — `MonthLayout.kt`,
   `MonthPageBuilder.kt`, `MonthPager.kt`, `CalendarScreen.kt`, `CalendarRoute.kt`, `CalendarNavigation.kt`; `:app`
