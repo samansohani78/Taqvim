@@ -182,10 +182,7 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title =
-                LocalizedText(
-                    mapOf("fa" to "رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام"),
-                ),
+            title = LocalizedText(mapOf("fa" to "رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام")),
             rule = EventRule.Fixed(month = 2, day = 28),
             citations =
                 listOf(

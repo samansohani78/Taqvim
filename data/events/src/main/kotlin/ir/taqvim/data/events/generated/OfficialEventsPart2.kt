@@ -50,12 +50,7 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "شهادت حضرت امام حسن عسکری علیه السلام و آغاز امامت حضرت ولی عصر (عجل الله تعالی فرجه)",
-                    ),
-                ),
+            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام حسن عسکری علیه السلام و آغاز امامت حضرت ولی عصر (عجل الله تعالی فرجه)")),
             rule = EventRule.Fixed(month = 3, day = 8),
             citations =
                 listOf(
@@ -165,10 +160,7 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.NATIONAL,
             isHoliday = true,
-            title =
-                LocalizedText(
-                    mapOf("fa" to "رحلت حضرت امام خمینی رهبر کبیر انقلاب و بنیان‌گذار جمهوری اسلامی ایران"),
-                ),
+            title = LocalizedText(mapOf("fa" to "رحلت حضرت امام خمینی رهبر کبیر انقلاب و بنیان‌گذار جمهوری اسلامی ایران")),
             rule = EventRule.Fixed(month = 3, day = 14),
             citations =
                 listOf(

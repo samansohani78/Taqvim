@@ -85,7 +85,8 @@ class UnInternationalDaysTest {
         const val EVENT_COUNT = 93
         const val FIXED_COUNT = 89
         const val WEEKDAY_COUNT = 4
-        val PERSIAN_SOURCES = listOf("https://www.unic-ir.org/", "https://iran.un.org/fa/")
+        val PERSIAN_SOURCES =
+            listOf("https://web.archive.org/web/20121005003400/https://www.unic-ir.org/", "https://iran.un.org/fa/")
 
         fun property(name: String): String = requireNotNull(System.getProperty(name)) { "$name is not set" }
 
