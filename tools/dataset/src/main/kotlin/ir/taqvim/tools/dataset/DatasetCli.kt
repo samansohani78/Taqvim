@@ -27,12 +27,7 @@ internal fun runCli(
         print("usage: validate <schema.json> <dataset directory> (both must exist)")
         return USAGE_ERROR
     }
-    val files =
-        directory
-            .walkTopDown()
-            .filter { it.isFile && it.extension == "json" && it.canonicalFile != schemaFile.canonicalFile }
-            .sortedBy { it.invariantSeparatorsPath }
-            .associate { it.relativeTo(directory).invariantSeparatorsPath to it.readText() }
+    val files = datasetFiles(schemaFile, directory)
     val issues = DatasetValidator(schemaFile.readText()).validate(files)
     issues.forEach { print(it.toString()) }
     print("${files.size} dataset file(s) checked, ${issues.size} issue(s)")
