@@ -230,6 +230,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-502 / T-503 — iCalendar reader/writer and recurrence engine
+- **Module / files:** `core/ics/src/main/kotlin/ir/taqvim/core/ics/` — `IcsModel.kt`, `ContentLines.kt`, `IcsValues.kt`,
+  `IcsReader.kt`, `IcsWriter.kt`, `RecurrenceEngine.kt`
+- **Tasks:** T-502, T-503
+- **References used (public only):** IETF RFC 5545, https://www.rfc-editor.org/rfc/rfc5545 — §3.1 (content lines,
+  folding), §3.2 (parameters), §3.3.4–3.3.6 (DATE, DATE-TIME), §3.3.10 (RECUR), §3.3.11 (TEXT escaping), §3.6.1
+  (VEVENT), §3.6.6 (VALARM), §3.8.5 (recurrence properties and examples).
+- **Implementation note:** own work; no iCalendar library code was used or consulted. Recurrence in non-Gregorian
+  calendars follows ADR-0011.
+- **Validation:** 30 synthetic fixtures (`core/ics/src/test/resources/golden/ics/*.ics`, each marked synthetic with the
+  RFC sections exercised; no personal data), RFC 5545 §3.8.5.3 examples and an independent java.time oracle.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
