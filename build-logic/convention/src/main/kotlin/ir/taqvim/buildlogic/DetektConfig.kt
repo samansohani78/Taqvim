@@ -4,17 +4,23 @@
  */
 package ir.taqvim.buildlogic
 
+import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.ResolvableConfiguration
 import org.gradle.api.attributes.Bundling
 import org.gradle.api.attributes.Category
 import org.gradle.api.attributes.LibraryElements
 import org.gradle.api.attributes.Usage
 import org.gradle.api.attributes.java.TargetJvmEnvironment
+import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.Directory
+import org.gradle.api.file.RegularFile
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.tasks.ClasspathNormalizer
 import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.jvm.toolchain.JavaToolchainService
 import org.gradle.kotlin.dsl.getByType
@@ -32,8 +38,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
  */
 internal fun Project.configureDetekt() {
     pluginManager.apply("jvm-toolchains")
-    val catalog = libs
-    val detektKotlin = catalog.versionOf("detekt-kotlin")
+    val detektKotlin = libs.versionOf("detekt-kotlin")
     val cliScope = configurations.dependencyScope("detekt")
     val pluginScope = configurations.dependencyScope("detektPlugins")
     val cliClasspath =
@@ -46,61 +51,70 @@ internal fun Project.configureDetekt() {
             extendsFrom(pluginScope.get())
             configureDetektResolution(detektKotlin, objects)
         }
-    dependencies.add("detekt", catalog.library("detekt-cli"))
+    dependencies.add("detekt", libs.library("detekt-cli"))
+    val detekt = registerDetektTask(cliClasspath, pluginClasspath)
+    tasks.matching { it.name == "check" }.configureEach { dependsOn(detekt) }
+}
 
+private fun Project.registerDetektTask(
+    cliClasspath: NamedDomainObjectProvider<ResolvableConfiguration>,
+    pluginClasspath: NamedDomainObjectProvider<ResolvableConfiguration>,
+): TaskProvider<JavaExec> {
     val root = rootDirectory
     val configFile = root.file("config/detekt/detekt.yml")
     val reports = layout.buildDirectory.dir("reports/detekt")
-    val sarifReport =
-        "sarif:" +
-            reports
-                .get()
-                .file("detekt.sarif")
-                .asFile.absolutePath
-    val htmlReport =
-        "html:" +
-            reports
-                .get()
-                .file("detekt.html")
-                .asFile.absolutePath
     val sourceDir = layout.projectDirectory.dir("src")
     val launcher =
         extensions.getByType<JavaToolchainService>().launcherFor {
             languageVersion.set(JavaLanguageVersion.of(TaqvimBuild.JAVA_RELEASE))
         }
     val limiter = forkedJvmLimiter()
-    val detekt =
-        tasks.register<JavaExec>("detekt") {
-            group = "verification"
-            description = "Runs detekt over this module's Kotlin sources."
-            javaLauncher.set(launcher)
-            maxHeapSize = DETEKT_JVM_HEAP
-            usesService(limiter)
-            mainClass.set("io.gitlab.arturbosch.detekt.cli.Main")
-            classpath = cliClasspath.get()
-            inputs
-                .files(fileTree(sourceDir) { include("**/*.kt", "**/*.kts") })
-                .withPathSensitivity(PathSensitivity.RELATIVE)
-                .skipWhenEmpty()
-            inputs.file(configFile).withPathSensitivity(PathSensitivity.RELATIVE)
-            inputs.files(pluginClasspath).withNormalizer(ClasspathNormalizer::class.java)
-            outputs.dir(reports)
-            outputs.cacheIf { true }
-            args("--input", sourceDir.asFile.absolutePath)
-            args("--excludes", "**/build/**")
-            args("--config", configFile.asFile.absolutePath, "--build-upon-default-config")
-            args("--jvm-target", TaqvimBuild.JAVA_RELEASE.toString())
-            args("--base-path", root.asFile.absolutePath)
-            args("--report", sarifReport, "--report", htmlReport)
-            // Wrap in a plain file collection: Configuration objects cannot be stored in the configuration cache.
-            val plugins = objects.fileCollection().from(pluginClasspath)
-            argumentProviders.add(
-                CommandLineArgumentProvider {
-                    if (plugins.isEmpty) emptyList() else listOf("--plugins", plugins.asPath)
-                },
-            )
-        }
-    tasks.matching { it.name == "check" }.configureEach { dependsOn(detekt) }
+    // Wrap in a plain file collection: Configuration objects cannot be stored in the configuration cache.
+    val plugins = objects.fileCollection().from(pluginClasspath)
+    return tasks.register<JavaExec>("detekt") {
+        group = "verification"
+        description = "Runs detekt over this module's Kotlin sources."
+        javaLauncher.set(launcher)
+        maxHeapSize = DETEKT_JVM_HEAP
+        usesService(limiter)
+        mainClass.set("io.gitlab.arturbosch.detekt.cli.Main")
+        classpath = cliClasspath.get()
+        inputs
+            .files(fileTree(sourceDir) { include("**/*.kt", "**/*.kts") })
+            .withPathSensitivity(PathSensitivity.RELATIVE)
+            .skipWhenEmpty()
+        inputs.file(configFile).withPathSensitivity(PathSensitivity.RELATIVE)
+        inputs.files(plugins).withNormalizer(ClasspathNormalizer::class.java)
+        outputs.dir(reports)
+        outputs.cacheIf { true }
+        detektArguments(DetektPaths(root, sourceDir, configFile, reports.get()), plugins)
+    }
+}
+
+/** Filesystem locations handed to the detekt CLI. */
+private class DetektPaths(
+    val root: Directory,
+    val sources: Directory,
+    val config: RegularFile,
+    val reports: Directory,
+)
+
+/** detekt CLI arguments. Report paths are plain strings because the CLI does not accept providers. */
+private fun JavaExec.detektArguments(
+    paths: DetektPaths,
+    plugins: ConfigurableFileCollection,
+) {
+    args("--input", paths.sources.asFile.absolutePath)
+    // Konsist fixtures under src/**/resources contain intentional architecture violations.
+    args("--excludes", "**/build/**,**/resources/**")
+    args("--config", paths.config.asFile.absolutePath, "--build-upon-default-config")
+    args("--jvm-target", TaqvimBuild.JAVA_RELEASE.toString())
+    args("--base-path", paths.root.asFile.absolutePath)
+    val reportDir = paths.reports.asFile.absolutePath
+    args("--report", "sarif:$reportDir/detekt.sarif", "--report", "html:$reportDir/detekt.html")
+    argumentProviders.add(
+        CommandLineArgumentProvider { if (plugins.isEmpty) emptyList() else listOf("--plugins", plugins.asPath) },
+    )
 }
 
 private fun Configuration.configureDetektResolution(
