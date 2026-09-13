@@ -23,7 +23,7 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 | T-201 | Numerals | DONE | main@b05c636 | U: NumeralsTest — `parse("۱۲٫۵") == 12.5`, separators and grouping per system (incl. Indian grouping), lenient mixed-digit parsing, traditional Tamil (18 rows + malformed input) · P: Long and BigDecimal round-trip through every system × grouping, traditional Tamil round-trip (35 tests) | Latin, Persian, Eastern Arabic, Devanagari, Tamil; CLDR separators; Tamil ௰/௱/௲ signs |
 | T-202 | Date & duration formatting | TODO | | | |
 | T-203 | Persian text normalization & fuzzy match | DONE | main@94d2947 | U: PersianTextTest — 50 normalization + 50 fuzzy pairs, search keys, OSA distance with early exit · P: normalize/searchKey idempotent, distance symmetric and zero iff equal (104 tests) | Restricted Damerau–Levenshtein (OSA) ≤ 2 on search keys; hamza carriers folded in search keys only |
-| T-204 | String resources plan | TODO | | | |
+| T-204 | String resources plan | DONE | main@1a4d047 | L: MissingFarsiTranslationDetectorTest (4: untranslated string/plurals/array reported, missing values-fa folder, complete fa clean, other locales may be incomplete), TaqvimIssueRegistryTest updated · Konsist: FarsiTranslationKonsistTest (repo fa completeness = 100 %, negative temp-tree case) | docs/i18n/STRINGS.md: en source, fa 100 % at every commit (stricter than "before v1"), naming/placeholder/plural conventions, Weblate component config (project to be created by owner), en-XA/ar-XB pseudo-locales in debug |
 | T-300 | Rule engine | TODO | | | |
 | T-301 | Year cache & day lookup | TODO | | | |
 | T-302 | Policies | TODO | | | |
