@@ -207,6 +207,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-404 — Zodiac signs, IAU constellations and "Moon in Scorpio"
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Zodiac.kt`
+- **Task:** T-404
+- **References used (public only):** tropical signs as 30° bins of ecliptic longitude from the March equinox point;
+  IAU constellation boundaries through cosinekitty/astronomy 2.1.19 (MIT) `constellation(ra, dec)` with geocentric
+  J2000 coordinates (public API only).
+- **Implementation note:** own work. The Moon-in-Scorpio search scans the window hourly and bisects each boundary to
+  one minute; visits shorter than an hour may be missed (documented in the API).
+- **Validation:** sign-boundary unit tests; constellation lookups for bright stars far from boundaries (rounded J2000
+  positions used only as test inputs); internal-consistency checks of the 2026 intervals. No published list of
+  Moon-in-Scorpio dates is available (DT-013), so the plan's "known dates" golden is pending.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
