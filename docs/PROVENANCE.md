@@ -215,6 +215,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1100 — Times tab and monthly report
+- **Module / files:** `feature/times/src/main/kotlin/ir/taqvim/feature/times/`
+- **Task:** T-1100
+- **References used (public only):** Android developer documentation (`PrintManager`,
+  `WebView.createPrintDocumentAdapter`, `PrintAttributes`); Jetpack Compose and Material 3 public APIs (Apache-2.0);
+  HTML Living Standard character references for escaping.
+- **Implementation note:** own work on the T-401 `PrayerTimesCalculator`, T-106 calendars and T-202 formatters; no
+  prayer-times app or GPL/LGPL UI code consulted. Tehran and Tromsø coordinates in tests are rounded sample inputs.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-701 — Design-system components
 - **Module / files:** `core/ui/src/main/kotlin/ir/taqvim/core/ui/component/`
 - **Task:** T-701
