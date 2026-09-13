@@ -215,6 +215,22 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1302 / T-1303 — Compass, bubble level and ruler
+- **Module / files:** `feature/compass/src/main/kotlin/ir/taqvim/feature/compass/`
+- **Tasks:** T-1302, T-1303
+- **References used (public only):** Android developer documentation — `SensorManager` coordinate system,
+  `Sensor.TYPE_ROTATION_VECTOR`/`TYPE_ACCELEROMETER`/`TYPE_MAGNETIC_FIELD`/`TYPE_GRAVITY`, `SENSOR_STATUS_*`,
+  `GeomagneticField` (platform World Magnetic Model, NOAA NCEI/BGS, public domain; no coefficients copied),
+  `ActivityInfo.SCREEN_ORIENTATION_NOSENSOR`, `DisplayMetrics.xdpi`; Qibla and Sun/Moon from `:core:astronomy`/
+  `:core:praytimes` (A-11, A-13).
+- **Implementation note:** own derivations (quaternion → rotation matrix; east = field × up, north = up × east; azimuth
+  atan2(R₁, R₄), pitch asin(−R₇), roll atan2(−R₆, R₈); tilt from gravity; ruler px/mm = xdpi/25.4). No GPL/LGPL compass
+  or level code (including `avianey/Level`) consulted.
+- **Validation:** unit and property tests, Robolectric sensor injection; declination checked only for sign and rough
+  size (Tehran, Vancouver, Cape Town) because the model version follows the platform.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1400 — Converter, distance, duration calculator, time zones and QR
 - **Module / files:** `feature/tools/src/main/kotlin/ir/taqvim/feature/tools/`
 - **Task:** T-1400
