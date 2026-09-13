@@ -19,9 +19,13 @@ import ir.taqvim.core.model.Weekday
 
 /**
  * A user-created event (`personal_events`, docs/PLAN.md §4.3). Days are Julian day numbers; times are minutes of the
- * day (`0..1439`) in [timeZoneId], and `null` times mark an all-day event.
+ * day (`0..1439`) in [timeZoneId], and `null` times mark an all-day event. [icsUid] is the iCalendar UID of an imported
+ * or exported event (T-1003), unique when present.
  */
-@Entity(tableName = "personal_events", indices = [Index("start_jdn")])
+@Entity(
+    tableName = "personal_events",
+    indices = [Index("start_jdn"), Index(value = ["ics_uid"], unique = true)],
+)
 data class PersonalEventEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val title: String,
@@ -36,6 +40,7 @@ data class PersonalEventEntity(
     @ColumnInfo(name = "color_argb") val colorArgb: Int? = null,
     @ColumnInfo(name = "created_at_epoch_millis") val createdAtEpochMillis: Long,
     @ColumnInfo(name = "updated_at_epoch_millis") val updatedAtEpochMillis: Long,
+    @ColumnInfo(name = "ics_uid") val icsUid: String? = null,
 )
 
 /** The RRULE-lite rule of one personal event (`event_recurrences`); see [RecurrenceRule] (T-503). */

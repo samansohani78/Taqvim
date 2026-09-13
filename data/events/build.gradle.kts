@@ -13,7 +13,10 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
+    // T-1003: WebCal subscriptions are refreshed by periodic WorkManager work (docs/PLAN.md §3.3, F-05).
+    api(libs.androidx.work.runtime.ktx)
 
+    testImplementation(libs.androidx.work.testing)
     // Nowruz-week golden test of the workday engine (T-504) on the generated official events.
     testImplementation(projects.core.workdays)
     testImplementation(libs.kotlinx.coroutines.test)

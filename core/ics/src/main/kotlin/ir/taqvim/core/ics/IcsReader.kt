@@ -61,7 +61,6 @@ public object IcsReader {
         if (component.property("DURATION") != null) {
             warnings += IcsProblem(component.line, "DURATION is not supported; the event is imported without an end")
         }
-        if (component.property("RDATE") != null) warnings += IcsProblem(component.line, "RDATE is not supported")
         return IcsEvent(
             uid = uid,
             start = start,
@@ -69,10 +68,18 @@ public object IcsReader {
             summary = component.text("SUMMARY"),
             description = component.text("DESCRIPTION"),
             recurrence = component.property("RRULE")?.let { recurrenceOrWarn(it, warnings) },
-            exceptionDates = component.properties("EXDATE").flatMap { exceptionDates(it, warnings) },
+            exceptionDates = component.properties("EXDATE").flatMap { dateList(it, warnings) },
             alarms = component.children.filter { it.name == "VALARM" }.mapNotNull { alarm(it, warnings) },
+            recurrenceDates = component.properties("RDATE").flatMap { dateList(it, warnings) },
+            extensions =
+                component.properties
+                    .filter { X_NAME.matches(it.name) }
+                    .distinctBy { it.name }
+                    .associate { it.name to ContentLines.unescapeText(it.value) },
         )
     }
+
+    private val X_NAME = Regex("X-[A-Z0-9-]+")
 
     private fun dateTimeOrWarn(
         property: ContentLine,
@@ -90,13 +97,21 @@ public object IcsReader {
             if (it == null) warnings += IcsProblem(property.line, "unsupported or invalid RRULE ignored")
         }
 
-    private fun exceptionDates(
+    /** The DATE or DATE-TIME list of an EXDATE or RDATE property; PERIOD values are skipped with a warning. */
+    private fun dateList(
         property: ContentLine,
         warnings: MutableList<IcsProblem>,
     ): List<IcsDateTime> =
-        property.value.split(',').mapNotNull { value ->
-            IcsValues.dateTime(value, property, warnings).also {
-                if (it == null) warnings += IcsProblem(property.line, "invalid EXDATE value '$value' ignored")
+        if (property.parameter("VALUE").equals("PERIOD", ignoreCase = true)) {
+            warnings += IcsProblem(property.line, "${property.name} PERIOD values are not supported")
+            emptyList()
+        } else {
+            property.value.split(',').mapNotNull { value ->
+                IcsValues.dateTime(value, property, warnings).also {
+                    if (it == null) {
+                        warnings += IcsProblem(property.line, "invalid ${property.name} value '$value' ignored")
+                    }
+                }
             }
         }
 

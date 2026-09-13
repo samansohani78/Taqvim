@@ -165,6 +165,7 @@ private fun PersonalEventEntity.toRecord() =
         colorArgb,
         createdAtEpochMillis,
         updatedAtEpochMillis,
+        icsUid,
     )
 
 private fun EventRecord.toEntity() =
@@ -181,6 +182,7 @@ private fun EventRecord.toEntity() =
         colorArgb,
         createdAtEpochMillis,
         updatedAtEpochMillis,
+        icsUid,
     )
 
 private fun EventRecurrenceEntity.toRecord() =

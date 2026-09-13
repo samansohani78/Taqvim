@@ -10,7 +10,11 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-/** A subscribed iCalendar feed (`ics_subscriptions`); [etag] enables conditional refresh. */
+/**
+ * A subscribed iCalendar feed (`ics_subscriptions`). [lastFetchedAtEpochMillis] is the last full download (whose
+ * validators [etag] and [lastModified], RFC 9110 §8.8, enable conditional requests) and [lastCheckedAtEpochMillis] the
+ * last answered request, full or "not modified" (T-1003).
+ */
 @Entity(tableName = "ics_subscriptions", indices = [Index(value = ["url"], unique = true)])
 data class IcsSubscriptionEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
@@ -21,6 +25,8 @@ data class IcsSubscriptionEntity(
     @ColumnInfo(name = "refresh_interval_minutes") val refreshIntervalMinutes: Int,
     @ColumnInfo(name = "last_fetched_at_epoch_millis") val lastFetchedAtEpochMillis: Long? = null,
     val etag: String? = null,
+    @ColumnInfo(name = "last_modified") val lastModified: String? = null,
+    @ColumnInfo(name = "last_checked_at_epoch_millis") val lastCheckedAtEpochMillis: Long? = null,
 )
 
 /** One expanded occurrence of a subscribed feed (`ics_events_cache`), replaced on every refresh. */

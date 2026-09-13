@@ -108,7 +108,19 @@ public data class IcsEvent(
     public val recurrence: Recurrence? = null,
     public val exceptionDates: List<IcsDateTime> = emptyList(),
     public val alarms: List<DisplayAlarm> = emptyList(),
-)
+    /** RDATE values (§3.8.5.2) of the DATE or DATE-TIME type; PERIOD values are not supported. */
+    public val recurrenceDates: List<IcsDateTime> = emptyList(),
+    /** Non-standard `X-` properties (§3.8.8.2) by upper-case name with their TEXT value; the first of a name wins. */
+    public val extensions: Map<String, String> = emptyMap(),
+) {
+    init {
+        require(extensions.keys.all { X_NAME.matches(it) }) { "extension names must be X-names (§3.1)" }
+    }
+
+    private companion object {
+        val X_NAME = Regex("X-[A-Z0-9-]+")
+    }
+}
 
 /** An iCalendar object (§3.4) with its PRODID and events. */
 public data class IcsCalendar(

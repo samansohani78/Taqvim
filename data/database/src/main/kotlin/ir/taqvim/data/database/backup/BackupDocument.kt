@@ -81,6 +81,7 @@ internal data class EventRecord(
     val colorArgb: Int? = null,
     val createdAtEpochMillis: Long,
     val updatedAtEpochMillis: Long,
+    val icsUid: String? = null,
 )
 
 @Serializable

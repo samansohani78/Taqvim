@@ -148,7 +148,10 @@ class IcsFixturesTest {
                 },
             "22-lowercase-names" to
                 Expectation(1, 0) { it.first().start shouldBe IcsDateTime.Date(LocalDate(2026, 6, 1)) },
-            "23-x-and-unknown-properties" to Expectation(1, 0),
+            "23-x-and-unknown-properties" to
+                Expectation(1, 0) {
+                    it.first().extensions shouldBe mapOf("X-GOOGLE-CONFERENCE" to "https://example.org/meet")
+                },
             "24-quoted-parameters" to
                 Expectation(1, 0) {
                     it.first().start shouldBe IcsDateTime.Zoned(LocalDateTime(2026, 7, 10, 18, 0), "Europe/Berlin")
@@ -160,11 +163,12 @@ class IcsFixturesTest {
             "26-missing-uid" to Expectation(1, 1) { it.first().uid shouldBe "valid@taqvim.test" },
             "27-missing-dtstart" to Expectation(0, 1),
             "30-unsupported-and-invalid-values" to
-                Expectation(1, 5) {
+                Expectation(1, 4) {
                     val event = it.first()
                     event.end shouldBe null
                     event.recurrence shouldBe null
                     event.exceptionDates shouldBe listOf(IcsDateTime.Date(LocalDate(2026, 7, 2)))
+                    event.recurrenceDates shouldBe listOf(IcsDateTime.Date(LocalDate(2026, 7, 10)))
                 },
         )
 

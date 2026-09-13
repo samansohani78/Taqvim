@@ -37,6 +37,8 @@ public object IcsWriter {
             event.description?.let { add("DESCRIPTION:${ContentLines.escapeText(it)}") }
             event.recurrence?.let { add("RRULE:${IcsValues.format(it)}") }
             event.exceptionDates.forEach { add(dateTime("EXDATE", it)) }
+            event.recurrenceDates.forEach { add(dateTime("RDATE", it)) }
+            event.extensions.forEach { (name, value) -> add("$name:${ContentLines.escapeText(value)}") }
             event.alarms.forEach { addAll(alarm(it)) }
             add("END:VEVENT")
         }

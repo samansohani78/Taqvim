@@ -10,6 +10,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 /** The personal-data database (docs/PLAN.md §4.3, T-601). Schemas are exported to `data/database/schemas`. */
 @Database(
@@ -67,8 +68,22 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 1
+    const val LATEST_VERSION: Int = 2
+
+    /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
+    private val MIGRATION_1_2: Migration =
+        object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE `personal_events` ADD COLUMN `ics_uid` TEXT")
+                db.execSQL(
+                    "CREATE UNIQUE INDEX IF NOT EXISTS `index_personal_events_ics_uid` " +
+                        "ON `personal_events` (`ics_uid`)",
+                )
+                db.execSQL("ALTER TABLE `ics_subscriptions` ADD COLUMN `last_modified` TEXT")
+                db.execSQL("ALTER TABLE `ics_subscriptions` ADD COLUMN `last_checked_at_epoch_millis` INTEGER")
+            }
+        }
 
     /** Migrations between consecutive versions, oldest first. */
-    val ALL: List<Migration> = emptyList()
+    val ALL: List<Migration> = listOf(MIGRATION_1_2)
 }

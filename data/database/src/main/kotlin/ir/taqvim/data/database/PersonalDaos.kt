@@ -27,6 +27,14 @@ interface PersonalEventDao {
     @Query("SELECT * FROM personal_events WHERE id = :id")
     suspend fun get(id: Long): PersonalEventEntity?
 
+    /** The event imported or exported with iCalendar UID [uid] (T-1003). */
+    @Query("SELECT * FROM personal_events WHERE ics_uid = :uid")
+    suspend fun getByIcsUid(uid: String): PersonalEventEntity?
+
+    /** Every personal event, for export. */
+    @Query("SELECT * FROM personal_events ORDER BY start_jdn, start_minute, id")
+    suspend fun all(): List<PersonalEventEntity>
+
     /**
      * Events overlapping the days [fromJdn]..[toJdn] (inclusive), plus recurring events that start on or before
      * [toJdn], whose occurrences the caller expands.
@@ -67,6 +75,13 @@ interface ReminderDao {
 
     @Query("SELECT * FROM reminders WHERE event_id = :eventId ORDER BY minutes_before, id")
     fun observeReminders(eventId: Long): Flow<List<ReminderEntity>>
+
+    @Query("SELECT * FROM reminders WHERE event_id = :eventId ORDER BY minutes_before, id")
+    suspend fun reminders(eventId: Long): List<ReminderEntity>
+
+    /** Deletes the reminders of [eventId], e.g. before an imported event's alarms are replaced. */
+    @Query("DELETE FROM reminders WHERE event_id = :eventId")
+    suspend fun deleteReminders(eventId: Long)
 
     @Insert
     suspend fun insertAlarm(alarm: ScheduledAlarmEntity): Long
