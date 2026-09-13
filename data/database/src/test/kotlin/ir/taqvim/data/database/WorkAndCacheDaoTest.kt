@@ -155,6 +155,25 @@ class WorkAndCacheDaoTest {
         }
 
     @Test
+    fun deviceEventsOverlappingAWindowAreReplaced(): Unit =
+        runTest {
+            val dao = db.deviceEventDao()
+            val spanning = DeviceEventCacheEntity(1L, 9L, 50L, 250L, allDay = false, title = "spanning")
+            val zeroLength = DeviceEventCacheEntity(2L, 9L, 100L, 100L, allDay = false, title = "zero")
+            val endsAtStart = DeviceEventCacheEntity(3L, 9L, 10L, 100L, allDay = false, title = "before")
+            val startsAtEnd = DeviceEventCacheEntity(4L, 9L, 200L, 300L, allDay = false, title = "after")
+            dao.insertAll(listOf(spanning, zeroLength, endsAtStart, startsAtEnd))
+
+            val fresh = DeviceEventCacheEntity(5L, 9L, 150L, 160L, allDay = true, title = "fresh")
+            dao.replaceOverlapping(100L, 200L, listOf(fresh))
+
+            dao.observeInRange(0L, 1_000L).test {
+                awaitItem() shouldBe listOf(endsAtStart, fresh, startsAtEnd)
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
     fun diagnosticsRingKeepsNewestRows(): Unit =
         runTest {
             val dao = db.diagnosticsDao()

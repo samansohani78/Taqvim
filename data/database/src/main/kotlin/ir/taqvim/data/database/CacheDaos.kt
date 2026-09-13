@@ -93,6 +93,33 @@ interface DeviceEventDao {
         insertAll(events)
     }
 
+    /** Deletes the instances overlapping `[fromEpochMillis, toEpochMillis)`, zero-length ones at its start included. */
+    @Query(
+        """
+        DELETE FROM device_events_cache
+        WHERE begin_epoch_millis < :toEpochMillis
+            AND (end_epoch_millis > :fromEpochMillis OR begin_epoch_millis >= :fromEpochMillis)
+        """,
+    )
+    suspend fun deleteOverlapping(
+        fromEpochMillis: Long,
+        toEpochMillis: Long,
+    )
+
+    /**
+     * Atomically replaces the instances overlapping `[fromEpochMillis, toEpochMillis)` with [events], the provider's
+     * answer for that window (T-602), so instances deleted in the provider leave the cache.
+     */
+    @Transaction
+    suspend fun replaceOverlapping(
+        fromEpochMillis: Long,
+        toEpochMillis: Long,
+        events: List<DeviceEventCacheEntity>,
+    ) {
+        deleteOverlapping(fromEpochMillis, toEpochMillis)
+        insertAll(events)
+    }
+
     /** Instances overlapping `[fromEpochMillis, toEpochMillis)`. */
     @Query(
         """
