@@ -1,0 +1,61 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+package ir.taqvim.feature.calendar
+
+import ir.taqvim.core.model.CalendarDate
+import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.Weekday
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+
+/** Tabs of the day details under the month (T-802). */
+enum class DayDetailsTab {
+    CALENDARS,
+    EVENTS,
+    TIMES,
+}
+
+/** State of the calendar (home) screen (T-800). */
+data class CalendarUiState(
+    /** `null` while today and the preferences are loading. */
+    val content: CalendarContent? = null,
+)
+
+/** The loaded calendar screen. */
+data class CalendarContent(
+    val today: Jdn,
+    val selectedDay: Jdn,
+    /** Available calendars in the user's order; the first is the primary calendar the month pager uses. */
+    val calendars: ImmutableList<CalendarSystem>,
+    /** [selectedDay] in each of [calendars], in the same order. */
+    val selectedDates: ImmutableList<CalendarDate>,
+    /** Pager position: primary-calendar months from the month of [today] to the shown month. */
+    val monthOffset: Int,
+    /** The first day of the shown month in the primary calendar. */
+    val visibleMonth: CalendarDate,
+    val weekStart: Weekday,
+    val selectedTab: DayDetailsTab,
+    /** Events of [selectedDay]; `null` while they load. */
+    val dayDetails: DayDetails?,
+    val search: CalendarSearch,
+)
+
+/** The events of one day as shown in the day details. */
+data class DayDetails(
+    val jdn: Jdn,
+    val isHoliday: Boolean,
+    val isWeekend: Boolean,
+    val events: ImmutableList<DayEventItem>,
+)
+
+/** The search bar of the calendar screen. */
+data class CalendarSearch(
+    val isOpen: Boolean = false,
+    val query: String = "",
+    /** Whether results for [query] are still being computed. */
+    val isSearching: Boolean = false,
+    val results: ImmutableList<EventSearchResult> = persistentListOf(),
+)

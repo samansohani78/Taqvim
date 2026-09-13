@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+package ir.taqvim.feature.calendar
+
+import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.IslamicVariant
+import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.Weekday
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
+import kotlinx.datetime.LocalDate
+
+/** The civil day of a Gregorian date. */
+internal fun gregorian(
+    year: Int,
+    month: Int,
+    day: Int,
+): Jdn = LocalDate(year, month, day).toJdn()
+
+internal val PERSIAN_FIRST =
+    CalendarSettings(
+        calendars = listOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN, CalendarSystem.ISLAMIC),
+        weekStart = Weekday.SATURDAY,
+        islamicVariant = IslamicVariant.IRAN_OFFICIAL,
+    )
+
+internal class FakeSettingsSource(
+    initial: CalendarSettings,
+) : CalendarSettingsSource {
+    val state = MutableStateFlow(initial)
+
+    override fun settings(): Flow<CalendarSettings> = state
+}
+
+internal class FakeTodaySource(
+    initial: Jdn?,
+) : TodaySource {
+    val state = MutableStateFlow(initial)
+
+    override fun today(): Flow<Jdn> = state.filterNotNull()
+}
+
+/** One official event per day; days in [holidays] are holidays. */
+internal class FakeDaySource : CalendarDaySource {
+    val holidays = MutableStateFlow(emptySet<Jdn>())
+
+    override fun day(jdn: Jdn): Flow<CalendarDay> =
+        holidays.map { holidays ->
+            val holiday = jdn in holidays
+            CalendarDay(jdn, holiday, isWeekend = false, listOf(eventOn(jdn, holiday)))
+        }
+
+    companion object {
+        fun eventOn(
+            jdn: Jdn,
+            holiday: Boolean = false,
+        ): DayEventItem = DayEventItem("event-${jdn.value}", DayEventKind.OFFICIAL, "Event ${jdn.value}", holiday)
+    }
+}
+
+internal class FakeSearchSource(
+    private val results: Map<String, List<EventSearchResult>>,
+) : EventSearchSource {
+    val queries = mutableListOf<Pair<String, Int>>()
+
+    override suspend fun search(
+        text: String,
+        limit: Int,
+    ): List<EventSearchResult> {
+        queries += text to limit
+        return results[text].orEmpty()
+    }
+}

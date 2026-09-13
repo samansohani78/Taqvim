@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+package ir.taqvim.feature.calendar
+
+import ir.taqvim.core.calendar.TodayProvider
+import ir.taqvim.core.model.Jdn
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.minutes
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
+
+/** [TodaySource] that reads [provider] every [interval], so a new day (or a new time zone) shows within [interval]. */
+class TickingTodaySource(
+    private val provider: TodayProvider,
+    private val interval: Duration = DEFAULT_INTERVAL,
+) : TodaySource {
+    init {
+        require(interval.isPositive()) { "interval must be positive (was $interval)" }
+    }
+
+    override fun today(): Flow<Jdn> =
+        flow {
+            while (true) {
+                emit(provider.today())
+                delay(interval)
+            }
+        }.distinctUntilChanged()
+
+    companion object {
+        val DEFAULT_INTERVAL: Duration = 1.minutes
+    }
+}
+
+/** Searches events for the calendar screen; blank queries have no results and do not reach [source]. */
+class SearchEventsUseCase(
+    private val source: EventSearchSource,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
+) {
+    suspend operator fun invoke(query: String): List<EventSearchResult> {
+        val text = query.trim()
+        return if (text.isEmpty()) emptyList() else withContext(dispatcher) { source.search(text, LIMIT) }
+    }
+
+    companion object {
+        /** Results shown under the search bar. */
+        const val LIMIT: Int = 20
+    }
+}
