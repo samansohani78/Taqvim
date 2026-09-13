@@ -215,6 +215,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-801 — Month pager
+- **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/` — `MonthLayout.kt`,
+  `MonthPageBuilder.kt`, `MonthPager.kt`, `CalendarScreen.kt`, `CalendarRoute.kt`, `CalendarNavigation.kt`; `:app`
+  adapter `app/src/main/kotlin/ir/taqvim/app/di/CalendarAdapters.kt`; `benchmark/.../MonthPagerScrollBenchmark.kt`
+- **Task:** T-801
+- **References used (public only):** Jetpack Compose public APIs (Apache-2.0) — `HorizontalPager`, `Crossfade`,
+  `produceState`; short standalone weekday names from platform `android.icu.text.DateFormatSymbols` (CLDR data);
+  AndroidX Macrobenchmark `FrameTimingMetric` and UiAutomator public APIs.
+- **Implementation note:** own work on `:core:calendar` (T-106), `:core:i18n` (T-200/T-202) and the T-701
+  `MonthGrid`/`DayCell`. Week numbers are Taqvim's definition (week 1 contains the first day of the year; weeks begin on
+  the user's week start). Screenshot events are synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1300 — Astronomy screen
 - **Module / files:** `feature/astronomy/src/main/kotlin/ir/taqvim/feature/astronomy/`
 - **Task:** T-1300
