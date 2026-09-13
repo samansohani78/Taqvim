@@ -215,6 +215,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1300 — Astronomy screen
+- **Module / files:** `feature/astronomy/src/main/kotlin/ir/taqvim/feature/astronomy/`
+- **Task:** T-1300
+- **References used (public only):** the `:core:astronomy` façade (A-13, A-14, T-404, T-406) and its entries above;
+  Jetpack Compose and Material 3 public APIs (Apache-2.0). The eight Moon phase names as 45° elongation sectors and the
+  year horoscope cast for the March equinox are Taqvim presentation choices. Eclipse test expectations: NASA GSFC solar
+  and lunar eclipse catalogs.
+- **Implementation note:** own work; no GPL/LGPL astronomy or UI code consulted. Tehran and Tromsø coordinates in tests
+  are rounded sample inputs.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-800 — Calendar screen state and use cases
 - **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/`; `:app` adapters
   `app/src/main/kotlin/ir/taqvim/app/di/CalendarAdapters.kt`, `TimesAdapters.kt`
