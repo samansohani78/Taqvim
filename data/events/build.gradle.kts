@@ -6,6 +6,8 @@ dependencies {
     implementation(projects.core.model)
     // Generated OfficialEvents exposes EventDefinition (D-08).
     api(projects.core.events)
+    // Nowruz-week golden test of the workday engine (T-504) on the generated official events.
+    testImplementation(projects.core.workdays)
 }
 
 // Official daily rows extracted from the Calendar Center's calendars (golden fixtures of :core:calendar), for T-303.
