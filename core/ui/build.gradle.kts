@@ -5,4 +5,7 @@ plugins {
 
 dependencies {
     api(projects.core.model)
+    api(projects.core.i18n)
+
+    testImplementation(projects.core.uiTesting)
 }
