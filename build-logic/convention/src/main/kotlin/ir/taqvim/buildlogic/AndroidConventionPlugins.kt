@@ -93,6 +93,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 }
             }
             pluginManager.apply(QualityConventionPlugin::class.java)
+            configureSbom()
         }
     }
 }

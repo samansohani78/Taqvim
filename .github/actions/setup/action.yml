@@ -1,0 +1,21 @@
+name: Setup Taqvim build
+description: JDK 25 (Gradle) + JDK 21 (tests, detekt) and a cached Gradle installation.
+inputs:
+  cache-read-only:
+    description: Whether the Gradle cache is read-only (true for pull requests).
+    default: "true"
+runs:
+  using: composite
+  steps:
+    - name: Set up JDKs
+      uses: actions/setup-java@v6
+      with:
+        distribution: temurin
+        # The last entry becomes JAVA_HOME (Gradle runs on 25); 21 is the test/detekt toolchain.
+        java-version: |
+          21
+          25
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@v6
+      with:
+        cache-read-only: ${{ inputs.cache-read-only }}

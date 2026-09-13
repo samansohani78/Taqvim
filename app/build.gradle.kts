@@ -10,7 +10,22 @@ android {
         versionCode = 1
         versionName = "0.1.0"
     }
+    signingConfigs {
+        // Release signing comes from CI secrets (release.yml). Without them release builds stay unsigned.
+        val keystore = providers.environmentVariable("TAQVIM_KEYSTORE_FILE").orNull
+        if (keystore != null) {
+            create("release") {
+                storeFile = file(keystore)
+                storePassword = providers.environmentVariable("TAQVIM_KEYSTORE_PASSWORD").get()
+                keyAlias = providers.environmentVariable("TAQVIM_KEY_ALIAS").get()
+                keyPassword = providers.environmentVariable("TAQVIM_KEY_PASSWORD").get()
+            }
+        }
+    }
     buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.findByName("release")
+        }
         create("benchmark") {
             initWith(getByName("release"))
             signingConfig = signingConfigs.getByName("debug")

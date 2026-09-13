@@ -13,6 +13,7 @@ dependencies {
     implementation(libs.spotless.gradlePlugin)
     implementation(libs.kover.gradlePlugin)
     implementation(libs.roborazzi.gradlePlugin)
+    implementation(libs.cyclonedx.gradlePlugin)
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)

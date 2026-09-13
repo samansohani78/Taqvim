@@ -1,0 +1,139 @@
+name: PR
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: pr-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # GitHub-hosted runners: 4 vCPU / 16 GB. Local defaults are tuned for 14 GB machines (ADR-0004 §9).
+  GRADLE_OPTS: >-
+    -Dorg.gradle.workers.max=4
+    -Dorg.gradle.java.installations.fromEnv=JAVA_HOME_21_X64
+  TAQVIM_GRADLE_ARGS: --continue -Ptaqvim.maxForkedJvms=3
+
+jobs:
+  static:
+    name: Static analysis (spotless, detekt, lint, konsist)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+      - run: ./gradlew spotlessCheck detekt lint konsistTest $TAQVIM_GRADLE_ARGS
+      - name: Upload SARIF (lint + detekt)
+        if: always()
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: .
+          category: static-analysis
+        continue-on-error: true
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: static-reports
+          path: "**/build/reports/"
+
+  unit:
+    name: Unit + Robolectric tests, coverage gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+      - run: ./gradlew test koverVerify koverXmlReport $TAQVIM_GRADLE_ARGS
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: test-and-coverage-reports
+          path: |
+            **/build/reports/tests/
+            **/build/test-results/
+            build/reports/kover/
+
+  screenshots:
+    name: Screenshot verification (Roborazzi)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: ./gradlew verifyRoborazziDebug $TAQVIM_GRADLE_ARGS
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: roborazzi-diffs
+          path: "**/build/outputs/roborazzi/"
+
+  license:
+    name: License gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: ./gradlew licenseCheck
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: license-report
+          path: build/reports/licenses/
+      - name: Negative test — an LGPL dependency must fail the gate
+        run: |
+          if ./gradlew licenseCheck -Ptaqvim.licenseGate.canary=true; then
+            echo "::error::License gate accepted the LGPL canary dependency"
+            exit 1
+          fi
+          grep -q "mariadb-java-client" build/reports/licenses/license-check.txt
+
+  dataset:
+    name: Dataset validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - name: Detect dataset
+        id: detect
+        run: |
+          if [ -d dataset ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "present=false" >> "$GITHUB_OUTPUT"; fi
+      - uses: ./.github/actions/setup
+        if: steps.detect.outputs.present == 'true'
+      - name: Validate dataset (D-01/D-09)
+        if: steps.detect.outputs.present == 'true'
+        run: ./gradlew :tools:dataset:validateDataset $TAQVIM_GRADLE_ARGS
+
+  build:
+    name: Assemble (debug + release)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+      - run: ./gradlew assemble $TAQVIM_GRADLE_ARGS
+
+  workflows:
+    name: Workflow lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: actionlint
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+          ./actionlint -color
