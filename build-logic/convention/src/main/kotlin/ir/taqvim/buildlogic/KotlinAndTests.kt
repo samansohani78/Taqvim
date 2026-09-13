@@ -48,6 +48,8 @@ internal fun Project.configureTestTasks() {
         // Robolectric's SDK 36 FileDescriptor interceptor (ApplicationSharedMemory) needs these on any modern JDK.
         jvmArgs("--add-exports=java.base/jdk.internal.access=ALL-UNNAMED", "--add-opens=java.base/java.io=ALL-UNNAMED")
         systemProperty("kotest.framework.dump.config", "false")
+        // Fail instead of silently skipping mis-declared tests (e.g. a @Test function that returns a value).
+        systemProperty("junit.platform.discovery.issue.severity.critical", "WARNING")
         systemProperty(UPDATE_SNAPSHOTS_PROPERTY, updateSnapshots.get())
         systemProperty(PROPERTY_ITERATIONS_PROPERTY, propertyIterations.get())
         testLogging {

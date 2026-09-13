@@ -59,6 +59,11 @@ class ArchitectureKonsistTest {
     }
 
     @Test
+    fun `test functions cannot be silently skipped`() {
+        ArchitectureRules.testFunctionViolations(allSources.testFunctions).shouldBeEmpty()
+    }
+
+    @Test
     fun `there is no global mutable state`() {
         ArchitectureRules
             .globalMutableStateViolations(production.topLevelProperties, production.objectProperties)

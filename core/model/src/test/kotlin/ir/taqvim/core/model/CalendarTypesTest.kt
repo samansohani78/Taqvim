@@ -58,7 +58,7 @@ class CalendarTypesTest {
     }
 
     @Test
-    fun `weekday plus seven is identity`() =
+    fun `weekday plus seven is identity`(): Unit =
         runBlocking {
             checkAll(PropertyTesting.iterations, Arb.int(0..6), Arb.int(-10_000..10_000)) { index, weeks ->
                 val weekday = Weekday.entries[index]
@@ -107,7 +107,7 @@ class CalendarTypesTest {
     }
 
     @Test
-    fun `wrapping keeps minute of day in range`() =
+    fun `wrapping keeps minute of day in range`(): Unit =
         runBlocking {
             checkAll(PropertyTesting.iterations, Arb.int(0..1439), Arb.int(-100_000..100_000)) { value, delta ->
                 val moved = MinuteOfDay(value).plusWrapping(delta)

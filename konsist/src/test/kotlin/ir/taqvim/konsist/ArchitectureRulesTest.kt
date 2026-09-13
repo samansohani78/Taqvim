@@ -226,6 +226,19 @@ class ArchitectureRulesTest {
     }
 
     @Test
+    fun `expression-bodied tests must declare Unit`() {
+        val facts =
+            listOf(
+                TestFunctionFacts("a:1", hasExpressionBody = true, declaresReturnType = false),
+                TestFunctionFacts("b:1", hasExpressionBody = true, declaresReturnType = true),
+                TestFunctionFacts("c:1", hasExpressionBody = false, declaresReturnType = false),
+            )
+
+        ArchitectureRules.testFunctionViolations(facts).single() shouldContain
+            "a:1: expression-bodied @Test must declare"
+    }
+
+    @Test
     fun `module paths are derived from the source location`() {
         KonsistFacts.modulePathOf("/repo", "/repo/core/ui-testing/src/main/kotlin/A.kt") shouldBe ":core:ui-testing"
         KonsistFacts.modulePathOf("/repo/", "/repo/app/src/test/kotlin/B.kt") shouldBe ":app"

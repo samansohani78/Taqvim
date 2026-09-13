@@ -68,7 +68,7 @@ class JdnTest {
     }
 
     @Test
-    fun `plus then minus returns the same day`() =
+    fun `plus then minus returns the same day`(): Unit =
         runBlocking {
             checkAll(PropertyTesting.iterations, days, offsets) { value, offset ->
                 Jdn(value) + offset - offset shouldBe Jdn(value)
@@ -77,7 +77,7 @@ class JdnTest {
         }
 
     @Test
-    fun `weekday repeats every seven days`() =
+    fun `weekday repeats every seven days`(): Unit =
         runBlocking {
             checkAll(PropertyTesting.iterations, days, Arb.int(-1000..1000)) { value, weeks ->
                 (Jdn(value) + 7L * weeks).weekday() shouldBe Jdn(value).weekday()

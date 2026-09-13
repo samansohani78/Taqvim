@@ -38,6 +38,13 @@ data class ClassFacts(
     val properties: List<PropertyFacts>,
 )
 
+/** Facts about a function annotated with `@Test`. */
+data class TestFunctionFacts(
+    val location: String,
+    val hasExpressionBody: Boolean,
+    val declaresReturnType: Boolean,
+)
+
 /** Architectural layer of a Gradle module (plan §3.1). */
 enum class Layer(
     val label: String,
@@ -218,6 +225,17 @@ object ArchitectureRules {
                 }
             }
         }
+
+    /**
+     * Expression-bodied `@Test` functions must declare `: Unit`. Otherwise `fun t() = runBlocking { … }` returns a
+     * value and JUnit Jupiter silently skips the test.
+     */
+    fun testFunctionViolations(functions: List<TestFunctionFacts>): List<String> =
+        functions
+            .filter { it.hasExpressionBody && !it.declaresReturnType }
+            .map {
+                "${it.location}: expression-bodied @Test must declare ': Unit' (JUnit skips tests returning a value)"
+            }
 
     private fun isPureCore(modulePath: String): Boolean =
         Layer.ofModule(modulePath) == Layer.CORE && modulePath !in ANDROID_CORE_MODULES

@@ -91,7 +91,7 @@ class GregorianCalendarSystemTest {
     }
 
     @Test
-    fun `jdn round-trips through the calendar`() =
+    fun `jdn round-trips through the calendar`(): Unit =
         runBlocking {
             checkAll(PropertyTesting.iterations, Arb.long(-1_000_000_000L..1_000_000_000L)) { value ->
                 gregorian.toJdn(gregorian.fromJdn(Jdn(value))) shouldBe Jdn(value)
@@ -99,7 +99,7 @@ class GregorianCalendarSystemTest {
         }
 
     @Test
-    fun `dates round-trip and consecutive days differ by one`() =
+    fun `dates round-trip and consecutive days differ by one`(): Unit =
         runBlocking {
             checkAll(PropertyTesting.iterations, Arb.int(-2_000_000..2_000_000), Arb.int(1..12), Arb.int(1..31)) {
                 year,

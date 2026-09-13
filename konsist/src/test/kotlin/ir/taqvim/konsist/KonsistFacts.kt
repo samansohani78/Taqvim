@@ -37,6 +37,13 @@ class KonsistFacts(
                 FunctionFacts(relative(it.location), declarationLines(it.text, FUN_KEYWORD).size)
             }
 
+    val testFunctions: List<TestFunctionFacts>
+        get() =
+            scope
+                .functions(includeNested = true, includeLocal = false)
+                .filter { it.hasAnnotationWithName("Test") }
+                .map { TestFunctionFacts(relative(it.location), it.hasExpressionBody, it.returnType != null) }
+
     val classes: List<ClassFacts>
         get() =
             scope.classes(includeNested = true, includeLocal = true).map { type ->

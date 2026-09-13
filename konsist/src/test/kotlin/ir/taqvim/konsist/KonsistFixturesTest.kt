@@ -78,6 +78,14 @@ class KonsistFixturesTest {
     }
 
     @Test
+    fun `silently skipped tests are detected`() {
+        val skipped = ArchitectureRules.testFunctionViolations(violations.testFunctions)
+
+        skipped.single() shouldContain "SkippedPropertyTest.kt"
+        ArchitectureRules.testFunctionViolations(compliant.testFunctions).shouldBeEmpty()
+    }
+
+    @Test
     fun `compliant code passes every rule`() {
         ArchitectureRules.packageViolations(compliant.files).shouldBeEmpty()
         ArchitectureRules.importViolations(compliant.files).shouldBeEmpty()

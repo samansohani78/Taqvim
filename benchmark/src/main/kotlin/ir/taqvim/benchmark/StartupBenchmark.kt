@@ -19,7 +19,7 @@ class StartupBenchmark {
     val rule = MacrobenchmarkRule()
 
     @Test
-    fun startupCold() =
+    fun startupCold(): Unit =
         rule.measureRepeated(
             packageName = TARGET_PACKAGE,
             metrics = listOf(StartupTimingMetric()),
