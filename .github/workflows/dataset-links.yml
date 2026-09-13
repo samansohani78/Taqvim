@@ -1,0 +1,44 @@
+name: Dataset citation links
+
+# D-05/D-09: every citation and link URL in dataset/**/*.json must still resolve. Runs weekly and on demand; some
+# official sites block data-centre networks, so a failure is reviewed by a person before any record changes.
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    name: Resolve citation URLs
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - name: Collect URLs
+        run: |
+          find dataset -name '*.json' ! -name 'events.v1.json' -print0 \
+            | xargs -0 --no-run-if-empty jq -r '[.. | .url? // empty] + [.. | .links? // empty | .[]?] | .[]' \
+            | sort -u > "$RUNNER_TEMP/urls.txt"
+          echo "$(wc -l < "$RUNNER_TEMP/urls.txt") distinct URLs"
+      - name: Check URLs
+        run: |
+          failures=0
+          while IFS= read -r url; do
+            status=$(curl --silent --location --output /dev/null --write-out '%{http_code}' \
+              --retry 3 --retry-delay 5 --max-time 60 --user-agent "Mozilla/5.0 (Taqvim dataset link check)" \
+              "$url" || true)
+            if [[ "$status" =~ ^[23] ]]; then
+              echo "ok $status $url"
+            else
+              echo "::error::Citation URL did not resolve (HTTP $status): $url"
+              echo "- HTTP $status — $url" >> "$GITHUB_STEP_SUMMARY"
+              failures=$((failures + 1))
+            fi
+          done < "$RUNNER_TEMP/urls.txt"
+          if [ "$failures" -gt 0 ]; then
+            echo "$failures citation URL(s) did not resolve"
+            exit 1
+          fi

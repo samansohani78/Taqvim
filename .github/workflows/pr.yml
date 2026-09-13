@@ -112,9 +112,21 @@ jobs:
           if [ -d dataset ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "present=false" >> "$GITHUB_OUTPUT"; fi
       - uses: ./.github/actions/setup
         if: steps.detect.outputs.present == 'true'
-      - name: Validate dataset (D-01/D-09)
+      # D-09 pipeline: schema + cross-record validation (every record needs a citation), then the generator and
+      # golden tests. GenerateEventsCliTest fails when the committed data/events sources are stale.
+      - name: Validate dataset (D-01)
         if: steps.detect.outputs.present == 'true'
-        run: ./gradlew :tools:dataset:validateDataset $TAQVIM_GRADLE_ARGS
+        run: ./gradlew :tools:dataset:validate $TAQVIM_GRADLE_ARGS
+      - name: Generator and golden tests (D-08, D-02)
+        if: steps.detect.outputs.present == 'true'
+        run: ./gradlew :tools:dataset:test :data:events:test $TAQVIM_GRADLE_ARGS
+      - uses: actions/upload-artifact@v7
+        if: failure() && steps.detect.outputs.present == 'true'
+        with:
+          name: dataset-test-reports
+          path: |
+            tools/dataset/build/reports/tests/
+            data/events/build/reports/tests/
 
   build:
     name: Assemble (debug + release)

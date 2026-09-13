@@ -14,6 +14,13 @@ Task: T-
 - [ ] `docs/PROGRESS.md` updated
 - [ ] No new dependency, or its license is on the allow-list (ADR-0003)
 
+## Dataset changes (`dataset/**`) — see [CONTRIBUTING-DATA.md](../CONTRIBUTING-DATA.md)
+
+- [ ] Every new or changed record cites a primary official source (URL, title, page, retrieval date)
+- [ ] `./gradlew :tools:dataset:validate :tools:dataset:generateEvents spotlessApply :tools:dataset:test :data:events:test` is green
+- [ ] Anything that could not be verified is listed in `docs/DATA_TODO.md` instead of being guessed
+- [ ] A second person has checked each record against the cited page (`reviewedBy`)
+
 ## Clean-room attestation
 
 - [ ] I did not consult any GPL/LGPL/AGPL/MPL source (including `persian-calendar/*`, `avianey/Level`, `ilius/starcal`) while writing this change.

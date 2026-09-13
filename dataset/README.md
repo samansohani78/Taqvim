@@ -2,6 +2,7 @@
 
 Holidays and observances shipped with Taqvim (docs/PLAN.md §5). Every record is compiled from a primary source and
 carries at least one citation. Records that cannot be verified go to `docs/DATA_TODO.md`, never into this directory.
+How to add or correct records, CI and the reviewer sign-off checklist: [`CONTRIBUTING-DATA.md`](../CONTRIBUTING-DATA.md).
 
 ## Files
 
