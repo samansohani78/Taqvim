@@ -48,6 +48,28 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### A-02 — Persian (Solar Hijri) calendar
+- **Module / files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/` — `PersianCalendarSystem.kt`,
+  `PersianLeapTable.kt` (generated), `PersianYearStartRule.kt`, `BirashkArithmetic.kt`
+- **Task:** T-102
+- **Spec:** docs/PLAN.md §6 A-02; deviation ADR-0008 (generated leap table instead of a runtime equinox search)
+- **References used (public only):**
+  1. cosinekitty/astronomy 2.1.19 (MIT), `Astronomy.seasons(year).marchEquinox`, https://github.com/cosinekitty/astronomy
+     — equinox instants for the table generator and its test (library API only; no GPL source involved).
+  2. C. Tøndering, "The Persian Calendar", *Calendar FAQ*, https://www.tondering.dk/claus/cal/persian.php (retrieved
+     2026-09-13) — 2820-year cycle structure, leap positions within a cycle, and the AP 475 anchor (fallback only).
+  3. Wikipedia, "Solar Hijri calendar", https://en.wikipedia.org/wiki/Solar_Hijri_calendar (retrieved 2026-09-13) —
+     cross-check of the 29/33/37-year and 128/132-year grouping; its "1925" anchor statement was not used.
+- **Implementation note:** the year-start rule, the table encoding and the fallback counting (closed-form leap counts
+  per period, grand cycle and cycle, anchored at the table edges) are own work from the definitions above.
+- **Generator:** a one-off program run on 2026-09-13 applied the rule to equinoxes for SH −3000…3000 (183 ms);
+  `PersianCalendarAstronomyTest` is the executable specification and prints the regenerated constant on mismatch.
+- **Validation:** Calendar Center official leap years 1206–1498 (293 years), official calendars 1404 and 1405
+  (730 days, weekday included), official Nowruz instants 1404/1405, the Calendar Center century note, and ICU4J
+  78.3 `PersianCalendar` for 1200–1500 (first day of every year plus 100 000 random days).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-100 — `Jdn.weekday()`
 - **Module / files:** `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt`
 - **Task:** T-100
@@ -139,6 +161,23 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### Iran official calendar sources (University of Tehran, Institute of Geophysics, Calendar Center)
+- **Files:** `docs/sources/` — inventory with page counts and SHA-256 in `docs/sources/MANIFEST.md`
+- **Obtained:** downloaded by the repository owner in a browser and added on 2026-09-13 (calendar.ut.ac.ir blocks
+  non-browser clients); publisher site https://calendar.ut.ac.ir/Fa/. Exact download URLs to be added by the owner.
+- **Extraction (T-102):** poppler `pdftotext` 2026-09-13. The leap-year table was read from the layout text and
+  self-checked (293 consecutive years, no duplicates). The daily tables of the 1404/1405 calendars were parsed by word
+  coordinates (`pdftotext -bbox`): each row is anchored on its weekday, values are assigned by column order, and ditto
+  marks carry the previous month/year. Every row was validated for consecutive Solar Hijri days, weekday cycle,
+  lunar-month progression (29/30-day months) and consecutive Gregorian dates — 730 rows, 0 errors. Holiday flags
+  come from the "(تعطیل)" marker in the occasion text nearest the row (26 per year; the fixed national holidays were
+  checked by hand).
+- **Interpretation:** the leap table's Gregorian column is the civil date of the March equinox in Iran time, not
+  1 Farvardin (it differs from the official calendars' 1 Farvardin 1404 and 1405); confirmed by computation for all
+  293 years.
+- **Used by:** `core/calendar/src/test/resources/golden/persian/*` (T-102); lunar-month columns reserved for T-104/D-07;
+  holidays for D-02.
+
 ## Golden fixtures
 
 Format: every file under `src/test/resources/golden/` starts with a `# source/url/retrieved/page/reviewer`
@@ -148,3 +187,11 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 - **Task:** T-005 (self-test of the fixture loader)
 - **Source:** synthetic data written for this repository; contains no external facts.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+
+### core/calendar — `golden/persian/*` (T-102)
+- `official-leap-years-1206-1498.csv` — official leap markers and equinox dates, 293 rows (`Kabise Shamsi 1206-1498.pdf`, pp. 1–11).
+- `iran-official-1404-days.csv`, `iran-official-1405-days.csv` — one row per day: Solar Hijri date, ISO weekday,
+  Iran official lunar Hijri date, Gregorian date, official holiday flag, page (`Calendar-1404.pdf`, `Calendar-1405.pdf`).
+- `official-nowruz-instants.csv` — moment of the vernal equinox printed on the title page of each official calendar.
+- `century-boundaries.csv` — weekdays of 1 Farvardin 1, 101, 1301, 1401 and 29 Esfand 100, 200, 1400 (`century15th.pdf`).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
