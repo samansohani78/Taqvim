@@ -70,6 +70,15 @@ class StateTextAndBackDetectorsTest : LintDetectorTest() {
                     val scales = listOf(1.0f, 2.0f)
                 }
 
+                fun countdown(from: Int): Iterator<Int> =
+                    object : Iterator<Int> {
+                        private var next = from
+
+                        override fun hasNext(): Boolean = next > 0
+
+                        override fun next(): Int = next--
+                    }
+
                 class Counter {
                     private var value = 0
                     private val items = mutableListOf<Int>()

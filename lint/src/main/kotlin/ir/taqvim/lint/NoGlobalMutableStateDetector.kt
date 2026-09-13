@@ -38,7 +38,10 @@ class NoGlobalMutableStateDetector :
     private fun globalOwner(property: KtProperty): String? =
         when {
             property.isTopLevel -> "Top-level"
-            property.containingClassOrObject is KtObjectDeclaration -> "Object"
+
+            // Object literals (`object : Iterator<T> { … }`) are per-instance state, not globals.
+            (property.containingClassOrObject as? KtObjectDeclaration)?.isObjectLiteral() == false -> "Object"
+
             else -> null
         }
 
