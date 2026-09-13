@@ -1,0 +1,14 @@
+# source: Taqvim synthetic iCalendar fixture — Case-insensitive names; structure modelled on RFC 5545 and documented export formats, contains no personal data
+# url: https://www.rfc-editor.org/rfc/rfc5545
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: synthetic; exercises RFC 5545 §2.1, §3.1
+begin:vcalendar
+version:2.0
+prodid:-//Synthetic//lower//EN
+begin:vevent
+uid:lower@taqvim.test
+dtstart;value=date:20260601
+summary:Lower case
+end:vevent
+end:vcalendar

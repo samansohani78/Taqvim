@@ -1,0 +1,22 @@
+# source: Taqvim synthetic iCalendar fixture — VEVENT without UID (skipped); structure modelled on RFC 5545 and documented export formats, contains no personal data
+# url: https://www.rfc-editor.org/rfc/rfc5545
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: synthetic; exercises RFC 5545 §3.6.1
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTAMP:20260301T120000Z
+DTSTART;VALUE=DATE:20260604
+SUMMARY:No UID
+END:VEVENT
+BEGIN:VEVENT
+UID:valid@taqvim.test
+DTSTAMP:20260301T120000Z
+DTSTART;VALUE=DATE:20260605
+SUMMARY:Valid
+END:VEVENT
+END:VCALENDAR

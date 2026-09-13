@@ -1,0 +1,18 @@
+# source: Taqvim synthetic iCalendar fixture — Floating date-times; structure modelled on RFC 5545 and documented export formats, contains no personal data
+# url: https://www.rfc-editor.org/rfc/rfc5545
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: synthetic; exercises RFC 5545 §3.3.5 form #1
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:synthetic-0001@taqvim.test
+DTSTAMP:20260301T120000Z
+DTSTART:20260501T083000
+DTEND:20260501T093000
+SUMMARY:Floating
+END:VEVENT
+END:VCALENDAR

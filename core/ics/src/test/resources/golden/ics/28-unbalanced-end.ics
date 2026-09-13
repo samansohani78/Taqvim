@@ -1,0 +1,13 @@
+# source: Taqvim synthetic iCalendar fixture — Unbalanced END (failure); structure modelled on RFC 5545 and documented export formats, contains no personal data
+# url: https://www.rfc-editor.org/rfc/rfc5545
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: synthetic; exercises RFC 5545 §3.4, §3.6
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Synthetic//broken//EN
+BEGIN:VEVENT
+UID:broken@taqvim.test
+DTSTART;VALUE=DATE:20260606
+END:VTODO
+END:VCALENDAR

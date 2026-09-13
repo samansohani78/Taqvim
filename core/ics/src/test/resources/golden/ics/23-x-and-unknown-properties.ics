@@ -1,0 +1,21 @@
+# source: Taqvim synthetic iCalendar fixture — X- and other unsupported properties; structure modelled on RFC 5545 and documented export formats, contains no personal data
+# url: https://www.rfc-editor.org/rfc/rfc5545
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: synthetic; exercises RFC 5545 §3.8.8.2
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:synthetic-0001@taqvim.test
+DTSTAMP:20260301T120000Z
+DTSTART;VALUE=DATE:20260603
+X-GOOGLE-CONFERENCE:https://example.org/meet
+ATTENDEE;CN="Synthetic Person";PARTSTAT=ACCEPTED:mailto:person@example.org
+LOCATION:Room 1
+GEO:35.70;51.42
+CATEGORIES:A,B
+END:VEVENT
+END:VCALENDAR

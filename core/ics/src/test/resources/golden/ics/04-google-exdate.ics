@@ -1,0 +1,30 @@
+# source: Taqvim synthetic iCalendar fixture — Google Calendar export (EXDATE); structure modelled on RFC 5545 and documented export formats, contains no personal data
+# url: https://www.rfc-editor.org/rfc/rfc5545
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: synthetic; exercises RFC 5545 §3.8.5.1
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tehran
+X-LIC-LOCATION:Asia/Tehran
+BEGIN:STANDARD
+TZOFFSETFROM:+0330
+TZOFFSETTO:+0330
+TZNAME:+0330
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:synthetic-0001@taqvim.test
+DTSTAMP:20260301T120000Z
+DTSTART;TZID=Asia/Tehran:20260321T090000
+RRULE:FREQ=DAILY;COUNT=10
+EXDATE;TZID=Asia/Tehran:20260323T090000
+EXDATE;TZID=Asia/Tehran:20260325T090000
+SUMMARY:Daily
+END:VEVENT
+END:VCALENDAR

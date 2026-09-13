@@ -1,0 +1,17 @@
+# source: Taqvim synthetic iCalendar fixture — RRULE negative BYMONTHDAY with DATE UNTIL; structure modelled on RFC 5545 and documented export formats, contains no personal data
+# url: https://www.rfc-editor.org/rfc/rfc5545
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: synthetic; exercises RFC 5545 §3.3.10
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:synthetic-0001@taqvim.test
+DTSTAMP:20260301T120000Z
+DTSTART;VALUE=DATE:20260131
+RRULE:FREQ=MONTHLY;BYMONTHDAY=-1;UNTIL=20261231
+END:VEVENT
+END:VCALENDAR
