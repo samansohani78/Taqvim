@@ -1,0 +1,4151 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "un.education-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی آموزش",
+        "en": "International Day of Education",
+        "ar": "اليوم الدولي للتعليم",
+        "zh": "国际教育日",
+        "fr": "Journée internationale de l'éducation",
+        "ru": "Международный день образования",
+        "es": "Día Internacional de la Educación"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/education-day",
+          "title": "International Day of Education (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iran.un.org/fa/169386-%D9%BE%DB%8C%D8%A7%D9%85-%D8%A2%D9%86%D8%AA%D9%88%D9%86%DB%8C%D9%88-%DA%AF%D9%88%D8%AA%D8%B1%D8%B4%D8%8C-%D8%AF%D8%A8%DB%8C%D8%B1-%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF%D8%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D8%A2%D9%85%D9%88%D8%B2%D8%B4",
+          "title": "United Nations in the Islamic Republic of Iran — پیام آنتونیو گوترش، دبیر کل سازمان ملل متحد، به مناسبت روز بین‌المللی آموزش",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/education-day",
+        "resolution": "http://undocs.org/en/A/RES/73/25"
+      }
+    },
+    {
+      "id": "un.commemoration-holocaust-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی بزرگداشت خاطره قربانیان هولوکاست",
+        "en": "International Day of Commemoration in Memory of the Victims of the Holocaust",
+        "ar": "اليوم الدولي لإحياء ذكرى ضحايا محرقة اليهود",
+        "zh": "缅怀大屠杀受难者国际纪念日",
+        "fr": "Journée internationale dédiée à la mémoire des victimes de l'Holocauste",
+        "ru": "Международный день памяти жертв Холокоста",
+        "es": "Día Internacional de Conmemoración anual en memoria de las víctimas del Holocausto"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 27
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
+          "title": "International Day of Commemoration in Memory of the Victims of the Holocaust (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
+        "resolution": "http://undocs.org/en/A/RES/60/7"
+      }
+    },
+    {
+      "id": "un.social-justice-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی عدالت اجتماعی",
+        "en": "World Day of Social Justice",
+        "ar": "اليوم العالمي للعدالة الاجتماعية",
+        "zh": "世界社会公正日",
+        "fr": "Journée mondiale de la justice sociale",
+        "ru": "Всемирный день социальной справедливости",
+        "es": "Día Mundial de la Justicia Social"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/social-justice-day",
+          "title": "World Day of Social Justice (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/social-justice-day",
+        "resolution": "http://undocs.org/en/A/RES/62/10"
+      }
+    },
+    {
+      "id": "un.mother-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی زبان مادری",
+        "en": "International Mother Language Day",
+        "ar": "اليوم الدولي للغة الأم",
+        "zh": "国际母语日",
+        "fr": "Journée internationale de la langue maternelle",
+        "ru": "Международный день родного языка",
+        "es": "Día Internacional de la Lengua Materna"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/mother-language-day",
+          "title": "International Mother Language Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/mother-language-day",
+        "resolution": "http://undocs.org/en/A/RES/56/262"
+      }
+    },
+    {
+      "id": "un.womens-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی زنان",
+        "en": "International Women's Day",
+        "ar": "اليوم الدولي للمرأة",
+        "zh": "国际妇女节",
+        "fr": "Journée internationale des femmes",
+        "ru": "Международный женский день",
+        "es": "Día Internacional de la Mujer"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 8
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/womens-day",
+          "title": "International Women's Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/womens-day"
+      }
+    },
+    {
+      "id": "un.end-racism-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی رفع تبعیض نژادی",
+        "en": "International Day for the Elimination of Racial Discrimination",
+        "ar": "اليوم الدولي للقضاء على التمييز العنصري",
+        "zh": "消除种族歧视国际日",
+        "fr": "Journée internationale pour l'élimination de la discrimination raciale",
+        "ru": "Международный день борьбы за ликвидацию расовой дискриминации",
+        "es": "Día Internacional de la Eliminación de la Discriminación Racial"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-racism-day",
+          "title": "International Day for the Elimination of Racial Discrimination (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-racism-day"
+      }
+    },
+    {
+      "id": "un.international-nowruz-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی نوروز",
+        "en": "International Day of Nowruz",
+        "ar": "يوم نوروز الدولي",
+        "zh": "国际诺鲁孜节",
+        "fr": "Journée internationale du Novruz",
+        "ru": "Международный день Навруз",
+        "es": "Día Internacional del Novruz"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-nowruz-day",
+          "title": "International Day of Nowruz (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-nowruz-day",
+        "resolution": "https://undocs.org/en/A/RES/64/253"
+      }
+    },
+    {
+      "id": "un.world-poetry-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی شعر",
+        "en": "World Poetry Day",
+        "ar": "اليوم العالمي للشعر",
+        "zh": "世界诗歌日",
+        "fr": "Journée mondiale de la poésie",
+        "ru": "Всемирный день поэзии",
+        "es": "Día Mundial de la Poesía"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/poetry",
+          "title": "World Poetry Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/poetry",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000118514.page=70"
+      }
+    },
+    {
+      "id": "un.water-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی آب",
+        "en": "World Water Day",
+        "ar": "اليوم العالمي للمياه",
+        "zh": "世界水日",
+        "fr": "Journée mondiale de l'eau",
+        "ru": "Всемирный день водных ресурсов",
+        "es": "Día Mundial del Agua"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 22
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/water-day",
+          "title": "World Water Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/water-day",
+        "resolution": "http://undocs.org/en/A/RES/47/193"
+      }
+    },
+    {
+      "id": "un.world-meteorological-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی هواشناسی",
+        "en": "World Meteorological Day",
+        "ar": "اليوم العالمي للأرصاد الجوية",
+        "zh": "世界气象日",
+        "fr": "Journée météorologique mondiale",
+        "ru": "Всемирный метеорологический день",
+        "es": "Día Meteorológico Mundial"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://wmo.int/about-wmo/world-meteorological-day",
+          "title": "World Meteorological Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://wmo.int/about-wmo/world-meteorological-day",
+        "resolution": "https://library.wmo.int/viewer/32802?medianame=99_en_#page=66&amp;viewer=picture&amp;o=bookmarks&amp;n=0&amp;q="
+      }
+    },
+    {
+      "id": "un.right-to-truth-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی حق بر صحت و درستی درباره نقض فاحش حقوق بشر و منزلت قربانیان",
+        "en": "International Day for the Right to the Truth concerning Gross Human Rights Violations and for the Dignity of Victims",
+        "ar": "اليوم العالمي للحق في معرفة الحقيقة فيما يتعلق بالانتهاكات الجسيمة لحقوق الإنسان ولاحترام كرامة الضحايا",
+        "zh": "了解严重侵犯人权行为真相权利和维护受害者尊严国际日",
+        "fr": "Journée internationale pour le droit à la vérité en ce qui concerne les violations flagrantes des droits de l’homme et pour la dignité des victimes",
+        "ru": "Международный день права на установление истины в отношении грубых нарушений прав человека и достоинства жертв",
+        "es": "Día Internacional del Derecho a la Verdad en relación con Violaciones Graves de los Derechos Humanos y de la Dignidad de las Víctimas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/right-to-truth-day",
+          "title": "International Day for the Right to the Truth concerning Gross Human Rights Violations and for the Dignity of Victims (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/right-to-truth-day",
+        "resolution": "http://undocs.org/en/A/RES/67/200"
+      }
+    },
+    {
+      "id": "un.world-tuberculosis-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی بیماری سل",
+        "en": "World Tuberculosis Day",
+        "ar": "اليوم العالمي للسل",
+        "zh": "世界防治结核病日",
+        "fr": "Journée mondiale de la lutte contre la tuberculose",
+        "ru": "Всемирный день борьбы против туберкулеза",
+        "es": "Día Mundial de la Tuberculosis"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-tb-day/",
+          "title": "World Tuberculosis Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-tb-day/"
+      }
+    },
+    {
+      "id": "un.transatlantic-slave-trade",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی یاد بود قربانیان بردگی و تجارت برده از آن سوی اقیانوس اطلس",
+        "en": "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade",
+        "ar": "اليوم الدولي لإحياء ذكرى ضحايا الرق وتجارة الرقيق عبر المحيط الأطلسي",
+        "zh": "奴隶制和跨大西洋贩卖奴隶行为受害者国际纪念日",
+        "fr": "Journée internationale de commémoration des victimes de l’esclavage et de la traite transatlantique des esclaves",
+        "ru": "Международный день памяти жертв рабства и трансатлантической работорговли",
+        "es": "Día Internacional de Recuerdo de las Víctimas de la Esclavitud y la Trata Transatlántica de Esclavos"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/transatlantic-slave-trade",
+          "title": "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/transatlantic-slave-trade",
+        "resolution": "http://undocs.org/en/A/RES/62/122"
+      }
+    },
+    {
+      "id": "un.autism-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی آگاهی درباره اوتیسم",
+        "en": "World Autism Awareness Day",
+        "ar": "اليوم العالمي للتوعية بمرض التوحد",
+        "zh": "世界提高自闭症意识日",
+        "fr": "Journée mondiale de sensibilisation à l'autisme",
+        "ru": "Всемирный день распространения информации о проблеме аутизма",
+        "es": "Día Mundial de Concienciación sobre el Autismo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/autism-day",
+          "title": "World Autism Awareness Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/autism-day",
+        "resolution": "http://undocs.org/en/A/RES/62/139"
+      }
+    },
+    {
+      "id": "un.mine-awareness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی آگاهی از مین و کمک به اقدام علیه مین",
+        "en": "International Day for Mine Awareness and Assistance in Mine Action",
+        "ar": "اليوم الدولي للتوعية بخطر الألغام",
+        "zh": "国际提高地雷意识和协助地雷行动日",
+        "fr": "Journée internationale pour la sensibilisation aux mines et l'assistance à la lutte antimines",
+        "ru": "Международный день просвещения по вопросам минной опасности и помощи в деятельности, связанной с разминированием",
+        "es": "Día Internacional de información sobre el peligro de las minas y de asistencia para las actividades relativas a las minas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 4
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/mine-awareness-day",
+          "title": "International Day for Mine Awareness and Assistance in Mine Action (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/mine-awareness-day",
+        "resolution": "http://undocs.org/en/A/RES/60/97"
+      }
+    },
+    {
+      "id": "un.international-day-of-reflection-on-the-1994-genocide",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز یادبود قربانیان نسل کشی رواندا",
+        "en": "International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda",
+        "ar": "اليوم الدولي للتفكر في الإبادة الجماعية التي وقعت في عام 1994 ضد التوتسي في رواندا",
+        "zh": "1994年卢旺达境内针对图西人实施的灭绝种族罪国际反思日",
+        "fr": "Journée internationale de réflexion sur le génocide des Tutsis au Rwanda en 1994",
+        "ru": "Международный день памяти о геноциде тутси в Руанде в 1994 году",
+        "es": "Día Mundial de la Salud"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml",
+          "title": "International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml",
+        "resolution": "https://undocs.org/en/A/RES/58/234"
+      }
+    },
+    {
+      "id": "un.world-health-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی بهداشت",
+        "en": "World Health Day",
+        "zh": "世界卫生日",
+        "fr": "Journée mondiale de la santé",
+        "ru": "Всемирный день здоровья"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-health-day",
+          "title": "World Health Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-health-day",
+        "resolution": "https://apps.who.int/iris/bitstream/handle/10665/86099/WHA2.35_eng.pdf"
+      }
+    },
+    {
+      "id": "un.earth-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی مادر زمین",
+        "en": "International Mother Earth Day",
+        "ar": "اليوم الدولي لأمنا الأرض",
+        "zh": "国际地球母亲日",
+        "fr": "Journée internationale de la Terre nourricière",
+        "ru": "Международный день Матери-Земли",
+        "es": "Día Internacional de la Madre Tierra"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 22
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/earth-day",
+          "title": "International Mother Earth Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iran.un.org/fa/45428-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%85%D8%A7%D8%AF%D8%B1-%D8%B2%D9%85%DB%8C%D9%86-%D9%87%D8%B4%D8%AF%D8%A7%D8%B1-%DA%AF%D9%88%D8%AA%D8%B1%D8%B4-%D8%AF%D8%B1-%D9%85%D9%88%D8%B1%D8%AF-%D8%AE%D8%B7%D8%B1-%D9%88%DB%8C%D8%B1%D9%88%D8%B3%E2%80%8C%D9%87%D8%A7-%D9%88-%DA%AF%D8%A7%D8%B2%D9%87%D8%A7%DB%8C-%DA%AF%D9%84%D8%AE%D8%A7%D9%86%D9%87%E2%80%8C%D8%A7%DB%8C",
+          "title": "United Nations in the Islamic Republic of Iran — به مناسبت روز بین المللی مادر زمین: هشدار گوترش در مورد خطر ویروس‌ها و گازهای گلخانه‌ای",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/earth-day",
+        "resolution": "http://undocs.org/en/A/RES/63/278"
+      }
+    },
+    {
+      "id": "un.world-book-and-copyright-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی کتاب و حق پدید آورنده",
+        "en": "World Book and Copyright Day",
+        "ar": "اليوم العالمي للكتاب وحقوق المؤلف",
+        "zh": "世界图书与版权日",
+        "fr": "Journée mondiale du livre et du droit d'auteur",
+        "ru": "Всемирный день книги и авторского права",
+        "es": "Día Mundial del Libro y del Derecho de Autor"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/world-book-and-copyright",
+          "title": "World Book and Copyright Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/world-book-and-copyright",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000101803.page=56"
+      }
+    },
+    {
+      "id": "un.world-malaria-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی مالاریا",
+        "en": "World Malaria Day",
+        "ar": "اليوم العالمي للملاريا"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021",
+          "title": "World Malaria Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021"
+      }
+    },
+    {
+      "id": "un.world-intellectual-property-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی مالکیت معنوی",
+        "en": "World Intellectual Property Day",
+        "zh": "世界知识产权日",
+        "fr": "Journée mondiale de la propriété intellectuelle",
+        "ru": "Международный день интеллектуальной собственности",
+        "es": "Día Mundial de la Propiedad Intelectual"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 26
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "http://www.wipo.int/ip-outreach/en/ipday/",
+          "title": "World Intellectual Property Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "http://www.wipo.int/ip-outreach/en/ipday/"
+      }
+    },
+    {
+      "id": "un.work-safety-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی ایمنی و سلامت در محیط کار",
+        "en": "World Day for Safety and Health at Work",
+        "ar": "اليوم العالمي للصحة والسلامة في مكان العمل",
+        "zh": "世界工作安全与健康日",
+        "fr": "Journée mondiale pour la sécurité et la santé au travail",
+        "ru": "Всемирный день охраны труда",
+        "es": "Día Mundial de la Seguridad y Salud en el Trabajo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 28
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/work-safety-day",
+          "title": "World Day for Safety and Health at Work (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/work-safety-day"
+      }
+    },
+    {
+      "id": "un.press-freedom-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی آزادی مطبوعاتی",
+        "en": "World Press Freedom Day",
+        "ar": "اليوم العالمي لحرية الصحافة",
+        "zh": "世界新闻自由日",
+        "fr": "Journée mondiale de la liberté de la presse",
+        "ru": "Всемирный день свободы печати",
+        "es": "Día Mundial de la Libertad de Prensa"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/press-freedom-day",
+          "title": "World Press Freedom Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/press-freedom-day",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000090448.page=76"
+      }
+    },
+    {
+      "id": "un.second-world-war-remembrance-days",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "زمان بزرگداشت و آشتی برای کسانی که زندگی خود را در جریان جنگ جهانی دوم از دست دادند",
+        "en": "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War",
+        "zh": "缅怀第二次世界大战的所有死难者的悼念与和解的时刻",
+        "fr": "Journées du souvenir et de la réconciliation en l'honneur des morts de la Seconde Guerre mondiale",
+        "ru": "Дни памяти и примирения, посвященные погибшим во Второй мировой войне"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 8
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/second-world-war-remembrance-days",
+          "title": "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/second-world-war-remembrance-days",
+        "resolution": "http://undocs.org/en/A/RES/59/26"
+      }
+    },
+    {
+      "id": "un.international-day-of-families",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی خانواده‌ها",
+        "en": "International Day of Families",
+        "ar": "اليوم الدولي للأسر",
+        "zh": "国际家庭日",
+        "fr": "Journée internationale des familles",
+        "ru": "Международный день семей",
+        "es": "Día Internacional de las Familias"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-day-of-families",
+          "title": "International Day of Families (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-day-of-families",
+        "resolution": "http://undocs.org/en/A/RES/47/237"
+      }
+    },
+    {
+      "id": "un.cultural-diversity-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی تنوع فرهنگی برای گفت و گو و توسعه",
+        "en": "World Day for Cultural Diversity for Dialogue and Development",
+        "ar": "اليوم العالمي للتنوع الثقافي من أجل الحوار والتنمية",
+        "zh": "世界文化多样性促进对话和发展日",
+        "fr": "Journée mondiale de la diversité culturelle pour le dialogue et le développement",
+        "ru": "Всемирный день культурного разнообразия во имя диалога и развития",
+        "es": "Día Mundial de la Diversidad Cultural para el Diálogo y el Desarrollo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/cultural-diversity-day",
+          "title": "World Day for Cultural Diversity for Dialogue and Development (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/cultural-diversity-day",
+        "resolution": "https://undocs.org/en/A/RES/57/249"
+      }
+    },
+    {
+      "id": "un.biological-diversity-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی تنوع زیستی",
+        "en": "International Day for Biological Diversity",
+        "ar": "اليوم الدولي للتنوع البيولوجي",
+        "zh": "生物多样性国际日",
+        "fr": "Journée internationale de la diversité biologique",
+        "ru": "Международный день биологического разнообразия",
+        "es": "Día Internacional de la Diversidad Biológica"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 22
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/biological-diversity-day",
+          "title": "International Day for Biological Diversity (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/biological-diversity-day",
+        "resolution": "https://undocs.org/en/A/RES/55/201"
+      }
+    },
+    {
+      "id": "un.peacekeepers-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی حافظان صلح ملل متحد",
+        "en": "International Day of UN Peacekeepers",
+        "ar": "اليوم الدولي لحفظة السلام",
+        "zh": "联合国维持和平人员国际日",
+        "fr": "Journée internationale des Casques bleus des Nations Unies",
+        "ru": "Международный день миротворцев ООН",
+        "es": "Día Internacional del Personal de Paz de las Naciones Unidas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/peacekeepers-day",
+          "title": "International Day of UN Peacekeepers (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/peacekeepers-day",
+        "resolution": "https://undocs.org/en/A/RES/57/129"
+      }
+    },
+    {
+      "id": "un.world-no-tobacco-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی خودداری از مصرف دخانیات",
+        "en": "World No-Tobacco Day",
+        "ar": "اليوم العالمي للامتناع عن تعاطي التبغ",
+        "zh": "世界无烟日",
+        "fr": "Journée mondiale sans tabac",
+        "ru": "Всемирный день без табака",
+        "es": "Día Mundial Sin Tabaco"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 31
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-no-tobacco-day",
+          "title": "World No-Tobacco Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-no-tobacco-day",
+        "resolution": "https://www.who.int/about/governance/world-health-assembly"
+      }
+    },
+    {
+      "id": "un.child-victim-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض",
+        "en": "International Day of Innocent Children Victims of Aggression",
+        "ar": "اليوم الدولي لضحايا العدوان من الأطفال الأبرياء",
+        "zh": "受侵略戕害的无辜儿童国际日",
+        "fr": "Journée internationale des enfants victimes innocentes de l'agression",
+        "ru": "Международный день невинных детей — жертв агрессии",
+        "es": "Día Internacional de los Niños Víctimas Inocentes de Agresión"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 4
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/child-victim-day",
+          "title": "International Day of Innocent Children Victims of Aggression (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/child-victim-day",
+        "resolution": "http://undocs.org/en/A/RES/ES-7/8"
+      }
+    },
+    {
+      "id": "un.environment-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی محیط زیست",
+        "en": "World Environment Day",
+        "ar": "اليوم العالمي للبيئة",
+        "zh": "世界环境日",
+        "fr": "Journée mondiale de l'environnement",
+        "ru": "Всемирный день окружающей среды",
+        "es": "Día Mundial del Medio Ambiente"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/environment-day",
+          "title": "World Environment Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/environment-day"
+      }
+    },
+    {
+      "id": "un.oceans-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی اقیانوس ها",
+        "en": "World Oceans Day",
+        "ar": "اليوم العالمي للمحيطات",
+        "zh": "世界海洋日",
+        "fr": "Journée mondiale de l'océan",
+        "ru": "Всемирный день океанов",
+        "es": "Día Mundial de los Océanos"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 8
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/oceans-day",
+          "title": "World Oceans Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/oceans-day",
+        "resolution": "https://undocs.org/en/A/RES/63/111"
+      }
+    },
+    {
+      "id": "un.international-day-for-dialogue-among-civilizations",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی گفت‌وگوی تمدن‌ها",
+        "en": "International Day for Dialogue among Civilizations",
+        "ar": "اليوم الدولي للحوار بين الحضارات",
+        "zh": "文明对话国际日",
+        "fr": "Journée internationale pour le dialogue entre les civilisations",
+        "ru": "Международный день диалога между цивилизациями",
+        "es": "Día Internacional para el Diálogo entre Civilizaciones"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations",
+          "title": "International Day for Dialogue among Civilizations (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iran.un.org/fa/296020-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%DA%AF%D9%81%D8%AA%E2%80%8C%D9%88%DA%AF%D9%88%DB%8C-%D8%AA%D9%85%D8%AF%D9%86%E2%80%8C%D9%87%D8%A7",
+          "title": "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی گفت‌وگوی تمدن‌ها",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations",
+        "resolution": "https://www.undocs.org/EN/A/RES/78/286"
+      }
+    },
+    {
+      "id": "un.world-day-against-child-labour",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی علیه کار کودک",
+        "en": "World Day Against Child Labour",
+        "ar": "اليوم العالمي لمكافحة عمل الأطفال",
+        "zh": "世界无童工日",
+        "fr": "Journée mondiale contre le travail des enfants",
+        "ru": "Всемирный день борьбы с детским трудом",
+        "es": "Día Mundial contra el Trabajo Infantil"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-day-against-child-labour",
+          "title": "World Day Against Child Labour (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-day-against-child-labour"
+      }
+    },
+    {
+      "id": "un.world-blood-donor-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی اهداکنندگان خون",
+        "en": "World Blood Donor Day",
+        "ar": "اليوم العالمي للمتبرّعين بالدم",
+        "zh": "世界献血者日",
+        "fr": "Journée mondiale du donneur de sang",
+        "ru": "Всемирный день донора крови",
+        "es": "Día Mundial del Donante de Sangre"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 14
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-blood-donor-day",
+          "title": "World Blood Donor Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-blood-donor-day",
+        "resolution": "https://apps.who.int/gb/ebwha/pdf_files/WHA58/WHA58_13-en.pdf"
+      }
+    },
+    {
+      "id": "un.desertification-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی مبارزه با گسترش کویر و خشکسالی",
+        "en": "World Day to Combat Desertification and Drought",
+        "ar": "اليوم العالمي لمكافحة التصحر والجفاف",
+        "zh": "防治荒漠化和干旱世界日",
+        "fr": "Journée mondiale de la lutte contre la désertification et la sécheresse",
+        "ru": "Всемирный день борьбы с опустыниванием и засухой",
+        "es": "Día Mundial de Lucha contra la Desertificación"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 17
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/desertification-day",
+          "title": "World Day to Combat Desertification and Drought (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/desertification-day",
+        "resolution": "http://undocs.org/en/A/RES/49/115"
+      }
+    },
+    {
+      "id": "un.refugee-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی پناهندگان",
+        "en": "World Refugee Day",
+        "ar": "اليوم العالمي للاجئين",
+        "zh": "世界难民日",
+        "fr": "Journée mondiale des réfugiés",
+        "ru": "Всемирный день беженцев",
+        "es": "Día Mundial de los Refugiados"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/refugee-day",
+          "title": "World Refugee Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/refugee-day",
+        "resolution": "http://undocs.org/en/A/RES/55/76"
+      }
+    },
+    {
+      "id": "un.public-service-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز خدمات عمومی ملل متحد",
+        "en": "United Nations Public Service Day",
+        "ar": "يوم الأمم المتحدة للخدمة العامة",
+        "zh": "联合国公务员日",
+        "fr": "Journée des Nations Unies pour la fonction publique",
+        "ru": "День государственной службы ООН",
+        "es": "Día de las Naciones Unidas para la Administración Pública"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/public-service-day",
+          "title": "United Nations Public Service Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/public-service-day",
+        "resolution": "https://undocs.org/en/A/RES/57/277"
+      }
+    },
+    {
+      "id": "un.widows-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی بیوه ها",
+        "en": "International Widows' Day",
+        "ar": "اليوم الدولي للأرامل",
+        "zh": "国际丧偶妇女日",
+        "fr": "Journée internationale des veuves",
+        "ru": "Международный день вдов",
+        "es": "Día Internacional de las Viudas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/widows-day",
+          "title": "International Widows' Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/widows-day",
+        "resolution": "https://undocs.org/en/A/RES/65/189"
+      }
+    },
+    {
+      "id": "un.day-of-the-seafarer",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز دریانوردان",
+        "en": "Day of the Seafarer",
+        "ar": "اليوم الدولي للبحارة",
+        "zh": "海员日",
+        "fr": "Journée des gens de mer",
+        "ru": "День моряка",
+        "es": "Día de la Gente de Mar (OIM)"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.imo.org/en/About/Events/Pages/Day-of-the-Seafarer-2025.aspx",
+          "title": "Day of the Seafarer (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.imo.org/en/About/Events/Pages/Day-of-the-Seafarer-2025.aspx",
+        "resolution": "https://www.un.org/sites/un2.un.org/files/dayoftheseafarer-res19.pdf"
+      }
+    },
+    {
+      "id": "un.end-drug-abuse-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی مبارزه با سوء استفاده و قاچاق مواد مخدر",
+        "en": "International Day against Drug Abuse and Illicit Trafficking",
+        "ar": "اليوم الدولي لمكافحة إساءة استعمال المخدرات والاتجار غير المشروع بها",
+        "zh": "禁止药物滥用和非法贩运国际日",
+        "fr": "Journée internationale contre l'abus et le trafic de drogues",
+        "ru": "Международный день борьбы со злоупотреблением наркотическими средствами и их незаконным оборотом",
+        "es": "Día Internacional de la Lucha contra el Uso Indebido y el Tráfico Ilícito de Drogas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 26
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-drug-abuse-day",
+          "title": "International Day against Drug Abuse and Illicit Trafficking (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-drug-abuse-day",
+        "resolution": "https://undocs.org/en/A/RES/42/112"
+      }
+    },
+    {
+      "id": "un.torture-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی حمایت از قربانیان شکنجه",
+        "en": "United Nations International Day in Support of Victims of Torture",
+        "ar": "اليوم الدولي للأمم المتحدة لمساندة ضحايا التعذيب",
+        "zh": "支援酷刑受害者国际日",
+        "fr": "Journée internationale pour le soutien aux victimes de la torture",
+        "ru": "Международный день в поддержку жертв пыток",
+        "es": "Día Internacional en Apoyo de las Víctimas de la Tortura"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 26
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/torture-victims-day",
+          "title": "United Nations International Day in Support of Victims of Torture (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/torture-victims-day",
+        "resolution": "https://undocs.org/en/A/RES/52/149"
+      }
+    },
+    {
+      "id": "un.cooperatives-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی تعاونیها",
+        "en": "International Day of Cooperatives"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 7,
+        "weekday": "SATURDAY",
+        "n": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/cooperatives-day",
+          "title": "International Day of Cooperatives (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: اولين شنبه ژوئيه",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/cooperatives-day",
+        "resolution": "https://undocs.org/en/A/RES/47/90"
+      }
+    },
+    {
+      "id": "un.world-population-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی جمعیت",
+        "en": "World Population Day",
+        "ar": "اليوم العالمي للسكان",
+        "zh": "世界人口日",
+        "fr": "Journée mondiale de la population",
+        "ru": "Всемирный день народонаселения",
+        "es": "Día Mundial de la Población"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-population-day",
+          "title": "World Population Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-population-day",
+        "resolution": "https://undocs.org/en/A/RES/45/216"
+      }
+    },
+    {
+      "id": "un.nelson-mandela-international-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی نلسون ماندلا",
+        "en": "Nelson Mandela International Day",
+        "ar": "اليوم الدولي لنيلسون مانديلا",
+        "zh": "纳尔逊·曼德拉国际日",
+        "fr": "Journée internationale Nelson Mandela",
+        "ru": "Международный день Нельсона Манделы",
+        "es": "Día Internacional de Nelson Mandela"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "http://www.un.org/en/events/mandeladay/",
+          "title": "Nelson Mandela International Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "http://www.un.org/en/events/mandeladay/",
+        "resolution": "https://undocs.org/en/A/RES/64/13"
+      }
+    },
+    {
+      "id": "un.end-human-trafficking-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی مبارزه با قاچاق انسان",
+        "en": "World Day against Trafficking in Persons",
+        "ar": "اليوم العالمي لمكافحة الاتجار بالأشخاص",
+        "zh": "世界打击贩运人口日",
+        "fr": "Journée mondiale de la lutte contre la traite d’êtres humains",
+        "ru": "Всемирный день борьбы с торговлей людьми",
+        "es": "Día Mundial contra la Trata"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-human-trafficking-day",
+          "title": "World Day against Trafficking in Persons (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iran.un.org/fa/86445-%D9%BE%DB%8C%D8%A7%D9%85-%D8%BA%D8%A7%D8%AF%D8%A7-%D9%81%D8%AA%D8%AD%DB%8C-%D9%88%D8%A7%D9%84%DB%8C-%D9%85%D8%AF%DB%8C%D8%B1-%DA%A9%D9%84-%D8%AF%D9%81%D8%AA%D8%B1-%D9%85%D9%82%D8%A7%D8%A8%D9%84%D9%87-%D8%A8%D8%A7-%D9%85%D9%88%D8%A7%D8%AF-%D9%85%D8%AE%D8%AF%D8%B1-%D9%88-%D8%AC%D8%B1%D9%85-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF%D8%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2",
+          "title": "United Nations in the Islamic Republic of Iran — پیام غادا فتحی والی مدیر کل دفتر مقابله با مواد مخدر و جرم سازمان ملل متحد، به مناسبت روز جهانی مبارزه با قاچاق انسان",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-human-trafficking-day",
+        "resolution": "https://undocs.org/en/A/RES/68/192"
+      }
+    },
+    {
+      "id": "un.indigenous-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی مردم بومی جهان",
+        "en": "International Day of the World's Indigenous Peoples",
+        "ar": "اليوم الدولي للسكان الأصليين في العالم",
+        "zh": "世界土著人民国际日",
+        "fr": "Journée internationale des peuples autochtones",
+        "ru": "Международный день коренных народов мира",
+        "es": "Día Internacional de los Pueblos Indígenas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 9
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/indigenous-day",
+          "title": "International Day of the World's Indigenous Peoples (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/indigenous-day",
+        "resolution": "https://undocs.org/en/A/RES/49/214"
+      }
+    },
+    {
+      "id": "un.youth-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی جوانان",
+        "en": "International Youth Day",
+        "ar": "يوم الشباب الدولي",
+        "zh": "国际青年日",
+        "fr": "Journée internationale de la jeunesse",
+        "ru": "Международный день молодежи",
+        "es": "Día Internacional de la Juventud"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/youth-day",
+          "title": "International Youth Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/youth-day",
+        "resolution": "https://undocs.org/en/A/RES/54/120"
+      }
+    },
+    {
+      "id": "un.humanitarian-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی انساندوستی",
+        "en": "World Humanitarian Day",
+        "ar": "اليوم العالمي للعمل الإنساني",
+        "zh": "世界人道主义日",
+        "fr": "Journée mondiale de l'aide humanitaire",
+        "ru": "Всемирный день гуманитарной помощи",
+        "es": "Día Mundial de la Asistencia Humanitaria"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 19
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/humanitarian-day",
+          "title": "World Humanitarian Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/humanitarian-day",
+        "resolution": "https://undocs.org/en/A/RES/63/139"
+      }
+    },
+    {
+      "id": "un.terrorism-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی یاد بود و احترام به قربانیان تروریسم",
+        "en": "International Day of Remembrance and Tribute to the Victims of Terrorism",
+        "ar": "اليوم الدولي لإحياء ذكرى ضحايا الإرهاب وإجلالهم",
+        "zh": "纪念和悼念恐怖主义受害者国际日",
+        "fr": "Journée internationale du souvenir, en hommage aux victimes du terrorisme",
+        "ru": "Международный день памяти и поминовения жертв терроризма",
+        "es": "Día Internacional de Conmemoración y Homenaje a las Víctimas del Terrorismo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/terrorism-victims-day",
+          "title": "International Day of Remembrance and Tribute to the Victims of Terrorism (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iran.un.org/fa/141109-%D9%BE%DB%8C%D8%A7%D9%85-%D8%A2%D9%86%D8%AA%D9%88%D9%86%DB%8C%D9%88-%DA%AF%D9%88%D8%AA%D8%B1%D8%B4%D8%8C-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%DB%8C%D8%A7%D8%AF-%D8%A8%D9%88%D8%AF-%D9%88-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%85-%D8%A8%D9%87",
+          "title": "United Nations in the Islamic Republic of Iran — پیام آنتونیو گوترش، دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی یاد بود و احترام به قربانیان تروریسم، ۲۱ آگوست ۲۰۲۱ برابر با ۳۰ مرداد ۱۴۰۰",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/terrorism-victims-day",
+        "resolution": "https://undocs.org/en/A/RES/72/165"
+      }
+    },
+    {
+      "id": "un.international-day-for-the-remembrance-of-the-slave-trade",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی یادبود و الغاء تجارت برده",
+        "en": "International Day for the Remembrance of the Slave Trade and Its Abolition",
+        "ar": "اليوم الدولي لاحياء ذكرى تجارة الرقيق وذكرى إلغائها",
+        "zh": "贩卖奴隶及其废除奴隶制国际纪念日",
+        "fr": "Journée internationale du souvenir de la traite négrière et de son abolition",
+        "ru": "Международный день памяти о работорговле и ее ликвидации",
+        "es": "Día Internacional del Recuerdo de la Trata de Esclavos y de su Abolición"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/slave-trade-remembrance",
+          "title": "International Day for the Remembrance of the Slave Trade and Its Abolition (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/slave-trade-remembrance",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000110220.page=72"
+      }
+    },
+    {
+      "id": "un.end-nuclear-tests-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی علیه آزمایش های هسته ای",
+        "en": "International Day against Nuclear Tests",
+        "ar": "اليوم الدولي لمناهضة التجارب النووية",
+        "zh": "禁止核试验国际日",
+        "fr": "Journée internationale contre les essais nucléaires",
+        "ru": "Международный день действий против ядерных испытаний",
+        "es": "Día Internacional contra los Ensayos Nucleares"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-nuclear-tests-day",
+          "title": "International Day against Nuclear Tests (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-nuclear-tests-day",
+        "resolution": "http://undocs.org/en/A/RES/64/35"
+      }
+    },
+    {
+      "id": "un.international-day-of-clean-air-for-blue-skies",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی هوای پاک برای آسمان آبی",
+        "en": "International Day of Clean Air for Blue Skies",
+        "ar": "اليوم الدولي لنقاوة الهواء من أجل سماء زرقاء",
+        "zh": "国际清洁空气蓝天日",
+        "fr": "Journée internationale de l’air pur pour des ciels bleus",
+        "ru": "Международный день чистого воздуха для голубого неба (ЮНЕП)",
+        "es": "Día Internacional del Aire Limpio por un Cielo Azul"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.cleanairblueskies.org/",
+          "title": "International Day of Clean Air for Blue Skies (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iran.un.org/fa/245526-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D9%87%D9%88%D8%A7%DB%8C-%D9%BE%D8%A7%DA%A9-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%A2%D8%B3%D9%85%D8%A7%D9%86-%D8%A2%D8%A8%DB%8C-%DB%B2%DB%B0%DB%B2%DB%B3",
+          "title": "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز جهانی هوای پاک برای آسمان آبی ۲۰۲۳",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.cleanairblueskies.org/",
+        "resolution": "https://undocs.org/en/A/RES/74/212"
+      }
+    },
+    {
+      "id": "un.international-literacy-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی سواد آموزی",
+        "en": "International Literacy Day",
+        "ar": "اليوم الدولي لمحو الأمية",
+        "zh": "国际扫盲日",
+        "fr": "Journée internationale de l'alphabétisation",
+        "ru": "Международный день грамотности",
+        "es": "Día Internacional de la Alfabetización"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 8
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/literacy",
+          "title": "International Literacy Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/literacy",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000114048.xml=http://www.unesco.org/ulis/cgi-bin/ulis.pl"
+      }
+    },
+    {
+      "id": "un.protect-education-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی حفاظت از آموزش در برابر حملات",
+        "en": "International Day to Protect Education from Attack",
+        "ar": "اليوم الدولي لحماية التعليم من الهجمات",
+        "zh": "保护教育免受攻击国际日",
+        "fr": "Journée internationale pour la protection de l’éducation contre les attaques",
+        "ru": "Международный день защиты образования от нападений",
+        "es": "Día Internacional para Proteger la Educación de Ataques"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 9
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/protect-education-day",
+          "title": "International Day to Protect Education from Attack (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iran.un.org/fa/322427-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D8%AD%D9%81%D8%A7%D8%B8%D8%AA-%D8%A7%D8%B2-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AF%D8%B1-%D8%A8%D8%B1%D8%A7%D8%A8%D8%B1-%D8%AD%D9%85%D9%84%D8%A7%D8%AA-%DB%B2%DB%B0%DB%B2%DB%B6",
+          "title": "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی حفاظت از آموزش در برابر حملات ۲۰۲۶",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/protect-education-day",
+        "resolution": "https://undocs.org/en/A/RES/74/275"
+      }
+    },
+    {
+      "id": "un.south-south-cooperation-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز ملل متحد برای همکاری جنوب - جنوب",
+        "en": "United Nations Day for South-South Cooperation",
+        "ar": "يوم الأمم المتحدة للتعاون فيما بين بلدان الجنوب",
+        "zh": "联合国南南合作日",
+        "fr": "Journée des Nations Unies pour la coopération Sud-Sud",
+        "ru": "День сотрудничества Юг — Юг Организации Объединенных Наций",
+        "es": "Día de las Naciones Unidas para la Cooperación Sur-Sur"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/south-south-cooperation-day",
+          "title": "United Nations Day for South-South Cooperation (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/south-south-cooperation-day",
+        "resolution": "https://undocs.org/en/A/RES/58/220"
+      }
+    },
+    {
+      "id": "un.democracy-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی دموکراسی",
+        "en": "International Day of Democracy",
+        "ar": "اليوم الدولي للديمقراطية",
+        "zh": "国际民主日",
+        "fr": "Journée internationale de la démocratie",
+        "ru": "Международный день демократии",
+        "es": "Día Internacional de la Democracia"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/democracy-day",
+          "title": "International Day of Democracy (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/democracy-day",
+        "resolution": "https://undocs.org/en/A/RES/62/7"
+      }
+    },
+    {
+      "id": "un.ozone-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی حفظ لایه اوزون",
+        "en": "International Day for the Preservation of the Ozone Layer",
+        "ar": "اليوم الدولي لحفظ طبقة الأوزون",
+        "zh": "保护臭氧层国际日",
+        "fr": "Journée internationale de la protection de la couche d'ozone",
+        "ru": "Международный день охраны озонового слоя",
+        "es": "Día Internacional de la Preservación de la Capa de Ozono"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 16
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/ozone-day",
+          "title": "International Day for the Preservation of the Ozone Layer (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/ozone-day",
+        "resolution": "https://undocs.org/en/A/RES/49/114"
+      }
+    },
+    {
+      "id": "un.international-day-peace",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی صلح",
+        "en": "International Day of Peace",
+        "ar": "اليوم الدولي للسلام",
+        "zh": "国际和平日",
+        "fr": "Journée internationale de la paix",
+        "ru": "Международный день мира",
+        "es": "Día Internacional de la Paz"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-day-peace",
+          "title": "International Day of Peace (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-day-peace",
+        "resolution": "https://undocs.org/en/A/RES/36/67"
+      }
+    },
+    {
+      "id": "un.tourism-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی گردشگری",
+        "en": "World Tourism Day",
+        "ar": "يوم السياحة العالمي",
+        "zh": "世界旅游日",
+        "fr": "Journée mondiale du tourisme",
+        "ru": "Всемирный день туризма",
+        "es": "Día Mundial del Turismo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 27
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/tourism-day",
+          "title": "World Tourism Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/tourism-day"
+      }
+    },
+    {
+      "id": "un.habitat-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی اسکان بشری",
+        "en": "World Habitat Day"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 10,
+        "weekday": "MONDAY",
+        "n": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/habitat-day",
+          "title": "World Habitat Day (observance page)",
+          "retrieved": "2026-09-13",
+          "page": "Background: \"the first Monday of October of every year\""
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/habitat-day",
+        "resolution": "http://undocs.org/en/A/RES/40/202"
+      }
+    },
+    {
+      "id": "un.older-persons-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی سالمندان",
+        "en": "International Day of Older Persons",
+        "ar": "اليوم الدولي للمسنين",
+        "zh": "国际老年人日",
+        "fr": "Journée internationale pour les personnes âgées",
+        "ru": "Международный день пожилых людей",
+        "es": "Día Internacional de las Personas de Edad"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/older-persons-day",
+          "title": "International Day of Older Persons (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/older-persons-day",
+        "resolution": "http://undocs.org/en/A/RES/45/106"
+      }
+    },
+    {
+      "id": "un.non-violence-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی عدم خشونت",
+        "en": "International Day of Non-Violence",
+        "ar": "اليوم الدولي للاعنف",
+        "zh": "国际非暴力日",
+        "fr": "Journée internationale de la non-violence",
+        "ru": "Международный день ненасилия",
+        "es": "Día Internacional de la No Violencia"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/non-violence-day",
+          "title": "International Day of Non-Violence (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/non-violence-day",
+        "resolution": "http://undocs.org/en/A/RES/61/271"
+      }
+    },
+    {
+      "id": "un.world-teachers-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی آموزگاران",
+        "en": "World Teachers’ Day",
+        "ar": "اليوم العالمي للمعلمين",
+        "zh": "世界教师日",
+        "fr": "Journée mondiale des enseignants",
+        "ru": "Всемирный день учителя",
+        "es": "Día Mundial de los Docentes"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/teachers",
+          "title": "World Teachers’ Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/teachers",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000095720.page=5"
+      }
+    },
+    {
+      "id": "un.world-post-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی پست",
+        "en": "World Post Day",
+        "ar": "اليوم العالمي للبريد",
+        "fr": "Journée mondiale de la poste",
+        "ru": "Всемирный день почты"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 9
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-post-day",
+          "title": "World Post Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-post-day"
+      }
+    },
+    {
+      "id": "un.world-mental-health-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی بهداشت روان",
+        "en": "World Mental Health Day",
+        "ar": "اليوم العالمي للصحة النفسية",
+        "zh": "世界精神卫生日",
+        "fr": "Journée mondiale de la santé mentale",
+        "ru": "Всемирный день психического здоровья",
+        "es": "Día Mundial de la Salud Mental"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "http://www.who.int/mental_health/world-mental-health-day/en/",
+          "title": "World Mental Health Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "http://www.who.int/mental_health/world-mental-health-day/en/"
+      }
+    },
+    {
+      "id": "un.disaster-reduction-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی کاهش مصایب طبیعی",
+        "en": "International Day for Disaster Risk Reduction",
+        "ar": "اليوم الدولي للحد من الكوارث",
+        "zh": "国际减少灾害风险日",
+        "fr": "Journée internationale pour la réduction des risques de catastrophes",
+        "ru": "Международный день по снижению риска бедствий",
+        "es": "Día Internacional para la Reducción de los Desastres"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 13
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/disaster-reduction-day",
+          "title": "International Day for Disaster Risk Reduction (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/disaster-reduction-day",
+        "resolution": "http://undocs.org/en/A/RES/64/200"
+      }
+    },
+    {
+      "id": "un.rural-women-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی زنان روستایی",
+        "en": "International Day of Rural Women",
+        "ar": "اليوم الدولي للمرأة الريفية",
+        "zh": "国际农村妇女日",
+        "fr": "Journée internationale des femmes rurales",
+        "ru": "Международный день сельских женщин",
+        "es": "Día Internacional de las Mujeres Rurales"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/rural-women-day",
+          "title": "International Day of Rural Women (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/rural-women-day",
+        "resolution": "http://undocs.org/en/A/RES/62/136"
+      }
+    },
+    {
+      "id": "un.world-food-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی غذا",
+        "en": "World Food Day",
+        "ar": "يوم الأغذية العالمي",
+        "zh": "世界粮食日",
+        "fr": "Journée mondiale de l'alimentation",
+        "ru": "Всемирный день продовольствия",
+        "es": "Día Mundial de la Alimentación"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 16
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "http://www.fao.org/world-food-day",
+          "title": "World Food Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "http://www.fao.org/world-food-day",
+        "resolution": "http://undocs.org/en/A/RES/35/70"
+      }
+    },
+    {
+      "id": "un.day-for-eradicating-poverty",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی ریشه کنی فقر",
+        "en": "International Day for the Eradication of Poverty",
+        "ar": "اليوم الدولي للقضاء على الفقر",
+        "zh": "消除贫穷国际日",
+        "fr": "Journée internationale pour l'élimination de la pauvreté",
+        "ru": "Международный день борьбы за ликвидацию нищеты",
+        "es": "Día Internacional para la Erradicación de la Pobreza"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 17
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/day-for-eradicating-poverty",
+          "title": "International Day for the Eradication of Poverty (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/day-for-eradicating-poverty",
+        "resolution": "http://undocs.org/en/A/RES/62/136"
+      }
+    },
+    {
+      "id": "un.development-information-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی اطلاعات توسعه",
+        "en": "World Development Information Day",
+        "ar": "اليوم العالمي للإعلام الإنمائي",
+        "zh": "世界发展宣传日",
+        "fr": "Journée mondiale d'information sur le développement",
+        "ru": "Всемирный день информации о развитии",
+        "es": "Día Mundial de Información sobre el Desarrollo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/development-information-day",
+          "title": "World Development Information Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/development-information-day"
+      }
+    },
+    {
+      "id": "un.un-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز ملل متحد",
+        "en": "United Nations Day",
+        "ar": "يوم الأمم المتحدة",
+        "zh": "联合国日",
+        "fr": "Journée des Nations Unies",
+        "ru": "День Организации Объединенных Наций",
+        "es": "Día de las Naciones Unidas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/un-day",
+          "title": "United Nations Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/un-day"
+      }
+    },
+    {
+      "id": "un.road-traffic-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی یادآوری قربانیان ترافیک جاده ها",
+        "en": "World Day of Remembrance for Road Traffic Victims",
+        "ar": "اليوم العالمي لإحياء ذكرى ضحايا حوادث الطرق",
+        "zh": "世界道路交通事故受害者纪念日",
+        "ru": "Всемирный день памяти жертв дорожно-транспортных происшествий",
+        "es": "Día mundial en recuerdo de las víctimas de los accidentes de tráfico"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 11,
+        "weekday": "SUNDAY",
+        "n": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/road-traffic-victims-day",
+          "title": "World Day of Remembrance for Road Traffic Victims (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: سومین یکشنبه نوامبر",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/road-traffic-victims-day",
+        "resolution": "http://undocs.org/en/A/RES/60/5"
+      }
+    },
+    {
+      "id": "un.world-philosophy-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی فلسفه",
+        "en": "World Philosophy Day",
+        "zh": "世界哲学日",
+        "fr": "Journée mondiale de la philosophie",
+        "ru": "Всемирный день философии",
+        "es": "Día Mundial de la Filosofía"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 11,
+        "weekday": "THURSDAY",
+        "n": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/philosophy",
+          "title": "World Philosophy Day (observance page)",
+          "retrieved": "2026-09-13",
+          "page": "\"each year, on the third Thursday of November\""
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/philosophy",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000142825.page=86"
+      }
+    },
+    {
+      "id": "un.environment-in-war-protection-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی پیشگیری از سوء استفاده از محیط زیست در جنگ و مناقشه مسلحانه",
+        "en": "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict",
+        "ar": "اليوم الدولي لمنع استخدام البيئة في الحروب والصراعات العسكرية",
+        "zh": "防止战争和武装冲突糟蹋环境国际日",
+        "fr": "Journée internationale pour la prévention de l'exploitation de l'environnement en temps de guerre et de conflit armé",
+        "ru": "Международный день предотвращения эксплуатации окружающей среды во время войны и вооруженных конфликтов",
+        "es": "Día Internacional para la Prevención de la Explotación del Medio Ambiente en la Guerra y los Conflictos Armados"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 6
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/environment-in-war-protection-day",
+          "title": "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/environment-in-war-protection-day",
+        "resolution": "https://undocs.org/en/A/RES/56/4"
+      }
+    },
+    {
+      "id": "un.world-science-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی علم در خدمت صلح و توسعه",
+        "en": "World Science Day for Peace and Development",
+        "ar": "اليوم العالمي للعلوم من أجل السلام والتنمية",
+        "zh": "争取和平与发展世界科学日",
+        "fr": "Semaine mondiale de la science au service de la paix et du développement",
+        "ru": "Всемирный день науки за мир и развитие",
+        "es": "Día Mundial de la Ciencia para la Paz y el Desarrollo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-science-day",
+          "title": "World Science Day for Peace and Development (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-science-day",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000142825"
+      }
+    },
+    {
+      "id": "un.diabetes-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی دیابت",
+        "en": "World Diabetes Day",
+        "ar": "اليوم العالمي لمرضى السكري",
+        "zh": "世界糖尿病日",
+        "fr": "Journée mondiale du diabète",
+        "ru": "Всемирный день борьбы с диабетом",
+        "es": "Día Mundial de la Diabetes"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 14
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/diabetes-day",
+          "title": "World Diabetes Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/diabetes-day",
+        "resolution": "http://undocs.org/en/A/RES/61/225"
+      }
+    },
+    {
+      "id": "un.international-day-for-tolerance",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی بردباری",
+        "en": "International Day for Tolerance",
+        "ar": "اليوم الدولي للتسامح",
+        "zh": "国际宽容日",
+        "fr": "Journée mondiale de la tolérance",
+        "ru": "Международный день, посвященный терпимости",
+        "es": "Día Internacional de la Tolerancia"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 16
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/tolerance",
+          "title": "International Day for Tolerance (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/tolerance",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000101803_eng#page=75"
+      }
+    },
+    {
+      "id": "un.africa-industrialization-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز صنعت گستری آفریقا",
+        "en": "Africa Industrialization Day",
+        "ar": "يوم التصنيع في أفريقيا",
+        "zh": "非洲工业化日",
+        "fr": "Journée de l'industrialisation de l'Afrique",
+        "ru": "День индустриализации Африки",
+        "es": "Día de la Industrialización de África"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/africa-industrialization-day",
+          "title": "Africa Industrialization Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/africa-industrialization-day",
+        "resolution": "http://undocs.org/en/A/RES/44/237"
+      }
+    },
+    {
+      "id": "un.world-childrens-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی کودکان",
+        "en": "World Children's Day",
+        "ar": "اليوم العالمي للطفل",
+        "zh": "世界儿童日",
+        "fr": "Journée mondiale de l'enfance",
+        "ru": "Всемирный день ребенка",
+        "es": "Día Mundial de la Infancia"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-childrens-day",
+          "title": "World Children's Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-childrens-day",
+        "resolution": "http://undocs.org/en/A/RES/836(IX)"
+      }
+    },
+    {
+      "id": "un.world-television-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی تلویزیون",
+        "en": "World Television Day",
+        "ar": "اليوم العالمي للتلفزيون",
+        "zh": "世界电视日",
+        "fr": "Journée mondiale de la télévision",
+        "ru": "Всемирный день телевидения",
+        "es": "Día Mundial de la Televisión"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-television-day",
+          "title": "World Television Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-television-day",
+        "resolution": "http://undocs.org/en/A/RES/51/205"
+      }
+    },
+    {
+      "id": "un.ending-violence-against-women-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی حذف خشونت علیه زنان",
+        "en": "International Day for the Elimination of Violence against Women",
+        "ar": "اليوم الدولي للقضاء على العنف ضد المرأة",
+        "zh": "制止暴力侵害妇女行为国际日",
+        "fr": "Journée internationale pour l'élimination de la violence à l'égard des femmes",
+        "ru": "Международный день борьбы за ликвидацию насилия в отношении женщин",
+        "es": "Día Internacional de la Eliminación de la Violencia contra la Mujer"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/ending-violence-against-women-day",
+          "title": "International Day for the Elimination of Violence against Women (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/ending-violence-against-women-day",
+        "resolution": "http://undocs.org/en/A/RES/32/40"
+      }
+    },
+    {
+      "id": "un.international-day-of-solidarity-with-the-palestinian-people",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی همبستگی با مردم فلسطین",
+        "en": "International Day of Solidarity with the Palestinian People",
+        "ar": "اليوم الدولي للتضامن مع الشعب الفلسطيني",
+        "zh": "声援巴勒斯坦人民国际日",
+        "fr": "Journée internationale de solidarité avec le peuple palestinien",
+        "ru": "Международный день солидарности с палестинским народом",
+        "es": "Día Internacional de Solidaridad con el Pueblo Palestino"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people",
+          "title": "International Day of Solidarity with the Palestinian People (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people",
+        "resolution": "http://undocs.org/en/A/RES/32/40"
+      }
+    },
+    {
+      "id": "un.world-aids-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی ایدز",
+        "en": "World AIDS Day",
+        "ar": "اليوم العالمي للإيدز",
+        "zh": "世界艾滋病日",
+        "fr": "Journée mondiale de lutte contre le sida",
+        "ru": "Всемирный день борьбы со СПИДом",
+        "es": "Día Mundial del SIDA"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-aids-day",
+          "title": "World AIDS Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-aids-day"
+      }
+    },
+    {
+      "id": "un.slavery-abolition-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی لغو برده داری",
+        "en": "International Day for the Abolition of Slavery",
+        "ar": "اليوم الدولي لإلغاء الرق",
+        "zh": "废除奴隶制国际日",
+        "fr": "Journée internationale pour l'abolition de l'esclavage",
+        "ru": "Международный день борьбы за отмену рабства",
+        "es": "Día Internacional para la Abolición de la Esclavitud"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/slavery-abolition-day",
+          "title": "International Day for the Abolition of Slavery (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/slavery-abolition-day",
+        "resolution": "https://undocs.org/en/A/RES/317(IV)"
+      }
+    },
+    {
+      "id": "un.day-of-persons-with-disabilities",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی معلولان",
+        "en": "International Day of Persons with Disabilities",
+        "ar": "اليوم الدولي للأشخاص ذوي الإعاقة",
+        "zh": "国际残疾人日",
+        "fr": "Journée internationale des personnes handicapées",
+        "ru": "Международный день инвалидов",
+        "es": "Día Internacional de las Personas con Discapacidad"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities",
+          "title": "International Day of Persons with Disabilities (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/day-of-persons-with-disabilities",
+        "resolution": "https://undocs.org/en/A/RES/47/3"
+      }
+    },
+    {
+      "id": "un.volunteer-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
+        "en": "International Volunteer Day for Economic and Social Development",
+        "ar": "اليوم الدولي للمتطوعين من أجل التنمية الاقتصادية والاجتماعية",
+        "zh": "国际志愿人员日",
+        "fr": "Journée internationale des volontaires",
+        "ru": "Международный день добровольцев во имя экономического и социального развития",
+        "es": "Día Internacional de los Voluntarios"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/volunteer-day",
+          "title": "International Volunteer Day for Economic and Social Development (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/volunteer-day",
+        "resolution": "https://undocs.org/en/A/RES/40/212"
+      }
+    },
+    {
+      "id": "un.civil-aviation-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی هواپیمایی غیر نظامی",
+        "en": "International Civil Aviation Day",
+        "ar": "يوم الطيران المدني الدولي",
+        "zh": "国际民航日",
+        "fr": "Journée de l'aviation civile internationale",
+        "ru": "Международный день гражданской авиации",
+        "es": "Día de la Aviación Civil Internacional"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/civil-aviation-day",
+          "title": "International Civil Aviation Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/civil-aviation-day",
+        "resolution": "https://undocs.org/en/A/RES/51/33"
+      }
+    },
+    {
+      "id": "un.anti-corruption-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی مبارزه با فساد",
+        "en": "International Anti-Corruption Day",
+        "ar": "اليوم الدولي لمكافحة الفساد",
+        "zh": "国际反腐败日",
+        "fr": "Journée internationale contre la corruption",
+        "ru": "Международный день борьбы с коррупцией",
+        "es": "Día Internacional contra la Corrupción"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 9
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/anti-corruption-day",
+          "title": "International Anti-Corruption Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/anti-corruption-day",
+        "resolution": "https://undocs.org/en/A/RES/58/4"
+      }
+    },
+    {
+      "id": "un.human-rights-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی حقوق بشر",
+        "en": "Human Rights Day",
+        "ar": "يوم حقوق الإنسان",
+        "zh": "人权日",
+        "fr": "Journée des droits de l'homme",
+        "ru": "День прав человека",
+        "es": "Día de los Derechos Humanos"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/human-rights-day",
+          "title": "Human Rights Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/human-rights-day"
+      }
+    },
+    {
+      "id": "un.mountain-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی کوهستان",
+        "en": "International Mountain Day",
+        "ar": "اليوم الدولي للجبال",
+        "zh": "国际山岳日",
+        "fr": "Journée internationale de la montagne",
+        "ru": "Международный день гор",
+        "es": "Día Internacional de las Montañas"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/mountain-day",
+          "title": "International Mountain Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/mountain-day",
+        "resolution": "https://undocs.org/en/A/RES/57/245"
+      }
+    },
+    {
+      "id": "un.migrants-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی مهاجران",
+        "en": "International Migrants Day",
+        "ar": "اليوم الدولي للمهاجرين",
+        "zh": "国际移民日",
+        "fr": "Journée internationale des migrants",
+        "ru": "Международный день мигранта",
+        "es": "Día Internacional del Migrante"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/migrants-day",
+          "title": "International Migrants Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/migrants-day",
+        "resolution": "https://undocs.org/en/A/RES/55/93"
+      }
+    },
+    {
+      "id": "un.human-solidarity-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین المللی همبستگی بشر",
+        "en": "International Human Solidarity Day",
+        "ar": "اليوم الدولي للتضامن الإنساني",
+        "zh": "国际人类团结日",
+        "fr": "Journée internationale de la solidarité humaine",
+        "ru": "Международный день солидарности людей",
+        "es": "Día Internacional de la Solidaridad Humana"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/human-solidarity-day",
+          "title": "International Human Solidarity Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy: https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/human-solidarity-day",
+        "resolution": "https://undocs.org/en/A/RES/60/209"
+      }
+    }
+  ]
+}

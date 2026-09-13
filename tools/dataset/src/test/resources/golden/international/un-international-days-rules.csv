@@ -1,0 +1,20 @@
+# source: United Nations — List of International Days and Weeks; rules stated on the cited observance pages and in the UN Information Centre Tehran list
+# url: https://www.un.org/en/observances/list-days-weeks
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: spot checks for D-05. Fixed dates from the UN list; habitat-day rule from https://www.un.org/en/observances/habitat-day ("the first Monday of October of every year"); world-philosophy-day from https://www.unesco.org/en/days/philosophy ("the third Thursday of November"); cooperatives-day (اولين شنبه ژوئيه) and road-traffic-victims-day (سومین یکشنبه نوامبر) from https://www.unic-ir.org/event/f-event.htm (Internet Archive copy 2012-10-05, docs/sources/unic-tehran-f-event-20121005.html)
+id,type,month,day,weekday,n
+un.education-day,Fixed,1,24,,
+un.mother-language-day,Fixed,2,21,,
+un.international-nowruz-day,Fixed,3,21,,
+un.water-day,Fixed,3,22,,
+un.environment-day,Fixed,6,5,,
+un.cooperatives-day,NthWeekdayOfMonth,7,,SATURDAY,1
+un.protect-education-day,Fixed,9,9,,
+un.international-day-peace,Fixed,9,21,,
+un.older-persons-day,Fixed,10,1,,
+un.habitat-day,NthWeekdayOfMonth,10,,MONDAY,1
+un.un-day,Fixed,10,24,,
+un.road-traffic-victims-day,NthWeekdayOfMonth,11,,SUNDAY,3
+un.world-philosophy-day,NthWeekdayOfMonth,11,,THURSDAY,3
+un.human-rights-day,Fixed,12,10,,
