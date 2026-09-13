@@ -1,0 +1,22 @@
+# source: NASA Goddard Space Flight Center, F. Espenak & J. Meeus — Five Millennium Catalog of Lunar Eclipses, 2001-2100 (rows for 2024-2030)
+# url: https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: US government work (public domain); page sha256=0f640913669a640418f05c173cea0bdeca194fcac6b5b196b6b9ab1b08122792; td_greatest is Terrestrial Dynamical Time of greatest eclipse, delta_t_s = TD - UT in seconds; type is the catalog's eclipse type code
+catalog,date,td_greatest,delta_t_s,type
+09704,2024-03-25,07:13:59,74,N
+09705,2024-09-18,02:45:25,74,P
+09706,2025-03-14,06:59:56,75,T
+09707,2025-09-07,18:12:58,75,T
+09708,2026-03-03,11:34:52,75,T
+09709,2026-08-28,04:14:04,75,P
+09710,2027-02-20,23:14:06,76,N
+09711,2027-07-18,16:04:09,76,Ne
+09712,2027-08-17,07:14:59,76,N
+09713,2028-01-12,04:14:13,76,P
+09714,2028-07-06,18:20:57,77,P
+09715,2028-12-31,16:53:15,77,T
+09716,2029-06-26,03:23:22,77,T+
+09717,2029-12-20,22:43:12,78,T
+09718,2030-06-15,18:34:34,78,P
+09719,2030-12-09,22:28:51,78,N

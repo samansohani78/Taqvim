@@ -1,0 +1,9 @@
+# source: University of Tehran, Institute of Geophysics, Calendar Center — Official calendars of Iran 1404 and 1405 SH, title page (moment of the vernal equinox)
+# url: https://calendar.ut.ac.ir/Fa/
+# retrieved: 2026-09-13
+# page: 1
+# reviewer: pending
+# notes: docs/sources/Calendar-1404.pdf sha256=057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945; docs/sources/Calendar-1405.pdf sha256=8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c; instants in official Iran time
+gregorian_year,march_equinox
+2025,2025-03-20T12:31:30+03:30
+2026,2026-03-20T18:15:59+03:30

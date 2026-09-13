@@ -1,0 +1,22 @@
+# source: NASA Goddard Space Flight Center, F. Espenak & J. Meeus — Five Millennium Catalog of Solar Eclipses, 2001-2100 (rows for 2024-2030)
+# url: https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: US government work (public domain); page sha256=a9c08f5b4b51d5c85ccfa18d8bfccd98ec8a7d93f06e2d40691943b4105acf9e; td_greatest is Terrestrial Dynamical Time of greatest eclipse, delta_t_s = TD - UT in seconds; type is the catalog's eclipse type code
+catalog,date,td_greatest,delta_t_s,type
+09561,2024-04-08,18:18:29,74,T
+09562,2024-10-02,18:46:13,74,A
+09563,2025-03-29,10:48:36,75,P
+09564,2025-09-21,19:43:04,75,P
+09565,2026-02-17,12:13:06,75,A
+09566,2026-08-12,17:47:06,75,T
+09567,2027-02-06,16:00:48,76,A
+09568,2027-08-02,10:07:50,76,T
+09569,2028-01-26,15:08:59,76,A
+09570,2028-07-22,02:56:40,77,T
+09571,2029-01-14,17:13:48,77,P
+09572,2029-06-12,04:06:13,77,P
+09573,2029-07-11,15:37:19,77,P
+09574,2029-12-05,15:03:58,77,P
+09575,2030-06-01,06:29:13,78,A
+09576,2030-11-25,06:51:37,78,T
