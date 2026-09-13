@@ -185,6 +185,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-501 — Text date detector
+- **Module / files:** `core/nlp/src/main/kotlin/ir/taqvim/core/nlp/TextDateDetector.kt`; golden
+  `core/nlp/src/test/resources/golden/nlp/text-snippets.tsv`
+- **Origin:** own work from docs/PLAN.md T-501 on the T-500 grammar (seed-token scanner, score-based overlap
+  resolution).
+- **Golden corpus:** synthetic, not a primary source. Everyday message templates written for this project (no copied
+  text) filled with CLDR month/weekday names from `:core:i18n`; expected spans and days computed from `:core:calendar`,
+  never from the detector.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-700 — Theme colors, contrast and custom fonts
 - **Module / files:** `core/ui/src/main/kotlin/ir/taqvim/core/ui/theme/` — `ColorMath.kt`, `ColorRole.kt`,
   `SchemeGenerator.kt`, `ColorSchemes.kt`, `ThemeSettings.kt`, `Typography.kt`, `CustomFonts.kt`, `TaqvimTheme.kt`
