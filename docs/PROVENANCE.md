@@ -256,6 +256,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1001 / T-1002 — Reminder notifications and official-event reminders
+- **Module / files:** `feature/notification/src/main/kotlin/ir/taqvim/feature/notification/` — `ReminderPlanner.kt`,
+  `CalculatorOfficialEventSchedule.kt`, `ReminderAlarms.kt`, `ReminderNotifications.kt`, `ReminderActionReceiver.kt`;
+  icon `res/drawable/notification_ic_reminder.xml` (own drawing)
+- **Tasks:** T-1001, T-1002
+- **References used (public only):** T-503 `RecurrenceEngine` (ADR-0011), T-300 `OccurrenceCalculator`, T-106 calendars;
+  Android developer documentation — `NotificationChannel`, `NotificationCompat` actions, `PendingIntent` with
+  `FLAG_IMMUTABLE`, `BroadcastReceiver`, `AlarmManager.setExactAndAllowWhileIdle`, `POST_NOTIFICATIONS`, plurals;
+  kotlinx-datetime `LocalDateTime.toInstant` (times skipped by DST move forward by the gap).
+- **Implementation note:** own work; 400-day horizon, 50-alarm cap, 09:00 all-day default, 10-minute snooze, 0–30-day
+  official lead and `taqvim://` link shapes are product choices; test events synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1102 — Athan playback
 - **Module / files:** `feature/notification/src/main/kotlin/ir/taqvim/feature/notification/`
 - **Task:** T-1102
