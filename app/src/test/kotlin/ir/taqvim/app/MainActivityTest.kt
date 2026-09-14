@@ -6,8 +6,12 @@ package ir.taqvim.app
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.app.navigation.AppDestination
+import ir.taqvim.app.navigation.TopLevelTab
+import ir.taqvim.app.navigation.destinationTag
+import ir.taqvim.app.navigation.tabTag
 import org.junit.After
 import org.junit.Rule
 import org.junit.Test
@@ -26,10 +30,9 @@ class MainActivityTest {
     }
 
     @Test
-    fun launchesShellWithKoinStarted() {
-        val placeholder = composeRule.activity.getString(R.string.app_shell_placeholder)
-
-        composeRule.onNodeWithText(placeholder).assertIsDisplayed()
+    fun launchesTheCalendarWithKoinStarted() {
+        composeRule.onNodeWithTag(tabTag(TopLevelTab.CALENDAR)).assertIsDisplayed()
+        composeRule.onNodeWithTag(destinationTag(AppDestination.Calendar)).assertExists()
         check(GlobalContext.getOrNull() != null) { "Koin must be started by TaqvimApplication" }
     }
 }

@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Taqvim</string>
-  <string name="app_shell_placeholder">Taqvim calendar</string>
+  <string name="nav_calendar">Calendar</string>
+  <string name="nav_times">Times</string>
+  <string name="nav_tools">Tools</string>
+  <string name="nav_more">More</string>
+  <string name="more_year">Year</string>
+  <string name="more_agenda">Agenda</string>
+  <string name="more_search">Search</string>
+  <string name="more_astronomy">Astronomy</string>
+  <string name="more_compass">Compass</string>
+  <string name="more_level">Level and ruler</string>
+  <string name="more_location">Location</string>
+  <string name="more_athan">Athan</string>
+  <string name="pending_shift_work">Shift work is not available yet.</string>
+  <string name="pending_settings">This setting is not available yet.</string>
+  <string name="message_no_upcoming_occurrence">This event has no upcoming date.</string>
+  <string name="message_setting_not_saved">The setting could not be saved.</string>
 </resources>

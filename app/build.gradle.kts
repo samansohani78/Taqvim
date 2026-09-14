@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.taqvim.android.application)
     alias(libs.plugins.taqvim.android.compose)
+    // Serializable navigation destinations, saved with the back stack (ADR-0015).
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -84,8 +86,16 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+    implementation(libs.androidx.compose.material3.adaptive.navigation.suite)
+    implementation(libs.androidx.browser)
 
     testImplementation(libs.koin.test)
+    // Screenshot environments of the navigation frame (ADR-0015).
+    testImplementation(projects.core.uiTesting)
     // LevelCalibration (T-1303) exposes an ImmutableMap in the compass port.
     testImplementation(libs.kotlinx.collections.immutable)
     testImplementation(libs.kotlinx.coroutines.test)
