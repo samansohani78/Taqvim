@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- T-1215 live wallpaper and daydream -->
+  <string name="wallpaper_label">تصویر زمینهٔ تقویم</string>
+  <string name="wallpaper_description">تاریخ امروز، ماه جاری و ماه آسمان بر آسمان روز یا شب</string>
+  <string name="wallpaper_dream_label">ساعت تقویم</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- T-1215: the live wallpaper is offered only where the system supports live wallpapers; the app works without. -->
+  <uses-feature
+    android:name="android.software.live_wallpaper"
+    android:required="false" />
+
+  <application>
+    <!-- T-1215: live wallpaper with today's date, the month and the Moon. Only the system can bind it. -->
+    <service
+      android:name="ir.taqvim.feature.wallpaper.TaqvimWallpaperService"
+      android:exported="true"
+      android:label="@string/wallpaper_label"
+      android:permission="android.permission.BIND_WALLPAPER">
+      <intent-filter>
+        <action android:name="android.service.wallpaper.WallpaperService" />
+      </intent-filter>
+      <meta-data
+        android:name="android.service.wallpaper"
+        android:resource="@xml/wallpaper" />
+    </service>
+    <!-- T-1215: daydream (screen saver) with a clock and today's dates. Only the system can bind it. -->
+    <service
+      android:name="ir.taqvim.feature.wallpaper.TaqvimDreamService"
+      android:exported="true"
+      android:label="@string/wallpaper_dream_label"
+      android:permission="android.permission.BIND_DREAM_SERVICE">
+      <intent-filter>
+        <action android:name="android.service.dreams.DreamService" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </service>
+  </application>
+</manifest>

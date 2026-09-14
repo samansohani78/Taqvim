@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- T-1215 live wallpaper and daydream -->
+  <string name="wallpaper_label">Taqvim calendar</string>
+  <string name="wallpaper_description">Today\'s date, the month and the Moon on a day or night sky</string>
+  <string name="wallpaper_dream_label">Taqvim clock</string>
+</resources>
