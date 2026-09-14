@@ -14,6 +14,7 @@ import ir.taqvim.feature.calendar.DayEventKind
 import ir.taqvim.feature.search.SearchEventKind
 import ir.taqvim.feature.search.SettingsEntry
 import ir.taqvim.feature.search.ToolEntry
+import ir.taqvim.feature.settings.SettingsDestination
 import ir.taqvim.feature.timeline.TimelineEventKind
 import org.junit.jupiter.api.Test
 
@@ -105,21 +106,40 @@ class AppRouterTest {
             listOf(
                 AppDestination.Calendar,
                 AppDestination.EventEditor(4),
-                AppDestination.LocationSettings,
+                AppDestination.Settings("LOCATION"),
                 AppDestination.Compass,
             )
     }
 
     @Test
+    fun `settings rows open their pages`() {
+        SettingsDestination.entries.forEach { router.settings().onOpen(it) }
+
+        destinations shouldBe
+            listOf(
+                AppDestination.LocationSettings,
+                AppDestination.AthanSettings,
+                AppDestination.Subscriptions,
+                AppDestination.Pending(PendingFeature.WIDGETS),
+            )
+    }
+
+    @Test
     fun `every settings and tool entry has a destination`() {
-        SettingsEntry.entries.associateWith(::settingsDestination) shouldBe
-            SettingsEntry.entries.associateWith { entry ->
-                when (entry) {
-                    SettingsEntry.LOCATION -> AppDestination.LocationSettings
-                    SettingsEntry.ATHAN, SettingsEntry.PRAYER_TIMES -> AppDestination.AthanSettings
-                    else -> AppDestination.Pending(PendingFeature.SETTINGS)
-                }
-            }
+        SettingsEntry.entries.map(::settingsDestination) shouldBe
+            listOf(
+                AppDestination.Settings("LANGUAGE"),
+                AppDestination.Settings("LOCATION"),
+                AppDestination.Settings("MAIN_CALENDAR"),
+                AppDestination.Settings("PRAYER_METHOD"),
+                AppDestination.Settings("ATHAN"),
+                AppDestination.Settings("PERSISTENT_NOTIFICATION"),
+                AppDestination.Settings("THEME"),
+                AppDestination.Settings("WIDGETS"),
+                AppDestination.Pending(PendingFeature.SETTINGS),
+                AppDestination.Pending(PendingFeature.SETTINGS),
+                AppDestination.Pending(PendingFeature.SETTINGS),
+            )
         ToolEntry.entries.map(::toolDestination) shouldBe
             listOf(
                 AppDestination.Tools,

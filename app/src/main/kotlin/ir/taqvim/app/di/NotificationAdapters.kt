@@ -46,7 +46,7 @@ internal fun athanSetup(preferences: UserPreferences): AthanSetup? {
                     },
                 place = place.coordinates,
                 timeZone = zone,
-                prayer = PrayerSettings(method = preferences.prayerMethod, asr = preferences.asrJuristic),
+                prayer = preferences.prayerSettings(),
                 useIranTime = athan.useIranTime,
             ),
         playback = AthanPlayback(athan.sound?.uri, athan.volumePercent, athan.vibrate, athan.bypassDndForFajr),

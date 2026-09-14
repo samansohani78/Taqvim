@@ -37,6 +37,9 @@ import ir.taqvim.feature.events.EventEditorRoute
 import ir.taqvim.feature.search.SearchRoute
 import ir.taqvim.feature.settings.AthanSettingsRoute
 import ir.taqvim.feature.settings.LocationSettingsRoute
+import ir.taqvim.feature.settings.SettingsHomeRoute
+import ir.taqvim.feature.settings.SettingsItemId
+import ir.taqvim.feature.settings.SubscriptionsRoute
 import ir.taqvim.feature.timeline.TimelineRoute
 import ir.taqvim.feature.times.TimesRoute
 import ir.taqvim.feature.tools.ToolsRoute
@@ -86,6 +89,11 @@ private fun AppScreen(
             PendingScreen(destination.feature.notice, modifier)
         }
 
+        is AppDestination.Settings -> {
+            val item = SettingsItemId.entries.firstOrNull { it.name == destination.initialItem }
+            SettingsHomeRoute(modifier, item, router.settings())
+        }
+
         else -> {
             SimpleScreen(destination, navigator, router, modifier)
         }
@@ -124,6 +132,7 @@ private fun SettingsAndInstrumentScreen(
         AppDestination.Search -> SearchRoute(modifier, router.search())
         AppDestination.LocationSettings -> LocationSettingsRoute(modifier)
         AppDestination.AthanSettings -> AthanSettingsRoute(modifier)
+        AppDestination.Subscriptions -> SubscriptionsRoute(modifier)
         else -> PendingScreen(R.string.pending_settings, modifier)
     }
 }
@@ -139,8 +148,7 @@ internal enum class MoreEntry(
     ASTRONOMY(AppDestination.Astronomy, R.string.more_astronomy),
     COMPASS(AppDestination.Compass, R.string.more_compass),
     LEVEL(AppDestination.Level, R.string.more_level),
-    LOCATION(AppDestination.LocationSettings, R.string.more_location),
-    ATHAN(AppDestination.AthanSettings, R.string.more_athan),
+    SETTINGS(AppDestination.Settings(), R.string.more_settings),
 }
 
 /** The list of [MoreEntry] screens. */

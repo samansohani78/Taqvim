@@ -16,6 +16,9 @@ import ir.taqvim.feature.calendar.CalendarNavigation
 import ir.taqvim.feature.search.SearchNavigation
 import ir.taqvim.feature.search.SettingsEntry
 import ir.taqvim.feature.search.ToolEntry
+import ir.taqvim.feature.settings.SettingsDestination
+import ir.taqvim.feature.settings.SettingsItemId
+import ir.taqvim.feature.settings.SettingsNavigation
 import ir.taqvim.feature.timeline.TimelineNavigation
 import ir.taqvim.feature.year.YearNavigation
 
@@ -104,6 +107,8 @@ internal class AppRouter(
             onOpenTool = { navigate(toolDestination(it)) },
         )
 
+    fun settings(): SettingsNavigation = SettingsNavigation(onOpen = { navigate(settingsPage(it)) })
+
     /** Personal events open in the editor and device events in the calendar app; others show on the calendar. */
     private fun openEvent(
         origin: EventOrigin,
@@ -118,12 +123,30 @@ internal class AppRouter(
     }
 }
 
-/** The screen of a settings search result; settings without their own screen yet show a notice (T-1500). */
+/** The settings home at the item of a settings search result; backup, privacy and about have no screen yet. */
 internal fun settingsDestination(entry: SettingsEntry): AppDestination =
-    when (entry) {
-        SettingsEntry.LOCATION -> AppDestination.LocationSettings
-        SettingsEntry.ATHAN, SettingsEntry.PRAYER_TIMES -> AppDestination.AthanSettings
-        else -> AppDestination.Pending(PendingFeature.SETTINGS)
+    SETTINGS_ITEMS[entry]?.let { AppDestination.Settings(it.name) } ?: AppDestination.Pending(PendingFeature.SETTINGS)
+
+/** The settings item each settings search result opens. */
+private val SETTINGS_ITEMS: Map<SettingsEntry, SettingsItemId> =
+    mapOf(
+        SettingsEntry.LANGUAGE to SettingsItemId.LANGUAGE,
+        SettingsEntry.LOCATION to SettingsItemId.LOCATION,
+        SettingsEntry.CALENDARS to SettingsItemId.MAIN_CALENDAR,
+        SettingsEntry.PRAYER_TIMES to SettingsItemId.PRAYER_METHOD,
+        SettingsEntry.ATHAN to SettingsItemId.ATHAN,
+        SettingsEntry.NOTIFICATIONS to SettingsItemId.PERSISTENT_NOTIFICATION,
+        SettingsEntry.THEME to SettingsItemId.THEME,
+        SettingsEntry.WIDGETS to SettingsItemId.WIDGETS,
+    )
+
+/** The screen a settings row opens. */
+internal fun settingsPage(destination: SettingsDestination): AppDestination =
+    when (destination) {
+        SettingsDestination.LOCATION -> AppDestination.LocationSettings
+        SettingsDestination.ATHAN -> AppDestination.AthanSettings
+        SettingsDestination.SUBSCRIPTIONS -> AppDestination.Subscriptions
+        SettingsDestination.WIDGETS -> AppDestination.Pending(PendingFeature.WIDGETS)
     }
 
 /** The screen of a tool search result. */

@@ -41,16 +41,18 @@ internal class PreferencesCalendarSettingsSource(
 ) : CalendarSettingsSource {
     override fun settings(): Flow<CalendarSettings> =
         preferences.preferences
-            .map { CalendarSettings(it.calendars, it.weekStart, it.islamicVariant, it.languageCode) }
-            .distinctUntilChanged()
+            .map {
+                CalendarSettings(it.calendars, it.weekStart, it.islamicVariant, it.languageCode, it.app.showWeekNumbers)
+            }.distinctUntilChanged()
 }
 
 /** The calendar menu's display choices (T-803) stored in the user preferences (T-600). */
 internal class PreferencesCalendarDisplayStore(
     private val preferences: UserPreferencesRepository,
 ) : CalendarDisplayStore {
-    /** The week-number column has no preference field yet (T-1500), so the menu reports the choice as not saved. */
-    override suspend fun setShowWeekNumbers(show: Boolean): Unit = error("week numbers are not stored yet (T-1500)")
+    override suspend fun setShowWeekNumbers(show: Boolean) {
+        preferences.update { current -> current.copy(app = current.app.copy(showWeekNumbers = show)) }
+    }
 
     override suspend fun setSecondaryCalendar(system: CalendarSystem) {
         preferences.update { current -> current.copy(calendars = withSecondary(current.calendars, system)) }

@@ -92,11 +92,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
     implementation(libs.androidx.compose.material3.adaptive.navigation.suite)
     implementation(libs.androidx.browser)
+    // LevelCalibration (T-1303) exposes an ImmutableMap in the compass port; stored by the T-1500 adapters.
+    implementation(libs.kotlinx.collections.immutable)
 
     testImplementation(libs.koin.test)
     // Screenshot environments of the navigation frame (ADR-0015).
     testImplementation(projects.core.uiTesting)
-    // LevelCalibration (T-1303) exposes an ImmutableMap in the compass port.
-    testImplementation(libs.kotlinx.collections.immutable)
     testImplementation(libs.kotlinx.coroutines.test)
 }

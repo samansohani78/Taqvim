@@ -39,6 +39,7 @@ internal class PreferencesToolsSettingsSource(
                 language = preferences.languageSpec(),
                 homeZone = zone(),
                 calendars = preferences.availableCalendars().ifEmpty { ToolsSettings.DEFAULT_CALENDARS },
+                boardZones = preferences.app.timeZoneBoard,
                 workdays = profile?.let { WorkdayCalculator(lookup, it) },
             )
         }

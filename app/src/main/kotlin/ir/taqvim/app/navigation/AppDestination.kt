@@ -49,6 +49,15 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object AthanSettings : AppDestination
 
+    @Serializable
+    data object Subscriptions : AppDestination
+
+    /** The settings home (T-1500), opened at the settings item named [initialItem] when one is given. */
+    @Serializable
+    data class Settings(
+        val initialItem: String? = null,
+    ) : AppDestination
+
     /** The timeline, showing the week of [initialDay] (a Julian day number) when one is given. */
     @Serializable
     data class Timeline(
@@ -76,8 +85,11 @@ enum class PendingFeature(
     /** Shift work (T-803 menu). */
     SHIFT_WORK(R.string.pending_shift_work),
 
-    /** Settings screens other than location and athan (T-1500). */
+    /** Settings without a screen yet: backup, privacy and about (T-1503, T-1504). */
     SETTINGS(R.string.pending_settings),
+
+    /** Widget settings (T-1200). */
+    WIDGETS(R.string.pending_widgets),
 }
 
 /** The destinations of the navigation bar or rail, in order. */

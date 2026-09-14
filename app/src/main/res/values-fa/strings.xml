@@ -11,10 +11,10 @@
   <string name="more_astronomy">نجوم</string>
   <string name="more_compass">قطب‌نما</string>
   <string name="more_level">تراز و خط‌کش</string>
-  <string name="more_location">مکان</string>
-  <string name="more_athan">اذان</string>
+  <string name="more_settings">تنظیمات</string>
   <string name="pending_shift_work">شیفت کاری هنوز در دسترس نیست.</string>
   <string name="pending_settings">این تنظیم هنوز در دسترس نیست.</string>
+  <string name="pending_widgets">تنظیمات ابزارک‌ها هنوز در دسترس نیست.</string>
   <string name="message_no_upcoming_occurrence">این رویداد تاریخ آینده‌ای ندارد.</string>
   <string name="message_setting_not_saved">تنظیم ذخیره نشد.</string>
 </resources>

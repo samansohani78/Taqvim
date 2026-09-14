@@ -11,10 +11,10 @@
   <string name="more_astronomy">Astronomy</string>
   <string name="more_compass">Compass</string>
   <string name="more_level">Level and ruler</string>
-  <string name="more_location">Location</string>
-  <string name="more_athan">Athan</string>
+  <string name="more_settings">Settings</string>
   <string name="pending_shift_work">Shift work is not available yet.</string>
   <string name="pending_settings">This setting is not available yet.</string>
+  <string name="pending_widgets">Widget settings are not available yet.</string>
   <string name="message_no_upcoming_occurrence">This event has no upcoming date.</string>
   <string name="message_setting_not_saved">The setting could not be saved.</string>
 </resources>

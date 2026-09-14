@@ -4,7 +4,6 @@
  */
 package ir.taqvim.app.di
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
@@ -150,11 +149,14 @@ class CalendarAdaptersTest {
     }
 
     @Test
-    fun `week numbers are reported as not saved until a preference exists`(): Unit =
+    fun `the week-number column is stored and reaches the calendar settings`(): Unit =
         runTest {
-            val store = PreferencesCalendarDisplayStore(repositoryOf(UserPreferences.defaultsFor("en")))
+            val preferences = repositoryOf(UserPreferences.defaultsFor("en"))
+            val settings = PreferencesCalendarSettingsSource(preferences)
 
-            shouldThrow<IllegalStateException> { store.setShowWeekNumbers(true) }
+            settings.settings().first().showWeekNumbers shouldBe false
+            PreferencesCalendarDisplayStore(preferences).setShowWeekNumbers(true)
+            settings.settings().first().showWeekNumbers shouldBe true
         }
 
     private companion object {

@@ -8,12 +8,15 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import ir.taqvim.app.di.themeSettings
 import ir.taqvim.app.navigation.AppNavDisplay
 import ir.taqvim.app.navigation.AppNavigationFrame
 import ir.taqvim.app.navigation.AppRouter
@@ -22,8 +25,10 @@ import ir.taqvim.app.navigation.rememberAppNavigator
 import ir.taqvim.core.i18n.TextDirection
 import ir.taqvim.core.ui.theme.TaqvimTheme
 import ir.taqvim.core.ui.theme.ThemeSettings
+import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarMessage
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 
 /** The app: the Taqvim theme around the navigation frame and the screens of the back stack (ADR-0015). */
 @Composable
@@ -39,7 +44,9 @@ fun TaqvimAppShell(modifier: Modifier = Modifier) {
                 scope.launch { snackbar.showSnackbar(resources.getString(message.text)) }
             }
         }
-    TaqvimTheme(ThemeSettings(), layoutTextDirection()) {
+    val preferences = koinInject<UserPreferencesRepository>()
+    val stored by preferences.preferences.collectAsState(initial = null)
+    TaqvimTheme(stored?.themeSettings() ?: ThemeSettings(), layoutTextDirection()) {
         AppNavigationFrame(navigator.backStack.selectedTab, navigator::select, snackbar, modifier) {
             AppNavDisplay(navigator, router)
         }

@@ -60,7 +60,7 @@ internal fun timesSettings(
         placeName = placeName,
         place = place.coordinates,
         timeZone = zone,
-        prayer = PrayerSettings(method = preferences.prayerMethod, asr = preferences.asrJuristic),
+        prayer = preferences.prayerSettings(),
         language = preferences.languageSpec(),
         calendar = preferences.availableCalendars().firstOrNull() ?: PersianCalendarSystem,
     )

@@ -18,6 +18,8 @@ import ir.taqvim.data.devicecalendar.DeviceCalendarRepository
 import ir.taqvim.data.devicecalendar.InstancesSource
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.eventsDataModule
+import ir.taqvim.data.events.ics.SubscriptionRefreshScheduler
+import ir.taqvim.data.events.ics.SubscriptionRefresher
 import ir.taqvim.data.events.ics.icsDataModule
 import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
@@ -53,7 +55,6 @@ import ir.taqvim.feature.notification.notificationFeatureModule
 import ir.taqvim.feature.search.RecentQueriesStore
 import ir.taqvim.feature.search.SearchEventSource
 import ir.taqvim.feature.search.SearchSettingsSource
-import ir.taqvim.feature.search.SessionRecentQueriesStore
 import ir.taqvim.feature.search.searchFeatureModule
 import ir.taqvim.feature.settings.AthanPreview
 import ir.taqvim.feature.settings.AthanSettingsStore
@@ -61,9 +62,12 @@ import ir.taqvim.feature.settings.AthanSoundLibrary
 import ir.taqvim.feature.settings.CitySearch
 import ir.taqvim.feature.settings.DeviceLocation
 import ir.taqvim.feature.settings.ExactAlarmAccess
+import ir.taqvim.feature.settings.GeneralSettingsStore
 import ir.taqvim.feature.settings.LocationSettingsStore
 import ir.taqvim.feature.settings.PlaceDescriber
+import ir.taqvim.feature.settings.SubscriptionsStore
 import ir.taqvim.feature.settings.athanSettingsFeatureModule
+import ir.taqvim.feature.settings.generalSettingsFeatureModule
 import ir.taqvim.feature.settings.locationSettingsFeatureModule
 import ir.taqvim.feature.timeline.TimelineClockSource
 import ir.taqvim.feature.timeline.TimelineDaysSource
@@ -149,7 +153,7 @@ val appFeaturePortsModule =
         single<EditorSettingsSource> { PreferencesEditorSettingsSource(get(), OfficialAnchorLookup()) }
         single<AstronomySettingsSource> { TimesAstronomySettingsSource(get()) }
         single<CompassSettingsSource> { PreferencesCompassSettingsSource(get(), get()) }
-        single<LevelCalibrationStore> { SessionLevelCalibrationStore() }
+        single<LevelCalibrationStore> { PreferencesLevelCalibrationStore(get()) }
         single<ToolsSettingsSource> {
             val profiles = get<WorkdayProfileDao>().observeAll()
             PreferencesToolsSettingsSource(get(), profiles.map { it.defaultProfile() })
@@ -204,7 +208,7 @@ val searchTimelineAthanPortsModule =
                 today = get(),
             )
         }
-        single<RecentQueriesStore> { SessionRecentQueriesStore() }
+        single<RecentQueriesStore> { PreferencesRecentQueriesStore(get()) }
         single<TimelineSettingsSource> { PreferencesTimelineSettingsSource(get()) }
         single<TimelineDaysSource> {
             val events = get<EventsRepository>()
@@ -249,6 +253,27 @@ val reminderAlarmPortsModule =
         }
     }
 
+/** The settings screens (T-1500) and calendar subscriptions (T-1003) over the preferences and the subscription DAO. */
+val settingsPortsModule =
+    module {
+        single<GeneralSettingsStore> {
+            val preferences = get<UserPreferencesRepository>()
+            val scheduler = get<SubscriptionRefreshScheduler>()
+            PreferencesGeneralSettingsStore(preferences, subscriptionRescheduler(get(), preferences, scheduler::update))
+        }
+        single<SubscriptionsStore> {
+            val preferences = get<UserPreferencesRepository>()
+            val scheduler = get<SubscriptionRefreshScheduler>()
+            val refresher = get<SubscriptionRefresher>()
+            RoomSubscriptionsStore(
+                dao = get(),
+                refresh = { refresher.refresh(it) },
+                preferences = preferences,
+                reschedule = subscriptionRescheduler(get(), preferences, scheduler::update),
+            )
+        }
+    }
+
 /** Qualifiers of the scheduler's alarm kinds; every source and delivery is collected with `getAll()`. */
 internal const val PRAYER_ALARMS = "prayer"
 internal const val REMINDER_ALARMS = "reminder"
@@ -278,5 +303,7 @@ val appModule =
             notificationFeatureModule,
             athanAlarmPortsModule,
             reminderAlarmPortsModule,
+            settingsPortsModule,
+            generalSettingsFeatureModule,
         )
     }
