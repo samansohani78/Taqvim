@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+package ir.taqvim.app.di
+
+import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+import ir.taqvim.core.model.CalendarDate
+import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.MinuteOfDay
+import ir.taqvim.data.database.AlarmKind
+import ir.taqvim.data.database.PersonalEventEntity
+import ir.taqvim.data.database.ReminderEntity
+import ir.taqvim.data.database.ScheduledAlarmEntity
+import ir.taqvim.data.preferences.UserPreferences
+import ir.taqvim.data.scheduler.AlarmKey
+import ir.taqvim.feature.notification.ReminderAlarm
+import ir.taqvim.feature.notification.ReminderRule
+import kotlin.time.Instant
+import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
+
+/** T-1001 wiring: stored events become planner events with enabled reminders, and reminders reach the scheduler. */
+class ReminderAdaptersTest {
+    private val arithmetic = UserPreferences.defaultsFor("fa").availableArithmetic()
+    private val nowruz = CalendarDate(CalendarSystem.PERSIAN, 1405, 1, 1)
+    private val event =
+        PersonalEventEntity(
+            id = 7,
+            title = "Visit",
+            calendarSystem = CalendarSystem.PERSIAN,
+            startJdn = requireNotNull(arithmetic[CalendarSystem.PERSIAN]).toJdn(nowruz).value,
+            startMinute = 600,
+            endJdn = requireNotNull(arithmetic[CalendarSystem.PERSIAN]).toJdn(nowruz).value,
+            timeZoneId = "Asia/Tehran",
+            createdAtEpochMillis = 0,
+            updatedAtEpochMillis = 0,
+        )
+
+    @Test
+    fun `stored events keep their enabled reminders, start and zone`() {
+        val reminders =
+            listOf(
+                ReminderEntity(id = 1, eventId = 7, minutesBefore = 30),
+                ReminderEntity(id = 2, eventId = 7, minutesBefore = 60, enabled = false),
+                ReminderEntity(id = 3, eventId = 7, minutesBefore = ReminderRule.MAX_MINUTES_BEFORE + 1),
+            )
+
+        val planned = reminderEvent(event, arithmetic, recurrence = null, reminders = reminders).shouldNotBeNull()
+
+        planned.id shouldBe 7
+        planned.title shouldBe "Visit"
+        planned.start shouldBe nowruz
+        planned.startMinute shouldBe MinuteOfDay(600)
+        planned.timeZoneId shouldBe "Asia/Tehran"
+        planned.reminders shouldBe listOf(ReminderRule(1, 30))
+    }
+
+    @Test
+    fun `events without reminders or in a calendar that cannot be computed are left out`() {
+        reminderEvent(event, arithmetic, null, emptyList()).shouldBeNull()
+        val nepali = event.copy(calendarSystem = CalendarSystem.NEPALI)
+        reminderEvent(
+            nepali,
+            arithmetic,
+            null,
+            listOf(ReminderEntity(id = 1, eventId = 7, minutesBefore = 5)),
+        ).shouldBeNull()
+        val allDay = event.copy(startMinute = null)
+        reminderEvent(allDay, arithmetic, null, listOf(ReminderEntity(id = 1, eventId = 7, minutesBefore = 5)))
+            .shouldNotBeNull()
+            .startMinute
+            .shouldBeNull()
+    }
+
+    @Test
+    fun `reminders become keyed scheduler alarms and fired alarms show their reminder`(): Unit =
+        runTest {
+            val now = Instant.parse("2026-03-20T00:00:00Z")
+            val at = Instant.parse("2026-03-21T06:00:00Z")
+            val source = ReminderAlarmSource { listOf(ReminderAlarm(sourceId = 11, at = at)) }
+
+            source.kind shouldBe AlarmKind.REMINDER
+            source.upcomingAlarms(now) shouldBe listOf(AlarmKey(AlarmKind.REMINDER, 11, at))
+
+            val shown = mutableListOf<Pair<Long, Instant>>()
+            val delivery = ReminderAlarmDelivery { id, trigger -> shown += id to trigger }
+            delivery.kind shouldBe AlarmKind.REMINDER
+            delivery.deliver(alarm(sourceId = 11, at = at))
+            delivery.deliver(alarm(sourceId = null, at = at))
+            shown shouldBe listOf(11L to at)
+        }
+
+    private fun alarm(
+        sourceId: Long?,
+        at: Instant,
+    ): ScheduledAlarmEntity =
+        ScheduledAlarmEntity(
+            kind = AlarmKind.REMINDER,
+            sourceId = sourceId,
+            triggerAtEpochMillis = at.toEpochMilliseconds(),
+        )
+}

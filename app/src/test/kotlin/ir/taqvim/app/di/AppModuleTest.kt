@@ -17,13 +17,18 @@ import ir.taqvim.data.scheduler.RescheduleCoordinator
 import ir.taqvim.feature.notification.AthanAlarms
 import ir.taqvim.feature.notification.AthanDeliveryLog
 import ir.taqvim.feature.notification.AthanPlaybackStarter
+import ir.taqvim.feature.notification.CalculatorOfficialEventSchedule
+import ir.taqvim.feature.notification.ReminderAlarms
+import ir.taqvim.feature.notification.ReminderSetup
 import kotlin.time.Duration
 import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.TimeZone
 import org.junit.jupiter.api.Test
 import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 import org.koin.test.verify.definition
@@ -57,7 +62,7 @@ class AppModuleTest {
     }
 
     @Test
-    fun `the athan is the scheduler's prayer alarm source and delivery`(): Unit =
+    fun `the athan and reminders are the scheduler's alarm sources and deliveries`(): Unit =
         runTest {
             val application =
                 koinApplication {
@@ -67,16 +72,32 @@ class AppModuleTest {
                             single {
                                 AthanAlarms(get(), AthanDeliveryLog { _, _ -> true }, AthanPlaybackStarter { true })
                             }
+                            single { ReminderAlarms({ emptySetup() }, { true }, { true }) }
                         },
                         athanAlarmPortsModule,
+                        module {
+                            single<AlarmSource>(named(REMINDER_ALARMS)) {
+                                val alarms = get<ReminderAlarms>()
+                                ReminderAlarmSource { alarms.upcoming(it) }
+                            }
+                            single<AlarmDelivery>(named(REMINDER_ALARMS)) {
+                                val alarms = get<ReminderAlarms>()
+                                ReminderAlarmDelivery { id, at -> alarms.onAlarm(id, at) }
+                            }
+                        },
                     )
                 }
             val koin = application.koin
+            val kinds = setOf(AlarmKind.PRAYER, AlarmKind.REMINDER)
 
-            koin.getAll<AlarmSource>().map { it.kind } shouldBe listOf(AlarmKind.PRAYER)
-            koin.getAll<AlarmDelivery>().map { it.kind } shouldBe listOf(AlarmKind.PRAYER)
+            koin.getAll<AlarmSource>().map { it.kind }.toSet() shouldBe kinds
+            koin.getAll<AlarmDelivery>().map { it.kind }.toSet() shouldBe kinds
             // Without a chosen place no athan is planned.
-            koin.get<AlarmSource>().upcomingAlarms(Instant.parse("2026-03-21T00:00:00Z")) shouldBe emptyList()
+            val prayers = koin.get<AlarmSource>(named(PRAYER_ALARMS))
+            prayers.upcomingAlarms(Instant.parse("2026-03-21T00:00:00Z")) shouldBe emptyList()
             application.close()
         }
+
+    private fun emptySetup(): ReminderSetup =
+        ReminderSetup(emptyList(), emptyList(), CalculatorOfficialEventSchedule(emptyList(), "fa"), TimeZone.UTC)
 }

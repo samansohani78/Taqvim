@@ -47,6 +47,8 @@ import ir.taqvim.feature.events.PersonalEventStore
 import ir.taqvim.feature.events.eventsFeatureModule
 import ir.taqvim.feature.notification.AthanAlarms
 import ir.taqvim.feature.notification.AthanSetupSource
+import ir.taqvim.feature.notification.ReminderAlarms
+import ir.taqvim.feature.notification.ReminderSetupSource
 import ir.taqvim.feature.notification.notificationFeatureModule
 import ir.taqvim.feature.search.RecentQueriesStore
 import ir.taqvim.feature.search.SearchEventSource
@@ -85,6 +87,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 // Declared before appModule: top-level properties initialise in file order and `includes` needs these values.
@@ -222,15 +225,33 @@ val searchTimelineAthanPortsModule =
 val athanAlarmPortsModule =
     module {
         single<AthanSetupSource> { PreferencesAthanSetupSource(get()) }
-        single<AlarmSource> {
+        single<AlarmSource>(named(PRAYER_ALARMS)) {
             val alarms = get<AthanAlarms>()
             AthanAlarmSource { alarms.upcoming(it) }
         }
-        single<AlarmDelivery> {
+        single<AlarmDelivery>(named(PRAYER_ALARMS)) {
             val alarms = get<AthanAlarms>()
             AthanAlarmDelivery { alarms.onAlarm(it) }
         }
     }
+
+/** Reminders (T-1001, T-1002) over the Room personal events: the scheduler's reminder source and delivery (T-604). */
+val reminderAlarmPortsModule =
+    module {
+        single<ReminderSetupSource> { RoomReminderSetupSource(get(), get(), get()) }
+        single<AlarmSource>(named(REMINDER_ALARMS)) {
+            val alarms = get<ReminderAlarms>()
+            ReminderAlarmSource { alarms.upcoming(it) }
+        }
+        single<AlarmDelivery>(named(REMINDER_ALARMS)) {
+            val alarms = get<ReminderAlarms>()
+            ReminderAlarmDelivery { id, at -> alarms.onAlarm(id, at) }
+        }
+    }
+
+/** Qualifiers of the scheduler's alarm kinds; every source and delivery is collected with `getAll()`. */
+internal const val PRAYER_ALARMS = "prayer"
+internal const val REMINDER_ALARMS = "reminder"
 
 /** Root Koin module. Feature and data modules contribute their bindings here as they are implemented. */
 val appModule =
@@ -256,5 +277,6 @@ val appModule =
             athanSettingsFeatureModule,
             notificationFeatureModule,
             athanAlarmPortsModule,
+            reminderAlarmPortsModule,
         )
     }
