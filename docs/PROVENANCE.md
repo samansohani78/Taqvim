@@ -857,6 +857,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Gaps:** 144 days without a primary Persian title (DT-019, DT-023, DT-024); 10 weeks not representable.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
 
+### D-07 — Islamic Iran override table
+- **Files:** `dataset/iran/islamic-iran-overrides.json` (26 months, Ramadan 1446 – Shawwal 1448), schema
+  `dataset/islamic-iran-overrides.v1.json`; tests `tools/dataset/.../IslamicIranOverridesGoldenTest.kt`,
+  `OverridesValidatorTest.kt` (synthetic fixtures under `tools/dataset/src/test/resources/overrides/`)
+- **Source:** University of Tehran, Institute of Geophysics, Calendar Center — Official calendars of Iran 1404 SH
+  (docs/sources/Calendar-1404.pdf, pp. 4–14) and 1405 SH (docs/sources/Calendar-1405.pdf, pp. 3–14),
+  https://calendar.ut.ac.ir/Fa/, owner-supplied, retrieved 2026-09-13; page cited per month.
+- **Extraction:** poppler `pdftotext -bbox` with the T-102 column parser; a start is the Persian day whose lunar column
+  reads day 1. Ramadan 1446 derived from the printed 20 Ramadan 1446 on 1 Farvardin 1404 (page 4), noted in its
+  citation. Identical to the T-104 table and golden fixture.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14; **reviewer:** pending.
+
 ### D-03 — Afghanistan official holidays
 - **Files:** `dataset/afghanistan/afghanistan-official-holidays.json` (7 records); generated
   `data/events/.../generated/OfficialEvents*.kt`; test `tools/dataset/.../AfghanistanOfficialHolidaysTest.kt` with golden
