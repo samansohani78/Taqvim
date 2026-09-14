@@ -61,4 +61,6 @@ data class AthanSettingsActions(
     val onBypassDndChanged: (Boolean) -> Unit = {},
     val onIranTimeChanged: (Boolean) -> Unit = {},
     val onAllowExactAlarms: () -> Unit = {},
+    /** Opens the system screen that grants Do Not Disturb access (Fajr bypass, T-1101). */
+    val onOpenDndAccess: () -> Unit = {},
 )

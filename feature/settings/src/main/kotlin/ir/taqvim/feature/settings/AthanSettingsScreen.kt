@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.settings
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -43,6 +44,8 @@ fun AthanSettingsScreen(
     state: AthanSettingsUiState,
     actions: AthanSettingsActions,
     modifier: Modifier = Modifier,
+    /** Whether the app lacks Do Not Disturb access, which the Fajr bypass needs. */
+    dndAccessMissing: Boolean = false,
 ) {
     ScreenSurface(
         modifier = modifier,
@@ -55,7 +58,7 @@ fun AthanSettingsScreen(
                     Modifier.align(Alignment.Center).semantics { contentDescription = description },
                 )
             } else {
-                AthanContent(state, actions)
+                AthanContent(state, actions, dndAccessMissing)
             }
         }
     }
@@ -65,44 +68,73 @@ fun AthanSettingsScreen(
 private fun AthanContent(
     state: AthanSettingsUiState,
     actions: AthanSettingsActions,
+    dndAccessMissing: Boolean,
 ) {
     Column(
         Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        if (state.exactAlarmsBlocked) ExactAlarmBanner(actions.onAllowExactAlarms)
+        if (state.exactAlarmsBlocked) {
+            WarningBanner(
+                R.string.settings_athan_exact_blocked,
+                R.string.settings_athan_exact_allow,
+                actions.onAllowExactAlarms,
+            )
+        }
         SectionHeading(R.string.settings_athan_prayers)
         state.alerts.forEach { PrayerAlertItem(it, actions) }
         SectionHeading(R.string.settings_athan_sound)
         SoundCard(state.sound, actions)
         VolumeControl(state.volumePercent, state.volumeText, actions.onVolumeChanged)
         SectionHeading(R.string.settings_athan_options)
-        SwitchItem(stringResource(R.string.settings_athan_vibrate), null, state.vibrate, actions.onVibrateChanged)
-        SwitchItem(
-            title = stringResource(R.string.settings_athan_bypass_dnd),
-            detail =
-                stringResource(
-                    if (state.bypassAvailable) {
-                        R.string.settings_athan_bypass_dnd_detail
-                    } else {
-                        R.string.settings_athan_bypass_dnd_needs_fajr
-                    },
-                ),
-            checked = state.bypassDndForFajr,
-            onChange = actions.onBypassDndChanged,
-            enabled = state.bypassAvailable,
-        )
-        SwitchItem(
-            title = stringResource(R.string.settings_athan_iran_time),
-            detail = stringResource(R.string.settings_athan_iran_time_detail),
-            checked = state.useIranTime,
-            onChange = actions.onIranTimeChanged,
-        )
+        AthanOptions(state, actions, dndAccessMissing)
     }
 }
 
+/** Vibration, the Fajr Do Not Disturb bypass (with its access warning) and Iran time. */
 @Composable
-private fun ExactAlarmBanner(onAllow: () -> Unit) {
+private fun AthanOptions(
+    state: AthanSettingsUiState,
+    actions: AthanSettingsActions,
+    dndAccessMissing: Boolean,
+) {
+    SwitchItem(stringResource(R.string.settings_athan_vibrate), null, state.vibrate, actions.onVibrateChanged)
+    SwitchItem(
+        title = stringResource(R.string.settings_athan_bypass_dnd),
+        detail =
+            stringResource(
+                if (state.bypassAvailable) {
+                    R.string.settings_athan_bypass_dnd_detail
+                } else {
+                    R.string.settings_athan_bypass_dnd_needs_fajr
+                },
+            ),
+        checked = state.bypassDndForFajr,
+        onChange = actions.onBypassDndChanged,
+        enabled = state.bypassAvailable,
+    )
+    if (state.bypassDndForFajr && dndAccessMissing) {
+        WarningBanner(
+            R.string.settings_athan_dnd_access_missing,
+            R.string.settings_athan_dnd_access_allow,
+            actions.onOpenDndAccess,
+        )
+    }
+    SwitchItem(
+        title = stringResource(R.string.settings_athan_iran_time),
+        detail = stringResource(R.string.settings_athan_iran_time_detail),
+        checked = state.useIranTime,
+        onChange = actions.onIranTimeChanged,
+    )
+}
+
+/** A warning with a button that fixes it, announced when it appears. */
+@Composable
+private fun WarningBanner(
+    @StringRes message: Int,
+    @StringRes button: Int,
+    onClick: () -> Unit,
+) {
     Column(
         Modifier
             .fillMaxWidth()
@@ -111,11 +143,8 @@ private fun ExactAlarmBanner(onAllow: () -> Unit) {
             .semantics { liveRegion = LiveRegionMode.Polite },
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Text(
-            stringResource(R.string.settings_athan_exact_blocked),
-            color = MaterialTheme.colorScheme.onErrorContainer,
-        )
-        TextButton(onClick = onAllow) { Text(stringResource(R.string.settings_athan_exact_allow)) }
+        Text(stringResource(message), color = MaterialTheme.colorScheme.onErrorContainer)
+        TextButton(onClick = onClick) { Text(stringResource(button)) }
     }
 }
 

@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ir.taqvim.core.ui.permission.rememberNotificationPermissionRequest
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
@@ -47,10 +48,15 @@ fun EventEditorRoute(
     val currentOnClose by rememberUpdatedState(onClose)
     val finished = state.content as? EditorContent.Finished
     LaunchedEffect(finished) { finished?.let { currentOnClose(it.outcome) } }
+    val requestNotifications = rememberNotificationPermissionRequest()
     val actions =
-        remember(viewModel) {
+        remember(viewModel, requestNotifications) {
             EventEditorActions(
-                onIntent = viewModel::onIntent,
+                onIntent = { intent ->
+                    viewModel.onIntent(intent)
+                    // A reminder needs notifications to show (T-1001).
+                    if (intent is ReminderIntent.Add) requestNotifications()
+                },
                 onDateTextChange = viewModel::onDateTextChange,
                 onApplyDateText = viewModel::onApplyDateText,
                 onSave = viewModel::onSave,

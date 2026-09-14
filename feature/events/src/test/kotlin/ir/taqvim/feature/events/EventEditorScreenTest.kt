@@ -4,6 +4,11 @@
  */
 package ir.taqvim.feature.events
 
+import androidx.activity.compose.LocalActivityResultRegistryOwner
+import androidx.activity.result.ActivityResultRegistry
+import androidx.activity.result.ActivityResultRegistryOwner
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -15,6 +20,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
+import androidx.core.app.ActivityOptionsCompat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.ics.Frequency
@@ -23,6 +29,7 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.testing.FakeClock
 import ir.taqvim.core.ui.component.DateSelection
+import ir.taqvim.core.ui.permission.NOTIFICATION_PERMISSION
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -201,6 +208,39 @@ class EventEditorScreenTest {
         composeRule.onNodeWithText("OK").performClick()
 
         assertEquals(listOf<EditorIntent>(ScheduleIntent.EndTime(600)), intents)
+    }
+
+    @Test
+    fun addingAReminderAsksForNotificationsWhileMissing() {
+        val launched = mutableListOf<Any?>()
+        val registry =
+            object : ActivityResultRegistryOwner {
+                override val activityResultRegistry: ActivityResultRegistry =
+                    object : ActivityResultRegistry() {
+                        override fun <I, O> onLaunch(
+                            requestCode: Int,
+                            contract: ActivityResultContract<I, O>,
+                            input: I,
+                            options: ActivityOptionsCompat?,
+                        ) {
+                            launched += input
+                            dispatchResult(requestCode, false)
+                        }
+                    }
+            }
+        val store = FakeEventStore()
+        val viewModel = EventEditorViewModel(null, store, FakeSettingsSource(), FakeClock(EditorFixtures.NOW))
+        composeRule.setContent {
+            CompositionLocalProvider(LocalActivityResultRegistryOwner provides registry) {
+                EditorTestTheme { EventEditorRoute(null, onClose = { outcomes += it }, viewModel = viewModel) }
+            }
+        }
+
+        composeRule.onNodeWithText("Add reminder").performScrollTo().performClick()
+        composeRule.onNodeWithText("At the start").performClick()
+        composeRule.waitForIdle()
+
+        assertEquals(listOf<Any?>(NOTIFICATION_PERMISSION), launched)
     }
 
     @Test

@@ -5,6 +5,7 @@
 package ir.taqvim.feature.settings
 
 import android.app.Application
+import android.app.NotificationManager
 import android.net.Uri
 import android.os.Looper
 import android.provider.Settings
@@ -27,6 +28,7 @@ import androidx.compose.ui.test.performSemanticsAction
 import androidx.core.app.ActivityOptionsCompat
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.ui.permission.NOTIFICATION_PERMISSION
 import java.time.Duration
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -56,8 +58,9 @@ class AthanSettingsScreenTest {
                         input: I,
                         options: ActivityOptionsCompat?,
                     ) {
-                        launchedInputs += (input as? Array<*>)?.toList().orEmpty()
-                        dispatchResult(requestCode, picked?.let(Uri::parse))
+                        launchedInputs += (input as? Array<*>)?.toList() ?: listOf(input)
+                        // A permission request (String input) answers "denied"; a sound pick answers the picked file.
+                        dispatchResult(requestCode, if (input is String) false else picked?.let(Uri::parse))
                     }
                 }
         }
@@ -127,7 +130,7 @@ class AthanSettingsScreenTest {
         assertEquals(true, store.current.bypassDndForFajr)
         assertEquals(true, store.current.useIranTime)
         assertEquals(35, store.current.volumePercent)
-        composeRule.onNodeWithText("35%").assertIsDisplayed()
+        composeRule.onNodeWithText("35%").performScrollTo().assertIsDisplayed()
     }
 
     @Test
@@ -175,6 +178,37 @@ class AthanSettingsScreenTest {
         assertEquals(0, store.updates)
         composeRule.onNodeWithText("Fajr athan in Do Not Disturb").performScrollTo().assertIsNotEnabled()
         composeRule.onNodeWithText("Turn on the Fajr athan to use this.").assertIsDisplayed()
+    }
+
+    @Test
+    fun turningAnAthanOnAsksForNotificationsOnlyWhileMissing() {
+        val store = FakeAthanStore(LocationFixtures.english)
+        showRoute(store)
+
+        click("Fajr")
+        click("Fajr")
+        assertEquals(listOf(listOf(NOTIFICATION_PERMISSION)), launchedInputs)
+
+        shadowOf(ApplicationProvider.getApplicationContext<Application>()).grantPermissions(NOTIFICATION_PERMISSION)
+        click("Isha")
+        assertEquals(1, launchedInputs.size)
+    }
+
+    @Test
+    fun theFajrBypassOffersDoNotDisturbAccessUntilGranted() {
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        val notifications = application.getSystemService(NotificationManager::class.java)
+        shadowOf(notifications).setNotificationPolicyAccessGranted(false)
+        val store = FakeAthanStore(LocationFixtures.english, AthanFixtures.someOn)
+        showRoute(store)
+        val missing = "Allow Do Not Disturb access so the Fajr athan can sound."
+        composeRule.onNodeWithText(missing).assertDoesNotExist()
+
+        click("Fajr athan in Do Not Disturb")
+        composeRule.onNodeWithText(missing).performScrollTo().assertIsDisplayed()
+        click("Allow access")
+        val started = shadowOf(application).nextStartedActivity
+        assertEquals(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS, started.action)
     }
 
     @Test

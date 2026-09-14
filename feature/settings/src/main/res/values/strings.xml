@@ -64,6 +64,8 @@
   <string name="settings_athan_bypass_dnd">Fajr athan in Do Not Disturb</string>
   <string name="settings_athan_bypass_dnd_detail">Only the Fajr athan may sound while Do Not Disturb is on.</string>
   <string name="settings_athan_bypass_dnd_needs_fajr">Turn on the Fajr athan to use this.</string>
+  <string name="settings_athan_dnd_access_missing">Allow Do Not Disturb access so the Fajr athan can sound.</string>
+  <string name="settings_athan_dnd_access_allow">Allow access</string>
   <string name="settings_athan_iran_time">Iran time</string>
   <string name="settings_athan_iran_time_detail">Use Iran Standard Time (UTC+03:30) for athan times, whatever the device time zone rules say.</string>
   <string name="settings_athan_exact_blocked">Athan may sound late because exact alarms are not allowed.</string>

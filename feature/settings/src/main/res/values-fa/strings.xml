@@ -64,6 +64,8 @@
   <string name="settings_athan_bypass_dnd">اذان صبح در حالت «مزاحم نشوید»</string>
   <string name="settings_athan_bypass_dnd_detail">فقط اذان صبح می‌تواند در حالت «مزاحم نشوید» پخش شود.</string>
   <string name="settings_athan_bypass_dnd_needs_fajr">برای استفاده، اذان صبح را روشن کنید.</string>
+  <string name="settings_athan_dnd_access_missing">برای پخش اذان صبح در حالت «مزاحم نشوید»، دسترسی «مزاحم نشوید» را بدهید.</string>
+  <string name="settings_athan_dnd_access_allow">اجازه دادن</string>
   <string name="settings_athan_iran_time">به وقت ایران</string>
   <string name="settings_athan_iran_time_detail">زمان اذان‌ها به وقت رسمی ایران (UTC+03:30) محاسبه شود، فارغ از قواعد منطقهٔ زمانی دستگاه.</string>
   <string name="settings_athan_exact_blocked">چون هشدار دقیق مجاز نیست، اذان ممکن است با تأخیر پخش شود.</string>
