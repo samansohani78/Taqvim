@@ -256,6 +256,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1502 — Location settings and the chosen place
+- **Module / files:** `feature/settings/src/main/kotlin/ir/taqvim/feature/settings/`;
+  `data/preferences/src/main/kotlin/ir/taqvim/data/preferences/ChosenPlace.kt`, `user_prefs.proto` field 13
+- **Task:** T-1502
+- **References used (public only):** Android developer documentation — `ActivityResultContracts
+  .RequestMultiplePermissions`, `ACCESS_FINE_LOCATION`/`ACCESS_COARSE_LOCATION`; Protocol Buffers proto3 language guide
+  (message field presence); IANA zone ids via `java.time.ZoneId.getAvailableZoneIds`; Jetpack Compose/Material 3 public
+  APIs (Apache-2.0); T-201 `Numerals`.
+- **Implementation note:** own work; city names and positions come from the T-603 catalog through a port; test places
+  are rounded sample inputs.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-901 — Month list and agenda
 - **Module / files:** `feature/agenda/src/main/kotlin/ir/taqvim/feature/agenda/`
 - **Task:** T-901
