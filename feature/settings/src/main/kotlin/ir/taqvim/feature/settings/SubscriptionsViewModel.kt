@@ -1,0 +1,163 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+package ir.taqvim.feature.settings
+
+import androidx.compose.runtime.Immutable
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+
+/** State of the calendar subscriptions page (T-1500 over T-1003). */
+data class SubscriptionsUiState(
+    val loading: Boolean = true,
+    val networkAllowed: Boolean = true,
+    val items: ImmutableList<SubscriptionRow> = persistentListOf(),
+    /** The address being typed. */
+    val draft: String = "",
+    val adding: Boolean = false,
+    /** The outcome of the last action, or `null`. */
+    val message: SubscriptionMessage? = null,
+)
+
+/** One subscribed calendar. */
+data class SubscriptionRow(
+    val id: Long,
+    val name: String,
+    val url: String,
+    val enabled: Boolean,
+    val downloaded: Boolean,
+    val refreshing: Boolean,
+)
+
+/** What the last action on the page did. */
+enum class SubscriptionMessage {
+    ADDED,
+    REFRESHED,
+    INVALID_ADDRESS,
+    ALREADY_SUBSCRIBED,
+    NETWORK_NOT_ALLOWED,
+    FAILED,
+}
+
+/** User actions of the subscriptions page. */
+@Immutable
+data class SubscriptionsActions(
+    val onDraftChanged: (String) -> Unit = {},
+    val onAdd: () -> Unit = {},
+    val onRefresh: (Long) -> Unit = {},
+    val onRemove: (Long) -> Unit = {},
+    val onEnabledChanged: (Long, Boolean) -> Unit = { _, _ -> },
+    val onNetworkAllowedChanged: (Boolean) -> Unit = {},
+)
+
+/** Addresses a subscription can be added from. */
+internal object SubscriptionAddress {
+    private val SCHEMES = listOf("https://", "webcal://")
+
+    /** Whether [text] is an `https://` or `webcal://` address with a host and no spaces. */
+    fun isValid(text: String): Boolean {
+        val address = text.trim()
+        val scheme = SCHEMES.firstOrNull { address.startsWith(it, ignoreCase = true) } ?: return false
+        val rest = address.substring(scheme.length)
+        return rest.isNotEmpty() && !rest.startsWith("/") && rest.none(Char::isWhitespace)
+    }
+}
+
+/** Lists calendar subscriptions and adds, refreshes, pauses and removes them through [SubscriptionsStore]. */
+class SubscriptionsViewModel(
+    private val store: SubscriptionsStore,
+    private val settings: GeneralSettingsStore,
+) : ViewModel() {
+    private val state = MutableStateFlow(SubscriptionsUiState())
+    val uiState: StateFlow<SubscriptionsUiState> = state.asStateFlow()
+
+    private val refreshing = MutableStateFlow<Set<Long>>(emptySet())
+
+    init {
+        combine(store.subscriptions(), settings.settings(), refreshing) { items, data, busy ->
+            state.update { current ->
+                current.copy(
+                    loading = false,
+                    networkAllowed = data.settings.subscriptionsNetworkAllowed,
+                    items = items.map { it.toRow(refreshing = it.id in busy) }.toImmutableList(),
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun onDraftChanged(text: String) {
+        state.update { it.copy(draft = text, message = null) }
+    }
+
+    fun onAdd() {
+        val current = state.value
+        if (current.adding) return
+        if (!SubscriptionAddress.isValid(current.draft)) {
+            state.update { it.copy(message = SubscriptionMessage.INVALID_ADDRESS) }
+            return
+        }
+        state.update { it.copy(adding = true, message = null) }
+        viewModelScope.launch {
+            val outcome = store.add(current.draft.trim())
+            state.update {
+                it.copy(
+                    adding = false,
+                    draft = if (outcome == SubscriptionOutcome.DONE) "" else it.draft,
+                    message = message(outcome, SubscriptionMessage.ADDED),
+                )
+            }
+        }
+    }
+
+    fun onRefresh(id: Long) {
+        if (id in refreshing.value) return
+        refreshing.update { it + id }
+        viewModelScope.launch {
+            val outcome = store.refresh(id)
+            refreshing.update { it - id }
+            state.update { it.copy(message = message(outcome, SubscriptionMessage.REFRESHED)) }
+        }
+    }
+
+    fun onRemove(id: Long) {
+        viewModelScope.launch { store.remove(id) }
+    }
+
+    fun onEnabledChanged(
+        id: Long,
+        enabled: Boolean,
+    ) {
+        viewModelScope.launch { store.setEnabled(id, enabled) }
+    }
+
+    fun onNetworkAllowedChanged(allowed: Boolean) {
+        viewModelScope.launch { settings.update { it.copy(subscriptionsNetworkAllowed = allowed) } }
+    }
+
+    private fun SubscriptionItem.toRow(refreshing: Boolean) =
+        SubscriptionRow(id, name, url, enabled, downloaded = lastFetchedAtEpochMillis != null, refreshing = refreshing)
+
+    private fun message(
+        outcome: SubscriptionOutcome,
+        done: SubscriptionMessage,
+    ): SubscriptionMessage =
+        when (outcome) {
+            SubscriptionOutcome.DONE -> done
+            SubscriptionOutcome.INVALID_ADDRESS -> SubscriptionMessage.INVALID_ADDRESS
+            SubscriptionOutcome.ALREADY_SUBSCRIBED -> SubscriptionMessage.ALREADY_SUBSCRIBED
+            SubscriptionOutcome.NETWORK_NOT_ALLOWED -> SubscriptionMessage.NETWORK_NOT_ALLOWED
+            SubscriptionOutcome.FAILED -> SubscriptionMessage.FAILED
+        }
+}
