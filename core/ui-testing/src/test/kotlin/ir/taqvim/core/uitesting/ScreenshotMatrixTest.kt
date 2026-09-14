@@ -27,6 +27,15 @@ class ScreenshotMatrixTest {
     }
 
     @Test
+    fun `large text matrix is Persian RTL and English LTR at font scale 2`() {
+        ScreenshotMatrix.largeText().map { it.id } shouldContainExactly
+            listOf("phone_light_rtl_fs200_fa", "phone_light_ltr_fs200_en")
+        ScreenshotMatrix.largeText(ScreenshotTheme.DARK).map { it.id } shouldContainExactly
+            listOf("phone_dark_rtl_fs200_fa", "phone_dark_ltr_fs200_en")
+        ScreenshotMatrix.FONT_SCALES.last() shouldBe ScreenshotMatrix.LARGE_FONT_SCALE
+    }
+
+    @Test
     fun `devices map to Robolectric qualifiers with plan sizes`() {
         ScreenshotDevice.PHONE.qualifiers shouldBe "w412dp-h915dp-port-mdpi"
         ScreenshotDevice.TABLET.qualifiers shouldBe "w1280dp-h800dp-land-mdpi"
