@@ -9,6 +9,10 @@ androidx.work.impl.diagnostics.DiagnosticsReceiver | android.permission.DUMP | a
 androidx.profileinstaller.ProfileInstallReceiver | android.permission.DUMP | all | baseline profile installation by adb/Play; DUMP-protected
 ir.taqvim.feature.widgets.WidgetConfigActivity | - | all | launcher widget configuration (APPWIDGET_CONFIGURE, T-1200); only edits the appearance of a placed Taqvim widget and saves nothing without the user
 androidx.glance.appwidget.GlanceRemoteViewsService | android.permission.BIND_REMOTEVIEWS | all | Glance collection widgets (T-1200); only the system can bind
+ir.taqvim.feature.widgets.DateWidget1x1Receiver | - | all | launcher widget (T-1201); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.DateClockWidget4x1Receiver | - | all | launcher widget (T-1202); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.DaySummaryWidget2x2Receiver | - | all | launcher widget (T-1203); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.PrayerStripWidget4x2Receiver | - | all | launcher widget (T-1204); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 androidx.compose.ui.tooling.PreviewActivity | - | debug | Compose preview tooling (debugImplementation only)
 androidx.activity.ComponentActivity | - | debug | Compose UI test host activity (ui-test-manifest, debugImplementation only)
 androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity | - | unit-test | androidx.test core host, test classpath only

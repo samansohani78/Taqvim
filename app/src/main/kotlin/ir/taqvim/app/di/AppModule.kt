@@ -84,6 +84,7 @@ import ir.taqvim.feature.times.TimesSettingsSource
 import ir.taqvim.feature.times.timesFeatureModule
 import ir.taqvim.feature.tools.ToolsSettingsSource
 import ir.taqvim.feature.tools.toolsFeatureModule
+import ir.taqvim.feature.widgets.widgetsFeatureModule
 import ir.taqvim.feature.year.YearDaysSource
 import ir.taqvim.feature.year.YearSettingsSource
 import ir.taqvim.feature.year.YearTodaySource
@@ -324,5 +325,7 @@ val appModule =
             aboutPortsModule,
             mapFeatureModule,
             mapPortsModule,
+            widgetsFeatureModule,
+            widgetPortsModule,
         )
     }

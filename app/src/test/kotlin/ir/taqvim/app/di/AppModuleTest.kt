@@ -55,6 +55,8 @@ class AppModuleTest {
                     OfficialCatalog::class,
                     // Built inline from the three bound event sources in eventsDataModule.
                     EventInputs::class,
+                    // Widget registrations (T-1201…) are constant values holding their receiver and widget classes.
+                    Class::class,
                 ),
             // The scheduler collects every AlarmSource and AlarmDelivery with getAll(), which verify() cannot follow;
             // the test below checks that the athan's prayer source and delivery are among them (T-604, T-1102).
