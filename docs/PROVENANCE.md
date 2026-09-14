@@ -256,6 +256,36 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1103 — Automation links, broadcasts and selected text
+- **Module / files:** `app/src/main/kotlin/ir/taqvim/app/navigation/DeepLinks.kt`, `AppIntents.kt`;
+  `app/.../automation/`; entry parameters in feature/calendar, events, astronomy, tools, search; decisions in ADR-0016;
+  `docs/AUTOMATION.md`
+- **Task:** T-1103
+- **References used (public only):** Android developer documentation — intent filters with `ACTION_VIEW`/`BROWSABLE`
+  schemes, `launchMode="singleTop"`/`onNewIntent`, `Intent.ACTION_PROCESS_TEXT`, `Context.sendBroadcast`,
+  `AlarmManager.setAndAllowWhileIdle`, `BOOT_COMPLETED`/`TIME_SET`/`TIMEZONE_CHANGED`; RFC 3986 percent-encoding;
+  kotlinx-datetime `atStartOfDayIn`; T-501 `TextDateDetector`; the Tasker "Intent Received" event as documented by its
+  publisher (for AUTOMATION.md).
+- **Implementation note:** own work; link shapes, limits and extras are Taqvim's contract; test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-1504 — About, licenses, diagnostics and problem report
+- **Module / files:** `feature/about/src/main/kotlin/ir/taqvim/feature/about/`; license assets
+  `feature/about/src/main/assets/licenses/`; generator `tools/licenses/about_licenses.py`
+- **Task:** T-1504
+- **References used (public only):** the T-001 license gate report; license texts copied verbatim — Apache License 2.0
+  (`/usr/share/common-licenses/Apache-2.0`), BSD-3-Clause (protobuf v32.1 LICENSE,
+  https://raw.githubusercontent.com/protocolbuffers/protobuf/v32.1/LICENSE, retrieved 2026-09-14), MIT
+  (cosinekitty/astronomy LICENSE, https://raw.githubusercontent.com/cosinekitty/astronomy/master/LICENSE, retrieved
+  2026-09-14), Unicode License v3 (`licenses/ICU-LICENSE.txt`); Android developer documentation —
+  `Intent.ACTION_SENDTO`/`ACTION_SEND`/`createChooser`, `ClipboardManager`, `AssetManager`, `android.os.Build`; Jetpack
+  Compose/Material 3 public APIs (Apache-2.0); data sources as listed in this file.
+- **Implementation note:** own work; redaction rules, the 200-entry report cap and the 500-entry diagnostics window are
+  product choices; test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1503 — Backup/restore UI and privacy dashboard
 - **Module / files:** `feature/backup/src/main/kotlin/ir/taqvim/feature/backup/`
 - **Task:** T-1503
