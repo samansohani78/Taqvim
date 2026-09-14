@@ -1,0 +1,30 @@
+// Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+// Proprietary and confidential. See the LICENSE file in the repository root.
+//
+// Per-widget configurations (T-1200 framework, T-1201…). Kept apart from UserPrefs because app widget ids belong to
+// this installation's launcher: they are not part of Taqvim's own backup (T-605).
+
+syntax = "proto3";
+
+package taqvim.preferences;
+
+import "user_prefs.proto";
+
+option java_package = "ir.taqvim.data.preferences.proto";
+option java_multiple_files = true;
+
+message WidgetConfigProto {
+  // WidgetBackground name; unknown names fall back to the widget default.
+  string background = 1;
+  int32 transparency_percent = 2;
+  int32 scale_percent = 3;
+  // WidgetContent names switched on.
+  repeated string contents = 4;
+  // UNSPECIFIED means the language's second calendar.
+  CalendarSystemProto secondary_calendar = 5;
+}
+
+message WidgetConfigsProto {
+  // Keyed by app widget id.
+  map<int32, WidgetConfigProto> configs = 1;
+}
