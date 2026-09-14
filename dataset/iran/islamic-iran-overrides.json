@@ -1,0 +1,397 @@
+{
+  "$schema": "../islamic-iran-overrides.v1.json",
+  "schemaVersion": 1,
+  "months": [
+    {
+      "hijriYear": 1446,
+      "hijriMonth": 9,
+      "persianStart": {
+        "year": 1403,
+        "month": 12,
+        "day": 12
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "4",
+        "retrieved": "2026-09-13",
+        "note": "Derived: the calendar prints 20 Ramadan 1446 on 1 Farvardin 1404, so the month began 19 days earlier (12 Esfand 1403)."
+      }
+    },
+    {
+      "hijriYear": 1446,
+      "hijriMonth": 10,
+      "persianStart": {
+        "year": 1404,
+        "month": 1,
+        "day": 11
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "4",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1446,
+      "hijriMonth": 11,
+      "persianStart": {
+        "year": 1404,
+        "month": 2,
+        "day": 9
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "5",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1446,
+      "hijriMonth": 12,
+      "persianStart": {
+        "year": 1404,
+        "month": 3,
+        "day": 7
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "6",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 1,
+      "persianStart": {
+        "year": 1404,
+        "month": 4,
+        "day": 6
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "7",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 2,
+      "persianStart": {
+        "year": 1404,
+        "month": 5,
+        "day": 4
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "8",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 3,
+      "persianStart": {
+        "year": 1404,
+        "month": 6,
+        "day": 3
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "9",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 4,
+      "persianStart": {
+        "year": 1404,
+        "month": 7,
+        "day": 2
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "10",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 5,
+      "persianStart": {
+        "year": 1404,
+        "month": 8,
+        "day": 1
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "11",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 6,
+      "persianStart": {
+        "year": 1404,
+        "month": 9,
+        "day": 1
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "12",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 7,
+      "persianStart": {
+        "year": 1404,
+        "month": 10,
+        "day": 1
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "13",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 8,
+      "persianStart": {
+        "year": 1404,
+        "month": 11,
+        "day": 1
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "14",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 9,
+      "persianStart": {
+        "year": 1404,
+        "month": 11,
+        "day": 30
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+        "page": "14",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 10,
+      "persianStart": {
+        "year": 1405,
+        "month": 1,
+        "day": 1
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "3",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 11,
+      "persianStart": {
+        "year": 1405,
+        "month": 1,
+        "day": 30
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "3",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1447,
+      "hijriMonth": 12,
+      "persianStart": {
+        "year": 1405,
+        "month": 2,
+        "day": 28
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "4",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 1,
+      "persianStart": {
+        "year": 1405,
+        "month": 3,
+        "day": 26
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "5",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 2,
+      "persianStart": {
+        "year": 1405,
+        "month": 4,
+        "day": 25
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "6",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 3,
+      "persianStart": {
+        "year": 1405,
+        "month": 5,
+        "day": 23
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "7",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 4,
+      "persianStart": {
+        "year": 1405,
+        "month": 6,
+        "day": 22
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "8",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 5,
+      "persianStart": {
+        "year": 1405,
+        "month": 7,
+        "day": 20
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "9",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 6,
+      "persianStart": {
+        "year": 1405,
+        "month": 8,
+        "day": 20
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "10",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 7,
+      "persianStart": {
+        "year": 1405,
+        "month": 9,
+        "day": 20
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "11",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 8,
+      "persianStart": {
+        "year": 1405,
+        "month": 10,
+        "day": 20
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "12",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 9,
+      "persianStart": {
+        "year": 1405,
+        "month": 11,
+        "day": 19
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "13",
+        "retrieved": "2026-09-13"
+      }
+    },
+    {
+      "hijriYear": 1448,
+      "hijriMonth": 10,
+      "persianStart": {
+        "year": 1405,
+        "month": 12,
+        "day": 19
+      },
+      "citation": {
+        "url": "https://calendar.ut.ac.ir/Fa/",
+        "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+        "page": "14",
+        "retrieved": "2026-09-13"
+      }
+    }
+  ]
+}

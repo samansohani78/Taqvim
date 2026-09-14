@@ -7,7 +7,9 @@ package ir.taqvim.core.calendar
 /**
  * Official Iranian lunar month starts from Ramadan 1446 to Shawwal 1448, from the University of Tehran Calendar
  * Center's official calendars of 1404 and 1405 SH (docs/sources; golden fixture
- * `islamic-iran/official-month-starts-1446-1448.csv`). Extended by D-07 as further official calendars are published.
+ * `islamic-iran/official-month-starts-1446-1448.csv`). The citable record of the same months is the D-07 dataset
+ * `dataset/iran/islamic-iran-overrides.json`; `IslamicIranOverridesGoldenTest` in `:tools:dataset` keeps the two equal,
+ * so both are extended together as further official calendars are published (docs/adr/0009-iran-islamic-calendar.md).
  */
 public object IranOfficialMonthStarts {
     /** JDN of 1 Ramadan 1446 (2 March 2025). */

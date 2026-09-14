@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "months": [
+    { "hijriYear": 1500, "hijriMonth": 1, "persianStart": { "year": 1470, "month": 5, "day": 1 }, "citation": { "url": "https://example.org/synthetic", "title": "Synthetic test calendar", "page": "1", "retrieved": "2026-09-14" } },
+    { "hijriYear": 1500, "hijriMonth": 3, "persianStart": { "year": 1470, "month": 6, "day": 29 }, "citation": { "url": "https://example.org/synthetic", "title": "Synthetic test calendar", "page": "1", "retrieved": "2026-09-14" } }
+  ]
+}

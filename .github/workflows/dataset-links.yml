@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v7
       - name: Collect URLs
         run: |
-          find dataset -name '*.json' ! -name 'events.v1.json' -print0 \
+          find dataset -name '*.json' ! -name '*.v1.json' -print0 \
             | xargs -0 --no-run-if-empty jq -r '[.. | .url? // empty] + [.. | .links? // empty | .[]?] | .[]' \
             | sort -u > "$RUNNER_TEMP/urls.txt"
           echo "$(wc -l < "$RUNNER_TEMP/urls.txt") distinct URLs"

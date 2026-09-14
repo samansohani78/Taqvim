@@ -49,7 +49,13 @@ internal fun runGenerateCli(
     return GENERATED
 }
 
-/** Every `*.json` file under [directory] except [schemaFile], keyed by its relative path, in path order. */
+/** Schema files such as `events.v1.json` or `islamic-iran-overrides.v1.json`. */
+private val SCHEMA_FILE_NAME = Regex("""\.v\d+\.json$""")
+
+/**
+ * Every event dataset file under [directory], keyed by its relative path, in path order: `*.json` except [schemaFile],
+ * other schema files (`*.vN.json`) and Islamic Iran override tables (`*-overrides.json`, D-07).
+ */
 internal fun datasetFiles(
     schemaFile: File,
     directory: File,
@@ -57,5 +63,6 @@ internal fun datasetFiles(
     directory
         .walkTopDown()
         .filter { it.isFile && it.extension == "json" && it.canonicalFile != schemaFile.canonicalFile }
+        .filterNot { SCHEMA_FILE_NAME.containsMatchIn(it.name) || it.name.endsWith(OVERRIDES_SUFFIX) }
         .sortedBy { it.invariantSeparatorsPath }
         .associate { it.relativeTo(directory).invariantSeparatorsPath to it.readText() }

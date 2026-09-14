@@ -51,3 +51,18 @@ Iran (Tehran, Mashhad, Zahedan, Bandar Abbas, Shiraz) at class D or better agree
 This calibration is a fit to a small sample and does not describe the official procedure. It must be re-validated
 (and the test threshold kept) whenever further official calendars are added (DT-002); generic single-site use keeps
 class C as its default.
+
+## Addendum (2026-09-14): D-07 override table and the runtime table
+
+The official month starts are now also a citable dataset: `dataset/iran/islamic-iran-overrides.json` (schema
+`dataset/islamic-iran-overrides.v1.json`), one record per Hijri month with its Persian first day and the calendar page
+it was read from. The records were re-extracted from the Calendar Center's official calendars of 1404 and 1405 SH
+(docs/sources); Ramadan 1446 is the one derived start (the 1404 calendar prints 20 Ramadan 1446 on 1 Farvardin 1404)
+and says so in its citation.
+
+Decision: `IranOfficialMonthStarts` in `:core:calendar` stays the runtime source, because `:core` must not depend on
+data modules or generated code. The dataset is the reviewed, cited record. `IslamicIranOverridesGoldenTest` in
+`:tools:dataset` fails unless the two contain exactly the same months and starts, and checks every printed start
+against the official daily fixtures; `:tools:dataset:validate` rejects duplicate months, gaps inside the covered
+range, months other than 29 or 30 days and non-existent Persian dates. New official calendars are added to both in
+the same change. Years 1390–1403 and 1406–1410 of PLAN D-07 have no source yet (DT-002).
