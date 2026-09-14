@@ -75,6 +75,7 @@ data class UserPreferences(
                 themeMode = ThemeMode.SYSTEM,
                 hijriOffsetDays = 0,
                 hijriOffsetSetAtEpochMillis = null,
+                app = AppSettings.defaultsFor(spec.code),
             )
 
         /** The language table entry for [languageCode], or the [FALLBACK_LANGUAGE] entry. */

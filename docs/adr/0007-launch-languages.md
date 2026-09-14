@@ -79,3 +79,21 @@ applies before that.
 - Translations for these languages come through Weblate (docs/i18n/STRINGS.md); only `fa` must be complete.
 - Gaps in §2 are tracked in docs/DATA_TODO.md and asserted exactly by `LanguageTableTest`, so filling a gap must
   update that test.
+
+## Addendum (2026-09-14): default event sources
+
+Once Afghanistan's official holidays joined the dataset (D-03), the T-305/T-1500 default of "every source except
+ancient Iranian festivals" showed Afghan public holidays as holidays to every user, including in Iran. The default is
+now a product default per language, in the spirit of §3:
+
+| Default | Rule |
+|---|---|
+| Event sources | International days for every language, plus the national official holidays of the language's main country: `fa` → IRAN_OFFICIAL; `prs`, `ps` → AFGHANISTAN_OFFICIAL; `ne` → NEPAL_OFFICIAL; no national source otherwise. Ancient Iranian festivals are off for everyone (PLAN §5.1). |
+
+- A day is marked a holiday only by enabled sources (`HolidayCalendar`, T-303); personal events are unaffected.
+- `AppSettings.defaultEventSources` is the single definition, used by the first-run preferences, the stored
+  preferences, backups and `EventsSettings`.
+- The choice is explicit: `AppSettingsProto.event_sources_chosen` (field 15) is set once the user changes the sources
+  in the settings. Until then the sources follow the current language, so a language change updates them. Stores and
+  backups written before the flag ignore their stored list and take the language default; they came only from
+  development builds of the same day, so no released user choice is lost.

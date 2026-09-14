@@ -5,6 +5,7 @@
 package ir.taqvim.app.di
 
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.ui.theme.ThemeMode as UiThemeMode
 import ir.taqvim.core.ui.theme.ThemeSettings
@@ -64,6 +65,20 @@ class SettingsAdaptersTest {
         stored.prayerSettings().highLatitude shouldBe rule
         stored.toGeneralSettings().hasRecentSearches shouldBe false
         remembered.toGeneralSettings().hasRecentSearches shouldBe true
+    }
+
+    @Test
+    fun `event sources follow the language until chosen and a choice survives a language change`() {
+        val dari = persian.withGeneralSettings(persian.toGeneralSettings().copy(languageCode = "prs"))
+        dari.app.enabledEventSources shouldBe setOf(EventSource.AFGHANISTAN_OFFICIAL, EventSource.INTERNATIONAL)
+        dari.app.eventSourcesChosen shouldBe false
+
+        val international = persian.toGeneralSettings().copy(enabledEventSources = setOf(EventSource.INTERNATIONAL))
+        val chosen = persian.withGeneralSettings(international)
+        chosen.app.eventSourcesChosen shouldBe true
+        chosen
+            .withGeneralSettings(chosen.toGeneralSettings().copy(languageCode = "prs"))
+            .app.enabledEventSources shouldBe setOf(EventSource.INTERNATIONAL)
     }
 
     @Test

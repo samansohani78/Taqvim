@@ -105,6 +105,8 @@ internal data class AppSettingsRecord(
     val timeZoneBoard: List<String> = emptyList(),
     /** All-day reminder time (T-1001); absent in backups made before it existed. */
     val allDayReminderMinute: Int = AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
+    /** Whether the sources were chosen by the user; absent in older backups, whose sources follow the language. */
+    val eventSourcesChosen: Boolean = false,
 )
 
 @Serializable

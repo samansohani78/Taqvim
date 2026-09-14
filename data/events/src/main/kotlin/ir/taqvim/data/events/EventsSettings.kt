@@ -18,19 +18,14 @@ data class EventsSettings(
     val weekend: Set<Weekday>,
     /** The user's lunar Hijri correction, or `null` when none was set. */
     val hijriOffset: HijriOffset?,
-) {
-    companion object {
-        /**
-         * Sources shown while `UserPrefs` stores no choice of its own (settings arrive with T-1500): every source
-         * except ancient Iranian festivals, which docs/PLAN.md §5.1 keeps off by default.
-         */
-        val DEFAULT_ENABLED_SOURCES: Set<EventSource> = EventSource.entries.toSet() - EventSource.ANCIENT_IRAN
-    }
-}
+)
 
-/** These preferences as [EventsSettings]; an out-of-range stored Hijri offset is ignored. */
+/**
+ * These preferences as [EventsSettings]; an out-of-range stored Hijri offset is ignored. The sources default to the
+ * stored ones, which follow the language until the user chooses them (`AppSettings.defaultEventSources`, ADR-0007 §3).
+ */
 fun UserPreferences.toEventsSettings(
-    enabledSources: Set<EventSource> = EventsSettings.DEFAULT_ENABLED_SOURCES,
+    enabledSources: Set<EventSource> = app.enabledEventSources,
     homeTimeZone: TimeZone = TimeZone.currentSystemDefault(),
 ): EventsSettings =
     EventsSettings(

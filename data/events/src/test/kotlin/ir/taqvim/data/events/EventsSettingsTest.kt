@@ -20,10 +20,15 @@ class EventsSettingsTest {
     private val setAt = Instant.parse("2026-09-01T00:00:00Z")
 
     @Test
-    fun `defaults show every source except ancient Iranian festivals`() {
+    fun `defaults show the language's official holidays and the international days`() {
         val settings = persian.toEventsSettings(homeTimeZone = TimeZone.of("Asia/Tehran"))
 
-        settings.preferences.enabledSources shouldBe EventSource.entries.toSet() - EventSource.ANCIENT_IRAN
+        settings.preferences.enabledSources shouldBe setOf(EventSource.IRAN_OFFICIAL, EventSource.INTERNATIONAL)
+        UserPreferences
+            .defaultsFor("prs")
+            .toEventsSettings()
+            .preferences.enabledSources shouldBe
+            setOf(EventSource.AFGHANISTAN_OFFICIAL, EventSource.INTERNATIONAL)
         settings.preferences.islamicVariant shouldBe IslamicVariant.IRAN_OFFICIAL
         settings.preferences.homeTimeZone.id shouldBe "Asia/Tehran"
         settings.weekend shouldBe persian.weekend

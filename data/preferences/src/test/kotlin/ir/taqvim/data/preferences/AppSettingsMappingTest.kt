@@ -5,6 +5,7 @@
 package ir.taqvim.data.preferences
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.assertions.withClue
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.boolean
@@ -35,18 +36,18 @@ class AppSettingsMappingTest {
     private val offsets = Arb.int(-45..45).map { LevelOffset(it.toDouble(), -it / 2.0) }
 
     @Test
-    fun `defaults are the same for every language`() {
+    fun `defaults differ per language only in the national official source`() {
+        NATIONAL_SOURCE_BY_LANGUAGE.keys shouldBe LanguageTable.languages.map { it.code }.toSet()
         LanguageTable.languages.forEach { spec ->
-            UserPreferences.defaultsFor(spec.code).app shouldBe
-                AppSettings.DEFAULT
+            val app = UserPreferences.defaultsFor(spec.code).app
+            withClue(spec.code) {
+                app.enabledEventSources shouldBe
+                    setOfNotNull(EventSource.INTERNATIONAL, NATIONAL_SOURCE_BY_LANGUAGE.getValue(spec.code))
+                app.eventSourcesChosen shouldBe false
+                app.copy(enabledEventSources = AppSettings.DEFAULT.enabledEventSources) shouldBe AppSettings.DEFAULT
+            }
         }
-        AppSettings.DEFAULT.enabledEventSources shouldBe
-            setOf(
-                EventSource.IRAN_OFFICIAL,
-                EventSource.AFGHANISTAN_OFFICIAL,
-                EventSource.NEPAL_OFFICIAL,
-                EventSource.INTERNATIONAL,
-            )
+        AppSettings.DEFAULT.enabledEventSources shouldBe setOf(EventSource.INTERNATIONAL)
         AppSettings.DEFAULT.showWeekNumbers shouldBe false
         AppSettings.DEFAULT.dynamicColor shouldBe true
         AppSettings.DEFAULT.allDayReminderMinute shouldBe 9 * 60
@@ -66,6 +67,7 @@ class AppSettingsMappingTest {
                 offsets,
                 Arb.int(AppSettings.ALL_DAY_REMINDER_MINUTES),
             ) { flag, enabled, rule, recent, offset, minute ->
+                // Chosen sources are kept as stored; unchosen ones follow the language (tested below).
                 val app =
                     AppSettings(
                         dynamicColor = flag[0],
@@ -82,6 +84,7 @@ class AppSettingsMappingTest {
                         timeZoneBoard = listOf("Asia/Tehran", "Europe/Berlin").take(recent.size % 3),
                         levelOffsets = if (flag[0]) mapOf("FLAT" to offset, "PORTRAIT" to offset) else emptyMap(),
                         allDayReminderMinute = minute,
+                        eventSourcesChosen = true,
                     )
                 val prefs = UserPreferences.defaultsFor("fa").copy(app = app)
                 val bytes = ByteArrayOutputStream().also { UserPrefsSerializer.writeTo(prefs.toProto(), it) }
@@ -100,9 +103,60 @@ class AppSettingsMappingTest {
                 .build()
 
         older.hasAppSettings() shouldBe false
-        older.toDomain().app shouldBe AppSettings.DEFAULT
-        UserPrefs.getDefaultInstance().toDomain().app shouldBe AppSettings.DEFAULT
+        older.toDomain().app shouldBe AppSettings.defaultsFor("en")
+        UserPrefs.getDefaultInstance().toDomain().app shouldBe
+            AppSettings.defaultsFor(UserPreferences.FALLBACK_LANGUAGE)
     }
+
+    @Test
+    fun `event sources follow the language until the user chooses them`(): Unit =
+        runBlocking {
+            // A store written by T-1500 before the choice flag: its list was the old all-sources default.
+            val t1500 =
+                UserPreferences
+                    .defaultsFor("fa")
+                    .toProto()
+                    .toBuilder()
+                    .setAppSettings(
+                        AppSettings.DEFAULT
+                            .copy(enabledEventSources = OLD_T1500_DEFAULT_SOURCES)
+                            .toProto(),
+                    ).build()
+            t1500.appSettings.eventSourcesChosen shouldBe false
+            t1500.toDomain().app.enabledEventSources shouldBe
+                setOf(EventSource.IRAN_OFFICIAL, EventSource.INTERNATIONAL)
+            t1500
+                .toBuilder()
+                .setLanguageCode("prs")
+                .build()
+                .toDomain()
+                .app.enabledEventSources shouldBe setOf(EventSource.AFGHANISTAN_OFFICIAL, EventSource.INTERNATIONAL)
+
+            val persian = UserPreferences.defaultsFor("fa")
+            val chosen =
+                persian.copy(
+                    app =
+                        persian.app.copy(
+                            enabledEventSources = setOf(EventSource.AFGHANISTAN_OFFICIAL),
+                            eventSourcesChosen = true,
+                        ),
+                )
+            val bytes = ByteArrayOutputStream().also { UserPrefsSerializer.writeTo(chosen.toProto(), it) }
+            val reread = UserPrefsSerializer.readFrom(ByteArrayInputStream(bytes.toByteArray())).toDomain()
+            reread shouldBe chosen
+            reread
+                .toProto()
+                .toBuilder()
+                .setLanguageCode("ne")
+                .build()
+                .toDomain()
+                .app.enabledEventSources shouldBe setOf(EventSource.AFGHANISTAN_OFFICIAL)
+            chosen
+                .copy(app = chosen.app.copy(enabledEventSources = emptySet()))
+                .toProto()
+                .toDomain()
+                .app.enabledEventSources shouldBe emptySet()
+        }
 
     @Test
     fun `stored oddities are repaired`() {
@@ -168,5 +222,42 @@ class AppSettingsMappingTest {
             AppSettings.DEFAULT.copy(timeZoneBoard = (0..AppSettings.MAX_BOARD_ZONES).map { "Zone/$it" })
         }
         shouldThrow<IllegalArgumentException> { AppSettings.DEFAULT.copy(allDayReminderMinute = 1_440) }
+    }
+
+    private companion object {
+        /** The T-1500 default before the ADR-0007 addendum: every selectable source but ancient Iranian festivals. */
+        val OLD_T1500_DEFAULT_SOURCES: Set<EventSource> =
+            AppSettings.SELECTABLE_SOURCES.toSet() - EventSource.ANCIENT_IRAN
+
+        /** ADR-0007 §3 addendum: the national official source each launch language shows by default. */
+        val NATIONAL_SOURCE_BY_LANGUAGE: Map<String, EventSource?> =
+            mapOf(
+                "fa" to EventSource.IRAN_OFFICIAL,
+                "prs" to EventSource.AFGHANISTAN_OFFICIAL,
+                "ps" to EventSource.AFGHANISTAN_OFFICIAL,
+                "ne" to EventSource.NEPAL_OFFICIAL,
+            ) +
+                listOf(
+                    "ar",
+                    "ckb",
+                    "kmr",
+                    "az",
+                    "tr",
+                    "ur",
+                    "hi",
+                    "ta",
+                    "bn",
+                    "tg",
+                    "uz",
+                    "en",
+                    "ru",
+                    "de",
+                    "fr",
+                    "es",
+                    "id",
+                    "ms",
+                    "zh",
+                    "ja",
+                ).associateWith { null }
     }
 }

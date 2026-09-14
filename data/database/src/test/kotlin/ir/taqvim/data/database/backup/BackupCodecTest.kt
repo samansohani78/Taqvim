@@ -229,10 +229,10 @@ class BackupCodecTest {
 
         val older = JsonObject(json.getValue("preferences").jsonObject - "app")
         ready(codec.decode(json.with("preferences", older))).preferences shouldBe
-            preferences.copy(app = AppSettings.DEFAULT)
+            preferences.copy(app = AppSettings.defaultsFor("fa"))
 
         val unusable = plainReplacing("\"ANCIENT_IRAN\"", "\"USER\"")
-        ready(codec.decode(unusable)).preferences.app shouldBe AppSettings.DEFAULT
+        ready(codec.decode(unusable)).preferences.app shouldBe AppSettings.defaultsFor("fa")
 
         val device =
             preferences.copy(

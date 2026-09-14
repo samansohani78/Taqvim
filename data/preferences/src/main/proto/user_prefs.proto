@@ -201,4 +201,7 @@ message AppSettingsProto {
   repeated LevelOffsetProto level_offsets = 13;
   // Minute of the day when all-day and official-event reminders sound (T-1001, T-1002); absent means 09:00.
   optional int32 all_day_reminder_minute = 14;
+  // Whether the user chose enabled_event_sources; while false they follow the language default (ADR-0007 §3).
+  // Stores written before this field ignore their list and take the language default.
+  bool event_sources_chosen = 15;
 }

@@ -23,11 +23,8 @@ val eventsDataModule =
         }
         single {
             EventsRepository(
-                // Sources chosen in the settings (T-1500).
-                settings =
-                    get<UserPreferencesRepository>().preferences.map {
-                        it.toEventsSettings(enabledSources = it.app.enabledEventSources)
-                    },
+                // Sources chosen in the settings (T-1500) or the language default (ADR-0007 §3).
+                settings = get<UserPreferencesRepository>().preferences.map { it.toEventsSettings() },
                 inputs = EventInputs(get(), get(), get()),
                 clock = get(),
             )

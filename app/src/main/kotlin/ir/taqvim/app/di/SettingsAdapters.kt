@@ -18,6 +18,7 @@ import ir.taqvim.data.preferences.LevelOffset
 import ir.taqvim.data.preferences.ThemeMode
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.preferences.UserPreferencesRepository
+import ir.taqvim.data.preferences.withEventSourcesFor
 import ir.taqvim.feature.compass.DeviceOrientation
 import ir.taqvim.feature.compass.LevelCalibration
 import ir.taqvim.feature.compass.LevelCalibrationStore
@@ -84,9 +85,13 @@ internal fun UserPreferences.toGeneralSettings(): GeneralSettings =
         allDayReminderMinute = app.allDayReminderMinute,
     )
 
-/** These preferences with [settings] applied; turning search history off forgets the stored searches. */
-internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): UserPreferences =
-    copy(
+/**
+ * These preferences with [settings] applied; turning search history off forgets the stored searches. Event sources
+ * count as chosen once they differ from the stored ones; until then they follow the (possibly new) language.
+ */
+internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): UserPreferences {
+    val sources = settings.enabledEventSources.intersect(AppSettings.SELECTABLE_SOURCES.toSet())
+    return copy(
         languageCode = settings.languageCode,
         themeMode = ThemeMode.valueOf(settings.theme.name),
         numerals = settings.numerals,
@@ -103,7 +108,8 @@ internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): Use
                 boldText = settings.boldText,
                 gradient = settings.gradient,
                 showWeekNumbers = settings.showWeekNumbers,
-                enabledEventSources = settings.enabledEventSources.intersect(AppSettings.SELECTABLE_SOURCES.toSet()),
+                enabledEventSources = sources,
+                eventSourcesChosen = app.eventSourcesChosen || sources != app.enabledEventSources,
                 highLatitudeRule = settings.highLatitudeRule,
                 subscriptionsNetworkAllowed = settings.subscriptionsNetworkAllowed,
                 persistentNotification = settings.persistentNotification,
@@ -113,7 +119,8 @@ internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): Use
                     settings.allDayReminderMinute.takeIf { it in AppSettings.ALL_DAY_REMINDER_MINUTES }
                         ?: app.allDayReminderMinute,
             ),
-    )
+    ).let { it.copy(app = it.app.withEventSourcesFor(it.languageCode)) }
+}
 
 /** Prayer conventions of these preferences: method, Asr and the high-latitude rule chosen in the settings (T-1500). */
 internal fun UserPreferences.prayerSettings(): PrayerSettings =

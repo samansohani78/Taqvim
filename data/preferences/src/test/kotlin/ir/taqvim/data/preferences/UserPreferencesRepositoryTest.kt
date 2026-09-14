@@ -105,6 +105,7 @@ class UserPreferencesRepositoryTest {
                     showWeekNumbers = true,
                     highContrast = true,
                     enabledEventSources = setOf(EventSource.INTERNATIONAL),
+                    eventSourcesChosen = true,
                     highLatitudeRule = HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS,
                     recentSearches = listOf("نوروز"),
                     timeZoneBoard = listOf("Asia/Kabul"),

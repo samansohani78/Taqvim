@@ -23,6 +23,7 @@ import ir.taqvim.data.preferences.AthanPrayer
 import ir.taqvim.data.preferences.AthanPreferences
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.UserPreferences
+import ir.taqvim.data.preferences.withEventSourcesFor
 
 internal fun UserPreferences.toRecord(): PreferencesRecord =
     PreferencesRecord(
@@ -56,7 +57,7 @@ internal fun PreferencesRecord.toPreferences(): UserPreferences =
         hijriOffsetDays,
         hijriOffsetSetAtEpochMillis,
         place?.toPlace(),
-        app = app?.toAppSettings() ?: AppSettings.DEFAULT,
+        app = (app?.toAppSettings() ?: AppSettings.DEFAULT).withEventSourcesFor(languageCode),
         athan = athan?.toAthan() ?: AthanPreferences.DEFAULT,
     )
 
@@ -114,6 +115,7 @@ private fun AppSettings.toRecord() =
         rememberRecentSearches = rememberRecentSearches,
         timeZoneBoard = timeZoneBoard,
         allDayReminderMinute = allDayReminderMinute,
+        eventSourcesChosen = eventSourcesChosen,
     )
 
 /** The backed-up settings; values this version cannot use (e.g. personal events as a source) fall back to defaults. */
@@ -134,6 +136,7 @@ private fun AppSettingsRecord.toAppSettings(): AppSettings =
             allDayReminderMinute =
                 allDayReminderMinute.takeIf { it in AppSettings.ALL_DAY_REMINDER_MINUTES }
                     ?: AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
+            eventSourcesChosen = eventSourcesChosen,
         )
     }.getOrDefault(AppSettings.DEFAULT)
 

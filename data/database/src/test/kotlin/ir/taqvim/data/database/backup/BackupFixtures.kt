@@ -51,6 +51,7 @@ internal object BackupFixtures {
                 AppSettings.DEFAULT.copy(
                     showWeekNumbers = true,
                     enabledEventSources = setOf(EventSource.IRAN_OFFICIAL, EventSource.ANCIENT_IRAN),
+                    eventSourcesChosen = true,
                     highLatitudeRule = HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS,
                     subscriptionsNetworkAllowed = false,
                     timeZoneBoard = listOf("Asia/Kabul", "Europe/Berlin"),

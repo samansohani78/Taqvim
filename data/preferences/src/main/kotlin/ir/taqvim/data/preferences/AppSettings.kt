@@ -53,6 +53,11 @@ data class AppSettings(
     val levelOffsets: Map<String, LevelOffset>,
     /** When reminders of all-day events and official events sound (T-1001, T-1002), in minutes after midnight. */
     val allDayReminderMinute: Int = DEFAULT_ALL_DAY_REMINDER_MINUTE,
+    /**
+     * Whether the user chose [enabledEventSources] in the settings. Until then the sources follow the language
+     * default ([defaultEventSources], ADR-0007 §3 addendum) and change with the language.
+     */
+    val eventSourcesChosen: Boolean = false,
 ) {
     init {
         require(allDayReminderMinute in ALL_DAY_REMINDER_MINUTES) { "all-day reminder time must be within 0..1439" }
@@ -74,11 +79,32 @@ data class AppSettings(
         /** Dataset sources a user can turn on or off. */
         val SELECTABLE_SOURCES: List<EventSource> = EventSource.entries - EventSource.USER
 
+        /** The national official source shown by default to each language's users (ADR-0007 §3 addendum). */
+        private val NATIONAL_SOURCES: Map<String, EventSource> =
+            mapOf(
+                "fa" to EventSource.IRAN_OFFICIAL,
+                "prs" to EventSource.AFGHANISTAN_OFFICIAL,
+                "ps" to EventSource.AFGHANISTAN_OFFICIAL,
+                "ne" to EventSource.NEPAL_OFFICIAL,
+            )
+
         /**
-         * Product defaults, the same for every language: dynamic color on, every dataset source except the ancient
-         * Iranian festivals (docs/PLAN.md §5.1, off by default), the prayer library's angle-based high-latitude rule,
-         * subscriptions not allowed to use the network until the user turns it on (docs/PLAN.md T-1804), no
-         * persistent notification and search history remembered.
+         * Dataset sources shown by default to [languageCode]'s users: the international days, plus the national
+         * official holidays of `fa` (Iran), `prs`/`ps` (Afghanistan) and `ne` (Nepal). Ancient Iranian festivals are
+         * off for everyone (docs/PLAN.md §5.1).
+         */
+        fun defaultEventSources(languageCode: String): Set<EventSource> =
+            setOfNotNull(EventSource.INTERNATIONAL, NATIONAL_SOURCES[languageCode])
+
+        /** First-run app settings of [languageCode]: [DEFAULT] with that language's [defaultEventSources]. */
+        fun defaultsFor(languageCode: String): AppSettings =
+            DEFAULT.copy(enabledEventSources = defaultEventSources(languageCode))
+
+        /**
+         * Product defaults apart from the language-dependent event sources ([defaultsFor]): dynamic color on, only
+         * the international days, the prayer library's angle-based high-latitude rule, subscriptions not allowed to
+         * use the network until the user turns it on (docs/PLAN.md T-1804), no persistent notification and search
+         * history remembered.
          */
         val DEFAULT: AppSettings =
             AppSettings(
@@ -87,7 +113,7 @@ data class AppSettings(
                 boldText = false,
                 gradient = false,
                 showWeekNumbers = false,
-                enabledEventSources = (SELECTABLE_SOURCES - EventSource.ANCIENT_IRAN).toSet(),
+                enabledEventSources = setOf(EventSource.INTERNATIONAL),
                 highLatitudeRule = HighLatitudeRule.ANGLE_BASED,
                 subscriptionsNetworkAllowed = false,
                 persistentNotification = false,
@@ -98,6 +124,10 @@ data class AppSettings(
             )
     }
 }
+
+/** These settings with the event sources of [languageCode] unless the user chose them. */
+fun AppSettings.withEventSourcesFor(languageCode: String): AppSettings =
+    if (eventSourcesChosen) this else copy(enabledEventSources = AppSettings.defaultEventSources(languageCode))
 
 private const val SOURCE = "EVENT_SOURCE_"
 private const val RULE = "HIGH_LATITUDE_RULE_"
@@ -142,6 +172,7 @@ internal fun AppSettingsProto.toDomain(): AppSettings =
         allDayReminderMinute =
             allDayReminderMinute.takeIf { hasAllDayReminderMinute() && it in AppSettings.ALL_DAY_REMINDER_MINUTES }
                 ?: AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
+        eventSourcesChosen = eventSourcesChosen,
     )
 
 internal fun AppSettings.toProto(): AppSettingsProto =
@@ -172,4 +203,5 @@ internal fun AppSettings.toProto(): AppSettingsProto =
                     .build()
             },
         ).setAllDayReminderMinute(allDayReminderMinute)
+        .setEventSourcesChosen(eventSourcesChosen)
         .build()
