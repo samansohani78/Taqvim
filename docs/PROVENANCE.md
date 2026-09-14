@@ -281,6 +281,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1205 … T-1209 — Month, month picture, week strip, schedule and sun arc widgets
+- **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/` — `CalendarWidgets.kt`,
+  `DrawnWidgets.kt`, `WidgetCalendarBuilder.kt`, `WidgetCalendarModels.kt`, `WidgetMonthNavigation.kt`;
+  `app/.../di/WidgetCalendarParts.kt`, `app/.../navigation/DeepLinks.kt` (`event/new`)
+- **Tasks:** T-1205, T-1206, T-1207, T-1208, T-1209
+- **References used (public only):** Jetpack Glance 1.2.0 (Apache-2.0) `ActionCallback`, `actionRunCallback`,
+  `ActionParameters`, `LazyColumn`, `Image`/`ImageProvider(Bitmap)`, glance-appwidget-testing matchers; Android
+  `SharedPreferences`; T-702 painters; A-10 prayer times (sunrise/sunset); CLDR names via `:core:i18n`.
+- **Implementation note:** own work; six-week grid, one-letter weekday heads, 14-day schedule and control set are
+  product choices; test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1201 … T-1204 — Date, clock, day summary and prayer strip widgets
 - **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/` — `DateWidgets.kt`, `DayWidgets.kt`,
   `WidgetCatalog.kt`, `WidgetContentBuilder.kt`; `data/preferences/.../WidgetConfigRepository.kt` +
