@@ -6,6 +6,9 @@ plugins {
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.i18n)
+    // T-1500: enabled event sources and the high-latitude rule are stored as their core types.
+    api(projects.core.events)
+    api(projects.core.praytimes)
     api(libs.androidx.datastore)
     api(libs.protobuf.kotlin.lite)
 

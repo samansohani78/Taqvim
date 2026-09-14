@@ -13,6 +13,7 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
@@ -57,6 +58,27 @@ internal data class PreferencesRecord(
     val hijriOffsetSetAtEpochMillis: Long? = null,
     /** The chosen place (T-1502); absent in backups made before it existed. */
     val place: PlaceRecord? = null,
+    /** Settings of the settings screens (T-1500); absent in backups made before them. */
+    val app: AppSettingsRecord? = null,
+)
+
+/**
+ * The backed-up [ir.taqvim.data.preferences.AppSettings]. Recent searches and level calibration stay on the device
+ * they belong to and are not written.
+ */
+@Serializable
+internal data class AppSettingsRecord(
+    val dynamicColor: Boolean,
+    val highContrast: Boolean,
+    val boldText: Boolean,
+    val gradient: Boolean,
+    val showWeekNumbers: Boolean,
+    val enabledEventSources: Set<EventSource>,
+    val highLatitudeRule: HighLatitudeRule,
+    val subscriptionsNetworkAllowed: Boolean,
+    val persistentNotification: Boolean,
+    val rememberRecentSearches: Boolean,
+    val timeZoneBoard: List<String> = emptyList(),
 )
 
 @Serializable

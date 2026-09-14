@@ -1,0 +1,161 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+package ir.taqvim.data.preferences
+
+import ir.taqvim.core.events.EventSource
+import ir.taqvim.core.praytimes.HighLatitudeRule
+import ir.taqvim.data.preferences.proto.AppSettingsProto
+import ir.taqvim.data.preferences.proto.EventSourceProto
+import ir.taqvim.data.preferences.proto.HighLatitudeRuleProto
+import ir.taqvim.data.preferences.proto.LevelOffsetProto
+
+/** Bubble level calibration of one device orientation (T-1303), in degrees. */
+data class LevelOffset(
+    val pitchDegrees: Double,
+    val rollDegrees: Double,
+) {
+    init {
+        require(pitchDegrees.isFinite() && rollDegrees.isFinite()) { "level offsets must be finite" }
+        require(pitchDegrees in OFFSET_RANGE && rollDegrees in OFFSET_RANGE) { "level offsets must be within ±45°" }
+    }
+
+    companion object {
+        /** Allowed calibration offset, in degrees. */
+        val OFFSET_RANGE: ClosedFloatingPointRange<Double> = -45.0..45.0
+    }
+}
+
+/**
+ * Settings of the settings screens (T-1500) that are not part of the older preference fields: appearance extras,
+ * calendar display, event sources, the high-latitude rule, notifications, search history and tool state.
+ */
+data class AppSettings(
+    val dynamicColor: Boolean,
+    val highContrast: Boolean,
+    val boldText: Boolean,
+    val gradient: Boolean,
+    val showWeekNumbers: Boolean,
+    /** Dataset sources shown in the calendar; personal events ([EventSource.USER]) are always shown. */
+    val enabledEventSources: Set<EventSource>,
+    val highLatitudeRule: HighLatitudeRule,
+    /** Whether calendar subscriptions (T-1003) may refresh over the network. */
+    val subscriptionsNetworkAllowed: Boolean,
+    /** Whether the persistent date notification (T-1213) is shown. */
+    val persistentNotification: Boolean,
+    val rememberRecentSearches: Boolean,
+    /** Recent search queries, newest first (T-804); kept on this device only. */
+    val recentSearches: List<String>,
+    /** IANA zone ids on the time zone board (T-1400), in display order. */
+    val timeZoneBoard: List<String>,
+    /** Level calibration per orientation name (T-1303); kept on this device only. */
+    val levelOffsets: Map<String, LevelOffset>,
+) {
+    init {
+        require(EventSource.USER !in enabledEventSources) { "personal events are not a selectable source" }
+        require(recentSearches.size <= MAX_RECENT_SEARCHES) { "at most $MAX_RECENT_SEARCHES recent searches" }
+        require(timeZoneBoard.size <= MAX_BOARD_ZONES) { "at most $MAX_BOARD_ZONES board zones" }
+    }
+
+    companion object {
+        const val MAX_RECENT_SEARCHES: Int = 10
+        const val MAX_BOARD_ZONES: Int = 24
+
+        /** Dataset sources a user can turn on or off. */
+        val SELECTABLE_SOURCES: List<EventSource> = EventSource.entries - EventSource.USER
+
+        /**
+         * Product defaults, the same for every language: dynamic color on, every dataset source except the ancient
+         * Iranian festivals (docs/PLAN.md §5.1, off by default), the prayer library's angle-based high-latitude rule,
+         * subscriptions allowed to refresh, no persistent notification and search history remembered.
+         */
+        val DEFAULT: AppSettings =
+            AppSettings(
+                dynamicColor = true,
+                highContrast = false,
+                boldText = false,
+                gradient = false,
+                showWeekNumbers = false,
+                enabledEventSources = (SELECTABLE_SOURCES - EventSource.ANCIENT_IRAN).toSet(),
+                highLatitudeRule = HighLatitudeRule.ANGLE_BASED,
+                subscriptionsNetworkAllowed = true,
+                persistentNotification = false,
+                rememberRecentSearches = true,
+                recentSearches = emptyList(),
+                timeZoneBoard = emptyList(),
+                levelOffsets = emptyMap(),
+            )
+    }
+}
+
+private const val SOURCE = "EVENT_SOURCE_"
+private const val RULE = "HIGH_LATITUDE_RULE_"
+
+/** Trimmed, non-blank, distinct values in order, at most [limit]. */
+private fun List<String>.cleaned(limit: Int): List<String> =
+    map(String::trim).filter(String::isNotEmpty).distinct().take(limit)
+
+/**
+ * The stored app settings. Unknown enum values are dropped (an unknown rule reads as the default); lists are
+ * trimmed, de-duplicated and capped; unusable level offsets are ignored and out-of-range ones clamped.
+ */
+internal fun AppSettingsProto.toDomain(): AppSettings =
+    AppSettings(
+        dynamicColor = dynamicColor,
+        highContrast = highContrast,
+        boldText = boldText,
+        gradient = gradient,
+        showWeekNumbers = showWeekNumbers,
+        enabledEventSources =
+            enabledEventSourcesList
+                .mapNotNull { stored -> AppSettings.SELECTABLE_SOURCES.firstOrNull { SOURCE + it.name == stored.name } }
+                .toSet(),
+        highLatitudeRule =
+            HighLatitudeRule.entries.firstOrNull { RULE + it.name == highLatitudeRule.name }
+                ?: AppSettings.DEFAULT.highLatitudeRule,
+        subscriptionsNetworkAllowed = subscriptionsNetworkAllowed,
+        persistentNotification = persistentNotification,
+        rememberRecentSearches = rememberRecentSearches,
+        recentSearches = recentSearchesList.cleaned(AppSettings.MAX_RECENT_SEARCHES),
+        timeZoneBoard = timeZoneBoardList.cleaned(AppSettings.MAX_BOARD_ZONES),
+        levelOffsets =
+            levelOffsetsList
+                .filter { it.orientation.isNotBlank() && it.pitchDegrees.isFinite() && it.rollDegrees.isFinite() }
+                .associate { stored ->
+                    stored.orientation.trim() to
+                        LevelOffset(
+                            stored.pitchDegrees.coerceIn(LevelOffset.OFFSET_RANGE),
+                            stored.rollDegrees.coerceIn(LevelOffset.OFFSET_RANGE),
+                        )
+                },
+    )
+
+internal fun AppSettings.toProto(): AppSettingsProto =
+    AppSettingsProto
+        .newBuilder()
+        .setDynamicColor(dynamicColor)
+        .setHighContrast(highContrast)
+        .setBoldText(boldText)
+        .setGradient(gradient)
+        .setShowWeekNumbers(showWeekNumbers)
+        .addAllEnabledEventSources(
+            AppSettings.SELECTABLE_SOURCES.filter { it in enabledEventSources }.map {
+                EventSourceProto.valueOf(SOURCE + it.name)
+            },
+        ).setHighLatitudeRule(HighLatitudeRuleProto.valueOf(RULE + highLatitudeRule.name))
+        .setSubscriptionsNetworkAllowed(subscriptionsNetworkAllowed)
+        .setPersistentNotification(persistentNotification)
+        .setRememberRecentSearches(rememberRecentSearches)
+        .addAllRecentSearches(recentSearches)
+        .addAllTimeZoneBoard(timeZoneBoard)
+        .addAllLevelOffsets(
+            levelOffsets.entries.sortedBy { it.key }.map { (orientation, offset) ->
+                LevelOffsetProto
+                    .newBuilder()
+                    .setOrientation(orientation)
+                    .setPitchDegrees(offset.pitchDegrees)
+                    .setRollDegrees(offset.rollDegrees)
+                    .build()
+            },
+        ).build()

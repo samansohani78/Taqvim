@@ -43,7 +43,7 @@ class BackupService(
     suspend fun restore(backup: RestorableBackup): RestoreResult =
         runCatching {
             database.backupDao().replaceAll(backup.data)
-            preferences.update { backup.preferences }
+            preferences.update { current -> backup.preferences.keepingDeviceOnlyValuesOf(current) }
         }.fold(
             onSuccess = { RestoreResult.Restored(backup.preview.rowCounts) },
             onFailure = { error ->

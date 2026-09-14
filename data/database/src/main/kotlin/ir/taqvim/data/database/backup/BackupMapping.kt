@@ -16,6 +16,7 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ShiftRotationEntity
 import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileEntity
+import ir.taqvim.data.preferences.AppSettings
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.UserPreferences
 
@@ -33,6 +34,7 @@ internal fun UserPreferences.toRecord(): PreferencesRecord =
         hijriOffsetDays,
         hijriOffsetSetAtEpochMillis,
         place?.toRecord(),
+        app.toRecord(),
     )
 
 internal fun PreferencesRecord.toPreferences(): UserPreferences =
@@ -49,7 +51,48 @@ internal fun PreferencesRecord.toPreferences(): UserPreferences =
         hijriOffsetDays,
         hijriOffsetSetAtEpochMillis,
         place?.toPlace(),
+        app = app?.toAppSettings() ?: AppSettings.DEFAULT,
     )
+
+/**
+ * These restored preferences with the device-only values of [current] kept: recent searches and level calibration are
+ * never written to a backup, so a restore must not erase them.
+ */
+internal fun UserPreferences.keepingDeviceOnlyValuesOf(current: UserPreferences): UserPreferences =
+    copy(app = app.copy(recentSearches = current.app.recentSearches, levelOffsets = current.app.levelOffsets))
+
+private fun AppSettings.toRecord() =
+    AppSettingsRecord(
+        dynamicColor = dynamicColor,
+        highContrast = highContrast,
+        boldText = boldText,
+        gradient = gradient,
+        showWeekNumbers = showWeekNumbers,
+        enabledEventSources = enabledEventSources,
+        highLatitudeRule = highLatitudeRule,
+        subscriptionsNetworkAllowed = subscriptionsNetworkAllowed,
+        persistentNotification = persistentNotification,
+        rememberRecentSearches = rememberRecentSearches,
+        timeZoneBoard = timeZoneBoard,
+    )
+
+/** The backed-up settings; values this version cannot use (e.g. personal events as a source) fall back to defaults. */
+private fun AppSettingsRecord.toAppSettings(): AppSettings =
+    runCatching {
+        AppSettings.DEFAULT.copy(
+            dynamicColor = dynamicColor,
+            highContrast = highContrast,
+            boldText = boldText,
+            gradient = gradient,
+            showWeekNumbers = showWeekNumbers,
+            enabledEventSources = enabledEventSources,
+            highLatitudeRule = highLatitudeRule,
+            subscriptionsNetworkAllowed = subscriptionsNetworkAllowed,
+            persistentNotification = persistentNotification,
+            rememberRecentSearches = rememberRecentSearches,
+            timeZoneBoard = timeZoneBoard,
+        )
+    }.getOrDefault(AppSettings.DEFAULT)
 
 private fun ChosenPlace.toRecord() =
     PlaceRecord(source, cityId, name, coordinates.latitude, coordinates.longitude, zoneId)

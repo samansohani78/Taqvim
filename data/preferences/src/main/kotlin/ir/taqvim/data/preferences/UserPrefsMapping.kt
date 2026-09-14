@@ -55,6 +55,7 @@ fun UserPrefs.toDomain(): UserPreferences {
         hijriOffsetSetAtEpochMillis = hijriOffsetSetAtEpochMillis.takeIf { it != 0L },
         place = if (hasPlace()) place.toDomainOrNull() else null,
         athan = if (hasAthan()) athan.toDomain() else AthanPreferences.DEFAULT,
+        app = if (hasAppSettings()) appSettings.toDomain() else AppSettings.DEFAULT,
     )
 }
 
@@ -76,4 +77,5 @@ fun UserPreferences.toProto(schemaVersion: Int = UserPrefsMigration.CURRENT_SCHE
         .setHijriOffsetSetAtEpochMillis(hijriOffsetSetAtEpochMillis ?: 0L)
         .apply { this@toProto.place?.let { setPlace(it.toProto()) } }
         .setAthan(athan.toProto())
+        .setAppSettings(app.toProto())
         .build()

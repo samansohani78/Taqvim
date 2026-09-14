@@ -8,8 +8,10 @@ import android.content.Context
 import androidx.datastore.dataStoreFile
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.PrayerMethod
+import ir.taqvim.core.praytimes.HighLatitudeRule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -93,5 +95,25 @@ class UserPreferencesRepositoryTest {
             val reopened = withRepository("fa") { it.preferences.first() }
 
             assertEquals(place, reopened.place)
+        }
+
+    @Test
+    fun appSettingsPersistAcrossStoreInstances(): Unit =
+        runBlocking {
+            val app =
+                AppSettings.DEFAULT.copy(
+                    showWeekNumbers = true,
+                    highContrast = true,
+                    enabledEventSources = setOf(EventSource.INTERNATIONAL),
+                    highLatitudeRule = HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS,
+                    recentSearches = listOf("نوروز"),
+                    timeZoneBoard = listOf("Asia/Kabul"),
+                    levelOffsets = mapOf("FLAT" to LevelOffset(1.5, -0.5)),
+                )
+            withRepository("fa") { repository -> repository.update { it.copy(app = app) } }
+
+            val reopened = withRepository("fa") { it.preferences.first() }
+
+            assertEquals(app, reopened.app)
         }
 }

@@ -13,6 +13,7 @@ import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.data.database.EventRecurrenceEntity
@@ -23,6 +24,7 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ShiftRotationEntity
 import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileEntity
+import ir.taqvim.data.preferences.AppSettings
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
@@ -41,6 +43,14 @@ internal object BackupFixtures {
             hijriOffsetDays = -1,
             hijriOffsetSetAtEpochMillis = 1_788_000_000_000,
             place = ChosenPlace(PlaceSource.CITY, 112_931, "تهران", Coordinates(35.6892, 51.389), "Asia/Tehran"),
+            app =
+                AppSettings.DEFAULT.copy(
+                    showWeekNumbers = true,
+                    enabledEventSources = setOf(EventSource.IRAN_OFFICIAL, EventSource.ANCIENT_IRAN),
+                    highLatitudeRule = HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS,
+                    subscriptionsNetworkAllowed = false,
+                    timeZoneBoard = listOf("Asia/Kabul", "Europe/Berlin"),
+                ),
         )
 
     val data =

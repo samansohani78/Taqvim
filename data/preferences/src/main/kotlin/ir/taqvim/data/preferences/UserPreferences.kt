@@ -38,6 +38,8 @@ data class UserPreferences(
     val place: ChosenPlace? = null,
     /** Athan settings (T-1101). */
     val athan: AthanPreferences = AthanPreferences.DEFAULT,
+    /** Settings of the settings screens (T-1500). */
+    val app: AppSettings = AppSettings.DEFAULT,
 ) {
     companion object {
         /** Language used when the device language is not one of the launch languages. */

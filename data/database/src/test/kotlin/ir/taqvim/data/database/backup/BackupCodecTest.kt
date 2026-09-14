@@ -17,6 +17,8 @@ import io.kotest.property.checkAll
 import ir.taqvim.data.database.backup.BackupFixtures.data
 import ir.taqvim.data.database.backup.BackupFixtures.metadata
 import ir.taqvim.data.database.backup.BackupFixtures.preferences
+import ir.taqvim.data.preferences.AppSettings
+import ir.taqvim.data.preferences.LevelOffset
 import java.security.SecureRandom
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
@@ -207,6 +209,39 @@ class BackupCodecTest {
 
         val unusable = plainReplacing("\"zoneId\":\"Asia/Tehran\"", "\"zoneId\":\"Mars/Olympus_Mons\"")
         ready(codec.decode(unusable)).preferences shouldBe preferences.copy(place = null)
+    }
+
+    @Test
+    fun `settings-screen values round-trip, device-only values stay on the device and older documents use defaults`() {
+        ready(codec.decode(plain())).preferences.app shouldBe preferences.app
+
+        val json = jsonOf(plain())
+        val written =
+            json
+                .getValue("preferences")
+                .jsonObject
+                .getValue("app")
+                .jsonObject
+        written.keys.contains("recentSearches") shouldBe false
+        written.keys.contains("levelOffsets") shouldBe false
+
+        val older = JsonObject(json.getValue("preferences").jsonObject - "app")
+        ready(codec.decode(json.with("preferences", older))).preferences shouldBe
+            preferences.copy(app = AppSettings.DEFAULT)
+
+        val unusable = plainReplacing("\"ANCIENT_IRAN\"", "\"USER\"")
+        ready(codec.decode(unusable)).preferences.app shouldBe AppSettings.DEFAULT
+
+        val device =
+            preferences.copy(
+                app =
+                    preferences.app.copy(
+                        recentSearches = listOf("نوروز"),
+                        levelOffsets = mapOf("FLAT" to LevelOffset(1.0, -2.0)),
+                    ),
+            )
+        val restored = ready(codec.decode(plain())).preferences.keepingDeviceOnlyValuesOf(device)
+        restored.app shouldBe device.app
     }
 
     @Test

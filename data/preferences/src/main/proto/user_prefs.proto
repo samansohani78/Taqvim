@@ -148,4 +148,55 @@ message UserPrefs {
   ChosenPlaceProto place = 13;
   // Athan settings (T-1101); an optional field, so stores written before it read as the athan defaults.
   AthanSettingsProto athan = 14;
+  // Appearance, calendar display, events, prayer, notification, search and tool settings (T-1500); an optional field,
+  // so stores written before it read as the app settings defaults.
+  AppSettingsProto app_settings = 15;
+}
+
+enum EventSourceProto {
+  EVENT_SOURCE_UNSPECIFIED = 0;
+  EVENT_SOURCE_IRAN_OFFICIAL = 1;
+  EVENT_SOURCE_AFGHANISTAN_OFFICIAL = 2;
+  EVENT_SOURCE_NEPAL_OFFICIAL = 3;
+  EVENT_SOURCE_INTERNATIONAL = 4;
+  EVENT_SOURCE_ANCIENT_IRAN = 5;
+}
+
+enum HighLatitudeRuleProto {
+  HIGH_LATITUDE_RULE_UNSPECIFIED = 0;
+  HIGH_LATITUDE_RULE_NONE = 1;
+  HIGH_LATITUDE_RULE_MIDDLE_OF_NIGHT = 2;
+  HIGH_LATITUDE_RULE_ONE_SEVENTH = 3;
+  HIGH_LATITUDE_RULE_ANGLE_BASED = 4;
+  HIGH_LATITUDE_RULE_GEOPHYSICS_WHITE_NIGHTS = 5;
+}
+
+// Bubble level calibration of one device orientation (T-1303), in degrees.
+message LevelOffsetProto {
+  // Orientation name as used by the level (e.g. FLAT, PORTRAIT, LANDSCAPE).
+  string orientation = 1;
+  double pitch_degrees = 2;
+  double roll_degrees = 3;
+}
+
+// Settings screens (T-1500). Every field is explicit once the message is present.
+message AppSettingsProto {
+  bool dynamic_color = 1;
+  bool high_contrast = 2;
+  bool bold_text = 3;
+  bool gradient = 4;
+  bool show_week_numbers = 5;
+  // Event sources shown in the calendar; personal events are always shown.
+  repeated EventSourceProto enabled_event_sources = 6;
+  HighLatitudeRuleProto high_latitude_rule = 7;
+  // Whether calendar subscriptions (T-1003) may refresh over the network.
+  bool subscriptions_network_allowed = 8;
+  // Whether the persistent date notification (T-1213) is shown.
+  bool persistent_notification = 9;
+  bool remember_recent_searches = 10;
+  // Newest first (T-804).
+  repeated string recent_searches = 11;
+  // IANA zone ids on the time zone board (T-1400), in display order.
+  repeated string time_zone_board = 12;
+  repeated LevelOffsetProto level_offsets = 13;
 }
