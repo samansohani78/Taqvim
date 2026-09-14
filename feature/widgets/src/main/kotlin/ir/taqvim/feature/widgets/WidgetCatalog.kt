@@ -52,6 +52,21 @@ class SunArcWidgetReceiver : TaqvimWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = SunArcWidget()
 }
 
+/** Launcher receiver of [MoonWidget] (T-1210). */
+class MoonWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = MoonWidget()
+}
+
+/** Launcher receiver of [MapWidget] (T-1211). */
+class MapWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = MapWidget()
+}
+
+/** Launcher receiver of [CountdownWidget] (T-1212). */
+class CountdownWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = CountdownWidget()
+}
+
 /** The widgets implemented so far, registered with the framework by `widgetsFeatureModule`. */
 object WidgetCatalog {
     val registrations: List<WidgetRegistration> =
@@ -101,6 +116,17 @@ object WidgetCatalog {
                 SunArcWidgetReceiver::class.java,
                 SunArcWidget::class.java,
             ) { SunArcWidget() },
+            WidgetRegistration(
+                WidgetKind.MOON,
+                MoonWidgetReceiver::class.java,
+                MoonWidget::class.java,
+            ) { MoonWidget() },
+            WidgetRegistration(WidgetKind.MAP, MapWidgetReceiver::class.java, MapWidget::class.java) { MapWidget() },
+            WidgetRegistration(
+                WidgetKind.COUNTDOWN,
+                CountdownWidgetReceiver::class.java,
+                CountdownWidget::class.java,
+            ) { CountdownWidget() },
         )
 }
 

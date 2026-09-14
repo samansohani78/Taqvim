@@ -8,6 +8,8 @@ dependencies {
     // T-1201…T-1204: localized dates and the prayer strip.
     implementation(projects.core.i18n)
     implementation(projects.core.praytimes)
+    // T-1210: the Moon's phase and the next full and new moon.
+    implementation(projects.core.astronomy)
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
     implementation(libs.androidx.activity.compose)

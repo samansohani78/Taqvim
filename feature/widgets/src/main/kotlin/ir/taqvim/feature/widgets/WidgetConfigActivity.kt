@@ -32,7 +32,8 @@ import org.koin.dsl.module
 
 /**
  * Koin bindings of the widget framework and its widgets ([WidgetCatalog]). `:app` provides `Context`,
- * `kotlin.time.Clock`, [WidgetDataSource], [WidgetConfigStore], [WidgetTimelineSource] and [WidgetCalendarsSource].
+ * `kotlin.time.Clock`, [WidgetDataSource], [WidgetConfigStore], [WidgetTimelineSource] and [WidgetCalendarsSource],
+ * and optionally [WidgetCountdownSource] (without it the countdown widget's date cannot be chosen).
  */
 val widgetsFeatureModule: Module =
     module {
@@ -45,7 +46,7 @@ val widgetsFeatureModule: Module =
         single { WidgetRefresher(get(), get(), get(), get(), get(), get(), views = get()) }
         single { WidgetStateLoader(get(), get(), get(), views = get()) }
         viewModel { (appWidgetId: Int, kind: WidgetKind) ->
-            WidgetConfigViewModel(appWidgetId, kind, get(), get(), get())
+            WidgetConfigViewModel(appWidgetId, kind, get(), get(), get(), getOrNull())
         }
     }
 
@@ -107,6 +108,16 @@ fun WidgetConfigRoute(
                 onSecondaryCalendar = viewModel::onSecondaryCalendar,
                 onSave = viewModel::onSave,
                 onCancel = onCancel,
+                countdown =
+                    WidgetCountdownActions(
+                        onMode = viewModel::onCountdownMode,
+                        onTitle = viewModel::onCountdownTitle,
+                        onCalendar = viewModel::onCountdownCalendar,
+                        onDate = viewModel::onCountdownDate,
+                        onRepeats = viewModel::onCountdownRepeats,
+                        onOccasion = viewModel::onCountdownOccasion,
+                        daysInMonth = viewModel::countdownDaysInMonth,
+                    ),
             )
         }
     WidgetConfigScreen(state, actions, modifier)

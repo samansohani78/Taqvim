@@ -24,6 +24,10 @@ import androidx.glance.text.Text
 import ir.taqvim.core.ui.component.DayCellModel
 import ir.taqvim.core.ui.component.MonthGridModel
 import ir.taqvim.core.ui.component.SunArcModel
+import ir.taqvim.core.ui.painter.MapShade
+import ir.taqvim.core.ui.painter.MapShape
+import ir.taqvim.core.ui.painter.MapThumbnailModel
+import ir.taqvim.core.ui.painter.MoonBitmapModel
 import kotlin.math.max
 
 /** T-1206: the month drawn as one picture by the T-702 month painter; tapping opens today in the app. */
@@ -72,8 +76,10 @@ class SunArcWidget : TaqvimGlanceWidget(WidgetKind.SUN_ARC) {
         val openTimes = actionStartActivity(WidgetLinks.intent(context, WidgetClickTarget.PrayerTimes))
         val sun = data.sun
         if (sun == null) {
+            // With a place chosen, a missing Sun path means a polar day or night there, not a missing place.
+            val message = if (data.daylightUnavailable) R.string.widget_no_daylight else R.string.widget_no_place
             Text(
-                text = context.getString(R.string.widget_no_place),
+                text = context.getString(message),
                 modifier = GlanceModifier.clickable(openTimes),
                 style = style.text(SMALL_SP),
                 maxLines = MESSAGE_LINES,
@@ -135,6 +141,18 @@ object WidgetDrawings {
         sun: WidgetSun,
         description: String,
     ): SunArcModel = SunArcModel(sun.progress, sun.sunrise, sun.sunset, description)
+
+    /** The Moon painter's model of [moon] (T-1210). */
+    fun moonModel(moon: WidgetMoon): MoonBitmapModel =
+        MoonBitmapModel(moon.illuminatedFraction, moon.waxing, moon.rotationDegrees)
+
+    /** The map painter's model of [map] (T-1211): land as filled rings, the night shade and the place marker. */
+    fun mapModel(map: WidgetMap): MapThumbnailModel =
+        MapThumbnailModel(
+            shapes = map.land.filter { it.size >= 2 }.map { MapShape(it, closed = true) },
+            marker = map.marker,
+            shade = map.shade?.let { MapShade(it.columns, it.rows, it.darkness) },
+        )
 
     /** The bitmap size in pixels for a widget of [size] (dp) at [density], leaving [reservedHeightDp] for text. */
     fun pixels(

@@ -27,6 +27,12 @@ sealed interface WidgetClickTarget {
     data class NewEvent(
         val date: LocalDate,
     ) : WidgetClickTarget
+
+    /** The astronomy screen (T-1210). */
+    data object Astronomy : WidgetClickTarget
+
+    /** The world map (T-1211). */
+    data object WorldMap : WidgetClickTarget
 }
 
 /**
@@ -38,8 +44,8 @@ object WidgetLinks {
 
     /**
      * The link of [target]: `calendar` (today), `day/<y-m-d>?calendar=gregorian` (widget days are Gregorian dates),
-     * `event/<id>` (a personal event in the editor), `event/new/<y-m-d>?calendar=gregorian` (a new event on that day)
-     * or `times`.
+     * `event/<id>` (a personal event in the editor), `event/new/<y-m-d>?calendar=gregorian` (a new event on that day),
+     * `times`, `astronomy` or `map`.
      */
     fun uri(target: WidgetClickTarget): String =
         when (target) {
@@ -48,6 +54,8 @@ object WidgetLinks {
             is WidgetClickTarget.Day -> "$SCHEME://day/${target.date}?calendar=gregorian"
             is WidgetClickTarget.Event -> "$SCHEME://event/${target.id}"
             WidgetClickTarget.PrayerTimes -> "$SCHEME://times"
+            WidgetClickTarget.Astronomy -> "$SCHEME://astronomy"
+            WidgetClickTarget.WorldMap -> "$SCHEME://map"
         }
 
     /** An `ACTION_VIEW` intent for [target] limited to this app's package, starting it in a new task. */

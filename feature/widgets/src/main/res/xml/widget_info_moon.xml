@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Launcher metadata of the moon widget (T-1210); Glance draws the content, so no update period is needed. -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:configure="ir.taqvim.feature.widgets.WidgetConfigActivity"
+  android:description="@string/widget_moon_description"
+  android:initialLayout="@layout/glance_default_loading_layout"
+  android:minWidth="110dp"
+  android:minHeight="110dp"
+  android:minResizeWidth="40dp"
+  android:minResizeHeight="40dp"
+  android:resizeMode="horizontal|vertical"
+  android:targetCellWidth="2"
+  android:targetCellHeight="2"
+  android:updatePeriodMillis="0"
+  android:widgetCategory="home_screen"
+  android:widgetFeatures="reconfigurable|configuration_optional"
+  tools:targetApi="31" />

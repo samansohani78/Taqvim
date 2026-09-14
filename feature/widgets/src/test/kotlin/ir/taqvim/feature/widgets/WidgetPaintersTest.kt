@@ -17,8 +17,11 @@ import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.floats.plusOrMinus
 import io.kotest.matchers.ints.shouldBeGreaterThan
+import io.kotest.matchers.ints.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.ui.painter.MoonBitmapModel
+import ir.taqvim.core.ui.painter.NormalizedPoint
+import ir.taqvim.core.ui.painter.ProgressRingBitmapModel
 import java.util.Locale
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -69,5 +72,33 @@ class WidgetPaintersTest {
         Color.alpha(moon.getPixel(32, 24)) shouldBeGreaterThan 0
         (painters.month === painters.month).shouldBeTrue()
         (painters.sunArc === painters.sunArc).shouldBeTrue()
+    }
+
+    @Test
+    fun theMapAndRingPaintersDrawTheSkyWidgetModels() {
+        val painters = WidgetPainters.of(context, ColorProviders(scheme), WidgetConfig())
+        // One land square over the whole map: the west half in daylight, the east half at night.
+        val map =
+            WidgetSkyBuilder.map(
+                land = listOf(floatArrayOf(0f, 0f, 1f, 0f, 1f, 1f, 0f, 1f)),
+                columns = 2,
+                rows = 1,
+                darkness = { column, _ -> column.toFloat() },
+                marker = NormalizedPoint(0.25f, 0.5f),
+            )
+        val bitmap = painters.map.paint(WidgetDrawings.mapModel(map), 200, 100)
+
+        fun brightness(pixel: Int) = Color.red(pixel) + Color.green(pixel) + Color.blue(pixel)
+        brightness(bitmap.getPixel(160, 20)) shouldBeLessThan brightness(bitmap.getPixel(90, 20))
+        bitmap.getPixel(90, 20) shouldBe scheme.secondaryContainer.toArgb()
+        val padding = 4 * context.resources.displayMetrics.density
+        val markerX = (padding + 0.25f * (200 - 2 * padding)).toInt()
+        bitmap.getPixel(markerX, 50) shouldBe scheme.primary.toArgb()
+
+        val ring = painters.ring.paint(ProgressRingBitmapModel(0.5f), 64, 64)
+        Color.alpha(ring.getPixel(32, 32)) shouldBe 0
+        Color.alpha(ring.getPixel(32, 3)) shouldBeGreaterThan 0
+        (painters.map === painters.map).shouldBeTrue()
+        (painters.ring === painters.ring).shouldBeTrue()
     }
 }

@@ -38,6 +38,10 @@ data class WidgetPrayerLine(
  * @property week today's week for the week strip (T-1207), else empty.
  * @property schedule today and the following days with events for the schedule (T-1208), else empty.
  * @property sun today's daylight at the chosen place for the sun arc (T-1209), else `null`.
+ * @property daylightUnavailable a place is chosen but the Sun does not rise or set there today (polar day or night).
+ * @property moon the Moon for the Moon widget (T-1210), else `null`.
+ * @property map the day/night world map for the map widget (T-1211), else `null`.
+ * @property countdown the configured countdown (T-1212), or `null` when none is set.
  */
 data class WidgetData(
     val date: LocalDate,
@@ -53,6 +57,10 @@ data class WidgetData(
     val week: ImmutableList<WidgetCalendarDay> = persistentListOf(),
     val schedule: ImmutableList<WidgetScheduleDay> = persistentListOf(),
     val sun: WidgetSun? = null,
+    val daylightUnavailable: Boolean = false,
+    val moon: WidgetMoon? = null,
+    val map: WidgetMap? = null,
+    val countdown: WidgetCountdownView? = null,
 )
 
 /**

@@ -13,13 +13,16 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.TextDirection
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.ui.theme.TaqvimTheme
 import ir.taqvim.core.ui.theme.ThemeMode
 import ir.taqvim.core.ui.theme.ThemeSettings
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -85,6 +88,55 @@ class WidgetConfigScreenTest {
                 "save",
                 "cancel",
             ),
+            calls,
+        )
+    }
+
+    @Test
+    fun theCountdownSectionReportsItsChoices() {
+        val calls = mutableListOf<String>()
+        val nowruz = WidgetOccasion("Nowruz", CalendarSystem.PERSIAN, 1406, 1, 1, true, "1 Farvardin 1406")
+        val countdown = WidgetCountdown(CalendarSystem.PERSIAN, 1405, 6, 22, startJdn = 1)
+        val state =
+            WidgetConfigUiState(
+                kind = WidgetKind.COUNTDOWN,
+                config = WidgetConfig.defaultFor(WidgetKind.COUNTDOWN).copy(countdown = countdown),
+                loading = false,
+                countdown =
+                    WidgetCountdownChoices(
+                        calendars = persistentListOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN),
+                        occasions = persistentListOf(nowruz),
+                        monthNames = List(12) { "Month ${it + 1}" }.toImmutableList(),
+                        numerals = requireNotNull(LanguageTable.forCode("en")).numerals,
+                        years = 1300..1450,
+                        dateText = "22 Shahrivar 1405",
+                    ),
+            )
+        show(
+            state,
+            WidgetConfigActions(
+                countdown =
+                    WidgetCountdownActions(
+                        onMode = { calls += "mode $it" },
+                        onTitle = { calls += "title $it" },
+                        onCalendar = { calls += "calendar $it" },
+                        onRepeats = { calls += "repeats $it" },
+                        onOccasion = { calls += "occasion ${it.title}" },
+                    ),
+            ),
+        )
+        composeRule.onNodeWithText("Time since").performScrollTo().performClick()
+        composeRule.onNodeWithText("Title (optional)").performScrollTo().performTextInput("Trip")
+        composeRule.onNodeWithText("Nowruz · 1 Farvardin 1406").performScrollTo().performClick()
+        composeRule.onNodeWithText("Gregorian").performScrollTo().performClick()
+        composeRule.onNodeWithText("Every year").performScrollTo().performClick()
+        composeRule.onNodeWithText("22 Shahrivar 1405").performScrollTo().assertExists()
+        composeRule.onNodeWithText("Show").assertDoesNotExist()
+        composeRule.onNodeWithText("Change date").performScrollTo().performClick()
+        composeRule.onNodeWithText("Choose a date").assertExists()
+
+        assertEquals(
+            listOf("mode SINCE", "title Trip", "occasion Nowruz", "calendar GREGORIAN", "repeats true"),
             calls,
         )
     }

@@ -200,5 +200,14 @@ class CalendarWidgetsGlanceTest {
         }
     }
 
+    @Test
+    fun aPolarDayOrNightAtTheChosenPlaceIsNotReportedAsAMissingPlace() {
+        render(SunArcWidget(), data().copy(sun = null, daylightUnavailable = true), WidgetSize.MEDIUM) {
+            onNode(hasTextEqualTo("The Sun does not rise or set here today").and(link(WidgetClickTarget.PrayerTimes)))
+                .assertExists()
+            onNode(hasTextEqualTo(context.getString(R.string.widget_no_place))).assertDoesNotExist()
+        }
+    }
+
     private fun LocalDate.minusDay(): LocalDate = LocalDate.fromEpochDays(toEpochDays() - 1)
 }

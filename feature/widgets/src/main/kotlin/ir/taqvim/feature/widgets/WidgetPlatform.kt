@@ -17,8 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import org.koin.core.context.GlobalContext
 
 /**
  * One widget of T-1201…T-1212 as registered with the framework (a Koin `single` per widget, collected with `getAll`):
@@ -97,25 +96,41 @@ class AlarmWidgetWakeUpScheduler(
     }
 }
 
-/** Receives the framework's wake-ups, clock/time-zone/language/app-update broadcasts and widget removals. */
-class WidgetUpdateReceiver :
-    BroadcastReceiver(),
-    KoinComponent {
-    private val refresher: WidgetRefresher by inject()
+/**
+ * Receives the framework's wake-ups, clock/time-zone/language/app-update broadcasts and widget removals. The
+ * [WidgetRefresher] is looked up when a broadcast arrives; while the app's Koin graph is not running (e.g. a broadcast
+ * delivered to a test process that never started it) the broadcast is ignored instead of failing on a background
+ * thread.
+ */
+class WidgetUpdateReceiver internal constructor(
+    private val refresher: () -> WidgetRefresher?,
+    private val launch: BroadcastReceiver.(suspend () -> Unit) -> Unit,
+) : BroadcastReceiver() {
+    constructor() : this(::koinRefresher, { block -> handleAsync(block) })
 
     override fun onReceive(
         context: Context,
         intent: Intent,
     ) {
-        if (intent.action == WidgetBroadcasts.ACTION_DELETED) {
+        val action = intent.action
+        val work = work(action, intent) ?: return
+        val available = refresher() ?: return
+        launch { available.work() }
+    }
+
+    /** What a broadcast with [action] asks the refresher to do, or `null` when it is not for the widget framework. */
+    private fun work(
+        action: String?,
+        intent: Intent,
+    ): (suspend WidgetRefresher.() -> Unit)? {
+        if (action == WidgetBroadcasts.ACTION_DELETED) {
             val ids = intent.getIntArrayExtra(WidgetBroadcasts.EXTRA_APP_WIDGET_IDS)?.toSet().orEmpty()
-            handleAsync { refresher.onDeleted(ids) }
-            return
+            return { onDeleted(ids) }
         }
         val triggers =
-            WidgetBroadcasts.triggersFor(intent.action, intent.getStringArrayExtra(WidgetBroadcasts.EXTRA_TRIGGERS))
-                ?: return
-        handleAsync { if (triggers.isEmpty()) refresher.reschedule() else refresher.refresh(triggers) }
+            WidgetBroadcasts.triggersFor(action, intent.getStringArrayExtra(WidgetBroadcasts.EXTRA_TRIGGERS))
+                ?: return null
+        return { if (triggers.isEmpty()) reschedule() else refresh(triggers) }
     }
 
     companion object {
@@ -158,6 +173,10 @@ abstract class TaqvimWidgetReceiver : GlanceAppWidgetReceiver() {
         context.sendBroadcast(WidgetUpdateReceiver.deletedIntent(context, appWidgetIds))
     }
 }
+
+/** The app's [WidgetRefresher], or `null` while Koin is not started or cannot provide one. */
+private fun koinRefresher(): WidgetRefresher? =
+    runCatching { GlobalContext.getOrNull()?.getOrNull<WidgetRefresher>() }.getOrNull()
 
 /** Runs [block] off the main thread and keeps the broadcast alive until it completes; failures are rethrown. */
 private fun BroadcastReceiver.handleAsync(block: suspend () -> Unit) {

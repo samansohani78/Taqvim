@@ -7,7 +7,12 @@ package ir.taqvim.feature.widgets
 import app.cash.turbine.test
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.PersianCalendarSystem
+import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.testing.FakeClock
 import kotlinx.collections.immutable.toImmutableSet
@@ -17,6 +22,7 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -94,6 +100,112 @@ class WidgetConfigViewModelTest {
                 updater.updates shouldBe listOf(mapOf(kind to setOf(8)))
                 viewModel.onSave()
                 updater.updates.size shouldBe 1
+            }
+        }
+
+    /** 22 Shahrivar 1405. */
+    private val countdownToday = LocalDate(2026, 9, 13).toJdn()
+    private val nowruz = WidgetOccasion("Nowruz", CalendarSystem.PERSIAN, 1406, 1, 1, true, "1 Farvardin 1406")
+
+    private fun countdownViewModel(): WidgetConfigViewModel {
+        val options =
+            WidgetCountdownOptions(
+                countdownToday,
+                requireNotNull(LanguageTable.forCode("en")),
+                listOf(PersianCalendarSystem, GregorianCalendarSystem),
+                listOf(nowruz),
+            )
+        val refresher =
+            WidgetSamples.refresher(
+                FakeInstalledWidgets(mapOf(WidgetKind.COUNTDOWN to setOf(3))),
+                updater,
+                configs = store,
+                clock = FakeClock(),
+            )
+        val source = WidgetCountdownSource { options }
+        return WidgetConfigViewModel(3, WidgetKind.COUNTDOWN, store, calendars, refresher, source)
+    }
+
+    @Test
+    fun `countdown widgets start at today and edit their calendar, date, mode and title`(): Unit =
+        runTest {
+            val today = countdownToday
+            val viewModel = countdownViewModel()
+            viewModel.uiState.test {
+                val start = expectMostRecentItem()
+                start.config.countdown shouldBe WidgetCountdown(CalendarSystem.PERSIAN, 1405, 6, 22, today.value)
+                start.countdown?.dateText shouldBe "22 Shahrivar 1405"
+                viewModel.countdownDaysInMonth(1405, 1) shouldBe 31
+                viewModel.countdownDaysInMonth(1404, 12) shouldBe PersianCalendarSystem.monthLength(1404, 12)
+
+                viewModel.onCountdownCalendar(CalendarSystem.GREGORIAN)
+                expectMostRecentItem().config.countdown shouldBe
+                    WidgetCountdown(CalendarSystem.GREGORIAN, 2026, 9, 13, today.value)
+                viewModel.onCountdownDate(2026, 12, 25)
+                viewModel.onCountdownMode(CountdownMode.SINCE)
+                viewModel.onCountdownRepeats(true)
+                viewModel.onCountdownTitle("Holiday")
+                expectMostRecentItem().config.countdown shouldBe
+                    WidgetCountdown(
+                        CalendarSystem.GREGORIAN,
+                        2026,
+                        12,
+                        25,
+                        today.value,
+                        CountdownMode.SINCE,
+                        repeatsYearly = true,
+                        title = "Holiday",
+                    )
+            }
+        }
+
+    @Test
+    fun `choosing an occasion sets its date and title and saving stores the countdown`(): Unit =
+        runTest {
+            val today = countdownToday
+            val viewModel = countdownViewModel()
+            viewModel.uiState.test {
+                expectMostRecentItem()
+                viewModel.onCountdownOccasion(nowruz)
+                val chosen = expectMostRecentItem()
+                chosen.config.countdown shouldBe
+                    WidgetCountdown(
+                        CalendarSystem.PERSIAN,
+                        1406,
+                        1,
+                        1,
+                        today.value,
+                        CountdownMode.UNTIL,
+                        repeatsYearly = true,
+                        title = "Nowruz",
+                    )
+                chosen.countdown?.occasions shouldBe listOf(nowruz)
+                viewModel.onSave()
+                expectMostRecentItem().saved.shouldBeTrue()
+                store.stored[3]?.countdown shouldBe chosen.config.countdown
+            }
+        }
+
+    @Test
+    fun `without countdown options the countdown cannot be edited`(): Unit =
+        runTest {
+            val failing = WidgetCountdownSource { error("events unavailable") }
+            val refresher = WidgetSamples.refresher(installed, updater, configs = store, clock = FakeClock())
+            listOf(null, failing).forEach { source ->
+                val viewModel = WidgetConfigViewModel(5, WidgetKind.COUNTDOWN, store, calendars, refresher, source)
+                viewModel.uiState.test {
+                    val state = expectMostRecentItem()
+                    state.loading.shouldBeFalse()
+                    state.countdown.shouldBeNull()
+                    state.config.countdown.shouldBeNull()
+                    viewModel.onCountdownCalendar(CalendarSystem.GREGORIAN)
+                    viewModel.onCountdownTitle("ignored")
+                    viewModel.countdownDaysInMonth(1405, 1) shouldBe 30
+                    // Edits of a missing countdown change nothing, so no new state is emitted.
+                    expectNoEvents()
+                    viewModel.uiState.value.config.countdown
+                        .shouldBeNull()
+                }
             }
         }
 

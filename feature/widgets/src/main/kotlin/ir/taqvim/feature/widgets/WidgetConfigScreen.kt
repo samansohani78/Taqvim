@@ -69,6 +69,9 @@ fun WidgetConfigScreen(
                 ScaleSection(state.config, actions)
                 ContentsSection(state, actions)
                 SecondaryCalendarSection(state, actions)
+                val choices = state.countdown
+                val countdown = state.config.countdown
+                if (choices != null && countdown != null) CountdownSection(choices, countdown, actions.countdown)
             }
         }
     }
@@ -97,7 +100,7 @@ private fun ConfigButtons(
 }
 
 @Composable
-private fun SectionTitle(
+internal fun SectionTitle(
     @StringRes title: Int,
 ) {
     Text(

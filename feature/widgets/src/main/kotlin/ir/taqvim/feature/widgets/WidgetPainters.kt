@@ -12,16 +12,21 @@ import androidx.glance.unit.ColorProvider
 import ir.taqvim.core.ui.component.MonthGridModel
 import ir.taqvim.core.ui.component.SunArcModel
 import ir.taqvim.core.ui.painter.BitmapPainter
+import ir.taqvim.core.ui.painter.MapThumbnailModel
+import ir.taqvim.core.ui.painter.MapThumbnailPainter
 import ir.taqvim.core.ui.painter.MonthBitmapPainter
 import ir.taqvim.core.ui.painter.MoonBitmapModel
 import ir.taqvim.core.ui.painter.MoonBitmapPainter
 import ir.taqvim.core.ui.painter.PainterEnvironment
 import ir.taqvim.core.ui.painter.PainterPalette
+import ir.taqvim.core.ui.painter.ProgressRingBitmapModel
+import ir.taqvim.core.ui.painter.ProgressRingBitmapPainter
 import ir.taqvim.core.ui.painter.SunArcBitmapPainter
 
 /**
- * The T-702 bitmap painters for widgets that show a drawing (month bitmap, sun arc, Moon): colored from the widget's
- * Glance theme and sized for its configuration. Painters are not thread-safe, so a widget creates one set per session.
+ * The T-702 bitmap painters for widgets that show a drawing (month bitmap, sun arc, Moon, map, countdown ring): colored
+ * from the widget's Glance theme and sized for its configuration. Painters are not thread-safe, so a widget creates one
+ * set per session.
  * Bitmaps have a transparent background because [WidgetFrame] draws the configured background and transparency.
  */
 class WidgetPainters(
@@ -31,6 +36,8 @@ class WidgetPainters(
     val month: BitmapPainter<MonthGridModel> by lazy { MonthBitmapPainter(palette, environment) }
     val sunArc: BitmapPainter<SunArcModel> by lazy { SunArcBitmapPainter(palette, environment) }
     val moon: BitmapPainter<MoonBitmapModel> by lazy { MoonBitmapPainter(palette, environment) }
+    val map: BitmapPainter<MapThumbnailModel> by lazy { MapThumbnailPainter(palette, environment) }
+    val ring: BitmapPainter<ProgressRingBitmapModel> by lazy { ProgressRingBitmapPainter(palette, environment) }
 
     companion object {
         private const val PERCENT = 100f

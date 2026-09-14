@@ -99,7 +99,15 @@ enum class WidgetKind(
         setOf(WidgetContent.NEXT_PRAYER),
         listOf(WidgetSize.MEDIUM, WidgetSize.LARGE),
     ),
-    MOON("moon", WidgetCells(2, 2), setOf(D.DATE), emptySet(), listOf(WidgetSize.SMALL, WidgetSize.MEDIUM)),
+
+    // The place only decides which side of the Moon is lit (T-1210).
+    MOON(
+        "moon",
+        WidgetCells(2, 2),
+        setOf(D.DATE, D.LOCATION),
+        emptySet(),
+        listOf(WidgetSize.SMALL, WidgetSize.MEDIUM),
+    ),
     MAP("map", WidgetCells(4, 2), setOf(D.MINUTE, D.LOCATION), emptySet(), listOf(WidgetSize.LARGE)),
     COUNTDOWN("countdown", WidgetCells(2, 2), setOf(D.DATE), emptySet(), listOf(WidgetSize.SMALL, WidgetSize.MEDIUM)),
     ;

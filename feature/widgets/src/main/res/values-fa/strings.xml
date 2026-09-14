@@ -66,4 +66,76 @@
   <string name="widget_schedule_title">۱۴ روز آینده</string>
   <string name="widget_schedule_empty">در ۱۴ روز آینده رویدادی نیست</string>
   <string name="widget_sun_description">طلوع %1$s، غروب %2$s</string>
+  <string name="widget_no_daylight">امروز در این مکان خورشید طلوع یا غروب نمی‌کند</string>
+  <!-- T-1210 Moon widget. -->
+  <string name="widget_moon_name">فاز ماه</string>
+  <string name="widget_moon_description">فاز ماه با تاریخ ماه کامل و ماه نوی بعدی</string>
+  <string name="widget_moon_illumination">%1$s٪ روشن</string>
+  <string name="widget_moon_content">ماه، %1$s</string>
+  <string name="widget_moon_next_full">ماه کامل %1$s</string>
+  <string name="widget_moon_next_new">ماه نو %1$s</string>
+  <!-- T-1211 map widget. -->
+  <string name="widget_map_name">نقشه جهان</string>
+  <string name="widget_map_description">روز و شب روی نقشه جهان با مکان شما</string>
+  <string name="widget_map_content">نقشه جهان با روز و شب</string>
+  <string name="widget_map_content_place">نقشه جهان با روز و شب و مکان شما</string>
+  <!--
+    T-1212 countdown widget. The unit labels stand beside the large number, so their Persian "one" item needs no
+    count of its own (ImpliedQuantity does not apply).
+  -->
+  <string name="widget_countdown_name">شمارش معکوس</string>
+  <string name="widget_countdown_description">روزهای مانده تا تاریخی دلخواه یا زمان گذشته از آن</string>
+  <string name="widget_countdown_setup">تاریخ را در تنظیمات ابزارک انتخاب کنید</string>
+  <string name="widget_countdown_today">امروز</string>
+  <string name="widget_countdown_join">%1$s، %2$s</string>
+  <plurals xmlns:tools="http://schemas.android.com/tools" name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">روز مانده</item>
+    <item quantity="other">روز مانده</item>
+  </plurals>
+  <plurals xmlns:tools="http://schemas.android.com/tools" name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">روز پیش</item>
+    <item quantity="other">روز پیش</item>
+  </plurals>
+  <plurals xmlns:tools="http://schemas.android.com/tools" name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">سال</item>
+    <item quantity="other">سال</item>
+  </plurals>
+  <plurals xmlns:tools="http://schemas.android.com/tools" name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ماه</item>
+    <item quantity="other">ماه</item>
+  </plurals>
+  <plurals xmlns:tools="http://schemas.android.com/tools" name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">روز</item>
+    <item quantity="other">روز</item>
+  </plurals>
+  <plurals name="widget_countdown_years">
+    <item quantity="one">%1$s سال</item>
+    <item quantity="other">%1$s سال</item>
+  </plurals>
+  <plurals name="widget_countdown_months">
+    <item quantity="one">%1$s ماه</item>
+    <item quantity="other">%1$s ماه</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s هفته</item>
+    <item quantity="other">%1$s هفته</item>
+  </plurals>
+  <plurals name="widget_countdown_days">
+    <item quantity="one">%1$s روز</item>
+    <item quantity="other">%1$s روز</item>
+  </plurals>
+  <string name="widget_countdown_config_title">شمارش معکوس</string>
+  <string name="widget_countdown_mode_until">روزهای مانده تا</string>
+  <string name="widget_countdown_mode_since">زمان گذشته از</string>
+  <string name="widget_countdown_config_label">عنوان (اختیاری)</string>
+  <string name="widget_countdown_config_occasions">مناسبت‌ها</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">تقویم</string>
+  <string name="widget_countdown_config_change_date">تغییر تاریخ</string>
+  <string name="widget_countdown_config_repeats">هر سال</string>
+  <string name="widget_countdown_picker_title">انتخاب تاریخ</string>
+  <string name="widget_countdown_picker_year">سال</string>
+  <string name="widget_countdown_picker_month">ماه</string>
+  <string name="widget_countdown_picker_day">روز</string>
+  <string name="widget_countdown_picker_confirm">تأیید</string>
 </resources>

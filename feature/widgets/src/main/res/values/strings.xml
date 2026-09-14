@@ -67,4 +67,73 @@
   <string name="widget_schedule_title">Next 14 days</string>
   <string name="widget_schedule_empty">No events in the next 14 days</string>
   <string name="widget_sun_description">Sunrise %1$s, sunset %2$s</string>
+  <string name="widget_no_daylight">The Sun does not rise or set here today</string>
+  <!-- T-1210 Moon widget. -->
+  <string name="widget_moon_name">Moon phase</string>
+  <string name="widget_moon_description">The Moon’s phase with the next full and new moon</string>
+  <string name="widget_moon_illumination">Lit %1$s%%</string>
+  <string name="widget_moon_content">Moon. %1$s</string>
+  <string name="widget_moon_next_full">Full moon %1$s</string>
+  <string name="widget_moon_next_new">New moon %1$s</string>
+  <!-- T-1211 map widget. -->
+  <string name="widget_map_name">World map</string>
+  <string name="widget_map_description">Day and night on the world map with your place</string>
+  <string name="widget_map_content">World map with day and night</string>
+  <string name="widget_map_content_place">World map with day and night and your place</string>
+  <!-- T-1212 countdown widget: the number is shown large and the unit below it. -->
+  <string name="widget_countdown_name">Countdown</string>
+  <string name="widget_countdown_description">Days until or time since a date you choose</string>
+  <string name="widget_countdown_setup">Choose a date in the widget settings</string>
+  <string name="widget_countdown_today">Today</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left">
+    <item quantity="one">day left</item>
+    <item quantity="other">days left</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago">
+    <item quantity="one">day ago</item>
+    <item quantity="other">days ago</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years">
+    <item quantity="one">year</item>
+    <item quantity="other">years</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months">
+    <item quantity="one">month</item>
+    <item quantity="other">months</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days">
+    <item quantity="one">day</item>
+    <item quantity="other">days</item>
+  </plurals>
+  <plurals name="widget_countdown_years">
+    <item quantity="one">%1$s year</item>
+    <item quantity="other">%1$s years</item>
+  </plurals>
+  <plurals name="widget_countdown_months">
+    <item quantity="one">%1$s month</item>
+    <item quantity="other">%1$s months</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s week</item>
+    <item quantity="other">%1$s weeks</item>
+  </plurals>
+  <plurals name="widget_countdown_days">
+    <item quantity="one">%1$s day</item>
+    <item quantity="other">%1$s days</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Countdown</string>
+  <string name="widget_countdown_mode_until">Days until</string>
+  <string name="widget_countdown_mode_since">Time since</string>
+  <string name="widget_countdown_config_label">Title (optional)</string>
+  <string name="widget_countdown_config_occasions">Occasions</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Calendar</string>
+  <string name="widget_countdown_config_change_date">Change date</string>
+  <string name="widget_countdown_config_repeats">Every year</string>
+  <string name="widget_countdown_picker_title">Choose a date</string>
+  <string name="widget_countdown_picker_year">Year</string>
+  <string name="widget_countdown_picker_month">Month</string>
+  <string name="widget_countdown_picker_day">Day</string>
+  <string name="widget_countdown_picker_confirm">Done</string>
 </resources>

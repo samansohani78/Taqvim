@@ -25,6 +25,7 @@ enum class WidgetBackground {
  * @property scalePercent text and element scale, one of [SCALES].
  * @property contents optional parts switched on; only parts the widget offers are kept.
  * @property secondaryCalendar calendar of the secondary date line, or `null` for the language's second calendar.
+ * @property countdown the countdown widget's date (T-1212); `null` for other widgets and until a date is chosen.
  */
 data class WidgetConfig(
     val background: WidgetBackground = WidgetBackground.SURFACE,
@@ -32,13 +33,15 @@ data class WidgetConfig(
     val scalePercent: Int = DEFAULT_SCALE,
     val contents: ImmutableSet<WidgetContent> = WidgetContent.entries.toImmutableSet(),
     val secondaryCalendar: CalendarSystem? = null,
+    val countdown: WidgetCountdown? = null,
 ) {
-    /** This configuration with every value in range for a widget of [kind]. */
+    /** This configuration with every value in range for a widget of [kind]; only countdown widgets keep a countdown. */
     fun normalizedFor(kind: WidgetKind): WidgetConfig =
         copy(
             transparencyPercent = roundToStep(transparencyPercent.coerceIn(0, MAX_TRANSPARENCY), TRANSPARENCY_STEP),
             scalePercent = SCALES.minBy { kotlin.math.abs(it - scalePercent) },
             contents = contents.filter { it in kind.contents }.toImmutableSet(),
+            countdown = countdown?.takeIf { kind == WidgetKind.COUNTDOWN }?.normalized(),
         )
 
     fun shows(content: WidgetContent): Boolean = content in contents
