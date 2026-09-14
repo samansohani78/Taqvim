@@ -44,6 +44,7 @@
   <string name="about_data_license_public_domain">مالکیت عمومی</string>
   <string name="about_data_license_cited">انتشار عمومی با ذکر منبع</string>
   <string name="about_data_open_source">باز کردن صفحهٔ منبع</string>
+  <string name="about_data_open_source_of">باز کردن صفحهٔ منبع %1$s</string>
   <string name="about_data_license_text">خواندن مجوز</string>
   <string name="about_level_all">همه</string>
   <string name="about_level_info">اطلاعات و بالاتر</string>

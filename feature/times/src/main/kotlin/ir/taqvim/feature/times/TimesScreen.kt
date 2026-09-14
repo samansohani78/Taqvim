@@ -27,8 +27,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -137,9 +139,11 @@ private fun NextPrayerCard(next: NextPrayerText) {
             contentDescription = stringResource(R.string.times_next_prayer_progress, name),
             modifier = Modifier.size(56.dp),
         )
+        // Updated every minute; a polite live region lets TalkBack read the new countdown (T-1700).
         Text(
             stringResource(R.string.times_next_prayer, name, next.remaining),
             style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
         )
     }
 }

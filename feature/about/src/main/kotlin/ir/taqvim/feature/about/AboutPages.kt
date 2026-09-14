@@ -26,6 +26,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
@@ -121,11 +123,17 @@ internal fun DataSourcesPage(actions: AboutActions) {
     LazyColumn(Modifier.fillMaxSize()) {
         items(DataSource.entries, key = { it.name }) { source ->
             Column(Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
-                Text(stringResource(source.title), style = MaterialTheme.typography.titleMedium)
+                val title = stringResource(source.title)
+                Text(title, style = MaterialTheme.typography.titleMedium)
                 Text(stringResource(source.description), style = MaterialTheme.typography.bodyMedium)
                 Text(stringResource(source.license.label), style = MaterialTheme.typography.bodySmall)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(onClick = { actions.onOpenLink(source.url) }) {
+                    // Every source has this button; TalkBack names the source so they can be told apart (T-1700).
+                    val openDescription = stringResource(R.string.about_data_open_source_of, title)
+                    OutlinedButton(
+                        onClick = { actions.onOpenLink(source.url) },
+                        modifier = Modifier.semantics { contentDescription = openDescription },
+                    ) {
                         Text(stringResource(R.string.about_data_open_source))
                     }
                     if (source.license == DataLicense.UNICODE_3_0) {
