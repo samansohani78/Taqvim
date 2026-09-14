@@ -37,15 +37,19 @@ internal object DayChangeAlarm {
     const val ACTION_MIDNIGHT: String = "ir.taqvim.app.action.MIDNIGHT"
     private const val REQUEST_CODE = 1_103
 
-    /** Sets (or replaces) the alarm for the midnight after [now] in [zone]. */
+    /**
+     * Sets (or replaces) the alarm for the midnight after [now] in [zone]. The alarm outlives any screen, so it is
+     * built from the Application context even when an Activity calls (T-1803).
+     */
     fun schedule(
         context: Context,
         now: Instant,
         zone: TimeZone,
     ) {
-        val alarms = context.getSystemService(AlarmManager::class.java) ?: return
+        val app = context.applicationContext
+        val alarms = app.getSystemService(AlarmManager::class.java) ?: return
         val at = nextLocalMidnight(now, zone).toEpochMilliseconds()
-        alarms.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pendingIntent(context))
+        alarms.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, at, pendingIntent(app))
     }
 
     private fun pendingIntent(context: Context): PendingIntent =

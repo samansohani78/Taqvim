@@ -1,0 +1,8 @@
+{
+  "_comment": "Absolute device budgets from docs/PLAN.md §9, checked by tools/benchmark/compare_benchmarks.py --budgets (T-1803). Keys are className.testName; the budgeted metrics are summed.",
+  "ir.taqvim.benchmark.MonthScreenMemoryBenchmark.monthScreenMemory": {
+    "metricPrefixes": ["memoryRssAnon", "memoryRssFile"],
+    "maximum": 81920,
+    "unit": "KB (80 MB RSS, month screen)"
+  }
+}

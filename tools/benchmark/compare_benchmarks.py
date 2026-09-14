@@ -53,11 +53,36 @@ def regressions(
     return found
 
 
+def over_budget(budgets: dict[str, dict], current: dict[tuple[str, str], dict[str, float]]) -> list[str]:
+    """Lines for every budgeted benchmark (``className.testName``) whose summed budget metrics reach the maximum.
+
+    A budget sums the metrics whose names start with one of ``metricPrefixes`` (T-1803: anonymous plus file RSS). A
+    benchmark that ran but reported none of them fails too, so a renamed metric cannot pass silently; benchmarks that
+    did not run are skipped.
+    """
+    found = []
+    for name, budget in sorted(budgets.items()):
+        if name.startswith("_"):
+            continue
+        class_name, _, test = name.rpartition(".")
+        metrics = current.get((class_name, test))
+        if metrics is None:
+            continue
+        prefixes = budget["metricPrefixes"]
+        parts = [value for metric, value in metrics.items() if any(metric.startswith(p) for p in prefixes)]
+        if not parts:
+            found.append(f"{name}: none of {prefixes} were measured")
+        elif sum(parts) >= budget["maximum"]:
+            found.append(f"{name}: {sum(parts):g} ≥ budget {budget['maximum']:g} {budget.get('unit', '')}".rstrip())
+    return found
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline", type=Path, required=True)
     parser.add_argument("--results", type=Path, required=True)
     parser.add_argument("--threshold", type=float, default=0.10)
+    parser.add_argument("--budgets", type=Path, help="JSON of absolute budgets (plan §9), optional")
     args = parser.parse_args(argv)
     current = load(args.results)
     if not current:
@@ -69,7 +94,11 @@ def main(argv: list[str]) -> int:
     found = regressions(baseline, current, args.threshold)
     for line in found:
         print(f"Regression: {line}")
-    return 1 if found else 0
+    budgets = json.loads(args.budgets.read_text(encoding="utf-8")) if args.budgets else {}
+    exceeded = over_budget(budgets, current)
+    for line in exceeded:
+        print(f"Over budget: {line}")
+    return 1 if found or exceeded else 0
 
 
 if __name__ == "__main__":

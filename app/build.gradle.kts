@@ -118,6 +118,9 @@ dependencies {
     // LevelCalibration (T-1303) exposes an ImmutableMap in the compass port; stored by the T-1500 adapters.
     implementation(libs.kotlinx.collections.immutable)
 
+    // Plan T-1803: leak detection in debug builds only (ADR-0021); never in release.
+    debugImplementation(libs.leakcanary.android)
+
     testImplementation(libs.koin.test)
     // Screenshot environments of the navigation frame (ADR-0015).
     testImplementation(projects.core.uiTesting)

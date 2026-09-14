@@ -20,6 +20,8 @@ ir.taqvim.feature.widgets.ScheduleWidgetReceiver | - | all | launcher widget (T-
 ir.taqvim.feature.widgets.SunArcWidgetReceiver | - | all | launcher widget (T-1209); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 androidx.compose.ui.tooling.PreviewActivity | - | debug | Compose preview tooling (debugImplementation only)
 androidx.activity.ComponentActivity | - | debug | Compose UI test host activity (ui-test-manifest, debugImplementation only)
+leakcanary.internal.activity.LeakActivity | - | debug | LeakCanary leak viewer (T-1803, ADR-0021; debugImplementation only, never in release)
+leakcanary.internal.activity.LeakLauncherActivity | - | debug | LeakCanary launcher entry for the leak viewer (T-1803, ADR-0021; debugImplementation only)
 androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity | - | unit-test | androidx.test core host, test classpath only
 androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity | - | unit-test | androidx.test core host, test classpath only
 androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity | - | unit-test | androidx.test core host, test classpath only

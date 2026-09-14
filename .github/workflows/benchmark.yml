@@ -49,13 +49,14 @@ jobs:
         with:
           name: benchmark-results
           path: benchmark/build/outputs/connected_android_test_additional_output/
-      - name: Regression gate (> 10 % fails, T-1801)
+      - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1803)
         run: |
           python3 -m unittest discover -s tools/benchmark
           python3 tools/benchmark/compare_benchmarks.py \
             --baseline benchmark/baselines \
             --results benchmark/build/outputs/connected_android_test_additional_output \
-            --threshold 0.10
+            --threshold 0.10 \
+            --budgets benchmark/budgets.json
 
   baseline-profile:
     name: Baseline and startup profiles (on demand)
