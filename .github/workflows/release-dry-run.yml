@@ -1,0 +1,80 @@
+name: Release dry run
+
+# T-1900 "release dry-run in CI": runs the release pipeline without signing secrets and publishes nothing.
+# Checks the release gates, that an unsigned AAB/APK and the SBOM are produced, previews the changelog and fails if
+# a clean rebuild of the release APK is not byte-identical (reproducible builds).
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/release.yml"
+      - ".github/workflows/release-dry-run.yml"
+      - "cliff.toml"
+      - "app/build.gradle.kts"
+      - "app/proguard-rules.pro"
+      - "gradle/libs.versions.toml"
+
+concurrency:
+  group: release-dry-run-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  GRADLE_OPTS: >-
+    -Dorg.gradle.workers.max=4
+    -Dorg.gradle.java.installations.fromEnv=JAVA_HOME_21_X64
+
+jobs:
+  dry-run:
+    name: Unsigned release build, SBOM, changelog preview, reproducibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - name: Release gates and unsigned build
+        run: ./gradlew licenseCheck :app:auditReleaseExportedComponents :app:bundleRelease :app:assembleRelease :app:cyclonedxDirectBom
+      - name: Check release outputs
+        run: |
+          shopt -s nullglob
+          apks=(app/build/outputs/apk/release/*.apk)
+          aabs=(app/build/outputs/bundle/release/*.aab)
+          test "${#apks[@]}" -gt 0 || { echo "::error::No release APK was built"; exit 1; }
+          test "${#aabs[@]}" -gt 0 || { echo "::error::No release AAB was built"; exit 1; }
+          test -s app/build/reports/cyclonedx-direct/bom.json || { echo "::error::No SBOM was produced"; exit 1; }
+          (cd app/build/outputs/apk/release && sha256sum -- *.apk) > "$RUNNER_TEMP/first-build.sha256"
+          {
+            echo "### Release dry run outputs"
+            echo '```'
+            ls -l "${apks[@]}" "${aabs[@]}"
+            cat "$RUNNER_TEMP/first-build.sha256"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Changelog preview from conventional commits
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --unreleased --strip header
+        env:
+          OUTPUT: CHANGELOG-preview.md
+      - uses: actions/upload-artifact@v7
+        with:
+          name: release-dry-run
+          path: |
+            app/build/outputs/bundle/release/
+            app/build/outputs/apk/release/
+            app/build/reports/cyclonedx-direct/bom.json
+            build/reports/licenses/license-report.json
+            CHANGELOG-preview.md
+      - name: Reproducibility — rebuild the APK from clean and compare
+        run: |
+          ./gradlew clean :app:assembleRelease --no-build-cache --rerun-tasks
+          (cd app/build/outputs/apk/release && sha256sum -- *.apk) > "$RUNNER_TEMP/second-build.sha256"
+          if ! diff -u "$RUNNER_TEMP/first-build.sha256" "$RUNNER_TEMP/second-build.sha256"; then
+            echo "::error::The release APK is not reproducible: a clean rebuild produced different bytes"
+            exit 1
+          fi

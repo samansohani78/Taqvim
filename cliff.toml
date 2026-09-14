@@ -13,7 +13,11 @@ trim = true
 [git]
 conventional_commits = true
 filter_unconventional = true
+# Commits that match no parser are dropped (docs/RELEASE.md, "Changelog").
+filter_commits = true
 commit_parsers = [
+  # Bookkeeping commits that only update PROGRESS, PROVENANCE or DATA_TODO (T-1900).
+  { message = "^docs(\\([^)]*\\))?: (record|mark|order) ", skip = true },
   { message = "^feat", group = "Features" },
   { message = "^fix", group = "Bug fixes" },
   { message = "^perf", group = "Performance" },
@@ -21,6 +25,6 @@ commit_parsers = [
   { message = "^docs", group = "Documentation" },
   { message = "^test", group = "Tests" },
   { message = "^(build|ci)", group = "Build & CI" },
-  { message = "^chore", skip = true },
+  { message = "^(chore|style|wip)", skip = true },
 ]
 tag_pattern = "v[0-9]*"
