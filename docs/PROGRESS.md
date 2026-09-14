@@ -117,7 +117,7 @@ Status legend: `TODO` · `WIP` · `DONE` · `BLOCKED` (see Notes).
 | T-1803 | Memory & leaks | TODO | | | |
 | T-1804 | Security | TODO | | | |
 | T-1900 | Release engineering | TODO | | | |
-| T-1901 | Support system | TODO | | | |
+| T-1901 | Support system | WIP | main@c3416e4 | L: issue forms parsed and structure-checked (types, unique ids, labels, dropdown options) | Covered: `SUPPORT.md` (channels, what to include, P0 crash fix ≤ 48 h and holiday data error ≤ 72 h from PLAN, triage steps, privacy of reports matching the T-1504 redaction and 200-entry cap, fa/en); bug report form gains severity (P0/P1/P2) and the real in-app report path; data correction form states 72 h. Already done elsewhere: in-app problem report (T-1504), dataset correction form (T-003/D-09). Pending: in-app FAQ in fa/en; data-only release path (bundled override + signed dataset update loader with its test); owner placeholders in SUPPORT.md — repository URL, support e-mail, extra answered languages, P1/P2 targets, first-response time, severity label names, stale-issue days |
 | T-1902 | Beta program | TODO | | | |
 
 ## Epic summaries
