@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="about_title">About</string>
+  <string name="about_app_name">Taqvim</string>
+  <string name="about_version">Version %1$s (%2$d, %3$s)</string>
+  <string name="about_back">Back</string>
+  <string name="about_website">Website</string>
+  <string name="about_source_code">Source code</string>
+  <string name="about_privacy_policy">Privacy policy</string>
+  <string name="about_licenses">Open-source licenses</string>
+  <string name="about_licenses_summary">Libraries included in the app and their licenses</string>
+  <string name="about_data_sources">Data sources</string>
+  <string name="about_data_sources_summary">Where calendars, holidays and places come from</string>
+  <string name="about_diagnostics">Diagnostics</string>
+  <string name="about_diagnostics_summary">Recent app log kept only on this device</string>
+  <string name="about_report">Report a problem</string>
+  <string name="about_report_summary">Write an e-mail with anonymized diagnostics</string>
+  <plurals name="about_licenses_count">
+    <item quantity="one">%1$d third-party library</item>
+    <item quantity="other">%1$d third-party libraries</item>
+  </plurals>
+  <plurals name="about_license_modules">
+    <item quantity="one">%1$d module</item>
+    <item quantity="other">%1$d modules</item>
+  </plurals>
+  <string name="about_licenses_unavailable">The license list could not be loaded</string>
+  <string name="about_license_open_link">Open the license page</string>
+  <string name="about_license_text_missing">The full text is not included in the app; open the license page.</string>
+  <string name="about_source_cldr">Unicode CLDR</string>
+  <string name="about_source_cldr_description">Month and weekday names, date patterns and plural rules for every language</string>
+  <string name="about_source_calendar_center">Calendar Center, Institute of Geophysics, University of Tehran</string>
+  <string name="about_source_calendar_center_description">Official calendars of Iran: leap years, holidays, lunar month starts and prayer timetables</string>
+  <string name="about_source_un">United Nations</string>
+  <string name="about_source_un_description">List of international days and weeks</string>
+  <string name="about_source_unic">United Nations Information Centre Tehran</string>
+  <string name="about_source_unic_description">Persian titles of international days (archived copy)</string>
+  <string name="about_source_iranica">Encyclopaedia Iranica</string>
+  <string name="about_source_iranica_description">Background of ancient Iranian festivals</string>
+  <string name="about_source_natural_earth">Natural Earth</string>
+  <string name="about_source_natural_earth_description">City names and positions</string>
+  <string name="about_source_noaa">NOAA Global Monitoring Laboratory</string>
+  <string name="about_source_noaa_description">Solar position equations used for prayer times</string>
+  <string name="about_data_license_unicode">License: Unicode License v3</string>
+  <string name="about_data_license_public_domain">Public domain</string>
+  <string name="about_data_license_cited">Cited public publication</string>
+  <string name="about_data_open_source">Open source page</string>
+  <string name="about_data_license_text">Read the license</string>
+  <string name="about_level_all">All</string>
+  <string name="about_level_info">Information and above</string>
+  <string name="about_level_warn">Warnings and errors</string>
+  <string name="about_level_error">Errors only</string>
+  <plurals name="about_diagnostics_hidden">
+    <item quantity="one">%1$d entry hidden by the filter</item>
+    <item quantity="other">%1$d entries hidden by the filter</item>
+  </plurals>
+  <string name="about_diagnostics_empty">No diagnostics recorded</string>
+  <string name="about_copy">Copy</string>
+  <string name="about_share">Share</string>
+  <string name="about_diagnostics_clip">Taqvim diagnostics</string>
+  <string name="about_share_title">Share diagnostics</string>
+  <string name="about_report_title">Send a problem report?</string>
+  <string name="about_report_explanation">The report below opens in the app you choose. Event titles, places, addresses and links are removed, and nothing is sent until you send it there.</string>
+  <string name="about_report_send">Continue</string>
+  <string name="about_report_cancel">Cancel</string>
+  <string name="about_report_chooser">Send the report with</string>
+  <string name="about_report_subject">Taqvim problem report</string>
+  <string name="about_report_app">App: %1$s (%2$d, %3$s)</string>
+  <string name="about_report_device">Device: %1$s</string>
+  <string name="about_report_android">Android: %1$s (API %2$d)</string>
+  <string name="about_report_language">Language: %1$s</string>
+  <string name="about_report_diagnostics">Diagnostics (%1$d):</string>
+  <string name="about_report_no_diagnostics">No diagnostics recorded</string>
+</resources>

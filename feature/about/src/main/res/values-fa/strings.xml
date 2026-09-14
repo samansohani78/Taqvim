@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="about_title">درباره</string>
+  <string name="about_app_name">تقویم</string>
+  <string name="about_version">نسخهٔ &#x2068;%1$s&#x2069; (%2$d، &#x2068;%3$s&#x2069;)</string>
+  <string name="about_back">بازگشت</string>
+  <string name="about_website">وب‌سایت</string>
+  <string name="about_source_code">کد منبع</string>
+  <string name="about_privacy_policy">سیاست حریم خصوصی</string>
+  <string name="about_licenses">مجوزهای متن‌باز</string>
+  <string name="about_licenses_summary">کتابخانه‌های به‌کاررفته در برنامه و مجوز آن‌ها</string>
+  <string name="about_data_sources">منابع داده</string>
+  <string name="about_data_sources_summary">تقویم‌ها، تعطیلات و مکان‌ها از کجا آمده‌اند</string>
+  <string name="about_diagnostics">عیب‌یابی</string>
+  <string name="about_diagnostics_summary">گزارش اخیر برنامه که فقط روی همین دستگاه نگهداری می‌شود</string>
+  <string name="about_report">گزارش مشکل</string>
+  <string name="about_report_summary">نوشتن رایانامه با اطلاعات عیب‌یابی بی‌نام‌شده</string>
+  <plurals name="about_licenses_count">
+    <item quantity="one">%1$d کتابخانهٔ جانبی</item>
+    <item quantity="other">%1$d کتابخانهٔ جانبی</item>
+  </plurals>
+  <plurals name="about_license_modules">
+    <item quantity="one">%1$d ماژول</item>
+    <item quantity="other">%1$d ماژول</item>
+  </plurals>
+  <string name="about_licenses_unavailable">فهرست مجوزها بارگیری نشد</string>
+  <string name="about_license_open_link">باز کردن صفحهٔ مجوز</string>
+  <string name="about_license_text_missing">متن کامل در برنامه نیست؛ صفحهٔ مجوز را باز کنید.</string>
+  <string name="about_source_cldr">Unicode CLDR</string>
+  <string name="about_source_cldr_description">نام ماه‌ها و روزهای هفته، الگوهای تاریخ و قاعده‌های جمع برای همهٔ زبان‌ها</string>
+  <string name="about_source_calendar_center">مرکز تقویم مؤسسهٔ ژئوفیزیک دانشگاه تهران</string>
+  <string name="about_source_calendar_center_description">تقویم‌های رسمی ایران: سال‌های کبیسه، تعطیلات، آغاز ماه‌های قمری و جدول اوقات شرعی</string>
+  <string name="about_source_un">سازمان ملل متحد</string>
+  <string name="about_source_un_description">فهرست روزها و هفته‌های جهانی</string>
+  <string name="about_source_unic">مرکز اطلاعات سازمان ملل متحد در تهران</string>
+  <string name="about_source_unic_description">عنوان فارسی روزهای جهانی (نسخهٔ بایگانی‌شده)</string>
+  <string name="about_source_iranica">دانشنامهٔ ایرانیکا</string>
+  <string name="about_source_iranica_description">پیشینهٔ جشن‌های ایران باستان</string>
+  <string name="about_source_natural_earth">Natural Earth</string>
+  <string name="about_source_natural_earth_description">نام و موقعیت شهرها</string>
+  <string name="about_source_noaa">آزمایشگاه پایش جهانی NOAA</string>
+  <string name="about_source_noaa_description">معادله‌های موقعیت خورشید برای محاسبهٔ اوقات شرعی</string>
+  <string name="about_data_license_unicode">مجوز: Unicode License v3</string>
+  <string name="about_data_license_public_domain">مالکیت عمومی</string>
+  <string name="about_data_license_cited">انتشار عمومی با ذکر منبع</string>
+  <string name="about_data_open_source">باز کردن صفحهٔ منبع</string>
+  <string name="about_data_license_text">خواندن مجوز</string>
+  <string name="about_level_all">همه</string>
+  <string name="about_level_info">اطلاعات و بالاتر</string>
+  <string name="about_level_warn">هشدارها و خطاها</string>
+  <string name="about_level_error">فقط خطاها</string>
+  <plurals name="about_diagnostics_hidden">
+    <item quantity="one">%1$d مورد با فیلتر پنهان شده</item>
+    <item quantity="other">%1$d مورد با فیلتر پنهان شده</item>
+  </plurals>
+  <string name="about_diagnostics_empty">هیچ اطلاعات عیب‌یابی ثبت نشده است</string>
+  <string name="about_copy">رونوشت</string>
+  <string name="about_share">هم‌رسانی</string>
+  <string name="about_diagnostics_clip">عیب‌یابی تقویم</string>
+  <string name="about_share_title">هم‌رسانی اطلاعات عیب‌یابی</string>
+  <string name="about_report_title">گزارش مشکل فرستاده شود؟</string>
+  <string name="about_report_explanation">گزارش زیر در برنامه‌ای که انتخاب می‌کنید باز می‌شود. عنوان رویدادها، مکان‌ها، نشانی‌ها و پیوندها حذف شده‌اند و تا خودتان آن را نفرستید چیزی فرستاده نمی‌شود.</string>
+  <string name="about_report_send">ادامه</string>
+  <string name="about_report_cancel">لغو</string>
+  <string name="about_report_chooser">فرستادن گزارش با</string>
+  <string name="about_report_subject">گزارش مشکل تقویم</string>
+  <string name="about_report_app">برنامه: %1$s (%2$d، %3$s)</string>
+  <string name="about_report_device">دستگاه: %1$s</string>
+  <string name="about_report_android">اندروید: %1$s (API %2$d)</string>
+  <string name="about_report_language">زبان: %1$s</string>
+  <string name="about_report_diagnostics">عیب‌یابی (%1$d):</string>
+  <string name="about_report_no_diagnostics">هیچ اطلاعات عیب‌یابی ثبت نشده است</string>
+</resources>
