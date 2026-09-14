@@ -256,6 +256,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1800 / T-1801 — Release shrinking, profiles and macrobenchmarks
+- **Module / files:** `app/proguard-rules.pro`, `app/shrinking-requirements.txt`, `app/build.gradle.kts`
+  (ReleaseShrinkingCheck, ApkSizeCheck), `benchmark/src/main/kotlin/ir/taqvim/benchmark/`, `tools/benchmark/`;
+  decisions in ADR-0018
+- **Tasks:** T-1800, T-1801
+- **References used (public only):** Android developer documentation — R8 full mode and keep rules, resource shrinking,
+  AGP `SingleArtifact.OBFUSCATION_MAPPING_FILE`/`APK` and `BuiltArtifactsLoader`, Baseline Profiles and
+  `BaselineProfileRule`, Jetpack Macrobenchmark (`MacrobenchmarkRule`, `StartupTimingMetric`, `FrameTimingMetric`,
+  `CompilationMode`), UiAutomator, Compose `testTagsAsResourceId`; AndroidX Benchmark JSON output format;
+  protobuf-javalite runtime field-name access (observed in the R8 mapping).
+- **Implementation note:** own work; budgets from PLAN §9; the 10 % regression threshold from PLAN T-1801.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1301 — World map, projections and layer geometry
 - **Module / files:** `feature/map/src/main/kotlin/ir/taqvim/feature/map/`
 - **Task:** T-1301
