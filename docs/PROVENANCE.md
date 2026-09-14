@@ -256,6 +256,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-805 — Year view
+- **Module / files:** `feature/year/src/main/kotlin/ir/taqvim/feature/year/`
+- **Task:** T-805
+- **References used (public only):** Jetpack Compose and Material 3 public APIs (Apache-2.0) — `HorizontalPager`,
+  `LazyVerticalGrid`, `Canvas`/`TextMeasurer`, `calculateZoom`, semantics custom actions; narrow standalone weekday names
+  from platform `android.icu.text.DateFormatSymbols` (CLDR data).
+- **Implementation note:** own work on `:core:calendar` (T-106), `:core:events` and `:core:i18n` (T-200/T-201). Year
+  range 1–3000 and zoom levels are product choices; screenshot holidays are synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-802 — Day details tabs
 - **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/` — `DayDetailsCalculator.kt`,
   `DayDetailsModels.kt`, `DayDetailsLabels.kt`, `DayDetailsPanel.kt`, `DayEventsTab.kt`, `DayTimesTab.kt`; `:app`
