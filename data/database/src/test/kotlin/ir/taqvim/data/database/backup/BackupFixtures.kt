@@ -25,6 +25,9 @@ import ir.taqvim.data.database.ShiftRotationEntity
 import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.preferences.AppSettings
+import ir.taqvim.data.preferences.AthanAlert
+import ir.taqvim.data.preferences.AthanPrayer
+import ir.taqvim.data.preferences.AthanPreferences
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
@@ -50,6 +53,18 @@ internal object BackupFixtures {
                     highLatitudeRule = HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS,
                     subscriptionsNetworkAllowed = false,
                     timeZoneBoard = listOf("Asia/Kabul", "Europe/Berlin"),
+                ),
+            athan =
+                AthanPreferences.DEFAULT.copy(
+                    alerts =
+                        AthanPrayer.entries.associateWith { prayer ->
+                            val gap = if (prayer == AthanPrayer.FAJR) -10 else 0
+                            AthanAlert(enabled = prayer != AthanPrayer.ASR, gapMinutes = gap)
+                        },
+                    vibrate = false,
+                    bypassDndForFajr = true,
+                    volumePercent = 60,
+                    useIranTime = true,
                 ),
         )
 

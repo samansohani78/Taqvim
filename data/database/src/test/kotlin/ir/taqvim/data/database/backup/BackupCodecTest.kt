@@ -18,6 +18,8 @@ import ir.taqvim.data.database.backup.BackupFixtures.data
 import ir.taqvim.data.database.backup.BackupFixtures.metadata
 import ir.taqvim.data.database.backup.BackupFixtures.preferences
 import ir.taqvim.data.preferences.AppSettings
+import ir.taqvim.data.preferences.AthanPreferences
+import ir.taqvim.data.preferences.AthanSound
 import ir.taqvim.data.preferences.LevelOffset
 import java.security.SecureRandom
 import kotlinx.coroutines.runBlocking
@@ -242,6 +244,26 @@ class BackupCodecTest {
             )
         val restored = ready(codec.decode(plain())).preferences.keepingDeviceOnlyValuesOf(device)
         restored.app shouldBe device.app
+    }
+
+    @Test
+    fun `athan settings round-trip, the picked sound stays on the device and older documents use defaults`() {
+        ready(codec.decode(plain())).preferences.athan shouldBe preferences.athan
+
+        val json = jsonOf(plain())
+        val older = JsonObject(json.getValue("preferences").jsonObject - "athan")
+        ready(codec.decode(json.with("preferences", older))).preferences shouldBe
+            preferences.copy(athan = AthanPreferences.DEFAULT)
+
+        val loud = plainReplacing("\"volumePercent\":60", "\"volumePercent\":500")
+        ready(codec.decode(loud)).preferences.athan.volumePercent shouldBe 100
+
+        val device = preferences.copy(athan = preferences.athan.copy(sound = AthanSound("content://sounds/9", "Adhan")))
+        codec
+            .encode(data, device, metadata, BackupProtection.None)
+            .decodeToString()
+            .contains("content://sounds/9") shouldBe false
+        ready(codec.decode(plain())).preferences.keepingDeviceOnlyValuesOf(device).athan shouldBe device.athan
     }
 
     @Test

@@ -17,6 +17,9 @@ import ir.taqvim.data.database.ShiftRotationEntity
 import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.preferences.AppSettings
+import ir.taqvim.data.preferences.AthanAlert
+import ir.taqvim.data.preferences.AthanPrayer
+import ir.taqvim.data.preferences.AthanPreferences
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.UserPreferences
 
@@ -35,6 +38,7 @@ internal fun UserPreferences.toRecord(): PreferencesRecord =
         hijriOffsetSetAtEpochMillis,
         place?.toRecord(),
         app.toRecord(),
+        athan.toRecord(),
     )
 
 internal fun PreferencesRecord.toPreferences(): UserPreferences =
@@ -52,14 +56,48 @@ internal fun PreferencesRecord.toPreferences(): UserPreferences =
         hijriOffsetSetAtEpochMillis,
         place?.toPlace(),
         app = app?.toAppSettings() ?: AppSettings.DEFAULT,
+        athan = athan?.toAthan() ?: AthanPreferences.DEFAULT,
     )
 
 /**
- * These restored preferences with the device-only values of [current] kept: recent searches and level calibration are
- * never written to a backup, so a restore must not erase them.
+ * These restored preferences with the device-only values of [current] kept: recent searches, level calibration and the
+ * picked athan sound are never written to a backup, so a restore must not erase them.
  */
 internal fun UserPreferences.keepingDeviceOnlyValuesOf(current: UserPreferences): UserPreferences =
-    copy(app = app.copy(recentSearches = current.app.recentSearches, levelOffsets = current.app.levelOffsets))
+    copy(
+        app = app.copy(recentSearches = current.app.recentSearches, levelOffsets = current.app.levelOffsets),
+        athan = athan.copy(sound = current.athan.sound),
+    )
+
+private fun AthanPreferences.toRecord() =
+    AthanRecord(
+        alerts =
+            AthanPrayer.entries.map { prayer ->
+                val alert = alerts.getValue(prayer)
+                AthanAlertRecord(prayer, alert.enabled, alert.gapMinutes)
+            },
+        vibrate = vibrate,
+        bypassDndForFajr = bypassDndForFajr,
+        volumePercent = volumePercent,
+        useIranTime = useIranTime,
+    )
+
+/** The backed-up athan settings: missing prayers are off, gaps and volume are clamped, the sound is the default. */
+private fun AthanRecord.toAthan(): AthanPreferences {
+    val stored = alerts.associateBy { it.prayer }
+    return AthanPreferences(
+        alerts =
+            AthanPrayer.entries.associateWith { prayer ->
+                stored[prayer]?.let { AthanAlert(it.enabled, it.gapMinutes.coerceIn(AthanAlert.GAP_RANGE)) }
+                    ?: AthanAlert.OFF
+            },
+        sound = null,
+        vibrate = vibrate,
+        bypassDndForFajr = bypassDndForFajr,
+        volumePercent = volumePercent.coerceIn(AthanPreferences.VOLUME_RANGE),
+        useIranTime = useIranTime,
+    )
+}
 
 private fun AppSettings.toRecord() =
     AppSettingsRecord(

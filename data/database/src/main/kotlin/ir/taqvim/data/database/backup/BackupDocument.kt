@@ -15,6 +15,7 @@ import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.workdays.HalfDayPolicy
+import ir.taqvim.data.preferences.AthanPrayer
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
 import kotlinx.serialization.Serializable
@@ -60,6 +61,28 @@ internal data class PreferencesRecord(
     val place: PlaceRecord? = null,
     /** Settings of the settings screens (T-1500); absent in backups made before them. */
     val app: AppSettingsRecord? = null,
+    /** Athan settings (T-1101); absent in backups made before them. */
+    val athan: AthanRecord? = null,
+)
+
+/**
+ * The backed-up [ir.taqvim.data.preferences.AthanPreferences]. The picked sound stays on its device: read access to a
+ * picked document is granted to that device only.
+ */
+@Serializable
+internal data class AthanRecord(
+    val alerts: List<AthanAlertRecord>,
+    val vibrate: Boolean,
+    val bypassDndForFajr: Boolean,
+    val volumePercent: Int,
+    val useIranTime: Boolean,
+)
+
+@Serializable
+internal data class AthanAlertRecord(
+    val prayer: AthanPrayer,
+    val enabled: Boolean,
+    val gapMinutes: Int,
 )
 
 /**
