@@ -10,6 +10,7 @@ import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventLookup
 import ir.taqvim.core.events.EventSearchIndex
 import ir.taqvim.core.events.SearchQuery
+import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.events.DayEvents
@@ -18,6 +19,7 @@ import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarDay
 import ir.taqvim.feature.calendar.CalendarDaySource
+import ir.taqvim.feature.calendar.CalendarDisplayStore
 import ir.taqvim.feature.calendar.CalendarMonthSource
 import ir.taqvim.feature.calendar.CalendarPlace
 import ir.taqvim.feature.calendar.CalendarPlaceSource
@@ -41,6 +43,27 @@ internal class PreferencesCalendarSettingsSource(
         preferences.preferences
             .map { CalendarSettings(it.calendars, it.weekStart, it.islamicVariant, it.languageCode) }
             .distinctUntilChanged()
+}
+
+/** The calendar menu's display choices (T-803) stored in the user preferences (T-600). */
+internal class PreferencesCalendarDisplayStore(
+    private val preferences: UserPreferencesRepository,
+) : CalendarDisplayStore {
+    /** The week-number column has no preference field yet (T-1500), so the menu reports the choice as not saved. */
+    override suspend fun setShowWeekNumbers(show: Boolean): Unit = error("week numbers are not stored yet (T-1500)")
+
+    override suspend fun setSecondaryCalendar(system: CalendarSystem) {
+        preferences.update { current -> current.copy(calendars = withSecondary(current.calendars, system)) }
+    }
+}
+
+/** [calendars] with [system] second: the primary calendar stays first, the others keep their order. */
+internal fun withSecondary(
+    calendars: List<CalendarSystem>,
+    system: CalendarSystem,
+): List<CalendarSystem> {
+    val others = calendars - system
+    return others.take(1) + system + others.drop(1)
 }
 
 /** Day events for the calendar screen and its month pager from the events repository (T-305), titled in [language]. */

@@ -27,6 +27,7 @@ import ir.taqvim.feature.agenda.agendaFeatureModule
 import ir.taqvim.feature.astronomy.AstronomySettingsSource
 import ir.taqvim.feature.astronomy.astronomyFeatureModule
 import ir.taqvim.feature.calendar.CalendarDaySource
+import ir.taqvim.feature.calendar.CalendarDisplayStore
 import ir.taqvim.feature.calendar.CalendarMonthSource
 import ir.taqvim.feature.calendar.CalendarPlaceSource
 import ir.taqvim.feature.calendar.CalendarSettingsSource
@@ -102,6 +103,7 @@ val appDataModule =
 val appFeaturePortsModule =
     module {
         single<CalendarSettingsSource> { PreferencesCalendarSettingsSource(get()) }
+        single<CalendarDisplayStore> { PreferencesCalendarDisplayStore(get()) }
         single {
             RepositoryCalendarDaySource(get(), get<UserPreferencesRepository>().preferences.map { it.languageCode })
         }

@@ -4,6 +4,7 @@
  */
 package ir.taqvim.app.di
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
@@ -19,6 +20,7 @@ import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.data.events.generated.OfficialEvents
+import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.calendar.CalendarPlace
 import ir.taqvim.feature.calendar.DayEventItem
 import ir.taqvim.feature.calendar.DayEventKind
@@ -116,6 +118,43 @@ class CalendarAdaptersTest {
                 )
             settings.value = tehran
             source.place().first() shouldBe CalendarPlace("Tehran", tehran.place, tehran.timeZone, tehran.prayer)
+        }
+
+    @Test
+    fun `the secondary calendar becomes second and the primary stays first`(): Unit =
+        runTest {
+            val preferences = repositoryOf(UserPreferences.defaultsFor("fa"))
+            val store = PreferencesCalendarDisplayStore(preferences)
+            val primary =
+                preferences.preferences
+                    .first()
+                    .calendars
+                    .first()
+
+            store.setSecondaryCalendar(CalendarSystem.GREGORIAN)
+            val calendars = preferences.preferences.first().calendars
+            calendars.first() shouldBe primary
+            calendars[1] shouldBe CalendarSystem.GREGORIAN
+            calendars.toSet().size shouldBe calendars.size
+        }
+
+    @Test
+    fun `secondary calendar ordering keeps the others and adds a missing one`() {
+        val persian = CalendarSystem.PERSIAN
+        val islamic = CalendarSystem.ISLAMIC
+        val gregorian = CalendarSystem.GREGORIAN
+        withSecondary(listOf(persian, islamic, gregorian), gregorian) shouldBe listOf(persian, gregorian, islamic)
+        withSecondary(listOf(persian, islamic), gregorian) shouldBe listOf(persian, gregorian, islamic)
+        withSecondary(listOf(persian), persian) shouldBe listOf(persian)
+        withSecondary(emptyList(), gregorian) shouldBe listOf(gregorian)
+    }
+
+    @Test
+    fun `week numbers are reported as not saved until a preference exists`(): Unit =
+        runTest {
+            val store = PreferencesCalendarDisplayStore(repositoryOf(UserPreferences.defaultsFor("en")))
+
+            shouldThrow<IllegalStateException> { store.setShowWeekNumbers(true) }
         }
 
     private companion object {
