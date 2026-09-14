@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,11 +34,12 @@ import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.setProgress
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 private val MIN_ITEM_HEIGHT = 48.dp
+private val MIN_ITEM_TEXT_SIZE = 11.sp
 private val ITEM_PADDING = 16.dp
 private const val VISIBLE_ITEMS = 3
 private val BAND_SHAPE = RoundedCornerShape(12.dp)
@@ -149,14 +151,16 @@ private fun WheelItem(
     selected: Boolean,
     height: Dp,
 ) {
+    val style = if (selected) MaterialTheme.typography.titleLarge else MaterialTheme.typography.bodyLarge
     Box(Modifier.fillMaxWidth().height(height), contentAlignment = Alignment.Center) {
+        // Long month names shrink to fit the column instead of being cut off at large font scales (T-1701).
         Text(
             text,
-            style = if (selected) MaterialTheme.typography.titleLarge else MaterialTheme.typography.bodyLarge,
+            style = style,
             color = if (selected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            autoSize = TextAutoSize.StepBased(minFontSize = MIN_ITEM_TEXT_SIZE, maxFontSize = style.fontSize),
         )
     }
 }

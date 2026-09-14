@@ -11,25 +11,32 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.selected
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 /**
  * One day of a month grid, fully prepared by the caller (T-801 builds these off the main thread):
@@ -74,6 +81,16 @@ internal enum class DayTone {
 internal const val MAX_INDICATORS = 3
 
 private const val OUTSIDE_MONTH_ALPHA = 0.45f
+
+/**
+ * Largest font scale applied inside a day cell. A month grid has a fixed cell size per screen, so larger user font
+ * scales are capped here instead of clipping the day and its secondary dates (T-1701); the cell's spoken summary and
+ * the day details panel carry the same information at the user's full font scale.
+ */
+internal const val MAX_CELL_FONT_SCALE = 1.3f
+private const val DAY_WEIGHT = 2f
+private const val LABEL_WEIGHT = 1f
+private val MIN_LINE_TEXT_SIZE = 5.sp
 private val CELL_SHAPE = RoundedCornerShape(12.dp)
 private val TODAY_BORDER = 2.dp
 private val DOT_SIZE = 5.dp
@@ -116,26 +133,39 @@ public fun DayCell(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Text(
-            model.dayLabel,
-            style = MaterialTheme.typography.titleMedium,
-            color = DayTone.of(model).color(colors),
-            maxLines = 1,
-        )
-        model.secondaryLabels.forEach { label ->
-            Text(label, style = MaterialTheme.typography.labelSmall, color = colors.onSurfaceVariant, maxLines = 1)
+        val density = LocalDensity.current
+        val cellDensity = Density(density.density, density.fontScale.coerceAtMost(MAX_CELL_FONT_SCALE))
+        CompositionLocalProvider(LocalDensity provides cellDensity) {
+            val dayStyle = MaterialTheme.typography.titleMedium
+            val smallStyle = MaterialTheme.typography.labelSmall
+            FittedLine(model.dayLabel, dayStyle, DayTone.of(model).color(colors), DAY_WEIGHT)
+            model.secondaryLabels.forEach { FittedLine(it, smallStyle, colors.onSurfaceVariant, LABEL_WEIGHT) }
+            model.shiftLabel?.let { FittedLine(it, smallStyle, colors.tertiary, LABEL_WEIGHT) }
+            if (model.indicators.isNotEmpty()) IndicatorDots(model.indicators)
         }
-        model.shiftLabel?.let { shift ->
-            Text(
-                shift,
-                style = MaterialTheme.typography.labelSmall,
-                color = colors.tertiary,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
-        if (model.indicators.isNotEmpty()) IndicatorDots(model.indicators)
     }
+}
+
+/**
+ * One line of a day cell that is never cut off: it takes at most its [weight] share of the cell height and shrinks
+ * from [style]'s size until it fits, so short cells (e.g. a stacked phone layout) keep every line whole (T-1701).
+ */
+@Composable
+private fun ColumnScope.FittedLine(
+    text: String,
+    style: TextStyle,
+    color: Color,
+    weight: Float,
+) {
+    // A fixed sp line height would not shrink with the font, so the line takes the font's own height.
+    Text(
+        text,
+        modifier = Modifier.weight(weight, fill = false),
+        style = style.copy(lineHeight = TextUnit.Unspecified),
+        color = color,
+        maxLines = 1,
+        autoSize = TextAutoSize.StepBased(minFontSize = MIN_LINE_TEXT_SIZE, maxFontSize = style.fontSize),
+    )
 }
 
 @Composable

@@ -12,7 +12,8 @@ dependencies {
     testImplementation(projects.core.uiTesting)
 }
 
-// T-1700: every captured screenshot state is also audited for accessibility (AccessibilityAudit).
+// T-1700/T-1701: every captured screenshot state is also audited for accessibility and for text that does not fit.
 tasks.withType<Test>().configureEach {
     systemProperty("taqvim.a11y.audit", "true")
+    systemProperty("taqvim.layout.audit", "true")
 }
