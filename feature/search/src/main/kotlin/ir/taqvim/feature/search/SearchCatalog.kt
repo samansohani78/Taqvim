@@ -38,6 +38,7 @@ enum class ToolEntry(
     COMPASS(R.string.search_tool_compass, R.string.search_tool_compass_keywords),
     LEVEL(R.string.search_tool_level, R.string.search_tool_level_keywords),
     ASTRONOMY(R.string.search_tool_astronomy, R.string.search_tool_astronomy_keywords),
+    MAP(R.string.search_tool_map, R.string.search_tool_map_keywords),
     PRAYER_TIMES(R.string.search_tool_prayer_times, R.string.search_tool_prayer_times_keywords),
     AGENDA(R.string.search_tool_agenda, R.string.search_tool_agenda_keywords),
     YEAR(R.string.search_tool_year, R.string.search_tool_year_keywords),

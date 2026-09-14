@@ -64,6 +64,8 @@
     <string name="search_tool_level_keywords">تراز|خط‌کش|شیب</string>
     <string name="search_tool_astronomy">نجوم</string>
     <string name="search_tool_astronomy_keywords">ماه|خورشید|خسوف|کسوف|برج|طالع</string>
+    <string name="search_tool_map">نقشهٔ جهان</string>
+    <string name="search_tool_map_keywords">نقشه|نقشهٔ جهان|شب و روز|هلال|انحراف مغناطیسی</string>
     <string name="search_tool_prayer_times">اوقات شرعی</string>
     <string name="search_tool_prayer_times_keywords">صبح|ظهر|مغرب|طلوع|غروب</string>
     <string name="search_tool_agenda">فهرست رویدادها</string>

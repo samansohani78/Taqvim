@@ -179,6 +179,7 @@ internal fun toolDestination(entry: ToolEntry): AppDestination =
         ToolEntry.COMPASS -> AppDestination.Compass
         ToolEntry.LEVEL -> AppDestination.Level
         ToolEntry.ASTRONOMY -> AppDestination.Astronomy
+        ToolEntry.MAP -> AppDestination.WorldMap
         ToolEntry.PRAYER_TIMES -> AppDestination.Times
         ToolEntry.AGENDA -> AppDestination.Agenda
         ToolEntry.YEAR -> AppDestination.Year

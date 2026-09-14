@@ -64,6 +64,8 @@
     <string name="search_tool_level_keywords">level|ruler|tilt</string>
     <string name="search_tool_astronomy">Astronomy</string>
     <string name="search_tool_astronomy_keywords">moon|sun|eclipse|zodiac|horoscope</string>
+    <string name="search_tool_map">World map</string>
+    <string name="search_tool_map_keywords">map|world map|day and night|crescent|magnetic declination</string>
     <string name="search_tool_prayer_times">Prayer times</string>
     <string name="search_tool_prayer_times_keywords">fajr|dhuhr|maghrib|sunrise|sunset</string>
     <string name="search_tool_agenda">Agenda</string>

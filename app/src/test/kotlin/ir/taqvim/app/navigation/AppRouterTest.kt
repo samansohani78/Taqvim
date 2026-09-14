@@ -154,6 +154,7 @@ class AppRouterTest {
                 AppDestination.Compass,
                 AppDestination.Level,
                 AppDestination.Astronomy,
+                AppDestination.WorldMap,
                 AppDestination.Times,
                 AppDestination.Agenda,
                 AppDestination.Year,
