@@ -56,6 +56,44 @@ class SettingsHomeViewModelTest {
         }
 
     @Test
+    fun `a switch with a warning turns on only after the user confirms and turns off at once`(): Unit =
+        runTest {
+            val store = FakeGeneralSettingsStore(LocationFixtures.english)
+            val model = viewModel(store)
+            advanceUntilIdle()
+
+            model.onRowClicked(SettingsItemId.DYNAMIC_LAUNCHER_ICON)
+            advanceUntilIdle()
+            store.current.dynamicLauncherIcon shouldBe false
+            model.uiState.value.confirmation shouldBe
+                ToggleConfirmation(
+                    SettingsItemId.DYNAMIC_LAUNCHER_ICON,
+                    R.string.settings_warning_dynamic_launcher_icon,
+                )
+
+            model.onConfirmationDismissed()
+            advanceUntilIdle()
+            model.uiState.value.confirmation shouldBe null
+            store.current.dynamicLauncherIcon shouldBe false
+
+            model.onRowClicked(SettingsItemId.DYNAMIC_LAUNCHER_ICON)
+            model.onConfirmationAccepted()
+            advanceUntilIdle()
+            store.current.dynamicLauncherIcon shouldBe true
+            model.uiState.value.confirmation shouldBe null
+
+            model.onRowClicked(SettingsItemId.DYNAMIC_LAUNCHER_ICON)
+            advanceUntilIdle()
+            store.current.dynamicLauncherIcon shouldBe false
+            model.uiState.value.confirmation shouldBe null
+            model.onConfirmationAccepted()
+
+            model.onRowClicked(SettingsItemId.PERSISTENT_NOTIFICATION_LARGE_NUMBER)
+            advanceUntilIdle()
+            store.current.persistentNotificationLargeNumber shouldBe true
+        }
+
+    @Test
     fun `a choice opens a dialog, stores the option and closes`(): Unit =
         runTest {
             val store = FakeGeneralSettingsStore(LocationFixtures.english)

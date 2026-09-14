@@ -66,7 +66,12 @@ class SettingsHomeViewModel(
         state.update { it.copy(highlighted = null) }
         when (val control = SettingsCatalog.control(id)) {
             is SettingsControl.Toggle -> {
-                update { control.write(it, !control.read(it)) }
+                val warning = control.warning
+                if (warning != null && !control.read(settings)) {
+                    state.update { it.copy(confirmation = ToggleConfirmation(id, warning)) }
+                } else {
+                    update { control.write(it, !control.read(it)) }
+                }
             }
 
             is SettingsControl.Choice, is SettingsControl.MultiChoice, is SettingsControl.TimeOfDay -> {
@@ -113,6 +118,19 @@ class SettingsHomeViewModel(
 
     fun onDialogDismissed() {
         state.update { it.copy(dialog = null) }
+    }
+
+    /** The user accepted the warning of the waiting switch: it turns on. */
+    fun onConfirmationAccepted() {
+        val confirmation = state.value.confirmation ?: return
+        state.update { it.copy(confirmation = null) }
+        val control = SettingsCatalog.control(confirmation.id)
+        if (control is SettingsControl.Toggle) update { control.write(it, true) }
+    }
+
+    /** The user declined the warning: the switch stays off. */
+    fun onConfirmationDismissed() {
+        state.update { it.copy(confirmation = null) }
     }
 
     private fun update(transform: (GeneralSettings) -> GeneralSettings) {

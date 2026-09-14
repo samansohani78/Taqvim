@@ -77,6 +77,8 @@
   <string name="settings_search_no_results">No setting matches “%1$s”</string>
   <string name="settings_list_separator">", "</string>
   <string name="settings_dialog_done">Done</string>
+  <string name="settings_dialog_turn_on">Turn on</string>
+  <string name="settings_dialog_cancel">Cancel</string>
   <string name="settings_tab_interface_calendar">Interface &amp; calendar</string>
   <string name="settings_tab_widgets_notification">Widgets &amp; notification</string>
   <string name="settings_tab_location_athan">Location &amp; athan</string>
@@ -100,6 +102,9 @@
   <string name="settings_item_clear_searches">Clear recent searches</string>
   <string name="settings_item_widgets">Widgets</string>
   <string name="settings_item_persistent_notification">Date in the status bar</string>
+  <string name="settings_item_persistent_notification_large_number">Large day number in the notification</string>
+  <string name="settings_item_dynamic_launcher_icon">Day number on the app icon</string>
+  <string name="settings_warning_dynamic_launcher_icon">The app icon will change every day. Some launchers move the icon or remove it and its shortcuts from the home screen when it changes, so you may need to add them again.</string>
   <string name="settings_item_all_day_reminder_time">Reminder time for all-day events</string>
   <string name="settings_item_location">Location</string>
   <string name="settings_item_athan">Athan</string>
@@ -117,6 +122,7 @@
   <string name="settings_keywords_search">search|history|recent</string>
   <string name="settings_keywords_widgets">home screen|launcher|widget</string>
   <string name="settings_keywords_notification">notification|status bar|persistent</string>
+  <string name="settings_keywords_launcher_icon">icon|launcher|home screen|day number</string>
   <string name="settings_keywords_reminder">reminder|all-day|time|alarm|official day</string>
   <string name="settings_keywords_location">city|place|GPS|coordinates|time zone</string>
   <string name="settings_keywords_athan">adhan|azan|alarm|sound</string>

@@ -50,6 +50,10 @@ data class GeneralSettings(
     val hasRecentSearches: Boolean,
     /** Minute of the day (0‥1439) at which reminders of all-day events sound (T-1001, T-1002). */
     val allDayReminderMinute: Int = DEFAULT_ALL_DAY_REMINDER_MINUTE,
+    /** Whether the persistent notification (T-1213) shows the day number as a large icon. */
+    val persistentNotificationLargeNumber: Boolean = false,
+    /** Whether the launcher icon shows today's day number (T-1214); turning it on asks for confirmation. */
+    val dynamicLauncherIcon: Boolean = false,
 ) {
     companion object {
         /** 09:00. */

@@ -91,6 +91,10 @@ class SettingsHomeScreenTest {
         when (control) {
             is SettingsControl.Toggle -> {
                 openRow(id)
+                if (control.warning != null && !control.read(before)) {
+                    composeRule.onNodeWithText(text(R.string.settings_dialog_turn_on)).performClick()
+                    settle()
+                }
                 control.write(before, !control.read(before))
             }
 

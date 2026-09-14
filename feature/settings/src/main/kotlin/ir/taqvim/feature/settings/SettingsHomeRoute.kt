@@ -52,6 +52,8 @@ fun SettingsHomeRoute(
                 onRowClicked = viewModel::onRowClicked,
                 onOptionClicked = viewModel::onOptionClicked,
                 onDialogDismissed = viewModel::onDialogDismissed,
+                onConfirmationAccepted = viewModel::onConfirmationAccepted,
+                onConfirmationDismissed = viewModel::onConfirmationDismissed,
             )
         }
     SettingsHomeScreen(state, actions, modifier)

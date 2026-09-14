@@ -123,6 +123,29 @@ internal fun ChoiceDialogView(
     )
 }
 
+/** Asks before a switch with a warning turns on; "Turn on" accepts, "Cancel" or dismissing leaves it off. */
+@Composable
+internal fun ToggleConfirmationView(
+    confirmation: ToggleConfirmation,
+    actions: SettingsHomeActions,
+) {
+    AlertDialog(
+        onDismissRequest = actions.onConfirmationDismissed,
+        title = { Text(stringResource(confirmation.id.title)) },
+        text = { Text(stringResource(confirmation.warning)) },
+        confirmButton = {
+            TextButton(onClick = actions.onConfirmationAccepted) {
+                Text(stringResource(R.string.settings_dialog_turn_on))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = actions.onConfirmationDismissed) {
+                Text(stringResource(R.string.settings_dialog_cancel))
+            }
+        },
+    )
+}
+
 @Composable
 private fun OptionRow(
     option: SettingsOption,

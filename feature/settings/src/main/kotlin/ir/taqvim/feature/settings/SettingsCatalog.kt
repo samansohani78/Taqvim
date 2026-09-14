@@ -34,9 +34,11 @@ data class SettingsOption(
 
 /** How a settings item reads and changes [GeneralSettings]. */
 sealed interface SettingsControl {
+    /** A switch; when [warning] is set, turning it on is confirmed in a dialog showing that text first. */
     data class Toggle(
         val read: (GeneralSettings) -> Boolean,
         val write: (GeneralSettings, Boolean) -> GeneralSettings,
+        @param:StringRes val warning: Int? = null,
     ) : SettingsControl
 
     /** One of [options]; [read] and [write] use option keys. */
@@ -134,6 +136,16 @@ enum class SettingsItemId(
         R.string.settings_item_persistent_notification,
         R.string.settings_keywords_notification,
     ),
+    PERSISTENT_NOTIFICATION_LARGE_NUMBER(
+        SettingsTab.WIDGETS_NOTIFICATION,
+        R.string.settings_item_persistent_notification_large_number,
+        R.string.settings_keywords_notification,
+    ),
+    DYNAMIC_LAUNCHER_ICON(
+        SettingsTab.WIDGETS_NOTIFICATION,
+        R.string.settings_item_dynamic_launcher_icon,
+        R.string.settings_keywords_launcher_icon,
+    ),
     ALL_DAY_REMINDER_TIME(
         SettingsTab.WIDGETS_NOTIFICATION,
         R.string.settings_item_all_day_reminder_time,
@@ -161,7 +173,8 @@ internal object SettingsCatalog {
     fun control(id: SettingsItemId): SettingsControl =
         when (id.tab) {
             SettingsTab.INTERFACE_CALENDAR -> interfaceControl(id)
-            SettingsTab.WIDGETS_NOTIFICATION, SettingsTab.LOCATION_ATHAN -> otherControl(id)
+            SettingsTab.WIDGETS_NOTIFICATION -> notificationControl(id)
+            SettingsTab.LOCATION_ATHAN -> otherControl(id)
         }
 
     private fun interfaceControl(id: SettingsItemId): SettingsControl =
@@ -280,7 +293,7 @@ internal object SettingsCatalog {
             }
         }
 
-    private fun otherControl(id: SettingsItemId): SettingsControl =
+    private fun notificationControl(id: SettingsItemId): SettingsControl =
         when (id) {
             SettingsItemId.WIDGETS -> {
                 SettingsControl.Link(SettingsDestination.WIDGETS)
@@ -290,12 +303,33 @@ internal object SettingsCatalog {
                 toggle({ it.persistentNotification }) { s, v -> s.copy(persistentNotification = v) }
             }
 
+            SettingsItemId.PERSISTENT_NOTIFICATION_LARGE_NUMBER -> {
+                toggle({ it.persistentNotificationLargeNumber }) { s, v ->
+                    s.copy(persistentNotificationLargeNumber = v)
+                }
+            }
+
+            SettingsItemId.DYNAMIC_LAUNCHER_ICON -> {
+                SettingsControl.Toggle(
+                    read = { it.dynamicLauncherIcon },
+                    write = { s, v -> s.copy(dynamicLauncherIcon = v) },
+                    warning = R.string.settings_warning_dynamic_launcher_icon,
+                )
+            }
+
             SettingsItemId.ALL_DAY_REMINDER_TIME -> {
                 SettingsControl.TimeOfDay(REMINDER_TIME_STEP_MINUTES, { it.allDayReminderMinute }) { s, v ->
                     s.copy(allDayReminderMinute = v)
                 }
             }
 
+            else -> {
+                error("no control for $id")
+            }
+        }
+
+    private fun otherControl(id: SettingsItemId): SettingsControl =
+        when (id) {
             SettingsItemId.LOCATION -> {
                 SettingsControl.Link(SettingsDestination.LOCATION)
             }

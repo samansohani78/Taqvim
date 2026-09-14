@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.settings
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.i18n.PersianText
@@ -26,6 +27,14 @@ data class SettingsHomeUiState(
     val highlighted: SettingsItemId? = null,
     /** The open choice dialog, or `null`. */
     val dialog: ChoiceDialog? = null,
+    /** A switch waiting for the user to confirm its warning before it turns on, or `null`. */
+    val confirmation: ToggleConfirmation? = null,
+)
+
+/** Turning [id] on waits for the user to accept [warning]. */
+data class ToggleConfirmation(
+    val id: SettingsItemId,
+    @param:StringRes val warning: Int,
 )
 
 /** One settings item with its current value. */
@@ -73,6 +82,8 @@ data class SettingsHomeActions(
     val onRowClicked: (SettingsItemId) -> Unit = {},
     val onOptionClicked: (String) -> Unit = {},
     val onDialogDismissed: () -> Unit = {},
+    val onConfirmationAccepted: () -> Unit = {},
+    val onConfirmationDismissed: () -> Unit = {},
 )
 
 /** Builds rows and dialogs from stored settings. */

@@ -53,6 +53,7 @@ fun SettingsHomeScreen(
         }
     }
     state.dialog?.let { ChoiceDialogView(it, actions) }
+    state.confirmation?.let { ToggleConfirmationView(it, actions) }
 }
 
 @Composable
