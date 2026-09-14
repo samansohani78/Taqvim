@@ -281,6 +281,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1210 … T-1212 — Moon, map and countdown widgets
+- **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/` — `SkyWidgets.kt`,
+  `WidgetSkyBuilder.kt`, `WidgetCountdown*.kt`; `core/ui/.../painter/ProgressRingBitmapPainter.kt` and night shading in
+  `MapThumbnailPainter.kt`; `data/preferences/.../widget_configs.proto` (`WidgetCountdownProto`); `app/.../di/WidgetSkyParts.kt`,
+  `PreferencesWidgetCountdownSource.kt`
+- **Tasks:** T-1210, T-1211, T-1212
+- **References used (public only):** Moon phases from the `:core:astronomy` façade (cosinekitty/astronomy, MIT); the
+  Natural Earth 1:110m outline and day/night geometry already recorded for T-1301; Jetpack Glance 1.2.0 (Apache-2.0).
+- **Implementation note:** own work; no new dependencies or data; countdown arithmetic reuses core calendar arithmetic
+  (invalid-day policy as ADR-0011's last-day-of-month option for 30 Esfand / 29 February).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1205 … T-1209 — Month, month picture, week strip, schedule and sun arc widgets
 - **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/` — `CalendarWidgets.kt`,
   `DrawnWidgets.kt`, `WidgetCalendarBuilder.kt`, `WidgetCalendarModels.kt`, `WidgetMonthNavigation.kt`;
