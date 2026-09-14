@@ -80,6 +80,8 @@ internal fun UserPreferences.toGeneralSettings(): GeneralSettings =
         highLatitudeRule = app.highLatitudeRule,
         subscriptionsNetworkAllowed = app.subscriptionsNetworkAllowed,
         persistentNotification = app.persistentNotification,
+        persistentNotificationLargeNumber = app.persistentNotificationLargeNumber,
+        dynamicLauncherIcon = app.dynamicLauncherIcon,
         rememberRecentSearches = app.rememberRecentSearches,
         hasRecentSearches = app.recentSearches.isNotEmpty(),
         allDayReminderMinute = app.allDayReminderMinute,
@@ -113,6 +115,8 @@ internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): Use
                 highLatitudeRule = settings.highLatitudeRule,
                 subscriptionsNetworkAllowed = settings.subscriptionsNetworkAllowed,
                 persistentNotification = settings.persistentNotification,
+                persistentNotificationLargeNumber = settings.persistentNotificationLargeNumber,
+                dynamicLauncherIcon = settings.dynamicLauncherIcon,
                 rememberRecentSearches = settings.rememberRecentSearches,
                 recentSearches = if (settings.rememberRecentSearches) app.recentSearches else emptyList(),
                 allDayReminderMinute =

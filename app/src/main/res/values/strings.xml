@@ -21,6 +21,11 @@
   <string name="more_privacy">Privacy</string>
   <string name="more_about">About Taqvim</string>
   <string name="process_text_label">Open in Taqvim</string>
+  <!-- T-1215 launcher shortcuts -->
+  <string name="shortcut_today">Today</string>
+  <string name="shortcut_new_event">New event</string>
+  <string name="shortcut_prayer_times">Prayer times</string>
+  <string name="shortcut_converter">Date converter</string>
   <string name="pending_shift_work">Shift work is not available yet.</string>
   <string name="pending_settings">This setting is not available yet.</string>
   <string name="pending_widgets">Widget settings are not available yet.</string>

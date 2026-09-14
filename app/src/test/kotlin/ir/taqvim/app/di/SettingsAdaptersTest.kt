@@ -51,8 +51,14 @@ class SettingsAdaptersTest {
                 highLatitudeRule = rule,
                 rememberRecentSearches = false,
                 allDayReminderMinute = 450,
+                persistentNotificationLargeNumber = true,
+                dynamicLauncherIcon = true,
             )
         val stored = remembered.withGeneralSettings(changed)
+
+        stored.app.persistentNotificationLargeNumber shouldBe true
+        stored.app.dynamicLauncherIcon shouldBe true
+        stored.toGeneralSettings().dynamicLauncherIcon shouldBe true
 
         stored.themeMode.name shouldBe "DARK"
         stored.app.dynamicColor shouldBe false

@@ -6,6 +6,9 @@ package ir.taqvim.app
 
 import android.app.Application
 import androidx.work.Configuration
+import ir.taqvim.app.automation.AppShortcuts
+import ir.taqvim.app.automation.LauncherIconSwitcher
+import ir.taqvim.app.di.SurfaceRefreshWatcher
 import ir.taqvim.app.di.WidgetTriggerWatcher
 import ir.taqvim.app.di.appModule
 import ir.taqvim.data.events.ics.SubscriptionRefreshWorkerFactory
@@ -21,8 +24,9 @@ import org.koin.core.context.startKoin
 
 /**
  * Process entry point: builds the Koin DI graph (see docs/adr/0002-dependency-injection-koin.md), starts the
- * scheduler's preference watcher (T-604), reminder data watcher (T-1001, T-1002) and widget update triggers
- * (T-1201…T-1204), and provides WorkManager with the subscription worker factory (T-1003).
+ * scheduler's preference watcher (T-604), reminder data watcher (T-1001, T-1002), widget update triggers
+ * (T-1201…T-1204) and the refresh of the persistent notification and launcher icon (T-1213, T-1214), publishes the
+ * launcher shortcuts (T-1215), and provides WorkManager with the subscription worker factory (T-1003).
  */
 class TaqvimApplication :
     Application(),
@@ -46,5 +50,9 @@ class TaqvimApplication :
         processScope.launch { reminderInputs.watch() }
         val widgetTriggers = get<WidgetTriggerWatcher>()
         processScope.launch { widgetTriggers.watch() }
+        val surfaces = get<SurfaceRefreshWatcher>()
+        processScope.launch { surfaces.watch() }
+        val launcherIcon = get<LauncherIconSwitcher>()
+        processScope.launch { AppShortcuts.publish(this@TaqvimApplication, launcherIcon.enabledEntry()) }
     }
 }

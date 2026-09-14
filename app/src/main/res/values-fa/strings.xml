@@ -21,6 +21,11 @@
   <string name="more_privacy">حریم خصوصی</string>
   <string name="more_about">درباره تقویم</string>
   <string name="process_text_label">باز کردن در تقویم</string>
+  <!-- T-1215 launcher shortcuts -->
+  <string name="shortcut_today">امروز</string>
+  <string name="shortcut_new_event">رویداد تازه</string>
+  <string name="shortcut_prayer_times">اوقات شرعی</string>
+  <string name="shortcut_converter">تبدیل تاریخ</string>
   <string name="pending_shift_work">شیفت کاری هنوز در دسترس نیست.</string>
   <string name="pending_settings">این تنظیم هنوز در دسترس نیست.</string>
   <string name="pending_widgets">تنظیمات ابزارک‌ها هنوز در دسترس نیست.</string>

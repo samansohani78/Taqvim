@@ -2,8 +2,43 @@
 # none), the builds it appears in and why it is exported. Anything exported and not listed fails the build
 # (ExportedComponentsTest for the debug unit-test manifest, auditReleaseExportedComponents for release).
 # component | permission | builds | reason
-ir.taqvim.app.MainActivity | - | all | launcher and taqvim:// links that only open screens (ADR-0016)
+ir.taqvim.app.MainActivity | - | all | taqvim:// links and launcher shortcuts that only open screens (ADR-0016)
 ir.taqvim.app.ProcessTextActivity | - | all | "Open in Taqvim" for selected text; reads the text only (ADR-0016)
+ir.taqvim.app.LauncherDefault | - | all | launcher entry (MAIN/LAUNCHER alias of MainActivity) with the default icon (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay01 | - | all | launcher entry with day-number icon 1, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay02 | - | all | launcher entry with day-number icon 2, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay03 | - | all | launcher entry with day-number icon 3, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay04 | - | all | launcher entry with day-number icon 4, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay05 | - | all | launcher entry with day-number icon 5, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay06 | - | all | launcher entry with day-number icon 6, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay07 | - | all | launcher entry with day-number icon 7, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay08 | - | all | launcher entry with day-number icon 8, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay09 | - | all | launcher entry with day-number icon 9, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay10 | - | all | launcher entry with day-number icon 10, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay11 | - | all | launcher entry with day-number icon 11, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay12 | - | all | launcher entry with day-number icon 12, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay13 | - | all | launcher entry with day-number icon 13, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay14 | - | all | launcher entry with day-number icon 14, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay15 | - | all | launcher entry with day-number icon 15, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay16 | - | all | launcher entry with day-number icon 16, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay17 | - | all | launcher entry with day-number icon 17, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay18 | - | all | launcher entry with day-number icon 18, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay19 | - | all | launcher entry with day-number icon 19, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay20 | - | all | launcher entry with day-number icon 20, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay21 | - | all | launcher entry with day-number icon 21, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay22 | - | all | launcher entry with day-number icon 22, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay23 | - | all | launcher entry with day-number icon 23, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay24 | - | all | launcher entry with day-number icon 24, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay25 | - | all | launcher entry with day-number icon 25, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay26 | - | all | launcher entry with day-number icon 26, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay27 | - | all | launcher entry with day-number icon 27, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay28 | - | all | launcher entry with day-number icon 28, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay29 | - | all | launcher entry with day-number icon 29, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay30 | - | all | launcher entry with day-number icon 30, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.app.LauncherDay31 | - | all | launcher entry with day-number icon 31, disabled unless chosen (T-1214, ADR-0022)
+ir.taqvim.feature.notification.TodayTileService | android.permission.BIND_QUICK_SETTINGS_TILE | all | Quick Settings tile with today's date (T-1215); only the system can bind; a tap only opens today
+ir.taqvim.feature.wallpaper.TaqvimWallpaperService | android.permission.BIND_WALLPAPER | all | live wallpaper (T-1215); only the system can bind; draws today's date, month and Moon
+ir.taqvim.feature.wallpaper.TaqvimDreamService | android.permission.BIND_DREAM_SERVICE | all | daydream clock with today's dates (T-1215); only the system can bind; not interactive
 androidx.work.impl.background.systemjob.SystemJobService | android.permission.BIND_JOB_SERVICE | all | WorkManager jobs for subscription refresh; only the system can bind
 androidx.work.impl.diagnostics.DiagnosticsReceiver | android.permission.DUMP | all | WorkManager diagnostics; DUMP is a signature/privileged permission
 androidx.profileinstaller.ProfileInstallReceiver | android.permission.DUMP | all | baseline profile installation by adb/Play; DUMP-protected

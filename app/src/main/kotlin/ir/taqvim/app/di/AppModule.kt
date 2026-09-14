@@ -327,5 +327,6 @@ val appModule =
             mapPortsModule,
             widgetsFeatureModule,
             widgetPortsModule,
+            surfacePortsModule,
         )
     }
