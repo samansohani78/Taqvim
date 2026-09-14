@@ -51,15 +51,18 @@ fun screenshotPath(
 /**
  * Configures Robolectric for [environment]'s device, renders [content] inside [WithScreenshotEnvironment] and
  * captures `src/test/screenshots/<screen>/<environment id>.png`. One call per test: a Compose rule accepts a
- * single `setContent`. Requires `@GraphicsMode(NATIVE)` on the test class.
+ * single `setContent`. Requires `@GraphicsMode(NATIVE)` on the test class. When the module's tests set
+ * [AccessibilityAudit.ENABLED_PROPERTY], every captured state is also audited ([assertAccessible], T-1700).
  */
 fun ComposeContentTestRule.captureScreenshot(
     screen: String,
     environment: ScreenshotEnvironment,
+    accessibility: AccessibilityOptions = AccessibilityOptions(),
     content: @Composable () -> Unit,
 ) {
     val path = screenshotPath(screen, environment)
     RuntimeEnvironment.setQualifiers(environment.device.qualifiers)
     setContent { WithScreenshotEnvironment(environment, content) }
     onRoot().captureRoboImage(path)
+    auditAccessibilityIfEnabled(accessibility)
 }
