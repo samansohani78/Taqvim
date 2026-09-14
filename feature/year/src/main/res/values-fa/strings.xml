@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="year_title">سال</string>
+  <string name="year_loading">در حال بارگذاری سال</string>
+  <string name="year_month_title">%1$s %2$s</string>
+  <string name="year_range">%1$s – %2$s</string>
+  <string name="year_separator">"، "</string>
+  <string name="year_today">امروز</string>
+  <plurals name="year_holidays">
+    <item quantity="one">%1$s تعطیلی</item>
+    <item quantity="other">%1$s تعطیلی</item>
+  </plurals>
+  <string name="year_previous">قبلی</string>
+  <string name="year_next">بعدی</string>
+  <string name="year_choose">سال‌ها</string>
+  <string name="year_show_months">ماه‌ها</string>
+  <string name="year_open_month">باز کردن ماه</string>
+  <string name="year_zoom_in">بزرگ‌نمایی</string>
+  <string name="year_zoom_out">کوچک‌نمایی</string>
+  <string name="year_calendar_persian">هجری شمسی</string>
+  <string name="year_calendar_islamic">هجری قمری</string>
+  <string name="year_calendar_gregorian">میلادی</string>
+  <string name="year_calendar_nepali">نپالی</string>
+</resources>
