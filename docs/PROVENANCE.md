@@ -256,6 +256,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1600 — Wear OS app
+- **Module / files:** `wear/src/main/kotlin/ir/taqvim/wear/`; decisions in ADR-0019
+- **Task:** T-1600
+- **References used (public only):** Android developer documentation for Wear OS — Compose for Wear OS Material 3
+  (`AppScaffold`, `ScreenScaffold`, `TransformingLazyColumn`, `SwipeDismissableNavHost`), Tiles and ProtoLayout
+  (`TileService`, `TileBuilders`, `LayoutElementBuilders`, `BIND_TILE_PROVIDER`), complication data sources
+  (`SuspendingComplicationDataSourceService`, `ShortTextComplicationData`, `RangedValueComplicationData`,
+  `BIND_COMPLICATION_PROVIDER`), `com.google.android.wearable.standalone`; androidx.concurrent `SuspendToFutureAdapter`;
+  manifest merger `tools:node="remove"`. All computation from the committed core modules and bundled dataset/catalog.
+- **Implementation note:** own work; the 80-city list, 60-day occasion horizon and refresh periods are product choices;
+  tile preview drawables drawn for Taqvim; Tehran and Tromsø coordinates are rounded sample inputs.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1700 — Accessibility audit
 - **Module / files:** `core/ui-testing/src/main/kotlin/ir/taqvim/core/uitesting/AccessibilityAudit.kt`; semantics fixes
   in core/ui and feature modules
