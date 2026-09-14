@@ -294,6 +294,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1213 … T-1215 — Persistent notification, dynamic launcher icon, tile, shortcuts, wallpaper, daydream
+- **Module / files:** `feature/notification/` (persistent notification, daily refresh, QS tile), `feature/wallpaper/`
+  (live wallpaper, daydream), `app/` launcher aliases, shortcuts and surface adapters; icon generator
+  `tools/icons/launcher_day_icons.py`; decisions in ADR-0022
+- **Tasks:** T-1213, T-1214, T-1215
+- **References used (public only):** Android developer documentation — `NotificationCompat` ongoing/low-importance
+  notifications, `IconCompat.createWithBitmap`, `AlarmManager.set` (inexact), `PackageManager.setComponentEnabledSetting`
+  with activity aliases and `DONT_KILL_APP`, `ShortcutManagerCompat`, `TileService`, `WallpaperService`, `DreamService`;
+  the T-702 painters and core calendars/praytimes/astronomy.
+- **Implementation note:** own work; launcher day-number digits (Latin and Persian), `notification_ic_today` and
+  `shortcut_ic_add` are original vector art drawn for Taqvim; no third-party assets or dependencies.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1210 … T-1212 — Moon, map and countdown widgets
 - **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/` — `SkyWidgets.kt`,
   `WidgetSkyBuilder.kt`, `WidgetCountdown*.kt`; `core/ui/.../painter/ProgressRingBitmapPainter.kt` and night shading in
