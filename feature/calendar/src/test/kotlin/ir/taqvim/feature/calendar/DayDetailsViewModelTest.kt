@@ -55,6 +55,7 @@ class DayDetailsViewModelTest {
             SearchEventsUseCase(FakeSearchSource(emptyMap()), dispatcher),
             place,
             now,
+            FakeDisplayStore(),
             dispatcher,
         )
     }

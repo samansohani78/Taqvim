@@ -47,6 +47,7 @@ class CalendarMonthsTest {
             search,
             FakePlaceSource(null),
             FakeNowSource(TEST_NOW),
+            FakeDisplayStore(),
             UnconfinedTestDispatcher(testScheduler),
         )
     }

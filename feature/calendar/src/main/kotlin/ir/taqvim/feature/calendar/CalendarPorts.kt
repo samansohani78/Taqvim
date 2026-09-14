@@ -111,6 +111,15 @@ interface EventSearchSource {
     ): List<EventSearchResult>
 }
 
+/** Stores the display choices of the calendar screen's menu (T-803). Implemented in `:app` over the preferences. */
+interface CalendarDisplayStore {
+    /** Shows or hides the week-number column of the month pager ([CalendarSettings.showWeekNumbers]). */
+    suspend fun setShowWeekNumbers(show: Boolean)
+
+    /** Makes [system] the secondary calendar: second in [CalendarSettings.calendars], added when missing. */
+    suspend fun setSecondaryCalendar(system: CalendarSystem)
+}
+
 /** The current civil day; emits again when the day changes. */
 fun interface TodaySource {
     fun today(): Flow<Jdn>

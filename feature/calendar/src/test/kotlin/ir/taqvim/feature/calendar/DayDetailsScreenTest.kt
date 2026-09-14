@@ -191,6 +191,7 @@ class DayDetailsScreenTest {
                 SearchEventsUseCase(FakeSearchSource(emptyMap())),
                 FakePlaceSource(TEHRAN),
                 FakeNowSource(TEST_NOW),
+                FakeDisplayStore(),
             )
         composeRule.setContent { CalendarTestTheme { CalendarRoute(viewModel = viewModel) } }
         val eventsTab = hasText(resources.getString(R.string.calendar_tab_events))

@@ -49,10 +49,12 @@ class CalendarViewModel(
     private val searchEvents: SearchEventsUseCase,
     placeSource: CalendarPlaceSource,
     nowSource: NowSource,
+    private val displayStore: CalendarDisplayStore,
     calculationDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : ViewModel() {
     private val navigation = MutableStateFlow(NavigationState())
     private val search = MutableStateFlow(CalendarSearch())
+    private val menu = MutableStateFlow(CalendarMenu())
     private val effectChannel = Channel<CalendarEffect>(Channel.BUFFERED)
     private var searchJob: Job? = null
 
@@ -124,21 +126,90 @@ class CalendarViewModel(
             today.filterNotNull(),
             calendars.filterNotNull(),
             navigation,
-            search,
+            combine(search, menu, ::Pair),
             combine(dayDetails, months, overview, times, ::Loaded),
-        ) { today, calendars, state, search, loaded ->
-            CalendarUiState(content(today, calendars, state, search, loaded))
+        ) { today, calendars, state, (search, menu), loaded ->
+            CalendarUiState(content(today, calendars, state, search, loaded, menu))
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), CalendarUiState())
 
     fun onAction(action: CalendarAction) {
         when (action) {
             is CalendarAction.Navigation -> navigate(action)
             is CalendarAction.Search -> onSearch(action)
+            is CalendarAction.Menu -> onMenu(action)
+            is CalendarAction.Event -> onEvent(action)
+        }
+    }
+
+    private fun onEvent(action: CalendarAction.Event) {
+        menu.update { it.copy(isOpen = false) }
+        when (action) {
             is CalendarAction.CreateEvent -> emit(CalendarEffect.NavigateToEventEditor(action.jdn))
             is CalendarAction.OpenEvent -> emit(CalendarEffect.NavigateToEvent(action.event))
             is CalendarAction.OpenWeek -> emit(CalendarEffect.NavigateToTimeline(action.firstDay))
             is CalendarAction.OpenCitation -> emit(CalendarEffect.OpenUrl(action.url))
+            CalendarAction.OpenSearchScreen -> emit(CalendarEffect.NavigateToSearch)
+            CalendarAction.OpenShiftWork -> emit(CalendarEffect.NavigateToShiftWork)
+            CalendarAction.OpenPlanetaryHours -> openPlanetaryHours()
+            CalendarAction.PrintMonth -> emit(CalendarEffect.PrintMonth)
         }
+    }
+
+    /** The toolbar menu (T-803): dialogs, going to a date and the stored display choices. */
+    private fun onMenu(action: CalendarAction.Menu) {
+        when (action) {
+            CalendarAction.OpenMenu -> {
+                menu.update { it.copy(isOpen = true) }
+            }
+
+            CalendarAction.DismissMenu -> {
+                menu.update { it.copy(isOpen = false) }
+            }
+
+            CalendarAction.OpenDatePicker -> {
+                menu.value = CalendarMenu(dialog = CalendarDialog.DATE_PICKER)
+            }
+
+            CalendarAction.OpenSecondaryCalendarChooser -> {
+                menu.value = CalendarMenu(dialog = CalendarDialog.SECONDARY_CALENDAR)
+            }
+
+            CalendarAction.DismissDialog -> {
+                menu.value = CalendarMenu()
+            }
+
+            is CalendarAction.PickDate -> {
+                pickDate(action)
+            }
+
+            is CalendarAction.ChooseSecondaryCalendar -> {
+                store { setSecondaryCalendar(action.system) }
+            }
+
+            is CalendarAction.ShowWeekNumbers -> {
+                store { setShowWeekNumbers(action.show) }
+            }
+        }
+    }
+
+    private fun pickDate(action: CalendarAction.PickDate) {
+        val calendars = calendars.value ?: return
+        menu.value = CalendarMenu()
+        select(calendars.primaryDay(action.year, action.month, action.day))
+    }
+
+    /** Closes the menu and stores a display choice; a failure is reported in a snackbar. */
+    private fun store(write: suspend CalendarDisplayStore.() -> Unit) {
+        menu.value = CalendarMenu()
+        viewModelScope.launch {
+            runCatching { displayStore.write() }
+                .onFailure { effectChannel.send(CalendarEffect.ShowSnackbar(CalendarMessage.SETTING_NOT_SAVED)) }
+        }
+    }
+
+    private fun openPlanetaryHours() {
+        val day = navigation.value.selectedDay ?: today.value ?: return
+        emit(CalendarEffect.NavigateToPlanetaryHours(day))
     }
 
     /** The grid days of the months either side of [window]'s month, with their events, in offset order. */
@@ -230,6 +301,7 @@ class CalendarViewModel(
         state: NavigationState,
         search: CalendarSearch,
         loaded: Loaded,
+        menu: CalendarMenu,
     ): CalendarContent {
         val selected = state.selectedDay ?: today
         val shown = state.shownDay ?: selected
@@ -252,6 +324,8 @@ class CalendarViewModel(
             times =
                 loaded.times.takeIf { it !is DayTimesState.Ready || it.times.day == selected } ?: DayTimesState.Loading,
             sourceEvent = state.sourceEvent,
+            menu = menu,
+            secondaryChoices = calendars.secondaryChoices.toImmutableList(),
         )
     }
 

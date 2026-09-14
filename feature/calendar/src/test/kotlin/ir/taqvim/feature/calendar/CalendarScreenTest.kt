@@ -55,6 +55,7 @@ class CalendarScreenTest {
                 SearchEventsUseCase(FakeSearchSource(emptyMap())),
                 FakePlaceSource(null),
                 FakeNowSource(TEST_NOW),
+                FakeDisplayStore(),
             )
         composeRule.setContent {
             CalendarTestTheme { CalendarRoute(navigation = navigation, viewModel = viewModel) }

@@ -8,12 +8,9 @@ import android.content.res.Resources
 import android.icu.text.DateFormatSymbols
 import android.icu.util.ULocale
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -26,7 +23,6 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.Weekday
@@ -34,8 +30,8 @@ import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.TopBar
 
 /**
- * The calendar (home) screen, stateless: the shown month's title over the month pager (T-801) and the selected day's
- * details (T-802), scrolling together. The toolbar actions (T-803) are added by their task.
+ * The calendar (home) screen, stateless: the toolbar with the shown month's title (T-803) over the month pager (T-801)
+ * and the selected day's details (T-802), stacked on compact windows and side by side from medium width (T-806).
  */
 @Composable
 fun CalendarScreen(
@@ -49,20 +45,35 @@ fun CalendarScreen(
         return
     }
     val builder = rememberMonthPageBuilder(content.settings())
+    CalendarScaffold(content, builder, onAction, modifier) { paneModifier ->
+        MonthPager(content, builder, onAction, paneModifier)
+    }
+}
+
+/**
+ * The loaded calendar screen: toolbar, menu dialogs and the panes laid out for the available width and the foldable
+ * posture. [monthPane] draws the month (the pager in the app, a single page in screenshots).
+ */
+@Composable
+internal fun CalendarScaffold(
+    content: CalendarContent,
+    builder: MonthPageBuilder,
+    onAction: (CalendarAction) -> Unit,
+    modifier: Modifier = Modifier,
+    isTabletop: Boolean = isTabletopPosture(),
+    monthPane: @Composable (Modifier) -> Unit,
+) {
     val heading = remember(builder, content.visibleMonth) { builder.heading(content.visibleMonth) }
-    ScreenSurface(
-        modifier = modifier,
-        topBar = { TopBar(heading.title, subtitle = heading.subtitle) },
-    ) { padding ->
-        Column(Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState())) {
-            MonthPager(content, builder, onAction, Modifier.fillMaxWidth())
-            DayDetailsPanel(
-                content,
-                onAction,
-                Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+    ScreenSurface(modifier = modifier, topBar = { CalendarTopBar(content, heading, onAction) }) { padding ->
+        BoxWithConstraints(Modifier.fillMaxSize().padding(padding)) {
+            CalendarPanes(
+                layout = calendarLayoutFor(maxWidth.value.toInt(), isTabletop),
+                monthPane = monthPane,
+                detailsPane = { DayDetailsPanel(content, onAction, it) },
             )
         }
     }
+    CalendarDialogs(content, onAction)
 }
 
 @Composable

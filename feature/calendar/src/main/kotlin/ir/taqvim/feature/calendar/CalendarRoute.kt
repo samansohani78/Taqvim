@@ -9,20 +9,38 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 
-/** The calendar screen bound to its [CalendarViewModel]; one-shot effects go to [navigation]. */
+/**
+ * The calendar screen bound to its [CalendarViewModel]; navigation effects go to [navigation] and the shown month is
+ * printed through [printer] (T-803).
+ */
 @Composable
 fun CalendarRoute(
     modifier: Modifier = Modifier,
     navigation: CalendarNavigation = CalendarNavigation(),
+    printer: MonthPrinter = WebViewMonthPrinter,
     viewModel: CalendarViewModel = koinViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val currentNavigation by rememberUpdatedState(navigation)
+    val currentPrinter by rememberUpdatedState(printer)
+    val context = LocalContext.current
+    val resources = LocalResources.current
     LaunchedEffect(viewModel) {
-        viewModel.effects.collect { currentNavigation.handle(it) }
+        viewModel.effects.collect { effect ->
+            if (effect == CalendarEffect.PrintMonth) {
+                state.content?.let { content ->
+                    val job = resources.getString(R.string.calendar_print_job)
+                    currentPrinter.print(context, monthPrintHtml(content, resources), job)
+                }
+            } else {
+                currentNavigation.handle(effect)
+            }
+        }
     }
     CalendarScreen(state, viewModel::onAction, modifier)
 }
@@ -34,5 +52,9 @@ private fun CalendarNavigation.handle(effect: CalendarEffect) {
         is CalendarEffect.NavigateToTimeline -> onOpenTimeline(effect.firstDay)
         is CalendarEffect.ShowSnackbar -> onMessage(effect.message)
         is CalendarEffect.OpenUrl -> onOpenUrl(effect.url)
+        CalendarEffect.NavigateToSearch -> onOpenSearch()
+        CalendarEffect.NavigateToShiftWork -> onOpenShiftWork()
+        is CalendarEffect.NavigateToPlanetaryHours -> onOpenPlanetaryHours(effect.day)
+        CalendarEffect.PrintMonth -> Unit
     }
 }

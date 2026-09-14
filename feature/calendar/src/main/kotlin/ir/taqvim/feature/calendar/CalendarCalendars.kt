@@ -34,6 +34,26 @@ class CalendarCalendars(
 
     private val primary: CalendarArithmetic = arithmetic.first()
 
+    /** Calendars that can be secondary: every calendar with arithmetic except the primary, in declaration order. */
+    val secondaryChoices: List<CalendarSystem> =
+        CalendarSystem.entries.filter { it != primary.system && arithmeticFor(it, settings.islamicVariant) != null }
+
+    /** Days in [month] of [year] of the primary calendar, the month clamped to the months of [year]. */
+    fun primaryMonthLength(
+        year: Int,
+        month: Int,
+    ): Int = primary.monthLength(year, month.coerceIn(1, primary.monthsInYear(year)))
+
+    /** The day [year]-[month]-[day] of the primary calendar, with the month and the day clamped to what exists. */
+    fun primaryDay(
+        year: Int,
+        month: Int,
+        day: Int,
+    ): Jdn {
+        val clampedMonth = month.coerceIn(1, primary.monthsInYear(year))
+        return primary.toJdn(primary.date(year, clampedMonth, day.coerceIn(1, primaryMonthLength(year, clampedMonth))))
+    }
+
     /** [day] in every available calendar, primary first. */
     fun datesOf(day: Jdn): List<CalendarDate> = arithmetic.map { it.fromJdn(day) }
 

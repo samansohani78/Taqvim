@@ -133,4 +133,22 @@
   <string name="calendar_sun_path">Sun path from sunrise at %1$s to sunset at %2$s</string>
   <string name="calendar_polar_day">The Sun does not set on this day, so the times cannot be calculated.</string>
   <string name="calendar_polar_night">The Sun does not rise on this day, so the times cannot be calculated.</string>
+
+  <!-- T-803 toolbar and menu. -->
+  <string name="calendar_action_search">Search</string>
+  <string name="calendar_action_more">More options</string>
+  <string name="calendar_menu_pick_date">Go to date</string>
+  <string name="calendar_menu_shift_work">Shift work</string>
+  <string name="calendar_menu_print_month">Print month</string>
+  <string name="calendar_menu_planetary_hours">Planetary hours</string>
+  <string name="calendar_menu_week_numbers">Week numbers</string>
+  <string name="calendar_menu_secondary_calendar">Secondary calendar</string>
+  <string name="calendar_picker_year">Year</string>
+  <string name="calendar_picker_month">Month</string>
+  <string name="calendar_picker_day">Day</string>
+  <string name="calendar_picker_confirm">Go</string>
+  <string name="calendar_picker_cancel">Cancel</string>
+  <string name="calendar_print_job">Calendar month</string>
+  <string name="calendar_print_events">Events of the month</string>
+  <string name="calendar_print_no_events">No events this month</string>
 </resources>

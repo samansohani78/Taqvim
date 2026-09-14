@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.calendar
 
+import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 
 /** User actions on the calendar screen (T-800). */
@@ -16,6 +17,46 @@ sealed interface CalendarAction {
 
     /** Actions that leave the screen. */
     sealed interface Event : CalendarAction
+
+    /** Actions of the toolbar menu and its dialogs (T-803). */
+    sealed interface Menu : CalendarAction
+
+    data object OpenMenu : Menu
+
+    data object DismissMenu : Menu
+
+    data object OpenDatePicker : Menu
+
+    /** Go to [year]-[month]-[day] of the primary calendar; the month and day are clamped to what exists. */
+    data class PickDate(
+        val year: Int,
+        val month: Int,
+        val day: Int,
+    ) : Menu
+
+    data object OpenSecondaryCalendarChooser : Menu
+
+    data class ChooseSecondaryCalendar(
+        val system: CalendarSystem,
+    ) : Menu
+
+    /** Closes the open menu dialog (date picker or secondary calendar chooser). */
+    data object DismissDialog : Menu
+
+    data class ShowWeekNumbers(
+        val show: Boolean,
+    ) : Menu
+
+    /** Toolbar search: the search screen (T-804). */
+    data object OpenSearchScreen : Event
+
+    data object OpenShiftWork : Event
+
+    /** The planetary hours of the selected day. */
+    data object OpenPlanetaryHours : Event
+
+    /** Print the shown month. */
+    data object PrintMonth : Event
 
     data class SelectDay(
         val jdn: Jdn,
@@ -81,6 +122,9 @@ sealed interface CalendarAction {
 enum class CalendarMessage {
     /** A search result has no known occurrence from today on. */
     NO_UPCOMING_OCCURRENCE,
+
+    /** A display choice of the menu could not be stored (T-803). */
+    SETTING_NOT_SAVED,
 }
 
 /** One-shot effects of the calendar screen. */
@@ -106,4 +150,18 @@ sealed interface CalendarEffect {
     data class OpenUrl(
         val url: String,
     ) : CalendarEffect
+
+    /** Open the search screen (T-803 toolbar, T-804). */
+    data object NavigateToSearch : CalendarEffect
+
+    /** Open shift work (T-803 menu). */
+    data object NavigateToShiftWork : CalendarEffect
+
+    /** Open the planetary hours of [day] (T-803 menu, astronomy). */
+    data class NavigateToPlanetaryHours(
+        val day: Jdn,
+    ) : CalendarEffect
+
+    /** Print the shown month (T-803 menu); the route renders and prints it. */
+    data object PrintMonth : CalendarEffect
 }

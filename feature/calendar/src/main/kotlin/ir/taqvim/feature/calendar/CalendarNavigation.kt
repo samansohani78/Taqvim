@@ -16,4 +16,10 @@ class CalendarNavigation(
     val onMessage: (message: CalendarMessage) -> Unit = {},
     /** Opens a cited primary source, e.g. in the browser. */
     val onOpenUrl: (url: String) -> Unit = {},
+    /** Opens the search screen (T-803 toolbar, T-804). */
+    val onOpenSearch: () -> Unit = {},
+    /** Opens shift work (T-803 menu). */
+    val onOpenShiftWork: () -> Unit = {},
+    /** Opens the planetary hours of [day] (T-803 menu, astronomy). */
+    val onOpenPlanetaryHours: (day: Jdn) -> Unit = {},
 )

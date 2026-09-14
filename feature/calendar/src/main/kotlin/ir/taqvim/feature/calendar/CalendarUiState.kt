@@ -54,6 +54,22 @@ data class CalendarContent(
     val times: DayTimesState = DayTimesState.Loading,
     /** The official event whose source and citation are shown, if any (T-802). */
     val sourceEvent: DayEventItem? = null,
+    /** The toolbar menu and its open dialog (T-803). */
+    val menu: CalendarMenu = CalendarMenu(),
+    /** Calendars the user can choose as the secondary calendar: every available one except the primary (T-803). */
+    val secondaryChoices: ImmutableList<CalendarSystem> = persistentListOf(),
+)
+
+/** Dialogs opened from the toolbar menu (T-803). */
+enum class CalendarDialog {
+    DATE_PICKER,
+    SECONDARY_CALENDAR,
+}
+
+/** The toolbar menu (T-803): whether it is expanded and which of its dialogs is open. */
+data class CalendarMenu(
+    val isOpen: Boolean = false,
+    val dialog: CalendarDialog? = null,
 )
 
 /** The six grid weeks of the month [offset] (see [CalendarContent.monthOffset]) with their events. */

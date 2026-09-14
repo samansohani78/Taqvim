@@ -119,4 +119,21 @@
   <string name="calendar_sun_path">مسیر خورشید از طلوع %1$s تا غروب %2$s</string>
   <string name="calendar_polar_day">خورشید در این روز غروب نمی‌کند و اوقات قابل محاسبه نیست.</string>
   <string name="calendar_polar_night">خورشید در این روز طلوع نمی‌کند و اوقات قابل محاسبه نیست.</string>
+
+  <string name="calendar_action_search">جست‌وجو</string>
+  <string name="calendar_action_more">گزینه‌های بیشتر</string>
+  <string name="calendar_menu_pick_date">رفتن به تاریخ</string>
+  <string name="calendar_menu_shift_work">شیفت کاری</string>
+  <string name="calendar_menu_print_month">چاپ ماه</string>
+  <string name="calendar_menu_planetary_hours">ساعات سیاره‌ای</string>
+  <string name="calendar_menu_week_numbers">شمارهٔ هفته‌ها</string>
+  <string name="calendar_menu_secondary_calendar">تقویم دوم</string>
+  <string name="calendar_picker_year">سال</string>
+  <string name="calendar_picker_month">ماه</string>
+  <string name="calendar_picker_day">روز</string>
+  <string name="calendar_picker_confirm">برو</string>
+  <string name="calendar_picker_cancel">لغو</string>
+  <string name="calendar_print_job">ماه تقویم</string>
+  <string name="calendar_print_events">رویدادهای ماه</string>
+  <string name="calendar_print_no_events">رویدادی در این ماه نیست</string>
 </resources>

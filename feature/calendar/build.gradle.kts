@@ -10,4 +10,6 @@ dependencies {
     implementation(projects.core.praytimes)
     implementation(projects.core.astronomy)
     implementation(libs.kotlinx.coroutines.core)
+    // T-806: foldable posture (tabletop) of the adaptive layout.
+    implementation(libs.androidx.compose.material3.adaptive)
 }

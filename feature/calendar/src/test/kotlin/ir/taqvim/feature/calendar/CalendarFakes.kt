@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.update
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 
@@ -118,5 +119,29 @@ internal class FakeSearchSource(
     ): List<EventSearchResult> {
         queries += text to limit
         return results[text].orEmpty()
+    }
+}
+
+/** Stores display choices into [settings] as the preferences would; while [failure] is set, every write fails. */
+internal class FakeDisplayStore(
+    private val settings: FakeSettingsSource? = null,
+) : CalendarDisplayStore {
+    val weekNumbers = mutableListOf<Boolean>()
+    val secondaries = mutableListOf<CalendarSystem>()
+    var failure: IllegalStateException? = null
+
+    override suspend fun setShowWeekNumbers(show: Boolean) {
+        failure?.let { throw it }
+        weekNumbers += show
+        settings?.state?.update { it.copy(showWeekNumbers = show) }
+    }
+
+    override suspend fun setSecondaryCalendar(system: CalendarSystem) {
+        failure?.let { throw it }
+        secondaries += system
+        settings?.state?.update { current ->
+            val others = current.calendars.filter { it != system }
+            current.copy(calendars = listOf(others.first(), system) + others.drop(1))
+        }
     }
 }
