@@ -69,7 +69,7 @@ class SettingsHomeViewModel(
                 update { control.write(it, !control.read(it)) }
             }
 
-            is SettingsControl.Choice, is SettingsControl.MultiChoice -> {
+            is SettingsControl.Choice, is SettingsControl.MultiChoice, is SettingsControl.TimeOfDay -> {
                 state.update { it.copy(dialog = SettingsStateMapper.dialog(id, settings)) }
             }
 
@@ -90,6 +90,11 @@ class SettingsHomeViewModel(
             is SettingsControl.Choice -> {
                 state.update { it.copy(dialog = null) }
                 update { control.write(it, key) }
+            }
+
+            is SettingsControl.TimeOfDay -> {
+                state.update { it.copy(dialog = null) }
+                key.toIntOrNull()?.let { minute -> update { control.write(it, minute) } }
             }
 
             is SettingsControl.MultiChoice -> {

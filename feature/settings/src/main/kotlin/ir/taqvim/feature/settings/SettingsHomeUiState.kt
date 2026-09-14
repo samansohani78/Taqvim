@@ -5,7 +5,9 @@
 package ir.taqvim.feature.settings
 
 import androidx.compose.runtime.Immutable
+import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.i18n.PersianText
+import java.util.Locale
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
@@ -92,6 +94,13 @@ internal object SettingsStateMapper {
                 ChoiceDialog(id, control.options.toImmutableList(), control.read(settings).toImmutableSet(), true)
             }
 
+            is SettingsControl.TimeOfDay -> {
+                val chosen = control.read(settings)
+                val options = (timeOptions(control.stepMinutes) + chosen).distinct().sorted()
+                val labelled = options.map { timeOption(it, settings) }.toImmutableList()
+                ChoiceDialog(id, labelled, setOf(chosen.toString()).toImmutableSet(), false)
+            }
+
             else -> {
                 null
             }
@@ -122,7 +131,26 @@ internal object SettingsStateMapper {
             SettingsControl.ClearRecentSearches -> {
                 RowValue.Action(settings.hasRecentSearches)
             }
+
+            is SettingsControl.TimeOfDay -> {
+                RowValue.Chosen(persistentListOf(timeOption(control.read(settings), settings)))
+            }
         }
+
+    /** The minutes of the day every [step] minutes from midnight. */
+    private fun timeOptions(step: Int): List<Int> = (0 until MINUTES_PER_DAY step step).toList()
+
+    /** [minute] of the day as an option keyed by the minute and written `HH:mm` in the settings' digits. */
+    internal fun timeOption(
+        minute: Int,
+        settings: GeneralSettings,
+    ): SettingsOption {
+        val text = "%02d:%02d".format(Locale.ROOT, minute / MINUTES_PER_HOUR, minute % MINUTES_PER_HOUR)
+        return SettingsOption(minute.toString(), text = Numerals.localizeDigits(text, settings.numerals))
+    }
+
+    private const val MINUTES_PER_HOUR = 60
+    private const val MINUTES_PER_DAY = 1_440
 }
 
 /** Settings search: an item matches when every word of the query starts a word of its title or keywords. */

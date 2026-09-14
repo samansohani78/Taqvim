@@ -73,6 +73,26 @@ class SettingsHomeViewModelTest {
         }
 
     @Test
+    fun `a time of day opens its dialog, stores the chosen minute and closes`(): Unit =
+        runTest {
+            val store = FakeGeneralSettingsStore(LocationFixtures.english)
+            val model = viewModel(store)
+            advanceUntilIdle()
+
+            model.onRowClicked(SettingsItemId.ALL_DAY_REMINDER_TIME)
+            model.uiState.value.dialog
+                ?.selected shouldBe setOf(GeneralSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE.toString())
+            model.onOptionClicked("not a minute")
+            model.uiState.value.dialog shouldBe null
+            model.onRowClicked(SettingsItemId.ALL_DAY_REMINDER_TIME)
+            model.onOptionClicked("450")
+            advanceUntilIdle()
+
+            store.current.allDayReminderMinute shouldBe 450
+            model.uiState.value.dialog shouldBe null
+        }
+
+    @Test
     fun `a multiple choice toggles options and never empties the weekend`(): Unit =
         runTest {
             val store = FakeGeneralSettingsStore(LocationFixtures.persian)

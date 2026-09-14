@@ -49,6 +49,7 @@ class SettingsAdaptersTest {
                     AppSettings.SELECTABLE_SOURCES.take(1).toSet() + ir.taqvim.core.events.EventSource.USER,
                 highLatitudeRule = rule,
                 rememberRecentSearches = false,
+                allDayReminderMinute = 450,
             )
         val stored = remembered.withGeneralSettings(changed)
 
@@ -58,6 +59,8 @@ class SettingsAdaptersTest {
         stored.app.enabledEventSources shouldBe AppSettings.SELECTABLE_SOURCES.take(1).toSet()
         stored.app.highLatitudeRule shouldBe rule
         stored.app.recentSearches shouldBe emptyList()
+        stored.app.allDayReminderMinute shouldBe 450
+        stored.withGeneralSettings(changed.copy(allDayReminderMinute = 5_000)).app.allDayReminderMinute shouldBe 450
         stored.prayerSettings().highLatitude shouldBe rule
         stored.toGeneralSettings().hasRecentSearches shouldBe false
         remembered.toGeneralSettings().hasRecentSearches shouldBe true

@@ -81,6 +81,7 @@ internal fun UserPreferences.toGeneralSettings(): GeneralSettings =
         persistentNotification = app.persistentNotification,
         rememberRecentSearches = app.rememberRecentSearches,
         hasRecentSearches = app.recentSearches.isNotEmpty(),
+        allDayReminderMinute = app.allDayReminderMinute,
     )
 
 /** These preferences with [settings] applied; turning search history off forgets the stored searches. */
@@ -108,6 +109,9 @@ internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): Use
                 persistentNotification = settings.persistentNotification,
                 rememberRecentSearches = settings.rememberRecentSearches,
                 recentSearches = if (settings.rememberRecentSearches) app.recentSearches else emptyList(),
+                allDayReminderMinute =
+                    settings.allDayReminderMinute.takeIf { it in AppSettings.ALL_DAY_REMINDER_MINUTES }
+                        ?: app.allDayReminderMinute,
             ),
     )
 

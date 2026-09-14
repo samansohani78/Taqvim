@@ -48,7 +48,14 @@ data class GeneralSettings(
     val rememberRecentSearches: Boolean,
     /** Whether any recent search is stored, so clearing them does something. */
     val hasRecentSearches: Boolean,
-)
+    /** Minute of the day (0‥1439) at which reminders of all-day events sound (T-1001, T-1002). */
+    val allDayReminderMinute: Int = DEFAULT_ALL_DAY_REMINDER_MINUTE,
+) {
+    companion object {
+        /** 09:00. */
+        const val DEFAULT_ALL_DAY_REMINDER_MINUTE: Int = 540
+    }
+}
 
 /** What the settings screens show: the app language and the stored settings. */
 data class GeneralSettingsData(

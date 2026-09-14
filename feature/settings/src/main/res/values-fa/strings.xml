@@ -98,6 +98,7 @@
   <string name="settings_item_clear_searches">پاک کردن جست‌وجوهای اخیر</string>
   <string name="settings_item_widgets">ابزارک‌ها</string>
   <string name="settings_item_persistent_notification">تاریخ در نوار وضعیت</string>
+  <string name="settings_item_all_day_reminder_time">ساعت یادآوری رویدادهای تمام‌روز</string>
   <string name="settings_item_location">مکان</string>
   <string name="settings_item_athan">اذان</string>
   <string name="settings_item_prayer_method">روش محاسبهٔ اوقات شرعی</string>
@@ -114,6 +115,7 @@
   <string name="settings_keywords_search">جست‌وجو|تاریخچه|اخیر</string>
   <string name="settings_keywords_widgets">صفحهٔ اصلی|لانچر|ابزارک</string>
   <string name="settings_keywords_notification">اعلان|نوار وضعیت|ثابت</string>
+  <string name="settings_keywords_reminder">یادآور|یادآوری|تمام‌روز|ساعت|هشدار|مناسبت</string>
   <string name="settings_keywords_location">شهر|مکان|مختصات|منطقهٔ زمانی</string>
   <string name="settings_keywords_athan">اذان|صدا|هشدار</string>
   <string name="settings_keywords_prayer">اوقات شرعی|نماز|عصر|حنفی|عرض جغرافیایی</string>

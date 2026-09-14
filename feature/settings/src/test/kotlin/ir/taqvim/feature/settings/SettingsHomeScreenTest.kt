@@ -122,6 +122,13 @@ class SettingsHomeScreenTest {
                 openRow(id)
                 before.copy(hasRecentSearches = false)
             }
+
+            is SettingsControl.TimeOfDay -> {
+                val minute = control.read(before) + control.stepMinutes
+                openRow(id)
+                clickOption(SettingsStateMapper.timeOption(minute, before))
+                control.write(before, minute)
+            }
         }
 
     @Test

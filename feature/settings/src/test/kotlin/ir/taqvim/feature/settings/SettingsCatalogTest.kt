@@ -15,6 +15,7 @@ import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.praytimes.HighLatitudeRule
+import kotlinx.collections.immutable.persistentListOf
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
@@ -33,14 +34,7 @@ class SettingsCatalogTest {
                     }
 
                     is SettingsControl.Choice -> {
-                        control.options.forEach { option ->
-                            val written = control.write(before, option.key)
-                            if (id != SettingsItemId.SECONDARY_CALENDAR ||
-                                option.key != before.calendars.first().name
-                            ) {
-                                control.read(written) shouldBe option.key
-                            }
-                        }
+                        choiceReadsBack(id, control)
                     }
 
                     is SettingsControl.MultiChoice -> {
@@ -56,9 +50,28 @@ class SettingsCatalogTest {
                     SettingsControl.ClearRecentSearches -> {
                         id shouldBe SettingsItemId.CLEAR_SEARCHES
                     }
+
+                    is SettingsControl.TimeOfDay -> {
+                        listOf(0, control.stepMinutes, 1_439).forEach { minute ->
+                            control.read(control.write(before, minute)) shouldBe minute
+                        }
+                    }
                 }
             }
         }
+
+    /** Each option of [control] reads back once written (choosing the main calendar as secondary changes nothing). */
+    private fun choiceReadsBack(
+        id: SettingsItemId,
+        control: SettingsControl.Choice,
+    ) {
+        control.options.forEach { option ->
+            val written = control.write(before, option.key)
+            if (id != SettingsItemId.SECONDARY_CALENDAR || option.key != before.calendars.first().name) {
+                control.read(written) shouldBe option.key
+            }
+        }
+    }
 
     @Test
     fun `tabs hold the plan's groups and links open distinct pages`() {
@@ -80,6 +93,22 @@ class SettingsCatalogTest {
         SettingsLabels.prayerMethods.keys shouldBe PrayerMethod.entries.toSet()
         SettingsLabels.asrJuristics.keys shouldBe AsrJuristic.entries.toSet()
         SettingsLabels.highLatitudeRules.keys shouldBe HighLatitudeRule.entries.toSet()
+    }
+
+    @Test
+    fun `the all-day reminder time offers every half hour in the settings' digits and keeps an odd stored time`() {
+        val id = SettingsItemId.ALL_DAY_REMINDER_TIME
+        val persianDigits = before.copy(allDayReminderMinute = 545)
+        val dialog = requireNotNull(SettingsStateMapper.dialog(id, persianDigits))
+
+        dialog.options.size shouldBe 49
+        dialog.options.first().key shouldBe "0"
+        dialog.selected shouldBe setOf("545")
+        dialog.options.first { it.key == "545" }.text shouldBe SettingsStateMapper.timeOption(545, persianDigits).text
+        SettingsStateMapper.timeOption(540, before.copy(numerals = NumeralSystem.LATIN)).text shouldBe "09:00"
+        SettingsStateMapper.timeOption(1_439, before.copy(numerals = NumeralSystem.PERSIAN)).text shouldBe "۲۳:۵۹"
+        SettingsStateMapper.rows(before).first { it.id == id }.value shouldBe
+            RowValue.Chosen(persistentListOf(SettingsStateMapper.timeOption(540, before)))
     }
 
     @Test

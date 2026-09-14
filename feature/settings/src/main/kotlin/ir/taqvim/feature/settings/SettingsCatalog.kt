@@ -59,6 +59,13 @@ sealed interface SettingsControl {
     ) : SettingsControl
 
     data object ClearRecentSearches : SettingsControl
+
+    /** A time of day chosen every [stepMinutes] minutes; [read] and [write] use minutes of the day. */
+    data class TimeOfDay(
+        val stepMinutes: Int,
+        val read: (GeneralSettings) -> Int,
+        val write: (GeneralSettings, Int) -> GeneralSettings,
+    ) : SettingsControl
 }
 
 /** Every item of the settings home, in display order; [keywords] are `|`-separated synonyms for settings search. */
@@ -127,6 +134,11 @@ enum class SettingsItemId(
         R.string.settings_item_persistent_notification,
         R.string.settings_keywords_notification,
     ),
+    ALL_DAY_REMINDER_TIME(
+        SettingsTab.WIDGETS_NOTIFICATION,
+        R.string.settings_item_all_day_reminder_time,
+        R.string.settings_keywords_reminder,
+    ),
     LOCATION(SettingsTab.LOCATION_ATHAN, R.string.settings_item_location, R.string.settings_keywords_location),
     ATHAN(SettingsTab.LOCATION_ATHAN, R.string.settings_item_athan, R.string.settings_keywords_athan),
     PRAYER_METHOD(SettingsTab.LOCATION_ATHAN, R.string.settings_item_prayer_method, R.string.settings_keywords_prayer),
@@ -138,6 +150,9 @@ enum class SettingsItemId(
 internal object SettingsCatalog {
     /** Key of "no secondary calendar". */
     const val NO_CALENDAR: String = "NONE"
+
+    /** Times of day offered for all-day reminders are this many minutes apart. */
+    const val REMINDER_TIME_STEP_MINUTES: Int = 30
 
     /** Calendars that can be chosen; the Nepali calendar becomes available with T-105. */
     val CALENDARS: List<CalendarSystem> =
@@ -273,6 +288,12 @@ internal object SettingsCatalog {
 
             SettingsItemId.PERSISTENT_NOTIFICATION -> {
                 toggle({ it.persistentNotification }) { s, v -> s.copy(persistentNotification = v) }
+            }
+
+            SettingsItemId.ALL_DAY_REMINDER_TIME -> {
+                SettingsControl.TimeOfDay(REMINDER_TIME_STEP_MINUTES, { it.allDayReminderMinute }) { s, v ->
+                    s.copy(allDayReminderMinute = v)
+                }
             }
 
             SettingsItemId.LOCATION -> {
