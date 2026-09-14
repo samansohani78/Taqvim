@@ -152,7 +152,26 @@ class PersonalDaoTest {
             reminders.alarms() shouldBe listOf(reminder.copy(id = reminderId))
         }
 
+    @Test
+    fun officialRemindersAreOnePerEventAndLeadTime(): Unit =
+        runTest {
+            val official = db.officialReminderDao()
+            official.insert(OfficialReminderEntity(eventId = NOWRUZ, daysBefore = 3))
+            official.insert(OfficialReminderEntity(eventId = NOWRUZ, daysBefore = 7))
+            official.insert(OfficialReminderEntity(eventId = NOWRUZ, daysBefore = 3, enabled = false))
+
+            official.all().map { it.daysBefore to it.enabled } shouldBe listOf(3 to false, 7 to true)
+
+            official.observeAll().test {
+                awaitItem().map { it.daysBefore } shouldBe listOf(3, 7)
+                official.delete(NOWRUZ, 7)
+                awaitItem().map { it.daysBefore } shouldBe listOf(3)
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
     private companion object {
         const val START = 2_460_000L
+        const val NOWRUZ = "ir.holiday.nowruz-1"
     }
 }

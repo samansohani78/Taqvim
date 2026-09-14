@@ -51,8 +51,11 @@ data class AppSettings(
     val timeZoneBoard: List<String>,
     /** Level calibration per orientation name (T-1303); kept on this device only. */
     val levelOffsets: Map<String, LevelOffset>,
+    /** When reminders of all-day events and official events sound (T-1001, T-1002), in minutes after midnight. */
+    val allDayReminderMinute: Int = DEFAULT_ALL_DAY_REMINDER_MINUTE,
 ) {
     init {
+        require(allDayReminderMinute in ALL_DAY_REMINDER_MINUTES) { "all-day reminder time must be within 0..1439" }
         require(EventSource.USER !in enabledEventSources) { "personal events are not a selectable source" }
         require(recentSearches.size <= MAX_RECENT_SEARCHES) { "at most $MAX_RECENT_SEARCHES recent searches" }
         require(timeZoneBoard.size <= MAX_BOARD_ZONES) { "at most $MAX_BOARD_ZONES board zones" }
@@ -61,6 +64,12 @@ data class AppSettings(
     companion object {
         const val MAX_RECENT_SEARCHES: Int = 10
         const val MAX_BOARD_ZONES: Int = 24
+
+        /** 09:00, the planner's default all-day reminder time (product choice). */
+        const val DEFAULT_ALL_DAY_REMINDER_MINUTE: Int = 540
+
+        /** Valid all-day reminder times: every minute of the day. */
+        val ALL_DAY_REMINDER_MINUTES: IntRange = 0..1439
 
         /** Dataset sources a user can turn on or off. */
         val SELECTABLE_SOURCES: List<EventSource> = EventSource.entries - EventSource.USER
@@ -129,6 +138,9 @@ internal fun AppSettingsProto.toDomain(): AppSettings =
                             stored.rollDegrees.coerceIn(LevelOffset.OFFSET_RANGE),
                         )
                 },
+        allDayReminderMinute =
+            allDayReminderMinute.takeIf { hasAllDayReminderMinute() && it in AppSettings.ALL_DAY_REMINDER_MINUTES }
+                ?: AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
     )
 
 internal fun AppSettings.toProto(): AppSettingsProto =
@@ -158,4 +170,5 @@ internal fun AppSettings.toProto(): AppSettingsProto =
                     .setRollDegrees(offset.rollDegrees)
                     .build()
             },
-        ).build()
+        ).setAllDayReminderMinute(allDayReminderMinute)
+        .build()

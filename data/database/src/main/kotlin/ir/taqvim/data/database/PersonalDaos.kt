@@ -6,6 +6,7 @@ package ir.taqvim.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
@@ -95,6 +96,26 @@ interface ReminderDao {
     /** Deletes every alarm of [kind], e.g. before prayer alarms are rescheduled. */
     @Query("DELETE FROM scheduled_alarms WHERE kind = :kind")
     suspend fun deleteAlarms(kind: AlarmKind)
+}
+
+/** Reminders before official events (T-1002). */
+@Dao
+interface OfficialReminderDao {
+    /** Adds a reminder, replacing the one with the same event and lead time. */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(reminder: OfficialReminderEntity): Long
+
+    @Query("DELETE FROM official_reminders WHERE event_id = :eventId AND days_before = :daysBefore")
+    suspend fun delete(
+        eventId: String,
+        daysBefore: Int,
+    )
+
+    @Query("SELECT * FROM official_reminders ORDER BY event_id, days_before")
+    suspend fun all(): List<OfficialReminderEntity>
+
+    @Query("SELECT * FROM official_reminders ORDER BY event_id, days_before")
+    fun observeAll(): Flow<List<OfficialReminderEntity>>
 }
 
 /** Shift rotations and their per-day records. */

@@ -49,6 +49,13 @@ class ReschedulePolicyTest {
     }
 
     @Test
+    fun `changed alarm inputs recompute exactly their kinds`() {
+        policy.planFor(RescheduleEvent.AlarmInputsChanged(setOf(AlarmKind.REMINDER))) shouldBe
+            ReschedulePlan(restore = none, recompute = setOf(AlarmKind.REMINDER))
+        policy.planFor(RescheduleEvent.AlarmInputsChanged(none)) shouldBe ReschedulePlan(none, none)
+    }
+
+    @Test
     fun `preference changes recompute only the kinds whose times they move`() {
         val prayer = setOf(AlarmKind.PRAYER)
         val reminder = setOf(AlarmKind.REMINDER)

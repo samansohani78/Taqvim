@@ -21,6 +21,8 @@ data class PersonalData(
     val shiftRecords: List<ShiftRotationRecordEntity> = emptyList(),
     val icsSubscriptions: List<IcsSubscriptionEntity> = emptyList(),
     val workdayProfiles: List<WorkdayProfileEntity> = emptyList(),
+    /** Reminders before official events (T-1002). */
+    val officialReminders: List<OfficialReminderEntity> = emptyList(),
 )
 
 /** Whole-table reads and the atomic replacement used by backup and restore (T-605). */
@@ -37,6 +39,7 @@ abstract class BackupDao {
             shiftRecords = shiftRecords(),
             icsSubscriptions = icsSubscriptions(),
             workdayProfiles = workdayProfiles(),
+            officialReminders = officialReminders(),
         )
 
     /**
@@ -50,6 +53,7 @@ abstract class BackupDao {
         deleteShiftRotations()
         deleteIcsSubscriptions()
         deleteWorkdayProfiles()
+        deleteOfficialReminders()
         insertEvents(data.events)
         insertRecurrences(data.recurrences)
         insertReminders(data.reminders)
@@ -57,7 +61,17 @@ abstract class BackupDao {
         insertShiftRecords(data.shiftRecords)
         insertIcsSubscriptions(data.icsSubscriptions)
         insertWorkdayProfiles(data.workdayProfiles)
+        insertOfficialReminders(data.officialReminders)
     }
+
+    @Query("SELECT * FROM official_reminders ORDER BY id")
+    protected abstract suspend fun officialReminders(): List<OfficialReminderEntity>
+
+    @Query("DELETE FROM official_reminders")
+    protected abstract suspend fun deleteOfficialReminders()
+
+    @Insert
+    protected abstract suspend fun insertOfficialReminders(rows: List<OfficialReminderEntity>)
 
     @Query("SELECT * FROM personal_events ORDER BY id")
     protected abstract suspend fun events(): List<PersonalEventEntity>

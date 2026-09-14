@@ -49,6 +49,7 @@ class AppSettingsMappingTest {
             )
         AppSettings.DEFAULT.showWeekNumbers shouldBe false
         AppSettings.DEFAULT.dynamicColor shouldBe true
+        AppSettings.DEFAULT.allDayReminderMinute shouldBe 9 * 60
     }
 
     @Test
@@ -61,7 +62,8 @@ class AppSettingsMappingTest {
                 Arb.element(HighLatitudeRule.entries),
                 words,
                 offsets,
-            ) { flag, enabled, rule, recent, offset ->
+                Arb.int(AppSettings.ALL_DAY_REMINDER_MINUTES),
+            ) { flag, enabled, rule, recent, offset, minute ->
                 val app =
                     AppSettings(
                         dynamicColor = flag[0],
@@ -77,6 +79,7 @@ class AppSettingsMappingTest {
                         recentSearches = recent.distinct(),
                         timeZoneBoard = listOf("Asia/Tehran", "Europe/Berlin").take(recent.size % 3),
                         levelOffsets = if (flag[0]) mapOf("FLAT" to offset, "PORTRAIT" to offset) else emptyMap(),
+                        allDayReminderMinute = minute,
                     )
                 val prefs = UserPreferences.defaultsFor("fa").copy(app = app)
                 val bytes = ByteArrayOutputStream().also { UserPrefsSerializer.writeTo(prefs.toProto(), it) }
@@ -133,6 +136,20 @@ class AppSettingsMappingTest {
         app.recentSearches shouldBe listOf("نوروز") + (1..9).map { "q$it" }
         app.timeZoneBoard shouldBe listOf("Asia/Kabul")
         app.levelOffsets shouldBe mapOf("FLAT" to LevelOffset(45.0, -3.0))
+        app.allDayReminderMinute shouldBe AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE
+        stored
+            .toBuilder()
+            .setAllDayReminderMinute(0)
+            .build()
+            .toDomain()
+            .allDayReminderMinute shouldBe 0
+        stored
+            .toBuilder()
+            .setAllDayReminderMinute(2_000)
+            .build()
+            .toDomain()
+            .allDayReminderMinute shouldBe
+            AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE
     }
 
     @Test
@@ -148,5 +165,6 @@ class AppSettingsMappingTest {
         shouldThrow<IllegalArgumentException> {
             AppSettings.DEFAULT.copy(timeZoneBoard = (0..AppSettings.MAX_BOARD_ZONES).map { "Zone/$it" })
         }
+        shouldThrow<IllegalArgumentException> { AppSettings.DEFAULT.copy(allDayReminderMinute = 1_440) }
     }
 }

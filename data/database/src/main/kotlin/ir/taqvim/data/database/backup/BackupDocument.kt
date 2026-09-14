@@ -15,6 +15,7 @@ import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.workdays.HalfDayPolicy
+import ir.taqvim.data.preferences.AppSettings
 import ir.taqvim.data.preferences.AthanPrayer
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
@@ -102,6 +103,8 @@ internal data class AppSettingsRecord(
     val persistentNotification: Boolean,
     val rememberRecentSearches: Boolean,
     val timeZoneBoard: List<String> = emptyList(),
+    /** All-day reminder time (T-1001); absent in backups made before it existed. */
+    val allDayReminderMinute: Int = AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
 )
 
 @Serializable
@@ -123,6 +126,16 @@ internal data class DataRecord(
     val shiftRotationRecords: List<ShiftDayRecord> = emptyList(),
     val icsSubscriptions: List<IcsSubscriptionRecord> = emptyList(),
     val workdayProfiles: List<WorkdayProfileRecord> = emptyList(),
+    /** Reminders before official events (T-1002); absent in backups made before them. */
+    val officialReminders: List<OfficialReminderRecord> = emptyList(),
+)
+
+@Serializable
+internal data class OfficialReminderRecord(
+    val id: Long,
+    val eventId: String,
+    val daysBefore: Int,
+    val enabled: Boolean = true,
 )
 
 @Serializable

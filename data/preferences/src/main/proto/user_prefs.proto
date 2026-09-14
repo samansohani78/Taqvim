@@ -199,4 +199,6 @@ message AppSettingsProto {
   // IANA zone ids on the time zone board (T-1400), in display order.
   repeated string time_zone_board = 12;
   repeated LevelOffsetProto level_offsets = 13;
+  // Minute of the day when all-day and official-event reminders sound (T-1001, T-1002); absent means 09:00.
+  optional int32 all_day_reminder_minute = 14;
 }

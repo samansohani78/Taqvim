@@ -18,6 +18,7 @@ import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.data.database.EventRecurrenceEntity
 import ir.taqvim.data.database.IcsSubscriptionEntity
+import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalData
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.ReminderEntity
@@ -53,6 +54,7 @@ internal object BackupFixtures {
                     highLatitudeRule = HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS,
                     subscriptionsNetworkAllowed = false,
                     timeZoneBoard = listOf("Asia/Kabul", "Europe/Berlin"),
+                    allDayReminderMinute = 480,
                 ),
             athan =
                 AthanPreferences.DEFAULT.copy(
@@ -137,6 +139,11 @@ internal object BackupFixtures {
                         personalLeave = listOf(LeaveRange(Jdn(NOWRUZ_1405 + 10), Jdn(NOWRUZ_1405 + 12))),
                         isDefault = true,
                     ),
+                ),
+            officialReminders =
+                listOf(
+                    OfficialReminderEntity(8, "ir.holiday.nowruz-1", 3),
+                    OfficialReminderEntity(12, "ir.ancient.yalda", 0, enabled = false),
                 ),
         )
 }

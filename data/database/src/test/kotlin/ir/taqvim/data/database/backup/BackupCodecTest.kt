@@ -86,7 +86,7 @@ class BackupCodecTest {
                 appVersion = "0.1.0",
                 createdAtEpochMillis = metadata.createdAtEpochMillis,
                 encrypted = false,
-                rowCounts = BackupTable.entries.zip(listOf(2, 1, 2, 1, 1, 1, 1)).toMap(),
+                rowCounts = BackupTable.entries.zip(listOf(2, 1, 2, 1, 1, 1, 1, 2)).toMap(),
                 preferences = preferences,
             )
     }
@@ -267,6 +267,27 @@ class BackupCodecTest {
     }
 
     @Test
+    fun `official reminders and the all-day reminder time round-trip and older documents have neither`() {
+        val backup = ready(codec.decode(plain()))
+        backup.data.officialReminders shouldBe data.officialReminders
+        backup.preferences.app.allDayReminderMinute shouldBe 480
+
+        val json = jsonOf(plain())
+        val olderData = JsonObject(json.getValue("data").jsonObject - "officialReminders")
+        ready(codec.decode(json.with("data", olderData))).data shouldBe data.copy(officialReminders = emptyList())
+
+        val preferencesJson = json.getValue("preferences").jsonObject
+        val olderApp = JsonObject(preferencesJson.getValue("app").jsonObject - "allDayReminderMinute")
+        val olderPreferences = JsonObject(preferencesJson + ("app" to olderApp))
+        ready(codec.decode(json.with("preferences", olderPreferences))).preferences.app.allDayReminderMinute shouldBe
+            AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE
+
+        val late = plainReplacing("\"allDayReminderMinute\":480", "\"allDayReminderMinute\":5000")
+        ready(codec.decode(late)).preferences.app.allDayReminderMinute shouldBe
+            AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE
+    }
+
+    @Test
     fun `documents that break the format are invalid content`() {
         fun invalid(bytes: ByteArray): String = error(bytes).shouldBeInstanceOf<BackupError.InvalidContent>().reason
 
@@ -279,5 +300,11 @@ class BackupCodecTest {
         invalid(jsonOf(plain()).with("appVersion", null))
         val twice = data.copy(shiftRecords = data.shiftRecords + data.shiftRecords)
         invalid(codec.encode(twice, preferences, metadata, BackupProtection.None)) shouldContain "duplicate"
+        invalid(plainReplacing("\"daysBefore\":3", "\"daysBefore\":31")) shouldContain "official reminder"
+        invalid(plainReplacing("\"eventId\":\"ir.ancient.yalda\"", "\"eventId\":\" \"")) shouldContain
+            "official reminder"
+        val repeated = data.copy(officialReminders = data.officialReminders + data.officialReminders[0].copy(id = 99))
+        invalid(codec.encode(repeated, preferences, metadata, BackupProtection.None)) shouldContain
+            "duplicate official reminder"
     }
 }

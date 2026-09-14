@@ -8,8 +8,12 @@ import ir.taqvim.data.database.AlarmKind
 import ir.taqvim.data.database.ScheduledAlarmEntity
 import ir.taqvim.data.preferences.UserPreferences
 import kotlin.time.Clock
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 /** Produces the pending alarms of one [kind] (prayers, reminders, shifts); implemented by the feature that owns it. */
@@ -84,5 +88,28 @@ class PreferenceChangeWatcher(
                 ?.let { events.handle(RescheduleEvent.PreferencesChanged(it, current)) }
             previous = current
         }
+    }
+}
+
+/**
+ * Turns changes of the data that alarms of [kinds] are computed from (e.g. personal events and their reminders) into
+ * [RescheduleEvent.AlarmInputsChanged]. Every value of [changes] announces a change; a burst of changes within
+ * [quietPeriod], such as an event saved together with its reminders, recomputes once.
+ */
+class AlarmInputWatcher(
+    private val changes: Flow<Any?>,
+    private val kinds: Set<AlarmKind>,
+    private val events: SchedulerEvents,
+    private val quietPeriod: Duration = DEFAULT_QUIET_PERIOD,
+) {
+    /** Collects [changes] until cancelled. */
+    @OptIn(FlowPreview::class)
+    suspend fun watch() {
+        changes.debounce(quietPeriod).collect { events.handle(RescheduleEvent.AlarmInputsChanged(kinds)) }
+    }
+
+    companion object {
+        /** How long changes must pause before the alarms are recomputed. */
+        val DEFAULT_QUIET_PERIOD: Duration = 2.seconds
     }
 }

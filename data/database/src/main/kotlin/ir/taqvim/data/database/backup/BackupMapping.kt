@@ -10,6 +10,7 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.data.database.EventRecurrenceEntity
 import ir.taqvim.data.database.IcsSubscriptionEntity
+import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalData
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.ReminderEntity
@@ -112,6 +113,7 @@ private fun AppSettings.toRecord() =
         persistentNotification = persistentNotification,
         rememberRecentSearches = rememberRecentSearches,
         timeZoneBoard = timeZoneBoard,
+        allDayReminderMinute = allDayReminderMinute,
     )
 
 /** The backed-up settings; values this version cannot use (e.g. personal events as a source) fall back to defaults. */
@@ -129,6 +131,9 @@ private fun AppSettingsRecord.toAppSettings(): AppSettings =
             persistentNotification = persistentNotification,
             rememberRecentSearches = rememberRecentSearches,
             timeZoneBoard = timeZoneBoard,
+            allDayReminderMinute =
+                allDayReminderMinute.takeIf { it in AppSettings.ALL_DAY_REMINDER_MINUTES }
+                    ?: AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
         )
     }.getOrDefault(AppSettings.DEFAULT)
 
@@ -167,6 +172,8 @@ internal fun PersonalData.toRecord(): DataRecord =
                 )
             },
         workdayProfiles = workdayProfiles.map { it.toRecord() },
+        officialReminders =
+            officialReminders.map { OfficialReminderRecord(it.id, it.eventId, it.daysBefore, it.enabled) },
     )
 
 /**
@@ -210,6 +217,8 @@ internal fun DataRecord.toPersonalData(): PersonalData {
                 )
             },
         workdayProfiles = workdayProfiles.map { it.toEntity() },
+        officialReminders =
+            officialReminders.map { OfficialReminderEntity(it.id, it.eventId, it.daysBefore, it.enabled) },
     )
 }
 
@@ -227,6 +236,20 @@ private fun DataRecord.requireConsistentKeys() {
     requireParents("event recurrence", eventRecurrences.map { it.eventId }, eventIds)
     requireParents("reminder", reminders.map { it.eventId }, eventIds)
     requireParents("shift rotation record", shiftRotationRecords.map { it.rotationId }, rotationIds)
+    requireValidOfficialReminders()
+}
+
+/** Official reminders have unique ids, one row per event and lead time, an event id and a lead time of 0‥30 days. */
+private fun DataRecord.requireValidOfficialReminders() {
+    uniqueIds("official reminder", officialReminders.map { it.id })
+    require(officialReminders.distinctBy { it.eventId to it.daysBefore }.size == officialReminders.size) {
+        "duplicate official reminder"
+    }
+    require(
+        officialReminders.all {
+            it.eventId.isNotBlank() && it.daysBefore in 0..OfficialReminderEntity.MAX_DAYS_BEFORE
+        },
+    ) { "official reminder without an event or with a lead time outside 0..${OfficialReminderEntity.MAX_DAYS_BEFORE}" }
 }
 
 private fun uniqueIds(

@@ -31,6 +31,11 @@ sealed interface RescheduleEvent {
         val current: UserPreferences,
     ) : RescheduleEvent
 
+    /** Data that alarms of [kinds] are computed from changed, e.g. personal events or their reminders (T-1001). */
+    data class AlarmInputsChanged(
+        val kinds: Set<AlarmKind>,
+    ) : RescheduleEvent
+
     companion object {
         /** `AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED`, spelled out because it is API 31+. */
         const val ACTION_EXACT_ALARM_PERMISSION_CHANGED: String =
@@ -60,7 +65,8 @@ class ReschedulePolicy {
     /**
      * Boot and app updates lose every system alarm: restore, then recompute because time has passed. Clock and
      * time-zone changes keep system alarms but move wall-clock times: recompute. A permission change only switches
-     * between exact and inexact: restore. Preference changes recompute the kinds whose times depend on them.
+     * between exact and inexact: restore. Preference changes recompute the kinds whose times depend on them, and
+     * changed alarm inputs (personal events, reminders) recompute exactly their kinds.
      */
     fun planFor(event: RescheduleEvent): ReschedulePlan =
         when (event) {
@@ -78,6 +84,10 @@ class ReschedulePolicy {
 
             is RescheduleEvent.PreferencesChanged -> {
                 ReschedulePlan(emptySet(), affectedKinds(event.previous, event.current))
+            }
+
+            is RescheduleEvent.AlarmInputsChanged -> {
+                ReschedulePlan(emptySet(), event.kinds)
             }
         }
 

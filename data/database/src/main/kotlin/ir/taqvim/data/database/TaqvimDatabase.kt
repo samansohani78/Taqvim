@@ -26,6 +26,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         DeviceEventCacheEntity::class,
         WorkdayProfileEntity::class,
         DiagnosticsLogEntity::class,
+        OfficialReminderEntity::class,
     ],
     version = TaqvimMigrations.LATEST_VERSION,
     exportSchema = true,
@@ -35,6 +36,8 @@ abstract class TaqvimDatabase : RoomDatabase() {
     abstract fun personalEventDao(): PersonalEventDao
 
     abstract fun reminderDao(): ReminderDao
+
+    abstract fun officialReminderDao(): OfficialReminderDao
 
     abstract fun shiftRotationDao(): ShiftRotationDao
 
@@ -68,7 +71,7 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 3
+    const val LATEST_VERSION: Int = 4
 
     /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
     private val MIGRATION_1_2: Migration =
@@ -92,6 +95,22 @@ object TaqvimMigrations {
             }
         }
 
+    /** 3 → 4 (T-1002): reminders before official events. */
+    private val MIGRATION_3_4: Migration =
+        object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `official_reminders` " +
+                        "(`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `event_id` TEXT NOT NULL, " +
+                        "`days_before` INTEGER NOT NULL, `enabled` INTEGER NOT NULL)",
+                )
+                db.execSQL(
+                    "CREATE UNIQUE INDEX IF NOT EXISTS `index_official_reminders_event_id_days_before` " +
+                        "ON `official_reminders` (`event_id`, `days_before`)",
+                )
+            }
+        }
+
     /** Migrations between consecutive versions, oldest first. */
-    val ALL: List<Migration> = listOf(MIGRATION_1_2, MIGRATION_2_3)
+    val ALL: List<Migration> = listOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
 }

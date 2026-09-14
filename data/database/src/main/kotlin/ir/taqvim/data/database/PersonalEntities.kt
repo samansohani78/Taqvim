@@ -121,6 +121,27 @@ data class ReminderEntity(
     val enabled: Boolean = true,
 )
 
+/**
+ * A reminder [daysBefore] each occurrence of the official event [eventId] (`official_reminders`, T-1002), sounding at
+ * the all-day reminder time. There is at most one row per event and lead time.
+ */
+@Entity(
+    tableName = "official_reminders",
+    indices = [Index(value = ["event_id", "days_before"], unique = true)],
+)
+data class OfficialReminderEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    /** Dataset id of the event, e.g. `ir.holiday.nowruz-1`. */
+    @ColumnInfo(name = "event_id") val eventId: String,
+    @ColumnInfo(name = "days_before") val daysBefore: Int,
+    val enabled: Boolean = true,
+) {
+    companion object {
+        /** The longest lead time offered for official events, in days (product choice, as in the planner). */
+        const val MAX_DAYS_BEFORE: Int = 30
+    }
+}
+
 /** What a scheduled alarm belongs to. */
 enum class AlarmKind {
     REMINDER,

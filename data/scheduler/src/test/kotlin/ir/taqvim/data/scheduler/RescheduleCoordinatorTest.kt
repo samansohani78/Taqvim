@@ -13,8 +13,12 @@ import ir.taqvim.data.database.AlarmKind
 import ir.taqvim.data.preferences.ThemeMode
 import ir.taqvim.data.preferences.UserPreferences
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
@@ -31,6 +35,32 @@ class RescheduleCoordinatorTest {
     private val reminderDelivery = FakeDelivery(AlarmKind.REMINDER)
     private val coordinator =
         RescheduleCoordinator(scheduler, listOf(prayers), listOf(prayerDelivery, reminderDelivery), clock)
+
+    @Test
+    fun `bursts of alarm input changes recompute their kinds once after a quiet period`(): Unit =
+        runTest {
+            val handled = mutableListOf<RescheduleEvent>()
+            val events =
+                object : SchedulerEvents {
+                    override suspend fun handle(event: RescheduleEvent) {
+                        handled += event
+                    }
+
+                    override suspend fun onAlarmFired(id: Long) = Unit
+                }
+            val changes =
+                flow {
+                    emit(setOf("reminders"))
+                    delay(100.milliseconds)
+                    emit(setOf("personal_events"))
+                    delay(5.seconds)
+                    emit(setOf("official_reminders"))
+                }
+
+            AlarmInputWatcher(changes, setOf(AlarmKind.REMINDER), events).watch()
+
+            handled shouldBe List(2) { RescheduleEvent.AlarmInputsChanged(setOf(AlarmKind.REMINDER)) }
+        }
 
     @Test
     fun `boot restores stored alarms and recomputes kinds that have sources`(): Unit =
