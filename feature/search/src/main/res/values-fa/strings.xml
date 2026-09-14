@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- T-804 search screen -->
+    <string name="search_title">جستجو</string>
+    <string name="search_hint">رویدادها، ابزارها و تنظیمات</string>
+    <string name="search_clear">پاک کردن</string>
+    <string name="search_filter_all">همه</string>
+    <string name="search_filter_events">رویدادها</string>
+    <string name="search_filter_tools">ابزارها</string>
+    <string name="search_filter_settings">تنظیمات</string>
+    <string name="search_searching">در حال جستجو</string>
+    <string name="search_no_results">نتیجه‌ای پیدا نشد</string>
+    <string name="search_no_results_message">املای دیگری یا کلمه‌ای کوتاه‌تر را امتحان کنید.</string>
+    <string name="search_idle">در رویدادها، ابزارها و تنظیمات جستجو کنید</string>
+    <string name="search_recent">جستجوهای اخیر</string>
+    <string name="search_clear_recent">پاک کردن سابقه</string>
+    <string name="search_go_to_date">رفتن به %1$s</string>
+    <string name="search_holiday">تعطیل</string>
+    <string name="search_open">باز کردن</string>
+    <string name="search_separator">"، "</string>
+    <string name="search_kind_official">مناسبت رسمی</string>
+    <string name="search_kind_personal">رویداد من</string>
+    <string name="search_kind_device">تقویم دستگاه</string>
+    <string name="search_kind_subscription">تقویم اشتراکی</string>
+
+    <!-- Searchable settings: titles and |-separated synonyms -->
+    <string name="search_settings_language">زبان</string>
+    <string name="search_settings_language_keywords">ترجمه|فارسی|انگلیسی</string>
+    <string name="search_settings_location">موقعیت مکانی</string>
+    <string name="search_settings_location_keywords">شهر|مکان|جی‌پی‌اس|مختصات|منطقه زمانی</string>
+    <string name="search_settings_calendars">تقویم‌ها</string>
+    <string name="search_settings_calendars_keywords">تقویم|شمسی|قمری|هجری|میلادی|شروع هفته</string>
+    <string name="search_settings_prayer_times">تنظیمات اوقات شرعی</string>
+    <string name="search_settings_prayer_times_keywords">روش محاسبه|عصر|نماز|اوقات</string>
+    <string name="search_settings_athan">اذان</string>
+    <string name="search_settings_athan_keywords">صدای اذان|هشدار|نماز</string>
+    <string name="search_settings_notifications">اعلان‌ها</string>
+    <string name="search_settings_notifications_keywords">یادآوری|هشدار|اعلان ماندگار</string>
+    <string name="search_settings_theme">ظاهر و تم</string>
+    <string name="search_settings_theme_keywords">حالت تاریک|رنگ|قلم|پس‌زمینه</string>
+    <string name="search_settings_widgets">ابزارک‌ها</string>
+    <string name="search_settings_widgets_keywords">صفحه اصلی|ویجت</string>
+    <string name="search_settings_backup">پشتیبان‌گیری و بازیابی</string>
+    <string name="search_settings_backup_keywords">خروجی|ورودی|رمز|فایل</string>
+    <string name="search_settings_privacy">حریم خصوصی</string>
+    <string name="search_settings_privacy_keywords">مجوزها|داده|عیب‌یابی</string>
+    <string name="search_settings_about">درباره</string>
+    <string name="search_settings_about_keywords">نسخه|مجوزها|تماس</string>
+
+    <!-- Searchable tools and screens: titles and |-separated synonyms -->
+    <string name="search_tool_converter">تبدیل تاریخ</string>
+    <string name="search_tool_converter_keywords">تبدیل|شمسی|قمری|میلادی</string>
+    <string name="search_tool_distance">فاصله دو تاریخ</string>
+    <string name="search_tool_distance_keywords">اختلاف|سن|روز کاری</string>
+    <string name="search_tool_duration">محاسبه مدت</string>
+    <string name="search_tool_duration_keywords">زمان|ساعت|دقیقه|جمع</string>
+    <string name="search_tool_time_zones">ساعت جهانی</string>
+    <string name="search_tool_time_zones_keywords">منطقه زمانی|شهرها|گرینویچ</string>
+    <string name="search_tool_qr">کد QR</string>
+    <string name="search_tool_qr_keywords">اشتراک|بارکد</string>
+    <string name="search_tool_compass">قطب‌نما و قبله</string>
+    <string name="search_tool_compass_keywords">قبله|شمال|جهت</string>
+    <string name="search_tool_level">تراز و خط‌کش</string>
+    <string name="search_tool_level_keywords">تراز|خط‌کش|شیب</string>
+    <string name="search_tool_astronomy">نجوم</string>
+    <string name="search_tool_astronomy_keywords">ماه|خورشید|خسوف|کسوف|برج|طالع</string>
+    <string name="search_tool_prayer_times">اوقات شرعی</string>
+    <string name="search_tool_prayer_times_keywords">صبح|ظهر|مغرب|طلوع|غروب</string>
+    <string name="search_tool_agenda">فهرست رویدادها</string>
+    <string name="search_tool_agenda_keywords">فهرست ماه|برنامه|رویداد</string>
+    <string name="search_tool_year">نمای سال</string>
+    <string name="search_tool_year_keywords">سال|ماه‌ها</string>
+</resources>

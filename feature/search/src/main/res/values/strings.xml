@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- T-804 search screen -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">Events, tools and settings</string>
+    <string name="search_clear">Clear</string>
+    <string name="search_filter_all">All</string>
+    <string name="search_filter_events">Events</string>
+    <string name="search_filter_tools">Tools</string>
+    <string name="search_filter_settings">Settings</string>
+    <string name="search_searching">Searching</string>
+    <string name="search_no_results">No results</string>
+    <string name="search_no_results_message">Try another spelling or a shorter word.</string>
+    <string name="search_idle">Search events, tools and settings</string>
+    <string name="search_recent">Recent searches</string>
+    <string name="search_clear_recent">Clear history</string>
+    <string name="search_go_to_date">Go to %1$s</string>
+    <string name="search_holiday">Holiday</string>
+    <string name="search_open">Open</string>
+    <string name="search_separator">" · "</string>
+    <string name="search_kind_official">Official occasion</string>
+    <string name="search_kind_personal">My event</string>
+    <string name="search_kind_device">Device calendar</string>
+    <string name="search_kind_subscription">Subscribed calendar</string>
+
+    <!-- Searchable settings: titles and |-separated synonyms -->
+    <string name="search_settings_language">Language</string>
+    <string name="search_settings_language_keywords">locale|translation|Persian|English</string>
+    <string name="search_settings_location">Location</string>
+    <string name="search_settings_location_keywords">city|place|GPS|coordinates|time zone</string>
+    <string name="search_settings_calendars">Calendars</string>
+    <string name="search_settings_calendars_keywords">calendar|Solar Hijri|Islamic|Hijri|Gregorian|week start</string>
+    <string name="search_settings_prayer_times">Prayer time settings</string>
+    <string name="search_settings_prayer_times_keywords">calculation method|Asr|prayer|oghat</string>
+    <string name="search_settings_athan">Athan</string>
+    <string name="search_settings_athan_keywords">adhan|azan|call to prayer|alarm|sound</string>
+    <string name="search_settings_notifications">Notifications</string>
+    <string name="search_settings_notifications_keywords">reminders|alerts|persistent notification</string>
+    <string name="search_settings_theme">Theme and appearance</string>
+    <string name="search_settings_theme_keywords">dark mode|colors|font|background</string>
+    <string name="search_settings_widgets">Widgets</string>
+    <string name="search_settings_widgets_keywords">home screen|launcher</string>
+    <string name="search_settings_backup">Backup and restore</string>
+    <string name="search_settings_backup_keywords">export|import|password|file</string>
+    <string name="search_settings_privacy">Privacy</string>
+    <string name="search_settings_privacy_keywords">permissions|data|diagnostics</string>
+    <string name="search_settings_about">About</string>
+    <string name="search_settings_about_keywords">version|licenses|contact</string>
+
+    <!-- Searchable tools and screens: titles and |-separated synonyms -->
+    <string name="search_tool_converter">Date converter</string>
+    <string name="search_tool_converter_keywords">convert|Solar Hijri|Hijri|Gregorian</string>
+    <string name="search_tool_distance">Days between dates</string>
+    <string name="search_tool_distance_keywords">distance|difference|age|workdays</string>
+    <string name="search_tool_duration">Duration calculator</string>
+    <string name="search_tool_duration_keywords">time|hours|minutes|add</string>
+    <string name="search_tool_time_zones">World clock</string>
+    <string name="search_tool_time_zones_keywords">time zones|cities|UTC</string>
+    <string name="search_tool_qr">QR code</string>
+    <string name="search_tool_qr_keywords">share|barcode</string>
+    <string name="search_tool_compass">Compass and Qibla</string>
+    <string name="search_tool_compass_keywords">qibla|north|direction</string>
+    <string name="search_tool_level">Bubble level and ruler</string>
+    <string name="search_tool_level_keywords">level|ruler|tilt</string>
+    <string name="search_tool_astronomy">Astronomy</string>
+    <string name="search_tool_astronomy_keywords">moon|sun|eclipse|zodiac|horoscope</string>
+    <string name="search_tool_prayer_times">Prayer times</string>
+    <string name="search_tool_prayer_times_keywords">fajr|dhuhr|maghrib|sunrise|sunset</string>
+    <string name="search_tool_agenda">Agenda</string>
+    <string name="search_tool_agenda_keywords">month list|events list|schedule</string>
+    <string name="search_tool_year">Year view</string>
+    <string name="search_tool_year_keywords">year|months</string>
+</resources>
