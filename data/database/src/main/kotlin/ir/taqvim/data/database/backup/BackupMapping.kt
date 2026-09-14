@@ -116,6 +116,8 @@ private fun AppSettings.toRecord() =
         timeZoneBoard = timeZoneBoard,
         allDayReminderMinute = allDayReminderMinute,
         eventSourcesChosen = eventSourcesChosen,
+        persistentNotificationLargeNumber = persistentNotificationLargeNumber,
+        dynamicLauncherIcon = dynamicLauncherIcon,
     )
 
 /** The backed-up settings; values this version cannot use (e.g. personal events as a source) fall back to defaults. */
@@ -137,6 +139,8 @@ private fun AppSettingsRecord.toAppSettings(): AppSettings =
                 allDayReminderMinute.takeIf { it in AppSettings.ALL_DAY_REMINDER_MINUTES }
                     ?: AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
             eventSourcesChosen = eventSourcesChosen,
+            persistentNotificationLargeNumber = persistentNotificationLargeNumber,
+            dynamicLauncherIcon = dynamicLauncherIcon,
         )
     }.getOrDefault(AppSettings.DEFAULT)
 

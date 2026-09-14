@@ -53,6 +53,13 @@ class AppSettingsMappingTest {
         AppSettings.DEFAULT.allDayReminderMinute shouldBe 9 * 60
         // T-1804: no network use until the user allows subscriptions to refresh.
         AppSettings.DEFAULT.subscriptionsNetworkAllowed shouldBe false
+        // T-1213/T-1214: the large day number and the dynamic launcher icon are opt-in.
+        AppSettings.DEFAULT.persistentNotificationLargeNumber shouldBe false
+        AppSettings.DEFAULT.dynamicLauncherIcon shouldBe false
+        UserPrefs
+            .getDefaultInstance()
+            .toDomain()
+            .app.dynamicLauncherIcon shouldBe false
     }
 
     @Test
@@ -85,6 +92,8 @@ class AppSettingsMappingTest {
                         levelOffsets = if (flag[0]) mapOf("FLAT" to offset, "PORTRAIT" to offset) else emptyMap(),
                         allDayReminderMinute = minute,
                         eventSourcesChosen = true,
+                        persistentNotificationLargeNumber = flag[1] != flag[6],
+                        dynamicLauncherIcon = flag[2] != flag[7],
                     )
                 val prefs = UserPreferences.defaultsFor("fa").copy(app = app)
                 val bytes = ByteArrayOutputStream().also { UserPrefsSerializer.writeTo(prefs.toProto(), it) }

@@ -56,6 +56,8 @@ internal object BackupFixtures {
                     subscriptionsNetworkAllowed = false,
                     timeZoneBoard = listOf("Asia/Kabul", "Europe/Berlin"),
                     allDayReminderMinute = 480,
+                    persistentNotificationLargeNumber = true,
+                    dynamicLauncherIcon = true,
                 ),
             athan =
                 AthanPreferences.DEFAULT.copy(

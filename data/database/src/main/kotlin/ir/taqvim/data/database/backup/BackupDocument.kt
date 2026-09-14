@@ -107,6 +107,10 @@ internal data class AppSettingsRecord(
     val allDayReminderMinute: Int = AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
     /** Whether the sources were chosen by the user; absent in older backups, whose sources follow the language. */
     val eventSourcesChosen: Boolean = false,
+    /** Large day number in the persistent notification (T-1213); absent in older backups. */
+    val persistentNotificationLargeNumber: Boolean = false,
+    /** Day-number launcher icon (T-1214); absent in older backups. */
+    val dynamicLauncherIcon: Boolean = false,
 )
 
 @Serializable

@@ -204,4 +204,8 @@ message AppSettingsProto {
   // Whether the user chose enabled_event_sources; while false they follow the language default (ADR-0007 §3).
   // Stores written before this field ignore their list and take the language default.
   bool event_sources_chosen = 15;
+  // The persistent date notification (T-1213) shows the day number as a large icon.
+  bool persistent_notification_large_number = 16;
+  // The launcher icon shows today's day number (T-1214, ADR-0022); off by default.
+  bool dynamic_launcher_icon = 17;
 }

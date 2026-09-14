@@ -58,6 +58,10 @@ data class AppSettings(
      * default ([defaultEventSources], ADR-0007 §3 addendum) and change with the language.
      */
     val eventSourcesChosen: Boolean = false,
+    /** Whether the persistent date notification (T-1213) shows the day number as a large icon. */
+    val persistentNotificationLargeNumber: Boolean = false,
+    /** Whether the launcher icon shows today's day number (T-1214, ADR-0022); off by default. */
+    val dynamicLauncherIcon: Boolean = false,
 ) {
     init {
         require(allDayReminderMinute in ALL_DAY_REMINDER_MINUTES) { "all-day reminder time must be within 0..1439" }
@@ -173,6 +177,8 @@ internal fun AppSettingsProto.toDomain(): AppSettings =
             allDayReminderMinute.takeIf { hasAllDayReminderMinute() && it in AppSettings.ALL_DAY_REMINDER_MINUTES }
                 ?: AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE,
         eventSourcesChosen = eventSourcesChosen,
+        persistentNotificationLargeNumber = persistentNotificationLargeNumber,
+        dynamicLauncherIcon = dynamicLauncherIcon,
     )
 
 internal fun AppSettings.toProto(): AppSettingsProto =
@@ -204,4 +210,6 @@ internal fun AppSettings.toProto(): AppSettingsProto =
             },
         ).setAllDayReminderMinute(allDayReminderMinute)
         .setEventSourcesChosen(eventSourcesChosen)
+        .setPersistentNotificationLargeNumber(persistentNotificationLargeNumber)
+        .setDynamicLauncherIcon(dynamicLauncherIcon)
         .build()
