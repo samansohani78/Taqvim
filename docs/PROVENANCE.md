@@ -256,6 +256,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1500 — Settings screens and app settings
+- **Module / files:** `feature/settings/src/main/kotlin/ir/taqvim/feature/settings/` — `GeneralSettingsPorts.kt`,
+  `SettingsCatalog.kt`, `SettingsLabels.kt`, `SettingsHome*.kt`, `SettingsRows.kt`, `Subscriptions*.kt`;
+  `data/preferences/.../AppSettings.kt`, `user_prefs.proto` field 15; `data/database/.../backup/` (AppSettingsRecord)
+- **Task:** T-1500
+- **References used (public only):** Protocol Buffers proto3 language guide (field presence); Jetpack Compose/Material 3
+  public APIs (Apache-2.0); T-203 `PersianText.searchKey`; kotlinx.serialization JSON; prayer method and high-latitude
+  option names from `:core:praytimes` (A-10) and the Calendar Center white-nights note cited there.
+- **Implementation note:** own work; defaults (dynamic color on, ancient Iranian festivals off per PLAN §5.1,
+  angle-based high-latitude rule, subscriptions may refresh, no persistent notification, search history kept), list caps
+  (10 searches, 24 board zones) and the ±45° level offset range are product choices; test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1001 / T-1002 — Reminder notifications and official-event reminders
 - **Module / files:** `feature/notification/src/main/kotlin/ir/taqvim/feature/notification/` — `ReminderPlanner.kt`,
   `CalculatorOfficialEventSchedule.kt`, `ReminderAlarms.kt`, `ReminderNotifications.kt`, `ReminderActionReceiver.kt`;
