@@ -52,6 +52,7 @@ import ir.taqvim.feature.compass.compassFeatureModule
 import ir.taqvim.feature.events.EditorSettingsSource
 import ir.taqvim.feature.events.PersonalEventStore
 import ir.taqvim.feature.events.eventsFeatureModule
+import ir.taqvim.feature.map.mapFeatureModule
 import ir.taqvim.feature.notification.AthanAlarms
 import ir.taqvim.feature.notification.AthanSetupSource
 import ir.taqvim.feature.notification.ReminderAlarms
@@ -321,5 +322,7 @@ val appModule =
             automationModule,
             aboutFeatureModule,
             aboutPortsModule,
+            mapFeatureModule,
+            mapPortsModule,
         )
     }

@@ -21,6 +21,7 @@ web pages. A link Taqvim cannot read opens the calendar.
 | `taqvim://convert?date=next%20friday` | The date converter with any text it can read |
 | `taqvim://times` | Prayer times |
 | `taqvim://astronomy` | Astronomy |
+| `taqvim://map` | The world map |
 | `taqvim://search?q=%D9%86%D9%88%D8%B1%D9%88%D8%B2` | Search for "نوروز" |
 | `taqvim://settings` | Settings |
 | `taqvim://settings/main-calendar` | Settings, at the main calendar (any settings item, lower case with `-`) |

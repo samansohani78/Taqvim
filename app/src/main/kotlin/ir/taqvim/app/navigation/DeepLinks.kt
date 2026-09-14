@@ -50,6 +50,7 @@ internal object DeepLinks {
             "convert" to ::converter,
             "times" to { _ -> AppDestination.Times },
             "astronomy" to { _ -> AppDestination.Astronomy },
+            "map" to { _ -> AppDestination.WorldMap },
             "search" to ::search,
             "settings" to ::settings,
         )

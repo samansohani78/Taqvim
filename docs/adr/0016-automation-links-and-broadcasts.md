@@ -47,3 +47,5 @@ their security properties or how selected text is handled.
 
 - `settings/about` opens the About screen (T-1504): version, open-source licenses, data sources, diagnostics and
   problem reports. Like every link it only opens a screen.
+- `map` opens the world map (T-1301). It only opens a screen; saving a point picked on the map as the chosen place
+  needs the user's confirmation in the app.

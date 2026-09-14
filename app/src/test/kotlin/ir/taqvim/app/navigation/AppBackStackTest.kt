@@ -87,6 +87,7 @@ class AppBackStackTest {
                 AppDestination.Year,
                 AppDestination.Agenda,
                 AppDestination.Astronomy,
+                AppDestination.WorldMap,
                 AppDestination.Compass,
                 AppDestination.Level,
                 AppDestination.Search,

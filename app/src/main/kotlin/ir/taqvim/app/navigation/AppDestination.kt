@@ -34,6 +34,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object Astronomy : AppDestination
 
+    /** The world map (T-1301). */
+    @Serializable
+    data object WorldMap : AppDestination
+
     @Serializable
     data object Compass : AppDestination
 

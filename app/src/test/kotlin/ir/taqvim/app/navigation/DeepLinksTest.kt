@@ -42,6 +42,7 @@ class DeepLinksTest {
             "taqvim://convert" to AppDestination.Tools,
             "taqvim://times" to AppDestination.Times,
             "taqvim://astronomy" to AppDestination.Astronomy,
+            "taqvim://map" to AppDestination.WorldMap,
             "taqvim://search?q=%D9%86%D9%88%D8%B1%D9%88%D8%B2" to AppDestination.SearchFor("نوروز"),
             "taqvim://search?q=+" to AppDestination.Search,
             "taqvim://settings" to AppDestination.Settings(),

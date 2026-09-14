@@ -162,6 +162,7 @@ private fun SimpleScreen(
         AppDestination.Year -> YearRoute(modifier, router.year())
         AppDestination.Agenda -> AgendaRoute(modifier, router.agenda())
         AppDestination.About -> AboutRoute(modifier, onExit = { navigator.back() })
+        AppDestination.WorldMap -> MapPickScreen(modifier)
         else -> SettingsAndInstrumentScreen(destination, router, modifier)
     }
 }
@@ -195,6 +196,7 @@ internal enum class MoreEntry(
     AGENDA(AppDestination.Agenda, R.string.more_agenda),
     SEARCH(AppDestination.Search, R.string.more_search),
     ASTRONOMY(AppDestination.Astronomy, R.string.more_astronomy),
+    MAP(AppDestination.WorldMap, R.string.more_map),
     COMPASS(AppDestination.Compass, R.string.more_compass),
     LEVEL(AppDestination.Level, R.string.more_level),
     SETTINGS(AppDestination.Settings(), R.string.more_settings),
