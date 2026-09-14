@@ -46,6 +46,7 @@
   <string name="backup_table_shift_records">Shift records</string>
   <string name="backup_table_subscriptions">Calendar subscriptions</string>
   <string name="backup_table_workdays">Workday profiles</string>
+  <string name="backup_table_official_reminders">Reminders before official days</string>
   <string name="backup_restore">Restore this backup</string>
   <string name="backup_restore_warning">Restoring replaces all events, reminders, calendar subscriptions, shift rotations, workday profiles and settings on this device with the backup. This cannot be undone.</string>
   <string name="backup_restore_confirm_title">Replace your data?</string>

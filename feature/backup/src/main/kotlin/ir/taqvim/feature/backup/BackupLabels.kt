@@ -33,6 +33,7 @@ internal object BackupLabels {
             BackupTableKind.SHIFT_ROTATION_RECORDS -> R.string.backup_table_shift_records
             BackupTableKind.ICS_SUBSCRIPTIONS -> R.string.backup_table_subscriptions
             BackupTableKind.WORKDAY_PROFILES -> R.string.backup_table_workdays
+            BackupTableKind.OFFICIAL_REMINDERS -> R.string.backup_table_official_reminders
         }
 
     @StringRes

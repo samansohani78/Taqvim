@@ -16,6 +16,9 @@ enum class BackupTableKind {
     SHIFT_ROTATION_RECORDS,
     ICS_SUBSCRIPTIONS,
     WORKDAY_PROFILES,
+
+    /** Reminders before official events (T-1002). */
+    OFFICIAL_REMINDERS,
 }
 
 /** Why a backup could not be written, read or restored. */

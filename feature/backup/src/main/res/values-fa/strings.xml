@@ -46,6 +46,7 @@
   <string name="backup_table_shift_records">سابقه نوبت‌ها</string>
   <string name="backup_table_subscriptions">اشتراک‌های تقویم</string>
   <string name="backup_table_workdays">نمایه‌های روز کاری</string>
+  <string name="backup_table_official_reminders">یادآورهای پیش از مناسبت‌های رسمی</string>
   <string name="backup_restore">بازیابی این پشتیبان</string>
   <string name="backup_restore_warning">بازیابی، همه رویدادها، یادآورها، اشتراک‌های تقویم، نوبت‌های کاری، نمایه‌های روز کاری و تنظیمات این دستگاه را با پشتیبان جایگزین می‌کند. این کار برگشت‌پذیر نیست.</string>
   <string name="backup_restore_confirm_title">داده‌های شما جایگزین شود؟</string>

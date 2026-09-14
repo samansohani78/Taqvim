@@ -131,7 +131,7 @@ class BackupViewModelTest {
             preview.preview.languageName shouldBe BackupFixtures.persian.nativeName
             preview.preview.encrypted shouldBe false
             preview.preview.rows.map { it.table } shouldBe BackupTableKind.entries
-            preview.preview.rows.map { it.countText } shouldBe listOf("۱۲", "۳", "۲۰", "۰", "۰", "۲", "۰")
+            preview.preview.rows.map { it.countText } shouldBe listOf("۱۲", "۳", "۲۰", "۰", "۰", "۲", "۰", "۰")
 
             viewModel.onRestoreRequested()
             advanceUntilIdle()
