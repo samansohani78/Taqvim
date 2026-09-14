@@ -16,6 +16,8 @@ import ir.taqvim.data.devicecalendar.InstancesSource
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.eventsDataModule
 import ir.taqvim.data.events.ics.icsDataModule
+import ir.taqvim.data.location.DeviceLocator
+import ir.taqvim.data.location.PlatformGeocoder
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
 import ir.taqvim.data.scheduler.schedulerModule
@@ -36,6 +38,11 @@ import ir.taqvim.feature.compass.compassFeatureModule
 import ir.taqvim.feature.events.EditorSettingsSource
 import ir.taqvim.feature.events.PersonalEventStore
 import ir.taqvim.feature.events.eventsFeatureModule
+import ir.taqvim.feature.settings.CitySearch
+import ir.taqvim.feature.settings.DeviceLocation
+import ir.taqvim.feature.settings.LocationSettingsStore
+import ir.taqvim.feature.settings.PlaceDescriber
+import ir.taqvim.feature.settings.locationSettingsFeatureModule
 import ir.taqvim.feature.times.TimesSettingsSource
 import ir.taqvim.feature.times.timesFeatureModule
 import ir.taqvim.feature.tools.ToolsSettingsSource
@@ -50,7 +57,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
 import org.koin.android.ext.koin.androidContext
@@ -88,12 +94,11 @@ val appDataModule =
         single { PreferenceChangeWatcher(get<UserPreferencesRepository>().preferences, get()) }
         // T-605: backup and restore of personal data and preferences (UI in T-1503).
         single { BackupService(get(), get()) }
-        // No stored city choice exists yet (location settings arrive with T-1502), so the Times, Astronomy and
-        // Compass screens show their "choose a location" states.
-        single<ChosenCitySource> { ChosenCitySource { flowOf(null) } }
+        // T-603: the bundled city catalog, parsed on first use.
+        single { CityCatalogProvider() }
     }
 
-/** Feature ports over the data layer (T-800, T-802, T-805, T-901, T-1000, T-1100, T-1300, T-1302/T-1303, T-1400). */
+/** Feature ports over the data layer (T-800…T-805, T-901, T-1000, T-1100, T-1300, T-1302/T-1303, T-1400, T-1502). */
 val appFeaturePortsModule =
     module {
         single<CalendarSettingsSource> { PreferencesCalendarSettingsSource(get()) }
@@ -134,6 +139,20 @@ val appFeaturePortsModule =
                 get<UserPreferencesRepository>().preferences.map { it.languageCode },
             )
         }
+        single<LocationSettingsStore> { PreferencesLocationSettingsStore(get()) }
+        single<CitySearch> {
+            val preferences = get<UserPreferencesRepository>()
+            CatalogCitySearch(get()) { preferences.currentLanguage() }
+        }
+        single<DeviceLocation> {
+            val locator = DeviceLocator(androidContext())
+            LocatorDeviceLocation { locator.currentLocation() }
+        }
+        single<PlaceDescriber> {
+            val preferences = get<UserPreferencesRepository>()
+            val geocoder = PlatformGeocoder(androidContext(), Locale.getDefault())
+            GeocoderPlaceDescriber({ geocoder.placesAt(it) }, get(), { preferences.currentLanguage() })
+        }
     }
 
 /** Root Koin module. Feature and data modules contribute their bindings here as they are implemented. */
@@ -153,5 +172,6 @@ val appModule =
             toolsFeatureModule,
             yearFeatureModule,
             agendaFeatureModule,
+            locationSettingsFeatureModule,
         )
     }

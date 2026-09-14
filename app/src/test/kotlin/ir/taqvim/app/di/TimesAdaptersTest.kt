@@ -4,7 +4,6 @@
  */
 package ir.taqvim.app.di
 
-import androidx.datastore.core.DataStore
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -18,20 +17,17 @@ import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.praytimes.PrayerSettings
 import ir.taqvim.data.location.City
 import ir.taqvim.data.location.CityCatalog
+import ir.taqvim.data.preferences.ChosenPlace
+import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.UserPreferences
-import ir.taqvim.data.preferences.UserPreferencesRepository
-import ir.taqvim.data.preferences.proto.UserPrefs
-import ir.taqvim.data.preferences.toProto
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.TimeZone
 import org.junit.jupiter.api.Test
 
-/** T-1100 wiring: the Times tab's settings from the stored preferences and the chosen city. */
+/** T-1100 wiring: the Times tab's settings from the stored preferences and the place chosen in T-1502. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class TimesAdaptersTest {
     private val tehran =
@@ -45,12 +41,13 @@ class TimesAdaptersTest {
             timeZoneId = "Asia/Tehran",
             population = null,
         )
-    private val noZone = tehran.copy(id = 2, timeZoneId = null)
+    private val cityPlace = ChosenPlace(PlaceSource.CITY, tehran.id, "Tehran", tehran.coordinates, "Asia/Tehran")
+    private val devicePlace = ChosenPlace(PlaceSource.DEVICE, null, "خانه", Coordinates(36.3, 59.6), "Asia/Tehran")
     private val persian = UserPreferences.defaultsFor("fa")
 
     @Test
-    fun `a city with a time zone gives localized times settings`() {
-        val settings = timesSettings(persian, tehran).shouldNotBeNull()
+    fun `a chosen place gives settings with its coordinates, zone and the prayer conventions`() {
+        val settings = timesSettings(persian, cityPlace, "تهران").shouldNotBeNull()
 
         settings.placeName shouldBe "تهران"
         settings.place shouldBe tehran.coordinates
@@ -69,62 +66,53 @@ class TimesAdaptersTest {
                 prayerMethod = PrayerMethod.MWL,
                 asrJuristic = AsrJuristic.HANAFI,
             )
-        val settings = timesSettings(custom, tehran).shouldNotBeNull()
+        val settings = timesSettings(custom, devicePlace, "Home").shouldNotBeNull()
 
         settings.language.code shouldBe UserPreferences.FALLBACK_LANGUAGE
-        settings.placeName shouldBe "Tehran"
         settings.prayer shouldBe PrayerSettings(method = PrayerMethod.MWL, asr = AsrJuristic.HANAFI)
         settings.calendar shouldBeSameInstanceAs GregorianCalendarSystem
-
-        timesSettings(custom.copy(calendars = listOf(CalendarSystem.NEPALI)), tehran)
+        timesSettings(custom.copy(calendars = listOf(CalendarSystem.NEPALI)), devicePlace, "Home")
             .shouldNotBeNull()
             .calendar shouldBeSameInstanceAs PersianCalendarSystem
     }
 
     @Test
-    fun `cities without a usable time zone give no settings`() {
-        timesSettings(persian, noZone).shouldBeNull()
-        timesSettings(persian, tehran.copy(timeZoneId = "Not/AZone")).shouldBeNull()
+    fun `places without a name are labelled with their coordinates`() {
+        coordinatesLabel(Coordinates(35.6892, -51.389)) shouldBe "35.69, -51.39"
     }
 
     @Test
-    fun `the source emits null until a known city is chosen`(): Unit =
+    fun `the source follows the stored place and names catalog cities in the app language`(): Unit =
         runTest {
-            val chosen = MutableStateFlow<Long?>(null)
             var catalogLoads = 0
+            val preferences = repositoryOf(persian)
             val source =
                 PreferencesTimesSettingsSource(
-                    preferences = UserPreferencesRepository(InMemoryPrefs(persian.toProto())),
-                    chosenCity = { chosen },
-                    loadCatalog = {
-                        catalogLoads++
-                        CityCatalog(listOf(tehran, noZone))
-                    },
-                    ioDispatcher = UnconfinedTestDispatcher(testScheduler),
+                    preferences = preferences,
+                    catalog =
+                        CityCatalogProvider(
+                            load = {
+                                catalogLoads++
+                                CityCatalog(listOf(tehran))
+                            },
+                            ioDispatcher = UnconfinedTestDispatcher(testScheduler),
+                        ),
                 )
 
             source.settings().first().shouldBeNull()
+
+            preferences.update { it.copy(place = devicePlace) }
+            source.settings().first()?.placeName shouldBe "خانه"
+            preferences.update { it.copy(place = devicePlace.copy(name = null)) }
+            source.settings().first()?.place shouldBe devicePlace.coordinates
             catalogLoads shouldBe 0
 
-            chosen.value = tehran.id
+            preferences.update { it.copy(place = cityPlace) }
             source.settings().first()?.placeName shouldBe "تهران"
-            chosen.value = noZone.id
-            source.settings().first().shouldBeNull()
-            chosen.value = UNKNOWN_CITY
-            source.settings().first().shouldBeNull()
+            preferences.update { it.copy(place = cityPlace.copy(cityId = UNKNOWN_CITY)) }
+            source.settings().first()?.placeName shouldBe "Tehran"
             catalogLoads shouldBe 1
         }
-
-    private class InMemoryPrefs(
-        initial: UserPrefs,
-    ) : DataStore<UserPrefs> {
-        private val state = MutableStateFlow(initial)
-
-        override val data: Flow<UserPrefs> = state
-
-        override suspend fun updateData(transform: suspend (t: UserPrefs) -> UserPrefs): UserPrefs =
-            transform(state.value).also { state.value = it }
-    }
 
     private companion object {
         const val UNKNOWN_CITY = 999L

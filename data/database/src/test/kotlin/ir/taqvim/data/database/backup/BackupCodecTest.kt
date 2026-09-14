@@ -198,6 +198,18 @@ class BackupCodecTest {
     }
 
     @Test
+    fun `the chosen place round-trips, is absent in older documents and dropped when unusable here`() {
+        ready(codec.decode(plain())).preferences.place shouldBe preferences.place
+
+        val json = jsonOf(plain())
+        val older = JsonObject(json.getValue("preferences").jsonObject - "place")
+        ready(codec.decode(json.with("preferences", older))).preferences shouldBe preferences.copy(place = null)
+
+        val unusable = plainReplacing("\"zoneId\":\"Asia/Tehran\"", "\"zoneId\":\"Mars/Olympus_Mons\"")
+        ready(codec.decode(unusable)).preferences shouldBe preferences.copy(place = null)
+    }
+
+    @Test
     fun `documents that break the format are invalid content`() {
         fun invalid(bytes: ByteArray): String = error(bytes).shouldBeInstanceOf<BackupError.InvalidContent>().reason
 

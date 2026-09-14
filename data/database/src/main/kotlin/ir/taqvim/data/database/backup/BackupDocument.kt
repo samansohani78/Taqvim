@@ -14,6 +14,7 @@ import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.workdays.HalfDayPolicy
+import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -54,6 +55,18 @@ internal data class PreferencesRecord(
     val themeMode: ThemeMode,
     val hijriOffsetDays: Int = 0,
     val hijriOffsetSetAtEpochMillis: Long? = null,
+    /** The chosen place (T-1502); absent in backups made before it existed. */
+    val place: PlaceRecord? = null,
+)
+
+@Serializable
+internal data class PlaceRecord(
+    val source: PlaceSource,
+    val cityId: Long? = null,
+    val name: String? = null,
+    val latitude: Double,
+    val longitude: Double,
+    val zoneId: String,
 )
 
 @Serializable

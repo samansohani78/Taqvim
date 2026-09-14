@@ -9,6 +9,7 @@ import ir.taqvim.core.ics.Frequency
 import ir.taqvim.core.ics.InvalidDatePolicy
 import ir.taqvim.core.ics.WeekdayNum
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
@@ -22,6 +23,8 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ShiftRotationEntity
 import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileEntity
+import ir.taqvim.data.preferences.ChosenPlace
+import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
 import ir.taqvim.data.preferences.UserPreferences
 
@@ -37,6 +40,7 @@ internal object BackupFixtures {
             themeMode = ThemeMode.BLACK,
             hijriOffsetDays = -1,
             hijriOffsetSetAtEpochMillis = 1_788_000_000_000,
+            place = ChosenPlace(PlaceSource.CITY, 112_931, "تهران", Coordinates(35.6892, 51.389), "Asia/Tehran"),
         )
 
     val data =

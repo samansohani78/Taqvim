@@ -5,6 +5,7 @@
 package ir.taqvim.data.database.backup
 
 import ir.taqvim.core.ics.WeekdayNum
+import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.data.database.EventRecurrenceEntity
@@ -15,6 +16,7 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ShiftRotationEntity
 import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileEntity
+import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.UserPreferences
 
 internal fun UserPreferences.toRecord(): PreferencesRecord =
@@ -30,6 +32,7 @@ internal fun UserPreferences.toRecord(): PreferencesRecord =
         themeMode,
         hijriOffsetDays,
         hijriOffsetSetAtEpochMillis,
+        place?.toRecord(),
     )
 
 internal fun PreferencesRecord.toPreferences(): UserPreferences =
@@ -45,7 +48,15 @@ internal fun PreferencesRecord.toPreferences(): UserPreferences =
         themeMode,
         hijriOffsetDays,
         hijriOffsetSetAtEpochMillis,
+        place?.toPlace(),
     )
+
+private fun ChosenPlace.toRecord() =
+    PlaceRecord(source, cityId, name, coordinates.latitude, coordinates.longitude, zoneId)
+
+/** The backed-up place, or `null` when it cannot be used on this device (e.g. its time zone is unknown here). */
+private fun PlaceRecord.toPlace(): ChosenPlace? =
+    runCatching { ChosenPlace(source, cityId, name, Coordinates(latitude, longitude), zoneId) }.getOrNull()
 
 internal fun PersonalData.toRecord(): DataRecord =
     DataRecord(
