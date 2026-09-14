@@ -270,6 +270,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-703 — Motion specs, shared-bounds keys and navigation stress test
+- **Module / files:** `core/ui/src/main/kotlin/ir/taqvim/core/ui/motion/` (`TaqvimMotion.kt`, `SharedKeys.kt`);
+  `app/.../navigation/AppTransitions.kt`, `AppScreens.kt`; test `app/src/test/.../NavigationMonkeyTest.kt`
+- **Task:** T-703
+- **References used (public only):** Material 3 motion tokens (duration short3/medium2/long1, emphasized and standard
+  easing) from the Material Design 3 guidelines; Jetpack Compose animation public APIs (Apache-2.0) —
+  `SharedTransitionLayout`, `sharedBounds`, `slideInHorizontally`, `fadeIn`, `togetherWith`; Navigation 3 `NavDisplay`
+  transition specs and `LocalNavAnimatedContentScope`; Android `Settings.Global.ANIMATOR_DURATION_SCALE`.
+- **Implementation note:** own work; the 1/10-width slide offset and the chip-to-editor shared element are product
+  choices; monkey test events synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1701 — Layout audit and bidi isolation
 - **Module / files:** `core/ui-testing/.../LayoutAudit.kt`, `core/i18n/.../BidiText.kt`; layout fixes in core/ui and
   feature modules
