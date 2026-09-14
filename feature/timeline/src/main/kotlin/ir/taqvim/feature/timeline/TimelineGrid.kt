@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,7 +28,9 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
@@ -36,10 +39,12 @@ import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.first
 
@@ -131,15 +136,18 @@ private fun DayHeaders(
                     else -> colors.onSurface
                 }
             val description = labels.dayDescription(column.jdn)
-            Text(
-                labels.dayHeader(column.jdn),
-                modifier = Modifier.weight(1f).semantics { contentDescription = description },
-                color = color,
-                style = MaterialTheme.typography.labelMedium,
-                fontWeight = if (isToday) FontWeight.Bold else null,
-                textAlign = TextAlign.Center,
-                maxLines = 1,
-            )
+            // Weekday and day number on their own lines, each shrinking to the column width instead of breaking a word
+            // or being cut off in a narrow week column at large font scales (T-1701).
+            Column(
+                Modifier
+                    .weight(1f)
+                    .padding(horizontal = HEADER_LINE_GAP)
+                    .semantics(mergeDescendants = true) { contentDescription = description },
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                HeaderLine(labels.weekdayName(column.jdn), color, isToday)
+                HeaderLine(labels.dayNumber(column.jdn), color, isToday)
+            }
         }
     }
 }
@@ -156,6 +164,8 @@ private fun AllDayRow(
             modifier = Modifier.width(GUTTER_WIDTH).padding(horizontal = HEADER_PADDING),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 2,
+            autoSize = fitting(MaterialTheme.typography.labelSmall),
         )
         columns.forEach { column ->
             Column(Modifier.weight(1f).padding(CELL_PADDING)) {
@@ -179,6 +189,8 @@ private fun HourGutter(
                 modifier = Modifier.height(hourHeight).padding(horizontal = HEADER_PADDING),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 1,
+                autoSize = fitting(MaterialTheme.typography.labelSmall),
             )
         }
     }
@@ -221,3 +233,33 @@ private fun Modifier.pinchToZoom(onZoom: (Float) -> Unit): Modifier =
             } while (event.changes.any { it.pressed })
         }
     }
+
+@Composable
+private fun HeaderLine(
+    text: String,
+    color: Color,
+    isToday: Boolean,
+) {
+    val style = MaterialTheme.typography.labelMedium
+    Text(
+        text,
+        color = color,
+        style = style,
+        fontWeight = if (isToday) FontWeight.Bold else null,
+        textAlign = TextAlign.Center,
+        maxLines = 1,
+        autoSize = fitting(style),
+    )
+}
+
+/**
+ * Header, gutter and all-day labels have fixed space: they shrink from [style]'s size to fit instead of being cut off
+ * at large font scales (T-1701).
+ */
+private fun fitting(style: TextStyle): TextAutoSize =
+    TextAutoSize.StepBased(minFontSize = MIN_LABEL_SIZE, maxFontSize = style.fontSize)
+
+private val MIN_LABEL_SIZE = 6.sp
+
+/** Space between neighbouring day headers, so shrunk weekday names do not run together. */
+private val HEADER_LINE_GAP = 2.dp

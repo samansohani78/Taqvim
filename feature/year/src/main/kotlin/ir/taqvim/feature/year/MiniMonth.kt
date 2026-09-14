@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,9 +30,9 @@ import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlin.math.min
 
 private val MINI_MONTH_PADDING = 4.dp
@@ -75,7 +76,8 @@ internal fun MiniMonthView(
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.primary,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            autoSize =
+                TextAutoSize.StepBased(minFontSize = 8.sp, maxFontSize = MaterialTheme.typography.titleSmall.fontSize),
         )
         MiniMonthGrid(
             month,

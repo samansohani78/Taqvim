@@ -9,6 +9,7 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.uitesting.ScreenshotDevice
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -62,6 +63,7 @@ class CalendarAdaptiveScreenshotTest(
                             layoutDirection = LayoutDirection.Rtl,
                         ),
                     )
-                }.map { arrayOf<Any>(it, it.id) }
+                }.plus(ScreenshotMatrix.largeText())
+                .map { arrayOf<Any>(it, it.id) }
     }
 }

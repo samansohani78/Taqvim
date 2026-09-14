@@ -12,12 +12,14 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
 import androidx.core.app.ActivityOptionsCompat
@@ -163,7 +165,8 @@ class EventEditorScreenTest {
         composeRule.onNodeWithText("Monday").performScrollTo().performClick()
         composeRule.onNodeWithText("Skip that month").assertDoesNotExist()
         composeRule.onNodeWithText("Monthly").performScrollTo().performClick()
-        composeRule.onNodeWithText("On date").performScrollTo().performClick()
+        // A tab row that scrolls when its labels do not fit (T-1701) is driven through its click action.
+        composeRule.onNodeWithText("On date").performScrollTo().performSemanticsAction(SemanticsActions.OnClick)
 
         assertEquals(
             listOf(

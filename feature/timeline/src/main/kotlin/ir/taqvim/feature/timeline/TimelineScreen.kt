@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,8 +24,8 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.SegmentedTabs
 import ir.taqvim.core.ui.component.TopBar
@@ -88,8 +89,8 @@ private fun DraftBar(
             labels.draft(draft),
             modifier = Modifier.weight(1f).semantics { liveRegion = LiveRegionMode.Polite },
             style = MaterialTheme.typography.bodyMedium,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            maxLines = 2,
+            autoSize = TextAutoSize.StepBased(minFontSize = MIN_CONTROL_TEXT_SIZE, maxFontSize = 14.sp),
         )
         TextButton(onClick = { onAction(TimelineAction.CancelDraft) }) {
             Text(stringResource(R.string.timeline_draft_cancel))
@@ -106,9 +107,13 @@ private fun RowScope.ControlButton(
     onClick: () -> Unit,
 ) {
     TextButton(onClick = onClick, modifier = Modifier.weight(1f)) {
-        Text(label, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        val maxSize = MaterialTheme.typography.labelLarge.fontSize
+        Text(label, maxLines = 1, autoSize = TextAutoSize.StepBased(MIN_CONTROL_TEXT_SIZE, maxSize))
     }
 }
+
+/** Smallest size control labels shrink to at large font scales instead of being cut off (T-1701). */
+private val MIN_CONTROL_TEXT_SIZE = 8.sp
 
 @Composable
 private fun LoadingTimeline(modifier: Modifier) {

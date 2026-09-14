@@ -10,7 +10,10 @@ import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.uitesting.AccessibilityOptions
 import ir.taqvim.core.uitesting.AccessibilityRule
+import ir.taqvim.core.uitesting.LayoutOptions
+import ir.taqvim.core.uitesting.LayoutRule
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -28,6 +31,7 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class TimelineScreenshotTest(
     private val sample: String,
+    private val fontScale: Float,
 ) {
     @get:Rule
     val composeRule = createComposeRule()
@@ -39,9 +43,11 @@ class TimelineScreenshotTest(
             ScreenshotEnvironment(
                 theme = if (persian) ScreenshotTheme.LIGHT else ScreenshotTheme.DARK,
                 layoutDirection = if (persian) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                fontScale = fontScale,
             )
         val state = TimelineUiState(content(if (persian) PERSIAN_SETTINGS else ENGLISH_SETTINGS))
-        composeRule.captureScreenshot("timeline_$sample", environment, EVENT_BLOCKS_MAY_BE_NARROW) {
+        val screen = "timeline_$sample"
+        composeRule.captureScreenshot(screen, environment, EVENT_BLOCKS_MAY_BE_NARROW, TITLES_MAY_BE_CUT) {
             TimelineTestTheme(rtl = persian, dark = !persian) { TimelineScreen(state, onAction = {}) }
         }
     }
@@ -81,7 +87,7 @@ class TimelineScreenshotTest(
         private const val NOW_MINUTE = 10 * 60 + 20
         private const val DAYS_PER_WEEK = 7
         private const val SHIFT_MINUTES = 20
-        private val EVENT_TITLES = listOf("Team meeting", "Call", "Class", "Lunch")
+        private val EVENT_TITLES = listOf("Team meeting", "Call", "Class", "Lunch", "Holiday")
 
         /**
          * Accepted T-1700 exception: in a 7-day week, overlapping timed events share a day column and their blocks can
@@ -95,8 +101,22 @@ class TimelineScreenshotTest(
                 },
             )
 
+        /**
+         * Accepted T-1701 exception: event titles are clipped to two lines inside their time block, whose height is the
+         * event's duration; the full title is the block's spoken label and the event page shows it whole.
+         */
+        private val TITLES_MAY_BE_CUT =
+            LayoutOptions(
+                ignored = { violation ->
+                    violation.rule == LayoutRule.TEXT_TRUNCATED && EVENT_TITLES.any { violation.text.startsWith(it) }
+                },
+            )
+
         @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters(name = "{0}")
-        fun parameters(): List<Array<Any>> = listOf("week_fa", "day_fa", "week_en", "day_en").map { arrayOf<Any>(it) }
+        @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}")
+        fun parameters(): List<Array<Any>> =
+            listOf("week_fa", "day_fa", "week_en", "day_en").map { arrayOf<Any>(it, 1f) } +
+                // T-1701: again at font scale 2.0.
+                listOf("week_fa", "day_en").map { arrayOf<Any>(it, ScreenshotMatrix.LARGE_FONT_SCALE) }
     }
 }

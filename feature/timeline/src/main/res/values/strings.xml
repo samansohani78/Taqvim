@@ -12,7 +12,6 @@
     <string name="timeline_zoom_in">Zoom in</string>
     <string name="timeline_zoom_out">Zoom out</string>
     <!-- Short weekday name, then the day of the month. -->
-    <string name="timeline_day_header">%1$s %2$s</string>
     <!-- Month name, then the year. -->
     <string name="timeline_month_title">%1$s %2$s</string>
     <string name="timeline_range">%1$s – %2$s</string>

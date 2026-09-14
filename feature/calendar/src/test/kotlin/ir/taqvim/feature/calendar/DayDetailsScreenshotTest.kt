@@ -4,7 +4,10 @@
  */
 package ir.taqvim.feature.calendar
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.test.junit4.v2.createComposeRule
@@ -13,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.TopBar
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -45,8 +49,11 @@ class DayDetailsScreenshotTest(
                 rtl = environment.layoutDirection == LayoutDirection.Rtl,
                 dark = environment.theme.isDark,
             ) {
+                // The app shows the panel in a scrolling column (CalendarScaffold), so it is captured in one too.
                 ScreenSurface(topBar = { TopBar(stringResource(R.string.calendar_title)) }) { padding ->
-                    DayDetailsPanel(content, onAction = {}, modifier = Modifier.padding(padding).padding(16.dp))
+                    Column(Modifier.padding(padding).verticalScroll(rememberScrollState())) {
+                        DayDetailsPanel(content, onAction = {}, modifier = Modifier.padding(16.dp))
+                    }
                 }
             }
         }
@@ -62,7 +69,7 @@ class DayDetailsScreenshotTest(
                     ScreenshotEnvironment(theme = ScreenshotTheme.DARK),
                     ScreenshotEnvironment(layoutDirection = LayoutDirection.Rtl),
                     ScreenshotEnvironment(theme = ScreenshotTheme.DARK, layoutDirection = LayoutDirection.Rtl),
-                )
+                ) + ScreenshotMatrix.largeText()
             return DayDetailsTab.entries.flatMap { tab ->
                 environments.map { arrayOf<Any>(tab, it, "${tab.name.lowercase()}_${it.id}") }
             }

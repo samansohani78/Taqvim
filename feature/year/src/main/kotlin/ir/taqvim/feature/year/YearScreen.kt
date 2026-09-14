@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -26,8 +28,8 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarSystem
@@ -116,9 +118,13 @@ private fun RowScope.ControlButton(
     onClick: () -> Unit,
 ) {
     TextButton(onClick = onClick, modifier = Modifier.weight(1f)) {
-        Text(label, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        val maxSize = MaterialTheme.typography.labelLarge.fontSize
+        Text(label, maxLines = 1, autoSize = TextAutoSize.StepBased(MIN_CONTROL_TEXT_SIZE, maxSize))
     }
 }
+
+/** Smallest size control labels shrink to at large font scales instead of being cut off (T-1701). */
+private val MIN_CONTROL_TEXT_SIZE = 8.sp
 
 @Composable
 private fun calendarName(system: CalendarSystem): String =

@@ -16,6 +16,7 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.TopBar
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -35,6 +36,7 @@ import org.robolectric.annotation.GraphicsMode
 class MonthScreenshotTest(
     private val languageCode: String,
     private val month: Int,
+    private val fontScale: Float,
 ) {
     @get:Rule
     val composeRule = createComposeRule()
@@ -44,10 +46,11 @@ class MonthScreenshotTest(
         val sample = MonthSample.of(languageCode)
         val offset = month - 1
         val screen = "calendar_month_${languageCode}_${month.toString().padStart(2, '0')}"
-        composeRule.captureScreenshot(screen, sample.environment) {
+        val environment = sample.environment.copy(fontScale = fontScale)
+        composeRule.captureScreenshot(screen, environment) {
             CalendarTestTheme(
-                rtl = sample.environment.layoutDirection == LayoutDirection.Rtl,
-                dark = sample.environment.theme.isDark,
+                rtl = environment.layoutDirection == LayoutDirection.Rtl,
+                dark = environment.theme.isDark,
             ) {
                 val builder = rememberMonthPageBuilder(sample.settings)
                 val page =
@@ -139,8 +142,10 @@ class MonthScreenshotTest(
 
     companion object {
         @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}")
+        @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}_{2}")
         fun parameters(): List<Array<Any>> =
-            listOf("fa", "en", "ne").flatMap { code -> (1..12).map { arrayOf<Any>(code, it) } }
+            listOf("fa", "en", "ne").flatMap { code -> (1..12).map { arrayOf<Any>(code, it, 1f) } } +
+                // T-1701: the first month again at font scale 2.0 in Persian RTL and English LTR.
+                listOf("fa", "en").map { arrayOf<Any>(it, 1, ScreenshotMatrix.LARGE_FONT_SCALE) }
     }
 }

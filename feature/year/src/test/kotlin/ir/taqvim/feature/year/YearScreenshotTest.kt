@@ -12,6 +12,7 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import kotlinx.collections.immutable.toImmutableList
@@ -30,6 +31,7 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class YearScreenshotTest(
     private val sample: String,
+    private val fontScale: Float,
 ) {
     @get:Rule
     val composeRule = createComposeRule()
@@ -44,6 +46,7 @@ class YearScreenshotTest(
             ScreenshotEnvironment(
                 theme = if (dark) ScreenshotTheme.DARK else ScreenshotTheme.LIGHT,
                 layoutDirection = if (persian) LayoutDirection.Rtl else LayoutDirection.Ltr,
+                fontScale = fontScale,
             )
         val content = content(settings, if (persian) PERSIAN_TODAY else GREGORIAN_TODAY).copy(isPickingYear = picking)
         composeRule.captureScreenshot("year_$sample", environment) {
@@ -101,8 +104,10 @@ class YearScreenshotTest(
             )
 
         @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters(name = "{0}")
+        @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}")
         fun parameters(): List<Array<Any>> =
-            listOf("fa_light", "fa_dark", "en_light", "en_dark", "en_picker").map { arrayOf<Any>(it) }
+            listOf("fa_light", "fa_dark", "en_light", "en_dark", "en_picker").map { arrayOf<Any>(it, 1f) } +
+                // T-1701: again at font scale 2.0.
+                listOf("fa_light", "en_light").map { arrayOf<Any>(it, ScreenshotMatrix.LARGE_FONT_SCALE) }
     }
 }

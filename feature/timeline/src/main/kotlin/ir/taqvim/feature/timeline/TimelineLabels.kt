@@ -42,13 +42,11 @@ internal class TimelineLabels(
 
     fun hour(hour: Int): String = time(hour * TimelineGeometry.MINUTES_PER_HOUR)
 
-    /** Short weekday and day of the month, e.g. "Sat 15". */
-    fun dayHeader(day: Jdn): String =
-        resources.getString(
-            R.string.timeline_day_header,
-            weekdayNames[day.weekday().ordinal],
-            number(calendar.fromJdn(day).day),
-        )
+    /** Short weekday name of [day], e.g. "Sat"; shown above [dayNumber] in the day headers. */
+    fun weekdayName(day: Jdn): String = weekdayNames[day.weekday().ordinal]
+
+    /** Day of the month of [day] in the language's digits, e.g. "15". */
+    fun dayNumber(day: Jdn): String = number(calendar.fromJdn(day).day)
 
     /** The full date of [day] for screen readers and the day title. */
     fun dayDescription(day: Jdn): String =

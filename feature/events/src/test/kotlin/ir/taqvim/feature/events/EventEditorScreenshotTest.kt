@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.ics.Frequency
 import ir.taqvim.core.ics.InvalidDatePolicy
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -84,6 +85,10 @@ class EventEditorScreenshotTest(
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}")
         fun parameters(): List<Array<Any>> =
-            listOf("new", "detailed").flatMap { sample -> ENVIRONMENTS.map { arrayOf<Any>(sample, it) } }
+            listOf("new", "detailed").flatMap { sample -> ENVIRONMENTS.map { arrayOf<Any>(sample, it) } } +
+                // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
+                listOf("new", "detailed").flatMap { sample ->
+                    ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
+                }
     }
 }
