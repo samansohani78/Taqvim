@@ -256,6 +256,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-901 — Month list and agenda
+- **Module / files:** `feature/agenda/src/main/kotlin/ir/taqvim/feature/agenda/`
+- **Task:** T-901
+- **References used (public only):** Jetpack Compose and Material 3 public APIs (Apache-2.0) — `LazyColumn`,
+  `LazyListState.layoutInfo`, `FlowRow`, semantics; Android developer documentation for `PrintManager`,
+  `WebView.createPrintDocumentAdapter`, `Intent.ACTION_SEND`/`createChooser`.
+- **Implementation note:** own work on `:core:calendar` (T-106), `:core:i18n` (T-202, ADR-0014) and T-701 components;
+  paging window sizes are Taqvim's choice; test events synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-805 — Year view
 - **Module / files:** `feature/year/src/main/kotlin/ir/taqvim/feature/year/`
 - **Task:** T-805
