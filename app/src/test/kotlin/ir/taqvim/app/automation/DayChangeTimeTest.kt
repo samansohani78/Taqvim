@@ -10,6 +10,7 @@ import io.kotest.property.arbitrary.element
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Instant
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.DateTimeUnit
@@ -44,7 +45,11 @@ class DayChangeTimeTest {
 
                 (next > now) shouldBe true
                 (next - now <= 25.hours) shouldBe true
-                next.toLocalDateTime(zone).date shouldBe now.toLocalDateTime(zone).date.plus(1, DateTimeUnit.DAY)
+                // The next date that exists: Samoa (Pacific/Apia) skipped 30 December 2011 altogether.
+                val today = now.toLocalDateTime(zone).date
+                (next.toLocalDateTime(zone).date > today) shouldBe true
+                (next.toLocalDateTime(zone).date <= today.plus(2, DateTimeUnit.DAY)) shouldBe true
+                (next - 1.milliseconds).toLocalDateTime(zone).date shouldBe today
             }
         }
 
