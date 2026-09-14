@@ -131,7 +131,7 @@ object AccessibilityAudit {
     ): List<AccessibilityViolation> {
         val minimumPx = with(density) { minimum.toPx() } - TOLERANCE_PX
         return targets
-            .filter { it.node.isSmall(minimumPx) }
+            .filter { it.node.isSmall(minimumPx) && it.node.isFullyVisible() }
             .mapNotNull { small ->
                 targets.firstOrNull { small.crowds(it) }?.let { other ->
                     AccessibilityViolation(
@@ -194,6 +194,13 @@ object AccessibilityAudit {
         val texts = config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text }
         return (descriptions() + texts).filter { it.isNotBlank() }.joinToString(" ").trim()
     }
+
+    /**
+     * A target partly scrolled out of its container (e.g. a chip half under a bottom bar) is judged when it is scrolled
+     * into view; its clipped bounds would otherwise overlap whatever covers the rest of it (T-1701 large-text states).
+     */
+    private fun SemanticsNode.isFullyVisible(): Boolean =
+        boundsInRoot.width >= size.width - TOLERANCE_PX && boundsInRoot.height >= size.height - TOLERANCE_PX
 
     private fun SemanticsNode.isSmall(minimumPx: Float): Boolean =
         size.width > 0 && size.height > 0 && (size.width < minimumPx || size.height < minimumPx)

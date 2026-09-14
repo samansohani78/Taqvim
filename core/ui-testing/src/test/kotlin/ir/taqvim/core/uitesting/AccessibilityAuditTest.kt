@@ -11,8 +11,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -163,6 +166,32 @@ class AccessibilityAuditTest {
                 }
             }
         assertEquals(listOf(AccessibilityRule.SMALL_TOUCH_TARGET, AccessibilityRule.SMALL_TOUCH_TARGET), rules)
+    }
+
+    @Test
+    fun aSmallTargetPartlyScrolledOutOfViewIsNotReported() {
+        val rules =
+            rulesOf {
+                Box(Modifier.size(width = 200.dp, height = 120.dp)) {
+                    Column(Modifier.size(width = 200.dp, height = 50.dp).verticalScroll(rememberScrollState())) {
+                        Spacer(Modifier.size(40.dp))
+                        Box(
+                            Modifier.size(width = 60.dp, height = 20.dp).clickable {}.semantics {
+                                contentDescription = "Chip"
+                            },
+                        )
+                        Spacer(Modifier.size(100.dp))
+                    }
+                    Box(
+                        Modifier
+                            .offset(y = 50.dp)
+                            .size(width = 120.dp, height = 48.dp)
+                            .clickable {}
+                            .semantics { contentDescription = "Save" },
+                    )
+                }
+            }
+        assertEquals(emptyList<AccessibilityRule>(), rules)
     }
 
     @Test

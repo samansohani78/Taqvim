@@ -80,8 +80,15 @@ object LayoutAudit {
         val getLayout = config.getOrNull(SemanticsActions.GetTextLayoutResult)?.action ?: return false
         val layouts = mutableListOf<TextLayoutResult>()
         getLayout(layouts)
-        return layouts.any { it.isCutOff() }
+        return layouts.any { it.isLayoutOf(this) && it.isCutOff() }
     }
+
+    /**
+     * Whether [layout][this] is the layout actually drawn for [node]. Auto-sized text (`TextAutoSize`) reports a layout
+     * at its unscaled font size that can be larger than the node; such text shrinks to fit and cannot be judged here.
+     */
+    private fun TextLayoutResult.isLayoutOf(node: SemanticsNode): Boolean =
+        size.width <= node.size.width + TOLERANCE_PX && size.height <= node.size.height + TOLERANCE_PX
 
     /**
      * Whether lines were dropped, ellipsized, or reach past the text's own size by more than a pixel. The layout's
@@ -91,7 +98,9 @@ object LayoutAudit {
         val paragraph = multiParagraph
         val lines = 0 until lineCount
         val ellipsized = lines.any { isLineEllipsized(it) }
-        val tooWide = lines.any { getLineRight(it) - getLineLeft(it) > size.width + TOLERANCE_PX }
+        // Only an unwrapped single line can be wider than its text; wrapped lines may count their trailing spaces.
+        // Line width, not left/right: right-to-left lines report positions against the constraint, not the text.
+        val tooWide = lineCount == 1 && paragraph.getLineWidth(0) > size.width + TOLERANCE_PX
         return ellipsized || tooWide || paragraph.didExceedMaxLines || paragraph.height > size.height + TOLERANCE_PX
     }
 
@@ -102,9 +111,10 @@ object LayoutAudit {
     }
 
     private fun SemanticsNode.text(): String =
-        (config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } +
-            config.getOrNull(SemanticsProperties.ContentDescription).orEmpty())
-            .filter { it.isNotBlank() }
+        (
+            config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } +
+                config.getOrNull(SemanticsProperties.ContentDescription).orEmpty()
+        ).filter { it.isNotBlank() }
             .joinToString(" ")
 }
 

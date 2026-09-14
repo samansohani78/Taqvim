@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,8 +24,11 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -60,10 +64,13 @@ class LayoutAuditTest {
                 Column(Modifier.fillMaxWidth()) {
                     Text("Short")
                     Text(long)
+                    val shrink = TextAutoSize.StepBased(minFontSize = 2.sp)
+                    Text(long, Modifier.width(120.dp), maxLines = 1, autoSize = shrink)
                     OutlinedTextField(value = long, onValueChange = {}, singleLine = true)
                     Row(Modifier.horizontalScroll(rememberScrollState())) {
                         Text("First", Modifier.requiredWidth(400.dp))
                         Text("Beyond the edge", Modifier.requiredWidth(400.dp))
+                        Text("ساعت‌ها و روزها", style = TextStyle(textDirection = TextDirection.Rtl), maxLines = 1)
                     }
                 }
             }
