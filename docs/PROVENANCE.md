@@ -295,6 +295,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-803 / T-806 — Calendar toolbar, menu and adaptive layout
+- **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/` — `CalendarToolbar.kt`,
+  `CalendarAdaptive.kt`, `MonthPrint.kt`; toolbar icons `res/drawable/calendar_ic_{today,search,more}.xml` (own drawings)
+- **Tasks:** T-803, T-806
+- **References used (public only):** Jetpack Compose / Material 3 public APIs (Apache-2.0) — `DropdownMenu`,
+  `AlertDialog`, selection semantics; Material 3 adaptive 1.3.0 (Apache-2.0) `currentWindowAdaptiveInfoV2`,
+  `Posture.isTabletop`; window size class breakpoint (600 dp) from the Android developer documentation; `PrintManager`/
+  `WebView.createPrintDocumentAdapter`.
+- **Implementation note:** own work on the T-801 month pages and T-701 components; test events synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-900 — Timeline layout
 - **Module / files:** `feature/timeline/src/main/kotlin/ir/taqvim/feature/timeline/`
 - **Task:** T-900
