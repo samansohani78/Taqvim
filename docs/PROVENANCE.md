@@ -256,6 +256,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1503 — Backup/restore UI and privacy dashboard
+- **Module / files:** `feature/backup/src/main/kotlin/ir/taqvim/feature/backup/`
+- **Task:** T-1503
+- **References used (public only):** Android developer documentation — `ActivityResultContracts.CreateDocument`/
+  `OpenDocument` (SAF), `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`, `ACTION_APP_NOTIFICATION_SETTINGS`,
+  `ACTION_REQUEST_SCHEDULE_EXACT_ALARM`, `ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS`; Jetpack Compose / Material 3 public
+  APIs (Apache-2.0) — `OutlinedSecureTextField`, `TextFieldState`, `AlertDialog`, `LifecycleResumeEffect`; the T-605
+  engine's capabilities (mirrored as ports), T-202 `DateFormatter`, T-201 `Numerals`.
+- **Implementation note:** own work; the strength hint and 8-character minimum are product choices; test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1500 — Settings screens and app settings
 - **Module / files:** `feature/settings/src/main/kotlin/ir/taqvim/feature/settings/` — `GeneralSettingsPorts.kt`,
   `SettingsCatalog.kt`, `SettingsLabels.kt`, `SettingsHome*.kt`, `SettingsRows.kt`, `Subscriptions*.kt`;
