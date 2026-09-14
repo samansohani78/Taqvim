@@ -22,7 +22,9 @@ import ir.taqvim.data.events.ics.icsDataModule
 import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
 import ir.taqvim.data.preferences.UserPreferencesRepository
+import ir.taqvim.data.scheduler.AlarmDelivery
 import ir.taqvim.data.scheduler.AlarmScheduler
+import ir.taqvim.data.scheduler.AlarmSource
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
 import ir.taqvim.data.scheduler.schedulerModule
 import ir.taqvim.feature.agenda.AgendaDaySource
@@ -43,6 +45,9 @@ import ir.taqvim.feature.compass.compassFeatureModule
 import ir.taqvim.feature.events.EditorSettingsSource
 import ir.taqvim.feature.events.PersonalEventStore
 import ir.taqvim.feature.events.eventsFeatureModule
+import ir.taqvim.feature.notification.AthanAlarms
+import ir.taqvim.feature.notification.AthanSetupSource
+import ir.taqvim.feature.notification.notificationFeatureModule
 import ir.taqvim.feature.search.RecentQueriesStore
 import ir.taqvim.feature.search.SearchEventSource
 import ir.taqvim.feature.search.SearchSettingsSource
@@ -213,6 +218,20 @@ val searchTimelineAthanPortsModule =
         single<AthanPreview> { MediaPlayerAthanPreview(androidContext()) }
     }
 
+/** The athan (T-1102) over the preferences, and its alarms as the scheduler's prayer source and delivery (T-604). */
+val athanAlarmPortsModule =
+    module {
+        single<AthanSetupSource> { PreferencesAthanSetupSource(get()) }
+        single<AlarmSource> {
+            val alarms = get<AthanAlarms>()
+            AthanAlarmSource { alarms.upcoming(it) }
+        }
+        single<AlarmDelivery> {
+            val alarms = get<AthanAlarms>()
+            AthanAlarmDelivery { alarms.onAlarm(it) }
+        }
+    }
+
 /** Root Koin module. Feature and data modules contribute their bindings here as they are implemented. */
 val appModule =
     module {
@@ -235,5 +254,7 @@ val appModule =
             searchFeatureModule,
             timelineFeatureModule,
             athanSettingsFeatureModule,
+            notificationFeatureModule,
+            athanAlarmPortsModule,
         )
     }
