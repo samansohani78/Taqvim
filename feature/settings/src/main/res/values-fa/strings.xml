@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="settings_location_title">موقعیت مکانی</string>
+  <string name="settings_location_loading">در حال بارگذاری تنظیمات موقعیت</string>
+  <string name="settings_location_current">مکان فعلی</string>
+  <string name="settings_location_none">هنوز مکانی انتخاب نشده است</string>
+  <string name="settings_location_kind_city">انتخاب‌شده از فهرست شهرها</string>
+  <string name="settings_location_kind_device">از موقعیت دستگاه شما</string>
+  <string name="settings_location_kind_coordinates">از مختصات واردشده</string>
+  <string name="settings_location_tab_city">شهر</string>
+  <string name="settings_location_tab_device">موقعیت من</string>
+  <string name="settings_location_tab_coordinates">مختصات</string>
+  <string name="settings_location_search_label">جستجوی شهر</string>
+  <string name="settings_location_searching">در حال جستجوی شهرها</string>
+  <string name="settings_location_no_results">شهری با «%1$s» پیدا نشد</string>
+  <string name="settings_location_choose_city">انتخاب این شهر</string>
+  <string name="settings_location_chosen_city">انتخاب‌شده</string>
+  <string name="settings_location_city_no_zone">برای این شهر منطقهٔ زمانی ثبت نشده است و نمی‌توان آن را انتخاب کرد.</string>
+  <string name="settings_location_device_explanation">از موقعیت این دستگاه استفاده می‌شود. تقویم فقط وقتی دکمه را بزنید اجازهٔ دسترسی به موقعیت را درخواست می‌کند.</string>
+  <string name="settings_location_use_device">استفاده از موقعیت من</string>
+  <string name="settings_location_locating">در حال یافتن موقعیت شما…</string>
+  <string name="settings_location_denied">اجازهٔ دسترسی به موقعیت داده نشد. آن را در تنظیمات دستگاه فعال کنید یا به‌جای آن شهری را انتخاب کنید.</string>
+  <string name="settings_location_disabled">موقعیت مکانی در این دستگاه خاموش است.</string>
+  <string name="settings_location_timed_out">موقعیت شما به‌موقع پیدا نشد. دوباره تلاش کنید یا شهری را انتخاب کنید.</string>
+  <string name="settings_location_unavailable">موقعیت شما اکنون در دسترس نیست.</string>
+  <string name="settings_location_device_saved">ذخیره شد: %1$s</string>
+  <string name="settings_location_latitude">عرض جغرافیایی</string>
+  <string name="settings_location_longitude">طول جغرافیایی</string>
+  <string name="settings_location_time_zone">منطقهٔ زمانی</string>
+  <string name="settings_location_time_zone_hint">نام IANA، برای مثال Asia/Tehran</string>
+  <string name="settings_location_latitude_error">عرضی بین ۹۰- و ۹۰ وارد کنید</string>
+  <string name="settings_location_longitude_error">طولی بین ۱۸۰- و ۱۸۰ وارد کنید</string>
+  <string name="settings_location_time_zone_error">منطقهٔ زمانی ناشناخته</string>
+  <string name="settings_location_nearby">نزدیک %1$s</string>
+  <string name="settings_location_save_coordinates">ذخیرهٔ مختصات</string>
+  <string name="settings_location_coordinates_saved">مختصات ذخیره شد</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="settings_location_title">Location</string>
+  <string name="settings_location_loading">Loading location settings</string>
+  <string name="settings_location_current">Current place</string>
+  <string name="settings_location_none">No place chosen yet</string>
+  <string name="settings_location_kind_city">Chosen from the city list</string>
+  <string name="settings_location_kind_device">From your device location</string>
+  <string name="settings_location_kind_coordinates">From typed coordinates</string>
+  <string name="settings_location_tab_city">City</string>
+  <string name="settings_location_tab_device">My location</string>
+  <string name="settings_location_tab_coordinates">Coordinates</string>
+  <string name="settings_location_search_label">Search cities</string>
+  <string name="settings_location_searching">Searching cities</string>
+  <string name="settings_location_no_results">No city matches “%1$s”</string>
+  <string name="settings_location_choose_city">Choose this city</string>
+  <string name="settings_location_chosen_city">Chosen</string>
+  <string name="settings_location_city_no_zone">No time zone is listed for this city, so it cannot be chosen.</string>
+  <string name="settings_location_device_explanation">Use the position of this device. Taqvim asks for location permission only when you tap the button.</string>
+  <string name="settings_location_use_device">Use my location</string>
+  <string name="settings_location_locating">Finding your location…</string>
+  <string name="settings_location_denied">Location permission was denied. Allow it in the system settings, or choose a city instead.</string>
+  <string name="settings_location_disabled">Location is switched off on this device.</string>
+  <string name="settings_location_timed_out">Your location could not be found in time. Try again, or choose a city.</string>
+  <string name="settings_location_unavailable">Your location is not available right now.</string>
+  <string name="settings_location_device_saved">Saved: %1$s</string>
+  <string name="settings_location_latitude">Latitude</string>
+  <string name="settings_location_longitude">Longitude</string>
+  <string name="settings_location_time_zone">Time zone</string>
+  <string name="settings_location_time_zone_hint">IANA name, for example Asia/Tehran</string>
+  <string name="settings_location_latitude_error">Enter a latitude between -90 and 90</string>
+  <string name="settings_location_longitude_error">Enter a longitude between -180 and 180</string>
+  <string name="settings_location_time_zone_error">Unknown time zone</string>
+  <string name="settings_location_nearby">Near %1$s</string>
+  <string name="settings_location_save_coordinates">Save coordinates</string>
+  <string name="settings_location_coordinates_saved">Coordinates saved</string>
+</resources>
