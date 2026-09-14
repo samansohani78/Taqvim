@@ -256,6 +256,21 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1102 — Athan playback
+- **Module / files:** `feature/notification/src/main/kotlin/ir/taqvim/feature/notification/`
+- **Task:** T-1102
+- **References used (public only):** Android developer documentation — foreground services and the `mediaPlayback`
+  type with `FOREGROUND_SERVICE_MEDIA_PLAYBACK` (Android 14), `ServiceCompat.startForeground`, `MediaPlayer`,
+  `AudioAttributes.USAGE_ALARM`, `AudioFocusRequest`, `VibratorManager`/`VibrationEffect`, `NotificationChannel`,
+  `NotificationManager.isNotificationPolicyAccessGranted`/`getCurrentInterruptionFilter`, `AudioManager.getRingerMode`,
+  `RingtoneManager.getDefaultUri(TYPE_ALARM)`, `AlarmManager.setExactAndAllowWhileIdle`,
+  `PendingIntent.getForegroundService`; A-10 `PrayerTimesCalculator`; Iran Standard Time UTC+03:30 (IANA `Asia/Tehran`).
+- **Implementation note:** own work; snooze length, vibration pattern, 2-day planning window and 70-entry history are
+  product choices. No athan or prayer app code consulted; no audio bundled; notification icon drawn for Taqvim. Tehran
+  and Tromsø coordinates are rounded sample inputs.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1101 — Athan settings
 - **Module / files:** `feature/settings/src/main/kotlin/ir/taqvim/feature/settings/Athan*.kt`;
   `data/preferences/src/main/kotlin/ir/taqvim/data/preferences/AthanPreferences.kt`, `user_prefs.proto` field 14;
