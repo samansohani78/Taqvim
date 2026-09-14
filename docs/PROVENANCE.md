@@ -256,6 +256,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1200 — Widget framework
+- **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/`
+- **Task:** T-1200
+- **References used (public only):** Jetpack Glance 1.2.0 public API (Apache-2.0) — `GlanceAppWidget`,
+  `SizeMode.Responsive`, `GlanceAppWidgetReceiver`, `GlanceAppWidgetManager`, `GlanceTheme`/`ColorProviders`,
+  `actionStartActivity`, `glance-appwidget-testing`; Android developer documentation for `AppWidgetManager`,
+  `APPWIDGET_CONFIGURE`, `AlarmManager.set(RTC)`, `PendingIntent.FLAG_IMMUTABLE`, `BroadcastReceiver.goAsync`; the
+  70 × n − 30 dp launcher cell sizing from the Android app widget design guidance; kotlinx-datetime; T-702 painters,
+  ADR-0016 links, ADR-0017 security baseline.
+- **Implementation note:** own work; no GPL/LGPL widget code consulted. Update policy, size buckets and configuration
+  limits (transparency ≤ 90 %, scales 75–150 %) are Taqvim's choices.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1800 / T-1801 — Release shrinking, profiles and macrobenchmarks
 - **Module / files:** `app/proguard-rules.pro`, `app/shrinking-requirements.txt`, `app/build.gradle.kts`
   (ReleaseShrinkingCheck, ApkSizeCheck), `benchmark/src/main/kotlin/ir/taqvim/benchmark/`, `tools/benchmark/`;
