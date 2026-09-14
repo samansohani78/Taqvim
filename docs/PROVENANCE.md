@@ -256,6 +256,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1700 — Accessibility audit
+- **Module / files:** `core/ui-testing/src/main/kotlin/ir/taqvim/core/uitesting/AccessibilityAudit.kt`; semantics fixes
+  in core/ui and feature modules
+- **Task:** T-1700
+- **References used (public only):** Jetpack Compose semantics public API (Apache-2.0) — `SemanticsNode`,
+  `SemanticsProperties`, `SemanticsActions`, `touchBoundsInRoot`, `LiveRegionMode`; 48 dp minimum touch target from the
+  Android developer accessibility guidance and Material 3.
+- **Implementation note:** own work; no ATF/Espresso AccessibilityChecks code used; the overlap-based small-target rule
+  is Taqvim's choice.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1200 — Widget framework
 - **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/`
 - **Task:** T-1200
