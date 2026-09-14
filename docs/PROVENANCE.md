@@ -332,6 +332,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1802 / T-1803 — Compose stability and memory checks
+- **Module / files:** build-logic `ComposeStability.kt`, `config/compose/`, `core/ui-testing/.../RecompositionCounter.kt`,
+  `app/src/test/.../MemoryLeakTest.kt`, `benchmark/.../MonthScreenMemoryBenchmark.kt`, `tools/benchmark/`; ADR-0021
+- **Tasks:** T-1802, T-1803
+- **References used (public only):** Kotlin Compose compiler reports and stability configuration file format; Compose
+  runtime `Composer.setTracer`/`CompositionTracer`; LeakCanary 2.14 (Apache-2.0, debugImplementation) and Shark (used once
+  for diagnosis, not committed); Jetpack Macrobenchmark `MemoryUsageMetric`; JDK `HotSpotDiagnosticMXBean.dumpHeap`.
+- **Implementation note:** own work; stability list entries documented per type; 80 MB budget from PLAN §9.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1800 / T-1801 — Release shrinking, profiles and macrobenchmarks
 - **Module / files:** `app/proguard-rules.pro`, `app/shrinking-requirements.txt`, `app/build.gradle.kts`
   (ReleaseShrinkingCheck, ApkSizeCheck), `benchmark/src/main/kotlin/ir/taqvim/benchmark/`, `tools/benchmark/`;
