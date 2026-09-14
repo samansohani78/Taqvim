@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- T-900 timeline. -->
+<resources>
+    <string name="timeline_title">Timeline</string>
+    <string name="timeline_loading">Loading the timeline</string>
+    <string name="timeline_mode_day">Day</string>
+    <string name="timeline_mode_week">Week</string>
+    <string name="timeline_previous">Previous</string>
+    <string name="timeline_today">Today</string>
+    <string name="timeline_next">Next</string>
+    <string name="timeline_all_day">All day</string>
+    <string name="timeline_zoom_in">Zoom in</string>
+    <string name="timeline_zoom_out">Zoom out</string>
+    <!-- Short weekday name, then the day of the month. -->
+    <string name="timeline_day_header">%1$s %2$s</string>
+    <!-- Month name, then the year. -->
+    <string name="timeline_month_title">%1$s %2$s</string>
+    <string name="timeline_range">%1$s – %2$s</string>
+    <string name="timeline_separator">, </string>
+    <string name="timeline_event_timed">%1$s, %2$s to %3$s</string>
+    <string name="timeline_event_all_day">%1$s, all day</string>
+    <string name="timeline_draft">New event, %1$s to %2$s</string>
+    <string name="timeline_draft_create">Create</string>
+    <string name="timeline_draft_cancel">Cancel</string>
+    <string name="timeline_draft_earlier">15 minutes earlier</string>
+    <string name="timeline_draft_later">15 minutes later</string>
+    <string name="timeline_draft_longer">15 minutes longer</string>
+    <string name="timeline_draft_shorter">15 minutes shorter</string>
+    <string name="timeline_now">Now %1$s</string>
+    <!-- Prayer name, then its time. -->
+    <string name="timeline_prayer_line">%1$s %2$s</string>
+    <string name="timeline_prayer_lines">Prayer times: %1$s</string>
+    <string name="timeline_prayer_fajr">Fajr</string>
+    <string name="timeline_prayer_sunrise">Sunrise</string>
+    <string name="timeline_prayer_dhuhr">Dhuhr</string>
+    <string name="timeline_prayer_asr">Asr</string>
+    <string name="timeline_prayer_sunset">Sunset</string>
+    <string name="timeline_prayer_maghrib">Maghrib</string>
+    <string name="timeline_prayer_isha">Isha</string>
+</resources>
