@@ -4,12 +4,18 @@
  */
 package ir.taqvim.feature.calendar
 
+import ir.taqvim.core.events.Citation
+import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.praytimes.PrayerSettings
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
+import kotlinx.datetime.TimeZone
 
 /** The preferences the calendar screen reacts to (T-800, T-801). */
 data class CalendarSettings(
@@ -38,7 +44,30 @@ data class DayEventItem(
     val kind: DayEventKind,
     val title: String,
     val isHoliday: Boolean,
+    /** The dataset source of an [DayEventKind.OFFICIAL] event (T-802 source tooltip); `null` for other kinds. */
+    val source: EventSource? = null,
+    /** Primary-source citations of an official event, shown in its source tooltip. */
+    val citations: List<Citation> = emptyList(),
 )
+
+/** The chosen place for the Times tab and the Moon of the day details (T-802). */
+data class CalendarPlace(
+    /** Display name, already localized. */
+    val name: String,
+    val coordinates: Coordinates,
+    val timeZone: TimeZone,
+    val prayer: PrayerSettings,
+)
+
+/** The chosen place; emits `null` while none is chosen. Implemented in `:app` over the preferences and cities. */
+fun interface CalendarPlaceSource {
+    fun place(): Flow<CalendarPlace?>
+}
+
+/** The current instant, re-emitted at least every minute (next prayer time and the Sun's progress). */
+fun interface NowSource {
+    fun now(): Flow<Instant>
+}
 
 /** Everything the calendar screen shows for the civil day [jdn]. */
 data class CalendarDay(

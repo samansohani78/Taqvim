@@ -33,5 +33,6 @@ private fun CalendarNavigation.handle(effect: CalendarEffect) {
         is CalendarEffect.NavigateToEvent -> onOpenEvent(effect.event)
         is CalendarEffect.NavigateToTimeline -> onOpenTimeline(effect.firstDay)
         is CalendarEffect.ShowSnackbar -> onMessage(effect.message)
+        is CalendarEffect.OpenUrl -> onOpenUrl(effect.url)
     }
 }

@@ -14,6 +14,7 @@ import ir.taqvim.data.events.eventsDataModule
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarDaySource
 import ir.taqvim.feature.calendar.CalendarMonthSource
+import ir.taqvim.feature.calendar.CalendarPlaceSource
 import ir.taqvim.feature.calendar.CalendarSettingsSource
 import ir.taqvim.feature.calendar.EventSearchSource
 import ir.taqvim.feature.calendar.calendarFeatureModule
@@ -67,6 +68,7 @@ val appDataModule =
         // "choose a location" state.
         single<ChosenCitySource> { ChosenCitySource { flowOf(null) } }
         single<TimesSettingsSource> { PreferencesTimesSettingsSource(get(), get()) }
+        single<CalendarPlaceSource> { TimesCalendarPlaceSource(get()) }
     }
 
 /** Root Koin module. Feature and data modules contribute their bindings here as they are implemented. */

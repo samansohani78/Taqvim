@@ -19,12 +19,15 @@ import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarDay
 import ir.taqvim.feature.calendar.CalendarDaySource
 import ir.taqvim.feature.calendar.CalendarMonthSource
+import ir.taqvim.feature.calendar.CalendarPlace
+import ir.taqvim.feature.calendar.CalendarPlaceSource
 import ir.taqvim.feature.calendar.CalendarSettings
 import ir.taqvim.feature.calendar.CalendarSettingsSource
 import ir.taqvim.feature.calendar.DayEventItem
 import ir.taqvim.feature.calendar.DayEventKind
 import ir.taqvim.feature.calendar.EventSearchResult
 import ir.taqvim.feature.calendar.EventSearchSource
+import ir.taqvim.feature.times.TimesSettingsSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -69,12 +72,25 @@ internal fun DayEvents.toCalendarDay(language: String): CalendarDay =
                     DayEventKind.OFFICIAL,
                     definition.title.forLanguage(language),
                     occurrence.isHoliday,
+                    source = definition.source,
+                    citations = definition.citations,
                 )
             } +
                 personal.map { item(it.eventId.toString(), DayEventKind.PERSONAL, it.title) } +
                 device.map { item(it.eventId.toString(), DayEventKind.DEVICE, it.title) } +
                 ics.map { item("${it.subscriptionId}:${it.uid}", DayEventKind.SUBSCRIPTION, it.summary) },
     )
+
+/** The calendar screen's place (T-802) from the Times tab's settings (T-1100): the same chosen city and method. */
+internal class TimesCalendarPlaceSource(
+    private val times: TimesSettingsSource,
+) : CalendarPlaceSource {
+    override fun place(): Flow<CalendarPlace?> =
+        times
+            .settings()
+            .map { settings -> settings?.let { CalendarPlace(it.placeName, it.place, it.timeZone, it.prayer) } }
+            .distinctUntilChanged()
+}
 
 /** A non-holiday event: only dataset events can make a day a holiday. */
 private fun item(

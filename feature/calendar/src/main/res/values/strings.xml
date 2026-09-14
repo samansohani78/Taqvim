@@ -17,4 +17,120 @@
   </plurals>
   <string name="calendar_new_event">New event</string>
   <string name="calendar_week_number">Week %1$s</string>
+
+  <!-- T-802 day details. -->
+  <string name="calendar_tab_calendars">Calendars</string>
+  <string name="calendar_tab_events">Events</string>
+  <string name="calendar_tab_times">Times</string>
+  <string name="calendar_details_loading">Loading the day</string>
+  <string name="calendar_system_persian">Solar Hijri</string>
+  <string name="calendar_system_islamic">Lunar Hijri</string>
+  <string name="calendar_system_gregorian">Gregorian</string>
+  <string name="calendar_system_nepali">Bikram Sambat</string>
+  <string name="calendar_distance_label">From today</string>
+  <!-- %1$s is the number of days in the app's digits. -->
+  <plurals name="calendar_days_later">
+    <item quantity="one">%1$s day from today</item>
+    <item quantity="other">%1$s days from today</item>
+  </plurals>
+  <plurals name="calendar_days_ago">
+    <item quantity="one">%1$s day ago</item>
+    <item quantity="other">%1$s days ago</item>
+  </plurals>
+  <plurals name="calendar_period_years">
+    <item quantity="one">%1$s year</item>
+    <item quantity="other">%1$s years</item>
+  </plurals>
+  <plurals name="calendar_period_months">
+    <item quantity="one">%1$s month</item>
+    <item quantity="other">%1$s months</item>
+  </plurals>
+  <plurals name="calendar_period_days">
+    <item quantity="one">%1$s day</item>
+    <item quantity="other">%1$s days</item>
+  </plurals>
+  <!-- Days from today (%1$s) with the same difference in years, months and days (%2$s). -->
+  <string name="calendar_distance_with_period">%1$s (%2$s)</string>
+  <string name="calendar_week_label">Week</string>
+  <!-- Day of the week (%1$s) and week of the year (%2$s). -->
+  <string name="calendar_week_progress">Day %1$s of the week, week %2$s of the year</string>
+  <string name="calendar_season_label">Season</string>
+  <!-- Season name (%1$s), day of the season (%2$s) and its length in days (%3$s). -->
+  <string name="calendar_season_progress">%1$s: day %2$s of %3$s</string>
+  <string name="calendar_season_spring">Spring</string>
+  <string name="calendar_season_summer">Summer</string>
+  <string name="calendar_season_autumn">Autumn</string>
+  <string name="calendar_season_winter">Winter</string>
+  <string name="calendar_sky_label">Sun and Moon</string>
+  <!-- Sun sign (%1$s) and Moon sign (%2$s). -->
+  <string name="calendar_zodiac">Sun in %1$s, Moon in %2$s</string>
+  <!-- Moon phase name (%1$s) and illuminated percentage (%2$s). -->
+  <string name="calendar_moon">%1$s, %2$s illuminated</string>
+  <string name="calendar_percent">%1$s%%</string>
+  <string name="calendar_sign_aries">Aries</string>
+  <string name="calendar_sign_taurus">Taurus</string>
+  <string name="calendar_sign_gemini">Gemini</string>
+  <string name="calendar_sign_cancer">Cancer</string>
+  <string name="calendar_sign_leo">Leo</string>
+  <string name="calendar_sign_virgo">Virgo</string>
+  <string name="calendar_sign_libra">Libra</string>
+  <string name="calendar_sign_scorpio">Scorpio</string>
+  <string name="calendar_sign_sagittarius">Sagittarius</string>
+  <string name="calendar_sign_capricorn">Capricorn</string>
+  <string name="calendar_sign_aquarius">Aquarius</string>
+  <string name="calendar_sign_pisces">Pisces</string>
+  <string name="calendar_phase_new_moon">New moon</string>
+  <string name="calendar_phase_waxing_crescent">Waxing crescent</string>
+  <string name="calendar_phase_first_quarter">First quarter</string>
+  <string name="calendar_phase_waxing_gibbous">Waxing gibbous</string>
+  <string name="calendar_phase_full_moon">Full moon</string>
+  <string name="calendar_phase_waning_gibbous">Waning gibbous</string>
+  <string name="calendar_phase_third_quarter">Third quarter</string>
+  <string name="calendar_phase_waning_crescent">Waning crescent</string>
+  <string name="calendar_no_events">No events on this day</string>
+  <string name="calendar_add_event">Add event</string>
+  <string name="calendar_source_official">Official calendar</string>
+  <string name="calendar_source_iran_official">Official calendar of Iran</string>
+  <string name="calendar_source_afghanistan_official">Official calendar of Afghanistan</string>
+  <string name="calendar_source_nepal_official">Official calendar of Nepal</string>
+  <string name="calendar_source_international">International day</string>
+  <string name="calendar_source_ancient_iran">Ancient Iranian festival</string>
+  <string name="calendar_source_personal">Personal event</string>
+  <string name="calendar_source_device">Device calendar</string>
+  <string name="calendar_source_subscription">Subscribed calendar</string>
+  <!-- Citation title (%1$s) and page (%2$s). -->
+  <string name="calendar_citation_page">%1$s, page %2$s</string>
+  <string name="calendar_no_citation">No source recorded</string>
+  <string name="calendar_open_source">Open source</string>
+  <string name="calendar_close">Close</string>
+  <string name="calendar_times_loading">Loading times</string>
+  <string name="calendar_no_place_title">No location chosen</string>
+  <string name="calendar_no_place_message">Choose a city to see the times of this day.</string>
+  <string name="calendar_times_place_label">Place and method</string>
+  <!-- Place name (%1$s) and calculation method (%2$s). -->
+  <string name="calendar_times_place">%1$s · %2$s</string>
+  <string name="calendar_method_mwl">Muslim World League</string>
+  <string name="calendar_method_isna">Islamic Society of North America</string>
+  <string name="calendar_method_egypt">Egyptian General Authority of Survey</string>
+  <string name="calendar_method_makkah">Umm al-Qura, Makkah</string>
+  <string name="calendar_method_karachi">University of Islamic Sciences, Karachi</string>
+  <string name="calendar_method_tehran">Institute of Geophysics, University of Tehran</string>
+  <string name="calendar_method_jafari">Shia Ithna-Ashari (Jafari)</string>
+  <string name="calendar_method_singapore">Majlis Ugama Islam Singapura</string>
+  <string name="calendar_method_france">Union of Islamic Organisations of France</string>
+  <string name="calendar_method_russia">Spiritual Administration of Muslims of Russia</string>
+  <string name="calendar_time_fajr">Fajr</string>
+  <string name="calendar_time_sunrise">Sunrise</string>
+  <string name="calendar_time_dhuhr">Dhuhr</string>
+  <string name="calendar_time_asr">Asr</string>
+  <string name="calendar_time_sunset">Sunset</string>
+  <string name="calendar_time_maghrib">Maghrib</string>
+  <string name="calendar_time_isha">Isha</string>
+  <string name="calendar_time_midnight">Midnight</string>
+  <string name="calendar_time_undefined">Not defined</string>
+  <string name="calendar_next_time">Next time</string>
+  <!-- Sunrise time (%1$s) and sunset time (%2$s). -->
+  <string name="calendar_sun_path">Sun path from sunrise at %1$s to sunset at %2$s</string>
+  <string name="calendar_polar_day">The Sun does not set on this day, so the times cannot be calculated.</string>
+  <string name="calendar_polar_night">The Sun does not rise on this day, so the times cannot be calculated.</string>
 </resources>

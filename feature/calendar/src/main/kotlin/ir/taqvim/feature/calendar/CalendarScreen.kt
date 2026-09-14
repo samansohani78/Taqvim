@@ -8,8 +8,12 @@ import android.content.res.Resources
 import android.icu.text.DateFormatSymbols
 import android.icu.util.ULocale
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +26,7 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.Weekday
@@ -29,8 +34,8 @@ import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.TopBar
 
 /**
- * The calendar (home) screen, stateless: the shown month's title over the month pager (T-801). The day details
- * (T-802) and the toolbar actions (T-803) are added by their tasks.
+ * The calendar (home) screen, stateless: the shown month's title over the month pager (T-801) and the selected day's
+ * details (T-802), scrolling together. The toolbar actions (T-803) are added by their task.
  */
 @Composable
 fun CalendarScreen(
@@ -49,7 +54,14 @@ fun CalendarScreen(
         modifier = modifier,
         topBar = { TopBar(heading.title, subtitle = heading.subtitle) },
     ) { padding ->
-        MonthPager(content, builder, onAction, Modifier.fillMaxSize().padding(padding))
+        Column(Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState())) {
+            MonthPager(content, builder, onAction, Modifier.fillMaxWidth())
+            DayDetailsPanel(
+                content,
+                onAction,
+                Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+            )
+        }
     }
 }
 

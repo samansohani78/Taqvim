@@ -14,4 +14,6 @@ class CalendarNavigation(
     val onOpenEvent: (event: DayEventItem) -> Unit = {},
     val onOpenTimeline: (firstDay: Jdn) -> Unit = {},
     val onMessage: (message: CalendarMessage) -> Unit = {},
+    /** Opens a cited primary source, e.g. in the browser. */
+    val onOpenUrl: (url: String) -> Unit = {},
 )

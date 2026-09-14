@@ -4,16 +4,17 @@
  */
 package ir.taqvim.feature.calendar
 
-import org.koin.core.module.dsl.viewModelOf
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 /**
  * Koin bindings of the calendar screen (ADR-0002). `:app` provides [CalendarSettingsSource], [CalendarDaySource],
- * [EventSearchSource] and `TodayProvider`.
+ * [CalendarMonthSource], [EventSearchSource], [CalendarPlaceSource], `TodayProvider` and `kotlin.time.Clock`.
  */
 val calendarFeatureModule =
     module {
         factory<TodaySource> { TickingTodaySource(get()) }
+        factory<NowSource> { MinuteNowSource(get()) }
         factory { SearchEventsUseCase(get()) }
-        viewModelOf(::CalendarViewModel)
+        viewModel { CalendarViewModel(get(), get(), get(), get(), get(), get(), get()) }
     }

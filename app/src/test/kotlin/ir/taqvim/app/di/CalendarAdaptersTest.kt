@@ -8,19 +8,27 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.events.Occurrence
+import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.JdnRange
+import ir.taqvim.core.praytimes.PrayerSettings
 import ir.taqvim.data.devicecalendar.DeviceEvent
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.data.events.generated.OfficialEvents
+import ir.taqvim.feature.calendar.CalendarPlace
 import ir.taqvim.feature.calendar.DayEventItem
 import ir.taqvim.feature.calendar.DayEventKind
+import ir.taqvim.feature.times.TimesSettings
 import kotlin.time.Instant
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
 import org.junit.jupiter.api.Test
 
 /** T-800 wiring: day events and search results reach the calendar screen in its own models. */
@@ -53,7 +61,14 @@ class CalendarAdaptersTest {
         day.isWeekend shouldBe false
         day.events shouldBe
             listOf(
-                DayEventItem(NOWRUZ, DayEventKind.OFFICIAL, nowruz.title.forLanguage("en"), isHoliday = true),
+                DayEventItem(
+                    NOWRUZ,
+                    DayEventKind.OFFICIAL,
+                    nowruz.title.forLanguage("en"),
+                    isHoliday = true,
+                    source = nowruz.source,
+                    citations = nowruz.citations,
+                ),
                 DayEventItem("7", DayEventKind.PERSONAL, "Birthday", isHoliday = false),
                 DayEventItem("3", DayEventKind.DEVICE, "Meeting", isHoliday = false),
                 DayEventItem("2:uid-1", DayEventKind.SUBSCRIPTION, "Talk", isHoliday = false),
@@ -76,6 +91,31 @@ class CalendarAdaptersTest {
                 OfficialEventSearchSource(language = { "fa" }, today = { LocalDate(2026, 3, 22).toJdn() })
             afterNowruz.search(title, limit = 5).first { it.eventId == NOWRUZ }.nextDay shouldBe
                 PersianCalendarSystem.toJdn(PersianCalendarSystem.date(1406, 1, 1))
+        }
+
+    @Test
+    fun `official events carry their source and citations for the source tooltip`() {
+        nowruz.citations.isNotEmpty() shouldBe true
+    }
+
+    @Test
+    fun `the calendar's place follows the Times settings`(): Unit =
+        runTest {
+            val settings = MutableStateFlow<TimesSettings?>(null)
+            val source = TimesCalendarPlaceSource { settings }
+
+            source.place().first() shouldBe null
+
+            val tehran =
+                TimesSettings(
+                    placeName = "Tehran",
+                    place = Coordinates(35.69, 51.42),
+                    timeZone = TimeZone.of("Asia/Tehran"),
+                    prayer = PrayerSettings(),
+                    language = requireNotNull(LanguageTable.forCode("fa")),
+                )
+            settings.value = tehran
+            source.place().first() shouldBe CalendarPlace("Tehran", tehran.place, tehran.timeZone, tehran.prayer)
         }
 
     private companion object {

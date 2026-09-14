@@ -8,9 +8,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.taqvim.core.model.Jdn
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Instant
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
@@ -23,7 +26,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
@@ -31,8 +36,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * The calendar (home) screen (T-800): selected day, shown month, day-details tab, day events and search. Actions
- * arrive through [onAction]; navigation and snackbars leave through [effects].
+ * The calendar (home) screen (T-800): selected day, shown month, day-details tab, day events and search, plus the
+ * Calendars and Times tabs of the selected day (T-802). Actions arrive through [onAction]; navigation and snackbars
+ * leave through [effects].
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 class CalendarViewModel(
@@ -41,6 +47,9 @@ class CalendarViewModel(
     private val daySource: CalendarDaySource,
     private val monthSource: CalendarMonthSource,
     private val searchEvents: SearchEventsUseCase,
+    placeSource: CalendarPlaceSource,
+    nowSource: NowSource,
+    calculationDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : ViewModel() {
     private val navigation = MutableStateFlow(NavigationState())
     private val search = MutableStateFlow(CalendarSearch())
@@ -56,12 +65,20 @@ class CalendarViewModel(
             .map { CalendarCalendars(it) }
             .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
+    /** The chosen place once loaded (its [LoadedPlace.place] is `null` when none is chosen). */
+    private val place: StateFlow<LoadedPlace?> =
+        placeSource
+            .place()
+            .map { LoadedPlace(it) }
+            .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    private val selectedDay: Flow<Jdn> =
+        combine(today.filterNotNull(), navigation) { today, state -> state.selectedDay ?: today }.distinctUntilChanged()
+
     private val dayDetails: Flow<DayDetails?> =
-        combine(today.filterNotNull(), navigation) { today, state -> state.selectedDay ?: today }
-            .distinctUntilChanged()
-            .flatMapLatest { day ->
-                daySource.day(day).map<CalendarDay, DayDetails?> { it.toDetails() }.onStart { emit(null) }
-            }
+        selectedDay.flatMapLatest { day ->
+            daySource.day(day).map<CalendarDay, DayDetails?> { it.toDetails() }.onStart { emit(null) }
+        }
 
     /** Events of the shown month and its neighbours (T-801); a new window keeps the previous one until it loads. */
     private val months: Flow<ImmutableList<MonthEvents>> =
@@ -70,6 +87,34 @@ class CalendarViewModel(
         }.distinctUntilChanged()
             .flatMapLatest { monthEvents(it) }
             .onStart { emit(persistentListOf()) }
+
+    private val overview: Flow<DayOverview?> =
+        combine(
+            selectedDay,
+            today.filterNotNull(),
+            calendars.filterNotNull(),
+            place.filterNotNull(),
+        ) { day, today, cal, at ->
+            OverviewInput(day, today, cal, at.place)
+        }.distinctUntilChanged()
+            .mapLatest<OverviewInput, DayOverview?> {
+                DayDetailsCalculator.overview(
+                    it.day,
+                    it.today,
+                    it.calendars,
+                    it.place,
+                )
+            }.flowOn(calculationDispatcher)
+            .onStart { emit(null) }
+
+    private val times: Flow<DayTimesState> =
+        combine(selectedDay, place.filterNotNull(), nowSource.now()) { day, at, now -> TimesInput(day, at.place, now) }
+            .mapLatest { input ->
+                input.place?.let { DayTimesState.Ready(DayDetailsCalculator.times(input.day, it, input.now)) }
+                    ?: DayTimesState.NoPlace
+            }.flowOn(calculationDispatcher)
+            .distinctUntilChanged()
+            .onStart { emit(DayTimesState.Loading) }
 
     /** One-shot navigation and snackbar effects. */
     val effects: Flow<CalendarEffect> = effectChannel.receiveAsFlow()
@@ -80,7 +125,7 @@ class CalendarViewModel(
             calendars.filterNotNull(),
             navigation,
             search,
-            combine(dayDetails, months) { details, months -> Loaded(details, months) },
+            combine(dayDetails, months, overview, times, ::Loaded),
         ) { today, calendars, state, search, loaded ->
             CalendarUiState(content(today, calendars, state, search, loaded))
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), CalendarUiState())
@@ -92,6 +137,7 @@ class CalendarViewModel(
             is CalendarAction.CreateEvent -> emit(CalendarEffect.NavigateToEventEditor(action.jdn))
             is CalendarAction.OpenEvent -> emit(CalendarEffect.NavigateToEvent(action.event))
             is CalendarAction.OpenWeek -> emit(CalendarEffect.NavigateToTimeline(action.firstDay))
+            is CalendarAction.OpenCitation -> emit(CalendarEffect.OpenUrl(action.url))
         }
     }
 
@@ -114,8 +160,10 @@ class CalendarViewModel(
             is CalendarAction.ShowMonth -> showMonth { action.offset }
             CalendarAction.ShowNextMonth -> showMonth { it + 1 }
             CalendarAction.ShowPreviousMonth -> showMonth { it - 1 }
-            CalendarAction.GoToToday -> navigation.update { it.copy(selectedDay = null, shownDay = null) }
+            CalendarAction.GoToToday -> navigation.update { NavigationState(tab = it.tab) }
             is CalendarAction.SelectTab -> navigation.update { it.copy(tab = action.tab) }
+            is CalendarAction.ShowEventSource -> navigation.update { it.copy(sourceEvent = action.event) }
+            CalendarAction.DismissEventSource -> navigation.update { it.copy(sourceEvent = null) }
         }
     }
 
@@ -132,7 +180,7 @@ class CalendarViewModel(
         day: Jdn,
         tab: DayDetailsTab? = null,
     ) {
-        navigation.update { it.copy(selectedDay = day, shownDay = day, tab = tab ?: it.tab) }
+        navigation.update { it.copy(selectedDay = day, shownDay = day, tab = tab ?: it.tab, sourceEvent = null) }
     }
 
     /** Shows the month at [offset] of the current pager position; ignored until today and the settings load. */
@@ -200,13 +248,19 @@ class CalendarViewModel(
             languageCode = calendars.settings.languageCode,
             showWeekNumbers = calendars.settings.showWeekNumbers,
             months = loaded.months,
+            overview = loaded.overview?.takeIf { it.day == selected },
+            times =
+                loaded.times.takeIf { it !is DayTimesState.Ready || it.times.day == selected } ?: DayTimesState.Loading,
+            sourceEvent = state.sourceEvent,
         )
     }
 
-    /** What loads after today and the preferences: the selected day's events and the pager's months. */
+    /** What loads after today and the preferences: the selected day's details and the pager's months. */
     private data class Loaded(
         val details: DayDetails?,
         val months: ImmutableList<MonthEvents>,
+        val overview: DayOverview?,
+        val times: DayTimesState,
     )
 
     /** The months the pager needs: those around [offset] months from the month of [today]. */
@@ -216,11 +270,29 @@ class CalendarViewModel(
         val offset: Int,
     )
 
+    private data class LoadedPlace(
+        val place: CalendarPlace?,
+    )
+
+    private data class OverviewInput(
+        val day: Jdn,
+        val today: Jdn,
+        val calendars: CalendarCalendars,
+        val place: CalendarPlace?,
+    )
+
+    private data class TimesInput(
+        val day: Jdn,
+        val place: CalendarPlace?,
+        val now: Instant,
+    )
+
     /** `null` days follow today: no explicit selection, or the shown month is the selected day's month. */
     private data class NavigationState(
         val selectedDay: Jdn? = null,
         val shownDay: Jdn? = null,
         val tab: DayDetailsTab = DayDetailsTab.CALENDARS,
+        val sourceEvent: DayEventItem? = null,
     )
 
     private companion object {

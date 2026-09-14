@@ -6,8 +6,10 @@ package ir.taqvim.feature.calendar
 
 import ir.taqvim.core.calendar.TodayProvider
 import ir.taqvim.core.model.Jdn
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -35,6 +37,24 @@ class TickingTodaySource(
 
     companion object {
         val DEFAULT_INTERVAL: Duration = 1.minutes
+    }
+}
+
+/** [NowSource] from [clock]: the time now, then again at every following minute boundary. */
+class MinuteNowSource(
+    private val clock: Clock,
+) : NowSource {
+    override fun now(): Flow<Instant> =
+        flow {
+            while (true) {
+                val now = clock.now()
+                emit(now)
+                delay(MILLIS_PER_MINUTE - now.toEpochMilliseconds().mod(MILLIS_PER_MINUTE))
+            }
+        }
+
+    private companion object {
+        const val MILLIS_PER_MINUTE = 60_000L
     }
 }
 

@@ -46,6 +46,19 @@ data class IndicatorPalette(
     val subscription: Color,
 )
 
+/** The dot and chip color of [event]: holidays in the holiday color, other events by their kind. */
+fun IndicatorPalette.colorOf(event: DayEventItem): Color =
+    if (event.isHoliday) {
+        holiday
+    } else {
+        when (event.kind) {
+            DayEventKind.OFFICIAL -> official
+            DayEventKind.PERSONAL -> personal
+            DayEventKind.DEVICE -> device
+            DayEventKind.SUBSCRIPTION -> subscription
+        }
+    }
+
 /** Title (the month in the primary calendar) and subtitle (the same days in the other calendars) of a month. */
 @Immutable
 data class MonthHeading(
@@ -138,7 +151,7 @@ class MonthPageBuilder(
                 events
                     ?.events
                     .orEmpty()
-                    .map(::color)
+                    .map(palette::colorOf)
                     .distinct()
                     .take(MAX_EVENT_DOTS),
             isToday = day == today,
@@ -161,18 +174,6 @@ class MonthPageBuilder(
             texts.holiday.takeIf { isHoliday },
             if (eventCount > 0) texts.events(eventCount, number(eventCount)) else null,
         ).joinToString(texts.separator)
-
-    private fun color(event: DayEventItem): Color =
-        if (event.isHoliday) {
-            palette.holiday
-        } else {
-            when (event.kind) {
-                DayEventKind.OFFICIAL -> palette.official
-                DayEventKind.PERSONAL -> palette.personal
-                DayEventKind.DEVICE -> palette.device
-                DayEventKind.SUBSCRIPTION -> palette.subscription
-            }
-        }
 
     /** One label per row: the week of the year of the row's first day in the month (its first day otherwise). */
     private fun weekNumbers(

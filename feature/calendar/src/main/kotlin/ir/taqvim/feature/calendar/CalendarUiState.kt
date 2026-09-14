@@ -48,6 +48,12 @@ data class CalendarContent(
     val showWeekNumbers: Boolean,
     /** Loaded events of the shown month and the months either side of it (pager prefetch); others are loading. */
     val months: ImmutableList<MonthEvents>,
+    /** The Calendars tab of [selectedDay]; `null` while it is computed (T-802). */
+    val overview: DayOverview? = null,
+    /** The Times tab of [selectedDay] (T-802). */
+    val times: DayTimesState = DayTimesState.Loading,
+    /** The official event whose source and citation are shown, if any (T-802). */
+    val sourceEvent: DayEventItem? = null,
 )
 
 /** The six grid weeks of the month [offset] (see [CalendarContent.monthOffset]) with their events. */

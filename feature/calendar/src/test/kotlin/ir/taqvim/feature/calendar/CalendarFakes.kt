@@ -6,15 +6,20 @@ package ir.taqvim.feature.calendar
 
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
+import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.praytimes.PrayerSettings
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
 
 /** The civil day of a Gregorian date. */
 internal fun gregorian(
@@ -30,6 +35,29 @@ internal val PERSIAN_FIRST =
         islamicVariant = IslamicVariant.IRAN_OFFICIAL,
         languageCode = "fa",
     )
+
+/** Tehran with its official prayer method (rounded sample coordinates, not official data). */
+internal val TEHRAN =
+    CalendarPlace("Tehran", Coordinates(35.69, 51.42), TimeZone.of("Asia/Tehran"), PrayerSettings(PrayerMethod.TEHRAN))
+
+/** An instant for tests that do not look at the time of day: 18 March 2026, 12:00 in Tehran. */
+internal val TEST_NOW: Instant = Instant.parse("2026-03-18T08:30:00Z")
+
+internal class FakePlaceSource(
+    initial: CalendarPlace?,
+) : CalendarPlaceSource {
+    val state = MutableStateFlow(initial)
+
+    override fun place(): Flow<CalendarPlace?> = state
+}
+
+internal class FakeNowSource(
+    initial: Instant,
+) : NowSource {
+    val state = MutableStateFlow(initial)
+
+    override fun now(): Flow<Instant> = state
+}
 
 internal class FakeSettingsSource(
     initial: CalendarSettings,

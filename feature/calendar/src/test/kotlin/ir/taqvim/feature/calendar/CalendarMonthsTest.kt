@@ -39,7 +39,16 @@ class CalendarMonthsTest {
 
     private fun TestScope.viewModel(settings: CalendarSettings = PERSIAN_FIRST): CalendarViewModel {
         val search = SearchEventsUseCase(FakeSearchSource(emptyMap()), UnconfinedTestDispatcher(testScheduler))
-        return CalendarViewModel(FakeSettingsSource(settings), FakeTodaySource(today), days, days, search)
+        return CalendarViewModel(
+            FakeSettingsSource(settings),
+            FakeTodaySource(today),
+            days,
+            days,
+            search,
+            FakePlaceSource(null),
+            FakeNowSource(TEST_NOW),
+            UnconfinedTestDispatcher(testScheduler),
+        )
     }
 
     private suspend fun ReceiveTurbine<CalendarUiState>.awaitContent(

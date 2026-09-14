@@ -37,6 +37,13 @@ sealed interface CalendarAction {
         val tab: DayDetailsTab,
     ) : Navigation
 
+    /** Show the source and citation of an official event of the selected day (T-802). */
+    data class ShowEventSource(
+        val event: DayEventItem,
+    ) : Navigation
+
+    data object DismissEventSource : Navigation
+
     data object OpenSearch : Search
 
     data class ChangeSearchQuery(
@@ -63,6 +70,11 @@ sealed interface CalendarAction {
     data class OpenWeek(
         val firstDay: Jdn,
     ) : Event
+
+    /** Open the primary source at [url] cited for an event (T-802). */
+    data class OpenCitation(
+        val url: String,
+    ) : Event
 }
 
 /** Messages the calendar screen shows in a snackbar; the UI maps them to string resources. */
@@ -88,5 +100,10 @@ sealed interface CalendarEffect {
     /** Open the timeline at the week that begins on [firstDay] (T-801 week-number column). */
     data class NavigateToTimeline(
         val firstDay: Jdn,
+    ) : CalendarEffect
+
+    /** Open a cited primary source (T-802 source tooltip). */
+    data class OpenUrl(
+        val url: String,
     ) : CalendarEffect
 }
