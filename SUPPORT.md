@@ -49,14 +49,9 @@ primary source for a data correction has been checked. `‹OWNER: first-response
 
 ### Data-only corrections
 
-The 72-hour target is meant to be met without waiting for an app update. The plan specifies two paths:
-
-- the next app build ships the corrected dataset as a bundled override;
-- an optional **signed dataset update file**, which the app verifies before using it.
-
-The signed update loader and its signature check are not built yet (T-1901, pending). Until they are, a data
-correction reaches users with the next app release, and the 72-hour target applies to publishing the corrected dataset
-in the repository.
+Data corrections ship with app releases (ADR-0020): Taqvim does not download dataset updates. A confirmed data error
+is fixed in the repository's dataset and released as a PATCH version; the 72-hour target applies to publishing that
+corrected release.
 
 ## Triage
 

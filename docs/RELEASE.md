@@ -143,16 +143,16 @@ plan makes F-Droid metadata conditional on the license allowing it.
   PATCH release with a higher `versionCode`, built from the last good tag on a `release/X.Y` branch if needed.
 - **GitHub:** mark the previous release as latest and edit the bad release's notes to say it was withdrawn; do not
   delete tags that were already published.
-- **Data errors:** follow the data-only path below; no rollback of the app is needed.
+- **Data errors:** ship the corrected dataset in a PATCH release (see below); no rollback of the app is needed.
 - User data is safe across rollbacks only if the database schema did not change; a release that bumps the Room
   schema (ADR-0012) must not be halted after reaching many users without a forward fix.
 
-## Data-only releases (pending)
+## Data corrections
 
-SUPPORT.md promises holiday data corrections within 72 hours without an app update. The plan (T-1901) specifies a
-bundled dataset override plus an optional **signed dataset update file** verified by the app. Neither the loader nor
-its signature verification is built yet, and the signing key custody is an owner decision
-(`‹OWNER: dataset signing key holder›`). Until then, a data correction ships as a PATCH release.
+Dataset corrections ship inside normal app releases (ADR-0020, owner decision 2026-09-14): there is no signed dataset
+update file and no network dataset fetch. A holiday data error is fixed by a PATCH release built from the corrected
+`dataset/` (validated, regenerated and golden-tested per CONTRIBUTING-DATA.md), expedited through the tracks when
+needed.
 
 ## Owner placeholders
 

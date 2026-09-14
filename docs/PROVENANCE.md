@@ -270,6 +270,29 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1701 — Layout audit and bidi isolation
+- **Module / files:** `core/ui-testing/.../LayoutAudit.kt`, `core/i18n/.../BidiText.kt`; layout fixes in core/ui and
+  feature modules
+- **Task:** T-1701
+- **References used (public only):** Jetpack Compose semantics and `TextLayoutResult` public APIs (Apache-2.0); Unicode
+  UAX #9 (Bidirectional Algorithm) isolate characters LRI/RLI/FSI/PDI; `java.text.Bidi`; Material 3 components
+  (scrollable tab row, segmented buttons, `FlowRow`, auto-sizing text).
+- **Implementation note:** own work; the 1.3 font-scale cap for day cells and the top bar is a product choice.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-1201 … T-1204 — Date, clock, day summary and prayer strip widgets
+- **Module / files:** `feature/widgets/src/main/kotlin/ir/taqvim/feature/widgets/` — `DateWidgets.kt`, `DayWidgets.kt`,
+  `WidgetCatalog.kt`, `WidgetContentBuilder.kt`; `data/preferences/.../WidgetConfigRepository.kt` +
+  `widget_configs.proto`; `app/.../di/WidgetAdapters.kt`
+- **Tasks:** T-1201, T-1202, T-1203, T-1204
+- **References used (public only):** Jetpack Glance 1.2.0 (Apache-2.0) `AndroidRemoteViews`, `GlanceAppWidgetReceiver`;
+  Android `TextClock`, `appwidget-provider` attributes (`targetCellWidth/Height`, `configure`, `widgetFeatures`); Proto
+  DataStore; A-10 prayer times; CLDR weekday/month names via `:core:i18n`.
+- **Implementation note:** own work; event-line counts and the strip layout are product choices; test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1700 — Accessibility audit
 - **Module / files:** `core/ui-testing/src/main/kotlin/ir/taqvim/core/uitesting/AccessibilityAudit.kt`; semantics fixes
   in core/ui and feature modules
