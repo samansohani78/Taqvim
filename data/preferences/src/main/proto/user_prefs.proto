@@ -76,6 +76,26 @@ enum ThemeModeProto {
   THEME_MODE_BLACK = 4;
 }
 
+enum PlaceSourceProto {
+  PLACE_SOURCE_UNSPECIFIED = 0;
+  PLACE_SOURCE_CITY = 1;
+  PLACE_SOURCE_DEVICE = 2;
+  PLACE_SOURCE_COORDINATES = 3;
+}
+
+// The place chosen in the location settings (T-1502); absent until the user chooses one.
+message ChosenPlaceProto {
+  PlaceSourceProto source = 1;
+  // Natural Earth id of the city (T-603); 0 for places that are not catalog cities.
+  int64 city_id = 2;
+  // Display name at the time of choosing; empty when none was known.
+  string name = 3;
+  double latitude = 4;
+  double longitude = 5;
+  // IANA time zone id.
+  string zone_id = 6;
+}
+
 message UserPrefs {
   // 0 = never initialised; see UserPrefsMigration.CURRENT_SCHEMA_VERSION.
   int32 schema_version = 1;
@@ -92,4 +112,6 @@ message UserPrefs {
   int32 hijri_offset_days = 11;
   // Epoch milliseconds when the Hijri offset was set; 0 = no offset.
   int64 hijri_offset_set_at_epoch_millis = 12;
+  // Chosen place (T-1502); an optional field, so stores written before it read as "no place".
+  ChosenPlaceProto place = 13;
 }

@@ -8,6 +8,7 @@ import android.content.Context
 import androidx.datastore.dataStoreFile
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.PrayerMethod
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -63,5 +64,16 @@ class UserPreferencesRepositoryTest {
             assertEquals(PrayerMethod.JAFARI, reopened.prayerMethod)
             assertEquals(ThemeMode.BLACK, reopened.themeMode)
             assertEquals("fa", reopened.languageCode)
+        }
+
+    @Test
+    fun chosenPlacePersistsAcrossStoreInstances(): Unit =
+        runBlocking {
+            val place = ChosenPlace(PlaceSource.COORDINATES, null, null, Coordinates(29.61, 52.53), "Asia/Tehran")
+            withRepository("fa") { repository -> repository.update { it.copy(place = place) } }
+
+            val reopened = withRepository("fa") { it.preferences.first() }
+
+            assertEquals(place, reopened.place)
         }
 }

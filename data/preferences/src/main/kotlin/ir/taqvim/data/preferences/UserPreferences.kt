@@ -34,6 +34,8 @@ data class UserPreferences(
     val themeMode: ThemeMode,
     val hijriOffsetDays: Int,
     val hijriOffsetSetAtEpochMillis: Long?,
+    /** The chosen place (T-1502), or `null` until the user chooses one. */
+    val place: ChosenPlace? = null,
 ) {
     companion object {
         /** Language used when the device language is not one of the launch languages. */

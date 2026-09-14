@@ -53,6 +53,7 @@ fun UserPrefs.toDomain(): UserPreferences {
         themeMode = domain<ThemeMode>(themeMode.name, THEME) ?: defaults.themeMode,
         hijriOffsetDays = hijriOffsetDays,
         hijriOffsetSetAtEpochMillis = hijriOffsetSetAtEpochMillis.takeIf { it != 0L },
+        place = if (hasPlace()) place.toDomainOrNull() else null,
     )
 }
 
@@ -72,4 +73,5 @@ fun UserPreferences.toProto(schemaVersion: Int = UserPrefsMigration.CURRENT_SCHE
         .setThemeMode(ThemeModeProto.valueOf(THEME + themeMode.name))
         .setHijriOffsetDays(hijriOffsetDays)
         .setHijriOffsetSetAtEpochMillis(hijriOffsetSetAtEpochMillis ?: 0L)
+        .apply { this@toProto.place?.let { setPlace(it.toProto()) } }
         .build()
