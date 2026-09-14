@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- T-1102 athan playback -->
+  <string name="notification_athan_channel_name">اذان</string>
+  <string name="notification_athan_channel_description">پخش اذان در اوقاتی که روشن کرده‌اید</string>
+  <string name="notification_athan_title_fajr">اذان صبح</string>
+  <string name="notification_athan_title_dhuhr">اذان ظهر</string>
+  <string name="notification_athan_title_asr">اذان عصر</string>
+  <string name="notification_athan_title_maghrib">اذان مغرب</string>
+  <string name="notification_athan_title_isha">اذان عشا</string>
+  <string name="notification_athan_text">برای قطع اذان «توقف» را بزنید</string>
+  <string name="notification_athan_stop">توقف</string>
+  <string name="notification_athan_snooze">تعویق</string>
+</resources>

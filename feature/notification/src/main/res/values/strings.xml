@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- T-1102 athan playback -->
+  <string name="notification_athan_channel_name">Athan</string>
+  <string name="notification_athan_channel_description">Plays the athan at the prayer times you turned on</string>
+  <string name="notification_athan_title_fajr">Fajr athan</string>
+  <string name="notification_athan_title_dhuhr">Dhuhr athan</string>
+  <string name="notification_athan_title_asr">Asr athan</string>
+  <string name="notification_athan_title_maghrib">Maghrib athan</string>
+  <string name="notification_athan_title_isha">Isha athan</string>
+  <string name="notification_athan_text">Tap Stop to silence the athan</string>
+  <string name="notification_athan_stop">Stop</string>
+  <string name="notification_athan_snooze">Snooze</string>
+</resources>
