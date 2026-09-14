@@ -77,7 +77,8 @@ data class AppSettings(
         /**
          * Product defaults, the same for every language: dynamic color on, every dataset source except the ancient
          * Iranian festivals (docs/PLAN.md §5.1, off by default), the prayer library's angle-based high-latitude rule,
-         * subscriptions allowed to refresh, no persistent notification and search history remembered.
+         * subscriptions not allowed to use the network until the user turns it on (docs/PLAN.md T-1804), no
+         * persistent notification and search history remembered.
          */
         val DEFAULT: AppSettings =
             AppSettings(
@@ -88,7 +89,7 @@ data class AppSettings(
                 showWeekNumbers = false,
                 enabledEventSources = (SELECTABLE_SOURCES - EventSource.ANCIENT_IRAN).toSet(),
                 highLatitudeRule = HighLatitudeRule.ANGLE_BASED,
-                subscriptionsNetworkAllowed = true,
+                subscriptionsNetworkAllowed = false,
                 persistentNotification = false,
                 rememberRecentSearches = true,
                 recentSearches = emptyList(),

@@ -50,6 +50,8 @@ class AppSettingsMappingTest {
         AppSettings.DEFAULT.showWeekNumbers shouldBe false
         AppSettings.DEFAULT.dynamicColor shouldBe true
         AppSettings.DEFAULT.allDayReminderMinute shouldBe 9 * 60
+        // T-1804: no network use until the user allows subscriptions to refresh.
+        AppSettings.DEFAULT.subscriptionsNetworkAllowed shouldBe false
     }
 
     @Test

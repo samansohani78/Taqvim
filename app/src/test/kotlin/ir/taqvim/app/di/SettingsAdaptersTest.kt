@@ -162,6 +162,8 @@ class SettingsAdaptersTest {
             var reschedules = 0
             var outcome: (Long) -> RefreshOutcome = { RefreshOutcome.Unchanged(it) }
             val store = RoomSubscriptionsStore(dao, { outcome(it) }, preferences) { reschedules++ }
+            // T-1804: the network is off by default; the user allows it before subscribing.
+            preferences.update { it.copy(app = it.app.copy(subscriptionsNetworkAllowed = true)) }
 
             store.add("http://example.org/cal.ics") shouldBe SubscriptionOutcome.INVALID_ADDRESS
             store.add("webcal://example.org/cal.ics") shouldBe SubscriptionOutcome.DONE
