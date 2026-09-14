@@ -36,6 +36,8 @@ data class UserPreferences(
     val hijriOffsetSetAtEpochMillis: Long?,
     /** The chosen place (T-1502), or `null` until the user chooses one. */
     val place: ChosenPlace? = null,
+    /** Athan settings (T-1101). */
+    val athan: AthanPreferences = AthanPreferences.DEFAULT,
 ) {
     companion object {
         /** Language used when the device language is not one of the launch languages. */

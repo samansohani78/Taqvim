@@ -67,6 +67,24 @@ class UserPreferencesRepositoryTest {
         }
 
     @Test
+    fun athanSettingsPersistAcrossStoreInstances(): Unit =
+        runBlocking {
+            val athan =
+                AthanPreferences.DEFAULT.copy(
+                    alerts = AthanPreferences.DEFAULT.alerts + (AthanPrayer.FAJR to AthanAlert(true, -5)),
+                    sound = AthanSound("content://media/external/audio/7", "Athan"),
+                    bypassDndForFajr = true,
+                    volumePercent = 55,
+                    useIranTime = true,
+                )
+            withRepository("fa") { repository -> repository.update { it.copy(athan = athan) } }
+
+            val reopened = withRepository("en") { it.preferences.first() }
+
+            assertEquals(athan, reopened.athan)
+        }
+
+    @Test
     fun chosenPlacePersistsAcrossStoreInstances(): Unit =
         runBlocking {
             val place = ChosenPlace(PlaceSource.COORDINATES, null, null, Coordinates(29.61, 52.53), "Asia/Tehran")

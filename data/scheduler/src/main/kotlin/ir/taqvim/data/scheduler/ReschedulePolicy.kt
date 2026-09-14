@@ -82,18 +82,22 @@ class ReschedulePolicy {
         }
 
     /**
-     * Alarm kinds whose times depend on a preference that differs between [previous] and [current]: the prayer method
-     * and Asr convention move prayer alarms; the Islamic calendar variant and Hijri offset move reminders of events
-     * dated in the Islamic calendar. Language, theme and display preferences move nothing.
+     * Alarm kinds whose times depend on a preference that differs between [previous] and [current]: the prayer method,
+     * Asr convention, chosen place and athan settings (T-1101) move or switch prayer alarms; the Islamic calendar
+     * variant and Hijri offset move reminders of events dated in the Islamic calendar. Language, theme and display
+     * preferences move nothing.
      */
     fun affectedKinds(
         previous: UserPreferences,
         current: UserPreferences,
     ): Set<AlarmKind> =
         buildSet {
-            if (previous.prayerMethod != current.prayerMethod || previous.asrJuristic != current.asrJuristic) {
-                add(AlarmKind.PRAYER)
-            }
+            val prayerChanged =
+                previous.prayerMethod != current.prayerMethod ||
+                    previous.asrJuristic != current.asrJuristic ||
+                    previous.place != current.place ||
+                    previous.athan != current.athan
+            if (prayerChanged) add(AlarmKind.PRAYER)
             val hijriChanged =
                 previous.islamicVariant != current.islamicVariant ||
                     previous.hijriOffsetDays != current.hijriOffsetDays ||

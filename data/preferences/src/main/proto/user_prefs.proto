@@ -96,6 +96,38 @@ message ChosenPlaceProto {
   string zone_id = 6;
 }
 
+enum AthanPrayerProto {
+  ATHAN_PRAYER_UNSPECIFIED = 0;
+  ATHAN_PRAYER_FAJR = 1;
+  ATHAN_PRAYER_DHUHR = 2;
+  ATHAN_PRAYER_ASR = 3;
+  ATHAN_PRAYER_MAGHRIB = 4;
+  ATHAN_PRAYER_ISHA = 5;
+}
+
+// The athan alert of one prayer (T-1101).
+message AthanPrayerAlertProto {
+  AthanPrayerProto prayer = 1;
+  bool enabled = 2;
+  // Minutes from the prayer time to the athan; negative is before the time.
+  int32 gap_minutes = 3;
+}
+
+// Athan settings (T-1101); absent in stores written before T-1101, which read as the defaults.
+message AthanSettingsProto {
+  repeated AthanPrayerAlertProto alerts = 1;
+  // Content URI of the sound picked by the user; empty = the default alarm sound.
+  string sound_uri = 2;
+  // Display name of the picked sound; empty when unknown.
+  string sound_name = 3;
+  bool vibrate = 4;
+  // Whether the Fajr athan may sound while Do Not Disturb is on.
+  bool bypass_dnd_for_fajr = 5;
+  int32 volume_percent = 6;
+  // Whether athan times use Iran Standard Time (UTC+03:30) instead of the time zone rules of the place.
+  bool use_iran_time = 7;
+}
+
 message UserPrefs {
   // 0 = never initialised; see UserPrefsMigration.CURRENT_SCHEMA_VERSION.
   int32 schema_version = 1;
@@ -114,4 +146,6 @@ message UserPrefs {
   int64 hijri_offset_set_at_epoch_millis = 12;
   // Chosen place (T-1502); an optional field, so stores written before it read as "no place".
   ChosenPlaceProto place = 13;
+  // Athan settings (T-1101); an optional field, so stores written before it read as the athan defaults.
+  AthanSettingsProto athan = 14;
 }
