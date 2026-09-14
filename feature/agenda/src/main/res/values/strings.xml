@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="agenda_title">Agenda</string>
+  <string name="agenda_loading">Loading the agenda</string>
+  <string name="agenda_loading_more">Loading more months</string>
+  <string name="agenda_mode_events">Events</string>
+  <string name="agenda_mode_all_days">All days</string>
+  <string name="agenda_today">Today</string>
+  <string name="agenda_print">Print</string>
+  <string name="agenda_share">Share</string>
+  <!-- Month name (%1$s) and year (%2$s). -->
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <!-- Two months, each with its year, as a range. -->
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <!-- Joins the months or dates of the other calendars. -->
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Holiday</string>
+  <string name="agenda_no_events">No events</string>
+  <string name="agenda_empty_month">No events this month</string>
+  <string name="agenda_kind_official">Official</string>
+  <string name="agenda_kind_personal">Personal</string>
+  <string name="agenda_kind_device">Device calendar</string>
+  <string name="agenda_kind_subscription">Subscription</string>
+  <!-- Spoken description of an event: title (%1$s) and where it comes from (%2$s). -->
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <!-- Title of the printed or shared agenda, from its first (%1$s) to its last (%2$s) day. -->
+  <string name="agenda_export_title">Agenda: %1$s – %2$s</string>
+  <string name="agenda_print_job">Taqvim agenda</string>
+</resources>
