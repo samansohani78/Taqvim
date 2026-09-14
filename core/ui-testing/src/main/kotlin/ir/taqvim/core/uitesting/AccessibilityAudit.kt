@@ -27,7 +27,7 @@ enum class AccessibilityRule {
     /** A node announced as an image has no description. */
     UNLABELED_IMAGE,
 
-    /** An interactive node is smaller than the minimum touch target in width or height. */
+    /** An interactive node is laid out below the minimum touch target and its widened target overlaps another one. */
     SMALL_TOUCH_TARGET,
 
     /** A long-press action has no label, so TalkBack can only say "double-tap and hold". */
@@ -37,13 +37,17 @@ enum class AccessibilityRule {
     DUPLICATE_LABEL,
 }
 
-/** One finding: the [rule], the spoken [label] of the node (may be empty) and its [bounds] in the root. */
+/**
+ * One finding: the [rule], the spoken [label] of the node (may be empty), its [bounds] in the root and, for crowded
+ * touch targets, the neighbour it is [near].
+ */
 data class AccessibilityViolation(
     val rule: AccessibilityRule,
     val label: String,
     val bounds: Rect,
+    val near: String = "",
 ) {
-    override fun toString(): String = "$rule '$label' at $bounds"
+    override fun toString(): String = "$rule '$label' at $bounds" + if (near.isEmpty()) "" else " near $near"
 }
 
 /**
@@ -76,40 +80,74 @@ object AccessibilityAudit {
         options: AccessibilityOptions = AccessibilityOptions(),
     ): List<AccessibilityViolation> {
         val found = mutableListOf<AccessibilityViolation>()
-        visit(root) { node ->
-            found += nodeViolations(node, density, options)
+        val targets = mutableListOf<Target>()
+        visit(root, emptySet()) { node, ancestors ->
+            found += nodeViolations(node)
             found += duplicateLabels(node.children)
+            if (node.isInteractive()) targets += Target(node, ancestors)
         }
+        found += crowdedTargets(targets, density, options.minTouchTarget)
         return found.filterNot(options.ignored)
     }
 
+    /** An interactive node with the ids of the nodes above it in the audited tree. */
+    private class Target(
+        val node: SemanticsNode,
+        val ancestors: Set<Int>,
+    )
+
     private fun visit(
         node: SemanticsNode,
-        action: (SemanticsNode) -> Unit,
+        ancestors: Set<Int>,
+        action: (SemanticsNode, Set<Int>) -> Unit,
     ) {
         if (node.isHidden()) return
-        action(node)
-        node.children.forEach { visit(it, action) }
+        action(node, ancestors)
+        val inner = ancestors + node.id
+        node.children.forEach { visit(it, inner, action) }
     }
 
-    private fun nodeViolations(
-        node: SemanticsNode,
-        density: Density,
-        options: AccessibilityOptions,
-    ): List<AccessibilityViolation> {
+    private fun nodeViolations(node: SemanticsNode): List<AccessibilityViolation> {
         val label = node.spokenLabel()
-        val interactive = node.isInteractive()
         val rules =
             buildList {
                 if (node.hasBlankLabel()) add(AccessibilityRule.BLANK_LABEL)
-                if (interactive && label.isBlank()) add(AccessibilityRule.UNLABELED_ACTION)
+                if (node.isInteractive() && label.isBlank()) add(AccessibilityRule.UNLABELED_ACTION)
                 if (node.isUndescribedImage()) add(AccessibilityRule.UNLABELED_IMAGE)
-                if (interactive && node.isSmall(density, options.minTouchTarget)) {
-                    add(AccessibilityRule.SMALL_TOUCH_TARGET)
-                }
                 if (node.hasUnlabeledLongClick()) add(AccessibilityRule.UNLABELED_LONG_CLICK)
             }
         return rules.map { AccessibilityViolation(it, label, node.boundsInRoot) }
+    }
+
+    /**
+     * Compose widens the touch bounds of every interactive node to 48 dp, and Material components reserve that space
+     * around themselves. A node laid out below [minimum] is therefore reported only when its widened touch bounds
+     * overlap another, unrelated target — then a tap near it can hit the neighbour instead.
+     */
+    private fun crowdedTargets(
+        targets: List<Target>,
+        density: Density,
+        minimum: Dp,
+    ): List<AccessibilityViolation> {
+        val minimumPx = with(density) { minimum.toPx() } - TOLERANCE_PX
+        return targets
+            .filter { it.node.isSmall(minimumPx) }
+            .mapNotNull { small ->
+                targets.firstOrNull { small.crowds(it) }?.let { other ->
+                    AccessibilityViolation(
+                        rule = AccessibilityRule.SMALL_TOUCH_TARGET,
+                        label = small.node.spokenLabel(),
+                        bounds = small.node.boundsInRoot,
+                        near = "'${other.node.spokenLabel()}' at ${other.node.boundsInRoot}",
+                    )
+                }
+            }
+    }
+
+    private fun Target.crowds(other: Target): Boolean {
+        val related = other.node.id == node.id || other.node.id in ancestors || node.id in other.ancestors
+        val bounds = other.node.boundsInRoot
+        return !related && !bounds.isEmpty && node.touchBoundsInRoot.deflate(TOLERANCE_PX).overlaps(bounds)
     }
 
     private fun SemanticsNode.descriptions(): List<String> =
@@ -157,18 +195,8 @@ object AccessibilityAudit {
         return (descriptions() + texts).filter { it.isNotBlank() }.joinToString(" ").trim()
     }
 
-    /**
-     * Compares the laid-out size, not the touch bounds: Compose widens the touch bounds of every interactive node to
-     * 48 dp, but widened targets of small neighbours overlap, so the visible target itself must reach the minimum.
-     */
-    private fun SemanticsNode.isSmall(
-        density: Density,
-        minimum: Dp,
-    ): Boolean {
-        if (size.width == 0 || size.height == 0) return false
-        val minimumPx = with(density) { minimum.toPx() } - TOLERANCE_PX
-        return size.width < minimumPx || size.height < minimumPx
-    }
+    private fun SemanticsNode.isSmall(minimumPx: Float): Boolean =
+        size.width > 0 && size.height > 0 && (size.width < minimumPx || size.height < minimumPx)
 }
 
 /** Runs [assertAccessible] when [AccessibilityAudit.isEnabled]; called by [captureScreenshot] for every state. */

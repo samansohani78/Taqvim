@@ -10,6 +10,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Checkbox
@@ -49,15 +50,20 @@ class AccessibilityAuditTest {
     @get:Rule
     val composeRule = createComposeRule()
 
-    private fun rulesOf(
+    private fun violationsOf(
         options: AccessibilityOptions = AccessibilityOptions(),
         content: @Composable () -> Unit,
-    ): List<AccessibilityRule> {
+    ): List<AccessibilityViolation> {
         composeRule.setContent(content)
         composeRule.waitForIdle()
         val root = composeRule.onRoot().fetchSemanticsNode()
-        return AccessibilityAudit.audit(root, composeRule.density, options).map { it.rule }
+        return AccessibilityAudit.audit(root, composeRule.density, options)
     }
+
+    private fun rulesOf(
+        options: AccessibilityOptions = AccessibilityOptions(),
+        content: @Composable () -> Unit,
+    ): List<AccessibilityRule> = violationsOf(options, content).map { it.rule }
 
     @Test
     fun cleanContentHasNoViolations() {
@@ -123,9 +129,40 @@ class AccessibilityAuditTest {
     }
 
     @Test
-    fun theLaidOutSizeCountsNotTheWidenedTouchBounds() {
-        val rules = rulesOf { Box(Modifier.size(20.dp).clickable {}.semantics { contentDescription = "Dot" }) }
-        assertEquals(listOf(AccessibilityRule.SMALL_TOUCH_TARGET), rules)
+    fun aSmallTargetIsFineAloneButNotWhenItsWidenedTargetOverlapsANeighbour() {
+        val alone = rulesOf { Box(Modifier.size(20.dp).clickable {}.semantics { contentDescription = "Dot" }) }
+        assertEquals(emptyList<AccessibilityRule>(), alone)
+    }
+
+    @Test
+    fun nestedTargetsDoNotCrowdEachOther() {
+        val rules =
+            violationsOf {
+                Column {
+                    Box(Modifier.size(120.dp).clickable {}.semantics { contentDescription = "Card" }) {
+                        Box(Modifier.size(20.dp).clickable {}.semantics { contentDescription = "Pin" })
+                    }
+                    Spacer(Modifier.size(48.dp))
+                    Box(Modifier.size(30.dp).clickable {}.semantics { contentDescription = "Chip" }) {
+                        Box(Modifier.size(20.dp).clickable {}.semantics { contentDescription = "Close" })
+                    }
+                    Spacer(Modifier.size(48.dp))
+                    Box(Modifier.size(width = 40.dp, height = 0.dp).clickable {}) { Text("Folded") }
+                }
+            }
+        assertEquals(emptyList<AccessibilityViolation>(), rules)
+    }
+
+    @Test
+    fun adjacentSmallTargetsAreBothReported() {
+        val rules =
+            rulesOf {
+                Row {
+                    Box(Modifier.size(20.dp).clickable {}.semantics { contentDescription = "Minus" })
+                    Box(Modifier.size(20.dp).clickable {}.semantics { contentDescription = "Plus" })
+                }
+            }
+        assertEquals(listOf(AccessibilityRule.SMALL_TOUCH_TARGET, AccessibilityRule.SMALL_TOUCH_TARGET), rules)
     }
 
     @Test
