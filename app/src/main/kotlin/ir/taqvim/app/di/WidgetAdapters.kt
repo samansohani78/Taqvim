@@ -16,13 +16,14 @@ import ir.taqvim.data.preferences.StoredWidgetConfig
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.preferences.WidgetConfigRepository
+import ir.taqvim.feature.map.WorldOutline
 import ir.taqvim.feature.widgets.WidgetBackground
-import ir.taqvim.feature.widgets.WidgetCalendarBuilder
 import ir.taqvim.feature.widgets.WidgetCalendarsSource
 import ir.taqvim.feature.widgets.WidgetConfig
 import ir.taqvim.feature.widgets.WidgetConfigStore
 import ir.taqvim.feature.widgets.WidgetContent
 import ir.taqvim.feature.widgets.WidgetContentBuilder
+import ir.taqvim.feature.widgets.WidgetCountdownSource
 import ir.taqvim.feature.widgets.WidgetData
 import ir.taqvim.feature.widgets.WidgetDataSource
 import ir.taqvim.feature.widgets.WidgetDayInputs
@@ -58,14 +59,16 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 /**
- * [WidgetDataSource] (T-1201…T-1209) from the stored preferences and the events repository (T-305): the day of [now] in
+ * [WidgetDataSource] (T-1201…T-1212) from the stored preferences and the events repository (T-305): the day of [now] in
  * the chosen place's zone (or the device zone), in the user's calendars and language, with its events and, where a
- * place is chosen, its prayer times; the calendar widgets add their month, week, schedule or Sun path.
+ * place is chosen, its prayer times; the calendar widgets add their month, week or schedule, the sky widgets their
+ * Sun path, Moon or map ([WidgetSkyParts]) and the countdown widget its countdown.
  */
 internal class PreferencesWidgetDataSource(
     private val preferences: UserPreferencesRepository,
     private val rangeEvents: (JdnRange) -> Flow<List<DayEvents>>,
     private val names: WidgetPrayerNames,
+    private val skyParts: WidgetSkyParts = WidgetSkyParts { WorldOutline(emptyList(), emptyList()) },
     private val deviceZone: () -> TimeZone,
 ) : WidgetDataSource {
     private val calendarParts = WidgetCalendarParts(rangeEvents)
@@ -78,14 +81,23 @@ internal class PreferencesWidgetDataSource(
     ): WidgetData {
         val prefs = preferences.preferences.first()
         val place = prefs.widgetPlace()
-        val jdn = now.toJdn(place?.timeZone ?: deviceZone())
+        val zone = place?.timeZone ?: deviceZone()
+        val jdn = now.toJdn(zone)
         val day = rangeEvents(jdn..jdn).first().single()
         val inputs = widgetInputs(prefs, config, jdn, day, place)
         val content = WidgetContentBuilder.build(inputs, now, names)
-        return if (kind == WidgetKind.SUN_ARC) {
-            content.copy(sun = place?.let { WidgetCalendarBuilder.sun(now, it, inputs.language) })
-        } else {
-            calendarParts.addTo(content, kind, inputs, prefs.weekStart, view)
+        return when (kind) {
+            WidgetKind.SUN_ARC, WidgetKind.MOON, WidgetKind.MAP -> {
+                skyParts.addTo(content, kind, inputs, now, zone)
+            }
+
+            WidgetKind.COUNTDOWN -> {
+                content.copy(countdown = prefs.widgetCountdown(config, jdn, inputs.language))
+            }
+
+            else -> {
+                calendarParts.addTo(content, kind, inputs, prefs.weekStart, view)
+            }
         }
     }
 }
@@ -172,6 +184,7 @@ internal fun StoredWidgetConfig.toWidgetConfig(): WidgetConfig =
         scalePercent = scalePercent,
         contents = WidgetContent.entries.filter { it.name in contents }.toImmutableSet(),
         secondaryCalendar = secondaryCalendar,
+        countdown = countdown?.toWidgetCountdown(),
     )
 
 internal fun WidgetConfig.toStored(): StoredWidgetConfig =
@@ -181,6 +194,7 @@ internal fun WidgetConfig.toStored(): StoredWidgetConfig =
         scalePercent = scalePercent,
         contents = contents.mapTo(mutableSetOf()) { it.name },
         secondaryCalendar = secondaryCalendar,
+        countdown = countdown?.toStored(),
     )
 
 /** What of the widgets' content a change from [old] to [new] preferences makes stale. */
@@ -262,7 +276,13 @@ val widgetPortsModule =
         single<WidgetConfigStore> { DataStoreWidgetConfigStore(get()) }
         single<WidgetDataSource> {
             val events = get<EventsRepository>()
-            PreferencesWidgetDataSource(get(), events::days, get()) { TimeZone.currentSystemDefault() }
+            PreferencesWidgetDataSource(get(), events::days, get(), WidgetSkyParts(get())) {
+                TimeZone.currentSystemDefault()
+            }
+        }
+        single<WidgetCountdownSource> {
+            val events = get<EventsRepository>()
+            PreferencesWidgetCountdownSource(get(), events::days, get()) { TimeZone.currentSystemDefault() }
         }
         single<WidgetTimelineSource> { PreferencesWidgetTimelineSource(get()) { TimeZone.currentSystemDefault() } }
         single<WidgetCalendarsSource> { PreferencesWidgetCalendarsSource(get()) }

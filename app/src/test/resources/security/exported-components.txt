@@ -18,6 +18,9 @@ ir.taqvim.feature.widgets.MonthBitmapWidgetReceiver | - | all | launcher widget 
 ir.taqvim.feature.widgets.WeekStripWidgetReceiver | - | all | launcher widget (T-1207); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 ir.taqvim.feature.widgets.ScheduleWidgetReceiver | - | all | launcher widget (T-1208); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 ir.taqvim.feature.widgets.SunArcWidgetReceiver | - | all | launcher widget (T-1209); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.MoonWidgetReceiver | - | all | launcher widget (T-1210); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.MapWidgetReceiver | - | all | launcher widget (T-1211); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.CountdownWidgetReceiver | - | all | launcher widget (T-1212); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 androidx.compose.ui.tooling.PreviewActivity | - | debug | Compose preview tooling (debugImplementation only)
 androidx.activity.ComponentActivity | - | debug | Compose UI test host activity (ui-test-manifest, debugImplementation only)
 leakcanary.internal.activity.LeakActivity | - | debug | LeakCanary leak viewer (T-1803, ADR-0021; debugImplementation only, never in release)
