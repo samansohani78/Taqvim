@@ -256,6 +256,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1804 — App security baseline
+- **Module / files:** `app/src/main/res/xml/network_security_config.xml`, `backup_rules.xml` (+ `xml-v28`),
+  `data_extraction_rules.xml`, `app/.../DebugStrictMode.kt`, manifest audit (`app/build.gradle.kts`,
+  `app/src/test/.../security/`), `konsist/.../ManifestSecurityRules.kt`; decisions in ADR-0017, `docs/SECURITY.md`
+- **Task:** T-1804
+- **References used (public only):** Android developer documentation — Network security configuration
+  (`cleartextTrafficPermitted`, trust anchors), Auto Backup `full-backup-content` `requireFlags="clientSideEncryption"`,
+  Android 12 data extraction rules (`disableIfNoEncryptionCapabilities`), `android:exported` requirements,
+  `PendingIntent.FLAG_IMMUTABLE`, `StrictMode.ThreadPolicy`/`VmPolicy`, AGP `SingleArtifact.MERGED_MANIFEST`.
+- **Implementation note:** own work; allowlist reasons and the backup policy are Taqvim decisions.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1103 — Automation links, broadcasts and selected text
 - **Module / files:** `app/src/main/kotlin/ir/taqvim/app/navigation/DeepLinks.kt`, `AppIntents.kt`;
   `app/.../automation/`; entry parameters in feature/calendar, events, astronomy, tools, search; decisions in ADR-0016;
