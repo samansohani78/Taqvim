@@ -1,0 +1,13 @@
+# source: Bakhtar News Agency (state news agency of Afghanistan) holiday announcements, accepted by the owner as a primary source on 2026-09-14; issuing authority per record citation (Ministry of Labour and Social Affairs unless stated)
+# url: https://www.bakhtarnews.af/dr/
+# retrieved: 2026-09-14
+# reviewer: pending
+# notes: per Solar Hijri year of the announcement, the exact dates each announcement states. Eid al-Adha 1447: Arafa Tuesday 9 Dhu al-Hijjah, four working days, offices resume Sunday 14 Dhu al-Hijjah; Friday is the only non-working day in that span (Saturday is a working day: 24 Asad 1405 was declared a holiday on a Saturday), so the four days are 9, 10, 11 and 13. Eid al-Fitr 1447, 8 Sawr, Ashura and 12 Rabi al-Awwal are not in the set (no Bakhtar announcement stating their dates was found); per-record article URLs are in dataset/afghanistan/afghanistan-official-holidays.json
+solarYear,id,calendar,year,month,day
+1404,af.holiday.soviet-withdrawal.1404,PERSIAN,1404,11,26
+1405,af.holiday.arafa.1447,ISLAMIC,1447,12,9
+1405,af.holiday.eid-al-adha.1447-1,ISLAMIC,1447,12,10
+1405,af.holiday.eid-al-adha.1447-2,ISLAMIC,1447,12,11
+1405,af.holiday.eid-al-adha.1447-3,ISLAMIC,1447,12,13
+1405,af.holiday.kabul-victory.1405,PERSIAN,1405,5,24
+1405,af.holiday.independence.1405,PERSIAN,1405,5,28

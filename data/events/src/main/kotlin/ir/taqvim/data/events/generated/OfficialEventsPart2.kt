@@ -23,6 +23,160 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("ir.ancient.zoroaster-birthday"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.ANCIENT_IRAN,
+            category = EventCategory.CULTURAL,
+            isHoliday = false,
+            title = LocalizedText(mapOf("fa" to "زادروز زرتشت پیامبر")),
+            rule = EventRule.Fixed(month = 1, day = 6),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf) — 6 Farvardin",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf) — 6 Farvardin",
+                        page = "3",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.arbaeen"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "اربعین حسینی")),
+            rule = EventRule.Fixed(month = 2, day = 20),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "8",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "7",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.ashura"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عاشورای حسینی")),
+            rule = EventRule.Fixed(month = 1, day = 10),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "7",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "6",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.eid-al-adha"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عید سعید قربان")),
+            rule = EventRule.Fixed(month = 12, day = 10),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "6",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "5",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.eid-al-fitr"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عید سعید فطر")),
+            rule = EventRule.Fixed(month = 10, day = 1),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "3, 14",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.eid-al-fitr-holiday"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "تعطیل به مناسبت عید سعید فطر")),
+            rule = EventRule.Fixed(month = 10, day = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "3, 14",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.eid-al-ghadir"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عید سعید غدیر خم")),
+            rule = EventRule.Fixed(month = 12, day = 18),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "6",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "5",
+                    ),
+                ),
+        ),
+        EventDefinition(
             id = EventId("ir.holiday.fatima-martyrdom"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
@@ -41,160 +195,6 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
                         page = "10",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-ali-birth"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "ولادت حضرت امام علی علیه السلام")),
-            rule = EventRule.Fixed(month = 7, day = 13),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "13",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "12",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-ali-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام علی علیه السلام")),
-            rule = EventRule.Fixed(month = 9, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "4, 15",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "14",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-hasan-askari-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام حسن عسکری علیه السلام و آغاز امامت حضرت ولی عصر (عجل الله تعالی فرجه)")),
-            rule = EventRule.Fixed(month = 3, day = 8),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "9",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "7",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-mahdi-birth"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "ولادت حضرت قائم عجل الله تعالی فرجه")),
-            rule = EventRule.Fixed(month = 8, day = 15),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "14",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "13",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-reza-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام رضا علیه السلام")),
-            rule = EventRule.LastDayOfMonth(month = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "9",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "7",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-sadiq-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام جعفر صادق علیه السلام")),
-            rule = EventRule.Fixed(month = 10, day = 25),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "5",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "3",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.islamic-republic-day"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "روز جمهوری اسلامی ایران")),
-            rule = EventRule.Fixed(month = 1, day = 12),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "4",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "3",
                     ),
                 ),
         ),

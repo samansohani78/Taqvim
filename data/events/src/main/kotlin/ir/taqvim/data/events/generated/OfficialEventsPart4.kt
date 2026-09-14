@@ -23,6 +23,160 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("ir.holiday.khordad-15-uprising"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "قیام خونین ۱۵ خرداد")),
+            rule = EventRule.Fixed(month = 3, day = 15),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "6",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "5",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.mabath"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "مبعث حضرت رسول اکرم صلی الله علیه و آله")),
+            rule = EventRule.Fixed(month = 7, day = 27),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "13",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "12",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.nature-day"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "روز طبیعت")),
+            rule = EventRule.Fixed(month = 1, day = 13),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "3",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.nowruz-1"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "آغاز نوروز")),
+            rule = EventRule.Fixed(month = 1, day = 1),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "3",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.nowruz-2"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عید نوروز")),
+            rule = EventRule.Fixed(month = 1, day = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "3",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.nowruz-3"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عید نوروز")),
+            rule = EventRule.Fixed(month = 1, day = 3),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "3",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.nowruz-4"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عید نوروز")),
+            rule = EventRule.Fixed(month = 1, day = 4),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "3",
+                    ),
+                ),
+        ),
+        EventDefinition(
             id = EventId("ir.holiday.oil-nationalization"),
             calendar = CalendarSystem.PERSIAN,
             source = EventSource.IRAN_OFFICIAL,
@@ -42,217 +196,6 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                         title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
                         page = "14",
                     ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.prophet-demise-imam-hasan-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام")),
-            rule = EventRule.Fixed(month = 2, day = 28),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "8",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "7",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.prophet-imam-sadiq-birth"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "ولادت حضرت رسول اکرم صلی الله علیه و آله و ولادت حضرت امام جعفر صادق علیه السلام")),
-            rule = EventRule.Fixed(month = 3, day = 17),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "9",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "8",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.revolution-victory"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "پیروزی انقلاب اسلامی ایران و سقوط نظام شاهنشاهی")),
-            rule = EventRule.Fixed(month = 11, day = 22),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "14",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "13",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.tasua"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "تاسوعای حسینی")),
-            rule = EventRule.Fixed(month = 1, day = 9),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "7",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "6",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.africa-industrialization-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز صنعت گستری آفریقا",
-                        "ar" to "يوم التصنيع في أفريقيا",
-                        "en" to "Africa Industrialization Day",
-                        "es" to "Día de la Industrialización de África",
-                        "fr" to "Journée de l'industrialisation de l'Afrique",
-                        "ru" to "День индустриализации Африки",
-                        "zh" to "非洲工业化日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 20),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/africa-industrialization-day",
-                        title = "Africa Industrialization Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/44/237",
-                    "un" to "https://www.un.org/en/observances/africa-industrialization-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.anti-corruption-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی مبارزه با فساد",
-                        "ar" to "اليوم الدولي لمكافحة الفساد",
-                        "en" to "International Anti-Corruption Day",
-                        "es" to "Día Internacional contra la Corrupción",
-                        "fr" to "Journée internationale contre la corruption",
-                        "ru" to "Международный день борьбы с коррупцией",
-                        "zh" to "国际反腐败日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 9),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/anti-corruption-day",
-                        title = "International Anti-Corruption Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/58/4",
-                    "un" to "https://www.un.org/en/observances/anti-corruption-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.autism-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی آگاهی درباره اوتیسم",
-                        "ar" to "اليوم العالمي للتوعية بمرض التوحد",
-                        "en" to "World Autism Awareness Day",
-                        "es" to "Día Mundial de Concienciación sobre el Autismo",
-                        "fr" to "Journée mondiale de sensibilisation à l'autisme",
-                        "ru" to "Всемирный день распространения информации о проблеме аутизма",
-                        "zh" to "世界提高自闭症意识日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/autism-day",
-                        title = "World Autism Awareness Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/62/139",
-                    "un" to "https://www.un.org/en/observances/autism-day",
                 ),
         ),
     )
