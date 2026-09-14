@@ -40,7 +40,32 @@ data class UserPreferences(
     val athan: AthanPreferences = AthanPreferences.DEFAULT,
     /** Settings of the settings screens (T-1500). */
     val app: AppSettings = AppSettings.DEFAULT,
+    /** Whether the first-run onboarding (T-1501) was completed or skipped on this device. */
+    val onboardingCompleted: Boolean = false,
 ) {
+    /**
+     * These preferences switched to [languageCode] (T-1501, ADR-0023). A language-derived value (calendars, numerals,
+     * week start, weekend, prayer method, Asr convention, Islamic variant) that still equals the current language's
+     * default counts as not chosen and takes the new language's default; a value the user changed is kept. Event
+     * sources follow the new language until the user chose them ([AppSettings.eventSourcesChosen]). Unknown codes
+     * switch to [FALLBACK_LANGUAGE].
+     */
+    fun withLanguage(languageCode: String): UserPreferences {
+        val old = defaultsFor(this.languageCode)
+        val new = defaultsFor(languageCode)
+        return copy(
+            languageCode = new.languageCode,
+            calendars = keptOrDefault(calendars, old.calendars, new.calendars),
+            numerals = keptOrDefault(numerals, old.numerals, new.numerals),
+            weekStart = keptOrDefault(weekStart, old.weekStart, new.weekStart),
+            weekend = keptOrDefault(weekend, old.weekend, new.weekend),
+            prayerMethod = keptOrDefault(prayerMethod, old.prayerMethod, new.prayerMethod),
+            asrJuristic = keptOrDefault(asrJuristic, old.asrJuristic, new.asrJuristic),
+            islamicVariant = keptOrDefault(islamicVariant, old.islamicVariant, new.islamicVariant),
+            app = app.withEventSourcesFor(new.languageCode),
+        )
+    }
+
     companion object {
         /** Language used when the device language is not one of the launch languages. */
         const val FALLBACK_LANGUAGE: String = "en"
@@ -86,3 +111,10 @@ data class UserPreferences(
                 ) { "language table lacks $FALLBACK_LANGUAGE" }
     }
 }
+
+/** [current] when the user changed it from [oldDefault], otherwise [newDefault]. */
+private fun <T> keptOrDefault(
+    current: T,
+    oldDefault: T,
+    newDefault: T,
+): T = if (current == oldDefault) newDefault else current

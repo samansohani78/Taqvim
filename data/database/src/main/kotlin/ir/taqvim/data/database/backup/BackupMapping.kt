@@ -62,13 +62,15 @@ internal fun PreferencesRecord.toPreferences(): UserPreferences =
     )
 
 /**
- * These restored preferences with the device-only values of [current] kept: recent searches, level calibration and the
- * picked athan sound are never written to a backup, so a restore must not erase them.
+ * These restored preferences with the device-only values of [current] kept: recent searches, level calibration, the
+ * picked athan sound and whether the onboarding was finished (T-1501, ADR-0023) are never written to a backup, so a
+ * restore must not erase them.
  */
 internal fun UserPreferences.keepingDeviceOnlyValuesOf(current: UserPreferences): UserPreferences =
     copy(
         app = app.copy(recentSearches = current.app.recentSearches, levelOffsets = current.app.levelOffsets),
         athan = athan.copy(sound = current.athan.sound),
+        onboardingCompleted = current.onboardingCompleted,
     )
 
 private fun AthanPreferences.toRecord() =

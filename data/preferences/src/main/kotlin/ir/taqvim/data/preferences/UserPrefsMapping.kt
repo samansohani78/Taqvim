@@ -58,6 +58,7 @@ fun UserPrefs.toDomain(): UserPreferences {
         app =
             (if (hasAppSettings()) appSettings.toDomain() else defaults.app)
                 .withEventSourcesFor(defaults.languageCode),
+        onboardingCompleted = onboardingCompleted,
     )
 }
 
@@ -80,4 +81,5 @@ fun UserPreferences.toProto(schemaVersion: Int = UserPrefsMigration.CURRENT_SCHE
         .apply { this@toProto.place?.let { setPlace(it.toProto()) } }
         .setAthan(athan.toProto())
         .setAppSettings(app.toProto())
+        .setOnboardingCompleted(onboardingCompleted)
         .build()

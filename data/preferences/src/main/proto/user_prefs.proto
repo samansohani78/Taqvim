@@ -151,6 +151,9 @@ message UserPrefs {
   // Appearance, calendar display, events, prayer, notification, search and tool settings (T-1500); an optional field,
   // so stores written before it read as the app settings defaults.
   AppSettingsProto app_settings = 15;
+  // Whether the first-run onboarding (T-1501) was completed or skipped on this device; stores written before it read
+  // as false, so the onboarding is shown once. Not carried in backups (ADR-0023).
+  bool onboarding_completed = 16;
 }
 
 enum EventSourceProto {

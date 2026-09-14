@@ -244,6 +244,15 @@ class BackupCodecTest {
             )
         val restored = ready(codec.decode(plain())).preferences.keepingDeviceOnlyValuesOf(device)
         restored.app shouldBe device.app
+
+        // T-1501: finishing the onboarding is device state; a restore neither brings nor clears it.
+        val onboarded = device.copy(onboardingCompleted = true)
+        codec
+            .encode(data, onboarded, metadata, BackupProtection.None)
+            .decodeToString()
+            .contains("onboarding", ignoreCase = true) shouldBe false
+        ready(codec.decode(plain())).preferences.keepingDeviceOnlyValuesOf(onboarded).onboardingCompleted shouldBe true
+        ready(codec.decode(plain())).preferences.keepingDeviceOnlyValuesOf(device).onboardingCompleted shouldBe false
     }
 
     @Test
