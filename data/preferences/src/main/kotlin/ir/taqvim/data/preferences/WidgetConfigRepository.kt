@@ -14,6 +14,7 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.data.preferences.proto.CalendarSystemProto
 import ir.taqvim.data.preferences.proto.WidgetConfigProto
 import ir.taqvim.data.preferences.proto.WidgetConfigsProto
+import ir.taqvim.data.preferences.proto.WidgetCountdownProto
 import java.io.InputStream
 import java.io.OutputStream
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +22,8 @@ import kotlinx.coroutines.flow.first
 
 /**
  * A placed widget's stored settings, independent of the widget module's types: [background] and [contents] are the
- * names of the widget enums, and [secondaryCalendar] is `null` for the language's second calendar.
+ * names of the widget enums, [secondaryCalendar] is `null` for the language's second calendar, and [countdown] is the
+ * countdown widget's date (T-1212).
  */
 data class StoredWidgetConfig(
     val background: String,
@@ -29,6 +31,22 @@ data class StoredWidgetConfig(
     val scalePercent: Int,
     val contents: Set<String>,
     val secondaryCalendar: CalendarSystem?,
+    val countdown: StoredCountdown? = null,
+)
+
+/**
+ * A countdown widget's stored date (T-1212): [year]-[month]-[day] in [calendar], [mode] the widget module's
+ * `CountdownMode` name, and [startJdn] the Julian day number of the day it was chosen.
+ */
+data class StoredCountdown(
+    val title: String,
+    val calendar: CalendarSystem,
+    val year: Int,
+    val month: Int,
+    val day: Int,
+    val mode: String,
+    val repeatsYearly: Boolean,
+    val startJdn: Long,
 )
 
 /** Proto serializer of [WidgetConfigsProto]; unreadable files surface as [CorruptionException]. */
@@ -96,7 +114,8 @@ internal fun WidgetConfigProto.toStored(): StoredWidgetConfig =
         transparencyPercent = transparencyPercent,
         scalePercent = scalePercent,
         contents = contentsList.toSet(),
-        secondaryCalendar = CalendarSystem.entries.firstOrNull { CALENDAR_PREFIX + it.name == secondaryCalendar.name },
+        secondaryCalendar = calendarOf(secondaryCalendar),
+        countdown = if (hasCountdown()) countdown.toStored() else null,
     )
 
 internal fun StoredWidgetConfig.toProto(): WidgetConfigProto =
@@ -106,7 +125,32 @@ internal fun StoredWidgetConfig.toProto(): WidgetConfigProto =
         .setTransparencyPercent(transparencyPercent)
         .setScalePercent(scalePercent)
         .addAllContents(contents.sorted())
-        .setSecondaryCalendar(
-            secondaryCalendar?.let { CalendarSystemProto.valueOf(CALENDAR_PREFIX + it.name) }
-                ?: CalendarSystemProto.CALENDAR_SYSTEM_UNSPECIFIED,
-        ).build()
+        .setSecondaryCalendar(protoOf(secondaryCalendar))
+        .also { builder -> countdown?.let { builder.setCountdown(it.toProto()) } }
+        .build()
+
+/** The stored countdown, or `null` when its calendar is unknown. */
+private fun WidgetCountdownProto.toStored(): StoredCountdown? {
+    val system = calendarOf(calendar) ?: return null
+    return StoredCountdown(title, system, year, month, day, mode, repeatsYearly, startJdn)
+}
+
+private fun StoredCountdown.toProto(): WidgetCountdownProto =
+    WidgetCountdownProto
+        .newBuilder()
+        .setTitle(title)
+        .setCalendar(protoOf(calendar))
+        .setYear(year)
+        .setMonth(month)
+        .setDay(day)
+        .setMode(mode)
+        .setRepeatsYearly(repeatsYearly)
+        .setStartJdn(startJdn)
+        .build()
+
+private fun calendarOf(proto: CalendarSystemProto): CalendarSystem? =
+    CalendarSystem.entries.firstOrNull { CALENDAR_PREFIX + it.name == proto.name }
+
+private fun protoOf(calendar: CalendarSystem?): CalendarSystemProto =
+    calendar?.let { CalendarSystemProto.valueOf(CALENDAR_PREFIX + it.name) }
+        ?: CalendarSystemProto.CALENDAR_SYSTEM_UNSPECIFIED

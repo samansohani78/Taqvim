@@ -45,6 +45,35 @@ class WidgetConfigRepositoryTest {
         }
 
     @Test
+    fun `countdown dates survive a round trip and unknown calendars drop them`(): Unit =
+        runTest {
+            val countdown =
+                StoredCountdown(
+                    title = "Nowruz",
+                    calendar = CalendarSystem.PERSIAN,
+                    year = 1403,
+                    month = 12,
+                    day = 30,
+                    mode = "SINCE",
+                    repeatsYearly = true,
+                    startJdn = 2_461_297L,
+                )
+            val repository = WidgetConfigRepository(InMemoryWidgetConfigs())
+            repository.save(5, sample.copy(countdown = countdown))
+
+            repository.config(5) shouldBe sample.copy(countdown = countdown)
+            val proto = sample.copy(countdown = countdown).toProto()
+            proto.hasCountdown() shouldBe true
+            sample.toProto().hasCountdown() shouldBe false
+            val unknown =
+                proto
+                    .toBuilder()
+                    .setCountdown(proto.countdown.toBuilder().setCalendarValue(UNKNOWN_CALENDAR))
+                    .build()
+            unknown.toStored().countdown.shouldBeNull()
+        }
+
+    @Test
     fun `deleted widgets are forgotten and unknown ids ignored`(): Unit =
         runTest {
             val repository = WidgetConfigRepository(InMemoryWidgetConfigs())
@@ -72,6 +101,9 @@ class WidgetConfigRepositoryTest {
             shouldThrow<CorruptionException> { WidgetConfigsSerializer.readFrom(ByteArrayInputStream(garbage)) }
         }
 }
+
+/** A calendar enum number that no release defines. */
+private const val UNKNOWN_CALENDAR = 99
 
 private class InMemoryWidgetConfigs : DataStore<WidgetConfigsProto> {
     private val state = MutableStateFlow(WidgetConfigsProto.getDefaultInstance())

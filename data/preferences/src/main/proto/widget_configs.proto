@@ -22,6 +22,24 @@ message WidgetConfigProto {
   repeated string contents = 4;
   // UNSPECIFIED means the language's second calendar.
   CalendarSystemProto secondary_calendar = 5;
+  // The countdown widget's date (T-1212); unset for other widgets and until a date is chosen.
+  WidgetCountdownProto countdown = 6;
+}
+
+// A countdown widget's date in its own calendar (T-1212, F-09).
+message WidgetCountdownProto {
+  // Empty shows the date instead.
+  string title = 1;
+  // A countdown with an unknown calendar is dropped.
+  CalendarSystemProto calendar = 2;
+  int32 year = 3;
+  int32 month = 4;
+  int32 day = 5;
+  // CountdownMode name (UNTIL or SINCE); unknown names count until the date.
+  string mode = 6;
+  bool repeats_yearly = 7;
+  // Julian day number of the day the date was chosen, for a one-off countdown's progress.
+  int64 start_jdn = 8;
 }
 
 message WidgetConfigsProto {
