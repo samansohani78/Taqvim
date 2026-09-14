@@ -22,19 +22,7 @@
   ],
   "components": [
     {
-      "coordinate": "androidx.activity:activity-compose:1.12.4",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.activity:activity-compose:1.13.0",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.activity:activity-compose:1.8.2",
       "licenses": [
         "Apache-2.0"
       ]
@@ -52,12 +40,6 @@
       ]
     },
     {
-      "coordinate": "androidx.activity:activity-ktx:1.8.2",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.activity:activity:1.12.4",
       "licenses": [
         "Apache-2.0"
@@ -70,12 +52,6 @@
       ]
     },
     {
-      "coordinate": "androidx.activity:activity:1.8.2",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.annotation:annotation-experimental:1.4.1",
       "licenses": [
         "Apache-2.0"
@@ -83,6 +59,12 @@
     },
     {
       "coordinate": "androidx.annotation:annotation-experimental:1.5.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-experimental:1.5.1",
       "licenses": [
         "Apache-2.0"
       ]
@@ -112,7 +94,19 @@
       ]
     },
     {
+      "coordinate": "androidx.appcompat:appcompat-resources:1.1.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.appcompat:appcompat-resources:1.7.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.appcompat:appcompat:1.1.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -136,7 +130,19 @@
       ]
     },
     {
+      "coordinate": "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.autofill:autofill:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.browser:browser:1.10.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -178,6 +184,18 @@
       ]
     },
     {
+      "coordinate": "androidx.compose.animation:animation-graphics-android:1.12.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-graphics:1.12.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.compose.animation:animation:1.12.1",
       "licenses": [
         "Apache-2.0"
@@ -208,6 +226,30 @@
       ]
     },
     {
+      "coordinate": "androidx.compose.material3.adaptive:adaptive-android:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material3.adaptive:adaptive:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material3:material3-adaptive-navigation-suite-android:1.4.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material3:material3-adaptive-navigation-suite:1.4.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.compose.material3:material3-android:1.4.0",
       "licenses": [
         "Apache-2.0"
@@ -215,6 +257,18 @@
     },
     {
       "coordinate": "androidx.compose.material3:material3:1.4.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material:material-icons-core-android:1.7.8",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material:material-icons-core:1.7.8",
       "licenses": [
         "Apache-2.0"
       ]
@@ -418,7 +472,25 @@
       ]
     },
     {
+      "coordinate": "androidx.concurrent:concurrent-futures-ktx:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.concurrent:concurrent-futures:1.1.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.concurrent:concurrent-futures:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.coordinatorlayout:coordinatorlayout:1.0.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -430,7 +502,19 @@
       ]
     },
     {
+      "coordinate": "androidx.core:core-ktx:1.18.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.core:core-ktx:1.19.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.core:core-remoteviews:1.1.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -449,6 +533,12 @@
     },
     {
       "coordinate": "androidx.core:core:1.16.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.core:core:1.18.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -502,13 +592,79 @@
       ]
     },
     {
+      "coordinate": "androidx.datastore:datastore-core:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.datastore:datastore-core:1.2.1",
       "licenses": [
         "Apache-2.0"
       ]
     },
     {
+      "coordinate": "androidx.datastore:datastore-preferences-android:1.2.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-core-android:1.2.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-core:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-core:1.2.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-external-protobuf:1.2.1",
+      "licenses": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-proto:1.2.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences:1.2.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.datastore:datastore:1.2.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.documentfile:documentfile:1.0.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -550,7 +706,43 @@
       ]
     },
     {
+      "coordinate": "androidx.fragment:fragment:1.1.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.fragment:fragment:1.8.9",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.glance:glance-appwidget-external-protobuf:1.2.0",
+      "licenses": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "coordinate": "androidx.glance:glance-appwidget-proto:1.2.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.glance:glance-appwidget:1.2.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.glance:glance-material3:1.2.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.glance:glance:1.2.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -562,7 +754,31 @@
       ]
     },
     {
+      "coordinate": "androidx.graphics:graphics-shapes-android:1.0.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.graphics:graphics-shapes:1.0.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.interpolator:interpolator:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.legacy:legacy-support-core-ui:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.legacy:legacy-support-core-utils:1.0.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -856,6 +1072,18 @@
       ]
     },
     {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-navigation3-android:2.11.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-navigation3:2.11.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0",
       "licenses": [
         "Apache-2.0"
@@ -916,6 +1144,12 @@
       ]
     },
     {
+      "coordinate": "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.navigation3:navigation3-runtime-android:1.1.7",
       "licenses": [
         "Apache-2.0"
@@ -923,6 +1157,54 @@
     },
     {
       "coordinate": "androidx.navigation3:navigation3-runtime:1.1.7",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigation3:navigation3-ui-android:1.1.7",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigation3:navigation3-ui:1.1.7",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigation:navigation-common-ktx:2.6.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigation:navigation-common:2.6.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigation:navigation-compose:2.6.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigation:navigation-runtime-ktx:2.6.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigation:navigation-runtime:2.6.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigationevent:navigationevent-android:1.0.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -940,13 +1222,31 @@
       ]
     },
     {
+      "coordinate": "androidx.navigationevent:navigationevent-compose-android:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.navigationevent:navigationevent-compose-android:1.1.2",
       "licenses": [
         "Apache-2.0"
       ]
     },
     {
+      "coordinate": "androidx.navigationevent:navigationevent-compose:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.navigationevent:navigationevent-compose:1.1.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.navigationevent:navigationevent:1.0.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -959,6 +1259,18 @@
     },
     {
       "coordinate": "androidx.navigationevent:navigationevent:1.1.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.preference:preference:1.1.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.print:print:1.0.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -982,6 +1294,12 @@
       ]
     },
     {
+      "coordinate": "androidx.recyclerview:recyclerview:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.resourceinspection:resourceinspection-annotation:1.0.1",
       "licenses": [
         "Apache-2.0"
@@ -994,6 +1312,12 @@
       ]
     },
     {
+      "coordinate": "androidx.room:room-common:2.2.5",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.room:room-common:2.8.5",
       "licenses": [
         "Apache-2.0"
@@ -1001,6 +1325,12 @@
     },
     {
       "coordinate": "androidx.room:room-runtime-android:2.8.5",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.room:room-runtime:2.2.5",
       "licenses": [
         "Apache-2.0"
       ]
@@ -1072,6 +1402,12 @@
       ]
     },
     {
+      "coordinate": "androidx.slidingpanelayout:slidingpanelayout:1.0.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.sqlite:sqlite-android:2.6.2",
       "licenses": [
         "Apache-2.0"
@@ -1084,7 +1420,19 @@
       ]
     },
     {
+      "coordinate": "androidx.sqlite:sqlite-framework:2.1.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.sqlite:sqlite-framework:2.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.sqlite:sqlite:2.1.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -1097,6 +1445,12 @@
     },
     {
       "coordinate": "androidx.startup:startup-runtime:1.1.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
       "licenses": [
         "Apache-2.0"
       ]
@@ -1138,6 +1492,114 @@
       ]
     },
     {
+      "coordinate": "androidx.wear.compose:compose-foundation:1.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.compose:compose-material-core:1.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.compose:compose-material3:1.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.compose:compose-material:1.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.compose:compose-navigation:1.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.protolayout:protolayout-expression-pipeline:1.4.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.protolayout:protolayout-expression:1.4.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.protolayout:protolayout-external-protobuf:1.4.2",
+      "licenses": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.protolayout:protolayout-material-core:1.4.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.protolayout:protolayout-material3:1.4.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.protolayout:protolayout-proto:1.4.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.protolayout:protolayout:1.4.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.tiles:tiles-proto:1.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.tiles:tiles:1.6.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.watchface:watchface-complications-data-source-ktx:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.watchface:watchface-complications-data-source:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.watchface:watchface-complications-data:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.wear.watchface:watchface-complications:1.3.0",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.window:window-core-android:1.5.0",
       "licenses": [
         "Apache-2.0"
@@ -1162,7 +1624,19 @@
       ]
     },
     {
+      "coordinate": "androidx.work:work-runtime-ktx:2.7.1",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
       "coordinate": "androidx.work:work-runtime:2.11.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "androidx.work:work-runtime:2.7.1",
       "licenses": [
         "Apache-2.0"
       ]
@@ -1451,6 +1925,12 @@
     },
     {
       "coordinate": "org.jetbrains.compose.ui:ui:1.10.2",
+      "licenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-common:2.4.20",
       "licenses": [
         "Apache-2.0"
       ]
