@@ -7,6 +7,7 @@ package ir.taqvim.feature.about
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import kotlinx.collections.immutable.persistentSetOf
@@ -91,6 +92,10 @@ class AboutScreenshotTest(
                     arrayOf<Any>("licenses", LIGHT_RTL),
                     arrayOf<Any>("data_sources", DARK_RTL),
                     arrayOf<Any>("diagnostics", DARK_LTR),
-                )
+                ) +
+                // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
+                listOf("home", "faq", "licenses", "data_sources", "diagnostics").flatMap { sample ->
+                    ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
+                }
     }
 }

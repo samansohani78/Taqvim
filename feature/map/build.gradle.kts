@@ -9,3 +9,8 @@ dependencies {
     implementation(projects.core.praytimes)
     implementation(libs.kotlinx.coroutines.core)
 }
+
+// T-1701: every captured screenshot state is also audited for text that does not fit.
+tasks.withType<Test>().configureEach {
+    systemProperty("taqvim.layout.audit", "true")
+}

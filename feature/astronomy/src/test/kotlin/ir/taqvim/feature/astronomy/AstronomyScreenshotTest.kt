@@ -7,6 +7,7 @@ package ir.taqvim.feature.astronomy
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import kotlin.time.Duration.Companion.hours
@@ -74,6 +75,10 @@ class AstronomyScreenshotTest(
                     arrayOf<Any>("earth", LIGHT_LTR),
                     arrayOf<Any>("sun", DARK_RTL),
                     arrayOf<Any>("no_location", LIGHT_LTR),
-                )
+                ) +
+                // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
+                listOf("moon", "earth", "sun").flatMap { sample ->
+                    ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
+                }
     }
 }

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -24,7 +25,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 /** The athan switch of one prayer, with its gap controls while it is on. */
 @Composable
@@ -103,9 +106,18 @@ private fun StepButton(
         enabled = enabled,
         modifier = Modifier.semantics { contentDescription = description },
     ) {
-        Text(stringResource(symbol), style = MaterialTheme.typography.titleMedium)
+        // The symbol shrinks to the fixed button size at large font scales rather than being cut off (T-1701).
+        val style = MaterialTheme.typography.titleMedium
+        Text(
+            stringResource(symbol),
+            style = style.copy(lineHeight = TextUnit.Unspecified),
+            maxLines = 1,
+            autoSize = TextAutoSize.StepBased(minFontSize = MIN_SYMBOL_SIZE, maxFontSize = style.fontSize),
+        )
     }
 }
+
+private val MIN_SYMBOL_SIZE = 8.sp
 
 @Composable
 private fun gapText(row: PrayerAlertRow): String =

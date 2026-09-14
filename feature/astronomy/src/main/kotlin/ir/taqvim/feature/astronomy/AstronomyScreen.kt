@@ -125,7 +125,8 @@ private fun TimeControls(
             valueRange = 0f..LAST_MINUTE,
             modifier = Modifier.fillMaxWidth().semantics { contentDescription = sliderLabel },
         )
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        // Wraps onto more lines at large font scales instead of squeezing a button (T-1701).
+        FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             StepButton(R.string.astronomy_previous_year) { actions.onStepYears(-1) }
             StepButton(R.string.astronomy_previous_day) { actions.onStepDays(-1) }
             StepButton(R.string.astronomy_next_day) { actions.onStepDays(1) }

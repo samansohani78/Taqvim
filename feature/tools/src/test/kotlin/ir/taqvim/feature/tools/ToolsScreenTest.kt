@@ -8,12 +8,14 @@ import android.app.Application
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -125,7 +127,8 @@ class ToolsScreenTest {
         val viewModel = ToolsViewModel({ flowOf(ToolsFixtures.settings()) }, FakeClock(ToolsFixtures.NOW))
         composeRule.setContent { ToolsTestTheme { ToolsRoute(viewModel = viewModel) } }
         composeRule.onNodeWithText("Type something to make a QR code.").assertDoesNotExist()
-        composeRule.onNodeWithText("QR code").performClick()
+        // The five tool tabs scroll when their labels do not fit (T-1701); the tab is driven by its click action.
+        composeRule.onNodeWithText("QR code").performScrollTo().performSemanticsAction(SemanticsActions.OnClick)
         composeRule.onNodeWithText("Type something to make a QR code.").assertIsDisplayed()
         composeRule.onNodeWithText("Text or link").performTextInput("hello")
         composeRule.onNodeWithText("Share QR code").performScrollTo().performClick()

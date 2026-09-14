@@ -7,6 +7,7 @@ package ir.taqvim.feature.agenda
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -64,6 +65,10 @@ class AgendaScreenshotTest(
                 listOf(
                     arrayOf<Any>("all_days", environment(ScreenshotTheme.LIGHT, LayoutDirection.Rtl)),
                     arrayOf<Any>("loading", LIGHT_LTR),
-                )
+                ) +
+                // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
+                listOf("events", "all_days").flatMap { sample ->
+                    ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
+                }
     }
 }

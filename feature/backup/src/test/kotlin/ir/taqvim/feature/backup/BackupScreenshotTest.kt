@@ -7,6 +7,7 @@ package ir.taqvim.feature.backup
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -71,6 +72,10 @@ class BackupScreenshotTest(
                 arrayOf<Any>("preview", environment(ScreenshotTheme.DARK, LayoutDirection.Ltr)),
                 arrayOf<Any>("privacy", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
                 arrayOf<Any>("privacy", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
-            )
+            ) +
+                // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
+                listOf("export", "preview", "privacy").flatMap { sample ->
+                    ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
+                }
     }
 }

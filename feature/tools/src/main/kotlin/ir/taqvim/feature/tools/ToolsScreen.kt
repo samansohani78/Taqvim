@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -24,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.ui.component.ScreenSurface
@@ -100,7 +102,10 @@ private fun ToolContent(
     }
 }
 
-/** A single-line text field with a label and an optional supporting line. */
+/**
+ * A single-line text field with a label and an optional supporting line. [leftToRight] lays the typed text out left to
+ * right in every language, for arithmetic such as "۲۵ + ۱" that a right-to-left paragraph would reorder (T-1701).
+ */
 @Composable
 internal fun ToolField(
     value: String,
@@ -110,7 +115,9 @@ internal fun ToolField(
     supporting: String? = null,
     isError: Boolean = false,
     singleLine: Boolean = true,
+    leftToRight: Boolean = false,
 ) {
+    val style = LocalTextStyle.current
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -118,6 +125,7 @@ internal fun ToolField(
         supportingText = supporting?.let { { Text(it) } },
         isError = isError,
         singleLine = singleLine,
+        textStyle = if (leftToRight) style.copy(textDirection = TextDirection.Ltr) else style,
         modifier = modifier.fillMaxWidth(),
     )
 }
@@ -133,7 +141,8 @@ internal fun LabeledValue(
         modifier.fillMaxWidth().semantics(mergeDescendants = true) {},
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Text(label, style = MaterialTheme.typography.bodyLarge)
+        // The label wraps in the space the value leaves, so a long label never squeezes the value away (T-1701).
+        Text(label, Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
         Text(value, style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.primary)
     }
 }

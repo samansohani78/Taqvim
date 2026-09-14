@@ -7,6 +7,7 @@ package ir.taqvim.feature.times
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
+import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import org.junit.Rule
@@ -69,6 +70,10 @@ class TimesScreenshotTest(
                     arrayOf<Any>("expanded", DARK_RTL),
                     arrayOf<Any>("polar", LIGHT_LTR),
                     arrayOf<Any>("no_location", LIGHT_LTR),
-                )
+                ) +
+                // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
+                listOf("day", "expanded").flatMap { sample ->
+                    ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
+                }
     }
 }

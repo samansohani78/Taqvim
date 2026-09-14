@@ -44,6 +44,7 @@ internal fun DurationTool(
         onInput,
         supporting = error?.let { durationErrorText(it) } ?: stringResource(R.string.tools_duration_hint),
         isError = error != null,
+        leftToRight = true,
     )
     if (state is DurationState.Value) {
         Card(Modifier.fillMaxWidth()) {
