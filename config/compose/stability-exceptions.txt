@@ -1,0 +1,3 @@
+# Documented Compose stability exceptions (T-1802, ADR-0021). One `key | reason` per line:
+# a composable parameter as `package.Function(parameter)`, a UI model as its class name.
+ir.taqvim.feature.widgets.WidgetFrame(onClick) | Glance widget click target: an Intent handed to RemoteViews once per widget session, never recomposed interactively

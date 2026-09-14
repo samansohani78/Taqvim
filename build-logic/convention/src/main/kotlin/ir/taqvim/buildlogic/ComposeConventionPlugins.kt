@@ -10,7 +10,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 /**
  * Enables Jetpack Compose plus Roborazzi screenshot testing. Reference screenshots live in
@@ -25,18 +28,41 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
             extensions.getByType(CommonExtension::class.java).buildFeatures.compose = true
             val root = rootDirectory
             val metrics = providers.gradleProperty("taqvim.composeMetrics").map { it.toBoolean() }.orElse(false)
+            val reports = layout.buildDirectory.dir("compose/reports")
             extensions.configure<ComposeCompilerGradlePluginExtension> {
                 stabilityConfigurationFiles.add(root.file("config/compose/stability.conf"))
                 if (metrics.get()) {
                     metricsDestination.set(layout.buildDirectory.dir("compose/metrics"))
-                    reportsDestination.set(layout.buildDirectory.dir("compose/reports"))
+                    reportsDestination.set(reports)
                 }
             }
+            registerComposeStabilityCheck(metrics.get())
             extensions.configure<RoborazziExtension> {
                 outputDir.set(layout.projectDirectory.dir("src/test/screenshots"))
             }
             addComposeDependencies()
         }
+    }
+}
+
+/**
+ * `composeStabilityCheck` (T-1802, ADR-0021): reads this module's debug Compose compiler reports and fails on unstable
+ * composable parameters or UI models. Report destinations are not compile-task inputs, so the reports flag is added
+ * as one; otherwise an up-to-date compile would leave no reports behind.
+ */
+private fun Project.registerComposeStabilityCheck(reportsEnabled: Boolean) {
+    val reports = layout.buildDirectory.dir("compose/reports")
+    tasks.withType<KotlinJvmCompile>().configureEach {
+        inputs.property("taqvimComposeReports", reportsEnabled)
+        if (reportsEnabled && name == "compileDebugKotlin") outputs.dir(reports)
+    }
+    tasks.register<ComposeStabilityCheckTask>("composeStabilityCheck") {
+        group = "verification"
+        description = "Fails on unstable Compose parameters and UI models (needs -Ptaqvim.composeMetrics=true)."
+        reportsDirectory.set(reports)
+        exceptionsFile.set(rootDirectory.file("config/compose/stability-exceptions.txt"))
+        this.reportsEnabled.set(reportsEnabled)
+        dependsOn("compileDebugKotlin")
     }
 }
 
