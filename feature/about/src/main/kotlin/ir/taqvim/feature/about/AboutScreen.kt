@@ -49,6 +49,7 @@ fun AboutScreen(
                 AboutPage.LICENSE_TEXT -> LicenseTextPage(state.licenseText, actions)
                 AboutPage.DATA_SOURCES -> DataSourcesPage(actions)
                 AboutPage.DIAGNOSTICS -> DiagnosticsPage(state.diagnostics, actions)
+                AboutPage.FAQ -> FaqPage(state.faq, actions)
             }
         }
     }
@@ -84,6 +85,10 @@ private fun AboutTopBar(
             AboutPage.DIAGNOSTICS -> {
                 stringResource(R.string.about_diagnostics)
             }
+
+            AboutPage.FAQ -> {
+                stringResource(R.string.about_faq)
+            }
         }
     val back =
         TopBarAction(
@@ -111,6 +116,9 @@ private fun AboutHome(
             }
         }
         HomeLinks(info?.links, actions)
+        AboutRow(stringResource(R.string.about_faq), stringResource(R.string.about_faq_summary)) {
+            actions.onOpenFaq()
+        }
         AboutRow(stringResource(R.string.about_licenses), stringResource(R.string.about_licenses_summary)) {
             actions.onOpenLicenses()
         }

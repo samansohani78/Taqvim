@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -44,8 +45,25 @@ fun AboutRoute(
     val actions =
         remember(viewModel, context, resources, onExit) { aboutActions(viewModel, context, resources, onExit) }
     val preview = if (state.confirmReport) viewModel.report(reportTexts(resources))?.body else null
+    LaunchedEffect(viewModel, context) {
+        viewModel.effects.collect { effect ->
+            when (effect) {
+                is AboutEffect.OpenInApp -> AboutIntents.start(context, AboutIntents.inApp(context, effect.link))
+            }
+        }
+    }
     AboutScreen(state, actions, modifier, preview)
 }
+
+/** The FAQ questions and answers in the current configuration, for searching them. */
+internal fun faqTexts(resources: Resources): Map<FaqEntry, FaqText> =
+    FaqEntry.entries.associateWith { entry ->
+        FaqText(
+            topic = resources.getString(entry.topic.title),
+            question = resources.getString(entry.question),
+            answer = resources.getString(entry.answer),
+        )
+    }
 
 private fun aboutActions(
     viewModel: AboutViewModel,
@@ -70,6 +88,10 @@ private fun aboutActions(
             val share = AboutIntents.share(subject = null, text = viewModel.diagnosticsText())
             AboutIntents.start(context, Intent.createChooser(share, resources.getString(R.string.about_share_title)))
         },
+        onOpenFaq = { viewModel.onOpenFaq(faqTexts(resources)) },
+        onFaqQuery = viewModel::onFaqQuery,
+        onToggleFaq = viewModel::onToggleFaq,
+        onOpenFaqLink = viewModel::onOpenFaqLink,
         onRequestReport = viewModel::onRequestReport,
         onDismissReport = viewModel::onDismissReport,
         onSendReport = {
@@ -98,6 +120,12 @@ internal object AboutIntents {
     private const val TEXT_TYPE = "text/plain"
 
     fun view(url: String): Intent = Intent(Intent.ACTION_VIEW, url.toUri())
+
+    /** A `taqvim://` [link] opened by this app only (docs/AUTOMATION.md). */
+    fun inApp(
+        context: Context,
+        link: String,
+    ): Intent = view(link).setPackage(context.packageName)
 
     fun share(
         subject: String?,

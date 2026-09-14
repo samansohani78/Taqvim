@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
+import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -45,6 +46,14 @@ class AboutScreenshotTest(
                     )
                 }
 
+                "faq" -> {
+                    AboutUiState(
+                        page = AboutPage.FAQ,
+                        canGoBack = true,
+                        faq = FaqContent(expanded = persistentSetOf(FaqEntry.ISLAMIC_DATE)),
+                    )
+                }
+
                 "diagnostics" -> {
                     AboutUiState(
                         page = AboutPage.DIAGNOSTICS,
@@ -77,6 +86,7 @@ class AboutScreenshotTest(
         @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}")
         fun parameters(): List<Array<Any>> =
             listOf(LIGHT_LTR, DARK_LTR, LIGHT_RTL, DARK_RTL).map { arrayOf<Any>("home", it) } +
+                listOf(LIGHT_LTR, DARK_LTR, LIGHT_RTL, DARK_RTL).map { arrayOf<Any>("faq", it) } +
                 listOf(
                     arrayOf<Any>("licenses", LIGHT_RTL),
                     arrayOf<Any>("data_sources", DARK_RTL),

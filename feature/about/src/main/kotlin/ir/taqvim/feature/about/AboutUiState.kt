@@ -15,6 +15,15 @@ enum class AboutPage {
     LICENSE_TEXT,
     DATA_SOURCES,
     DIAGNOSTICS,
+    FAQ,
+}
+
+/** One-shot effects of the About screen. */
+sealed interface AboutEffect {
+    /** Open a `taqvim://` [link] of docs/AUTOMATION.md inside the app. */
+    data class OpenInApp(
+        val link: String,
+    ) : AboutEffect
 }
 
 /** State of the About screen (T-1504). */
@@ -28,6 +37,8 @@ data class AboutUiState(
     val diagnostics: DiagnosticsContent = DiagnosticsContent(),
     /** The problem report confirmation is shown. */
     val confirmReport: Boolean = false,
+    /** The in-app FAQ (T-1901). */
+    val faq: FaqContent = FaqContent(),
 )
 
 /** The open-source license list. */
@@ -80,4 +91,8 @@ data class AboutActions(
     val onRequestReport: () -> Unit = {},
     val onDismissReport: () -> Unit = {},
     val onSendReport: () -> Unit = {},
+    val onOpenFaq: () -> Unit = {},
+    val onFaqQuery: (String) -> Unit = {},
+    val onToggleFaq: (FaqEntry) -> Unit = {},
+    val onOpenFaqLink: (FaqEntry) -> Unit = {},
 )
