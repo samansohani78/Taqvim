@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- T-1200 widget framework: configuration screen and shared widget states. -->
+  <string name="widget_config_title">Widget settings</string>
+  <string name="widget_config_loading">Loading widget settings</string>
+  <string name="widget_config_background">Background</string>
+  <string name="widget_background_surface">Theme</string>
+  <string name="widget_background_primary">Accent</string>
+  <string name="widget_background_secondary">Soft accent</string>
+  <string name="widget_background_black">Black</string>
+  <string name="widget_background_white">White</string>
+  <string name="widget_config_transparency">Transparency</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">Size</string>
+  <string name="widget_config_contents">Show</string>
+  <string name="widget_content_weekday">Weekday</string>
+  <string name="widget_content_secondary_date">Date in the second calendar</string>
+  <string name="widget_content_holidays">Holidays in color</string>
+  <string name="widget_content_events">Events</string>
+  <string name="widget_content_next_prayer">Next prayer time</string>
+  <string name="widget_config_secondary_calendar">Second calendar</string>
+  <string name="widget_calendar_automatic">Automatic</string>
+  <string name="widget_calendar_persian">Solar Hijri</string>
+  <string name="widget_calendar_islamic">Lunar Hijri</string>
+  <string name="widget_calendar_gregorian">Gregorian</string>
+  <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <string name="widget_config_save">Save</string>
+  <string name="widget_config_cancel">Cancel</string>
+  <string name="widget_config_save_failed">The settings could not be saved. Try again.</string>
+  <string name="widget_load_failed">This widget could not be loaded. Tap to open Taqvim.</string>
+</resources>

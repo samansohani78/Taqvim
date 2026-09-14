@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="widget_config_title">تنظیمات ابزارک</string>
+  <string name="widget_config_loading">در حال بارگذاری تنظیمات ابزارک</string>
+  <string name="widget_config_background">پس‌زمینه</string>
+  <string name="widget_background_surface">رنگ زمینه‌ی برنامه</string>
+  <string name="widget_background_primary">رنگ اصلی</string>
+  <string name="widget_background_secondary">رنگ اصلی کم‌رنگ</string>
+  <string name="widget_background_black">سیاه</string>
+  <string name="widget_background_white">سفید</string>
+  <string name="widget_config_transparency">شفافیت</string>
+  <string name="widget_config_percent">%1$d٪</string>
+  <string name="widget_config_scale">اندازه</string>
+  <string name="widget_config_contents">نمایش</string>
+  <string name="widget_content_weekday">روز هفته</string>
+  <string name="widget_content_secondary_date">تاریخ در تقویم دوم</string>
+  <string name="widget_content_holidays">رنگ تعطیلات</string>
+  <string name="widget_content_events">رویدادها</string>
+  <string name="widget_content_next_prayer">وقت شرعی بعدی</string>
+  <string name="widget_config_secondary_calendar">تقویم دوم</string>
+  <string name="widget_calendar_automatic">خودکار</string>
+  <string name="widget_calendar_persian">هجری شمسی</string>
+  <string name="widget_calendar_islamic">هجری قمری</string>
+  <string name="widget_calendar_gregorian">میلادی</string>
+  <string name="widget_calendar_nepali">بیکرم سمبت</string>
+  <string name="widget_config_save">ذخیره</string>
+  <string name="widget_config_cancel">لغو</string>
+  <string name="widget_config_save_failed">تنظیمات ذخیره نشد. دوباره تلاش کنید.</string>
+  <string name="widget_load_failed">این ابزارک بارگذاری نشد. برای باز کردن تقویم لمس کنید.</string>
+</resources>

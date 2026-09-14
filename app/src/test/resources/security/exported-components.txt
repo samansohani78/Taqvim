@@ -7,6 +7,8 @@ ir.taqvim.app.ProcessTextActivity | - | all | "Open in Taqvim" for selected text
 androidx.work.impl.background.systemjob.SystemJobService | android.permission.BIND_JOB_SERVICE | all | WorkManager jobs for subscription refresh; only the system can bind
 androidx.work.impl.diagnostics.DiagnosticsReceiver | android.permission.DUMP | all | WorkManager diagnostics; DUMP is a signature/privileged permission
 androidx.profileinstaller.ProfileInstallReceiver | android.permission.DUMP | all | baseline profile installation by adb/Play; DUMP-protected
+ir.taqvim.feature.widgets.WidgetConfigActivity | - | all | launcher widget configuration (APPWIDGET_CONFIGURE, T-1200); only edits the appearance of a placed Taqvim widget and saves nothing without the user
+androidx.glance.appwidget.GlanceRemoteViewsService | android.permission.BIND_REMOTEVIEWS | all | Glance collection widgets (T-1200); only the system can bind
 androidx.compose.ui.tooling.PreviewActivity | - | debug | Compose preview tooling (debugImplementation only)
 androidx.activity.ComponentActivity | - | debug | Compose UI test host activity (ui-test-manifest, debugImplementation only)
 androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity | - | unit-test | androidx.test core host, test classpath only
