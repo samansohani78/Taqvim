@@ -8,6 +8,7 @@ import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.EventsRepository
@@ -16,6 +17,7 @@ import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.preferences.WidgetConfigRepository
 import ir.taqvim.feature.widgets.WidgetBackground
+import ir.taqvim.feature.widgets.WidgetCalendarBuilder
 import ir.taqvim.feature.widgets.WidgetCalendarsSource
 import ir.taqvim.feature.widgets.WidgetConfig
 import ir.taqvim.feature.widgets.WidgetConfigStore
@@ -34,6 +36,7 @@ import ir.taqvim.feature.widgets.WidgetRefresher
 import ir.taqvim.feature.widgets.WidgetTimeline
 import ir.taqvim.feature.widgets.WidgetTimelineSource
 import ir.taqvim.feature.widgets.WidgetUpdateTrigger
+import ir.taqvim.feature.widgets.WidgetView
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
@@ -55,26 +58,35 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 /**
- * [WidgetDataSource] (T-1201…T-1204) from the stored preferences and the events repository (T-305): the day of [now] in
+ * [WidgetDataSource] (T-1201…T-1209) from the stored preferences and the events repository (T-305): the day of [now] in
  * the chosen place's zone (or the device zone), in the user's calendars and language, with its events and, where a
- * place is chosen, its prayer times.
+ * place is chosen, its prayer times; the calendar widgets add their month, week, schedule or Sun path.
  */
 internal class PreferencesWidgetDataSource(
     private val preferences: UserPreferencesRepository,
-    private val dayEvents: (Jdn) -> Flow<DayEvents>,
+    private val rangeEvents: (JdnRange) -> Flow<List<DayEvents>>,
     private val names: WidgetPrayerNames,
     private val deviceZone: () -> TimeZone,
 ) : WidgetDataSource {
+    private val calendarParts = WidgetCalendarParts(rangeEvents)
+
     override suspend fun load(
         kind: WidgetKind,
         config: WidgetConfig,
         now: Instant,
+        view: WidgetView,
     ): WidgetData {
         val prefs = preferences.preferences.first()
         val place = prefs.widgetPlace()
         val jdn = now.toJdn(place?.timeZone ?: deviceZone())
-        val day = dayEvents(jdn).first()
-        return WidgetContentBuilder.build(widgetInputs(prefs, config, jdn, day, place), now, names)
+        val day = rangeEvents(jdn..jdn).first().single()
+        val inputs = widgetInputs(prefs, config, jdn, day, place)
+        val content = WidgetContentBuilder.build(inputs, now, names)
+        return if (kind == WidgetKind.SUN_ARC) {
+            content.copy(sun = place?.let { WidgetCalendarBuilder.sun(now, it, inputs.language) })
+        } else {
+            calendarParts.addTo(content, kind, inputs, prefs.weekStart, view)
+        }
     }
 }
 
@@ -240,7 +252,7 @@ internal fun widgetEventChanges(database: TaqvimDatabase): Flow<Set<String>> =
         emitInitialState = false,
     )
 
-/** Widgets (T-1201…T-1204) over the preferences, the events repository and their own configuration store. */
+/** Widgets (T-1201…T-1209) over the preferences, the events repository and their own configuration store. */
 val widgetPortsModule =
     module {
         single {
@@ -250,7 +262,7 @@ val widgetPortsModule =
         single<WidgetConfigStore> { DataStoreWidgetConfigStore(get()) }
         single<WidgetDataSource> {
             val events = get<EventsRepository>()
-            PreferencesWidgetDataSource(get(), events::day, get()) { TimeZone.currentSystemDefault() }
+            PreferencesWidgetDataSource(get(), events::days, get()) { TimeZone.currentSystemDefault() }
         }
         single<WidgetTimelineSource> { PreferencesWidgetTimelineSource(get()) { TimeZone.currentSystemDefault() } }
         single<WidgetCalendarsSource> { PreferencesWidgetCalendarsSource(get()) }

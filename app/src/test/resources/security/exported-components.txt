@@ -13,6 +13,11 @@ ir.taqvim.feature.widgets.DateWidget1x1Receiver | - | all | launcher widget (T-1
 ir.taqvim.feature.widgets.DateClockWidget4x1Receiver | - | all | launcher widget (T-1202); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 ir.taqvim.feature.widgets.DaySummaryWidget2x2Receiver | - | all | launcher widget (T-1203); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 ir.taqvim.feature.widgets.PrayerStripWidget4x2Receiver | - | all | launcher widget (T-1204); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.MonthInteractiveWidgetReceiver | - | all | launcher widget (T-1205); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.MonthBitmapWidgetReceiver | - | all | launcher widget (T-1206); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.WeekStripWidgetReceiver | - | all | launcher widget (T-1207); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.ScheduleWidgetReceiver | - | all | launcher widget (T-1208); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
+ir.taqvim.feature.widgets.SunArcWidgetReceiver | - | all | launcher widget (T-1209); the launcher sends APPWIDGET_UPDATE and the receiver only redraws Taqvim's own widgets
 androidx.compose.ui.tooling.PreviewActivity | - | debug | Compose preview tooling (debugImplementation only)
 androidx.activity.ComponentActivity | - | debug | Compose UI test host activity (ui-test-manifest, debugImplementation only)
 androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity | - | unit-test | androidx.test core host, test classpath only

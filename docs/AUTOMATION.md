@@ -16,6 +16,7 @@ web pages. A link Taqvim cannot read opens the calendar.
 | `taqvim://day/2026-03-21?calendar=gregorian` | The calendar on 21 March 2026 |
 | `taqvim://day/1447-10-01?calendar=islamic` | The calendar on 1 Shawwal 1447 (Iran's official Islamic calendar) |
 | `taqvim://event/42` | Your event number 42 in the event editor |
+| `taqvim://event/new/1405-01-01` | A new event on 1 Farvardin 1405 in the event editor, saved only when you save it (`?calendar=` as for `day`; `event/new` for today) |
 | `taqvim://occasion/<event id>?day=2461121` | The calendar on that day (used by official-event reminders) |
 | `taqvim://convert?date=1405-01-01&from=persian` | The date converter with 1 Farvardin 1405 |
 | `taqvim://convert?date=next%20friday` | The date converter with any text it can read |

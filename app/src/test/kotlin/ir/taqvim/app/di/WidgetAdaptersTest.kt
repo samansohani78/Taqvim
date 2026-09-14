@@ -14,6 +14,7 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.PersonalOccurrence
@@ -30,6 +31,7 @@ import ir.taqvim.feature.widgets.WidgetDependency
 import ir.taqvim.feature.widgets.WidgetKind
 import ir.taqvim.feature.widgets.WidgetRefresher
 import ir.taqvim.feature.widgets.WidgetTimeline
+import ir.taqvim.feature.widgets.WidgetView
 import ir.taqvim.feature.widgets.WidgetWakeUp
 import ir.taqvim.feature.widgets.WidgetWakeUpScheduler
 import kotlin.time.Clock
@@ -84,16 +86,19 @@ class WidgetAdaptersTest {
     fun `widget content uses the place's day, the user's calendars and the day's events`(): Unit =
         runTest {
             val preferences = repositoryOf(persian.copy(place = tehran))
-            val source = PreferencesWidgetDataSource(preferences, { flowOf(dayEvents(it)) }, { it.name }) { berlin }
+            val events = { range: JdnRange -> flowOf(range.map { dayEvents(it) }) }
+            val source = PreferencesWidgetDataSource(preferences, events, { it.name }) { berlin }
 
             // 22:30 UTC on the 12th is already the 13th in Tehran.
-            val data = source.load(WidgetKind.DAY_SUMMARY_2X2, WidgetConfig(), Instant.parse("2026-09-12T22:30:00Z"))
+            val at = Instant.parse("2026-09-12T22:30:00Z")
+            val data = source.load(WidgetKind.DAY_SUMMARY_2X2, WidgetConfig(), at, WidgetView())
 
             data.date shouldBe LocalDate(2026, 9, 13)
             data.title shouldBe "۲۲ شهریور ۱۴۰۵"
             data.isHoliday shouldBe true
             data.events.single().eventId shouldBe 7
             data.nextPrayer.shouldNotBeNull()
+            data.month.shouldBeNull()
         }
 
     @Test

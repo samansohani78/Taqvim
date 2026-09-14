@@ -32,6 +32,7 @@ internal object DeepLinks {
     private const val BACKUP = "BACKUP"
     private const val PRIVACY = "PRIVACY"
     private const val ABOUT = "ABOUT"
+    private const val NEW_EVENT = "new"
     private val NUMERIC_DATE = Regex("""(\d{1,4})-(\d{1,2})-(\d{1,2})""")
 
     private val CALENDARS: Map<String, CalendarArithmetic> =
@@ -67,10 +68,13 @@ internal object DeepLinks {
     private fun timeline(link: Link): AppDestination? =
         if (link.path.isEmpty()) AppDestination.Timeline() else jdn(link)?.let { AppDestination.Timeline(it) }
 
-    /** The day of a link's single `y-m-d` path segment in its `calendar` (Persian by default). */
-    private fun jdn(link: Link): Long? {
+    /** The day of the single `y-m-d` segment of [path] (by default the link's) in the link's `calendar` (Persian). */
+    private fun jdn(
+        link: Link,
+        path: List<String> = link.path,
+    ): Long? {
         val calendar = CALENDARS[link.query["calendar"]?.lowercase() ?: DEFAULT_CALENDAR] ?: return null
-        val (year, month, day) = link.path.singleOrNull()?.let(::numbers) ?: return null
+        val (year, month, day) = path.singleOrNull()?.let(::numbers) ?: return null
         return calendar
             .takeIf { it.isValid(year, month, day) }
             ?.toJdn(calendar.date(year, month, day))
@@ -78,13 +82,24 @@ internal object DeepLinks {
             ?.takeIf { it in JDN_RANGE }
     }
 
-    /** `event/<id>`: a personal event in the editor. */
+    /** `event/<id>`: a personal event in the editor; `event/new…`: see [newEvent]. */
     private fun event(link: Link): AppDestination? =
-        link.path
-            .singleOrNull()
-            ?.toLongOrNull()
-            ?.takeIf { it > 0 }
-            ?.let { AppDestination.EventEditor(it) }
+        if (link.path.firstOrNull().equals(NEW_EVENT, ignoreCase = true)) {
+            newEvent(link)
+        } else {
+            link.path
+                .singleOrNull()
+                ?.toLongOrNull()
+                ?.takeIf { it > 0 }
+                ?.let { AppDestination.EventEditor(it) }
+        }
+
+    /** `event/new[/<y-m-d>][?calendar=…]` (T-1205): the editor of a new event, on that day when one is given. */
+    private fun newEvent(link: Link): AppDestination? {
+        val day = link.path.drop(1)
+        if (day.isEmpty()) return AppDestination.EventEditor()
+        return jdn(link, day)?.let { AppDestination.EventEditor(day = it) }
+    }
 
     /** `occasion/<event id>?day=<jdn>`: the day of an official event (T-1001 reminders). */
     private fun occasion(link: Link): AppDestination? =

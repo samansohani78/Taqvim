@@ -51,3 +51,5 @@ their security properties or how selected text is handled.
   also lets the macrobenchmarks and the baseline-profile generator reach the timeline). It only opens a screen.
 - `map` opens the world map (T-1301). It only opens a screen; saving a point picked on the map as the chosen place
   needs the user's confirmation in the app.
+- `event/new[/<y-m-d>][?calendar=…]` opens the event editor for a new event, on that day when one is given (T-1205:
+  the month widget's add control). It only opens a screen; nothing is saved until the user saves the event.
