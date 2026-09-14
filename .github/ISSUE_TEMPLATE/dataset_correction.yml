@@ -2,6 +2,11 @@ name: Holiday / event data correction
 description: A holiday, observance or Hijri date is wrong or missing.
 labels: ["dataset", "triage"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Official holiday errors are corrected within 72 hours of checking the primary source (SUPPORT.md).
+        Every record must cite a primary official publication; see CONTRIBUTING-DATA.md.
   - type: input
     id: event
     attributes:

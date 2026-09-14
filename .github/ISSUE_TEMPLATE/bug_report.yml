@@ -2,6 +2,21 @@ name: Bug report
 description: Something is broken or behaves incorrectly.
 labels: ["bug", "triage"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Response times and what to include are described in SUPPORT.md at the root of the repository.
+        Crashes and data loss (P0) are fixed within 48 hours of confirmation.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: How bad is it?
+      options:
+        - "Crash or data loss (P0)"
+        - "A feature does not work (P1)"
+        - "Minor problem (P2)"
+    validations:
+      required: true
   - type: textarea
     id: what
     attributes:
@@ -32,5 +47,7 @@ body:
     id: diagnostics
     attributes:
       label: Diagnostics
-      description: Paste the anonymized diagnostics from Settings → About → Report a problem, if available.
+      description: >-
+        Paste the anonymized diagnostics from More → About → Report a problem, if available. Check the text and
+        remove anything you do not want to share.
       render: text
