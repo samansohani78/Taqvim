@@ -36,6 +36,7 @@ import ir.taqvim.feature.agenda.AgendaSettingsSource
 import ir.taqvim.feature.agenda.agendaFeatureModule
 import ir.taqvim.feature.astronomy.AstronomySettingsSource
 import ir.taqvim.feature.astronomy.astronomyFeatureModule
+import ir.taqvim.feature.backup.backupFeatureModule
 import ir.taqvim.feature.calendar.CalendarDaySource
 import ir.taqvim.feature.calendar.CalendarDisplayStore
 import ir.taqvim.feature.calendar.CalendarMonthSource
@@ -314,5 +315,7 @@ val appModule =
             reminderAlarmPortsModule,
             settingsPortsModule,
             generalSettingsFeatureModule,
+            backupFeatureModule,
+            backupPortsModule,
         )
     }
