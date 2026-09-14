@@ -295,6 +295,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-900 — Timeline layout
+- **Module / files:** `feature/timeline/src/main/kotlin/ir/taqvim/feature/timeline/`
+- **Task:** T-900
+- **References used (public only):** greedy coloring of interval graphs in order of start time (standard interval
+  partitioning result: colors needed = maximum overlap); Jetpack Compose public APIs (Apache-2.0) — `Layout`,
+  `pointerInput`, `detectDragGesturesAfterLongPress`, `calculateZoom`, `onKeyEvent`, semantics custom actions;
+  standalone weekday names from platform `android.icu.text.DateFormatSymbols` (CLDR); prayer lines from
+  `:core:praytimes` (A-10).
+- **Implementation note:** own work; no GPL/LGPL calendar or timeline code consulted. Test events synthetic; Tehran and
+  Tromsø coordinates are rounded sample inputs.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-901 — Month list and agenda
 - **Module / files:** `feature/agenda/src/main/kotlin/ir/taqvim/feature/agenda/`
 - **Task:** T-901
