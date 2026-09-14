@@ -317,5 +317,6 @@ val appModule =
             generalSettingsFeatureModule,
             backupFeatureModule,
             backupPortsModule,
+            automationModule,
         )
     }
