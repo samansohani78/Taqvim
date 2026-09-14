@@ -27,5 +27,51 @@
         <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
       </intent-filter>
     </activity>
+
+    <!-- T-1201…T-1204 widgets: exported because the launcher sends APPWIDGET_UPDATE (ADR-0017 allowlist). -->
+    <receiver
+      android:name="ir.taqvim.feature.widgets.DateWidget1x1Receiver"
+      android:exported="true"
+      android:label="@string/widget_date_1x1_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_date_1x1" />
+    </receiver>
+    <receiver
+      android:name="ir.taqvim.feature.widgets.DateClockWidget4x1Receiver"
+      android:exported="true"
+      android:label="@string/widget_date_clock_4x1_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_date_clock_4x1" />
+    </receiver>
+    <receiver
+      android:name="ir.taqvim.feature.widgets.DaySummaryWidget2x2Receiver"
+      android:exported="true"
+      android:label="@string/widget_day_summary_2x2_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_day_summary_2x2" />
+    </receiver>
+    <receiver
+      android:name="ir.taqvim.feature.widgets.PrayerStripWidget4x2Receiver"
+      android:exported="true"
+      android:label="@string/widget_prayer_strip_4x2_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_prayer_strip_4x2" />
+    </receiver>
   </application>
 </manifest>

@@ -65,10 +65,12 @@ enum class WidgetKind(
     val sizes: List<WidgetSize>,
 ) {
     DATE_1X1("date_1x1", WidgetCells(1, 1), setOf(D.DATE), DAY_PARTS, listOf(WidgetSize.SMALL)),
+
+    // The clock is a launcher-ticked TextClock (T-1202), so the widget does not need a wake-up every minute.
     DATE_CLOCK_4X1(
         "date_clock_4x1",
         WidgetCells(4, 1),
-        setOf(D.DATE, D.MINUTE),
+        setOf(D.DATE),
         DAY_PARTS,
         listOf(WidgetSize.WIDE),
     ),

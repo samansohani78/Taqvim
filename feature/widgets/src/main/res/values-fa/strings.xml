@@ -27,4 +27,21 @@
   <string name="widget_config_cancel">لغو</string>
   <string name="widget_config_save_failed">تنظیمات ذخیره نشد. دوباره تلاش کنید.</string>
   <string name="widget_load_failed">این ابزارک بارگذاری نشد. برای باز کردن تقویم لمس کنید.</string>
+  <string name="widget_date_1x1_name">تاریخ</string>
+  <string name="widget_date_1x1_description">تاریخ امروز در تقویم شما</string>
+  <string name="widget_date_clock_4x1_name">تاریخ و ساعت</string>
+  <string name="widget_date_clock_4x1_description">تاریخ امروز همراه با ساعت</string>
+  <string name="widget_day_summary_2x2_name">امروز</string>
+  <string name="widget_day_summary_2x2_description">تاریخ، رویدادهای امروز و وقت شرعی بعدی</string>
+  <string name="widget_prayer_strip_4x2_name">اوقات شرعی</string>
+  <string name="widget_prayer_strip_4x2_description">تاریخ همراه با اوقات شرعی امروز</string>
+  <string name="widget_prayer_fajr">اذان صبح</string>
+  <string name="widget_prayer_sunrise">طلوع آفتاب</string>
+  <string name="widget_prayer_dhuhr">اذان ظهر</string>
+  <string name="widget_prayer_asr">عصر</string>
+  <string name="widget_prayer_maghrib">اذان مغرب</string>
+  <string name="widget_prayer_isha">عشا</string>
+  <string name="widget_no_events">امروز رویدادی نیست</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">برای اوقات شرعی، مکان را انتخاب کنید</string>
 </resources>

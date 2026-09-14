@@ -26,15 +26,18 @@ import org.koin.core.component.inject
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.binds
 import org.koin.dsl.module
 
 /**
- * Koin bindings of the widget framework. `:app` provides `Context`, `kotlin.time.Clock`, [WidgetDataSource],
- * [WidgetConfigStore], [WidgetTimelineSource], [WidgetCalendarsSource] and one [WidgetRegistration] per widget.
+ * Koin bindings of the widget framework and its widgets ([WidgetCatalog]). `:app` provides `Context`,
+ * `kotlin.time.Clock`, [WidgetDataSource], [WidgetConfigStore], [WidgetTimelineSource] and [WidgetCalendarsSource].
  */
 val widgetsFeatureModule: Module =
     module {
+        WidgetCatalog.registrations.forEach { registration -> single(named(registration.kind.id)) { registration } }
+        single<WidgetPrayerNames> { ResourceWidgetPrayerNames(get()) }
         single { GlanceWidgets(get(), getAll()) } binds
             arrayOf(InstalledWidgets::class, WidgetUpdater::class, WidgetKindResolver::class)
         single<WidgetWakeUpScheduler> { AlarmWidgetWakeUpScheduler(get()) }

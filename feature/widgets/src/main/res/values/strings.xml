@@ -28,4 +28,21 @@
   <string name="widget_config_cancel">Cancel</string>
   <string name="widget_config_save_failed">The settings could not be saved. Try again.</string>
   <string name="widget_load_failed">This widget could not be loaded. Tap to open Taqvim.</string>
+  <string name="widget_date_1x1_name">Date</string>
+  <string name="widget_date_1x1_description">Today’s date in your calendar</string>
+  <string name="widget_date_clock_4x1_name">Date and clock</string>
+  <string name="widget_date_clock_4x1_description">Today’s date with the time</string>
+  <string name="widget_day_summary_2x2_name">Today</string>
+  <string name="widget_day_summary_2x2_description">The date, today’s events and the next prayer time</string>
+  <string name="widget_prayer_strip_4x2_name">Prayer times</string>
+  <string name="widget_prayer_strip_4x2_description">The date with today’s prayer times</string>
+  <string name="widget_prayer_fajr">Fajr</string>
+  <string name="widget_prayer_sunrise">Sunrise</string>
+  <string name="widget_prayer_dhuhr">Dhuhr</string>
+  <string name="widget_prayer_asr">Asr</string>
+  <string name="widget_prayer_maghrib">Maghrib</string>
+  <string name="widget_prayer_isha">Isha</string>
+  <string name="widget_no_events">No events today</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Choose a location for prayer times</string>
 </resources>

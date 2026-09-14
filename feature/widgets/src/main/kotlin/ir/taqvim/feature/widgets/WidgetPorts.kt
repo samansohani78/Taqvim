@@ -19,10 +19,11 @@ data class WidgetEventLine(
     val eventId: Long? = null,
 )
 
-/** The next prayer time, already localized (e.g. "Maghrib" and "19:12" in the app's digits). */
+/** A prayer time, already localized (e.g. "Maghrib" and "19:12" in the app's digits); [isNext] marks the next one. */
 data class WidgetPrayerLine(
     val name: String,
     val time: String,
+    val isNext: Boolean = false,
 )
 
 /**
@@ -32,6 +33,7 @@ data class WidgetPrayerLine(
  * @property date the civil (Gregorian) date the content describes, used for the "open day" click target.
  * @property title the date in the primary calendar, e.g. "22 Shahrivar 1405".
  * @property secondaryDate the date in the configuration's secondary calendar, or `null` when there is none.
+ * @property prayers the day's primary prayer times in order (empty without a chosen place or on polar days).
  */
 data class WidgetData(
     val date: LocalDate,
@@ -42,6 +44,7 @@ data class WidgetData(
     val isHoliday: Boolean,
     val events: ImmutableList<WidgetEventLine> = persistentListOf(),
     val nextPrayer: WidgetPrayerLine? = null,
+    val prayers: ImmutableList<WidgetPrayerLine> = persistentListOf(),
 )
 
 /** Loads the content of a widget of [WidgetKind] with its [WidgetConfig] at an instant; bound in `:app`. */

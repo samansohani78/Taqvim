@@ -5,6 +5,9 @@ plugins {
 dependencies {
     // T-1200: Glance app widgets, day-boundary arithmetic in the widget's time zone, the configuration activity.
     implementation(projects.core.calendar)
+    // T-1201…T-1204: localized dates and the prayer strip.
+    implementation(projects.core.i18n)
+    implementation(projects.core.praytimes)
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
     implementation(libs.androidx.activity.compose)
