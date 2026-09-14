@@ -91,6 +91,12 @@
   <string name="calendar_no_citation">منبعی ثبت نشده است</string>
   <string name="calendar_open_source">باز کردن منبع</string>
   <string name="calendar_close">بستن</string>
+  <string name="calendar_remind_me">یادآوری کن</string>
+  <string name="calendar_remind_same_day">همان روز</string>
+  <plurals name="calendar_remind_days_before">
+    <item quantity="one">%1$s روز پیش از آن</item>
+    <item quantity="other">%1$s روز پیش از آن</item>
+  </plurals>
   <string name="calendar_times_loading">در حال بارگذاری اوقات</string>
   <string name="calendar_no_place_title">مکانی انتخاب نشده است</string>
   <string name="calendar_no_place_message">برای دیدن اوقات این روز، شهری انتخاب کنید.</string>

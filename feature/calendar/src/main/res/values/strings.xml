@@ -103,6 +103,13 @@
   <string name="calendar_no_citation">No source recorded</string>
   <string name="calendar_open_source">Open source</string>
   <string name="calendar_close">Close</string>
+  <!-- T-1002 reminders before an official event. -->
+  <string name="calendar_remind_me">Remind me</string>
+  <string name="calendar_remind_same_day">On the day</string>
+  <plurals name="calendar_remind_days_before">
+    <item quantity="one">%1$s day before</item>
+    <item quantity="other">%1$s days before</item>
+  </plurals>
   <string name="calendar_times_loading">Loading times</string>
   <string name="calendar_no_place_title">No location chosen</string>
   <string name="calendar_no_place_message">Choose a city to see the times of this day.</string>

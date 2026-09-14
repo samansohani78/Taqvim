@@ -116,6 +116,12 @@ sealed interface CalendarAction {
     data class OpenCitation(
         val url: String,
     ) : Event
+
+    /** Turns the reminder [daysBefore] days before the official event whose source is shown on or off (T-1002). */
+    data class ToggleOfficialReminder(
+        val daysBefore: Int,
+        val enabled: Boolean,
+    ) : Event
 }
 
 /** Messages the calendar screen shows in a snackbar; the UI maps them to string resources. */
@@ -164,4 +170,7 @@ sealed interface CalendarEffect {
 
     /** Print the shown month (T-803 menu); the route renders and prints it. */
     data object PrintMonth : CalendarEffect
+
+    /** A reminder was turned on: ask for the notification permission if it is missing (T-1002). */
+    data object RequestNotificationPermission : CalendarEffect
 }

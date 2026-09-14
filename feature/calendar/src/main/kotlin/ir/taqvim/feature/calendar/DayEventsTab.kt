@@ -24,7 +24,8 @@ import ir.taqvim.core.ui.component.TooltipCard
 import kotlinx.collections.immutable.ImmutableList
 
 /**
- * The Events tab: one chip per event of the selected day. An official event shows its source and citation; other
+ * The Events tab: one chip per event of the selected day. An official event shows its source and citation and the
+ * reminders before it (T-1002); other
  * events (personal, device, subscribed) open. A day without events offers to add one.
  */
 @Composable
@@ -52,7 +53,7 @@ internal fun DayEventsTab(
         }
 
         else -> {
-            EventList(details.events, content.sourceEvent, language, onAction, modifier)
+            EventList(details.events, content.sourceEvent, content.officialReminders, language, onAction, modifier)
         }
     }
 }
@@ -61,6 +62,7 @@ internal fun DayEventsTab(
 private fun EventList(
     events: ImmutableList<DayEventItem>,
     sourceEvent: DayEventItem?,
+    reminders: OfficialReminderChoices?,
     language: LanguageSpec,
     onAction: (CalendarAction) -> Unit,
     modifier: Modifier,
@@ -87,7 +89,10 @@ private fun EventList(
                     onAction(action)
                 },
             )
-            if (event == sourceEvent) EventSourceCard(event, language, onAction)
+            if (event == sourceEvent) {
+                EventSourceCard(event, language, onAction)
+                reminders?.takeIf { it.eventId == event.id }?.let { OfficialReminderRow(it, language, onAction) }
+            }
         }
     }
 }

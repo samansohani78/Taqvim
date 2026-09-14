@@ -10,6 +10,7 @@ import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 
 /** Tabs of the day details under the month (T-802). */
@@ -58,6 +59,8 @@ data class CalendarContent(
     val menu: CalendarMenu = CalendarMenu(),
     /** Calendars the user can choose as the secondary calendar: every available one except the primary (T-803). */
     val secondaryChoices: ImmutableList<CalendarSystem> = persistentListOf(),
+    /** Reminder choices of the official event whose source is shown, if any (T-1002). */
+    val officialReminders: OfficialReminderChoices? = null,
 )
 
 /** Dialogs opened from the toolbar menu (T-803). */
@@ -94,3 +97,14 @@ data class CalendarSearch(
     val isSearching: Boolean = false,
     val results: ImmutableList<EventSearchResult> = persistentListOf(),
 )
+
+/** The official event [eventId] with the lead times, in days, whose reminders are on (T-1002). */
+data class OfficialReminderChoices(
+    val eventId: String,
+    val enabled: ImmutableSet<Int>,
+) {
+    companion object {
+        /** Lead times offered in the day details: the same day, and 1, 3 and 7 days before. */
+        val PRESETS: ImmutableList<Int> = persistentListOf(0, 1, 3, 7)
+    }
+}

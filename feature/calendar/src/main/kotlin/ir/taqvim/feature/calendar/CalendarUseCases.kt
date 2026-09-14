@@ -10,12 +10,16 @@ import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 /** [TodaySource] that reads [provider] every [interval], so a new day (or a new time zone) shows within [interval]. */
@@ -72,4 +76,20 @@ class SearchEventsUseCase(
         /** Results shown under the search bar. */
         const val LIMIT: Int = 20
     }
+}
+
+/** The grid days of the months [prefetch] either side of the month [offset] months from [today], in offset order. */
+internal fun CalendarMonthSource.monthEvents(
+    today: Jdn,
+    calendars: CalendarCalendars,
+    offset: Int,
+    prefetch: Int,
+): Flow<ImmutableList<MonthEvents>> {
+    val weekStart = calendars.settings.weekStart
+    val pages =
+        (offset - prefetch..offset + prefetch).map { page ->
+            val monthStart = calendars.monthStartAt(today, page)
+            days(MonthLayout.gridDays(monthStart, weekStart)).map { MonthEvents(page, it.toImmutableList()) }
+        }
+    return combine(pages) { it.toList().toImmutableList() }
 }

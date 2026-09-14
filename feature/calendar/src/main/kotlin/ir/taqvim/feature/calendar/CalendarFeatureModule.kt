@@ -10,8 +10,9 @@ import org.koin.dsl.module
 
 /**
  * Koin bindings of the calendar screen (ADR-0002). `:app` provides [CalendarSettingsSource], [CalendarDaySource],
- * [CalendarMonthSource], [EventSearchSource], [CalendarPlaceSource], [CalendarDisplayStore], `TodayProvider` and
- * `kotlin.time.Clock`. An optional [Jdn] parameter is the day selected when the screen opens.
+ * [CalendarMonthSource], [EventSearchSource], [CalendarPlaceSource], [CalendarDisplayStore], `TodayProvider`,
+ * `kotlin.time.Clock` and optionally [OfficialReminderStore]. An optional [Jdn] parameter is the day selected when
+ * the screen opens.
  */
 val calendarFeatureModule =
     module {
@@ -29,6 +30,7 @@ val calendarFeatureModule =
                 get(),
                 get(),
                 initialDay = parameters.getOrNull<Jdn>(),
+                officialReminders = getOrNull() ?: OfficialReminderStore.NONE,
             )
         }
     }

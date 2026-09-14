@@ -13,6 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.ui.permission.rememberNotificationPermissionRequest
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -34,9 +35,12 @@ fun CalendarRoute(
     val currentPrinter by rememberUpdatedState(printer)
     val context = LocalContext.current
     val resources = LocalResources.current
+    val requestNotifications = rememberNotificationPermissionRequest()
     LaunchedEffect(viewModel) {
         viewModel.effects.collect { effect ->
-            if (effect == CalendarEffect.PrintMonth) {
+            if (effect == CalendarEffect.RequestNotificationPermission) {
+                requestNotifications()
+            } else if (effect == CalendarEffect.PrintMonth) {
                 state.content?.let { content ->
                     val job = resources.getString(R.string.calendar_print_job)
                     currentPrinter.print(context, monthPrintHtml(content, resources), job)
@@ -59,6 +63,6 @@ private fun CalendarNavigation.handle(effect: CalendarEffect) {
         CalendarEffect.NavigateToSearch -> onOpenSearch()
         CalendarEffect.NavigateToShiftWork -> onOpenShiftWork()
         is CalendarEffect.NavigateToPlanetaryHours -> onOpenPlanetaryHours(effect.day)
-        CalendarEffect.PrintMonth -> Unit
+        CalendarEffect.PrintMonth, CalendarEffect.RequestNotificationPermission -> Unit
     }
 }

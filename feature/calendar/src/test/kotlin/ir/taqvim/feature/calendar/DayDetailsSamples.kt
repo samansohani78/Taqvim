@@ -8,6 +8,7 @@ import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventSource
 import kotlin.time.Instant
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableList
 
 /** Day-details content for Nowruz 1405 with synthetic events (T-802 UI and screenshot tests). */
@@ -42,6 +43,10 @@ internal object DayDetailsSamples {
         events: List<DayEventItem> = this.events,
         place: CalendarPlace? = TEHRAN,
         sourceEvent: DayEventItem? = null,
+        officialReminders: OfficialReminderChoices? =
+            sourceEvent?.takeIf { it.kind == DayEventKind.OFFICIAL }?.let {
+                OfficialReminderChoices(it.id, persistentSetOf(1))
+            },
     ): CalendarContent {
         val settings = PERSIAN_FIRST.copy(languageCode = languageCode)
         val calendars = CalendarCalendars(settings)
@@ -65,6 +70,7 @@ internal object DayDetailsSamples {
                 place?.let { DayTimesState.Ready(DayDetailsCalculator.times(nowruz, it, morning)) }
                     ?: DayTimesState.NoPlace,
             sourceEvent = sourceEvent,
+            officialReminders = officialReminders,
         )
     }
 }

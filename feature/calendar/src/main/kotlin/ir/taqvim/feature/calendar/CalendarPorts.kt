@@ -15,6 +15,7 @@ import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.praytimes.PrayerSettings
 import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.datetime.TimeZone
 
 /** The preferences the calendar screen reacts to (T-800, T-801). */
@@ -134,6 +135,20 @@ interface OfficialReminderStore {
         daysBefore: Int,
         enabled: Boolean,
     )
+
+    companion object {
+        /** No reminders and nothing stored: the calendar without reminder storage. */
+        val NONE: OfficialReminderStore =
+            object : OfficialReminderStore {
+                override fun daysBefore(eventId: String): Flow<Set<Int>> = flowOf(emptySet())
+
+                override suspend fun setReminder(
+                    eventId: String,
+                    daysBefore: Int,
+                    enabled: Boolean,
+                ) = Unit
+            }
+    }
 }
 
 /** The current civil day; emits again when the day changes. */

@@ -12,6 +12,7 @@ import kotlin.time.Instant
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,6 +27,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
@@ -53,6 +55,8 @@ class CalendarViewModel(
     calculationDispatcher: CoroutineDispatcher = Dispatchers.Default,
     /** The day selected when the screen opens (a link, the year view or search); `null` follows today. */
     initialDay: Jdn? = null,
+    /** Reminders before official events (T-1002). */
+    private val officialReminders: OfficialReminderStore = OfficialReminderStore.NONE,
 ) : ViewModel() {
     private val navigation = MutableStateFlow(NavigationState(selectedDay = initialDay, shownDay = initialDay))
     private val search = MutableStateFlow(CalendarSearch())
@@ -89,7 +93,7 @@ class CalendarViewModel(
         combine(today.filterNotNull(), calendars.filterNotNull(), navigation) { today, calendars, state ->
             MonthWindow(today, calendars, calendars.monthOffset(today, state.shownDay ?: state.selectedDay ?: today))
         }.distinctUntilChanged()
-            .flatMapLatest { monthEvents(it) }
+            .flatMapLatest { monthSource.monthEvents(it.today, it.calendars, it.offset, PREFETCH_MONTHS) }
             .onStart { emit(persistentListOf()) }
 
     private val overview: Flow<DayOverview?> =
@@ -120,6 +124,19 @@ class CalendarViewModel(
             .distinctUntilChanged()
             .onStart { emit(DayTimesState.Loading) }
 
+    /** Reminder choices of the official event whose source is shown (T-1002). */
+    private val reminders: Flow<OfficialReminderChoices?> =
+        navigation
+            .map { state -> state.sourceEvent?.takeIf { it.kind == DayEventKind.OFFICIAL }?.id }
+            .distinctUntilChanged()
+            .flatMapLatest { id ->
+                if (id == null) {
+                    flowOf(null)
+                } else {
+                    officialReminders.daysBefore(id).map { OfficialReminderChoices(id, it.toImmutableSet()) }
+                }
+            }
+
     /** One-shot navigation and snackbar effects. */
     val effects: Flow<CalendarEffect> = effectChannel.receiveAsFlow()
 
@@ -128,10 +145,10 @@ class CalendarViewModel(
             today.filterNotNull(),
             calendars.filterNotNull(),
             navigation,
-            combine(search, menu, ::Pair),
+            combine(search, menu, reminders, ::Triple),
             combine(dayDetails, months, overview, times, ::Loaded),
-        ) { today, calendars, state, (search, menu), loaded ->
-            CalendarUiState(content(today, calendars, state, search, loaded, menu))
+        ) { today, calendars, state, (search, menu, reminders), loaded ->
+            CalendarUiState(content(today, calendars, state, search, loaded, menu).copy(officialReminders = reminders))
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), CalendarUiState())
 
     fun onAction(action: CalendarAction) {
@@ -154,6 +171,17 @@ class CalendarViewModel(
             CalendarAction.OpenShiftWork -> emit(CalendarEffect.NavigateToShiftWork)
             CalendarAction.OpenPlanetaryHours -> openPlanetaryHours()
             CalendarAction.PrintMonth -> emit(CalendarEffect.PrintMonth)
+            is CalendarAction.ToggleOfficialReminder -> toggleReminder(action)
+        }
+    }
+
+    /** Stores a reminder before the shown official event; turning one on asks for the notification permission. */
+    private fun toggleReminder(action: CalendarAction.ToggleOfficialReminder) {
+        val event = navigation.value.sourceEvent?.takeIf { it.kind == DayEventKind.OFFICIAL } ?: return
+        viewModelScope.launch {
+            runCatching { officialReminders.setReminder(event.id, action.daysBefore, action.enabled) }
+                .onSuccess { if (action.enabled) effectChannel.send(CalendarEffect.RequestNotificationPermission) }
+                .onFailure { effectChannel.send(CalendarEffect.ShowSnackbar(CalendarMessage.SETTING_NOT_SAVED)) }
         }
     }
 
@@ -212,19 +240,6 @@ class CalendarViewModel(
     private fun openPlanetaryHours() {
         val day = navigation.value.selectedDay ?: today.value ?: return
         emit(CalendarEffect.NavigateToPlanetaryHours(day))
-    }
-
-    /** The grid days of the months either side of [window]'s month, with their events, in offset order. */
-    private fun monthEvents(window: MonthWindow): Flow<ImmutableList<MonthEvents>> {
-        val weekStart = window.calendars.settings.weekStart
-        val pages =
-            (window.offset - PREFETCH_MONTHS..window.offset + PREFETCH_MONTHS).map { offset ->
-                val monthStart = window.calendars.monthStartAt(window.today, offset)
-                monthSource
-                    .days(MonthLayout.gridDays(monthStart, weekStart))
-                    .map { MonthEvents(offset, it.toImmutableList()) }
-            }
-        return combine(pages) { it.toList().toImmutableList() }
     }
 
     private fun navigate(action: CalendarAction.Navigation) {
