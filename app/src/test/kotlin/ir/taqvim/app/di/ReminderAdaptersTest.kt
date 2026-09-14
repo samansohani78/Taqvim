@@ -7,15 +7,18 @@ package ir.taqvim.app.di
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.events.EventId
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.MinuteOfDay
 import ir.taqvim.data.database.AlarmKind
+import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ScheduledAlarmEntity
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.scheduler.AlarmKey
+import ir.taqvim.feature.notification.OfficialReminder
 import ir.taqvim.feature.notification.ReminderAlarm
 import ir.taqvim.feature.notification.ReminderRule
 import kotlin.time.Instant
@@ -76,6 +79,19 @@ class ReminderAdaptersTest {
     }
 
     @Test
+    fun `only enabled official opt-ins with an event and a lead time of up to 30 days are planned`() {
+        officialReminder(OfficialReminderEntity(id = 4, eventId = NOWRUZ, daysBefore = 3)) shouldBe
+            OfficialReminder(4, EventId(NOWRUZ), 3)
+        officialReminder(OfficialReminderEntity(id = 5, eventId = NOWRUZ, daysBefore = 0)) shouldBe
+            OfficialReminder(5, EventId(NOWRUZ), 0)
+        val off = OfficialReminderEntity(id = 6, eventId = NOWRUZ, daysBefore = 7, enabled = false)
+        officialReminder(off).shouldBeNull()
+        officialReminder(OfficialReminderEntity(id = 7, eventId = " ", daysBefore = 1)).shouldBeNull()
+        officialReminder(OfficialReminderEntity(id = 8, eventId = NOWRUZ, daysBefore = 31)).shouldBeNull()
+        officialReminder(OfficialReminderEntity(id = 0, eventId = NOWRUZ, daysBefore = 1)).shouldBeNull()
+    }
+
+    @Test
     fun `reminders become keyed scheduler alarms and fired alarms show their reminder`(): Unit =
         runTest {
             val now = Instant.parse("2026-03-20T00:00:00Z")
@@ -92,6 +108,10 @@ class ReminderAdaptersTest {
             delivery.deliver(alarm(sourceId = null, at = at))
             shown shouldBe listOf(11L to at)
         }
+
+    private companion object {
+        const val NOWRUZ = "ir.holiday.nowruz-1"
+    }
 
     private fun alarm(
         sourceId: Long?,

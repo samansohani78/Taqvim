@@ -8,6 +8,7 @@ import android.app.Application
 import androidx.work.Configuration
 import ir.taqvim.app.di.appModule
 import ir.taqvim.data.events.ics.SubscriptionRefreshWorkerFactory
+import ir.taqvim.data.scheduler.AlarmInputWatcher
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,8 @@ import org.koin.core.context.startKoin
 
 /**
  * Process entry point: builds the Koin DI graph (see docs/adr/0002-dependency-injection-koin.md), starts the
- * scheduler's preference watcher (T-604) and provides WorkManager with the subscription worker factory (T-1003).
+ * scheduler's preference watcher (T-604) and reminder data watcher (T-1001, T-1002), and provides WorkManager with the
+ * subscription worker factory (T-1003).
  */
 class TaqvimApplication :
     Application(),
@@ -38,5 +40,7 @@ class TaqvimApplication :
         }
         val watcher = get<PreferenceChangeWatcher>()
         processScope.launch { watcher.watch() }
+        val reminderInputs = get<AlarmInputWatcher>()
+        processScope.launch { reminderInputs.watch() }
     }
 }

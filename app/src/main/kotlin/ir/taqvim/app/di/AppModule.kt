@@ -7,6 +7,7 @@ package ir.taqvim.app.di
 import androidx.work.WorkManager
 import ir.taqvim.core.calendar.ClockTodayProvider
 import ir.taqvim.core.calendar.TodayProvider
+import ir.taqvim.data.database.AlarmKind
 import ir.taqvim.data.database.DeviceEventDao
 import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.PersonalEventDao
@@ -25,6 +26,7 @@ import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.scheduler.AlarmDelivery
+import ir.taqvim.data.scheduler.AlarmInputWatcher
 import ir.taqvim.data.scheduler.AlarmScheduler
 import ir.taqvim.data.scheduler.AlarmSource
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
@@ -40,6 +42,7 @@ import ir.taqvim.feature.calendar.CalendarMonthSource
 import ir.taqvim.feature.calendar.CalendarPlaceSource
 import ir.taqvim.feature.calendar.CalendarSettingsSource
 import ir.taqvim.feature.calendar.EventSearchSource
+import ir.taqvim.feature.calendar.OfficialReminderStore
 import ir.taqvim.feature.calendar.calendarFeatureModule
 import ir.taqvim.feature.compass.CompassSettingsSource
 import ir.taqvim.feature.compass.LevelCalibrationStore
@@ -104,6 +107,7 @@ val appDataModule =
         single { TaqvimDatabase.build(androidContext()) }
         single { get<TaqvimDatabase>().personalEventDao() }
         single { get<TaqvimDatabase>().reminderDao() }
+        single { get<TaqvimDatabase>().officialReminderDao() }
         single { get<TaqvimDatabase>().workdayProfileDao() }
         single { get<TaqvimDatabase>().icsSubscriptionDao() }
         single { get<TaqvimDatabase>().deviceEventDao() }
@@ -239,10 +243,15 @@ val athanAlarmPortsModule =
         }
     }
 
-/** Reminders (T-1001, T-1002) over the Room personal events: the scheduler's reminder source and delivery (T-604). */
+/**
+ * Reminders (T-1001, T-1002) over the Room personal events and official opt-ins: the scheduler's reminder source and
+ * delivery (T-604), and the watcher that recomputes reminder alarms when that data changes.
+ */
 val reminderAlarmPortsModule =
     module {
-        single<ReminderSetupSource> { RoomReminderSetupSource(get(), get(), get()) }
+        single<ReminderSetupSource> { RoomReminderSetupSource(get(), get(), get(), get()) }
+        single<OfficialReminderStore> { RoomOfficialReminderStore(get()) }
+        single { AlarmInputWatcher(reminderInputChanges(get()), setOf(AlarmKind.REMINDER), get()) }
         single<AlarmSource>(named(REMINDER_ALARMS)) {
             val alarms = get<ReminderAlarms>()
             ReminderAlarmSource { alarms.upcoming(it) }

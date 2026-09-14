@@ -51,6 +51,7 @@ class AppModuleTest {
                     CoroutineDispatcher::class,
                     Duration::class,
                     List::class,
+                    Set::class,
                     OfficialCatalog::class,
                     // Built inline from the three bound event sources in eventsDataModule.
                     EventInputs::class,

@@ -120,6 +120,22 @@ interface CalendarDisplayStore {
     suspend fun setSecondaryCalendar(system: CalendarSystem)
 }
 
+/**
+ * Reminders before official events (T-1002): lead times in whole days, at most one per event and lead time, sounding
+ * at the all-day reminder time. Implemented in `:app` over the `official_reminders` table.
+ */
+interface OfficialReminderStore {
+    /** Enabled lead times, in days before each occurrence, of the official event with dataset id [eventId]. */
+    fun daysBefore(eventId: String): Flow<Set<Int>>
+
+    /** Turns the reminder [daysBefore] (0‥30) days before the official event [eventId] on or off. */
+    suspend fun setReminder(
+        eventId: String,
+        daysBefore: Int,
+        enabled: Boolean,
+    )
+}
+
 /** The current civil day; emits again when the day changes. */
 fun interface TodaySource {
     fun today(): Flow<Jdn>
