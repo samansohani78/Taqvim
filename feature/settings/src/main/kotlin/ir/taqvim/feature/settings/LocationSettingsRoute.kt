@@ -30,10 +30,14 @@ val locationSettingsFeatureModule: Module =
         viewModelOf(::LocationSettingsViewModel)
     }
 
-/** The location settings bound to their [LocationSettingsViewModel]; asks for location permission when needed. */
+/**
+ * The location settings bound to their [LocationSettingsViewModel]; asks for location permission when needed.
+ * [embedded] leaves out the title bar, for a page of another screen (the T-1501 onboarding).
+ */
 @Composable
 fun LocationSettingsRoute(
     modifier: Modifier = Modifier,
+    embedded: Boolean = false,
     viewModel: LocationSettingsViewModel = koinViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -61,7 +65,7 @@ fun LocationSettingsRoute(
                 onSaveCoordinates = viewModel::onSaveCoordinates,
             )
         }
-    LocationSettingsScreen(state, actions, modifier)
+    LocationSettingsScreen(state, actions, modifier, embedded)
 }
 
 /** The permissions asked for: fine, or coarse if the user grants only that. */

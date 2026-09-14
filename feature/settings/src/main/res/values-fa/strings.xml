@@ -194,4 +194,17 @@
   <string name="settings_subscriptions_message_duplicate">این تقویم را از پیش مشترک شده‌اید</string>
   <string name="settings_subscriptions_message_network">به‌روزرسانی از اینترنت خاموش است</string>
   <string name="settings_subscriptions_message_failed">دریافت تقویم ممکن نشد</string>
+  <!-- T-1501 first-run onboarding: three skippable pages (language, location, event sources). -->
+  <string name="onboarding_language_title">زبان خود را انتخاب کنید</string>
+  <string name="onboarding_language_intro">به تقویم خوش آمدید. زبان شما تقویم‌ها، ارقام، آغاز هفته و روش اوقات شرعی آغازین را تعیین می‌کند؛ هر کدام را بعداً در تنظیمات می‌توانید تغییر دهید.</string>
+  <string name="onboarding_location_title">مکان خود را انتخاب کنید</string>
+  <string name="onboarding_location_intro">اوقات شرعی، قبله و طلوع آفتاب به مکان نیاز دارند. می‌توانید از این صفحه بگذرید و بعداً مکانی انتخاب کنید.</string>
+  <string name="onboarding_sources_title">مناسبت‌های نمایش‌داده‌شده را انتخاب کنید</string>
+  <string name="onboarding_sources_intro">تعطیلات و مناسبت‌های رسمی از منابع زیر می‌آیند. رویدادهای خودتان همیشه نمایش داده می‌شوند.</string>
+  <string name="onboarding_step">مرحلهٔ %1$s از %2$s</string>
+  <string name="onboarding_skip">رد شدن</string>
+  <string name="onboarding_back">قبلی</string>
+  <string name="onboarding_next">بعدی</string>
+  <string name="onboarding_done">شروع</string>
+  <string name="onboarding_loading">در حال بارگذاری</string>
 </resources>

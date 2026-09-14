@@ -194,4 +194,19 @@
   <string name="settings_subscriptions_message_duplicate">You are already subscribed to this calendar</string>
   <string name="settings_subscriptions_message_network">Refreshing over the internet is turned off</string>
   <string name="settings_subscriptions_message_failed">The calendar could not be downloaded</string>
+  <!-- T-1501 first-run onboarding: three skippable pages (language, location, event sources). -->
+  <string name="onboarding_language_title">Choose your language</string>
+  <string name="onboarding_language_intro">Welcome to Taqvim. Your language sets the calendars, digits, week and prayer conventions you start with; you can change each of them later in the settings.</string>
+  <string name="onboarding_location_title">Choose your location</string>
+  <string name="onboarding_location_intro">Prayer times, the Qibla and sunrise need a place. You can skip this page and choose one later.</string>
+  <string name="onboarding_sources_title">Choose the occasions to show</string>
+  <string name="onboarding_sources_intro">Official holidays and occasions come from the sources below. Your own events are always shown.</string>
+  <!-- Page counter, e.g. "Step 1 of 3"; the numbers are already written in the app's digits. -->
+  <string name="onboarding_step">Step %1$s of %2$s</string>
+  <string name="onboarding_skip">Skip</string>
+  <string name="onboarding_back">Back</string>
+  <string name="onboarding_next">Next</string>
+  <!-- Button on the last page that closes the onboarding and opens the calendar. -->
+  <string name="onboarding_done">Start</string>
+  <string name="onboarding_loading">Loading</string>
 </resources>

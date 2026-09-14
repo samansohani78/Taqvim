@@ -31,16 +31,20 @@ import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.SegmentedTabs
 import ir.taqvim.core.ui.component.TopBar
 
-/** Location settings (T-1502), stateless: renders [state] and reports user actions through [actions]. */
+/**
+ * Location settings (T-1502), stateless: renders [state] and reports user actions through [actions]; [embedded] leaves
+ * out the title bar when the settings are a page of another screen.
+ */
 @Composable
 fun LocationSettingsScreen(
     state: LocationSettingsUiState,
     actions: LocationSettingsActions,
     modifier: Modifier = Modifier,
+    embedded: Boolean = false,
 ) {
     ScreenSurface(
         modifier = modifier,
-        topBar = { TopBar(stringResource(R.string.settings_location_title)) },
+        topBar = { if (!embedded) TopBar(stringResource(R.string.settings_location_title)) },
     ) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
             if (state.loading) {
