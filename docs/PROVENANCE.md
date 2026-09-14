@@ -461,6 +461,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### `:app` navigation host and adapters (PLAN §3.1)
+- **Module / files:** `app/src/main/kotlin/ir/taqvim/app/` — navigation (`AppDestination`, `AppBackStack`, `AppRouter`,
+  shell) and `di/*Adapters.kt`; decisions in ADR-0015
+- **References used (public only):** AndroidX Navigation 3 (`NavDisplay`, entry decorators), Material 3 adaptive
+  navigation suite (`NavigationSuiteScaffold`), androidx.browser Custom Tabs, `CalendarContract.Events`,
+  `MediaPlayer`/`AudioAttributes`/`RingtoneManager`, `ContentResolver.takePersistableUriPermission`/`OpenableColumns`,
+  WorkManager `Configuration.Provider` — all Apache-2.0 / Android public APIs.
+- **Implementation note:** own work over the committed modules; navigation icons are simple vector shapes drawn for
+  Taqvim.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-702 — Widget bitmap painters
 - **Module / files:** `core/ui/src/main/kotlin/ir/taqvim/core/ui/painter/` — `BitmapPainter.kt`, `PainterGeometry.kt`,
   `MonthBitmapPainter.kt`, `SkyBitmapPainters.kt`, `MapThumbnailPainter.kt`
