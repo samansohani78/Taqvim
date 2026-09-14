@@ -41,6 +41,8 @@ data class PersonalEventEntity(
     @ColumnInfo(name = "created_at_epoch_millis") val createdAtEpochMillis: Long,
     @ColumnInfo(name = "updated_at_epoch_millis") val updatedAtEpochMillis: Long,
     @ColumnInfo(name = "ics_uid") val icsUid: String? = null,
+    /** The web page the event was taken from (T-1000), if any. */
+    @ColumnInfo(name = "source_link") val sourceLink: String? = null,
 )
 
 /** The RRULE-lite rule of one personal event (`event_recurrences`); see [RecurrenceRule] (T-503). */

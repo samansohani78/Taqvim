@@ -68,7 +68,7 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 2
+    const val LATEST_VERSION: Int = 3
 
     /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
     private val MIGRATION_1_2: Migration =
@@ -84,6 +84,14 @@ object TaqvimMigrations {
             }
         }
 
+    /** 2 → 3 (T-1000): the source link of personal events. */
+    private val MIGRATION_2_3: Migration =
+        object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE `personal_events` ADD COLUMN `source_link` TEXT")
+            }
+        }
+
     /** Migrations between consecutive versions, oldest first. */
-    val ALL: List<Migration> = listOf(MIGRATION_1_2)
+    val ALL: List<Migration> = listOf(MIGRATION_1_2, MIGRATION_2_3)
 }

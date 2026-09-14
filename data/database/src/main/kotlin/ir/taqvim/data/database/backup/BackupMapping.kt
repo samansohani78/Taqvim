@@ -166,6 +166,7 @@ private fun PersonalEventEntity.toRecord() =
         createdAtEpochMillis,
         updatedAtEpochMillis,
         icsUid,
+        sourceLink,
     )
 
 private fun EventRecord.toEntity() =
@@ -183,6 +184,7 @@ private fun EventRecord.toEntity() =
         createdAtEpochMillis,
         updatedAtEpochMillis,
         icsUid,
+        sourceLink,
     )
 
 private fun EventRecurrenceEntity.toRecord() =

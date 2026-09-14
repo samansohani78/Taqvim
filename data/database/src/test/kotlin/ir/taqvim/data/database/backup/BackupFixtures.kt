@@ -66,6 +66,7 @@ internal object BackupFixtures {
                         colorArgb = -16_711_936,
                         createdAtEpochMillis = 3,
                         updatedAtEpochMillis = 4,
+                        sourceLink = "https://example.org/dentist",
                     ),
                 ),
             recurrences =

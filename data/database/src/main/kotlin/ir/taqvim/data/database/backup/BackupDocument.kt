@@ -82,6 +82,7 @@ internal data class EventRecord(
     val createdAtEpochMillis: Long,
     val updatedAtEpochMillis: Long,
     val icsUid: String? = null,
+    val sourceLink: String? = null,
 )
 
 @Serializable
