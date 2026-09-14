@@ -1,3 +1,6 @@
+import com.android.build.api.artifact.SingleArtifact
+import javax.xml.parsers.DocumentBuilderFactory
+
 plugins {
     alias(libs.plugins.taqvim.android.application)
     alias(libs.plugins.taqvim.android.compose)
@@ -103,4 +106,68 @@ dependencies {
     // Screenshot environments of the navigation frame (ADR-0015).
     testImplementation(projects.core.uiTesting)
     testImplementation(libs.kotlinx.coroutines.test)
+}
+
+/**
+ * T-1804 manifest audit (ADR-0017): the release manifest exports exactly the components listed for `all` builds in
+ * `src/test/resources/security/exported-components.txt`. The debug manifest is checked by ExportedComponentsTest.
+ */
+abstract class ExportedComponentsAudit : DefaultTask() {
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val manifest: RegularFileProperty
+
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val allowlist: RegularFileProperty
+
+    @TaskAction
+    fun audit() {
+        val android = "http://schemas.android.com/apk/res/android"
+        val document =
+            DocumentBuilderFactory
+                .newInstance()
+                .apply { isNamespaceAware = true }
+                .newDocumentBuilder()
+                .parse(manifest.get().asFile)
+        val exported =
+            listOf("activity", "activity-alias", "service", "receiver", "provider")
+                .flatMap { tag ->
+                    val nodes = document.getElementsByTagName(tag)
+                    (0 until nodes.length).map { nodes.item(it) as org.w3c.dom.Element }
+                }.filter { it.getAttributeNS(android, "exported") == "true" }
+                .map { component ->
+                    val permission = component.getAttributeNS(android, "permission").ifEmpty { "-" }
+                    "${component.getAttributeNS(android, "name")} | $permission"
+                }.toSet()
+        val allowed =
+            allowlist
+                .get()
+                .asFile
+                .readLines()
+                .map(String::trim)
+                .filterNot { it.isEmpty() || it.startsWith("#") }
+                .map { line -> line.split('|').map(String::trim) }
+                .filter { it.getOrNull(2) == "all" }
+                .map { "${it[0]} | ${it[1]}" }
+                .toSet()
+        check(exported == allowed) {
+            "Exported components differ from the allowlist (T-1804).\n" +
+                "Not allowed: ${exported - allowed}\nMissing: ${allowed - exported}"
+        }
+    }
+}
+
+androidComponents {
+    onVariants(selector().withBuildType("release")) { variant ->
+        val taskName = "audit${variant.name.replaceFirstChar(Char::uppercase)}ExportedComponents"
+        val audit =
+            tasks.register<ExportedComponentsAudit>(taskName) {
+                group = "verification"
+                description = "Checks the merged ${variant.name} manifest against the exported-components allowlist."
+                manifest.set(variant.artifacts.get(SingleArtifact.MERGED_MANIFEST))
+                allowlist.set(layout.projectDirectory.file("src/test/resources/security/exported-components.txt"))
+            }
+        tasks.named("check") { dependsOn(audit) }
+    }
 }

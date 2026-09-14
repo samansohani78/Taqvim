@@ -66,11 +66,24 @@ class DayChangeReceiver : BroadcastReceiver() {
         context: Context,
         intent: Intent,
     ) {
+        // T-1804: anything other than our own alarm or the declared system broadcasts is ignored.
+        if (intent.action !in HANDLED_ACTIONS) return
         val now = Clock.System.now()
         val zone = TimeZone.currentSystemDefault()
         if (intent.action == DayChangeAlarm.ACTION_MIDNIGHT) {
             context.sendBroadcast(AutomationBroadcasts.dayChanged(now.toJdn(zone)))
         }
         DayChangeAlarm.schedule(context, now, zone)
+    }
+
+    private companion object {
+        val HANDLED_ACTIONS: Set<String> =
+            setOf(
+                DayChangeAlarm.ACTION_MIDNIGHT,
+                Intent.ACTION_BOOT_COMPLETED,
+                Intent.ACTION_MY_PACKAGE_REPLACED,
+                Intent.ACTION_TIME_CHANGED,
+                Intent.ACTION_TIMEZONE_CHANGED,
+            )
     }
 }

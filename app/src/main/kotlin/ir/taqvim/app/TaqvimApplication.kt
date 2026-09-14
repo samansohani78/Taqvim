@@ -34,6 +34,7 @@ class TaqvimApplication :
 
     override fun onCreate() {
         super.onCreate()
+        DebugStrictMode.install(BuildConfig.DEBUG)
         startKoin {
             androidContext(this@TaqvimApplication)
             modules(appModule)

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- T-1003 / T-1804: the only network use in v1 is refreshing iCalendar subscriptions over HTTPS, and only while the user
+     allows it (off by default, AppSettings.subscriptionsNetworkAllowed). No other module requests network access. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

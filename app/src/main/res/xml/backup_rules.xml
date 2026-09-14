@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- T-1804 (ADR-0017): Android 8.0–8.1 cannot require client-side encryption for Auto Backup, so nothing is backed up
+     there; users keep their data with Taqvim's own encrypted backup file (T-605). Android 9+ uses xml-v28. -->
 <full-backup-content>
-  <include domain="sharedpref" path="." />
-  <include domain="database" path="." />
-  <include domain="file" path="datastore/" />
+  <exclude domain="root" path="." />
+  <exclude domain="file" path="." />
+  <exclude domain="database" path="." />
+  <exclude domain="sharedpref" path="." />
+  <exclude domain="external" path="." />
 </full-backup-content>

@@ -1,0 +1,14 @@
+# T-1804 (ADR-0017): every component the merged app manifest exports, with the permission that guards it ("-" for
+# none), the builds it appears in and why it is exported. Anything exported and not listed fails the build
+# (ExportedComponentsTest for the debug unit-test manifest, auditReleaseExportedComponents for release).
+# component | permission | builds | reason
+ir.taqvim.app.MainActivity | - | all | launcher and taqvim:// links that only open screens (ADR-0016)
+ir.taqvim.app.ProcessTextActivity | - | all | "Open in Taqvim" for selected text; reads the text only (ADR-0016)
+androidx.work.impl.background.systemjob.SystemJobService | android.permission.BIND_JOB_SERVICE | all | WorkManager jobs for subscription refresh; only the system can bind
+androidx.work.impl.diagnostics.DiagnosticsReceiver | android.permission.DUMP | all | WorkManager diagnostics; DUMP is a signature/privileged permission
+androidx.profileinstaller.ProfileInstallReceiver | android.permission.DUMP | all | baseline profile installation by adb/Play; DUMP-protected
+androidx.compose.ui.tooling.PreviewActivity | - | debug | Compose preview tooling (debugImplementation only)
+androidx.activity.ComponentActivity | - | debug | Compose UI test host activity (ui-test-manifest, debugImplementation only)
+androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity | - | unit-test | androidx.test core host, test classpath only
+androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity | - | unit-test | androidx.test core host, test classpath only
+androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity | - | unit-test | androidx.test core host, test classpath only

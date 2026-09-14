@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- T-1804 (ADR-0017): Android 9–11 Auto Backup keeps personal data only when the backup is end-to-end encrypted with
+     the device lock (clientSideEncryption). Android 12+ uses data_extraction_rules.xml. -->
+<full-backup-content>
+  <include
+    domain="database"
+    path="."
+    requireFlags="clientSideEncryption" />
+  <include
+    domain="file"
+    path="datastore/"
+    requireFlags="clientSideEncryption" />
+  <include
+    domain="sharedpref"
+    path="."
+    requireFlags="clientSideEncryption" />
+</full-backup-content>

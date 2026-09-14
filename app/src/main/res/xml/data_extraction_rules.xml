@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- T-1804 (ADR-0017), Android 12+: cloud backup only when it can be end-to-end encrypted; a device-to-device transfer
+     started by the user copies the same data. Room, DataStore preferences and delivery logs; WorkManager's database
+     lives in no_backup and is never copied. -->
 <data-extraction-rules>
-  <cloud-backup>
+  <cloud-backup disableIfNoEncryptionCapabilities="true">
     <include domain="database" path="." />
     <include domain="file" path="datastore/" />
+    <include domain="sharedpref" path="." />
   </cloud-backup>
   <device-transfer>
     <include domain="database" path="." />
     <include domain="file" path="datastore/" />
+    <include domain="sharedpref" path="." />
   </device-transfer>
 </data-extraction-rules>
