@@ -58,13 +58,13 @@ class AppRouterTest {
 
         destinations shouldBe
             listOf(
-                AppDestination.EventEditor(),
+                AppDestination.EventEditor(day = day.value),
                 AppDestination.EventEditor(12),
                 AppDestination.Calendar,
                 AppDestination.Timeline(day.value),
                 AppDestination.Search,
                 AppDestination.Pending(PendingFeature.SHIFT_WORK),
-                AppDestination.Astronomy,
+                AppDestination.PlanetaryHours(day.value),
             )
         deviceEvents shouldBe listOf(5L)
         urls shouldBe listOf("https://calendar.ut.ac.ir/Fa/")
@@ -72,7 +72,7 @@ class AppRouterTest {
     }
 
     @Test
-    fun `year, agenda and timeline callbacks open the calendar, the editor or the device event`() {
+    fun `year, agenda and timeline callbacks open the day, the editor or the device event`() {
         router.year().onOpenMonth(day)
         router.agenda().onOpenDay(day)
         router.agenda().onOpenEvent(AgendaEvent("3", AgendaEventKind.PERSONAL, "Class", isHoliday = false))
@@ -83,11 +83,11 @@ class AppRouterTest {
 
         destinations shouldBe
             listOf(
-                AppDestination.Calendar,
-                AppDestination.Calendar,
+                AppDestination.Day(day.value),
+                AppDestination.Day(day.value),
                 AppDestination.EventEditor(3),
                 AppDestination.Calendar,
-                AppDestination.EventEditor(),
+                AppDestination.EventEditor(day = day.value, startMinute = 600, endMinute = 660),
                 AppDestination.Calendar,
             )
         deviceEvents shouldBe listOf(9L)
@@ -99,13 +99,17 @@ class AppRouterTest {
 
         search.onOpenDay(day)
         search.onOpenEvent(SearchEventKind.PERSONAL, "4", day)
+        search.onOpenEvent(SearchEventKind.OFFICIAL, "ir.holiday.nowruz-1", day)
+        search.onOpenEvent(SearchEventKind.OFFICIAL, "undated", null)
         search.onOpenSettings(SettingsEntry.LOCATION)
         search.onOpenTool(ToolEntry.COMPASS)
 
         destinations shouldBe
             listOf(
-                AppDestination.Calendar,
+                AppDestination.Day(day.value),
                 AppDestination.EventEditor(4),
+                AppDestination.Day(day.value),
+                AppDestination.Calendar,
                 AppDestination.Settings("LOCATION"),
                 AppDestination.Compass,
             )
@@ -136,8 +140,8 @@ class AppRouterTest {
                 AppDestination.Settings("PERSISTENT_NOTIFICATION"),
                 AppDestination.Settings("THEME"),
                 AppDestination.Settings("WIDGETS"),
-                AppDestination.Pending(PendingFeature.SETTINGS),
-                AppDestination.Pending(PendingFeature.SETTINGS),
+                AppDestination.Backup,
+                AppDestination.Privacy,
                 AppDestination.Pending(PendingFeature.SETTINGS),
             )
         ToolEntry.entries.map(::toolDestination) shouldBe

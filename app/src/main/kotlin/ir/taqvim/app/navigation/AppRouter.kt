@@ -10,6 +10,7 @@ import android.content.Intent
 import android.provider.CalendarContract
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.feature.agenda.AgendaNavigation
 import ir.taqvim.feature.calendar.CalendarMessage
 import ir.taqvim.feature.calendar.CalendarNavigation
@@ -65,8 +66,8 @@ internal class ContextExternalActions(
 
 /**
  * Where feature screens lead (ADR-0015): each feature's navigation callbacks as [navigate] destinations, [external]
- * actions and calendar messages for [showMessage]. Features without an entry point for a day or month (calendar, year,
- * agenda, search) open the calendar screen itself.
+ * actions and calendar messages for [showMessage]. Days open the calendar on that day, new events open the editor on
+ * their day and times, and planetary hours open in the Astronomy screen (T-1103).
  */
 internal class AppRouter(
     private val navigate: (AppDestination) -> Unit,
@@ -75,57 +76,76 @@ internal class AppRouter(
 ) {
     fun calendar(): CalendarNavigation =
         CalendarNavigation(
-            onOpenEventEditor = { navigate(AppDestination.EventEditor()) },
+            onOpenEventEditor = { navigate(AppDestination.EventEditor(day = it.value)) },
             onOpenEvent = { openEvent(EventOrigin.valueOf(it.kind.name), it.id) },
             onOpenTimeline = { navigate(AppDestination.Timeline(it.value)) },
             onMessage = showMessage,
             onOpenUrl = external::openUrl,
             onOpenSearch = { navigate(AppDestination.Search) },
             onOpenShiftWork = { navigate(AppDestination.Pending(PendingFeature.SHIFT_WORK)) },
-            onOpenPlanetaryHours = { navigate(AppDestination.Astronomy) },
+            onOpenPlanetaryHours = { navigate(AppDestination.PlanetaryHours(it.value)) },
         )
 
-    fun year(): YearNavigation = YearNavigation(onOpenMonth = { navigate(AppDestination.Calendar) })
+    fun year(): YearNavigation = YearNavigation(onOpenMonth = { navigate(AppDestination.Day(it.value)) })
 
     fun agenda(): AgendaNavigation =
         AgendaNavigation(
-            onOpenDay = { navigate(AppDestination.Calendar) },
+            onOpenDay = { navigate(AppDestination.Day(it.value)) },
             onOpenEvent = { openEvent(EventOrigin.valueOf(it.kind.name), it.id) },
         )
 
     fun timeline(): TimelineNavigation =
         TimelineNavigation(
-            onCreateEvent = { _, _, _ -> navigate(AppDestination.EventEditor()) },
+            onCreateEvent = { day, start, end ->
+                navigate(AppDestination.EventEditor(day = day.value, startMinute = start, endMinute = end))
+            },
             onOpenEvent = { id, kind -> openEvent(EventOrigin.valueOf(kind.name), id) },
         )
 
     fun search(): SearchNavigation =
         SearchNavigation(
-            onOpenDay = { navigate(AppDestination.Calendar) },
-            onOpenEvent = { kind, id, _ -> openEvent(EventOrigin.valueOf(kind.name), id) },
+            onOpenDay = { navigate(AppDestination.Day(it.value)) },
+            onOpenEvent = { kind, id, day -> openEvent(EventOrigin.valueOf(kind.name), id, day) },
             onOpenSettings = { navigate(settingsDestination(it)) },
             onOpenTool = { navigate(toolDestination(it)) },
         )
 
     fun settings(): SettingsNavigation = SettingsNavigation(onOpen = { navigate(settingsPage(it)) })
 
-    /** Personal events open in the editor and device events in the calendar app; others show on the calendar. */
+    /**
+     * Personal events open in the editor and device events in the calendar app; others show on the calendar, on their
+     * [day] when it is known.
+     */
     private fun openEvent(
         origin: EventOrigin,
         id: String,
+        day: Jdn? = null,
     ) {
         val number = id.toLongOrNull()
         when {
             origin == EventOrigin.PERSONAL && number != null -> navigate(AppDestination.EventEditor(number))
             origin == EventOrigin.DEVICE && number != null -> external.openDeviceEvent(number)
-            else -> navigate(AppDestination.Calendar)
+            else -> navigate(day?.let { AppDestination.Day(it.value) } ?: AppDestination.Calendar)
         }
     }
 }
 
-/** The settings home at the item of a settings search result; backup, privacy and about have no screen yet. */
+/** The screen of a settings search result: backup, privacy or the settings home at its item; about has no screen yet. */
 internal fun settingsDestination(entry: SettingsEntry): AppDestination =
-    SETTINGS_ITEMS[entry]?.let { AppDestination.Settings(it.name) } ?: AppDestination.Pending(PendingFeature.SETTINGS)
+    when (entry) {
+        SettingsEntry.BACKUP -> {
+            AppDestination.Backup
+        }
+
+        SettingsEntry.PRIVACY -> {
+            AppDestination.Privacy
+        }
+
+        else -> {
+            SETTINGS_ITEMS[entry]?.let { AppDestination.Settings(it.name) }
+                ?: AppDestination.Pending(PendingFeature.SETTINGS)
+        }
+    }
 
 /** The settings item each settings search result opens. */
 private val SETTINGS_ITEMS: Map<SettingsEntry, SettingsItemId> =

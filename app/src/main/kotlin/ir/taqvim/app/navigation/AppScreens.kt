@@ -29,11 +29,16 @@ import androidx.navigation3.ui.NavDisplay
 import ir.taqvim.app.R
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.feature.agenda.AgendaRoute
+import ir.taqvim.feature.astronomy.AstronomyDialogKind
+import ir.taqvim.feature.astronomy.AstronomyEntry
 import ir.taqvim.feature.astronomy.AstronomyRoute
+import ir.taqvim.feature.backup.BackupRoute
+import ir.taqvim.feature.backup.PrivacyRoute
 import ir.taqvim.feature.calendar.CalendarRoute
 import ir.taqvim.feature.compass.CompassRoute
 import ir.taqvim.feature.compass.LevelRoute
 import ir.taqvim.feature.events.EventEditorRoute
+import ir.taqvim.feature.events.NewEventDraft
 import ir.taqvim.feature.search.SearchRoute
 import ir.taqvim.feature.settings.AthanSettingsRoute
 import ir.taqvim.feature.settings.LocationSettingsRoute
@@ -82,7 +87,7 @@ private fun AppScreen(
         }
 
         is AppDestination.EventEditor -> {
-            EventEditorRoute(destination.eventId, onClose = { navigator.back() }, modifier = modifier)
+            EventEditorRoute(destination.eventId, onClose = { navigator.back() }, modifier, destination.draft())
         }
 
         is AppDestination.Pending -> {
@@ -94,11 +99,51 @@ private fun AppScreen(
             SettingsHomeRoute(modifier, item, router.settings())
         }
 
+        is AppDestination.Day, is AppDestination.PlanetaryHours, is AppDestination.Converter,
+        is AppDestination.SearchFor,
+        -> {
+            EntryScreen(destination, router, modifier)
+        }
+
         else -> {
             SimpleScreen(destination, navigator, router, modifier)
         }
     }
 }
+
+/** Screens opened at a given day, dialog, text or query (T-1103). */
+@Composable
+private fun EntryScreen(
+    destination: AppDestination,
+    router: AppRouter,
+    modifier: Modifier,
+) {
+    when (destination) {
+        is AppDestination.Day -> {
+            CalendarRoute(modifier, router.calendar(), initialDay = Jdn(destination.jdn))
+        }
+
+        is AppDestination.PlanetaryHours -> {
+            AstronomyRoute(modifier, AstronomyEntry(AstronomyDialogKind.PLANETARY_HOURS, Jdn(destination.day)))
+        }
+
+        is AppDestination.Converter -> {
+            ToolsRoute(modifier, destination.text)
+        }
+
+        is AppDestination.SearchFor -> {
+            SearchRoute(modifier, router.search(), destination.query)
+        }
+
+        else -> {
+            PendingScreen(R.string.pending_settings, modifier)
+        }
+    }
+}
+
+/** The new event this editor destination starts from, or `null` without a day. */
+internal fun AppDestination.EventEditor.draft(): NewEventDraft? =
+    day?.let { NewEventDraft(Jdn(it), startMinute, endMinute) }
 
 /** Screens without arguments. */
 @Composable
@@ -133,6 +178,8 @@ private fun SettingsAndInstrumentScreen(
         AppDestination.LocationSettings -> LocationSettingsRoute(modifier)
         AppDestination.AthanSettings -> AthanSettingsRoute(modifier)
         AppDestination.Subscriptions -> SubscriptionsRoute(modifier)
+        AppDestination.Backup -> BackupRoute(modifier)
+        AppDestination.Privacy -> PrivacyRoute(modifier)
         else -> PendingScreen(R.string.pending_settings, modifier)
     }
 }
@@ -149,6 +196,8 @@ internal enum class MoreEntry(
     COMPASS(AppDestination.Compass, R.string.more_compass),
     LEVEL(AppDestination.Level, R.string.more_level),
     SETTINGS(AppDestination.Settings(), R.string.more_settings),
+    BACKUP(AppDestination.Backup, R.string.more_backup),
+    PRIVACY(AppDestination.Privacy, R.string.more_privacy),
 }
 
 /** The list of [MoreEntry] screens. */

@@ -12,6 +12,9 @@
   <string name="more_compass">قطب‌نما</string>
   <string name="more_level">تراز و خط‌کش</string>
   <string name="more_settings">تنظیمات</string>
+  <string name="more_backup">پشتیبان‌گیری و بازیابی</string>
+  <string name="more_privacy">حریم خصوصی</string>
+  <string name="process_text_label">باز کردن در تقویم</string>
   <string name="pending_shift_work">شیفت کاری هنوز در دسترس نیست.</string>
   <string name="pending_settings">این تنظیم هنوز در دسترس نیست.</string>
   <string name="pending_widgets">تنظیمات ابزارک‌ها هنوز در دسترس نیست.</string>

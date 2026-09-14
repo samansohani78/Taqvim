@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools">
 
+  <!-- T-1103: the day-change alarm is set again after a reboot. -->
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
   <application
     android:name=".TaqvimApplication"
     android:allowBackup="true"
@@ -33,13 +36,47 @@
         tools:node="remove" />
     </provider>
 
+    <!-- singleTop: links (T-1103) that arrive while the app is shown reach onNewIntent instead of a second copy. -->
     <activity
       android:name=".MainActivity"
-      android:exported="true">
+      android:exported="true"
+      android:launchMode="singleTop">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
+      <!-- T-1103 (ADR-0016, docs/AUTOMATION.md): taqvim:// links only open screens; they never change data. -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="taqvim" />
+      </intent-filter>
     </activity>
+
+    <!-- T-1103: "Open in Taqvim" for selected text; the first date in it opens that day, otherwise the converter. -->
+    <activity-alias
+      android:name=".ProcessTextActivity"
+      android:exported="true"
+      android:label="@string/process_text_label"
+      android:targetActivity=".MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.PROCESS_TEXT" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="text/plain" />
+      </intent-filter>
+    </activity-alias>
+
+    <!-- T-1103: announces the new day at local midnight and keeps its alarm across reboots and clock changes. -->
+    <receiver
+      android:name=".automation.DayChangeReceiver"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+        <action android:name="android.intent.action.TIME_SET" />
+        <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+      </intent-filter>
+    </receiver>
   </application>
 </manifest>

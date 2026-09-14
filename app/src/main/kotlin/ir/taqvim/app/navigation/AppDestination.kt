@@ -64,11 +64,49 @@ sealed interface AppDestination : NavKey {
         val initialDay: Long? = null,
     ) : AppDestination
 
-    /** The editor of the personal event [eventId], or of a new event when it is `null`. */
+    /**
+     * The editor of the personal event [eventId], or of a new event when it is `null`: on [day] (a Julian day number)
+     * from [startMinute] to [endMinute] when those are given (T-1103).
+     */
     @Serializable
     data class EventEditor(
         val eventId: Long? = null,
+        val day: Long? = null,
+        val startMinute: Int? = null,
+        val endMinute: Int? = null,
     ) : AppDestination
+
+    /** The calendar opened on the Julian day [jdn] (links, year view, agenda and search; T-1103). */
+    @Serializable
+    data class Day(
+        val jdn: Long,
+    ) : AppDestination
+
+    /** The Astronomy screen showing the planetary hours of the Julian day [day] (T-803, T-1103). */
+    @Serializable
+    data class PlanetaryHours(
+        val day: Long,
+    ) : AppDestination
+
+    /** The tools opened on the date converter with [text] (T-1103 links and selected text). */
+    @Serializable
+    data class Converter(
+        val text: String,
+    ) : AppDestination
+
+    /** Search opened with [query] (T-1103). */
+    @Serializable
+    data class SearchFor(
+        val query: String,
+    ) : AppDestination
+
+    /** Backup and restore (T-1503). */
+    @Serializable
+    data object Backup : AppDestination
+
+    /** The privacy dashboard (T-1503). */
+    @Serializable
+    data object Privacy : AppDestination
 
     /** A screen the plan has but the app does not have yet. */
     @Serializable

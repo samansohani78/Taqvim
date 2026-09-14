@@ -8,15 +8,18 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import ir.taqvim.app.di.themeSettings
+import ir.taqvim.app.navigation.AppDestination
 import ir.taqvim.app.navigation.AppNavDisplay
 import ir.taqvim.app.navigation.AppNavigationFrame
 import ir.taqvim.app.navigation.AppRouter
@@ -30,10 +33,24 @@ import ir.taqvim.feature.calendar.CalendarMessage
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 
-/** The app: the Taqvim theme around the navigation frame and the screens of the back stack (ADR-0015). */
+/**
+ * The app: the Taqvim theme around the navigation frame and the screens of the back stack (ADR-0015). A [link]
+ * (T-1103) is opened once, after which [onLinkOpened] is called.
+ */
 @Composable
-fun TaqvimAppShell(modifier: Modifier = Modifier) {
+fun TaqvimAppShell(
+    modifier: Modifier = Modifier,
+    link: AppDestination? = null,
+    onLinkOpened: () -> Unit = {},
+) {
     val navigator = rememberAppNavigator()
+    val currentOnLinkOpened by rememberUpdatedState(onLinkOpened)
+    LaunchedEffect(link) {
+        if (link != null) {
+            navigator.navigate(link)
+            currentOnLinkOpened()
+        }
+    }
     val context = LocalContext.current
     val resources = LocalResources.current
     val snackbar = remember { SnackbarHostState() }
