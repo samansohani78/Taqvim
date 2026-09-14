@@ -24,4 +24,11 @@
   </plurals>
   <string name="notification_reminder_done">Done</string>
   <string name="notification_reminder_snooze">Snooze</string>
+  <!-- T-1213 persistent notification -->
+  <string name="notification_persistent_channel_name">Today\'s date</string>
+  <string name="notification_persistent_channel_description">Shows today\'s date and the next prayer time in the status bar</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <!-- T-1215 Quick Settings tile -->
+  <string name="notification_tile_label">Today</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
 </resources>

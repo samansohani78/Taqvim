@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- T-1213: the disc behind the large day number of the persistent notification (the launcher icon's green). -->
+  <color name="notification_day_badge">#FF0B6E4F</color>
+</resources>

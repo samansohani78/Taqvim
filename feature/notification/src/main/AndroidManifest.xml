@@ -11,6 +11,8 @@
   <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
   <!-- Fajr may bypass Do Not Disturb only when the user grants notification policy access. -->
   <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+  <!-- T-1213: the persistent notification and launcher icon are brought up to date after a reboot. -->
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
   <application>
     <service
@@ -21,5 +23,29 @@
     <receiver
       android:name="ir.taqvim.feature.notification.ReminderActionReceiver"
       android:exported="false" />
+    <!-- T-1213/T-1214: refreshes the persistent notification and launcher icon at day changes and prayer times, and
+         after reboots, updates and clock, zone or locale changes. -->
+    <receiver
+      android:name="ir.taqvim.feature.notification.DailyRefreshReceiver"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+        <action android:name="android.intent.action.TIME_SET" />
+        <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+        <action android:name="android.intent.action.LOCALE_CHANGED" />
+      </intent-filter>
+    </receiver>
+    <!-- T-1215: Quick Settings tile with today's date. Only the system can bind it. -->
+    <service
+      android:name="ir.taqvim.feature.notification.TodayTileService"
+      android:exported="true"
+      android:icon="@drawable/notification_ic_today"
+      android:label="@string/notification_tile_label"
+      android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE" />
+      </intent-filter>
+    </service>
   </application>
 </manifest>
