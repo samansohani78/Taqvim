@@ -12,19 +12,24 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
-/** Koin bindings of the Astronomy screen; `:app` provides [AstronomySettingsSource] and `kotlin.time.Clock`. */
+/**
+ * Koin bindings of the Astronomy screen; `:app` provides [AstronomySettingsSource] and `kotlin.time.Clock`. An optional
+ * [AstronomyEntry] parameter opens a dialog when the screen opens.
+ */
 val astronomyFeatureModule: Module =
     module {
-        viewModel { AstronomyViewModel(get(), get()) }
+        viewModel { parameters -> AstronomyViewModel(get(), get(), entry = parameters.getOrNull<AstronomyEntry>()) }
     }
 
-/** The Astronomy screen bound to its [AstronomyViewModel]. */
+/** The Astronomy screen bound to its [AstronomyViewModel]; [entry] opens one of its dialogs for a day. */
 @Composable
 fun AstronomyRoute(
     modifier: Modifier = Modifier,
-    viewModel: AstronomyViewModel = koinViewModel(),
+    entry: AstronomyEntry? = null,
+    viewModel: AstronomyViewModel = koinViewModel(parameters = { parametersOf(entry) }),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val actions =

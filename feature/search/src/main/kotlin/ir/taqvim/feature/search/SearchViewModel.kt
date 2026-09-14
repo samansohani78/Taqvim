@@ -41,8 +41,10 @@ class SearchViewModel(
     private val catalogSource: SearchCatalogSource,
     private val recentStore: RecentQueriesStore,
     private val dispatcher: CoroutineDispatcher,
+    /** Text searched when the screen opens (a T-1103 link); `null` opens it empty. */
+    initialQuery: String? = null,
 ) : ViewModel() {
-    private val query = MutableStateFlow("")
+    private val query = MutableStateFlow(initialQuery.orEmpty())
     private val filter = MutableStateFlow(SearchFilter.ALL)
     private val effectChannel = Channel<SearchEffect>(Channel.BUFFERED)
 

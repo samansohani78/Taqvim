@@ -21,13 +21,15 @@ import kotlinx.datetime.TimeZone
 
 /**
  * The personal event editor (T-1000): creates the event [eventId] is `null` for, otherwise edits the stored one;
- * validates before saving and reports the outcome through [EditorContent.Finished].
+ * validates before saving and reports the outcome through [EditorContent.Finished]. A new event starts from [draft]
+ * when one is given (a day of the calendar or a range drawn on the timeline), otherwise all-day today.
  */
 class EventEditorViewModel(
     private val eventId: Long?,
     private val store: PersonalEventStore,
     settingsSource: EditorSettingsSource,
     private val clock: Clock,
+    private val draft: NewEventDraft? = null,
 ) : ViewModel() {
     private val session = MutableStateFlow<EditorSession>(EditorSession.Loading)
     private val latestSettings = MutableStateFlow<EditorSettings?>(null)
@@ -103,7 +105,7 @@ class EventEditorViewModel(
         val id = eventId
         val form =
             if (id == null) {
-                EditorForm.new(settings, today(settings))
+                newForm(settings)
             } else {
                 runCatching { store.load(id) }
                     .getOrNull()
@@ -124,11 +126,24 @@ class EventEditorViewModel(
 
     private fun today(settings: EditorSettings): Jdn = clock.now().toJdn(TimeZone.of(settings.timeZoneId))
 
+    /** A new event on the draft's day (or today), timed when the draft has a start minute. */
+    private fun newForm(settings: EditorSettings): EditorForm {
+        val form = EditorForm.new(settings, draft?.day ?: today(settings))
+        val start = draft?.startMinute ?: return form
+        val end =
+            draft.endMinute?.takeIf { it > start }
+                ?: (start + DEFAULT_LENGTH_MINUTES).coerceAtMost(EditorForm.LAST_MINUTE)
+        return form.copy(allDay = false, startMinute = start, endMinute = end)
+    }
+
     private inline fun editing(change: (EditorSession.Editing) -> EditorSession.Editing) {
         session.update { current -> (current as? EditorSession.Editing)?.let(change) ?: current }
     }
 
     private companion object {
         const val STOP_TIMEOUT_MILLIS = 5_000L
+
+        /** Length of a new timed event whose end is not given. */
+        const val DEFAULT_LENGTH_MINUTES = 60
     }
 }

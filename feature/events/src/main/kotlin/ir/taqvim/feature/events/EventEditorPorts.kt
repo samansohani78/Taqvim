@@ -9,6 +9,7 @@ import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.core.nlp.ParseContext
 import kotlinx.coroutines.flow.Flow
@@ -74,4 +75,19 @@ data class EditorSettings(
 /** The current [EditorSettings]; re-emits on every change. */
 fun interface EditorSettingsSource {
     fun settings(): Flow<EditorSettings>
+}
+
+/**
+ * Where a new event starts: on [day], all-day unless [startMinute] is given, until [endMinute] (minutes of the day,
+ * `0..1439`). An end that is missing or not after the start gives a one-hour event, cut at the end of the day.
+ */
+data class NewEventDraft(
+    val day: Jdn,
+    val startMinute: Int? = null,
+    val endMinute: Int? = null,
+) {
+    init {
+        require(startMinute == null || startMinute in 0..EditorForm.LAST_MINUTE) { "start minute out of the day" }
+        require(endMinute == null || endMinute in 0..EditorForm.LAST_MINUTE) { "end minute out of the day" }
+    }
 }

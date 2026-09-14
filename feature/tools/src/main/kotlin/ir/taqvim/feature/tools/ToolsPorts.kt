@@ -41,3 +41,13 @@ data class ToolsSettings(
 fun interface ToolsSettingsSource {
     fun settings(): Flow<ToolsSettings>
 }
+
+/** Keeps the time-zone board the user edits (IANA ids, in order); bound in `:app` over the preferences (T-1500). */
+fun interface ToolsBoardStore {
+    suspend fun setBoardZones(zones: List<String>)
+
+    companion object {
+        /** Keeps nothing: board edits last for the session. */
+        val NONE: ToolsBoardStore = ToolsBoardStore { }
+    }
+}

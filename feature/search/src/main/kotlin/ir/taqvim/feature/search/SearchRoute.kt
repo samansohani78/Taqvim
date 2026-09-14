@@ -17,17 +17,21 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 /**
  * Koin bindings of the search screen (ADR-0002). `:app` provides [SearchSettingsSource], [SearchEventSource],
- * [RecentQueriesStore] (e.g. [SessionRecentQueriesStore]) and `TodayProvider`.
+ * [RecentQueriesStore] (e.g. [SessionRecentQueriesStore]) and `TodayProvider`. An optional [String] parameter is the
+ * text searched when the screen opens.
  */
 val searchFeatureModule: Module =
     module {
         factory<SearchTodaySource> { TickingSearchTodaySource(get()) }
         factory<SearchCatalogSource> { ResourceSearchCatalog(androidContext().resources) }
-        viewModel { SearchViewModel(get(), get(), get(), get(), get(), Dispatchers.Default) }
+        viewModel { parameters ->
+            SearchViewModel(get(), get(), get(), get(), get(), Dispatchers.Default, parameters.getOrNull<String>())
+        }
     }
 
 /** Where results lead; the app's navigation provides these. */
@@ -49,12 +53,13 @@ class SearchNavigation(
     }
 }
 
-/** The search screen bound to its [SearchViewModel]. */
+/** The search screen bound to its [SearchViewModel]; [initialQuery] is searched when the screen opens. */
 @Composable
 fun SearchRoute(
     modifier: Modifier = Modifier,
     navigation: SearchNavigation = SearchNavigation(),
-    viewModel: SearchViewModel = koinViewModel(),
+    initialQuery: String? = null,
+    viewModel: SearchViewModel = koinViewModel(parameters = { parametersOf(initialQuery) }),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val currentNavigation by rememberUpdatedState(navigation)

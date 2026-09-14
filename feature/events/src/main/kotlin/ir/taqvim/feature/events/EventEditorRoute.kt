@@ -19,21 +19,29 @@ import org.koin.dsl.module
 
 /**
  * Koin bindings of the event editor; `:app` provides [PersonalEventStore], [EditorSettingsSource] and
- * `kotlin.time.Clock`. The event id (or `null` for a new event) is the view model's parameter.
+ * `kotlin.time.Clock`. The event id (or `null` for a new event) and an optional [NewEventDraft] are the view model's
+ * parameters.
  */
 val eventsFeatureModule: Module =
     module {
-        viewModel { parameters -> EventEditorViewModel(parameters.getOrNull(), get(), get(), get()) }
+        viewModel { parameters ->
+            val draft = parameters.getOrNull<NewEventDraft>()
+            EventEditorViewModel(parameters.getOrNull<Long>(), get(), get(), get(), draft)
+        }
     }
 
-/** The editor of event [eventId] (`null` creates one); [onClose] is called once with how it was closed. */
+/**
+ * The editor of event [eventId] (`null` creates one, starting from [draft] when given); [onClose] is called once with
+ * how it was closed.
+ */
 @Composable
 fun EventEditorRoute(
     eventId: Long?,
     onClose: (EditorOutcome) -> Unit,
     modifier: Modifier = Modifier,
+    draft: NewEventDraft? = null,
     viewModel: EventEditorViewModel =
-        koinViewModel(key = "event-editor-$eventId", parameters = { parametersOf(eventId) }),
+        koinViewModel(key = "event-editor-$eventId-$draft", parameters = { parametersOf(eventId, draft) }),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val currentOnClose by rememberUpdatedState(onClose)

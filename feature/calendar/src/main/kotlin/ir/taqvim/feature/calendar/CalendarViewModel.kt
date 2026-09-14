@@ -51,8 +51,10 @@ class CalendarViewModel(
     nowSource: NowSource,
     private val displayStore: CalendarDisplayStore,
     calculationDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    /** The day selected when the screen opens (a link, the year view or search); `null` follows today. */
+    initialDay: Jdn? = null,
 ) : ViewModel() {
-    private val navigation = MutableStateFlow(NavigationState())
+    private val navigation = MutableStateFlow(NavigationState(selectedDay = initialDay, shownDay = initialDay))
     private val search = MutableStateFlow(CalendarSearch())
     private val menu = MutableStateFlow(CalendarMenu())
     private val effectChannel = Channel<CalendarEffect>(Channel.BUFFERED)

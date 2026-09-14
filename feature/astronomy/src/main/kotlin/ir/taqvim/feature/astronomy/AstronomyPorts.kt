@@ -9,6 +9,7 @@ import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.model.Coordinates
+import ir.taqvim.core.model.Jdn
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.TimeZone
 
@@ -31,3 +32,9 @@ data class AstronomySettings(
 fun interface AstronomySettingsSource {
     fun settings(): Flow<AstronomySettings?>
 }
+
+/** Opens the Astronomy screen on the dialog [kind] at local noon of [day] (e.g. the calendar's planetary hours). */
+data class AstronomyEntry(
+    val kind: AstronomyDialogKind,
+    val day: Jdn,
+)

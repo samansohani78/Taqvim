@@ -19,20 +19,30 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import java.io.File
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
-import org.koin.core.module.dsl.viewModelOf
+import org.koin.core.module.dsl.viewModel
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
-/** Koin bindings of the Tools screen; `:app` provides [ToolsSettingsSource] and `kotlin.time.Clock`. */
+/**
+ * Koin bindings of the Tools screen; `:app` provides [ToolsSettingsSource], `kotlin.time.Clock` and optionally a
+ * [ToolsBoardStore]. An optional [String] parameter is the converter's initial text.
+ */
 val toolsFeatureModule: Module =
     module {
-        viewModelOf(::ToolsViewModel)
+        viewModel { parameters ->
+            ToolsViewModel(get(), get(), getOrNull() ?: ToolsBoardStore.NONE, parameters.getOrNull<String>())
+        }
     }
 
-/** The Tools screen bound to its [ToolsViewModel]; QR codes are shared as PNG images. */
+/**
+ * The Tools screen bound to its [ToolsViewModel]; QR codes are shared as PNG images. [converterText] opens the date
+ * converter with that text.
+ */
 @Composable
 fun ToolsRoute(
     modifier: Modifier = Modifier,
-    viewModel: ToolsViewModel = koinViewModel(),
+    converterText: String? = null,
+    viewModel: ToolsViewModel = koinViewModel(parameters = { parametersOf(converterText) }),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current

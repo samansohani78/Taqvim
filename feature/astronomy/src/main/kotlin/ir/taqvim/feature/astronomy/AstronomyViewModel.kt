@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.getAndUpdate
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
@@ -38,7 +39,10 @@ class AstronomyViewModel(
     settingsSource: AstronomySettingsSource,
     private val clock: Clock,
     computeDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    /** A dialog to open once the settings are known (T-1103 links, the calendar's planetary hours). */
+    entry: AstronomyEntry? = null,
 ) : ViewModel() {
+    private val pendingEntry = MutableStateFlow(entry)
     private val selection = MutableStateFlow<Instant?>(null)
     private val mode = MutableStateFlow(AstronomyMode.EARTH)
     private val dialogKind = MutableStateFlow<AstronomyDialogKind?>(null)
@@ -61,7 +65,7 @@ class AstronomyViewModel(
 
     val uiState: StateFlow<AstronomyUiState> =
         combine(
-            combine(settingsSource.settings().onEach { latestSettings.value = it }, selection, minuteTicks(clock)) {
+            combine(settingsSource.settings().onEach(::onSettings), selection, minuteTicks(clock)) {
                 settings,
                 selected,
                 now,
@@ -138,6 +142,16 @@ class AstronomyViewModel(
         dialogKind.value = null
     }
 
+    /** Keeps [settings] and, the first time they are known, opens the pending entry's dialog at noon of its day. */
+    private fun onSettings(settings: AstronomySettings?) {
+        latestSettings.value = settings
+        if (settings == null) return
+        pendingEntry.getAndUpdate { null }?.let { opened ->
+            selection.value = settings.at(opened.day, ENTRY_TIME)
+            dialogKind.value = opened.kind
+        }
+    }
+
     private fun move(transform: (AstronomySettings, Instant) -> Instant) {
         val settings = latestSettings.value ?: return
         selection.value = transform(settings, selection.value ?: clock.now())
@@ -166,6 +180,9 @@ class AstronomyViewModel(
         const val MONTHS_PER_YEAR = 12
         const val MINUTES_PER_HOUR = 60
         const val MINUTES_PER_DAY = 1_440
+
+        /** Local time an entry's day opens at: noon, inside the day in every zone. */
+        val ENTRY_TIME = LocalTime(12, 0)
     }
 }
 

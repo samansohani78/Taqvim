@@ -23,6 +23,8 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.updateAndGet
+import kotlinx.coroutines.launch
 
 /**
  * The Tools screen (T-1400): date converter and day distance with NLP input, duration calculator, time-zone board and
@@ -32,9 +34,13 @@ import kotlinx.coroutines.flow.update
 class ToolsViewModel(
     settingsSource: ToolsSettingsSource,
     clock: Clock,
+    /** Where time-zone board edits are kept between sessions. */
+    private val boardStore: ToolsBoardStore = ToolsBoardStore.NONE,
+    /** Text the converter opens with (a T-1103 link or selected text); `null` opens it empty. */
+    initialConverterText: String? = null,
 ) : ViewModel() {
     private val tab = MutableStateFlow(ToolsTab.CONVERTER)
-    private val inputs = MutableStateFlow(ToolsInputs())
+    private val inputs = MutableStateFlow(ToolsInputs(converter = initialConverterText.orEmpty()))
 
     /** Board zones changed in this session; `null` while the settings' zones are shown unchanged. */
     private val chosenZones = MutableStateFlow<List<String>?>(null)
@@ -81,12 +87,18 @@ class ToolsViewModel(
 
     /** Adds [id] to the board and clears the search. */
     fun onAddZone(id: String) {
-        chosenZones.update { current -> (current ?: settingsZones()).filterNot { it == id } + id }
+        editBoard { zones -> zones.filterNot { it == id } + id }
         inputs.update { it.copy(zoneQuery = "") }
     }
 
     fun onRemoveZone(id: String) {
-        chosenZones.update { current -> (current ?: settingsZones()).filterNot { it == id } }
+        editBoard { zones -> zones.filterNot { it == id } }
+    }
+
+    /** Shows the board changed by [change] and keeps it; when keeping fails the change still lasts for the session. */
+    private fun editBoard(change: (List<String>) -> List<String>) {
+        val zones = chosenZones.updateAndGet { current -> change(current ?: settingsZones()) }.orEmpty()
+        viewModelScope.launch { runCatching { boardStore.setBoardZones(zones) } }
     }
 
     /** The QR text and its code while one is shown, for sharing. */
