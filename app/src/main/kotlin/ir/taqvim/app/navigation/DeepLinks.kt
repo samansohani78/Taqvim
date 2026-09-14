@@ -48,6 +48,7 @@ internal object DeepLinks {
             "event" to ::event,
             "occasion" to ::occasion,
             "convert" to ::converter,
+            "timeline" to ::timeline,
             "times" to { _ -> AppDestination.Times },
             "astronomy" to { _ -> AppDestination.Astronomy },
             "map" to { _ -> AppDestination.WorldMap },
@@ -60,7 +61,14 @@ internal object DeepLinks {
         runCatching { Link.of(link)?.let { HANDLERS[it.host]?.invoke(it) } }.getOrNull() ?: AppDestination.Calendar
 
     /** `day/<y-m-d>[?calendar=persian|islamic|gregorian]`. */
-    private fun day(link: Link): AppDestination? {
+    private fun day(link: Link): AppDestination? = jdn(link)?.let(AppDestination::Day)
+
+    /** `timeline[/<y-m-d>][?calendar=…]`: the week timeline, at the week of that day when one is given. */
+    private fun timeline(link: Link): AppDestination? =
+        if (link.path.isEmpty()) AppDestination.Timeline() else jdn(link)?.let { AppDestination.Timeline(it) }
+
+    /** The day of a link's single `y-m-d` path segment in its `calendar` (Persian by default). */
+    private fun jdn(link: Link): Long? {
         val calendar = CALENDARS[link.query["calendar"]?.lowercase() ?: DEFAULT_CALENDAR] ?: return null
         val (year, month, day) = link.path.singleOrNull()?.let(::numbers) ?: return null
         return calendar
@@ -68,7 +76,6 @@ internal object DeepLinks {
             ?.toJdn(calendar.date(year, month, day))
             ?.value
             ?.takeIf { it in JDN_RANGE }
-            ?.let(AppDestination::Day)
     }
 
     /** `event/<id>`: a personal event in the editor. */

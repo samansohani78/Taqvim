@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 23 * * *"
   workflow_dispatch:
+    inputs:
+      baseline-profile:
+        description: Also generate the baseline and startup profiles (T-1800)
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -38,8 +43,46 @@ jobs:
           script: >-
             ./gradlew :benchmark:connectedBenchmarkAndroidTest
             -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.suppressErrors=EMULATOR,LOW-BATTERY
+            -Pandroid.testInstrumentationRunnerArguments.notClass=ir.taqvim.benchmark.BaselineProfileGenerator
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: benchmark-results
+          path: benchmark/build/outputs/connected_android_test_additional_output/
+      - name: Regression gate (> 10 % fails, T-1801)
+        run: |
+          python3 -m unittest discover -s tools/benchmark
+          python3 tools/benchmark/compare_benchmarks.py \
+            --baseline benchmark/baselines \
+            --results benchmark/build/outputs/connected_android_test_additional_output \
+            --threshold 0.10
+
+  baseline-profile:
+    name: Baseline and startup profiles (on demand)
+    if: github.event_name == 'workflow_dispatch' && inputs.baseline-profile
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Generate profiles
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: >-
+            ./gradlew :benchmark:connectedBenchmarkAndroidTest
+            -Pandroid.testInstrumentationRunnerArguments.class=ir.taqvim.benchmark.BaselineProfileGenerator
+      # Reviewed by a person and committed as app/src/main/baseline-prof.txt (ADR-0018).
+      - uses: actions/upload-artifact@v7
+        with:
+          name: baseline-profiles
           path: benchmark/build/outputs/connected_android_test_additional_output/

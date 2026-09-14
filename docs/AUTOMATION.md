@@ -19,6 +19,8 @@ web pages. A link Taqvim cannot read opens the calendar.
 | `taqvim://occasion/<event id>?day=2461121` | The calendar on that day (used by official-event reminders) |
 | `taqvim://convert?date=1405-01-01&from=persian` | The date converter with 1 Farvardin 1405 |
 | `taqvim://convert?date=next%20friday` | The date converter with any text it can read |
+| `taqvim://timeline` | The week timeline on this week |
+| `taqvim://timeline/1405-01-01` | The week timeline at the week of 1 Farvardin 1405 (`?calendar=` as for `day`) |
 | `taqvim://times` | Prayer times |
 | `taqvim://astronomy` | Astronomy |
 | `taqvim://map` | The world map |

@@ -12,6 +12,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import ir.taqvim.app.automation.DayChangeAlarm
 import ir.taqvim.app.navigation.AppDestination
 import ir.taqvim.app.navigation.AppIntents
@@ -32,7 +35,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) pendingLink = destinationOf(intent)
         DayChangeAlarm.schedule(this, Clock.System.now(), TimeZone.currentSystemDefault())
-        setContent { TaqvimAppShell(link = pendingLink, onLinkOpened = { pendingLink = null }) }
+        setContent {
+            TaqvimAppShell(
+                // Test tags readable as resource ids by the macrobenchmarks and profile generator (T-1801).
+                modifier = Modifier.semantics { testTagsAsResourceId = true },
+                link = pendingLink,
+                onLinkOpened = { pendingLink = null },
+            )
+        }
     }
 
     override fun onNewIntent(intent: Intent) {

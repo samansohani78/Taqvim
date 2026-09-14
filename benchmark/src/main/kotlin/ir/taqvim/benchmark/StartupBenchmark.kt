@@ -4,6 +4,7 @@
  */
 package ir.taqvim.benchmark
 
+import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.StartupMode
 import androidx.benchmark.macro.StartupTimingMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
@@ -12,26 +13,42 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/** Cold-start budget: ≤ 350 ms to first frame on a Pixel 6a-class device (plan §9). */
+/**
+ * T-1800/T-1801 startup: plan §9 budgets are ≤ 350 ms to the first month frame on a Pixel 6a-class device and
+ * ≤ 800 ms on a low-end API 26 device. Emulator runs (benchmark.yml) are only compared with earlier runs, never with
+ * the budget. The run without ahead-of-time compilation shows what the baseline profile saves.
+ */
 @RunWith(AndroidJUnit4::class)
 class StartupBenchmark {
     @get:Rule
     val rule = MacrobenchmarkRule()
 
     @Test
-    fun startupCold(): Unit =
+    fun startupCold(): Unit = startup(StartupMode.COLD, CompilationMode.DEFAULT)
+
+    @Test
+    fun startupWarm(): Unit = startup(StartupMode.WARM, CompilationMode.DEFAULT)
+
+    @Test
+    fun startupColdWithoutProfile(): Unit = startup(StartupMode.COLD, CompilationMode.None())
+
+    private fun startup(
+        mode: StartupMode,
+        compilation: CompilationMode,
+    ) {
         rule.measureRepeated(
-            packageName = TARGET_PACKAGE,
+            packageName = APP_PACKAGE,
             metrics = listOf(StartupTimingMetric()),
+            compilationMode = compilation,
             iterations = ITERATIONS,
-            startupMode = StartupMode.COLD,
+            startupMode = mode,
         ) {
             pressHome()
             startActivityAndWait()
         }
+    }
 
     private companion object {
-        const val TARGET_PACKAGE = "ir.taqvim.app"
         const val ITERATIONS = 10
     }
 }
