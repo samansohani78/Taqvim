@@ -139,7 +139,8 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
-      - run: ./gradlew assemble $TAQVIM_GRADLE_ARGS
+      # T-1800 (ADR-0018): the shrunk release keeps what reflection needs and stays within the plan §9 APK budget.
+      - run: ./gradlew assemble :app:verifyReleaseShrinking :app:checkReleaseApkSize $TAQVIM_GRADLE_ARGS
 
   workflows:
     name: Workflow lint

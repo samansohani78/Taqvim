@@ -1,0 +1,18 @@
+# Checked by :app:verifyReleaseShrinking against the release R8 mapping (T-1800, ADR-0018).
+#   kept <class>    present in the shrunk app (may be renamed)
+#   named <class>   present with its original name
+#   fields <class>  present with every field name unchanged
+
+# Saved back stack (ADR-0015): the destination serializers are reached through the sealed companion.
+kept ir.taqvim.app.navigation.AppDestination$Companion
+kept ir.taqvim.app.navigation.AppDestination$Timeline$$serializer
+
+# Backup file (T-605): the document serializer.
+kept ir.taqvim.data.database.backup.BackupDocument$$serializer
+
+# WorkManager stores the worker class name; WorkManager's consumer rules keep it (T-1003).
+named ir.taqvim.data.events.ics.SubscriptionRefreshWorker
+
+# Proto DataStore (T-600): protobuf-javalite reads the generated fields by name (app/proguard-rules.pro).
+fields ir.taqvim.data.preferences.proto.UserPrefs
+fields ir.taqvim.data.preferences.proto.AthanSettingsProto

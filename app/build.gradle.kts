@@ -1,4 +1,5 @@
 import com.android.build.api.artifact.SingleArtifact
+import com.android.build.api.variant.BuiltArtifactsLoader
 import javax.xml.parsers.DocumentBuilderFactory
 
 plugins {
@@ -7,6 +8,9 @@ plugins {
     // Serializable navigation destinations, saved with the back stack (ADR-0015).
     id("org.jetbrains.kotlin.plugin.serialization")
 }
+
+/** Plan §9: release APK at most 8 MB (T-1800). */
+val apkBudgetBytes: Long = 8L * 1024 * 1024
 
 android {
     namespace = "ir.taqvim.app"
@@ -109,6 +113,95 @@ dependencies {
 }
 
 /**
+ * T-1800 (ADR-0018): the shrunk release keeps what reflection and persisted names need. Each line of
+ * `shrinking-requirements.txt` is `kept <class>` (present, may be renamed), `named <class>` (present with its name) or
+ * `fields <class>` (present with every field name unchanged), checked against the R8 mapping.
+ */
+abstract class ReleaseShrinkingCheck : DefaultTask() {
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val mapping: RegularFileProperty
+
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val requirements: RegularFileProperty
+
+    @TaskAction
+    fun verify() {
+        val classes = mutableMapOf<String, String>()
+        val fields = mutableMapOf<String, MutableList<Pair<String, String>>>()
+        var current: String? = null
+        mapping.get().asFile.forEachLine { line ->
+            val header = Regex("""^(\S+) -> (\S+):$""").matchEntire(line)
+            val member = Regex("""^\s+\S+ (\S+) -> (\S+)$""").matchEntire(line)
+            when {
+                header != null -> {
+                    current = header.groupValues[1].also { classes[it] = header.groupValues[2] }
+                }
+
+                member != null && '(' !in line -> {
+                    val owner = current ?: return@forEachLine
+                    fields.getOrPut(owner) { mutableListOf() } += member.groupValues[1] to member.groupValues[2]
+                }
+            }
+        }
+        val problems =
+            requirements
+                .get()
+                .asFile
+                .readLines()
+                .map(String::trim)
+                .filterNot { it.isEmpty() || it.startsWith("#") }
+                .mapNotNull { line ->
+                    val (kind, name) = line.split(' ', limit = 2)
+                    when (kind) {
+                        "kept" -> {
+                            "$name was removed".takeIf { name !in classes }
+                        }
+
+                        "named" -> {
+                            "$name was renamed or removed".takeIf { classes[name] != name }
+                        }
+
+                        "fields" -> {
+                            val kept = fields[name].orEmpty()
+                            "$name lost field names".takeIf { kept.isEmpty() || kept.any { it.first != it.second } }
+                        }
+
+                        else -> {
+                            "unknown requirement: $line"
+                        }
+                    }
+                }
+        check(problems.isEmpty()) { "Release shrinking requirements not met (T-1800):\n" + problems.joinToString("\n") }
+    }
+}
+
+/** T-1800 plan §9 budget: every APK of the release variant is at most [budgetBytes] bytes. */
+abstract class ApkSizeCheck : DefaultTask() {
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val apkDirectory: DirectoryProperty
+
+    @get:Internal
+    abstract val loader: Property<BuiltArtifactsLoader>
+
+    @get:Input
+    abstract val budgetBytes: Property<Long>
+
+    @TaskAction
+    fun measure() {
+        val artifacts = checkNotNull(loader.get().load(apkDirectory.get())) { "No APKs in ${apkDirectory.get()}" }
+        artifacts.elements.forEach { element ->
+            val apk = File(element.outputFile)
+            val budget = budgetBytes.get()
+            logger.lifecycle("APK ${apk.name}: ${apk.length()} bytes (budget $budget)")
+            check(apk.length() <= budget) { "${apk.name} is ${apk.length()} bytes, over the $budget byte budget" }
+        }
+    }
+}
+
+/**
  * T-1804 manifest audit (ADR-0017): the release manifest exports exactly the components listed for `all` builds in
  * `src/test/resources/security/exported-components.txt`. The debug manifest is checked by ExportedComponentsTest.
  */
@@ -169,5 +262,20 @@ androidComponents {
                 allowlist.set(layout.projectDirectory.file("src/test/resources/security/exported-components.txt"))
             }
         tasks.named("check") { dependsOn(audit) }
+
+        val variantName = variant.name.replaceFirstChar(Char::uppercase)
+        tasks.register<ReleaseShrinkingCheck>("verify${variantName}Shrinking") {
+            group = "verification"
+            description = "Checks the R8 mapping of ${variant.name} against shrinking-requirements.txt (T-1800)."
+            mapping.set(variant.artifacts.get(SingleArtifact.OBFUSCATION_MAPPING_FILE))
+            requirements.set(layout.projectDirectory.file("shrinking-requirements.txt"))
+        }
+        tasks.register<ApkSizeCheck>("check${variantName}ApkSize") {
+            group = "verification"
+            description = "Fails when a ${variant.name} APK is over the plan §9 size budget (T-1800)."
+            apkDirectory.set(variant.artifacts.get(SingleArtifact.APK))
+            loader.set(variant.artifacts.getBuiltArtifactsLoader())
+            budgetBytes.set(apkBudgetBytes)
+        }
     }
 }
