@@ -22,13 +22,11 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - name: Tag matches versionName (docs/RELEASE.md)
-        run: |
-          tag="${GITHUB_REF_NAME#v}"
-          name="$(sed -n 's/^[[:space:]]*versionName = "\(.*\)"$/\1/p' app/build.gradle.kts)"
-          test -n "$name" || { echo "::error::versionName not found in app/build.gradle.kts"; exit 1; }
-          test "$tag" = "$name" || { echo "::error::Tag $GITHUB_REF_NAME does not match versionName $name"; exit 1; }
       - uses: ./.github/actions/setup
+      - name: Version from the tag (docs/RELEASE.md)
+        # The build rejects tags that are not vX.Y.Z or vX.Y.Z-beta.N and derives versionName/versionCode from them.
+        shell: bash
+        run: ./gradlew :app:verifyReleaseVersion -Ptaqvim.version="$GITHUB_REF_NAME" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Decode signing keystore
         env:
           KEYSTORE_BASE64: ${{ secrets.TAQVIM_KEYSTORE_BASE64 }}
@@ -41,7 +39,9 @@ jobs:
           TAQVIM_KEYSTORE_PASSWORD: ${{ secrets.TAQVIM_KEYSTORE_PASSWORD }}
           TAQVIM_KEY_ALIAS: ${{ secrets.TAQVIM_KEY_ALIAS }}
           TAQVIM_KEY_PASSWORD: ${{ secrets.TAQVIM_KEY_PASSWORD }}
-        run: ./gradlew licenseCheck :app:auditReleaseExportedComponents :app:bundleRelease :app:assembleRelease :app:cyclonedxDirectBom
+        run: >-
+          ./gradlew licenseCheck :app:auditReleaseExportedComponents :app:bundleRelease :app:assembleRelease
+          :app:cyclonedxDirectBom -Ptaqvim.version="$GITHUB_REF_NAME"
       - name: Checksums
         run: |
           mkdir -p "$RUNNER_TEMP/release"

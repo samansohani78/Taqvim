@@ -1,5 +1,6 @@
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.BuiltArtifactsLoader
+import ir.taqvim.buildlogic.TaqvimVersion
 import javax.xml.parsers.DocumentBuilderFactory
 
 plugins {
@@ -12,12 +13,23 @@ plugins {
 /** Plan §9: release APK at most 8 MB (T-1800). */
 val apkBudgetBytes: Long = 8L * 1024 * 1024
 
+/** The release tag passed by CI (`-Ptaqvim.version`), otherwise the checked-in `version.properties` (T-1900). */
+val taqvimVersion: TaqvimVersion =
+    TaqvimVersion.resolve(
+        property = providers.gradleProperty(TaqvimVersion.PROPERTY).orNull,
+        propertiesFile =
+            providers
+                .fileContents(rootProject.layout.projectDirectory.file("version.properties"))
+                .asText
+                .orNull,
+    )
+
 android {
     namespace = "ir.taqvim.app"
     defaultConfig {
         applicationId = "ir.taqvim.app"
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = taqvimVersion.code
+        versionName = taqvimVersion.name
     }
     buildFeatures {
         // Version and build type shown on the About screen and in problem reports (T-1504).
@@ -202,6 +214,35 @@ abstract class ApkSizeCheck : DefaultTask() {
 }
 
 /**
+ * T-1900 (docs/RELEASE.md): every output of the variant carries the resolved Taqvim version. Also prints it, so
+ * `./gradlew :app:verifyReleaseVersion -Ptaqvim.version=<tag>` shows the name and code a tag produces.
+ */
+abstract class VersionCheck : DefaultTask() {
+    @get:Input
+    abstract val expectedName: Property<String>
+
+    @get:Input
+    abstract val expectedCode: Property<Int>
+
+    @get:Input
+    abstract val outputNames: ListProperty<String>
+
+    @get:Input
+    abstract val outputCodes: ListProperty<Int>
+
+    @TaskAction
+    fun verify() {
+        logger.lifecycle("Taqvim version ${expectedName.get()} (versionCode ${expectedCode.get()})")
+        check(outputNames.get().isNotEmpty() && outputNames.get().all { it == expectedName.get() }) {
+            "versionName ${outputNames.get()} differs from ${expectedName.get()}"
+        }
+        check(outputCodes.get().all { it == expectedCode.get() }) {
+            "versionCode ${outputCodes.get()} differs from ${expectedCode.get()}"
+        }
+    }
+}
+
+/**
  * T-1804 manifest audit (ADR-0017): the release manifest exports exactly the components listed for `all` builds in
  * `src/test/resources/security/exported-components.txt`. The debug manifest is checked by ExportedComponentsTest.
  */
@@ -276,6 +317,19 @@ androidComponents {
             apkDirectory.set(variant.artifacts.get(SingleArtifact.APK))
             loader.set(variant.artifacts.getBuiltArtifactsLoader())
             budgetBytes.set(apkBudgetBytes)
+        }
+    }
+    onVariants { variant ->
+        val variantName = variant.name.replaceFirstChar(Char::uppercase)
+        tasks.register<VersionCheck>("verify${variantName}Version") {
+            group = "verification"
+            description = "Checks that ${variant.name} uses the version from -Ptaqvim.version or version.properties."
+            expectedName.set(taqvimVersion.name)
+            expectedCode.set(taqvimVersion.code)
+            variant.outputs.forEach { output ->
+                outputNames.add(output.versionName)
+                outputCodes.add(output.versionCode)
+            }
         }
     }
 }

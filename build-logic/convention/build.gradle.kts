@@ -20,6 +20,9 @@ dependencies {
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.kotest.assertions.core)
+    // Ordering property of TaqvimVersion codes (T-1900).
+    testImplementation(libs.kotest.property)
+    testImplementation(libs.kotlinx.coroutines.core)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
 

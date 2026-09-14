@@ -14,22 +14,27 @@ closed beta that precedes the first public release is described in [BETA.md](BET
   - MAJOR: incompatible changes to user data, backup files (T-605) or the automation contract (ADR-0016).
   - MINOR: new features, new datasets or dataset years.
   - PATCH: fixes only, including dataset corrections.
-- **`versionCode`** must increase with every build uploaded anywhere. Proposed formula:
+- **`versionCode`** must increase with every build uploaded anywhere:
 
   `versionCode = MAJOR × 1 000 000 + MINOR × 10 000 + PATCH × 100 + STAGE`
 
   where `STAGE` is `N` for `-beta.N` (1–98) and `99` for the final release. So `1.0.0-beta.3` → 1 000 003 and `1.0.0`
-  → 1 000 099. It fits in Android's 2 100 000 000 limit up to version 2099.
-- **Current state:** `app/build.gradle.kts` still hard-codes `versionCode = 1` and `versionName = "0.1.0"`. Deriving both
-  from the tag (or a single version file) is a pending build change; until then they are edited by hand in the release
-  commit.
+  → 1 000 099. It fits in Android's 2 100 000 000 limit up to version 2099. MINOR and PATCH are 0–99.
+- **Where the version comes from (done):** `TaqvimVersion` in `build-logic` parses and checks the version, and
+  `:app` takes it from, in order:
+  1. the Gradle property `-Ptaqvim.version=vX.Y.Z[-beta.N]` — `release.yml` passes the pushed tag, so the tag *is*
+     the version and a malformed tag fails the build;
+  2. otherwise `version.properties` at the repository root (`version=0.1.0`), the default for local and PR builds.
+
+  `./gradlew :app:verifyReleaseVersion -Ptaqvim.version=v1.2.3-beta.4` prints and checks the resulting name and code.
+  Bump `version.properties` in the release commit so local builds match the latest release.
 
 ## Branches and tags
 
 - `main` is always releasable: every commit passed the PR workflow (`pr.yml`: static analysis, unit + Robolectric
   tests with coverage gates, screenshots, license gate, dataset validation, assemble, workflow lint).
-- A release is a tag `vX.Y.Z` (or `vX.Y.Z-beta.N`) on a green `main` commit. Tags must match `versionName` exactly; the
-  release workflow refuses a mismatch.
+- A release is a tag `vX.Y.Z` (or `vX.Y.Z-beta.N`) on a green `main` commit. The release build derives `versionName`
+  and `versionCode` from the tag and refuses a tag that is not in that form.
 - Hot fixes for an older release: branch `release/X.Y` from its tag, fix, tag `vX.Y.(Z+1)`, and merge the fix back into
   `main`.
 

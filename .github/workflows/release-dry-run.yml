@@ -37,7 +37,10 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup
       - name: Release gates and unsigned build
-        run: ./gradlew licenseCheck :app:auditReleaseExportedComponents :app:bundleRelease :app:assembleRelease :app:cyclonedxDirectBom
+        # Without -Ptaqvim.version the build uses version.properties; verifyReleaseVersion prints and checks it.
+        run: >-
+          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:bundleRelease
+          :app:assembleRelease :app:cyclonedxDirectBom
       - name: Check release outputs
         run: |
           shopt -s nullglob
