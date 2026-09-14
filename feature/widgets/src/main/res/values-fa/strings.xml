@@ -44,4 +44,26 @@
   <string name="widget_no_events">امروز رویدادی نیست</string>
   <string name="widget_next_prayer">%1$s %2$s</string>
   <string name="widget_no_place">برای اوقات شرعی، مکان را انتخاب کنید</string>
+  <string name="widget_month_interactive_name">ماه</string>
+  <string name="widget_month_interactive_description">ماه با تعطیلات و رویدادها؛ جابه‌جایی میان ماه‌ها</string>
+  <string name="widget_month_bitmap_name">نمای ماه</string>
+  <string name="widget_month_bitmap_description">کل ماه در یک تصویر</string>
+  <string name="widget_week_strip_name">هفته</string>
+  <string name="widget_week_strip_description">این هفته با تعطیلات و رویدادها</string>
+  <string name="widget_schedule_name">برنامه</string>
+  <string name="widget_schedule_description">رویدادهای شما در ۱۴ روز آینده</string>
+  <string name="widget_sun_arc_name">خورشید</string>
+  <string name="widget_sun_arc_description">مسیر خورشید از طلوع تا غروب</string>
+  <string name="widget_month_previous">ماه قبل</string>
+  <string name="widget_month_next">ماه بعد</string>
+  <string name="widget_month_today">امروز</string>
+  <string name="widget_month_add">رویداد تازه</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s، تعطیل</string>
+  <string name="widget_schedule_title">۱۴ روز آینده</string>
+  <string name="widget_schedule_empty">در ۱۴ روز آینده رویدادی نیست</string>
+  <string name="widget_sun_description">طلوع %1$s، غروب %2$s</string>
 </resources>

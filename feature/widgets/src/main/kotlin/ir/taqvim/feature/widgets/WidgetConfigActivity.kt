@@ -41,8 +41,9 @@ val widgetsFeatureModule: Module =
         single { GlanceWidgets(get(), getAll()) } binds
             arrayOf(InstalledWidgets::class, WidgetUpdater::class, WidgetKindResolver::class)
         single<WidgetWakeUpScheduler> { AlarmWidgetWakeUpScheduler(get()) }
-        single { WidgetRefresher(get(), get(), get(), get(), get(), get()) }
-        single { WidgetStateLoader(get(), get(), get()) }
+        single<WidgetViewStore> { SharedPreferencesWidgetViewStore(get()) }
+        single { WidgetRefresher(get(), get(), get(), get(), get(), get(), views = get()) }
+        single { WidgetStateLoader(get(), get(), get(), views = get()) }
         viewModel { (appWidgetId: Int, kind: WidgetKind) ->
             WidgetConfigViewModel(appWidgetId, kind, get(), get(), get())
         }

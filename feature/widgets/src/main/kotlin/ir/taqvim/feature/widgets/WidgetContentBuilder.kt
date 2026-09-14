@@ -148,18 +148,37 @@ object WidgetPrayers {
         day: Jdn,
         place: WidgetPlace,
     ): List<Pair<WidgetPrayer, Instant>> {
-        val date = day.toLocalDate()
-        val noon = date.atTime(NOON_HOUR, 0).toInstant(place.timeZone)
+        val times = times(day, place) ?: return emptyList()
+        return primary(times).mapNotNull { (prayer, minute) -> minute?.let { prayer to instant(day, it, place) } }
+    }
+
+    /** Sunrise and sunset of [day] at [place], or `null` on polar days and nights (T-1209). */
+    fun daylight(
+        day: Jdn,
+        place: WidgetPlace,
+    ): Pair<Instant, Instant>? {
+        val times = times(day, place) ?: return null
+        return instant(day, times.sunrise, place) to instant(day, times.sunset, place)
+    }
+
+    private fun times(
+        day: Jdn,
+        place: WidgetPlace,
+    ): PrayerTimes? {
+        val noon = day.toLocalDate().atTime(NOON_HOUR, 0).toInstant(place.timeZone)
         val offsetMinutes = place.timeZone.offsetAt(noon).totalSeconds / SECONDS_PER_MINUTE
-        val times =
-            when (val result = PrayerTimesCalculator.calculate(day, place.coordinates, offsetMinutes, place.settings)) {
-                is PrayerTimesResult.Available -> result.times
-                is PrayerTimesResult.Unavailable -> return emptyList()
-            }
-        return primary(times).mapNotNull { (prayer, minute) ->
-            minute?.let { prayer to date.atTime(it.hour, it.minute).toInstant(place.timeZone) }
+        val result = PrayerTimesCalculator.calculate(day, place.coordinates, offsetMinutes, place.settings)
+        return when (result) {
+            is PrayerTimesResult.Available -> result.times
+            is PrayerTimesResult.Unavailable -> null
         }
     }
+
+    private fun instant(
+        day: Jdn,
+        minute: MinuteOfDay,
+        place: WidgetPlace,
+    ): Instant = day.toLocalDate().atTime(minute.hour, minute.minute).toInstant(place.timeZone)
 
     /** The first primary time strictly after [now] (today's or tomorrow's), or `null` when none is defined. */
     fun next(

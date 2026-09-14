@@ -45,4 +45,26 @@
   <string name="widget_no_events">No events today</string>
   <string name="widget_next_prayer">%1$s %2$s</string>
   <string name="widget_no_place">Choose a location for prayer times</string>
+  <string name="widget_month_interactive_name">Month</string>
+  <string name="widget_month_interactive_description">The month with holidays and events; move between months</string>
+  <string name="widget_month_bitmap_name">Month overview</string>
+  <string name="widget_month_bitmap_description">The whole month drawn in one picture</string>
+  <string name="widget_week_strip_name">Week</string>
+  <string name="widget_week_strip_description">This week with holidays and events</string>
+  <string name="widget_schedule_name">Schedule</string>
+  <string name="widget_schedule_description">Your events of the next 14 days</string>
+  <string name="widget_sun_arc_name">Sun</string>
+  <string name="widget_sun_arc_description">The Sun’s path from sunrise to sunset</string>
+  <string name="widget_month_previous">Previous month</string>
+  <string name="widget_month_next">Next month</string>
+  <string name="widget_month_today">Today</string>
+  <string name="widget_month_add">New event</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, holiday</string>
+  <string name="widget_schedule_title">Next 14 days</string>
+  <string name="widget_schedule_empty">No events in the next 14 days</string>
+  <string name="widget_sun_description">Sunrise %1$s, sunset %2$s</string>
 </resources>

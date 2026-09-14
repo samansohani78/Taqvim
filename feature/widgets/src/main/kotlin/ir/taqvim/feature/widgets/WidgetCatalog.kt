@@ -27,6 +27,31 @@ class PrayerStripWidget4x2Receiver : TaqvimWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = PrayerStripWidget4x2()
 }
 
+/** Launcher receiver of [MonthInteractiveWidget] (T-1205). */
+class MonthInteractiveWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = MonthInteractiveWidget()
+}
+
+/** Launcher receiver of [MonthBitmapWidget] (T-1206). */
+class MonthBitmapWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = MonthBitmapWidget()
+}
+
+/** Launcher receiver of [WeekStripWidget] (T-1207). */
+class WeekStripWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = WeekStripWidget()
+}
+
+/** Launcher receiver of [ScheduleWidget] (T-1208). */
+class ScheduleWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = ScheduleWidget()
+}
+
+/** Launcher receiver of [SunArcWidget] (T-1209). */
+class SunArcWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = SunArcWidget()
+}
+
 /** The widgets implemented so far, registered with the framework by `widgetsFeatureModule`. */
 object WidgetCatalog {
     val registrations: List<WidgetRegistration> =
@@ -51,6 +76,31 @@ object WidgetCatalog {
                 PrayerStripWidget4x2Receiver::class.java,
                 PrayerStripWidget4x2::class.java,
             ) { PrayerStripWidget4x2() },
+            WidgetRegistration(
+                WidgetKind.MONTH_INTERACTIVE,
+                MonthInteractiveWidgetReceiver::class.java,
+                MonthInteractiveWidget::class.java,
+            ) { MonthInteractiveWidget() },
+            WidgetRegistration(
+                WidgetKind.MONTH_BITMAP,
+                MonthBitmapWidgetReceiver::class.java,
+                MonthBitmapWidget::class.java,
+            ) { MonthBitmapWidget() },
+            WidgetRegistration(
+                WidgetKind.WEEK_STRIP,
+                WeekStripWidgetReceiver::class.java,
+                WeekStripWidget::class.java,
+            ) { WeekStripWidget() },
+            WidgetRegistration(
+                WidgetKind.SCHEDULE,
+                ScheduleWidgetReceiver::class.java,
+                ScheduleWidget::class.java,
+            ) { ScheduleWidget() },
+            WidgetRegistration(
+                WidgetKind.SUN_ARC,
+                SunArcWidgetReceiver::class.java,
+                SunArcWidget::class.java,
+            ) { SunArcWidget() },
         )
 }
 

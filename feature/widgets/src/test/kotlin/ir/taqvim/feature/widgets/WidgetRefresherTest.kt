@@ -79,7 +79,7 @@ class WidgetRefresherTest {
         runTest {
             val requested = mutableListOf<WidgetConfig>()
             val source =
-                WidgetDataSource { _, config, _ ->
+                WidgetDataSource { _, config, _, _ ->
                     requested += config
                     WidgetSamples.data()
                 }
@@ -97,13 +97,45 @@ class WidgetRefresherTest {
         }
 
     @Test
+    fun `a session loads its widget's view and removed widgets forget theirs`(): Unit =
+        runTest {
+            val views = FakeWidgetViewStore(mapOf(5 to WidgetView(monthOffset = 2), 6 to WidgetView(monthOffset = -1)))
+            val seen = mutableListOf<WidgetView>()
+            val source =
+                WidgetDataSource { _, _, _, view ->
+                    seen += view
+                    WidgetSamples.data()
+                }
+            val loader =
+                WidgetStateLoader(FakeWidgetConfigStore(), source, clock, StandardTestDispatcher(testScheduler), views)
+
+            loader.load(WidgetKind.MONTH_INTERACTIVE, 5)
+            loader.load(WidgetKind.MONTH_INTERACTIVE, 7)
+            seen shouldBe listOf(WidgetView(monthOffset = 2), WidgetView())
+
+            val installed = FakeInstalledWidgets()
+            val refresher =
+                WidgetRefresher(
+                    installed,
+                    RecordingUpdater(),
+                    RecordingWakeUpScheduler(),
+                    FixedTimeline(WidgetTimeline(WidgetSamples.tehran, null)),
+                    FakeWidgetConfigStore(),
+                    clock,
+                    views = views,
+                )
+            refresher.onDeleted(setOf(5))
+            views.stored shouldBe mapOf(6 to WidgetView(monthOffset = -1))
+        }
+
+    @Test
     fun `a failing content source gives the failure state but cancellation propagates`(): Unit =
         runTest {
             val configs = FakeWidgetConfigStore()
             val failing =
                 WidgetStateLoader(
                     configs,
-                    { _, _, _ -> error("offline") },
+                    { _, _, _, _ -> error("offline") },
                     clock,
                     StandardTestDispatcher(testScheduler),
                 )
@@ -113,7 +145,7 @@ class WidgetRefresherTest {
             val cancelled =
                 WidgetStateLoader(
                     configs,
-                    { _, _, _ -> throw CancellationException("stopped") },
+                    { _, _, _, _ -> throw CancellationException("stopped") },
                     clock,
                     StandardTestDispatcher(testScheduler),
                 )

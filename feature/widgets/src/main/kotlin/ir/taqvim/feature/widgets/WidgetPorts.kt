@@ -34,6 +34,10 @@ data class WidgetPrayerLine(
  * @property title the date in the primary calendar, e.g. "22 Shahrivar 1405".
  * @property secondaryDate the date in the configuration's secondary calendar, or `null` when there is none.
  * @property prayers the day's primary prayer times in order (empty without a chosen place or on polar days).
+ * @property month the shown month page of the month widgets (T-1205, T-1206), else `null`.
+ * @property week today's week for the week strip (T-1207), else empty.
+ * @property schedule today and the following days with events for the schedule (T-1208), else empty.
+ * @property sun today's daylight at the chosen place for the sun arc (T-1209), else `null`.
  */
 data class WidgetData(
     val date: LocalDate,
@@ -45,14 +49,22 @@ data class WidgetData(
     val events: ImmutableList<WidgetEventLine> = persistentListOf(),
     val nextPrayer: WidgetPrayerLine? = null,
     val prayers: ImmutableList<WidgetPrayerLine> = persistentListOf(),
+    val month: WidgetMonth? = null,
+    val week: ImmutableList<WidgetCalendarDay> = persistentListOf(),
+    val schedule: ImmutableList<WidgetScheduleDay> = persistentListOf(),
+    val sun: WidgetSun? = null,
 )
 
-/** Loads the content of a widget of [WidgetKind] with its [WidgetConfig] at an instant; bound in `:app`. */
+/**
+ * Loads the content of a widget of [WidgetKind] with its [WidgetConfig] and navigation [WidgetView] at an instant;
+ * bound in `:app`.
+ */
 fun interface WidgetDataSource {
     suspend fun load(
         kind: WidgetKind,
         config: WidgetConfig,
         now: Instant,
+        view: WidgetView,
     ): WidgetData
 }
 

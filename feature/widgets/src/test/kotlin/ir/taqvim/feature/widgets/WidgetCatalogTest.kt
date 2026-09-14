@@ -19,7 +19,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
-/** T-1201…T-1204: every widget is registered once, declared as an exported launcher receiver and names its prayers. */
+/** T-1201…T-1209: every widget is registered once, declared as an exported launcher receiver and names its prayers. */
 @RunWith(AndroidJUnit4::class)
 class WidgetCatalogTest {
     private val context: Context = ApplicationProvider.getApplicationContext()
@@ -33,6 +33,11 @@ class WidgetCatalogTest {
                 WidgetKind.DATE_CLOCK_4X1,
                 WidgetKind.DAY_SUMMARY_2X2,
                 WidgetKind.PRAYER_STRIP_4X2,
+                WidgetKind.MONTH_INTERACTIVE,
+                WidgetKind.MONTH_BITMAP,
+                WidgetKind.WEEK_STRIP,
+                WidgetKind.SCHEDULE,
+                WidgetKind.SUN_ARC,
             )
         registrations.forEach { registration ->
             val created = registration.create()
@@ -69,6 +74,7 @@ class WidgetCatalogTest {
             .map { names.name(it) }
             .toSet()
             .size shouldBe WidgetPrayer.entries.size
+        koin.get<WidgetViewStore>().shouldBeInstanceOf<SharedPreferencesWidgetViewStore>()
     }
 
     private fun contextModule(): Module = module { single<Context> { context } }

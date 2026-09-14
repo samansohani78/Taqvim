@@ -22,6 +22,7 @@ class WidgetRefresher(
     private val configs: WidgetConfigStore,
     private val clock: Clock,
     private val policy: WidgetUpdatePolicy = WidgetUpdatePolicy(),
+    private val views: WidgetViewStore = WidgetViewStore.NONE,
 ) {
     suspend fun refresh(trigger: WidgetUpdateTrigger) {
         refresh(setOf(trigger))
@@ -39,9 +40,10 @@ class WidgetRefresher(
         reschedule(installed.installed().filterValues { it.isNotEmpty() })
     }
 
-    /** Forgets the configurations of deleted widgets and re-plans the wake-up for the remaining ones. */
+    /** Forgets the configurations and views of deleted widgets and re-plans the wake-up for the remaining ones. */
     suspend fun onDeleted(appWidgetIds: Set<Int>) {
         configs.delete(appWidgetIds)
+        views.delete(appWidgetIds)
         reschedule()
     }
 
@@ -68,13 +70,15 @@ sealed interface WidgetContentState {
 
 /**
  * Loads a widget's state from the stores on every session (nothing is kept in memory, so process death loses nothing):
- * the stored configuration (or the kind's default), normalized, and the content, computed on [dispatcher].
+ * the stored configuration (or the kind's default), normalized, its navigation view, and the content, computed on
+ * [dispatcher].
  */
 class WidgetStateLoader(
     private val configs: WidgetConfigStore,
     private val data: WidgetDataSource,
     private val clock: Clock,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val views: WidgetViewStore = WidgetViewStore.NONE,
 ) {
     suspend fun load(
         kind: WidgetKind,
@@ -82,7 +86,7 @@ class WidgetStateLoader(
     ): WidgetContentState =
         withContext(dispatcher) {
             val config = (configs.config(appWidgetId) ?: WidgetConfig.defaultFor(kind)).normalizedFor(kind)
-            runCatching { data.load(kind, config, clock.now()) }
+            runCatching { data.load(kind, config, clock.now(), views.view(appWidgetId)) }
                 .fold(
                     onSuccess = { WidgetContentState.Ready(config, it) },
                     onFailure = { error ->

@@ -18,6 +18,8 @@ class WidgetLinksTest {
             "taqvim://day/2026-03-21?calendar=gregorian"
         WidgetLinks.uri(WidgetClickTarget.Event(42)) shouldBe "taqvim://event/42"
         WidgetLinks.uri(WidgetClickTarget.PrayerTimes) shouldBe "taqvim://times"
+        WidgetLinks.uri(WidgetClickTarget.NewEvent(LocalDate(2026, 9, 23))) shouldBe
+            "taqvim://event/new/2026-09-23?calendar=gregorian"
     }
 
     @Test

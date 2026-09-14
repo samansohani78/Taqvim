@@ -53,7 +53,7 @@ class WidgetPlatformTest {
                 widgetsFeatureModule,
                 module {
                     single<Clock> { clock }
-                    single<WidgetDataSource> { WidgetDataSource { _, _, _ -> WidgetSamples.data() } }
+                    single<WidgetDataSource> { WidgetDataSource { _, _, _, _ -> WidgetSamples.data() } }
                     single<WidgetConfigStore> { configs }
                     single<WidgetTimelineSource> { FixedTimeline(WidgetTimeline(WidgetSamples.tehran, null)) }
                     single<WidgetCalendarsSource> { FakeCalendars(listOf(CalendarSystem.PERSIAN)) }

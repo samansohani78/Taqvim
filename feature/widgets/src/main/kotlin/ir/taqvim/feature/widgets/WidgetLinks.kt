@@ -22,6 +22,11 @@ sealed interface WidgetClickTarget {
     ) : WidgetClickTarget
 
     data object PrayerTimes : WidgetClickTarget
+
+    /** The editor of a new event on [date] (T-1205). */
+    data class NewEvent(
+        val date: LocalDate,
+    ) : WidgetClickTarget
 }
 
 /**
@@ -33,11 +38,13 @@ object WidgetLinks {
 
     /**
      * The link of [target]: `calendar` (today), `day/<y-m-d>?calendar=gregorian` (widget days are Gregorian dates),
-     * `event/<id>` (a personal event in the editor) or `times`.
+     * `event/<id>` (a personal event in the editor), `event/new/<y-m-d>?calendar=gregorian` (a new event on that day)
+     * or `times`.
      */
     fun uri(target: WidgetClickTarget): String =
         when (target) {
             WidgetClickTarget.Today -> "$SCHEME://calendar"
+            is WidgetClickTarget.NewEvent -> "$SCHEME://event/new/${target.date}?calendar=gregorian"
             is WidgetClickTarget.Day -> "$SCHEME://day/${target.date}?calendar=gregorian"
             is WidgetClickTarget.Event -> "$SCHEME://event/${target.id}"
             WidgetClickTarget.PrayerTimes -> "$SCHEME://times"

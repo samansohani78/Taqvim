@@ -43,6 +43,25 @@ class FakeWidgetConfigStore(
     }
 }
 
+class FakeWidgetViewStore(
+    initial: Map<Int, WidgetView> = emptyMap(),
+) : WidgetViewStore {
+    val stored: MutableMap<Int, WidgetView> = ConcurrentHashMap(initial)
+
+    override suspend fun view(appWidgetId: Int): WidgetView = stored[appWidgetId] ?: WidgetView()
+
+    override suspend fun save(
+        appWidgetId: Int,
+        view: WidgetView,
+    ) {
+        stored[appWidgetId] = view
+    }
+
+    override suspend fun delete(appWidgetIds: Set<Int>) {
+        appWidgetIds.forEach { stored.remove(it) }
+    }
+}
+
 class FakeInstalledWidgets(
     @Volatile var widgets: InstalledWidgetIds = emptyMap(),
 ) : InstalledWidgets {

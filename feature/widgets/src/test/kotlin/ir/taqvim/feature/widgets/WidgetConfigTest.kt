@@ -11,9 +11,11 @@ import io.kotest.matchers.floats.plusOrMinus
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.arbitrary.boolean
 import io.kotest.property.arbitrary.enum
 import io.kotest.property.arbitrary.int
-import io.kotest.property.arbitrary.set
+import io.kotest.property.arbitrary.list
+import io.kotest.property.arbitrary.map
 import io.kotest.property.checkAll
 import ir.taqvim.core.testing.PropertyTesting
 import kotlinx.collections.immutable.persistentSetOf
@@ -58,7 +60,7 @@ class WidgetConfigTest {
                 Arb.enum<WidgetKind>(),
                 Arb.int(-200..300),
                 Arb.int(-100..400),
-                Arb.set(Arb.enum<WidgetContent>(), 0..5),
+                contentSubsets(),
             ) { kind, transparency, scale, contents ->
                 val config =
                     WidgetConfig(
@@ -73,6 +75,14 @@ class WidgetConfigTest {
                 kind.contents.containsAll(config.contents).shouldBeTrue()
             }
         }
+
+    /** Every subset of the widget parts, each part picked by its own coin flip, so no size is ever unreachable. */
+    private fun contentSubsets(): Arb<Set<WidgetContent>> {
+        val parts = WidgetContent.entries
+        return Arb.list(Arb.boolean(), parts.size..parts.size).map { picks ->
+            parts.filterIndexed { index, _ -> picks[index] }.toSet()
+        }
+    }
 
     @Test
     fun `transparency reduces alpha and keeps the color`() {

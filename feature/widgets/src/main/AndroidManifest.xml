@@ -73,5 +73,62 @@
         android:name="android.appwidget.provider"
         android:resource="@xml/widget_info_prayer_strip_4x2" />
     </receiver>
+
+    <!-- T-1205…T-1209 widgets: exported because the launcher sends APPWIDGET_UPDATE (ADR-0017 allowlist). -->
+    <receiver
+      android:name="ir.taqvim.feature.widgets.MonthInteractiveWidgetReceiver"
+      android:exported="true"
+      android:label="@string/widget_month_interactive_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_month_interactive" />
+    </receiver>
+    <receiver
+      android:name="ir.taqvim.feature.widgets.MonthBitmapWidgetReceiver"
+      android:exported="true"
+      android:label="@string/widget_month_bitmap_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_month_bitmap" />
+    </receiver>
+    <receiver
+      android:name="ir.taqvim.feature.widgets.WeekStripWidgetReceiver"
+      android:exported="true"
+      android:label="@string/widget_week_strip_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_week_strip" />
+    </receiver>
+    <receiver
+      android:name="ir.taqvim.feature.widgets.ScheduleWidgetReceiver"
+      android:exported="true"
+      android:label="@string/widget_schedule_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_schedule" />
+    </receiver>
+    <receiver
+      android:name="ir.taqvim.feature.widgets.SunArcWidgetReceiver"
+      android:exported="true"
+      android:label="@string/widget_sun_arc_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_sun_arc" />
+    </receiver>
   </application>
 </manifest>
