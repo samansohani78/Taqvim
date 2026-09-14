@@ -256,6 +256,21 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1101 — Athan settings
+- **Module / files:** `feature/settings/src/main/kotlin/ir/taqvim/feature/settings/Athan*.kt`;
+  `data/preferences/src/main/kotlin/ir/taqvim/data/preferences/AthanPreferences.kt`, `user_prefs.proto` field 14;
+  `data/scheduler/.../ReschedulePolicy.kt`
+- **Task:** T-1101
+- **References used (public only):** Android developer documentation — `ActivityResultContracts.OpenDocument` (SAF),
+  `ContentResolver.takePersistableUriPermission`, `Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM`,
+  `AlarmManager.canScheduleExactAlarms`; Protocol Buffers proto3 language guide (field presence); Jetpack Compose/
+  Material 3 public APIs (Apache-2.0); T-201 `Numerals`; Iran Standard Time UTC+03:30 from the IANA tz database
+  (`Asia/Tehran`, no DST since 2022).
+- **Implementation note:** own work; defaults (all athans off, 80 % volume, vibration on) and the ±60-minute gap range
+  are product choices. No prayer-times or athan app code consulted; no audio files added.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-804 — Unified search screen
 - **Module / files:** `feature/search/src/main/kotlin/ir/taqvim/feature/search/`
 - **Task:** T-804
