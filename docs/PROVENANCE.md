@@ -816,6 +816,28 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Gaps:** 144 days without a primary Persian title (DT-019, DT-023, DT-024); 10 weeks not representable.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
 
+### D-03 — Afghanistan official holidays
+- **Files:** `dataset/afghanistan/afghanistan-official-holidays.json` (7 records); generated
+  `data/events/.../generated/OfficialEvents*.kt`; test `tools/dataset/.../AfghanistanOfficialHolidaysTest.kt` with golden
+  `tools/dataset/src/test/resources/golden/afghanistan/afghanistan-official-holidays.csv`
+- **Source:** Bakhtar News Agency (state news agency of Afghanistan), https://www.bakhtarnews.af/ — holiday
+  announcements, accepted by the owner as a primary source on 2026-09-14; retrieved 2026-09-14; cited per record, not
+  copied (copyrighted):
+  1. «اطلاعیه‌ وزارت کار و امور اجتماعی», published 2026-02-11 — Ministry of Labour and Social Affairs: 27 Shaban 1447 =
+     26 Dalw 1404, public holiday.
+  2. «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان», published 2026-05-21 — Ministry of Labour and
+     Social Affairs: Arafa Tuesday 9 Dhu al-Hijjah 1447, four working days, offices resume Sunday 14 Dhu al-Hijjah.
+  3. «روز شنبه آینده در سراسر کشور رخصتی عمومی است» / «General Holiday Declared Across Afghanistan on Saturday», published
+     2026-08-11 — Ministry of Labour and Social Affairs: 1 Rabi al-Awwal 1448 = 24 Asad 1405 = 2026-08-15.
+  4. «اطلاعیه رخصتی ۲۸ اسد، روز استرداد استقلال کشور» / «Afghanistan Declares August 19 Public Holiday…», published
+     2026-08-17 (authority not named): 5 Rabi al-Awwal 1448 = 28 Asad 1405 = 2026-08-19.
+- **Derivation:** Eid al-Adha holiday days 9, 10, 11, 13 Dhu al-Hijjah from "four working days" plus the resume date
+  (Friday the only non-working day; Saturday a working day per source 3). Stated weekdays checked against ICU4J Persian,
+  Umm al-Qura and civil calendars.
+- **Normalization:** titles copied from the announcement wording (fa, prs; en only where Bakhtar's English site has
+  the article); nothing translated.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14; **reviewer:** pending.
+
 ### D-06 — Ancient Iranian festivals
 - **Files:** `dataset/ancient-iran/ancient-iranian-festivals.json` (2 records); generated
   `data/events/.../generated/OfficialEvents*.kt`; test `tools/dataset/.../AncientIranianFestivalsTest.kt` with golden
