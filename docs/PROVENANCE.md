@@ -256,6 +256,21 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-802 — Day details tabs
+- **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/` — `DayDetailsCalculator.kt`,
+  `DayDetailsModels.kt`, `DayDetailsLabels.kt`, `DayDetailsPanel.kt`, `DayEventsTab.kt`, `DayTimesTab.kt`; `:app`
+  adapter `CalendarAdapters.kt`
+- **Task:** T-802
+- **References used (public only):** the `:core:calendar` (T-106), `:core:praytimes` (A-10), `:core:astronomy` (A-13,
+  T-404) and `:core:ui` (T-701) APIs and their entries above; Jetpack Compose and Material 3 public APIs (Apache-2.0).
+  Moon phase names as 45° sectors, the southern-hemisphere season swap and computing Sun/Moon at local noon are Taqvim
+  presentation choices; Persian zodiac/phase names reuse `:feature:astronomy` wording. Moon phase test expectations:
+  NASA GSFC eclipse dates 2026-08-12 (solar) and 2026-08-28 (lunar).
+- **Implementation note:** own work; no GPL/LGPL code consulted. Tehran, Sydney and Tromsø coordinates are rounded
+  sample inputs; events and citations in UI tests are synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-801 — Month pager
 - **Module / files:** `feature/calendar/src/main/kotlin/ir/taqvim/feature/calendar/` — `MonthLayout.kt`,
   `MonthPageBuilder.kt`, `MonthPager.kt`, `CalendarScreen.kt`, `CalendarRoute.kt`, `CalendarNavigation.kt`; `:app`
