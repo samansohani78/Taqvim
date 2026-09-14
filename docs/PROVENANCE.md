@@ -461,6 +461,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-702 — Widget bitmap painters
+- **Module / files:** `core/ui/src/main/kotlin/ir/taqvim/core/ui/painter/` — `BitmapPainter.kt`, `PainterGeometry.kt`,
+  `MonthBitmapPainter.kt`, `SkyBitmapPainters.kt`, `MapThumbnailPainter.kt`
+- **Task:** T-702
+- **References used (public only):** Android developer documentation — `android.graphics.Canvas`, `Paint`
+  (`measureText`, `ascent`/`descent`, `Align`), `Path.arcTo`, `DashPathEffect`, `Bitmap.createBitmap`; Jetpack Compose
+  `Color.toArgb` (Apache-2.0); geometry reused from T-701.
+- **Implementation note:** own work; sizes, fractions and the outside-month alpha are product choices; snapshot models
+  synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-701 — Design-system components
 - **Module / files:** `core/ui/src/main/kotlin/ir/taqvim/core/ui/component/`
 - **Task:** T-701
