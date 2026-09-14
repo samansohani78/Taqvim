@@ -13,3 +13,8 @@ dependencies {
     // T-806: foldable posture (tabletop) of the adaptive layout.
     implementation(libs.androidx.compose.material3.adaptive)
 }
+
+// T-1700: every captured screenshot state is also audited for accessibility (AccessibilityAudit).
+tasks.withType<Test>().configureEach {
+    systemProperty("taqvim.a11y.audit", "true")
+}

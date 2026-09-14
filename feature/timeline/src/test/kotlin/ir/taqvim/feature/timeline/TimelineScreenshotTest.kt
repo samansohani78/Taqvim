@@ -8,6 +8,8 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.uitesting.AccessibilityOptions
+import ir.taqvim.core.uitesting.AccessibilityRule
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
@@ -39,7 +41,7 @@ class TimelineScreenshotTest(
                 layoutDirection = if (persian) LayoutDirection.Rtl else LayoutDirection.Ltr,
             )
         val state = TimelineUiState(content(if (persian) PERSIAN_SETTINGS else ENGLISH_SETTINGS))
-        composeRule.captureScreenshot("timeline_$sample", environment) {
+        composeRule.captureScreenshot("timeline_$sample", environment, EVENT_BLOCKS_MAY_BE_NARROW) {
             TimelineTestTheme(rtl = persian, dark = !persian) { TimelineScreen(state, onAction = {}) }
         }
     }
@@ -79,6 +81,19 @@ class TimelineScreenshotTest(
         private const val NOW_MINUTE = 10 * 60 + 20
         private const val DAYS_PER_WEEK = 7
         private const val SHIFT_MINUTES = 20
+        private val EVENT_TITLES = listOf("Team meeting", "Call", "Class", "Lunch")
+
+        /**
+         * Accepted T-1700 exception: in a 7-day week, overlapping timed events share a day column and their blocks can
+         * be narrower than 48 dp. Each block still has its full spoken label, and the day view shows them full width.
+         */
+        private val EVENT_BLOCKS_MAY_BE_NARROW =
+            AccessibilityOptions(
+                ignored = { violation ->
+                    violation.rule == AccessibilityRule.SMALL_TOUCH_TARGET &&
+                        EVENT_TITLES.any { violation.label.startsWith(it) }
+                },
+            )
 
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters(name = "{0}")
