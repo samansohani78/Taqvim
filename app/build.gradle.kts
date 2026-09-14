@@ -86,5 +86,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
 
     testImplementation(libs.koin.test)
+    // LevelCalibration (T-1303) exposes an ImmutableMap in the compass port.
+    testImplementation(libs.kotlinx.collections.immutable)
     testImplementation(libs.kotlinx.coroutines.test)
 }

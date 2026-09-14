@@ -8,11 +8,14 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import ir.taqvim.data.events.EventInputs
 import ir.taqvim.data.events.OfficialCatalog
+import ir.taqvim.data.scheduler.RescheduleCoordinator
 import kotlin.time.Duration
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import org.junit.jupiter.api.Test
 import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.test.verify.definition
+import org.koin.test.verify.injectedParameters
 import org.koin.test.verify.verify
 
 class AppModuleTest {
@@ -35,6 +38,8 @@ class AppModuleTest {
                     // Built inline from the three bound event sources in eventsDataModule.
                     EventInputs::class,
                 ),
+            // The scheduler collects every AlarmSource and AlarmDelivery with getAll(); none is bound yet (T-604).
+            injections = injectedParameters(definition<RescheduleCoordinator>(List::class)),
         )
     }
 }

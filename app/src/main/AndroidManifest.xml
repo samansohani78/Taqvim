@@ -20,6 +20,19 @@
       android:shell="true"
       tools:targetApi="29" />
 
+    <!-- T-1003: WorkManager is configured by TaqvimApplication (Configuration.Provider) with the subscription worker
+         factory, so its default start-up initializer is removed. -->
+    <provider
+      android:name="androidx.startup.InitializationProvider"
+      android:authorities="${applicationId}.androidx-startup"
+      android:exported="false"
+      tools:node="merge">
+      <meta-data
+        android:name="androidx.work.WorkManagerInitializer"
+        android:value="androidx.startup"
+        tools:node="remove" />
+    </provider>
+
     <activity
       android:name=".MainActivity"
       android:exported="true">
