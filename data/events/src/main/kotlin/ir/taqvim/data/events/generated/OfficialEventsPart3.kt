@@ -23,6 +23,50 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("ir.holiday.khomeini-demise"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "رحلت حضرت امام خمینی رهبر کبیر انقلاب و بنیان‌گذار جمهوری اسلامی ایران")),
+            rule = EventRule.Fixed(month = 3, day = 14),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "6",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "5",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.khordad-15-uprising"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "قیام خونین ۱۵ خرداد")),
+            rule = EventRule.Fixed(month = 3, day = 15),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "6",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "5",
+                    ),
+                ),
+        ),
+        EventDefinition(
             id = EventId("ir.holiday.mabath"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
@@ -151,50 +195,6 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
                         page = "3",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.oil-nationalization"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "روز ملی شدن صنعت نفت ایران")),
-            rule = EventRule.Fixed(month = 12, day = 29),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "15",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "14",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.prophet-demise-imam-hasan-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام")),
-            rule = EventRule.Fixed(month = 2, day = 28),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "8",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "7",
                     ),
                 ),
         ),

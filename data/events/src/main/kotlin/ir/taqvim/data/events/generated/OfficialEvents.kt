@@ -30,5 +30,6 @@ public object OfficialEvents {
             OFFICIAL_EVENTS_PART_12 +
             OFFICIAL_EVENTS_PART_13 +
             OFFICIAL_EVENTS_PART_14 +
-            OFFICIAL_EVENTS_PART_15
+            OFFICIAL_EVENTS_PART_15 +
+            OFFICIAL_EVENTS_PART_16
 }

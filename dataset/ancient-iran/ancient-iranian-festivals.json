@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "ir.ancient.zoroaster-birthday",
+      "calendar": "PERSIAN",
+      "source": "ANCIENT_IRAN",
+      "category": "CULTURAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "زادروز زرتشت پیامبر"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 6
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf) — 6 Farvardin",
+          "page": "4",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf) — 6 Farvardin",
+          "page": "3",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-14",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "ir.ancient.yalda",
+      "calendar": "PERSIAN",
+      "source": "ANCIENT_IRAN",
+      "category": "CULTURAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf) — 30 Azar",
+          "page": "12",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf) — 30 Azar",
+          "page": "11",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://iranicaonline.org/articles/cella",
+          "title": "Encyclopaedia Iranica — ČELLA (Vol. V, Fasc. 2): the great čella begins on 1 Dey; its night is called šab-e čella or šab-e yaldā",
+          "page": "123-125",
+          "retrieved": "2026-09-14"
+        }
+      ],
+      "updated": "2026-09-14",
+      "reviewedBy": "pending"
+    }
+  ]
+}

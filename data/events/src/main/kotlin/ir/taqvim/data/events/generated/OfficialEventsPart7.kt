@@ -24,6 +24,87 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_7: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.end-drug-abuse-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی مبارزه با سوء استفاده و قاچاق مواد مخدر",
+                        "ar" to "اليوم الدولي لمكافحة إساءة استعمال المخدرات والاتجار غير المشروع بها",
+                        "en" to "International Day against Drug Abuse and Illicit Trafficking",
+                        "es" to "Día Internacional de la Lucha contra el Uso Indebido y el Tráfico Ilícito de Drogas",
+                        "fr" to "Journée internationale contre l'abus et le trafic de drogues",
+                        "ru" to "Международный день борьбы со злоупотреблением наркотическими средствами и их незаконным оборотом",
+                        "zh" to "禁止药物滥用和非法贩运国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 26),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/end-drug-abuse-day",
+                        title = "International Day against Drug Abuse and Illicit Trafficking (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/42/112",
+                    "un" to "https://www.un.org/en/observances/end-drug-abuse-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.end-human-trafficking-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی مبارزه با قاچاق انسان",
+                        "ar" to "اليوم العالمي لمكافحة الاتجار بالأشخاص",
+                        "en" to "World Day against Trafficking in Persons",
+                        "es" to "Día Mundial contra la Trata",
+                        "fr" to "Journée mondiale de la lutte contre la traite d’êtres humains",
+                        "ru" to "Всемирный день борьбы с торговлей людьми",
+                        "zh" to "世界打击贩运人口日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 30),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/end-human-trafficking-day",
+                        title = "World Day against Trafficking in Persons (observance page)",
+                    ),
+                    Citation(
+                        url = "https://iran.un.org/fa/86445-%D9%BE%DB%8C%D8%A7%D9%85-%D8%BA%D8%A7%D8%AF%D8%A7-%D9%81%D8%AA%D8%AD%DB%8C-%D9%88%D8%A7%D9%84%DB%8C-%D9%85%D8%AF%DB%8C%D8%B1-%DA%A9%D9%84-%D8%AF%D9%81%D8%AA%D8%B1-%D9%85%D9%82%D8%A7%D8%A8%D9%84%D9%87-%D8%A8%D8%A7-%D9%85%D9%88%D8%A7%D8%AF-%D9%85%D8%AE%D8%AF%D8%B1-%D9%88-%D8%AC%D8%B1%D9%85-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF%D8%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2",
+                        title = "United Nations in the Islamic Republic of Iran — پیام غادا فتحی والی مدیر کل دفتر مقابله با مواد مخدر و جرم سازمان ملل متحد، به مناسبت روز جهانی مبارزه با قاچاق انسان",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/68/192",
+                    "un" to "https://www.un.org/en/observances/end-human-trafficking-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.end-nuclear-tests-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -261,87 +342,6 @@ internal val OFFICIAL_EVENTS_PART_7: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/40/202",
                     "un" to "https://www.un.org/en/observances/habitat-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.human-rights-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی حقوق بشر",
-                        "ar" to "يوم حقوق الإنسان",
-                        "en" to "Human Rights Day",
-                        "es" to "Día de los Derechos Humanos",
-                        "fr" to "Journée des droits de l'homme",
-                        "ru" to "День прав человека",
-                        "zh" to "人权日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 10),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/human-rights-day",
-                        title = "Human Rights Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/human-rights-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.human-solidarity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی همبستگی بشر",
-                        "ar" to "اليوم الدولي للتضامن الإنساني",
-                        "en" to "International Human Solidarity Day",
-                        "es" to "Día Internacional de la Solidaridad Humana",
-                        "fr" to "Journée internationale de la solidarité humaine",
-                        "ru" to "Международный день солидарности людей",
-                        "zh" to "国际人类团结日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 20),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/human-solidarity-day",
-                        title = "International Human Solidarity Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/60/209",
-                    "un" to "https://www.un.org/en/observances/human-solidarity-day",
                 ),
         ),
     )

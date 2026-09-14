@@ -1,0 +1,8 @@
+# source: University of Tehran, Institute of Geophysics, Calendar Center — Official calendars of Iran 1404 and 1405 SH (docs/sources/Calendar-1404.pdf p. 4 and 12, Calendar-1405.pdf p. 3 and 11); Encyclopaedia Iranica, ČELLA (Vol. V, Fasc. 2, pp. 123-125)
+# url: https://calendar.ut.ac.ir/Fa/
+# retrieved: 2026-09-14
+# reviewer: pending
+# notes: spot checks for D-06. زادروز زرتشت پیامبر is printed on 6 Farvardin and شب یلدا on 30 Azar in both official calendars; Iranica places the start of the great čella on 1 Dey and names its night šab-e yaldā
+id,type,month,day,weekday,n
+ir.ancient.zoroaster-birthday,Fixed,1,6,,
+ir.ancient.yalda,Fixed,9,30,,

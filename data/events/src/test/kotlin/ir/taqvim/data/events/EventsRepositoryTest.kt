@@ -124,7 +124,7 @@ class EventsRepositoryTest {
             repository.day(nowruz).test {
                 awaitItem().isHoliday shouldBe true
 
-                // The dataset has no ancient Iranian festivals yet (D-06), so nothing is shown.
+                // No ancient Iranian festival (D-06) falls on 1 Farvardin, so nothing is shown.
                 settings.value = settings(enabled = setOf(EventSource.ANCIENT_IRAN))
                 val disabled = awaitItem()
                 disabled.isHoliday shouldBe false

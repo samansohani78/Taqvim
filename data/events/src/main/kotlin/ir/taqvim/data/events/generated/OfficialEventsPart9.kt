@@ -23,6 +23,88 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.international-day-of-families"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی خانواده‌ها",
+                        "ar" to "اليوم الدولي للأسر",
+                        "en" to "International Day of Families",
+                        "es" to "Día Internacional de las Familias",
+                        "fr" to "Journée internationale des familles",
+                        "ru" to "Международный день семей",
+                        "zh" to "国际家庭日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 15),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/international-day-of-families",
+                        title = "International Day of Families (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/47/237",
+                    "un" to "https://www.un.org/en/observances/international-day-of-families",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.international-day-of-reflection-on-the-1994-genocide"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز یادبود قربانیان نسل کشی رواندا",
+                        "ar" to "اليوم الدولي للتفكر في الإبادة الجماعية التي وقعت في عام 1994 ضد التوتسي في رواندا",
+                        "en" to "International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda",
+                        "es" to "Día Mundial de la Salud",
+                        "fr" to "Journée internationale de réflexion sur le génocide des Tutsis au Rwanda en 1994",
+                        "ru" to "Международный день памяти о геноциде тутси в Руанде в 1994 году",
+                        "zh" to "1994年卢旺达境内针对图西人实施的灭绝种族罪国际反思日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 7),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml",
+                        title = "International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/58/234",
+                    "un" to "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.international-day-of-solidarity-with-the-palestinian-people"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -266,88 +348,6 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/60/97",
                     "un" to "https://www.un.org/en/observances/mine-awareness-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.mother-language-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی زبان مادری",
-                        "ar" to "اليوم الدولي للغة الأم",
-                        "en" to "International Mother Language Day",
-                        "es" to "Día Internacional de la Lengua Materna",
-                        "fr" to "Journée internationale de la langue maternelle",
-                        "ru" to "Международный день родного языка",
-                        "zh" to "国际母语日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/mother-language-day",
-                        title = "International Mother Language Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/56/262",
-                    "un" to "https://www.un.org/en/observances/mother-language-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.mountain-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی کوهستان",
-                        "ar" to "اليوم الدولي للجبال",
-                        "en" to "International Mountain Day",
-                        "es" to "Día Internacional de las Montañas",
-                        "fr" to "Journée internationale de la montagne",
-                        "ru" to "Международный день гор",
-                        "zh" to "国际山岳日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 11),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/mountain-day",
-                        title = "International Mountain Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/245",
-                    "un" to "https://www.un.org/en/observances/mountain-day",
                 ),
         ),
     )

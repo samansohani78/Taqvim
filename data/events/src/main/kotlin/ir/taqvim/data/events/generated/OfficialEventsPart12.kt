@@ -23,6 +23,88 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.slavery-abolition-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی لغو برده داری",
+                        "ar" to "اليوم الدولي لإلغاء الرق",
+                        "en" to "International Day for the Abolition of Slavery",
+                        "es" to "Día Internacional para la Abolición de la Esclavitud",
+                        "fr" to "Journée internationale pour l'abolition de l'esclavage",
+                        "ru" to "Международный день борьбы за отмену рабства",
+                        "zh" to "废除奴隶制国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/slavery-abolition-day",
+                        title = "International Day for the Abolition of Slavery (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/317(IV)",
+                    "un" to "https://www.un.org/en/observances/slavery-abolition-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.social-justice-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی عدالت اجتماعی",
+                        "ar" to "اليوم العالمي للعدالة الاجتماعية",
+                        "en" to "World Day of Social Justice",
+                        "es" to "Día Mundial de la Justicia Social",
+                        "fr" to "Journée mondiale de la justice sociale",
+                        "ru" to "Всемирный день социальной справедливости",
+                        "zh" to "世界社会公正日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 2, day = 20),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/social-justice-day",
+                        title = "World Day of Social Justice (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/62/10",
+                    "un" to "https://www.un.org/en/observances/social-justice-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.south-south-cooperation-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -263,88 +345,6 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/un-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.volunteer-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
-                        "ar" to "اليوم الدولي للمتطوعين من أجل التنمية الاقتصادية والاجتماعية",
-                        "en" to "International Volunteer Day for Economic and Social Development",
-                        "es" to "Día Internacional de los Voluntarios",
-                        "fr" to "Journée internationale des volontaires",
-                        "ru" to "Международный день добровольцев во имя экономического и социального развития",
-                        "zh" to "国际志愿人员日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 5),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/volunteer-day",
-                        title = "International Volunteer Day for Economic and Social Development (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/40/212",
-                    "un" to "https://www.un.org/en/observances/volunteer-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.water-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی آب",
-                        "ar" to "اليوم العالمي للمياه",
-                        "en" to "World Water Day",
-                        "es" to "Día Mundial del Agua",
-                        "fr" to "Journée mondiale de l'eau",
-                        "ru" to "Всемирный день водных ресурсов",
-                        "zh" to "世界水日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 22),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/water-day",
-                        title = "World Water Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/47/193",
-                    "un" to "https://www.un.org/en/observances/water-day",
                 ),
         ),
     )

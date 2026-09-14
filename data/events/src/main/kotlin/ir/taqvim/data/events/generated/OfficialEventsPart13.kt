@@ -23,6 +23,88 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.volunteer-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
+                        "ar" to "اليوم الدولي للمتطوعين من أجل التنمية الاقتصادية والاجتماعية",
+                        "en" to "International Volunteer Day for Economic and Social Development",
+                        "es" to "Día Internacional de los Voluntarios",
+                        "fr" to "Journée internationale des volontaires",
+                        "ru" to "Международный день добровольцев во имя экономического и социального развития",
+                        "zh" to "国际志愿人员日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 5),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/volunteer-day",
+                        title = "International Volunteer Day for Economic and Social Development (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/40/212",
+                    "un" to "https://www.un.org/en/observances/volunteer-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.water-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی آب",
+                        "ar" to "اليوم العالمي للمياه",
+                        "en" to "World Water Day",
+                        "es" to "Día Mundial del Agua",
+                        "fr" to "Journée mondiale de l'eau",
+                        "ru" to "Всемирный день водных ресурсов",
+                        "zh" to "世界水日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 22),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/water-day",
+                        title = "World Water Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/47/193",
+                    "un" to "https://www.un.org/en/observances/water-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.widows-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -263,87 +345,6 @@ internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803.page=56",
                     "un" to "https://www.unesco.org/en/days/world-book-and-copyright",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-childrens-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی کودکان",
-                        "ar" to "اليوم العالمي للطفل",
-                        "en" to "World Children's Day",
-                        "es" to "Día Mundial de la Infancia",
-                        "fr" to "Journée mondiale de l'enfance",
-                        "ru" to "Всемирный день ребенка",
-                        "zh" to "世界儿童日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 20),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/world-childrens-day",
-                        title = "World Children's Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/836(IX)",
-                    "un" to "https://www.un.org/en/observances/world-childrens-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-day-against-child-labour"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی علیه کار کودک",
-                        "ar" to "اليوم العالمي لمكافحة عمل الأطفال",
-                        "en" to "World Day Against Child Labour",
-                        "es" to "Día Mundial contra el Trabajo Infantil",
-                        "fr" to "Journée mondiale contre le travail des enfants",
-                        "ru" to "Всемирный день борьбы с детским трудом",
-                        "zh" to "世界无童工日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 12),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/world-day-against-child-labour",
-                        title = "World Day Against Child Labour (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/world-day-against-child-labour",
                 ),
         ),
     )
