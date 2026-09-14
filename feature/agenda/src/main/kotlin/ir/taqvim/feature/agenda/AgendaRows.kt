@@ -28,6 +28,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import ir.taqvim.core.ui.component.EventChip
 import ir.taqvim.core.ui.component.EventChipModel
+import ir.taqvim.core.ui.motion.SharedKey
+import ir.taqvim.core.ui.motion.WithSharedBounds
 
 /** The list texts in the current configuration. */
 @Composable
@@ -167,10 +169,15 @@ private fun DayEvents(
                     AgendaEventKind.SUBSCRIPTION -> colors.outline
                 }
             val spoken = description.format(event.title, texts.kind(event))
-            EventChip(
-                EventChipModel(event.title, color, spoken, event.isHoliday),
-                onClick = { onAction(AgendaAction.OpenEvent(event)) },
-            )
+            // T-703: a personal event's chip grows into its editor.
+            val key = if (event.kind == AgendaEventKind.PERSONAL) SharedKey.Event(event.id) else null
+            WithSharedBounds(key) { shared ->
+                EventChip(
+                    EventChipModel(event.title, color, spoken, event.isHoliday),
+                    modifier = shared,
+                    onClick = { onAction(AgendaAction.OpenEvent(event)) },
+                )
+            }
         }
     }
 }

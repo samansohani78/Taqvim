@@ -28,6 +28,9 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import ir.taqvim.app.R
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.ui.motion.NavigationMotion
+import ir.taqvim.core.ui.motion.SharedKey
+import ir.taqvim.core.ui.motion.WithSharedBounds
 import ir.taqvim.feature.about.AboutRoute
 import ir.taqvim.feature.agenda.AgendaRoute
 import ir.taqvim.feature.astronomy.AstronomyDialogKind
@@ -55,24 +58,34 @@ import ir.taqvim.feature.year.YearRoute
 internal fun destinationTag(destination: AppDestination): String =
     "destination:" + (destination::class.simpleName ?: "unknown")
 
-/** The screens of [navigator]'s back stack, with predictive back, per-screen saved state and per-screen ViewModels. */
+/**
+ * The screens of [navigator]'s back stack, with predictive back, per-screen saved state and per-screen ViewModels,
+ * animated with the T-703 motion specs and shared-element scopes.
+ */
 @Composable
 internal fun AppNavDisplay(
     navigator: AppNavigator,
     router: AppRouter,
     modifier: Modifier = Modifier,
 ) {
-    NavDisplay(
-        backStack = navigator.backStack.entries,
-        modifier = modifier,
-        onBack = navigator::back,
-        entryDecorators =
-            listOf(
-                rememberSaveableStateHolderNavEntryDecorator(),
-                rememberViewModelStoreNavEntryDecorator(),
-            ),
-        entryProvider = { destination -> NavEntry(destination) { AppScreen(it, navigator, router) } },
-    )
+    AppTransitionLayout(modifier) { transitions ->
+        NavDisplay(
+            backStack = navigator.backStack.entries,
+            onBack = navigator::back,
+            entryDecorators =
+                listOf(
+                    rememberSaveableStateHolderNavEntryDecorator(),
+                    rememberViewModelStoreNavEntryDecorator(),
+                ),
+            sharedTransitionScope = transitions.shared,
+            transitionSpec = { NavigationMotion.push(transitions.rtl, transitions.motion) },
+            popTransitionSpec = { NavigationMotion.pop(transitions.rtl, transitions.motion) },
+            predictivePopTransitionSpec = { NavigationMotion.pop(transitions.rtl, transitions.motion) },
+            entryProvider = { destination ->
+                NavEntry(destination) { AnimatedScreen(transitions) { AppScreen(it, navigator, router) } }
+            },
+        )
+    }
 }
 
 @Composable
@@ -88,7 +101,15 @@ private fun AppScreen(
         }
 
         is AppDestination.EventEditor -> {
-            EventEditorRoute(destination.eventId, onClose = { navigator.back() }, modifier, destination.draft())
+            // T-703: a personal event's chip grows into its editor.
+            WithSharedBounds(destination.eventId?.let { SharedKey.Event(it.toString()) }) { shared ->
+                EventEditorRoute(
+                    destination.eventId,
+                    onClose = { navigator.back() },
+                    modifier.then(shared),
+                    destination.draft(),
+                )
+            }
         }
 
         is AppDestination.Pending -> {

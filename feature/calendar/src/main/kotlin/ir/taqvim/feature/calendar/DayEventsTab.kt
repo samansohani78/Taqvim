@@ -21,6 +21,8 @@ import ir.taqvim.core.ui.component.EmptyState
 import ir.taqvim.core.ui.component.EventChip
 import ir.taqvim.core.ui.component.EventChipModel
 import ir.taqvim.core.ui.component.TooltipCard
+import ir.taqvim.core.ui.motion.SharedKey
+import ir.taqvim.core.ui.motion.WithSharedBounds
 import kotlinx.collections.immutable.ImmutableList
 
 /**
@@ -58,6 +60,10 @@ internal fun DayEventsTab(
     }
 }
 
+/** The shared-bounds key of [event]'s chip: personal events grow into the editor they open (T-703). */
+private fun chipKey(event: DayEventItem): SharedKey? =
+    if (event.kind == DayEventKind.PERSONAL) SharedKey.Event(event.id) else null
+
 @Composable
 private fun EventList(
     events: ImmutableList<DayEventItem>,
@@ -71,24 +77,27 @@ private fun EventList(
     val palette = MaterialTheme.colorScheme.indicatorPalette()
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         events.forEach { event ->
-            EventChip(
-                model =
-                    EventChipModel(
-                        event.title,
-                        palette.colorOf(event),
-                        chipDescription(resources, event),
-                        event.isHoliday,
-                    ),
-                onClick = {
-                    val action =
-                        if (event.kind == DayEventKind.OFFICIAL) {
-                            CalendarAction.ShowEventSource(event)
-                        } else {
-                            CalendarAction.OpenEvent(event)
-                        }
-                    onAction(action)
-                },
-            )
+            WithSharedBounds(chipKey(event)) { shared ->
+                EventChip(
+                    model =
+                        EventChipModel(
+                            event.title,
+                            palette.colorOf(event),
+                            chipDescription(resources, event),
+                            event.isHoliday,
+                        ),
+                    modifier = shared,
+                    onClick = {
+                        val action =
+                            if (event.kind == DayEventKind.OFFICIAL) {
+                                CalendarAction.ShowEventSource(event)
+                            } else {
+                                CalendarAction.OpenEvent(event)
+                            }
+                        onAction(action)
+                    },
+                )
+            }
             if (event == sourceEvent) {
                 EventSourceCard(event, language, onAction)
                 reminders?.takeIf { it.eventId == event.id }?.let { OfficialReminderRow(it, language, onAction) }
