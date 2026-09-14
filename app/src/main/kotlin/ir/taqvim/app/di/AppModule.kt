@@ -7,6 +7,9 @@ package ir.taqvim.app.di
 import androidx.work.WorkManager
 import ir.taqvim.core.calendar.ClockTodayProvider
 import ir.taqvim.core.calendar.TodayProvider
+import ir.taqvim.data.database.DeviceEventDao
+import ir.taqvim.data.database.IcsSubscriptionDao
+import ir.taqvim.data.database.PersonalEventDao
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.WorkdayProfileDao
 import ir.taqvim.data.database.backup.BackupService
@@ -19,6 +22,7 @@ import ir.taqvim.data.events.ics.icsDataModule
 import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
 import ir.taqvim.data.preferences.UserPreferencesRepository
+import ir.taqvim.data.scheduler.AlarmScheduler
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
 import ir.taqvim.data.scheduler.schedulerModule
 import ir.taqvim.feature.agenda.AgendaDaySource
@@ -39,11 +43,26 @@ import ir.taqvim.feature.compass.compassFeatureModule
 import ir.taqvim.feature.events.EditorSettingsSource
 import ir.taqvim.feature.events.PersonalEventStore
 import ir.taqvim.feature.events.eventsFeatureModule
+import ir.taqvim.feature.search.RecentQueriesStore
+import ir.taqvim.feature.search.SearchEventSource
+import ir.taqvim.feature.search.SearchSettingsSource
+import ir.taqvim.feature.search.SessionRecentQueriesStore
+import ir.taqvim.feature.search.searchFeatureModule
+import ir.taqvim.feature.settings.AthanPreview
+import ir.taqvim.feature.settings.AthanSettingsStore
+import ir.taqvim.feature.settings.AthanSoundLibrary
 import ir.taqvim.feature.settings.CitySearch
 import ir.taqvim.feature.settings.DeviceLocation
+import ir.taqvim.feature.settings.ExactAlarmAccess
 import ir.taqvim.feature.settings.LocationSettingsStore
 import ir.taqvim.feature.settings.PlaceDescriber
+import ir.taqvim.feature.settings.athanSettingsFeatureModule
 import ir.taqvim.feature.settings.locationSettingsFeatureModule
+import ir.taqvim.feature.timeline.TimelineClockSource
+import ir.taqvim.feature.timeline.TimelineDaysSource
+import ir.taqvim.feature.timeline.TimelinePlaceSource
+import ir.taqvim.feature.timeline.TimelineSettingsSource
+import ir.taqvim.feature.timeline.timelineFeatureModule
 import ir.taqvim.feature.times.TimesSettingsSource
 import ir.taqvim.feature.times.timesFeatureModule
 import ir.taqvim.feature.tools.ToolsSettingsSource
@@ -157,6 +176,43 @@ val appFeaturePortsModule =
         }
     }
 
+/** Ports of search (T-804), the timeline (T-900) and the athan settings (T-1101) over the data layer. */
+val searchTimelineAthanPortsModule =
+    module {
+        single<SearchSettingsSource> { PreferencesSearchSettingsSource(get()) }
+        single<SearchEventSource> {
+            val preferences = get<UserPreferencesRepository>()
+            val personal = get<PersonalEventDao>()
+            val devices = get<DeviceEventDao>()
+            val feeds = get<IcsSubscriptionDao>()
+            CompositeSearchEventSource(
+                official = OfficialEventSearchSource(language = { preferences.currentLanguage() }, today = get()),
+                stores =
+                    SearchEventStores(
+                        personal = { personal.all() },
+                        device = { from, to -> devices.observeInRange(from, to).first() },
+                        subscriptions = { from, to -> feeds.observeEvents(from, to).first() },
+                    ),
+                today = get(),
+            )
+        }
+        single<RecentQueriesStore> { SessionRecentQueriesStore() }
+        single<TimelineSettingsSource> { PreferencesTimelineSettingsSource(get()) }
+        single<TimelineDaysSource> {
+            val events = get<EventsRepository>()
+            RepositoryTimelineDaysSource(
+                events::days,
+                get<UserPreferencesRepository>().preferences.map { it.languageCode },
+            )
+        }
+        single<TimelinePlaceSource> { TimesTimelinePlaceSource(get()) }
+        single<TimelineClockSource> { DeviceTimelineClockSource(get()) }
+        single<AthanSettingsStore> { PreferencesAthanSettingsStore(get()) }
+        single<ExactAlarmAccess> { SchedulerExactAlarmAccess(get<AlarmScheduler>().exactAlarmStatus) }
+        single<AthanSoundLibrary> { ContentResolverAthanSoundLibrary(get()) }
+        single<AthanPreview> { MediaPlayerAthanPreview(androidContext()) }
+    }
+
 /** Root Koin module. Feature and data modules contribute their bindings here as they are implemented. */
 val appModule =
     module {
@@ -175,5 +231,9 @@ val appModule =
             yearFeatureModule,
             agendaFeatureModule,
             locationSettingsFeatureModule,
+            searchTimelineAthanPortsModule,
+            searchFeatureModule,
+            timelineFeatureModule,
+            athanSettingsFeatureModule,
         )
     }

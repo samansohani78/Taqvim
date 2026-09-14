@@ -137,9 +137,15 @@ internal class OfficialEventSearchSource(
     override suspend fun search(
         text: String,
         limit: Int,
+    ): List<EventSearchResult> = search(text, limit, today.today())
+
+    /** Results for [text] with their next occurrence on or after [from]. */
+    suspend fun search(
+        text: String,
+        limit: Int,
+        from: Jdn,
     ): List<EventSearchResult> {
         val language = language()
-        val from = today.today()
         return index.search(SearchQuery(text, limit = limit)).map { hit ->
             val definition = hit.definition
             EventSearchResult(
