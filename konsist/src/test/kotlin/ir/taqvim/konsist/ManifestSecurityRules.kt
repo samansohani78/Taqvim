@@ -11,6 +11,7 @@ import org.w3c.dom.Element
 /** Source-tree security checks of T-1804 (ADR-0017), run without the Android toolchain. */
 object ManifestSecurityRules {
     private const val ANDROID = "http://schemas.android.com/apk/res/android"
+    private const val TOOLS = "http://schemas.android.com/tools"
     private val COMPONENT_TAGS = listOf("activity", "activity-alias", "service", "receiver", "provider")
     private val SKIPPED_DIRS = setOf("build", ".gradle", ".git", ".kotlin", ".idea")
     private val PENDING_INTENT_CALL = Regex("""PendingIntent\.get(Activity|Broadcast|Service|ForegroundService)\(""")
@@ -81,9 +82,14 @@ object ManifestSecurityRules {
         }
     }
 
+    /** Requested permissions; `tools:node="remove"` entries take a library's permission out and are not requests. */
     private fun permissions(manifest: File): Set<String> {
         val nodes = parse(manifest).getElementsByTagName("uses-permission")
-        return (0 until nodes.length).map { (nodes.item(it) as Element).getAttributeNS(ANDROID, "name") }.toSet()
+        return (0 until nodes.length)
+            .map { nodes.item(it) as Element }
+            .filterNot { it.getAttributeNS(TOOLS, "node") == "remove" }
+            .map { it.getAttributeNS(ANDROID, "name") }
+            .toSet()
     }
 
     private fun children(element: Element): List<Element> {

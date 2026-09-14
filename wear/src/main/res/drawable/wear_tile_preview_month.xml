@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Month tile preview (T-1600): a round tile with a title bar and a 5 × 7 grid of day dots. Drawn for Taqvim. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+  android:width="192dp"
+  android:height="192dp"
+  android:viewportWidth="48"
+  android:viewportHeight="48">
+  <path
+    android:fillColor="#FF202124"
+    android:pathData="M24,0a24,24 0,1 1,0 48a24,24 0,1 1,0 -48z" />
+  <path
+    android:fillColor="#FF8AB4F8"
+    android:pathData="M16,9h16v3h-16z" />
+  <path
+    android:fillColor="#FFFFFFFF"
+    android:pathData="M11,16h3v3h-3zM15,16h3v3h-3zM19,16h3v3h-3zM23,16h3v3h-3zM27,16h3v3h-3zM31,16h3v3h-3zM35,16h3v3h-3zM11,21h3v3h-3zM15,21h3v3h-3zM19,21h3v3h-3zM27,21h3v3h-3zM31,21h3v3h-3zM35,21h3v3h-3zM11,26h3v3h-3zM15,26h3v3h-3zM19,26h3v3h-3zM23,26h3v3h-3zM27,26h3v3h-3zM31,26h3v3h-3zM11,31h3v3h-3zM15,31h3v3h-3zM19,31h3v3h-3zM23,31h3v3h-3zM27,31h3v3h-3zM31,31h3v3h-3zM35,31h3v3h-3zM15,36h3v3h-3zM19,36h3v3h-3zM23,36h3v3h-3z" />
+  <path
+    android:fillColor="#FF8AB4F8"
+    android:pathData="M23,21h3v3h-3z" />
+  <path
+    android:fillColor="#FFF28B82"
+    android:pathData="M35,26h3v3h-3z" />
+</vector>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- T-1600 / T-1804 (ADR-0017, ADR-0019): the watch (API 30+) backs up its preferences only when the backup is
+     end-to-end encrypted with the device lock. Android 12+ uses data_extraction_rules.xml. -->
 <full-backup-content>
-  <include domain="sharedpref" path="." />
-  <include domain="database" path="." />
-  <include domain="file" path="datastore/" />
+  <include
+    domain="file"
+    path="datastore/"
+    requireFlags="clientSideEncryption" />
 </full-backup-content>

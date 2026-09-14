@@ -1,4 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="wear_app_name">Taqvim</string>
+
+  <string name="wear_today">Today</string>
+  <string name="wear_month">Month</string>
+  <string name="wear_converter">Converter</string>
+  <string name="wear_settings">Settings</string>
+  <string name="wear_loading">Loading…</string>
+  <string name="wear_holidays">Holiday</string>
+  <string name="wear_other_calendars">Other calendars</string>
+
+  <string name="wear_prayer_fajr">Fajr</string>
+  <string name="wear_prayer_dhuhr">Dhuhr</string>
+  <string name="wear_prayer_asr">Asr</string>
+  <string name="wear_prayer_maghrib">Maghrib</string>
+  <string name="wear_prayer_isha">Isha</string>
+  <string name="wear_next_prayer_at">%1$s %2$s</string>
+  <string name="wear_no_place">Choose a city in Settings for prayer times</string>
+
+  <string name="wear_event_line">%1$s · %2$s</string>
+  <string name="wear_event_today">today</string>
+  <string name="wear_event_tomorrow">tomorrow</string>
+  <plurals name="wear_event_in_days">
+    <item quantity="one">in %d day</item>
+    <item quantity="other">in %d days</item>
+  </plurals>
+
+  <string name="wear_month_previous">Previous month</string>
+  <string name="wear_month_next">Next month</string>
+  <string name="wear_month_current">This month</string>
+
+  <string name="wear_converter_year">Year</string>
+  <string name="wear_converter_month">Month</string>
+  <string name="wear_converter_day">Day</string>
+  <string name="wear_converter_increase">Next %1$s</string>
+  <string name="wear_converter_decrease">Previous %1$s</string>
+
+  <string name="wear_calendar_persian">Solar Hijri</string>
+  <string name="wear_calendar_islamic">Lunar Hijri</string>
+  <string name="wear_calendar_gregorian">Gregorian</string>
+  <string name="wear_calendar_nepali">Bikram Sambat</string>
+
+  <string name="wear_settings_language">Language</string>
+  <string name="wear_settings_primary_calendar">Main calendar</string>
+  <string name="wear_settings_prayer_method">Prayer times method</string>
+  <string name="wear_settings_city">City</string>
+  <string name="wear_settings_city_none">Not chosen</string>
+
+  <string name="wear_method_mwl">Muslim World League</string>
+  <string name="wear_method_isna">ISNA (North America)</string>
+  <string name="wear_method_egypt">Egypt</string>
+  <string name="wear_method_makkah">Umm al-Qura, Makkah</string>
+  <string name="wear_method_karachi">Karachi</string>
+  <string name="wear_method_tehran">Institute of Geophysics, Tehran</string>
+  <string name="wear_method_jafari">Jafari (Qom)</string>
+  <string name="wear_method_singapore">Singapore</string>
+  <string name="wear_method_france">France</string>
+  <string name="wear_method_russia">Russia</string>
+
+  <string name="wear_complication_date">Date</string>
+  <string name="wear_complication_month_progress">Month progress</string>
+  <string name="wear_complication_next_prayer">Next prayer</string>
+  <string name="wear_month_progress_description">Day %1$s of %2$s</string>
+  <string name="wear_tile_month">Month</string>
+  <string name="wear_tile_next">Next prayer and occasion</string>
+  <string name="wear_symbol_minus">−</string>
+  <string name="wear_symbol_plus">+</string>
+  <string name="wear_selected">Selected</string>
 </resources>

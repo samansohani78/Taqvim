@@ -65,6 +65,15 @@ class SecurityKonsistTest {
                 """<files-path name="files" path="."/></paths>""",
         )
         write(File(fixture, "feature/x/build/AndroidManifest.xml"), "<manifest/>")
+        // A manifest that removes a library's network permission (as :wear does, ADR-0019) does not request it.
+        write(
+            File(fixture, "wear/src/main/AndroidManifest.xml"),
+            """<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              |  xmlns:tools="http://schemas.android.com/tools">
+              |<uses-permission android:name="android.permission.INTERNET" tools:node="remove"/>
+              |</manifest>
+            """.trimMargin(),
+        )
 
         ManifestSecurityRules.componentsWithoutExported(fixture) shouldBe
             listOf("feature/x/src/main/AndroidManifest.xml: a.R")

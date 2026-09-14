@@ -1,0 +1,16 @@
+# Components the watch app's merged debug unit-test manifest exports, as "name permission" (permission "-" when none),
+# each with its reason (ADR-0017, ADR-0019).
+ir.taqvim.wear.WearActivity - # launcher activity
+ir.taqvim.wear.MonthTileService com.google.android.wearable.permission.BIND_TILE_PROVIDER # month tile, bound by the system
+ir.taqvim.wear.NextTileService com.google.android.wearable.permission.BIND_TILE_PROVIDER # next tile, bound by the system
+ir.taqvim.wear.DateComplicationService com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER # date complication
+ir.taqvim.wear.MonthProgressComplicationService com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER # month progress
+ir.taqvim.wear.NextPrayerComplicationService com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER # next prayer
+androidx.work.impl.background.systemjob.SystemJobService android.permission.BIND_JOB_SERVICE # WorkManager (via :data:events), system only
+androidx.work.impl.diagnostics.DiagnosticsReceiver android.permission.DUMP # WorkManager diagnostics, shell/system only
+androidx.profileinstaller.ProfileInstallReceiver android.permission.DUMP # profile installer, shell/system only
+androidx.compose.ui.tooling.PreviewActivity - # debug builds only (compose-ui-tooling debugImplementation)
+androidx.activity.ComponentActivity - # unit-test manifest only (ui-test-manifest)
+androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity - # unit-test manifest only (androidx.test)
+androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity - # unit-test manifest only (androidx.test)
+androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity - # unit-test manifest only (androidx.test)

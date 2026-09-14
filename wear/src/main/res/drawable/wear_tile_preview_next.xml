@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Next tile preview (T-1600): a round tile with a date title and two text lines. Drawn for Taqvim. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+  android:width="192dp"
+  android:height="192dp"
+  android:viewportWidth="48"
+  android:viewportHeight="48">
+  <path
+    android:fillColor="#FF202124"
+    android:pathData="M24,0a24,24 0,1 1,0 48a24,24 0,1 1,0 -48z" />
+  <path
+    android:fillColor="#FF8AB4F8"
+    android:pathData="M12,15h24v4h-24z" />
+  <path
+    android:fillColor="#FFFFFFFF"
+    android:pathData="M10,23h28v3h-28zM14,29h20v3h-20z" />
+</vector>
