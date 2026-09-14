@@ -11,4 +11,17 @@
   <string name="notification_athan_text">برای قطع اذان «توقف» را بزنید</string>
   <string name="notification_athan_stop">توقف</string>
   <string name="notification_athan_snooze">تعویق</string>
+  <!-- T-1001 / T-1002 reminders -->
+  <string name="notification_reminder_channel_personal_name">یادآوری رویدادها</string>
+  <string name="notification_reminder_channel_personal_description">یادآوری رویدادهایی که ساخته‌اید</string>
+  <string name="notification_reminder_channel_official_name">یادآوری مناسبت‌ها</string>
+  <string name="notification_reminder_channel_official_description">یادآوری مناسبت‌های رسمی که دنبال می‌کنید</string>
+  <string name="notification_reminder_text_personal">رویداد پیش رو</string>
+  <string name="notification_reminder_text_official_today">امروز</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d روز دیگر</item>
+    <item quantity="other">%1$d روز دیگر</item>
+  </plurals>
+  <string name="notification_reminder_done">انجام شد</string>
+  <string name="notification_reminder_snooze">تعویق</string>
 </resources>

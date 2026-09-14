@@ -17,5 +17,9 @@
       android:name="ir.taqvim.feature.notification.AthanService"
       android:exported="false"
       android:foregroundServiceType="mediaPlayback" />
+    <!-- T-1001: Done and Snooze actions of reminder notifications, and snoozed reminders shown again. -->
+    <receiver
+      android:name="ir.taqvim.feature.notification.ReminderActionReceiver"
+      android:exported="false" />
   </application>
 </manifest>

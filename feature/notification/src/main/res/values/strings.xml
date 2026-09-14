@@ -11,4 +11,17 @@
   <string name="notification_athan_text">Tap Stop to silence the athan</string>
   <string name="notification_athan_stop">Stop</string>
   <string name="notification_athan_snooze">Snooze</string>
+  <!-- T-1001 / T-1002 reminders -->
+  <string name="notification_reminder_channel_personal_name">Event reminders</string>
+  <string name="notification_reminder_channel_personal_description">Reminders of the events you created</string>
+  <string name="notification_reminder_channel_official_name">Occasion reminders</string>
+  <string name="notification_reminder_channel_official_description">Reminders of the official occasions you follow</string>
+  <string name="notification_reminder_text_personal">Upcoming event</string>
+  <string name="notification_reminder_text_official_today">Today</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">In %1$d day</item>
+    <item quantity="other">In %1$d days</item>
+  </plurals>
+  <string name="notification_reminder_done">Done</string>
+  <string name="notification_reminder_snooze">Snooze</string>
 </resources>
