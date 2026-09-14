@@ -21,3 +21,7 @@ captures/
 # OS
 .DS_Store
 Thumbs.db
+
+# Python bytecode (tools/)
+__pycache__/
+*.pyc
