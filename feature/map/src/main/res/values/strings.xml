@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- T-1301 world map. -->
+<resources>
+    <string name="map_title">World map</string>
+    <string name="map_content_description">World map</string>
+    <string name="map_unavailable">The map could not be loaded</string>
+    <string name="map_layer_day_night">Day and night</string>
+    <string name="map_layer_moon">Moon visibility</string>
+    <string name="map_layer_crescent">Crescent visibility</string>
+    <string name="map_layer_magnetic">Magnetic declination</string>
+    <string name="map_layer_grid">Grid</string>
+    <string name="map_layer_qibla">Qibla</string>
+    <string name="map_layer_direct_path">Direct path</string>
+    <string name="map_zoom_in">Zoom in</string>
+    <string name="map_zoom_out">Zoom out</string>
+    <string name="map_pick_center">Pick the map center</string>
+    <string name="map_time_slider">Time of day</string>
+    <string name="map_previous_day">Previous day</string>
+    <string name="map_next_day">Next day</string>
+    <string name="map_now">Now</string>
+    <string name="map_picked">Picked point: %1$s</string>
+    <string name="map_no_place">Choose a place in settings to see the Qibla and the direct path</string>
+    <string name="map_crescent_a">A: easily visible</string>
+    <string name="map_crescent_b">B: visible in perfect conditions</string>
+    <string name="map_crescent_c">C: may need optical aid</string>
+    <string name="map_crescent_d">D: needs optical aid</string>
+    <string name="map_crescent_e">E: not visible with a telescope</string>
+</resources>

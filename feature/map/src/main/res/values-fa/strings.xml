@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- T-1301 world map. -->
+<resources>
+    <string name="map_title">نقشهٔ جهان</string>
+    <string name="map_content_description">نقشهٔ جهان</string>
+    <string name="map_unavailable">نقشه بارگذاری نشد</string>
+    <string name="map_layer_day_night">شب و روز</string>
+    <string name="map_layer_moon">دیده‌شدن ماه</string>
+    <string name="map_layer_crescent">رؤیت هلال</string>
+    <string name="map_layer_magnetic">انحراف مغناطیسی</string>
+    <string name="map_layer_grid">شبکه</string>
+    <string name="map_layer_qibla">قبله</string>
+    <string name="map_layer_direct_path">مسیر مستقیم</string>
+    <string name="map_zoom_in">بزرگ‌نمایی</string>
+    <string name="map_zoom_out">کوچک‌نمایی</string>
+    <string name="map_pick_center">انتخاب مرکز نقشه</string>
+    <string name="map_time_slider">ساعت روز</string>
+    <string name="map_previous_day">روز قبل</string>
+    <string name="map_next_day">روز بعد</string>
+    <string name="map_now">اکنون</string>
+    <string name="map_picked">نقطهٔ انتخاب‌شده: %1$s</string>
+    <string name="map_no_place">برای دیدن قبله و مسیر مستقیم، در تنظیمات مکانی انتخاب کنید</string>
+    <string name="map_crescent_a">الف: به‌آسانی دیده می‌شود</string>
+    <string name="map_crescent_b">ب: در شرایط کامل دیده می‌شود</string>
+    <string name="map_crescent_c">ج: شاید به ابزار نوری نیاز باشد</string>
+    <string name="map_crescent_d">د: به ابزار نوری نیاز است</string>
+    <string name="map_crescent_e">هـ: با تلسکوپ هم دیده نمی‌شود</string>
+</resources>
