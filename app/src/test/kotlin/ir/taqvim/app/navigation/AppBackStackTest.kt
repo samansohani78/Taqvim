@@ -100,6 +100,7 @@ class AppBackStackTest {
                 AppDestination.Pending(PendingFeature.SETTINGS),
                 AppDestination.Pending(PendingFeature.WIDGETS),
                 AppDestination.Subscriptions,
+                AppDestination.About,
                 AppDestination.Settings(),
                 AppDestination.Settings("THEME"),
                 AppDestination.Tools,

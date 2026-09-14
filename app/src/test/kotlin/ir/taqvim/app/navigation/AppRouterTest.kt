@@ -142,7 +142,7 @@ class AppRouterTest {
                 AppDestination.Settings("WIDGETS"),
                 AppDestination.Backup,
                 AppDestination.Privacy,
-                AppDestination.Pending(PendingFeature.SETTINGS),
+                AppDestination.About,
             )
         ToolEntry.entries.map(::toolDestination) shouldBe
             listOf(

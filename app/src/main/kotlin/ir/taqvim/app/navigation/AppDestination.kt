@@ -108,6 +108,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object Privacy : AppDestination
 
+    /** About Taqvim: version, open-source licenses, data sources, diagnostics and problem reports (T-1504). */
+    @Serializable
+    data object About : AppDestination
+
     /** A screen the plan has but the app does not have yet. */
     @Serializable
     data class Pending(
@@ -123,7 +127,7 @@ enum class PendingFeature(
     /** Shift work (T-803 menu). */
     SHIFT_WORK(R.string.pending_shift_work),
 
-    /** Settings without a screen yet: backup, privacy and about (T-1503, T-1504). */
+    /** A settings search entry without a screen of its own. */
     SETTINGS(R.string.pending_settings),
 
     /** Widget settings (T-1200). */

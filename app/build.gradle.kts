@@ -12,6 +12,10 @@ android {
         versionCode = 1
         versionName = "0.1.0"
     }
+    buildFeatures {
+        // Version and build type shown on the About screen and in problem reports (T-1504).
+        buildConfig = true
+    }
     signingConfigs {
         // Release signing comes from CI secrets (release.yml). Without them release builds stay unsigned.
         val keystore = providers.environmentVariable("TAQVIM_KEYSTORE_FILE").orNull

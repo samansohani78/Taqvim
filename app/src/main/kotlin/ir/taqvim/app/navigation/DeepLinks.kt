@@ -31,6 +31,7 @@ internal object DeepLinks {
     private const val DEFAULT_CALENDAR = "persian"
     private const val BACKUP = "BACKUP"
     private const val PRIVACY = "PRIVACY"
+    private const val ABOUT = "ABOUT"
     private val NUMERIC_DATE = Regex("""(\d{1,4})-(\d{1,2})-(\d{1,2})""")
 
     private val CALENDARS: Map<String, CalendarArithmetic> =
@@ -104,7 +105,7 @@ internal object DeepLinks {
             ?.takeIf { it.isNotEmpty() }
             ?.let(AppDestination::SearchFor) ?: AppDestination.Search
 
-    /** `settings[/<item>]`: backup, privacy, or the settings home at an item such as `main-calendar`. */
+    /** `settings[/<item>]`: backup, privacy, about, or the settings home at an item such as `main-calendar`. */
     private fun settings(link: Link): AppDestination {
         val name =
             link.path
@@ -114,6 +115,7 @@ internal object DeepLinks {
         return when (name) {
             BACKUP -> AppDestination.Backup
             PRIVACY -> AppDestination.Privacy
+            ABOUT -> AppDestination.About
             else -> AppDestination.Settings(SettingsItemId.entries.firstOrNull { it.name == name }?.name)
         }
     }

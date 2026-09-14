@@ -47,6 +47,7 @@ class DeepLinksTest {
             "taqvim://settings" to AppDestination.Settings(),
             "taqvim://settings/backup" to AppDestination.Backup,
             "taqvim://settings/privacy" to AppDestination.Privacy,
+            "taqvim://settings/about" to AppDestination.About,
             "taqvim://settings/main-calendar" to AppDestination.Settings("MAIN_CALENDAR"),
             "taqvim://settings/nonsense" to AppDestination.Settings(),
         ).forEach { (link, destination) -> withClue(link) { DeepLinks.parse(link) shouldBe destination } }

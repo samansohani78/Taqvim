@@ -26,6 +26,7 @@ web pages. A link Taqvim cannot read opens the calendar.
 | `taqvim://settings/main-calendar` | Settings, at the main calendar (any settings item, lower case with `-`) |
 | `taqvim://settings/backup` | Backup and restore |
 | `taqvim://settings/privacy` | The privacy dashboard |
+| `taqvim://settings/about` | About Taqvim: version, licenses, data sources and diagnostics |
 
 Rules:
 

@@ -28,6 +28,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import ir.taqvim.app.R
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.feature.about.AboutRoute
 import ir.taqvim.feature.agenda.AgendaRoute
 import ir.taqvim.feature.astronomy.AstronomyDialogKind
 import ir.taqvim.feature.astronomy.AstronomyEntry
@@ -160,6 +161,7 @@ private fun SimpleScreen(
         AppDestination.More -> MoreScreen(navigator::navigate, modifier)
         AppDestination.Year -> YearRoute(modifier, router.year())
         AppDestination.Agenda -> AgendaRoute(modifier, router.agenda())
+        AppDestination.About -> AboutRoute(modifier, onExit = { navigator.back() })
         else -> SettingsAndInstrumentScreen(destination, router, modifier)
     }
 }
@@ -198,6 +200,7 @@ internal enum class MoreEntry(
     SETTINGS(AppDestination.Settings(), R.string.more_settings),
     BACKUP(AppDestination.Backup, R.string.more_backup),
     PRIVACY(AppDestination.Privacy, R.string.more_privacy),
+    ABOUT(AppDestination.About, R.string.more_about),
 }
 
 /** The list of [MoreEntry] screens. */

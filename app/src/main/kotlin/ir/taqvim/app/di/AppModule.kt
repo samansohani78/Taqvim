@@ -31,6 +31,7 @@ import ir.taqvim.data.scheduler.AlarmScheduler
 import ir.taqvim.data.scheduler.AlarmSource
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
 import ir.taqvim.data.scheduler.schedulerModule
+import ir.taqvim.feature.about.aboutFeatureModule
 import ir.taqvim.feature.agenda.AgendaDaySource
 import ir.taqvim.feature.agenda.AgendaSettingsSource
 import ir.taqvim.feature.agenda.agendaFeatureModule
@@ -318,5 +319,7 @@ val appModule =
             backupFeatureModule,
             backupPortsModule,
             automationModule,
+            aboutFeatureModule,
+            aboutPortsModule,
         )
     }

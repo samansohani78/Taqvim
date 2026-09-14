@@ -130,7 +130,7 @@ internal class AppRouter(
     }
 }
 
-/** The screen of a settings search result: backup, privacy or the settings home at its item; about has no screen yet. */
+/** The screen of a settings search result: backup, privacy, about or the settings home at its item. */
 internal fun settingsDestination(entry: SettingsEntry): AppDestination =
     when (entry) {
         SettingsEntry.BACKUP -> {
@@ -139,6 +139,10 @@ internal fun settingsDestination(entry: SettingsEntry): AppDestination =
 
         SettingsEntry.PRIVACY -> {
             AppDestination.Privacy
+        }
+
+        SettingsEntry.ABOUT -> {
+            AppDestination.About
         }
 
         else -> {

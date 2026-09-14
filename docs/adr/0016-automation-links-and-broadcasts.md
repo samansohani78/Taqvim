@@ -42,3 +42,8 @@ their security properties or how selected text is handled.
 - `DAY_CHANGED` may arrive a few minutes after midnight when the device is idle; exact timing would need the exact-alarm
   permission, which Taqvim reserves for athans and reminders.
 - Links carry no signature: they are safe because they only navigate.
+
+## Addendum (2026-09-14)
+
+- `settings/about` opens the About screen (T-1504): version, open-source licenses, data sources, diagnostics and
+  problem reports. Like every link it only opens a screen.
