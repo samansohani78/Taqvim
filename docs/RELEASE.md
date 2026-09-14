@@ -163,4 +163,3 @@ needed.
 - Store listing copy in `fa` and `en`
 - Play service account for automated upload (optional)
 - Repository URL
-- Dataset signing key holder
