@@ -159,7 +159,7 @@ private fun ColorSwatch(
     val ring = if (isSelected) BorderStroke(3.dp, colors.onSurface) else BorderStroke(1.dp, colors.outline)
     Box(
         Modifier
-            .size(40.dp)
+            .size(48.dp)
             .border(ring, CircleShape)
             .background(argb?.let { Color(it) } ?: colors.surface, CircleShape)
             .selectable(selected = isSelected, role = Role.RadioButton, onClick = onSelect)
