@@ -256,6 +256,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-804 — Unified search screen
+- **Module / files:** `feature/search/src/main/kotlin/ir/taqvim/feature/search/`
+- **Task:** T-804
+- **References used (public only):** T-203 `PersianText.searchKey` and `FuzzyMatcher` (restricted
+  Damerau–Levenshtein), T-201 `Numerals.digitValue`, T-500 `DateParser`, T-202 `DateFormatter`; Jetpack Compose and
+  Material 3 public APIs (Apache-2.0).
+- **Implementation note:** own work; ranking scores, the "mostly a date" rule, debounce time and settings/tools synonym
+  lists are Taqvim's choices; test events synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1502 — Location settings and the chosen place
 - **Module / files:** `feature/settings/src/main/kotlin/ir/taqvim/feature/settings/`;
   `data/preferences/src/main/kotlin/ir/taqvim/data/preferences/ChosenPlace.kt`, `user_prefs.proto` field 13
