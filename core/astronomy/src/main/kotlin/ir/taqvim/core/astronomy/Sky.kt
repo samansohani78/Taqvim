@@ -22,6 +22,7 @@ import io.github.cosinekitty.astronomy.searchHourAngle as librarySearchHourAngle
 import io.github.cosinekitty.astronomy.searchMoonQuarter as librarySearchMoonQuarter
 import io.github.cosinekitty.astronomy.searchRiseSet as librarySearchRiseSet
 import io.github.cosinekitty.astronomy.seasons as librarySeasons
+import io.github.cosinekitty.astronomy.siderealTime as librarySiderealTime
 import io.github.cosinekitty.astronomy.sunPosition as librarySunPosition
 import ir.taqvim.core.model.Coordinates
 import kotlin.time.Duration.Companion.days
@@ -46,6 +47,7 @@ private fun CelestialBody.toBody(): Body =
 public object Sky {
     private const val SEARCH_DAYS = 1.0
     private const val HALF_TURN = 180.0
+    private const val HOUR_DEGREES = 15.0
 
     /** Equinoxes and solstices of Gregorian [year]. */
     public fun seasons(year: Int): SeasonInstants =
@@ -85,6 +87,25 @@ public object Sky {
             waxing = waxing,
             brightLimbOnRight = waxing == (observer.latitude >= 0),
         )
+    }
+
+    /**
+     * How the Moon's bright limb is turned for [observer] at [instant], from topocentric apparent coordinates of date
+     * (Meeus eqs. 48.5 and 14.1). The illuminated fraction is in [moonAppearance].
+     */
+    public fun moonTilt(
+        instant: Instant,
+        observer: Coordinates,
+    ): MoonTilt {
+        val time = instant.toAstronomyTime()
+        val place = observer.toObserver()
+        val sun = libraryEquator(Body.Sun, time, place, EquatorEpoch.OfDate, Aberration.Corrected)
+        val moon = libraryEquator(Body.Moon, time, place, EquatorEpoch.OfDate, Aberration.Corrected)
+        val positionAngle =
+            LunarLimb.brightLimbPositionAngle(sun.ra * HOUR_DEGREES, sun.dec, moon.ra * HOUR_DEGREES, moon.dec)
+        val hourAngle = (librarySiderealTime(time) - moon.ra) * HOUR_DEGREES + observer.longitude
+        val parallactic = LunarLimb.parallacticAngle(hourAngle, observer.latitude, moon.dec)
+        return MoonTilt(positionAngle, parallactic, LunarLimb.signed(positionAngle - parallactic))
     }
 
     /** The first rise, upper transit and set of [body] for [observer] within one day after [from]. */

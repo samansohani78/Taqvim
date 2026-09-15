@@ -153,6 +153,24 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### A-13 — Lunar bright-limb tilt
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/` — `LunarLimb.kt`, `Sky.kt`
+  (`Sky.moonTilt`), `SkyTypes.kt` (`MoonTilt`)
+- **Task:** T-403
+- **References used (public only):**
+  1. J. Meeus, *Astronomical Algorithms*, 2nd ed. (Willmann-Bell, 1998) — position angle of the Moon's bright limb
+     χ (eq. 48.5) and the parallactic angle q (eq. 14.1); the bright limb's angle from the zenith direction is χ − q.
+  2. cosinekitty/astronomy 2.1.19 (MIT), public API only: `equator` (topocentric apparent Sun and Moon coordinates of
+     date) and `siderealTime` (Greenwich apparent sidereal time) for the local hour angle.
+- **Implementation note:** own work from the equations; tilt wrapped into −180°‥180°, counter-clockwise positive in the
+  observer's view (−90° = bright limb on the right). The illuminated fraction stays in `Sky.moonAppearance`.
+- **Validation:** Meeus Example 48.a (χ = 285.0° for 1992 April 12, 0h TD, from the example's own α0, δ0, α, δ);
+  properties: q = 0 on the meridian when δ < φ and 180° when δ > φ, sign of q follows sin H, first/last quarter χ within
+  30° of 270°/90° through 2026, tilt mirrored between Tehran and Sydney at transit and consistent with
+  `brightLimbOnRight`. No published observer-tilt table was used.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### A-14 — Houses, lots and ascendant
 - **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Houses.kt`
 - **Task:** T-405

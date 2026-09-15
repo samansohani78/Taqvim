@@ -61,6 +61,18 @@ public data class MoonAppearance(
     public val brightLimbOnRight: Boolean,
 )
 
+/**
+ * Orientation of the Moon's bright limb for an observer, in degrees. [positionAngleDegrees] counts from celestial north
+ * through east (0°‥360°); [parallacticAngleDegrees] is the position angle of the zenith direction (−180°‥180°); and
+ * [tiltDegrees] = position angle − parallactic angle is the bright limb's direction from straight up in the observer's
+ * view, counter-clockwise positive (−90° is on the right, +90° on the left), in −180°‥180°.
+ */
+public data class MoonTilt(
+    public val positionAngleDegrees: Double,
+    public val parallacticAngleDegrees: Double,
+    public val tiltDegrees: Double,
+)
+
 /** Rise, meridian transit and set within one day after a start instant; `null` when the event does not happen. */
 public data class RiseSetTransit(
     public val rise: Instant?,
