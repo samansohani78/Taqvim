@@ -51,6 +51,19 @@ public data class MoonPhaseEvent(
     public val instant: Instant,
 )
 
+/** The two apsides of the Earth's orbit around the Sun. */
+public enum class ApsisKind {
+    PERIHELION,
+    APHELION,
+}
+
+/** A perihelion or aphelion of the Earth's center: when it happens and the Sun–Earth distance then, in au. */
+public data class EarthApsis(
+    public val kind: ApsisKind,
+    public val instant: Instant,
+    public val distanceAu: Double,
+)
+
 /**
  * How the Moon looks: the [illuminatedFraction] of the disc, whether it is [waxing], and whether the bright limb is on
  * the observer's right. Seen from the southern hemisphere the image is mirrored left to right.

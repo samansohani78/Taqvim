@@ -5,6 +5,7 @@
 package ir.taqvim.core.astronomy
 
 import io.github.cosinekitty.astronomy.Aberration
+import io.github.cosinekitty.astronomy.ApsisKind as LibraryApsisKind
 import io.github.cosinekitty.astronomy.Body
 import io.github.cosinekitty.astronomy.Direction
 import io.github.cosinekitty.astronomy.EquatorEpoch
@@ -13,11 +14,13 @@ import io.github.cosinekitty.astronomy.Refraction
 import io.github.cosinekitty.astronomy.Time
 import io.github.cosinekitty.astronomy.eclipticGeoMoon as libraryEclipticMoon
 import io.github.cosinekitty.astronomy.equator as libraryEquator
+import io.github.cosinekitty.astronomy.helioDistance as libraryHelioDistance
 import io.github.cosinekitty.astronomy.horizon as libraryHorizon
 import io.github.cosinekitty.astronomy.illumination as libraryIllumination
 import io.github.cosinekitty.astronomy.libration as libraryLibration
 import io.github.cosinekitty.astronomy.moonPhase as libraryMoonPhase
 import io.github.cosinekitty.astronomy.nextMoonQuarter as libraryNextMoonQuarter
+import io.github.cosinekitty.astronomy.planetApsidesAfter as libraryPlanetApsidesAfter
 import io.github.cosinekitty.astronomy.searchHourAngle as librarySearchHourAngle
 import io.github.cosinekitty.astronomy.searchMoonQuarter as librarySearchMoonQuarter
 import io.github.cosinekitty.astronomy.searchRiseSet as librarySearchRiseSet
@@ -58,6 +61,36 @@ public object Sky {
                 septemberEquinox = it.septemberEquinox.toInstant(),
                 decemberSolstice = it.decemberSolstice.toInstant(),
             )
+        }
+
+    /**
+     * Perihelia and aphelia of the Earth's center from [from] (inclusive) until [until] (exclusive), in time order.
+     *
+     * The distance is the Earth's center to the Sun's center, not the Earth–Moon barycenter (whose apsides differ by up
+     * to about a day and a half). Near an apsis the distance changes very slowly, so a distance error of a few
+     * kilometres moves the instant by up to about two hours. The monthly lunar wobble of the Earth's center never adds
+     * a second extremum while the orbit's curvature term a·e·n² exceeds the wobble's (true while e > 0.005, i.e. for
+     * tens of millennia around the present); accuracy beyond that follows the astronomy library's ephemeris.
+     */
+    public fun earthApsides(
+        from: Instant,
+        until: Instant,
+    ): List<EarthApsis> {
+        require(from < until) { "from must be before until" }
+        return libraryPlanetApsidesAfter(Body.Earth, from.toAstronomyTime())
+            .takeWhile { it.time.toInstant() < until }
+            .map { EarthApsis(it.kind.toApsisKind(), it.time.toInstant(), it.distanceAu) }
+            .toList()
+    }
+
+    /** Distance between the centers of the Earth and the Sun at [instant], in au. */
+    internal fun earthSunDistanceAu(instant: Instant): Double =
+        libraryHelioDistance(Body.Earth, instant.toAstronomyTime())
+
+    private fun LibraryApsisKind.toApsisKind(): ApsisKind =
+        when (this) {
+            LibraryApsisKind.Pericenter -> ApsisKind.PERIHELION
+            LibraryApsisKind.Apocenter -> ApsisKind.APHELION
         }
 
     /** Moon's ecliptic longitude east of the Sun at [instant]: 0 new, 90 first quarter, 180 full, 270 third quarter. */
