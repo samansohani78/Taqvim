@@ -46,8 +46,6 @@ import ir.taqvim.core.ui.component.TopBarAction
 /** Test tag of the toolbar menu (T-803). */
 const val CALENDAR_MENU_TAG: String = "calendar_menu"
 
-/** Years the go-to-date picker offers on each side of the selected day's year (the pager's century each way). */
-private const val PICKER_YEARS_EACH_WAY = 100
 private const val MONTHS_IN_YEAR = 12
 private const val FALLBACK_LANGUAGE = "en"
 
@@ -208,7 +206,7 @@ internal fun goToDateModel(
     val selected = content.selectedDates.first()
     return DatePickerModel(
         initial = DateSelection(selected.year, selected.month, selected.day),
-        years = (selected.year - PICKER_YEARS_EACH_WAY)..(selected.year + PICKER_YEARS_EACH_WAY),
+        years = calendars.pagedYears(content.today),
         monthNames = monthNamesOf(language, selected.system),
         daysInMonth = calendars::primaryMonthLength,
         formatNumber = { number(it.toLong(), language) },

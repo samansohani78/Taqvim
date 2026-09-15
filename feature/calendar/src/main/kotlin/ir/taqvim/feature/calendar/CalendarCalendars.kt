@@ -5,6 +5,7 @@
 package ir.taqvim.feature.calendar
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.addMonths
@@ -68,6 +69,9 @@ class CalendarCalendars(
         today: Jdn,
         day: Jdn,
     ): Int = primary.monthsBetween(monthStart(today), monthStart(day))
+
+    /** Years of the primary calendar the month pager reaches from the month of [today] ([CalendarLimits.pagedYears]). */
+    fun pagedYears(today: Jdn): IntRange = CalendarLimits.pagedYears(primary, today)
 
     /** The first day of the month [offset] months after the month of [today]. */
     fun monthStartAt(

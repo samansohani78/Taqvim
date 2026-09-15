@@ -5,6 +5,7 @@
 package ir.taqvim.feature.calendar
 
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.Numerals
@@ -36,10 +37,13 @@ class CalendarLayoutTest {
 
     @Test
     fun `the go-to-date picker starts at the selected day in the primary calendar`() {
-        val model = goToDateModel(DayDetailsSamples.content("fa"), labels)
+        val content = DayDetailsSamples.content("fa")
+        val model = goToDateModel(content, labels)
 
         model.initial shouldBe DateSelection(1405, 1, 1)
-        model.years shouldBe 1305..1505
+        model.years shouldBe CalendarLimits.pagedYears(PersianCalendarSystem, content.today)
+        model.years.last shouldBe
+            PersianCalendarSystem.fromJdn(content.today).year + CalendarLimits.MAX_MONTH_OFFSET / 12 - 1
         model.monthNames shouldBe persian.monthNames.persian
         model.daysInMonth(1405, 1) shouldBe 31
         model.daysInMonth(1405, 12) shouldBe PersianCalendarSystem.monthLength(1405, 12)

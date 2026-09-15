@@ -147,14 +147,18 @@ class AstronomyViewModel(
         latestSettings.value = settings
         if (settings == null) return
         pendingEntry.getAndUpdate { null }?.let { opened ->
-            selection.value = settings.at(opened.day, ENTRY_TIME)
+            selection.value = settings.at(AstronomyDays.clamp(opened.day), ENTRY_TIME)
             dialogKind.value = opened.kind
         }
     }
 
+    /** Moves the selection by [transform], keeping it on the days the screen offers ([AstronomyDays]). */
     private fun move(transform: (AstronomySettings, Instant) -> Instant) {
         val settings = latestSettings.value ?: return
-        selection.value = transform(settings, selection.value ?: clock.now())
+        val moved = transform(settings, selection.value ?: clock.now())
+        val day = moved.toJdn(settings.timeZone)
+        val kept = AstronomyDays.clamp(day)
+        selection.value = if (kept == day) moved else settings.at(kept, moved.toLocalDateTime(settings.timeZone).time)
     }
 
     private fun state(

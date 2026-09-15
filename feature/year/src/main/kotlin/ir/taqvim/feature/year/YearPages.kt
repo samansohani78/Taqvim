@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.selection.selectable
@@ -97,7 +97,7 @@ internal fun CalendarPages(
         key = { it },
     ) { page ->
         if (content.isPickingYear && page == content.calendarIndex) {
-            YearPicker(content.year, builder::number, onAction, Modifier.fillMaxSize())
+            YearPicker(content.year, builder.years(page), builder::number, onAction, Modifier.fillMaxSize())
         } else {
             YearPageSlot(page, content, builder, onAction)
         }
@@ -165,17 +165,22 @@ internal fun YearPageView(
     }
 }
 
-/** Year selection: every offered year, the shown one selected; picking a year shows it. */
+/**
+ * Year selection: the offered [years] around the shown one ([YearCalendars.pickerYears]), the shown one selected;
+ * picking a year shows it, so the list re-centres there and every offered year can be reached.
+ */
 @Composable
 internal fun YearPicker(
     selectedYear: Int,
+    years: IntRange,
     label: (Int) -> String,
     onAction: (YearAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val first = YearCalendars.YEARS.first
+    val listed = YearCalendars.pickerYears(selectedYear, years, PICKER_COLUMNS)
+    val first = listed.first
     val initialIndex = (selectedYear - first - PICKER_LEAD_ROWS * PICKER_COLUMNS).coerceAtLeast(0)
-    val state = rememberLazyGridState(initialFirstVisibleItemIndex = initialIndex)
+    val state = remember(listed) { LazyGridState(firstVisibleItemIndex = initialIndex) }
     val colors = MaterialTheme.colorScheme
     LazyVerticalGrid(
         columns = GridCells.Fixed(PICKER_COLUMNS),
@@ -183,7 +188,7 @@ internal fun YearPicker(
         state = state,
         contentPadding = PaddingValues(GRID_PADDING),
     ) {
-        items(YearCalendars.YEARS.count(), key = { it }) { offset ->
+        items(listed.last - first + 1, key = { first + it }) { offset ->
             val year = first + offset
             val selected = year == selectedYear
             Box(

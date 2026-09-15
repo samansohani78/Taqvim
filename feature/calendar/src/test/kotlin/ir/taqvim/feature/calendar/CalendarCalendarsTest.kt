@@ -10,6 +10,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
@@ -62,6 +63,28 @@ class CalendarCalendarsTest {
         gregorianOnly.monthOffset(today, gregorian(2024, 2, 29)) shouldBe -25
         gregorianOnly.monthStartAt(today, -25) shouldBe gregorian(2024, 2, 1)
         gregorianOnly.monthStart(today) shouldBe CalendarDate(CalendarSystem.GREGORIAN, 2026, 3, 1)
+    }
+
+    @Test
+    fun `the pager's farthest months and the go-to-date years are reached directly`() {
+        val persian = CalendarCalendars(PERSIAN_FIRST)
+        val far = CalendarLimits.MAX_MONTH_OFFSET
+        val last = persian.monthStartAt(today, far)
+        val first = persian.monthStartAt(today, -far)
+        persian.monthOffset(today, last) shouldBe far
+        persian.monthOffset(today, first) shouldBe -far
+        persian.monthStartAt(today, MonthPages.offsetOf(MonthPages.COUNT - 1)) shouldBe last
+        val years = persian.pagedYears(today)
+        years shouldBe CalendarLimits.pagedYears(PersianCalendarSystem, today)
+        PersianCalendarSystem.fromJdn(persian.monthStartAt(today, MonthPages.offsetOf(0))).year shouldBe
+            years.first - 1
+        MonthPages.pageOf(0) shouldBe MonthPages.TODAY_PAGE
+        MonthPages.pageOf(Int.MAX_VALUE) shouldBe MonthPages.COUNT - 1
+        MonthPages.pageOf(Int.MIN_VALUE) shouldBe 0
+        MonthPages.offsetOf(-5) shouldBe -far
+        MonthPages.offsetOf(Int.MAX_VALUE) shouldBe far
+        MonthPages.COUNT shouldBe Int.MAX_VALUE
+        listOf(-far, -1, 0, 1, 12_000, far).forEach { MonthPages.offsetOf(MonthPages.pageOf(it)) shouldBe it }
     }
 
     @Test

@@ -49,6 +49,29 @@ class ComponentGeometryTest {
     }
 
     @Test
+    fun `wheel windows list the blocks around the value in any range`(): Unit =
+        runBlocking {
+            WheelMath.window(5, 1..31) shouldBe 1..31
+            WheelMath.window(1405, -999_999_000..999_999_000) shouldBe 0..2_999
+            WheelMath.window(Int.MAX_VALUE, Int.MIN_VALUE..Int.MAX_VALUE) shouldBe 2_147_482_352..Int.MAX_VALUE
+            WheelMath.window(Int.MIN_VALUE, Int.MIN_VALUE..Int.MAX_VALUE) shouldBe
+                Int.MIN_VALUE..(Int.MIN_VALUE + 1_999)
+            WheelMath.window(-7, 1..31) shouldBe 1..31
+            checkAll(PropertyTesting.iterations, Arb.int(), Arb.int(), Arb.int()) { a, b, value ->
+                val range = minOf(a, b)..maxOf(a, b)
+                val window = WheelMath.window(value, range)
+                val shown = value.coerceIn(range.first, range.last)
+                (shown in window) shouldBe true
+                (window.first >= range.first && window.last <= range.last) shouldBe true
+                ((window.last.toLong() - window.first + 1) <= 3L * WheelMath.WINDOW_STEP) shouldBe true
+                // Neighbouring values of the same block share the window, so the list does not move under the finger.
+                val blockStart =
+                    shown - Math.floorMod(shown.toLong() - range.first, WheelMath.WINDOW_STEP.toLong()).toInt()
+                WheelMath.window(blockStart, range) shouldBe window
+            }
+        }
+
+    @Test
     fun `date selection clamps the day to the month`() {
         val esfand = DateSelection(1403, 12, 30)
         esfand.withYear(1404, daysInMonth) shouldBe DateSelection(1404, 12, 29)

@@ -8,6 +8,25 @@ import kotlin.math.roundToInt
 
 /** Pure index arithmetic of [NumberWheel]. */
 internal object WheelMath {
+    /** Values a wheel lists per block; see [window]. */
+    const val WINDOW_STEP: Int = 1_000
+
+    /**
+     * The values a wheel lists for [value]: the block of [WINDOW_STEP] values holding it (blocks counted from the start
+     * of [range]) with the blocks before and after, limited to [range]. A huge range (every year of a calendar) stays a
+     * short list that only moves when the value enters another block.
+     */
+    fun window(
+        value: Int,
+        range: IntRange,
+    ): IntRange {
+        val offset = value.coerceIn(range.first, range.last).toLong() - range.first
+        val blockStart = range.first + Math.floorDiv(offset, WINDOW_STEP.toLong()) * WINDOW_STEP
+        val first = maxOf(range.first.toLong(), blockStart - WINDOW_STEP)
+        val last = minOf(range.last.toLong(), blockStart + 2L * WINDOW_STEP - 1)
+        return first.toInt()..last.toInt()
+    }
+
     /** Index into [range] of [value], clamped to the range. */
     fun indexOf(
         value: Int,

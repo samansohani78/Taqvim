@@ -5,6 +5,7 @@
 package ir.taqvim.feature.events
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.DurationFormatter
@@ -46,7 +47,6 @@ internal sealed interface EditorSession {
 /** Turns an [EditorSession] into the localized [EventEditorUiState]. */
 internal object EditorPresenter {
     private const val MINUTES_PER_HOUR = 60
-    private const val PICKER_YEARS = 100
 
     /** At the start, 5, 15 and 30 minutes, 1 hour, 1 day and 1 week before. */
     private val REMINDER_PRESETS = listOf(0, 5, 15, 30, 60, 1_440, 10_080)
@@ -178,7 +178,6 @@ internal object EditorPresenter {
         val names =
             FormatTable.of(language).monthNames[form.calendar]?.takeIf { it.size == months }
                 ?: List(months) { Numerals.format(it + 1L, language.numerals) }
-        val years = (form.start.year - PICKER_YEARS)..(form.start.year + PICKER_YEARS)
-        return CalendarPickerData(calendar, names.toImmutableList(), years, language.numerals)
+        return CalendarPickerData(calendar, names.toImmutableList(), CalendarLimits.years(calendar), language.numerals)
     }
 }

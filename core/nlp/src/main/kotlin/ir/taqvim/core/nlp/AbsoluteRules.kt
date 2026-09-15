@@ -112,13 +112,15 @@ internal class AbsoluteRules(
         val day = tokens[shape.day].number
         if (calendar == null || day == null) return null
         val year = shape.year?.let { tokens[it].number }
-        // Like numeric dates, a year far from the reference is implausible ("#4521 is due March 26, 2028").
-        val distance = year?.let { abs(it - calendar.fromJdn(context.reference).year) } ?: 0
+        val used = listOfNotNull(shape.day, shape.year, monthTokens.first, monthTokens.last)
+        // Like numeric dates, an unmarked year far from the reference is implausible ("#4521 is due March 26, 2028");
+        // a year followed by its calendar's name ("1 Farvardin 5000 SH") is taken at any distance.
+        val marked = year != null && Lexicon.calendarMarker(tokens, used.max() + 1)?.first == system
+        val distance = year?.let { yearDistance(it, calendar) } ?: 0L
         val jdn =
             (if (year != null) exact(calendar, year, month, day) else nearest(calendar, month, day))
-                ?.takeIf { distance <= MAX_YEAR_DISTANCE } ?: return null
-        val used = listOfNotNull(shape.day, shape.year, monthTokens.first, monthTokens.last)
-        val base = if (year != null) NAMED_CONFIDENCE - distance / DISTANCE_SCALE else YEARLESS_CONFIDENCE
+                ?.takeIf { marked || distance <= MAX_YEAR_DISTANCE } ?: return null
+        val base = if (year != null) NAMED_CONFIDENCE - distancePenalty(distance) else YEARLESS_CONFIDENCE
         val range = used.min()..used.max()
         return Candidate(range, jdn, system, base + weekdayAdjustment(range, jdn), ParseKind.ABSOLUTE)
     }
@@ -132,12 +134,13 @@ internal class AbsoluteRules(
         val marker = Lexicon.calendarMarker(tokens, end)
         val last = end - 1 + (marker?.second ?: 0)
         return context.calendars.mapNotNull { (system, calendar) ->
-            val distance = abs(fields.year - calendar.fromJdn(context.reference).year)
-            val plausible = distance <= MAX_YEAR_DISTANCE && (marker == null || marker.first == system)
+            val distance = yearDistance(fields.year, calendar)
+            // A marked year belongs to the marked calendar at any distance; an unmarked one must be near the reference.
+            val plausible = if (marker == null) distance <= MAX_YEAR_DISTANCE else marker.first == system
             exact(calendar, fields.year, fields.month, fields.day)?.takeIf { plausible }?.let { jdn ->
                 val penalty = if (marker == null && system != context.preferredCalendar) OTHER_CALENDAR_PENALTY else 0.0
                 val confidence =
-                    base * fields.weight - penalty - distance / DISTANCE_SCALE + weekdayAdjustment(start..last, jdn)
+                    base * fields.weight - penalty - distancePenalty(distance) + weekdayAdjustment(start..last, jdn)
                 Candidate(start..last, jdn, system, confidence, ParseKind.ABSOLUTE)
             }
         }
@@ -159,6 +162,15 @@ internal class AbsoluteRules(
         } else {
             null
         }
+
+    /** Years between [year] and the reference day's year in [calendar]. */
+    private fun yearDistance(
+        year: Int,
+        calendar: CalendarArithmetic,
+    ): Long = abs(year.toLong() - calendar.fromJdn(context.reference).year)
+
+    /** Confidence lost for a year [distance] years away; it stops growing at [MAX_YEAR_DISTANCE] (marked far years). */
+    private fun distancePenalty(distance: Long): Double = minOf(distance, MAX_YEAR_DISTANCE.toLong()) / DISTANCE_SCALE
 
     /** The year-less [month]/[day] occurrence closest to the reference day (later wins a tie). */
     private fun nearest(
@@ -244,6 +256,12 @@ internal class AbsoluteRules(
         const val ALTERNATIVE_ORDER_WEIGHT = 0.8
         const val WEEKDAY_MATCH_BONUS = 0.01
         const val WEEKDAY_MISMATCH_PENALTY = 0.3
+
+        /**
+         * Years from the reference within which a year without a calendar marker is read as a year. It is a
+         * plausibility heuristic against other numbers in free text (T-501), not a calendar limit: a year followed by
+         * its calendar's marker (`ه.ش`, `AD`) is read at any distance.
+         */
         const val MAX_YEAR_DISTANCE = 150
         const val DISTANCE_SCALE = 2000.0
         const val YEAR_DIGITS = 3

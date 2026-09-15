@@ -15,6 +15,7 @@ import io.kotest.property.arbitrary.enum
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
@@ -88,9 +89,17 @@ class WidgetCalendarBuilderTest {
     }
 
     @Test
-    fun `month navigation stops a century away`() {
-        WidgetCalendarBuilder.monthStart(inputs(), 5000) shouldBe WidgetCalendarBuilder.monthStart(inputs(), 1200)
-        WidgetCalendarBuilder.month(inputs(), -5000, noFacts).offset shouldBe -WidgetCalendarBuilder.MAX_MONTH_OFFSET
+    fun `month navigation reaches every month an Int offset holds`() {
+        val far = WidgetCalendarBuilder.MAX_MONTH_OFFSET
+        far shouldBe CalendarLimits.MAX_MONTH_OFFSET
+        WidgetCalendarBuilder.monthStart(inputs(), Int.MAX_VALUE) shouldBe
+            WidgetCalendarBuilder.monthStart(inputs(), far)
+        WidgetCalendarBuilder.month(inputs(), Int.MIN_VALUE, noFacts).offset shouldBe -far
+        val shown = PersianCalendarSystem.fromJdn(today)
+        PersianCalendarSystem.fromJdn(WidgetCalendarBuilder.monthStart(inputs(), 12_000)) shouldBe
+            PersianCalendarSystem.date(shown.year + 1_000, shown.month, 1)
+        PersianCalendarSystem.fromJdn(WidgetCalendarBuilder.monthStart(inputs(), far)).year shouldBe
+            shown.year + Math.floorDiv(shown.month - 1 + far, 12)
         WidgetMonthStep.next(3, 1) shouldBe 4
         WidgetMonthStep.next(3, -4) shouldBe -1
         WidgetMonthStep.next(3, 0) shouldBe 0

@@ -19,6 +19,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.ui.component.MonthGrid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -26,10 +27,25 @@ import kotlinx.coroutines.withContext
 /** Test tag of the month pager; also its resource id in macrobenchmarks. */
 const val MONTH_PAGER_TAG: String = "month_pager"
 
-/** Months the pager reaches on each side of today's month (a century each way). */
-internal const val MONTH_PAGES_EACH_WAY = 1_200
-private const val PAGE_COUNT = MONTH_PAGES_EACH_WAY * 2 + 1
 private const val SELECTION_FADE_MILLIS = 150
+
+/**
+ * Pages of the month pager: one per month within [CalendarLimits.MAX_MONTH_OFFSET] of today's month either way, the
+ * most a pager's `Int` page count holds (about 89 million years each way).
+ */
+internal object MonthPages {
+    /** The page of today's month. */
+    const val TODAY_PAGE: Int = CalendarLimits.MAX_MONTH_OFFSET
+
+    /** Every page, [Int.MAX_VALUE]. */
+    const val COUNT: Int = TODAY_PAGE * 2 + 1
+
+    /** The page showing the month [offset] months from today's month, limited to the pages. */
+    fun pageOf(offset: Int): Int = CalendarLimits.clampMonthOffset(offset) + TODAY_PAGE
+
+    /** Months from today's month to the month on [page], limited to the pages. */
+    fun offsetOf(page: Int): Int = page.coerceIn(0, COUNT - 1) - TODAY_PAGE
+}
 
 /**
  * The month pager (T-801): one page per primary-calendar month around today's month. The neighbouring pages are
@@ -43,13 +59,13 @@ internal fun MonthPager(
     onAction: (CalendarAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val targetPage = (content.monthOffset + MONTH_PAGES_EACH_WAY).coerceIn(0, PAGE_COUNT - 1)
-    val pagerState = rememberPagerState(initialPage = targetPage) { PAGE_COUNT }
+    val targetPage = MonthPages.pageOf(content.monthOffset)
+    val pagerState = rememberPagerState(initialPage = targetPage) { MonthPages.COUNT }
     val shownOffset by rememberUpdatedState(content.monthOffset)
     val latestOnAction by rememberUpdatedState(onAction)
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.settledPage }.collect { page ->
-            val offset = page - MONTH_PAGES_EACH_WAY
+            val offset = MonthPages.offsetOf(page)
             if (offset != shownOffset) latestOnAction(CalendarAction.ShowMonth(offset))
         }
     }
@@ -64,7 +80,7 @@ internal fun MonthPager(
         beyondViewportPageCount = 1,
         key = { it },
     ) { page ->
-        MonthPageSlot(page - MONTH_PAGES_EACH_WAY, content, builder, onAction)
+        MonthPageSlot(MonthPages.offsetOf(page), content, builder, onAction)
     }
 }
 

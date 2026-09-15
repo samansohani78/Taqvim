@@ -31,9 +31,21 @@ public fun CalendarArithmetic.plusDays(
 
 /**
  * The date [months] after [date], keeping the day of month and clamping it to the target month's length
- * (e.g. 31 → 30). Works for any number of months per year.
+ * (e.g. 31 → 30). Constant time when the calendar has [CalendarArithmetic.monthsPerYear]; otherwise it steps year by
+ * year, which works for any number of months per year. Throws [ArithmeticException] when the year leaves `Int`.
  */
 public fun CalendarArithmetic.addMonths(
+    date: CalendarDate,
+    months: Int,
+): CalendarDate {
+    val perYear = monthsPerYear?.toLong() ?: return addMonthsYearByYear(date, months)
+    val index = Math.addExact(Math.multiplyExact(date.year.toLong(), perYear), date.month - 1L + months)
+    val year = Math.toIntExact(Math.floorDiv(index, perYear))
+    val month = Math.floorMod(index, perYear).toInt() + 1
+    return date(year, month, minOf(date.day, monthLength(year, month)))
+}
+
+private fun CalendarArithmetic.addMonthsYearByYear(
     date: CalendarDate,
     months: Int,
 ): CalendarDate {
@@ -53,13 +65,25 @@ public fun CalendarArithmetic.addMonths(
 
 /**
  * Whole months from [from] to [to]: the largest `n` (by magnitude) such that `addMonths(from, n)` does not pass
- * [to]. Negative when [to] precedes [from].
+ * [to]. Negative when [to] precedes [from]. Constant time when the calendar has [CalendarArithmetic.monthsPerYear];
+ * throws [ArithmeticException] when the count does not fit `Int`.
  */
 public fun CalendarArithmetic.monthsBetween(
     from: CalendarDate,
     to: CalendarDate,
 ): Int {
-    if (toJdn(to) < toJdn(from)) return -monthsBetween(to, from)
+    if (toJdn(to) < toJdn(from)) return Math.negateExact(monthsBetween(to, from))
+    val perYear = monthsPerYear?.toLong() ?: return monthsBetweenByStepping(from, to)
+    // Month numbers apart; one fewer when the day of [from] does not fit before [to] in the target month.
+    val apart = (to.year.toLong() - from.year) * perYear + (to.month - from.month)
+    val months = if (apart > 0 && toJdn(addMonths(from, Math.toIntExact(apart))) > toJdn(to)) apart - 1 else apart
+    return Math.toIntExact(months)
+}
+
+private fun CalendarArithmetic.monthsBetweenByStepping(
+    from: CalendarDate,
+    to: CalendarDate,
+): Int {
     var months = 0
     while (toJdn(addMonths(from, months + 1)) <= toJdn(to)) months++
     return months

@@ -8,6 +8,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
@@ -125,7 +126,7 @@ class EditorPresenterTest {
         picker.daysInMonth(1405, 12) shouldBe PersianCalendarSystem.monthLength(1405, 12)
         picker.formatNumber(25) shouldBe Numerals.format(25, NumeralSystem.PERSIAN)
         picker.formatTwoDigits(7) shouldBe Numerals.localizeDigits("07", NumeralSystem.PERSIAN)
-        picker.years shouldBe 1305..1505
+        picker.years shouldBe CalendarLimits.years(PersianCalendarSystem)
 
         val zh = EditorFixtures.language("zh")
         val numbered = editing(EditorSession.Editing(form, form), EditorFixtures.settings("zh")).display.picker

@@ -11,6 +11,7 @@ import io.kotest.property.Arb
 import io.kotest.property.arbitrary.enum
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
@@ -63,7 +64,12 @@ class WearMonthConverterTest {
             calendar.date(1405, 12, 1)
         WearConverter.step(calendar, calendar.date(1405, 1, 1), ConverterField.MONTH, -1) shouldBe
             calendar.date(1405, 12, 1)
-        WearConverter.step(calendar, calendar.date(1, 1, 1), ConverterField.YEAR, -1) shouldBe calendar.date(1, 1, 1)
+        WearConverter.step(calendar, calendar.date(1, 1, 1), ConverterField.YEAR, -1) shouldBe calendar.date(0, 1, 1)
+        val years = CalendarLimits.years(calendar)
+        WearConverter.step(calendar, calendar.date(years.last, 1, 1), ConverterField.YEAR, Int.MAX_VALUE) shouldBe
+            calendar.date(years.last, 1, 1)
+        WearConverter.step(calendar, calendar.date(years.first, 12, 1), ConverterField.YEAR, Int.MIN_VALUE) shouldBe
+            calendar.date(years.first, 12, 1)
     }
 
     @Test

@@ -94,6 +94,9 @@ class YearPageBuilder(
         day: Jdn,
     ): Int = calendars.yearOf(index, day)
 
+    /** The years calendar [index] offers. */
+    fun years(index: Int): IntRange = calendars.years(index)
+
     /** [year] of calendar [index]; [days] are its days' flags, `null` while loading (weekends follow the language). */
     fun build(
         index: Int,

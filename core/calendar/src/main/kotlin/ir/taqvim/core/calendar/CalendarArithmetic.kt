@@ -8,6 +8,8 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 
+private const val MONTHS_PER_YEAR = 12
+
 /**
  * Conversion between a calendar's dates and [Jdn], plus the calendar's structure. Every Taqvim calendar
  * (Gregorian, Persian, Islamic variants, Nepali) implements this contract; utilities in T-106 build on it.
@@ -27,6 +29,14 @@ public interface CalendarArithmetic {
 
     /** Number of months in [year]. */
     public fun monthsInYear(year: Int): Int
+
+    /**
+     * The number of months in every year when it never changes — 12 in each Taqvim calendar system (Persian, Islamic,
+     * Gregorian, Bikram Sambat), so month arithmetic is direct for any distance. A calendar whose years differ in
+     * months must return `null`; month arithmetic then steps year by year.
+     */
+    public val monthsPerYear: Int?
+        get() = MONTHS_PER_YEAR
 
     /** Number of days in [month] of [year]; throws [IllegalArgumentException] for an invalid month. */
     public fun monthLength(

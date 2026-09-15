@@ -5,6 +5,7 @@
 package ir.taqvim.feature.widgets
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.addMonths
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.calendar.toLocalDate
@@ -36,8 +37,8 @@ object WidgetCalendarBuilder {
     const val WEEK_DAYS: Int = 7
     const val SCHEDULE_DAYS: Int = 14
 
-    /** Month navigation stops a century either way. */
-    const val MAX_MONTH_OFFSET: Int = 1200
+    /** Month navigation reaches [CalendarLimits.MAX_MONTH_OFFSET] months either way (offsets are stored as `Int`). */
+    const val MAX_MONTH_OFFSET: Int = CalendarLimits.MAX_MONTH_OFFSET
 
     /** The first day of the month [offset] months from today's month in the primary calendar. */
     fun monthStart(
@@ -74,7 +75,7 @@ object WidgetCalendarBuilder {
         weekStart: Weekday,
     ): Jdn = day - Math.floorMod(day.weekday().ordinal - weekStart.ordinal, WEEK_DAYS)
 
-    fun clampOffset(offset: Int): Int = offset.coerceIn(-MAX_MONTH_OFFSET, MAX_MONTH_OFFSET)
+    fun clampOffset(offset: Int): Int = CalendarLimits.clampMonthOffset(offset)
 
     /** The month page [offset] months from today's month; [facts] gives each day's holidays and events. */
     fun month(

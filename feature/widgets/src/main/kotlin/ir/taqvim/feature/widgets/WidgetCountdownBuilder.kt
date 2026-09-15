@@ -5,6 +5,7 @@
 package ir.taqvim.feature.widgets
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.i18n.FormatTable
 import ir.taqvim.core.i18n.LanguageSpec
@@ -122,14 +123,9 @@ data class WidgetCountdownOptions(
             occasions = occasions.toImmutableList(),
             monthNames = names.toImmutableList(),
             numerals = language.numerals,
-            years = (todayYear - YEARS_BACK)..(todayYear + YEARS_AHEAD),
+            years = CalendarLimits.years(calendar),
             dateText = WidgetContentBuilder.dayTitle(calendar, calendar.toJdn(origin), language),
         )
-    }
-
-    private companion object {
-        const val YEARS_BACK = 120
-        const val YEARS_AHEAD = 50
     }
 }
 

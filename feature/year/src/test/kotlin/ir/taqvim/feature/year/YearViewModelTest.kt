@@ -83,8 +83,8 @@ class YearViewModelTest {
                 awaitContent { it.isPickingYear }
                 viewModel.onAction(YearAction.ShowYear(1300))
                 awaitContent { it.year == 1300 }.isPickingYear shouldBe false
-                viewModel.onAction(YearAction.ShowYear(YearCalendars.MAX_YEAR + 100))
-                awaitContent { it.year == YearCalendars.MAX_YEAR }
+                viewModel.onAction(YearAction.ShowYear(Int.MAX_VALUE))
+                awaitContent { it.year == calendars.years(0).last }
                 viewModel.onAction(YearAction.OpenYearPicker)
                 viewModel.onAction(YearAction.CloseYearPicker)
                 viewModel.onAction(YearAction.GoToToday)

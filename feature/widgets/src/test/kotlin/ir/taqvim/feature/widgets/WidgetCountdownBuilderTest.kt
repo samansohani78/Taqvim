@@ -7,6 +7,7 @@ package ir.taqvim.feature.widgets
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
@@ -84,7 +85,7 @@ class WidgetCountdownBuilderTest {
         choices.calendars shouldBe listOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN)
         choices.monthNames.first() shouldBe "Farvardin"
         choices.monthNames.size shouldBe 12
-        choices.years shouldBe 1285..1455
+        choices.years shouldBe CalendarLimits.years(PersianCalendarSystem)
         choices.occasions shouldBe listOf(occasion)
         choices.numerals shouldBe en.numerals
         shouldThrow<IllegalArgumentException> { WidgetCountdownOptions(today, en, emptyList(), emptyList()) }

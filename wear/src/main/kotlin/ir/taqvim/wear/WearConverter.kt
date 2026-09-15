@@ -5,6 +5,7 @@
 package ir.taqvim.wear
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.model.CalendarDate
@@ -25,10 +26,10 @@ data class ConvertedDate(
 
 /** Date conversion on the watch: step a date in one calendar and read it in the others (T-1600). */
 object WearConverter {
-    /** Years a watch converter accepts. */
-    val YEARS: IntRange = 1..9999
-
-    /** [date] with [field] moved by [delta], wrapping months and days within their year and month and clamping days. */
+    /**
+     * [date] with [field] moved by [delta], wrapping months and days within their year and month and clamping days; years
+     * stay within the calendar's [CalendarLimits.years].
+     */
     fun step(
         calendar: CalendarArithmetic,
         date: CalendarDate,
@@ -37,7 +38,9 @@ object WearConverter {
     ): CalendarDate =
         when (field) {
             ConverterField.YEAR -> {
-                clamp(calendar, (date.year + delta).coerceIn(YEARS), date.month, date.day)
+                val years = CalendarLimits.years(calendar)
+                val year = (date.year.toLong() + delta).coerceIn(years.first.toLong(), years.last.toLong()).toInt()
+                clamp(calendar, year, date.month, date.day)
             }
 
             ConverterField.MONTH -> {

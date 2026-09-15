@@ -22,7 +22,6 @@ internal object AstronomyStateMapper {
     private const val PERCENT = 100.0
     private const val PHASES = 8
     private const val PHASE_WIDTH = 45.0
-    private const val PICKER_YEARS = 150
 
     fun content(
         settings: AstronomySettings?,
@@ -155,7 +154,7 @@ internal object AstronomyStateMapper {
         val text = AstronomyText(settings)
         return PickerData(
             initial = DateSelection(date.year, date.month, date.day),
-            years = (date.year - PICKER_YEARS)..(date.year + PICKER_YEARS),
+            years = AstronomyDays.years(calendar),
             monthNames = names.toImmutableList(),
             daysInMonth = calendar::monthLength,
             digits = text::plain,

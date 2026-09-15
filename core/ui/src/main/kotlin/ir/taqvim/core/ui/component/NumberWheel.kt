@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
@@ -47,7 +46,8 @@ private val BAND_SHAPE = RoundedCornerShape(12.dp)
 /**
  * A vertical, snapping wheel choosing [value] from [range] (T-701), e.g. the year, month and day of [DatePickerSheet].
  * Items are shown with [format] (localized digits or month names). Accessibility services see one adjustable control
- * named [label] whose state is the formatted value; they change it through the progress action.
+ * named [label] whose state is the formatted value; they change it through the progress action. Any `Int` range works:
+ * the wheel lists a window of values around [value] ([WheelMath.window]) and moves it as the value changes.
  */
 @Composable
 public fun NumberWheel(
@@ -59,14 +59,16 @@ public fun NumberWheel(
     format: (Int) -> String = Int::toString,
 ) {
     val itemHeight = wheelItemHeight()
-    val state = rememberLazyListState(initialFirstVisibleItemIndex = WheelMath.indexOf(value, range))
-    val centered = rememberCenteredValue(state, range, itemHeight)
+    val shown = WheelMath.window(value, range)
+    // A new window gets a new list state positioned on the value, so the list never reports a value from the old one.
+    val state = remember(shown) { LazyListState(firstVisibleItemIndex = WheelMath.indexOf(value, shown)) }
+    val centered = rememberCenteredValue(state, shown, itemHeight)
     val currentValue by rememberUpdatedState(value)
     val currentOnValueChange by rememberUpdatedState(onValueChange)
     val scrolling = state.isScrollInProgress
-    LaunchedEffect(value, range) {
-        if (centered.value != WheelMath.valueAt(WheelMath.indexOf(value, range), range)) {
-            state.scrollToItem(WheelMath.indexOf(value, range))
+    LaunchedEffect(value, shown) {
+        if (centered.value != WheelMath.valueAt(WheelMath.indexOf(value, shown), shown)) {
+            state.scrollToItem(WheelMath.indexOf(value, shown))
         }
     }
     LaunchedEffect(centered.value, scrolling) {
@@ -79,15 +81,15 @@ public fun NumberWheel(
                 contentDescription = label
                 stateDescription = format(value)
                 progressBarRangeInfo =
-                    ProgressBarRangeInfo(value.toFloat(), range.first.toFloat()..range.last.toFloat())
+                    ProgressBarRangeInfo(value.toFloat(), shown.first.toFloat()..shown.last.toFloat())
                 setProgress { target ->
-                    currentOnValueChange(WheelMath.valueForProgress(target, range))
+                    currentOnValueChange(WheelMath.valueForProgress(target, shown))
                     true
                 }
             },
         contentAlignment = Alignment.Center,
     ) {
-        WheelList(state, range, centered.value, itemHeight, format)
+        WheelList(state, shown, centered.value, itemHeight, format)
     }
 }
 

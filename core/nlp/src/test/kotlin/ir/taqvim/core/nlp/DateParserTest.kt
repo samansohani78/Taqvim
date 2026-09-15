@@ -65,6 +65,19 @@ class DateParserTest {
     }
 
     @Test
+    fun `far years are read only when their calendar is named`() {
+        best("۱ فروردین ۵۰۰۰ شمسی", persian).date shouldBe CalendarDate(PERSIAN, 5000, 1, 1)
+        best("1 March 100000 AD", gregorian).date shouldBe CalendarDate(GREGORIAN, 100_000, 3, 1)
+        best("5000/01/01 ه.ش", persian).date shouldBe CalendarDate(PERSIAN, 5000, 1, 1)
+        DateParser.parse("1 March 5000", gregorian).shouldBeEmpty()
+        DateParser.parse("5000/01/01", persian).shouldBeEmpty()
+        // A named far year loses no more confidence than a year at the plausibility limit.
+        val marked = best("1 March 100000 AD", gregorian).confidence
+        val near = best("1 March ${2026 + AbsoluteRules.MAX_YEAR_DISTANCE} AD", gregorian).confidence
+        marked shouldBe near
+    }
+
+    @Test
     fun `incomplete numeric dates are not read`() {
         DateParser.parse("1405/06-22", persian).shouldBeEmpty()
         DateParser.parse("13/9/26", gregorian).shouldBeEmpty()

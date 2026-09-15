@@ -9,6 +9,7 @@ import app.cash.turbine.ReceiveTurbine
 import app.cash.turbine.test
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
+import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.ui.component.DateSelection
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
@@ -110,6 +111,30 @@ class AstronomyViewModelTest {
                 open.sky().isNow shouldBe false
                 viewModel.onDismissDialog()
                 awaitUntil { it.dialog == null }
+                cancelAndIgnoreRemainingEvents()
+            }
+            viewModel.viewModelScope.cancel()
+        }
+
+    @Test
+    fun `the selection stays on the days the screen offers`(): Unit =
+        runTest {
+            val viewModel = viewModel(MutableStateFlow(tehran))
+            val years = AstronomyDays.years(PersianCalendarSystem)
+            val lastDay = PersianCalendarSystem.fromJdn(AstronomyDays.LAST)
+            val firstDay = PersianCalendarSystem.fromJdn(AstronomyDays.FIRST)
+            viewModel.uiState.test {
+                awaitUntil { it.content is AstronomyContent.Sky }
+                viewModel.onDatePicked(DateSelection(years.last, 12, 1))
+                awaitUntil { it.sky().picker.initial == DateSelection(years.last, 12, 1) }
+                viewModel.onStepYears(1)
+                awaitUntil { it.sky().picker.initial == DateSelection(lastDay.year, lastDay.month, lastDay.day) }
+                viewModel.onStepDays(1)
+                testScheduler.runCurrent()
+                viewModel.onDatePicked(DateSelection(years.first, 1, 1))
+                awaitUntil { it.sky().picker.initial == DateSelection(years.first, 1, 1) }
+                viewModel.onStepDays(-400)
+                awaitUntil { it.sky().picker.initial == DateSelection(firstDay.year, firstDay.month, firstDay.day) }
                 cancelAndIgnoreRemainingEvents()
             }
             viewModel.viewModelScope.cancel()

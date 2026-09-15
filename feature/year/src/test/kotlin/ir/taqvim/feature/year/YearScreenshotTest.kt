@@ -55,7 +55,7 @@ class YearScreenshotTest(
                 val page = remember(builder) { builder.build(0, content.year, content.today, content.days) }
                 YearFrame(content, builder, onAction = {}) { modifier ->
                     if (picking) {
-                        YearPicker(content.year, builder::number, onAction = {}, modifier = modifier)
+                        YearPicker(content.year, builder.years(0), builder::number, onAction = {}, modifier = modifier)
                     } else {
                         YearPageView(page, content.columns, onAction = {}, modifier = modifier)
                     }

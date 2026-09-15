@@ -83,6 +83,38 @@ class PickerAndGridTest {
     }
 
     @Test
+    fun numberWheelWorksAcrossEveryIntValue() {
+        var value by mutableStateOf(1405)
+        composeRule.setContent {
+            TestTheme {
+                NumberWheel(
+                    value,
+                    Int.MIN_VALUE..Int.MAX_VALUE,
+                    { value = it },
+                    "Year",
+                    Modifier.width(96.dp),
+                )
+            }
+        }
+        val wheel = composeRule.onNodeWithContentDescription("Year")
+        wheel.assert(hasState("1405"))
+        wheel.performSemanticsAction(SemanticsActions.SetProgress) { it(1406f) }
+        composeRule.waitForIdle()
+        assertEquals(1406, value)
+        value = 2_000_000_000
+        composeRule.waitForIdle()
+        wheel.assert(hasState("2000000000"))
+        assertEquals(2_000_000_000, value)
+        wheel.performTouchInput { swipeUp() }
+        composeRule.waitForIdle()
+        assertTrue("swiping up moves to a later year, got $value", value > 2_000_000_000)
+        value = Int.MIN_VALUE
+        composeRule.waitForIdle()
+        wheel.assert(hasState(Int.MIN_VALUE.toString()))
+        assertEquals(Int.MIN_VALUE, value)
+    }
+
+    @Test
     fun datePickerClampsTheDayAndConfirms() {
         var confirmed: DateSelection? = null
         var dismissed = 0
