@@ -11,8 +11,9 @@ import ir.taqvim.core.model.CalendarSystem
  * Easter Sunday of the Gregorian calendar (the computus of the 1582 reform), by the integer algorithm in J. Meeus,
  * Astronomical Algorithms (2nd ed.), ch. 8 "Date of Easter" (T-109). The algorithm is exact for every Gregorian year
  * from [FIRST_YEAR] on, with no upper bound of its own: the dates repeat every 5 700 000 years. Earlier years used the
- * Julian computus and are rejected. The only upper limit is the [Int] year of [CalendarDate], [LAST_YEAR]; the
- * largest intermediate value is below 2.2 × 10⁷, so no step can overflow up to there.
+ * Julian computus ([JulianComputus], [ChristianMovableFeasts.civilForYear]) and are rejected here. The only upper
+ * limit is the [Int] year of [CalendarDate], [LAST_YEAR]; the largest intermediate value is below 2.2 × 10⁷, so no
+ * step can overflow up to there.
  */
 public object GregorianComputus {
     /** The first year whose Easter fell under the Gregorian calendar. */
