@@ -8,10 +8,12 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.app.TaqvimAppShell
+import ir.taqvim.app.finishOnboarding
 import ir.taqvim.core.calendar.toJdn
 import kotlinx.datetime.LocalDate
 import org.junit.After
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,6 +24,12 @@ import org.koin.core.context.stopKoin
 class DeepLinkShellTest {
     @get:Rule
     val composeRule = createComposeRule()
+
+    // Links open once the first-run onboarding (T-1501) is done.
+    @Before
+    fun finishFirstRun() {
+        composeRule.finishOnboarding(showsShell = false)
+    }
 
     // Robolectric starts TaqvimApplication, and so Koin, for every test.
     @After

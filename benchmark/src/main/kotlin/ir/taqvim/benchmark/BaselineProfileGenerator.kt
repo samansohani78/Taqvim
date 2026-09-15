@@ -28,6 +28,7 @@ class BaselineProfileGenerator {
         rule.collect(packageName = APP_PACKAGE, includeInStartupProfile = true) {
             pressHome()
             startActivityAndWait()
+            skipOnboarding()
             swipeMonths()
             restartOn(Links.NOWRUZ_1405)
             restartOn(Links.TIMES)

@@ -15,6 +15,7 @@ import androidx.test.uiautomator.Until
 internal const val APP_PACKAGE = "ir.taqvim.app"
 
 private const val UI_TIMEOUT_MILLIS = 5_000L
+private const val ONBOARDING_WAIT_MILLIS = 1_000L
 private const val GESTURE_MARGIN_DIVISOR = 5
 
 /** Test tags of the screens the journeys drive, exposed as resource ids by `MainActivity` (T-1801). */
@@ -30,6 +31,9 @@ internal object Tags {
 
     /** `SEARCH_RESULTS_TAG` of `:feature:search`. */
     const val SEARCH_RESULTS = "search_results"
+
+    /** `OnboardingTags.SKIP` of `:feature:settings`. */
+    const val ONBOARDING_SKIP = "onboarding:skip"
 }
 
 /** Documented `taqvim://` links (ADR-0016) that open the screens of the journeys. */
@@ -40,9 +44,16 @@ internal object Links {
     const val SEARCH = "taqvim://search"
 }
 
-/** Starts Taqvim on [link] and waits for its first frame. */
+/** Starts Taqvim on [link], waits for its first frame and skips the first-run onboarding (T-1501) if it is shown. */
 internal fun MacrobenchmarkScope.openLink(link: String) {
     startActivityAndWait(Intent(Intent.ACTION_VIEW, Uri.parse(link)).setPackage(APP_PACKAGE))
+    skipOnboarding()
+}
+
+/** Skips the first-run onboarding (T-1501) shown on a fresh install, so the journeys reach their screens. */
+internal fun MacrobenchmarkScope.skipOnboarding() {
+    device.wait(Until.findObject(By.res(Tags.ONBOARDING_SKIP)), ONBOARDING_WAIT_MILLIS)?.click()
+    device.waitForIdle()
 }
 
 /** The node tagged [tag], failing the run when the screen does not show it in time. */

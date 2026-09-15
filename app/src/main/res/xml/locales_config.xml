@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- T-1501 (ADR-0007, ADR-0023): the 24 launch languages, as the locales of core/i18n languages.properties, so the
+     system's per-app language settings offer them. Kept equal to LanguageTable by AppLocalesTest. -->
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
-  <locale android:name="en" />
-  <locale android:name="fa" />
+  <locale android:name="fa-IR" />
+  <locale android:name="fa-AF" />
+  <locale android:name="ps-AF" />
+  <locale android:name="ar-SA" />
+  <locale android:name="ckb-IQ" />
+  <locale android:name="ku-TR" />
+  <locale android:name="az-Latn-AZ" />
+  <locale android:name="tr-TR" />
+  <locale android:name="ur-PK" />
+  <locale android:name="ne-NP" />
+  <locale android:name="hi-IN" />
+  <locale android:name="ta-IN" />
+  <locale android:name="bn-BD" />
+  <locale android:name="tg-TJ" />
+  <locale android:name="uz-Latn-UZ" />
+  <locale android:name="en-US" />
+  <locale android:name="ru-RU" />
+  <locale android:name="de-DE" />
+  <locale android:name="fr-FR" />
+  <locale android:name="es-ES" />
+  <locale android:name="id-ID" />
+  <locale android:name="ms-MY" />
+  <locale android:name="zh-Hans-CN" />
+  <locale android:name="ja-JP" />
 </locale-config>

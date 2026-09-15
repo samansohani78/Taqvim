@@ -49,8 +49,16 @@ internal class PreferencesGeneralSettingsStore(
             .map { GeneralSettingsData(it.languageSpec(), it.toGeneralSettings()) }
             .distinctUntilChanged()
 
+    /** A changed language applies that language's defaults to everything not chosen yet (T-1501, ADR-0023). */
     override suspend fun update(transform: (GeneralSettings) -> GeneralSettings) {
-        preferences.update { current -> current.withGeneralSettings(transform(current.toGeneralSettings())) }
+        preferences.update { current ->
+            val next = transform(current.toGeneralSettings())
+            if (next.languageCode != current.languageCode) {
+                current.withLanguage(next.languageCode)
+            } else {
+                current.withGeneralSettings(next)
+            }
+        }
         afterUpdate()
     }
 

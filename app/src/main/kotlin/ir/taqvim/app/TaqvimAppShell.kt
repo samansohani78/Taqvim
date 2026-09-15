@@ -6,6 +6,8 @@ package ir.taqvim.app
 
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.testTag
 import ir.taqvim.app.di.themeSettings
 import ir.taqvim.app.navigation.AppDestination
 import ir.taqvim.app.navigation.AppNavDisplay
@@ -30,12 +33,17 @@ import ir.taqvim.core.ui.theme.TaqvimTheme
 import ir.taqvim.core.ui.theme.ThemeSettings
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarMessage
+import ir.taqvim.feature.settings.OnboardingRoute
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 
+/** The test tag of the first-run onboarding shown in place of the navigation frame (T-1501). */
+internal const val ONBOARDING_TAG: String = "screen:onboarding"
+
 /**
- * The app: the Taqvim theme around the navigation frame and the screens of the back stack (ADR-0015). A [link]
- * (T-1103) is opened once, after which [onLinkOpened] is called.
+ * The app: the Taqvim theme around the navigation frame and the screens of the back stack (ADR-0015). Until the
+ * first-run onboarding (T-1501, ADR-0023) is completed or skipped it is shown instead of the frame. A [link] (T-1103)
+ * is opened once the frame is shown, after which [onLinkOpened] is called.
  */
 @Composable
 fun TaqvimAppShell(
@@ -43,10 +51,13 @@ fun TaqvimAppShell(
     link: AppDestination? = null,
     onLinkOpened: () -> Unit = {},
 ) {
+    val preferences = koinInject<UserPreferencesRepository>()
+    val stored by preferences.preferences.collectAsState(initial = null)
+    val onboarded = stored?.onboardingCompleted
     val navigator = rememberAppNavigator()
     val currentOnLinkOpened by rememberUpdatedState(onLinkOpened)
-    LaunchedEffect(link) {
-        if (link != null) {
+    LaunchedEffect(link, onboarded) {
+        if (link != null && onboarded == true) {
             navigator.navigate(link)
             currentOnLinkOpened()
         }
@@ -61,11 +72,21 @@ fun TaqvimAppShell(
                 scope.launch { snackbar.showSnackbar(resources.getString(message.text)) }
             }
         }
-    val preferences = koinInject<UserPreferencesRepository>()
-    val stored by preferences.preferences.collectAsState(initial = null)
     TaqvimTheme(stored?.themeSettings() ?: ThemeSettings(), layoutTextDirection()) {
-        AppNavigationFrame(navigator.backStack.selectedTab, navigator::select, snackbar, modifier) {
-            AppNavDisplay(navigator, router)
+        when (onboarded) {
+            null -> {
+                Box(modifier.fillMaxSize())
+            }
+
+            false -> {
+                OnboardingRoute(modifier.fillMaxSize().testTag(ONBOARDING_TAG))
+            }
+
+            true -> {
+                AppNavigationFrame(navigator.backStack.selectedTab, navigator::select, snackbar, modifier) {
+                    AppNavDisplay(navigator, router)
+                }
+            }
         }
     }
 }

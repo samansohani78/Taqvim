@@ -35,6 +35,7 @@ class MonthPagerScrollBenchmark {
             setupBlock = {
                 pressHome()
                 startActivityAndWait()
+                skipOnboarding()
             },
         ) {
             val pager =

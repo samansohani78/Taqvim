@@ -62,6 +62,12 @@ android {
             isDebuggable = false
         }
     }
+    bundle {
+        // The app language is chosen in the app (T-1501, ADR-0023), so every language's resources must be installed.
+        language {
+            enableSplit = false
+        }
+    }
 }
 
 dependencies {

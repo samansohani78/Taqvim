@@ -16,9 +16,11 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.app.MainActivity
+import ir.taqvim.app.finishOnboarding
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,6 +32,12 @@ import org.robolectric.Shadows.shadowOf
 class AppShellTest {
     @get:Rule
     val composeRule = createAndroidComposeRule<MainActivity>()
+
+    // The navigation frame follows the first-run onboarding (T-1501).
+    @Before
+    fun finishFirstRun() {
+        composeRule.finishOnboarding()
+    }
 
     // Robolectric starts TaqvimApplication, and so Koin, for every test.
     @After

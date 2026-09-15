@@ -24,6 +24,7 @@ import ir.taqvim.data.events.ics.SubscriptionRefresher
 import ir.taqvim.data.events.ics.icsDataModule
 import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
+import ir.taqvim.data.preferences.DeviceLanguages
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.scheduler.AlarmDelivery
 import ir.taqvim.data.scheduler.AlarmInputWatcher
@@ -75,6 +76,7 @@ import ir.taqvim.feature.settings.SubscriptionsStore
 import ir.taqvim.feature.settings.athanSettingsFeatureModule
 import ir.taqvim.feature.settings.generalSettingsFeatureModule
 import ir.taqvim.feature.settings.locationSettingsFeatureModule
+import ir.taqvim.feature.settings.onboardingFeatureModule
 import ir.taqvim.feature.timeline.TimelineClockSource
 import ir.taqvim.feature.timeline.TimelineDaysSource
 import ir.taqvim.feature.timeline.TimelinePlaceSource
@@ -120,7 +122,8 @@ val appDataModule =
                 UserPreferencesRepository.createDataStore(
                     context = androidContext(),
                     scope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
-                    deviceLanguage = { Locale.getDefault().language },
+                    // T-1501: the device locale's launch language (e.g. fa-AF → prs, ku → kmr).
+                    deviceLanguage = { DeviceLanguages.match(deviceLanguageTag()) },
                 )
             UserPreferencesRepository(dataStore)
         }
@@ -318,6 +321,8 @@ val appModule =
             reminderAlarmPortsModule,
             settingsPortsModule,
             generalSettingsFeatureModule,
+            onboardingFeatureModule,
+            onboardingPortsModule,
             backupFeatureModule,
             backupPortsModule,
             automationModule,
