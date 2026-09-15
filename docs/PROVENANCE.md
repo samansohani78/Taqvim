@@ -535,6 +535,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1501 — Per-app language and first-run onboarding
+- **Module / files:** `data/preferences/.../` language switch (`withLanguage`, `DeviceLanguages`), `feature/settings/.../Onboarding*.kt`,
+  `app/.../OnboardingAdapters.kt`, `res/xml/locales_config.xml`; decisions in ADR-0023
+- **Task:** T-1501
+- **References used (public only):** Android platform APIs — `LocaleManager`, `android:localeConfig`,
+  `Configuration.setLocale`/`createConfigurationContext`; BCP 47 language tags via `java.util.Locale`; Jetpack Compose/
+  Material 3 public APIs (Apache-2.0). No AppCompat and no new dependencies.
+- **Implementation note:** own work; the explicit-choice rule and device-language matching are Taqvim decisions
+  (ADR-0023); test data synthetic.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1502 — Location settings and the chosen place
 - **Module / files:** `feature/settings/src/main/kotlin/ir/taqvim/feature/settings/`;
   `data/preferences/src/main/kotlin/ir/taqvim/data/preferences/ChosenPlace.kt`, `user_prefs.proto` field 13
