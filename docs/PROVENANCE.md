@@ -907,14 +907,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **References used (public only):**
   1. B. D. Yallop, "A Method for Predicting the First Sighting of the New Crescent Moon", NAO Technical Note No. 69,
      HM Nautical Almanac Office, https://astronomycenter.net/pdf/yallop_1997.pdf (retrieved 2026-09-13): definitions
-     of ARCL/ARCV (§2), eq. (3.6) and the topocentric width (3.8)–(3.10), best time Tb = Ts + 4/9 lag (4.1), classes
+     of ARCL/ARCV (§2), eq. (3.6) and the topocentric width (3.8)–(3.10), best time Tb = Ts + 4/9 lag (4.1) and its
+     morning counterpart Tb = Tr − 4/9 lag (`Yallop.morning`, `Odeh.morning`, main@c8ee198), classes
      A–F (Table 5).
   2. cosinekitty/astronomy 2.1.19 (MIT), public API only: geocentric vectors, rotation to the equator of date,
      airless horizon coordinates, rise/set searches. Earth equatorial radius 6378.137 km (WGS 84) for the parallax.
 - **Implementation note:** own work. Month rule: a month has 29 days when the crescent is rated at the chosen class or
   better on the evening of its 29th day at the chosen place, otherwise 30; counting starts two months earlier from the
   tabular calendar so an off-by-one start settles before the first returned month.
-- **Validation:** Yallop Table 4 (295 observations: q from ARCV and W′, class groups, width from parallax and ARCL);
+- **Validation (main@c8ee198):** computed class vs the observed outcome on Yallop Table 4 (295 observations) and on
+  Odeh Table VI (578); formula checks against the published constants (eq. 3.6 zeros, Table 5 thresholds, closed-form
+  widths);
   real evenings around a new moon; agreement with the official Iranian month starts (A-05) and within a day of
   Umm al-Qura (A-04).
 - **Calibration:** `IranCrescentCalibration` (any of five cities, class D) was chosen by measuring agreement with
@@ -1304,10 +1307,30 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
   (365 days per city, time order, identical coordinates on every monthly page).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
 
-### core/astronomy — `golden/yallop/yallop-1997-table4.csv` (T-104, A-06)
-- Yallop, NAO Technical Note 69, Table 4 (295 observations, pages 5–10), extracted with `pdftotext -layout`; PDF SHA-256 in
-  the header. Entries 251/252 (q = −0.014) keep the note's own group B.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+### core/astronomy — crescent observation goldens (`golden/yallop/*`, `golden/odeh/*`; T-104, T-1301, A-06)
+Facts only: each row holds what the observer recorded (date, place, whether the crescent was seen, and with what aid).
+The papers' computed columns are **not** committed; the app computes ARCV, W, q and the zones itself and the tests
+compare its prediction with the observed outcome (owner decision 2026-09-15). Generators re-derive the goldens and
+verify the sources' own arithmetic before dropping the computed columns.
+- `yallop/yallop-1997-table4.csv` (main@c8ee198): B. D. Yallop, NAO Technical Note No. 69, Table 4 — 295 observations
+  (24 morning), columns `no,date,m_or_e,latitude,longitude,observation` (Schaefer's column-17 code). Generator
+  `tools/crescent/yallop_table4_facts.py` (`pdftotext`, PDF SHA-256 `47575cde…` checked, q verified against eq. 3.6,
+  50 duplicate printed rows dropped, `--check`). The facts match the previous extraction on all 295 rows.
+- `odeh/odeh-2004-table6.csv` (main@c8ee198): M. Sh. Odeh, *Experimental Astronomy* 18: 39–64 (2004), Table VI,
+  journal pages 44–60 of https://astronomycenter.net/pdf/2006_cri.pdf (SHA-256
+  `7aac71168255c9576f20613c2230ce218e268c0f089f87fe4f0b865a25f26464`; cited, not archived). All 578 printed records
+  (I 284, A 199, C 41, F 33, D 15, B 6; 56 morning), columns
+  `no,source,m_or_e,local_date,latitude,longitude,elevation_m,naked_eye,binoculars,telescope,note`. The paper numbers
+  its records to 737 but prints only these 578 — the 159 absent numbers are the paper's own gap and are listed in the
+  golden header (record 737's printed date 02-11-2006 contradicts its JD 2453677.533 = 2005-11-02; kept with a note).
+  Generator `tools/crescent/odeh_table6_facts.py` with `odeh_table6_glyphs.json` (the table is a scan: connected
+  components clustered into glyph prototypes labelled by eye; every row must satisfy Odeh's eq. 2 from its printed
+  ARCV and W, ARCL from ARCV and DAZ, the JD matching the printed local date, negative age exactly on morning rows,
+  and non-decreasing V; `--check`). Needs `pdfimages` and numpy (BSD); the PDF is not committed.
+- **Validation of our geometry (scratch only, nothing committed):** against the papers' printed values the computed
+  Odeh zone agrees on 569 of 578 records (ARCV mean 0.051°, W mean 0.0052′, V mean 0.055) and the Yallop class on
+  295 of 295 (q within 0.0023 on 290 rows; the five outliers are the note's own documented wrong lags/dates).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; facts-only rewrite 2026-09-15; **reviewer:** pending.
 
 ### core/astronomy — `golden/iran/official-eclipses-1399-1405.csv`, `golden/iran/iran-provincial-capitals-1405.csv` (T-403)
 - Nine eclipse records from the Calendar Center's official calendars (`docs/sources/Calendar-1404.pdf` pages 2–3,
