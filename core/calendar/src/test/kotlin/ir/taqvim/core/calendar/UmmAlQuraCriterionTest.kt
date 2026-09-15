@@ -125,7 +125,8 @@ class UmmAlQuraCriterionTest {
                 (1..12).sumOf { uaq.monthLength(year, it) } shouldBeInRange 354..355
                 val last = hijri(year, month, length)
                 uaq.fromJdn(uaq.toJdn(last)) shouldBe last
-                uaq.fromJdn(Jdn(uaq.toJdn(last).value + 1)).day shouldBe 1
+                // The day after the last month of Int.MAX_VALUE is outside the supported range (tested below).
+                if (year != Int.MAX_VALUE || month != 12) uaq.fromJdn(Jdn(uaq.toJdn(last).value + 1)).day shouldBe 1
             }
         }
 
