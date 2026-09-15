@@ -1287,6 +1287,18 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
   the header. Entries 251/252 (q = −0.014) keep the note's own group B.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
 
+### core/astronomy — `golden/iran/official-eclipses-1399-1405.csv`, `golden/iran/iran-provincial-capitals-1405.csv` (T-403)
+- Nine eclipse records from the Calendar Center's official calendars (`docs/sources/Calendar-1404.pdf` pages 2–3,
+  `Calendar-1405.pdf` page 2, including its 1399 section) and the notice `اطلاعیه ماه گرفتگی 16 شهریور 1404.pdf`;
+  SHA-256 of each PDF checked against MANIFEST by `tools/iran/official_eclipses_golden.py` (pdftotext -raw, expected
+  record counts per section, `--check`). Clock times are recorded as Iran Standard Time (UTC+03:30); the documents
+  name no time zone, place, magnitude or obscuration.
+- Visibility sites: the 31 provincial capitals with the coordinates printed in the official 1405 prayer-time PDFs
+  (from the cited headers of `core/praytimes/.../golden/iran-prayer-times-1405/`).
+- Test `OfficialIranEclipsesTest` (main@5dea390): weekdays, lunar types and umbral contacts ±2 min, horizon visibility
+  at the 31 capitals as stated (umbral phases), solar types and non-visibility.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer:** pending.
+
 ### USNO reference data — `docs/sources/usno/*-raw.json`, `golden/usno/*`, `tools/usno/*` (ADR-0025)
 - **Source:** U.S. Naval Observatory, Astronomical Applications Department, API v4.0.1
   (https://aa.usno.navy.mil/data/api.html). US Government work, public domain (17 U.S.C. §105). The owner downloaded
