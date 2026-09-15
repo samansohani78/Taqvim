@@ -1196,6 +1196,26 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1301 — Map time-zone and tectonic plate layers (`time-zones-10m.txt`, `plates-matthews-2016.txt`; DT-035)
+- **Files:** `feature/map/src/main/assets/map/time-zones-10m.txt`, `plates-matthews-2016.txt`; generators
+  `tools/geodata/line_layers.py` (standard-library shapefile/dBase reader, shared edge extraction and Douglas–Peucker
+  simplification at 0.05°), `natural_earth_time_zones.py`, `matthews_plates.py` (each with `--check`); main@ece6731.
+- **Time zones:** Natural Earth 1:10m Cultural Vectors, Time Zones (`ne_10m_time_zones.geojson`, SHA-256
+  `aa52ab97e5f906693f31fe2e625c9d6be78a4e74fcd4142a7261235b355cacfe`, repository commit ca96624a, retrieved 2026-09-15).
+  Public domain (ADR-0003). Offset bands from the 2012 CIA World Factbook map; 922 simplified edges between different
+  bands. The legend notes the 2012 date.
+- **Plates:** K. J. Matthews, K. T. Maloney, S. Zahirovic, S. E. Williams, M. Seton, R. D. Müller (2016), "Global plate
+  boundary evolution and kinematics since the late Paleozoic", Zenodo 10526157 (`Matthews_etal_2016_GPC.zip` v1.0,
+  SHA-256 `06d444d22a55ff4c265199955168c537511d1d9feea958850e754e7c5759e33d`; file
+  `CorrectedModel/StaticGeometries/StaticPolygons/PresentDay_StaticPlatePolygons_Matthews.shp`, 2 048 polygons, 387
+  plate ids), retrieved 2026-09-15. CC BY 4.0 — attribution shown in the map legend and in About › Data sources
+  (`MATTHEWS_PLATES`); "simplified for display". No GPlates/pyGPlates or GPML files used. 1 246 edges between plates.
+- **Rejected sources** (licence research, owner decision 2026-09-15): timezone-boundary-builder (ODbL share-alike),
+  PB2002 and its USGS and fraxen copies (no licence from the author), GEM Global Active Faults (CC BY-SA), UTIG PLATES
+  (no licence).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### Iran official calendar sources (University of Tehran, Institute of Geophysics, Calendar Center)
 - **Files:** `docs/sources/` — inventory with page counts and SHA-256 in `docs/sources/MANIFEST.md`
 - **Obtained:** downloaded by the repository owner in a browser and added on 2026-09-13 (calendar.ut.ac.ir blocks
