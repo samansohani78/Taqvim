@@ -93,8 +93,9 @@ class OdehTest {
     }
 
     @Test
-    fun `no evening without a sunset`() {
+    fun `no evening without a sunset and no morning without a sunrise`() {
         Odeh.evening(Coordinates(80.0, 15.0), Instant.parse("2026-06-21T00:00:00Z")).shouldBeNull()
+        Odeh.morning(Coordinates(80.0, 15.0), Instant.parse("2026-06-21T00:00:00Z")).shouldBeNull()
     }
 
     private companion object {

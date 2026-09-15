@@ -35,9 +35,9 @@ public enum class OdehZone {
 }
 
 /**
- * The crescent at the best time [bestTime] of one evening in Odeh's terms, all topocentric: airless arc of vision
- * [arcVisionDegrees], arc of light [arcLightDegrees], crescent width [widthArcMinutes], [lagMinutes] from sunset to
- * moonset, and the visibility value [v].
+ * The crescent at the best time [bestTime] of one evening or morning in Odeh's terms, all topocentric: airless arc of
+ * vision [arcVisionDegrees], arc of light [arcLightDegrees], crescent width [widthArcMinutes], the Moon's lag
+ * [lagMinutes] (sunset to moonset, or moonrise to sunrise), and the visibility value [v].
  */
 public data class OdehObservation(
     public val bestTime: Instant,
@@ -93,7 +93,16 @@ public object Odeh {
     public fun evening(
         place: Coordinates,
         from: Instant,
-    ): OdehObservation? = CrescentEvening.bestTime(place, from)?.let { geometryAt(place, it) }
+    ): OdehObservation? = CrescentBestTime.evening(place, from)?.let { geometryAt(place, it) }
+
+    /**
+     * The old crescent on the first morning after [from] at [place], at Tb = Tr − 4/9 Lag (the paper's lag also runs
+     * from moonrise to sunrise). `null` when the Sun does not rise within a day or the Moon rises after the Sun.
+     */
+    public fun morning(
+        place: Coordinates,
+        from: Instant,
+    ): OdehObservation? = CrescentBestTime.morning(place, from)?.let { geometryAt(place, it) }
 
     private fun geometryAt(
         place: Coordinates,

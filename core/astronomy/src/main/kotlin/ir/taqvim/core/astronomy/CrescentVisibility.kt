@@ -47,8 +47,9 @@ public enum class CrescentVisibilityClass {
 }
 
 /**
- * The crescent at Yallop's best time [bestTime] on one evening: arc of light [arcLightDegrees], arc of vision
- * [arcVisionDegrees], topocentric width [widthArcMinutes], [lagMinutes] from sunset to moonset, and the test value [q].
+ * The crescent at Yallop's best time [bestTime] on one evening or morning: arc of light [arcLightDegrees], arc of
+ * vision [arcVisionDegrees], topocentric width [widthArcMinutes], the Moon's lag [lagMinutes] (sunset to moonset in
+ * the evening, moonrise to sunrise in the morning), and the test value [q].
  */
 public data class CrescentObservation(
     public val bestTime: Instant,
@@ -118,7 +119,17 @@ public object Yallop {
         place: Coordinates,
         from: Instant,
     ): CrescentObservation? =
-        CrescentEvening.bestTime(place, from)?.let { geometryAt(place, it.instant, it.lagMinutes) }
+        CrescentBestTime.evening(place, from)?.let { geometryAt(place, it.instant, it.lagMinutes) }
+
+    /**
+     * The old crescent on the first morning after [from] at [place], at Tb = Tr − 4/9 Lag. `null` when the Sun does not
+     * rise within a day or the Moon rises after the Sun.
+     */
+    public fun morning(
+        place: Coordinates,
+        from: Instant,
+    ): CrescentObservation? =
+        CrescentBestTime.morning(place, from)?.let { geometryAt(place, it.instant, it.lagMinutes) }
 
     private fun geometryAt(
         place: Coordinates,
@@ -156,34 +167,57 @@ public object Yallop {
     private fun degrees(radians: Double): Double = radians * HALF_TURN / PI
 }
 
-/** Yallop's best time of an evening, Tb = Ts + 4/9 Lag, with the lag from sunset to moonset in minutes. */
+/** Yallop's best time of an evening or morning, with the Moon's lag in minutes. */
 internal data class BestTime(
     val instant: Instant,
     val lagMinutes: Double,
 )
 
-/** The evening a crescent test looks at, shared by Yallop's and Odeh's criteria. */
-internal object CrescentEvening {
+/**
+ * The evening or morning a crescent test looks at, shared by Yallop's and Odeh's criteria: Tb = Ts + 4/9 Lag after
+ * sunset, and by symmetry Tb = Tr − 4/9 Lag before sunrise, where the lag runs from sunset to moonset or from moonrise
+ * to sunrise.
+ */
+internal object CrescentBestTime {
     private const val BEST_TIME_FRACTION = 4.0 / 9.0
     private const val MILLIS_PER_MINUTE = 60_000.0
+    private const val SEARCH_DAYS = 1.0
 
     /**
      * The best time on the first evening after [from] at [place]; `null` when the Sun does not set within a day or the
      * Moon sets before the Sun.
      */
-    fun bestTime(
+    fun evening(
         place: Coordinates,
         from: Instant,
+    ): BestTime? = search(place, from, Direction.Set, 1)
+
+    /**
+     * The best time on the first morning after [from] at [place]; `null` when the Sun does not rise within a day or the
+     * Moon rises after the Sun.
+     */
+    fun morning(
+        place: Coordinates,
+        from: Instant,
+    ): BestTime? = search(place, from, Direction.Rise, -1)
+
+    /** [sign] is +1 when the Moon sets after the Sun (evening) and −1 when it rises before the Sun (morning). */
+    private fun search(
+        place: Coordinates,
+        from: Instant,
+        direction: Direction,
+        sign: Int,
     ): BestTime? {
         val observer = place.toObserver()
-        val sunset = librarySearchRiseSet(Body.Sun, observer, Direction.Set, from.toAstronomyTime(), 1.0) ?: return null
+        val sun =
+            librarySearchRiseSet(Body.Sun, observer, direction, from.toAstronomyTime(), SEARCH_DAYS) ?: return null
         val lagMillis =
-            librarySearchRiseSet(Body.Moon, observer, Direction.Set, sunset, 1.0)
-                ?.let { (it.toInstant() - sunset.toInstant()).inWholeMilliseconds }
+            librarySearchRiseSet(Body.Moon, observer, direction, sun, sign * SEARCH_DAYS)
+                ?.let { sign * (it.toInstant() - sun.toInstant()).inWholeMilliseconds }
         if (lagMillis == null || lagMillis <= 0 || lagMillis >= 1.days.inWholeMilliseconds) return null
         val bestTime =
             Instant.fromEpochMilliseconds(
-                sunset.toInstant().toEpochMilliseconds() + (BEST_TIME_FRACTION * lagMillis).toLong(),
+                sun.toInstant().toEpochMilliseconds() + sign * (BEST_TIME_FRACTION * lagMillis).toLong(),
             )
         return BestTime(bestTime, lagMillis / MILLIS_PER_MINUTE)
     }
