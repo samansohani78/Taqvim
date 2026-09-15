@@ -4,9 +4,6 @@
  */
 package ir.taqvim.core.calendar
 
-import io.github.cosinekitty.astronomy.Time
-import io.github.cosinekitty.astronomy.searchMoonPhase
-
 /**
  * Month starts of the Iranian calculated-observational lunar calendar for every month, computed rather than stored
  * (ADR-0027). Months are indexed from 1 Muharram AH 1: index = (year − 1) × 12 + (month − 1).
@@ -16,7 +13,7 @@ import io.github.cosinekitty.astronomy.searchMoonPhase
  *   which [IranCrescentSighting] sees the crescent; month starts follow [AnchoredMonthStarts]. Both are computed on
  *   first use, a Hijri year at a time, and kept.
  * - Every other month: the mean lunation continued from the nearer edge with the exact mean month between the two edge
- *   months ([MeanCrescentMonth]). Far outside that range the ephemeris and ΔT are only extrapolations, so no crescent is
+ *   months ([MeanLunarMonths]). Far outside that range the ephemeris and ΔT are only extrapolations, so no crescent is
  *   claimed there; every month still has 29 or 30 days and the continuation meets the astronomical months exactly.
  *
  * Month arithmetic is exact in [Long] for every [Int] year.
@@ -37,7 +34,6 @@ internal object IranCrescentMonths {
     /** Meeus lunation number k (Astronomical Algorithms, ch. 49) of the conjunction before 1 Muharram AH 1. */
     private const val LUNATION_OF_FIRST_MONTH = -17_037L
     private const val YEARS_PER_CHUNK = 100
-    private const val NEW_MOON_LONGITUDE = 0.0
     private const val SEARCH_BEFORE_DAYS = 3.0
     private const val SEARCH_DAYS = 6.0
     private const val TEHRAN_OFFSET_MILLIS = 12_600_000L
@@ -57,8 +53,8 @@ internal object IranCrescentMonths {
             LongArray(size) { AnchoredMonthStarts.start(first + it, FIRST_INDEX, ::sightingStart) }
         }
 
-    private val mean: Lazy<MeanCrescentMonth> =
-        lazy { MeanCrescentMonth(crescentStart(FIRST_INDEX), crescentStart(LAST_INDEX), LAST_INDEX - FIRST_INDEX) }
+    private val mean: Lazy<MeanLunarMonths> =
+        lazy { MeanLunarMonths(crescentStart(FIRST_INDEX), crescentStart(LAST_INDEX), LAST_INDEX - FIRST_INDEX) }
 
     /** Month index of [month] of [year]. */
     fun monthIndex(
@@ -92,13 +88,12 @@ internal object IranCrescentMonths {
      */
     fun computeSightingStart(index: Long): Long {
         val lunation = index + LUNATION_OF_FIRST_MONTH
-        val searchFrom = Time(MeanNewMoon.ut(lunation) - SEARCH_BEFORE_DAYS)
         val conjunction =
-            checkNotNull(searchMoonPhase(NEW_MOON_LONGITUDE, searchFrom, SEARCH_DAYS)) {
+            checkNotNull(CalendarAstronomy.newMoonAfter(MeanNewMoon.ut(lunation) - SEARCH_BEFORE_DAYS, SEARCH_DAYS)) {
                 "The ephemeris found no new moon for lunation $lunation"
             }
-        val civilDay =
-            Math.floorDiv(conjunction.toMillisecondsSince1970() + TEHRAN_OFFSET_MILLIS, MILLIS_PER_DAY) + UNIX_EPOCH_JDN
+        val conjunctionMillis = CalendarAstronomy.epochMillisOf(conjunction)
+        val civilDay = Math.floorDiv(conjunctionMillis + TEHRAN_OFFSET_MILLIS, MILLIS_PER_DAY) + UNIX_EPOCH_JDN
         val evening = (civilDay until civilDay + MAX_EVENINGS).firstOrNull(IranCrescentSighting::seenOnEvening)
         return (evening ?: (civilDay + MAX_EVENINGS - 1)) + 1
     }
@@ -179,29 +174,4 @@ internal object MeanNewMoon {
                 0.000_000_000_73 * t * t * t * t
         return julianEphemerisDay - J2000_JULIAN_DAY
     }
-}
-
-/**
- * The mean lunation continued from the edge months starting at [firstStart] and [lastStart], [months] months apart.
- * The mean month (lastStart − firstStart) / months is used exactly through integer division, so every continued month
- * has 29 or 30 days and the months at the edges are met exactly.
- */
-internal class MeanCrescentMonth(
-    private val firstStart: Long,
-    private val lastStart: Long,
-    private val months: Long,
-) {
-    private val days = lastStart - firstStart
-
-    /** JDN of the month [offset] months after the first edge month (negative values go back). */
-    fun fromFirst(offset: Long): Long = firstStart + Math.floorDiv(Math.multiplyExact(offset, days), months)
-
-    /** JDN of the month [offset] months after the last edge month. */
-    fun fromLast(offset: Long): Long = lastStart + Math.floorDiv(Math.multiplyExact(offset, days), months)
-
-    /** A month index near the one containing [jdn], counted in mean months from [lastIndex]. */
-    fun estimateIndex(
-        jdn: Long,
-        lastIndex: Long,
-    ): Long = lastIndex + Math.floorDiv(Math.multiplyExact(jdn - lastStart, months), days)
 }

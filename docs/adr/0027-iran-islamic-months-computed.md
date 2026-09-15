@@ -20,7 +20,7 @@ algorithm that works for any year.
 
 1. **Crescent months in `:core:calendar`.** `IranCrescentSighting` repeats the Iran calibration (same five cities,
    Yallop NAO TN 69 eq. 3.6, class D, best time Ts + 4/9 lag, airless geocentric arc of vision, topocentric width) with
-   cosinekitty/astronomy, which `:core:calendar` already uses (ADR-0026); `:core:astronomy` depends on
+   cosinekitty/astronomy through `CalendarAstronomy` (ADR-0026); `:core:astronomy` depends on
    `:core:calendar`, so the calculation cannot be called from there. `ObservationalMonthStartsTest` keeps the two
    implementations equal (AH 1440–1450).
 2. **Sighting start.** For each month, the conjunction is searched around Meeus's mean new moon (Astronomical

@@ -15,8 +15,8 @@ import kotlin.math.floor
  *   ([UmmAlQuraCriterion]), applied forward from each month's own start, computed on first use [BLOCK_MONTHS] at a
  *   time and kept. Before the published years the rule is applied proleptically; after them it is the calendar's
  *   own rule.
- * - Every other year: mean lunar months continued from the nearer astronomical edge ([MeanLunation]); months keep 29
- *   or 30 days and join the astronomical months without a seam.
+ * - Every other year: mean lunar months continued from the nearer astronomical edge ([MeanLunarMonths]); months keep
+ *   29 or 30 days and join the astronomical months without a seam.
  */
 internal object UmmAlQuraMonths {
     const val PUBLISHED_FIRST_YEAR: Int = 1300
@@ -47,9 +47,9 @@ internal object UmmAlQuraMonths {
     private val blocks: List<Lazy<LongArray>> =
         List(((lastAstronomicalIndex - firstAstronomicalIndex) / BLOCK_MONTHS + 1).toInt()) { lazy { block(it) } }
 
-    private val mean: Lazy<MeanLunation> =
+    private val mean: Lazy<MeanLunarMonths> =
         lazy {
-            MeanLunation(
+            MeanLunarMonths(
                 astronomicalStart(firstAstronomicalIndex),
                 astronomicalStart(lastAstronomicalIndex),
                 lastAstronomicalIndex - firstAstronomicalIndex,
@@ -74,8 +74,8 @@ internal object UmmAlQuraMonths {
     /** JDN of the first day of month [index]. */
     fun start(index: Long): Long =
         when {
-            index < firstAstronomicalIndex -> mean.value.startBeforeFirst(index - firstAstronomicalIndex)
-            index > lastAstronomicalIndex -> mean.value.startAfterLast(index - lastAstronomicalIndex)
+            index < firstAstronomicalIndex -> mean.value.fromFirst(index - firstAstronomicalIndex)
+            index > lastAstronomicalIndex -> mean.value.fromLast(index - lastAstronomicalIndex)
             else -> astronomicalStart(index)
         }
 
@@ -93,10 +93,10 @@ internal object UmmAlQuraMonths {
     }
 
     private fun estimateIndex(jdn: Long): Long =
-        when {
-            jdn < mean.value.firstStart -> firstAstronomicalIndex + mean.value.monthsFromFirst(jdn)
-            jdn > mean.value.lastStart -> lastAstronomicalIndex + mean.value.monthsFromLast(jdn)
-            else -> floor((jdn - PUBLISHED_START_JDN) / MEAN_SYNODIC_MONTH).toLong()
+        if (jdn < mean.value.firstStart || jdn > mean.value.lastStart) {
+            mean.value.estimateIndex(jdn, lastAstronomicalIndex)
+        } else {
+            floor((jdn - PUBLISHED_START_JDN) / MEAN_SYNODIC_MONTH).toLong()
         }
 
     private fun astronomicalStart(index: Long): Long {
@@ -144,30 +144,4 @@ internal object UmmAlQuraMonths {
         } else {
             UmmAlQuraCriterion.monthStartNear(PUBLISHED_START_JDN + index * MEAN_SYNODIC_MONTH)
         }
-}
-
-/**
- * Mean lunar months continued beyond the astronomical months: the interval from [firstStart] to [lastStart], [span]
- * months apart, is spread evenly in whole days, so every month has 29 or 30 days and the continuation meets both edges
- * exactly. Arithmetic stays in [Long] for every month of the years of [Int].
- */
-internal class MeanLunation(
-    val firstStart: Long,
-    val lastStart: Long,
-    private val span: Long,
-) {
-    private val interval = lastStart - firstStart
-    private val meanMonth = interval.toDouble() / span
-
-    /** JDN of the first day [months] months (negative) before the first astronomical month. */
-    fun startBeforeFirst(months: Long): Long = firstStart + Math.floorDiv(months * interval, span)
-
-    /** JDN of the first day [months] months after the last astronomical month. */
-    fun startAfterLast(months: Long): Long = lastStart + Math.floorDiv(months * interval, span)
-
-    /** Approximate months from the first astronomical month to [jdn]. */
-    fun monthsFromFirst(jdn: Long): Long = floor((jdn - firstStart) / meanMonth).toLong()
-
-    /** Approximate months from the last astronomical month to [jdn]. */
-    fun monthsFromLast(jdn: Long): Long = floor((jdn - lastStart) / meanMonth).toLong()
 }

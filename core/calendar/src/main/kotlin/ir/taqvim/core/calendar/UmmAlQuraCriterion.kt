@@ -4,25 +4,21 @@
  */
 package ir.taqvim.core.calendar
 
-import io.github.cosinekitty.astronomy.Body
-import io.github.cosinekitty.astronomy.Direction
-import io.github.cosinekitty.astronomy.Observer
-import io.github.cosinekitty.astronomy.Time
-import io.github.cosinekitty.astronomy.searchMoonPhase
-import io.github.cosinekitty.astronomy.searchRiseSet
+import ir.taqvim.core.model.Coordinates
 import kotlin.math.floor
 
 /**
  * The astronomical rule of the Umm al-Qura calendar (A-04, ADR-0028), as described by R. H. van Gent, "The Umm
- * al-Qura Calendar of Saudi Arabia", Utrecht University (archived in `docs/sources/vangent-ummalqura/`):
+ * al-Qura Calendar of Saudi Arabia", Utrecht University, https://webspace.science.uu.nl/~gent0113/islam/ummalqura.htm
+ * (rules page `ummalqura_rules.htm`; retrieved 2026-09-15; SHA-256 in docs/sources/MANIFEST.md):
  *
  * - **Since AH 1423:** if on the 29th day of the month the geocentric conjunction occurs before sunset and the Moon
  *   sets after the Sun, the next day is the first day of the new month; otherwise the month lasts 30 days.
  * - **AH 1420–1422:** the same without the conjunction condition (only moonset after sunset).
  *
  * Both are evaluated at the Kaʿba in Mecca (21.4225° N, 39.8262° E, the coordinates used for the Qibla, A-11) with
- * civil days in Saudi time (UTC+3). Events come from cosinekitty/astronomy 2.1.19 (MIT), as for the Persian year
- * starts (ADR-0026); library types stay inside this object. Days are Julian Day Numbers.
+ * civil days in Saudi time (UTC+3). Events come from [CalendarAstronomy], as for the Persian year starts (ADR-0026).
+ * Days are Julian Day Numbers; moments are UT days of [CalendarAstronomy].
  */
 internal object UmmAlQuraCriterion {
     private const val KAABA_LATITUDE = 21.4225
@@ -30,7 +26,6 @@ internal object UmmAlQuraCriterion {
     private const val J2000_JDN = 2_451_545L
     private const val HALF_DAY = 0.5
     private const val SAUDI_OFFSET_DAYS = 3.0 / 24.0
-    private const val NEW_MOON_LONGITUDE = 0.0
     private const val DAY_29 = 28L
     private const val SHORT_MONTH = 29L
     private const val LONG_MONTH = 30L
@@ -40,7 +35,7 @@ internal object UmmAlQuraCriterion {
     private const val NEW_MOON_SEARCH_BEFORE_DAYS = 8.0
     private const val NEW_MOON_SEARCH_DAYS = 12.0
 
-    private val kaaba = Observer(KAABA_LATITUDE, KAABA_LONGITUDE, 0.0)
+    private val kaaba = Coordinates(KAABA_LATITUDE, KAABA_LONGITUDE)
 
     /**
      * First day of the month after the month that began on [monthStart]: the day after its 29th day when the rule
@@ -63,40 +58,39 @@ internal object UmmAlQuraCriterion {
      * has occurred before sunset and the Moon sets after the Sun.
      */
     fun monthStartNear(approximateStart: Double): Long {
-        val searchFrom = Time(approximateStart - J2000_JDN - HALF_DAY - NEW_MOON_SEARCH_BEFORE_DAYS)
+        val searchFrom = approximateStart - J2000_JDN - HALF_DAY - NEW_MOON_SEARCH_BEFORE_DAYS
         val conjunction =
-            checkNotNull(searchMoonPhase(NEW_MOON_LONGITUDE, searchFrom, NEW_MOON_SEARCH_DAYS)) {
+            checkNotNull(CalendarAstronomy.newMoonAfter(searchFrom, NEW_MOON_SEARCH_DAYS)) {
                 "No conjunction near JDN $approximateStart"
             }
         return generateSequence(saudiDay(conjunction)) { it + 1 }
-            .first { day -> sunset(day).let { it.ut > conjunction.ut && moonSetsAfter(it) } } + 1
+            .first { day -> sunset(day).let { it > conjunction && moonSetsAfter(it) } } + 1
     }
 
     private fun monthBeginsAfter(
-        sunset: Time,
+        sunset: Double,
         requireConjunction: Boolean,
     ): Boolean = (!requireConjunction || conjunctionBefore(sunset)) && moonSetsAfter(sunset)
 
     /** Whether a conjunction occurred in the 20 days before [sunset] (the month's own conjunction, if any). */
-    private fun conjunctionBefore(sunset: Time): Boolean =
-        searchMoonPhase(NEW_MOON_LONGITUDE, sunset.addDays(-CONJUNCTION_LOOKBACK_DAYS), CONJUNCTION_LOOKBACK_DAYS) !=
-            null
+    private fun conjunctionBefore(sunset: Double): Boolean =
+        CalendarAstronomy.newMoonAfter(sunset - CONJUNCTION_LOOKBACK_DAYS, CONJUNCTION_LOOKBACK_DAYS) != null
 
     /** Whether the Moon is still above the horizon at [sunset]: its next setting comes before its next rising. */
-    private fun moonSetsAfter(sunset: Time): Boolean {
-        val set = checkNotNull(searchRiseSet(Body.Moon, kaaba, Direction.Set, sunset, MOON_SEARCH_DAYS))
-        val rise = checkNotNull(searchRiseSet(Body.Moon, kaaba, Direction.Rise, sunset, MOON_SEARCH_DAYS))
-        return set.ut < rise.ut
+    private fun moonSetsAfter(sunset: Double): Boolean {
+        val set = checkNotNull(CalendarAstronomy.moonsetAfter(kaaba, sunset, MOON_SEARCH_DAYS))
+        val rise = checkNotNull(CalendarAstronomy.moonriseAfter(kaaba, sunset, MOON_SEARCH_DAYS))
+        return set < rise
     }
 
     /** Sunset at the Kaʿba on the civil day [jdn] (Saudi time). */
-    private fun sunset(jdn: Long): Time {
-        val saudiMidnight = Time(jdn - J2000_JDN - HALF_DAY - SAUDI_OFFSET_DAYS)
-        return checkNotNull(searchRiseSet(Body.Sun, kaaba, Direction.Set, saudiMidnight, SUN_SEARCH_DAYS)) {
+    private fun sunset(jdn: Long): Double {
+        val saudiMidnight = jdn - J2000_JDN - HALF_DAY - SAUDI_OFFSET_DAYS
+        return checkNotNull(CalendarAstronomy.sunsetAfter(kaaba, saudiMidnight, SUN_SEARCH_DAYS)) {
             "No sunset at the Kaaba on JDN $jdn"
         }
     }
 
     /** The civil day (Saudi time) containing [time]. */
-    private fun saudiDay(time: Time): Long = floor(time.ut + HALF_DAY + SAUDI_OFFSET_DAYS).toLong() + J2000_JDN
+    private fun saudiDay(time: Double): Long = floor(time + HALF_DAY + SAUDI_OFFSET_DAYS).toLong() + J2000_JDN
 }
