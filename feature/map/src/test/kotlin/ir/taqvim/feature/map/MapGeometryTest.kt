@@ -20,12 +20,17 @@ import ir.taqvim.core.astronomy.Qibla
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.testing.PropertyTesting
 import kotlin.math.abs
+import kotlin.math.nextDown
+import kotlin.math.nextUp
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 /** T-1301 geometry: projection, viewport and great-circle paths. */
 class MapGeometryTest {
     private val view = ViewSize(1_000f, 800f)
+
+    /** How many neighbouring doubles on each side of a half turn are checked. */
+    private val ulpSteps = 40
 
     @Test
     fun `projection round trips every coordinate`(): Unit =
@@ -45,6 +50,25 @@ class MapGeometryTest {
         Equirectangular.wrapLongitude(180.0) shouldBe 180.0
         Equirectangular.wrapLongitude(-180.0) shouldBe -180.0
         Equirectangular.wrapLongitude(540.0) shouldBe 180.0
+        // Rounding regression: this input used to wrap to −180.00000000000003 and fail Coordinates validation.
+        Equirectangular.wrapLongitude(179.99999999999997) shouldBe (180.0 plusOrMinus 1e-9)
+        Equirectangular.wrapLongitude(899.9999999999999) shouldBe (180.0 plusOrMinus 1e-9)
+    }
+
+    @Test
+    fun `longitudes next to every half turn stay inside the map`() {
+        (-20..20).forEach { turn ->
+            listOf<(Double) -> Double>({ it.nextUp() }, { it.nextDown() }).forEach { step ->
+                var longitude = 180.0 * (2 * turn + 1)
+                repeat(ulpSteps) {
+                    longitude = step(longitude)
+                    val wrapped = Equirectangular.wrapLongitude(longitude)
+                    wrapped shouldBeGreaterThanOrEqual -180.0
+                    wrapped shouldBeLessThanOrEqual 180.0
+                    Coordinates(0.0, wrapped).longitude shouldBe wrapped
+                }
+            }
+        }
         Equirectangular.project(Coordinates(90.0, -180.0)) shouldBe MapPoint(0.0, 0.0)
         Equirectangular.unproject(MapPoint(0.5, 2.0)) shouldBe Coordinates(-90.0, 0.0)
     }

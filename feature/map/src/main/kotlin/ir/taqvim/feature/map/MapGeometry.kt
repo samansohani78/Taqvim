@@ -56,10 +56,18 @@ object Equirectangular {
         return Coordinates(latitude, wrapLongitude(point.x * FULL_TURN - HALF_TURN))
     }
 
-    /** [longitude] wrapped into −180°‥180°; +180° itself is kept. */
+    /**
+     * [longitude] wrapped into −180°‥180°; +180° itself is kept. Floating-point rounding of the division can land a
+     * hair outside the range (e.g. 179.99999999999997 → −180.00000000000003), so that case is folded back.
+     */
     fun wrapLongitude(longitude: Double): Double {
         val wrapped = longitude - FULL_TURN * floor((longitude + HALF_TURN) / FULL_TURN)
-        return if (wrapped == -HALF_TURN && longitude > 0) HALF_TURN else wrapped
+        return when {
+            wrapped < -HALF_TURN -> wrapped + FULL_TURN
+            wrapped > HALF_TURN -> wrapped - FULL_TURN
+            wrapped == -HALF_TURN && longitude > 0 -> HALF_TURN
+            else -> wrapped
+        }
     }
 }
 
