@@ -37,7 +37,8 @@ internal fun Project.configureAndroidCommon(
     }
     configureKotlinCompiler()
     if (hostTests) {
-        configureTestTasks()
+        // Release host tests are disabled, so debug unit tests are the classpath timing tests run with.
+        configureTestTasks(unitTestTask = "testDebugUnitTest")
         addBaseTestDependencies()
         addRobolectricTestDependencies()
     }

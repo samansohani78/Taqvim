@@ -20,10 +20,12 @@ import ir.taqvim.core.astronomy.Sky
 import ir.taqvim.core.astronomy.Yallop
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.testing.PropertyTesting
+import ir.taqvim.core.testing.TimingTest
 import kotlin.math.abs
 import kotlin.system.measureTimeMillis
 import kotlin.time.Instant
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 /** T-1301 layers: subsolar and sublunar points against `:core:astronomy`, day/night mask, grids. */
@@ -131,6 +133,7 @@ class MapLayersTest {
     }
 
     @Test
+    @Tag(TimingTest.TAG)
     fun `a one-degree day and night mask is computed within 150 ms`() {
         val sun = SubPoints.sun(MapFixtures.NOON)
         repeat(3) { LayerGrids.illumination(sun, 360, 180) }

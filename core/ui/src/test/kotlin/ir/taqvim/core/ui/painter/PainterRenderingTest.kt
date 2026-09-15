@@ -6,6 +6,7 @@ package ir.taqvim.core.ui.painter
 
 import android.graphics.Color
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.testing.TimingTest
 import ir.taqvim.core.ui.component.DayCellModel
 import ir.taqvim.core.ui.component.MonthGridModel
 import ir.taqvim.core.ui.component.SunArcModel
@@ -16,6 +17,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.robolectric.annotation.GraphicsMode
 
@@ -131,6 +133,7 @@ class PainterRenderingTest {
     }
 
     @Test
+    @Category(TimingTest::class)
     fun `a month bitmap renders within the 8 ms budget`() {
         val painter = MonthBitmapPainter(light, environment(rtl = true))
         val model = PainterSamples.farvardin1405()

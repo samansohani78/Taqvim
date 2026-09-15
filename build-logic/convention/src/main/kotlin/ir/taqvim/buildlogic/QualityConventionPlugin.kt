@@ -37,6 +37,8 @@ class QualityConventionPlugin : Plugin<Project> {
 private fun Project.configureModuleCoverage() {
     val core = isCoreModule
     extensions.configure<KoverProjectExtension> {
+        // Timing tests run alone and uninstrumented; coverage comes from the default test tasks.
+        currentProject { instrumentation { disabledForTestTasks.add(TIMING_TEST_TASK) } }
         reports {
             filters {
                 excludes {

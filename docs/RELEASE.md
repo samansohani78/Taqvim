@@ -32,7 +32,7 @@ closed beta that precedes the first public release is described in [BETA.md](BET
 ## Branches and tags
 
 - `main` is always releasable: every commit passed the PR workflow (`pr.yml`: static analysis, unit + Robolectric
-  tests with coverage gates, screenshots, license gate, dataset validation, assemble, workflow lint).
+  tests with coverage gates, timing tests on a single worker, screenshots, license gate, dataset validation, assemble, workflow lint).
 - A release is a tag `vX.Y.Z` (or `vX.Y.Z-beta.N`) on a green `main` commit. The release build derives `versionName`
   and `versionCode` from the tag and refuses a tag that is not in that form.
 - Hot fixes for an older release: branch `release/X.Y` from its tag, fix, tag `vX.Y.(Z+1)`, and merge the fix back into

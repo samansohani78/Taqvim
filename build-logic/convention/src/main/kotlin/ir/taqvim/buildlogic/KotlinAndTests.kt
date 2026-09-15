@@ -12,6 +12,7 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.jvm.toolchain.JavaToolchainService
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
@@ -26,8 +27,11 @@ internal fun Project.configureKotlinCompiler() {
     }
 }
 
-/** Every test task runs on the JUnit Platform (Jupiter + Kotest; Vintage for Robolectric/lint tests). */
-internal fun Project.configureTestTasks() {
+/**
+ * Every test task runs on the JUnit Platform (Jupiter + Kotest; Vintage for Robolectric/lint tests). Wall-clock
+ * timing tests are excluded from all of them and run by [TIMING_TEST_TASK], which copies [unitTestTask]'s classpath.
+ */
+internal fun Project.configureTestTasks(unitTestTask: String = "test") {
     pluginManager.apply("jvm-toolchains")
     val launcher =
         extensions.getByType<JavaToolchainService>().launcherFor {
@@ -37,7 +41,10 @@ internal fun Project.configureTestTasks() {
     val updateSnapshots = providers.gradleProperty(UPDATE_SNAPSHOTS_PROPERTY).orElse("false")
     val propertyIterations = providers.gradleProperty(PROPERTY_ITERATIONS_PROPERTY).orElse("1000")
     tasks.withType<Test>().configureEach {
-        useJUnitPlatform()
+        val timing = name == TIMING_TEST_TASK
+        useJUnitPlatform {
+            if (timing) includeTags(*TIMING_TAGS) else excludeTags(*TIMING_TAGS)
+        }
         // One fork per test task, capped heap, and a build-wide cap on concurrent forks (ADR-0004 §9).
         maxParallelForks = 1
         maxHeapSize = TEST_JVM_HEAP
@@ -57,7 +64,33 @@ internal fun Project.configureTestTasks() {
             exceptionFormat = TestExceptionFormat.FULL
         }
     }
+    registerTimingTestTask(unitTestTask)
 }
+
+/**
+ * Registers [TIMING_TEST_TASK]: [unitTestTask]'s test classes and classpath, only the timing tags, and a build-wide
+ * one-at-a-time lock so no two modules' timing tests share the CPU (ADR-0018 addendum).
+ */
+private fun Project.registerTimingTestTask(unitTestTask: String) {
+    val serializer = timingTestSerializer()
+    tasks.register<Test>(TIMING_TEST_TASK) {
+        group = "verification"
+        description = "Runs this module's wall-clock timing tests alone; the default test tasks exclude them."
+        // Modules without host tests (`:benchmark:micro`) have no unit test task, so nothing runs there.
+        val source = tasks.withType<Test>().findByName(unitTestTask)
+        testClassesDirs = source?.testClassesDirs ?: files()
+        classpath = source?.classpath ?: files()
+        // Most modules have no timing tests.
+        failOnNoDiscoveredTests.set(false)
+        usesService(serializer)
+    }
+}
+
+/** Per-module task running only the timing tests; `timingTests` on the root runs all of them. */
+internal const val TIMING_TEST_TASK = "timingTest"
+
+/** Tags of timing tests: `TimingTest.TAG` (JUnit 5) and `TimingTest.CATEGORY_TAG` (JUnit 4 via Vintage), `:core:testing`. */
+private val TIMING_TAGS = arrayOf("timing", "ir.taqvim.core.testing.TimingTest")
 
 /** Gradle and system property that lets `SnapshotVerifier` (core:testing) rewrite snapshots. */
 private const val UPDATE_SNAPSHOTS_PROPERTY = "taqvim.updateSnapshots"

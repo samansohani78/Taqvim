@@ -69,6 +69,9 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
       - run: ./gradlew test koverVerify koverXmlReport $TAQVIM_GRADLE_ARGS
+      # Wall-clock budgets are load-sensitive, so they run after the parallel tests on a single worker (ADR-0018).
+      - name: Timing tests (single worker)
+        run: ./gradlew timingTests --continue --max-workers=1
       - uses: actions/upload-artifact@v7
         if: always()
         with:

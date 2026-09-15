@@ -24,6 +24,15 @@ internal fun Project.forkedJvmLimiter(): Provider<ForkedJvmLimiter> {
     }
 }
 
+/** Build service that lets only one `timingTest` task run at a time, so timings are not measured under load. */
+abstract class TimingTestSerializer : BuildService<BuildServiceParameters.None>
+
+/** Registers (once per build) and returns the [TimingTestSerializer]. */
+internal fun Project.timingTestSerializer(): Provider<TimingTestSerializer> =
+    gradle.sharedServices.registerIfAbsent("taqvimTimingTestSerializer", TimingTestSerializer::class.java) {
+        maxParallelUsages.set(1)
+    }
+
 /** Heap for each forked test JVM (Robolectric needs ~700 MB for Compose screenshot tests). */
 internal const val TEST_JVM_HEAP = "1g"
 

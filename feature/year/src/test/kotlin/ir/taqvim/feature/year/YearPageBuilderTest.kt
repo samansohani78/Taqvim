@@ -15,7 +15,9 @@ import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.testing.TimingTest
 import kotlin.system.measureTimeMillis
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 /** T-805: year pages — month grids, today, holidays and weekends, headings and build time. */
@@ -144,6 +146,7 @@ class YearPageBuilderTest {
     }
 
     @Test
+    @Tag(TimingTest.TAG)
     fun `a year page builds within a frame budget`() {
         val builder = builder()
         val days = YearCalendars(PERSIAN_FIRST).yearDays(0, 1405).map { YearDay(it, false, false) }

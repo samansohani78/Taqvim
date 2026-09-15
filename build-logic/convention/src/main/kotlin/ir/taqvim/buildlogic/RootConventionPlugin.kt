@@ -35,6 +35,11 @@ class RootConventionPlugin : Plugin<Project> {
                 description = "Runs the Konsist architecture rule suite."
                 dependsOn(":konsist:test")
             }
+            tasks.register("timingTests") {
+                group = "verification"
+                description = "Runs every module's wall-clock timing tests, one module at a time (ADR-0018 addendum)."
+                dependsOn(subprojects.map { module -> module.tasks.named { it == TIMING_TEST_TASK } })
+            }
         }
     }
 }

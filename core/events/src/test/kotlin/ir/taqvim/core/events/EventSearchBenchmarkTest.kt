@@ -7,8 +7,10 @@ package ir.taqvim.core.events
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.testing.TimingTest
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 /** T-304 budget: 10 000 mixed queries (exact, prefix, substring, one typo) over 1 000 synthetic events < 200 ms. */
@@ -31,6 +33,7 @@ class EventSearchBenchmarkTest {
         )
 
     @Test
+    @Tag(TimingTest.TAG)
     fun `10 000 mixed queries over 1 000 events take less than 200 ms`() {
         val definitions = (1..EVENTS).map(::definition)
         val index = EventSearchIndex(definitions)

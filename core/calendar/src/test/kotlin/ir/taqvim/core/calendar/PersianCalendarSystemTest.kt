@@ -15,9 +15,11 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.testing.PropertyTesting
+import ir.taqvim.core.testing.TimingTest
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 class PersianCalendarSystemTest {
@@ -106,6 +108,7 @@ class PersianCalendarSystemTest {
     }
 
     @Test
+    @Tag(TimingTest.TAG)
     fun `a million conversions take less than 300 ms`() {
         val start = persian.firstDayOfYear(1300).value
         val days = List(CONVERSIONS) { Jdn(start + it % CONVERSION_SPAN) }

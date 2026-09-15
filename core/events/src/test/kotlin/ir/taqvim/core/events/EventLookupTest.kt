@@ -13,7 +13,9 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.testing.TimingTest
 import kotlin.system.measureTimeMillis
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 /** T-301: year cache and day lookup across calendars. */
@@ -107,6 +109,7 @@ class EventLookupTest {
     }
 
     @Test
+    @Tag(TimingTest.TAG)
     fun `10 000 warm day lookups take less than 50 ms`() {
         val lookup = EventLookup(benchmarkDefinitions())
         val first = gregorian(2020, 1, 1).value

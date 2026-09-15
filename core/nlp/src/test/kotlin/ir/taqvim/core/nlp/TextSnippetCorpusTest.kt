@@ -9,8 +9,10 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.testing.GoldenFile
+import ir.taqvim.core.testing.TimingTest
 import java.io.File
 import kotlin.system.measureTimeMillis
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 /**
@@ -56,6 +58,7 @@ class TextSnippetCorpusTest {
     }
 
     @Test
+    @Tag(TimingTest.TAG)
     fun `100 KB of text is scanned in less than 50 ms`() {
         val rows = fixtureRows()
         val text = StringBuilder()

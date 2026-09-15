@@ -23,10 +23,12 @@ import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.testing.TimingTest
 import kotlin.time.TimeSource
 import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.datetime.LocalDate
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.junit.runner.RunWith
 import org.robolectric.annotation.GraphicsMode
 
@@ -98,6 +100,7 @@ class WidgetDrawingsTest {
     }
 
     @Test
+    @Category(TimingTest::class)
     fun theMonthBitmapRendersQuickly() {
         val model = WidgetDrawings.monthModel(month, WidgetConfig.defaultFor(WidgetKind.MONTH_BITMAP), ComposeColor.Red)
         repeat(WARM_UP) { painters.month.paint(model, BITMAP_PX, BITMAP_PX) }

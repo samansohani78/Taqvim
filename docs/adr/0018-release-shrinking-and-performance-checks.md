@@ -72,3 +72,22 @@ new artifacts (Google Maven returns HTTP 404), so only libraries already in the 
 - **Not measured:** Glance composition of the 4 × 4 month widget. It runs through `RemoteViews` translation in the
   host process and has no stable in-process entry point outside a `GlanceAppWidget` session. The bitmap it shows is
   the measured `monthBitmap4x4`.
+
+## Addendum (2026-09-15): timing tests run alone (T-1801)
+
+- **Problem:** eight JVM and Robolectric tests assert a wall-clock budget (best of several runs) next to their
+  correctness tests. In the parallel `test` run other modules' test JVMs share the CPU, and
+  `TextSnippetCorpusTest` took 108 ms against its 50 ms budget on an unchanged module, while it passes alone. A gate
+  that fails under load is not deterministic, and relaxing budgets would hide real regressions.
+- **Policy:** a unit or Robolectric test that asserts elapsed time is a timing test. It carries
+  `@Tag(TimingTest.TAG)` (JUnit 5) or `@Category(TimingTest::class)` (JUnit 4, which the Vintage engine reports as the
+  tag `ir.taqvim.core.testing.TimingTest`); `TimingTest` lives in `:core:testing`. Only the timing assertion is
+  tagged; correctness checks stay in untagged tests.
+- **Build:** every `Test` task excludes both tags, so `test`, `testDebugUnitTest`, `koverVerify` and the screenshot
+  tasks never run a timing test. Each module has `timingTest` with the same test classes and classpath as its unit
+  test task (`test`, or `testDebugUnitTest` on Android), only the timing tags, one fork, no Kover instrumentation, and a
+  build service that lets one `timingTest` run at a time. `./gradlew timingTests` runs them all; use
+  `--max-workers=1` so compilation does not overlap them either.
+- **CI:** the `unit` job of `pr.yml` runs `./gradlew timingTests --max-workers=1` after the unit tests and coverage
+  gate, when everything is already compiled. Budgets are still enforced on every PR, just not under load.
+- **Kover:** timing tests are not needed for coverage; the module gates are checked without them.
