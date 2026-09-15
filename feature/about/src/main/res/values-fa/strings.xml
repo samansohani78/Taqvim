@@ -37,12 +37,15 @@
   <string name="about_source_iranica">دانشنامهٔ ایرانیکا</string>
   <string name="about_source_iranica_description">پیشینهٔ جشن‌های ایران باستان</string>
   <string name="about_source_natural_earth">Natural Earth</string>
-  <string name="about_source_natural_earth_description">نام و موقعیت شهرها</string>
+  <string name="about_source_natural_earth_description">نام و موقعیت شهرها، طرح نقشهٔ جهان و نوارهای منطقهٔ زمانی</string>
+  <string name="about_source_matthews">مدل صفحه‌های EarthByte (Matthews و همکاران، ۲۰۱۶)</string>
+  <string name="about_source_matthews_description">مرز صفحه‌های زمین‌ساختی روی نقشهٔ جهان، ساده‌شده</string>
   <string name="about_source_noaa">آزمایشگاه پایش جهانی NOAA</string>
   <string name="about_source_noaa_description">معادله‌های موقعیت خورشید برای محاسبهٔ اوقات شرعی</string>
   <string name="about_data_license_unicode">مجوز: Unicode License v3</string>
   <string name="about_data_license_public_domain">مالکیت عمومی</string>
   <string name="about_data_license_cited">انتشار عمومی با ذکر منبع</string>
+  <string name="about_data_license_cc_by">مجوز: CC BY 4.0</string>
   <string name="about_data_open_source">باز کردن صفحهٔ منبع</string>
   <string name="about_data_open_source_of">باز کردن صفحهٔ منبع %1$s</string>
   <string name="about_data_license_text">خواندن مجوز</string>

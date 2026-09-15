@@ -13,6 +13,7 @@ enum class DataLicense(
     UNICODE_3_0(R.string.about_data_license_unicode),
     PUBLIC_DOMAIN(R.string.about_data_license_public_domain),
     CITED_PUBLICATION(R.string.about_data_license_cited),
+    CC_BY_4_0(R.string.about_data_license_cc_by),
 }
 
 /** Data shipped with or used to validate Taqvim, as recorded in docs/PROVENANCE.md, with its public link. */
@@ -57,6 +58,12 @@ enum class DataSource(
         R.string.about_source_natural_earth_description,
         "https://www.naturalearthdata.com/",
         DataLicense.PUBLIC_DOMAIN,
+    ),
+    MATTHEWS_PLATES(
+        R.string.about_source_matthews,
+        R.string.about_source_matthews_description,
+        "https://zenodo.org/records/10526157",
+        DataLicense.CC_BY_4_0,
     ),
     NOAA(
         R.string.about_source_noaa,

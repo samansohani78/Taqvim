@@ -90,8 +90,9 @@ object MapFixtures {
         place: Coordinates? = TEHRAN,
     ): MapSettings = MapSettings(language(code), TEHRAN_ZONE, place = place)
 
-    /** The bundled Natural Earth outline, read from the module's assets. */
-    fun worldOutline(): WorldOutline = WorldOutlineParser.parse(File("src/main/assets/map/world-110m.txt").readText())
+    /** The bundled outline, time-zone and plate lines, read from the module's assets. */
+    fun worldOutline(): WorldOutline =
+        WorldOutlineParser.parse(WorldOutlineParser.ASSETS.map { File("src/main/assets/$it").readText() })
 
     /** A state computed by the real overlay builder. */
     fun state(

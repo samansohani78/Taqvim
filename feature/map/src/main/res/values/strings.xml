@@ -55,4 +55,13 @@
     <string name="map_intensity_40_50">40–50 µT</string>
     <string name="map_intensity_50_60">50–60 µT</string>
     <string name="map_intensity_over_60">60 µT or more</string>
+    <!-- Map layer switch: boundaries between time-zone (UTC offset) bands. -->
+    <string name="map_layer_time_zones">Time zones</string>
+    <!-- Map layer switch: boundaries of the Earth's tectonic plates. -->
+    <string name="map_layer_plates">Tectonic plates</string>
+    <string name="map_legend_time_zone">Time-zone boundary</string>
+    <string name="map_legend_plate">Plate boundary</string>
+    <string name="map_time_zones_note">Time-zone bands as of 2012 (Natural Earth); some offsets have changed since</string>
+    <!-- Required attribution of the plate data (CC BY 4.0); author names and the licence name stay in Latin script. -->
+    <string name="map_plates_attribution">Plate polygons: Matthews et al. (2016), CC BY 4.0, simplified for display</string>
 </resources>

@@ -174,6 +174,8 @@ internal val MapLayer.label: Int
             MapLayer.MAGNETIC_INCLINATION -> R.string.map_layer_inclination
             MapLayer.MAGNETIC_INTENSITY -> R.string.map_layer_intensity
             MapLayer.GRID -> R.string.map_layer_grid
+            MapLayer.TIME_ZONES -> R.string.map_layer_time_zones
+            MapLayer.TECTONIC_PLATES -> R.string.map_layer_plates
             MapLayer.CITIES -> R.string.map_layer_cities
             MapLayer.QIBLA -> R.string.map_layer_qibla
             MapLayer.DIRECT_PATH -> R.string.map_layer_direct_path

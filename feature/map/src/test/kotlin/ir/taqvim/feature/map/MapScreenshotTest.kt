@@ -119,13 +119,38 @@ class MapScreenshotTest(
                 )
             }
 
-            else -> {
+            "map_globe" -> {
                 MapFixtures.state(
                     language,
                     setOf(MapLayer.DAY_NIGHT, MapLayer.GRID, MapLayer.QIBLA, MapLayer.CITIES),
                     outline = OUTLINE,
                     globe = GlobeView(MapFixtures.TEHRAN.latitude, MapFixtures.TEHRAN.longitude),
                     cities = MapFixtures.cities(language).take(3),
+                )
+            }
+
+            else -> {
+                lineLayerState(language)
+            }
+        }
+
+    /** DT-035 line layers: Natural Earth time-zone bands and the Matthews et al. (2016) plate boundaries. */
+    private fun lineLayerState(language: String): MapUiState =
+        when (sample) {
+            "map_time_zones" -> {
+                MapFixtures.state(language, setOf(MapLayer.TIME_ZONES), outline = OUTLINE)
+            }
+
+            "map_plates" -> {
+                MapFixtures.state(language, setOf(MapLayer.TECTONIC_PLATES), outline = OUTLINE)
+            }
+
+            else -> {
+                MapFixtures.state(
+                    language,
+                    setOf(MapLayer.TECTONIC_PLATES, MapLayer.TIME_ZONES),
+                    outline = OUTLINE,
+                    globe = GlobeView(MapFixtures.TEHRAN.latitude, MapFixtures.TEHRAN.longitude),
                 )
             }
         }
@@ -158,6 +183,11 @@ class MapScreenshotTest(
                 listOf("map_inclination", "map_intensity", "map_cities", "map_globe", "map_odeh").flatMap { sample ->
                     listOf(LIGHT_LTR, DARK_LTR, LIGHT_RTL, DARK_RTL).map { arrayOf<Any>(sample, it) }
                 } +
+                // DT-035: time-zone and plate boundary layers on the flat map, and both on the globe.
+                listOf("map_time_zones", "map_plates").flatMap { sample ->
+                    listOf(LIGHT_LTR, DARK_LTR, LIGHT_RTL, DARK_RTL).map { arrayOf<Any>(sample, it) }
+                } +
+                listOf(arrayOf<Any>("map_lines_globe", LIGHT_LTR)) +
                 // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
                 listOf("map_day_night").flatMap { sample ->
                     ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }

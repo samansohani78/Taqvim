@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.collections.immutable.ImmutableSet
 
 /** The legends of the shown shaded layers, with the crescent criterion's choice. */
 @Composable
@@ -43,6 +44,23 @@ internal fun MapLegends(
             Legend(listOf(palette.down to R.string.map_inclination_down, palette.up to R.string.map_inclination_up))
         }
         if (MapLayer.MAGNETIC_INTENSITY in state.layers) Legend(MapPalette.intensity.zip(INTENSITY_LABELS))
+        LineLegends(state.layers, palette)
+    }
+}
+
+/** The time-zone and plate line keys, with the time-zone data's age and the plate model's required attribution. */
+@Composable
+private fun LineLegends(
+    layers: ImmutableSet<MapLayer>,
+    palette: MapPalette,
+) {
+    if (MapLayer.TIME_ZONES in layers) {
+        Legend(listOf(palette.timeZone to R.string.map_legend_time_zone))
+        Text(stringResource(R.string.map_time_zones_note), style = MaterialTheme.typography.bodySmall)
+    }
+    if (MapLayer.TECTONIC_PLATES in layers) {
+        Legend(listOf(MapPalette.PLATE to R.string.map_legend_plate))
+        Text(stringResource(R.string.map_plates_attribution), style = MaterialTheme.typography.bodySmall)
     }
 }
 

@@ -23,9 +23,13 @@ internal data class MapPalette(
     val up: Color,
     val city: Color,
     val cityHalo: Color,
+    val timeZone: Color,
 ) {
     companion object {
         val SUN = Color(0xFFFFB300)
+
+        /** Plate boundaries: a fixed deep orange that stands out on land and ocean in both themes. */
+        val PLATE = Color(0xFFE65100)
         val NIGHT = listOf(0f, 0.18f, 0.32f, 0.44f, 0.55f)
         val crescent =
             listOf(Color(0xFF2E7D32), Color(0xFF9CCC65), Color(0xFFFDD835), Color(0xFFFB8C00), Color(0xFFE53935))
@@ -60,6 +64,7 @@ internal data class MapPalette(
                 up = scheme.tertiary,
                 city = scheme.onSurface,
                 cityHalo = scheme.surface,
+                timeZone = scheme.onSurfaceVariant,
             )
     }
 }

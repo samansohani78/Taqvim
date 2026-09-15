@@ -35,13 +35,17 @@ val mapFeatureModule: Module =
         viewModel { MapViewModel(get(), get(), get(), get(), citySource = get()) }
     }
 
-/** The bundled outline read from the module's assets. */
+/** The bundled outline, time-zone and plate lines read from the module's assets. */
 class AssetWorldOutlineSource(
     private val assets: AssetManager,
 ) : WorldOutlineSource {
     override suspend fun load(): WorldOutline =
         withContext(Dispatchers.IO) {
-            assets.open(WorldOutlineParser.ASSET).bufferedReader().use { WorldOutlineParser.parse(it.readText()) }
+            val texts =
+                WorldOutlineParser.ASSETS.map { asset ->
+                    assets.open(asset).bufferedReader().use { it.readText() }
+                }
+            WorldOutlineParser.parse(texts)
         }
 }
 

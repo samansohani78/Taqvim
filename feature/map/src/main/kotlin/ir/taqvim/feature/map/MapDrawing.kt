@@ -7,6 +7,7 @@ package ir.taqvim.feature.map
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.TextMeasurer
@@ -106,11 +107,30 @@ internal fun DrawScope.drawMarks(
         ?.let { drawMarker(it, palette.path, filled = false) }
 }
 
+/**
+ * The shown line layers, shared by the flat map and the globe: plate boundaries (solid) and time-zone band boundaries
+ * (dashed); [project] places a line's map-unit points on the screen (`null` where hidden).
+ */
+internal fun DrawScope.drawLineLayers(
+    outline: WorldOutline,
+    layers: Set<MapLayer>,
+    palette: MapPalette,
+    project: (FloatArray) -> List<ScreenPoint?>,
+) {
+    if (MapLayer.TECTONIC_PLATES in layers) {
+        outline.plates.forEach { drawPolyline(project(it), MapPalette.PLATE, PLATE_STROKE) }
+    }
+    if (MapLayer.TIME_ZONES in layers) {
+        outline.timeZones.forEach { drawPolyline(project(it), palette.timeZone, ZONE_STROKE, ZONE_DASH) }
+    }
+}
+
 /** A line through [points], broken where a point is not visible (`null`). */
 internal fun DrawScope.drawPolyline(
     points: List<ScreenPoint?>,
     color: Color,
     width: Float = PATH_STROKE,
+    pathEffect: PathEffect? = null,
 ) {
     val path = Path()
     var drawing = false
@@ -122,7 +142,7 @@ internal fun DrawScope.drawPolyline(
             else -> path.moveTo(point.x, point.y).also { drawing = true }
         }
     }
-    if (segments > 0) drawPath(path, color, style = Stroke(width))
+    if (segments > 0) drawPath(path, color, style = Stroke(width, pathEffect = pathEffect))
 }
 
 private fun DrawScope.drawMarker(
@@ -161,6 +181,9 @@ private const val SIGNED_MAX_ALPHA = 0.55f
 private const val FIRST_BAND_NANOTESLA = 30_000
 private const val BAND_NANOTESLA = 10_000
 private const val PATH_STROKE = 3f
+private const val PLATE_STROKE = 1.6f
+private const val ZONE_STROKE = 1.2f
+private val ZONE_DASH = PathEffect.dashPathEffect(floatArrayOf(6f, 4f))
 private const val MARKER_RADIUS = 7f
 private const val CITY_RADIUS_DP = 3f
 private const val CITY_HALO_DP = 1.5f

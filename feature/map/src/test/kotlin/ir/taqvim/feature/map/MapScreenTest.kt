@@ -171,6 +171,34 @@ class MapScreenTest {
     }
 
     @Test
+    fun timeZoneAndPlateLayersShowTheirKeysNoteAndAttribution() {
+        val toggled = mutableListOf<MapLayer>()
+        val layers = setOf(MapLayer.TIME_ZONES, MapLayer.TECTONIC_PLATES)
+        show(
+            MapFixtures.state(layers = layers, outline = MapFixtures.worldOutline()),
+            MapActions(onToggleLayer = { toggled += it }),
+        )
+        composeRule.onNodeWithText("Time-zone boundary").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Time-zone bands as of 2012", substring = true).performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Plate boundary").performScrollTo().assertIsDisplayed()
+        composeRule
+            .onNodeWithText("Plate polygons: Matthews et al. (2016), CC BY 4.0, simplified for display")
+            .performScrollTo()
+            .assertIsDisplayed()
+        composeRule
+            .onNodeWithText("Time zones")
+            .performScrollTo()
+            .assertIsSelected()
+            .performClick()
+        composeRule
+            .onNodeWithText("Tectonic plates")
+            .performScrollTo()
+            .assertIsSelected()
+            .performClick()
+        assertEquals(listOf(MapLayer.TIME_ZONES, MapLayer.TECTONIC_PLATES), toggled)
+    }
+
+    @Test
     fun theGlobeTakesTapsAndAccessibilityActions() {
         val calls = mutableListOf<String>()
         val actions = MapActions(onPick = { _, _ -> calls += "pick" }, onPickCenter = { calls += "center" })

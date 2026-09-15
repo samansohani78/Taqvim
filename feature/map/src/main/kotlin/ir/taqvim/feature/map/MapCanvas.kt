@@ -139,11 +139,12 @@ private fun DrawScope.drawMap(
         outline.borders.forEach {
             drawPath(it.toPath(viewport, view, closed = false), palette.border, style = Stroke(1f))
         }
-        drawOverlays(state, viewport, view, palette, labels)
+        drawOverlays(outline, state, viewport, view, palette, labels)
     }
 }
 
 private fun DrawScope.drawOverlays(
+    outline: WorldOutline,
     state: MapUiState,
     viewport: MapViewport,
     view: ViewSize,
@@ -151,6 +152,7 @@ private fun DrawScope.drawOverlays(
     labels: CityLabels,
 ) {
     shadeLayers(state.overlays, state.crescentCriterion, palette).forEach { drawGrid(it, viewport, view) }
+    drawLineLayers(outline, state.layers, palette) { line -> line.toScreenPoints(viewport, view) }
     if (MapLayer.GRID in state.layers) drawGraticule(viewport, view, palette.grid)
     drawMarks(state, palette, labels) { viewport.toScreen(it, view) }
 }
@@ -202,6 +204,15 @@ private fun FloatArray.toPath(
     if (closed) path.close()
     return path
 }
+
+/** The screen positions of a line's map-unit (x, y) pairs on the flat map. */
+private fun FloatArray.toScreenPoints(
+    viewport: MapViewport,
+    view: ViewSize,
+): List<ScreenPoint> =
+    (0 until size / 2).map { index ->
+        viewport.toScreen(MapPoint(this[2 * index].toDouble(), this[2 * index + 1].toDouble()), view)
+    }
 
 private const val ZOOM_STEP = 2.0
 private const val GRATICULE_COLUMNS = 12

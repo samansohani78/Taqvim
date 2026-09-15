@@ -32,6 +32,8 @@ enum class MapLayer {
     MAGNETIC_INCLINATION,
     MAGNETIC_INTENSITY,
     GRID,
+    TIME_ZONES,
+    TECTONIC_PLATES,
     CITIES,
     QIBLA,
     DIRECT_PATH,

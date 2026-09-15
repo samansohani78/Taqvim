@@ -39,12 +39,17 @@
   <string name="about_source_iranica">Encyclopaedia Iranica</string>
   <string name="about_source_iranica_description">Background of ancient Iranian festivals</string>
   <string name="about_source_natural_earth">Natural Earth</string>
-  <string name="about_source_natural_earth_description">City names and positions</string>
+  <string name="about_source_natural_earth_description">City names and positions, the world map outline and time-zone bands</string>
+  <!-- Data source: a scientific plate-tectonics model; author names stay in Latin script. -->
+  <string name="about_source_matthews">EarthByte plate model (Matthews et al. 2016)</string>
+  <string name="about_source_matthews_description">Tectonic plate boundaries on the world map, simplified</string>
   <string name="about_source_noaa">NOAA Global Monitoring Laboratory</string>
   <string name="about_source_noaa_description">Solar position equations used for prayer times</string>
   <string name="about_data_license_unicode">License: Unicode License v3</string>
   <string name="about_data_license_public_domain">Public domain</string>
   <string name="about_data_license_cited">Cited public publication</string>
+  <!-- Licence of a data source: Creative Commons Attribution 4.0 (the name stays in Latin script). -->
+  <string name="about_data_license_cc_by">License: CC BY 4.0</string>
   <string name="about_data_open_source">Open source page</string>
   <string name="about_data_open_source_of">Open the source page of %1$s</string>
   <string name="about_data_license_text">Read the license</string>
