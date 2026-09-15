@@ -656,6 +656,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1003 — Exception dates and recurrence overrides
+- **Module / files:** `core/ics` (`RECURRENCE-ID`, `STATUS:CANCELLED`, `seriesInstances()`), `data/database` schema 5
+  (`event_exceptions`, `event_overrides`), `data/events/.../ics/`, `feature/notification` reminder planner; fixture
+  `data/events/src/test/resources/golden/ics/t1003-exceptions.ics`
+- **Task:** T-1003 (with T-305, T-605, T-1001)
+- **References used (public only):** IETF RFC 5545 §3.6.1, §3.8.1.11 (STATUS), §3.8.4.4 (RECURRENCE-ID), §3.8.5.1
+  (EXDATE), §3.8.5.2 (RDATE), §3.8.8.2; ADR-0011 and ADR-0013 (with addendum).
+- **Implementation note:** own work; no iCalendar library code. The fixture is synthetic, written by Taqvim, contains no
+  personal data (retrieved 2026-09-15; reviewer pending).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1003 — iCalendar import, export and subscriptions
 - **Module / files:** `data/events/src/main/kotlin/ir/taqvim/data/events/ics/`; RDATE and X- property support in
   `core/ics` (`IcsModel.kt`, `IcsReader.kt`, `IcsWriter.kt`); Room schema 2 in `data/database`
