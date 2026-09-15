@@ -422,6 +422,32 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1301 — Odeh crescent visibility criterion
+- **Module / files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/OdehCriterion.kt`; map crescent layer
+  criterion selector in `feature/map`
+- **Task:** T-1301
+- **References used (public only):** M. Sh. Odeh, "New Criterion for Lunar Crescent Visibility", *Experimental
+  Astronomy* 18: 39–64 (2004), DOI 10.1007/s10686-005-9002-5 — author copies retrieved 2026-09-15 from
+  https://www.astronomycenter.net/pdf/2006_cri.pdf and https://www.icoproject.org/pdf/2006_cri.pdf (HTTP 200). Used: §5
+  eq. (1) best time (adopted from Yallop 1997), eq. (2) V with zone limits A ≥ 5.65, B 2…5.65, C −0.96…2, D < −0.96, and
+  Table V (ARCV for W = 0.1–0.9) for tests. Topocentric positions via cosinekitty/astronomy 2.1.19 (MIT).
+- **Implementation note:** implemented from the paper's text; no code or data copied; topocentric semi-diameter scaled
+  by geocentric/topocentric Moon distance.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
+### T-1301 — Magnetic layers, city markers and globe
+- **Module / files:** `feature/map/src/main/kotlin/ir/taqvim/feature/map/`, `app/.../di/MapAdapters.kt`
+  (`CatalogMapCitySource`); decisions in ADR-0024
+- **Task:** T-1301 (with T-1502 map pick)
+- **References used (public only):** `android.hardware.GeomagneticField` (World Magnetic Model, NOAA NCEI/BGS, public
+  domain; no coefficients bundled); the T-603 Natural Earth populated places catalog (population and names only);
+  orthographic projection from the standard spherical definitions; Jetpack Compose Canvas/gesture/semantics APIs
+  (Apache-2.0).
+- **Implementation note:** own work; marker density, spacing and legend bands are product choices.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1301 — World map, projections and layer geometry
 - **Module / files:** `feature/map/src/main/kotlin/ir/taqvim/feature/map/`
 - **Task:** T-1301
