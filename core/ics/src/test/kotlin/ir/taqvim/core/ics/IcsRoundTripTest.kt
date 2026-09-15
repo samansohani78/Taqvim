@@ -117,6 +117,8 @@ class IcsRoundTripTest {
                 recurrence = recurrence.orNull().bind(),
                 exceptionDates = Arb.list(dateTime, 0..3).bind(),
                 alarms = Arb.list(alarm, 0..2).bind(),
+                recurrenceId = dateTime.orNull().bind(),
+                cancelled = Arb.boolean().bind(),
             )
         }
 

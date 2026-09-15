@@ -76,6 +76,8 @@ public object IcsReader {
                     .filter { X_NAME.matches(it.name) }
                     .distinctBy { it.name }
                     .associate { it.name to ContentLines.unescapeText(it.value) },
+            recurrenceId = component.property("RECURRENCE-ID")?.let { dateTimeOrWarn(it, warnings) },
+            cancelled = component.property("STATUS")?.value.equals("CANCELLED", ignoreCase = true),
         )
     }
 

@@ -112,6 +112,13 @@ public data class IcsEvent(
     public val recurrenceDates: List<IcsDateTime> = emptyList(),
     /** Non-standard `X-` properties (§3.8.8.2) by upper-case name with their TEXT value; the first of a name wins. */
     public val extensions: Map<String, String> = emptyMap(),
+    /**
+     * RECURRENCE-ID (§3.8.4.4): the original start of the instance of the series with the same [uid] that this
+     * component overrides, or `null` for the series itself or a one-off event.
+     */
+    public val recurrenceId: IcsDateTime? = null,
+    /** `STATUS:CANCELLED` (§3.8.1.11); a cancelled override removes its instance. */
+    public val cancelled: Boolean = false,
 ) {
     init {
         require(extensions.keys.all { X_NAME.matches(it) }) { "extension names must be X-names (§3.1)" }

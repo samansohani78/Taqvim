@@ -33,6 +33,8 @@ public object IcsWriter {
             add(dateTime("DTSTAMP", IcsDateTime.Utc(stamp)))
             add(dateTime("DTSTART", event.start))
             event.end?.let { add(dateTime("DTEND", it)) }
+            event.recurrenceId?.let { add(dateTime("RECURRENCE-ID", it)) }
+            if (event.cancelled) add("STATUS:CANCELLED")
             event.summary?.let { add("SUMMARY:${ContentLines.escapeText(it)}") }
             event.description?.let { add("DESCRIPTION:${ContentLines.escapeText(it)}") }
             event.recurrence?.let { add("RRULE:${IcsValues.format(it)}") }
