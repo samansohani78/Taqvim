@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 Saman Sohani. All Rights Reserved.
 # Proprietary and confidential. See the LICENSE file in the repository root.
-"""Builds core/astronomy's golden/usno/solar-eclipses-1800-2050.csv (T-403) from archived USNO API responses.
+"""Generates core/astronomy's golden/usno/solar-eclipses-1800-2050.csv (T-403) from the archived USNO responses.
 
-Usage: usno_solar_eclipses.py <solar-eclipses-raw.json> <output.csv>
+Usage: tools/usno/usno_solar_eclipses.py (run from anywhere; paths are relative to the repository root)
 
-The input is the owner-retrieved list of USNO API v4.0.1 "Solar Eclipses Occurring During a Year" responses
-(/api/eclipses/solar/year?year=YYYY), one per year, archived byte-for-byte in docs/sources/usno. One row per eclipse
-in source order; the date comes from the day/month/year fields and the type is the prefix of the event name before
-" Solar Eclipse of", copied as published (runs of spaces in the name are collapsed). An event name whose date
-disagrees with those fields fails the build, except for the reviewed conflicts in KNOWN_NAME_CONFLICTS, whose rows
-keep the fields' date and say what the name says in the note column; nothing is repaired.
+The archive is the owner-retrieved list of USNO API v4.0.1 "Solar Eclipses Occurring During a Year" responses
+(/api/eclipses/solar/year?year=YYYY), one per year 1800-2050, byte-for-byte in docs/sources/usno and checked against
+docs/sources/usno/SHA256SUMS first. One row per eclipse in source order; the date comes from the day/month/year fields
+and the type is the prefix of the event name before " Solar Eclipse of", copied as published (runs of spaces in the
+name are collapsed). An event name whose date disagrees with those fields fails the run, except for the reviewed
+conflicts in KNOWN_NAME_CONFLICTS, whose rows keep the fields' date and say what the name says in the note column;
+nothing is repaired.
 """
 import hashlib
 import json
-import sys
+import pathlib
 
-SOURCE_PATH = "docs/sources/usno/solar-eclipses-raw.json"
+REPO = pathlib.Path(__file__).resolve().parents[2]
+SOURCE_FILE = "docs/sources/usno/solar-eclipses-raw.json"
+SUMS_FILE = "docs/sources/usno/SHA256SUMS"
+GOLDEN = "core/astronomy/src/test/resources/golden/usno/solar-eclipses-1800-2050.csv"
+YEARS = list(range(1800, 2051))
 TYPES = {"Partial", "Annular", "Total", "Annular-Total"}
 MONTHS = [
     "January", "February", "March", "April", "May", "June",
@@ -24,53 +29,56 @@ MONTHS = [
 ]
 # (year, event name) pairs whose name date contradicts the record's own day/month/year fields in the USNO response.
 KNOWN_NAME_CONFLICTS = {(1898, "Annular Solar Eclipse of 18 June 1898")}
-HEADER = [
-    "# source: U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Solar Eclipses Occurring "
-    "During a Year (/api/eclipses/solar/year?year=YYYY), years 1800-2050",
-    "# url: https://aa.usno.navy.mil/data/api.html",
-    "# retrieved: 2026-09-15",
-    "# reviewer: pending",
-]
 
 
-def rows(responses):
-    years = [response["year"] for response in responses]
-    if years != list(range(years[0], years[0] + len(years))):
-        raise ValueError("years are not consecutive")
+def verified_archive():
+    data = (REPO / SOURCE_FILE).read_bytes()
+    digest = hashlib.sha256(data).hexdigest()
+    sums = dict(reversed(line.split()) for line in (REPO / SUMS_FILE).read_text().splitlines() if line.strip())
+    if sums.get(pathlib.Path(SOURCE_FILE).name) != digest:
+        raise SystemExit(f"{SOURCE_FILE}: sha256 {digest} does not match {SUMS_FILE}")
+    return data, digest
+
+
+def row(eclipse, year):
+    name = " ".join(eclipse["event"].split())
+    kind, _, rest = name.partition(" Solar Eclipse of ")
+    if kind not in TYPES or eclipse["year"] != year:
+        raise ValueError(f"unexpected event {eclipse!r}")
+    note = ""
+    if rest != f"{eclipse['day']} {MONTHS[eclipse['month'] - 1]} {year}":
+        if (year, name) not in KNOWN_NAME_CONFLICTS:
+            raise ValueError(f"event name disagrees with its date fields: {eclipse!r}")
+        note = f"USNO event name says {rest}"
+    date = f"{year:04d}-{eclipse['month']:02d}-{eclipse['day']:02d}"
+    return f"{date},{kind},{SOURCE_FILE}#year={year},{note}"
+
+
+def main():
+    data, digest = verified_archive()
+    responses = json.loads(data)
+    if [response["year"] for response in responses] != YEARS:
+        raise ValueError("years must be 1800..2050 in order")
+    rows = []
     for response in responses:
         if response["apiversion"] != "4.0.1":
             raise ValueError(f"unexpected API version in {response['year']}")
-        for eclipse in response["eclipses_in_year"]:
-            name = " ".join(eclipse["event"].split())
-            kind, _, rest = name.partition(" Solar Eclipse of ")
-            expected = f"{eclipse['day']} {MONTHS[eclipse['month'] - 1]} {eclipse['year']}"
-            if kind not in TYPES or eclipse["year"] != response["year"]:
-                raise ValueError(f"unexpected event {eclipse!r}")
-            note = ""
-            if rest != expected:
-                if (eclipse["year"], name) not in KNOWN_NAME_CONFLICTS:
-                    raise ValueError(f"event name disagrees with its date fields: {eclipse!r}")
-                note = f"USNO event name says {rest}"
-            date = f"{eclipse['year']:04d}-{eclipse['month']:02d}-{eclipse['day']:02d}"
-            yield f"{date},{kind},{SOURCE_PATH}#year={response['year']},{note}"
-
-
-def main(source, output):
-    with open(source, "rb") as handle:
-        raw = handle.read()
-    body = list(rows(json.loads(raw)))
-    digest = hashlib.sha256(raw).hexdigest()
-    notes = (
-        "# notes: US government work (public domain, 17 U.S.C. 105); owner-retrieved JSON archived byte-for-byte in "
-        f"{SOURCE_PATH} (sha256={digest}); date is the UT calendar date USNO gives for the eclipse; type is USNO's "
-        "event-name prefix; note flags a record whose event name contradicts its own date fields; generated by "
-        "tools/usno/usno_solar_eclipses.py, not typed"
-    )
-    with open(output, "w", encoding="utf-8", newline="\n") as handle:
-        handle.write("\n".join(HEADER + [notes, "date,type,source,note"] + body) + "\n")
+        rows += [row(eclipse, response["year"]) for eclipse in response["eclipses_in_year"]]
+    header = [
+        "# source: U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Solar Eclipses "
+        "Occurring During a Year (/api/eclipses/solar/year?year=YYYY), years 1800-2050",
+        "# url: https://aa.usno.navy.mil/data/api.html",
+        "# retrieved: 2026-09-15",
+        "# reviewer: pending",
+        "# notes: US government work (public domain, 17 U.S.C. 105); owner-retrieved JSON responses archived "
+        f"byte-for-byte in {SOURCE_FILE} (sha256={digest}, listed in {SUMS_FILE}); date is the UT calendar date USNO "
+        "gives for the eclipse; type is USNO's event-name prefix; note flags a record whose event name contradicts its "
+        "own date fields; generated by tools/usno/usno_solar_eclipses.py from the archive, not typed",
+        "date,type,source,note",
+    ]
+    (REPO / GOLDEN).write_text("\n".join(header + rows) + "\n", encoding="utf-8", newline="\n")
+    print(len(rows), "rows;", GOLDEN)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        sys.exit(__doc__)
-    main(sys.argv[1], sys.argv[2])
+    main()
