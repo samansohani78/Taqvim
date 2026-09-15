@@ -372,6 +372,19 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1801 — Widget render and map benchmarks
+- **Module / files:** `benchmark/micro/**` (`RenderTiming.kt`, `WidgetRenderBenchmark`, `MapMaskBenchmark`),
+  `benchmark/src/main/kotlin/ir/taqvim/benchmark/MapScreenBenchmark.kt`, `benchmark/budgets.json`,
+  `tools/benchmark/test_compare_benchmarks.py`; ADR-0018 addendum
+- **Task:** T-1801
+- **References used (public only):** AndroidX Benchmark JSON output format; Jetpack Macrobenchmark `FrameTimingMetric`
+  and UiAutomator public APIs (Apache-2.0); the T-702 painters and the Natural Earth outline already recorded for
+  T-1301.
+- **Implementation note:** own work; interim timing harness written for Taqvim; test inputs synthetic; budgets from PLAN
+  §9.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1802 / T-1803 — Compose stability and memory checks
 - **Module / files:** build-logic `ComposeStability.kt`, `config/compose/`, `core/ui-testing/.../RecompositionCounter.kt`,
   `app/src/test/.../MemoryLeakTest.kt`, `benchmark/.../MonthScreenMemoryBenchmark.kt`, `tools/benchmark/`; ADR-0021
