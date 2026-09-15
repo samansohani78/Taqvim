@@ -1020,7 +1020,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
   from https://www.unicode.org/license.txt on 2026-09-13. No ICU source code was copied.
 - **Validation oracle:** ICU4J 78.3 — every tabulated month (start and length) and 100 000 random days across
   AH 1200–1700; published Umm al-Qura tables are ICU's own source.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Computed months (main@ef282be, ADR-0028):** `UmmAlQuraCriterion.kt`, `UmmAlQuraMonths.kt`. Rule source: R. H. van Gent
+  (Utrecht University), "The Umm al-Qura Calendar of Saudi Arabia" — rules, introduction and bibliography pages,
+  retrieved 2026-09-15 and archived in `docs/sources/vangent-ummalqura/` (sizes and SHA-256 in MANIFEST). Since AH 1423:
+  on the 29th, the next day begins a month when the geocentric conjunction precedes sunset at the Kaʿba
+  (21.4225° N, 39.8262° E) and the Moon sets after the Sun; otherwise the month has 30 days. Civil day UTC+3; times
+  from cosinekitty/astronomy 2.1.19. The published Ministry of Finance calendars AH 1300–1450 stay as data (151 masks,
+  checked against ICU4J); every other year AH −3000…3000 follows the rule (proleptic before 1300), and mean lunations
+  joined exactly at both edges cover the rest of the Int range. Agreement with the published calendar: 334/336 months
+  in 1423–1450 (misses by 24 s and 4 s), 36/36 for the moonset-only rule of 1420–1422; no simple rule fits before 1420.
+  After 1450 the rule differs from ICU's projected table in about a third of months, ICU always one day later.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; computed months 2026-09-15
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### T-107 — kotlinx.datetime bridge
