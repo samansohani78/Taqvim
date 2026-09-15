@@ -5,10 +5,12 @@
 package ir.taqvim.core.astronomy
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainOnly
 import io.kotest.matchers.doubles.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.IranIslamicCalendar
 import ir.taqvim.core.calendar.IranOfficialMonthStarts
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
@@ -49,6 +51,16 @@ class ObservationalMonthStartsTest {
         officialMonths.size shouldBe 25
         println("A-06 Iran calibration vs official: ${differences.count { it == 0L }} of 25 agree")
         differences.count { it == 0L }.toDouble() / differences.size shouldBeGreaterThanOrEqual 0.9
+    }
+
+    @Test
+    fun `IranCrescentCalendar computes the calibrated months`() {
+        val calibrated = IranIslamicCalendar(IranCrescentCalibration.table(1440, 1450))
+
+        months(1440, 1450)
+            .filterNot { (year, month) ->
+                firstDay(calibrated, year, month) == firstDay(IranCrescentCalendar, year, month)
+            }.shouldBeEmpty()
     }
 
     @Test

@@ -5,6 +5,7 @@
 package ir.taqvim.core.events
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.IranIslamicCalendar
 import ir.taqvim.core.calendar.TabularIslamicCalendar
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
@@ -40,8 +41,9 @@ public class IslamicCalendarSelection(
         private val IRAN_OFFICIAL_CALENDAR = IranIslamicCalendar()
 
         /**
-         * Arithmetic for [variant]. The calculated-observational variant (A-06) is not implemented yet and falls back
-         * to the civil tabular calendar, as A-06 itself does when no estimate is available.
+         * Arithmetic for [variant]. The calculated-observational variant (A-06) is the crescent calendar with the Iran
+         * calibration and no official data ([IranCrescentCalendar], ADR-0027); the Iranian official variant uses the
+         * same months wherever nothing is published.
          */
         public fun calendarFor(variant: IslamicVariant): CalendarArithmetic =
             when (variant) {
@@ -49,7 +51,7 @@ public class IslamicCalendarSelection(
                 IslamicVariant.UMM_AL_QURA -> UmmAlQuraCalendar
                 IslamicVariant.TABULAR_16 -> TabularIslamicCalendar.TYPE_II
                 IslamicVariant.TABULAR_15 -> TabularIslamicCalendar.TYPE_I
-                IslamicVariant.CALCULATED_OBSERVATIONAL -> TabularIslamicCalendar.TYPE_II
+                IslamicVariant.CALCULATED_OBSERVATIONAL -> IranCrescentCalendar
             }
     }
 }

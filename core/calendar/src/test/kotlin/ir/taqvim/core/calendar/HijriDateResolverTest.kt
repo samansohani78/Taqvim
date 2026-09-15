@@ -14,7 +14,7 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import org.junit.jupiter.api.Test
 
-/** A-05 precedence (official table > user offset > tabular estimate) and offset expiry. */
+/** A-05 precedence (official table > user offset > crescent estimate, ADR-0027) and offset expiry. */
 class HijriDateResolverTest {
     private val clock = FakeClock()
     private val calendar = IranIslamicCalendar()
@@ -35,7 +35,7 @@ class HijriDateResolverTest {
         resolver.resolve(estimatedDay, HijriOffset(-1, clock.now())) shouldBe
             ResolvedHijriDate(CalendarDate(CalendarSystem.ISLAMIC, 1450, 1, 9), HijriDateSource.USER_OFFSET, -1)
         resolver.resolve(estimatedDay, null) shouldBe
-            ResolvedHijriDate(CalendarDate(CalendarSystem.ISLAMIC, 1450, 1, 10), HijriDateSource.TABULAR_ESTIMATE, 0)
+            ResolvedHijriDate(CalendarDate(CalendarSystem.ISLAMIC, 1450, 1, 10), HijriDateSource.CRESCENT_ESTIMATE, 0)
     }
 
     @Test
@@ -45,7 +45,7 @@ class HijriDateResolverTest {
         clock.advanceBy(29.days + 23.hours)
         resolver.resolve(estimatedDay, offset).source shouldBe HijriDateSource.USER_OFFSET
         clock.advanceBy(1.hours)
-        resolver.resolve(estimatedDay, offset).source shouldBe HijriDateSource.TABULAR_ESTIMATE
+        resolver.resolve(estimatedDay, offset).source shouldBe HijriDateSource.CRESCENT_ESTIMATE
     }
 
     @Test
@@ -53,7 +53,7 @@ class HijriDateResolverTest {
         val offset = HijriOffset(1, clock.now() + 1.days)
 
         offset.isActiveAt(clock.now()) shouldBe false
-        resolver.resolve(Jdn(estimatedDay.value), offset).source shouldBe HijriDateSource.TABULAR_ESTIMATE
+        resolver.resolve(Jdn(estimatedDay.value), offset).source shouldBe HijriDateSource.CRESCENT_ESTIMATE
     }
 
     @Test

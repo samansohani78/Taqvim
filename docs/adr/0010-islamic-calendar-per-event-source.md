@@ -1,6 +1,6 @@
 # ADR-0010: Islamic calendar per event source
 
-- **Status:** Accepted
+- **Status:** Accepted (the calculated-observational variant uses the crescent calendar, ADR-0027)
 - **Date:** 2026-09-13
 - **Plan reference:** docs/PLAN.md T-302 ("Islamic variant selection by source"), A-03…A-06
 

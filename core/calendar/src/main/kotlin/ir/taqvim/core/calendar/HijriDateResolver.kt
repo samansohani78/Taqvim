@@ -40,8 +40,11 @@ public enum class HijriDateSource {
     /** The estimate corrected by an active [HijriOffset]. */
     USER_OFFSET,
 
-    /** The tabular estimate aligned to the official table (no published data for this date). */
-    TABULAR_ESTIMATE,
+    /**
+     * The calculated crescent estimate (A-06 Iran calibration) joined to the official table, for dates without
+     * published data (ADR-0027).
+     */
+    CRESCENT_ESTIMATE,
 }
 
 /** A lunar Hijri [date] with its [source] and the [offsetDays] that were applied. */
@@ -51,7 +54,7 @@ public data class ResolvedHijriDate(
     public val offsetDays: Int,
 )
 
-/** Resolves lunar Hijri dates with precedence official table > user offset > tabular estimate (A-05). */
+/** Resolves lunar Hijri dates with precedence official table > user offset > crescent estimate (A-05, ADR-0027). */
 public class HijriDateResolver(
     private val clock: Clock,
     private val calendar: IranIslamicCalendar = IranIslamicCalendar(),
@@ -72,7 +75,7 @@ public class HijriDateResolver(
             }
 
             else -> {
-                ResolvedHijriDate(calendar.fromJdn(jdn), HijriDateSource.TABULAR_ESTIMATE, 0)
+                ResolvedHijriDate(calendar.fromJdn(jdn), HijriDateSource.CRESCENT_ESTIMATE, 0)
             }
         }
 }

@@ -14,8 +14,8 @@ import kotlin.time.Instant
 /**
  * Calculated-observational lunar months (A-06): a month has 29 days when, on the evening of its 29th day, Yallop's test
  * rates the new crescent at `visibleUpTo` or better at any of the given places; otherwise 30 days. The resulting table
- * plugs into `IranIslamicCalendar(table)`, which aligns the tabular calendar outside it
- * (docs/adr/0009-iran-islamic-calendar.md).
+ * plugs into `IranIslamicCalendar(table)`, which joins the Iran-calibrated crescent months of `IranCrescentCalendar`
+ * outside it (docs/adr/0009-iran-islamic-calendar.md, docs/adr/0027-iran-islamic-months-computed.md).
  */
 public object ObservationalMonthStarts {
     private const val MONTHS = 12
@@ -85,7 +85,8 @@ public object ObservationalMonthStarts {
  * A calibration of A-06 against the Calendar Center's published month starts (Ramadan 1446 – Shawwal 1448): the
  * crescent counts as seen when any of five reference cities across Iran rates it at class D or better. This is a fit
  * to the available official data, not a description of the official procedure; re-validate when further official
- * calendars are added (ADR-0009 addendum).
+ * calendars are added (ADR-0009 addendum). `IranCrescentCalendar` in `:core:calendar` computes the same months for
+ * every year (ADR-0027); `ObservationalMonthStartsTest` keeps the two equal.
  */
 public object IranCrescentCalibration {
     /** Tehran, Mashhad, Zahedan, Bandar Abbas and Shiraz, with the coordinates stated in their official timetables. */

@@ -8,6 +8,7 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.TabularIslamicCalendar
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.model.CalendarDate
@@ -154,7 +155,7 @@ class EventVisibilityPolicyTest {
         IslamicCalendarSelection.calendarFor(IslamicVariant.TABULAR_16) shouldBeSameInstanceAs
             TabularIslamicCalendar.TYPE_II
         IslamicCalendarSelection.calendarFor(IslamicVariant.CALCULATED_OBSERVATIONAL) shouldBeSameInstanceAs
-            TabularIslamicCalendar.TYPE_II
+            IranCrescentCalendar
         IslamicCalendarSelection(
             IslamicVariant.TABULAR_16,
             bySource = emptyMap(),

@@ -39,26 +39,13 @@ public class IslamicMonthTable(
     /** Whether [jdn] falls inside a tabulated month. */
     public fun covers(jdn: Long): Boolean = jdn >= firstStartJdn && jdn < endJdn
 
-    /** Position of [year]-[month] relative to the first month; may lie outside `0 until monthCount`. */
-    internal fun indexOf(
-        year: Int,
-        month: Int,
-    ): Long = (year.toLong() - firstYear) * MONTHS + (month - firstMonth)
-
+    /** JDN of the first day of the month [index] months after the first month; [monthCount] gives [endJdn]. */
     internal fun startAt(index: Int): Long = starts[index]
-
-    internal fun lengthAt(index: Int): Int = monthLengths[index]
 
     /** Year and month at [index] months after the first month. */
     internal fun yearMonthAt(index: Int): Pair<Int, Int> {
         val absolute = firstMonth - 1 + index
         return (firstYear + Math.floorDiv(absolute, MONTHS)) to (Math.floorMod(absolute, MONTHS) + 1)
-    }
-
-    /** Index of the month containing [jdn], which must be [covers]ed. */
-    internal fun indexContaining(jdn: Long): Int {
-        val found = starts.binarySearch(jdn)
-        return if (found >= 0) found else -found - 2
     }
 
     private companion object {

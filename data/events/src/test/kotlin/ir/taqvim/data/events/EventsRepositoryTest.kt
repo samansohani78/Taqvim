@@ -146,7 +146,7 @@ class EventsRepositoryTest {
                 .day(farFromTable)
                 .first()
                 .hijri
-                ?.source shouldBe HijriDateSource.TABULAR_ESTIMATE
+                ?.source shouldBe HijriDateSource.CRESCENT_ESTIMATE
 
             settings.value = settings(offset = offset)
             val corrected = repository.day(farFromTable).first()
