@@ -48,3 +48,27 @@ new artifacts (Google Maven returns HTTP 404), so only libraries already in the 
 - The size budget is measured on the universal release APK; per-ABI splits would only lower the number.
 - No generated baseline profile is committed yet, so cold start runs without one until the generator has run on a
   device.
+
+## Addendum (2026-09-15): widget render and map benchmarks (T-1801)
+
+- **Map screen:** `MapScreenBenchmark` in `:benchmark` opens `taqvim://map` and measures `FrameTimingMetric` while
+  pinch-zooming and panning. The map fills the screen, so gestures go to the app's root node and no test tag is
+  needed.
+- **In-process timings in `:benchmark:micro`:** widget bitmap renders and map masks are plain function calls, so a
+  macrobenchmark cannot isolate them. A new library module `:benchmark:micro` has instrumented tests only
+  (`androidTest`, `testBuildType = "release"` so the code under test is not debuggable). `WidgetRenderBenchmark`
+  paints each T-702 widget drawing (4 × 4 month, sun arc, Moon, map thumbnail with the bundled outline, countdown
+  ring) at its widget's pixel size. It also covers the whole map widget update, twilight grid included.
+  `MapMaskBenchmark` times the day/night and Moon visibility grids off the main thread and records the crescent grid
+  for regressions only.
+- **Interim harness:** Jetpack Microbenchmark (`androidx.benchmark:benchmark-junit4`, Apache-2.0) was the intended
+  harness, but it could not be resolved while Google Maven returned 404s. Until then a small `Timing` helper runs
+  10 warm-up and 30 timed calls and writes the median as `metrics.timeNs` in the AndroidX Benchmark JSON format. It
+  lacks Microbenchmark's CPU and thermal controls, so its numbers are coarser. Replacing it with `BenchmarkRule`
+  keeps the class names, test names and metric name, so baselines and budgets stay valid.
+- **Budgets:** `benchmark/budgets.json` holds the plan §9 limits on the `timeNs` medians: 30 ms per widget render and
+  150 ms per map mask. The nightly job runs both modules, collects their results into one directory and applies the
+  same regression and budget gate.
+- **Not measured:** Glance composition of the 4 × 4 month widget. It runs through `RemoteViews` translation in the
+  host process and has no stable in-process entry point outside a `GlanceAppWidget` session. The bitmap it shows is
+  the measured `monthBitmap4x4`.

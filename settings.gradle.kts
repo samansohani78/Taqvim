@@ -45,6 +45,7 @@ include(":wear")
 include(":lint")
 include(":konsist")
 include(":benchmark")
+include(":benchmark:micro")
 include(":tools:dataset")
 
 listOf(

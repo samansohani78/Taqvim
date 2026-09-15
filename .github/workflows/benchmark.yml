@@ -31,7 +31,7 @@ jobs:
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
-      - name: Run macrobenchmarks
+      - name: Run macrobenchmarks, widget render and map mask timings
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 36
@@ -41,20 +41,27 @@ jobs:
           disable-animations: true
           # Emulator numbers are only used for trend/regression tracking, never as absolute budgets (plan §9).
           script: >-
-            ./gradlew :benchmark:connectedBenchmarkAndroidTest
+            ./gradlew :benchmark:connectedBenchmarkAndroidTest :benchmark:micro:connectedReleaseAndroidTest
             -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.suppressErrors=EMULATOR,LOW-BATTERY
             -Pandroid.testInstrumentationRunnerArguments.notClass=ir.taqvim.benchmark.BaselineProfileGenerator
+      - name: Collect results
+        if: always()
+        run: |
+          mkdir -p build/benchmark-results/macro build/benchmark-results/micro
+          cp -r benchmark/build/outputs/connected_android_test_additional_output/. build/benchmark-results/macro/ || true
+          cp -r benchmark/micro/build/outputs/connected_android_test_additional_output/. \
+            build/benchmark-results/micro/ || true
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: benchmark-results
-          path: benchmark/build/outputs/connected_android_test_additional_output/
-      - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1803)
+          path: build/benchmark-results/
+      - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1801, T-1803)
         run: |
           python3 -m unittest discover -s tools/benchmark
           python3 tools/benchmark/compare_benchmarks.py \
             --baseline benchmark/baselines \
-            --results benchmark/build/outputs/connected_android_test_additional_output \
+            --results build/benchmark-results \
             --threshold 0.10 \
             --budgets benchmark/budgets.json
 

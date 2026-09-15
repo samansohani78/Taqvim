@@ -6,6 +6,8 @@ from pathlib import Path
 
 import compare_benchmarks
 
+BUDGETS = Path(__file__).resolve().parents[2] / "benchmark" / "budgets.json"
+
 
 def write(directory: Path, cold_median: float, frame_p50: float) -> None:
     data = {
@@ -68,6 +70,45 @@ class CompareBenchmarksTest(unittest.TestCase):
             )
             arguments = ["--baseline", str(Path(root, "none")), "--results", str(results)]
             self.assertEqual(compare_benchmarks.main([*arguments, "--budgets", str(budget_file)]), 1)
+
+    def test_time_budget_of_widget_render(self) -> None:
+        render = "ir.taqvim.benchmark.micro.WidgetRenderBenchmark"
+        budgets = json.loads(BUDGETS.read_text(encoding="utf-8"))
+
+        def timed(median: float) -> dict[tuple[str, str], dict[str, float]]:
+            return {(render, "monthBitmap4x4"): {"timeNs": median}}
+
+        self.assertEqual(compare_benchmarks.over_budget(budgets, timed(29_999_999.0)), [])
+        self.assertEqual(len(compare_benchmarks.over_budget(budgets, timed(30_000_000.0))), 1)
+
+    def test_micro_results_are_loaded_by_median(self) -> None:
+        with tempfile.TemporaryDirectory() as root:
+            data = {
+                "benchmarks": [
+                    {
+                        "className": "ir.taqvim.benchmark.micro.MapMaskBenchmark",
+                        "name": "dayNightMask",
+                        "metrics": {"timeNs": {"minimum": 1.0, "maximum": 9.0, "median": 4.0, "runs": [1, 4, 9]}},
+                    }
+                ]
+            }
+            Path(root, "micro.dayNightMask-benchmarkData.json").write_text(json.dumps(data), encoding="utf-8")
+            loaded = compare_benchmarks.load(Path(root))
+            self.assertEqual(loaded, {("ir.taqvim.benchmark.micro.MapMaskBenchmark", "dayNightMask"): {"timeNs": 4.0}})
+
+    def test_budget_file_names_existing_benchmarks(self) -> None:
+        budgets = json.loads(BUDGETS.read_text(encoding="utf-8"))
+        sources = "\n".join(path.read_text(encoding="utf-8") for path in BUDGETS.parent.rglob("*.kt"))
+        for name, budget in budgets.items():
+            if name.startswith("_"):
+                continue
+            class_name, _, test = name.rpartition(".")
+            with self.subTest(budget=name):
+                self.assertIn(f"package {class_name.rpartition('.')[0]}\n", sources)
+                self.assertIn(f"class {class_name.rpartition('.')[2]} ", sources)
+                self.assertIn(f"fun {test}()", sources)
+                self.assertTrue(budget["metricPrefixes"])
+                self.assertGreater(budget["maximum"], 0)
 
 
 if __name__ == "__main__":
