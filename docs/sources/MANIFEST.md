@@ -65,3 +65,16 @@ are also in `docs/sources/usno/SHA256SUMS`. Use: ADR-0025.
 | `usno/jewish-observances-raw.json` | — | 6130697 | `6522a5c8b970c2f5928f5f99da89708a344ca8622e4956b23a35ba821655e053` | Six Jewish observances, 360–9999 (9 640 responses) |
 | `usno/christian-observances-raw.json` | — | 4515320 | `6cdda8a16d3804c34af2f7d16c656eb5a0f87885d7dcb73fbdc93c9e760945a6` | Eight Christian movable observances, 1583–9999 (8 417 responses) |
 | `usno/us-daylight-saving-raw.json` | — | 1379397 | `601c14a65dfc271b05f7c5c41077009f5a327cee9b91f53db155c106e699bdb6` | US daylight saving time begin/end, 1967–9999 (8 033 responses) |
+
+## R. H. van Gent, "The Umm al-Qura Calendar of Saudi Arabia" (`docs/sources/vangent-ummalqura/`)
+
+Pages of R. H. van Gent's website (Mathematical Institute, Utrecht University;
+https://webspace.science.uu.nl/~gent0113/islam/ummalqura.htm, a frameset), retrieved 2026-09-15 with `curl`. Each
+page carries "© R.H. van Gent (June 2026)" in its menu frame; no terms of use restrict copying. Stored with LF line
+endings (the downloaded files used CRLF). Use: ADR-0028 (Umm al-Qura criterion and published years).
+
+| File | Pages | Bytes | SHA-256 | Content |
+|---|---|---|---|---|
+| `vangent-ummalqura/ummalqura_rules.htm` | — | 5963 | `9d89cf478c68e87997b62a73959b11de31aabc4e274b2826ed822190f80efc9f` (downloaded CRLF file 6046 bytes, `94ff721b170a2da40ba3b63396140aaad32158898027a66aaab9a4bc0594248b`) | "The Astronomical Rules Governing the Umm al-Qura Calendar": rules before 1392 AH (uncertain), 1392–1419, 1420–1422 and since 1423 AH (conjunction before sunset and moonset after sunset at Mecca), https://webspace.science.uu.nl/~gent0113/islam/ummalqura_rules.htm |
+| `vangent-ummalqura/ummalqura_introduction.htm` | — | 3735 | `011fcbe3f747fcdb9f5d72ce7a42ec4ccbbb4a57c92973bd58bf6722d922c5f5` (downloaded CRLF file 3791 bytes, `58875f5e53eee64496801804c5e4b19994d82485936452c1f8b309e135d3239e`) | Introduction: the Kaʿba in the Great Mosque of Mecca defines the latitude and longitude for which the calendar is calculated, https://webspace.science.uu.nl/~gent0113/islam/ummalqura_introduction.htm |
+| `vangent-ummalqura/ummalqura_bibliography.htm` | — | 9750 | `beb5307c16683379d7663dc682a5977b33911b4e1bcbf2e0dcc2724fbb7146c6` (downloaded CRLF file 9894 bytes, `2e77df35512aabd4ae196985d3407fa8391febb8479a69434ba4fedf34ff9aeb`) | Literature: the Saudi Ministry of Finance's printed comparison calendars *Taqwīm Umm al-Qurá al-Muqāran* 1300–1429 AH (1992/93) and 1420–1450 AH (2003), KFUPM comparison calendar 1356–1411 AH, al-Mostafa (2005) "Lunar Calendars: The New Saudi Arabian Criterion", https://webspace.science.uu.nl/~gent0113/islam/ummalqura_bibliography.htm |

@@ -1,6 +1,7 @@
 # ADR-0006: Umm al-Qura from an embedded, ICU4J-verified table instead of runtime ICU4J
 
-- **Status:** Accepted
+- **Status:** Accepted; the table now covers only the published years 1300–1450 and the civil-calendar fallback is
+  replaced by the computed criterion (ADR-0028)
 - **Date:** 2026-09-13
 - **Plan reference:** docs/PLAN.md §6 A-04 ("ICU4J `IslamicCalendar(UMALQURA)` used directly"), §9 (APK ≤ 8 MB),
   §3.1 (`:core:*` KMP-ready)
