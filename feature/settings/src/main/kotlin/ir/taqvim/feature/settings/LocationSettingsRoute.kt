@@ -32,12 +32,14 @@ val locationSettingsFeatureModule: Module =
 
 /**
  * The location settings bound to their [LocationSettingsViewModel]; asks for location permission when needed.
- * [embedded] leaves out the title bar, for a page of another screen (the T-1501 onboarding).
+ * [embedded] leaves out the title bar, for a page of another screen (the T-1501 onboarding). [onPickOnMap] opens the
+ * world map to pick the place; without it the coordinates page offers no map.
  */
 @Composable
 fun LocationSettingsRoute(
     modifier: Modifier = Modifier,
     embedded: Boolean = false,
+    onPickOnMap: (() -> Unit)? = null,
     viewModel: LocationSettingsViewModel = koinViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -47,7 +49,7 @@ fun LocationSettingsRoute(
             if (grants.values.any { it }) viewModel.onLocate() else viewModel.onPermissionDenied()
         }
     val actions =
-        remember(viewModel, context, permissionLauncher) {
+        remember(viewModel, context, permissionLauncher, onPickOnMap) {
             LocationSettingsActions(
                 onModeSelected = viewModel::onModeSelected,
                 onQueryChanged = viewModel::onQueryChanged,
@@ -63,6 +65,7 @@ fun LocationSettingsRoute(
                 onLongitudeChanged = viewModel::onLongitudeChanged,
                 onTimeZoneChanged = viewModel::onTimeZoneChanged,
                 onSaveCoordinates = viewModel::onSaveCoordinates,
+                onPickOnMap = onPickOnMap,
             )
         }
     LocationSettingsScreen(state, actions, modifier, embedded)

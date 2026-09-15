@@ -37,6 +37,8 @@
   <string name="settings_location_nearby">Near %1$s</string>
   <string name="settings_location_save_coordinates">Save coordinates</string>
   <string name="settings_location_coordinates_saved">Coordinates saved</string>
+  <!-- Button that opens the world map to pick the place by tapping it. -->
+  <string name="settings_location_pick_on_map">Pick on the map</string>
   <string name="settings_athan_title">Athan</string>
   <string name="settings_athan_loading">Loading athan settings</string>
   <!-- Heading of the list of prayers that have an athan. -->

@@ -102,4 +102,6 @@ data class LocationSettingsActions(
     val onLongitudeChanged: (String) -> Unit = {},
     val onTimeZoneChanged: (String) -> Unit = {},
     val onSaveCoordinates: () -> Unit = {},
+    /** Opens the world map to pick the place (T-1502); `null` where no map can be opened. */
+    val onPickOnMap: (() -> Unit)? = null,
 )

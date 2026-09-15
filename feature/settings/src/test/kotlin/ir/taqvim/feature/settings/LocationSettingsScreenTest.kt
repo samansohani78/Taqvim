@@ -171,4 +171,26 @@ class LocationSettingsScreenTest {
         show(LocationSettingsUiState())
         composeRule.onNodeWithContentDescription("Loading location settings").assertExists()
     }
+
+    @Test
+    fun theMapPickIsOfferedWhereAMapCanBeOpened() {
+        var opened = 0
+        composeRule.setContent {
+            LocationTestTheme {
+                LocationSettingsScreen(
+                    LocationSettingsUiState(loading = false, mode = LocationMode.COORDINATES),
+                    LocationSettingsActions(onPickOnMap = { opened++ }),
+                )
+            }
+        }
+        composeRule.onNodeWithText("Pick on the map").performScrollTo().performClick()
+        assertEquals(1, opened)
+    }
+
+    @Test
+    fun withoutAMapNoMapPickIsOffered() {
+        show(LocationSettingsUiState(loading = false, mode = LocationMode.COORDINATES))
+        composeRule.onNodeWithText("Save coordinates").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Pick on the map").assertDoesNotExist()
+    }
 }

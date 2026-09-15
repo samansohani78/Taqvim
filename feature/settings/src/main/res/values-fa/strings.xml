@@ -34,6 +34,7 @@
   <string name="settings_location_nearby">نزدیک %1$s</string>
   <string name="settings_location_save_coordinates">ذخیرهٔ مختصات</string>
   <string name="settings_location_coordinates_saved">مختصات ذخیره شد</string>
+  <string name="settings_location_pick_on_map">انتخاب روی نقشه</string>
   <string name="settings_athan_title">اذان</string>
   <string name="settings_athan_loading">در حال بارگذاری تنظیمات اذان</string>
   <string name="settings_athan_prayers">نمازها</string>

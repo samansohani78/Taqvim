@@ -19,6 +19,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -193,6 +194,9 @@ internal fun ManualSection(
         manual.suggestedName?.let { Text(stringResource(R.string.settings_location_nearby, it)) }
         Button(onClick = actions.onSaveCoordinates) {
             Text(stringResource(R.string.settings_location_save_coordinates))
+        }
+        actions.onPickOnMap?.let { pickOnMap ->
+            OutlinedButton(onClick = pickOnMap) { Text(stringResource(R.string.settings_location_pick_on_map)) }
         }
         if (manual.saved) {
             Text(
