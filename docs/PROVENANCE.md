@@ -957,7 +957,10 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Tasks:** T-406, T-407
 - **References used (public only):**
   1. Animal-year cycle anchor (2020 = Rat): Hong Kong Observatory, Gregorian–lunar calendar conversion tables,
-     https://www.hko.gov.hk/en/gts/time/conversion.htm (retrieved 2026-09-13).
+     https://www.hko.gov.hk/en/gts/time/conversion.htm (retrieved 2026-09-13). Only this single fact (lunar year
+     2020, the Rat, began on 2020-01-25) is used; no HKO table, data set or compilation is copied into the repository.
+     HKO's terms restrict commercial reuse of its data compilations, so HKO tables are not used as goldens
+     (DT-012/DT-016); the owner confirmed keeping this one cited fact on 2026-09-15.
   2. Planetary hours: the traditional Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon) and weekday
      rulers — general astronomical-history knowledge; no code or data copied.
   3. cosinekitty/astronomy 2.1.19 (MIT), public API via the A-13 façade.

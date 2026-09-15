@@ -15,7 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * T-1801 frame timing of the world map (T-1300): opened through `taqvim://map`, then panned and pinch-zoomed while the
+ * T-1801 frame timing of the world map (T-1301): opened through `taqvim://map`, then panned and pinch-zoomed while the
  * day/night and other shaded layers are redrawn. The map fills the screen, so gestures go to the app's root node.
  * Nightly runs fail on a regression of more than 10 % against the committed baseline.
  */
