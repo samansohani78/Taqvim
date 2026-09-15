@@ -964,8 +964,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
   2. Planetary hours: the traditional Chaldean order (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon) and weekday
      rulers — general astronomical-history knowledge; no code or data copied.
   3. cosinekitty/astronomy 2.1.19 (MIT), public API via the A-13 façade.
+  4. Chinese New Year (`ChineseNewYear.kt`, main@88e16b2): the rules of GB/T 33661-2017 "Calculation and promulgation
+     of the Chinese calendar" as described in Helmer Aslaksen, "The Mathematics of the Chinese Calendar" (NUS) — civil
+     days in UTC+8 from 1929 and Beijing local mean time (116°25′E) before; month 11 contains the December solstice; a
+     13-month span gets a leap month at the first month without a principal term; New Year starts month 1. New moons
+     and solar longitudes from cosinekitty/astronomy. No year table; HKO data not used.
+  5. Test oracle: ICU4J 78.3 ChineseCalendar (Unicode-3.0, test-only). All month starts 1901–2100 compared; the 16
+     differences are new moons or principal terms within minutes of China midnight, and for the 10 new-moon cases the
+     USNO moon-phase golden sides with the algorithm.
 - **Implementation note:** own work. Tithi is computed from modern geocentric longitudes (a documented deviation from
-  the plan's Surya Siddhanta method); golden and blue hours use the plan's apparent solar altitude bands.
+  the plan's Surya Siddhanta method); golden and blue hours use the plan's apparent solar altitude bands. The animal of a
+  date switches on the computed Chinese New Year (`AnimalYear.forDate`).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
@@ -1328,6 +1337,11 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
   Ascension +39, Pentecost +49, Trinity Sunday +56); First Sunday of Advent = the Sunday on 27 November–3 December.
 - **Implementation note:** own work; valid from 1583 to Int.MAX_VALUE with no overflow. Matches all 67 336 USNO records;
   property tests include the 5 700 000-year Easter cycle.
+- **Julian computus (main@330d795):** `JulianCalendar`, `JulianComputus` and `ChristianMovableFeasts.civilForYear` from
+  Meeus ch. 8 (Julian Easter; examples 179, 711, 1243 → 12 April) and Richards, *Explanatory Supplement* 3rd ed., §15.11
+  (Julian day conversion). Julian years ±10¹⁵, 532-year cycle; the civil convention uses the Julian computus through
+  1582 (Easter 15 April 1582) and the Gregorian from 1583, with Advent 1582 already Gregorian. Orthodox Easter is the
+  Julian computus expressed as a Gregorian date.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
   sources consulted.
 
