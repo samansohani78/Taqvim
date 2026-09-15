@@ -10,6 +10,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.model.Coordinates
+import ir.taqvim.feature.map.MapCity
+import ir.taqvim.feature.map.MapEffect
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -17,7 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.context.stopKoin
 
-/** T-1301: a point picked on the map is saved as the chosen place only after the user confirms it. */
+/** T-1301: a point or city picked on the map is saved as the chosen place only after the user confirms it. */
 @RunWith(AndroidJUnit4::class)
 class UseAsPlaceDialogTest {
     @get:Rule
@@ -34,7 +36,11 @@ class UseAsPlaceDialogTest {
         var confirmed = 0
         var dismissed = 0
         composeRule.setContent {
-            UseAsPlaceDialog(Coordinates(35.6892, 51.389), onConfirm = { confirmed++ }, onDismiss = { dismissed++ })
+            UseAsPlaceDialog(
+                MapEffect.LocationPicked(Coordinates(35.6892, 51.389)),
+                onConfirm = { confirmed++ },
+                onDismiss = { dismissed++ },
+            )
         }
 
         composeRule.onNodeWithText("35.69, 51.39", substring = true).assertIsDisplayed()
@@ -43,5 +49,13 @@ class UseAsPlaceDialogTest {
 
         assertEquals(1, confirmed)
         assertEquals(1, dismissed)
+    }
+
+    @Test
+    fun aCityMarkerIsNamedInTheDialog() {
+        val tehran = MapCity(1, "Tehran", Coordinates(35.69, 51.39), 9_000_000)
+        composeRule.setContent { UseAsPlaceDialog(MapEffect.LocationPicked(tehran.coordinates, tehran), {}, {}) }
+
+        composeRule.onNodeWithText("Tehran", substring = true).assertIsDisplayed()
     }
 }

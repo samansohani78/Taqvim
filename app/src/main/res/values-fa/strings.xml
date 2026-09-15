@@ -12,6 +12,7 @@
   <string name="more_map">نقشهٔ جهان</string>
   <string name="map_use_as_place_title">این مکان استفاده شود؟</string>
   <string name="map_use_as_place_message">مختصات ⁨%1$s⁩ به‌عنوان مکان شما برای اوقات شرعی، قبله و نجوم ذخیره شود؟</string>
+  <string name="map_use_city_message">شهر ⁨%1$s⁩ به‌عنوان مکان شما برای اوقات شرعی، قبله و نجوم ذخیره شود؟</string>
   <string name="map_use_as_place_confirm">استفاده از این مکان</string>
   <string name="map_use_as_place_cancel">انصراف</string>
   <string name="more_compass">قطب‌نما</string>

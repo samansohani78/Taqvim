@@ -12,6 +12,7 @@
   <string name="more_map">World map</string>
   <string name="map_use_as_place_title">Use this location?</string>
   <string name="map_use_as_place_message">Save ⁨%1$s⁩ as your location for prayer times, Qibla and astronomy?</string>
+  <string name="map_use_city_message">Save ⁨%1$s⁩ as your location for prayer times, Qibla and astronomy?</string>
   <string name="map_use_as_place_confirm">Use location</string>
   <string name="map_use_as_place_cancel">Cancel</string>
   <string name="more_compass">Compass</string>

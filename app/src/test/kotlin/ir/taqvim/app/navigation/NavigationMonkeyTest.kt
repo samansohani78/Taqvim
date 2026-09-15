@@ -154,6 +154,7 @@ class NavigationMonkeyTest {
                 AppDestination.Agenda,
                 AppDestination.Astronomy,
                 AppDestination.WorldMap,
+                AppDestination.MapPick,
                 AppDestination.Compass,
                 AppDestination.Level,
                 AppDestination.Search,

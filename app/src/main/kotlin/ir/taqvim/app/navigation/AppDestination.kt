@@ -38,6 +38,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object WorldMap : AppDestination
 
+    /** The world map opened from the location settings to pick the place (T-1502); closes once a place is saved. */
+    @Serializable
+    data object MapPick : AppDestination
+
     @Serializable
     data object Compass : AppDestination
 

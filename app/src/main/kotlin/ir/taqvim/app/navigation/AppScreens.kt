@@ -184,27 +184,58 @@ private fun SimpleScreen(
         AppDestination.Agenda -> AgendaRoute(modifier, router.agenda())
         AppDestination.About -> AboutRoute(modifier, onExit = { navigator.back() })
         AppDestination.WorldMap -> MapPickScreen(modifier)
-        else -> SettingsAndInstrumentScreen(destination, router, modifier)
+        AppDestination.MapPick -> MapPickScreen(modifier, onPlaceSaved = { navigator.back() })
+        else -> SettingsAndInstrumentScreen(destination, navigator, router, modifier)
     }
 }
 
 @Composable
 private fun SettingsAndInstrumentScreen(
     destination: AppDestination,
+    navigator: AppNavigator,
     router: AppRouter,
     modifier: Modifier,
 ) {
     when (destination) {
-        AppDestination.Astronomy -> AstronomyRoute(modifier)
-        AppDestination.Compass -> CompassRoute(modifier)
-        AppDestination.Level -> LevelRoute(modifier)
-        AppDestination.Search -> SearchRoute(modifier, router.search())
-        AppDestination.LocationSettings -> LocationSettingsRoute(modifier)
-        AppDestination.AthanSettings -> AthanSettingsRoute(modifier)
-        AppDestination.Subscriptions -> SubscriptionsRoute(modifier)
-        AppDestination.Backup -> BackupRoute(modifier)
-        AppDestination.Privacy -> PrivacyRoute(modifier)
-        else -> PendingScreen(R.string.pending_settings, modifier)
+        AppDestination.Astronomy -> {
+            AstronomyRoute(modifier)
+        }
+
+        AppDestination.Compass -> {
+            CompassRoute(modifier)
+        }
+
+        AppDestination.Level -> {
+            LevelRoute(modifier)
+        }
+
+        AppDestination.Search -> {
+            SearchRoute(modifier, router.search())
+        }
+
+        AppDestination.LocationSettings -> {
+            LocationSettingsRoute(modifier, onPickOnMap = { navigator.navigate(AppDestination.MapPick) })
+        }
+
+        AppDestination.AthanSettings -> {
+            AthanSettingsRoute(modifier)
+        }
+
+        AppDestination.Subscriptions -> {
+            SubscriptionsRoute(modifier)
+        }
+
+        AppDestination.Backup -> {
+            BackupRoute(modifier)
+        }
+
+        AppDestination.Privacy -> {
+            PrivacyRoute(modifier)
+        }
+
+        else -> {
+            PendingScreen(R.string.pending_settings, modifier)
+        }
     }
 }
 
