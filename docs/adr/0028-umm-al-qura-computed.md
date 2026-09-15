@@ -50,13 +50,14 @@ Checked against ICU4J's data with cosinekitty/astronomy 2.1.19 at 21.4225° N, 3
    `lazy`, as in ADR-0026. The month before 1 Muharram 1300 is kept at 29 or 30 days so the two parts join (the rule
    already gives that; the clamp is a safeguard).
 3. **Mean lunar months beyond AH −3000…3000.** The ephemeris and ΔT are extrapolations there, so the interval between
-   the first and last astronomical month starts is spread evenly in whole days (`MeanLunation`). Every month has 29
+   the first and last astronomical month starts is spread evenly in whole days (`MeanLunarMonths`, shared with the
+   Iranian crescent months since main@d59a920). Every month has 29
    or 30 days, every year 354 or 355, and both edges meet the astronomical months exactly. Arithmetic is in `Long`.
 4. **Range:** every `Int` year; `fromJdn` rejects days outside them with `IllegalArgumentException`.
 5. **No civil-calendar fallback.** ICU4J remains a test-only oracle for the published years.
-6. **Library use.** The criterion calls cosinekitty/astronomy directly in `UmmAlQuraCriterion` (the conjunction search
-   and Sun and Moon rise/set at the Kaʿba); library types stay inside that internal object. `CalendarAstronomy`
-   (ADR-0026) was left untouched because another change was extending it at the same time; the two may be merged.
+6. **Library use.** The criterion gets the conjunction and Sun and Moon rise/set at the Kaʿba through the internal
+   `CalendarAstronomy` object (ADR-0026), the only `:core:calendar` main file that imports cosinekitty/astronomy
+   (main@d59a920); library types stay inside it.
 
 ## Consequences
 

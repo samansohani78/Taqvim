@@ -90,7 +90,8 @@ Persian-calendar or prayer-times GPL/LGPL library.
   lengths, structural invariants for 1440–1455, 100 000 random round-trips.
 - **Computed months (main@842b720, ADR-0027):** outside the official table, months come from the A-06 calibration at
   run time in `:core:calendar` (`IranCrescentSighting.kt`, `IranCrescentMonths.kt`, `LunarMonthArithmetic.kt`,
-  `IranCrescentCalendar.kt`): Yallop NAO TN 69 eq. 3.6 with Table 5 class D or better at the five calibration cities,
+  `IranCrescentCalendar.kt`; astronomy through `CalendarAstronomy.kt` and the shared `MeanLunarMonths.kt` since
+  main@d59a920): Yallop NAO TN 69 eq. 3.6 with Table 5 class D or better at the five calibration cities,
   new moons searched from Meeus, *Astronomical Algorithms* 2nd ed., eq. 49.1 (mean new moon) with cosinekitty/astronomy
   2.1.19 (MIT). A month has 29 days when the crescent is seen on the evening of the 29th, otherwise 30; lazily computed
   per Hijri year for AH −3000…3000 and continued with the exact mean month beyond, so every Int year works. Official
@@ -1028,7 +1029,8 @@ Persian-calendar or prayer-times GPL/LGPL library.
   from https://www.unicode.org/license.txt on 2026-09-13. No ICU source code was copied.
 - **Validation oracle:** ICU4J 78.3 — every tabulated month (start and length) and 100 000 random days across
   AH 1200–1700; published Umm al-Qura tables are ICU's own source.
-- **Computed months (main@ef282be, ADR-0028):** `UmmAlQuraCriterion.kt`, `UmmAlQuraMonths.kt`. Rule source: R. H. van Gent
+- **Computed months (main@ef282be, ADR-0028):** `UmmAlQuraCriterion.kt`, `UmmAlQuraMonths.kt` (astronomy through
+  `CalendarAstronomy.kt`, mean months in the shared `MeanLunarMonths.kt` since main@d59a920). Rule source: R. H. van Gent
   (Utrecht University), "The Umm al-Qura Calendar of Saudi Arabia" — rules, introduction and bibliography pages,
   https://webspace.science.uu.nl/~gent0113/islam/ummalqura.htm, retrieved 2026-09-15 (cited only; sizes and SHA-256 of the retrieved pages in MANIFEST). Since AH 1423:
   on the 29th, the next day begins a month when the geocentric conjunction precedes sunset at the Kaʿba
