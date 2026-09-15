@@ -88,7 +88,15 @@ Persian-calendar or prayer-times GPL/LGPL library.
   printing 20 Ramadan on 1 Farvardin 1404; its 29-day length from 1 Shawwal on 11 Farvardin.
 - **Validation:** every day of the official 1404/1405 calendars (730 lunar dates), the 26 published month starts and
   lengths, structural invariants for 1440–1455, 100 000 random round-trips.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Computed months (main@842b720, ADR-0027):** outside the official table, months come from the A-06 calibration at
+  run time in `:core:calendar` (`IranCrescentSighting.kt`, `IranCrescentMonths.kt`, `LunarMonthArithmetic.kt`,
+  `IranCrescentCalendar.kt`): Yallop NAO TN 69 eq. 3.6 with Table 5 class D or better at the five calibration cities,
+  new moons searched from Meeus, *Astronomical Algorithms* 2nd ed., eq. 49.1 (mean new moon) with cosinekitty/astronomy
+  2.1.19 (MIT). A month has 29 days when the crescent is seen on the evening of the 29th, otherwise 30; lazily computed
+  per Hijri year for AH −3000…3000 and continued with the exact mean month beyond, so every Int year works. Official
+  months override, joined to the computed months within 29–30-day steps. The aligned tabular estimate is removed;
+  `HijriDateSource.CRESCENT_ESTIMATE` labels computed dates. Agreement with the 25 official months: 23/25.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; computed months 2026-09-15
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### T-300 — Event rule engine
