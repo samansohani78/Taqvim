@@ -14,6 +14,7 @@ import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.list
 import io.kotest.property.arbitrary.map
 import io.kotest.property.checkAll
+import ir.taqvim.data.database.PersonalData
 import ir.taqvim.data.database.backup.BackupFixtures.data
 import ir.taqvim.data.database.backup.BackupFixtures.metadata
 import ir.taqvim.data.database.backup.BackupFixtures.preferences
@@ -294,6 +295,42 @@ class BackupCodecTest {
         val late = plainReplacing("\"allDayReminderMinute\":480", "\"allDayReminderMinute\":5000")
         ready(codec.decode(late)).preferences.app.allDayReminderMinute shouldBe
             AppSettings.DEFAULT_ALL_DAY_REMINDER_MINUTE
+    }
+
+    @Test
+    fun `event exceptions and overrides round-trip and older documents have none`() {
+        val backup = ready(codec.decode(plain()))
+        backup.data.eventExceptions shouldBe data.eventExceptions
+        backup.data.eventOverrides shouldBe data.eventOverrides
+
+        val json = jsonOf(plain())
+        val olderData = JsonObject(json.getValue("data").jsonObject - "eventExceptions" - "eventOverrides")
+        ready(codec.decode(json.with("data", olderData))).data shouldBe
+            data.copy(eventExceptions = emptyList(), eventOverrides = emptyList())
+    }
+
+    @Test
+    fun `event exceptions and overrides that break the format are invalid content`() {
+        fun invalid(changed: PersonalData): String =
+            error(codec.encode(changed, preferences, metadata, BackupProtection.None))
+                .shouldBeInstanceOf<BackupError.InvalidContent>()
+                .reason
+
+        val exception = data.eventExceptions[0]
+        val override = data.eventOverrides[0]
+        invalid(data.copy(eventExceptions = data.eventExceptions + exception)) shouldContain "duplicate event exception"
+        invalid(data.copy(eventOverrides = data.eventOverrides + override.copy(title = "again"))) shouldContain
+            "duplicate event override"
+        invalid(data.copy(eventExceptions = listOf(exception.copy(eventId = 404)))) shouldContain "missing parent 404"
+        invalid(data.copy(eventOverrides = listOf(override.copy(eventId = 405)))) shouldContain "missing parent 405"
+        listOf(
+            override.copy(endJdn = override.startJdn - 1),
+            override.copy(endMinute = override.startMinute?.minus(1)),
+            override.copy(startMinute = 1_440),
+            override.copy(startMinute = null),
+        ).forEach { broken ->
+            invalid(data.copy(eventOverrides = listOf(broken))) shouldContain "invalid start or end"
+        }
     }
 
     @Test

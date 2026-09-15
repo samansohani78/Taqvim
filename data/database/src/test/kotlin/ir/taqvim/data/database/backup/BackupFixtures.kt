@@ -16,6 +16,8 @@ import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.core.workdays.LeaveRange
+import ir.taqvim.data.database.EventExceptionEntity
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.EventRecurrenceEntity
 import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.OfficialReminderEntity
@@ -147,6 +149,29 @@ internal object BackupFixtures {
                 listOf(
                     OfficialReminderEntity(8, "ir.holiday.nowruz-1", 3),
                     OfficialReminderEntity(12, "ir.ancient.yalda", 0, enabled = false),
+                ),
+            eventExceptions = listOf(EventExceptionEntity(3, NOWRUZ_1405 + 365)),
+            eventOverrides =
+                listOf(
+                    EventOverrideEntity(
+                        eventId = 3,
+                        originalJdn = NOWRUZ_1405 + 730,
+                        title = "تولد مادر (جابه‌جا)",
+                        notes = "یک روز بعد",
+                        startJdn = NOWRUZ_1405 + 731,
+                        startMinute = 1_080,
+                        endJdn = NOWRUZ_1405 + 731,
+                        endMinute = 1_200,
+                        colorArgb = -65_536,
+                    ),
+                    EventOverrideEntity(
+                        eventId = 3,
+                        originalJdn = NOWRUZ_1405 + 1_095,
+                        title = "تولد مادر",
+                        startJdn = NOWRUZ_1405 + 1_095,
+                        endJdn = NOWRUZ_1405 + 1_095,
+                        cancelled = true,
+                    ),
                 ),
         )
 }

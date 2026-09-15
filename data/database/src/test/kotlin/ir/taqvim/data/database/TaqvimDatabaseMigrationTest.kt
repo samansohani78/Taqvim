@@ -37,6 +37,32 @@ class TaqvimDatabaseMigrationTest {
         }
 
     @Test
+    fun eventsSurviveMigrationFromFourAndGainExceptionsAndOverrides() {
+        val name = "migration-4-5.db"
+        helper.createDatabase(name, 4).use { db ->
+            db.execSQL(
+                "INSERT INTO personal_events (id, title, notes, calendar_system, start_jdn, end_jdn, time_zone_id, " +
+                    "created_at_epoch_millis, updated_at_epoch_millis) " +
+                    "VALUES (1, 't', '', 'PERSIAN', 10, 10, 'UTC', 0, 0)",
+            )
+        }
+        helper.runMigrationsAndValidate(name, 5, true, *TaqvimMigrations.ALL.toTypedArray()).use { db ->
+            db.execSQL("INSERT INTO event_exceptions (event_id, day_jdn) VALUES (1, 17)")
+            db.execSQL(
+                "INSERT INTO event_overrides (event_id, original_jdn, title, notes, start_jdn, end_jdn, cancelled) " +
+                    "VALUES (1, 24, 'moved', '', 25, 25, 0)",
+            )
+            db.query("SELECT COUNT(*) FROM personal_events").use { it.moveToFirst() } shouldBe true
+            db.execSQL("PRAGMA foreign_keys = ON")
+            db.execSQL("DELETE FROM personal_events WHERE id = 1")
+            db.query("SELECT (SELECT COUNT(*) FROM event_exceptions) + (SELECT COUNT(*) FROM event_overrides)").use {
+                it.moveToFirst()
+                it.getInt(0)
+            } shouldBe 0
+        }
+    }
+
+    @Test
     fun appDatabaseOpensTheOldestSchema() {
         helper.createDatabase(TaqvimDatabase.NAME, 1).close()
         val db = TaqvimDatabase.build(ApplicationProvider.getApplicationContext<Context>())

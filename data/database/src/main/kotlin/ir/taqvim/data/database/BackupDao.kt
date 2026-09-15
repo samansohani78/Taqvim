@@ -23,6 +23,10 @@ data class PersonalData(
     val workdayProfiles: List<WorkdayProfileEntity> = emptyList(),
     /** Reminders before official events (T-1002). */
     val officialReminders: List<OfficialReminderEntity> = emptyList(),
+    /** Exception days of recurring personal events (T-1003). */
+    val eventExceptions: List<EventExceptionEntity> = emptyList(),
+    /** Overridden occurrences of recurring personal events (T-1003). */
+    val eventOverrides: List<EventOverrideEntity> = emptyList(),
 )
 
 /** Whole-table reads and the atomic replacement used by backup and restore (T-605). */
@@ -40,6 +44,8 @@ abstract class BackupDao {
             icsSubscriptions = icsSubscriptions(),
             workdayProfiles = workdayProfiles(),
             officialReminders = officialReminders(),
+            eventExceptions = eventExceptions(),
+            eventOverrides = eventOverrides(),
         )
 
     /**
@@ -48,21 +54,36 @@ abstract class BackupDao {
      */
     @Transaction
     open suspend fun replaceAll(data: PersonalData) {
-        // Deleting parents cascades to recurrences, reminders, shift records and cached ICS occurrences.
+        // Deleting parents cascades to recurrences, reminders, event exceptions and overrides, shift records and cached
+        // ICS occurrences.
         deleteEvents()
         deleteShiftRotations()
         deleteIcsSubscriptions()
         deleteWorkdayProfiles()
         deleteOfficialReminders()
         insertEvents(data.events)
-        insertRecurrences(data.recurrences)
-        insertReminders(data.reminders)
+        insertEventDetails(data.recurrences, data.reminders, data.eventExceptions, data.eventOverrides)
         insertShiftRotations(data.shiftRotations)
         insertShiftRecords(data.shiftRecords)
         insertIcsSubscriptions(data.icsSubscriptions)
         insertWorkdayProfiles(data.workdayProfiles)
         insertOfficialReminders(data.officialReminders)
     }
+
+    @Query("SELECT * FROM event_exceptions ORDER BY event_id, day_jdn")
+    protected abstract suspend fun eventExceptions(): List<EventExceptionEntity>
+
+    @Query("SELECT * FROM event_overrides ORDER BY event_id, original_jdn")
+    protected abstract suspend fun eventOverrides(): List<EventOverrideEntity>
+
+    /** The rows that belong to personal events: rules, reminders, exception days and overrides (T-1003). */
+    @Insert
+    protected abstract suspend fun insertEventDetails(
+        recurrences: List<EventRecurrenceEntity>,
+        reminders: List<ReminderEntity>,
+        exceptions: List<EventExceptionEntity>,
+        overrides: List<EventOverrideEntity>,
+    )
 
     @Query("SELECT * FROM official_reminders ORDER BY id")
     protected abstract suspend fun officialReminders(): List<OfficialReminderEntity>
@@ -108,12 +129,6 @@ abstract class BackupDao {
 
     @Insert
     protected abstract suspend fun insertEvents(rows: List<PersonalEventEntity>)
-
-    @Insert
-    protected abstract suspend fun insertRecurrences(rows: List<EventRecurrenceEntity>)
-
-    @Insert
-    protected abstract suspend fun insertReminders(rows: List<ReminderEntity>)
 
     @Insert
     protected abstract suspend fun insertShiftRotations(rows: List<ShiftRotationEntity>)

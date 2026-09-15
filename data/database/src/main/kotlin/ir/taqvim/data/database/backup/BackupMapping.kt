@@ -183,6 +183,8 @@ internal fun PersonalData.toRecord(): DataRecord =
         workdayProfiles = workdayProfiles.map { it.toRecord() },
         officialReminders =
             officialReminders.map { OfficialReminderRecord(it.id, it.eventId, it.daysBefore, it.enabled) },
+        eventExceptions = eventExceptions.map { it.toRecord() },
+        eventOverrides = eventOverrides.map { it.toRecord() },
     )
 
 /**
@@ -228,6 +230,8 @@ internal fun DataRecord.toPersonalData(): PersonalData {
         workdayProfiles = workdayProfiles.map { it.toEntity() },
         officialReminders =
             officialReminders.map { OfficialReminderEntity(it.id, it.eventId, it.daysBefore, it.enabled) },
+        eventExceptions = eventExceptions.map { it.toEntity() },
+        eventOverrides = eventOverrides.map { it.toEntity() },
     )
 }
 
@@ -246,6 +250,7 @@ private fun DataRecord.requireConsistentKeys() {
     requireParents("reminder", reminders.map { it.eventId }, eventIds)
     requireParents("shift rotation record", shiftRotationRecords.map { it.rotationId }, rotationIds)
     requireValidOfficialReminders()
+    requireValidEventInstances(eventIds)
 }
 
 /** Official reminders have unique ids, one row per event and lead time, an event id and a lead time of 0‥30 days. */

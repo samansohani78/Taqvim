@@ -113,6 +113,52 @@ class PersonalDaoTest {
         }
 
     @Test
+    fun exceptionsAndOverridesRoundTripAndCascade(): Unit =
+        runTest {
+            val id = events.insert(event("x", START))
+            val moved = EventOverrideEntity(id, START + 7, "moved", "n", START + 8, 600, START + 8, 660, -1)
+            events.insertExceptions(listOf(EventExceptionEntity(id, START + 14), EventExceptionEntity(id, START + 21)))
+            events.insertExceptions(listOf(EventExceptionEntity(id, START + 14)))
+            events.upsertOverrides(listOf(moved))
+
+            events.exceptionDays(id) shouldBe listOf(START + 14, START + 21)
+            events.overrides(id) shouldBe listOf(moved)
+
+            val cancelled = moved.copy(cancelled = true)
+            events.upsertOverrides(listOf(cancelled))
+            events.overrides(id) shouldBe listOf(cancelled)
+
+            events.deleteExceptions(id)
+            events.exceptionDays(id) shouldBe emptyList()
+            events.deleteOverrides(id)
+            events.overrides(id) shouldBe emptyList()
+
+            events.insertExceptions(listOf(EventExceptionEntity(id, START + 14)))
+            events.upsertOverrides(listOf(moved))
+            events.delete(id)
+            events.exceptionDays(id) shouldBe emptyList()
+            events.overrides(id) shouldBe emptyList()
+        }
+
+    @Test
+    fun rangeEmitsAgainWhenExceptionsOrOverridesChange(): Unit =
+        runTest {
+            val recurring = events.insert(event("recurring", START - 50))
+            events.upsertRecurrence(RecurrenceRule(Frequency.WEEKLY).toEntity(recurring, CalendarSystem.PERSIAN))
+            val moved = events.insert(event("moved later", START + 200))
+
+            events.observeInRange(START + 10, START + 20).test {
+                awaitItem().map { it.id } shouldBe listOf(recurring)
+                events.insertExceptions(listOf(EventExceptionEntity(recurring, START + 13)))
+                awaitItem().map { it.id } shouldBe listOf(recurring)
+                val earlier = EventOverrideEntity(moved, START + 200, "m", "", START + 15, null, START + 15)
+                events.upsertOverrides(listOf(earlier))
+                awaitItem().map { it.id } shouldBe listOf(recurring, moved)
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
     fun remindersCrudAndCascade(): Unit =
         runTest {
             val eventId = events.insert(event("x", START))

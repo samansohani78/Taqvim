@@ -27,6 +27,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         WorkdayProfileEntity::class,
         DiagnosticsLogEntity::class,
         OfficialReminderEntity::class,
+        EventExceptionEntity::class,
+        EventOverrideEntity::class,
     ],
     version = TaqvimMigrations.LATEST_VERSION,
     exportSchema = true,
@@ -73,7 +75,7 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 4
+    const val LATEST_VERSION: Int = 5
 
     /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
     private val MIGRATION_1_2: Migration =
@@ -113,6 +115,26 @@ object TaqvimMigrations {
             }
         }
 
+    /** 4 → 5 (T-1003): exception days and overridden occurrences of recurring personal events. */
+    private val MIGRATION_4_5: Migration =
+        object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `event_exceptions` (`event_id` INTEGER NOT NULL, " +
+                        "`day_jdn` INTEGER NOT NULL, PRIMARY KEY(`event_id`, `day_jdn`), FOREIGN KEY(`event_id`) " +
+                        "REFERENCES `personal_events`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+                )
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `event_overrides` (`event_id` INTEGER NOT NULL, " +
+                        "`original_jdn` INTEGER NOT NULL, `title` TEXT NOT NULL, `notes` TEXT NOT NULL, " +
+                        "`start_jdn` INTEGER NOT NULL, `start_minute` INTEGER, `end_jdn` INTEGER NOT NULL, " +
+                        "`end_minute` INTEGER, `color_argb` INTEGER, `cancelled` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`event_id`, `original_jdn`), FOREIGN KEY(`event_id`) " +
+                        "REFERENCES `personal_events`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+                )
+            }
+        }
+
     /** Migrations between consecutive versions, oldest first. */
-    val ALL: List<Migration> = listOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+    val ALL: List<Migration> = listOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
 }

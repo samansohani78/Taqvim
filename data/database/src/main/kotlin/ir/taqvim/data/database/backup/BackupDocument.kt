@@ -134,6 +134,30 @@ internal data class DataRecord(
     val workdayProfiles: List<WorkdayProfileRecord> = emptyList(),
     /** Reminders before official events (T-1002); absent in backups made before them. */
     val officialReminders: List<OfficialReminderRecord> = emptyList(),
+    /** Exception days of recurring events (T-1003); absent in backups made before them. */
+    val eventExceptions: List<EventExceptionRecord> = emptyList(),
+    /** Overridden occurrences of recurring events (T-1003); absent in backups made before them. */
+    val eventOverrides: List<EventOverrideRecord> = emptyList(),
+)
+
+@Serializable
+internal data class EventExceptionRecord(
+    val eventId: Long,
+    val dayJdn: Long,
+)
+
+@Serializable
+internal data class EventOverrideRecord(
+    val eventId: Long,
+    val originalJdn: Long,
+    val title: String,
+    val notes: String = "",
+    val startJdn: Long,
+    val startMinute: Int? = null,
+    val endJdn: Long,
+    val endMinute: Int? = null,
+    val colorArgb: Int? = null,
+    val cancelled: Boolean = false,
 )
 
 @Serializable

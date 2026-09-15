@@ -38,12 +38,15 @@ interface PersonalEventDao {
 
     /**
      * Events overlapping the days [fromJdn]..[toJdn] (inclusive), plus recurring events that start on or before
-     * [toJdn], whose occurrences the caller expands.
+     * [toJdn] and events with exceptions or overridden occurrences (T-1003), whose occurrences the caller expands. The
+     * exception tables are named so that changing them emits again.
      */
     @Query(
         """
         SELECT * FROM personal_events
-        WHERE start_jdn <= :toJdn AND (end_jdn >= :fromJdn OR id IN (SELECT event_id FROM event_recurrences))
+        WHERE (start_jdn <= :toJdn AND (end_jdn >= :fromJdn OR id IN (SELECT event_id FROM event_recurrences)))
+            OR id IN (SELECT event_id FROM event_overrides)
+            OR id IN (SELECT event_id FROM event_exceptions)
         ORDER BY start_jdn, start_minute, id
         """,
     )
@@ -60,6 +63,27 @@ interface PersonalEventDao {
 
     @Query("SELECT * FROM event_recurrences WHERE event_id = :eventId")
     suspend fun getRecurrence(eventId: Long): EventRecurrenceEntity?
+
+    /** Days on which event [eventId] does not occur (T-1003), ascending. */
+    @Query("SELECT day_jdn FROM event_exceptions WHERE event_id = :eventId ORDER BY day_jdn")
+    suspend fun exceptionDays(eventId: Long): List<Long>
+
+    /** Adds exception days; days already stored are kept. */
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertExceptions(exceptions: List<EventExceptionEntity>)
+
+    @Query("DELETE FROM event_exceptions WHERE event_id = :eventId")
+    suspend fun deleteExceptions(eventId: Long)
+
+    /** Overridden occurrences of event [eventId] (T-1003), by original day. */
+    @Query("SELECT * FROM event_overrides WHERE event_id = :eventId ORDER BY original_jdn")
+    suspend fun overrides(eventId: Long): List<EventOverrideEntity>
+
+    @Upsert
+    suspend fun upsertOverrides(overrides: List<EventOverrideEntity>)
+
+    @Query("DELETE FROM event_overrides WHERE event_id = :eventId")
+    suspend fun deleteOverrides(eventId: Long)
 }
 
 /** Event reminders and the alarms scheduled for reminders, prayers and shifts. */
