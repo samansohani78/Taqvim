@@ -9,20 +9,26 @@
   <string name="notification_athan_title_maghrib">Maghrib athan</string>
   <string name="notification_athan_title_isha">Isha athan</string>
   <string name="notification_athan_text">Tap Stop to silence the athan</string>
+  <!-- Notification action (verb): stop the athan sound. -->
   <string name="notification_athan_stop">Stop</string>
+  <!-- Notification action (verb): play the athan again in a few minutes. -->
   <string name="notification_athan_snooze">Snooze</string>
   <!-- T-1001 / T-1002 reminders -->
   <string name="notification_reminder_channel_personal_name">Event reminders</string>
   <string name="notification_reminder_channel_personal_description">Reminders of the events you created</string>
   <string name="notification_reminder_channel_official_name">Occasion reminders</string>
   <string name="notification_reminder_channel_official_description">Reminders of the official occasions you follow</string>
+  <!-- Notification text for a reminder of the user's own event. -->
   <string name="notification_reminder_text_personal">Upcoming event</string>
+  <!-- Notification text: the occasion is today. -->
   <string name="notification_reminder_text_official_today">Today</string>
   <plurals name="notification_reminder_text_official_days">
     <item quantity="one">In %1$d day</item>
     <item quantity="other">In %1$d days</item>
   </plurals>
+  <!-- Notification action: mark the reminder as done and dismiss it. -->
   <string name="notification_reminder_done">Done</string>
+  <!-- Notification action (verb): remind again later. -->
   <string name="notification_reminder_snooze">Snooze</string>
   <!-- T-1213 persistent notification -->
   <string name="notification_persistent_channel_name">Today\'s date</string>

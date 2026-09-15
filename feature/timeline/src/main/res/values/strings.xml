@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- T-900 timeline. -->
 <resources>
+    <!-- Title of the timeline screen (hours of a day or week). -->
     <string name="timeline_title">Timeline</string>
     <string name="timeline_loading">Loading the timeline</string>
+    <!-- Timeline view switch: one day. -->
     <string name="timeline_mode_day">Day</string>
+    <!-- Timeline view switch: one week. -->
     <string name="timeline_mode_week">Week</string>
+    <!-- Button that shows the previous day or week. -->
     <string name="timeline_previous">Previous</string>
+    <!-- Button that shows today. -->
     <string name="timeline_today">Today</string>
+    <!-- Button that shows the next day or week. -->
     <string name="timeline_next">Next</string>
     <string name="timeline_all_day">All day</string>
     <string name="timeline_zoom_in">Zoom in</string>
@@ -19,7 +25,9 @@
     <string name="timeline_event_timed">%1$s, %2$s to %3$s</string>
     <string name="timeline_event_all_day">%1$s, all day</string>
     <string name="timeline_draft">New event, %1$s to %2$s</string>
+    <!-- Button (verb) that creates the event being drawn on the timeline. -->
     <string name="timeline_draft_create">Create</string>
+    <!-- Button that discards the event being drawn on the timeline. -->
     <string name="timeline_draft_cancel">Cancel</string>
     <string name="timeline_draft_earlier">15 minutes earlier</string>
     <string name="timeline_draft_later">15 minutes later</string>
@@ -29,11 +37,18 @@
     <!-- Prayer name, then its time. -->
     <string name="timeline_prayer_line">%1$s %2$s</string>
     <string name="timeline_prayer_lines">Prayer times: %1$s</string>
+    <!-- Name of the Fajr prayer time, shown in lists of prayer times. -->
     <string name="timeline_prayer_fajr">Fajr</string>
+    <!-- Name of the Sunrise prayer time, shown in lists of prayer times. -->
     <string name="timeline_prayer_sunrise">Sunrise</string>
+    <!-- Name of the Dhuhr prayer time, shown in lists of prayer times. -->
     <string name="timeline_prayer_dhuhr">Dhuhr</string>
+    <!-- Name of the Asr prayer time, shown in lists of prayer times. -->
     <string name="timeline_prayer_asr">Asr</string>
+    <!-- Name of the Sunset prayer time, shown in lists of prayer times. -->
     <string name="timeline_prayer_sunset">Sunset</string>
+    <!-- Name of the Maghrib prayer time, shown in lists of prayer times. -->
     <string name="timeline_prayer_maghrib">Maghrib</string>
+    <!-- Name of the Isha prayer time, shown in lists of prayer times. -->
     <string name="timeline_prayer_isha">Isha</string>
 </resources>

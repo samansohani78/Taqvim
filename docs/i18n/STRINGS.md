@@ -33,6 +33,8 @@ docs/PLAN.md T-204 (resources), T-1702 (translations), §quality bar ("no hard-c
 |---|---|---|
 | `MissingFarsiTranslation` (custom lint, error) | Every translatable `string` / `plurals` / `string-array` in `values` exists in `values-fa`, per module | `lint/…/MissingFarsiTranslationDetector.kt`; runs in `./gradlew lint` |
 | `FarsiTranslationKonsistTest` | Repository-wide `fa` completeness = 100 % with no Android toolchain, including modules without lint | `konsist/…/FarsiTranslationKonsistTest.kt`; runs in `:konsist:test` |
+| `TranslationKonsistTest` (T-1702) | Placeholders, CLDR plural categories, copies of English, ASCII punctuation in Arabic-script text, bidi controls — every language | `konsist/…/TranslationKonsistTest.kt`; runs in `:konsist:test`; details in [TRANSLATING.md](TRANSLATING.md) |
+| Completeness report (T-1702) | Translated strings per language and module; translator-comment coverage | `./gradlew :konsist:translationReport` |
 | Pseudo-locales | `en-XA` (accented, about 30 % longer) and `ar-XB` (mirrored RTL) in debug builds reveal clipped text and hard-coded direction | `app/build.gradle.kts` (`isPseudoLocalesEnabled` on `debug`) |
 | Screenshot matrix | RTL × font scale 1.0/1.3/2.0 screenshots for each screen (T-005, T-1701) | Roborazzi |
 

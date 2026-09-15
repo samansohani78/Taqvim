@@ -33,6 +33,12 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
       - run: ./gradlew spotlessCheck detekt lint konsistTest $TAQVIM_GRADLE_ARGS
+      - name: Translation completeness report (T-1702)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: translation-report
+          path: konsist/build/reports/translations/
       - name: Compose stability (T-1802, ADR-0021)
         run: ./gradlew composeStabilityCheck -Ptaqvim.composeMetrics=true $TAQVIM_GRADLE_ARGS
       - uses: actions/upload-artifact@v7

@@ -1,42 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Title of the tools screen (converter, distance, duration, clocks, QR). -->
   <string name="tools_title">Tools</string>
   <string name="tools_loading">Loading tools</string>
+  <!-- Tab of the date converter between calendars. -->
   <string name="tools_tab_converter">Convert</string>
+  <!-- Tab that calculates the time between two dates. -->
   <string name="tools_tab_distance">Distance</string>
+  <!-- Tab that adds and subtracts durations. -->
   <string name="tools_tab_duration">Duration</string>
+  <!-- Tab of world clocks in other time zones. -->
   <string name="tools_tab_time_zones">Clocks</string>
   <string name="tools_tab_qr">QR code</string>
 
   <string name="tools_calendar_persian">Solar Hijri</string>
   <string name="tools_calendar_islamic">Lunar Hijri</string>
+  <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="tools_calendar_gregorian">Gregorian</string>
   <string name="tools_calendar_nepali">Bikram Sambat</string>
   <string name="tools_date_numeric_iso" translatable="false">%1$s · %2$s</string>
   <string name="tools_not_recognized">No date found in this text</string>
 
+  <!-- Label of the field where the user types a date to convert. -->
   <string name="tools_converter_input">Date</string>
   <string name="tools_converter_hint">For example 1405/6/22, 12 March 2026 or tomorrow</string>
+  <!-- Button that fills the converter with today's date. -->
   <string name="tools_converter_today">Today</string>
 
+  <!-- Label of the start date. -->
   <string name="tools_distance_from">From</string>
+  <!-- Label of the end date. -->
   <string name="tools_distance_to">To</string>
   <string name="tools_distance_backward">The second date is before the first.</string>
+  <!-- Label before a number of days in the result. -->
   <string name="tools_distance_days">Days</string>
   <string name="tools_distance_weeks">Weeks and days</string>
   <string name="tools_value_plus" translatable="false">%1$s + %2$s</string>
   <string name="tools_distance_period">In the %1$s calendar</string>
+  <!-- Label before a number of years in the result. -->
   <string name="tools_distance_years">Years</string>
+  <!-- Label before a number of months in the result. -->
   <string name="tools_distance_months">Months</string>
   <string name="tools_distance_workdays">Workdays, without the last day</string>
   <string name="tools_workdays_not_configured">Set your weekend and holidays in settings to count workdays.</string>
   <string name="tools_workdays_too_long">Workdays are counted for up to ten years.</string>
 
+  <!-- Label of the field where the user types a duration expression such as 2h + 30m. -->
   <string name="tools_duration_input">Expression</string>
   <string name="tools_duration_hint">For example 1d 2h + 30m or (1h − 5m) × 3</string>
   <string name="tools_duration_negative">The result is negative.</string>
+  <!-- Label before the total in hours. -->
   <string name="tools_duration_hours">Hours</string>
+  <!-- Label before the total in minutes. -->
   <string name="tools_duration_minutes">Minutes</string>
+  <!-- Label before the total in seconds. -->
   <string name="tools_duration_seconds">Seconds</string>
   <string name="tools_duration_total_hours">Total hours</string>
   <string name="tools_duration_total_minutes">Total minutes</string>

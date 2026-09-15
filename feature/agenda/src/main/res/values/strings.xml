@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Title of the agenda screen, a scrolling list of days and their events. -->
   <string name="agenda_title">Agenda</string>
   <string name="agenda_loading">Loading the agenda</string>
   <string name="agenda_loading_more">Loading more months</string>
+  <!-- Agenda mode switch: show only the days that have events (the other option shows all days). -->
   <string name="agenda_mode_events">Events</string>
   <string name="agenda_mode_all_days">All days</string>
+  <!-- Button that scrolls the agenda to today. -->
   <string name="agenda_today">Today</string>
+  <!-- Button (verb): print the loaded months. -->
   <string name="agenda_print">Print</string>
+  <!-- Button (verb): share the loaded months as text. -->
   <string name="agenda_share">Share</string>
   <!-- Month name (%1$s) and year (%2$s). -->
   <string name="agenda_month_title">%1$s %2$s</string>
@@ -14,12 +19,16 @@
   <string name="agenda_month_range">%1$s – %2$s</string>
   <!-- Joins the months or dates of the other calendars. -->
   <string name="agenda_separator">" · "</string>
+  <!-- Label on a day that is an official day off. -->
   <string name="agenda_holiday">Holiday</string>
   <string name="agenda_no_events">No events</string>
   <string name="agenda_empty_month">No events this month</string>
+  <!-- Type of an event: an official holiday or occasion from the dataset. -->
   <string name="agenda_kind_official">Official</string>
+  <!-- Type of an event: created by the user. -->
   <string name="agenda_kind_personal">Personal</string>
   <string name="agenda_kind_device">Device calendar</string>
+  <!-- Type of an event: from a subscribed online calendar (iCalendar). -->
   <string name="agenda_kind_subscription">Subscription</string>
   <!-- Spoken description of an event: title (%1$s) and where it comes from (%2$s). -->
   <string name="agenda_event_description">%1$s, %2$s</string>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Title of the About screen (information about the app). -->
   <string name="about_title">About</string>
   <string name="about_app_name">Taqvim</string>
   <string name="about_version">Version %1$s (%2$d, %3$s)</string>
+  <!-- Button that goes back to the previous page. -->
   <string name="about_back">Back</string>
   <string name="about_website">Website</string>
   <string name="about_source_code">Source code</string>
@@ -46,6 +48,7 @@
   <string name="about_data_open_source">Open source page</string>
   <string name="about_data_open_source_of">Open the source page of %1$s</string>
   <string name="about_data_license_text">Read the license</string>
+  <!-- Diagnostics filter: show log entries of all severity levels. -->
   <string name="about_level_all">All</string>
   <string name="about_level_info">Information and above</string>
   <string name="about_level_warn">Warnings and errors</string>
@@ -55,12 +58,15 @@
     <item quantity="other">%1$d entries hidden by the filter</item>
   </plurals>
   <string name="about_diagnostics_empty">No diagnostics recorded</string>
+  <!-- Button (verb): copy the diagnostics text to the clipboard. -->
   <string name="about_copy">Copy</string>
+  <!-- Button (verb): share the diagnostics text with another app. -->
   <string name="about_share">Share</string>
   <string name="about_diagnostics_clip">Taqvim diagnostics</string>
   <string name="about_share_title">Share diagnostics</string>
   <string name="about_report_title">Send a problem report?</string>
   <string name="about_report_explanation">The report below opens in the app you choose. Event titles, places, addresses and links are removed, and nothing is sent until you send it there.</string>
+  <!-- Button that continues to the app chosen for sending the problem report. -->
   <string name="about_report_send">Continue</string>
   <string name="about_report_cancel">Cancel</string>
   <string name="about_report_chooser">Send the report with</string>
@@ -76,9 +82,12 @@
   <string name="about_faq_search">Search the questions</string>
   <string name="about_faq_no_results">No question matches your search</string>
   <string name="about_faq_open">Open in Taqvim</string>
+  <!-- Spoken state of a question in the FAQ list whose answer is shown (screen readers). -->
   <string name="about_faq_expanded">Expanded</string>
+  <!-- Spoken state of a question in the FAQ list whose answer is hidden (screen readers). -->
   <string name="about_faq_collapsed">Collapsed</string>
   <string name="about_faq_more_help">Still need help? Send a problem report and describe what happened.</string>
+  <!-- Heading of the FAQ topic about calendars (Persian, Islamic, Gregorian). -->
   <string name="about_faq_topic_calendars">Calendars</string>
   <string name="about_faq_topic_occasions">Holidays and occasions</string>
   <string name="about_faq_topic_prayer">Prayer times</string>

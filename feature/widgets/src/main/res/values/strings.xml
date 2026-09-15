@@ -3,65 +3,99 @@
   <!-- T-1200 widget framework: configuration screen and shared widget states. -->
   <string name="widget_config_title">Widget settings</string>
   <string name="widget_config_loading">Loading widget settings</string>
+  <!-- Widget settings: label of the widget background color choice. -->
   <string name="widget_config_background">Background</string>
+  <!-- Widget background option: the app theme's surface color. -->
   <string name="widget_background_surface">Theme</string>
+  <!-- Widget background option: the theme's accent (primary) color. -->
   <string name="widget_background_primary">Accent</string>
+  <!-- Widget background option: a lighter accent color. -->
   <string name="widget_background_secondary">Soft accent</string>
+  <!-- Widget background option: black. -->
   <string name="widget_background_black">Black</string>
+  <!-- Widget background option: white. -->
   <string name="widget_background_white">White</string>
+  <!-- Widget settings: label of the background transparency slider. -->
   <string name="widget_config_transparency">Transparency</string>
   <string name="widget_config_percent">%1$d%%</string>
+  <!-- Widget settings: label of the text and content size of the widget. -->
   <string name="widget_config_scale">Size</string>
+  <!-- Widget settings: heading of the parts shown on the widget (verb: show). -->
   <string name="widget_config_contents">Show</string>
+  <!-- Widget part that can be shown: the weekday name. -->
   <string name="widget_content_weekday">Weekday</string>
   <string name="widget_content_secondary_date">Date in the second calendar</string>
   <string name="widget_content_holidays">Holidays in color</string>
+  <!-- Widget part that can be shown: the day's events. -->
   <string name="widget_content_events">Events</string>
   <string name="widget_content_next_prayer">Next prayer time</string>
   <string name="widget_config_secondary_calendar">Second calendar</string>
+  <!-- Second-calendar option: chosen automatically from the app's calendar order. -->
   <string name="widget_calendar_automatic">Automatic</string>
   <string name="widget_calendar_persian">Solar Hijri</string>
   <string name="widget_calendar_islamic">Lunar Hijri</string>
+  <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="widget_calendar_gregorian">Gregorian</string>
   <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <!-- Button (verb): save the widget settings. -->
   <string name="widget_config_save">Save</string>
+  <!-- Button: close the widget settings without saving. -->
   <string name="widget_config_cancel">Cancel</string>
   <string name="widget_config_save_failed">The settings could not be saved. Try again.</string>
   <string name="widget_load_failed">This widget could not be loaded. Tap to open Taqvim.</string>
+  <!-- Name of the small date widget in the launcher's widget list. -->
   <string name="widget_date_1x1_name">Date</string>
   <string name="widget_date_1x1_description">Today’s date in your calendar</string>
   <string name="widget_date_clock_4x1_name">Date and clock</string>
   <string name="widget_date_clock_4x1_description">Today’s date with the time</string>
+  <!-- Name of the widget summarizing today in the launcher's widget list. -->
   <string name="widget_day_summary_2x2_name">Today</string>
   <string name="widget_day_summary_2x2_description">The date, today’s events and the next prayer time</string>
+  <!-- Name of the prayer times widget in the launcher's widget list. -->
   <string name="widget_prayer_strip_4x2_name">Prayer times</string>
   <string name="widget_prayer_strip_4x2_description">The date with today’s prayer times</string>
+  <!-- Name of the Fajr prayer time, shown in lists of prayer times. -->
   <string name="widget_prayer_fajr">Fajr</string>
+  <!-- Name of the Sunrise prayer time, shown in lists of prayer times. -->
   <string name="widget_prayer_sunrise">Sunrise</string>
+  <!-- Name of the Dhuhr prayer time, shown in lists of prayer times. -->
   <string name="widget_prayer_dhuhr">Dhuhr</string>
+  <!-- Name of the Asr prayer time, shown in lists of prayer times. -->
   <string name="widget_prayer_asr">Asr</string>
+  <!-- Name of the Maghrib prayer time, shown in lists of prayer times. -->
   <string name="widget_prayer_maghrib">Maghrib</string>
+  <!-- Name of the Isha prayer time, shown in lists of prayer times. -->
   <string name="widget_prayer_isha">Isha</string>
   <string name="widget_no_events">No events today</string>
   <string name="widget_next_prayer">%1$s %2$s</string>
   <string name="widget_no_place">Choose a location for prayer times</string>
+  <!-- Name of the interactive month widget in the launcher's widget list. -->
   <string name="widget_month_interactive_name">Month</string>
   <string name="widget_month_interactive_description">The month with holidays and events; move between months</string>
+  <!-- Name of the month picture widget in the launcher's widget list. -->
   <string name="widget_month_bitmap_name">Month overview</string>
   <string name="widget_month_bitmap_description">The whole month drawn in one picture</string>
+  <!-- Name of the week strip widget in the launcher's widget list. -->
   <string name="widget_week_strip_name">Week</string>
   <string name="widget_week_strip_description">This week with holidays and events</string>
+  <!-- Name of the upcoming events list widget in the launcher's widget list. -->
   <string name="widget_schedule_name">Schedule</string>
   <string name="widget_schedule_description">Your events of the next 14 days</string>
+  <!-- Name of the widget showing the Sun's path through the day in the launcher's widget list. -->
   <string name="widget_sun_arc_name">Sun</string>
   <string name="widget_sun_arc_description">The Sun’s path from sunrise to sunset</string>
   <string name="widget_month_previous">Previous month</string>
   <string name="widget_month_next">Next month</string>
+  <!-- Widget button that returns the month widget to the current month. -->
   <string name="widget_month_today">Today</string>
   <string name="widget_month_add">New event</string>
+  <!-- Arrow symbol on the month widget's previous-month button. Mirror it for right-to-left languages if needed. -->
   <string name="widget_glyph_back">‹</string>
+  <!-- Arrow symbol on the month widget's next-month button. Mirror it for right-to-left languages if needed. -->
   <string name="widget_glyph_forward">›</string>
+  <!-- Plus symbol on the month widget's new-event button. -->
   <string name="widget_glyph_add">+</string>
+  <!-- Bullet symbol marking a day that has events. -->
   <string name="widget_glyph_event">•</string>
   <string name="widget_day_holiday">%1$s, holiday</string>
   <string name="widget_schedule_title">Next 14 days</string>
@@ -84,6 +118,7 @@
   <string name="widget_countdown_name">Countdown</string>
   <string name="widget_countdown_description">Days until or time since a date you choose</string>
   <string name="widget_countdown_setup">Choose a date in the widget settings</string>
+  <!-- Countdown widget text when the target day is today. -->
   <string name="widget_countdown_today">Today</string>
   <string name="widget_countdown_join">%1$s, %2$s</string>
   <plurals name="widget_countdown_unit_left">
@@ -122,18 +157,28 @@
     <item quantity="one">%1$s day</item>
     <item quantity="other">%1$s days</item>
   </plurals>
+  <!-- Title of the countdown widget's settings. -->
   <string name="widget_countdown_config_title">Countdown</string>
+  <!-- Countdown mode: count the days left until a date. -->
   <string name="widget_countdown_mode_until">Days until</string>
+  <!-- Countdown mode: count the time passed since a date (for example an age). -->
   <string name="widget_countdown_mode_since">Time since</string>
   <string name="widget_countdown_config_label">Title (optional)</string>
+  <!-- Heading of the list of occasions to count down to. -->
   <string name="widget_countdown_config_occasions">Occasions</string>
   <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <!-- Label of the calendar system of the chosen date. -->
   <string name="widget_countdown_config_calendar">Calendar</string>
   <string name="widget_countdown_config_change_date">Change date</string>
+  <!-- Switch: the date repeats every year (count to the next one). -->
   <string name="widget_countdown_config_repeats">Every year</string>
   <string name="widget_countdown_picker_title">Choose a date</string>
+  <!-- Label of the year wheel in a date picker. -->
   <string name="widget_countdown_picker_year">Year</string>
+  <!-- Label of the month wheel in a date picker. -->
   <string name="widget_countdown_picker_month">Month</string>
+  <!-- Label of the day wheel in a date picker. -->
   <string name="widget_countdown_picker_day">Day</string>
+  <!-- Button that confirms the chosen date. -->
   <string name="widget_countdown_picker_confirm">Done</string>
 </resources>

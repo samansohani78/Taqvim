@@ -8,7 +8,9 @@
     <string name="map_layer_moon">Moon visibility</string>
     <string name="map_layer_crescent">Crescent visibility</string>
     <string name="map_layer_magnetic">Magnetic declination</string>
+    <!-- Map layer switch: latitude and longitude lines. -->
     <string name="map_layer_grid">Grid</string>
+    <!-- Map layer switch: the direction line to the Qibla (Kaaba). -->
     <string name="map_layer_qibla">Qibla</string>
     <string name="map_layer_direct_path">Direct path</string>
     <string name="map_zoom_in">Zoom in</string>
@@ -17,6 +19,7 @@
     <string name="map_time_slider">Time of day</string>
     <string name="map_previous_day">Previous day</string>
     <string name="map_next_day">Next day</string>
+    <!-- Button that returns the map's time slider to the current time. -->
     <string name="map_now">Now</string>
     <string name="map_picked">Picked point: %1$s</string>
     <string name="map_no_place">Choose a place in settings to see the Qibla and the direct path</string>

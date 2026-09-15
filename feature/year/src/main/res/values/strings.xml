@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Title of the year view (twelve small months). -->
   <string name="year_title">Year</string>
   <string name="year_loading">Loading the year</string>
   <!-- Month name (%1$s) and year (%2$s). -->
@@ -8,21 +9,28 @@
   <string name="year_range">%1$s – %2$s</string>
   <!-- Joins the parts of a spoken month summary and the years of other calendars. -->
   <string name="year_separator">", "</string>
+  <!-- Button that returns the year view to the current year. -->
   <string name="year_today">Today</string>
   <!-- %1$s is the count in the app's digits. -->
   <plurals name="year_holidays">
     <item quantity="one">%1$s holiday</item>
     <item quantity="other">%1$s holidays</item>
   </plurals>
+  <!-- Button that shows the previous year. -->
   <string name="year_previous">Previous</string>
+  <!-- Button that shows the next year. -->
   <string name="year_next">Next</string>
+  <!-- Button that opens the list of years to choose from. -->
   <string name="year_choose">Years</string>
+  <!-- Action that changes how many small months are shown per row. -->
   <string name="year_show_months">Months</string>
   <string name="year_open_month">Open month</string>
   <string name="year_zoom_in">Zoom in</string>
   <string name="year_zoom_out">Zoom out</string>
   <string name="year_calendar_persian">Solar Hijri</string>
   <string name="year_calendar_islamic">Lunar Hijri</string>
+  <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="year_calendar_gregorian">Gregorian</string>
+  <!-- Name of the Nepali (Bikram Sambat) calendar. -->
   <string name="year_calendar_nepali">Nepali</string>
 </resources>

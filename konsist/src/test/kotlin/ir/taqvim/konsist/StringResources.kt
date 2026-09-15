@@ -26,7 +26,8 @@ object StringResources {
     /** Number of translatable resources in every default `values` folder under [root]. */
     fun defaultCount(root: File): Int = resourceDirectories(root).sumOf { names(File(it, DEFAULT_FOLDER)).size }
 
-    private fun resourceDirectories(root: File): List<File> =
+    /** Every `res` directory under [root] that has a default `values` folder, skipping build and tool folders. */
+    fun resourceDirectories(root: File): List<File> =
         root
             .walkTopDown()
             .onEnter { it == root || it.name !in SKIPPED_DIRS }

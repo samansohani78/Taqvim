@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Title of the astronomy screen (Sun, Moon, eclipses). -->
   <string name="astronomy_title">Astronomy</string>
   <string name="astronomy_loading">Loading the sky</string>
   <string name="astronomy_no_location_title">No place chosen</string>
   <string name="astronomy_no_location_message">Choose a city or use your location to see the sky.</string>
+  <!-- Astronomy view switch: the Earth view (day and night on the globe). -->
   <string name="astronomy_mode_earth">Earth</string>
+  <!-- Astronomy view switch: the Moon view (phase and position). -->
   <string name="astronomy_mode_moon">Moon</string>
+  <!-- Astronomy view switch: the Sun view (position and path). -->
   <string name="astronomy_mode_sun">Sun</string>
   <string name="astronomy_time_of_day">Time of day</string>
   <string name="astronomy_previous_year">Previous year</string>
   <string name="astronomy_previous_day">Previous day</string>
   <string name="astronomy_next_day">Next day</string>
   <string name="astronomy_next_year">Next year</string>
+  <!-- Button that returns the time slider to the current time. -->
   <string name="astronomy_now">Now</string>
   <string name="astronomy_choose_date">Choose date</string>
+  <!-- Label of the year wheel in a date picker. -->
   <string name="astronomy_picker_year">Year</string>
+  <!-- Label of the month wheel in a date picker. -->
   <string name="astronomy_picker_month">Month</string>
+  <!-- Label of the day wheel in a date picker. -->
   <string name="astronomy_picker_day">Day</string>
+  <!-- Button that confirms the date chosen in the date picker. -->
   <string name="astronomy_picker_confirm">OK</string>
+  <!-- Button that closes the date picker without changing the date. -->
   <string name="astronomy_picker_cancel">Cancel</string>
   <string name="astronomy_none" translatable="false">—</string>
+  <!-- Heading of the summary section at the top of the astronomy screen. -->
   <string name="astronomy_header">Overview</string>
   <string name="astronomy_sun_sign">Sun sign</string>
   <string name="astronomy_moon_sign">Moon sign</string>
   <string name="astronomy_moon_constellation">Moon constellation</string>
   <string name="astronomy_moon_phase">Moon phase</string>
+  <!-- Label before the percentage of the Moon's disc that is lit. -->
   <string name="astronomy_illumination">Illuminated</string>
   <string name="astronomy_percent">%1$s%%</string>
   <string name="astronomy_moon_distance">Distance to the Moon</string>
@@ -34,15 +46,22 @@
   <string name="astronomy_next_solar_eclipse">Next solar eclipse</string>
   <string name="astronomy_next_lunar_eclipse">Next lunar eclipse</string>
   <string name="astronomy_no_eclipse">None in the next two years</string>
+  <!-- Label before the length of daylight (sunrise to sunset). -->
   <string name="astronomy_daylight">Daylight</string>
   <string name="astronomy_no_sunrise_sunset">The Sun does not rise and set on this day</string>
   <string name="astronomy_subsolar_latitude">Latitude where the Sun is overhead</string>
+  <!-- Astronomy term: compass direction of a body, in degrees from north. -->
   <string name="astronomy_azimuth">Azimuth</string>
+  <!-- Astronomy term: angle of a body above the horizon, in degrees. -->
   <string name="astronomy_altitude">Altitude</string>
+  <!-- Label before the time the Moon rises. -->
   <string name="astronomy_moonrise">Moonrise</string>
+  <!-- Label before the time the Moon sets. -->
   <string name="astronomy_moonset">Moonset</string>
+  <!-- Label before the time the Sun rises. -->
   <string name="astronomy_sunrise">Sunrise</string>
   <string name="astronomy_solar_noon">Solar noon</string>
+  <!-- Label before the time the Sun sets. -->
   <string name="astronomy_sunset">Sunset</string>
   <string name="astronomy_moon_description">Moon: %1$s, %2$s illuminated</string>
   <string name="astronomy_sun_path">Sun path from sunrise at %1$s to sunset at %2$s</string>
@@ -50,21 +69,37 @@
   <string name="astronomy_season_june_solstice">June solstice</string>
   <string name="astronomy_season_september_equinox">September equinox</string>
   <string name="astronomy_season_december_solstice">December solstice</string>
+  <!-- Kind of lunar eclipse (adjective describing the eclipse): penumbral. -->
   <string name="astronomy_eclipse_penumbral">Penumbral</string>
+  <!-- Kind of solar or lunar eclipse (adjective describing the eclipse): partial. -->
   <string name="astronomy_eclipse_partial">Partial</string>
+  <!-- Kind of solar eclipse (adjective describing the eclipse): annular (ring of fire). -->
   <string name="astronomy_eclipse_annular">Annular</string>
+  <!-- Kind of solar or lunar eclipse (adjective describing the eclipse): total. -->
   <string name="astronomy_eclipse_total">Total</string>
+  <!-- Name of the tropical zodiac sign Aries (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_aries">Aries</string>
+  <!-- Name of the tropical zodiac sign Taurus (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_taurus">Taurus</string>
+  <!-- Name of the tropical zodiac sign Gemini (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_gemini">Gemini</string>
+  <!-- Name of the tropical zodiac sign Cancer (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_cancer">Cancer</string>
+  <!-- Name of the tropical zodiac sign Leo (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_leo">Leo</string>
+  <!-- Name of the tropical zodiac sign Virgo (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_virgo">Virgo</string>
+  <!-- Name of the tropical zodiac sign Libra (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_libra">Libra</string>
+  <!-- Name of the tropical zodiac sign Scorpio (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_scorpio">Scorpio</string>
+  <!-- Name of the tropical zodiac sign Sagittarius (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_sagittarius">Sagittarius</string>
+  <!-- Name of the tropical zodiac sign Capricorn (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_capricorn">Capricorn</string>
+  <!-- Name of the tropical zodiac sign Aquarius (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_aquarius">Aquarius</string>
+  <!-- Name of the tropical zodiac sign Pisces (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_pisces">Pisces</string>
   <string name="astronomy_phase_new_moon">New moon</string>
   <string name="astronomy_phase_waxing_crescent">Waxing crescent</string>
@@ -74,32 +109,46 @@
   <string name="astronomy_phase_waning_gibbous">Waning gibbous</string>
   <string name="astronomy_phase_third_quarter">Third quarter</string>
   <string name="astronomy_phase_waning_crescent">Waning crescent</string>
+  <!-- Ruler of a planetary hour: the planet Saturn (traditional planetary hours). -->
   <string name="astronomy_planet_saturn">Saturn</string>
+  <!-- Ruler of a planetary hour: the planet Jupiter (traditional planetary hours). -->
   <string name="astronomy_planet_jupiter">Jupiter</string>
+  <!-- Ruler of a planetary hour: the planet Mars (traditional planetary hours). -->
   <string name="astronomy_planet_mars">Mars</string>
+  <!-- Ruler of a planetary hour: the Sun (traditional planetary hours). -->
   <string name="astronomy_planet_sun">Sun</string>
+  <!-- Ruler of a planetary hour: the planet Venus (traditional planetary hours). -->
   <string name="astronomy_planet_venus">Venus</string>
+  <!-- Ruler of a planetary hour: the planet Mercury (traditional planetary hours). -->
   <string name="astronomy_planet_mercury">Mercury</string>
+  <!-- Ruler of a planetary hour: the Moon (traditional planetary hours). -->
   <string name="astronomy_planet_moon">Moon</string>
+  <!-- Title of the dialog showing the astrological chart (houses, ascendant) of a moment. -->
   <string name="astronomy_dialog_horoscope">Horoscope</string>
   <string name="astronomy_dialog_year_horoscope">Year horoscope</string>
   <string name="astronomy_dialog_planetary_hours">Planetary hours</string>
   <string name="astronomy_dialog_moon_in_scorpio">Moon in Scorpio</string>
+  <!-- Button that closes the dialog. -->
   <string name="astronomy_close">Close</string>
   <string name="astronomy_horoscope_at">Chart for %1$s</string>
   <string name="astronomy_year_horoscope_at">Chart for the March equinox, %1$s</string>
+  <!-- Astrology term: the ascendant (rising sign) of a chart. -->
   <string name="astronomy_ascendant">Ascendant</string>
+  <!-- Astrology term: the midheaven (Medium Coeli) of a chart. -->
   <string name="astronomy_midheaven">Midheaven</string>
   <string name="astronomy_house">House %1$s</string>
   <string name="astronomy_part_of_fortune">Part of Fortune</string>
   <string name="astronomy_part_of_spirit">Part of Spirit</string>
   <string name="astronomy_day_chart">Day chart</string>
   <string name="astronomy_night_chart">Night chart</string>
+  <!-- Name of the tropical zodiac sign Position (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="astronomy_sign_position">%2$s %1$s</string>
   <string name="astronomy_polar_houses">Houses cannot be calculated inside the polar circles.</string>
   <string name="astronomy_chart_wheel">Chart wheel with twelve houses</string>
   <string name="astronomy_planetary_hours_of">Planetary hours of %1$s</string>
+  <!-- Heading of the planetary hours between sunrise and sunset. -->
   <string name="astronomy_day_hour">Day</string>
+  <!-- Heading of the planetary hours between sunset and the next sunrise. -->
   <string name="astronomy_night_hour">Night</string>
   <string name="astronomy_current_hour">Current hour</string>
   <string name="astronomy_moon_in_scorpio_in">Moon in Scorpio in %1$s</string>

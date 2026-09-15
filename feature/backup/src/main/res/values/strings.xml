@@ -7,12 +7,16 @@
   <string name="backup_export_encrypt">Encrypt with a passphrase</string>
   <string name="backup_export_encrypt_on">Only someone who knows the passphrase can open this backup.</string>
   <string name="backup_export_encrypt_off">The file is plain JSON: anyone who has it can read your data.</string>
+  <!-- Label of the password field that protects the backup file. -->
   <string name="backup_passphrase">Passphrase</string>
   <string name="backup_passphrase_confirm">Repeat passphrase</string>
   <string name="backup_strength">Strength: %1$s</string>
   <string name="backup_strength_empty">not entered</string>
+  <!-- Value inserted into 'Strength: %1$s': the password is weak. Lower case unless the language needs otherwise. -->
   <string name="backup_strength_weak">weak</string>
+  <!-- Value inserted into 'Strength: %1$s': the password is fair (acceptable). -->
   <string name="backup_strength_fair">fair</string>
+  <!-- Value inserted into 'Strength: %1$s': the password is strong. -->
   <string name="backup_strength_strong">strong</string>
   <string name="backup_problem_too_short">Use at least 8 characters.</string>
   <string name="backup_problem_mismatch">The passphrases do not match.</string>
@@ -20,27 +24,39 @@
   <string name="backup_export_action">Export backup</string>
   <string name="backup_export_working">Writing backup…</string>
   <string name="backup_export_done">Backup saved (%1$s KB).</string>
+  <!-- Button that closes a message. -->
   <string name="backup_dismiss">Dismiss</string>
+  <!-- Button that stops the backup or restore and goes back. -->
   <string name="backup_cancel">Cancel</string>
+  <!-- Title of the page for restoring data from a backup file (noun or imperative as fits a title). -->
   <string name="backup_import_title">Restore</string>
   <string name="backup_import_explanation">Open a Taqvim backup or JSON export and see what it contains before anything changes.</string>
   <string name="backup_import_choose">Choose backup file</string>
   <string name="backup_import_reading">Reading backup…</string>
   <string name="backup_import_encrypted">This backup is encrypted. Enter its passphrase.</string>
   <string name="backup_import_open">Open backup</string>
+  <!-- Progress text shown while data is being restored from a backup. -->
   <string name="backup_import_restoring">Restoring…</string>
   <string name="backup_import_restored">Restore complete: %1$s items restored.</string>
+  <!-- Label before the date the backup file was created. -->
   <string name="backup_preview_created">Created</string>
   <string name="backup_preview_app_version">Made with version</string>
   <string name="backup_preview_format">Format version</string>
+  <!-- Label before whether the backup file is password protected. -->
   <string name="backup_preview_protection">Protection</string>
+  <!-- Value after 'Protection': the backup file is encrypted with a password. -->
   <string name="backup_preview_encrypted">Encrypted</string>
   <string name="backup_preview_plain">Not encrypted</string>
+  <!-- Label before the app language stored in the backup. -->
   <string name="backup_preview_language">Language</string>
+  <!-- Label before the location (city or coordinates) stored in the backup. -->
   <string name="backup_preview_place">Location</string>
+  <!-- Value after 'Location' when the backup has no stored location. -->
   <string name="backup_preview_no_place">None</string>
+  <!-- Label before the number of personal events in the backup. -->
   <string name="backup_table_events">Events</string>
   <string name="backup_table_recurrences">Repeat rules</string>
+  <!-- Label before the number of reminders in the backup. -->
   <string name="backup_table_reminders">Reminders</string>
   <string name="backup_table_shift_rotations">Shift rotations</string>
   <string name="backup_table_shift_records">Shift records</string>
@@ -50,6 +66,7 @@
   <string name="backup_restore">Restore this backup</string>
   <string name="backup_restore_warning">Restoring replaces all events, reminders, calendar subscriptions, shift rotations, workday profiles and settings on this device with the backup. This cannot be undone.</string>
   <string name="backup_restore_confirm_title">Replace your data?</string>
+  <!-- Dialog button that confirms replacing the current data with the backup. -->
   <string name="backup_restore_confirm">Replace</string>
   <string name="backup_error_not_a_backup">This file is not a Taqvim backup.</string>
   <string name="backup_error_truncated">The file is incomplete. Choose the whole backup file.</string>
@@ -61,12 +78,14 @@
   <string name="backup_error_restore_failed">Your data could not be replaced. Nothing was changed.</string>
   <string name="backup_error_unreadable">The chosen file could not be opened.</string>
   <string name="backup_error_unwritable">The backup could not be saved there. Choose another place.</string>
+  <!-- Title of the privacy dashboard: what data the app keeps and which permissions it has. -->
   <string name="privacy_title">Privacy</string>
   <string name="privacy_loading">Loading privacy information</string>
   <string name="privacy_intro">Taqvim has no account, ads or analytics. The data below stays on this device unless you export a backup.</string>
   <string name="privacy_permission_free">Every permission is optional: Taqvim asks only when you use a feature that needs it, and works without all of them.</string>
   <string name="privacy_data_title">Data on this device</string>
   <string name="privacy_data_events">Personal events</string>
+  <!-- Kind of stored data: reminders of events. -->
   <string name="privacy_data_reminders">Reminders</string>
   <string name="privacy_data_subscriptions">Calendar subscriptions</string>
   <string name="privacy_data_location">Chosen location</string>
@@ -85,11 +104,16 @@
   <string name="privacy_clear_diagnostics">Clear diagnostics</string>
   <string name="privacy_clear_searches">Clear recent searches</string>
   <string name="privacy_clear_confirm_title">Clear this data?</string>
+  <!-- Dialog button (verb) that deletes the selected stored data. -->
   <string name="privacy_clear_confirm">Clear</string>
   <string name="privacy_clear_failed">The data could not be cleared. Try again.</string>
+  <!-- Heading of the list of Android permissions and whether they are granted. -->
   <string name="privacy_permissions_title">Permissions</string>
+  <!-- Name of the Android location permission. -->
   <string name="privacy_permission_location">Location</string>
+  <!-- Name of the Android calendar permission (reading events of the phone calendar). -->
   <string name="privacy_permission_calendar">Calendar</string>
+  <!-- Name of the Android notifications permission. -->
   <string name="privacy_permission_notifications">Notifications</string>
   <string name="privacy_permission_exact_alarms">Exact alarms</string>
   <string name="privacy_permission_dnd">Do Not Disturb access</string>
@@ -98,6 +122,7 @@
   <string name="privacy_why_notifications">To show reminders and the athan.</string>
   <string name="privacy_why_exact_alarms">To sound reminders and the athan on time.</string>
   <string name="privacy_why_dnd">Only to let the Fajr athan sound during Do Not Disturb, if you turn that on.</string>
+  <!-- Status of a permission: the user allowed it. -->
   <string name="privacy_permission_granted">Allowed</string>
   <string name="privacy_permission_not_granted">Not allowed</string>
   <string name="privacy_open_settings">Open settings</string>

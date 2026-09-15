@@ -10,10 +10,15 @@
   <string name="wear_holidays">Holiday</string>
   <string name="wear_other_calendars">Other calendars</string>
 
+  <!-- Name of the Fajr prayer time, shown in lists of prayer times. -->
   <string name="wear_prayer_fajr">Fajr</string>
+  <!-- Name of the Dhuhr prayer time, shown in lists of prayer times. -->
   <string name="wear_prayer_dhuhr">Dhuhr</string>
+  <!-- Name of the Asr prayer time, shown in lists of prayer times. -->
   <string name="wear_prayer_asr">Asr</string>
+  <!-- Name of the Maghrib prayer time, shown in lists of prayer times. -->
   <string name="wear_prayer_maghrib">Maghrib</string>
+  <!-- Name of the Isha prayer time, shown in lists of prayer times. -->
   <string name="wear_prayer_isha">Isha</string>
   <string name="wear_next_prayer_at">%1$s %2$s</string>
   <string name="wear_no_place">Choose a city in Settings for prayer times</string>
@@ -38,6 +43,7 @@
 
   <string name="wear_calendar_persian">Solar Hijri</string>
   <string name="wear_calendar_islamic">Lunar Hijri</string>
+  <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="wear_calendar_gregorian">Gregorian</string>
   <string name="wear_calendar_nepali">Bikram Sambat</string>
 

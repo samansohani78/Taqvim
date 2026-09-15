@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="times_title">Prayer times</string>
+  <!-- Name of the Fajr prayer time, shown in lists of prayer times. -->
   <string name="times_prayer_fajr">Fajr</string>
+  <!-- Name of the Sunrise prayer time, shown in lists of prayer times. -->
   <string name="times_prayer_sunrise">Sunrise</string>
+  <!-- Name of the Dhuhr prayer time, shown in lists of prayer times. -->
   <string name="times_prayer_dhuhr">Dhuhr</string>
+  <!-- Name of the Asr prayer time, shown in lists of prayer times. -->
   <string name="times_prayer_asr">Asr</string>
+  <!-- Name of the Sunset prayer time, shown in lists of prayer times. -->
   <string name="times_prayer_sunset">Sunset</string>
+  <!-- Name of the Maghrib prayer time, shown in lists of prayer times. -->
   <string name="times_prayer_maghrib">Maghrib</string>
+  <!-- Name of the Isha prayer time, shown in lists of prayer times. -->
   <string name="times_prayer_isha">Isha</string>
+  <!-- Islamic midnight: the middle of the night used for prayer times, not 00:00. -->
   <string name="times_prayer_midnight">Midnight</string>
   <string name="times_undefined" translatable="false">—</string>
   <string name="times_previous_day">Previous day</string>
   <string name="times_next_day">Next day</string>
+  <!-- Button that returns the prayer times to today. -->
   <string name="times_today">Today</string>
   <string name="times_show_all">Show all times</string>
   <string name="times_show_fewer">Show fewer times</string>
@@ -25,6 +34,7 @@
   <string name="times_loading">Loading prayer times</string>
   <string name="times_print_report">Print monthly report</string>
   <string name="times_report_title">Prayer times for %1$s, %2$s to %3$s</string>
+  <!-- Column heading of the date in the monthly prayer times report. -->
   <string name="times_report_date">Date</string>
   <string name="times_report_job">Taqvim prayer times</string>
 </resources>

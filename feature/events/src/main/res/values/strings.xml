@@ -5,17 +5,22 @@
   <string name="events_loading">Loading event</string>
   <string name="events_not_found_title">Event not found</string>
   <string name="events_not_found_message">This event was deleted or cannot be edited.</string>
+  <!-- Label of the text field for the event's title (name), not a screen title. -->
   <string name="events_title_label">Title</string>
   <string name="events_date_phrase_label">Date in words</string>
   <string name="events_date_phrase_apply">Set date</string>
   <string name="events_date_phrase_unrecognized">No date found in this text</string>
+  <!-- Label of the choice of calendar system (Persian, Islamic, Gregorian) for the event date. -->
   <string name="events_calendar_label">Calendar</string>
   <string name="events_calendar_persian">Solar Hijri</string>
   <string name="events_calendar_islamic">Lunar Hijri</string>
+  <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="events_calendar_gregorian">Gregorian</string>
   <string name="events_calendar_nepali">Bikram Sambat</string>
   <string name="events_all_day">All day</string>
+  <!-- Label before the event's start date and time. -->
   <string name="events_starts">Starts</string>
+  <!-- Label before the event's end date and time. -->
   <string name="events_ends">Ends</string>
   <string name="events_start_date_description">Start date: %1$s</string>
   <string name="events_end_date_description">End date: %1$s</string>
@@ -26,18 +31,31 @@
   <string name="events_pick_until">Repeat until</string>
   <string name="events_pick_start_time">Start time</string>
   <string name="events_pick_end_time">End time</string>
+  <!-- Label of the year wheel in a date picker. -->
   <string name="events_picker_year">Year</string>
+  <!-- Label of the month wheel in a date picker. -->
   <string name="events_picker_month">Month</string>
+  <!-- Label of the day wheel in a date picker. -->
   <string name="events_picker_day">Day</string>
+  <!-- Label of the hour wheel in a time picker. -->
   <string name="events_picker_hour">Hour</string>
+  <!-- Label of the minute wheel in a time picker. -->
   <string name="events_picker_minute">Minute</string>
+  <!-- Button that confirms the chosen date or time. -->
   <string name="events_picker_confirm">OK</string>
+  <!-- Button that closes the picker without changes. -->
   <string name="events_picker_cancel">Cancel</string>
+  <!-- Label of how often the event repeats. -->
   <string name="events_repeat_label">Repeat</string>
+  <!-- Repeat option: the event does not repeat. -->
   <string name="events_repeat_none">Never</string>
+  <!-- Repeat option: every day. -->
   <string name="events_repeat_daily">Daily</string>
+  <!-- Repeat option: every week. -->
   <string name="events_repeat_weekly">Weekly</string>
+  <!-- Repeat option: every month. -->
   <string name="events_repeat_monthly">Monthly</string>
+  <!-- Repeat option: every year. -->
   <string name="events_repeat_yearly">Yearly</string>
   <string name="events_interval_days">Every how many days</string>
   <string name="events_interval_weeks">Every how many weeks</string>
@@ -48,30 +66,41 @@
   <string name="events_invalid_days_skip">Skip that month</string>
   <string name="events_invalid_days_next">Move to the next day</string>
   <string name="events_invalid_days_last">Use the last day of the month</string>
+  <!-- Label of when a repeating event stops repeating. -->
   <string name="events_repeat_end_label">Ends</string>
+  <!-- Repeat end option: it never stops. -->
   <string name="events_repeat_end_never">Never</string>
+  <!-- Repeat end option: it stops after a number of times entered next to it. -->
   <string name="events_repeat_end_count">After</string>
   <string name="events_repeat_end_until">On date</string>
   <string name="events_repeat_count_label">Number of times</string>
   <string name="events_until_description">Repeat until %1$s</string>
+  <!-- Label of the list of reminders before the event. -->
   <string name="events_reminders_label">Reminders</string>
   <string name="events_reminder_at_start">At the start</string>
   <string name="events_reminder_before">%1$s before</string>
   <string name="events_reminder_remove">Remove reminder: %1$s</string>
+  <!-- Button (verb) that removes one reminder. -->
   <string name="events_reminder_remove_short">Remove</string>
   <string name="events_reminder_add">Add reminder</string>
+  <!-- Label of the color chosen for the event. -->
   <string name="events_color_label">Color</string>
   <string name="events_color_none">No color</string>
   <string name="events_color_option">Color %1$s</string>
+  <!-- Label of the free-text notes field of the event. -->
   <string name="events_notes_label">Notes</string>
   <string name="events_link_label">Source link</string>
+  <!-- Button (verb): save the event. -->
   <string name="events_save">Save</string>
+  <!-- Button: leave the editor without saving. -->
   <string name="events_cancel">Cancel</string>
+  <!-- Button (verb): delete the event. -->
   <string name="events_delete">Delete</string>
   <string name="events_store_failed">The event could not be saved or deleted. Try again.</string>
   <string name="events_errors_summary">Fix the highlighted fields to save.</string>
   <string name="events_discard_title">Discard changes?</string>
   <string name="events_discard_message">Your changes to this event will be lost.</string>
+  <!-- Dialog button that confirms leaving without saving the changes. -->
   <string name="events_discard_confirm">Discard</string>
   <string name="events_keep_editing">Keep editing</string>
   <string name="events_delete_title">Delete this event?</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Title of the main calendar screen. -->
   <string name="calendar_title">Calendar</string>
   <string name="calendar_loading">Loading the calendar</string>
   <!-- Month name (%1$s) and year (%2$s). -->
@@ -8,7 +9,9 @@
   <string name="calendar_month_range">%1$s – %2$s</string>
   <!-- Joins the parts of a spoken day summary. -->
   <string name="calendar_separator">", "</string>
+  <!-- Button that returns the calendar to today. -->
   <string name="calendar_today">Today</string>
+  <!-- Label on a day that is an official day off. -->
   <string name="calendar_holiday">Holiday</string>
   <!-- %1$s is the count in the app's digits. -->
   <plurals name="calendar_events">
@@ -20,11 +23,14 @@
 
   <!-- T-802 day details. -->
   <string name="calendar_tab_calendars">Calendars</string>
+  <!-- Tab in the day details that lists the day's events. -->
   <string name="calendar_tab_events">Events</string>
+  <!-- Tab in the day details that lists the day's prayer times. -->
   <string name="calendar_tab_times">Times</string>
   <string name="calendar_details_loading">Loading the day</string>
   <string name="calendar_system_persian">Solar Hijri</string>
   <string name="calendar_system_islamic">Lunar Hijri</string>
+  <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="calendar_system_gregorian">Gregorian</string>
   <string name="calendar_system_nepali">Bikram Sambat</string>
   <string name="calendar_distance_label">From today</string>
@@ -51,15 +57,21 @@
   </plurals>
   <!-- Days from today (%1$s) with the same difference in years, months and days (%2$s). -->
   <string name="calendar_distance_with_period">%1$s (%2$s)</string>
+  <!-- Label before the week number of the year. -->
   <string name="calendar_week_label">Week</string>
   <!-- Day of the week (%1$s) and week of the year (%2$s). -->
   <string name="calendar_week_progress">Day %1$s of the week, week %2$s of the year</string>
+  <!-- Label before the season and how far into it the day is. -->
   <string name="calendar_season_label">Season</string>
   <!-- Season name (%1$s), day of the season (%2$s) and its length in days (%3$s). -->
   <string name="calendar_season_progress">%1$s: day %2$s of %3$s</string>
+  <!-- Name of the season spring. -->
   <string name="calendar_season_spring">Spring</string>
+  <!-- Name of the season summer. -->
   <string name="calendar_season_summer">Summer</string>
+  <!-- Name of the season autumn (fall). -->
   <string name="calendar_season_autumn">Autumn</string>
+  <!-- Name of the season winter. -->
   <string name="calendar_season_winter">Winter</string>
   <string name="calendar_sky_label">Sun and Moon</string>
   <!-- Sun sign (%1$s) and Moon sign (%2$s). -->
@@ -67,17 +79,29 @@
   <!-- Moon phase name (%1$s) and illuminated percentage (%2$s). -->
   <string name="calendar_moon">%1$s, %2$s illuminated</string>
   <string name="calendar_percent">%1$s%%</string>
+  <!-- Name of the tropical zodiac sign Aries (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_aries">Aries</string>
+  <!-- Name of the tropical zodiac sign Taurus (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_taurus">Taurus</string>
+  <!-- Name of the tropical zodiac sign Gemini (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_gemini">Gemini</string>
+  <!-- Name of the tropical zodiac sign Cancer (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_cancer">Cancer</string>
+  <!-- Name of the tropical zodiac sign Leo (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_leo">Leo</string>
+  <!-- Name of the tropical zodiac sign Virgo (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_virgo">Virgo</string>
+  <!-- Name of the tropical zodiac sign Libra (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_libra">Libra</string>
+  <!-- Name of the tropical zodiac sign Scorpio (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_scorpio">Scorpio</string>
+  <!-- Name of the tropical zodiac sign Sagittarius (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_sagittarius">Sagittarius</string>
+  <!-- Name of the tropical zodiac sign Capricorn (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_capricorn">Capricorn</string>
+  <!-- Name of the tropical zodiac sign Aquarius (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_aquarius">Aquarius</string>
+  <!-- Name of the tropical zodiac sign Pisces (astrology/astronomy), not the constellation or any other meaning. -->
   <string name="calendar_sign_pisces">Pisces</string>
   <string name="calendar_phase_new_moon">New moon</string>
   <string name="calendar_phase_waxing_crescent">Waxing crescent</string>
@@ -102,6 +126,7 @@
   <string name="calendar_citation_page">%1$s, page %2$s</string>
   <string name="calendar_no_citation">No source recorded</string>
   <string name="calendar_open_source">Open source</string>
+  <!-- Button that closes the dialog. -->
   <string name="calendar_close">Close</string>
   <!-- T-1002 reminders before an official event. -->
   <string name="calendar_remind_me">Remind me</string>
@@ -126,13 +151,21 @@
   <string name="calendar_method_singapore">Majlis Ugama Islam Singapura</string>
   <string name="calendar_method_france">Union of Islamic Organisations of France</string>
   <string name="calendar_method_russia">Spiritual Administration of Muslims of Russia</string>
+  <!-- Name of the Fajr prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_fajr">Fajr</string>
+  <!-- Name of the Sunrise prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_sunrise">Sunrise</string>
+  <!-- Name of the Dhuhr prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_dhuhr">Dhuhr</string>
+  <!-- Name of the Asr prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_asr">Asr</string>
+  <!-- Name of the Sunset prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_sunset">Sunset</string>
+  <!-- Name of the Maghrib prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_maghrib">Maghrib</string>
+  <!-- Name of the Isha prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_isha">Isha</string>
+  <!-- Islamic midnight: the middle of the night used for prayer times, not 00:00. -->
   <string name="calendar_time_midnight">Midnight</string>
   <string name="calendar_time_undefined">Not defined</string>
   <string name="calendar_next_time">Next time</string>
@@ -150,10 +183,15 @@
   <string name="calendar_menu_planetary_hours">Planetary hours</string>
   <string name="calendar_menu_week_numbers">Week numbers</string>
   <string name="calendar_menu_secondary_calendar">Secondary calendar</string>
+  <!-- Label of the year wheel in a date picker. -->
   <string name="calendar_picker_year">Year</string>
+  <!-- Label of the month wheel in a date picker. -->
   <string name="calendar_picker_month">Month</string>
+  <!-- Label of the day wheel in a date picker. -->
   <string name="calendar_picker_day">Day</string>
+  <!-- Button in the date picker that jumps the calendar to the chosen date. -->
   <string name="calendar_picker_confirm">Go</string>
+  <!-- Button that closes the date picker without changing the date. -->
   <string name="calendar_picker_cancel">Cancel</string>
   <string name="calendar_print_job">Calendar month</string>
   <string name="calendar_print_events">Events of the month</string>

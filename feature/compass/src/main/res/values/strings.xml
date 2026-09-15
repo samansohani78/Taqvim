@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- Title of the compass screen. -->
   <string name="compass_title">Compass</string>
   <string name="compass_loading">Starting the compass</string>
   <string name="compass_unavailable_title">No compass sensor</string>
@@ -15,27 +16,44 @@
   <string name="compass_qibla_undefined">The Qibla direction is not defined at this place.</string>
   <string name="compass_turn_right">turn %1$s° right</string>
   <string name="compass_turn_left">turn %1$s° left</string>
+  <!-- Marker on the compass dial for the direction of the Sun. -->
   <string name="compass_sun">Sun</string>
+  <!-- Marker on the compass dial for the direction of the Moon. -->
   <string name="compass_moon">Moon</string>
   <string name="compass_body">%1$s %2$s°, %3$s</string>
   <string name="compass_above_horizon">%1$s° above the horizon</string>
   <string name="compass_below_horizon">%1$s° below the horizon</string>
+  <!-- Toggle chip that freezes the compass dial at its current heading. -->
   <string name="compass_stopped">Stop</string>
   <string name="compass_sun_path">Sun path</string>
+  <!-- One-letter abbreviation of north on the compass dial. -->
   <string name="compass_letter_north">N</string>
+  <!-- One-letter abbreviation of east on the compass dial. -->
   <string name="compass_letter_east">E</string>
+  <!-- One-letter abbreviation of south on the compass dial. -->
   <string name="compass_letter_south">S</string>
+  <!-- One-letter abbreviation of west on the compass dial. -->
   <string name="compass_letter_west">W</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_n">north</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_ne">northeast</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_e">east</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_se">southeast</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_s">south</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_sw">southwest</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_w">west</string>
+  <!-- Direction name spoken by screen readers for the compass heading (lower case in a sentence). -->
   <string name="compass_point_nw">northwest</string>
+  <!-- Title of the bubble level tool (spirit level), not a difficulty or rank level. -->
   <string name="level_title">Level</string>
   <string name="level_tab_level">Bubble level</string>
+  <!-- Tab of the on-screen ruler (measuring length). -->
   <string name="level_tab_ruler">Ruler</string>
   <string name="level_loading">Starting the level</string>
   <string name="level_unavailable_title">No motion sensor</string>
@@ -46,9 +64,12 @@
   <string name="level_is_level">The surface is level</string>
   <string name="level_tilt_two_axes">Tilted %1$s° across, %2$s° along</string>
   <string name="level_tilt_one_axis">Tilted %1$s°</string>
+  <!-- Button (verb): set the current tilt as level. -->
   <string name="level_calibrate">Calibrate</string>
   <string name="level_reset_calibration">Reset calibration</string>
+  <!-- Abbreviation of centimetre, shown on the ruler. -->
   <string name="level_unit_cm">cm</string>
+  <!-- Abbreviation of inch, shown on the ruler. -->
   <string name="level_unit_inch">in</string>
   <string name="level_ruler_description">Ruler along the top edge of the screen</string>
 </resources>

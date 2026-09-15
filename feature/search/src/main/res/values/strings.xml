@@ -3,11 +3,17 @@
     <!-- T-804 search screen -->
     <string name="search_title">Search</string>
     <string name="search_hint">Events, tools and settings</string>
+    <!-- Button that clears the search text. -->
     <string name="search_clear">Clear</string>
+    <!-- Search filter: results of every kind. -->
     <string name="search_filter_all">All</string>
+    <!-- Search filter: only events. -->
     <string name="search_filter_events">Events</string>
+    <!-- Search filter: only tools. -->
     <string name="search_filter_tools">Tools</string>
+    <!-- Search filter: only settings. -->
     <string name="search_filter_settings">Settings</string>
+    <!-- Progress text shown while searching. -->
     <string name="search_searching">Searching</string>
     <string name="search_no_results">No results</string>
     <string name="search_no_results_message">Try another spelling or a shorter word.</string>
@@ -15,7 +21,9 @@
     <string name="search_recent">Recent searches</string>
     <string name="search_clear_recent">Clear history</string>
     <string name="search_go_to_date">Go to %1$s</string>
+    <!-- Label on a search result that is an official day off. -->
     <string name="search_holiday">Holiday</string>
+    <!-- Button (verb) that opens the search result. -->
     <string name="search_open">Open</string>
     <string name="search_separator">" · "</string>
     <string name="search_kind_official">Official occasion</string>
@@ -25,51 +33,83 @@
 
     <!-- Searchable settings: titles and |-separated synonyms -->
     <string name="search_settings_language">Language</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_language_keywords">locale|translation|Persian|English</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_location">Location</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_location_keywords">city|place|GPS|coordinates|time zone</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_calendars">Calendars</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_calendars_keywords">calendar|Solar Hijri|Islamic|Hijri|Gregorian|week start</string>
     <string name="search_settings_prayer_times">Prayer time settings</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_prayer_times_keywords">calculation method|Asr|prayer|oghat</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_athan">Athan</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_athan_keywords">adhan|azan|call to prayer|alarm|sound</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_notifications">Notifications</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_notifications_keywords">reminders|alerts|persistent notification</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_theme">Theme and appearance</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_theme_keywords">dark mode|colors|font|background</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_widgets">Widgets</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_widgets_keywords">home screen|launcher</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_backup">Backup and restore</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_backup_keywords">export|import|password|file</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_privacy">Privacy</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_privacy_keywords">permissions|data|diagnostics</string>
+    <!-- Name of a settings page as it appears in search results. -->
     <string name="search_settings_about">About</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_settings_about_keywords">version|licenses|contact</string>
 
     <!-- Searchable tools and screens: titles and |-separated synonyms -->
     <string name="search_tool_converter">Date converter</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_converter_keywords">convert|Solar Hijri|Hijri|Gregorian</string>
     <string name="search_tool_distance">Days between dates</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_distance_keywords">distance|difference|age|workdays</string>
     <string name="search_tool_duration">Duration calculator</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_duration_keywords">time|hours|minutes|add</string>
     <string name="search_tool_time_zones">World clock</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_time_zones_keywords">time zones|cities|UTC</string>
     <string name="search_tool_qr">QR code</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_qr_keywords">share|barcode</string>
     <string name="search_tool_compass">Compass and Qibla</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_compass_keywords">qibla|north|direction</string>
     <string name="search_tool_level">Bubble level and ruler</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_level_keywords">level|ruler|tilt</string>
     <string name="search_tool_astronomy">Astronomy</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_astronomy_keywords">moon|sun|eclipse|zodiac|horoscope</string>
     <string name="search_tool_map">World map</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_map_keywords">map|world map|day and night|crescent|magnetic declination</string>
     <string name="search_tool_prayer_times">Prayer times</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_prayer_times_keywords">fajr|dhuhr|maghrib|sunrise|sunset</string>
     <string name="search_tool_agenda">Agenda</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_agenda_keywords">month list|events list|schedule</string>
     <string name="search_tool_year">Year view</string>
+    <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
     <string name="search_tool_year_keywords">year|months</string>
 </resources>

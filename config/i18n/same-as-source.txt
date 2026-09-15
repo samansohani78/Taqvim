@@ -1,0 +1,4 @@
+# Translations that may be identical to the English source (T-1702, docs/i18n/TRANSLATING.md).
+# One entry per line: `<res dir>: <resource name> | <reason>`. The reason is required.
+feature/about/src/main/res: about_source_cldr | Proper name of the Unicode CLDR project, not translated in Persian
+feature/about/src/main/res: about_source_natural_earth | Proper name of the Natural Earth dataset, not translated in Persian
