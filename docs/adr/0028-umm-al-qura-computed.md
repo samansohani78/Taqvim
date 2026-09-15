@@ -11,8 +11,9 @@ ADR-0006 embedded ICU4J 78.3's Umm al-Qura month lengths for AH 1300–1600 and 
 the table silently showed a different calendar. The owner asked on 2026-09-15 that no calendar data be set by hand
 and that every value come from an algorithm that works for any year.
 
-R. H. van Gent (Utrecht University) documents the rules the calendar has used (archived in
-`docs/sources/vangent-ummalqura/`, retrieved 2026-09-15):
+R. H. van Gent (Utrecht University) documents the rules the calendar has used
+(https://webspace.science.uu.nl/~gent0113/islam/ummalqura.htm, retrieved 2026-09-15; cited only, SHA-256 in
+`docs/sources/MANIFEST.md`):
 
 - before AH 1392: uncertain (reconstructions do not match the published dates);
 - AH 1392–1419: a rule on the time of the new moon relative to 0h UTC;

@@ -1030,7 +1030,7 @@ Persian-calendar or prayer-times GPL/LGPL library.
   AH 1200–1700; published Umm al-Qura tables are ICU's own source.
 - **Computed months (main@ef282be, ADR-0028):** `UmmAlQuraCriterion.kt`, `UmmAlQuraMonths.kt`. Rule source: R. H. van Gent
   (Utrecht University), "The Umm al-Qura Calendar of Saudi Arabia" — rules, introduction and bibliography pages,
-  retrieved 2026-09-15 and archived in `docs/sources/vangent-ummalqura/` (sizes and SHA-256 in MANIFEST). Since AH 1423:
+  https://webspace.science.uu.nl/~gent0113/islam/ummalqura.htm, retrieved 2026-09-15 (cited only; sizes and SHA-256 of the retrieved pages in MANIFEST). Since AH 1423:
   on the 29th, the next day begins a month when the geocentric conjunction precedes sunset at the Kaʿba
   (21.4225° N, 39.8262° E) and the Moon sets after the Sun; otherwise the month has 30 days. Civil day UTC+3; times
   from cosinekitty/astronomy 2.1.19. The published Ministry of Finance calendars AH 1300–1450 stay as data (151 masks,
