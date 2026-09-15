@@ -8,8 +8,8 @@ import io.github.cosinekitty.astronomy.seasons
 import io.kotest.assertions.withClue
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.comparables.shouldBeLessThan
+import io.kotest.matchers.shouldBe
 import ir.taqvim.core.testing.GoldenFile
-import kotlin.math.roundToLong
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
 import kotlinx.datetime.FixedOffsetTimeZone
@@ -17,18 +17,17 @@ import kotlinx.datetime.toLocalDateTime
 import org.junit.jupiter.api.Test
 
 /**
- * Recomputes [PersianLeapTable] from March equinoxes (cosinekitty/astronomy, MIT, test scope only) with
- * [PersianYearStartRule]. On failure the clue prints the regenerated `LEAP_BITS` constant.
+ * The run-time Persian year starts (A-02 on true March equinoxes, ADR-0026) against the table ADR-0008 shipped and
+ * against the library's own season search (cosinekitty/astronomy, MIT). On failure the clue prints the computed bits.
  */
 class PersianCalendarAstronomyTest {
+    private val persian = PersianCalendarSystem
+    private val first = PersianCalendarSystem.ASTRONOMICAL_FIRST_YEAR
+    private val last = PersianCalendarSystem.ASTRONOMICAL_LAST_YEAR
     private val iranTime = FixedOffsetTimeZone(PersianYearStartRule.TEHRAN_MERIDIAN_OFFSET)
 
-    private fun marchEquinox(persianYear: Int): Instant {
-        val ut = seasons(persianYear + GREGORIAN_YEAR_OFFSET).marchEquinox.ut
-        return Instant.fromEpochMilliseconds(
-            ((ut * SECONDS_PER_DAY + J2000_UNIX_SECONDS) * MILLIS_PER_SECOND).roundToLong(),
-        )
-    }
+    private fun marchEquinox(persianYear: Int): Instant =
+        CalendarAstronomy.instantOf(seasons(persianYear + GREGORIAN_YEAR_OFFSET).marchEquinox.ut)
 
     private fun rows(name: String): List<List<String>> =
         GoldenFile
@@ -38,17 +37,22 @@ class PersianCalendarAstronomyTest {
             .map { it.split(',') }
 
     @Test
-    fun `the generated table reproduces the year-start rule for every tabulated year`() {
-        val first = PersianCalendarSystem.TABLE_FIRST_YEAR
-        val last = PersianCalendarSystem.TABLE_LAST_YEAR
-        val starts = (first..last + 1).associateWith { PersianYearStartRule.firstDayOfYear(marchEquinox(it)).value }
-        val leapFlags = (first..last).map { starts.getValue(it + 1) - starts.getValue(it) == LEAP_YEAR_DAYS }
+    fun `computed year starts reproduce the ADR-0008 table for every astronomical year`() {
+        val leapFlags = (first..last).map(persian::isLeapYear)
 
-        withClue("regenerated LEAP_BITS = ${hex(leapFlags)}, FIRST_YEAR_START_JDN = ${starts.getValue(first)}") {
-            (first..last + 1)
-                .filter { starts.getValue(it) != PersianCalendarSystem.firstDayOfYear(it).value }
-                .shouldBeEmpty()
+        withClue("computed LEAP_BITS = ${hex(leapFlags)}") {
+            first shouldBe PersianLeapTableSnapshot.FIRST_YEAR
+            last shouldBe PersianLeapTableSnapshot.LAST_YEAR
+            persian.firstDayOfYear(first).value shouldBe PersianLeapTableSnapshot.FIRST_YEAR_START_JDN
+            (first..last).filter { leapFlags[it - first] != PersianLeapTableSnapshot.isLeap(it) }.shouldBeEmpty()
         }
+    }
+
+    @Test
+    fun `the run-time equinox search gives the same year starts as the library's season search`() {
+        (first..last)
+            .filter { PersianYearStartRule.firstDayOfYear(marchEquinox(it)) != persian.firstDayOfYear(it) }
+            .shouldBeEmpty()
     }
 
     @Test
@@ -65,6 +69,11 @@ class PersianCalendarAstronomyTest {
         }
     }
 
+    @Test
+    fun `the ephemeris finds no March equinox far outside its range`() {
+        CalendarAstronomy.marchEquinox(FAR_GREGORIAN_YEAR) shouldBe null
+    }
+
     private fun hex(leapFlags: List<Boolean>): String =
         leapFlags.chunked(BITS_PER_BYTE).joinToString("") { bits ->
             "%02x".format(bits.foldIndexed(0) { index, byte, isLeap -> if (isLeap) byte or (1 shl index) else byte })
@@ -72,10 +81,7 @@ class PersianCalendarAstronomyTest {
 
     private companion object {
         const val GREGORIAN_YEAR_OFFSET = 621
-        const val SECONDS_PER_DAY = 86_400.0
-        const val J2000_UNIX_SECONDS = 946_728_000.0
-        const val MILLIS_PER_SECOND = 1_000.0
-        const val LEAP_YEAR_DAYS = 366L
         const val BITS_PER_BYTE = 8
+        const val FAR_GREGORIAN_YEAR = 20_621
     }
 }

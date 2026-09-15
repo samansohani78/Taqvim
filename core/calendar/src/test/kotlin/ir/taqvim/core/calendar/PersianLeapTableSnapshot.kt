@@ -5,16 +5,15 @@
 package ir.taqvim.core.calendar
 
 /**
- * Solar Hijri leap years for [FIRST_YEAR]‥[LAST_YEAR], generated from the A-02 rule (the year starts on the day whose
- * noon at the Tehran meridian, 52.5°E = UTC+03:30, follows the March equinox) with equinoxes from cosinekitty/astronomy
- * 2.1.19 (MIT). Verified against the Calendar Center's official leap-year table for 1206‥1498 and recomputed in full by
- * `PersianCalendarAstronomyTest`. See docs/adr/0008-persian-year-start-table.md.
+ * The Solar Hijri leap years of SH −3000‥3000 exactly as ADR-0008 shipped them in the app (generated from the A-02
+ * rule with cosinekitty/astronomy 2.1.19 equinoxes). Since ADR-0026 the app computes year starts at run time; this
+ * frozen snapshot catches any change of the computed years, for example after a library upgrade.
  */
-internal object PersianLeapTable {
-    /** First year of the table. */
+internal object PersianLeapTableSnapshot {
+    /** First year of the snapshot. */
     const val FIRST_YEAR: Int = -3000
 
-    /** Last year of the table. */
+    /** Last year of the snapshot. */
     const val LAST_YEAR: Int = 3000
 
     /** JDN of 1 Farvardin [FIRST_YEAR] (22 March 2379 BC, proleptic Gregorian). */
@@ -43,9 +42,9 @@ internal object PersianLeapTable {
             "224244444484888888081111111122222222444444448888888810111111212222224244444484888888081111112122" +
             "22222244444444888888881011111122222222444444448888888810111101"
 
-    /** Whether [year] (which must lie in the table) has 366 days. */
+    /** Whether [year] (which must lie in the snapshot) has 366 days. */
     fun isLeap(year: Int): Boolean {
-        require(year in FIRST_YEAR..LAST_YEAR) { "year $year is outside the Persian leap table" }
+        require(year in FIRST_YEAR..LAST_YEAR) { "year $year is outside the Persian leap table snapshot" }
         val index = year - FIRST_YEAR
         val offset = index / BITS_PER_BYTE * HEX_DIGITS_PER_BYTE
         val byte = LEAP_BITS.substring(offset, offset + HEX_DIGITS_PER_BYTE).toInt(HEX_RADIX)

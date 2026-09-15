@@ -64,9 +64,9 @@ class PersianCalendarSystemTest {
     }
 
     @Test
-    fun `the arithmetic fallback continues both table edges without gaps`() {
-        val first = PersianCalendarSystem.TABLE_FIRST_YEAR
-        val last = PersianCalendarSystem.TABLE_LAST_YEAR
+    fun `years join without gaps at both edges of the astronomical range`() {
+        val first = PersianCalendarSystem.ASTRONOMICAL_FIRST_YEAR
+        val last = PersianCalendarSystem.ASTRONOMICAL_LAST_YEAR
 
         ((first - 3)..(first + 2)).plus((last - 2)..(last + 3)).forEach { year ->
             yearLength(year) shouldBe if (persian.isLeapYear(year)) 366L else 365L

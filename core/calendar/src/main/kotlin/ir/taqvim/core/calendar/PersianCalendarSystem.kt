@@ -11,19 +11,19 @@ import ir.taqvim.core.model.Jdn
 /**
  * Solar Hijri (Persian) calendar (A-02): months of 31 × 6, 30 × 5 and 29/30 days.
  *
- * Year starts follow the astronomical rule of [PersianYearStartRule]. For [TABLE_FIRST_YEAR]‥[TABLE_LAST_YEAR] they come
- * from [PersianLeapTable], generated from that rule and checked against the Calendar Center's official leap years;
- * outside the table the 2820-year arithmetic cycle ([BirashkArithmetic]) continues from the table edges, so every year
- * still has 365 or 366 days. See docs/adr/0008-persian-year-start-table.md.
+ * 1 Farvardin follows [PersianYearStartRule] for every [Int] year, computed at run time: from the true March equinox
+ * for [ASTRONOMICAL_FIRST_YEAR]‥[ASTRONOMICAL_LAST_YEAR], and from the mean March equinox continued from those edges
+ * beyond them. The Calendar Center's official leap years (1206–1498) agree with the rule, so no year is overridden.
+ * See docs/adr/0026-persian-year-starts-computed.md.
  */
 public object PersianCalendarSystem : CalendarArithmetic {
     override val system: CalendarSystem = CalendarSystem.PERSIAN
 
-    /** First year taken from the astronomical table. */
-    public const val TABLE_FIRST_YEAR: Int = PersianLeapTable.FIRST_YEAR
+    /** First year started from the true March equinox; earlier years use the mean equinox. */
+    public const val ASTRONOMICAL_FIRST_YEAR: Int = PersianYearStarts.FIRST_ASTRONOMICAL_YEAR
 
-    /** Last year taken from the astronomical table. */
-    public const val TABLE_LAST_YEAR: Int = PersianLeapTable.LAST_YEAR
+    /** Last year started from the true March equinox; later years use the mean equinox. */
+    public const val ASTRONOMICAL_LAST_YEAR: Int = PersianYearStarts.LAST_ASTRONOMICAL_YEAR
 
     private const val MONTHS = 12
     private const val LONG_MONTHS = 6
@@ -33,23 +33,8 @@ public object PersianCalendarSystem : CalendarArithmetic {
     private const val COMMON_YEAR_DAYS = 365
     private const val DAYS_IN_LONG_MONTHS = LONG_MONTHS * LONG_MONTH_DAYS
 
-    /** Days from 1 Farvardin [TABLE_FIRST_YEAR] to 1 Farvardin of each table year, plus the year after the table. */
-    private val TABLE_YEAR_OFFSETS: IntArray =
-        (TABLE_FIRST_YEAR..TABLE_LAST_YEAR)
-            .runningFold(0) { offset, year ->
-                offset + COMMON_YEAR_DAYS + if (PersianLeapTable.isLeap(year)) 1 else 0
-            }.toIntArray()
-
-    private const val TABLE_START_JDN = PersianLeapTable.FIRST_YEAR_START_JDN
-    private val TABLE_END_JDN: Long = TABLE_START_JDN + TABLE_YEAR_OFFSETS.last()
-
     override fun isLeapYear(year: Int): Boolean =
-        if (year in TABLE_FIRST_YEAR..TABLE_LAST_YEAR) {
-            val index = year - TABLE_FIRST_YEAR
-            TABLE_YEAR_OFFSETS[index + 1] - TABLE_YEAR_OFFSETS[index] > COMMON_YEAR_DAYS
-        } else {
-            BirashkArithmetic.isLeapYear(year)
-        }
+        PersianYearStarts.startJdn(year + 1L) - PersianYearStarts.startJdn(year.toLong()) > COMMON_YEAR_DAYS
 
     override fun monthsInYear(year: Int): Int = MONTHS
 
@@ -66,17 +51,18 @@ public object PersianCalendarSystem : CalendarArithmetic {
     }
 
     /** JDN of 1 Farvardin [year]. */
-    public fun firstDayOfYear(year: Int): Jdn = Jdn(yearStartJdn(year))
+    public fun firstDayOfYear(year: Int): Jdn = Jdn(PersianYearStarts.startJdn(year.toLong()))
 
     override fun toJdn(date: CalendarDate): Jdn {
         require(date.system == system) { "Expected a PERSIAN date (was ${date.system})" }
         require(isValid(date.year, date.month, date.day)) { "Persian date ${date.toIsoLikeString()} does not exist" }
-        return Jdn(yearStartJdn(date.year) + daysBeforeMonth(date.month) + date.day - 1)
+        return Jdn(PersianYearStarts.startJdn(date.year.toLong()) + daysBeforeMonth(date.month) + date.day - 1)
     }
 
+    /** The Persian date of [jdn]; throws [IllegalArgumentException] for days outside the years of [Int]. */
     override fun fromJdn(jdn: Jdn): CalendarDate {
-        val year = yearContaining(jdn.value)
-        val dayOfYear = (jdn.value - yearStartJdn(year)).toInt()
+        val year = PersianYearStarts.yearContaining(jdn.value)
+        val dayOfYear = (jdn.value - PersianYearStarts.startJdn(year.toLong())).toInt()
         val month =
             if (dayOfYear < DAYS_IN_LONG_MONTHS) {
                 dayOfYear / LONG_MONTH_DAYS + 1
@@ -92,37 +78,4 @@ public object PersianCalendarSystem : CalendarArithmetic {
         } else {
             DAYS_IN_LONG_MONTHS + (month - LONG_MONTHS - 1) * SHORT_MONTH_DAYS
         }
-
-    private fun yearStartJdn(year: Int): Long =
-        when {
-            year < TABLE_FIRST_YEAR -> {
-                TABLE_START_JDN - COMMON_YEAR_DAYS * (TABLE_FIRST_YEAR.toLong() - year) -
-                    BirashkArithmetic.leapYearsBetween(year, TABLE_FIRST_YEAR)
-            }
-
-            year > TABLE_LAST_YEAR -> {
-                TABLE_END_JDN + COMMON_YEAR_DAYS * (year.toLong() - TABLE_LAST_YEAR - 1) +
-                    BirashkArithmetic.leapYearsBetween(TABLE_LAST_YEAR + 1, year)
-            }
-
-            else -> {
-                TABLE_START_JDN + TABLE_YEAR_OFFSETS[year - TABLE_FIRST_YEAR]
-            }
-        }
-
-    private fun yearContaining(jdn: Long): Int {
-        if (jdn < TABLE_START_JDN || jdn >= TABLE_END_JDN) return fallbackYearContaining(jdn)
-        val index = TABLE_YEAR_OFFSETS.binarySearch((jdn - TABLE_START_JDN).toInt())
-        return TABLE_FIRST_YEAR + if (index >= 0) index else -index - 2
-    }
-
-    /** Estimates the year from the mean cycle year, then corrects by whole years (at most a step or two). */
-    private fun fallbackYearContaining(jdn: Long): Int {
-        val anchor = if (jdn < TABLE_START_JDN) TABLE_FIRST_YEAR else TABLE_LAST_YEAR + 1
-        val elapsedYears = Math.floor((jdn - yearStartJdn(anchor)) / BirashkArithmetic.MEAN_YEAR_DAYS).toLong()
-        var year = Math.toIntExact(anchor + elapsedYears)
-        while (yearStartJdn(year) > jdn) year--
-        while (yearStartJdn(year + 1) <= jdn) year++
-        return year
-    }
 }
