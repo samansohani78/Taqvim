@@ -38,6 +38,33 @@ class SkyTest {
     }
 
     @Test
+    fun `equinoxes and solstices of 1700 to 2100 match USNO`() {
+        val rows =
+            GoldenFile
+                .load("golden/usno/seasons-1700-2100.csv")
+                .lines
+                .drop(1)
+                .map { it.split(',') }
+        rows.size shouldBe 1604
+        rows.groupBy { it[0].toInt() }.forEach { (year, events) ->
+            val seasons = Sky.seasons(year)
+            events.forEach { (_, event, instant) ->
+                val deviation = (seasons.of(Season.valueOf(event.uppercase())) - Instant.parse(instant)).absoluteValue
+                if (year in 2020..2040) deviation shouldBeLessThan 5.minutes
+                deviation shouldBeLessThan usnoSeasonTolerance(year)
+            }
+        }
+    }
+
+    /**
+     * PLAN §T-403 asks for ±5 min over 2020–2040; the wider USNO range gets bounds from the deviations measured on
+     * 2026-09-15 with margin. USNO rounds to the minute (up to 30 s), and USNO and cosinekitty use different ΔT
+     * (TT − UT) models, which diverge in extrapolation after about 2050. Largest |deviation|: 1700s 74 s, 1800s 62 s,
+     * 1900s 62 s, 2000s 140 s (2020–2040: 80 s), 2100 112 s.
+     */
+    private fun usnoSeasonTolerance(year: Int) = if (year < 2000) 2.minutes else 3.minutes
+
+    @Test
     fun `seasons of 2020 to 2040 are ordered and a tropical year apart`() {
         (2020..2040).zipWithNext().forEach { (year, next) ->
             val seasons = Sky.seasons(year)
