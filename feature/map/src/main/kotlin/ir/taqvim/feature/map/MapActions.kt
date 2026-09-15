@@ -15,6 +15,8 @@ data class MapActions(
     val onResize: (ViewSize) -> Unit = {},
     val onPick: (ScreenPoint, ViewSize) -> Unit = { _, _ -> },
     val onPickCenter: () -> Unit = {},
+    /** Picks a shown city marker (the accessible alternative to tapping it). */
+    val onPickCity: (MapCity) -> Unit = {},
     val onSelectMinute: (Int) -> Unit = {},
     val onStepDay: (Int) -> Unit = {},
     val onNow: () -> Unit = {},

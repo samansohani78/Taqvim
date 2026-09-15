@@ -26,14 +26,16 @@ import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.rememberTextMeasurer
+import kotlinx.collections.immutable.ImmutableList
 
-/** The flat map or the globe with its gestures and accessibility actions (zoom in/out, pick the center). */
+/** The flat map or the globe with its gestures and accessibility actions (zoom in/out, pick the center or a city). */
 @Composable
 internal fun MapCanvas(
     outline: WorldOutline,
@@ -47,9 +49,7 @@ internal fun MapCanvas(
     var viewSize by remember { mutableStateOf(ViewSize(0f, 0f)) }
     val currentActions by rememberUpdatedState(actions)
     val description = stringResource(R.string.map_content_description)
-    val zoomIn = stringResource(R.string.map_zoom_in)
-    val zoomOut = stringResource(R.string.map_zoom_out)
-    val pickCenter = stringResource(R.string.map_pick_center)
+    val accessibilityActions = rememberMapAccessibilityActions(state.cities, { currentActions }, { viewSize })
     Canvas(
         modifier
             .clipToBounds()
@@ -59,15 +59,7 @@ internal fun MapCanvas(
             }.mapGestures { currentActions }
             .semantics {
                 contentDescription = description
-                customActions =
-                    listOf(
-                        CustomAccessibilityAction(zoomIn) { zoomAtCenter(currentActions, ZOOM_STEP, viewSize) },
-                        CustomAccessibilityAction(zoomOut) { zoomAtCenter(currentActions, 1 / ZOOM_STEP, viewSize) },
-                        CustomAccessibilityAction(pickCenter) {
-                            currentActions.onPickCenter()
-                            true
-                        },
-                    )
+                customActions = accessibilityActions
             },
     ) {
         when (state.projection) {
@@ -90,6 +82,37 @@ private fun Modifier.mapGestures(actions: () -> MapActions): Modifier =
             actions().onPick(ScreenPoint(offset.x, offset.y), ViewSize(size.width.toFloat(), size.height.toFloat()))
         }
     }
+
+/** Zoom in and out, pick the center, and pick each shown city marker (in population order), for TalkBack. */
+@Composable
+private fun rememberMapAccessibilityActions(
+    cities: ImmutableList<MapCity>,
+    actions: () -> MapActions,
+    viewSize: () -> ViewSize,
+): List<CustomAccessibilityAction> {
+    val resources = LocalResources.current
+    val zoomIn = stringResource(R.string.map_zoom_in)
+    val zoomOut = stringResource(R.string.map_zoom_out)
+    val pickCenter = stringResource(R.string.map_pick_center)
+    return remember(cities, resources, zoomIn, zoomOut, pickCenter) {
+        val fixed =
+            listOf(
+                CustomAccessibilityAction(zoomIn) { zoomAtCenter(actions(), ZOOM_STEP, viewSize()) },
+                CustomAccessibilityAction(zoomOut) { zoomAtCenter(actions(), 1 / ZOOM_STEP, viewSize()) },
+                CustomAccessibilityAction(pickCenter) {
+                    actions().onPickCenter()
+                    true
+                },
+            )
+        fixed +
+            cities.map { city ->
+                CustomAccessibilityAction(resources.getString(R.string.map_pick_city, city.name)) {
+                    actions().onPickCity(city)
+                    true
+                }
+            }
+    }
+}
 
 private fun zoomAtCenter(
     actions: MapActions,

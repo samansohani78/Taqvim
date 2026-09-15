@@ -217,6 +217,33 @@ class MapViewModelTest {
         }
 
     @Test
+    fun `picking a city by its accessibility action emits it and markers follow the zoom`(): Unit =
+        runTest {
+            val model = viewModel()
+            model.onResize(view)
+            model.onToggleLayer(MapLayer.CITIES)
+            runCurrent()
+            val whole = model.uiState.value.cities
+            whole.any { it.name == "New York" } shouldBe true
+            // On the whole map Baghdad lies within the marker spacing of Tehran.
+            whole.none { it.name == "Baghdad" } shouldBe true
+            model.effects.test {
+                model.onPickCity(whole.first())
+                awaitItem() shouldBe MapEffect.LocationPicked(MapFixtures.TEHRAN, whole.first())
+            }
+            val tehran =
+                model.uiState.value.viewport
+                    .toScreen(Equirectangular.project(MapFixtures.TEHRAN), view)
+            model.onZoom(MapViewport.MAX_ZOOM, tehran, view)
+            runCurrent()
+            val zoomed = model.uiState.value.cities
+            zoomed.first().name shouldBe "Tehran"
+            zoomed.none { it.name == "New York" } shouldBe true
+            zoomed.any { it.name == "Baghdad" } shouldBe true
+            model.viewModelScope.cancel()
+        }
+
+    @Test
     fun `a failing city source shows no markers`(): Unit =
         runTest {
             val model = viewModel(cities = { _, _ -> error("catalog missing") })

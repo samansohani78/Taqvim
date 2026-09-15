@@ -5,6 +5,9 @@
 package ir.taqvim.feature.map
 
 import androidx.activity.ComponentActivity
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotSelected
@@ -18,13 +21,14 @@ import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTouchInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import kotlinx.collections.immutable.persistentListOf
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.GraphicsMode
 
-/** T-1301 UI: layer toggles, accessibility zoom and pick actions, tap to pick, the time slider and states. */
+/** T-1301 UI: layer toggles, accessibility zoom, center and city pick actions, tap to pick, the time slider and states. */
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class MapScreenTest {
@@ -70,6 +74,39 @@ class MapScreenTest {
             custom.first { it.label == "Pick the map center" }.action()
         }
         assertEquals(listOf("zoom 2.0 true", "zoom 0.5 true", "center"), calls)
+    }
+
+    @Test
+    fun everyShownCityMarkerHasAPickAction() {
+        val picked = mutableListOf<MapCity>()
+        val cities = MapFixtures.cities().take(3)
+        show(
+            MapFixtures.state(layers = setOf(MapLayer.CITIES), cities = cities),
+            MapActions(onPickCity = { picked += it }),
+        )
+        val map = composeRule.onNodeWithContentDescription("World map")
+        val custom = map.fetchSemanticsNode().config[SemanticsActions.CustomActions]
+        assertEquals(listOf("Pick Tehran", "Pick Istanbul", "Pick New York"), custom.map { it.label }.drop(3))
+        composeRule.runOnIdle { custom.first { it.label == "Pick New York" }.action() }
+        assertEquals(listOf(cities[2]), picked)
+    }
+
+    @Test
+    fun cityPickActionsFollowTheShownMarkers() {
+        var state by mutableStateOf(MapFixtures.state(code = "fa", cities = MapFixtures.cities("fa").take(2)))
+        composeRule.setContent { MapTestTheme(rtl = true) { MapScreen(state, MapActions()) } }
+        val map = composeRule.onNodeWithContentDescription("World map")
+        assertEquals(
+            listOf("Pick تهران", "Pick استانبول"),
+            map
+                .fetchSemanticsNode()
+                .config[SemanticsActions.CustomActions]
+                .map { it.label }
+                .drop(3),
+        )
+        composeRule.runOnIdle { state = state.copy(cities = persistentListOf()) }
+        composeRule.waitForIdle()
+        assertEquals(3, map.fetchSemanticsNode().config[SemanticsActions.CustomActions].size)
     }
 
     @Test

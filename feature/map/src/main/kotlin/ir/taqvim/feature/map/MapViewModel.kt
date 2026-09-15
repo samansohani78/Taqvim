@@ -192,6 +192,11 @@ class MapViewModel(
         pick(camera.value.center())
     }
 
+    /** Picks [city] as a tap on its marker does (the accessibility action of a shown marker). */
+    fun onPickCity(city: MapCity) {
+        pick(city.coordinates, city)
+    }
+
     /** Shows the flat map or the globe; the globe first opens over the chosen place. */
     fun onSelectProjection(projection: MapProjection) {
         val place = latest.value?.settings?.place

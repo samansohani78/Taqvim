@@ -89,6 +89,7 @@ fun MapRoute(
                 onResize = viewModel::onResize,
                 onPick = viewModel::onPick,
                 onPickCenter = viewModel::onPickCenter,
+                onPickCity = viewModel::onPickCity,
                 onSelectMinute = viewModel::onSelectMinute,
                 onStepDay = viewModel::onStepDay,
                 onNow = viewModel::onNow,

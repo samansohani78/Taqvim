@@ -14,6 +14,7 @@
     <string name="map_zoom_in">بزرگ‌نمایی</string>
     <string name="map_zoom_out">کوچک‌نمایی</string>
     <string name="map_pick_center">انتخاب مرکز نقشه</string>
+    <string name="map_pick_city">انتخاب %1$s</string>
     <string name="map_time_slider">ساعت روز</string>
     <string name="map_previous_day">روز قبل</string>
     <string name="map_next_day">روز بعد</string>
