@@ -13,6 +13,7 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
 import ir.taqvim.data.database.AlarmKind
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.OfficialReminderDao
 import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalEventDao
@@ -32,6 +33,7 @@ import ir.taqvim.feature.notification.CalculatorOfficialEventSchedule
 import ir.taqvim.feature.notification.OfficialReminder
 import ir.taqvim.feature.notification.ReminderAlarm
 import ir.taqvim.feature.notification.ReminderEvent
+import ir.taqvim.feature.notification.ReminderOverride
 import ir.taqvim.feature.notification.ReminderRule
 import ir.taqvim.feature.notification.ReminderSetup
 import ir.taqvim.feature.notification.ReminderSetupSource
@@ -65,6 +67,8 @@ internal class RoomReminderSetupSource(
                     arithmetic,
                     events.getRecurrence(entity.id)?.toRule(),
                     reminders.reminders(entity.id),
+                    events.exceptionDays(entity.id),
+                    events.overrides(entity.id),
                 )
             }
         return ReminderSetup(
@@ -111,27 +115,41 @@ internal class RoomOfficialReminderStore(
 
 /** Tables that reminder alarms are computed from (T-1001, T-1002). */
 internal val REMINDER_INPUT_TABLES: Set<String> =
-    setOf("personal_events", "event_recurrences", "reminders", "official_reminders")
+    setOf(
+        "personal_events",
+        "event_recurrences",
+        "event_exceptions",
+        "event_overrides",
+        "reminders",
+        "official_reminders",
+    )
 
-/** Emits the changed table names whenever personal events, their rules and reminders or official opt-ins change. */
+/**
+ * Emits the changed table names whenever personal events, their rules, exceptions, overrides and reminders or official
+ * opt-ins change.
+ */
 internal fun reminderInputChanges(database: TaqvimDatabase): Flow<Set<String>> =
     database.invalidationTracker.createFlow(
         "personal_events",
         "event_recurrences",
+        "event_exceptions",
+        "event_overrides",
         "reminders",
         "official_reminders",
         emitInitialState = false,
     )
 
 /**
- * [entity] with its enabled [reminders] for the reminder planner, or `null` when it has none or its calendar cannot be
- * computed (Nepali, T-105).
+ * [entity] with its enabled [reminders], [exceptionDays] and [overrides] (T-1003) for the reminder planner, or `null`
+ * when it has no reminders or its calendar cannot be computed (Nepali, T-105).
  */
 internal fun reminderEvent(
     entity: PersonalEventEntity,
     arithmetic: Map<CalendarSystem, CalendarArithmetic>,
     recurrence: RecurrenceRule?,
     reminders: List<ReminderEntity>,
+    exceptionDays: List<Long> = emptyList(),
+    overrides: List<EventOverrideEntity> = emptyList(),
 ): ReminderEvent? {
     val calendar = arithmetic[entity.calendarSystem] ?: return null
     val rules =
@@ -147,6 +165,17 @@ internal fun reminderEvent(
         timeZoneId = entity.timeZoneId,
         recurrence = recurrence,
         reminders = rules,
+        exceptions = exceptionDays.map(::Jdn).toSet(),
+        overrides =
+            overrides.map {
+                ReminderOverride(
+                    original = Jdn(it.originalJdn),
+                    day = Jdn(it.startJdn),
+                    startMinute = it.startMinute?.let(::MinuteOfDay),
+                    title = it.title,
+                    cancelled = it.cancelled,
+                )
+            },
     )
 }
 

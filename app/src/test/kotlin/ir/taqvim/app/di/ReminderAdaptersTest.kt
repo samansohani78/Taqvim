@@ -10,8 +10,10 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.events.EventId
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
 import ir.taqvim.data.database.AlarmKind
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.ReminderEntity
@@ -20,6 +22,7 @@ import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.scheduler.AlarmKey
 import ir.taqvim.feature.notification.OfficialReminder
 import ir.taqvim.feature.notification.ReminderAlarm
+import ir.taqvim.feature.notification.ReminderOverride
 import ir.taqvim.feature.notification.ReminderRule
 import kotlin.time.Instant
 import kotlinx.coroutines.test.runTest
@@ -76,6 +79,31 @@ class ReminderAdaptersTest {
             .shouldNotBeNull()
             .startMinute
             .shouldBeNull()
+    }
+
+    @Test
+    fun `exception days and overridden occurrences reach the planner (T-1003)`() {
+        val start = event.startJdn
+        val moved = EventOverrideEntity(7, start + 7, "Moved", "", start + 8, 720, start + 8, 780)
+        val cancelled = EventOverrideEntity(7, start + 14, "Visit", "", start + 14, null, start + 14, cancelled = true)
+
+        val planned =
+            reminderEvent(
+                event,
+                arithmetic,
+                recurrence = null,
+                reminders = listOf(ReminderEntity(id = 1, eventId = 7, minutesBefore = 5)),
+                exceptionDays = listOf(start + 21),
+                overrides = listOf(moved, cancelled),
+            ).shouldNotBeNull()
+
+        planned.exceptions shouldBe setOf(Jdn(start + 21))
+        planned.overrides shouldBe
+            listOf(
+                ReminderOverride(Jdn(start + 7), Jdn(start + 8), MinuteOfDay(720), "Moved"),
+                ReminderOverride(Jdn(start + 14), Jdn(start + 14), null, "Visit", cancelled = true),
+            )
+        setOf("event_exceptions", "event_overrides").all { it in REMINDER_INPUT_TABLES } shouldBe true
     }
 
     @Test

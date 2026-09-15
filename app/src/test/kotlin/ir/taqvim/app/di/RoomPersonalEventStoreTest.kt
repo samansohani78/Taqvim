@@ -17,6 +17,8 @@ import ir.taqvim.core.ics.InvalidDatePolicy
 import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.data.database.EventExceptionEntity
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.events.ics.RoomTransactionRunner
@@ -92,6 +94,11 @@ class RoomPersonalEventStoreTest {
             val id = store.save(birthday)
             val stored = database.personalEventDao().get(id).shouldNotBeNull()
             database.personalEventDao().update(stored.copy(icsUid = "uid-7"))
+            database.personalEventDao().insertExceptions(listOf(EventExceptionEntity(id, stored.startJdn + 365)))
+            val movedDay = stored.startJdn + 731
+            database.personalEventDao().upsertOverrides(
+                listOf(EventOverrideEntity(id, stored.startJdn + 730, "moved", "", movedDay, null, movedDay)),
+            )
             nowMillis = UPDATED
 
             val edited =
@@ -110,6 +117,8 @@ class RoomPersonalEventStoreTest {
             row.updatedAtEpochMillis shouldBe UPDATED
             row.icsUid shouldBe "uid-7"
             database.personalEventDao().getRecurrence(id).shouldBeNull()
+            database.personalEventDao().exceptionDays(id) shouldBe emptyList()
+            database.personalEventDao().overrides(id) shouldBe emptyList()
             database.reminderDao().reminders(id).map { it.minutesBefore } shouldBe listOf(30)
         }
 

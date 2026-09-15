@@ -82,7 +82,10 @@ internal class RoomPersonalEventStore(
             storedId = if (existing == null) events.insert(entity) else entity.id.also { events.update(entity) }
             val rule = event.recurrence
             if (rule == null) {
+                // A one-off event has no occurrences to except or override (T-1003).
                 events.deleteRecurrence(storedId)
+                events.deleteExceptions(storedId)
+                events.deleteOverrides(storedId)
             } else {
                 events.upsertRecurrence(rule.toEntity(storedId, event.calendar))
             }

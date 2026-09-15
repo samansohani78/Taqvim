@@ -10,6 +10,7 @@ import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventId
 import ir.taqvim.core.ics.RecurrenceEngine
 import ir.taqvim.core.ics.RecurrenceRule
+import ir.taqvim.core.ics.seriesInstances
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
@@ -48,6 +49,22 @@ data class ReminderEvent(
     /** Repetition counted in the event's calendar (ADR-0011), or `null` for a one-off event. */
     val recurrence: RecurrenceRule?,
     val reminders: List<ReminderRule>,
+    /** Days on which the event does not occur (T-1003). */
+    val exceptions: Set<Jdn> = emptySet(),
+    /** Changed occurrences (T-1003). */
+    val overrides: List<ReminderOverride> = emptyList(),
+)
+
+/**
+ * The occurrence of a personal event that would start on [original], changed (T-1003): it starts on [day] at
+ * [startMinute] (`null` all day) with [title], or does not take place when [cancelled].
+ */
+data class ReminderOverride(
+    val original: Jdn,
+    val day: Jdn,
+    val startMinute: MinuteOfDay?,
+    val title: String,
+    val cancelled: Boolean = false,
 )
 
 /** A reminder attached to an official event (T-1002): [daysBefore] each occurrence, at the all-day reminder time. */
@@ -191,21 +208,28 @@ object ReminderPlanner {
     ): List<PlannedReminder> {
         val rules = event.reminders.filter { wanted(it.id) }
         if (rules.isEmpty()) return emptyList()
-        return occurrenceDays(event, setup.calendars, from, until).flatMap { day ->
-            val start = startOf(event, day, setup)
+        return instances(event, setup.calendars, from, until).flatMap { instance ->
+            val start = startOf(event, instance, setup)
             rules.map { rule ->
                 PlannedReminder(
                     kind = ReminderKind.PERSONAL,
                     sourceId = rule.id,
                     target = event.id.toString(),
-                    title = event.title,
-                    occurrence = day,
+                    title = instance.title,
+                    occurrence = instance.day,
                     daysBefore = 0,
                     at = start - rule.minutesBefore.minutes,
                 )
             }
         }
     }
+
+    /** An occurrence of a personal event as it takes place: on [day] at [startMinute] with [title]. */
+    private data class Instance(
+        val day: Jdn,
+        val startMinute: MinuteOfDay?,
+        val title: String,
+    )
 
     private fun official(
         reminder: OfficialReminder,
@@ -227,27 +251,36 @@ object ReminderPlanner {
         }
     }
 
-    /** Occurrence days of [event] from [from] to [until]; none when its calendar is unavailable or start invalid. */
-    private fun occurrenceDays(
+    /**
+     * Occurrences of [event] taking place from [from] to [until], without exception days and cancelled occurrences and
+     * with changed ones moved (T-1003); none when its calendar is unavailable or its start invalid.
+     */
+    private fun instances(
         event: ReminderEvent,
         calendars: CalendarProvider,
         from: Jdn,
         until: Jdn,
-    ): List<Jdn> {
+    ): List<Instance> {
         val calendar = calendars.calendarFor(event.start.system) ?: return emptyList()
         val first = runCatching { calendar.toJdn(event.start) }.getOrNull() ?: return emptyList()
         val all = event.recurrence?.let { RecurrenceEngine(calendar).occurrences(event.start, it) } ?: sequenceOf(first)
-        return all.dropWhile { it < from }.takeWhile { it <= until }.toList()
+        val (cancelled, kept) = event.overrides.partition { it.cancelled }
+        val excluded = event.exceptions + cancelled.map { it.original }
+        return seriesInstances(all, excluded, kept.associateBy { it.original }, from, until)
+            .map { instance ->
+                instance.override?.let { Instance(it.day, it.startMinute, it.title) }
+                    ?: Instance(instance.original, event.startMinute, event.title)
+            }.filter { it.day in from..until }
     }
 
     private fun startOf(
         event: ReminderEvent,
-        day: Jdn,
+        instance: Instance,
         setup: ReminderSetup,
     ): Instant {
-        val minute = event.startMinute ?: return instantAt(day, setup.allDayTime, setup.zone)
+        val minute = instance.startMinute ?: return instantAt(instance.day, setup.allDayTime, setup.zone)
         val zone = runCatching { TimeZone.of(event.timeZoneId) }.getOrDefault(setup.zone)
-        return instantAt(day, minute, zone)
+        return instantAt(instance.day, minute, zone)
     }
 
     /** [time] on [day] in [zone]; a time skipped by a daylight-saving change moves forward by the gap. */
