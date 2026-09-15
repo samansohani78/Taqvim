@@ -74,7 +74,11 @@ class YearScreenTest {
         composeRule.onNodeWithText(app.getString(R.string.year_next)).performClick()
         awaitNode(hasText("1406"))
         composeRule.onNodeWithText(app.getString(R.string.year_previous)).performClick()
-        composeRule.onNodeWithText(app.getString(R.string.year_previous)).performClick()
+        // The macrobenchmark (T-805) drives the controls by these tags.
+        composeRule.onNodeWithTag(YEAR_NEXT_TAG).performClick()
+        awaitNode(hasText("1406"))
+        composeRule.onNodeWithTag(YEAR_PREVIOUS_TAG).performClick()
+        composeRule.onNodeWithTag(YEAR_PREVIOUS_TAG).performClick()
         awaitNode(hasText("1404"))
         composeRule.onNodeWithText(app.getString(R.string.year_today)).performClick()
         awaitNode(hasText("1405"))

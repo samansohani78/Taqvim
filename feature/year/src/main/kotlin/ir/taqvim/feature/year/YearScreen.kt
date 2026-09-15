@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -37,6 +38,12 @@ import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.SegmentedTabs
 import ir.taqvim.core.ui.component.TopBar
+
+/** Test tag of the next-year button; also its resource id in macrobenchmarks. */
+const val YEAR_NEXT_TAG: String = "year:next"
+
+/** Test tag of the previous-year button; also its resource id in macrobenchmarks. */
+const val YEAR_PREVIOUS_TAG: String = "year:previous"
 
 private val CONTROLS_PADDING = 8.dp
 
@@ -101,23 +108,27 @@ private fun YearControls(
     onAction: (YearAction) -> Unit,
 ) {
     Row(Modifier.fillMaxWidth().padding(horizontal = CONTROLS_PADDING)) {
-        ControlButton(stringResource(R.string.year_previous)) { onAction(YearAction.ShowPreviousYear) }
+        ControlButton(stringResource(R.string.year_previous), YEAR_PREVIOUS_TAG) {
+            onAction(YearAction.ShowPreviousYear)
+        }
         if (isPickingYear) {
             ControlButton(stringResource(R.string.year_show_months)) { onAction(YearAction.CloseYearPicker) }
         } else {
             ControlButton(stringResource(R.string.year_choose)) { onAction(YearAction.OpenYearPicker) }
         }
         ControlButton(stringResource(R.string.year_today)) { onAction(YearAction.GoToToday) }
-        ControlButton(stringResource(R.string.year_next)) { onAction(YearAction.ShowNextYear) }
+        ControlButton(stringResource(R.string.year_next), YEAR_NEXT_TAG) { onAction(YearAction.ShowNextYear) }
     }
 }
 
 @Composable
 private fun RowScope.ControlButton(
     label: String,
+    tag: String? = null,
     onClick: () -> Unit,
 ) {
-    TextButton(onClick = onClick, modifier = Modifier.weight(1f)) {
+    val modifier = Modifier.weight(1f)
+    TextButton(onClick = onClick, modifier = if (tag == null) modifier else modifier.testTag(tag)) {
         val maxSize = MaterialTheme.typography.labelLarge.fontSize
         Text(label, maxLines = 1, autoSize = TextAutoSize.StepBased(MIN_CONTROL_TEXT_SIZE, maxSize))
     }

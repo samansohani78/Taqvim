@@ -34,6 +34,24 @@ internal object Tags {
 
     /** `OnboardingTags.SKIP` of `:feature:settings`. */
     const val ONBOARDING_SKIP = "onboarding:skip"
+
+    /** `tabTag(TopLevelTab.MORE)` of `:app`. */
+    const val MORE_TAB = "tab:MORE"
+
+    /** The year entry of the More screen (`MoreEntry.YEAR` in `:app`). */
+    const val MORE_YEAR = "more:YEAR"
+
+    /** `YEAR_PAGER_TAG` of `:feature:year`. */
+    const val YEAR_PAGER = "year_pager"
+
+    /** `YEAR_GRID_TAG` of `:feature:year`. */
+    const val YEAR_GRID = "year_grid"
+
+    /** `YEAR_NEXT_TAG` of `:feature:year`. */
+    const val YEAR_NEXT = "year:next"
+
+    /** `YEAR_PREVIOUS_TAG` of `:feature:year`. */
+    const val YEAR_PREVIOUS = "year:previous"
 }
 
 /** Documented `taqvim://` links (ADR-0016) that open the screens of the journeys. */
