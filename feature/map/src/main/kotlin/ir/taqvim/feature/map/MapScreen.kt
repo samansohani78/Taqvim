@@ -4,7 +4,6 @@
  */
 package ir.taqvim.feature.map
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,9 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
@@ -85,8 +82,9 @@ private fun MapControls(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         state.time?.let { TimeControls(it, actions) }
+        ProjectionChips(state.projection, actions)
         LayerChips(state, actions)
-        if (MapLayer.CRESCENT_VISIBILITY in state.layers) CrescentLegend()
+        MapLegends(state, actions)
         if (!state.hasPlace && (MapLayer.QIBLA in state.layers || MapLayer.DIRECT_PATH in state.layers)) {
             Text(stringResource(R.string.map_no_place), style = MaterialTheme.typography.bodySmall)
         }
@@ -142,24 +140,28 @@ private fun LayerChips(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun CrescentLegend() {
-    val labels =
-        listOf(
-            R.string.map_crescent_a,
-            R.string.map_crescent_b,
-            R.string.map_crescent_c,
-            R.string.map_crescent_d,
-            R.string.map_crescent_e,
-        )
-    FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        labels.forEachIndexed { index, label ->
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                Box(Modifier.size(12.dp).background(MapPalette.crescent[index], CircleShape))
-                Text(stringResource(label), style = MaterialTheme.typography.bodySmall)
-            }
+private fun ProjectionChips(
+    selected: MapProjection,
+    actions: MapActions,
+) {
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        MapProjection.entries.forEach { projection ->
+            FilterChip(
+                selected = projection == selected,
+                onClick = { actions.onSelectProjection(projection) },
+                label = { Text(stringResource(projection.label)) },
+            )
         }
     }
 }
+
+/** The chip label of each projection. */
+internal val MapProjection.label: Int
+    get() =
+        when (this) {
+            MapProjection.FLAT -> R.string.map_projection_flat
+            MapProjection.GLOBE -> R.string.map_projection_globe
+        }
 
 /** The chip label of each layer. */
 internal val MapLayer.label: Int
@@ -169,7 +171,10 @@ internal val MapLayer.label: Int
             MapLayer.MOON_VISIBILITY -> R.string.map_layer_moon
             MapLayer.CRESCENT_VISIBILITY -> R.string.map_layer_crescent
             MapLayer.MAGNETIC_DECLINATION -> R.string.map_layer_magnetic
+            MapLayer.MAGNETIC_INCLINATION -> R.string.map_layer_inclination
+            MapLayer.MAGNETIC_INTENSITY -> R.string.map_layer_intensity
             MapLayer.GRID -> R.string.map_layer_grid
+            MapLayer.CITIES -> R.string.map_layer_cities
             MapLayer.QIBLA -> R.string.map_layer_qibla
             MapLayer.DIRECT_PATH -> R.string.map_layer_direct_path
         }

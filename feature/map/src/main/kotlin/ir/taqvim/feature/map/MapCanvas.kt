@@ -15,8 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
@@ -24,15 +25,15 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
-import kotlin.math.abs
-import kotlin.math.min
+import androidx.compose.ui.text.rememberTextMeasurer
 
-/** The map with its gestures and accessibility actions (zoom in/out, pick the center). */
+/** The flat map or the globe with its gestures and accessibility actions (zoom in/out, pick the center). */
 @Composable
 internal fun MapCanvas(
     outline: WorldOutline,
@@ -41,6 +42,8 @@ internal fun MapCanvas(
     modifier: Modifier = Modifier,
 ) {
     val palette = MapPalette.of(MaterialTheme.colorScheme)
+    val labels = CityLabels(rememberTextMeasurer(LABEL_CACHE), MaterialTheme.typography.labelSmall)
+    val density = LocalDensity.current.density
     var viewSize by remember { mutableStateOf(ViewSize(0f, 0f)) }
     val currentActions by rememberUpdatedState(actions)
     val description = stringResource(R.string.map_content_description)
@@ -49,21 +52,12 @@ internal fun MapCanvas(
     val pickCenter = stringResource(R.string.map_pick_center)
     Canvas(
         modifier
+            .clipToBounds()
             .onSizeChanged {
-                viewSize = ViewSize(it.width.toFloat(), it.height.toFloat())
+                viewSize = ViewSize(it.width.toFloat(), it.height.toFloat(), density)
                 currentActions.onResize(viewSize)
-            }.pointerInput(Unit) {
-                detectTransformGestures { centroid, pan, zoom, _ ->
-                    val size = ViewSize(size.width.toFloat(), size.height.toFloat())
-                    if (zoom != 1f) currentActions.onZoom(zoom.toDouble(), ScreenPoint(centroid.x, centroid.y), size)
-                    if (pan != Offset.Zero) currentActions.onPan(pan.x, pan.y, size)
-                }
-            }.pointerInput(Unit) {
-                detectTapGestures { offset ->
-                    val size = ViewSize(size.width.toFloat(), size.height.toFloat())
-                    currentActions.onPick(ScreenPoint(offset.x, offset.y), size)
-                }
-            }.semantics {
+            }.mapGestures { currentActions }
+            .semantics {
                 contentDescription = description
                 customActions =
                     listOf(
@@ -76,9 +70,26 @@ internal fun MapCanvas(
                     )
             },
     ) {
-        drawMap(outline, state, palette)
+        when (state.projection) {
+            MapProjection.FLAT -> drawMap(outline, state, palette, labels)
+            MapProjection.GLOBE -> drawGlobe(outline, state, palette, labels)
+        }
     }
 }
+
+/** Pinch and drag zoom and pan (or turn the globe); a tap picks. */
+private fun Modifier.mapGestures(actions: () -> MapActions): Modifier =
+    pointerInput(Unit) {
+        detectTransformGestures { centroid, pan, zoom, _ ->
+            val size = ViewSize(size.width.toFloat(), size.height.toFloat())
+            if (zoom != 1f) actions().onZoom(zoom.toDouble(), ScreenPoint(centroid.x, centroid.y), size)
+            if (pan != Offset.Zero) actions().onPan(pan.x, pan.y, size)
+        }
+    }.pointerInput(Unit) {
+        detectTapGestures { offset ->
+            actions().onPick(ScreenPoint(offset.x, offset.y), ViewSize(size.width.toFloat(), size.height.toFloat()))
+        }
+    }
 
 private fun zoomAtCenter(
     actions: MapActions,
@@ -93,6 +104,7 @@ private fun DrawScope.drawMap(
     outline: WorldOutline,
     state: MapUiState,
     palette: MapPalette,
+    labels: CityLabels,
 ) {
     val view = ViewSize(size.width, size.height)
     val viewport = state.viewport
@@ -104,7 +116,7 @@ private fun DrawScope.drawMap(
         outline.borders.forEach {
             drawPath(it.toPath(viewport, view, closed = false), palette.border, style = Stroke(1f))
         }
-        drawOverlays(state, viewport, view, palette)
+        drawOverlays(state, viewport, view, palette, labels)
     }
 }
 
@@ -113,71 +125,30 @@ private fun DrawScope.drawOverlays(
     viewport: MapViewport,
     view: ViewSize,
     palette: MapPalette,
+    labels: CityLabels,
 ) {
-    drawShades(state.overlays, viewport, view, palette)
+    shadeLayers(state.overlays, state.crescentCriterion, palette).forEach { drawGrid(it, viewport, view) }
     if (MapLayer.GRID in state.layers) drawGraticule(viewport, view, palette.grid)
-    drawMarks(state, viewport, view, palette)
+    drawMarks(state, palette, labels) { viewport.toScreen(it, view) }
 }
 
-private fun DrawScope.drawShades(
-    overlays: MapOverlays,
-    viewport: MapViewport,
-    view: ViewSize,
-    palette: MapPalette,
-) {
-    overlays.declination?.let { grid ->
-        drawGrid(grid, viewport, view) { value -> declinationColor(value, palette) }
-    }
-    overlays.moon?.let { grid ->
-        drawGrid(grid, viewport, view) { if (it == 1) palette.moon.copy(alpha = MOON_ALPHA) else null }
-    }
-    overlays.illumination?.let { grid ->
-        drawGrid(grid, viewport, view) { Color.Black.copy(alpha = MapPalette.NIGHT[it]).takeIf { it.alpha > 0f } }
-    }
-    overlays.crescent?.let { grid ->
-        drawGrid(grid, viewport, view) { MapPalette.crescent.getOrNull(it)?.copy(alpha = CRESCENT_ALPHA) }
-    }
-}
-
-private fun DrawScope.drawMarks(
-    state: MapUiState,
-    viewport: MapViewport,
-    view: ViewSize,
-    palette: MapPalette,
-) {
-    val overlays = state.overlays
-    overlays.qibla.forEach { drawLine(it, viewport, view, palette.qibla) }
-    overlays.directPath.forEach { drawLine(it, viewport, view, palette.path) }
-    overlays.sun?.let { drawMarker(it, viewport, view, MapPalette.SUN, filled = true) }
-    overlays.moonPoint?.let { drawMarker(it, viewport, view, palette.moon, filled = false) }
-    overlays.place?.let { drawMarker(it, viewport, view, palette.place, filled = true) }
-    state.picked?.let { drawMarker(it.point, viewport, view, palette.path, filled = false) }
-}
-
-private fun declinationColor(
-    value: Int,
-    palette: MapPalette,
-): Color? {
-    if (value == ShadeGrid.NONE || value == 0) return null
-    val alpha = min(abs(value).toFloat() / DECLINATION_FULL_DEGREES, 1f) * DECLINATION_MAX_ALPHA
-    return (if (value > 0) palette.east else palette.west).copy(alpha = alpha)
-}
-
+/** Cells of one color are filled as one path, so neighbouring cells neither overlap nor leave seams. */
 private fun DrawScope.drawGrid(
-    grid: ShadeGrid,
+    layer: ShadeLayer,
     viewport: MapViewport,
     view: ViewSize,
-    colorOf: (Int) -> Color?,
 ) {
+    val grid = layer.grid
+    val paths = LinkedHashMap<Color, Path>()
     for (row in 0 until grid.rows) {
         for (column in 0 until grid.columns) {
-            val color = colorOf(grid[column, row]) ?: continue
+            val color = layer.colorOf(grid[column, row]) ?: continue
             val start = viewport.toScreen(MapPoint(column.toDouble() / grid.columns, row.toDouble() / grid.rows), view)
             val end = viewport.toScreen(MapPoint((column + 1.0) / grid.columns, (row + 1.0) / grid.rows), view)
-            val cell = Size(end.x - start.x + CELL_OVERLAP, end.y - start.y + CELL_OVERLAP)
-            drawRect(color, Offset(start.x, start.y), cell)
+            paths.getOrPut(color) { Path() }.addRect(Rect(start.x, start.y, end.x, end.y))
         }
     }
+    paths.forEach { (color, path) -> drawPath(path, color) }
 }
 
 private fun DrawScope.drawGraticule(
@@ -187,43 +158,11 @@ private fun DrawScope.drawGraticule(
 ) {
     for (step in 0..GRATICULE_COLUMNS) {
         val x = step.toDouble() / GRATICULE_COLUMNS
-        drawLine(listOf(MapPoint(x, 0.0), MapPoint(x, 1.0)), viewport, view, color, GRID_STROKE)
+        drawPolyline(listOf(MapPoint(x, 0.0), MapPoint(x, 1.0)).map { viewport.toScreen(it, view) }, color, GRID_STROKE)
     }
     for (step in 0..GRATICULE_ROWS) {
         val y = step.toDouble() / GRATICULE_ROWS
-        drawLine(listOf(MapPoint(0.0, y), MapPoint(1.0, y)), viewport, view, color, GRID_STROKE)
-    }
-}
-
-private fun DrawScope.drawLine(
-    points: List<MapPoint>,
-    viewport: MapViewport,
-    view: ViewSize,
-    color: Color,
-    width: Float = PATH_STROKE,
-) {
-    if (points.size < 2) return
-    val path = Path()
-    points.forEachIndexed { index, point ->
-        val screen = viewport.toScreen(point, view)
-        if (index == 0) path.moveTo(screen.x, screen.y) else path.lineTo(screen.x, screen.y)
-    }
-    drawPath(path, color, style = Stroke(width))
-}
-
-private fun DrawScope.drawMarker(
-    point: MapPoint,
-    viewport: MapViewport,
-    view: ViewSize,
-    color: Color,
-    filled: Boolean,
-) {
-    val screen = viewport.toScreen(point, view)
-    val center = Offset(screen.x, screen.y)
-    if (filled) {
-        drawCircle(color, MARKER_RADIUS, center)
-    } else {
-        drawCircle(color, MARKER_RADIUS, center, style = Stroke(PATH_STROKE))
+        drawPolyline(listOf(MapPoint(0.0, y), MapPoint(1.0, y)).map { viewport.toScreen(it, view) }, color, GRID_STROKE)
     }
 }
 
@@ -242,13 +181,7 @@ private fun FloatArray.toPath(
 }
 
 private const val ZOOM_STEP = 2.0
-private const val MOON_ALPHA = 0.22f
-private const val CRESCENT_ALPHA = 0.5f
-private const val DECLINATION_FULL_DEGREES = 30f
-private const val DECLINATION_MAX_ALPHA = 0.55f
-private const val CELL_OVERLAP = 0.5f
 private const val GRATICULE_COLUMNS = 12
 private const val GRATICULE_ROWS = 6
 private const val GRID_STROKE = 1f
-private const val PATH_STROKE = 3f
-private const val MARKER_RADIUS = 7f
+private const val LABEL_CACHE = 128

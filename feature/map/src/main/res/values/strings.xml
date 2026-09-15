@@ -28,4 +28,29 @@
     <string name="map_crescent_c">C: may need optical aid</string>
     <string name="map_crescent_d">D: needs optical aid</string>
     <string name="map_crescent_e">E: not visible with a telescope</string>
+    <string name="map_layer_inclination">Magnetic inclination</string>
+    <string name="map_layer_intensity">Magnetic field strength</string>
+    <!-- Map layer switch: markers of the most populous cities in view. -->
+    <string name="map_layer_cities">Cities</string>
+    <string name="map_projection_flat">Flat map</string>
+    <!-- Switch that shows the world as a turnable globe instead of a flat map. -->
+    <string name="map_projection_globe">Globe</string>
+    <!-- Crescent visibility criterion named after B. D. Yallop, its author; a person's name. -->
+    <string name="map_criterion_yallop">Yallop</string>
+    <!-- Crescent visibility criterion named after Mohammad Odeh, its author; a person's name. -->
+    <string name="map_criterion_odeh">Odeh</string>
+    <string name="map_odeh_a">A: visible to the naked eye</string>
+    <string name="map_odeh_b">B: visible with optical aid, maybe to the naked eye</string>
+    <string name="map_odeh_c">C: visible with optical aid only</string>
+    <string name="map_odeh_d">D: not visible even with optical aid</string>
+    <string name="map_declination_east">East of true north</string>
+    <string name="map_declination_west">West of true north</string>
+    <string name="map_inclination_down">Field points downward</string>
+    <string name="map_inclination_up">Field points upward</string>
+    <!-- Legend band of the magnetic field strength; µT is microtesla. -->
+    <string name="map_intensity_under_30">Under 30 µT</string>
+    <string name="map_intensity_30_40">30–40 µT</string>
+    <string name="map_intensity_40_50">40–50 µT</string>
+    <string name="map_intensity_50_60">50–60 µT</string>
+    <string name="map_intensity_over_60">60 µT or more</string>
 </resources>

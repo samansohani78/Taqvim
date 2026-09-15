@@ -26,10 +26,11 @@ data class ScreenPoint(
     val y: Float,
 )
 
-/** The size of the map view in pixels. */
+/** The size of the map view in pixels, and the pixels per dp ([density]) where the view reports it. */
 data class ViewSize(
     val width: Float,
     val height: Float,
+    val density: Float = 1f,
 ) {
     /** Whether the view has no area (not laid out yet). */
     val isEmpty: Boolean

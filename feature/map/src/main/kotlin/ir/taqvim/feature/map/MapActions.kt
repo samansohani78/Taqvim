@@ -18,4 +18,6 @@ data class MapActions(
     val onSelectMinute: (Int) -> Unit = {},
     val onStepDay: (Int) -> Unit = {},
     val onNow: () -> Unit = {},
+    val onSelectProjection: (MapProjection) -> Unit = {},
+    val onSelectCrescentCriterion: (CrescentCriterion) -> Unit = {},
 )

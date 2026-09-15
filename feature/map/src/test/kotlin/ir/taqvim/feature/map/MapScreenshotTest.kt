@@ -18,10 +18,10 @@ import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.GraphicsMode
 
 /**
- * T-1301 screenshots of six layers on the Natural Earth outline: day and night, Moon visibility, crescent visibility
- * (Yallop, the evening of 2026-08-13, a day after the 12 August new moon), magnetic declination (platform WMM), Qibla
- * and direct path, and the grid, across light/dark and LTR (English)/RTL (Persian). Recorded to
- * `src/test/screenshots/<sample>/`.
+ * T-1301 screenshots of the layers on the Natural Earth outline: day and night, Moon visibility, crescent visibility
+ * (Yallop and Odeh, the evening of 2026-08-13, a day after the 12 August new moon), magnetic declination, inclination
+ * and field strength (platform WMM), Qibla and direct path, the grid, sample city markers and the globe, across
+ * light/dark and LTR (English)/RTL (Persian). Recorded to `src/test/screenshots/<sample>/`.
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -57,7 +57,7 @@ class MapScreenshotTest(
                     setOf(MapLayer.CRESCENT_VISIBILITY),
                     outline = OUTLINE,
                     instant = Instant.parse("2026-08-13T12:00:00Z"),
-                    crescent = CrescentObserver.YALLOP,
+                    crescent = CrescentObserver.DEFAULT,
                 )
             }
 
@@ -75,9 +75,58 @@ class MapScreenshotTest(
                 )
             }
 
-            else -> {
+            "map_grid" -> {
                 val viewport = MapViewport(zoom = 2.0, centerX = 0.64)
                 MapFixtures.state(language, setOf(MapLayer.GRID), outline = OUTLINE, viewport = viewport)
+            }
+
+            else -> {
+                completionState(language)
+            }
+        }
+
+    /** The samples of the T-1301 completion: Odeh, magnetic inclination and strength, cities and the globe. */
+    private fun completionState(language: String): MapUiState =
+        when (sample) {
+            "map_odeh" -> {
+                MapFixtures.state(
+                    language,
+                    setOf(MapLayer.CRESCENT_VISIBILITY),
+                    outline = OUTLINE,
+                    instant = Instant.parse("2026-08-13T12:00:00Z"),
+                    crescent = CrescentObserver.DEFAULT,
+                    criterion = CrescentCriterion.ODEH,
+                )
+            }
+
+            "map_inclination" -> {
+                val layers = setOf(MapLayer.MAGNETIC_INCLINATION)
+                MapFixtures.state(language, layers, outline = OUTLINE, magnetic = PlatformMagneticModel)
+            }
+
+            "map_intensity" -> {
+                val layers = setOf(MapLayer.MAGNETIC_INTENSITY)
+                MapFixtures.state(language, layers, outline = OUTLINE, magnetic = PlatformMagneticModel)
+            }
+
+            "map_cities" -> {
+                MapFixtures.state(
+                    language,
+                    setOf(MapLayer.CITIES, MapLayer.GRID),
+                    outline = OUTLINE,
+                    viewport = MapViewport(zoom = 4.0, centerX = 0.63, centerY = 0.32),
+                    cities = MapFixtures.cities(language),
+                )
+            }
+
+            else -> {
+                MapFixtures.state(
+                    language,
+                    setOf(MapLayer.DAY_NIGHT, MapLayer.GRID, MapLayer.QIBLA, MapLayer.CITIES),
+                    outline = OUTLINE,
+                    globe = GlobeView(MapFixtures.TEHRAN.latitude, MapFixtures.TEHRAN.longitude),
+                    cities = MapFixtures.cities(language).take(3),
+                )
             }
         }
 
@@ -105,6 +154,10 @@ class MapScreenshotTest(
                 arrayOf<Any>("map_paths", LIGHT_LTR),
                 arrayOf<Any>("map_grid", DARK_RTL),
             ) +
+                // The T-1301 completion: magnetic inclination and strength, cities, the globe and Odeh's criterion.
+                listOf("map_inclination", "map_intensity", "map_cities", "map_globe", "map_odeh").flatMap { sample ->
+                    listOf(LIGHT_LTR, DARK_LTR, LIGHT_RTL, DARK_RTL).map { arrayOf<Any>(sample, it) }
+                } +
                 // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
                 listOf("map_day_night").flatMap { sample ->
                     ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }

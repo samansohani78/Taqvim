@@ -15,9 +15,15 @@ data class MapUiState(
     val outline: OutlineState = OutlineState.Loading,
     val layers: ImmutableSet<MapLayer> = DEFAULT_LAYERS,
     val viewport: MapViewport = MapViewport(),
+    val projection: MapProjection = MapProjection.FLAT,
+    val globe: GlobeView = GlobeView(),
+    /** The criterion of the crescent visibility layer. */
+    val crescentCriterion: CrescentCriterion = CrescentCriterion.YALLOP,
     /** The shown moment; `null` until settings arrive. */
     val time: MapTime? = null,
     val overlays: MapOverlays = MapOverlays(),
+    /** Cities with a marker, most populous first; empty while the cities layer is off. */
+    val cities: ImmutableList<MapCity> = persistentListOf(),
     /** The last picked point with its coordinates written in the language's digits. */
     val picked: MapPick? = null,
     /** Whether a place is chosen (Qibla and direct path need one). */
@@ -55,6 +61,8 @@ data class MapOverlays(
     val moon: ShadeGrid? = null,
     val crescent: ShadeGrid? = null,
     val declination: ShadeGrid? = null,
+    val inclination: ShadeGrid? = null,
+    val intensity: ShadeGrid? = null,
     val sun: MapPoint? = null,
     val moonPoint: MapPoint? = null,
     val place: MapPoint? = null,

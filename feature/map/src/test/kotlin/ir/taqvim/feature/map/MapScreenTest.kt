@@ -109,4 +109,41 @@ class MapScreenTest {
         composeRule.onNodeWithText("The map could not be loaded").assertIsDisplayed()
         composeRule.onNodeWithText("Choose a place in settings", substring = true).performScrollTo().assertIsDisplayed()
     }
+
+    @Test
+    fun projectionAndCriterionChipsAndLegends() {
+        val calls = mutableListOf<Any>()
+        val actions = MapActions(onSelectProjection = { calls += it }, onSelectCrescentCriterion = { calls += it })
+        val layers =
+            setOf(
+                MapLayer.CRESCENT_VISIBILITY,
+                MapLayer.MAGNETIC_DECLINATION,
+                MapLayer.MAGNETIC_INCLINATION,
+                MapLayer.MAGNETIC_INTENSITY,
+            )
+        show(MapFixtures.state(layers = layers, criterion = CrescentCriterion.ODEH), actions)
+        composeRule.onNodeWithText("Flat map").performScrollTo().assertIsSelected()
+        composeRule.onNodeWithText("Globe").performScrollTo().performClick()
+        composeRule.onNodeWithText("Odeh").performScrollTo().assertIsSelected()
+        composeRule.onNodeWithText("Yallop").performScrollTo().performClick()
+        composeRule.onNodeWithText("D: not visible even with optical aid").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("East of true north").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Field points downward").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("60 µT or more").performScrollTo().assertIsDisplayed()
+        assertEquals(listOf<Any>(MapProjection.GLOBE, CrescentCriterion.YALLOP), calls)
+    }
+
+    @Test
+    fun theGlobeTakesTapsAndAccessibilityActions() {
+        val calls = mutableListOf<String>()
+        val actions = MapActions(onPick = { _, _ -> calls += "pick" }, onPickCenter = { calls += "center" })
+        val layers = setOf(MapLayer.DAY_NIGHT, MapLayer.GRID, MapLayer.CITIES, MapLayer.QIBLA)
+        show(MapFixtures.state(layers = layers, globe = GlobeView(20.0, 40.0), cities = MapFixtures.cities()), actions)
+        val globe = composeRule.onNodeWithContentDescription("World map")
+        globe.performTouchInput { click(center) }
+        val custom = globe.fetchSemanticsNode().config[SemanticsActions.CustomActions]
+        composeRule.runOnIdle { custom.first { it.label == "Pick the map center" }.action() }
+        composeRule.onNodeWithText("Globe").performScrollTo().assertIsSelected()
+        assertEquals(listOf("pick", "center"), calls)
+    }
 }

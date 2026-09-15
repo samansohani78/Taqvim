@@ -15,6 +15,7 @@ import ir.taqvim.core.ui.theme.ThemeMode
 import ir.taqvim.core.ui.theme.ThemeSettings
 import java.io.File
 import kotlin.time.Instant
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.collections.immutable.toPersistentSet
 import kotlinx.datetime.TimeZone
 
@@ -28,23 +29,59 @@ object MapFixtures {
 
     val TEHRAN_ZONE: TimeZone = TimeZone.of("Asia/Tehran")
 
-    /** A synthetic declination field: 1° per 6° of longitude, none near the poles. */
-    val MAGNETIC = MagneticModel { place, _ -> if (place.latitude > POLAR) Double.NaN else place.longitude / 6 }
+    /**
+     * A synthetic magnetic field, none beyond 60° N: declination 1° per 6° of longitude, inclination equal to the
+     * latitude, strength 30 000 nT plus 200 nT per degree of latitude.
+     */
+    val MAGNETIC =
+        MagneticModel { place, _ ->
+            if (place.latitude > POLAR) {
+                MagneticElements(Double.NaN, Double.NaN, Double.NaN)
+            } else {
+                MagneticElements(place.longitude / 6, place.latitude, BASE_FIELD + FIELD_PER_DEGREE * place.latitude)
+            }
+        }
 
-    /** Synthetic crescent classes by longitude band, none beyond 60° latitude. */
+    /** Synthetic crescent classes by longitude band (up to the criterion's last class), none beyond 60° latitude. */
     val CRESCENT =
-        CrescentObserver { place, _ ->
+        CrescentObserver { place, _, criterion ->
             if (kotlin.math.abs(place.latitude) > POLAR) {
                 null
             } else {
-                CrescentVisibilityClass.entries[((place.longitude + 180) / 61).toInt()]
+                val last = if (criterion == CrescentCriterion.YALLOP) CrescentVisibilityClass.F.ordinal else 3
+                minOf(((place.longitude + 180) / 61).toInt(), last)
             }
         }
+
+    /** Sample cities with rounded coordinates and populations, not catalog data; most populous first. */
+    fun cities(code: String = "en"): List<MapCity> =
+        listOf(
+            city(1, "Tehran", "تهران", TEHRAN, 9_000_000),
+            city(2, "Istanbul", "استانبول", Coordinates(41.01, 28.98), 8_900_000),
+            city(3, "New York", "نیویورک", NEW_YORK, 8_300_000),
+            city(4, "Baghdad", "بغداد", Coordinates(33.31, 44.36), 7_200_000),
+            city(5, "Riyadh", "ریاض", Coordinates(24.71, 46.68), 6_900_000),
+            city(6, "Karaj", "کرج", Coordinates(35.83, 50.99), 1_600_000),
+            city(7, "Kabul", "کابل", Coordinates(34.53, 69.17), 4_400_000),
+            city(8, "Dubai", "دبی", Coordinates(25.20, 55.27), 3_300_000),
+        ).map { if (code == "fa") it.second else it.first }
+            .sortedByDescending { it.population }
+
+    private fun city(
+        id: Long,
+        english: String,
+        persian: String,
+        coordinates: Coordinates,
+        population: Long,
+    ): Pair<MapCity, MapCity> =
+        MapCity(id, english, coordinates, population) to MapCity(id, persian, coordinates, population)
 
     /** A small triangle "continent" and one boundary line. */
     val OUTLINE: WorldOutline = WorldOutlineParser.parse("L -9000,0 0,6000 9000,0\nB 0,0 1000,1000\n")
 
     private const val POLAR = 60.0
+    private const val BASE_FIELD = 30_000.0
+    private const val FIELD_PER_DEGREE = 200.0
 
     fun language(code: String): LanguageSpec = requireNotNull(LanguageTable.forCode(code)) { "no language $code" }
 
@@ -67,13 +104,21 @@ object MapFixtures {
         magnetic: MagneticModel = MAGNETIC,
         crescent: CrescentObserver = CRESCENT,
         place: Coordinates? = TEHRAN,
+        criterion: CrescentCriterion = CrescentCriterion.YALLOP,
+        globe: GlobeView? = null,
+        cities: List<MapCity> = emptyList(),
     ): MapUiState {
         val settings = settings(code, place)
-        val computed = MapOverlayBuilder(magnetic, crescent).build(MapInputs(settings, instant, true, layers, picked))
+        val inputs = MapInputs(settings, instant, true, layers, picked, criterion)
+        val computed = MapOverlayBuilder(magnetic, crescent).build(inputs)
         return MapUiState(
             outline = OutlineState.Ready(outline),
             layers = layers.toPersistentSet(),
             viewport = viewport,
+            projection = if (globe == null) MapProjection.FLAT else MapProjection.GLOBE,
+            globe = globe ?: GlobeView(),
+            crescentCriterion = criterion,
+            cities = cities.toPersistentList(),
             time = computed.time,
             overlays = computed.overlays,
             picked = computed.picked,

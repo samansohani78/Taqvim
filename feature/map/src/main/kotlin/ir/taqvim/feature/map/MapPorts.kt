@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.map
 
+import androidx.compose.runtime.Immutable
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.i18n.LanguageSpec
@@ -29,12 +30,40 @@ fun interface MapSettingsSource {
     fun settings(): Flow<MapSettings>
 }
 
-/** Magnetic declination in degrees (positive east) at a place and time; the platform's World Magnetic Model. */
+/**
+ * The geomagnetic field at a place and time: [declinationDegrees] (positive east of true north), [inclinationDegrees]
+ * (positive where the field points below the horizontal) and the total [fieldStrengthNanotesla].
+ */
+data class MagneticElements(
+    val declinationDegrees: Double,
+    val inclinationDegrees: Double,
+    val fieldStrengthNanotesla: Double,
+)
+
+/** The geomagnetic field's elements at a place and time; the platform's World Magnetic Model. */
 fun interface MagneticModel {
-    fun declinationDegrees(
+    fun elements(
         place: Coordinates,
         instant: Instant,
-    ): Double
+    ): MagneticElements
+}
+
+/** A city of the bundled catalog (T-603) shown as a map marker, named in the app language. */
+@Immutable
+data class MapCity(
+    val id: Long,
+    val name: String,
+    val coordinates: Coordinates,
+    val population: Long,
+)
+
+/** Catalog cities with a known population; bound in `:app`. */
+fun interface MapCitySource {
+    /** At most [limit] cities, most populous first, named in [languageCode]. */
+    suspend fun citiesByPopulation(
+        languageCode: String,
+        limit: Int,
+    ): List<MapCity>
 }
 
 /** Loads the world outline; bundled in this module's assets. */
@@ -44,8 +73,9 @@ fun interface WorldOutlineSource {
 
 /** One-off events of the map screen. */
 sealed interface MapEffect {
-    /** The user picked [coordinates] on the map (e.g. for T-1502's map pick). */
+    /** The user picked [coordinates] on the map (e.g. for T-1502's map pick), or the marker of [city]. */
     data class LocationPicked(
         val coordinates: Coordinates,
+        val city: MapCity? = null,
     ) : MapEffect
 }

@@ -24,14 +24,15 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 /**
- * Koin bindings of the world map. `:app` provides [MapSettingsSource] and `kotlin.time.Clock`; the outline asset
+ * Koin bindings of the world map. `:app` provides [MapSettingsSource], [MapCitySource] and `kotlin.time.Clock`; the
+ * outline asset
  * and the platform's World Magnetic Model come from this module.
  */
 val mapFeatureModule: Module =
     module {
         single<WorldOutlineSource> { AssetWorldOutlineSource(androidContext().assets) }
         single<MagneticModel> { PlatformMagneticModel }
-        viewModel { MapViewModel(get(), get(), get(), get()) }
+        viewModel { MapViewModel(get(), get(), get(), get(), citySource = get()) }
     }
 
 /** The bundled outline read from the module's assets. */
@@ -44,25 +45,30 @@ class AssetWorldOutlineSource(
         }
 }
 
-/** Declination from `android.hardware.GeomagneticField` (the platform's World Magnetic Model), at sea level. */
+/**
+ * Declination, inclination and field strength from `android.hardware.GeomagneticField` (the platform's World Magnetic
+ * Model, no bundled coefficients), at sea level.
+ */
 object PlatformMagneticModel : MagneticModel {
-    override fun declinationDegrees(
+    override fun elements(
         place: Coordinates,
         instant: Instant,
-    ): Double =
-        GeomagneticField(
-            place.latitude.toFloat(),
-            place.longitude.toFloat(),
-            0f,
-            instant.toEpochMilliseconds(),
-        ).declination.toDouble()
+    ): MagneticElements {
+        val field =
+            GeomagneticField(place.latitude.toFloat(), place.longitude.toFloat(), 0f, instant.toEpochMilliseconds())
+        return MagneticElements(
+            declinationDegrees = field.declination.toDouble(),
+            inclinationDegrees = field.inclination.toDouble(),
+            fieldStrengthNanotesla = field.fieldStrength.toDouble(),
+        )
+    }
 }
 
-/** The world map bound to its [MapViewModel]; [onLocationPicked] receives picked points. */
+/** The world map bound to its [MapViewModel]; [onLocationPicked] receives picked points and city markers. */
 @Composable
 fun MapRoute(
     modifier: Modifier = Modifier,
-    onLocationPicked: (Coordinates) -> Unit = {},
+    onLocationPicked: (MapEffect.LocationPicked) -> Unit = {},
     viewModel: MapViewModel = koinViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -70,7 +76,7 @@ fun MapRoute(
     LaunchedEffect(viewModel) {
         viewModel.effects.collect { effect ->
             when (effect) {
-                is MapEffect.LocationPicked -> onPicked(effect.coordinates)
+                is MapEffect.LocationPicked -> onPicked(effect)
             }
         }
     }
@@ -86,6 +92,8 @@ fun MapRoute(
                 onSelectMinute = viewModel::onSelectMinute,
                 onStepDay = viewModel::onStepDay,
                 onNow = viewModel::onNow,
+                onSelectProjection = viewModel::onSelectProjection,
+                onSelectCrescentCriterion = viewModel::onSelectCrescentCriterion,
             )
         }
     MapScreen(state, actions, modifier)

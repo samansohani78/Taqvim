@@ -8,6 +8,8 @@ import androidx.compose.runtime.Immutable
 import ir.taqvim.core.astronomy.CelestialBody
 import ir.taqvim.core.astronomy.CrescentVisibilityClass
 import ir.taqvim.core.astronomy.Houses
+import ir.taqvim.core.astronomy.Odeh
+import ir.taqvim.core.astronomy.OdehZone
 import ir.taqvim.core.astronomy.Sky
 import ir.taqvim.core.astronomy.Yallop
 import ir.taqvim.core.model.Coordinates
@@ -27,7 +29,10 @@ enum class MapLayer {
     MOON_VISIBILITY,
     CRESCENT_VISIBILITY,
     MAGNETIC_DECLINATION,
+    MAGNETIC_INCLINATION,
+    MAGNETIC_INTENSITY,
     GRID,
+    CITIES,
     QIBLA,
     DIRECT_PATH,
 }
@@ -152,16 +157,33 @@ object SubPoints {
     private fun degrees(radians: Double): Double = radians * HALF_TURN / PI
 }
 
-/** The crescent class seen on the first evening after an instant at a place, or `null` when none can be seen. */
+/** The published crescent visibility criteria the map can show. */
+enum class CrescentCriterion {
+    /** Yallop (A-06): classes A–F ([CrescentVisibilityClass]). */
+    YALLOP,
+
+    /** Odeh (2004): zones A–D ([OdehZone]). */
+    ODEH,
+}
+
+/** The crescent seen on the first evening after an instant at a place under a criterion. */
 fun interface CrescentObserver {
+    /** The class ordinal under [criterion] ([CrescentVisibilityClass] or [OdehZone]), `null` when none can be seen. */
     fun visibility(
         place: Coordinates,
         from: Instant,
-    ): CrescentVisibilityClass?
+        criterion: CrescentCriterion,
+    ): Int?
 
     companion object {
-        /** Yallop's criterion (A-06). */
-        val YALLOP: CrescentObserver = CrescentObserver { place, from -> Yallop.evening(place, from)?.visibility }
+        /** Yallop's classes and Odeh's zones from `:core:astronomy`. */
+        val DEFAULT: CrescentObserver =
+            CrescentObserver { place, from, criterion ->
+                when (criterion) {
+                    CrescentCriterion.YALLOP -> Yallop.evening(place, from)?.visibility?.ordinal
+                    CrescentCriterion.ODEH -> Odeh.evening(place, from)?.zone?.ordinal
+                }
+            }
     }
 }
 
@@ -200,22 +222,49 @@ object LayerGrids {
         instant: Instant,
         columns: Int = DECLINATION_COLUMNS,
         rows: Int = DECLINATION_ROWS,
-    ): ShadeGrid =
-        ShadeGrid.build(columns, rows) { latitude, longitude ->
-            model
-                .declinationDegrees(Coordinates(latitude, longitude), instant)
-                .takeIf { it.isFinite() }
-                ?.roundToInt() ?: ShadeGrid.NONE
-        }
+    ): ShadeGrid = magnetic(model, instant, columns, rows) { it.declinationDegrees }
 
-    /** Crescent class ordinals of the first evening after [from], [ShadeGrid.NONE] where no crescent can be seen. */
+    /** Magnetic inclination rounded to whole degrees (positive downward), [ShadeGrid.NONE] where the model has none. */
+    fun inclination(
+        model: MagneticModel,
+        instant: Instant,
+        columns: Int = DECLINATION_COLUMNS,
+        rows: Int = DECLINATION_ROWS,
+    ): ShadeGrid = magnetic(model, instant, columns, rows) { it.inclinationDegrees }
+
+    /** Total field strength rounded to whole nanotesla, [ShadeGrid.NONE] where the model has none. */
+    fun intensity(
+        model: MagneticModel,
+        instant: Instant,
+        columns: Int = DECLINATION_COLUMNS,
+        rows: Int = DECLINATION_ROWS,
+    ): ShadeGrid = magnetic(model, instant, columns, rows) { it.fieldStrengthNanotesla }
+
+    /**
+     * Crescent class ordinals under [criterion] of the first evening after [from], [ShadeGrid.NONE] where no crescent
+     * can be seen.
+     */
     fun crescent(
         from: Instant,
-        observer: CrescentObserver = CrescentObserver.YALLOP,
+        observer: CrescentObserver = CrescentObserver.DEFAULT,
+        criterion: CrescentCriterion = CrescentCriterion.YALLOP,
         columns: Int = CRESCENT_COLUMNS,
         rows: Int = CRESCENT_ROWS,
     ): ShadeGrid =
         ShadeGrid.build(columns, rows) { latitude, longitude ->
-            observer.visibility(Coordinates(latitude, longitude), from)?.ordinal ?: ShadeGrid.NONE
+            observer.visibility(Coordinates(latitude, longitude), from, criterion) ?: ShadeGrid.NONE
+        }
+
+    private fun magnetic(
+        model: MagneticModel,
+        instant: Instant,
+        columns: Int,
+        rows: Int,
+        element: (MagneticElements) -> Double,
+    ): ShadeGrid =
+        ShadeGrid.build(columns, rows) { latitude, longitude ->
+            element(model.elements(Coordinates(latitude, longitude), instant))
+                .takeIf { it.isFinite() }
+                ?.roundToInt() ?: ShadeGrid.NONE
         }
 }

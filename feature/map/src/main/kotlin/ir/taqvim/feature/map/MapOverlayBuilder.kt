@@ -28,6 +28,7 @@ internal data class MapInputs(
     val live: Boolean,
     val layers: Set<MapLayer>,
     val picked: Coordinates?,
+    val criterion: CrescentCriterion = CrescentCriterion.YALLOP,
 )
 
 /** The computed time, overlays and pick of one [MapInputs]. */
@@ -38,15 +39,18 @@ internal data class MapComputed(
 )
 
 /**
- * Builds the map's overlays. Grids that change within a day only slowly (crescent visibility, declination) are kept
- * per local day; day/night and the Moon are recomputed for every moment.
+ * Builds the map's overlays. Grids that change within a day only slowly (crescent visibility per criterion and the
+ * magnetic field's declination, inclination and strength) are kept per local day; day/night and the Moon are recomputed
+ * for every moment.
  */
 internal class MapOverlayBuilder(
     private val magnetic: MagneticModel,
     private val crescentObserver: CrescentObserver,
 ) {
-    private val crescentCache = DayCache<ShadeGrid>()
+    private val crescentCaches = CrescentCriterion.entries.associateWith { DayCache<ShadeGrid>() }
     private val declinationCache = DayCache<ShadeGrid>()
+    private val inclinationCache = DayCache<ShadeGrid>()
+    private val intensityCache = DayCache<ShadeGrid>()
 
     fun build(inputs: MapInputs): MapComputed {
         val settings = inputs.settings
@@ -60,14 +64,19 @@ internal class MapOverlayBuilder(
             MapOverlays(
                 illumination = if (MapLayer.DAY_NIGHT in layers) LayerGrids.illumination(sun) else null,
                 moon = if (MapLayer.MOON_VISIBILITY in layers) LayerGrids.moonVisibility(moon) else null,
-                crescent = crescentCache.grid(MapLayer.CRESCENT_VISIBILITY in layers, settings, instant, ::crescent),
+                crescent = crescent(inputs),
                 declination =
-                    declinationCache.grid(
-                        MapLayer.MAGNETIC_DECLINATION in layers,
-                        settings,
-                        instant,
-                        ::declination,
-                    ),
+                    declinationCache.grid(MapLayer.MAGNETIC_DECLINATION in layers, settings, instant) {
+                        LayerGrids.declination(magnetic, it)
+                    },
+                inclination =
+                    inclinationCache.grid(MapLayer.MAGNETIC_INCLINATION in layers, settings, instant) {
+                        LayerGrids.inclination(magnetic, it)
+                    },
+                intensity =
+                    intensityCache.grid(MapLayer.MAGNETIC_INTENSITY in layers, settings, instant) {
+                        LayerGrids.intensity(magnetic, it)
+                    },
                 sun = Equirectangular.project(sun),
                 moonPoint = Equirectangular.project(moon),
                 place = settings.place?.let(Equirectangular::project),
@@ -78,9 +87,12 @@ internal class MapOverlayBuilder(
         return MapComputed(text.time(instant, inputs.live), overlays, pick)
     }
 
-    private fun crescent(dayStart: Instant): ShadeGrid = LayerGrids.crescent(dayStart, crescentObserver)
-
-    private fun declination(dayStart: Instant): ShadeGrid = LayerGrids.declination(magnetic, dayStart)
+    private fun crescent(inputs: MapInputs): ShadeGrid? {
+        val cache = crescentCaches.getValue(inputs.criterion)
+        return cache.grid(MapLayer.CRESCENT_VISIBILITY in inputs.layers, inputs.settings, inputs.instant) {
+            LayerGrids.crescent(it, crescentObserver, inputs.criterion)
+        }
+    }
 
     private fun DayCache<ShadeGrid>.grid(
         enabled: Boolean,

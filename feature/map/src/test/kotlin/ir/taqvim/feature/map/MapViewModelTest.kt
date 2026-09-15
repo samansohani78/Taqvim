@@ -48,6 +48,7 @@ class MapViewModelTest {
     private fun TestScope.viewModel(
         settings: Flow<MapSettings> = flowOf(MapFixtures.settings()),
         outline: WorldOutlineSource = WorldOutlineSource { MapFixtures.OUTLINE },
+        cities: MapCitySource = MapCitySource { code, _ -> MapFixtures.cities(code) },
     ): MapViewModel {
         val dispatcher = StandardTestDispatcher(testScheduler)
         Dispatchers.setMain(dispatcher)
@@ -56,6 +57,7 @@ class MapViewModelTest {
             outlineSource = outline,
             magnetic = MapFixtures.MAGNETIC,
             clock = clockFrom(MapFixtures.NOON),
+            citySource = cities,
             crescentObserver = MapFixtures.CRESCENT,
             computeDispatcher = dispatcher,
         ).also { model -> backgroundScope.launch { model.uiState.collect {} } }
@@ -93,6 +95,8 @@ class MapViewModelTest {
             overlays.moon.shouldNotBeNull()
             overlays.crescent.shouldNotBeNull()
             overlays.declination.shouldNotBeNull()
+            overlays.inclination.shouldNotBeNull()
+            overlays.intensity.shouldNotBeNull()
             overlays.directPath.shouldBeEmpty()
             model.uiState.value.layers shouldBe MapLayer.entries.toSet() - MapUiState.DEFAULT_LAYERS
             model.viewModelScope.cancel()
@@ -181,6 +185,97 @@ class MapViewModelTest {
             state.hasPlace shouldBe false
             state.overlays.qibla.shouldBeEmpty()
             state.overlays.place.shouldBeNull()
+            model.viewModelScope.cancel()
+        }
+
+    @Test
+    fun `city markers follow the layer and a tap on one picks the city`(): Unit =
+        runTest {
+            val model = viewModel()
+            model.onResize(view)
+            runCurrent()
+            model.uiState.value.cities
+                .shouldBeEmpty()
+            model.onToggleLayer(MapLayer.CITIES)
+            runCurrent()
+            val shown = model.uiState.value.cities
+            shown.first().name shouldBe "Tehran"
+            // On the whole map Karaj is closer to Tehran than the marker spacing: only the larger city is marked.
+            shown.none { it.name == "Karaj" } shouldBe true
+            val tehran =
+                model.uiState.value.viewport
+                    .toScreen(Equirectangular.project(MapFixtures.TEHRAN), view)
+            model.effects.test {
+                model.onPick(ScreenPoint(tehran.x + 5f, tehran.y), view)
+                awaitItem() shouldBe MapEffect.LocationPicked(MapFixtures.TEHRAN, shown.first())
+            }
+            model.onToggleLayer(MapLayer.CITIES)
+            runCurrent()
+            model.uiState.value.cities
+                .shouldBeEmpty()
+            model.viewModelScope.cancel()
+        }
+
+    @Test
+    fun `a failing city source shows no markers`(): Unit =
+        runTest {
+            val model = viewModel(cities = { _, _ -> error("catalog missing") })
+            model.onResize(view)
+            model.onToggleLayer(MapLayer.CITIES)
+            runCurrent()
+            model.uiState.value.cities
+                .shouldBeEmpty()
+            model.viewModelScope.cancel()
+        }
+
+    @Test
+    fun `the globe opens over the place, picks on its surface, turns and zooms`(): Unit =
+        runTest {
+            val model = viewModel()
+            runCurrent()
+            model.onResize(view)
+            model.onSelectProjection(MapProjection.GLOBE)
+            runCurrent()
+            model.uiState.value.projection shouldBe MapProjection.GLOBE
+            model.uiState.value.globe shouldBe GlobeView(MapFixtures.TEHRAN.latitude, MapFixtures.TEHRAN.longitude)
+            model.effects.test {
+                model.onPick(ScreenPoint(0f, 0f), view)
+                model.onPick(ScreenPoint(500f, 400f), view)
+                awaitItem() shouldBe MapEffect.LocationPicked(MapFixtures.TEHRAN)
+                model.onPickCenter()
+                awaitItem() shouldBe MapEffect.LocationPicked(MapFixtures.TEHRAN)
+            }
+            model.onPan(100f, 0f, view)
+            model.onZoom(2.0, ScreenPoint(0f, 0f), view)
+            runCurrent()
+            model.uiState.value.globe.let {
+                (it.centerLongitude < MapFixtures.TEHRAN.longitude) shouldBe true
+                it.zoom shouldBe 2.0
+            }
+            model.uiState.value.viewport shouldBe MapViewport()
+            model.onSelectProjection(MapProjection.FLAT)
+            runCurrent()
+            model.uiState.value.projection shouldBe MapProjection.FLAT
+            model.viewModelScope.cancel()
+        }
+
+    @Test
+    fun `the crescent layer follows the chosen criterion`(): Unit =
+        runTest {
+            val model = viewModel()
+            runCurrent()
+            model.onToggleLayer(MapLayer.CRESCENT_VISIBILITY)
+            runCurrent()
+            val yallop =
+                model.uiState.value.overlays.crescent
+                    .shouldNotBeNull()
+            model.onSelectCrescentCriterion(CrescentCriterion.ODEH)
+            runCurrent()
+            model.uiState.value.crescentCriterion shouldBe CrescentCriterion.ODEH
+            val odeh =
+                model.uiState.value.overlays.crescent
+                    .shouldNotBeNull()
+            (odeh == yallop) shouldBe false
             model.viewModelScope.cancel()
         }
 }

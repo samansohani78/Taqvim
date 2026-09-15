@@ -25,4 +25,24 @@
     <string name="map_crescent_c">ج: شاید به ابزار نوری نیاز باشد</string>
     <string name="map_crescent_d">د: به ابزار نوری نیاز است</string>
     <string name="map_crescent_e">هـ: با تلسکوپ هم دیده نمی‌شود</string>
+    <string name="map_layer_inclination">میل مغناطیسی</string>
+    <string name="map_layer_intensity">شدت میدان مغناطیسی</string>
+    <string name="map_layer_cities">شهرها</string>
+    <string name="map_projection_flat">نقشهٔ تخت</string>
+    <string name="map_projection_globe">کرهٔ زمین</string>
+    <string name="map_criterion_yallop">یالوپ</string>
+    <string name="map_criterion_odeh">عوده</string>
+    <string name="map_odeh_a">الف: با چشم غیرمسلح دیده می‌شود</string>
+    <string name="map_odeh_b">ب: با ابزار نوری دیده می‌شود، شاید با چشم غیرمسلح</string>
+    <string name="map_odeh_c">ج: فقط با ابزار نوری دیده می‌شود</string>
+    <string name="map_odeh_d">د: حتی با ابزار نوری دیده نمی‌شود</string>
+    <string name="map_declination_east">شرق شمال جغرافیایی</string>
+    <string name="map_declination_west">غرب شمال جغرافیایی</string>
+    <string name="map_inclination_down">میدان رو به پایین</string>
+    <string name="map_inclination_up">میدان رو به بالا</string>
+    <string name="map_intensity_under_30">کمتر از ۳۰ میکروتسلا</string>
+    <string name="map_intensity_30_40">۳۰ تا ۴۰ میکروتسلا</string>
+    <string name="map_intensity_40_50">۴۰ تا ۵۰ میکروتسلا</string>
+    <string name="map_intensity_50_60">۵۰ تا ۶۰ میکروتسلا</string>
+    <string name="map_intensity_over_60">۶۰ میکروتسلا یا بیشتر</string>
 </resources>
