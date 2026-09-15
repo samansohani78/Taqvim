@@ -283,6 +283,18 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
+### T-1702 — Translation checks and completeness report
+- **Module / files:** `konsist/src/test/kotlin/ir/taqvim/konsist/Translation*.kt`, `LaunchLanguages.kt`;
+  `config/i18n/same-as-source.txt`; `docs/i18n/TRANSLATING.md`; translator comments in `*/src/main/res/values/strings.xml`
+- **Task:** T-1702
+- **References used (public only):** Android string resource format (placeholders, `plurals` quantities, qualifiers);
+  Unicode CLDR plural rules via the committed `:core:i18n` tables; Unicode UAX #9 bidi control characters; Weblate
+  Android string resource component settings.
+- **Implementation note:** own work; checks are structural only and translations remain a human task; translator
+  comments are English context notes written for Taqvim.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15
+- **Reviewer attestation:** pending — no forbidden sources consulted.
+
 ### T-1701 — Layout audit and bidi isolation
 - **Module / files:** `core/ui-testing/.../LayoutAudit.kt`, `core/i18n/.../BidiText.kt`; layout fixes in core/ui and
   feature modules
