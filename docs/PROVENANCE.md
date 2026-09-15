@@ -67,7 +67,14 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Validation:** Calendar Center official leap years 1206–1498 (293 years), official calendars 1404 and 1405
   (730 days, weekday included), official Nowruz instants 1404/1405, the Calendar Center century note, and ICU4J
   78.3 `PersianCalendar` for 1200–1500 (first day of every year plus 100 000 random days).
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Runtime rule (main@dfe6f17, ADR-0026, superseding ADR-0008 decisions 2 and 4):** year starts are computed at run
+  time in `PersianYearStarts.kt` through the internal `CalendarAstronomy` object (cosinekitty `searchSunLongitude(0°)`,
+  now a main dependency of `:core:calendar`): the true March equinox for SH −3000…3000 (lazy 64-year blocks), and the
+  same rule on the mean March equinox, carried exactly in Long arithmetic from the nearer edge, for every other Int year.
+  `PersianLeapTable.kt` moved to test sources as `PersianLeapTableSnapshot` (the golden for all 6 001 years) and
+  `BirashkArithmetic.kt` was deleted, so references 2 and 3 are no longer used at run time. 44 years of −3000…3000 have an
+  equinox within 5 minutes of Tehran noon (closest SH 1144, 3 s); official data still overrides per ADR-0008 decision 3.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; runtime rule 2026-09-15
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### A-05 — Iranian official lunar Hijri calendar
