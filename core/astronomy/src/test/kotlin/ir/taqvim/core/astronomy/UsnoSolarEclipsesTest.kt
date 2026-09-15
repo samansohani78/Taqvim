@@ -18,23 +18,9 @@ private const val DATE = 0
 private const val TYPE = 1
 
 /**
- * USNO total and annular eclipses whose shadow axis misses the Earth (non-central). The library classifies a global
- * eclipse at its peak by the shadow axis, so it reports these as [EclipseKind.PARTIAL] with no peak position.
+ * A-13 solar eclipses against every USNO solar eclipse of 1800–2050 (golden/usno), including the non-central total and
+ * annular eclipses whose shadow axis misses Earth.
  */
-private val NON_CENTRAL =
-    listOf(
-        "1928-05-19",
-        "1950-03-18",
-        "1957-04-30",
-        "1957-10-23",
-        "1967-11-02",
-        "2014-04-29",
-        "2043-04-09",
-        "2043-10-03",
-    ).map(LocalDate::parse)
-        .toSet()
-
-/** A-13 solar eclipses against every USNO solar eclipse of 1800–2050 (golden/usno). */
 class UsnoSolarEclipsesTest {
     private data class UsnoEclipse(
         val date: LocalDate,
@@ -62,13 +48,7 @@ class UsnoSolarEclipsesTest {
         row: UsnoEclipse,
     ): Boolean {
         val date = LocalDate.ofEpochDay(Math.floorDiv(eclipse.peak.epochSeconds, SECONDS_PER_DAY))
-        val kind =
-            if (row.date in NON_CENTRAL) {
-                eclipse.kind == EclipseKind.PARTIAL && eclipse.peakLatitudeDegrees == null && row.type != "Partial"
-            } else {
-                eclipse.kind == kindOf(row.type)
-            }
-        return date == row.date && kind
+        return date == row.date && eclipse.kind == kindOf(row.type)
     }
 
     @Test

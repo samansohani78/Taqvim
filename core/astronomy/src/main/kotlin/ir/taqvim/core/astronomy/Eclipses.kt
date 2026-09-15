@@ -25,7 +25,12 @@ public enum class EclipseKind {
     TOTAL,
 }
 
-/** A solar eclipse seen anywhere on Earth: [peak] instant and, for central eclipses, where it is greatest. */
+/**
+ * A solar eclipse seen anywhere on Earth: its [peak] instant and where it is greatest. For central eclipses that is
+ * where the shadow axis meets Earth; for non-central total and annular eclipses (the axis misses Earth but the umbra or
+ * antumbra grazes it) it is the point of Earth's surface closest to the axis, where the Sun is on the horizon. Partial
+ * eclipses have no position. [obscuration] is the covered fraction of the Sun's disk at that point.
+ */
 public data class GlobalSolarEclipse(
     public val kind: EclipseKind,
     public val peak: Instant,
@@ -100,14 +105,30 @@ public object Eclipses {
 
     private fun Double.finiteOrNull(): Double? = takeIf { it.isFinite() }
 
-    private fun GlobalSolarEclipseInfo.toGlobal() =
-        GlobalSolarEclipse(
-            kind.toKind(),
-            peak.toInstant(),
-            obscuration.finiteOrNull(),
-            latitude.finiteOrNull(),
-            longitude.finiteOrNull(),
-        )
+    private fun GlobalSolarEclipseInfo.toGlobal(): GlobalSolarEclipse =
+        if (kind == LibraryEclipseKind.Partial) {
+            classifyByShadow()
+        } else {
+            GlobalSolarEclipse(
+                kind.toKind(),
+                peak.toInstant(),
+                obscuration.finiteOrNull(),
+                latitude.finiteOrNull(),
+                longitude.finiteOrNull(),
+            )
+        }
+
+    // The library calls every eclipse whose shadow axis misses Earth partial, but the umbra or antumbra can still
+    // reach the surface: a non-central total or annular eclipse (Meeus ch. 54).
+    private fun GlobalSolarEclipseInfo.classifyByShadow(): GlobalSolarEclipse {
+        val axis = SolarEclipseShadow.at(peak)
+        val shadowKind = SolarEclipseShadow.kind(axis.gamma, axis.umbraRadius)
+        if (shadowKind == EclipseKind.PARTIAL) {
+            return GlobalSolarEclipse(EclipseKind.PARTIAL, peak.toInstant(), obscuration.finiteOrNull(), null, null)
+        }
+        val place = axis.surfacePlace()
+        return GlobalSolarEclipse(shadowKind, peak.toInstant(), axis.obscuration(), place.latitude, place.longitude)
+    }
 
     private fun LunarEclipseInfo.toLunar() =
         LunarEclipse(kind.toKind(), peak.toInstant(), obscuration, sdPenum, sdPartial, sdTotal)
