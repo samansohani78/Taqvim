@@ -1252,3 +1252,81 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 - Yallop, NAO Technical Note 69, Table 4 (295 observations, pages 5–10), extracted with `pdftotext -layout`; PDF SHA-256 in
   the header. Entries 251/252 (q = −0.014) keep the note's own group B.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+
+### USNO reference data — `docs/sources/usno/*-raw.json`, `golden/usno/*`, `tools/usno/*` (ADR-0025)
+- **Source:** U.S. Naval Observatory, Astronomical Applications Department, API v4.0.1
+  (https://aa.usno.navy.mil/data/api.html). US Government work, public domain (17 U.S.C. §105). The owner downloaded
+  the responses on 2026-09-15 (the site is unreachable from the development network). The combined raw responses of
+  each data set are archived byte for byte; checksums are in `docs/sources/usno/SHA256SUMS`, and every generator
+  refuses to run on a mismatch.
+- **Generators:** `tools/usno/usno_*.py` (standard-library Python; `--check` regenerates in memory and compares). Every
+  golden header names its archive file and SHA-256. No row is typed by hand.
+- **Goldens and what they check (all records of each data set):**
+  - `core/astronomy/.../golden/usno/seasons-1700-2100.csv` (1 604 equinoxes and solstices; main@e710000). `SkyTest`:
+    PLAN ±5 min for 2020–2040, ±2 min before 2000 and ±3 min from 2000 on. Largest deviation 140 s (2050–2099), from
+    minute rounding and the two ΔT models.
+  - `.../apsides-1700-2100.csv` (400 perihelia, 401 aphelia; main@0c9557e). `UsnoApsidesTest`: kinds and order exact,
+    instants ±2.5 h, RMS < 40 min; Earth–Sun distance at USNO's instant equals ours within 5 km (the distance is
+    nearly stationary at an apsis, so km-level ephemeris differences move the instant by tens of minutes).
+  - `.../moon-phases-1700-2100.csv` (19 839 quarters; main@e3f4938). `UsnoMoonPhasesTest`: count and order exact, every
+    instant ±2 min (largest 84 s).
+  - `.../solar-eclipses-1800-2050.csv` (582 eclipses; main@d30c4b3, main@e322bf1). `UsnoSolarEclipsesTest`: count,
+    order, UT date of greatest eclipse and type exact, with no exception list. USNO's own 1898 record contradicts
+    itself (fields 18 July, name 18 June); the fields agree with the computation, and the row carries a note.
+  - `core/calendar/.../golden/usno/islamic-observances-622-9999.csv` (28 996 records, AH 1–9666; main@2fed071).
+    `UsnoIslamicObservancesTest`: the type II tabular calendar matches every record both ways; type I differs by one
+    day exactly in cycle year 16.
+  - `.../jewish-observances-360-9999.csv` (57 839 records, AM 4120–13760; main@b20c5c6) and
+    `.../christian-observances-1583-9999.csv` (67 336 records; main@f9d2140): exact, see T-108 and T-109 below.
+- **Julian dates:** USNO prints dates before 1582-10-15 in the Julian calendar. Tests convert them with the integer
+  Julian-day algorithm of E. G. Richards, "Calendars", *Explanatory Supplement to the Astronomical Almanac*, 3rd ed.,
+  §15.11, checked at the Islamic epoch (622-07-16), 1582-10-04/15 and J2000.
+- **Measurement aid:** deviation statistics were computed with the MIT-licensed Python build of the same astronomy
+  library (astronomy-engine 2.1.19) in a scratch environment; nothing from it is committed.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer:** pending.
+
+### A-13 — Non-central total and annular solar eclipses (T-403)
+- **Files:** `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/SolarEclipseShadow.kt`, `Eclipses.kt`
+- **References:** Jean Meeus, *Astronomical Algorithms* 2nd ed., ch. 54 (γ, the least distance of the shadow axis from
+  Earth's centre, and u, the umbral cone radius; central, non-central and partial criteria). Constants: IERS
+  Conventions 2010 (Earth equatorial radius 6378.1366 km, flattening 1/298.25642), IAU 2015 Resolution B3 (nominal
+  solar radius 695 700 km), Besselian lunar radius ratio k = 0.2725076.
+- **Implementation note:** own work. When the library reports a partial eclipse, the geocentric Sun and Moon at greatest
+  eclipse are rotated to the equator of date, z is stretched by a/b so the ellipsoid becomes a sphere, and γ and the
+  cone radius at the surface point nearest the axis decide total (umbra), annular (antumbra) or partial. That point is
+  the reported peak of a non-central eclipse. Verified: exactly the eight USNO non-central eclipses of 1800–2050 change
+  type (1928-05-19, 1950-03-18, 1957-04-30, 1957-10-23, 1967-11-02, 2014-04-29, 2043-04-09, 2043-10-03); NASA golden
+  unchanged.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
+  sources consulted.
+
+### A-13 — Earth perihelion and aphelion (T-403)
+- **Files:** `Sky.kt` (`Sky.earthApsides`), `SkyTypes.kt` (`ApsisKind`, `EarthApsis`)
+- **References:** cosinekitty/astronomy 2.1.19 (MIT) planet apsis search and heliocentric distance for Earth's centre
+  (not the Earth–Moon barycentre, which misses USNO by up to 1.4 days); Jean Meeus, *Astronomical Algorithms* 2nd ed.,
+  Table 31.A (Earth's longitude of perihelion) for the property test over −2000…6000.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
+  sources consulted.
+
+### A-15 — Hebrew calendar and Jewish observances (T-108, ADR-0025)
+- **Files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/HebrewCalendar.kt`, `JewishObservances.kt`
+- **References (public rule descriptions only):** the fixed Hebrew calendar as codified by Maimonides — 19-year cycle
+  with leap years 3, 6, 8, 11, 14, 17, 19; months elapsed ⌊(235y − 234)/19⌋; molad BaHaRaD (day 1, 5 h 204 parts) and
+  mean lunation 29 d 12 h 793 parts; postponements molad zaken, GaTaRaD, BeTU'TaKPaT and lo ADU Rosh; year lengths
+  353–355 and 383–385. Epoch 1 Tishri AM 1 = JDN 347 998 (Monday, 7 October 3761 BC Julian). Observance days: 15 Nisan,
+  6 Sivan, 1 Tishri, 10 Tishri, 15 Tishri, 25 Kislev.
+- **Implementation note:** own work, Long arithmetic without year tables; supported years Int.MIN_VALUE+1…Int.MAX_VALUE−1,
+  rejected outside. Matches all 57 839 USNO records; properties include the 689 472-year cycle (251 827 457 days).
+- **Not consulted:** Reingold & Dershowitz code, Hebcal or any GPL/LGPL calendar code.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
+  sources consulted.
+
+### A-16 — Gregorian Easter and movable feasts (T-109, ADR-0025)
+- **Files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/GregorianComputus.kt`, `ChristianMovableFeasts.kt`
+- **References:** Jean Meeus, *Astronomical Algorithms* 2nd ed., ch. 8 "Date of Easter" (Gregorian integer algorithm and
+  its worked examples); standard liturgical offsets from Easter (Ash Wednesday −46, Palm Sunday −7, Good Friday −2,
+  Ascension +39, Pentecost +49, Trinity Sunday +56); First Sunday of Advent = the Sunday on 27 November–3 December.
+- **Implementation note:** own work; valid from 1583 to Int.MAX_VALUE with no overflow. Matches all 67 336 USNO records;
+  property tests include the 5 700 000-year Easter cycle.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
+  sources consulted.

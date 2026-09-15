@@ -48,3 +48,20 @@ https://calendar.ut.ac.ir/Fa/ (address printed in the documents). Exact download
 | `unic-tehran-f-event-20121005.html` | — | 78362 | `0e15f1085c6d991536f67c4344d568170060389a738fa1a809592b931cda281d` (as committed, LF line endings; the downloaded CRLF file was 79037 bytes, `27ec144172049388c4a9f9f63e8e7b8fe1ce8646eef84a89a42bb2af759fa8b7`) | United Nations Information Centre Tehran, "مناسبت های ویژه سازمان ملل متحد" (UN special days, Persian), https://www.unic-ir.org/event/f-event.htm — Internet Archive copy https://web.archive.org/web/20121005003400id_/https://www.unic-ir.org/event/f-event.htm (retrieved 2026-09-13; the original site returns HTTP 522/403). Persian titles for D-05. |
 
 Nepal (Bikram Sambat) sources: none supplied yet (T-105, D-04 remain blocked).
+
+## USNO Astronomical Applications API (`docs/sources/usno/`)
+
+Downloaded by the repository owner on 2026-09-15 from the U.S. Naval Observatory API v4.0.1
+(https://aa.usno.navy.mil/data/api.html; unreachable from the development network). US Government work, public
+domain. Each file is the owner's combined list of raw per-year JSON responses, archived byte for byte; checksums
+are also in `docs/sources/usno/SHA256SUMS`. Use: ADR-0025.
+
+| File | Pages | Bytes | SHA-256 | Content |
+|---|---|---|---|---|
+| `usno/seasons-raw.json` | — | 188750 | `8732302eb29bb6d939a97a6930f39a0e04a0787ae34524f091fb537b76407950` | Earth's seasons and apsides, 1700–2100 (401 responses) |
+| `usno/moon-phases-raw.json` | — | 1403584 | `d5e58f840683a3283c0e546aab5ac7a2f46d300cf2903c3914892848be5b7439` | Moon phases, 1700–2100 (401 responses) |
+| `usno/solar-eclipses-raw.json` | — | 62093 | `85806f51a6f99f1bf34cdbc8ef54be7ab5e63e8a80f2f0b625e049ada41a6e52` | Solar eclipses of each year, 1800–2050 (251 responses) |
+| `usno/islamic-observances-raw.json` | — | 2807329 | `ec020d97e23d0eab3f80a21083fabc37160e5455223616e97188a457a93d65e3` | Islamic New Year, 1 Ramadan, 1 Shawwal, 622–9999 (9 378 responses) |
+| `usno/jewish-observances-raw.json` | — | 6130697 | `6522a5c8b970c2f5928f5f99da89708a344ca8622e4956b23a35ba821655e053` | Six Jewish observances, 360–9999 (9 640 responses) |
+| `usno/christian-observances-raw.json` | — | 4515320 | `6cdda8a16d3804c34af2f7d16c656eb5a0f87885d7dcb73fbdc93c9e760945a6` | Eight Christian movable observances, 1583–9999 (8 417 responses) |
+| `usno/us-daylight-saving-raw.json` | — | 1379397 | `601c14a65dfc271b05f7c5c41077009f5a327cee9b91f53db155c106e699bdb6` | US daylight saving time begin/end, 1967–9999 (8 033 responses) |

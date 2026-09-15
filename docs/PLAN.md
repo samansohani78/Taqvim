@@ -321,6 +321,20 @@ Test kinds: U = unit, P = property, G = golden, R = Robolectric, S = screenshot 
 - `Jdn ↔ LocalDate`, `Instant → Jdn(zone)`; "today" provider interface.
 - Tests: U DST transitions (Tehran 2022 abolished DST, Kabul none, Europe/Berlin), P.
 
+### T-108 Hebrew calendar (A-15) — added 2026-09-15, ADR-0025
+- Hebrew date ↔ JDN by the fixed-calendar rules (molad, postponements), no year tables; the six USNO Jewish observances.
+- Tests: G every USNO Jewish observance 360–9999 (exact); P round trip, year lengths, weekday rules, 689 472-year cycle.
+
+### T-109 Gregorian Easter and movable feasts (A-16) — added 2026-09-15, ADR-0025
+- Easter (computus) and the eight USNO movable observances for any Gregorian year ≥ 1583.
+- Tests: G every USNO Christian observance 1583–9999 (exact); P Sunday/range rules, 5 700 000-year cycle.
+
+### T-110 US daylight saving time — added 2026-09-15, ADR-0025
+- The US national DST rule eras as an algorithm for any year ≥ 1967; the app's time-zone path checked against them.
+- Tests: G every USNO DST record 1967–9999; P Sunday and month rules for very large years.
+
+Core only; showing these calendars and observances to users needs a later decision (strings in 24 languages).
+
 ---
 
 ## EPIC 2 — `:core:i18n`
