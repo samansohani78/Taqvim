@@ -13,6 +13,7 @@ import ir.taqvim.core.ics.Recurrence
 import ir.taqvim.data.devicecalendar.InstantWindow
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -81,6 +82,47 @@ class IcsOccurrenceExpanderTest {
         rows.map { it.startEpochMillis } shouldBe
             listOf("03-21", "03-22", "03-24", "03-25", "04-01").map { millis("2026-${it}T00:00:00Z") }
         rows.all { it.allDay && it.endEpochMillis - it.startEpochMillis == 1.days.inWholeMilliseconds } shouldBe true
+    }
+
+    @Test
+    fun `overrides replace or cancel the instance their RECURRENCE-ID names and orphans stand alone`() {
+        val berlin = "Europe/Berlin"
+        val series =
+            IcsEvent(
+                "s",
+                IcsDateTime.Zoned(LocalDateTime(2026, 6, 1, 9, 0), berlin),
+                IcsDateTime.Zoned(LocalDateTime(2026, 6, 1, 10, 0), berlin),
+                summary = "Series",
+                recurrence = Recurrence(Frequency.DAILY, count = 4),
+            )
+        val moved =
+            IcsEvent(
+                "s",
+                utc("2026-06-02T15:00:00Z"),
+                utc("2026-06-02T15:30:00Z"),
+                summary = "Moved",
+                recurrenceId = utc("2026-06-02T07:00:00Z"),
+            )
+        val cancelledAt = IcsDateTime.Zoned(LocalDateTime(2026, 6, 3, 9, 0), berlin)
+        val cancelled = IcsEvent("s", cancelledAt, recurrenceId = cancelledAt, cancelled = true)
+        val orphan =
+            IcsEvent("o", utc("2026-06-10T10:00:00Z"), summary = "Alone", recurrenceId = utc("2026-06-09T10:00:00Z"))
+        val cancelledOrphan = orphan.copy(uid = "gone", cancelled = true)
+
+        val rows = expander.expandAll(3, listOf(moved, series, cancelled, orphan, cancelledOrphan), year2026)
+
+        rows.map { Triple(it.uid, it.summary, it.startEpochMillis) } shouldBe
+            listOf(
+                Triple("s", "Series", millis("2026-06-01T07:00:00Z")),
+                Triple("s", "Moved", millis("2026-06-02T15:00:00Z")),
+                Triple("s", "Series", millis("2026-06-04T07:00:00Z")),
+                Triple("o", "Alone", millis("2026-06-10T10:00:00Z")),
+            )
+        rows[1].endEpochMillis - rows[1].startEpochMillis shouldBe 30.minutes.inWholeMilliseconds
+        val allDay = IcsEvent("d", date(6, 1), recurrence = Recurrence(Frequency.DAILY, count = 3))
+        val movedDay = IcsEvent("d", date(6, 5), recurrenceId = date(6, 2))
+        expander.expandAll(3, listOf(allDay, movedDay), year2026).map { it.startEpochMillis } shouldBe
+            listOf("06-01", "06-03", "06-05").map { millis("2026-${it}T00:00:00Z") }
     }
 
     @Test

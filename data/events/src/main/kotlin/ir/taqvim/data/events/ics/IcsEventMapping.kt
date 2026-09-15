@@ -13,6 +13,7 @@ import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.ics.toRecurrenceRule
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import kotlin.time.Instant
 import kotlinx.datetime.LocalDateTime
@@ -23,9 +24,6 @@ import kotlinx.datetime.toLocalDateTime
 
 /** A part of an iCalendar event that could not be imported as it was (T-1003). */
 enum class ImportIssue {
-    /** EXDATE values: personal events have no exception dates. */
-    EXCEPTION_DATES_IGNORED,
-
     /** RDATE values without a Taqvim rule: only the rule (if any) and the first occurrence are imported. */
     RECURRENCE_DATES_IGNORED,
 
@@ -45,12 +43,17 @@ data class ImportWarning(
     val issue: ImportIssue,
 )
 
-/** A personal event read from iCalendar and not yet stored (its [PersonalEventEntity.id] is 0). */
+/**
+ * A personal event read from iCalendar and not yet stored (its [PersonalEventEntity.id] is 0, as is the event id of
+ * its [overrides]), with the days its EXDATE values remove and the RECURRENCE-ID components that change occurrences.
+ */
 data class ImportedEvent(
     val event: PersonalEventEntity,
     val recurrence: RecurrenceRule?,
     val reminderMinutes: List<Int>,
     val warnings: List<ImportWarning>,
+    val exceptionDays: List<Long> = emptyList(),
+    val overrides: List<EventOverrideEntity> = emptyList(),
 )
 
 /** Maps iCalendar events to personal events; floating and UTC times are placed in [zone]. */
@@ -65,15 +68,16 @@ internal class IcsEventMapping(
         val instant: Instant?,
     )
 
+    /** [event] with the [overrides] (components of its UID with a RECURRENCE-ID) of its occurrences. */
     fun toImported(
         event: IcsEvent,
         nowEpochMillis: Long,
+        overrides: List<IcsEvent> = emptyList(),
     ): ImportedEvent {
         val issues = mutableListOf<ImportIssue>()
         val start = moment(event.start)
         val end = end(event, start, issues)
         val recurrence = recurrence(event, start, issues)
-        if (event.exceptionDates.isNotEmpty()) issues += ImportIssue.EXCEPTION_DATES_IGNORED
         val reminders = reminders(event, issues)
         return ImportedEvent(
             event =
@@ -93,8 +97,54 @@ internal class IcsEventMapping(
             recurrence = recurrence?.rule,
             reminderMinutes = reminders,
             warnings = issues.distinct().map { ImportWarning(event.uid, it) },
+            exceptionDays =
+                event.exceptionDates
+                    .map { dayIn(it, start).value }
+                    .distinct()
+                    .sorted(),
+            overrides = overrides.mapNotNull { override(it, event, start) }.distinctBy { it.originalJdn },
         )
     }
+
+    /**
+     * The override of the occurrence [component]'s RECURRENCE-ID names, with its times in the series' time zone; its
+     * SUMMARY and DESCRIPTION default to the [series]' ones.
+     */
+    private fun override(
+        component: IcsEvent,
+        series: IcsEvent,
+        seriesStart: Moment,
+    ): EventOverrideEntity? {
+        val recurrenceId = component.recurrenceId ?: return null
+        val ownStart = moment(component.start)
+        val start = ownStart.inZone(seriesStart.timeZone)
+        val end = end(component, ownStart, mutableListOf()).inZone(seriesStart.timeZone)
+        return EventOverrideEntity(
+            eventId = 0,
+            originalJdn = dayIn(recurrenceId, seriesStart).value,
+            title = component.summary ?: series.summary.orEmpty(),
+            notes = component.description ?: series.description.orEmpty(),
+            startJdn = start.day.value,
+            startMinute = start.minute,
+            endJdn = end.day.value,
+            endMinute = end.minute,
+            cancelled = component.cancelled,
+        )
+    }
+
+    /** The day of an EXDATE or RECURRENCE-ID [value] in the time zone of the series starting at [seriesStart]. */
+    private fun dayIn(
+        value: IcsDateTime,
+        seriesStart: Moment,
+    ): Jdn =
+        if (value is IcsDateTime.Date) {
+            value.date.toJdn()
+        } else {
+            instantOf(value, seriesStart.timeZone).toLocalDateTime(seriesStart.timeZone).date.toJdn()
+        }
+
+    private fun Moment.inZone(target: TimeZone): Moment =
+        instant?.let { local(it.toLocalDateTime(target), target) } ?: this
 
     private fun moment(value: IcsDateTime): Moment =
         when (value) {

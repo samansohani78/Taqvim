@@ -181,8 +181,8 @@ class SubscriptionRefresher(
                 val expander = IcsOccurrenceExpander(zone())
                 val window = policy.window(now)
                 val rows =
-                    parsed.calendar.events
-                        .flatMap { expander.expand(subscription.id, it, window) }
+                    expander
+                        .expandAll(subscription.id, parsed.calendar.events, window)
                         .distinctBy { it.uid to it.startEpochMillis }
                 dao.replaceEvents(subscription.id, rows)
                 dao.updateSubscription(

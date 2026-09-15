@@ -5,7 +5,9 @@
 package ir.taqvim.data.events
 
 import ir.taqvim.core.ics.RecurrenceRule
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.PersonalEventDao
@@ -16,10 +18,15 @@ import ir.taqvim.data.devicecalendar.InstantWindow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-/** A personal event with its [recurrence] rule, or `null` for a one-off event. */
+/**
+ * A personal event with its [recurrence] rule (`null` for a one-off event), the [exceptions] days on which it does not
+ * occur and its [overrides] replacing single occurrences (T-1003).
+ */
 data class PersonalEventRecord(
     val event: PersonalEventEntity,
     val recurrence: RecurrenceRule?,
+    val exceptions: Set<Jdn> = emptySet(),
+    val overrides: List<EventOverrideEntity> = emptyList(),
 )
 
 /** Personal events overlapping some days, plus recurring events starting before their end. */
@@ -44,13 +51,23 @@ data class EventInputs(
     val ics: IcsEventsSource,
 )
 
-/** [PersonalEventsSource] over the `personal_events` and `event_recurrences` tables (T-601). */
+/**
+ * [PersonalEventsSource] over the `personal_events` and `event_recurrences` tables (T-601) and the exception days and
+ * overridden occurrences of recurring events (T-1003).
+ */
 class RoomPersonalEventsSource(
     private val dao: PersonalEventDao,
 ) : PersonalEventsSource {
     override fun events(days: JdnRange): Flow<List<PersonalEventRecord>> =
         dao.observeInRange(days.start.value, days.endInclusive.value).map { events ->
-            events.map { PersonalEventRecord(it, dao.getRecurrence(it.id)?.toRule()) }
+            events.map {
+                PersonalEventRecord(
+                    event = it,
+                    recurrence = dao.getRecurrence(it.id)?.toRule(),
+                    exceptions = dao.exceptionDays(it.id).map(::Jdn).toSet(),
+                    overrides = dao.overrides(it.id),
+                )
+            }
         }
 }
 

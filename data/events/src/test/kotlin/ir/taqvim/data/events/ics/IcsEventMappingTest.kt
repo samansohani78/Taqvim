@@ -139,8 +139,52 @@ class IcsEventMappingTest {
         broken.recurrence shouldBe RecurrenceRule(Frequency.DAILY)
         broken.warnings.map { it.issue } shouldBe
             listOf(ImportIssue.INVALID_TAQVIM_RECURRENCE, ImportIssue.RECURRENCE_DATES_IGNORED)
-        issues(IcsEvent("x", date(2026, 1, 1), exceptionDates = listOf(date(2026, 1, 2)))) shouldBe
-            listOf(ImportIssue.EXCEPTION_DATES_IGNORED)
+    }
+
+    @Test
+    fun `exception dates and overrides are kept as days and instances in the series' time zone`() {
+        val berlin = "Europe/Berlin"
+        val series =
+            IcsEvent(
+                "s",
+                IcsDateTime.Zoned(LocalDateTime(2026, 7, 6, 23, 30), berlin),
+                IcsDateTime.Zoned(LocalDateTime(2026, 7, 7, 0, 30), berlin),
+                summary = "Series",
+                description = "Notes",
+                recurrence = Recurrence(Frequency.DAILY),
+                exceptionDates =
+                    listOf(
+                        IcsDateTime.Utc(Instant.parse("2026-07-08T21:30:00Z")),
+                        date(2026, 7, 9),
+                        IcsDateTime.Zoned(LocalDateTime(2026, 7, 9, 23, 30), berlin),
+                    ),
+            )
+        val moved =
+            IcsEvent(
+                "s",
+                IcsDateTime.Utc(Instant.parse("2026-07-10T08:00:00Z")),
+                IcsDateTime.Utc(Instant.parse("2026-07-10T09:15:00Z")),
+                recurrenceId = IcsDateTime.Zoned(LocalDateTime(2026, 7, 10, 23, 30), berlin),
+            )
+        val allDay = IcsEvent("s", date(2026, 7, 12), summary = "Day off", recurrenceId = date(2026, 7, 11))
+        val cancelledId = IcsDateTime.Utc(Instant.parse("2026-07-12T21:30:00Z"))
+        val cancelled = moved.copy(recurrenceId = cancelledId, cancelled = true)
+
+        val imported = mapping.toImported(series, 1_000, listOf(moved, allDay, cancelled, moved))
+
+        imported.warnings.shouldBeEmpty()
+        imported.exceptionDays shouldBe listOf(day(2026, 7, 8), day(2026, 7, 9))
+        val spans =
+            imported.overrides.map { listOf(it.originalJdn, it.startJdn, it.startMinute, it.endJdn, it.endMinute) }
+        spans shouldBe
+            listOf(
+                listOf(day(2026, 7, 10), day(2026, 7, 10), 600, day(2026, 7, 10), 675),
+                listOf(day(2026, 7, 11), day(2026, 7, 12), null, day(2026, 7, 12), null),
+                listOf(day(2026, 7, 12), day(2026, 7, 10), 600, day(2026, 7, 10), 675),
+            )
+        imported.overrides.map { Triple(it.title, it.notes, it.cancelled) } shouldBe
+            listOf(Triple("Series", "Notes", false), Triple("Day off", "Notes", false), Triple("Series", "Notes", true))
+        imported.overrides.map { it.eventId }.toSet() shouldBe setOf(0L)
     }
 
     @Test

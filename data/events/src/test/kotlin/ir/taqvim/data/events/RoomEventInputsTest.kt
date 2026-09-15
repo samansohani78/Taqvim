@@ -15,6 +15,8 @@ import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.data.database.EventExceptionEntity
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.PersonalEventEntity
@@ -80,6 +82,22 @@ class RoomEventInputsTest {
             val records = RoomPersonalEventsSource(dao).events(nowruz..nowruz + 1).first()
 
             records.map { it.event.id to it.recurrence } shouldBe listOf(recurringId to weekly, singleId to null)
+        }
+
+    @Test
+    fun personalRecordsCarryTheirExceptionsAndOverrides(): Unit =
+        runTest {
+            val dao = db.personalEventDao()
+            val id = dao.insert(event(nowruz - 30))
+            dao.upsertRecurrence(RecurrenceRule(Frequency.DAILY).toEntity(id, CalendarSystem.PERSIAN))
+            val moved = EventOverrideEntity(id, nowruz.value, "moved", "", nowruz.value + 1, 600, nowruz.value + 1, 660)
+            dao.insertExceptions(listOf(EventExceptionEntity(id, nowruz.value - 1)))
+            dao.upsertOverrides(listOf(moved))
+
+            val record = RoomPersonalEventsSource(dao).events(nowruz..nowruz + 1).first().single()
+
+            record.exceptions shouldBe setOf(nowruz - 1)
+            record.overrides shouldBe listOf(moved)
         }
 
     @Test

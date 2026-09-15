@@ -17,6 +17,7 @@ import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.ReminderEntity
 import kotlin.time.Duration.Companion.minutes
@@ -25,12 +26,21 @@ import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 
-/** A stored personal event with its [recurrence] rule (counted in its calendar) and [reminders]. */
+/**
+ * A stored personal event with its [recurrence] rule (counted in its calendar), [reminders], and the [exceptionDays]
+ * and [overrides] of its occurrences (T-1003).
+ */
 data class ExportRecord(
     val event: PersonalEventEntity,
     val recurrence: RecurrenceRule?,
     val reminders: List<ReminderEntity>,
-)
+    val exceptionDays: List<Long> = emptyList(),
+    val overrides: List<EventOverrideEntity> = emptyList(),
+) {
+    /** Days whose occurrence does not take place: exception days and cancelled overrides, ascending. */
+    val excludedDays: List<Long>
+        get() = (exceptionDays + overrides.filter { it.cancelled }.map { it.originalJdn }).distinct().sorted()
+}
 
 /**
  * Bounds of the explicit occurrences written for rules RFC 5545 cannot express (ADR-0013): open-ended rules are
@@ -70,11 +80,9 @@ internal class IcsExportMapping(
             summary = event.title.takeIf { it.isNotEmpty() },
             description = event.notes.takeIf { it.isNotEmpty() },
             recurrence = rfcRule?.let { toRecurrence(it, event) },
-            alarms =
-                record.reminders
-                    .filter { it.enabled }
-                    .map { DisplayAlarm(AlarmTrigger.Relative(-it.minutesBefore.minutes), event.title) },
-            recurrenceDates = explicit?.let { recurrenceDates(event, it, today) }.orEmpty(),
+            exceptionDates = record.excludedDays.map { dateTime(event, Jdn(it), event.startMinute) },
+            alarms = alarms(record, event.title),
+            recurrenceDates = explicit?.let { recurrenceDates(record, it, today) }.orEmpty(),
             extensions =
                 explicit
                     ?.let {
@@ -85,6 +93,40 @@ internal class IcsExportMapping(
                     }.orEmpty(),
         )
     }
+
+    /**
+     * A VEVENT with the series' UID and a RECURRENCE-ID (RFC 5545 §3.8.4.4) for each override of [record] that is not
+     * cancelled; cancelled overrides are written as EXDATE values of the series instead.
+     */
+    fun overrideEvents(record: ExportRecord): List<IcsEvent> {
+        val event = record.event
+        return record.overrides.filterNot { it.cancelled }.map { override ->
+            val instance =
+                event.copy(
+                    startJdn = override.startJdn,
+                    startMinute = override.startMinute,
+                    endJdn = override.endJdn,
+                    endMinute = override.endMinute,
+                )
+            IcsEvent(
+                uid = uidOf(event),
+                start = dateTime(event, Jdn(override.startJdn), override.startMinute),
+                end = end(instance),
+                summary = override.title.takeIf { it.isNotEmpty() },
+                description = override.notes.takeIf { it.isNotEmpty() },
+                alarms = alarms(record, override.title),
+                recurrenceId = dateTime(event, Jdn(override.originalJdn), event.startMinute),
+            )
+        }
+    }
+
+    private fun alarms(
+        record: ExportRecord,
+        title: String,
+    ): List<DisplayAlarm> =
+        record.reminders
+            .filter { it.enabled }
+            .map { DisplayAlarm(AlarmTrigger.Relative(-it.minutesBefore.minutes), title) }
 
     /** Whether RFC 5545 expands [rule] as Taqvim does: Gregorian months, skipped invalid days, weeks from Monday. */
     private fun isRfcCompatible(
@@ -144,19 +186,25 @@ internal class IcsExportMapping(
         }
     }
 
-    /** Occurrences after the start (DTSTART is the first), bounded by [ExportLimits] when the rule has no end. */
+    /**
+     * Occurrences after the start (DTSTART is the first) that are not excluded, bounded by [ExportLimits] when the rule
+     * has no end. Overridden occurrences stay, so that their RECURRENCE-ID names one of the dates.
+     */
     private fun recurrenceDates(
-        event: PersonalEventEntity,
+        record: ExportRecord,
         rule: RecurrenceRule,
         today: Jdn,
     ): List<IcsDateTime> {
+        val event = record.event
         val calendar = calendars.calendarFor(event.calendarSystem) ?: return emptyList()
         val unbounded = rule.count == null && rule.until == null
         val horizon = maxOf(today.value, event.startJdn) + limits.horizonDays
+        val excluded = record.excludedDays.toSet()
         return RecurrenceEngine(calendar)
             .occurrences(calendar.fromJdn(Jdn(event.startJdn)), rule)
             .drop(1)
             .takeWhile { !unbounded || it.value <= horizon }
+            .filter { it.value !in excluded }
             .take(limits.maxRecurrenceDates)
             .map { dateTime(event, it, event.startMinute) }
             .toList()

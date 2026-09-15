@@ -61,3 +61,37 @@ only an ETag, and there was no way to tell a "not modified" answer apart from a 
 - The user preference that allows network use for subscriptions does not exist yet. Settings (T-1500) must add it and
   call `SubscriptionRefreshScheduler.update`.
 - `:data:events` depends on WorkManager (Apache-2.0).
+
+## Addendum (2026-09-15): exception dates and overrides
+
+This addendum replaces the `EXDATE` part of Decision 2 and the consequence that overrides and `EXDATE` values are not
+stored. It follows RFC 5545 §3.8.5.1 (`EXDATE`), §3.8.4.4 (`RECURRENCE-ID`) and §3.8.1.11 (`STATUS`).
+
+1. **Schema version 5** (migration 4 → 5) adds two tables. Both are keyed by the event and a day, and are deleted
+   with their event.
+   - `event_exceptions`: the days whose occurrence does not take place.
+   - `event_overrides`: the changed occurrence that would start on `original_jdn`. It has its own title, notes, days,
+     times (in the event's time zone) and an optional color; a missing color keeps the event's. A `cancelled`
+     override removes its occurrence.
+   Backups carry both as optional `eventExceptions` and `eventOverrides` lists; older backups restore without them.
+2. **Import.** Components are grouped by UID. The first component without `RECURRENCE-ID` is the series, and the
+   others are dropped as before. `EXDATE` values become exception days in the series' time zone. Every component with
+   a `RECURRENCE-ID` becomes an override of the day that property names; its `SUMMARY` and `DESCRIPTION` default to the
+   series' values, and `STATUS:CANCELLED` marks it cancelled. A UID with only overrides imports its first component as
+   a one-off event. `EXDATE` no longer produces an `ImportWarning`.
+3. **Export.**
+   - Exception days and cancelled overrides are written as `EXDATE` values, with the same value type as `DTSTART`.
+   - Every other override is written as a `VEVENT` with the series' UID and a `RECURRENCE-ID` on the original day at
+     the series' start time. It carries the series' display alarms.
+   - For rules written as explicit `RDATE` values, excluded days are left out of the list; they do not count towards
+     the 1 000-date limit. Overridden days stay in the list, so that each `RECURRENCE-ID` names one of the dates.
+   - `EXDATE` values are written for these rules too, because Taqvim restores the rule from `X-TAQVIM-RECURRENCE` and
+     would otherwise lose the exceptions on import.
+4. **Expansion.**
+   - Day assembly (and so widgets and search) and reminder planning drop excluded and cancelled occurrences, and show
+     overridden ones on their own days, times and titles. An override is applied only when its original day is an
+     occurrence of the rule.
+   - Subscriptions apply overrides too. The instance named by a `RECURRENCE-ID` is replaced by the override, or removed
+     when the override is cancelled; overrides whose UID has no series are shown on their own.
+5. **Not included:** `RANGE=THISANDFUTURE`, and editing a single occurrence in the event editor. The editor still edits
+   the whole series. Removing the rule of an event deletes its exceptions and overrides.

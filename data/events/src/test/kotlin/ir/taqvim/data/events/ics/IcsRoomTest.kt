@@ -70,7 +70,7 @@ class IcsRoomTest {
             result.shouldBeInstanceOf<ImportResult.Imported>()
             listOf(result.created, result.replaced, result.skipped) shouldBe listOf(3, 0, 1)
             result.problems.size shouldBe 1
-            result.warnings shouldBe listOf(ImportWarning("standup@taqvim.test", ImportIssue.EXCEPTION_DATES_IGNORED))
+            result.warnings shouldBe emptyList()
 
             val trip = events.getByIcsUid("trip@taqvim.test").shouldNotBeNull()
             listOf(trip.title, trip.startJdn, trip.endJdn) shouldBe

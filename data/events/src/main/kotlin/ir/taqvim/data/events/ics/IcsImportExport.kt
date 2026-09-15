@@ -9,10 +9,12 @@ import androidx.room.withTransaction
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.ics.IcsCalendar
+import ir.taqvim.core.ics.IcsEvent
 import ir.taqvim.core.ics.IcsParseResult
 import ir.taqvim.core.ics.IcsProblem
 import ir.taqvim.core.ics.IcsReader
 import ir.taqvim.core.ics.IcsWriter
+import ir.taqvim.data.database.EventExceptionEntity
 import ir.taqvim.data.database.PersonalEventDao
 import ir.taqvim.data.database.ReminderDao
 import ir.taqvim.data.database.ReminderEntity
@@ -86,14 +88,18 @@ class IcsImporter(
     ): ImportResult.Imported {
         val mapping = IcsEventMapping(zone())
         val now = clock.now().toEpochMilliseconds()
-        val unique = parsed.calendar.events.distinctBy { it.uid }
-        val imported = unique.map { mapping.toImported(it, now) }
+        val groups =
+            parsed.calendar.events
+                .groupBy { it.uid }
+                .values
+                .map(::UidGroup)
+        val imported = groups.map { mapping.toImported(it.series, now, it.overrides) }
         val outcomes = mutableListOf<Stored>()
         transactions.inTransaction { imported.forEach { outcomes += storeOne(it, duplicates) } }
         return ImportResult.Imported(
             created = outcomes.count { it == Stored.CREATED },
             replaced = outcomes.count { it == Stored.REPLACED },
-            skipped = outcomes.count { it == Stored.SKIPPED } + parsed.calendar.events.size - unique.size,
+            skipped = outcomes.count { it == Stored.SKIPPED } + groups.sumOf { it.dropped },
             warnings = imported.flatMap { it.warnings },
             problems = parsed.warnings,
         )
@@ -123,6 +129,8 @@ class IcsImporter(
                     ),
                 )
                 reminders.deleteReminders(existing.id)
+                events.deleteExceptions(existing.id)
+                events.deleteOverrides(existing.id)
                 saveDetails(existing.id, item)
                 Stored.REPLACED
             }
@@ -140,7 +148,22 @@ class IcsImporter(
             events.upsertRecurrence(rule.toEntity(eventId, item.event.calendarSystem))
         }
         item.reminderMinutes.forEach { reminders.insertReminder(ReminderEntity(eventId = eventId, minutesBefore = it)) }
+        events.insertExceptions(item.exceptionDays.map { EventExceptionEntity(eventId, it) })
+        events.upsertOverrides(item.overrides.map { it.copy(eventId = eventId) })
     }
+}
+
+/**
+ * The components sharing one UID (RFC 5545 §3.6.1): the [series] (the first without RECURRENCE-ID, else the first
+ * one) and, when the series has none, the [overrides] of its occurrences; the other components are [dropped].
+ */
+private class UidGroup(
+    components: List<IcsEvent>,
+) {
+    val series: IcsEvent = components.firstOrNull { it.recurrenceId == null } ?: components.first()
+    val overrides: List<IcsEvent> =
+        if (series.recurrenceId == null) components.filter { it.recurrenceId != null } else emptyList()
+    val dropped: Int = components.size - 1 - overrides.size
 }
 
 /** Exports personal events as iCalendar text (T-1003, ADR-0013). */
@@ -161,12 +184,18 @@ class IcsExporter(
         val today = now.toJdn(zone())
         val mapping = IcsExportMapping(calendars(), limits)
         val icsEvents =
-            events.all().filter { ids == null || it.id in ids }.map { stored ->
+            events.all().filter { ids == null || it.id in ids }.flatMap { stored ->
                 val event = stored.takeIf { it.icsUid != null } ?: stored.copy(icsUid = uidOf(stored))
                 if (stored.icsUid == null) events.update(event)
                 val record =
-                    ExportRecord(event, events.getRecurrence(event.id)?.toRule(), reminders.reminders(event.id))
-                mapping.toIcs(record, today)
+                    ExportRecord(
+                        event = event,
+                        recurrence = events.getRecurrence(event.id)?.toRule(),
+                        reminders = reminders.reminders(event.id),
+                        exceptionDays = events.exceptionDays(event.id),
+                        overrides = events.overrides(event.id),
+                    )
+                listOf(mapping.toIcs(record, today)) + mapping.overrideEvents(record)
             }
         return IcsWriter.write(IcsCalendar(PRODUCT_ID, icsEvents), now)
     }

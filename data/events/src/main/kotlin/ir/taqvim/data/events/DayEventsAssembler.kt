@@ -17,9 +17,11 @@ import ir.taqvim.core.events.HolidayCalendar
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.events.Occurrence
 import ir.taqvim.core.ics.RecurrenceEngine
+import ir.taqvim.core.ics.seriesInstances
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.devicecalendar.DeviceEvent
 import ir.taqvim.data.devicecalendar.DeviceEventMapping
@@ -119,7 +121,10 @@ internal class DayEventsAssembler(
     }
 }
 
-/** Occurrences of personal events in a day range (RRULE-lite in the event's own calendar, T-503). */
+/**
+ * Occurrences of personal events in a day range (RRULE-lite in the event's own calendar, T-503), without exception days
+ * and with overridden occurrences replaced (T-1003).
+ */
 internal object PersonalExpansion {
     /** Occurrences of [record] overlapping [days]; recurring events in unavailable calendars have none. */
     fun expand(
@@ -129,24 +134,47 @@ internal object PersonalExpansion {
     ): List<PersonalOccurrence> {
         val event = record.event
         val length = maxOf(0L, event.endJdn - event.startJdn)
-        return starts(record, calendars)
-            .takeWhile { it <= days.endInclusive }
-            .filter { it + length >= days.start }
-            .map { start ->
-                PersonalOccurrence(
-                    eventId = event.id,
-                    title = event.title,
-                    notes = event.notes,
-                    calendarSystem = event.calendarSystem,
-                    days = start..(start + length),
-                    startMinute = event.startMinute,
-                    endMinute = event.endMinute,
-                    timeZoneId = event.timeZoneId,
-                    colorArgb = event.colorArgb,
-                    recurring = record.recurrence != null,
-                )
-            }.toList()
+        val (cancelled, kept) = record.overrides.partition { it.cancelled }
+        return seriesInstances(
+            occurrences = starts(record, calendars),
+            excluded = record.exceptions + cancelled.map { Jdn(it.originalJdn) },
+            overrides = kept.associateBy { Jdn(it.originalJdn) },
+            from = days.start - length,
+            until = days.endInclusive,
+        ).map { instance ->
+            val occurrence = occurrence(record, instance.original..(instance.original + length))
+            instance.override?.let { occurrence.overriddenBy(it) } ?: occurrence
+        }.filter { it.days.start <= days.endInclusive && it.days.endInclusive >= days.start }
     }
+
+    private fun occurrence(
+        record: PersonalEventRecord,
+        days: JdnRange,
+    ): PersonalOccurrence {
+        val event = record.event
+        return PersonalOccurrence(
+            eventId = event.id,
+            title = event.title,
+            notes = event.notes,
+            calendarSystem = event.calendarSystem,
+            days = days,
+            startMinute = event.startMinute,
+            endMinute = event.endMinute,
+            timeZoneId = event.timeZoneId,
+            colorArgb = event.colorArgb,
+            recurring = record.recurrence != null,
+        )
+    }
+
+    private fun PersonalOccurrence.overriddenBy(override: EventOverrideEntity): PersonalOccurrence =
+        copy(
+            title = override.title,
+            notes = override.notes,
+            days = Jdn(override.startJdn)..Jdn(maxOf(override.startJdn, override.endJdn)),
+            startMinute = override.startMinute,
+            endMinute = override.endMinute,
+            colorArgb = override.colorArgb ?: colorArgb,
+        )
 
     private fun starts(
         record: PersonalEventRecord,

@@ -38,38 +38,71 @@ internal class IcsOccurrenceExpander(
         val epochMillis: Long,
     )
 
+    /**
+     * Rows of all [events] of a feed: every component without RECURRENCE-ID with the components of its UID that
+     * override its instances (RFC 5545 §3.8.4.4); overrides without such a component stand alone.
+     */
+    fun expandAll(
+        subscriptionId: Long,
+        events: List<IcsEvent>,
+        window: InstantWindow,
+    ): List<IcsEventCacheEntity> =
+        events.groupBy { it.uid }.values.flatMap { components ->
+            val (overrides, series) = components.partition { it.recurrenceId != null }
+            if (series.isEmpty()) {
+                overrides.filterNot { it.cancelled }.flatMap { expand(subscriptionId, it.single(), window) }
+            } else {
+                series.flatMap { expand(subscriptionId, it, window, overrides) }
+            }
+        }
+
+    /**
+     * Rows of [event] overlapping [window]; the instances named by the RECURRENCE-ID of [overrides] are replaced by the
+     * overrides, or removed when an override is cancelled.
+     */
     fun expand(
         subscriptionId: Long,
         event: IcsEvent,
         window: InstantWindow,
+        overrides: List<IcsEvent> = emptyList(),
     ): List<IcsEventCacheEntity> {
         val duration = durationMillis(event)
-        val excludedMillis = event.exceptionDates.map(::epochMillis).toSet()
-        val excludedDays =
-            event.exceptionDates
-                .filterIsInstance<IcsDateTime.Date>()
-                .map { it.date }
-                .toSet()
+        val removed = event.exceptionDates + overrides.mapNotNull { it.recurrenceId }
+        val excludedMillis = removed.map(::epochMillis).toSet()
+        val excludedDays = removed.filterIsInstance<IcsDateTime.Date>().map { it.date }.toSet()
         val lastDay = dayOfUtc(window.toEpochMillis).plus(MARGIN_DAYS, DateTimeUnit.DAY)
+        val replacements = overrides.filterNot { it.cancelled }.flatMap { expand(subscriptionId, it.single(), window) }
         return (ruleStarts(event, lastDay) + event.recurrenceDates.map { Start(dayOf(it), epochMillis(it)) })
             .asSequence()
             .filterNot { it.epochMillis in excludedMillis || it.day in excludedDays }
             .distinctBy { it.epochMillis }
             .filter { overlaps(it.epochMillis, duration, window) }
-            .sortedBy { it.epochMillis }
+            .map { row(subscriptionId, event, it.epochMillis, duration) }
+            .plus(replacements)
+            .sortedBy { it.startEpochMillis }
             .take(maxOccurrences)
-            .map { start ->
-                IcsEventCacheEntity(
-                    subscriptionId = subscriptionId,
-                    uid = event.uid,
-                    startEpochMillis = start.epochMillis,
-                    endEpochMillis = start.epochMillis + duration,
-                    allDay = event.start is IcsDateTime.Date,
-                    summary = event.summary.orEmpty(),
-                    description = event.description.orEmpty(),
-                )
-            }.toList()
+            .toList()
     }
+
+    /** This component as a one-off event: an override is expanded on its own. */
+    private fun IcsEvent.single(): IcsEvent =
+        copy(recurrence = null, exceptionDates = emptyList(), recurrenceDates = emptyList(), recurrenceId = null)
+
+    private fun row(
+        subscriptionId: Long,
+        event: IcsEvent,
+        startMillis: Long,
+        duration: Long,
+    ): IcsEventCacheEntity =
+        IcsEventCacheEntity(
+            subscriptionId = subscriptionId,
+            uid = event.uid,
+            startEpochMillis = startMillis,
+            endEpochMillis = startMillis + duration,
+            allDay = event.start is IcsDateTime.Date,
+            summary = event.summary.orEmpty(),
+            description = event.description.orEmpty(),
+        )
 
     /** DTSTART and, for an RRULE, its occurrences starting on or before [lastDay]. */
     private fun ruleStarts(
