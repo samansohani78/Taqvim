@@ -70,14 +70,12 @@ public data class CrescentObservation(
  * See docs/PROVENANCE.md (A-06).
  */
 public object Yallop {
-    private const val BEST_TIME_FRACTION = 4.0 / 9.0
     private const val SEMI_DIAMETER_PER_PARALLAX = 0.27245
     private const val EARTH_EQUATORIAL_RADIUS_KM = 6_378.137
     private const val ARC_MINUTES_PER_DEGREE = 60.0
     private const val HALF_TURN = 180.0
     private const val HOURS_PER_TURN = 24.0
     private const val DEGREES_PER_HOUR = 15.0
-    private const val MILLIS_PER_MINUTE = 60_000.0
     private val THRESHOLDS = listOf(0.216, -0.014, -0.160, -0.232, -0.293)
 
     /** Test value q for [arcVisionDegrees] and topocentric crescent width [widthArcMinutes]. */
@@ -119,19 +117,8 @@ public object Yallop {
     public fun evening(
         place: Coordinates,
         from: Instant,
-    ): CrescentObservation? {
-        val observer = place.toObserver()
-        val sunset = librarySearchRiseSet(Body.Sun, observer, Direction.Set, from.toAstronomyTime(), 1.0) ?: return null
-        val lagMillis =
-            librarySearchRiseSet(Body.Moon, observer, Direction.Set, sunset, 1.0)
-                ?.let { (it.toInstant() - sunset.toInstant()).inWholeMilliseconds }
-        if (lagMillis == null || lagMillis <= 0 || lagMillis >= 1.days.inWholeMilliseconds) return null
-        val bestTime =
-            Instant.fromEpochMilliseconds(
-                sunset.toInstant().toEpochMilliseconds() + (BEST_TIME_FRACTION * lagMillis).toLong(),
-            )
-        return geometryAt(place, bestTime, lagMillis / MILLIS_PER_MINUTE)
-    }
+    ): CrescentObservation? =
+        CrescentEvening.bestTime(place, from)?.let { geometryAt(place, it.instant, it.lagMinutes) }
 
     private fun geometryAt(
         place: Coordinates,
@@ -167,4 +154,37 @@ public object Yallop {
     private fun radians(degrees: Double): Double = degrees * PI / HALF_TURN
 
     private fun degrees(radians: Double): Double = radians * HALF_TURN / PI
+}
+
+/** Yallop's best time of an evening, Tb = Ts + 4/9 Lag, with the lag from sunset to moonset in minutes. */
+internal data class BestTime(
+    val instant: Instant,
+    val lagMinutes: Double,
+)
+
+/** The evening a crescent test looks at, shared by Yallop's and Odeh's criteria. */
+internal object CrescentEvening {
+    private const val BEST_TIME_FRACTION = 4.0 / 9.0
+    private const val MILLIS_PER_MINUTE = 60_000.0
+
+    /**
+     * The best time on the first evening after [from] at [place]; `null` when the Sun does not set within a day or the
+     * Moon sets before the Sun.
+     */
+    fun bestTime(
+        place: Coordinates,
+        from: Instant,
+    ): BestTime? {
+        val observer = place.toObserver()
+        val sunset = librarySearchRiseSet(Body.Sun, observer, Direction.Set, from.toAstronomyTime(), 1.0) ?: return null
+        val lagMillis =
+            librarySearchRiseSet(Body.Moon, observer, Direction.Set, sunset, 1.0)
+                ?.let { (it.toInstant() - sunset.toInstant()).inWholeMilliseconds }
+        if (lagMillis == null || lagMillis <= 0 || lagMillis >= 1.days.inWholeMilliseconds) return null
+        val bestTime =
+            Instant.fromEpochMilliseconds(
+                sunset.toInstant().toEpochMilliseconds() + (BEST_TIME_FRACTION * lagMillis).toLong(),
+            )
+        return BestTime(bestTime, lagMillis / MILLIS_PER_MINUTE)
+    }
 }
