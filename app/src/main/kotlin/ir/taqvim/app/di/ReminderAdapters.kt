@@ -8,8 +8,10 @@ import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventId
+import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
 import ir.taqvim.data.database.AlarmKind
@@ -74,13 +76,26 @@ internal class RoomReminderSetupSource(
         return ReminderSetup(
             events = personal,
             officials = officialReminders.all().mapNotNull(::officialReminder),
-            schedule = CalculatorOfficialEventSchedule(definitions, current.languageSpec().code, calendars),
+            schedule = officialSchedule(definitions, current.languageSpec().code, current.islamicVariant, calendars),
             zone = zone(),
             allDayTime = MinuteOfDay(current.app.allDayReminderMinute),
             calendars = calendars,
         )
     }
 }
+
+/**
+ * Official event days for reminders, computed per event source with the same calendars as the calendar display
+ * (B04): sources with a fixed Islamic variant keep it, others use the user's [variant]; other calendars come from
+ * [calendars].
+ */
+internal fun officialSchedule(
+    definitions: List<EventDefinition>,
+    languageTag: String,
+    variant: IslamicVariant,
+    calendars: CalendarProvider,
+): CalculatorOfficialEventSchedule =
+    CalculatorOfficialEventSchedule(definitions, languageTag, IslamicCalendarSelection(variant, base = calendars))
 
 /** [entity] for the reminder planner, or `null` when it is off or unusable (no event id, lead time beyond 30 days). */
 internal fun officialReminder(entity: OfficialReminderEntity): OfficialReminder? =
