@@ -46,7 +46,7 @@ class EventEditorViewModel(
 
     val uiState: StateFlow<EventEditorUiState> =
         combine(settingsSource.settings().onEach(::onSettings), session) { settings, current ->
-            EditorPresenter.present(current, settings)
+            EditorPresenter.present(current, settings, today(settings))
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), EventEditorUiState())
 
     /** Applies a form change. */

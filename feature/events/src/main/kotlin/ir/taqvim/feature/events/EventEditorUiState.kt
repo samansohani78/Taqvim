@@ -12,6 +12,7 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Weekday
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet
+import kotlinx.collections.immutable.persistentListOf
 
 /** State of the event editor (T-1000). */
 data class EventEditorUiState(
@@ -116,6 +117,14 @@ data class EditorDisplay(
     /** Event colors (ARGB). */
     val colors: ImmutableList<Int>,
     val picker: CalendarPickerData,
+    /** The next occurrences of a repeating event (review F02), empty otherwise. */
+    val preview: ImmutableList<PreviewOccurrence> = persistentListOf(),
+)
+
+/** An upcoming occurrence: its localized [date] and, for a timed event, [time], in the viewer's zone. */
+data class PreviewOccurrence(
+    val date: String,
+    val time: String?,
 )
 
 /** A weekday of a weekly repetition. */

@@ -14,6 +14,7 @@ import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.collections.immutable.ImmutableList
@@ -68,19 +69,21 @@ internal object EditorPresenter {
     fun present(
         session: EditorSession,
         settings: EditorSettings?,
+        today: Jdn? = null,
     ): EventEditorUiState =
         EventEditorUiState(
             when (session) {
                 EditorSession.Loading -> EditorContent.Loading
                 EditorSession.NotFound -> EditorContent.NotFound
                 is EditorSession.Finished -> EditorContent.Finished(session.outcome)
-                is EditorSession.Editing -> settings?.let { editing(session, it) } ?: EditorContent.Loading
+                is EditorSession.Editing -> settings?.let { editing(session, it, today) } ?: EditorContent.Loading
             },
         )
 
     private fun editing(
         session: EditorSession.Editing,
         settings: EditorSettings,
+        today: Jdn?,
     ): EditorContent.Editing {
         val form = session.form
         val calendar = settings.arithmeticOf(form.calendar)
@@ -88,7 +91,7 @@ internal object EditorPresenter {
             if (session.showErrors) EventValidator.validate(form, calendar).toImmutableSet() else persistentSetOf()
         return EditorContent.Editing(
             form = form,
-            display = display(form, calendar, settings),
+            display = display(form, calendar, settings).copy(preview = preview(form, calendar, settings, today)),
             errors = errors,
             isNew = form.id == null,
             hasChanges = form != session.original,
@@ -126,6 +129,23 @@ internal object EditorPresenter {
             colors = COLORS,
             picker = picker(form, calendar, language),
         )
+    }
+
+    private fun preview(
+        form: EditorForm,
+        calendar: CalendarArithmetic,
+        settings: EditorSettings,
+        today: Jdn?,
+    ): ImmutableList<PreviewOccurrence> {
+        val from = today ?: calendar.toJdn(form.start)
+        return RecurrencePreview
+            .slots(form, calendar, from, settings.timeZoneId)
+            .map { slot ->
+                PreviewOccurrence(
+                    date = longDate(calendar.fromJdn(slot.day), calendar, settings.language),
+                    time = slot.minute?.let { clockTime(it, settings.language) },
+                )
+            }.toImmutableList()
     }
 
     private fun longDate(

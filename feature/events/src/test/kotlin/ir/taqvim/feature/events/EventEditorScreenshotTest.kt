@@ -41,7 +41,7 @@ class EventEditorScreenshotTest(
                 "new" -> EditorSession.Editing(new, new)
                 else -> detailed(new, settings)
             }
-        val state = EditorPresenter.present(session, settings)
+        val state = EditorPresenter.present(session, settings, EditorFixtures.TODAY)
         composeRule.captureScreenshot("event_editor_$sample", environment) {
             EditorTestTheme(rtl = rtl, dark = environment.theme.isDark) {
                 EventEditorScreen(state, EventEditorActions())

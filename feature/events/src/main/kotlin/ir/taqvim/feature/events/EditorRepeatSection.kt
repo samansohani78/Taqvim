@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -63,9 +64,31 @@ internal fun RepeatSection(
                 InvalidDaysChoice(repeat.invalidDates, onIntent)
             }
             RepeatEnd(editing, repeat, onIntent, onPick)
+            RepeatPreview(editing.display.preview)
         }
     }
 }
+
+/** The next occurrences of the series (review F02), so leap days, weekdays and time zones can be checked. */
+@Composable
+private fun RepeatPreview(preview: List<PreviewOccurrence>) {
+    if (preview.isEmpty()) return
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier.fillMaxWidth().testTag(REPEAT_PREVIEW_TAG),
+    ) {
+        Text(stringResource(R.string.events_repeat_preview_label))
+        preview.forEach { occurrence ->
+            val text =
+                occurrence.time?.let { stringResource(R.string.events_repeat_preview_timed, occurrence.date, it) }
+                    ?: occurrence.date
+            Text(text)
+        }
+    }
+}
+
+/** Test tag of the list of upcoming occurrences. */
+const val REPEAT_PREVIEW_TAG: String = "events_repeat_preview"
 
 @Composable
 private fun IntervalField(

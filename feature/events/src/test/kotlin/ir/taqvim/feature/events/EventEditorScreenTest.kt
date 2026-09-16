@@ -16,6 +16,7 @@ import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
@@ -75,6 +76,26 @@ class EventEditorScreenTest {
         val state = EditorPresenter.present(session(form), EditorFixtures.settings())
         composeRule.setContent {
             EditorTestTheme { EventEditorScreen(state, EventEditorActions(onIntent = { intents += it })) }
+        }
+    }
+
+    @Test
+    fun listsTheNextOccurrencesOfARepeatingEvent() {
+        val base = EditorFixtures.form()
+        val form = base.copy(repeat = RepeatForm.create(Frequency.WEEKLY, base.start, NumeralSystem.LATIN))
+        val state =
+            EditorPresenter.present(
+                EditorSession.Editing(form, form),
+                EditorFixtures.settings(),
+                EditorFixtures.TODAY,
+            )
+        composeRule.setContent { EditorTestTheme { EventEditorScreen(state, EventEditorActions()) } }
+
+        composeRule.onNodeWithTag(REPEAT_PREVIEW_TAG).performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Next occurrences").assertIsDisplayed()
+        // The first occurrence is the start day, which the schedule section also shows.
+        state.content.let { it as EditorContent.Editing }.display.preview.drop(1).forEach {
+            composeRule.onNodeWithText(it.date, useUnmergedTree = true).assertExists()
         }
     }
 

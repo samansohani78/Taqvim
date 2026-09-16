@@ -116,4 +116,8 @@
   <string name="events_error_until_before_start">The repetition ends before the event starts</string>
   <string name="events_error_too_many_reminders">Use at most 5 reminders</string>
   <string name="events_error_reminder">A reminder is out of range</string>
+  <!-- Heading of the list of the next dates on which a repeating event occurs. -->
+  <string name="events_repeat_preview_label">Next occurrences</string>
+  <!-- An upcoming occurrence of a timed repeating event: %1$s is the date, %2$s the local time. -->
+  <string name="events_repeat_preview_timed">%1$s, %2$s</string>
 </resources>

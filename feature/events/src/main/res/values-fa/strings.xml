@@ -87,4 +87,8 @@
   <string name="events_error_until_before_start">پایان تکرار پیش از شروع رویداد است</string>
   <string name="events_error_too_many_reminders">حداکثر ۵ یادآوری مجاز است</string>
   <string name="events_error_reminder">یکی از یادآوری‌ها خارج از محدوده است</string>
+  <!-- Heading of the list of the next dates on which a repeating event occurs. -->
+  <string name="events_repeat_preview_label">رخدادهای بعدی</string>
+  <!-- An upcoming occurrence of a timed repeating event: %1$s is the date, %2$s the local time. -->
+  <string name="events_repeat_preview_timed">%1$s، ساعت %2$s</string>
 </resources>
