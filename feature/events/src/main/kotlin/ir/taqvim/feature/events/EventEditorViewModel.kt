@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.events
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.taqvim.core.calendar.toJdn
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -22,16 +24,23 @@ import kotlinx.datetime.TimeZone
 /**
  * The personal event editor (T-1000): creates the event [eventId] is `null` for, otherwise edits the stored one;
  * validates before saving and reports the outcome through [EditorContent.Finished]. A new event starts from [draft]
- * when one is given (a day of the calendar or a range drawn on the timeline), otherwise all-day today.
+ * when one is given (a day of the calendar or a range drawn on the timeline), otherwise all-day today. Unsaved changes
+ * are kept in [savedState] so they survive process death (B11) and are cleared once the editor finishes.
  */
 class EventEditorViewModel(
     private val eventId: Long?,
     private val store: PersonalEventStore,
     settingsSource: EditorSettingsSource,
     private val clock: Clock,
+    private val savedState: SavedStateHandle,
     private val draft: NewEventDraft? = null,
 ) : ViewModel() {
     private val session = MutableStateFlow<EditorSession>(EditorSession.Loading)
+
+    init {
+        session.onEach(::keepDraft).launchIn(viewModelScope)
+    }
+
     private val latestSettings = MutableStateFlow<EditorSettings?>(null)
 
     val uiState: StateFlow<EventEditorUiState> =
@@ -112,7 +121,38 @@ class EventEditorViewModel(
                     ?.takeIf { it.calendar in settings.arithmetic }
                     ?.let { EditorForm.of(it, settings.arithmeticOf(it.calendar), settings.language.numerals) }
             }
-        return form?.let { EditorSession.Editing(form = it, original = it) } ?: EditorSession.NotFound
+        return form?.let(::restoreDraft) ?: EditorSession.NotFound
+    }
+
+    /** The form as opened, with the unsaved draft of the same event on top when the process was recreated. */
+    private fun restoreDraft(opened: EditorForm): EditorSession.Editing {
+        val restored = savedState.get<String>(DRAFT_KEY)?.let { EditorDraftCodec.decode(it, eventId, opened) }
+        return EditorSession.Editing(
+            form = restored?.form ?: opened,
+            original = opened,
+            dateText = restored?.dateText.orEmpty(),
+        )
+    }
+
+    /** Saves the unsaved changes of an editing session and forgets them once the editor finishes. */
+    private fun keepDraft(current: EditorSession) {
+        when (current) {
+            is EditorSession.Editing -> {
+                if (current.form == current.original && current.dateText.isEmpty()) {
+                    savedState.remove<String>(DRAFT_KEY)
+                } else {
+                    savedState[DRAFT_KEY] = EditorDraftCodec.encode(eventId, current.form, current.dateText)
+                }
+            }
+
+            is EditorSession.Finished -> {
+                savedState.remove<String>(DRAFT_KEY)
+            }
+
+            EditorSession.Loading, EditorSession.NotFound -> {
+                // Nothing to keep before the form opens or when there is no event.
+            }
+        }
     }
 
     private fun finishOrFail(
@@ -140,10 +180,13 @@ class EventEditorViewModel(
         session.update { current -> (current as? EditorSession.Editing)?.let(change) ?: current }
     }
 
-    private companion object {
-        const val STOP_TIMEOUT_MILLIS = 5_000L
+    internal companion object {
+        private const val STOP_TIMEOUT_MILLIS = 5_000L
+
+        /** The `SavedStateHandle` key of the unsaved draft (B11). */
+        const val DRAFT_KEY = "event-editor-draft"
 
         /** Length of a new timed event whose end is not given. */
-        const val DEFAULT_LENGTH_MINUTES = 60
+        private const val DEFAULT_LENGTH_MINUTES = 60
     }
 }

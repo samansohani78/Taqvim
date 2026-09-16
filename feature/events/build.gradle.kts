@@ -8,6 +8,8 @@ dependencies {
     implementation(projects.core.ics)
     implementation(projects.core.nlp)
     implementation(libs.kotlinx.coroutines.core)
+    // B11: the unsaved draft survives process death as JSON in SavedStateHandle.
+    implementation(libs.kotlinx.serialization.json)
 }
 
 // T-1700: every captured screenshot state is also audited for accessibility (AccessibilityAudit).

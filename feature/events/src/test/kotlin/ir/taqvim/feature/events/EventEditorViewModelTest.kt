@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.events
 
+import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.ReceiveTurbine
 import app.cash.turbine.test
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -38,9 +39,11 @@ class EventEditorViewModelTest {
     private fun TestScope.viewModel(
         store: FakeEventStore = FakeEventStore(),
         eventId: Long? = null,
+        savedState: SavedStateHandle = SavedStateHandle(),
     ): EventEditorViewModel {
         Dispatchers.setMain(UnconfinedTestDispatcher(testScheduler))
-        return EventEditorViewModel(eventId, store, settings, FakeClock(EditorFixtures.NOW)).also { viewModel ->
+        val clock = FakeClock(EditorFixtures.NOW)
+        return EventEditorViewModel(eventId, store, settings, clock, savedState).also { viewModel ->
             backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { viewModel.uiState.collect {} }
         }
     }
@@ -201,7 +204,8 @@ class EventEditorViewModelTest {
     @Test
     fun `actions before the editor opens are ignored`() {
         Dispatchers.setMain(UnconfinedTestDispatcher())
-        val viewModel = EventEditorViewModel(null, FakeEventStore(), settings, FakeClock(EditorFixtures.NOW))
+        val viewModel =
+            EventEditorViewModel(null, FakeEventStore(), settings, FakeClock(EditorFixtures.NOW), SavedStateHandle())
         viewModel.onIntent(DetailsIntent.Title("Dentist"))
         viewModel.onApplyDateText()
         viewModel.onSave()
@@ -209,4 +213,58 @@ class EventEditorViewModelTest {
         viewModel.onDiscard()
         viewModel.uiState.value.content shouldBe EditorContent.Loading
     }
+
+    /** The saved state as a recreated process sees it: a copy of the values, without the old view model. */
+    private fun SavedStateHandle.afterProcessDeath(): SavedStateHandle =
+        SavedStateHandle(keys().associateWith { get<Any?>(it) })
+
+    @Test
+    fun `unsaved changes to a new event survive process death and are forgotten on discard`(): Unit =
+        runTest {
+            val saved = SavedStateHandle()
+            viewModel(savedState = saved).run {
+                onIntent(DetailsIntent.Title("Dentist"))
+                onDateTextChange("tomorrow")
+            }
+            val restored = saved.afterProcessDeath()
+
+            val recreated = viewModel(savedState = restored)
+            recreated.editing.run {
+                form.title shouldBe "Dentist"
+                dateText shouldBe "tomorrow"
+                hasChanges shouldBe true
+            }
+            recreated.onDiscard()
+            restored.contains(EventEditorViewModel.DRAFT_KEY) shouldBe false
+        }
+
+    @Test
+    fun `edits of a stored event survive process death and are forgotten once saved`(): Unit =
+        runTest {
+            val store = FakeEventStore(EditorFixtures.event(id = 3, title = "Checkup"))
+            val saved = SavedStateHandle()
+            viewModel(store, eventId = 3, savedState = saved).onIntent(DetailsIntent.Title("Checkup at 10"))
+            val restored = saved.afterProcessDeath()
+
+            val recreated = viewModel(store, eventId = 3, savedState = restored)
+            recreated.editing.form.title shouldBe "Checkup at 10"
+            recreated.onSave()
+            store.events.getValue(3).title shouldBe "Checkup at 10"
+            restored.contains(EventEditorViewModel.DRAFT_KEY) shouldBe false
+        }
+
+    @Test
+    fun `an unchanged form keeps no draft and a draft of another event is ignored`(): Unit =
+        runTest {
+            val store = FakeEventStore(EditorFixtures.event(id = 3), EditorFixtures.event(id = 4, title = "Other"))
+            val saved = SavedStateHandle()
+            val viewModel = viewModel(store, eventId = 3, savedState = saved)
+            viewModel.onIntent(DetailsIntent.Title("Changed"))
+            saved.contains(EventEditorViewModel.DRAFT_KEY) shouldBe true
+            viewModel.onIntent(DetailsIntent.Title("Dentist"))
+            saved.contains(EventEditorViewModel.DRAFT_KEY) shouldBe false
+
+            viewModel.onIntent(DetailsIntent.Title("Changed"))
+            viewModel(store, eventId = 4, savedState = saved.afterProcessDeath()).editing.form.title shouldBe "Other"
+        }
 }

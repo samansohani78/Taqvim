@@ -21,13 +21,14 @@ import org.koin.dsl.module
 /**
  * Koin bindings of the event editor; `:app` provides [PersonalEventStore], [EditorSettingsSource] and
  * `kotlin.time.Clock`. The event id (or `null` for a new event) and an optional [NewEventDraft] are the view model's
- * parameters.
+ * parameters; its `SavedStateHandle` comes from the navigation entry.
  */
 val eventsFeatureModule: Module =
     module {
         viewModel { parameters ->
             val draft = parameters.getOrNull<NewEventDraft>()
-            EventEditorViewModel(parameters.getOrNull<Long>(), get(), get(), get(), draft)
+            // B11: Koin passes the entry's SavedStateHandle, so an unsaved draft survives process death.
+            EventEditorViewModel(parameters.getOrNull<Long>(), get(), get(), get(), get(), draft)
         }
     }
 

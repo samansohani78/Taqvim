@@ -7,6 +7,7 @@ package ir.taqvim.feature.events
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performScrollTo
+import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.testing.FakeClock
@@ -27,7 +28,14 @@ class NewEventDraftScreenTest {
     fun theRouteShowsTheDraftsTimes() {
         val draft = NewEventDraft(LocalDate(2026, 12, 25).toJdn(), startMinute = 600, endMinute = 690)
         val viewModel =
-            EventEditorViewModel(null, FakeEventStore(), FakeSettingsSource(), FakeClock(EditorFixtures.NOW), draft)
+            EventEditorViewModel(
+                null,
+                FakeEventStore(),
+                FakeSettingsSource(),
+                FakeClock(EditorFixtures.NOW),
+                SavedStateHandle(),
+                draft,
+            )
         composeRule.setContent {
             EditorTestTheme { EventEditorRoute(null, onClose = {}, draft = draft, viewModel = viewModel) }
         }

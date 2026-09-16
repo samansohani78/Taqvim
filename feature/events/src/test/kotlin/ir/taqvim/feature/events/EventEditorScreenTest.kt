@@ -23,6 +23,7 @@ import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
 import androidx.core.app.ActivityOptionsCompat
+import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.ics.Frequency
@@ -52,7 +53,14 @@ class EventEditorScreenTest {
         store: FakeEventStore,
         eventId: Long? = null,
     ): EventEditorViewModel {
-        val viewModel = EventEditorViewModel(eventId, store, FakeSettingsSource(), FakeClock(EditorFixtures.NOW))
+        val viewModel =
+            EventEditorViewModel(
+                eventId,
+                store,
+                FakeSettingsSource(),
+                FakeClock(EditorFixtures.NOW),
+                SavedStateHandle(),
+            )
         composeRule.setContent {
             EditorTestTheme { EventEditorRoute(eventId, onClose = { outcomes += it }, viewModel = viewModel) }
         }
@@ -232,7 +240,8 @@ class EventEditorScreenTest {
                     }
             }
         val store = FakeEventStore()
-        val viewModel = EventEditorViewModel(null, store, FakeSettingsSource(), FakeClock(EditorFixtures.NOW))
+        val viewModel =
+            EventEditorViewModel(null, store, FakeSettingsSource(), FakeClock(EditorFixtures.NOW), SavedStateHandle())
         composeRule.setContent {
             CompositionLocalProvider(LocalActivityResultRegistryOwner provides registry) {
                 EditorTestTheme { EventEditorRoute(null, onClose = { outcomes += it }, viewModel = viewModel) }

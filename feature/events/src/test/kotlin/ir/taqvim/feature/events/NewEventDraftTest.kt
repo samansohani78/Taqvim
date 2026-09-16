@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.events
 
+import androidx.lifecycle.SavedStateHandle
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
@@ -35,7 +36,14 @@ class NewEventDraftTest {
     private fun TestScope.form(draft: NewEventDraft?): EditorForm {
         Dispatchers.setMain(UnconfinedTestDispatcher(testScheduler))
         val viewModel =
-            EventEditorViewModel(null, FakeEventStore(), FakeSettingsSource(), FakeClock(EditorFixtures.NOW), draft)
+            EventEditorViewModel(
+                null,
+                FakeEventStore(),
+                FakeSettingsSource(),
+                FakeClock(EditorFixtures.NOW),
+                SavedStateHandle(),
+                draft,
+            )
         backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { viewModel.uiState.collect {} }
         return viewModel.uiState.value.content
             .shouldBeInstanceOf<EditorContent.Editing>()
