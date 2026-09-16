@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.map
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -63,9 +64,25 @@ private fun MapScreenContent(
                 OutlineState.Unavailable -> Text(stringResource(R.string.map_unavailable))
                 OutlineState.Loading -> CircularProgressIndicator()
             }
+            if (MapLayer.TECTONIC_PLATES in state.layers && state.outline is OutlineState.Ready) {
+                PlateAttribution(Modifier.align(Alignment.BottomStart))
+            }
         }
         MapControls(state, actions)
     }
+}
+
+/** The plate data's CC BY 4.0 attribution, on the map itself so that it shows without scrolling the controls. */
+@Composable
+private fun PlateAttribution(modifier: Modifier) {
+    Text(
+        stringResource(R.string.map_plates_attribution),
+        style = MaterialTheme.typography.bodySmall,
+        modifier =
+            modifier
+                .background(MaterialTheme.colorScheme.surface.copy(alpha = ATTRIBUTION_BACKGROUND_ALPHA))
+                .padding(horizontal = 8.dp, vertical = 2.dp),
+    )
 }
 
 @Composable
@@ -182,4 +199,5 @@ internal val MapLayer.label: Int
         }
 
 private const val CONTROLS_MAX_HEIGHT = 320
+private const val ATTRIBUTION_BACKGROUND_ALPHA = 0.8f
 private const val LAST_MINUTE = 1_439f

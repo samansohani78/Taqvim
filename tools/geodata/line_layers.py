@@ -1,34 +1,38 @@
 # Copyright (c) 2026 Saman Sohani. All Rights Reserved.
 # Proprietary and confidential. See the LICENSE file in the repository root.
-"""Shared helpers of the map line-layer generators (T-1301): boundary extraction, simplification and asset writing.
+"""Shared helpers of the map line-layer generators (T-1301): boundary extraction, geometry, simplification and assets.
 
-Boundaries are the polygon edges shared by two polygons whose keys differ (for example two time-zone offsets or two
-plate ids). Edges are matched on their endpoints rounded to 1e-5 degree, chained into polylines through vertices
-with exactly two boundary edges, simplified with the Douglas-Peucker algorithm in degrees, rounded to hundredths of a
-degree and split where a line would jump across the antimeridian. The asset format is the one of
-`natural_earth_outline.py`: header lines starting with "# ", then "<tag> lon,lat lon,lat ..." lines.
+Boundaries are the polygon edges shared by two polygons whose keys differ (for example two time-zone bands or two
+plate ids). Edges are matched on their endpoints rounded to 1e-5 degree and grouped by the pair of keys they separate;
+each group is chained into polylines through vertices with exactly two of its edges, simplified with the
+Douglas-Peucker algorithm in degrees, rounded to hundredths of a degree and split where a line would jump across the
+antimeridian. The asset format is the one of `natural_earth_outline.py`: header lines starting with "# ", then
+"<tag> [fields] lon,lat lon,lat ..." lines.
 """
 import collections
 import hashlib
+import math
 import struct
 
 KEY_DIGITS = 5
+# Mean Earth radius (IUGG), for polygon areas.
+EARTH_RADIUS_KM = 6371.0088
 
 
 def _key(point):
     return round(point[0], KEY_DIGITS), round(point[1], KEY_DIGITS)
 
 
-def boundary_segments(polygons):
-    """Segments (pairs of keyed points) shared by exactly two polygons with different keys.
+def pair_segments(polygons):
+    """Segments shared by exactly two polygons with different keys, grouped by their sorted pair of keys.
 
-    `polygons` is an iterable of (key, rings), rings being lists of (lon, lat). Returns the kept segments, the number
-    of segments owned by one polygon only (outer edges, e.g. along the antimeridian) and the original point of every
-    keyed point.
+    `polygons` is an iterable of (key, rings), rings being lists of (lon, lat); keys must be sortable. Returns a dict
+    from (key, key) to that pair's segments (pairs of keyed points), the number of segments owned by one polygon only
+    (outer edges, e.g. along the antimeridian) and the original point of every keyed point.
     """
     owners = collections.defaultdict(list)
     points = {}
-    for index, (key, rings) in enumerate(polygons):
+    for key, rings in polygons:
         for ring in rings:
             for a, b in zip(ring, ring[1:]):
                 ka, kb = _key(a), _key(b)
@@ -36,15 +40,15 @@ def boundary_segments(polygons):
                     continue
                 points.setdefault(ka, a)
                 points.setdefault(kb, b)
-                owners[frozenset((ka, kb))].append((index, key))
-    kept = []
+                owners[frozenset((ka, kb))].append(key)
+    groups = collections.defaultdict(list)
     single = 0
     for segment, owned in owners.items():
         if len(owned) == 1:
             single += 1
-        elif len(owned) == 2 and owned[0][1] != owned[1][1]:
-            kept.append(tuple(segment))
-    return kept, single, points
+        elif len(owned) == 2 and owned[0] != owned[1]:
+            groups[tuple(sorted(owned))].append(tuple(sorted(segment)))
+    return dict(sorted(groups.items())), single, points
 
 
 def chains(segments):
@@ -84,6 +88,43 @@ def chains(segments):
     return lines
 
 
+def inside(lon, lat, rings):
+    """Whether (lon, lat) lies inside a polygon's rings (outer ring and holes) by the even-odd rule, in degrees."""
+    crossings = 0
+    for ring in rings:
+        for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+            if (y1 > lat) != (y2 > lat) and lon < x1 + (lat - y1) * (x2 - x1) / (y2 - y1):
+                crossings += 1
+    return crossings % 2 == 1
+
+
+def polygon_area_km2(rings):
+    """Area of a polygon's closed rings on the sphere, holes subtracted whatever the ring orientation.
+
+    Each ring's signed area is R²/2 · Σ (λ₂ − λ₁)(2 + sin φ₁ + sin φ₂) over its edges (Chamberlain & Duquette, "Some
+    algorithms for polygons on a sphere", JPL Publication 07-3, 2007); outer rings and holes have opposite orientation
+    in both GeoJSON and shapefiles, so the absolute value of the sum is the polygon's area.
+    """
+    total = 0.0
+    for ring in rings:
+        for (lon1, lat1), (lon2, lat2) in zip(ring, ring[1:]):
+            total += math.radians(lon2 - lon1) * (2 + math.sin(math.radians(lat1)) + math.sin(math.radians(lat2)))
+    return abs(total) * EARTH_RADIUS_KM**2 / 2
+
+
+def centroid(ring):
+    """The planar (degree) centroid of a closed ring; its first point for a degenerate ring."""
+    doubled, cx, cy = 0.0, 0.0, 0.0
+    for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+        cross = x1 * y2 - x2 * y1
+        doubled += cross
+        cx += (x1 + x2) * cross
+        cy += (y1 + y2) * cross
+    if abs(doubled) < 1e-12:
+        return ring[0]
+    return cx / (3 * doubled), cy / (3 * doubled)
+
+
 def simplify(points, tolerance):
     """Douglas-Peucker simplification of (lon, lat) points with a planar tolerance in degrees."""
     if len(points) < 3:
@@ -113,8 +154,16 @@ def simplify(points, tolerance):
     return [point for point, kept in zip(points, keep) if kept]
 
 
+def hundredths(point):
+    """A (lon, lat) point as the asset's "lon,lat" pair in hundredths of a degree."""
+    return f"{round(point[0] * 100)},{round(point[1] * 100)}"
+
+
 def encode_lines(tag, lines, points, tolerance):
-    """Asset lines for keyed polylines: simplified, rounded to hundredths, split at antimeridian jumps."""
+    """Asset lines for keyed polylines: simplified, rounded to hundredths, split at antimeridian jumps.
+
+    `tag` is written before the pairs and may carry fields, e.g. "Z 3 17".
+    """
     out = []
     for line in lines:
         coordinates = simplify([points[key] for key in line], tolerance)
@@ -125,7 +174,7 @@ def encode_lines(tag, lines, points, tolerance):
                 if len(pairs) >= 2:
                     out.append(f"{tag} " + " ".join(pairs))
                 pairs = []
-            pair = f"{round(lon * 100)},{round(lat * 100)}"
+            pair = hundredths((lon, lat))
             if not pairs or pairs[-1] != pair:
                 pairs.append(pair)
             previous_lon = lon

@@ -12,10 +12,12 @@ present-day static plate polygons (`CorrectedModel/StaticGeometries/StaticPolygo
 PresentDay_StaticPlatePolygons_Matthews.shp` and `.dbf`) are read directly with a minimal shapefile reader; no GPlates
 software is used.
 
-Output lines after the header: "P" (a boundary between polygons of two different plate ids, open) followed by
-"lon,lat" pairs in hundredths of a degree, simplified with a Douglas-Peucker tolerance of TOLERANCE degrees. Edges
-between polygons of one plate (for example crust of different ages) are dropped, so only plate-id boundaries remain.
+Output lines after the header: "P <km²>" (a boundary between polygons of two different plate ids, open) followed by
+"lon,lat" pairs in hundredths of a degree, simplified with a Douglas-Peucker tolerance of TOLERANCE degrees. The number
+is the spherical area of the smaller of the two plates (all polygons of a plate id), so the app can hide microplate
+boundaries at low zoom. Edges between polygons of one plate (for example crust of different ages) are dropped.
 """
+import collections
 import pathlib
 import sys
 import zipfile
@@ -40,10 +42,16 @@ def main(argv):
         records = line_layers.read_dbf(archive.read(MEMBER + ".dbf"))
     if len(shapes) != len(records):
         raise ValueError(f"{len(shapes)} shapes but {len(records)} attribute records")
-    segments, single, points = line_layers.boundary_segments(
+    areas = collections.defaultdict(float)
+    for record, rings in zip(records, shapes):
+        areas[record["PLATEID1"]] += line_layers.polygon_area_km2(rings)
+    groups, single, points = line_layers.pair_segments(
         (record["PLATEID1"], rings) for record, rings in zip(records, shapes)
     )
-    body = line_layers.encode_lines("P", line_layers.chains(segments), points, TOLERANCE)
+    body = []
+    for (first, second), segments in groups.items():
+        smaller = round(min(areas[first], areas[second]))
+        body += line_layers.encode_lines(f"P {smaller}", line_layers.chains(segments), points, TOLERANCE)
     header = [
         "# source: Matthews, K.J., Maloney, K.T., Zahirovic, S., Williams, S.E., Seton, M., Muller, R.D. (2016), "
         "Global plate boundary evolution and kinematics since the late Paleozoic; present-day static plate polygons "
@@ -53,13 +61,13 @@ def main(argv):
         "# license: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/); simplified for display",
         f"# source-sha256: {line_layers.sha256_file(source)}",
         "# generator: tools/geodata/matthews_plates.py",
-        f"# format: P = boundary between polygons of different plate ids (PLATEID1); lon,lat pairs in hundredths of "
-        f"a degree; Douglas-Peucker tolerance {TOLERANCE} degree",
+        "# format: P = boundary between polygons of different plate ids (PLATEID1), then the smaller plate's spherical "
+        f"area in km2; lon,lat pairs in hundredths of a degree; Douglas-Peucker tolerance {TOLERANCE} degree",
     ]
     line_layers.write_asset(output, header, body)
     print(
-        f"{output}: {len(body)} lines, {sum(line.count(' ') for line in body)} points from {len(shapes)} polygons "
-        f"and {len({record['PLATEID1'] for record in records})} plate ids; single edges {single}"
+        f"{output}: {len(body)} lines, {sum(line.count(' ') - 1 for line in body)} points from {len(shapes)} polygons "
+        f"and {len(areas)} plate ids; single edges {single}"
     )
     return 0
 

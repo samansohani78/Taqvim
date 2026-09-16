@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 Saman Sohani. All Rights Reserved.
 # Proprietary and confidential. See the LICENSE file in the repository root.
-"""Builds feature/map's time-zone boundary asset (T-1301, DT-035) from Natural Earth 1:10m Time Zones (public domain).
+"""Builds feature/map's time-zone band asset (T-1301, DT-035) from Natural Earth 1:10m Time Zones (public domain).
 
 Usage: natural_earth_time_zones.py <ne_10m_time_zones.geojson> <commit> <retrieved-date> <cities.tsv> <output.txt>
        natural_earth_time_zones.py --check <output.txt>
 
-Output lines after the header: "Z" (a boundary between two UTC-offset bands, open) followed by "lon,lat" pairs in
-hundredths of a degree. Only edges shared by two bands with different `zone` values are kept (see line_layers.py);
-lines are simplified with a Douglas-Peucker tolerance of TOLERANCE degrees. The data dates from 2012 (the CIA World
-Factbook map), so every catalog city (T-603 cities.tsv, with its IANA zone) inside a band is compared with the band's
-offset using this machine's tz database; bands whose cities now keep another standard offset are printed and
-summarised in the header (zones with at least SYSTEMATIC_CITIES such cities in one band). Geometry is never changed.
+Only the band geometry is used for what the map shows: the data dates from 2012 (the CIA World Factbook map), so the
+app computes every band's offset itself from the device's tz rules. Each polygon of the source is one band. Its
+representative IANA zone is the zone of the most populous catalog city (T-603 cities.tsv) inside the polygon; a polygon
+with no catalog city takes the most populous city of its feature (other polygons of the same 2012 region); a band with
+neither keeps no zone and is recorded with its 2012 offset only (the app then draws its edges only where the 2012
+offsets of both neighbours differ). Zones unknown to this machine's tz database are skipped.
+
+Output lines after the header:
+- "T <zone|-> <2012 offset minutes> <label lon,lat> <area km²>", one per band in index order; the label point is the
+  band's centroid, or its representative city when the centroid falls outside the band;
+- "Z <band> <band> lon,lat ..." (the boundary between two bands, open), simplified with a Douglas-Peucker tolerance of
+  TOLERANCE degrees.
+Coordinates are in hundredths of a degree.
 """
-import datetime
 import json
 import pathlib
 import sys
@@ -24,27 +30,15 @@ import line_layers  # noqa: E402
 
 URL = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/{commit}/geojson/ne_10m_time_zones.geojson"
 TOLERANCE = 0.05
-CHECK_INSTANT = datetime.datetime(2026, 1, 15, 12, tzinfo=datetime.timezone.utc)
-# Fewer mismatching cities than this are usually a city next to a band edge or a catalog city with a wrong zone id.
-SYSTEMATIC_CITIES = 3
 
 
-def polygons(features):
-    for feature in features:
+def bands(features):
+    """(feature index, rings) of every polygon, in source order."""
+    for index, feature in enumerate(features):
         geometry = feature["geometry"]
         parts = geometry["coordinates"] if geometry["type"] == "MultiPolygon" else [geometry["coordinates"]]
         for rings in parts:
-            yield feature, rings
-
-
-def inside(lon, lat, rings):
-    """Even-odd rule over the outer ring and its holes."""
-    crossings = 0
-    for ring in rings:
-        for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
-            if (y1 > lat) != (y2 > lat) and lon < x1 + (lat - y1) * (x2 - x1) / (y2 - y1):
-                crossings += 1
-    return crossings % 2 == 1
+            yield index, rings
 
 
 def tzdata_links():
@@ -57,38 +51,61 @@ def tzdata_links():
     return {}
 
 
-def standard_offset_hours(zone_name, available, links):
-    name = zone_name if zone_name in available else links.get(zone_name, zone_name)
-    moment = CHECK_INSTANT.astimezone(zoneinfo.ZoneInfo(name))
-    return (moment.utcoffset() - moment.dst()).total_seconds() / 3600
-
-
 def read_cities(path):
+    """(lon, lat, zone, population) of catalog cities with a zone known to this machine's tz database.
+
+    Backward names (links such as Asia/Rangoon) are replaced by their canonical zone.
+    """
+    available, links = zoneinfo.available_timezones(), tzdata_links()
     with open(path, encoding="utf-8") as handle:
         rows = [line.rstrip("\n").split("\t") for line in handle if not line.startswith("#")]
-    return [(float(row[4]), float(row[3]), row[5], row[7]) for row in rows if row[5]]
+    cities = []
+    for row in rows:
+        zone = links.get(row[5], row[5])
+        if zone in available:
+            cities.append((float(row[4]), float(row[3]), zone, int(row[6] or 0)))
+    return cities
 
 
-def offset_check(features, cities):
-    """(band zone, band places, IANA zone, its standard offset, city count, example) for mismatching cities."""
-    bands = []
-    for feature, rings in polygons(features):
+def representative_cities(parts, cities):
+    """The most populous catalog city (lon, lat, zone, population) inside each band, or None."""
+    boxes = []
+    for _, rings in parts:
         xs = [x for ring in rings for x, _ in ring]
         ys = [y for ring in rings for _, y in ring]
-        bands.append((feature, rings, (min(xs), max(xs), min(ys), max(ys))))
-    mismatches = {}
-    available, links = zoneinfo.available_timezones(), tzdata_links()
-    for lon, lat, zone_name, name in cities:
-        actual = standard_offset_hours(zone_name, available, links)
-        for feature, rings, (x0, x1, y0, y1) in bands:
-            if x0 <= lon <= x1 and y0 <= lat <= y1 and inside(lon, lat, rings):
-                band = float(feature["properties"]["zone"])
-                if abs(band - actual) > 1e-9:
-                    key = (band, feature["properties"]["places"] or "", zone_name, actual)
-                    count, example = mismatches.get(key, (0, name))
-                    mismatches[key] = (count + 1, example)
+        boxes.append((min(xs), max(xs), min(ys), max(ys)))
+    best = [None] * len(parts)
+    for city in cities:
+        lon, lat, _, population = city
+        for index, (_, rings) in enumerate(parts):
+            x0, x1, y0, y1 = boxes[index]
+            if x0 <= lon <= x1 and y0 <= lat <= y1 and line_layers.inside(lon, lat, rings):
+                if best[index] is None or population > best[index][3]:
+                    best[index] = city
                 break
-    return sorted((key + value) for key, value in mismatches.items())
+    return best
+
+
+def band_lines(features, parts, cities):
+    """The "T" lines and the counts of bands with an own, an inherited and no representative city."""
+    own = representative_cities(parts, cities)
+    by_feature = {}
+    for (feature, _), city in zip(parts, own):
+        if city is not None and (feature not in by_feature or city[3] > by_feature[feature][3]):
+            by_feature[feature] = city
+    lines, counts = [], [0, 0, 0]
+    for (feature, rings), city in zip(parts, own):
+        chosen = city or by_feature.get(feature)
+        counts[0 if city else 1 if chosen else 2] += 1
+        label = line_layers.centroid(rings[0])
+        if not line_layers.inside(label[0], label[1], rings):
+            label = (chosen[0], chosen[1]) if chosen else rings[0][0]
+        offset = round(float(features[feature]["properties"]["zone"]) * 60)
+        # Rocks and reefs round to nothing; every band keeps at least 1 km² so labels can be ordered by size.
+        area = max(1, round(line_layers.polygon_area_km2(rings)))
+        zone = chosen[2] if chosen else "-"
+        lines.append(f"T {zone} {offset} {line_layers.hundredths(label)} {area}")
+    return lines, counts
 
 
 def main(argv):
@@ -100,12 +117,14 @@ def main(argv):
     source, commit, retrieved, cities_path, output = argv[1:]
     with open(source, encoding="utf-8") as handle:
         features = json.load(handle)["features"]
-    segments, single, points = line_layers.boundary_segments(
-        (feature["properties"]["zone"], rings) for feature, rings in polygons(features)
+    parts = list(bands(features))
+    band_body, (own, inherited, none) = band_lines(features, parts, read_cities(cities_path))
+    groups, single, points = line_layers.pair_segments(
+        (index, rings) for index, (_, rings) in enumerate(parts)
     )
-    body = line_layers.encode_lines("Z", line_layers.chains(segments), points, TOLERANCE)
-    mismatches = offset_check(features, read_cities(cities_path))
-    changed_zones = sorted({row[2] for row in mismatches if row[4] >= SYSTEMATIC_CITIES})
+    edges = []
+    for (first, second), segments in groups.items():
+        edges += line_layers.encode_lines(f"Z {first} {second}", line_layers.chains(segments), points, TOLERANCE)
     header = [
         "# source: Natural Earth 1:10m Cultural Vectors, Time Zones (ne_10m_time_zones.geojson; content of 2012, "
         "from the CIA World Factbook time zone map)",
@@ -113,17 +132,17 @@ def main(argv):
         f"# retrieved: {retrieved}",
         "# license: public domain (https://www.naturalearthdata.com/about/terms-of-use/)",
         f"# source-sha256: {line_layers.sha256_file(source)}",
+        f"# cities-sha256: {line_layers.sha256_file(cities_path)}",
         "# generator: tools/geodata/natural_earth_time_zones.py",
-        f"# format: Z = boundary between UTC-offset bands; lon,lat pairs in hundredths of a degree; Douglas-Peucker "
-        f"tolerance {TOLERANCE} degree",
-        f"# offset-check: tz database {tz_version()} at {CHECK_INSTANT.date()}: catalog cities of these IANA zones "
-        f"(at least {SYSTEMATIC_CITIES} per band) keep another standard offset than their 2012 band: "
-        + ", ".join(changed_zones),
+        "# format: T = band (representative IANA zone or -, 2012 offset in minutes, label lon,lat, area km2), one per "
+        f"band in index order; Z = boundary between two bands (their indices); lon,lat pairs in hundredths of a "
+        f"degree; Douglas-Peucker tolerance {TOLERANCE} degree",
+        f"# bands: {len(parts)} ({own} with a catalog city, {inherited} with their feature's city, {none} without); "
+        f"tz database {tz_version()}",
     ]
-    line_layers.write_asset(output, header, body)
-    print(f"{output}: {len(body)} lines, {sum(line.count(' ') for line in body)} points; single edges {single}")
-    for band, places, zone_name, actual, count, example in mismatches:
-        print(f"band {band:+g} ({places[:60]}): {zone_name} now {actual:+g}, {count} cities, e.g. {example}")
+    line_layers.write_asset(output, header, band_body + edges)
+    print(f"{output}: {len(parts)} bands ({own} own city, {inherited} inherited, {none} none), {len(edges)} edges "
+          f"between {len(groups)} band pairs; single edges {single}")
     return 0
 
 

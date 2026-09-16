@@ -67,11 +67,11 @@ class MapViewModel(
     /** One-off events: picked locations. */
     val effects: Flow<MapEffect> = effectChannel.receiveAsFlow()
 
-    private val outline: Flow<OutlineState> =
+    private val outline: StateFlow<OutlineState> =
         flow {
-            emit(OutlineState.Loading)
             emit(runCatching { outlineSource.load() }.fold({ OutlineState.Ready(it) }, { OutlineState.Unavailable }))
         }.flowOn(computeDispatcher)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), OutlineState.Loading)
 
     private val computed: Flow<MapComputed?> =
         combine(
@@ -106,14 +106,27 @@ class MapViewModel(
             .flowOn(computeDispatcher)
             .onStart { emit(persistentListOf()) }
 
+    /** The time-zone offsets are computed from the platform's tz rules for the shown moment (see [TimeZoneOffsets]). */
+    private val zoneOverlay: Flow<TimeZoneOverlay> =
+        combine(outline, latest, layers) { outlineState, inputs, shown ->
+            val ready = outlineState as? OutlineState.Ready
+            if (ready == null || inputs == null || MapLayer.TIME_ZONES !in shown) {
+                TimeZoneOverlay()
+            } else {
+                TimeZoneOffsets.overlay(ready.outline.timeZones, inputs.instant, inputs.settings.language.numerals)
+            }
+        }.distinctUntilChanged()
+            .flowOn(computeDispatcher)
+            .onStart { emit(TimeZoneOverlay()) }
+
     val uiState: StateFlow<MapUiState> =
         combine(
             outline,
             computed,
             combine(layers, criterion, ::Pair),
-            combine(camera, markers, ::Pair),
+            combine(camera, markers, zoneOverlay, ::Triple),
             latest,
-        ) { outlineState, result, (shown, crescent), (view, cities), inputs ->
+        ) { outlineState, result, (shown, crescent), (view, cities, zones), inputs ->
             MapUiState(
                 outline = outlineState,
                 layers = shown,
@@ -123,6 +136,7 @@ class MapViewModel(
                 crescentCriterion = crescent,
                 time = result?.time,
                 overlays = result?.overlays ?: MapOverlays(),
+                timeZones = zones,
                 cities = cities,
                 picked = result?.picked,
                 hasPlace = inputs?.settings?.place != null,

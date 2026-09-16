@@ -22,6 +22,8 @@ data class MapUiState(
     /** The shown moment; `null` until settings arrive. */
     val time: MapTime? = null,
     val overlays: MapOverlays = MapOverlays(),
+    /** The time-zone boundaries and offset labels at the shown moment; empty while the layer is off. */
+    val timeZones: TimeZoneOverlay = TimeZoneOverlay(),
     /** Cities with a marker, most populous first; empty while the cities layer is off. */
     val cities: ImmutableList<MapCity> = persistentListOf(),
     /** The last picked point with its coordinates written in the language's digits. */

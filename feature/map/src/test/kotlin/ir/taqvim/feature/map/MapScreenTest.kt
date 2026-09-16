@@ -179,11 +179,19 @@ class MapScreenTest {
             MapActions(onToggleLayer = { toggled += it }),
         )
         composeRule.onNodeWithText("Time-zone boundary").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText("Time-zone bands as of 2012", substring = true).performScrollTo().assertIsDisplayed()
+        composeRule
+            .onNodeWithText("offsets computed from this device's time-zone rules", substring = true)
+            .performScrollTo()
+            .assertIsDisplayed()
         composeRule.onNodeWithText("Plate boundary").performScrollTo().assertIsDisplayed()
         composeRule
+            .onNodeWithText(
+                "Boundaries of smaller plates appear as you zoom in",
+            ).performScrollTo()
+            .assertIsDisplayed()
+        // The CC BY attribution is on the map itself, visible without scrolling the controls.
+        composeRule
             .onNodeWithText("Plate polygons: Matthews et al. (2016), CC BY 4.0, simplified for display")
-            .performScrollTo()
             .assertIsDisplayed()
         composeRule
             .onNodeWithText("Time zones")

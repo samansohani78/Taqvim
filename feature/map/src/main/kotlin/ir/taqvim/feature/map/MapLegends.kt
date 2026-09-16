@@ -48,7 +48,10 @@ internal fun MapLegends(
     }
 }
 
-/** The time-zone and plate line keys, with the time-zone data's age and the plate model's required attribution. */
+/**
+ * The time-zone and plate line keys, with how the offsets are computed and when smaller plates show; the plate model's
+ * attribution is written on the map itself.
+ */
 @Composable
 private fun LineLegends(
     layers: ImmutableSet<MapLayer>,
@@ -60,7 +63,7 @@ private fun LineLegends(
     }
     if (MapLayer.TECTONIC_PLATES in layers) {
         Legend(listOf(MapPalette.PLATE to R.string.map_legend_plate))
-        Text(stringResource(R.string.map_plates_attribution), style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.map_plates_zoom_note), style = MaterialTheme.typography.bodySmall)
     }
 }
 

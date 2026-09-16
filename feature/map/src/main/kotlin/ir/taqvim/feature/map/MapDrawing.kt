@@ -5,6 +5,8 @@
 package ir.taqvim.feature.map
 
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
@@ -22,10 +24,11 @@ internal class ShadeLayer(
     val colorOf: (Int) -> Color?,
 )
 
-/** How city names are written next to their markers. */
+/** How city names are written next to their markers, and time-zone offsets after [utc]. */
 internal class CityLabels(
     val measurer: TextMeasurer,
     val style: TextStyle,
+    val utc: String = "",
 )
 
 /** The shaded layers of [overlays], bottom first, shared by the flat map and the globe. */
@@ -108,22 +111,58 @@ internal fun DrawScope.drawMarks(
 }
 
 /**
- * The shown line layers, shared by the flat map and the globe: plate boundaries (solid) and time-zone band boundaries
- * (dashed); [project] places a line's map-unit points on the screen (`null` where hidden).
+ * The shown line layers, shared by the flat map and the globe: plate boundaries (solid) of plates large enough for the
+ * zoom ([PlateBoundaries]) and the time-zone boundaries between bands whose offsets differ now (dashed); [project]
+ * places a line's map-unit points on the screen (`null` where hidden).
  */
 internal fun DrawScope.drawLineLayers(
     outline: WorldOutline,
-    layers: Set<MapLayer>,
+    state: MapUiState,
     palette: MapPalette,
     project: (FloatArray) -> List<ScreenPoint?>,
 ) {
-    if (MapLayer.TECTONIC_PLATES in layers) {
-        outline.plates.forEach { drawPolyline(project(it), MapPalette.PLATE, PLATE_STROKE) }
+    if (MapLayer.TECTONIC_PLATES in state.layers) {
+        val zoom = state.zoom
+        outline.plates.filter { PlateBoundaries.isShown(it, zoom) }.forEach { boundary ->
+            drawPolyline(project(boundary.line), MapPalette.PLATE, PLATE_STROKE)
+        }
     }
-    if (MapLayer.TIME_ZONES in layers) {
-        outline.timeZones.forEach { drawPolyline(project(it), palette.timeZone, ZONE_STROKE, ZONE_DASH) }
+    if (MapLayer.TIME_ZONES in state.layers) {
+        state.timeZones.boundaries.forEach { drawPolyline(project(it), palette.timeZone, ZONE_STROKE, ZONE_DASH) }
     }
 }
+
+/**
+ * The time-zone offset labels, largest band first; a label that would overlap one already written is left out, so
+ * zooming in reveals more of them. [toScreen] is `null` where a point is hidden.
+ */
+internal fun DrawScope.drawOffsetLabels(
+    state: MapUiState,
+    palette: MapPalette,
+    labels: CityLabels,
+    toScreen: (MapPoint) -> ScreenPoint?,
+) {
+    if (MapLayer.TIME_ZONES !in state.layers) return
+    val placed = mutableListOf<Rect>()
+    val gap = OFFSET_LABEL_GAP_DP * density
+    state.timeZones.labels.forEach { label ->
+        val screen = toScreen(label.point) ?: return@forEach
+        val text = labels.measurer.measure(labels.utc + label.text, labels.style)
+        val box =
+            Rect(
+                Offset(screen.x - text.size.width / 2f, screen.y - text.size.height / 2f),
+                Size(text.size.width.toFloat(), text.size.height.toFloat()),
+            )
+        if (placed.none { it.inflate(gap).overlaps(box) }) {
+            placed += box
+            drawText(text, color = palette.timeZone, topLeft = box.topLeft)
+        }
+    }
+}
+
+/** The zoom of the shown view: the flat map's or the globe's. */
+internal val MapUiState.zoom: Double
+    get() = if (projection == MapProjection.GLOBE) globe.zoom else viewport.zoom
 
 /** A line through [points], broken where a point is not visible (`null`). */
 internal fun DrawScope.drawPolyline(
@@ -187,3 +226,4 @@ private val ZONE_DASH = PathEffect.dashPathEffect(floatArrayOf(6f, 4f))
 private const val MARKER_RADIUS = 7f
 private const val CITY_RADIUS_DP = 3f
 private const val CITY_HALO_DP = 1.5f
+private const val OFFSET_LABEL_GAP_DP = 4f

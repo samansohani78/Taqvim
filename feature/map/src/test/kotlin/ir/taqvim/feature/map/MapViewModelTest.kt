@@ -305,4 +305,29 @@ class MapViewModelTest {
             (odeh == yallop) shouldBe false
             model.viewModelScope.cancel()
         }
+
+    @Test
+    fun `the time-zone layer computes boundaries and labels for the shown moment only while it is on`(): Unit =
+        runTest {
+            val outline =
+                WorldOutlineParser.parse(
+                    "T Asia/Tehran 210 5142,3570 1600000\nT Asia/Dubai 240 5530,2520 80000\n" +
+                        "T Asia/Muscat 240 5850,2360 300000\nZ 0 1 5000,2700 5200,2600\nZ 1 2 5600,2400 5700,2300\n",
+                )
+            val model = viewModel(outline = WorldOutlineSource { outline })
+            runCurrent()
+            model.uiState.value.timeZones shouldBe TimeZoneOverlay()
+            model.onToggleLayer(MapLayer.TIME_ZONES)
+            runCurrent()
+            val zones = model.uiState.value.timeZones
+            zones.boundaries.single() shouldBe
+                outline.timeZones.boundaries
+                    .first()
+                    .line
+            zones.labels.map { it.text } shouldBe listOf("+3:30", "+4", "+4")
+            model.onToggleLayer(MapLayer.TIME_ZONES)
+            runCurrent()
+            model.uiState.value.timeZones shouldBe TimeZoneOverlay()
+            model.viewModelScope.cancel()
+        }
 }

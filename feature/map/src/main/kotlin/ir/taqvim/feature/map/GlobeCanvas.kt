@@ -28,7 +28,8 @@ internal fun DrawScope.drawGlobe(
     outline.land.forEach { ring -> frame.polygon(ring)?.let { drawPath(it, palette.land) } }
     outline.borders.forEach { line -> drawPolyline(frame.polyline(line), palette.border, width = 1f) }
     shadeLayers(state.overlays, state.crescentCriterion, palette).forEach { drawGlobeGrid(it, frame) }
-    drawLineLayers(outline, state.layers, palette, frame::polyline)
+    drawLineLayers(outline, state, palette, frame::polyline)
+    drawOffsetLabels(state, palette, labels) { frame.visible(Equirectangular.unproject(it)) }
     if (MapLayer.GRID in state.layers) drawGlobeGraticule(frame, palette.grid)
     drawMarks(state, palette, labels) { frame.visible(Equirectangular.unproject(it)) }
     drawCircle(palette.border, frame.radius, center, style = Stroke(1f))

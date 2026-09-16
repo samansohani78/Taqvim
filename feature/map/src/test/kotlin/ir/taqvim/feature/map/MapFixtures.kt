@@ -122,6 +122,12 @@ object MapFixtures {
             cities = cities.toPersistentList(),
             time = computed.time,
             overlays = computed.overlays,
+            timeZones =
+                if (MapLayer.TIME_ZONES in layers) {
+                    TimeZoneOffsets.overlay(outline.timeZones, instant, settings.language.numerals)
+                } else {
+                    TimeZoneOverlay()
+                },
             picked = computed.picked,
             hasPlace = place != null,
         )

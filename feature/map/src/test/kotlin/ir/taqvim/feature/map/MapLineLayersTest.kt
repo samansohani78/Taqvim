@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test
 /** T-1301 line layers: time-zone and plate boundaries on the flat map and behind the globe's horizon. */
 class MapLineLayersTest {
     private val outline = MapFixtures.worldOutline()
+    private val zoneLines = outline.timeZones.boundaries.map { it.line }
+    private val plateLines = outline.plates.map { it.line }
     private val view = ViewSize(1_000f, 800f)
 
     @Test
@@ -25,7 +27,7 @@ class MapLineLayersTest {
         val viewport = MapViewport().clamped(view)
         val top = viewport.toScreen(MapPoint(0.0, 0.0), view)
         val bottom = viewport.toScreen(MapPoint(1.0, 1.0), view)
-        (outline.timeZones + outline.plates).forEach { line ->
+        (zoneLines + plateLines).forEach { line ->
             for (index in 0 until line.size / 2) {
                 val screen =
                     viewport.toScreen(
@@ -45,7 +47,7 @@ class MapLineLayersTest {
         runBlocking {
             val latitudes = Arb.double(-80.0, 80.0, includeNaNs = false)
             val longitudes = Arb.double(-180.0, 180.0, includeNaNs = false)
-            val lines = outline.plates.take(SAMPLE_LINES) + outline.timeZones.take(SAMPLE_LINES)
+            val lines = plateLines.take(SAMPLE_LINES) + zoneLines.take(SAMPLE_LINES)
             checkAll(PropertyTesting.iterations / 10, latitudes, longitudes) { latitude, longitude ->
                 val globe = GlobeView(latitude, longitude)
                 val frame = GlobeFrame(globe, view)
@@ -63,8 +65,8 @@ class MapLineLayersTest {
 
     @Test
     fun `Iran's time-zone band and the Arabia-Eurasia plate boundary are drawn near Tehran`() {
-        near(outline.timeZones, IRAN_WEST_LONGITUDES, IRAN_LATITUDES) shouldBeGreaterThan 0
-        near(outline.plates, ZAGROS_LONGITUDES, ZAGROS_LATITUDES) shouldBeGreaterThan 0
+        near(zoneLines, IRAN_WEST_LONGITUDES, IRAN_LATITUDES) shouldBeGreaterThan 0
+        near(plateLines, ZAGROS_LONGITUDES, ZAGROS_LATITUDES) shouldBeGreaterThan 0
     }
 
     /** How many points of [lines] fall inside the longitude and latitude ranges. */

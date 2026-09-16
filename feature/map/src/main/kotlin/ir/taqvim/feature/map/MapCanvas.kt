@@ -44,7 +44,8 @@ internal fun MapCanvas(
     modifier: Modifier = Modifier,
 ) {
     val palette = MapPalette.of(MaterialTheme.colorScheme)
-    val labels = CityLabels(rememberTextMeasurer(LABEL_CACHE), MaterialTheme.typography.labelSmall)
+    val utc = stringResource(R.string.map_utc)
+    val labels = CityLabels(rememberTextMeasurer(LABEL_CACHE), MaterialTheme.typography.labelSmall, utc)
     val density = LocalDensity.current.density
     var viewSize by remember { mutableStateOf(ViewSize(0f, 0f)) }
     val currentActions by rememberUpdatedState(actions)
@@ -152,7 +153,8 @@ private fun DrawScope.drawOverlays(
     labels: CityLabels,
 ) {
     shadeLayers(state.overlays, state.crescentCriterion, palette).forEach { drawGrid(it, viewport, view) }
-    drawLineLayers(outline, state.layers, palette) { line -> line.toScreenPoints(viewport, view) }
+    drawLineLayers(outline, state, palette) { line -> line.toScreenPoints(viewport, view) }
+    drawOffsetLabels(state, palette, labels) { viewport.toScreen(it, view) }
     if (MapLayer.GRID in state.layers) drawGraticule(viewport, view, palette.grid)
     drawMarks(state, palette, labels) { viewport.toScreen(it, view) }
 }
@@ -218,4 +220,4 @@ private const val ZOOM_STEP = 2.0
 private const val GRATICULE_COLUMNS = 12
 private const val GRATICULE_ROWS = 6
 private const val GRID_STROKE = 1f
-private const val LABEL_CACHE = 128
+private const val LABEL_CACHE = 192
