@@ -60,6 +60,18 @@
     "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.mapWidgetContent": [
       "timeNs"
     ],
+    "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.date1x1": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.dateClock4x1": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.daySummary2x2": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.prayerStrip4x2": [
+      "timeNs"
+    ],
     "ir.taqvim.benchmark.micro.MapMaskBenchmark.dayNightMask": [
       "timeNs"
     ],

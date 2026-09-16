@@ -35,6 +35,26 @@
     "maximum": 30000000,
     "unit": "ns (30 ms widget render, grid included)"
   },
+  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.date1x1": {
+    "metricPrefixes": ["timeNs"],
+    "maximum": 30000000,
+    "unit": "ns (30 ms widget render, Glance composition)"
+  },
+  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.dateClock4x1": {
+    "metricPrefixes": ["timeNs"],
+    "maximum": 30000000,
+    "unit": "ns (30 ms widget render, Glance composition)"
+  },
+  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.daySummary2x2": {
+    "metricPrefixes": ["timeNs"],
+    "maximum": 30000000,
+    "unit": "ns (30 ms widget render, Glance composition)"
+  },
+  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.prayerStrip4x2": {
+    "metricPrefixes": ["timeNs"],
+    "maximum": 30000000,
+    "unit": "ns (30 ms widget render, Glance composition)"
+  },
   "ir.taqvim.benchmark.micro.MapMaskBenchmark.dayNightMask": {
     "metricPrefixes": ["timeNs"],
     "maximum": 150000000,
