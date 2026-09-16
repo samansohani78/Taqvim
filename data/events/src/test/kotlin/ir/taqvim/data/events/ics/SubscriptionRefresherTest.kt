@@ -227,6 +227,9 @@ class SubscriptionRefresherTest {
                     it.lastCheckedAtEpochMillis shouldBe clock.current.toEpochMilliseconds()
                 }
             }
+            cached().shouldBeEmpty()
+            val resumed = dao.getSubscription(downloaded).shouldNotBeNull().copy(enabled = true)
+            dao.updateSubscription(resumed)
             cached().filter { it.subscriptionId == downloaded } shouldHaveSize 4
         }
 
@@ -283,5 +286,30 @@ class SubscriptionRefresherTest {
             fetcher.responses += FetchResult.Modified(cancelled, HttpValidators("\"v2\""))
             refresher.refresh(id) shouldBe RefreshOutcome.Updated(id, occurrences = 0, problems = 0)
             cached().shouldBeEmpty()
+        }
+
+    @Test
+    fun aSeriesThatBeganYearsAgoKeepsItsRowsAcrossDownloads(): Unit =
+        runTest {
+            val id = subscription()
+            val old =
+                listOf(
+                    "BEGIN:VCALENDAR",
+                    "PRODID:-//Test//EN",
+                    "BEGIN:VEVENT",
+                    "UID:since-2020@taqvim.test",
+                    "DTSTART;VALUE=DATE:20200101",
+                    "RRULE:FREQ=DAILY",
+                    "SUMMARY:Every day",
+                    "END:VEVENT",
+                    "END:VCALENDAR",
+                ).joinToString("\r\n", postfix = "\r\n")
+            // 2026-08-13 … 2027-10-18: every day overlapping 31 days before to 400 days after 2026-09-13T12:00Z.
+            repeat(2) {
+                fetcher.responses += FetchResult.Modified(old, validators)
+                refresher.refresh(id) shouldBe RefreshOutcome.Updated(id, occurrences = 432, problems = 0)
+                cached().first().startEpochMillis shouldBe Instant.parse("2026-08-13T00:00:00Z").toEpochMilliseconds()
+                clock.current += 1.hours
+            }
         }
 }
