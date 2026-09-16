@@ -1,0 +1,76 @@
+{
+  "_comment": "Benchmarks the nightly job must report (T-1801), checked by tools/benchmark/compare_benchmarks.py --required. Keys are className.testName; each listed metric prefix must match at least one reported metric. A benchmark that is intentionally not run by the job goes under optional with its reason. A result that is neither required nor optional fails the gate, so a renamed test cannot slip through.",
+  "required": {
+    "ir.taqvim.benchmark.StartupBenchmark.startupCold": [
+      "timeToInitialFrame"
+    ],
+    "ir.taqvim.benchmark.StartupBenchmark.startupWarm": [
+      "timeToInitialFrame"
+    ],
+    "ir.taqvim.benchmark.StartupBenchmark.startupColdWithoutProfile": [
+      "timeToInitialFrame"
+    ],
+    "ir.taqvim.benchmark.MonthPagerScrollBenchmark.scrollTwentyFourMonths": [
+      "frameDurationCpuMs",
+      "frameOverrunMs"
+    ],
+    "ir.taqvim.benchmark.ScreenScrollBenchmarks.timelineScroll": [
+      "frameDurationCpuMs",
+      "frameOverrunMs"
+    ],
+    "ir.taqvim.benchmark.ScreenScrollBenchmarks.searchTyping": [
+      "frameDurationCpuMs",
+      "frameOverrunMs"
+    ],
+    "ir.taqvim.benchmark.YearViewBenchmark.openYearView": [
+      "frameDurationCpuMs",
+      "frameOverrunMs"
+    ],
+    "ir.taqvim.benchmark.YearViewBenchmark.pageThroughYears": [
+      "frameDurationCpuMs",
+      "frameOverrunMs"
+    ],
+    "ir.taqvim.benchmark.YearViewBenchmark.swipeCalendarsAndScrollMonths": [
+      "frameDurationCpuMs",
+      "frameOverrunMs"
+    ],
+    "ir.taqvim.benchmark.MapScreenBenchmark.mapPanAndZoom": [
+      "frameDurationCpuMs",
+      "frameOverrunMs"
+    ],
+    "ir.taqvim.benchmark.MonthScreenMemoryBenchmark.monthScreenMemory": [
+      "memoryRssAnon",
+      "memoryRssFile"
+    ],
+    "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.monthBitmap4x4": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.sunArcBitmap": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.moonBitmap": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.progressRingBitmap": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.mapThumbnailBitmap": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.mapWidgetContent": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.MapMaskBenchmark.dayNightMask": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.MapMaskBenchmark.moonVisibilityMask": [
+      "timeNs"
+    ],
+    "ir.taqvim.benchmark.micro.MapMaskBenchmark.crescentMask": [
+      "timeNs"
+    ]
+  },
+  "optional": {
+    "ir.taqvim.benchmark.BaselineProfileGenerator.generate": "Excluded from the nightly job (notClass); run on demand by the baseline-profile job."
+  }
+}

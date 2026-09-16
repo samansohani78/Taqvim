@@ -63,7 +63,8 @@ jobs:
             --baseline benchmark/baselines \
             --results build/benchmark-results \
             --threshold 0.10 \
-            --budgets benchmark/budgets.json
+            --budgets benchmark/budgets.json \
+            --required benchmark/required.json
 
   baseline-profile:
     name: Baseline and startup profiles (on demand)

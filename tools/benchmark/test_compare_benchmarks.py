@@ -1,5 +1,6 @@
 """Tests of the nightly benchmark regression gate: python3 -m unittest discover tools/benchmark."""
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,6 +8,9 @@ from pathlib import Path
 import compare_benchmarks
 
 BUDGETS = Path(__file__).resolve().parents[2] / "benchmark" / "budgets.json"
+REQUIRED = BUDGETS.parent / "required.json"
+STARTUP = ("ir.taqvim.benchmark.StartupBenchmark", "startupCold")
+MASK = ("ir.taqvim.benchmark.micro.MapMaskBenchmark", "dayNightMask")
 
 
 def write(directory: Path, cold_median: float, frame_p50: float) -> None:
@@ -95,6 +99,84 @@ class CompareBenchmarksTest(unittest.TestCase):
             Path(root, "micro.dayNightMask-benchmarkData.json").write_text(json.dumps(data), encoding="utf-8")
             loaded = compare_benchmarks.load(Path(root))
             self.assertEqual(loaded, {("ir.taqvim.benchmark.micro.MapMaskBenchmark", "dayNightMask"): {"timeNs": 4.0}})
+
+    def write_results(self, directory: Path, *benchmarks: dict) -> None:
+        directory.mkdir(parents=True, exist_ok=True)
+        for index, benchmark in enumerate(benchmarks):
+            data = {"benchmarks": [benchmark]}
+            Path(directory, f"r{index}-benchmarkData.json").write_text(json.dumps(data), encoding="utf-8")
+
+    @staticmethod
+    def result(key: tuple[str, str], **medians: float) -> dict:
+        metrics = {name: {"median": value} for name, value in medians.items()}
+        return {"className": key[0], "name": key[1], "metrics": metrics}
+
+    def gate(self, baseline: list[dict], current: list[dict], required: dict | None) -> int:
+        with tempfile.TemporaryDirectory() as root:
+            base, results = Path(root, "baselines"), Path(root, "results")
+            self.write_results(base, *baseline)
+            self.write_results(results, *current)
+            arguments = ["--baseline", str(base), "--results", str(results)]
+            if required is not None:
+                required_file = Path(root, "required.json")
+                required_file.write_text(json.dumps(required), encoding="utf-8")
+                arguments += ["--required", str(required_file)]
+            return compare_benchmarks.main(arguments)
+
+    def test_missing_required_startup_fails_even_with_other_results(self) -> None:
+        required = {"required": {".".join(STARTUP): ["timeToInitialFrame"], ".".join(MASK): ["timeNs"]}}
+        mask = self.result(MASK, timeNs=4.0)
+        startup = self.result(STARTUP, timeToInitialFrameMs=300.0)
+        self.assertEqual(self.gate([], [mask], required), 1)
+        self.assertEqual(self.gate([], [mask, startup], required), 0)
+
+    def test_missing_required_metric_fails(self) -> None:
+        required = {"required": {".".join(STARTUP): ["timeToInitialFrame"]}}
+        self.assertEqual(self.gate([], [self.result(STARTUP, somethingElseMs=300.0)], required), 1)
+
+    def test_metric_removed_from_the_baseline_fails(self) -> None:
+        baseline = [self.result(STARTUP, timeToInitialFrameMs=300.0, timeToFullDisplayMs=500.0)]
+        current = [self.result(STARTUP, timeToInitialFrameMs=300.0)]
+        self.assertEqual(self.gate(baseline, current, None), 1)
+        self.assertEqual(self.gate(baseline, baseline, None), 0)
+
+    def test_renamed_test_fails(self) -> None:
+        renamed = (STARTUP[0], "startupColdRenamed")
+        required = {"required": {".".join(STARTUP): ["timeToInitialFrame"]}}
+        current = [self.result(renamed, timeToInitialFrameMs=300.0)]
+        self.assertEqual(self.gate([self.result(STARTUP, timeToInitialFrameMs=300.0)], current, None), 1)
+        self.assertEqual(self.gate([], current, required), 1)
+
+    def test_duplicated_results_fail(self) -> None:
+        startup = self.result(STARTUP, timeToInitialFrameMs=300.0)
+        self.assertEqual(self.gate([], [startup, startup], None), 1)
+        self.assertEqual(self.gate([], [startup], None), 0)
+
+    def test_optional_benchmarks_may_be_missing_or_reported(self) -> None:
+        generator = ("ir.taqvim.benchmark.BaselineProfileGenerator", "generate")
+        required = {
+            "required": {".".join(STARTUP): ["timeToInitialFrame"]},
+            "optional": {".".join(generator): "run on demand"},
+        }
+        startup = self.result(STARTUP, timeToInitialFrameMs=300.0)
+        profile = self.result(generator, timeNs=1.0)
+        self.assertEqual(self.gate([profile], [startup], required), 0)
+        self.assertEqual(self.gate([], [startup, profile], required), 0)
+
+    def test_required_file_lists_every_benchmark_test(self) -> None:
+        required = json.loads(REQUIRED.read_text(encoding="utf-8"))
+        listed = set(required["required"]) | set(required["optional"])
+        declared = set()
+        for path in BUDGETS.parent.rglob("*.kt"):
+            text = path.read_text(encoding="utf-8")
+            package = re.search(r"^package (\S+)$", text, re.MULTILINE)
+            classes = re.findall(r"^class (\w+)", text, re.MULTILINE)
+            for test in re.findall(r"@Test\s+fun (\w+)\(", text):
+                self.assertIsNotNone(package)
+                declared.add(f"{package.group(1)}.{classes[0]}.{test}")
+        self.assertEqual(declared, listed)
+        budgets = {name for name in json.loads(BUDGETS.read_text(encoding="utf-8")) if not name.startswith("_")}
+        self.assertLessEqual(budgets, set(required["required"]))
 
     def test_budget_file_names_existing_benchmarks(self) -> None:
         budgets = json.loads(BUDGETS.read_text(encoding="utf-8"))
