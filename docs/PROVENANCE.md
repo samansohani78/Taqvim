@@ -1205,8 +1205,13 @@ Persian-calendar or prayer-times GPL/LGPL library.
   simplification at 0.05°), `natural_earth_time_zones.py`, `matthews_plates.py` (each with `--check`); main@ece6731.
 - **Time zones:** Natural Earth 1:10m Cultural Vectors, Time Zones (`ne_10m_time_zones.geojson`, SHA-256
   `aa52ab97e5f906693f31fe2e625c9d6be78a4e74fcd4142a7261235b355cacfe`, repository commit ca96624a, retrieved 2026-09-15).
-  Public domain (ADR-0003). Offset bands from the 2012 CIA World Factbook map; 922 simplified edges between different
-  bands. The legend notes the 2012 date.
+  Public domain (ADR-0003). Only the band geometry is used: 128 bands and 986 boundaries between 245 band pairs.
+  Each band carries the most populous T-603 catalog city inside it (`cities.tsv` SHA-256 recorded in the asset header)
+  as its representative IANA zone, resolved to the canonical zone name; 68 ocean, Antarctic and uninhabited bands have
+  none. At run time `TimeZoneOffsets` computes each band's total offset (standard + DST) from the platform's tz rules
+  at the map's moment, so the source's 2012 offsets are shown nowhere and a boundary is drawn only where two bands
+  differ then (main@4a5c127). The 2012 offsets remain only as the fallback for a band whose zone the platform does not
+  know.
 - **Plates:** K. J. Matthews, K. T. Maloney, S. Zahirovic, S. E. Williams, M. Seton, R. D. Müller (2016), "Global plate
   boundary evolution and kinematics since the late Paleozoic", Zenodo 10526157 (`Matthews_etal_2016_GPC.zip` v1.0,
   SHA-256 `06d444d22a55ff4c265199955168c537511d1d9feea958850e754e7c5759e33d`; file
