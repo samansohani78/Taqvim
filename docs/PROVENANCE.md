@@ -1233,6 +1233,10 @@ Persian-calendar or prayer-times GPL/LGPL library.
   at the map's moment, so the source's 2012 offsets are shown nowhere and a boundary is drawn only where two bands
   differ then (main@4a5c127). The 2012 offsets remain only as the fallback for a band whose zone the platform does not
   know.
+  Mixed bands (main@a8041a3): the generator lists, per band, the zones of other catalog cities inside it whose total
+  offset differed from the band's zone on 2026-01-15 or 2026-07-15 (Python zoneinfo, tz database 2026c), counting a
+  city only when its zone's `zone.tab` location is within 1 500 km; 23 of 128 bands are mixed and the map marks their
+  label with "*" while an offset differs. Band geometry is never corrected.
 - **Plates:** K. J. Matthews, K. T. Maloney, S. Zahirovic, S. E. Williams, M. Seton, R. D. Müller (2016), "Global plate
   boundary evolution and kinematics since the late Paleozoic", Zenodo 10526157 (`Matthews_etal_2016_GPC.zip` v1.0,
   SHA-256 `06d444d22a55ff4c265199955168c537511d1d9feea958850e754e7c5759e33d`; file
