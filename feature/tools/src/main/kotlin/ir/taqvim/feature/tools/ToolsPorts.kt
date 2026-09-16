@@ -19,7 +19,7 @@ data class ToolsSettings(
     val language: LanguageSpec,
     /** Civil time zone of the user: "today" of the converter and the reference row of the time-zone board. */
     val homeZone: TimeZone,
-    /** The user's calendars, primary first; every date is shown in each of them (Nepali waits for T-105). */
+    /** The user's calendars, primary first; every date is shown in each of them. */
     val calendars: List<CalendarArithmetic> = DEFAULT_CALENDARS,
     /** IANA ids shown on the time-zone board besides [homeZone]. */
     val boardZones: List<String> = emptyList(),

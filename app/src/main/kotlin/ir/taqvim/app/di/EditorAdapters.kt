@@ -37,8 +37,8 @@ import kotlinx.datetime.TimeZone
 
 /**
  * [PersonalEventStore] (T-1000) over the Room DAOs (T-601): an event, its recurrence and its reminders are written in
- * one [transactions] block. Dates are converted with [arithmetic], which carries the user's Islamic variant; events in
- * a calendar without arithmetic (Nepali, T-105) load as missing.
+ * one [transactions] block. Dates are converted with [arithmetic], which carries the user's Islamic variant; an event
+ * whose calendar [arithmetic] lacks loads as missing.
  */
 internal class RoomPersonalEventStore(
     private val events: PersonalEventDao,
@@ -136,8 +136,8 @@ internal class PreferencesEditorSettingsSource(
 }
 
 /**
- * Editor settings under [preferences]: the app language, the user's computable calendars in order (Persian when none
- * is), new events in [timeZoneId], and every computable calendar with the user's Islamic variant.
+ * Editor settings under [preferences]: the app language, the user's calendars in order (Persian when there are none),
+ * new events in [timeZoneId], and every calendar's arithmetic with the user's Islamic variant.
  */
 internal fun editorSettings(
     preferences: UserPreferences,
@@ -145,11 +145,7 @@ internal fun editorSettings(
     anchors: AnchorLookup?,
 ): EditorSettings {
     val arithmetic = preferences.availableArithmetic()
-    val calendars =
-        preferences.calendars
-            .distinct()
-            .filter { it in arithmetic }
-            .ifEmpty { listOf(CalendarSystem.PERSIAN) }
+    val calendars = preferences.calendars.distinct().ifEmpty { listOf(CalendarSystem.PERSIAN) }
     return EditorSettings(preferences.languageSpec(), calendars, timeZoneId, arithmetic, anchors)
 }
 

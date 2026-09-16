@@ -52,18 +52,12 @@ data class WearSetup(
         get() = place?.timeZone ?: deviceZone
 }
 
-/** Calendar arithmetic for the watch, with the user's Islamic variant; Nepali waits for T-105. */
+/** Calendar arithmetic for the watch, with the user's Islamic variant. */
 object WearCalendars {
     fun arithmeticFor(
         system: CalendarSystem,
         variant: IslamicVariant,
-    ): CalendarArithmetic? =
-        when (system) {
-            CalendarSystem.PERSIAN -> PersianCalendarSystem
-            CalendarSystem.ISLAMIC -> IslamicCalendarSelection.calendarFor(variant)
-            CalendarSystem.GREGORIAN -> GregorianCalendarSystem
-            CalendarSystem.NEPALI -> null
-        }
+    ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant)
 }
 
 /**
@@ -77,7 +71,7 @@ fun UserPreferences.toWearSetup(
     val language =
         LanguageTable.forCode(languageCode)
             ?: requireNotNull(LanguageTable.forCode(UserPreferences.FALLBACK_LANGUAGE)) { "no fallback language" }
-    val available = calendars.distinct().mapNotNull { WearCalendars.arithmeticFor(it, islamicVariant) }
+    val available = calendars.distinct().map { WearCalendars.arithmeticFor(it, islamicVariant) }
     return WearSetup(
         language = language,
         numerals = numerals,

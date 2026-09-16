@@ -8,7 +8,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
-import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.model.AsrJuristic
 import ir.taqvim.core.model.CalendarSystem
@@ -70,8 +70,8 @@ class TimesAdaptersTest {
 
         settings.language.code shouldBe UserPreferences.FALLBACK_LANGUAGE
         settings.prayer shouldBe PrayerSettings(method = PrayerMethod.MWL, asr = AsrJuristic.HANAFI)
-        settings.calendar shouldBeSameInstanceAs GregorianCalendarSystem
-        timesSettings(custom.copy(calendars = listOf(CalendarSystem.NEPALI)), devicePlace, "Home")
+        settings.calendar shouldBeSameInstanceAs NepaliCalendarSystem
+        timesSettings(custom.copy(calendars = emptyList()), devicePlace, "Home")
             .shouldNotBeNull()
             .calendar shouldBeSameInstanceAs PersianCalendarSystem
     }

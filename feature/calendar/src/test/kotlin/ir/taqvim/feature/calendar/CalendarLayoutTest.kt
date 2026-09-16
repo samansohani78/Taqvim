@@ -53,11 +53,11 @@ class CalendarLayoutTest {
     }
 
     @Test
-    fun `month names fall back to English names and then to month numbers`() {
+    fun `month names fall back to English names`() {
         val kurdish = requireNotNull(LanguageTable.forCode("ckb"))
 
         monthNamesOf(english, CalendarSystem.ISLAMIC) shouldBe english.monthNames.islamic
         monthNamesOf(kurdish, CalendarSystem.PERSIAN) shouldBe english.monthNames.persian
-        monthNamesOf(persian, CalendarSystem.NEPALI) shouldBe (1L..12L).map { Numerals.format(it, persian.numerals) }
+        monthNamesOf(persian, CalendarSystem.NEPALI).first() shouldBe "Baishakh"
     }
 }

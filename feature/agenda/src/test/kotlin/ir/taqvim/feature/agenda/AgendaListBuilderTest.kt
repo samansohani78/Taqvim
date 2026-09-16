@@ -115,15 +115,16 @@ class AgendaListBuilderTest {
     }
 
     @Test
-    fun `unknown languages and unavailable calendars fall back`() {
+    fun `unknown languages fall back and Bikram Sambat titles the months`() {
         val settings = AgendaSettings(listOf(CalendarSystem.NEPALI), GREGORIAN_EN.islamicVariant, "xx")
         val list = build(settings, AgendaMode.AGENDA, AgendaWindow(0, 0))
         val header = list.items.first().shouldBeInstanceOf<AgendaMonthHeader>()
         header.otherCalendars shouldHaveSize 0
         AgendaListBuilder.languageFor("xx") shouldBe LanguageTable.languages.first()
-        Numerals.parseLong(header.title.year) shouldBe 2026L
+        Numerals.parseLong(header.title.year) shouldBe 2083L
+        // The window is Bhadra 2083 (17 August – 16 September 2026), so the event on 18 September is left out.
         list.items.filterIsInstance<AgendaDayRow>().map { it.jdn } shouldContainExactly
-            listOf(TODAY - 10, TODAY, TODAY + 2, TODAY + 5)
+            listOf(TODAY - 10, TODAY, TODAY + 2)
     }
 
     @Test

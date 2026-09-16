@@ -170,6 +170,7 @@
   <string name="settings_calendar_islamic">Hijri (lunar)</string>
   <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="settings_calendar_gregorian">Gregorian</string>
+  <string name="settings_calendar_nepali">Bikram Sambat</string>
   <string name="settings_theme_system">Same as the system</string>
   <!-- App theme option: light colors. -->
   <string name="settings_theme_light">Light</string>

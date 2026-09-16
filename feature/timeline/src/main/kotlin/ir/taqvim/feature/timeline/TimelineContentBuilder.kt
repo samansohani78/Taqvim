@@ -6,7 +6,6 @@ package ir.taqvim.feature.timeline
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
-import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.model.CalendarSystem
@@ -48,11 +47,12 @@ object TimelineContentBuilder {
             }
         }
 
-    /** The first of [calendars] with arithmetic (Nepali is not available yet), else the Gregorian calendar. */
+    /** The first of [calendars], else the Gregorian calendar. */
     fun primaryCalendar(
         calendars: List<CalendarSystem>,
         variant: IslamicVariant,
-    ): CalendarArithmetic = calendars.firstNotNullOfOrNull { arithmeticFor(it, variant) } ?: GregorianCalendarSystem
+    ): CalendarArithmetic =
+        calendars.firstOrNull()?.let { IslamicCalendarSelection.arithmeticFor(it, variant) } ?: GregorianCalendarSystem
 
     /** Columns for [range] with the events of [days] (missing days are empty) and the prayer lines of [lines]. */
     fun columns(
@@ -119,15 +119,4 @@ object TimelineContentBuilder {
             PrayerLineKind.MAGHRIB to times.maghrib,
             PrayerLineKind.ISHA to times.isha,
         ).mapNotNull { (kind, time) -> time?.let { PrayerLine(kind, it.value) } }.toImmutableList()
-
-    private fun arithmeticFor(
-        system: CalendarSystem,
-        variant: IslamicVariant,
-    ): CalendarArithmetic? =
-        when (system) {
-            CalendarSystem.PERSIAN -> PersianCalendarSystem
-            CalendarSystem.ISLAMIC -> IslamicCalendarSelection.calendarFor(variant)
-            CalendarSystem.GREGORIAN -> GregorianCalendarSystem
-            CalendarSystem.NEPALI -> null
-        }
 }

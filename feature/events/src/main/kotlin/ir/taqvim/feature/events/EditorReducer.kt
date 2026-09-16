@@ -272,7 +272,7 @@ internal object DatePhrase {
                 preferredCalendar = form.calendar,
                 numericOrder = settings.language.datePattern.order,
                 anchors = settings.anchors,
-                calendars = settings.arithmetic,
+                calendars = ParseContext.calendarsFor(settings.calendars + form.calendar, settings.arithmetic),
             )
         val result = text.takeIf { it.isNotBlank() }?.let { DateParser.parseBest(it, context) } ?: return null
         val length = (calendar.toJdn(form.end) - calendar.toJdn(form.start)).coerceAtLeast(0)

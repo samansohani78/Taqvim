@@ -56,12 +56,12 @@ class TimelineContentBuilderTest {
         }
 
     @Test
-    fun `the first available calendar titles the days`() {
+    fun `the first calendar titles the days`() {
         fun primary(vararg calendars: CalendarSystem) =
             TimelineContentBuilder.primaryCalendar(calendars.toList(), IslamicVariant.UMM_AL_QURA).system
 
-        primary(CalendarSystem.NEPALI, CalendarSystem.ISLAMIC) shouldBe CalendarSystem.ISLAMIC
-        primary(CalendarSystem.NEPALI) shouldBe CalendarSystem.GREGORIAN
+        primary(CalendarSystem.NEPALI, CalendarSystem.ISLAMIC) shouldBe CalendarSystem.NEPALI
+        primary(CalendarSystem.ISLAMIC) shouldBe CalendarSystem.ISLAMIC
         primary() shouldBe CalendarSystem.GREGORIAN
         primary(CalendarSystem.PERSIAN) shouldBe CalendarSystem.PERSIAN
     }

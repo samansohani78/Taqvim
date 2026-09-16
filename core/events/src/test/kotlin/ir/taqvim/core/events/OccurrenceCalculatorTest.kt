@@ -64,8 +64,19 @@ class OccurrenceCalculatorTest {
         val relativeToNepali =
             event("test.after-nepali", CalendarSystem.GREGORIAN, EventRule.RelativeToEvent(nepali.id, 1))
 
-        OccurrenceCalculator(listOf(nepali, relativeToNepali)).occurrences(nepali, 2082).shouldBeEmpty()
-        OccurrenceCalculator(listOf(nepali, relativeToNepali)).occurrences(relativeToNepali, 2026).shouldBeEmpty()
+        // Bikram Sambat is computed by default (T-105): Baisakh 1, 2082 is 14 April 2025.
+        OccurrenceCalculator(listOf(nepali)).occurrences(nepali, 2082).single().jdn shouldBe
+            GregorianCalendarSystem.toJdn(CalendarDate(CalendarSystem.GREGORIAN, 2025, 4, 14))
+        val withoutNepali =
+            CalendarProvider { system ->
+                CalendarProvider.DEFAULT.calendarFor(system).takeIf {
+                    system !=
+                        CalendarSystem.NEPALI
+                }
+            }
+        val calculator = OccurrenceCalculator(listOf(nepali, relativeToNepali), withoutNepali)
+        calculator.occurrences(nepali, 2082).shouldBeEmpty()
+        calculator.occurrences(relativeToNepali, 2026).shouldBeEmpty()
         shouldThrow<IllegalStateException> { OccurrenceCalculator(listOf(equinox)).occurrences(equinox, 2026) }
     }
 

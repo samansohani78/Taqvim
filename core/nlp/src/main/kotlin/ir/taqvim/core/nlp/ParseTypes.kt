@@ -7,6 +7,7 @@ package ir.taqvim.core.nlp
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.DateFieldOrder
 import ir.taqvim.core.i18n.FormatTable
@@ -73,13 +74,25 @@ public data class ParseContext(
     public val calendars: Map<CalendarSystem, CalendarArithmetic> = DEFAULT_CALENDARS,
 ) {
     public companion object {
-        /** Persian (A-02), Iranian official Islamic (A-05) and Gregorian; Nepali is not available yet. */
+        /** Persian (A-02), Iranian official Islamic (A-05) and Gregorian; see [calendarsFor] for Bikram Sambat. */
         public val DEFAULT_CALENDARS: Map<CalendarSystem, CalendarArithmetic> =
             mapOf(
                 CalendarSystem.PERSIAN to PersianCalendarSystem,
                 CalendarSystem.ISLAMIC to IranIslamicCalendar(),
                 CalendarSystem.GREGORIAN to GregorianCalendarSystem,
             )
+
+        /**
+         * The calendars of [arithmetic] to read numbers in for someone who uses [used]. Bikram Sambat years run about
+         * 57 years ahead of Gregorian ones, so "05/06/2026" would also be a plausible BS date; the Nepali calendar is
+         * tried only by people who use it (T-105).
+         */
+        public fun calendarsFor(
+            used: Collection<CalendarSystem>,
+            arithmetic: Map<CalendarSystem, CalendarArithmetic> = DEFAULT_CALENDARS + NEPALI,
+        ): Map<CalendarSystem, CalendarArithmetic> = arithmetic.filterKeys { it != CalendarSystem.NEPALI || it in used }
+
+        private val NEPALI = CalendarSystem.NEPALI to NepaliCalendarSystem
 
         /** A context with [language]'s numeric and long field orders; [calendar] defaults to its first calendar. */
         public fun forLanguage(
@@ -94,6 +107,7 @@ public data class ParseContext(
                 numericOrder = language.datePattern.order,
                 textOrder = textOrderOf(FormatTable.of(language).datePatterns[CalendarSystem.GREGORIAN].orEmpty()),
                 anchors = anchors,
+                calendars = calendarsFor(language.calendars + calendar),
             )
 
         /** Whether the day or the month comes first in a CLDR date [pattern] (year-first patterns read as DMY). */

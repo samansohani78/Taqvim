@@ -19,13 +19,13 @@ class YearCalendarsTest {
     private val calendars = YearCalendars(PERSIAN_FIRST)
 
     @Test
-    fun `available calendars keep the user's order without duplicates or Nepali`() {
+    fun `calendars keep the user's order without duplicates`() {
         val mixed =
             listOf(CalendarSystem.NEPALI, CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN)
 
         YearCalendars(PERSIAN_FIRST.copy(calendars = mixed)).systems shouldContainExactly
-            listOf(CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN)
-        YearCalendars(PERSIAN_FIRST.copy(calendars = listOf(CalendarSystem.NEPALI))).systems shouldContainExactly
+            listOf(CalendarSystem.NEPALI, CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN)
+        YearCalendars(PERSIAN_FIRST.copy(calendars = emptyList())).systems shouldContainExactly
             listOf(CalendarSystem.GREGORIAN)
         calendars.clampIndex(-1) shouldBe 0
         calendars.clampIndex(9) shouldBe 2

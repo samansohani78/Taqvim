@@ -136,8 +136,18 @@ class EventVisibilityPolicyTest {
             ).copy(validity = nepaliValidity)
         val occurrence = OccurrenceCalculator(listOf(definition)).occurrences(definition, 2026).single()
 
-        EventVisibilityPolicy(EventPreferences(EventSource.entries.toSet(), home)).isVisible(occurrence, home) shouldBe
-            false
+        val preferences = EventPreferences(EventSource.entries.toSet(), home)
+        // Bikram Sambat 2083 is within the validity; a provider without the calendar hides the occurrence.
+        EventVisibilityPolicy(preferences).isVisible(occurrence, home) shouldBe true
+        val withoutNepali =
+            CalendarProvider { system ->
+                CalendarProvider.DEFAULT.calendarFor(system).takeIf {
+                    system !=
+                        CalendarSystem.NEPALI
+                }
+            }
+        val sources = IslamicCalendarSelection(preferences.islamicVariant, base = withoutNepali)
+        EventVisibilityPolicy(preferences, sources).isVisible(occurrence, home) shouldBe false
     }
 
     @Test

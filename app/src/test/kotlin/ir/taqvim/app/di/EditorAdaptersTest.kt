@@ -30,25 +30,26 @@ class EditorAdaptersTest {
         val settings = editorSettings(persian, "Asia/Tehran", anchors)
 
         settings.language.code shouldBe "fa"
-        settings.calendars shouldBe persian.calendars.filter { it != CalendarSystem.NEPALI }
+        settings.calendars shouldBe persian.calendars
         settings.timeZoneId shouldBe "Asia/Tehran"
         settings.anchors shouldBeSameInstanceAs anchors
         settings.arithmeticOf(CalendarSystem.PERSIAN) shouldBeSameInstanceAs PersianCalendarSystem
         settings.arithmeticOf(CalendarSystem.GREGORIAN) shouldBeSameInstanceAs GregorianCalendarSystem
-        settings.arithmetic.keys shouldBe
-            setOf(CalendarSystem.PERSIAN, CalendarSystem.ISLAMIC, CalendarSystem.GREGORIAN)
+        settings.arithmetic.keys shouldBe CalendarSystem.entries.toSet()
 
         val ummAlQura = persian.copy(islamicVariant = IslamicVariant.UMM_AL_QURA)
         editorSettings(ummAlQura, "Asia/Riyadh", null).arithmeticOf(CalendarSystem.ISLAMIC).javaClass shouldBe
-            CalendarCalendars.arithmeticFor(CalendarSystem.ISLAMIC, IslamicVariant.UMM_AL_QURA)?.javaClass
+            CalendarCalendars.arithmeticFor(CalendarSystem.ISLAMIC, IslamicVariant.UMM_AL_QURA).javaClass
     }
 
     @Test
-    fun `calendars that cannot be computed yet fall back to Persian`() {
+    fun `Bikram Sambat can be edited and an empty calendar list falls back to Persian`() {
         val nepali = persian.copy(languageCode = "xx", calendars = listOf(CalendarSystem.NEPALI))
         val settings = editorSettings(nepali, "Asia/Kathmandu", null)
 
-        settings.calendars shouldBe listOf(CalendarSystem.PERSIAN)
+        settings.calendars shouldBe listOf(CalendarSystem.NEPALI)
+        editorSettings(persian.copy(calendars = emptyList()), "Asia/Tehran", null).calendars shouldBe
+            listOf(CalendarSystem.PERSIAN)
         settings.language.code shouldBe UserPreferences.FALLBACK_LANGUAGE
         settings.anchors.shouldBeNull()
     }

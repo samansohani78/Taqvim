@@ -27,7 +27,7 @@ import org.robolectric.annotation.GraphicsMode
 
 /**
  * T-801 screenshots: the twelve months of 1405 in Persian (light, RTL) and English (light, LTR), and in Nepali (dark,
- * LTR) the twelve Gregorian months from April 2026, because the Bikram Sambat calendar is not available yet (T-105).
+ * LTR) the twelve Bikram Sambat months of 2083 (T-105), from Baisakh 1 = 14 April 2026.
  * Events are synthetic: a holiday on the first of each month, a personal event on the 10th, three sources on the 15th.
  * Recorded to `src/test/screenshots/calendar_month_<language>_<month>/`.
  */
@@ -131,7 +131,7 @@ class MonthScreenshotTest(
                     else -> {
                         MonthSample(
                             CalendarSettings(language.calendars, language.weekStart, IslamicVariant.UMM_AL_QURA, code),
-                            gregorian(2026, 4, 1),
+                            gregorian(2026, 4, 14),
                             ScreenshotEnvironment(theme = ScreenshotTheme.DARK, localeTag = code),
                         )
                     }

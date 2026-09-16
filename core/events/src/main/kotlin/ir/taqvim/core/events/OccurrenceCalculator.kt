@@ -7,6 +7,7 @@ package ir.taqvim.core.events
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.lastWeekdayOfMonth
 import ir.taqvim.core.calendar.nthWeekdayOfMonth
@@ -24,14 +25,14 @@ public fun interface CalendarProvider {
     public fun calendarFor(system: CalendarSystem): CalendarArithmetic?
 
     public companion object {
-        /** Persian (A-02), Iranian official Islamic (A-05) and Gregorian; Nepali arrives with T-105. */
+        /** Persian (A-02), Iranian official Islamic (A-05), Gregorian and Bikram Sambat (A-07). */
         public val DEFAULT: CalendarProvider =
             CalendarProvider { system ->
                 when (system) {
                     CalendarSystem.PERSIAN -> PersianCalendarSystem
                     CalendarSystem.ISLAMIC -> IRAN_ISLAMIC
                     CalendarSystem.GREGORIAN -> GregorianCalendarSystem
-                    CalendarSystem.NEPALI -> null
+                    CalendarSystem.NEPALI -> NepaliCalendarSystem
                 }
             }
 

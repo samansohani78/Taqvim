@@ -12,6 +12,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.model.CalendarDate
@@ -31,14 +32,13 @@ class CalendarCalendarsTest {
     private val today = gregorian(2026, 3, 18)
 
     @Test
-    fun `unavailable and repeated calendars are skipped, Gregorian when none is left`() {
+    fun `repeated calendars are skipped, Bikram Sambat is available and Gregorian stands in for none`() {
         val repeated = listOf(CalendarSystem.NEPALI, CalendarSystem.PERSIAN, CalendarSystem.PERSIAN)
         val calendars = CalendarCalendars(PERSIAN_FIRST.copy(calendars = repeated))
-        calendars.systems shouldBe listOf(CalendarSystem.PERSIAN)
-        calendars.datesOf(today) shouldBe listOf(CalendarDate(CalendarSystem.PERSIAN, 1404, 12, 27))
+        calendars.systems shouldBe listOf(CalendarSystem.NEPALI, CalendarSystem.PERSIAN)
+        calendars.datesOf(today)[1] shouldBe CalendarDate(CalendarSystem.PERSIAN, 1404, 12, 27)
 
-        CalendarCalendars(PERSIAN_FIRST.copy(calendars = listOf(CalendarSystem.NEPALI))).systems shouldBe
-            listOf(CalendarSystem.GREGORIAN)
+        CalendarCalendars(PERSIAN_FIRST.copy(calendars = emptyList())).systems shouldBe listOf(CalendarSystem.GREGORIAN)
     }
 
     @Test
@@ -49,7 +49,8 @@ class CalendarCalendarsTest {
             GregorianCalendarSystem
         CalendarCalendars.arithmeticFor(CalendarSystem.ISLAMIC, IslamicVariant.UMM_AL_QURA) shouldBeSameInstanceAs
             UmmAlQuraCalendar
-        CalendarCalendars.arithmeticFor(CalendarSystem.NEPALI, IslamicVariant.IRAN_OFFICIAL).shouldBeNull()
+        CalendarCalendars.arithmeticFor(CalendarSystem.NEPALI, IslamicVariant.IRAN_OFFICIAL) shouldBeSameInstanceAs
+            NepaliCalendarSystem
     }
 
     @Test

@@ -15,7 +15,7 @@ public enum class CalendarSystem {
     /** Proleptic Gregorian. */
     GREGORIAN,
 
-    /** Bikram Sambat (Nepal), table-driven. */
+    /** Bikram Sambat (Nepal), computed from sankrantis (A-07, ADR-0030). */
     NEPALI,
 }
 

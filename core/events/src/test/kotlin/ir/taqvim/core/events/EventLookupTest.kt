@@ -11,6 +11,7 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.testing.TimingTest
@@ -105,7 +106,17 @@ class EventLookupTest {
     fun `calendars that are not available are ignored`() {
         val nepali = event("test.nepali", CalendarSystem.NEPALI, EventRule.Fixed(1, 1))
 
-        EventLookup(listOf(nepali)).eventsOn(gregorian(2026, 4, 14), all).shouldBeEmpty()
+        // Baisakh 1, 2083 is 14 April 2026 (T-105); a provider without Bikram Sambat skips the event.
+        EventLookup(listOf(nepali)).eventsOn(gregorian(2026, 4, 14), all).single().definition shouldBe nepali
+        val withoutNepali =
+            CalendarProvider { system ->
+                CalendarProvider.DEFAULT.calendarFor(system).takeIf {
+                    system !=
+                        CalendarSystem.NEPALI
+                }
+            }
+        val sources = IslamicCalendarSelection(IslamicVariant.IRAN_OFFICIAL, base = withoutNepali)
+        EventLookup(listOf(nepali), sources).eventsOn(gregorian(2026, 4, 14), all).shouldBeEmpty()
     }
 
     @Test

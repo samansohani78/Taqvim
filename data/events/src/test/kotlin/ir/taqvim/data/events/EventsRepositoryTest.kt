@@ -180,12 +180,14 @@ class EventsRepositoryTest {
 
             val week = repository.days(nowruz..nowruz + 7).first().associate { it.jdn to it.personal }
 
-            week.getValue(nowruz).map { it.eventId } shouldBe listOf(1L, 2L)
+            // Bikram Sambat events expand like any other (T-105): the daily one (3) is on every day.
+            week.getValue(nowruz).map { it.eventId } shouldBe listOf(1L, 3L, 2L)
             week.getValue(nowruz).first().days shouldBe (nowruz - 1..nowruz + 1)
-            week.getValue(nowruz + 1).map { it.eventId } shouldBe listOf(1L)
-            week.getValue(nowruz + 2).shouldBeEmpty()
+            week.getValue(nowruz + 1).map { it.eventId } shouldBe listOf(1L, 3L)
+            week.getValue(nowruz + 2).map { it.eventId } shouldBe listOf(3L)
             // All-day occurrences come before timed ones on the same day.
-            week.getValue(nowruz + 7).map { it.eventId to it.recurring } shouldBe listOf(4L to false, 2L to true)
+            week.getValue(nowruz + 7).map { it.eventId to it.recurring } shouldBe
+                listOf(3L to true, 4L to false, 2L to true)
         }
 
     @Test

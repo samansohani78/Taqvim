@@ -7,7 +7,6 @@ package ir.taqvim.feature.year
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
-import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
@@ -25,10 +24,10 @@ class YearCalendars(
     val arithmetic: List<CalendarArithmetic> =
         settings.calendars
             .distinct()
-            .mapNotNull { arithmeticFor(it, settings.islamicVariant) }
+            .map { arithmeticFor(it, settings.islamicVariant) }
             .ifEmpty { listOf(GregorianCalendarSystem) }
 
-    /** The available calendars in the user's order; Gregorian when none of them is available. */
+    /** The user's calendars in their order; Gregorian when the user has none. */
     val systems: List<CalendarSystem> = arithmetic.map { it.system }
 
     private val offeredYears: List<IntRange> = arithmetic.map(CalendarLimits::years)
@@ -96,16 +95,10 @@ class YearCalendars(
             return first.toInt()..last.toInt()
         }
 
-        /** Arithmetic of [system], with [variant] for the Islamic calendar; `null` when not available yet (Nepali). */
+        /** Arithmetic of [system], with [variant] for the Islamic calendar. */
         fun arithmeticFor(
             system: CalendarSystem,
             variant: IslamicVariant,
-        ): CalendarArithmetic? =
-            when (system) {
-                CalendarSystem.PERSIAN -> PersianCalendarSystem
-                CalendarSystem.ISLAMIC -> IslamicCalendarSelection.calendarFor(variant)
-                CalendarSystem.GREGORIAN -> GregorianCalendarSystem
-                CalendarSystem.NEPALI -> null
-            }
+        ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant)
     }
 }

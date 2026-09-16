@@ -18,12 +18,10 @@ internal fun UserPreferences.languageSpec(): LanguageSpec =
             LanguageTable.forCode(UserPreferences.FALLBACK_LANGUAGE),
         ) { "language table lacks a fallback" }
 
-/** Arithmetic of every calendar Taqvim can compute, with the user's Islamic variant (Nepali waits for T-105). */
+/** Arithmetic of every calendar, with the user's Islamic variant. */
 internal fun UserPreferences.availableArithmetic(): Map<CalendarSystem, CalendarArithmetic> =
-    CalendarSystem.entries
-        .mapNotNull { system -> CalendarCalendars.arithmeticFor(system, islamicVariant)?.let { system to it } }
-        .toMap()
+    CalendarSystem.entries.associateWith { CalendarCalendars.arithmeticFor(it, islamicVariant) }
 
-/** The user's calendars that can be computed, in the user's order and without repeats. */
+/** The user's calendars, in the user's order and without repeats. */
 internal fun UserPreferences.availableCalendars(): List<CalendarArithmetic> =
-    calendars.distinct().mapNotNull { CalendarCalendars.arithmeticFor(it, islamicVariant) }
+    calendars.distinct().map { CalendarCalendars.arithmeticFor(it, islamicVariant) }

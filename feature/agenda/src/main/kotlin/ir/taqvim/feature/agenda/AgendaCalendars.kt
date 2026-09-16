@@ -6,7 +6,6 @@ package ir.taqvim.feature.agenda
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
-import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.TodayProvider
 import ir.taqvim.core.calendar.addMonths
 import ir.taqvim.core.events.IslamicCalendarSelection
@@ -32,7 +31,7 @@ class AgendaCalendars(
     val arithmetic: List<CalendarArithmetic> =
         settings.calendars
             .distinct()
-            .mapNotNull { arithmeticFor(it, settings) }
+            .map { IslamicCalendarSelection.arithmeticFor(it, settings.islamicVariant) }
             .ifEmpty { listOf(GregorianCalendarSystem) }
 
     private val primary: CalendarArithmetic = arithmetic.first()
@@ -55,19 +54,6 @@ class AgendaCalendars(
         first: Int,
         last: Int,
     ): JdnRange = JdnRange(monthStartAt(today, first), monthStartAt(today, last + 1) - 1)
-
-    private companion object {
-        fun arithmeticFor(
-            system: CalendarSystem,
-            settings: AgendaSettings,
-        ): CalendarArithmetic? =
-            when (system) {
-                CalendarSystem.PERSIAN -> PersianCalendarSystem
-                CalendarSystem.ISLAMIC -> IslamicCalendarSelection.calendarFor(settings.islamicVariant)
-                CalendarSystem.GREGORIAN -> GregorianCalendarSystem
-                CalendarSystem.NEPALI -> null
-            }
-    }
 }
 
 /** [AgendaTodaySource] reading [provider] every [interval], so a new day (or time zone) shows within [interval]. */

@@ -5,8 +5,11 @@
 package ir.taqvim.core.events
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.NepaliCalendarSystem
+import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.TabularIslamicCalendar
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.model.CalendarSystem
@@ -52,6 +55,18 @@ public class IslamicCalendarSelection(
                 IslamicVariant.TABULAR_16 -> TabularIslamicCalendar.TYPE_II
                 IslamicVariant.TABULAR_15 -> TabularIslamicCalendar.TYPE_I
                 IslamicVariant.CALCULATED_OBSERVATIONAL -> IranCrescentCalendar
+            }
+
+        /** Arithmetic of [system], with [variant] for the Islamic calendar; every calendar can be computed (T-105). */
+        public fun arithmeticFor(
+            system: CalendarSystem,
+            variant: IslamicVariant,
+        ): CalendarArithmetic =
+            when (system) {
+                CalendarSystem.PERSIAN -> PersianCalendarSystem
+                CalendarSystem.ISLAMIC -> calendarFor(variant)
+                CalendarSystem.GREGORIAN -> GregorianCalendarSystem
+                CalendarSystem.NEPALI -> NepaliCalendarSystem
             }
     }
 }

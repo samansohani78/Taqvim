@@ -143,7 +143,16 @@ class RoomPersonalEventStoreTest {
                         updatedAtEpochMillis = CREATED,
                     ),
                 )
-            store.load(nepali).shouldBeNull()
+            store.load(nepali).shouldNotBeNull().calendar shouldBe CalendarSystem.NEPALI
+            val withoutNepali =
+                RoomPersonalEventStore(
+                    events = database.personalEventDao(),
+                    reminders = database.reminderDao(),
+                    transactions = RoomTransactionRunner(database),
+                    clock = clock,
+                    arithmetic = { arithmetic - CalendarSystem.NEPALI },
+                )
+            withoutNepali.load(nepali).shouldBeNull()
         }
 
     private companion object {

@@ -67,7 +67,7 @@ class OfficialRemindersTest {
     }
 
     @Test
-    fun `validity, unavailable calendars and Islamic year boundaries are respected`() {
+    fun `validity, Bikram Sambat events and Islamic year boundaries are respected`() {
         val citation = Citation("https://example.org/source", "Synthetic source")
         val from1406 = nowruz.copy(validity = Validity(CalendarSystem.PERSIAN, 1406, null, citation))
         val nepali = nowruz.copy(id = EventId("np.holiday.new-year-1"), calendar = CalendarSystem.NEPALI)
@@ -83,7 +83,10 @@ class OfficialRemindersTest {
 
         calculator.days(from1406.id, start, start + 400) shouldBe
             listOf(ReminderFixtures.jdnOf(ReminderFixtures.persian(1406, 1, 1)))
-        calculator.days(nepali.id, start, start + 400).shouldBeEmpty()
+        // Baisakh 1 of BS 2083 and 2084 (T-105).
+        val bikramSambat = requireNotNull(CalendarProvider.DEFAULT.calendarFor(CalendarSystem.NEPALI))
+        calculator.days(nepali.id, start, start + 400) shouldBe
+            listOf(2083, 2084).map { bikramSambat.toJdn(CalendarDate(CalendarSystem.NEPALI, it, 1, 1)) }
 
         val islamic = requireNotNull(CalendarProvider.DEFAULT.calendarFor(CalendarSystem.ISLAMIC))
         val lateDhulHijjah = islamic.toJdn(CalendarDate(CalendarSystem.ISLAMIC, 1447, 12, 25))

@@ -7,7 +7,6 @@ package ir.taqvim.feature.calendar
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
-import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.addMonths
 import ir.taqvim.core.calendar.monthsBetween
 import ir.taqvim.core.events.IslamicCalendarSelection
@@ -27,17 +26,16 @@ class CalendarCalendars(
     val arithmetic: List<CalendarArithmetic> =
         settings.calendars
             .distinct()
-            .mapNotNull { arithmeticFor(it, settings.islamicVariant) }
+            .map { arithmeticFor(it, settings.islamicVariant) }
             .ifEmpty { listOf(GregorianCalendarSystem) }
 
-    /** The available calendars in the user's order, primary first; Gregorian when none of them is available. */
+    /** The user's calendars in their order, primary first; Gregorian when the user has none. */
     val systems: List<CalendarSystem> = arithmetic.map { it.system }
 
     private val primary: CalendarArithmetic = arithmetic.first()
 
-    /** Calendars that can be secondary: every calendar with arithmetic except the primary, in declaration order. */
-    val secondaryChoices: List<CalendarSystem> =
-        CalendarSystem.entries.filter { it != primary.system && arithmeticFor(it, settings.islamicVariant) != null }
+    /** Calendars that can be secondary: every calendar except the primary, in declaration order. */
+    val secondaryChoices: List<CalendarSystem> = CalendarSystem.entries.filter { it != primary.system }
 
     /** Days in [month] of [year] of the primary calendar, the month clamped to the months of [year]. */
     fun primaryMonthLength(
@@ -80,16 +78,10 @@ class CalendarCalendars(
     ): Jdn = primary.toJdn(primary.addMonths(monthStart(today), offset))
 
     companion object {
-        /** Arithmetic of [system], with [variant] for the Islamic calendar; `null` when not available yet (Nepali). */
+        /** Arithmetic of [system], with [variant] for the Islamic calendar. */
         fun arithmeticFor(
             system: CalendarSystem,
             variant: IslamicVariant,
-        ): CalendarArithmetic? =
-            when (system) {
-                CalendarSystem.PERSIAN -> PersianCalendarSystem
-                CalendarSystem.ISLAMIC -> IslamicCalendarSelection.calendarFor(variant)
-                CalendarSystem.GREGORIAN -> GregorianCalendarSystem
-                CalendarSystem.NEPALI -> null
-            }
+        ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant)
     }
 }

@@ -68,12 +68,9 @@ class ReminderAdaptersTest {
     fun `events without reminders or in a calendar that cannot be computed are left out`() {
         reminderEvent(event, arithmetic, null, emptyList()).shouldBeNull()
         val nepali = event.copy(calendarSystem = CalendarSystem.NEPALI)
-        reminderEvent(
-            nepali,
-            arithmetic,
-            null,
-            listOf(ReminderEntity(id = 1, eventId = 7, minutesBefore = 5)),
-        ).shouldBeNull()
+        val reminders = listOf(ReminderEntity(id = 1, eventId = 7, minutesBefore = 5))
+        reminderEvent(nepali, arithmetic, null, reminders).shouldNotBeNull()
+        reminderEvent(nepali, arithmetic - CalendarSystem.NEPALI, null, reminders).shouldBeNull()
         val allDay = event.copy(startMinute = null)
         reminderEvent(allDay, arithmetic, null, listOf(ReminderEntity(id = 1, eventId = 7, minutesBefore = 5)))
             .shouldNotBeNull()

@@ -156,7 +156,7 @@ internal fun reminderInputChanges(database: TaqvimDatabase): Flow<Set<String>> =
 
 /**
  * [entity] with its enabled [reminders], [exceptionDays] and [overrides] (T-1003) for the reminder planner, or `null`
- * when it has no reminders or its calendar cannot be computed (Nepali, T-105).
+ * when it has no reminders or [arithmetic] lacks its calendar.
  */
 internal fun reminderEvent(
     entity: PersonalEventEntity,

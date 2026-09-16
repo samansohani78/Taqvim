@@ -10,6 +10,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import ir.taqvim.core.astronomy.ZodiacSystem
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.TodayProvider
 import ir.taqvim.core.calendar.toJdn
@@ -111,7 +112,7 @@ class FeatureAdaptersTest {
         }
 
     @Test
-    fun `tools settings use computable calendars, the device zone and the default workday profile`(): Unit =
+    fun `tools settings use the user's calendars, the device zone and the default workday profile`(): Unit =
         runTest {
             val profile = MutableStateFlow<WorkdayProfile?>(null)
             var lookups = 0
@@ -129,7 +130,7 @@ class FeatureAdaptersTest {
             val first = source.settings().first()
             first.language.code shouldBe "fa"
             first.homeZone shouldBe TimeZone.of("Asia/Kabul")
-            first.calendars shouldBe ToolsSettings.DEFAULT_CALENDARS
+            first.calendars shouldBe listOf(NepaliCalendarSystem)
             first.boardZones shouldBe emptyList()
             first.workdays.shouldBeNull()
             lookups shouldBe 0

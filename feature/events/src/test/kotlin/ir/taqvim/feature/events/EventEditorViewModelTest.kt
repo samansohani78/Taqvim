@@ -11,9 +11,11 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.maps.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.nlp.ParseContext
 import ir.taqvim.core.testing.FakeClock
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -88,8 +90,17 @@ class EventEditorViewModelTest {
             }
             viewModel(store, eventId = 4).content shouldBe EditorContent.NotFound
 
-            val nepali = FakeEventStore(EditorFixtures.event(id = 5).copy(calendar = CalendarSystem.NEPALI))
+            // A calendar the settings have no arithmetic for cannot be edited.
+            val bikramSambat = NepaliCalendarSystem.date(2083, 5, 28)
+            val nepali =
+                FakeEventStore(EditorFixtures.event(id = 5, calendar = CalendarSystem.NEPALI, start = bikramSambat))
             viewModel(nepali, eventId = 5).content shouldBe EditorContent.NotFound
+            settings.flow.value =
+                EditorFixtures.settings().copy(
+                    arithmetic =
+                        ParseContext.DEFAULT_CALENDARS + (CalendarSystem.NEPALI to NepaliCalendarSystem),
+                )
+            viewModel(nepali, eventId = 5).editing.form.start shouldBe bikramSambat
 
             val failing = FakeEventStore(EditorFixtures.event(id = 6)).apply { failLoads = true }
             viewModel(failing, eventId = 6).content shouldBe EditorContent.NotFound

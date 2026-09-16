@@ -13,6 +13,7 @@ import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarDate
@@ -98,5 +99,17 @@ class WearMonthConverterTest {
         val results = WearConverter.results(setup, PersianCalendarSystem, PersianCalendarSystem.date(1405, 1, 1))
         results.none { it.system == CalendarSystem.PERSIAN } shouldBe true
         results shouldHaveSize setup.calendars.size - 1
+    }
+
+    @Test
+    fun `a Nepali watch shows and converts Bikram Sambat dates`() {
+        val nepali = WearFixtures.setup(language = "ne")
+        nepali.calendars.first() shouldBe NepaliCalendarSystem
+        // Baisakh 1, 2083 is 14 April 2026 (National Panchang BS 2083).
+        WearConverter.switchCalendar(
+            NepaliCalendarSystem,
+            GregorianCalendarSystem,
+            CalendarDate(CalendarSystem.NEPALI, 2083, 1, 1),
+        ) shouldBe CalendarDate(CalendarSystem.GREGORIAN, 2026, 4, 14)
     }
 }

@@ -8,6 +8,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Coordinates
@@ -54,7 +55,8 @@ class MapAdaptersTest {
         settings.timeZone shouldBe berlin
         settings.calendar shouldBeSameInstanceAs GregorianCalendarSystem
         mapSettings(persian.copy(calendars = listOf(CalendarSystem.NEPALI)), berlin)
-            .calendar shouldBeSameInstanceAs PersianCalendarSystem
+            .calendar shouldBeSameInstanceAs NepaliCalendarSystem
+        mapSettings(persian.copy(calendars = emptyList()), berlin).calendar shouldBeSameInstanceAs PersianCalendarSystem
     }
 
     @Test

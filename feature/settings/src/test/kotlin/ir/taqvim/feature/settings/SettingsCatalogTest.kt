@@ -115,15 +115,17 @@ class SettingsCatalogTest {
     fun `main and secondary calendars reorder the calendar list`() {
         val main = SettingsCatalog.control(SettingsItemId.MAIN_CALENDAR) as SettingsControl.Choice
         val secondary = SettingsCatalog.control(SettingsItemId.SECONDARY_CALENDAR) as SettingsControl.Choice
-        val three = before.copy(calendars = SettingsCatalog.CALENDARS)
+        val all = before.copy(calendars = SettingsCatalog.CALENDARS)
+        val nepali = CalendarSystem.NEPALI
 
-        main.write(three, CalendarSystem.GREGORIAN.name).calendars shouldBe
-            listOf(CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN, CalendarSystem.ISLAMIC)
-        secondary.write(three, CalendarSystem.GREGORIAN.name).calendars shouldBe
-            listOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN, CalendarSystem.ISLAMIC)
-        secondary.write(three, SettingsCatalog.NO_CALENDAR).calendars shouldBe listOf(CalendarSystem.PERSIAN)
+        main.write(all, CalendarSystem.GREGORIAN.name).calendars shouldBe
+            listOf(CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN, CalendarSystem.ISLAMIC, nepali)
+        secondary.write(all, CalendarSystem.GREGORIAN.name).calendars shouldBe
+            listOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN, CalendarSystem.ISLAMIC, nepali)
+        main.write(all, nepali.name).calendars.first() shouldBe nepali
+        secondary.write(all, SettingsCatalog.NO_CALENDAR).calendars shouldBe listOf(CalendarSystem.PERSIAN)
         secondary.read(before.copy(calendars = listOf(CalendarSystem.PERSIAN))) shouldBe SettingsCatalog.NO_CALENDAR
-        secondary.write(three, CalendarSystem.PERSIAN.name) shouldBe three
+        secondary.write(all, CalendarSystem.PERSIAN.name) shouldBe all
     }
 
     @Test

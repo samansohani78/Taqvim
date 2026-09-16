@@ -6,6 +6,7 @@ package ir.taqvim.data.events.ics
 
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.longs.shouldBeLessThanOrEqual
 import io.kotest.matchers.nulls.shouldBeNull
@@ -182,7 +183,16 @@ class IcsExportMappingTest {
                     listOf(IcsDateTime.Date(LocalDate(2026, 3, 1)), IcsDateTime.Date(LocalDate(2026, 3, 31)))
             }
         val nepali = ExportRecord(event(nowruz1405.value, calendar = CalendarSystem.NEPALI), rule, emptyList())
-        mapping.toIcs(nepali, nowruz1405).let {
+        mapping.toIcs(nepali, nowruz1405).recurrenceDates.shouldNotBeEmpty()
+        // A provider without the event's calendar exports only the Taqvim rule.
+        val withoutNepali =
+            CalendarProvider { system ->
+                CalendarProvider.DEFAULT.calendarFor(system).takeIf {
+                    system !=
+                        CalendarSystem.NEPALI
+                }
+            }
+        IcsExportMapping(withoutNepali).toIcs(nepali, nowruz1405).let {
             it.recurrenceDates.shouldBeEmpty()
             it.extensions.keys shouldBe setOf(TaqvimRecurrence.PROPERTY)
         }

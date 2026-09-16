@@ -166,9 +166,8 @@ internal object SettingsCatalog {
     /** Times of day offered for all-day reminders are this many minutes apart. */
     const val REMINDER_TIME_STEP_MINUTES: Int = 30
 
-    /** Calendars that can be chosen; the Nepali calendar becomes available with T-105. */
-    val CALENDARS: List<CalendarSystem> =
-        listOf(CalendarSystem.PERSIAN, CalendarSystem.ISLAMIC, CalendarSystem.GREGORIAN)
+    /** Calendars that can be chosen. */
+    val CALENDARS: List<CalendarSystem> = CalendarSystem.entries
 
     fun control(id: SettingsItemId): SettingsControl =
         when (id.tab) {
