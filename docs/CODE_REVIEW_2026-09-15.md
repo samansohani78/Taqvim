@@ -85,6 +85,8 @@ through timeline together, not just the minute-span helper with hand-assembled d
 
 ### B04 — P1 — Official reminders can disagree with the displayed holiday date — Reproduced
 
+**Status:** Fixed in main@d604af6.
+
 **Where:** [ReminderAdapters.kt:77](/home/ssohani/Lab/my/repo/Taqvim/app/src/main/kotlin/ir/taqvim/app/di/ReminderAdapters.kt:77),
 [CalculatorOfficialEventSchedule.kt:22](/home/ssohani/Lab/my/repo/Taqvim/feature/notification/src/main/kotlin/ir/taqvim/feature/notification/CalculatorOfficialEventSchedule.kt:22).
 
@@ -164,6 +166,8 @@ defines event cancellation independently of whether the event is an override.
 
 ### B09 — P1 — Restore can fail after the database has already been replaced — Traced
 
+**Status:** Fixed in main@c6cdb01 (ADR-0032; open: screens opened before recovery finishes may briefly show the interrupted state, and queued subscription refreshes are not held back).
+
 **Where:** [BackupService.kt:43](/home/ssohani/Lab/my/repo/Taqvim/data/database/src/main/kotlin/ir/taqvim/data/database/backup/BackupService.kt:43).
 
 `replaceAll()` commits its Room transaction before `preferences.update()`. If the preference write fails, the
@@ -224,6 +228,8 @@ existing `DeviceEventMapping.days()` correctly distinguishes all-day values, so 
 external sources. Include recurring results and events that start before the search window but overlap it.
 
 ### B13 — P2 — Privacy dashboard reports notifications allowed unconditionally before Android 13 — Traced
+
+**Status:** Fixed in main@e6451ed (per-channel status not covered: the dashboard shows no channels).
 
 **Where:** [BackupAdapters.kt:316](/home/ssohani/Lab/my/repo/Taqvim/app/src/main/kotlin/ir/taqvim/app/di/BackupAdapters.kt:316).
 
