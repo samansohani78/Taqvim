@@ -1519,4 +1519,3 @@ verify the sources' own arithmetic before dropping the computed columns.
   (0.03°, 0.005′, 99 % zone agreement) come from the truncated series' stated accuracy, not from the app's output.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-17; **reviewer attestation:** pending — no forbidden
   sources consulted.
-
