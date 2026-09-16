@@ -94,8 +94,8 @@ Record each sign-off (name, date, build) in the GitHub release notes draft befor
 - [ ] **OEM / athan** — athan and reminders fire on time on the OEM test matrix (exact alarms, battery optimisation,
       Do Not Disturb Fajr bypass, reboot). The per-OEM checklist from T-1102 is not written yet.
       `‹OWNER: OEM device matrix›`
-- [ ] **Widgets** — every widget places, renders, updates at midnight and prayer times, and opens its link (T-1200+;
-      widgets are not built yet).
+- [ ] **Widgets** — every widget places, renders, updates at midnight and prayer times, and opens its link (T-1200 to
+      T-1215; all widgets are built and unit-tested, device placement, tap and render checks are still to do).
 - [ ] **TalkBack** — manual pass on a device over the 40 core scenarios (§8.3); the automated checks (T-1700) do not
       replace it.
 - [ ] **RTL and font scale** — `fa` (RTL) and `en` at font scale 1.0 and 2.0 on phone, tablet and foldable (T-1701).
