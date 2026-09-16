@@ -28,6 +28,7 @@ internal fun calendarLabel(system: CalendarSystem): Int =
         CalendarSystem.ISLAMIC -> R.string.wear_calendar_islamic
         CalendarSystem.GREGORIAN -> R.string.wear_calendar_gregorian
         CalendarSystem.NEPALI -> R.string.wear_calendar_nepali
+        CalendarSystem.HEBREW -> R.string.wear_calendar_hebrew
     }
 
 @StringRes

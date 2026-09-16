@@ -6,6 +6,7 @@ package ir.taqvim.core.events
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.IranIslamicCalendar
 import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
@@ -33,6 +34,7 @@ public fun interface CalendarProvider {
                     CalendarSystem.ISLAMIC -> IRAN_ISLAMIC
                     CalendarSystem.GREGORIAN -> GregorianCalendarSystem
                     CalendarSystem.NEPALI -> NepaliCalendarSystem
+                    CalendarSystem.HEBREW -> HebrewCalendarSystem
                 }
             }
 

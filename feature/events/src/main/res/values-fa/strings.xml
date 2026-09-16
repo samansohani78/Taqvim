@@ -14,6 +14,7 @@
   <string name="events_calendar_islamic">هجری قمری</string>
   <string name="events_calendar_gregorian">میلادی</string>
   <string name="events_calendar_nepali">بیکرم سَمبَت</string>
+  <string name="events_calendar_hebrew">عبری</string>
   <string name="events_all_day">تمام روز</string>
   <string name="events_starts">شروع</string>
   <string name="events_ends">پایان</string>

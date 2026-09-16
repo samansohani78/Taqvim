@@ -182,9 +182,14 @@ public object DateFormatter {
             }
 
         private fun month(count: Int): String {
-            val names = formats.monthNames[date.system]
-            return if (count >= NAME_WIDTH && names != null) {
-                names[date.month - 1]
+            val name =
+                if (date.system == CalendarSystem.HEBREW) {
+                    HebrewMonthNames.name(formats.code, date.year, date.month)
+                } else {
+                    formats.monthNames[date.system]?.getOrNull(date.month - 1)
+                }
+            return if (count >= NAME_WIDTH && name != null) {
+                name
             } else {
                 number(date.month, padded = count == TWO_DIGITS)
             }

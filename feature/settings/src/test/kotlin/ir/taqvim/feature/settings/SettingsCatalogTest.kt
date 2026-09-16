@@ -117,11 +117,12 @@ class SettingsCatalogTest {
         val secondary = SettingsCatalog.control(SettingsItemId.SECONDARY_CALENDAR) as SettingsControl.Choice
         val all = before.copy(calendars = SettingsCatalog.CALENDARS)
         val nepali = CalendarSystem.NEPALI
+        val hebrew = CalendarSystem.HEBREW
 
         main.write(all, CalendarSystem.GREGORIAN.name).calendars shouldBe
-            listOf(CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN, CalendarSystem.ISLAMIC, nepali)
+            listOf(CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN, CalendarSystem.ISLAMIC, nepali, hebrew)
         secondary.write(all, CalendarSystem.GREGORIAN.name).calendars shouldBe
-            listOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN, CalendarSystem.ISLAMIC, nepali)
+            listOf(CalendarSystem.PERSIAN, CalendarSystem.GREGORIAN, CalendarSystem.ISLAMIC, nepali, hebrew)
         main.write(all, nepali.name).calendars.first() shouldBe nepali
         secondary.write(all, SettingsCatalog.NO_CALENDAR).calendars shouldBe listOf(CalendarSystem.PERSIAN)
         secondary.read(before.copy(calendars = listOf(CalendarSystem.PERSIAN))) shouldBe SettingsCatalog.NO_CALENDAR

@@ -18,6 +18,7 @@
   <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="tools_calendar_gregorian">Gregorian</string>
   <string name="tools_calendar_nepali">Bikram Sambat</string>
+  <string name="tools_calendar_hebrew">Hebrew</string>
   <string name="tools_date_numeric_iso" translatable="false">%1$s · %2$s</string>
   <string name="tools_not_recognized">No date found in this text</string>
 

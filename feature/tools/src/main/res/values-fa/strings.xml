@@ -12,6 +12,7 @@
   <string name="tools_calendar_islamic">هجری قمری</string>
   <string name="tools_calendar_gregorian">میلادی</string>
   <string name="tools_calendar_nepali">بیکرم سمبت</string>
+  <string name="tools_calendar_hebrew">عبری</string>
   <string name="tools_not_recognized">در این متن تاریخی پیدا نشد</string>
 
   <string name="tools_converter_input">تاریخ</string>

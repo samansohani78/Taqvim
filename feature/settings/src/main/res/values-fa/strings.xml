@@ -136,6 +136,7 @@
   <string name="settings_calendar_islamic">هجری قمری</string>
   <string name="settings_calendar_gregorian">میلادی</string>
   <string name="settings_calendar_nepali">بیکرم سمبت</string>
+  <string name="settings_calendar_hebrew">عبری</string>
   <string name="settings_theme_system">مطابق سیستم</string>
   <string name="settings_theme_light">روشن</string>
   <string name="settings_theme_dark">تاریک</string>

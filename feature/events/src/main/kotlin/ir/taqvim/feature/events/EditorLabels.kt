@@ -25,6 +25,7 @@ internal fun calendarLabel(system: CalendarSystem): Int =
         CalendarSystem.ISLAMIC -> R.string.events_calendar_islamic
         CalendarSystem.GREGORIAN -> R.string.events_calendar_gregorian
         CalendarSystem.NEPALI -> R.string.events_calendar_nepali
+        CalendarSystem.HEBREW -> R.string.events_calendar_hebrew
     }
 
 /** Repeat choice for [frequency]; `null` is "does not repeat". */

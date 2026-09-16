@@ -83,6 +83,7 @@ public data class MonthNames(
             CalendarSystem.PERSIAN -> persian
             CalendarSystem.ISLAMIC -> islamic
             CalendarSystem.NEPALI -> nepali
+            CalendarSystem.HEBREW -> null
         }
 
     private companion object {

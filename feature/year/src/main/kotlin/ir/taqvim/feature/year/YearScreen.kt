@@ -145,6 +145,7 @@ private fun calendarName(system: CalendarSystem): String =
             CalendarSystem.ISLAMIC -> R.string.year_calendar_islamic
             CalendarSystem.GREGORIAN -> R.string.year_calendar_gregorian
             CalendarSystem.NEPALI -> R.string.year_calendar_nepali
+            CalendarSystem.HEBREW -> R.string.year_calendar_hebrew
         },
     )
 

@@ -181,4 +181,5 @@ internal val CalendarSystem.label: Int
             CalendarSystem.ISLAMIC -> R.string.tools_calendar_islamic
             CalendarSystem.GREGORIAN -> R.string.tools_calendar_gregorian
             CalendarSystem.NEPALI -> R.string.tools_calendar_nepali
+            CalendarSystem.HEBREW -> R.string.tools_calendar_hebrew
         }

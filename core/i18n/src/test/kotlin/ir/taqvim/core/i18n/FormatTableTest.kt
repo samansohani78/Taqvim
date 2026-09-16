@@ -21,7 +21,7 @@ class FormatTableTest {
         FormatTable.formats.values.forEach { formats ->
             formats.weekdays.keys shouldBe calendars.toSet()
             formats.weekdays.values.forEach { it shouldHaveSize 7 }
-            formats.datePatterns.keys shouldBe calendars.toSet() + CalendarSystem.NEPALI
+            formats.datePatterns.keys shouldBe calendars.toSet() + CalendarSystem.NEPALI + CalendarSystem.HEBREW
             formats.monthNames[CalendarSystem.GREGORIAN].shouldNotBeNull()
         }
     }

@@ -19,7 +19,13 @@ class CalendarTypesTest {
     @Test
     fun `calendar systems and islamic variants are the planned sets`() {
         CalendarSystem.entries shouldContainExactly
-            listOf(CalendarSystem.PERSIAN, CalendarSystem.ISLAMIC, CalendarSystem.GREGORIAN, CalendarSystem.NEPALI)
+            listOf(
+                CalendarSystem.PERSIAN,
+                CalendarSystem.ISLAMIC,
+                CalendarSystem.GREGORIAN,
+                CalendarSystem.NEPALI,
+                CalendarSystem.HEBREW,
+            )
         IslamicVariant.entries.map { it.name } shouldContainExactly
             listOf("IRAN_OFFICIAL", "UMM_AL_QURA", "TABULAR_16", "TABULAR_15", "CALCULATED_OBSERVATIONAL")
     }

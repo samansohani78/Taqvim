@@ -33,4 +33,5 @@
   <string name="year_calendar_gregorian">Gregorian</string>
   <!-- Name of the Nepali (Bikram Sambat) calendar. -->
   <string name="year_calendar_nepali">Nepali</string>
+  <string name="year_calendar_hebrew">Hebrew</string>
 </resources>

@@ -38,6 +38,7 @@ internal object SettingsLabels {
             CalendarSystem.ISLAMIC to R.string.settings_calendar_islamic,
             CalendarSystem.GREGORIAN to R.string.settings_calendar_gregorian,
             CalendarSystem.NEPALI to R.string.settings_calendar_nepali,
+            CalendarSystem.HEBREW to R.string.settings_calendar_hebrew,
         )
 
     val weekdays: Map<Weekday, Int> =

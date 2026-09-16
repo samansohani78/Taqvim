@@ -21,4 +21,5 @@
   <string name="year_calendar_islamic">هجری قمری</string>
   <string name="year_calendar_gregorian">میلادی</string>
   <string name="year_calendar_nepali">نپالی</string>
+  <string name="year_calendar_hebrew">عبری</string>
 </resources>

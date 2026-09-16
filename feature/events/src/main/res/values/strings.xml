@@ -17,6 +17,7 @@
   <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="events_calendar_gregorian">Gregorian</string>
   <string name="events_calendar_nepali">Bikram Sambat</string>
+  <string name="events_calendar_hebrew">Hebrew</string>
   <string name="events_all_day">All day</string>
   <!-- Label before the event's start date and time. -->
   <string name="events_starts">Starts</string>

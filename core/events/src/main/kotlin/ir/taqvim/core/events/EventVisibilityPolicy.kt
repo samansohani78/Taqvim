@@ -6,6 +6,7 @@ package ir.taqvim.core.events
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.IranIslamicCalendar
 import ir.taqvim.core.calendar.NepaliCalendarSystem
@@ -67,6 +68,7 @@ public class IslamicCalendarSelection(
                 CalendarSystem.ISLAMIC -> calendarFor(variant)
                 CalendarSystem.GREGORIAN -> GregorianCalendarSystem
                 CalendarSystem.NEPALI -> NepaliCalendarSystem
+                CalendarSystem.HEBREW -> HebrewCalendarSystem
             }
     }
 }

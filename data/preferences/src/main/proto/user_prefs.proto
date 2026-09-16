@@ -17,6 +17,7 @@ enum CalendarSystemProto {
   CALENDAR_SYSTEM_ISLAMIC = 2;
   CALENDAR_SYSTEM_GREGORIAN = 3;
   CALENDAR_SYSTEM_NEPALI = 4;
+  CALENDAR_SYSTEM_HEBREW = 5;
 }
 
 enum NumeralSystemProto {

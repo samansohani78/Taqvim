@@ -46,6 +46,7 @@
   <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="wear_calendar_gregorian">Gregorian</string>
   <string name="wear_calendar_nepali">Bikram Sambat</string>
+  <string name="wear_calendar_hebrew">Hebrew</string>
 
   <string name="wear_settings_language">Language</string>
   <string name="wear_settings_primary_calendar">Main calendar</string>

@@ -40,6 +40,7 @@
   <string name="wear_calendar_islamic">هجری قمری</string>
   <string name="wear_calendar_gregorian">میلادی</string>
   <string name="wear_calendar_nepali">بیکرم سامبت</string>
+  <string name="wear_calendar_hebrew">عبری</string>
 
   <string name="wear_settings_language">زبان</string>
   <string name="wear_settings_primary_calendar">تقویم اصلی</string>

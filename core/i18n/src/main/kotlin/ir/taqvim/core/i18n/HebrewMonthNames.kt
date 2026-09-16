@@ -15,6 +15,9 @@ package ir.taqvim.core.i18n
 public object HebrewMonthNames {
     private const val RESOURCE = "hebrew-months.properties"
     private const val CLDR_MONTHS = 14
+    private const val LEAP_FACTOR = 7L
+    private const val CYCLE = 19L
+    private const val LEAP_YEARS = 7L
 
     // CLDR order: Tishri, Heshvan, Kislev, Tevet, Shevat, Adar I, Adar, Nisan … Elul, Adar II.
     private val commonYear = listOf(0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12)
@@ -43,6 +46,19 @@ public object HebrewMonthNames {
         require(names.size == CLDR_MONTHS) { "$RESOURCE needs $CLDR_MONTHS names for '$code'" }
         return (if (leap) leapYear else commonYear).map(names::get)
     }
+
+    /**
+     * The name of [month] (numbered from Tishri) of Hebrew [year] in language [code], or `null` when CLDR has no names
+     * for the language or the year has no such month.
+     */
+    public fun name(
+        code: String,
+        year: Int,
+        month: Int,
+    ): String? = months(code, isLeapYear(year))?.getOrNull(month - 1)
+
+    /** The 19-year cycle's leap years 3, 6, 8, 11, 14, 17 and 19 (A-15): `(7 × year + 1) mod 19 < 7`. */
+    internal fun isLeapYear(year: Int): Boolean = Math.floorMod(LEAP_FACTOR * year.toLong() + 1, CYCLE) < LEAP_YEARS
 
     /** The CLDR locale the names of [code] were taken from, or `null` when the language is omitted. */
     public fun locale(code: String): String? = entries["$code.locale"]

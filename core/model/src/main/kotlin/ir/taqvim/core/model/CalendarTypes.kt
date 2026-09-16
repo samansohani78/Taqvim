@@ -17,6 +17,9 @@ public enum class CalendarSystem {
 
     /** Bikram Sambat (Nepal), computed from sankrantis (A-07, ADR-0030). */
     NEPALI,
+
+    /** Fixed Hebrew calendar (A-15, T-108): 12 or 13 months numbered from Tishri (ADR-0025 addendum). */
+    HEBREW,
 }
 
 /** Rules for determining Islamic (Lunar Hijri) month starts (docs/PLAN.md §6, A-03…A-06). */

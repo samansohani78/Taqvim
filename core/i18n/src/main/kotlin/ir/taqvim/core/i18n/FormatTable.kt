@@ -83,7 +83,7 @@ public object FormatTable {
     public val formats: Map<String, LanguageFormats> by lazy {
         FormatTableParser
             .parse(loadPropertiesResource(RESOURCE), LanguageTable.languages.map { it.code })
-            .mapValues { (code, formats) -> withBikramSambat(code, withProductPatterns(code, formats)) }
+            .mapValues { (code, formats) -> withHebrew(withBikramSambat(code, withProductPatterns(code, formats))) }
     }
 
     private fun withProductPatterns(
@@ -114,6 +114,17 @@ public object FormatTable {
             monthNames = formats.monthNames + (nepali to BikramSambatNames.months(code)),
         )
     }
+
+    /**
+     * [formats] with a Hebrew date pattern (F07): the language's Gregorian pattern. Month names depend on the year
+     * (13 in a leap year), so they come from [HebrewMonthNames] rather than [LanguageFormats.monthNames].
+     */
+    private fun withHebrew(formats: LanguageFormats): LanguageFormats =
+        formats.copy(
+            datePatterns =
+                formats.datePatterns +
+                    (CalendarSystem.HEBREW to formats.datePatterns.getValue(CalendarSystem.GREGORIAN)),
+        )
 
     /** Formatting data of [language]. */
     public fun of(language: LanguageSpec): LanguageFormats =

@@ -78,6 +78,19 @@ class DateFormatterTest {
     }
 
     @Test
+    fun `Hebrew dates name the month by the year's leap status (F07)`() {
+        // AM 5784 is a leap year (month 7 = Adar II), AM 5785 a common year (month 7 = Nisan).
+        val adar2 = CalendarDate(CalendarSystem.HEBREW, 5784, 7, 14)
+        val nisan = CalendarDate(CalendarSystem.HEBREW, 5785, 7, 14)
+        val tishri = CalendarDate(CalendarSystem.HEBREW, 5785, 1, 1)
+        DateFormatter.format(adar2, sunday, language("en"), DateStyle.LONG) shouldBe "Sunday, Adar II 14, 5784"
+        DateFormatter.format(nisan, sunday, language("en"), DateStyle.LONG) shouldBe "Sunday, Nisan 14, 5785"
+        DateFormatter.format(tishri, sunday, language("de"), DateStyle.LONG).contains("Tischri") shouldBe true
+        // `hi` has no CLDR Hebrew names, so the month is written as a number.
+        DateFormatter.format(tishri, sunday, language("hi"), DateStyle.LONG).contains("Tishri") shouldBe false
+    }
+
+    @Test
     fun `the pattern engine handles padding, two-digit years, quotes and unknown letters`() {
         val formats = FormatTable.of(language("en"))
         val date = CalendarDate(CalendarSystem.GREGORIAN, 2026, 3, 5)

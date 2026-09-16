@@ -246,4 +246,5 @@ internal fun calendarLabel(calendar: CalendarSystem): Int =
         CalendarSystem.ISLAMIC -> R.string.widget_calendar_islamic
         CalendarSystem.GREGORIAN -> R.string.widget_calendar_gregorian
         CalendarSystem.NEPALI -> R.string.widget_calendar_nepali
+        CalendarSystem.HEBREW -> R.string.widget_calendar_hebrew
     }

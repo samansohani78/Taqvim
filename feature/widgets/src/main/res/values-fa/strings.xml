@@ -23,6 +23,7 @@
   <string name="widget_calendar_islamic">هجری قمری</string>
   <string name="widget_calendar_gregorian">میلادی</string>
   <string name="widget_calendar_nepali">بیکرم سمبت</string>
+  <string name="widget_calendar_hebrew">عبری</string>
   <string name="widget_config_save">ذخیره</string>
   <string name="widget_config_cancel">لغو</string>
   <string name="widget_config_save_failed">تنظیمات ذخیره نشد. دوباره تلاش کنید.</string>

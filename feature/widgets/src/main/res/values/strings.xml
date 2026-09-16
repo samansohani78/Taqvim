@@ -37,6 +37,7 @@
   <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="widget_calendar_gregorian">Gregorian</string>
   <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <string name="widget_calendar_hebrew">Hebrew</string>
   <!-- Button (verb): save the widget settings. -->
   <string name="widget_config_save">Save</string>
   <!-- Button: close the widget settings without saving. -->

@@ -6,6 +6,7 @@ package ir.taqvim.app.navigation
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.IranIslamicCalendar
 import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
@@ -42,6 +43,7 @@ internal object DeepLinks {
             "islamic" to IranIslamicCalendar(),
             "gregorian" to GregorianCalendarSystem,
             "nepali" to NepaliCalendarSystem,
+            "hebrew" to HebrewCalendarSystem,
         )
 
     private val HANDLERS: Map<String, (Link) -> AppDestination?> =
@@ -169,6 +171,7 @@ internal object DeepLinks {
             CalendarSystem.ISLAMIC -> names.islamic
             CalendarSystem.GREGORIAN -> names.gregorian
             CalendarSystem.NEPALI -> names.nepali
+            CalendarSystem.HEBREW -> null
         }
     }
 

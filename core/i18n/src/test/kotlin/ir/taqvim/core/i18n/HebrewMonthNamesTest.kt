@@ -87,6 +87,20 @@ class HebrewMonthNamesTest {
     }
 
     @Test
+    fun `month numbers resolve by the 19-year leap cycle`() {
+        listOf(3, 6, 8, 11, 14, 17, 19).forEach { position ->
+            HebrewMonthNames.isLeapYear(19 * 300 + position) shouldBe
+                true
+        }
+        (1..19).count { HebrewMonthNames.isLeapYear(19 * 300 + it) } shouldBe 7
+        HebrewMonthNames.name("en", 5784, 7) shouldBe "Adar II"
+        HebrewMonthNames.name("en", 5785, 7) shouldBe "Nisan"
+        HebrewMonthNames.name("en", 5785, 13) shouldBe null
+        HebrewMonthNames.name("en", 5784, 13) shouldBe "Elul"
+        HebrewMonthNames.name("hi", 5784, 1) shouldBe null
+    }
+
+    @Test
     fun `unknown languages have no names`() {
         HebrewMonthNames.months("xx", leap = true) shouldBe null
         HebrewMonthNames.locale("xx") shouldBe null
