@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 
 /**
- * T-503 golden cases: 50 Gregorian rules expanded by [RecurrenceEngine] and, independently, by a day-by-day java.time
+ * T-503 golden cases: 56 Gregorian rules expanded by [RecurrenceEngine] and, independently, by a day-by-day java.time
  * filter that tests each date against the RFC 5545 §3.3.10 definitions. Plus the ordering property in three calendars.
  */
 class RecurrenceOracleTest {
@@ -76,7 +76,7 @@ class RecurrenceOracleTest {
     ): Boolean =
         when (rule.frequency) {
             Frequency.DAILY -> {
-                ChronoUnit.DAYS.between(start, day) % rule.interval == 0L
+                ChronoUnit.DAYS.between(start, day) % rule.interval == 0L && dailyAccepted(rule, day)
             }
 
             Frequency.WEEKLY -> {
@@ -94,6 +94,19 @@ class RecurrenceOracleTest {
                 (day.year - start.year) % rule.interval == 0 && yearDayAccepted(start, rule, day)
             }
         }
+
+    /** BYDAY and BYMONTHDAY limit a daily rule: both must accept the day (RFC 5545 §3.3.10, table of BY parts). */
+    private fun dailyAccepted(
+        rule: RecurrenceRule,
+        day: LocalDate,
+    ): Boolean {
+        val length = day.lengthOfMonth()
+        val byMonthDay =
+            rule.byMonthDay.isEmpty() ||
+                rule.byMonthDay.any { it == day.dayOfMonth || length + it + 1 == day.dayOfMonth }
+        val byDay = rule.byDay.isEmpty() || rule.byDay.any { weekday(day) == it.weekday }
+        return byMonthDay && byDay
+    }
 
     private fun monthDayAccepted(
         start: LocalDate,
@@ -160,7 +173,7 @@ class RecurrenceOracleTest {
     private fun weekday(day: LocalDate): Weekday = Weekday.ofIsoNumber(day.dayOfWeek.value)
 
     @TestFactory
-    fun `50 Gregorian rules agree with the day-by-day oracle`(): List<DynamicTest> =
+    fun `56 Gregorian rules agree with the day-by-day oracle`(): List<DynamicTest> =
         CASES.map { (start, text) ->
             DynamicTest.dynamicTest("$start $text") {
                 val rule = ruleOf(text)
@@ -180,8 +193,8 @@ class RecurrenceOracleTest {
         }
 
     @Test
-    fun `there are 50 golden cases`() {
-        CASES shouldHaveSize 50
+    fun `there are 56 golden cases`() {
+        CASES shouldHaveSize 56
     }
 
     @Test
@@ -280,6 +293,12 @@ class RecurrenceOracleTest {
                 "2026-07-04" to "FREQ=WEEKLY;INTERVAL=2;COUNT=6",
                 "2026-10-31" to "FREQ=YEARLY;BYMONTHDAY=31;COUNT=10",
                 "2026-01-01" to "FREQ=YEARLY;BYDAY=1MO,1TU,1WE;COUNT=9",
+                "2026-09-14" to "FREQ=DAILY;BYDAY=MO;COUNT=3",
+                "2026-09-14" to "FREQ=DAILY;BYDAY=SA,SU;COUNT=10",
+                "2026-01-15" to "FREQ=DAILY;BYMONTHDAY=15,-1;COUNT=12",
+                "2026-01-31" to "FREQ=DAILY;BYMONTHDAY=-1;COUNT=14",
+                "2026-02-13" to "FREQ=DAILY;BYDAY=FR;BYMONTHDAY=13",
+                "2026-09-14" to "FREQ=DAILY;INTERVAL=2;BYDAY=MO,WE;COUNT=8",
             )
     }
 }

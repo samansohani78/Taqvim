@@ -143,6 +143,36 @@ class RecurrenceEngineTest {
     }
 
     @Test
+    fun `BYDAY and BYMONTHDAY limit a daily rule before COUNT`() {
+        gregorianDays("2026-09-14", rule("FREQ=DAILY;BYDAY=MO;COUNT=3")) shouldBe
+            listOf("2026-09-14", "2026-09-21", "2026-09-28")
+        gregorianDays("2026-09-14", rule("FREQ=DAILY;BYDAY=SA,SU;COUNT=5")) shouldBe
+            listOf("2026-09-14", "2026-09-19", "2026-09-20", "2026-09-26", "2026-09-27")
+        gregorianDays("2026-01-31", rule("FREQ=DAILY;BYMONTHDAY=-1;COUNT=4")) shouldBe
+            listOf("2026-01-31", "2026-02-28", "2026-03-31", "2026-04-30")
+        gregorianDays("2026-01-15", rule("FREQ=DAILY;BYMONTHDAY=15,31;COUNT=5")) shouldBe
+            listOf("2026-01-15", "2026-01-31", "2026-02-15", "2026-03-15", "2026-03-31")
+        gregorianDays("2026-02-13", rule("FREQ=DAILY;BYDAY=FR;BYMONTHDAY=13"), limit = 3) shouldBe
+            listOf("2026-02-13", "2026-03-13", "2026-11-13")
+        gregorianDays("2026-09-14", rule("FREQ=DAILY;INTERVAL=2;BYDAY=MO,WE;COUNT=4")) shouldBe
+            listOf("2026-09-14", "2026-09-16", "2026-09-28", "2026-09-30")
+        // The ordinal the RFC forbids here is ignored: BYDAY=2MO limits by weekday only.
+        gregorianDays("2026-09-14", rule("FREQ=DAILY;BYDAY=2MO;COUNT=3")) shouldBe
+            listOf("2026-09-14", "2026-09-21", "2026-09-28")
+        gregorianDays("2026-09-14", RecurrenceRule(Frequency.DAILY, count = 3)) shouldBe
+            listOf("2026-09-14", "2026-09-15", "2026-09-16")
+    }
+
+    @Test
+    fun `a daily rule in the Persian calendar counts its own month days`() {
+        persian
+            .occurrences(p("1405-01-31"), rule("FREQ=DAILY;BYMONTHDAY=-1;COUNT=3"))
+            .take(3)
+            .map { PersianCalendarSystem.fromJdn(it).toIsoLikeString() }
+            .toList() shouldBe listOf("1405-01-31", "1405-02-31", "1405-03-31")
+    }
+
+    @Test
     fun `rule invariants and the ICS bridge`() {
         shouldThrow<IllegalArgumentException> { RecurrenceRule(Frequency.DAILY, interval = 0) }
         shouldThrow<IllegalArgumentException> { RecurrenceRule(Frequency.DAILY, count = 0) }

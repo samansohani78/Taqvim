@@ -29,6 +29,10 @@ public enum class InvalidDatePolicy {
 /**
  * RRULE-lite for personal events in any calendar system (T-503): the RFC 5545 §3.3.10 parts FREQ, INTERVAL, COUNT,
  * UNTIL (inclusive day), BYDAY and BYMONTHDAY, where months and years are those of the event's calendar.
+ *
+ * Per frequency, as in the RFC's table: [byDay] and [byMonthDay] limit the candidate day of a DAILY rule (an ordinal
+ * in [byDay] is ignored there, since the RFC forbids one); [byDay] expands a WEEKLY rule and [byMonthDay] does not
+ * apply to it; both expand a MONTHLY or YEARLY rule and intersect when given together.
  */
 public data class RecurrenceRule(
     public val frequency: Frequency,
@@ -127,7 +131,7 @@ public class RecurrenceEngine(
         return when (rule.frequency) {
             Frequency.DAILY -> {
                 val day = calendar.toJdn(start).value + steps
-                day to listOf(day)
+                day to dailyCandidate(rule, day)
             }
 
             Frequency.WEEKLY -> {
@@ -144,6 +148,26 @@ public class RecurrenceEngine(
                 firstDay(year, 1) to MonthDays(calendar, rule, start).inYear(year)
             }
         }
+    }
+
+    /** [day] itself when BYDAY and BYMONTHDAY both accept it (they limit a DAILY rule), else no candidate. */
+    private fun dailyCandidate(
+        rule: RecurrenceRule,
+        day: Long,
+    ): List<Long> {
+        val byDay = rule.byDay.isEmpty() || rule.byDay.any { it.weekday == Jdn(day).weekday() }
+        val byMonthDay = rule.byMonthDay.isEmpty() || rule.byMonthDay.any { monthDayMatches(day, it) }
+        return if (byDay && byMonthDay) listOf(day) else emptyList()
+    }
+
+    /** Whether [day] is the [monthDay]-th day of its month, counted from the month's end when negative. */
+    private fun monthDayMatches(
+        day: Long,
+        monthDay: Int,
+    ): Boolean {
+        val date = calendar.fromJdn(Jdn(day))
+        val target = if (monthDay > 0) monthDay else calendar.monthLength(date.year, date.month) + monthDay + 1
+        return date.day == target
     }
 
     private fun weekly(
