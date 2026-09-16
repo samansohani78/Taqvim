@@ -94,4 +94,45 @@ class AlarmPoliciesTest {
             ReconcilePlan(cancel = listOf(late, duplicate), schedule = emptyList(), keep = listOf(due))
         reconciler.restore(AlarmKind.entries.toSet(), all, now).keep shouldBe listOf(due, reminder)
     }
+
+    @Test
+    fun `reconciling keeps due alarms still within their lateness window, whose delivery may be under way`() {
+        val inFlight = stored(1, key(-5))
+        val late = stored(2, key(-20))
+        val future = stored(3, key(30))
+
+        val plan = reconciler.reconcile(AlarmKind.PRAYER, listOf(late, inFlight, future), listOf(key(60)), now)
+
+        plan shouldBe ReconcilePlan(cancel = listOf(late, future), schedule = listOf(key(60)), keep = listOf(inFlight))
+        reconciler.reconcile(AlarmKind.PRAYER, listOf(inFlight), listOf(key(-5)), now).isEmpty shouldBe true
+    }
+
+    @Test
+    fun `failed deliveries are retried within the lateness window up to the attempt limit`() {
+        val policy = RetryPolicy()
+        val due = stored(1, key(0))
+
+        policy.retryAt(due, now) shouldBe now + 1.minutes
+        policy.retryAt(due.copy(attempts = 1), now) shouldBe now + 1.minutes
+        policy.retryAt(due.copy(attempts = 2), now) shouldBe null
+        policy.retryAt(due, now + 14.minutes) shouldBe now + 15.minutes
+        policy.retryAt(due, now + 14.minutes + 1.milliseconds) shouldBe null
+        policy.leaseUntil(now) shouldBe now + 1.minutes
+        shouldThrow<IllegalArgumentException> { RetryPolicy(maxAttempts = 0) }
+        shouldThrow<IllegalArgumentException> { RetryPolicy(retryDelay = Duration.ZERO) }
+        shouldThrow<IllegalArgumentException> { RetryPolicy(lease = Duration.ZERO) }
+    }
+
+    @Test
+    fun `stored alarms report their registration time and snoozed instant`() {
+        val alarm = stored(1, key(5))
+
+        alarm.registerAt() shouldBe now + 5.minutes
+        alarm.snoozedFrom() shouldBe null
+        val retried = alarm.copy(retryAtEpochMillis = (now + 6.minutes).toEpochMilliseconds())
+        retried.registerAt() shouldBe now + 6.minutes
+        alarm.copy(snoozedFromEpochMillis = now.toEpochMilliseconds()).snoozedFrom() shouldBe now
+        AlarmKind.REMINDER.snoozeKind() shouldBe AlarmKind.REMINDER_SNOOZE
+        AlarmKind.REMINDER.deliveryKind() shouldBe AlarmKind.REMINDER
+    }
 }

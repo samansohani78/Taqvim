@@ -20,12 +20,16 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ScheduledAlarmEntity
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.scheduler.AlarmKey
+import ir.taqvim.data.scheduler.DeliveryOutcome
+import ir.taqvim.feature.notification.CalculatorOfficialEventSchedule
 import ir.taqvim.feature.notification.OfficialReminder
-import ir.taqvim.feature.notification.ReminderAlarm
+import ir.taqvim.feature.notification.ReminderAlarms
 import ir.taqvim.feature.notification.ReminderOverride
 import ir.taqvim.feature.notification.ReminderRule
+import ir.taqvim.feature.notification.ReminderSetup
 import kotlin.time.Instant
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.TimeZone
 import org.junit.jupiter.api.Test
 
 /** T-1001 wiring: stored events become planner events with enabled reminders, and reminders reach the scheduler. */
@@ -121,18 +125,26 @@ class ReminderAdaptersTest {
         runTest {
             val now = Instant.parse("2026-03-20T00:00:00Z")
             val at = Instant.parse("2026-03-21T06:00:00Z")
-            val source = ReminderAlarmSource { listOf(ReminderAlarm(sourceId = 11, at = at)) }
+            val alarms = ReminderAlarms({ noReminders() }, MemoryDeliveryLog(), { true })
+            val source = ReminderAlarmSource(alarms)
 
             source.kind shouldBe AlarmKind.REMINDER
-            source.upcomingAlarms(now) shouldBe listOf(AlarmKey(AlarmKind.REMINDER, 11, at))
+            source.upcomingAlarms(now) shouldBe emptyList()
+            source.keepsSnooze(snooze(AlarmKind.REMINDER_SNOOZE, 11, at)) shouldBe false
+            source.keepsSnooze(snooze(AlarmKind.REMINDER_SNOOZE, null, at)) shouldBe false
+            source.keepsSnooze(alarm(sourceId = 11, at = at)) shouldBe false
 
-            val shown = mutableListOf<Pair<Long, Instant>>()
-            val delivery = ReminderAlarmDelivery { id, trigger -> shown += id to trigger }
+            val delivery = ReminderAlarmDelivery(alarms)
             delivery.kind shouldBe AlarmKind.REMINDER
-            delivery.deliver(alarm(sourceId = 11, at = at))
-            delivery.deliver(alarm(sourceId = null, at = at))
-            shown shouldBe listOf(11L to at)
+            delivery.deliver(alarm(sourceId = 11, at = at)) shouldBe DeliveryOutcome.SKIPPED
+            delivery.deliver(alarm(sourceId = null, at = at)) shouldBe DeliveryOutcome.SKIPPED
+            delivery.deliver(snooze(AlarmKind.REMINDER_SNOOZE, 11, at)) shouldBe DeliveryOutcome.SKIPPED
+            delivery.onGaveUp(alarm(sourceId = 11, at = at))
+            delivery.onGaveUp(alarm(sourceId = null, at = at))
         }
+
+    private fun noReminders(): ReminderSetup =
+        ReminderSetup(emptyList(), emptyList(), CalculatorOfficialEventSchedule(emptyList(), "fa"), TimeZone.UTC)
 
     private companion object {
         const val NOWRUZ = "ir.holiday.nowruz-1"

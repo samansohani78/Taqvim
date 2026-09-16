@@ -45,10 +45,20 @@ interface AlarmStore {
     /** Every stored alarm in trigger order. */
     suspend fun alarms(): List<ScheduledAlarmEntity>
 
-    /** Stores [key] and returns the new row id. */
-    suspend fun insert(key: AlarmKey): Long
+    /** Stores [key] (a snooze of [snoozedFrom] when set) and returns the new row id. */
+    suspend fun insert(
+        key: AlarmKey,
+        snoozedFrom: Instant? = null,
+    ): Long
 
     suspend fun delete(id: Long)
+
+    /** Records that alarm [id] has failed [attempts] times, or is leased, and next fires at [retryAt]. */
+    suspend fun updateAttempts(
+        id: Long,
+        attempts: Int,
+        retryAt: Instant,
+    )
 }
 
 /** [AlarmStore] on the Room table of T-601. */
@@ -57,17 +67,29 @@ class RoomAlarmStore(
 ) : AlarmStore {
     override suspend fun alarms(): List<ScheduledAlarmEntity> = dao.alarms()
 
-    override suspend fun insert(key: AlarmKey): Long =
+    override suspend fun insert(
+        key: AlarmKey,
+        snoozedFrom: Instant?,
+    ): Long =
         dao.insertAlarm(
             ScheduledAlarmEntity(
                 kind = key.kind,
                 sourceId = key.sourceId,
                 triggerAtEpochMillis = key.triggerAt.toEpochMilliseconds(),
+                snoozedFromEpochMillis = snoozedFrom?.toEpochMilliseconds(),
             ),
         )
 
     override suspend fun delete(id: Long) {
         dao.deleteAlarm(id)
+    }
+
+    override suspend fun updateAttempts(
+        id: Long,
+        attempts: Int,
+        retryAt: Instant,
+    ) {
+        dao.updateAttempts(id, attempts, retryAt.toEpochMilliseconds())
     }
 }
 
@@ -76,6 +98,18 @@ data class FiredAlarm(
     val alarm: ScheduledAlarmEntity,
     val decision: FireDecision,
 )
+
+/** What became of a pending alarm after its delivery reported back (ADR-0033). */
+enum class Completion {
+    /** Delivered or skipped: the alarm is removed. */
+    DONE,
+
+    /** Delivery failed and the alarm fires again later. */
+    RETRYING,
+
+    /** Delivery failed too often or too late: the alarm is removed without being shown. */
+    GAVE_UP,
+}
 
 /**
  * Single source of truth for alarms (T-604). The `scheduled_alarms` table mirrors what is registered with the system,
@@ -87,6 +121,7 @@ class AlarmScheduler(
     private val alarmClock: AlarmClock,
     private val clock: Clock,
     private val lateness: LatenessPolicy = LatenessPolicy(),
+    private val retry: RetryPolicy = RetryPolicy(lateness = lateness),
 ) {
     private val reconciler = AlarmReconciler(lateness)
     private val mutex = Mutex()
@@ -116,26 +151,83 @@ class AlarmScheduler(
             reconciler.restore(kinds, store.alarms(), clock.now()).also { plan ->
                 cancel(plan.cancel)
                 val exact = refreshStatus()
-                plan.keep.forEach { register(it.id, it.toKey().triggerAt, exact) }
+                plan.keep.forEach { register(it.id, it.registerAt(), exact) }
             }
         }
 
     /**
-     * Handles the system firing alarm [id]. A delivered or skipped alarm is removed; an alarm that is not yet due stays
-     * registered. Returns `null` when no such alarm is stored, e.g. because it was replaced meanwhile.
+     * Handles the system firing alarm [id]. An alarm to deliver stays pending and is leased: it fires again unless
+     * [complete] reports its delivery first. A late alarm is removed; one that is not yet due stays registered.
+     * Returns `null` when no such alarm is stored, e.g. because it was replaced or completed meanwhile.
      */
     suspend fun onFired(id: Long): FiredAlarm? =
         mutex.withLock {
             store.alarms().firstOrNull { it.id == id }?.let { alarm ->
-                val triggerAt = alarm.toKey().triggerAt
-                val decision = lateness.decide(triggerAt, clock.now())
-                if (decision == FireDecision.NOT_DUE) {
-                    register(alarm.id, triggerAt, refreshStatus())
-                } else {
-                    store.delete(alarm.id)
+                val now = clock.now()
+                val decision = lateness.decide(alarm.toKey().triggerAt, now)
+                when (decision) {
+                    FireDecision.NOT_DUE -> register(alarm.id, alarm.registerAt(), refreshStatus())
+                    FireDecision.SKIP_LATE -> store.delete(alarm.id)
+                    FireDecision.DELIVER -> lease(alarm, retry.leaseUntil(now))
                 }
                 FiredAlarm(alarm, decision)
             }
+        }
+
+    /**
+     * Records the [outcome] of delivering pending alarm [id]: delivered or skipped alarms are removed, failed ones fire
+     * again per [RetryPolicy] or are given up. Returns `null` when the alarm is no longer stored.
+     */
+    suspend fun complete(
+        id: Long,
+        outcome: DeliveryOutcome,
+    ): Completion? =
+        mutex.withLock {
+            store.alarms().firstOrNull { it.id == id }?.let { alarm ->
+                val retryAt = retry.retryAt(alarm, clock.now()).takeIf { outcome == DeliveryOutcome.FAILED }
+                when {
+                    retryAt != null -> {
+                        store.updateAttempts(alarm.id, alarm.attempts + 1, retryAt)
+                        register(alarm.id, retryAt, refreshStatus())
+                        Completion.RETRYING
+                    }
+
+                    else -> {
+                        cancel(listOf(alarm))
+                        if (outcome == DeliveryOutcome.FAILED) Completion.GAVE_UP else Completion.DONE
+                    }
+                }
+            }
+        }
+
+    /**
+     * Schedules a snooze of kind [kind] (see [snoozeKind]) that shows the alarm of [sourceId] planned at [snoozedFrom]
+     * again at [at], replacing an earlier snooze of the same alarm. Returns the stored alarm.
+     */
+    suspend fun snooze(
+        kind: AlarmKind,
+        sourceId: Long?,
+        snoozedFrom: Instant,
+        at: Instant,
+    ): ScheduledAlarmEntity =
+        mutex.withLock {
+            require(AlarmKind.entries.any { it.snoozeKind() == kind }) { "$kind is not a snooze kind" }
+            cancel(
+                store.alarms().filter { it.kind == kind && it.sourceId == sourceId && it.snoozedFrom() == snoozedFrom },
+            )
+            val key = AlarmKey(kind, sourceId, at)
+            val id = store.insert(key, snoozedFrom)
+            register(id, at, refreshStatus())
+            store.alarms().first { it.id == id }
+        }
+
+    /** Removes the alarms of [kind] that [keep] rejects, e.g. snoozes of reminders whose event was deleted. */
+    suspend fun prune(
+        kind: AlarmKind,
+        keep: suspend (ScheduledAlarmEntity) -> Boolean,
+    ): List<ScheduledAlarmEntity> =
+        mutex.withLock {
+            store.alarms().filter { it.kind == kind && !keep(it) }.also { cancel(it) }
         }
 
     /** Re-reads the exact-alarm permission, e.g. when the user returns from the system settings. */
@@ -146,6 +238,14 @@ class AlarmScheduler(
             alarmClock.cancel(requestCode(alarm.id))
             store.delete(alarm.id)
         }
+    }
+
+    private suspend fun lease(
+        alarm: ScheduledAlarmEntity,
+        until: Instant,
+    ) {
+        store.updateAttempts(alarm.id, alarm.attempts, until)
+        register(alarm.id, until, refreshStatus())
     }
 
     private fun refreshStatus(): Boolean = alarmClock.canScheduleExact().also { status.value = statusOf(it) }

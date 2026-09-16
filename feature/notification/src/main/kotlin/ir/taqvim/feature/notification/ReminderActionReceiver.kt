@@ -11,6 +11,10 @@ import androidx.core.app.NotificationManagerCompat
 import ir.taqvim.core.model.Jdn
 import kotlin.time.Clock
 import kotlin.time.Instant
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.core.context.GlobalContext
 
 /** The explicit broadcasts of [ReminderActionReceiver]; the reminder travels in the extras. */
 internal object ReminderIntents {
@@ -81,8 +85,29 @@ class ReminderActionReceiver : BroadcastReceiver() {
 
             ReminderIntents.ACTION_SNOOZE -> {
                 NotificationManagerCompat.from(context).cancel(ReminderNotifications.idOf(reminder))
-                ReminderSnooze.schedule(context, reminder, Clock.System.now())
+                snooze(context, reminder)
             }
         }
+    }
+
+    /**
+     * Snoozes [reminder] through the app's persistent scheduler (ADR-0033); without the app's graph (e.g. a bare
+     * receiver in tests) it falls back to a one-off system alarm.
+     */
+    private fun snooze(
+        context: Context,
+        reminder: PlannedReminder,
+    ) {
+        val now = Clock.System.now()
+        val snoozer = GlobalContext.getOrNull()?.getOrNull<SnoozeScheduler>()
+        if (snoozer == null) {
+            ReminderSnooze.schedule(context, reminder, now)
+            return
+        }
+        // Null only when the receiver is called outside a broadcast (tests).
+        val pending: PendingResult? = goAsync()
+        CoroutineScope(Dispatchers.Default)
+            .launch { snoozer.snoozeReminder(reminder, now + ReminderSnooze.SNOOZE) }
+            .invokeOnCompletion { pending?.finish() }
     }
 }

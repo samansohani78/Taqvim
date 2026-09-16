@@ -199,6 +199,23 @@ class PersonalDaoTest {
         }
 
     @Test
+    fun scheduledAlarmsRecordAttemptsAndSnoozes(): Unit =
+        runTest {
+            val snooze =
+                ScheduledAlarmEntity(
+                    kind = AlarmKind.REMINDER_SNOOZE,
+                    sourceId = 7L,
+                    triggerAtEpochMillis = 700L,
+                    snoozedFromEpochMillis = 100L,
+                )
+            val id = reminders.insertAlarm(snooze)
+
+            reminders.updateAttempts(id, attempts = 2, retryAtEpochMillis = 760L)
+
+            reminders.alarms() shouldBe listOf(snooze.copy(id = id, attempts = 2, retryAtEpochMillis = 760L))
+        }
+
+    @Test
     fun officialRemindersAreOnePerEventAndLeadTime(): Unit =
         runTest {
             val official = db.officialReminderDao()

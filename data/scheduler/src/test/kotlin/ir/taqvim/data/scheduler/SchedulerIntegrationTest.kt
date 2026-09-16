@@ -54,8 +54,9 @@ class SchedulerIntegrationTest {
         object : AlarmDelivery {
             override val kind = AlarmKind.PRAYER
 
-            override suspend fun deliver(alarm: ScheduledAlarmEntity) {
+            override suspend fun deliver(alarm: ScheduledAlarmEntity): DeliveryOutcome {
                 delivered.send(alarm)
+                return DeliveryOutcome.DELIVERED
             }
         }
 

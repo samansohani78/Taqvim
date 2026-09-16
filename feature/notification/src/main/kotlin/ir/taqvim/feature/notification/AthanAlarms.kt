@@ -5,6 +5,8 @@
 package ir.taqvim.feature.notification
 
 import kotlin.time.Instant
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 /** How the athan plays (T-1101 settings). */
 data class AthanPlayback(
@@ -60,16 +62,18 @@ fun interface AthanEventHook {
 }
 
 /**
- * The athan side of the scheduler (T-604): the instants athans are due, and what happens when one of them fires. `:app`
- * adapts [upcoming] to the prayer `AlarmSource` and [onAlarm] to the prayer `AlarmDelivery`; the scheduler has already
- * dropped alarms that fired more than 15 minutes late.
+ * The athan side of the scheduler (T-604, ADR-0033): the instants athans are due, and what happens when one of them
+ * fires. `:app` adapts [upcoming] and [isPlanned] to the prayer `AlarmSource` and [onAlarm] and [onGaveUp] to the prayer
+ * `AlarmDelivery`; the scheduler has already dropped alarms that fired more than 15 minutes late.
  */
 class AthanAlarms(
     private val setup: AthanSetupSource,
-    private val log: AthanDeliveryLog,
+    private val log: DeliveryLog,
     private val starter: AthanPlaybackStarter,
     private val hook: AthanEventHook = AthanEventHook.NONE,
 ) {
+    private val mutex = Mutex()
+
     /** Instants of the athans due strictly after [now]; none without a setup. */
     suspend fun upcoming(now: Instant): List<Instant> =
         setup
@@ -78,17 +82,48 @@ class AthanAlarms(
             .orEmpty()
             .distinct()
 
+    /** Whether an athan is still planned at [plannedAt], e.g. for a snooze of it. */
+    suspend fun isPlanned(plannedAt: Instant): Boolean = planned(plannedAt) != null
+
     /**
-     * Plays the athan planned exactly at [triggerAt], at most once per prayer and day. Returns the started request, or
-     * `null` when nothing is planned at that instant (settings changed meanwhile), it already sounded, or it could not
-     * start.
+     * Plays the athan planned exactly at [plannedAt], at most once per prayer and day unless it plays again after a
+     * [snoozed] alarm. It is recorded as delivered only after playback started, so a failure leaves it pending for the
+     * scheduler to retry.
      */
-    suspend fun onAlarm(triggerAt: Instant): AthanRequest? {
+    suspend fun onAlarm(
+        plannedAt: Instant,
+        snoozed: Boolean = false,
+    ): AlarmDeliveryResult =
+        mutex.withLock {
+            val request = planned(plannedAt)
+            when {
+                request == null -> {
+                    AlarmDeliveryResult.SKIPPED
+                }
+
+                !snoozed && log.state(athanKey(request.athan)) == DeliveryState.DELIVERED -> {
+                    AlarmDeliveryResult.SKIPPED
+                }
+
+                !starter.start(request) -> {
+                    AlarmDeliveryResult.FAILED
+                }
+
+                else -> {
+                    log.record(athanKey(request.athan), DeliveryState.DELIVERED)
+                    hook.onAthanStarted(request.athan)
+                    AlarmDeliveryResult.DELIVERED
+                }
+            }
+        }
+
+    /** Records that the athan planned at [plannedAt] was given up after repeated failures. */
+    suspend fun onGaveUp(plannedAt: Instant) {
+        planned(plannedAt)?.let { log.record(athanKey(it.athan), DeliveryState.FAILED) }
+    }
+
+    private suspend fun planned(plannedAt: Instant): AthanRequest? {
         val current = setup.current() ?: return null
-        val athan = AthanPlanner.at(triggerAt, current.plan) ?: return null
-        val request = AthanRequest(athan, current.playback)
-        val started = log.claim(athan.prayer, athan.day) && starter.start(request)
-        if (started) hook.onAthanStarted(athan)
-        return request.takeIf { started }
+        return AthanPlanner.at(plannedAt, current.plan)?.let { AthanRequest(it, current.playback) }
     }
 }

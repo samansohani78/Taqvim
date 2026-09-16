@@ -14,13 +14,14 @@ import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.testing.PropertyTesting
+import kotlin.time.Instant
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 /** T-1102 (U): the athan never sounds twice for a prayer of a day; silent mode and Do Not Disturb are respected. */
 class AthanPoliciesTest {
     @Test
-    fun `each prayer of each day is claimed at most once`(): Unit =
+    fun `each prayer of each day is recorded once and stays delivered`(): Unit =
         runBlocking {
             checkAll(
                 PropertyTesting.iterations,
@@ -28,13 +29,18 @@ class AthanPoliciesTest {
                 Arb.list(Arb.long(2_461_000L..2_461_010L), 60..60),
             ) { prayers, days ->
                 val log = HistoryDeliveryLog()
-                val claims =
-                    prayers.mapIndexed { index, prayer ->
-                        (prayer to Jdn(days[index])) to log.claim(prayer, Jdn(days[index]))
+                val keys =
+                    prayers.mapIndexed {
+                        index,
+                        prayer,
+                        ->
+                        athanKey(PlannedAthan(prayer, Jdn(days[index]), NOON))
                     }
+                val pending =
+                    keys.map { key -> (log.state(key) == null).also { log.record(key, DeliveryState.DELIVERED) } }
 
-                claims.filter { it.second }.map { it.first } shouldBe claims.map { it.first }.distinct()
-                claims.map { it.first }.distinct().forEach { (prayer, day) -> log.claim(prayer, day) shouldBe false }
+                keys.filterIndexed { index, _ -> pending[index] } shouldBe keys.distinct()
+                keys.distinct().forEach { log.state(it) shouldBe DeliveryState.DELIVERED }
             }
         }
 
@@ -43,18 +49,15 @@ class AthanPoliciesTest {
         runBlocking {
             checkAll(PropertyTesting.iterations, Arb.int(1..20), Arb.int(0..60)) { capacity, count ->
                 val history =
-                    (0 until count).fold(AthanDeliveryHistory(emptyList(), capacity)) { acc, index ->
-                        acc.plus(AthanPrayer.DHUHR, Jdn(index.toLong()))
+                    (0 until count).fold(DeliveryHistory(emptyList(), capacity)) { acc, index ->
+                        acc.with("DHUHR@$index", DeliveryState.DELIVERED)
                     }
 
                 history.entries.size shouldBe minOf(capacity, count)
-                history.entries shouldBe
-                    (maxOf(0, count - capacity) until count).map {
-                        AthanDeliveryHistory.entryOf(AthanPrayer.DHUHR, Jdn(it.toLong()))
-                    }
+                history.entries shouldBe (maxOf(0, count - capacity) until count).map { "DHUHR@$it\tDELIVERED" }
             }
-            AthanDeliveryHistory.entryOf(AthanPrayer.ISHA, Jdn(2_461_297)) shouldBe "ISHA@2461297"
-            shouldThrow<IllegalArgumentException> { AthanDeliveryHistory(emptyList(), capacity = 0) }
+            athanKey(PlannedAthan(AthanPrayer.ISHA, Jdn(2_461_297), NOON)) shouldBe "ISHA@2461297"
+            shouldThrow<IllegalArgumentException> { DeliveryHistory(emptyList(), capacity = 0) }
         }
 
     @Test
@@ -86,5 +89,9 @@ class AthanPoliciesTest {
         decide(AthanPrayer.FAJR, bypass.copy(volumePercent = 0), dnd.copy(policyAccessGranted = true)) shouldBe
             AthanOutput.VIBRATION_ONLY
         shouldThrow<IllegalArgumentException> { playback.copy(volumePercent = 101) }
+    }
+
+    private companion object {
+        val NOON: Instant = Instant.parse("2026-09-13T08:50:00Z")
     }
 }

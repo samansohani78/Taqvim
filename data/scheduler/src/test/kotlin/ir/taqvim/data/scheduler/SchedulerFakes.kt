@@ -54,21 +54,48 @@ internal class FakeAlarmStore(
     override suspend fun alarms(): List<ScheduledAlarmEntity> =
         rows.sortedWith(compareBy({ it.triggerAtEpochMillis }, { it.id }))
 
-    override suspend fun insert(key: AlarmKey): Long {
+    override suspend fun insert(
+        key: AlarmKey,
+        snoozedFrom: Instant?,
+    ): Long {
         val id = nextId++
-        rows += ScheduledAlarmEntity(id, key.kind, key.sourceId, key.triggerAt.toEpochMilliseconds())
+        rows +=
+            ScheduledAlarmEntity(
+                id,
+                key.kind,
+                key.sourceId,
+                key.triggerAt.toEpochMilliseconds(),
+                snoozedFromEpochMillis = snoozedFrom?.toEpochMilliseconds(),
+            )
         return id
     }
 
     override suspend fun delete(id: Long) {
         rows.removeAll { it.id == id }
     }
+
+    override suspend fun updateAttempts(
+        id: Long,
+        attempts: Int,
+        retryAt: Instant,
+    ) {
+        rows.replaceAll {
+            if (it.id ==
+                id
+            ) {
+                it.copy(attempts = attempts, retryAtEpochMillis = retryAt.toEpochMilliseconds())
+            } else {
+                it
+            }
+        }
+    }
 }
 
-/** A source with fixed alarm [times]; only the times after `now` are pending. */
+/** A source with fixed alarm [times]; only the times after `now` are pending. Snoozes of [snoozable] are kept. */
 internal class FakeSource(
     override val kind: AlarmKind,
     private val times: List<Instant>,
+    var snoozable: (ScheduledAlarmEntity) -> Boolean = { true },
 ) : AlarmSource {
     private val queryCount = AtomicInteger()
 
@@ -79,16 +106,25 @@ internal class FakeSource(
         queryCount.incrementAndGet()
         return times.filter { it > now }.map { AlarmKey(kind, null, it) }
     }
+
+    override suspend fun keepsSnooze(snooze: ScheduledAlarmEntity): Boolean = snoozable(snooze)
 }
 
-/** Records delivered alarms. */
+/** Records delivered alarms and answers each delivery with [outcome]. */
 internal class FakeDelivery(
     override val kind: AlarmKind,
+    var outcome: DeliveryOutcome = DeliveryOutcome.DELIVERED,
 ) : AlarmDelivery {
     val delivered = mutableListOf<ScheduledAlarmEntity>()
+    val gaveUp = mutableListOf<ScheduledAlarmEntity>()
 
-    override suspend fun deliver(alarm: ScheduledAlarmEntity) {
+    override suspend fun deliver(alarm: ScheduledAlarmEntity): DeliveryOutcome {
         delivered += alarm
+        return outcome
+    }
+
+    override suspend fun onGaveUp(alarm: ScheduledAlarmEntity) {
+        gaveUp += alarm
     }
 }
 

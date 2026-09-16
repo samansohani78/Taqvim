@@ -17,12 +17,15 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import java.util.concurrent.TimeUnit
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 import org.robolectric.Shadows.shadowOf
@@ -120,6 +123,31 @@ class ReminderNotificationsTest {
     }
 
     @Test
+    fun snoozeGoesThroughThePersistentSchedulerWhenTheAppProvidesIt() {
+        grant()
+        val reminder = ReminderFixtures.planned()
+        val snoozer = RecordingSnoozer()
+        startKoin { modules(module { single<SnoozeScheduler> { snoozer } }) }
+        try {
+            SystemReminderNotifier(context).show(reminder)
+            val snooze = shadowOf(posted(reminder).shouldNotBeNull().actions[1].actionIntent)
+            val before = Clock.System.now()
+
+            ReminderActionReceiver().onReceive(context, snooze.savedIntent)
+
+            snoozer.done.await(5, TimeUnit.SECONDS) shouldBe true
+            val (snoozed, at) = snoozer.reminders.single()
+            snoozed shouldBe reminder
+            (at - before - ReminderSnooze.SNOOZE < 5.seconds) shouldBe true
+            posted(reminder).shouldBeNull()
+            val alarms = requireNotNull(context.getSystemService(AlarmManager::class.java))
+            shadowOf(alarms).scheduledAlarms.shouldBeEmpty()
+        } finally {
+            stopKoin()
+        }
+    }
+
+    @Test
     fun remindersTravelInBroadcastsAndInvalidOnesAreIgnored() {
         grant()
         val reminder = ReminderFixtures.planned(ReminderKind.OFFICIAL, sourceId = 2, target = "ir.holiday.nowruz-1")
@@ -145,9 +173,15 @@ class ReminderNotificationsTest {
     @Test
     fun deliveriesAreRememberedAcrossInstancesAndTheModuleProvidesTheAlarms(): Unit =
         runTest {
-            SharedPreferencesReminderDeliveryLog(context).claim("PERSONAL:1@5") shouldBe true
-            SharedPreferencesReminderDeliveryLog(context).claim("PERSONAL:1@5") shouldBe false
-            SharedPreferencesReminderDeliveryLog(context).claim("OFFICIAL:1@5") shouldBe true
+            fun log() =
+                SharedPreferencesDeliveryLog(
+                    context,
+                    SharedPreferencesDeliveryLog.REMINDER_FILE,
+                    SharedPreferencesDeliveryLog.REMINDER_CAPACITY,
+                )
+            log().record("PERSONAL:1@5", DeliveryState.DELIVERED)
+            log().state("PERSONAL:1@5") shouldBe DeliveryState.DELIVERED
+            log().state("OFFICIAL:1@5").shouldBeNull()
 
             val koin =
                 koinApplication {

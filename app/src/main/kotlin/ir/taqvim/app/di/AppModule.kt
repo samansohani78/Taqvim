@@ -54,10 +54,9 @@ import ir.taqvim.feature.events.EditorSettingsSource
 import ir.taqvim.feature.events.PersonalEventStore
 import ir.taqvim.feature.events.eventsFeatureModule
 import ir.taqvim.feature.map.mapFeatureModule
-import ir.taqvim.feature.notification.AthanAlarms
 import ir.taqvim.feature.notification.AthanSetupSource
-import ir.taqvim.feature.notification.ReminderAlarms
 import ir.taqvim.feature.notification.ReminderSetupSource
+import ir.taqvim.feature.notification.SnoozeScheduler
 import ir.taqvim.feature.notification.notificationFeatureModule
 import ir.taqvim.feature.search.RecentQueriesStore
 import ir.taqvim.feature.search.SearchEventSource
@@ -241,14 +240,9 @@ val searchTimelineAthanPortsModule =
 val athanAlarmPortsModule =
     module {
         single<AthanSetupSource> { PreferencesAthanSetupSource(get()) }
-        single<AlarmSource>(named(PRAYER_ALARMS)) {
-            val alarms = get<AthanAlarms>()
-            AthanAlarmSource { alarms.upcoming(it) }
-        }
-        single<AlarmDelivery>(named(PRAYER_ALARMS)) {
-            val alarms = get<AthanAlarms>()
-            AthanAlarmDelivery { alarms.onAlarm(it) }
-        }
+        single<AlarmSource>(named(PRAYER_ALARMS)) { AthanAlarmSource(get()) }
+        single<AlarmDelivery>(named(PRAYER_ALARMS)) { AthanAlarmDelivery(get()) }
+        single<SnoozeScheduler> { SchedulerSnoozeScheduler(get()) }
     }
 
 /**
@@ -260,14 +254,8 @@ val reminderAlarmPortsModule =
         single<ReminderSetupSource> { RoomReminderSetupSource(get(), get(), get(), get()) }
         single<OfficialReminderStore> { RoomOfficialReminderStore(get()) }
         single { AlarmInputWatcher(reminderInputChanges(get()), setOf(AlarmKind.REMINDER), get()) }
-        single<AlarmSource>(named(REMINDER_ALARMS)) {
-            val alarms = get<ReminderAlarms>()
-            ReminderAlarmSource { alarms.upcoming(it) }
-        }
-        single<AlarmDelivery>(named(REMINDER_ALARMS)) {
-            val alarms = get<ReminderAlarms>()
-            ReminderAlarmDelivery { id, at -> alarms.onAlarm(id, at) }
-        }
+        single<AlarmSource>(named(REMINDER_ALARMS)) { ReminderAlarmSource(get()) }
+        single<AlarmDelivery>(named(REMINDER_ALARMS)) { ReminderAlarmDelivery(get()) }
     }
 
 /** The settings screens (T-1500) and calendar subscriptions (T-1003) over the preferences and the subscription DAO. */

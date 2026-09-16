@@ -17,6 +17,8 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
+import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.CountDownLatch
 import kotlin.time.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -94,18 +96,6 @@ internal object ReminderFixtures {
         )
 }
 
-/** In-memory [ReminderDeliveryLog] on [ReminderDeliveryHistory]. */
-internal class HistoryReminderLog : ReminderDeliveryLog {
-    var history = ReminderDeliveryHistory(emptyList())
-        private set
-
-    override suspend fun claim(key: String): Boolean {
-        if (history.contains(key)) return false
-        history = history.plus(key)
-        return true
-    }
-}
-
 /** [ReminderNotifier] that records what it shows and accepts or refuses every reminder. */
 internal class RecordingNotifier(
     private val accept: Boolean = true,
@@ -115,5 +105,28 @@ internal class RecordingNotifier(
     override fun show(reminder: PlannedReminder): Boolean {
         if (accept) shown += reminder
         return accept
+    }
+}
+
+/** [SnoozeScheduler] that records snoozes and counts down [done] for each. */
+internal class RecordingSnoozer : SnoozeScheduler {
+    val reminders = CopyOnWriteArrayList<Pair<PlannedReminder, Instant>>()
+    val athans = CopyOnWriteArrayList<Pair<PlannedAthan, Instant>>()
+    val done = CountDownLatch(1)
+
+    override suspend fun snoozeReminder(
+        reminder: PlannedReminder,
+        at: Instant,
+    ) {
+        reminders += reminder to at
+        done.countDown()
+    }
+
+    override suspend fun snoozeAthan(
+        athan: PlannedAthan,
+        at: Instant,
+    ) {
+        athans += athan to at
+        done.countDown()
     }
 }

@@ -18,11 +18,15 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import java.time.Duration
+import java.util.concurrent.TimeUnit
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
+import org.koin.dsl.module
 import org.robolectric.Robolectric
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.android.controller.ServiceController
@@ -139,6 +143,29 @@ class AthanServiceTest {
         operation.isForegroundService shouldBe true
         AthanIntents.requestOf(operation.savedIntent) shouldBe request
         operation.savedIntent.action shouldBe AthanIntents.ACTION_PLAY
+    }
+
+    @Test
+    fun snoozeGoesThroughThePersistentSchedulerWhenTheAppProvidesIt() {
+        val request = AthanFixtures.request()
+        val snoozer = RecordingSnoozer()
+        startKoin { modules(module { single<SnoozeScheduler> { snoozer } }) }
+        try {
+            val controller = play(request)
+            val before = Clock.System.now()
+
+            controller.get().onStartCommand(AthanIntents.of(context, AthanIntents.ACTION_SNOOZE, request), 0, 2)
+
+            shadowOf(controller.get()).isStoppedBySelf shouldBe true
+            snoozer.done.await(5, TimeUnit.SECONDS) shouldBe true
+            val (athan, at) = snoozer.athans.single()
+            athan shouldBe request.athan
+            (at - before - AthanSnooze.SNOOZE < 5.seconds) shouldBe true
+            val alarms = requireNotNull(context.getSystemService(AlarmManager::class.java))
+            shadowOf(alarms).scheduledAlarms.isEmpty() shouldBe true
+        } finally {
+            stopKoin()
+        }
     }
 
     @Test

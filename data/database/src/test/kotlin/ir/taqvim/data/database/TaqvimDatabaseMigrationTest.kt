@@ -63,6 +63,27 @@ class TaqvimDatabaseMigrationTest {
     }
 
     @Test
+    fun scheduledAlarmsSurviveMigrationFromFiveAsPendingWithoutRetry() {
+        val name = "migration-5-6.db"
+        helper.createDatabase(name, 5).use { db ->
+            db.execSQL(
+                "INSERT INTO scheduled_alarms (id, kind, source_id, trigger_at_epoch_millis) " +
+                    "VALUES (7, 'REMINDER', 3, 99)",
+            )
+        }
+        helper.runMigrationsAndValidate(name, 6, true, *TaqvimMigrations.ALL.toTypedArray()).use { db ->
+            db
+                .query(
+                    "SELECT kind, source_id, trigger_at_epoch_millis, attempts, retry_at_epoch_millis, " +
+                        "snoozed_from_epoch_millis FROM scheduled_alarms WHERE id = 7",
+                ).use {
+                    it.moveToFirst()
+                    listOf(it.getString(0), it.getLong(1), it.getLong(2), it.getInt(3), it.isNull(4), it.isNull(5))
+                } shouldBe listOf("REMINDER", 3L, 99L, 0, true, true)
+        }
+    }
+
+    @Test
     fun appDatabaseOpensTheOldestSchema() {
         helper.createDatabase(TaqvimDatabase.NAME, 1).close()
         val db = TaqvimDatabase.build(ApplicationProvider.getApplicationContext<Context>())

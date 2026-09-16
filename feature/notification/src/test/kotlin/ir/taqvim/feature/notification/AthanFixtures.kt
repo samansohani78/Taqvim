@@ -37,19 +37,19 @@ internal object AthanFixtures {
         AthanRequest(PlannedAthan(prayer, Jdn(2_461_297), Instant.parse("2026-09-13T08:50:00Z")), playback)
 }
 
-/** In-memory [AthanDeliveryLog] on [AthanDeliveryHistory]. */
+/** In-memory [DeliveryLog] on [DeliveryHistory], shared by the athan and reminder tests. */
 internal class HistoryDeliveryLog(
-    capacity: Int = AthanDeliveryHistory.DEFAULT_CAPACITY,
-) : AthanDeliveryLog {
-    var history = AthanDeliveryHistory(emptyList(), capacity)
+    capacity: Int = SharedPreferencesDeliveryLog.ATHAN_CAPACITY,
+) : DeliveryLog {
+    var history = DeliveryHistory(emptyList(), capacity)
         private set
 
-    override suspend fun claim(
-        prayer: AthanPrayer,
-        day: Jdn,
-    ): Boolean {
-        if (history.contains(prayer, day)) return false
-        history = history.plus(prayer, day)
-        return true
+    override suspend fun state(key: String): DeliveryState? = history.stateOf(key)
+
+    override suspend fun record(
+        key: String,
+        state: DeliveryState,
+    ) {
+        history = history.with(key, state)
     }
 }

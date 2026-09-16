@@ -97,7 +97,7 @@ class AlarmSchedulerTest {
         }
 
     @Test
-    fun `fired alarms are delivered on time, skipped when late and kept when not yet due`(): Unit =
+    fun `fired alarms are leased when on time, skipped when late and kept when not yet due`(): Unit =
         runTest {
             scheduler.replace(AlarmKind.PRAYER, listOf(prayer(5), prayer(10), prayer(60)))
             val (late, onTime, early) = store.alarms()
@@ -110,7 +110,9 @@ class AlarmSchedulerTest {
             scheduler.onFired(early.id) shouldBe FiredAlarm(early, FireDecision.NOT_DUE)
 
             alarmClock.setCalls shouldBe sets + 1
-            store.alarms() shouldBe listOf(early)
+            val leased = onTime.copy(retryAtEpochMillis = (start + 26.minutes).toEpochMilliseconds())
+            store.alarms() shouldBe listOf(leased, early)
+            alarmClock.registered[onTime.id.toInt()]?.triggerAt shouldBe start + 26.minutes
         }
 
     @Test

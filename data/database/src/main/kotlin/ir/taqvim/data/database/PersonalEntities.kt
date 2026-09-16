@@ -147,11 +147,21 @@ enum class AlarmKind {
     REMINDER,
     PRAYER,
     SHIFT,
+
+    /** A reminder shown again after the user snoozed it (ADR-0033). */
+    REMINDER_SNOOZE,
+
+    /** An athan played again after the user snoozed it (ADR-0033). */
+    PRAYER_SNOOZE,
 }
 
 /**
  * An alarm registered with the system (`scheduled_alarms`), kept so alarms can be restored after reboot. [sourceId] is
  * the row id of the reminder or shift rotation, or `null` for prayer alarms; [id] doubles as the request code.
+ *
+ * A row is pending until its delivery succeeds or is given up (ADR-0033): [attempts] counts failed deliveries, and
+ * [retryAtEpochMillis], when set, is when the system alarm fires instead of [triggerAtEpochMillis]. For snoozes,
+ * [snoozedFromEpochMillis] is the planned instant of the reminder or athan that is shown again.
  */
 @Entity(tableName = "scheduled_alarms", indices = [Index("trigger_at_epoch_millis")])
 data class ScheduledAlarmEntity(
@@ -159,4 +169,7 @@ data class ScheduledAlarmEntity(
     val kind: AlarmKind,
     @ColumnInfo(name = "source_id") val sourceId: Long?,
     @ColumnInfo(name = "trigger_at_epoch_millis") val triggerAtEpochMillis: Long,
+    @ColumnInfo(defaultValue = "0") val attempts: Int = 0,
+    @ColumnInfo(name = "retry_at_epoch_millis") val retryAtEpochMillis: Long? = null,
+    @ColumnInfo(name = "snoozed_from_epoch_millis") val snoozedFromEpochMillis: Long? = null,
 )

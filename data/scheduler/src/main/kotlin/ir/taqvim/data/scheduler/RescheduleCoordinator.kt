@@ -22,13 +22,22 @@ interface AlarmSource {
 
     /** Alarms that should be pending at [now]: all of [kind] and strictly after [now], so fired ones never repeat. */
     suspend fun upcomingAlarms(now: Instant): List<AlarmKey>
+
+    /** Whether a snooze of this kind ([snoozeKind]) still shows something, e.g. its event was not deleted. */
+    suspend fun keepsSnooze(snooze: ScheduledAlarmEntity): Boolean = true
 }
 
-/** Shows or plays an alarm of [kind] that fired on time. */
+/**
+ * Shows or plays an alarm of [kind] that fired on time, including snoozes of [kind] (see [deliveryKind]). Alarms stay
+ * pending until the returned [DeliveryOutcome] is recorded (ADR-0033).
+ */
 interface AlarmDelivery {
     val kind: AlarmKind
 
-    suspend fun deliver(alarm: ScheduledAlarmEntity)
+    suspend fun deliver(alarm: ScheduledAlarmEntity): DeliveryOutcome
+
+    /** Called when [alarm] is given up after its deliveries kept failing. */
+    suspend fun onGaveUp(alarm: ScheduledAlarmEntity) = Unit
 }
 
 /** Work handed over by the broadcast receivers; implemented by [RescheduleCoordinator]. */
@@ -55,21 +64,33 @@ class RescheduleCoordinator(
         plan.recompute.forEach { recompute(it) }
     }
 
-    /** Delivers an alarm that fired on time, then schedules the next alarms of its kind unless it was not yet due. */
+    /**
+     * Delivers an alarm that fired on time and records the outcome, then schedules the next alarms of its kind unless it
+     * was not yet due. Snoozes are delivered like the alarm they snooze and trigger no recomputation.
+     */
     override suspend fun onAlarmFired(id: Long) {
         val fired = scheduler.onFired(id) ?: return
+        val alarm = fired.alarm
+        val owners = deliveries.filter { it.kind == alarm.kind.deliveryKind() }
         if (fired.decision == FireDecision.DELIVER) {
-            deliveries.filter { it.kind == fired.alarm.kind }.forEach { it.deliver(fired.alarm) }
+            val outcome = owners.map { it.deliver(alarm) }.combined()
+            if (scheduler.complete(id, outcome) == Completion.GAVE_UP) owners.forEach { it.onGaveUp(alarm) }
         }
-        if (fired.decision != FireDecision.NOT_DUE) recompute(fired.alarm.kind)
+        if (fired.decision != FireDecision.NOT_DUE && alarm.kind.deliveryKind() == alarm.kind) recompute(alarm.kind)
     }
 
-    /** Replaces the alarms of [kind] with what its sources want now; does nothing when [kind] has no source. */
+    /**
+     * Replaces the alarms of [kind] with what its sources want now, and drops snoozes of [kind] that no longer show
+     * anything; does nothing when [kind] has no source.
+     */
     suspend fun recompute(kind: AlarmKind) {
         val owners = sources.filter { it.kind == kind }
         if (owners.isEmpty()) return
         val now = clock.now()
         scheduler.replace(kind, owners.flatMap { it.upcomingAlarms(now) })
+        kind.snoozeKind()?.let { snoozes ->
+            scheduler.prune(snoozes) { snooze -> owners.all { it.keepsSnooze(snooze) } }
+        }
     }
 }
 

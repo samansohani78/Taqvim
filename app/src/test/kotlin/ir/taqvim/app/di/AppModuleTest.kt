@@ -16,7 +16,6 @@ import ir.taqvim.data.scheduler.AlarmDelivery
 import ir.taqvim.data.scheduler.AlarmSource
 import ir.taqvim.data.scheduler.RescheduleCoordinator
 import ir.taqvim.feature.notification.AthanAlarms
-import ir.taqvim.feature.notification.AthanDeliveryLog
 import ir.taqvim.feature.notification.AthanPlaybackStarter
 import ir.taqvim.feature.notification.CalculatorOfficialEventSchedule
 import ir.taqvim.feature.notification.ReminderAlarms
@@ -78,21 +77,13 @@ class AppModuleTest {
                     modules(
                         module {
                             single { repositoryOf(UserPreferences.defaultsFor("fa")) }
-                            single {
-                                AthanAlarms(get(), AthanDeliveryLog { _, _ -> true }, AthanPlaybackStarter { true })
-                            }
-                            single { ReminderAlarms({ emptySetup() }, { true }, { true }) }
+                            single { AthanAlarms(get(), MemoryDeliveryLog(), AthanPlaybackStarter { true }) }
+                            single { ReminderAlarms({ emptySetup() }, MemoryDeliveryLog(), { true }) }
                         },
                         athanAlarmPortsModule,
                         module {
-                            single<AlarmSource>(named(REMINDER_ALARMS)) {
-                                val alarms = get<ReminderAlarms>()
-                                ReminderAlarmSource { alarms.upcoming(it) }
-                            }
-                            single<AlarmDelivery>(named(REMINDER_ALARMS)) {
-                                val alarms = get<ReminderAlarms>()
-                                ReminderAlarmDelivery { id, at -> alarms.onAlarm(id, at) }
-                            }
+                            single<AlarmSource>(named(REMINDER_ALARMS)) { ReminderAlarmSource(get()) }
+                            single<AlarmDelivery>(named(REMINDER_ALARMS)) { ReminderAlarmDelivery(get()) }
                         },
                     )
                 }

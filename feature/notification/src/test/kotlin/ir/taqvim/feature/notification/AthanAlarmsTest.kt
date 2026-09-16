@@ -5,8 +5,6 @@
 package ir.taqvim.feature.notification
 
 import io.kotest.matchers.collections.shouldBeEmpty
-import io.kotest.matchers.nulls.shouldBeNull
-import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
@@ -36,33 +34,59 @@ class AthanAlarmsTest {
     fun `alarms are the planned instants and a fired one plays once per prayer and day`(): Unit =
         runTest {
             val recorder = Recorder()
-            val alarms = AthanAlarms({ setup }, HistoryDeliveryLog(), recorder, recorder)
+            val log = HistoryDeliveryLog()
+            val alarms = AthanAlarms({ setup }, log, recorder, recorder)
 
             val instants = alarms.upcoming(now)
             instants shouldBe AthanPlanner.upcoming(now, setup.plan).map { it.at }.distinct()
+            val athan = AthanPlanner.upcoming(now, setup.plan).first()
 
-            val first = alarms.onAlarm(instants.first()).shouldNotBeNull()
-            first.athan shouldBe AthanPlanner.upcoming(now, setup.plan).first()
-            first.playback shouldBe AthanFixtures.PLAYBACK
-            alarms.onAlarm(instants.first()).shouldBeNull()
-            recorder.started shouldBe listOf(first)
-            recorder.announced shouldBe listOf(first.athan)
+            alarms.onAlarm(instants.first()) shouldBe AlarmDeliveryResult.DELIVERED
+            alarms.onAlarm(instants.first()) shouldBe AlarmDeliveryResult.SKIPPED
+            recorder.started shouldBe listOf(AthanRequest(athan, AthanFixtures.PLAYBACK))
+            recorder.announced shouldBe listOf(athan)
+            log.history.stateOf(athanKey(athan)) shouldBe DeliveryState.DELIVERED
+            alarms.isPlanned(instants.first()) shouldBe true
+        }
+
+    @Test
+    fun `a snoozed athan plays again`(): Unit =
+        runTest {
+            val recorder = Recorder()
+            val alarms = AthanAlarms({ setup }, HistoryDeliveryLog(), recorder)
+            val instant = alarms.upcoming(now).first()
+            alarms.onAlarm(instant)
+
+            alarms.onAlarm(instant, snoozed = true) shouldBe AlarmDeliveryResult.DELIVERED
+            recorder.started.size shouldBe 2
+            AthanAlarms({ null }, HistoryDeliveryLog(), recorder).onAlarm(instant, snoozed = true) shouldBe
+                AlarmDeliveryResult.SKIPPED
         }
 
     @Test
     fun `nothing plays without a setup, off-plan instants or a refused start`(): Unit =
         runTest {
             val recorder = Recorder()
-            val instant = AthanPlanner.upcoming(now, setup.plan).first().at
+            val athan = AthanPlanner.upcoming(now, setup.plan).first()
+            val instant = athan.at
 
             AthanAlarms({ null }, HistoryDeliveryLog(), recorder).upcoming(now).shouldBeEmpty()
-            AthanAlarms({ null }, HistoryDeliveryLog(), recorder).onAlarm(instant).shouldBeNull()
-            AthanAlarms({ setup }, HistoryDeliveryLog(), recorder).onAlarm(instant + 1.minutes).shouldBeNull()
+            AthanAlarms({ null }, HistoryDeliveryLog(), recorder).onAlarm(instant) shouldBe AlarmDeliveryResult.SKIPPED
+            AthanAlarms({ null }, HistoryDeliveryLog(), recorder).isPlanned(instant) shouldBe false
+            AthanAlarms({ setup }, HistoryDeliveryLog(), recorder).onAlarm(instant + 1.minutes) shouldBe
+                AlarmDeliveryResult.SKIPPED
             recorder.started.shouldBeEmpty()
 
             recorder.result = false
-            AthanAlarms({ setup }, HistoryDeliveryLog(), recorder, recorder).onAlarm(instant).shouldBeNull()
+            val log = HistoryDeliveryLog()
+            val refused = AthanAlarms({ setup }, log, recorder, recorder)
+            refused.onAlarm(instant) shouldBe AlarmDeliveryResult.FAILED
             recorder.announced.shouldBeEmpty()
-            AthanEventHook.NONE.onAthanStarted(AthanPlanner.upcoming(now, setup.plan).first())
+            log.history.stateOf(athanKey(athan)) shouldBe null
+            refused.onGaveUp(instant)
+            log.history.stateOf(athanKey(athan)) shouldBe DeliveryState.FAILED
+            refused.onGaveUp(instant + 1.minutes)
+            log.history.entries.size shouldBe 1
+            AthanEventHook.NONE.onAthanStarted(athan)
         }
 }

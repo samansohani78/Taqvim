@@ -117,6 +117,16 @@ interface ReminderDao {
     @Query("DELETE FROM scheduled_alarms WHERE id = :id")
     suspend fun deleteAlarm(id: Long)
 
+    /** Records a failed delivery of alarm [id], which fires again at [retryAtEpochMillis] (ADR-0033). */
+    @Query(
+        "UPDATE scheduled_alarms SET attempts = :attempts, retry_at_epoch_millis = :retryAtEpochMillis WHERE id = :id",
+    )
+    suspend fun updateAttempts(
+        id: Long,
+        attempts: Int,
+        retryAtEpochMillis: Long,
+    )
+
     /** Deletes every alarm of [kind], e.g. before prayer alarms are rescheduled. */
     @Query("DELETE FROM scheduled_alarms WHERE kind = :kind")
     suspend fun deleteAlarms(kind: AlarmKind)

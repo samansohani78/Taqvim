@@ -30,10 +30,12 @@ import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.scheduler.AlarmDelivery
 import ir.taqvim.data.scheduler.AlarmKey
 import ir.taqvim.data.scheduler.AlarmSource
+import ir.taqvim.data.scheduler.DeliveryOutcome
+import ir.taqvim.data.scheduler.snoozedFrom
 import ir.taqvim.feature.calendar.OfficialReminderStore
 import ir.taqvim.feature.notification.CalculatorOfficialEventSchedule
 import ir.taqvim.feature.notification.OfficialReminder
-import ir.taqvim.feature.notification.ReminderAlarm
+import ir.taqvim.feature.notification.ReminderAlarms
 import ir.taqvim.feature.notification.ReminderEvent
 import ir.taqvim.feature.notification.ReminderOverride
 import ir.taqvim.feature.notification.ReminderRule
@@ -194,24 +196,40 @@ internal fun reminderEvent(
     )
 }
 
-/** The scheduler's reminder [AlarmSource] (T-604): one alarm per planned reminder, keyed by its source id. */
+/**
+ * The scheduler's reminder [AlarmSource] (T-604): one alarm per planned reminder, keyed by its source id; snoozes are
+ * kept while their reminder is still planned (ADR-0033).
+ */
 internal class ReminderAlarmSource(
-    private val upcoming: suspend (now: Instant) -> List<ReminderAlarm>,
+    private val alarms: ReminderAlarms,
 ) : AlarmSource {
     override val kind: AlarmKind = AlarmKind.REMINDER
 
     override suspend fun upcomingAlarms(now: Instant): List<AlarmKey> =
-        upcoming(now).map { AlarmKey(AlarmKind.REMINDER, it.sourceId, it.at) }
+        alarms.upcoming(now).map { AlarmKey(AlarmKind.REMINDER, it.sourceId, it.at) }
+
+    override suspend fun keepsSnooze(snooze: ScheduledAlarmEntity): Boolean {
+        val sourceId = snooze.sourceId ?: return false
+        val plannedAt = snooze.snoozedFrom() ?: return false
+        return alarms.isPlanned(sourceId, plannedAt)
+    }
 }
 
-/** The scheduler's reminder [AlarmDelivery] (T-604): shows the reminder planned for the alarm's source and instant. */
+/**
+ * The scheduler's reminder [AlarmDelivery] (T-604, ADR-0033): shows the reminder planned for the alarm's source and
+ * instant, or the one a snooze repeats.
+ */
 internal class ReminderAlarmDelivery(
-    private val onAlarm: suspend (sourceId: Long, triggerAt: Instant) -> Unit,
+    private val alarms: ReminderAlarms,
 ) : AlarmDelivery {
     override val kind: AlarmKind = AlarmKind.REMINDER
 
-    override suspend fun deliver(alarm: ScheduledAlarmEntity) {
-        val sourceId = alarm.sourceId ?: return
-        onAlarm(sourceId, Instant.fromEpochMilliseconds(alarm.triggerAtEpochMillis))
+    override suspend fun deliver(alarm: ScheduledAlarmEntity): DeliveryOutcome {
+        val sourceId = alarm.sourceId ?: return DeliveryOutcome.SKIPPED
+        return alarms.onAlarm(sourceId, alarm.plannedAt(), snoozed = alarm.snoozedFrom() != null).toOutcome()
+    }
+
+    override suspend fun onGaveUp(alarm: ScheduledAlarmEntity) {
+        alarm.sourceId?.let { alarms.onGaveUp(it, alarm.plannedAt()) }
     }
 }

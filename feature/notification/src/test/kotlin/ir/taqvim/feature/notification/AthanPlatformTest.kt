@@ -16,6 +16,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 import org.robolectric.Shadows.shadowOf
@@ -46,20 +47,36 @@ class AthanPlatformTest {
     }
 
     @Test
-    fun deliveriesAreRememberedAcrossInstances(): Unit =
+    fun deliveriesAreRememberedAcrossInstancesAndOldRecordsStayDelivered(): Unit =
         runTest {
-            val day = Jdn(2_461_297)
-            SharedPreferencesAthanDeliveryLog(context).claim(AthanPrayer.FAJR, day) shouldBe true
-            SharedPreferencesAthanDeliveryLog(context).claim(AthanPrayer.FAJR, day) shouldBe false
-            SharedPreferencesAthanDeliveryLog(context).claim(AthanPrayer.FAJR, day + 1) shouldBe true
-            SharedPreferencesAthanDeliveryLog(context).claim(AthanPrayer.ISHA, day) shouldBe true
+            fun log() =
+                SharedPreferencesDeliveryLog(
+                    context,
+                    SharedPreferencesDeliveryLog.ATHAN_FILE,
+                    SharedPreferencesDeliveryLog.ATHAN_CAPACITY,
+                )
+            context
+                .getSharedPreferences(SharedPreferencesDeliveryLog.ATHAN_FILE, Context.MODE_PRIVATE)
+                .edit()
+                .putString("delivered", "ISHA@1\nFAJR@1")
+                .commit()
 
-            val log = SharedPreferencesAthanDeliveryLog(context)
-            (1..AthanDeliveryHistory.DEFAULT_CAPACITY).forEach {
-                log.claim(AthanPrayer.DHUHR, day + 10 + it) shouldBe true
+            log().state("FAJR@1") shouldBe DeliveryState.DELIVERED
+            log().state("FAJR@2").shouldBeNull()
+            log().record("FAJR@2", DeliveryState.FAILED)
+            log().state("FAJR@2") shouldBe DeliveryState.FAILED
+            log().record("FAJR@2", DeliveryState.DELIVERED)
+            log().state("FAJR@2") shouldBe DeliveryState.DELIVERED
+
+            val bounded = log()
+            (1..SharedPreferencesDeliveryLog.ATHAN_CAPACITY).forEach {
+                bounded.record(
+                    "DHUHR@$it",
+                    DeliveryState.DELIVERED,
+                )
             }
-            log.claim(AthanPrayer.FAJR, day) shouldBe true
-            log.claim(AthanPrayer.DHUHR, day + 10 + AthanDeliveryHistory.DEFAULT_CAPACITY) shouldBe false
+            log().state("ISHA@1").shouldBeNull()
+            log().state("DHUHR@1") shouldBe DeliveryState.DELIVERED
         }
 
     @Test
@@ -84,7 +101,8 @@ class AthanPlatformTest {
             }.koin
 
         koin.get<AthanAlarms>().shouldNotBeNull()
-        koin.get<AthanDeliveryLog>().shouldNotBeNull()
+        koin.get<DeliveryLog>(named(ATHAN_DELIVERIES)).shouldNotBeNull()
+        koin.get<DeliveryLog>(named(REMINDER_DELIVERIES)).shouldNotBeNull()
     }
 
     private fun android.content.Intent.removeExtraOf(name: String) = apply { removeExtra(name) }

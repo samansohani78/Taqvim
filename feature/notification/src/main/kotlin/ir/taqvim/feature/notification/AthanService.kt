@@ -15,6 +15,10 @@ import androidx.annotation.VisibleForTesting
 import androidx.core.app.ServiceCompat
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.core.context.GlobalContext
 
 /**
  * Plays the athan in the foreground (docs/PLAN.md T-1102): it posts the athan notification with stop and snooze
@@ -46,7 +50,7 @@ class AthanService : Service() {
 
             intent?.action == AthanIntents.ACTION_SNOOZE && request != null -> {
                 finish()
-                AthanSnooze.schedule(this, request, Clock.System.now())
+                snooze(request)
             }
 
             else -> {
@@ -54,6 +58,20 @@ class AthanService : Service() {
             }
         }
         return START_NOT_STICKY
+    }
+
+    /**
+     * Snoozes [request] through the app's persistent scheduler (ADR-0033); without the app's graph it falls back to a
+     * one-off system alarm. The write is short and runs outside the service, which stops at once.
+     */
+    private fun snooze(request: AthanRequest) {
+        val now = Clock.System.now()
+        val snoozer = GlobalContext.getOrNull()?.getOrNull<SnoozeScheduler>()
+        if (snoozer == null) {
+            AthanSnooze.schedule(this, request, now)
+        } else {
+            CoroutineScope(Dispatchers.Default).launch { snoozer.snoozeAthan(request.athan, now + AthanSnooze.SNOOZE) }
+        }
     }
 
     override fun onDestroy() {
