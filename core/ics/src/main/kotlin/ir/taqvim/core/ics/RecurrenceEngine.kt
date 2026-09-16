@@ -5,6 +5,8 @@
 package ir.taqvim.core.ics
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.CalendarLimits
+import ir.taqvim.core.calendar.addMonths
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.Jdn
@@ -80,7 +82,12 @@ public fun Recurrence.toRecurrenceRule(invalidDates: InvalidDatePolicy = Invalid
 /**
  * Expands [RecurrenceRule]s in [calendar] (T-503). The start always counts as the first occurrence (RFC 5545
  * §3.3.10, COUNT); later occurrences are strictly increasing. A rule that matches nothing for [MAX_EMPTY_PERIODS]
- * consecutive periods ends its sequence instead of searching forever.
+ * consecutive periods ends its sequence instead of searching forever, and a sequence ends before its periods leave the
+ * days a date can hold ([CalendarLimits.LAST_DAY]), so huge intervals never overflow.
+ *
+ * Each period is computed directly from its index (months with [CalendarArithmetic.monthsPerYear]), so reaching a
+ * period costs the same whatever its distance from the start; [occurrences] with a `from` day also skips the earlier
+ * periods entirely when the rule has no COUNT (review I03).
  */
 public class RecurrenceEngine(
     private val calendar: CalendarArithmetic,
@@ -89,26 +96,78 @@ public class RecurrenceEngine(
     public fun occurrences(
         start: CalendarDate,
         rule: RecurrenceRule,
+    ): Sequence<Jdn> = occurrences(start, rule, from = null)
+
+    /**
+     * The occurrences of [rule] starting at [start] that fall on or after [from] (all of them when `null`), lazily
+     * and in ascending order. Without COUNT the expansion begins at the period holding [from]; with COUNT, which is
+     * counted from [start], the earlier occurrences are still generated (at most COUNT of them) and dropped.
+     */
+    public fun occurrences(
+        start: CalendarDate,
+        rule: RecurrenceRule,
+        from: Jdn?,
     ): Sequence<Jdn> {
         require(start.system == calendar.system) { "start must be a ${calendar.system} date (was ${start.system})" }
         val first = calendar.toJdn(start)
-        val later = periods(start, rule).map(::Jdn).filter { it > first }
+        val firstIndex = if (from == null || rule.count != null) 0L else seekIndex(start, rule, from)
+        val later = periods(start, rule, firstIndex).map(::Jdn).filter { it > first }
         val all = sequenceOf(first) + later
         val bounded = rule.until?.let { until -> all.takeWhile { it <= until } } ?: all
-        return rule.count?.let { bounded.take(it) } ?: bounded
+        val counted = rule.count?.let { bounded.take(it) } ?: bounded
+        return if (from == null) counted else counted.filter { it >= from }
     }
 
-    /** Candidate days of all periods, merged so that days pushed into the next period stay in order. */
+    /**
+     * The index of the period before the one holding [from] (a day that [InvalidDatePolicy.NEXT_DAY] pushes past its
+     * own period can still fall on or after [from]); `0` when [from] is not after [start].
+     */
+    private fun seekIndex(
+        start: CalendarDate,
+        rule: RecurrenceRule,
+        from: Jdn,
+    ): Long {
+        val first = calendar.toJdn(start).value
+        if (from.value <= first) return 0
+        val interval = rule.interval.toLong()
+        val periods =
+            when (rule.frequency) {
+                Frequency.DAILY -> (from.value - first) / interval
+                Frequency.WEEKLY -> (from.value - weekBegins(start, rule, 0)) / (DAYS_PER_WEEK * interval)
+                Frequency.MONTHLY -> monthsApart(start, calendar.fromJdn(from)) / interval
+                Frequency.YEARLY -> (calendar.fromJdn(from).year.toLong() - start.year) / interval
+            }
+        return maxOf(0L, periods - 1)
+    }
+
+    /** Month numbers from the month of [from] to the month of [to] (not before it). */
+    private fun monthsApart(
+        from: CalendarDate,
+        to: CalendarDate,
+    ): Long {
+        val perYear = calendar.monthsPerYear?.toLong()
+        if (perYear != null) return (to.year.toLong() - from.year) * perYear + (to.month - from.month)
+        var months = 0L
+        var year = from.year
+        while (year < to.year) {
+            months += calendar.monthsInYear(year)
+            year++
+        }
+        return months + to.month - from.month
+    }
+
+    /** Candidate days of periods [firstIndex] onwards, merged so days pushed into the next period stay in order. */
     private fun periods(
         start: CalendarDate,
         rule: RecurrenceRule,
+        firstIndex: Long,
     ): Sequence<Long> =
         sequence {
             val pending = TreeSet<Long>()
             var emptyPeriods = 0
-            var index = 0L
+            var index = firstIndex
             while (emptyPeriods < MAX_EMPTY_PERIODS) {
-                val (periodStart, days) = period(start, rule, index)
+                val (periodStart, days) = period(start, rule, index) ?: break
                 pending.addAll(days)
                 emptyPeriods = if (days.isEmpty()) emptyPeriods + 1 else 0
                 while (pending.isNotEmpty() && pending.first() < periodStart) {
@@ -121,34 +180,77 @@ public class RecurrenceEngine(
             yieldAll(pending)
         }
 
-    /** First day of the [index]-th period and the candidate days in it. */
+    /** The calendar year holding [CalendarLimits.LAST_DAY], computed only for periods that may reach it. */
+    private val lastYear: Int by lazy { calendar.fromJdn(CalendarLimits.LAST_DAY).year }
+
+    /** First day of the [index]-th period and the candidate days in it, or `null` once periods pass the last day. */
     private fun period(
         start: CalendarDate,
         rule: RecurrenceRule,
         index: Long,
-    ): Pair<Long, List<Long>> {
+    ): Pair<Long, List<Long>>? {
         val steps = Math.multiplyExact(index, rule.interval.toLong())
+        val first = calendar.toJdn(start).value
         return when (rule.frequency) {
             Frequency.DAILY -> {
-                val day = calendar.toJdn(start).value + steps
-                day to dailyCandidate(rule, day)
+                val day = first + steps
+                if (day > CalendarLimits.LAST_DAY.value) null else day to dailyCandidate(rule, day)
             }
 
             Frequency.WEEKLY -> {
-                weekly(start, rule, steps)
+                val weekBegins = weekBegins(start, rule, steps)
+                if (weekBegins > CalendarLimits.LAST_DAY.value) null else weekly(start, rule, weekBegins)
             }
 
             Frequency.MONTHLY -> {
-                val (year, month) = monthAfter(start.year, start.month, steps)
-                firstDay(year, month) to MonthDays(calendar, rule, start).inMonth(year, month)
+                monthly(start, rule, steps)
             }
 
             Frequency.YEARLY -> {
-                val year = Math.toIntExact(start.year + steps)
-                firstDay(year, 1) to MonthDays(calendar, rule, start).inYear(year)
+                yearly(start, rule, steps)
             }
         }
     }
+
+    private fun monthly(
+        start: CalendarDate,
+        rule: RecurrenceRule,
+        steps: Long,
+    ): Pair<Long, List<Long>>? {
+        val (year, month) = monthAfter(start, steps) ?: return null
+        val first = calendar.toJdn(start).value
+        if (mayPassLimit(first, steps, MAX_MONTH_DAYS) && beyondLimit(year, month)) return null
+        return firstDay(year.toInt(), month) to MonthDays(calendar, rule, start).inMonth(year.toInt(), month)
+    }
+
+    private fun yearly(
+        start: CalendarDate,
+        rule: RecurrenceRule,
+        steps: Long,
+    ): Pair<Long, List<Long>>? {
+        val year = start.year + steps
+        val first = calendar.toJdn(start).value
+        if (mayPassLimit(first, steps, MAX_YEAR_DAYS) && beyondLimit(year, 1)) return null
+        return firstDay(year.toInt(), 1) to MonthDays(calendar, rule, start).inYear(year.toInt())
+    }
+
+    /** Whether a period [steps] months or years (≤ [maxDays] days each) after [first] may begin after the last day. */
+    private fun mayPassLimit(
+        first: Long,
+        steps: Long,
+        maxDays: Long,
+    ): Boolean = steps > (CalendarLimits.LAST_DAY.value - first) / maxDays
+
+    /** Whether [month] of [year] begins after [CalendarLimits.LAST_DAY]. */
+    private fun beyondLimit(
+        year: Long,
+        month: Int,
+    ): Boolean =
+        when {
+            year < lastYear -> false
+            year > lastYear -> true
+            else -> firstDay(year.toInt(), month) > CalendarLimits.LAST_DAY.value
+        }
 
     /** [day] itself when BYDAY and BYMONTHDAY both accept it (they limit a DAILY rule), else no candidate. */
     private fun dailyCandidate(
@@ -170,14 +272,22 @@ public class RecurrenceEngine(
         return date.day == target
     }
 
-    private fun weekly(
+    /** First day of the week [steps] weeks after the week holding [start]. */
+    private fun weekBegins(
         start: CalendarDate,
         rule: RecurrenceRule,
         steps: Long,
-    ): Pair<Long, List<Long>> {
+    ): Long {
         val first = calendar.toJdn(start)
-        val weekBegins = first.value - first.weekday().daysAfter(rule.weekStart) + steps * DAYS_PER_WEEK
-        val weekdays = rule.byDay.map { it.weekday }.ifEmpty { listOf(first.weekday()) }
+        return first.value - first.weekday().daysAfter(rule.weekStart) + steps * DAYS_PER_WEEK
+    }
+
+    private fun weekly(
+        start: CalendarDate,
+        rule: RecurrenceRule,
+        weekBegins: Long,
+    ): Pair<Long, List<Long>> {
+        val weekdays = rule.byDay.map { it.weekday }.ifEmpty { listOf(calendar.toJdn(start).weekday()) }
         return weekBegins to weekdays.map { weekBegins + it.daysAfter(rule.weekStart) }.distinct().sorted()
     }
 
@@ -186,24 +296,31 @@ public class RecurrenceEngine(
         month: Int,
     ): Long = calendar.toJdn(calendar.date(year, month, 1)).value
 
-    /** Year and month [steps] months after [year]-[month], honouring the calendar's months per year. */
+    /**
+     * Year and month [steps] months after the month of [start], directly when the calendar has a fixed month count
+     * (else year by year, and `null` beyond `Int` months).
+     */
     private fun monthAfter(
-        year: Int,
-        month: Int,
+        start: CalendarDate,
         steps: Long,
-    ): Pair<Int, Int> {
-        var currentYear = year
-        var remaining = steps + month - 1
-        while (remaining >= calendar.monthsInYear(currentYear)) {
-            remaining -= calendar.monthsInYear(currentYear)
-            currentYear = Math.addExact(currentYear, 1)
+    ): Pair<Long, Int>? {
+        val perYear = calendar.monthsPerYear?.toLong()
+        if (perYear == null) {
+            if (steps > Int.MAX_VALUE) return null
+            val moved = calendar.addMonths(calendar.date(start.year, start.month, 1), steps.toInt())
+            return moved.year.toLong() to moved.month
         }
-        return currentYear to (remaining.toInt() + 1)
+        val monthIndex = start.year * perYear + (start.month - 1) + steps
+        return Math.floorDiv(monthIndex, perYear) to (Math.floorMod(monthIndex, perYear).toInt() + 1)
     }
 
     private companion object {
         const val MAX_EMPTY_PERIODS = 1_000
         const val DAYS_PER_WEEK = 7L
+
+        // Upper bounds for the limit check: no calendar month is longer than 32 days and no year longer than 390.
+        const val MAX_MONTH_DAYS = 32L
+        const val MAX_YEAR_DAYS = 390L
     }
 }
 

@@ -142,8 +142,11 @@ internal object PersonalExpansion {
         val event = record.event
         val length = maxOf(0L, event.endJdn - event.startJdn)
         val (cancelled, kept) = record.overrides.partition { it.cancelled }
+        // Overrides can move an earlier occurrence into the days, so the series is read from the first of both.
+        val earliest = days.start - length
+        val from = kept.minOfOrNull { Jdn(it.originalJdn) }?.let { minOf(it, earliest) } ?: earliest
         return seriesInstances(
-            occurrences = starts(record, calendars),
+            occurrences = starts(record, calendars, from),
             excluded = record.exceptions + cancelled.map { Jdn(it.originalJdn) },
             overrides = kept.associateBy { Jdn(it.originalJdn) },
             from = days.start - length,
@@ -183,14 +186,16 @@ internal object PersonalExpansion {
             colorArgb = override.colorArgb ?: colorArgb,
         )
 
+    /** Occurrence starts of [record] on or after [from] (a one-off event keeps its single start). */
     private fun starts(
         record: PersonalEventRecord,
         calendars: CalendarProvider,
+        from: Jdn,
     ): Sequence<Jdn> {
         val first = Jdn(record.event.startJdn)
         val rule = record.recurrence ?: return sequenceOf(first)
         val calendar = calendars.calendarFor(record.event.calendarSystem) ?: return emptySequence()
-        return RecurrenceEngine(calendar).occurrences(calendar.fromJdn(first), rule)
+        return RecurrenceEngine(calendar).occurrences(calendar.fromJdn(first), rule, from)
     }
 }
 

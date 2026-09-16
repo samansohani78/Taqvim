@@ -20,6 +20,7 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.daysUntil
+import kotlinx.datetime.minus
 import kotlinx.datetime.plus
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
@@ -109,8 +110,9 @@ internal class IcsOccurrenceExpander(
      * DTSTART and, for an RRULE, the occurrences of [maxOccurrences] instances lasting [durationMillis] that overlap
      * [window]. Earlier instances are skipped rather than counted against the cap, so a series that began years ago
      * still has rows today; COUNT stays anchored at DTSTART (the engine applies it) and UNTIL still ends the series.
-     * Seeking costs one candidate each, and at most [SEEK_BUDGET] candidates are examined in total, so an endless rule
-     * cannot run forever.
+     * Without COUNT the engine starts at the window instead of walking the earlier periods (review I03); with COUNT the
+     * earlier instances cost one candidate each. At most [SEEK_BUDGET] candidates are examined in total, so an endless
+     * rule cannot run forever.
      */
     private fun ruleStarts(
         event: IcsEvent,
@@ -121,8 +123,9 @@ internal class IcsOccurrenceExpander(
         val until = recurrence.until?.let { untilMillis(it, event.start) }
         val lastDay = dayOfUtc(window.toEpochMillis).plus(MARGIN_DAYS, DateTimeUnit.DAY)
         val first = GregorianCalendarSystem.fromJdn(dayOf(event.start).toJdn())
+        val seekDay = dayOfUtc(window.fromEpochMillis - durationMillis).minus(MARGIN_DAYS, DateTimeUnit.DAY)
         return RecurrenceEngine(GregorianCalendarSystem)
-            .occurrences(first, recurrence.copy(until = null).toRecurrenceRule())
+            .occurrences(first, recurrence.copy(until = null).toRecurrenceRule(), from = seekDay.toJdn())
             .map { it.toLocalDate() }
             .takeWhile { it <= lastDay }
             .take(SEEK_BUDGET)
