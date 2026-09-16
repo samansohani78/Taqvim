@@ -103,12 +103,12 @@ private fun PersonalOccurrence.toTimelineEvent(
     val start = startMinute
     val end = endMinute
     if (start == null || end == null) {
-        return TimelineEvent(eventId.toString(), TimelineEventKind.PERSONAL, title, isHoliday = false, isAllDay = true)
+        return TimelineEvent(itemId, TimelineEventKind.PERSONAL, title, isHoliday = false, isAllDay = true)
     }
     val eventZone = runCatching { TimeZone.of(timeZoneId) }.getOrDefault(zone)
     val begin = days.start.at(start, eventZone)
     val finish = days.endInclusive.at(end, eventZone)
-    return event(eventId.toString(), TimelineEventKind.PERSONAL, title, false, day, begin, finish, zone)
+    return event(itemId, TimelineEventKind.PERSONAL, title, false, day, begin, finish, zone)
 }
 
 /** An event on [day]: all-day, or the part of `[begin, end)` inside that civil day of [zone]; `null` when none is. */

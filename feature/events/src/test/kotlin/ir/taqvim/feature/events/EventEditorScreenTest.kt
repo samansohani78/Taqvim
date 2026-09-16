@@ -80,6 +80,27 @@ class EventEditorScreenTest {
     }
 
     @Test
+    fun asksWhichOccurrencesToChangeAndHidesTheSeriesFieldsForOne() {
+        val answers = mutableListOf<Boolean>()
+        var state by mutableStateOf(EventEditorUiState(EditorContent.ChoosingScope))
+        composeRule.setContent {
+            EditorTestTheme { EventEditorScreen(state, EventEditorActions(onChooseScope = { answers += it })) }
+        }
+        composeRule.onNodeWithText("Edit repeating event").assertIsDisplayed()
+        composeRule.onNodeWithText("All occurrences").performClick()
+        composeRule.onNodeWithText("This occurrence").performClick()
+        assertEquals(listOf(false, true), answers)
+
+        val form = EditorFixtures.form().copy(id = 1)
+        val single = EditorSession.Editing(form, form, occurrence = EditorFixtures.TODAY)
+        state = EditorPresenter.present(single, EditorFixtures.settings())
+        composeRule.onNodeWithText("Changes apply to this occurrence only.").assertIsDisplayed()
+        composeRule.onNodeWithText("Repeat").assertDoesNotExist()
+        composeRule.onNodeWithText("Cancel this occurrence").performClick()
+        composeRule.onNodeWithText("Cancel this occurrence?").assertIsDisplayed()
+    }
+
+    @Test
     fun listsTheNextOccurrencesOfARepeatingEvent() {
         val base = EditorFixtures.form()
         val form = base.copy(repeat = RepeatForm.create(Frequency.WEEKLY, base.start, NumeralSystem.LATIN))

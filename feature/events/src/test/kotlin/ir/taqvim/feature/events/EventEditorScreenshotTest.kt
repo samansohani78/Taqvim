@@ -39,6 +39,7 @@ class EventEditorScreenshotTest(
         val session =
             when (sample) {
                 "new" -> EditorSession.Editing(new, new)
+                "occurrence" -> occurrence(new)
                 else -> detailed(new, settings)
             }
         val state = EditorPresenter.present(session, settings, EditorFixtures.TODAY)
@@ -47,6 +48,12 @@ class EventEditorScreenshotTest(
                 EventEditorScreen(state, EventEditorActions())
             }
         }
+    }
+
+    /** Review F01: one occurrence of a stored event (ADR-0034). */
+    private fun occurrence(new: EditorForm): EditorSession.Editing {
+        val stored = new.copy(id = 1)
+        return EditorSession.Editing(stored, stored, occurrence = EditorFixtures.TODAY)
     }
 
     private fun detailed(
@@ -74,6 +81,9 @@ class EventEditorScreenshotTest(
             direction: LayoutDirection,
         ) = ScreenshotEnvironment(theme = theme, layoutDirection = direction)
 
+        /** Review F01 adds the single-occurrence form (ADR-0034). */
+        private val SAMPLES = listOf("new", "detailed", "occurrence")
+
         private val ENVIRONMENTS =
             listOf(
                 environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr),
@@ -85,7 +95,7 @@ class EventEditorScreenshotTest(
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}")
         fun parameters(): List<Array<Any>> =
-            listOf("new", "detailed").flatMap { sample -> ENVIRONMENTS.map { arrayOf<Any>(sample, it) } } +
+            SAMPLES.flatMap { sample -> ENVIRONMENTS.map { arrayOf<Any>(sample, it) } } +
                 // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
                 listOf("new", "detailed").flatMap { sample ->
                     ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }

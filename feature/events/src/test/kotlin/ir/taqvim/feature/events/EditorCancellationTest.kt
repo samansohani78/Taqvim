@@ -7,6 +7,7 @@ package ir.taqvim.feature.events
 import androidx.lifecycle.SavedStateHandle
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.testing.FakeClock
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -44,6 +45,26 @@ class EditorCancellationTest {
 
         override suspend fun delete(id: Long) {
             if (cancelWrites) throw CancellationException("delete cancelled")
+        }
+
+        override suspend fun loadOccurrence(
+            id: Long,
+            originalDay: Jdn,
+        ): PersonalEvent? = load(id)
+
+        override suspend fun saveOccurrence(
+            id: Long,
+            originalDay: Jdn,
+            occurrence: PersonalEvent,
+        ) {
+            save(occurrence)
+        }
+
+        override suspend fun cancelOccurrence(
+            id: Long,
+            originalDay: Jdn,
+        ) {
+            delete(id)
         }
     }
 

@@ -152,7 +152,9 @@ internal object PersonalExpansion {
             from = days.start - length,
             until = days.endInclusive,
         ).map { instance ->
-            val occurrence = occurrence(record, instance.original..(instance.original + length))
+            val occurrence =
+                occurrence(record, instance.original..(instance.original + length))
+                    .copy(originalDay = instance.original.takeIf { record.recurrence != null })
             instance.override?.let { occurrence.overriddenBy(it) } ?: occurrence
         }.filter { it.days.start <= days.endInclusive && it.days.endInclusive >= days.start }
     }

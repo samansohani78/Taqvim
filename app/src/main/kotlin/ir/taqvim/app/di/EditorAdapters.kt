@@ -47,6 +47,8 @@ internal class RoomPersonalEventStore(
     private val clock: Clock,
     private val arithmetic: suspend () -> Map<CalendarSystem, CalendarArithmetic>,
 ) : PersonalEventStore {
+    private val occurrences = EventOccurrenceEdits(events)
+
     override suspend fun load(id: Long): PersonalEvent? {
         val entity = events.get(id) ?: return null
         val calendar = arithmetic()[entity.calendarSystem] ?: return null
@@ -88,6 +90,7 @@ internal class RoomPersonalEventStore(
                 events.deleteOverrides(storedId)
             } else {
                 events.upsertRecurrence(rule.toEntity(storedId, event.calendar))
+                occurrences.prune(storedId, calendar, event, rule)
             }
             reminders.deleteReminders(storedId)
             event.reminderMinutes.distinct().forEach { minutes ->
@@ -100,6 +103,35 @@ internal class RoomPersonalEventStore(
     override suspend fun delete(id: Long) {
         events.delete(id)
     }
+
+    override suspend fun loadOccurrence(
+        id: Long,
+        originalDay: Jdn,
+    ): PersonalEvent? {
+        val series = load(id) ?: return null
+        return occurrences.load(series, calendarOf(series), originalDay)
+    }
+
+    override suspend fun saveOccurrence(
+        id: Long,
+        originalDay: Jdn,
+        occurrence: PersonalEvent,
+    ) {
+        val series = requireNotNull(load(id)) { "no event $id" }
+        require(occurrences.load(series, calendarOf(series), originalDay) != null) { "no occurrence on $originalDay" }
+        occurrences.save(id, calendarOf(occurrence), originalDay, occurrence)
+    }
+
+    override suspend fun cancelOccurrence(
+        id: Long,
+        originalDay: Jdn,
+    ) {
+        val series = requireNotNull(load(id)) { "no event $id" }
+        occurrences.cancel(series, calendarOf(series), originalDay)
+    }
+
+    private suspend fun calendarOf(event: PersonalEvent): CalendarArithmetic =
+        requireNotNull(arithmetic()[event.calendar]) { "no arithmetic for ${event.calendar}" }
 }
 
 /** This event as a row: creation time and iCalendar UID are kept from [existing], the update time is [now]. */

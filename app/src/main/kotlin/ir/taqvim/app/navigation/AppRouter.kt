@@ -11,6 +11,7 @@ import android.provider.CalendarContract
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.feature.agenda.AgendaNavigation
 import ir.taqvim.feature.calendar.CalendarMessage
 import ir.taqvim.feature.calendar.CalendarNavigation
@@ -122,12 +123,24 @@ internal class AppRouter(
         day: Jdn? = null,
     ) {
         val number = id.toLongOrNull()
+        val occurrence = if (origin == EventOrigin.PERSONAL) personalEditor(id) else null
         when {
+            occurrence != null -> navigate(occurrence)
             origin == EventOrigin.PERSONAL && number != null -> navigate(AppDestination.EventEditor(number))
             origin == EventOrigin.DEVICE && number != null -> external.openDeviceEvent(number)
             else -> navigate(day?.let { AppDestination.Day(it.value) } ?: AppDestination.Calendar)
         }
     }
+}
+
+/**
+ * The editor of a personal occurrence whose item id is `eventId@originalDay` (ADR-0034), or `null` for an id of
+ * another shape.
+ */
+internal fun personalEditor(id: String): AppDestination.EventEditor? {
+    val eventId = id.substringBefore(PersonalOccurrence.OCCURRENCE_SEPARATOR).toLongOrNull()
+    val day = id.substringAfter(PersonalOccurrence.OCCURRENCE_SEPARATOR, "").toLongOrNull()
+    return if (eventId != null && day != null) AppDestination.EventEditor(eventId, occurrence = day) else null
 }
 
 /** The screen of a settings search result: backup, privacy, about or the settings home at its item. */

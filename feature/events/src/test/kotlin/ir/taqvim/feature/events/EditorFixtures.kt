@@ -134,6 +134,39 @@ class FakeEventStore(
         check(!failDeletes) { "delete failed" }
         stored.remove(id)
     }
+
+    /** Changed occurrences by event and original day (ADR-0034); cancelled ones map to `null`. */
+    val occurrences = mutableMapOf<Pair<Long, Jdn>, PersonalEvent?>()
+
+    override suspend fun loadOccurrence(
+        id: Long,
+        originalDay: Jdn,
+    ): PersonalEvent? {
+        check(!failLoads) { "load failed" }
+        val series = stored[id] ?: return null
+        val key = id to originalDay
+        if (key in occurrences) return occurrences[key]
+        val calendar = ParseContext.DEFAULT_CALENDARS.getValue(series.calendar)
+        val day = calendar.fromJdn(originalDay)
+        return series.copy(recurrence = null, start = day, end = day)
+    }
+
+    override suspend fun saveOccurrence(
+        id: Long,
+        originalDay: Jdn,
+        occurrence: PersonalEvent,
+    ) {
+        check(!failSaves) { "save failed" }
+        occurrences[id to originalDay] = occurrence
+    }
+
+    override suspend fun cancelOccurrence(
+        id: Long,
+        originalDay: Jdn,
+    ) {
+        check(!failDeletes) { "delete failed" }
+        occurrences[id to originalDay] = null
+    }
 }
 
 /** Settings that tests can change. */

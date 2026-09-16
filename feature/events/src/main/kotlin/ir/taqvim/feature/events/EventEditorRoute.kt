@@ -27,13 +27,15 @@ val eventsFeatureModule: Module =
     module {
         viewModel { parameters ->
             val draft = parameters.getOrNull<NewEventDraft>()
+            val occurrence = parameters.getOrNull<OccurrenceTarget>()
             // B11: Koin passes the entry's SavedStateHandle, so an unsaved draft survives process death.
-            EventEditorViewModel(parameters.getOrNull<Long>(), get(), get(), get(), get(), draft)
+            EventEditorViewModel(parameters.getOrNull<Long>(), get(), get(), get(), get(), draft, occurrence)
         }
     }
 
 /**
- * The editor of event [eventId] (`null` creates one, starting from [draft] when given); [onClose] is called once with
+ * The editor of event [eventId] (`null` creates one, starting from [draft] when given); a repeating event opened from
+ * one of its days passes that [occurrence] so the user can change only it (ADR-0034). [onClose] is called once with
  * how it was closed.
  */
 @Composable
@@ -42,8 +44,12 @@ fun EventEditorRoute(
     onClose: (EditorOutcome) -> Unit,
     modifier: Modifier = Modifier,
     draft: NewEventDraft? = null,
+    occurrence: OccurrenceTarget? = null,
     viewModel: EventEditorViewModel =
-        koinViewModel(key = "event-editor-$eventId-$draft", parameters = { parametersOf(eventId, draft) }),
+        koinViewModel(
+            key = "event-editor-$eventId-$draft-$occurrence",
+            parameters = { parametersOf(eventId, draft, occurrence) },
+        ),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val currentOnClose by rememberUpdatedState(onClose)
@@ -63,6 +69,7 @@ fun EventEditorRoute(
                 onSave = viewModel::onSave,
                 onDelete = viewModel::onDelete,
                 onDiscard = viewModel::onDiscard,
+                onChooseScope = viewModel::onChooseScope,
             )
         }
     EventEditorScreen(state, actions, modifier)

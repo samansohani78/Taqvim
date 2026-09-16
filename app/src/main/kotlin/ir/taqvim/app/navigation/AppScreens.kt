@@ -31,6 +31,7 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.ui.motion.NavigationMotion
 import ir.taqvim.core.ui.motion.SharedKey
 import ir.taqvim.core.ui.motion.WithSharedBounds
+import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.feature.about.AboutRoute
 import ir.taqvim.feature.agenda.AgendaRoute
 import ir.taqvim.feature.astronomy.AstronomyDialogKind
@@ -43,6 +44,7 @@ import ir.taqvim.feature.compass.CompassRoute
 import ir.taqvim.feature.compass.LevelRoute
 import ir.taqvim.feature.events.EventEditorRoute
 import ir.taqvim.feature.events.NewEventDraft
+import ir.taqvim.feature.events.OccurrenceTarget
 import ir.taqvim.feature.search.SearchRoute
 import ir.taqvim.feature.settings.AthanSettingsRoute
 import ir.taqvim.feature.settings.LocationSettingsRoute
@@ -102,12 +104,13 @@ private fun AppScreen(
 
         is AppDestination.EventEditor -> {
             // T-703: a personal event's chip grows into its editor.
-            WithSharedBounds(destination.eventId?.let { SharedKey.Event(it.toString()) }) { shared ->
+            WithSharedBounds(destination.sharedKey()) { shared ->
                 EventEditorRoute(
                     destination.eventId,
                     onClose = { navigator.back() },
                     modifier.then(shared),
                     destination.draft(),
+                    destination.occurrence?.let { OccurrenceTarget(Jdn(it)) },
                 )
             }
         }
@@ -162,6 +165,12 @@ private fun EntryScreen(
         }
     }
 }
+
+/** The shared-element key of the event chip this editor grows from: the item id the calendar and agenda use. */
+internal fun AppDestination.EventEditor.sharedKey(): SharedKey.Event? =
+    eventId?.let { id ->
+        SharedKey.Event(occurrence?.let { "$id${PersonalOccurrence.OCCURRENCE_SEPARATOR}$it" } ?: "$id")
+    }
 
 /** The new event this editor destination starts from, or `null` without a day. */
 internal fun AppDestination.EventEditor.draft(): NewEventDraft? =

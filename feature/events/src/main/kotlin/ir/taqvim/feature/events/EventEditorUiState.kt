@@ -27,6 +27,9 @@ sealed interface EditorContent {
     /** The event does not exist, or its calendar cannot be edited yet. */
     data object NotFound : EditorContent
 
+    /** A repeating event opened from a day: change only that occurrence or the whole series (ADR-0034)? */
+    data object ChoosingScope : EditorContent
+
     /** The form being edited. */
     data class Editing(
         val form: EditorForm,
@@ -43,6 +46,8 @@ sealed interface EditorContent {
         val busy: Boolean,
         /** The last save or delete failed. */
         val storeFailed: Boolean,
+        /** Only one occurrence of a repeating event is edited: no repetition or reminders, delete cancels it. */
+        val occurrenceOnly: Boolean = false,
     ) : EditorContent
 
     /** The editor is done and should close. */
@@ -81,6 +86,8 @@ data class EventEditorActions(
     val onSave: () -> Unit = {},
     val onDelete: () -> Unit = {},
     val onDiscard: () -> Unit = {},
+    /** Answers [EditorContent.ChoosingScope]: `true` edits only the occurrence, `false` the whole series. */
+    val onChooseScope: (thisOccurrence: Boolean) -> Unit = {},
 )
 
 /** Which date or time picker is open. */

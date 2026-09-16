@@ -60,9 +60,11 @@ class TimelineZoneDatingTest {
                 meeting(zoneId = "America/Los_Angeles", start = 23 * 60, recurrence = RecurrenceRule(Frequency.WEEKLY))
             val days = timeline(weekly, TimeZone.of("Asia/Tehran"), range = day..day + 8)
 
-            val expected = TimelineEvent("1", TimelineEventKind.PERSONAL, "Standup", false, false, 570, 630)
-            days.getValue(day + 1) shouldBe listOf(expected)
-            days.getValue(day + 8) shouldBe listOf(expected)
+            // Each occurrence is identified by its event and original (Los Angeles) day, ADR-0034.
+            fun expected(original: Jdn) =
+                TimelineEvent("1@${original.value}", TimelineEventKind.PERSONAL, "Standup", false, false, 570, 630)
+            days.getValue(day + 1) shouldBe listOf(expected(day))
+            days.getValue(day + 8) shouldBe listOf(expected(day + 7))
             (days.keys - setOf(day + 1, day + 8)).forEach { days.getValue(it).shouldBeEmpty() }
         }
 

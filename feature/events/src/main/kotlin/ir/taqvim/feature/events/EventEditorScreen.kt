@@ -86,7 +86,8 @@ fun EventEditorScreen(
         ConfirmDialog(DialogTexts.DISCARD, onConfirm = actions.onDiscard, onClose = { confirmDiscard = false })
     }
     if (confirmDelete) {
-        ConfirmDialog(DialogTexts.DELETE, onConfirm = actions.onDelete, onClose = { confirmDelete = false })
+        val texts = if (editing?.occurrenceOnly == true) DialogTexts.CANCEL_OCCURRENCE else DialogTexts.DELETE
+        ConfirmDialog(texts, onConfirm = actions.onDelete, onClose = { confirmDelete = false })
     }
 }
 
@@ -110,6 +111,10 @@ private fun EditorBody(
             )
         }
 
+        EditorContent.ChoosingScope -> {
+            ScopeDialog(actions)
+        }
+
         is EditorContent.Editing -> {
             EditorFields(content, actions)
         }
@@ -131,11 +136,15 @@ private fun EditorFields(
         Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        if (editing.occurrenceOnly) Text(stringResource(R.string.events_occurrence_note))
         TitleField(editing, actions.onIntent)
         DatePhraseField(editing, actions)
         ScheduleSection(editing, actions.onIntent, onPick = { picker = it })
-        RepeatSection(editing, actions.onIntent, onPick = { picker = it })
-        ReminderSection(editing, actions.onIntent)
+        // One occurrence keeps the series' repetition and reminders (ADR-0034).
+        if (!editing.occurrenceOnly) {
+            RepeatSection(editing, actions.onIntent, onPick = { picker = it })
+            ReminderSection(editing, actions.onIntent)
+        }
         ColorSection(editing, actions.onIntent)
         NotesAndLinkFields(editing, actions.onIntent)
     }
@@ -172,7 +181,8 @@ private fun EditorBottomBar(
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
             TextButton(onClick = onDiscard, enabled = !editing.busy) { Text(stringResource(R.string.events_cancel)) }
             if (!editing.isNew) {
-                TextButton(onClick = onDelete, enabled = !editing.busy) { Text(stringResource(R.string.events_delete)) }
+                val label = if (editing.occurrenceOnly) R.string.events_cancel_occurrence else R.string.events_delete
+                TextButton(onClick = onDelete, enabled = !editing.busy) { Text(stringResource(label)) }
             }
             Spacer(Modifier.weight(1f))
             Button(onClick = onSave, enabled = !editing.busy) { Text(stringResource(R.string.events_save)) }
@@ -199,6 +209,28 @@ private enum class DialogTexts(
         R.string.events_delete_confirm,
         R.string.events_cancel,
     ),
+    CANCEL_OCCURRENCE(
+        R.string.events_cancel_occurrence_title,
+        R.string.events_cancel_occurrence_message,
+        R.string.events_cancel_occurrence_confirm,
+        R.string.events_keep_editing,
+    ),
+}
+
+/** Asks whether to change one occurrence or the whole series; dismissing it closes the editor (ADR-0034). */
+@Composable
+private fun ScopeDialog(actions: EventEditorActions) {
+    AlertDialog(
+        onDismissRequest = actions.onDiscard,
+        title = { Text(stringResource(R.string.events_scope_title)) },
+        text = { Text(stringResource(R.string.events_scope_message)) },
+        confirmButton = {
+            TextButton(onClick = { actions.onChooseScope(true) }) { Text(stringResource(R.string.events_scope_this)) }
+        },
+        dismissButton = {
+            TextButton(onClick = { actions.onChooseScope(false) }) { Text(stringResource(R.string.events_scope_all)) }
+        },
+    )
 }
 
 @Composable

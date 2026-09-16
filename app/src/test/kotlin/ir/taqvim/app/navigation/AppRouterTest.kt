@@ -6,6 +6,7 @@ package ir.taqvim.app.navigation
 
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.ui.motion.SharedKey
 import ir.taqvim.feature.agenda.AgendaEvent
 import ir.taqvim.feature.agenda.AgendaEventKind
 import ir.taqvim.feature.calendar.CalendarMessage
@@ -40,6 +41,24 @@ class AppRouterTest {
             showMessage = { messages += it },
         )
     private val day = Jdn(2_461_121)
+
+    @Test
+    fun `a recurring personal occurrence opens the editor on that occurrence`() {
+        router.calendar().onOpenEvent(DayEventItem("12@2461121", DayEventKind.PERSONAL, "Class", isHoliday = false))
+        router.timeline().onOpenEvent("12@2461122", TimelineEventKind.PERSONAL)
+        router.calendar().onOpenEvent(DayEventItem("12@x", DayEventKind.PERSONAL, "Broken", isHoliday = false))
+
+        destinations shouldBe
+            listOf(
+                AppDestination.EventEditor(12, occurrence = 2_461_121),
+                AppDestination.EventEditor(12, occurrence = 2_461_122),
+                AppDestination.Calendar,
+            )
+        personalEditor("12") shouldBe null
+        AppDestination.EventEditor(12, occurrence = 2_461_121).sharedKey() shouldBe SharedKey.Event("12@2461121")
+        AppDestination.EventEditor(12).sharedKey() shouldBe SharedKey.Event("12")
+        AppDestination.EventEditor().sharedKey() shouldBe null
+    }
 
     @Test
     fun `calendar callbacks open the editor, events, timeline, search, astronomy and sources`() {

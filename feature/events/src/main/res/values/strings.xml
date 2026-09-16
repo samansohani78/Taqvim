@@ -121,4 +121,22 @@
   <string name="events_repeat_preview_label">Next occurrences</string>
   <!-- An upcoming occurrence of a timed repeating event: %1$s is the date, %2$s the local time. -->
   <string name="events_repeat_preview_timed">%1$s, %2$s</string>
+  <!-- Title of the question asked when a repeating event is opened from one of its days. -->
+  <string name="events_scope_title">Edit repeating event</string>
+  <!-- Question: edit one occurrence of a repeating event or all of them. -->
+  <string name="events_scope_message">Change only this occurrence, or every occurrence of the event?</string>
+  <!-- Answer: edit only the occurrence the event was opened from. -->
+  <string name="events_scope_this">This occurrence</string>
+  <!-- Answer: edit the whole repeating event. -->
+  <string name="events_scope_all">All occurrences</string>
+  <!-- Button that removes one occurrence of a repeating event. -->
+  <string name="events_cancel_occurrence">Cancel this occurrence</string>
+  <!-- Title of the confirmation before removing one occurrence. -->
+  <string name="events_cancel_occurrence_title">Cancel this occurrence?</string>
+  <!-- Explanation in the confirmation before removing one occurrence. -->
+  <string name="events_cancel_occurrence_message">Only this occurrence is removed; the other occurrences stay.</string>
+  <!-- Confirm button that removes one occurrence. -->
+  <string name="events_cancel_occurrence_confirm">Cancel occurrence</string>
+  <!-- Note above the form when only one occurrence of a repeating event is edited. -->
+  <string name="events_occurrence_note">Changes apply to this occurrence only.</string>
 </resources>

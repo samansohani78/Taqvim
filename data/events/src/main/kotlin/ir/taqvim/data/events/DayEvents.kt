@@ -26,7 +26,24 @@ data class PersonalOccurrence(
     val colorArgb: Int?,
     /** Whether the occurrence was expanded from a recurrence rule. */
     val recurring: Boolean,
-)
+    /**
+     * The day a recurring occurrence starts on by its rule, even after it was moved (T-1003, ADR-0034); `null` for a
+     * one-off event.
+     */
+    val originalDay: Jdn? = null,
+) {
+    /**
+     * The identifier the calendar, agenda and timeline use for this occurrence: the event id, followed by
+     * `@originalDay` for a recurring occurrence so it can be edited on its own (ADR-0034).
+     */
+    val itemId: String
+        get() = originalDay?.let { "$eventId$OCCURRENCE_SEPARATOR${it.value}" } ?: eventId.toString()
+
+    companion object {
+        /** Separates the event id from the original day in [itemId]. */
+        const val OCCURRENCE_SEPARATOR: Char = '@'
+    }
+}
 
 /** One cached occurrence of a subscribed iCalendar feed, covering [days] (all-day ones by their UTC dates). */
 data class IcsOccurrence(

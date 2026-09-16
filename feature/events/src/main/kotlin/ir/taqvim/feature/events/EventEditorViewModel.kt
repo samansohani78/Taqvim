@@ -26,7 +26,8 @@ import kotlinx.datetime.TimeZone
  * The personal event editor (T-1000): creates the event [eventId] is `null` for, otherwise edits the stored one;
  * validates before saving and reports the outcome through [EditorContent.Finished]. A new event starts from [draft]
  * when one is given (a day of the calendar or a range drawn on the timeline), otherwise all-day today. Unsaved changes
- * are kept in [savedState] so they survive process death (B11) and are cleared once the editor finishes.
+ * are kept in [savedState] so they survive process death (B11) and are cleared once the editor finishes. A repeating
+ * event opened from one of its days ([occurrence]) first asks whether to change only that occurrence (ADR-0034).
  */
 class EventEditorViewModel(
     private val eventId: Long?,
@@ -35,6 +36,7 @@ class EventEditorViewModel(
     private val clock: Clock,
     private val savedState: SavedStateHandle,
     private val draft: NewEventDraft? = null,
+    private val occurrence: OccurrenceTarget? = null,
 ) : ViewModel() {
     private val session = MutableStateFlow<EditorSession>(EditorSession.Loading)
 
@@ -82,7 +84,8 @@ class EventEditorViewModel(
         if (valid) {
             viewModelScope
                 .launch {
-                    val saved = attempt { store.save(current.form.toEvent(calendar)) }
+                    val event = current.form.toEvent(calendar)
+                    val saved = attempt { store(current, event) }
                     finishOrFail(saved.isSuccess, EditorOutcome.SAVED, current.copy(showErrors = true))
                 }.invokeOnCompletion { stopBusy() }
         }
@@ -98,14 +101,27 @@ class EventEditorViewModel(
             session.value = current.copy(busy = true, storeFailed = false)
             viewModelScope
                 .launch {
-                    finishOrFail(attempt { store.delete(id) }.isSuccess, EditorOutcome.DELETED, current)
+                    val day = current.occurrence
+                    val removed = attempt { if (day != null) store.cancelOccurrence(id, day) else store.delete(id) }
+                    finishOrFail(removed.isSuccess, EditorOutcome.DELETED, current)
                 }.invokeOnCompletion { stopBusy() }
         }
     }
 
     /** Closes the editor without saving. */
     fun onDiscard() {
-        if (session.value is EditorSession.Editing) session.value = EditorSession.Finished(EditorOutcome.DISCARDED)
+        val current = session.value
+        if (current is EditorSession.Editing || current is EditorSession.ChoosingScope) {
+            session.value = EditorSession.Finished(EditorOutcome.DISCARDED)
+        }
+    }
+
+    /** Answers the scope question: [thisOccurrence] edits only the occurrence, otherwise the whole series. */
+    fun onChooseScope(thisOccurrence: Boolean) {
+        val choosing = session.value as? EditorSession.ChoosingScope ?: return
+        val settings = latestSettings.value ?: return
+        savedState[SCOPE_KEY] = thisOccurrence
+        viewModelScope.launch { session.value = scoped(choosing.series, settings, thisOccurrence) }
     }
 
     private suspend fun onSettings(settings: EditorSettings) {
@@ -114,26 +130,57 @@ class EventEditorViewModel(
     }
 
     private suspend fun open(settings: EditorSettings): EditorSession {
-        val id = eventId
-        val form =
-            if (id == null) {
-                newForm(settings)
+        val id = eventId ?: return restoreDraft(newForm(settings), null)
+        val series = attempt { store.load(id) }.getOrNull()?.takeIf { it.calendar in settings.arithmetic }
+        // The answer is kept so a recreated process does not ask again (B11).
+        val chosen = savedState.get<Boolean>(SCOPE_KEY)
+        return when {
+            series == null -> EditorSession.NotFound
+            series.recurrence == null || occurrence == null -> scoped(series, settings, thisOccurrence = false)
+            chosen == null -> EditorSession.ChoosingScope(series)
+            else -> scoped(series, settings, chosen)
+        }
+    }
+
+    /** The whole [series], or only the chosen occurrence of it, ready for editing. */
+    private suspend fun scoped(
+        series: PersonalEvent,
+        settings: EditorSettings,
+        thisOccurrence: Boolean,
+    ): EditorSession {
+        val day = occurrence?.originalDay?.takeIf { thisOccurrence }
+        val event =
+            if (day == null) {
+                series
             } else {
-                attempt { store.load(id) }
-                    .getOrNull()
-                    ?.takeIf { it.calendar in settings.arithmetic }
-                    ?.let { EditorForm.of(it, settings.arithmeticOf(it.calendar), settings.language.numerals) }
+                attempt { store.loadOccurrence(requireNotNull(series.id), day) }.getOrNull()
+                    ?: return EditorSession.NotFound
             }
-        return form?.let(::restoreDraft) ?: EditorSession.NotFound
+        val form = EditorForm.of(event, settings.arithmeticOf(event.calendar), settings.language.numerals)
+        return restoreDraft(form, day)
+    }
+
+    /** Saves the whole event, or the single occurrence being edited. */
+    private suspend fun store(
+        current: EditorSession.Editing,
+        event: PersonalEvent,
+    ) {
+        val id = event.id
+        val day = current.occurrence
+        if (id != null && day != null) store.saveOccurrence(id, day, event) else store.save(event)
     }
 
     /** The form as opened, with the unsaved draft of the same event on top when the process was recreated. */
-    private fun restoreDraft(opened: EditorForm): EditorSession.Editing {
-        val restored = savedState.get<String>(DRAFT_KEY)?.let { EditorDraftCodec.decode(it, eventId, opened) }
+    private fun restoreDraft(
+        opened: EditorForm,
+        day: Jdn?,
+    ): EditorSession.Editing {
+        val restored = savedState.get<String>(draftKey(day))?.let { EditorDraftCodec.decode(it, eventId, opened) }
         return EditorSession.Editing(
             form = restored?.form ?: opened,
             original = opened,
             dateText = restored?.dateText.orEmpty(),
+            occurrence = day,
         )
     }
 
@@ -141,18 +188,21 @@ class EventEditorViewModel(
     private fun keepDraft(current: EditorSession) {
         when (current) {
             is EditorSession.Editing -> {
+                val key = draftKey(current.occurrence)
                 if (current.form == current.original && current.dateText.isEmpty()) {
-                    savedState.remove<String>(DRAFT_KEY)
+                    savedState.remove<String>(key)
                 } else {
-                    savedState[DRAFT_KEY] = EditorDraftCodec.encode(eventId, current.form, current.dateText)
+                    savedState[key] = EditorDraftCodec.encode(eventId, current.form, current.dateText)
                 }
             }
 
             is EditorSession.Finished -> {
                 savedState.remove<String>(DRAFT_KEY)
+                occurrence?.let { savedState.remove<String>(draftKey(it.originalDay)) }
+                savedState.remove<Boolean>(SCOPE_KEY)
             }
 
-            EditorSession.Loading, EditorSession.NotFound -> {
+            EditorSession.Loading, EditorSession.NotFound, is EditorSession.ChoosingScope -> {
                 // Nothing to keep before the form opens or when there is no event.
             }
         }
@@ -195,6 +245,12 @@ class EventEditorViewModel(
 
         /** The `SavedStateHandle` key of the unsaved draft (B11). */
         const val DRAFT_KEY = "event-editor-draft"
+
+        /** The `SavedStateHandle` key of the answer to the scope question (ADR-0034). */
+        const val SCOPE_KEY = "event-editor-scope"
+
+        /** The draft key of the whole event, or of the occurrence that would start on [day]. */
+        fun draftKey(day: Jdn?): String = day?.let { "$DRAFT_KEY-occurrence-${it.value}" } ?: DRAFT_KEY
 
         /** Length of a new timed event whose end is not given. */
         private const val DEFAULT_LENGTH_MINUTES = 60

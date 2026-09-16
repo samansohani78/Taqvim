@@ -47,7 +47,38 @@ interface PersonalEventStore {
 
     /** Deletes the event with [id] together with its recurrence and reminders. */
     suspend fun delete(id: Long)
+
+    /**
+     * The occurrence of repeating event [id] that would start on [originalDay], as a one-off event with the event's
+     * id (its changed version when one is stored, otherwise the series moved to that day); `null` when either is
+     * missing (ADR-0034).
+     */
+    suspend fun loadOccurrence(
+        id: Long,
+        originalDay: Jdn,
+    ): PersonalEvent?
+
+    /** Stores [occurrence] as the changed occurrence of event [id] that would start on [originalDay] (ADR-0034). */
+    suspend fun saveOccurrence(
+        id: Long,
+        originalDay: Jdn,
+        occurrence: PersonalEvent,
+    )
+
+    /** Removes the occurrence of event [id] that would start on [originalDay]; the others stay (ADR-0034). */
+    suspend fun cancelOccurrence(
+        id: Long,
+        originalDay: Jdn,
+    )
 }
+
+/**
+ * The occurrence a repeating event was opened from: the day it would start on by its rule ([originalDay]), which
+ * identifies a changed occurrence even after it moved (ADR-0034).
+ */
+data class OccurrenceTarget(
+    val originalDay: Jdn,
+)
 
 /** What the editor needs from the preferences; bound in `:app`. */
 data class EditorSettings(

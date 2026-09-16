@@ -29,6 +29,11 @@ internal sealed interface EditorSession {
 
     data object NotFound : EditorSession
 
+    /** Waiting for the user to pick this occurrence or the whole series of [series] (ADR-0034). */
+    data class ChoosingScope(
+        val series: PersonalEvent,
+    ) : EditorSession
+
     data class Editing(
         val form: EditorForm,
         /** The form as opened, to tell whether anything changed. */
@@ -38,6 +43,8 @@ internal sealed interface EditorSession {
         val showErrors: Boolean = false,
         val busy: Boolean = false,
         val storeFailed: Boolean = false,
+        /** The original day of the only occurrence being edited, or `null` for a whole event (ADR-0034). */
+        val occurrence: Jdn? = null,
     ) : EditorSession
 
     data class Finished(
@@ -75,6 +82,7 @@ internal object EditorPresenter {
             when (session) {
                 EditorSession.Loading -> EditorContent.Loading
                 EditorSession.NotFound -> EditorContent.NotFound
+                is EditorSession.ChoosingScope -> EditorContent.ChoosingScope
                 is EditorSession.Finished -> EditorContent.Finished(session.outcome)
                 is EditorSession.Editing -> settings?.let { editing(session, it, today) } ?: EditorContent.Loading
             },
@@ -99,6 +107,7 @@ internal object EditorPresenter {
             dateTextUnrecognized = session.dateTextUnrecognized,
             busy = session.busy,
             storeFailed = session.storeFailed,
+            occurrenceOnly = session.occurrence != null,
         )
     }
 

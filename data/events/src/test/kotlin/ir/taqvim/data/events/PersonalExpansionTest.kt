@@ -73,6 +73,23 @@ class PersonalExpansionTest {
     }
 
     @Test
+    fun `recurring occurrences carry their original day, also when moved, and one-off events do not`() {
+        val moved = EventOverrideEntity(1, nowruz.value + 2, "Moved", "", nowruz.value + 20, null, nowruz.value + 20)
+        val rule = RecurrenceRule(Frequency.DAILY, count = 3)
+        val record = PersonalEventRecord(entity(nowruz), rule, overrides = listOf(moved))
+        val occurrences = PersonalExpansion.expand(record, nowruz..nowruz + 20, calendars)
+        occurrences.map { it.originalDay } shouldBe listOf(nowruz, nowruz + 1, nowruz + 2)
+        occurrences.last().days.start shouldBe nowruz + 20
+        occurrences.map { it.itemId } shouldBe
+            listOf(nowruz, nowruz + 1, nowruz + 2).map { "1${PersonalOccurrence.OCCURRENCE_SEPARATOR}${it.value}" }
+
+        val oneOff = PersonalEventRecord(entity(nowruz), recurrence = null)
+        val single = PersonalExpansion.expand(oneOff, nowruz..nowruz, calendars).single()
+        single.originalDay shouldBe null
+        single.itemId shouldBe "1"
+    }
+
+    @Test
     fun `Persian and Islamic series never yield an excepted instance and overrides replace exactly theirs`(): Unit =
         runBlocking {
             checkAll(

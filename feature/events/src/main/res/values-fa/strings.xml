@@ -92,4 +92,22 @@
   <string name="events_repeat_preview_label">رخدادهای بعدی</string>
   <!-- An upcoming occurrence of a timed repeating event: %1$s is the date, %2$s the local time. -->
   <string name="events_repeat_preview_timed">%1$s، ساعت %2$s</string>
+  <!-- Title of the question asked when a repeating event is opened from one of its days. -->
+  <string name="events_scope_title">ویرایش رویداد تکراری</string>
+  <!-- Question: edit one occurrence of a repeating event or all of them. -->
+  <string name="events_scope_message">فقط همین رخداد تغییر کند یا همهٔ رخدادهای این رویداد؟</string>
+  <!-- Answer: edit only the occurrence the event was opened from. -->
+  <string name="events_scope_this">همین رخداد</string>
+  <!-- Answer: edit the whole repeating event. -->
+  <string name="events_scope_all">همهٔ رخدادها</string>
+  <!-- Button that removes one occurrence of a repeating event. -->
+  <string name="events_cancel_occurrence">لغو این رخداد</string>
+  <!-- Title of the confirmation before removing one occurrence. -->
+  <string name="events_cancel_occurrence_title">این رخداد لغو شود؟</string>
+  <!-- Explanation in the confirmation before removing one occurrence. -->
+  <string name="events_cancel_occurrence_message">فقط همین رخداد حذف می‌شود و بقیهٔ رخدادها می‌مانند.</string>
+  <!-- Confirm button that removes one occurrence. -->
+  <string name="events_cancel_occurrence_confirm">لغو رخداد</string>
+  <!-- Note above the form when only one occurrence of a repeating event is edited. -->
+  <string name="events_occurrence_note">تغییرها فقط روی همین رخداد اعمال می‌شود.</string>
 </resources>

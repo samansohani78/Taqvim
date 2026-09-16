@@ -74,7 +74,8 @@ sealed interface AppDestination : NavKey {
 
     /**
      * The editor of the personal event [eventId], or of a new event when it is `null`: on [day] (a Julian day number)
-     * from [startMinute] to [endMinute] when those are given (T-1103).
+     * from [startMinute] to [endMinute] when those are given (T-1103). A repeating event opened from one of its days
+     * carries that occurrence's original day in [occurrence] (a Julian day number, ADR-0034).
      */
     @Serializable
     data class EventEditor(
@@ -82,6 +83,7 @@ sealed interface AppDestination : NavKey {
         val day: Long? = null,
         val startMinute: Int? = null,
         val endMinute: Int? = null,
+        val occurrence: Long? = null,
     ) : AppDestination
 
     /** The calendar opened on the Julian day [jdn] (links, year view, agenda and search; T-1103). */
