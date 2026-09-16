@@ -1464,3 +1464,28 @@ verify the sources' own arithmetic before dropping the computed columns.
   works. The same golden checks the tz rules behind `DateTimeBridge` for four US zones by a daily scan.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
   sources consulted.
+
+### A-07 — Bikram Sambat (Nepali) calendar (T-105, ADR-0030)
+- **Files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/` — `SuryaSiddhantaSun.kt`, `KathmanduDaylight.kt`,
+  `NepaliMonthStarts.kt`, `NepaliCalendarSystem.kt` (main@d47a10a); generators `tools/nepal/national_panchang.py`,
+  `tools/nepal/nta_month_starts.py` (`--check`).
+- **Rule source:** Nepal Panchanga Nirnayak Vikas Samiti (npns.gov.np) publishes the official National Panchang but no
+  written statement of its method, so the rule is inferred from its data and documented in ADR-0030; a published
+  statement, if one appears, replaces the inference.
+  1. Solar theory: *Surya Siddhanta*, E. Burgess (tr.), 1860 (public domain) — mean motion i.29–37, apsis i.41,
+     epicycle 14° (20′ less at the odd quadrants) ii.34/38, Kali epoch at Ujjain midnight i.45–53. Mean motions are
+     exact in Long arithmetic; each sankranti is found by bisection. A modern ephemeris with a fixed ayanamsa does not
+     fit (the implied ayanamsa drifts about 0.5° within a year).
+  2. Day rule: a month starts on the Nepal Standard Time (UTC+05:45) day of its sankranti; a Makara sankranti after
+     sunset starts Magh the next day, and a Karka sankranti before sunrise starts Shrawan the previous day. Kathmandu
+     sunrise and sunset from Jean Meeus, *Astronomical Algorithms* 2nd ed., ch. 22 (eq. 22.2), 25 and 28.
+- **Verification data (cited by URL and SHA-256; PDFs not stored):**
+  - National Panchang BS 2082 and 2083 (npns.gov.np; scanned, read visually, checked by weekdays and 365/366-day
+    years): all 24 month starts, sankranti times within 0.49 min.
+  - Nepal Telecommunications Authority monthly reports BS 2070–2078 (89 printed month starts, one per report, each row
+    with its URL and SHA-256): 84 agree; the 5 others are listed in `NtaNepaliMonthStartsTest` — four contradict the
+    authority's adjacent reports or misprint the year, and Falgun 2073's sankranti falls at 00:01.
+- **Range:** every Int year (BS −3000…3000 cached in lazy 32-year blocks); 1M conversions within the 300 ms budget.
+- **Not consulted:** any nepali-date library, BS month-length table from GitHub, npm or Wikipedia, or GPL/LGPL code.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-16; **reviewer attestation:** pending — no forbidden
+  sources consulted.
