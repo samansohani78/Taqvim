@@ -20,6 +20,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -45,7 +46,11 @@ class ToolsViewModelTest {
         start: Instant = ToolsFixtures.NOW,
     ): ToolsViewModel {
         Dispatchers.setMain(StandardTestDispatcher(testScheduler))
-        return ToolsViewModel({ settings }, clockFrom(start))
+        return ToolsViewModel(
+            { settings },
+            clockFrom(start),
+            computeDispatcher = StandardTestDispatcher(testScheduler),
+        )
     }
 
     /** The next state that is ready and satisfies [predicate]. */
@@ -72,25 +77,32 @@ class ToolsViewModelTest {
 
                 viewModel.onInputsChange(ToolsInputs(converter = "1405/6/22", duration = "1h 30m", qr = "hello"))
                 val typed =
-                    awaitReady { _, ready ->
-                        val converted = (ready.converter as? ConverterResult.Converted)?.isToday == false
-                        converted && ready.qr is QrState.Code && ready.duration is DurationState.Value
-                    }
+                    awaitReady { _, ready -> (ready.converter as? ConverterResult.Converted)?.isToday == false }
                 typed.converter
                     .shouldBeInstanceOf<ConverterResult.Converted>()
                     .dates[2]
                     .iso shouldBe "2026-09-13"
-                typed.duration.shouldBeInstanceOf<DurationState.Value>().totalMinutes shouldBe "90"
+                typed.duration shouldBe DurationState.Empty
+                typed.qr shouldBe QrState.Empty
+
+                viewModel.onSelectTab(ToolsTab.DURATION)
+                val calculated =
+                    awaitReady { state, ready ->
+                        state.tab == ToolsTab.DURATION &&
+                            ready.duration != DurationState.Empty
+                    }
+                calculated.duration.shouldBeInstanceOf<DurationState.Value>().totalMinutes shouldBe "90"
+
+                viewModel.onSelectTab(ToolsTab.QR)
+                awaitReady { state, ready -> state.tab == ToolsTab.QR && ready.qr is QrState.Code }
                 viewModel.qrToShare().shouldNotBeNull().first shouldBe "hello"
 
+                viewModel.onSelectTab(ToolsTab.DISTANCE)
                 viewModel.onInputsChange(ToolsInputs(distanceFrom = "1405/1/1", distanceTo = "1405/1/8"))
                 val measured = awaitReady { _, ready -> ready.distance.result != null }
                 measured.distance.result
                     .shouldNotBeNull()
                     .days shouldBe "7"
-
-                viewModel.onSelectTab(ToolsTab.QR)
-                awaitReady { state, _ -> state.tab == ToolsTab.QR }
                 cancelAndIgnoreRemainingEvents()
             }
             viewModel.viewModelScope.cancel()
@@ -101,8 +113,9 @@ class ToolsViewModelTest {
         runTest {
             val settings = MutableStateFlow(ToolsFixtures.settings())
             val viewModel = viewModel(settings)
+            viewModel.onSelectTab(ToolsTab.TIME_ZONES)
             viewModel.uiState.test {
-                awaitReady().board.rows.map { it.id } shouldBe
+                awaitReady { state, _ -> state.tab == ToolsTab.TIME_ZONES }.board.rows.map { it.id } shouldBe
                     listOf("Asia/Tehran", "Asia/Kabul", "America/Los_Angeles")
                 viewModel.onRemoveZone("America/Los_Angeles")
                 awaitReady { _, ready -> ready.board.rows.size == 2 }
@@ -125,23 +138,77 @@ class ToolsViewModelTest {
         }
 
     @Test
-    fun `the board follows the clock and today changes at midnight`(): Unit =
+    fun `today changes at midnight`(): Unit =
         runTest {
             val viewModel = viewModel(start = Instant.parse("2026-06-21T20:29:30Z"))
             viewModel.uiState.test {
-                val before = awaitReady()
-                before.board.rows[0].time shouldBe "23:59"
-                before.converter
+                awaitReady()
+                    .converter
                     .shouldBeInstanceOf<ConverterResult.Converted>()
                     .dates[0]
                     .iso shouldBe "1405-03-31"
-                val after = awaitReady { _, ready -> ready.board.rows[0].time == "00:00" }
                 awaitReady { _, ready ->
                     (ready.converter as? ConverterResult.Converted)?.dates?.first()?.iso == "1405-04-01"
                 }
-                after.board.rows[0].dayShift shouldBe 0
                 cancelAndIgnoreRemainingEvents()
             }
             viewModel.viewModelScope.cancel()
         }
+
+    @Test
+    fun `the board follows the clock minute by minute`(): Unit =
+        runTest {
+            val board = viewModel(start = Instant.parse("2026-06-21T20:29:30Z"))
+            board.onSelectTab(ToolsTab.TIME_ZONES)
+            board.uiState.test {
+                awaitReady { state, _ -> state.tab == ToolsTab.TIME_ZONES }.board.rows[0].time shouldBe "23:59"
+                val after = awaitReady { _, ready -> ready.board.rows[0].time == "00:00" }
+                after.board.rows[0].dayShift shouldBe 0
+                cancelAndIgnoreRemainingEvents()
+            }
+            board.viewModelScope.cancel()
+        }
+
+    @Test
+    fun `tools compute on the injected dispatcher and only for the selected tab`(): Unit =
+        runTest {
+            Dispatchers.setMain(StandardTestDispatcher(testScheduler))
+            val compute = StandardTestDispatcher(TestCoroutineScheduler())
+            val viewModel =
+                ToolsViewModel(
+                    { MutableStateFlow(ToolsFixtures.settings()) },
+                    clockFrom(ToolsFixtures.NOW),
+                    computeDispatcher = compute,
+                )
+
+            /** Lets both the main and the computation dispatcher run what is due, without moving the clock. */
+            fun settle(computing: Boolean) =
+                repeat(SETTLE_ROUNDS) {
+                    testScheduler.runCurrent()
+                    if (computing) compute.scheduler.runCurrent()
+                }
+            viewModel.uiState.test {
+                awaitItem().content shouldBe ToolsContent.Loading
+                settle(computing = false)
+                // Nothing is computed while the computation dispatcher does not run.
+                expectNoEvents()
+                settle(computing = true)
+                awaitReady().qr shouldBe QrState.Empty
+
+                viewModel.onInputsChange(ToolsInputs(qr = "hello"))
+                settle(computing = true)
+                // The QR tab is not selected, so its code is not encoded.
+                awaitReady { state, _ -> state.inputs.qr == "hello" }.qr shouldBe QrState.Empty
+
+                viewModel.onSelectTab(ToolsTab.QR)
+                settle(computing = true)
+                awaitReady { state, _ -> state.tab == ToolsTab.QR }.qr.shouldBeInstanceOf<QrState.Code>()
+                cancelAndIgnoreRemainingEvents()
+            }
+            viewModel.viewModelScope.cancel()
+        }
+
+    private companion object {
+        const val SETTLE_ROUNDS = 4
+    }
 }

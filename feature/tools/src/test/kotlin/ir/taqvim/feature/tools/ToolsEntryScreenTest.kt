@@ -8,6 +8,7 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.testing.FakeClock
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Rule
 import org.junit.Test
@@ -28,6 +29,7 @@ class ToolsEntryScreenTest {
                 { flowOf(ToolsFixtures.settings()) },
                 FakeClock(ToolsFixtures.NOW),
                 initialConverterText = "1 Farvardin 1405",
+                computeDispatcher = Dispatchers.Main,
             )
         composeRule.setContent {
             ToolsTestTheme { ToolsRoute(converterText = "1 Farvardin 1405", viewModel = viewModel) }

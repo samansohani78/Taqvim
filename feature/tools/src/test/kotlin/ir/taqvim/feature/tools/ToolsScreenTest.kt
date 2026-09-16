@@ -20,6 +20,7 @@ import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.testing.FakeClock
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -124,7 +125,12 @@ class ToolsScreenTest {
 
     @Test
     fun routeSharesTheQrCodeAsAnImage() {
-        val viewModel = ToolsViewModel({ flowOf(ToolsFixtures.settings()) }, FakeClock(ToolsFixtures.NOW))
+        val viewModel =
+            ToolsViewModel(
+                { flowOf(ToolsFixtures.settings()) },
+                FakeClock(ToolsFixtures.NOW),
+                computeDispatcher = Dispatchers.Main,
+            )
         composeRule.setContent { ToolsTestTheme { ToolsRoute(viewModel = viewModel) } }
         composeRule.onNodeWithText("Type something to make a QR code.").assertDoesNotExist()
         // The five tool tabs scroll when their labels do not fit (T-1701); the tab is driven by its click action.

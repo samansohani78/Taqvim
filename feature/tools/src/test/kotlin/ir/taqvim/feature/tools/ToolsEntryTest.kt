@@ -47,7 +47,13 @@ class ToolsEntryTest {
             Dispatchers.setMain(StandardTestDispatcher(testScheduler))
             val settings = MutableStateFlow(ToolsFixtures.settings())
             val viewModel =
-                ToolsViewModel({ settings }, FakeClock(ToolsFixtures.NOW), { kept += it }, "1 Farvardin 1405")
+                ToolsViewModel(
+                    { settings },
+                    FakeClock(ToolsFixtures.NOW),
+                    { kept += it },
+                    "1 Farvardin 1405",
+                    StandardTestDispatcher(testScheduler),
+                )
             viewModel.uiState.test {
                 val opened = awaitReady { state, _ -> state.inputs.converter == "1 Farvardin 1405" }
                 opened.converter.shouldBeInstanceOf<ConverterResult.Converted>().run {
@@ -55,6 +61,8 @@ class ToolsEntryTest {
                     dates.first().iso shouldBe "1405-01-01"
                 }
 
+                viewModel.onSelectTab(ToolsTab.TIME_ZONES)
+                awaitReady { state, ready -> state.tab == ToolsTab.TIME_ZONES && ready.board.rows.size == 3 }
                 viewModel.onRemoveZone("Asia/Kabul")
                 awaitReady { _, ready -> ready.board.rows.size == 2 }
                 viewModel.onAddZone("Europe/Paris")
@@ -72,7 +80,13 @@ class ToolsEntryTest {
             Dispatchers.setMain(StandardTestDispatcher(testScheduler))
             val failing = ToolsBoardStore { error("disk full") }
             val viewModel =
-                ToolsViewModel({ MutableStateFlow(ToolsFixtures.settings()) }, FakeClock(ToolsFixtures.NOW), failing)
+                ToolsViewModel(
+                    { MutableStateFlow(ToolsFixtures.settings()) },
+                    FakeClock(ToolsFixtures.NOW),
+                    failing,
+                    computeDispatcher = StandardTestDispatcher(testScheduler),
+                )
+            viewModel.onSelectTab(ToolsTab.TIME_ZONES)
             viewModel.uiState.test {
                 awaitReady { _, ready -> ready.board.rows.size == 3 }
                 viewModel.onRemoveZone("Asia/Kabul")
