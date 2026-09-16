@@ -11,6 +11,7 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import ir.taqvim.core.i18n.LanguageSpec
@@ -314,11 +315,14 @@ internal class PlatformPermissionStatusSource(
         }
 
     private fun notificationsAllowed(): Boolean =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            has(Manifest.permission.POST_NOTIFICATIONS)
-        } else {
-            true
-        }
+        notificationsAvailable(
+            sdk = Build.VERSION.SDK_INT,
+            permissionGranted = postPermissionGranted(),
+            appNotificationsEnabled = NotificationManagerCompat.from(context).areNotificationsEnabled(),
+        )
+
+    private fun postPermissionGranted(): Boolean =
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && has(Manifest.permission.POST_NOTIFICATIONS)
 
     private fun exactAlarmsAllowed(): Boolean =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -330,6 +334,16 @@ internal class PlatformPermissionStatusSource(
     private fun has(permission: String): Boolean =
         ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
 }
+
+/**
+ * Whether notifications can reach the user on API [sdk] (B13): app notifications must be enabled in system settings on
+ * every version, and from Android 13 the runtime permission must be granted as well.
+ */
+internal fun notificationsAvailable(
+    sdk: Int,
+    permissionGranted: Boolean,
+    appNotificationsEnabled: Boolean,
+): Boolean = appNotificationsEnabled && (sdk < Build.VERSION_CODES.TIRAMISU || permissionGranted)
 
 /** Backup and restore (T-605, T-1503) and the privacy dashboard over the database, preferences and platform. */
 val backupPortsModule =

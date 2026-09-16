@@ -6,6 +6,7 @@ package ir.taqvim.app.di
 
 import android.Manifest
 import android.app.Application
+import android.app.NotificationManager
 import android.content.Context
 import android.net.Uri
 import androidx.room.Room
@@ -217,6 +218,37 @@ class BackupAdaptersTest {
                 .granted shouldBe true
             context.appVersionName().isNotBlank() shouldBe true
         }
+
+    @Test
+    fun notificationsFollowTheAppSwitchOnEveryVersionAndThePermissionFrom13() {
+        (26..32).forEach { sdk ->
+            notificationsAvailable(sdk, permissionGranted = false, appNotificationsEnabled = true) shouldBe true
+            notificationsAvailable(sdk, permissionGranted = false, appNotificationsEnabled = false) shouldBe false
+        }
+        (33..36).forEach { sdk ->
+            notificationsAvailable(sdk, permissionGranted = true, appNotificationsEnabled = true) shouldBe true
+            notificationsAvailable(sdk, permissionGranted = false, appNotificationsEnabled = true) shouldBe false
+            notificationsAvailable(sdk, permissionGranted = true, appNotificationsEnabled = false) shouldBe false
+        }
+    }
+
+    @Test
+    fun blockedAppNotificationsAreReportedEvenWithThePermission(): Unit =
+        runBlocking {
+            shadowOf(context as Application).grantPermissions(Manifest.permission.POST_NOTIFICATIONS)
+            val manager = requireNotNull(context.getSystemService(NotificationManager::class.java))
+            shadowOf(manager).setNotificationsEnabled(true)
+            val source = PlatformPermissionStatusSource(context)
+            source.notificationsGranted() shouldBe true
+
+            shadowOf(manager).setNotificationsEnabled(false)
+            source.refresh()
+
+            source.notificationsGranted() shouldBe false
+        }
+
+    private suspend fun PlatformPermissionStatusSource.notificationsGranted(): Boolean =
+        statuses().first().first { it.kind == PermissionKind.NOTIFICATIONS }.granted
 
     private fun failed(failure: BackupFailure): BackupOpenResult = BackupOpenResult.Failed(failure)
 
