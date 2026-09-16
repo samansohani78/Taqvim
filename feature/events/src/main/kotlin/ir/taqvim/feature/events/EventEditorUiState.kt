@@ -50,6 +50,27 @@ sealed interface EditorContent {
     ) : EditorContent
 }
 
+/** What a request to leave the editor (its Cancel button or system Back) does (B10). */
+enum class CloseDecision {
+    /** Nothing would be lost: close at once. */
+    CLOSE,
+
+    /** Unsaved changes: ask before discarding them. */
+    CONFIRM,
+
+    /** A save or delete is running: stay until it finishes. */
+    WAIT,
+}
+
+/** The single rule for leaving the editor, shared by the Cancel button and system Back. */
+val EditorContent.Editing.closeDecision: CloseDecision
+    get() =
+        when {
+            busy -> CloseDecision.WAIT
+            hasChanges -> CloseDecision.CONFIRM
+            else -> CloseDecision.CLOSE
+        }
+
 /** User actions of the event editor. */
 @Immutable
 data class EventEditorActions(

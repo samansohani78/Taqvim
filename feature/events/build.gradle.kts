@@ -8,7 +8,8 @@ dependencies {
     implementation(projects.core.ics)
     implementation(projects.core.nlp)
     implementation(libs.kotlinx.coroutines.core)
-    // B11: the unsaved draft survives process death as JSON in SavedStateHandle.
+    // B10: system Back asks before discarding; B11: the draft survives process death as JSON in SavedStateHandle.
+    implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.serialization.json)
 }
 

@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.events
 
+import androidx.activity.compose.BackHandler
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -52,6 +53,17 @@ fun EventEditorScreen(
     var confirmDiscard by rememberSaveable { mutableStateOf(false) }
     var confirmDelete by rememberSaveable { mutableStateOf(false) }
     val title = if (editing?.isNew == false) R.string.events_editor_edit_title else R.string.events_editor_new_title
+    val requestClose = { decision: CloseDecision ->
+        when (decision) {
+            CloseDecision.CLOSE -> actions.onDiscard()
+            CloseDecision.CONFIRM -> confirmDiscard = true
+            CloseDecision.WAIT -> Unit
+        }
+    }
+    // B10: system Back (predictive or not) follows the same rule as Cancel; with nothing to lose it is not
+    // intercepted, so the navigation's own back and its predictive animation apply.
+    val backDecision = editing?.closeDecision ?: CloseDecision.CLOSE
+    BackHandler(enabled = backDecision != CloseDecision.CLOSE) { requestClose(backDecision) }
     ScreenSurface(
         modifier = modifier,
         topBar = { TopBar(stringResource(title)) },
@@ -60,7 +72,7 @@ fun EventEditorScreen(
                 EditorBottomBar(
                     editing = it,
                     onSave = actions.onSave,
-                    onDiscard = { if (it.hasChanges) confirmDiscard = true else actions.onDiscard() },
+                    onDiscard = { requestClose(it.closeDecision) },
                     onDelete = { confirmDelete = true },
                 )
             }
@@ -158,7 +170,7 @@ private fun EditorBottomBar(
             )
         }
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-            TextButton(onClick = onDiscard) { Text(stringResource(R.string.events_cancel)) }
+            TextButton(onClick = onDiscard, enabled = !editing.busy) { Text(stringResource(R.string.events_cancel)) }
             if (!editing.isNew) {
                 TextButton(onClick = onDelete, enabled = !editing.busy) { Text(stringResource(R.string.events_delete)) }
             }
