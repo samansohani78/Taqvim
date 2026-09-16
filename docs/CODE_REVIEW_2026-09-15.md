@@ -166,7 +166,7 @@ defines event cancellation independently of whether the event is an override.
 
 ### B09 — P1 — Restore can fail after the database has already been replaced — Traced
 
-**Status:** Fixed in main@c6cdb01 (ADR-0032; open: screens opened before recovery finishes may briefly show the interrupted state, and queued subscription refreshes are not held back).
+**Status:** Fixed in main@c6cdb01 (ADR-0032); its two open points (screens during recovery, queued subscription refreshes) closed in main@d1f2863.
 
 **Where:** [BackupService.kt:43](/home/ssohani/Lab/my/repo/Taqvim/data/database/src/main/kotlin/ir/taqvim/data/database/backup/BackupService.kt:43).
 
