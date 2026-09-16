@@ -1486,6 +1486,12 @@ verify the sources' own arithmetic before dropping the computed columns.
     with its URL and SHA-256): 84 agree; the 5 others are listed in `NtaNepaliMonthStartsTest` — four contradict the
     authority's adjacent reports or misprint the year, and Falgun 2073's sankranti falls at 00:01.
 - **Range:** every Int year (BS −3000…3000 cached in lazy 32-year blocks); 1M conversions within the 300 ms budget.
+- **Names and pattern (main@1a08566, ADR-0030 addendum; `core/i18n/.../bikram-sambat.properties`):** Nepali month names
+  वैशाख … चैत from the month headings of the official Rashtriya Panchangam BS 2083 (npns.gov.np, SHA-256 cited in the
+  file header; वैशाख from its "वैशाखसंक्रान्ति" entry), era वि.सं. from its cover and headers. Other languages use the
+  government's own English spellings (Baishakh, Jestha, Ashad, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh,
+  Falgun, Chaitra) — the most frequent form of each on page 1 of the 89 NTA reports already cited. The `ne` date pattern
+  is CLDR's pattern for other non-Gregorian calendars, pending an official written form.
 - **Not consulted:** any nepali-date library, BS month-length table from GitHub, npm or Wikipedia, or GPL/LGPL code.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-16; **reviewer attestation:** pending — no forbidden
   sources consulted.
