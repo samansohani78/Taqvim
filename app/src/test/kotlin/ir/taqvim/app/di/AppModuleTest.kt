@@ -6,6 +6,7 @@ package ir.taqvim.app.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.lifecycle.SavedStateHandle
 import io.kotest.matchers.shouldBe
 import ir.taqvim.data.database.AlarmKind
 import ir.taqvim.data.events.EventInputs
@@ -20,6 +21,7 @@ import ir.taqvim.feature.notification.AthanPlaybackStarter
 import ir.taqvim.feature.notification.CalculatorOfficialEventSchedule
 import ir.taqvim.feature.notification.ReminderAlarms
 import ir.taqvim.feature.notification.ReminderSetup
+import java.io.File
 import kotlin.time.Duration
 import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineDispatcher
@@ -57,6 +59,10 @@ class AppModuleTest {
                     EventInputs::class,
                     // Widget registrations (T-1201…) are constant values holding their receiver and widget classes.
                     Class::class,
+                    // Supplied per navigation entry by koinViewModel (the event editor's draft, B11).
+                    SavedStateHandle::class,
+                    // The restore journal directory is built inline from the app's no-backup directory (B09).
+                    File::class,
                 ),
             // The scheduler collects every AlarmSource and AlarmDelivery with getAll(), which verify() cannot follow;
             // the test below checks that the athan's prayer source and delivery are among them (T-604, T-1102).

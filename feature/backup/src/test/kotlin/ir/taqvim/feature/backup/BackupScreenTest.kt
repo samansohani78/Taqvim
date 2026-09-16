@@ -191,6 +191,9 @@ class BackupScreenTest {
                 BackupFailure.CORRUPTED to "The backup is damaged or was changed, so it cannot be restored.",
                 BackupFailure.INVALID_CONTENT to "The content of this backup is not valid, so it cannot be restored.",
                 BackupFailure.RESTORE_FAILED to "Your data could not be replaced. Nothing was changed.",
+                BackupFailure.RESTORE_INCOMPLETE to
+                    "The restore did not finish, and your data may be partly replaced. " +
+                    "Taqvim will finish or undo it the next time it starts.",
                 BackupFailure.FILE_UNREADABLE to "The chosen file could not be opened.",
                 BackupFailure.FILE_UNWRITABLE to "The backup could not be saved there. Choose another place.",
             )

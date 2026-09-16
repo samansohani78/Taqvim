@@ -76,6 +76,7 @@
   <string name="backup_error_corrupted">The backup is damaged or was changed, so it cannot be restored.</string>
   <string name="backup_error_invalid">The content of this backup is not valid, so it cannot be restored.</string>
   <string name="backup_error_restore_failed">Your data could not be replaced. Nothing was changed.</string>
+  <string name="backup_error_restore_incomplete">The restore did not finish, and your data may be partly replaced. Taqvim will finish or undo it the next time it starts.</string>
   <string name="backup_error_unreadable">The chosen file could not be opened.</string>
   <string name="backup_error_unwritable">The backup could not be saved there. Choose another place.</string>
   <!-- Title of the privacy dashboard: what data the app keeps and which permissions it has. -->

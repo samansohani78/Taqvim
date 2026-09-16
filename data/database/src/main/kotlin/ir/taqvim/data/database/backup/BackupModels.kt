@@ -80,8 +80,16 @@ sealed interface BackupError {
         val reason: String,
     ) : BackupError
 
-    /** Storage refused the restore; nothing was changed in the database. */
+    /** Storage refused the restore; the previous data and preferences are in place. */
     data class RestoreFailed(
+        val reason: String,
+    ) : BackupError
+
+    /**
+     * A restore could neither be finished nor undone, so data and preferences may not match; `BackupService.recover`
+     * completes or undoes it on the next start (B09).
+     */
+    data class RestorePending(
         val reason: String,
     ) : BackupError
 }
@@ -106,6 +114,23 @@ sealed interface RestoreResult {
     data class Failed(
         val error: BackupError,
     ) : RestoreResult
+}
+
+/** Outcome of finishing a restore the previous process left unfinished (B09). */
+sealed interface RecoveryResult {
+    /** No restore was unfinished. */
+    data object NothingPending : RecoveryResult
+
+    /** The interrupted restore was applied; data and preferences now match the backup. */
+    data class Completed(
+        val rowCounts: Map<BackupTable, Int>,
+    ) : RecoveryResult
+
+    /** The restore was undone; the data and preferences from before it are back. */
+    data object RolledBack : RecoveryResult
+
+    /** Storage still refuses; the restore stays recorded for the next attempt. */
+    data object StillPending : RecoveryResult
 }
 
 /** Rows per table in [this]. */

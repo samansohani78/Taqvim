@@ -9,6 +9,7 @@ import android.app.Application
 import android.app.NotificationManager
 import android.content.Context
 import android.net.Uri
+import androidx.datastore.core.DataStore
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -25,9 +26,13 @@ import ir.taqvim.data.database.StoredRowCounts
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.backup.BackupError
 import ir.taqvim.data.database.backup.BackupService
+import ir.taqvim.data.database.backup.RecoveryResult
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.UserPreferences
+import ir.taqvim.data.preferences.UserPreferencesRepository
+import ir.taqvim.data.preferences.proto.UserPrefs
+import ir.taqvim.data.preferences.toProto
 import ir.taqvim.data.scheduler.RescheduleEvent
 import ir.taqvim.data.scheduler.SchedulerEvents
 import ir.taqvim.feature.backup.BackupExportResult
@@ -42,8 +47,12 @@ import ir.taqvim.feature.backup.StoredData
 import ir.taqvim.feature.backup.StoredDataKind
 import java.io.ByteArrayInputStream
 import java.io.File
+import java.io.IOException
+import java.util.UUID
 import kotlin.time.Clock
 import kotlin.time.Instant
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -77,8 +86,9 @@ class BackupAdaptersTest {
         object : Clock {
             override fun now(): Instant = Instant.parse("2026-09-14T08:00:00Z")
         }
+    private val journal = File(context.cacheDir, "journal-${UUID.randomUUID()}")
     private val operations =
-        ServiceBackupOperations(BackupService(database, preferences), documents, events, clock) { "1.2.3" }
+        ServiceBackupOperations(BackupService(database, preferences, journal), documents, events, clock) { "1.2.3" }
 
     @After
     fun closeDatabase() {
@@ -115,6 +125,28 @@ class BackupAdaptersTest {
             operations.restore(opened).shouldBeInstanceOf<BackupRestoreResult.Restored>()
 
             database.personalEventDao().all().map { it.title } shouldBe listOf("تولد")
+            handled shouldBe listOf(RescheduleEvent.AlarmInputsChanged(AlarmKind.entries.toSet()))
+        }
+
+    @Test
+    fun anUnfinishedRestoreIsReportedAndRecoveredBeforeRescheduling(): Unit =
+        runBlocking {
+            database.personalEventDao().insert(event("تولد"))
+            operations.export(FILE, null)
+            val opened = operations.open(FILE, null).shouldBeInstanceOf<BackupOpenResult.Ready>().backup
+            val flaky = FailingUserPrefs(UserPreferences.defaultsFor("fa").toProto())
+            val service = BackupService(database, UserPreferencesRepository(flaky), journal)
+            val stuck = ServiceBackupOperations(service, documents, events, clock) { "1.2.3" }
+            val recovery = RestoreRecovery(service, events)
+            recovery.run() shouldBe RecoveryResult.NothingPending
+
+            flaky.failing = true
+            stuck.restore(opened) shouldBe BackupRestoreResult.Failed(BackupFailure.RESTORE_INCOMPLETE)
+            handled shouldBe emptyList()
+
+            flaky.failing = false
+            val restarted = RestoreRecovery(BackupService(database, UserPreferencesRepository(flaky), journal), events)
+            restarted.run() shouldBe RecoveryResult.RolledBack
             handled shouldBe listOf(RescheduleEvent.AlarmInputsChanged(AlarmKind.entries.toSet()))
         }
 
@@ -281,5 +313,20 @@ class BackupAdaptersTest {
 
     private companion object {
         const val FILE = "content://documents/backup.taqvim"
+    }
+}
+
+/** Preferences in memory whose updates fail while [failing] is set, as a full disk would. */
+private class FailingUserPrefs(
+    initial: UserPrefs,
+) : DataStore<UserPrefs> {
+    private val state = MutableStateFlow(initial)
+    var failing = false
+
+    override val data: Flow<UserPrefs> = state
+
+    override suspend fun updateData(transform: suspend (t: UserPrefs) -> UserPrefs): UserPrefs {
+        if (failing) throw IOException("preferences are not writable")
+        return transform(state.value).also { state.value = it }
     }
 }

@@ -9,6 +9,7 @@ import androidx.work.Configuration
 import ir.taqvim.app.automation.AppShortcuts
 import ir.taqvim.app.automation.LauncherIconSwitcher
 import ir.taqvim.app.di.AppLanguageSync
+import ir.taqvim.app.di.RestoreRecovery
 import ir.taqvim.app.di.SurfaceRefreshWatcher
 import ir.taqvim.app.di.WidgetTriggerWatcher
 import ir.taqvim.app.di.appModule
@@ -28,7 +29,8 @@ import org.koin.core.context.startKoin
  * scheduler's preference watcher (T-604), reminder data watcher (T-1001, T-1002), widget update triggers
  * (T-1201…T-1204), the app language sync (T-1501) and the refresh of the persistent notification and launcher icon
  * (T-1213, T-1214), publishes the launcher shortcuts (T-1215), and provides WorkManager with the subscription worker
- * factory (T-1003).
+ * factory (T-1003). A restore left unfinished by the previous process is completed or undone first (B09), so the
+ * watchers only ever schedule from consistent data.
  */
 class TaqvimApplication :
     Application(),
@@ -46,10 +48,14 @@ class TaqvimApplication :
             androidContext(this@TaqvimApplication)
             modules(appModule)
         }
+        val recovery = get<RestoreRecovery>()
         val watcher = get<PreferenceChangeWatcher>()
-        processScope.launch { watcher.watch() }
         val reminderInputs = get<AlarmInputWatcher>()
-        processScope.launch { reminderInputs.watch() }
+        processScope.launch {
+            recovery.run()
+            launch { watcher.watch() }
+            launch { reminderInputs.watch() }
+        }
         val widgetTriggers = get<WidgetTriggerWatcher>()
         processScope.launch { widgetTriggers.watch() }
         val languageSync = get<AppLanguageSync>()

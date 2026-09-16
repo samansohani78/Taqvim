@@ -53,7 +53,13 @@ class BackupServiceTest {
                 produceFile = { prefsFile },
             ),
         )
-    private val service = BackupService(db, preferences, BackupCodec(SecureRandom(), iterations = 1_000))
+    private val service =
+        BackupService(
+            db,
+            preferences,
+            File(context.cacheDir, "journal-${UUID.randomUUID()}"),
+            BackupCodec(SecureRandom(), iterations = 1_000),
+        )
 
     @After
     fun close() {

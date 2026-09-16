@@ -25,6 +25,7 @@ import ir.taqvim.data.database.backup.BackupProtection
 import ir.taqvim.data.database.backup.BackupReadResult
 import ir.taqvim.data.database.backup.BackupService
 import ir.taqvim.data.database.backup.BackupTable
+import ir.taqvim.data.database.backup.RecoveryResult
 import ir.taqvim.data.database.backup.RestorableBackup
 import ir.taqvim.data.database.backup.RestoreResult
 import ir.taqvim.data.preferences.UserPreferencesRepository
@@ -172,6 +173,22 @@ internal class ServiceBackupOperations(
     }
 }
 
+/**
+ * Finishes a restore the previous process left unfinished (B09) and, once data and preferences match again, tells the
+ * scheduler to recompute every alarm. Run at start-up before the watchers that schedule from the data.
+ */
+internal class RestoreRecovery(
+    private val service: BackupService,
+    private val events: SchedulerEvents,
+) {
+    suspend fun run(): RecoveryResult =
+        service.recover().also { result ->
+            if (result is RecoveryResult.Completed || result == RecoveryResult.RolledBack) {
+                events.handle(RescheduleEvent.AlarmInputsChanged(AlarmKind.entries.toSet()))
+            }
+        }
+}
+
 /** A backup read by the [BackupService], ready for [ServiceBackupOperations.restore]. */
 internal class ServiceOpenedBackup(
     val restorable: RestorableBackup,
@@ -206,6 +223,7 @@ internal fun BackupError.toFailure(): BackupFailure =
         BackupError.Corrupted -> BackupFailure.CORRUPTED
         is BackupError.InvalidContent -> BackupFailure.INVALID_CONTENT
         is BackupError.RestoreFailed -> BackupFailure.RESTORE_FAILED
+        is BackupError.RestorePending -> BackupFailure.RESTORE_INCOMPLETE
     }
 
 /** The installed version name, or "unknown" when the package manager does not report it. */
@@ -314,6 +332,10 @@ internal class PlatformPermissionStatusSource(
             }
         }
 
+    /**
+     * Whether this app can post notifications at all (B13): the user can block them in system settings on every
+     * Android version, and Android 13+ also needs the runtime permission.
+     */
     private fun notificationsAllowed(): Boolean =
         notificationsAvailable(
             sdk = Build.VERSION.SDK_INT,
@@ -349,6 +371,7 @@ internal fun notificationsAvailable(
 val backupPortsModule =
     module {
         single<DocumentBytes> { ContentResolverDocumentBytes(get()) }
+        single { RestoreRecovery(get(), get()) }
         single<BackupOperations> {
             val context = androidContext()
             ServiceBackupOperations(get(), get(), get(), get()) { context.appVersionName() }

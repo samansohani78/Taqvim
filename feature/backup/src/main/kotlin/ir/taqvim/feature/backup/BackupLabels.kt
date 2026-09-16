@@ -8,20 +8,24 @@ import androidx.annotation.StringRes
 
 /** String resources of the backup screen and the privacy dashboard. */
 internal object BackupLabels {
+    private val failures: Map<BackupFailure, Int> =
+        mapOf(
+            BackupFailure.NOT_A_BACKUP to R.string.backup_error_not_a_backup,
+            BackupFailure.TRUNCATED to R.string.backup_error_truncated,
+            BackupFailure.UNSUPPORTED_FORMAT to R.string.backup_error_unsupported,
+            BackupFailure.PASSPHRASE_REQUIRED to R.string.backup_error_passphrase_required,
+            BackupFailure.WRONG_PASSPHRASE to R.string.backup_error_wrong_passphrase,
+            BackupFailure.CORRUPTED to R.string.backup_error_corrupted,
+            BackupFailure.INVALID_CONTENT to R.string.backup_error_invalid,
+            BackupFailure.RESTORE_FAILED to R.string.backup_error_restore_failed,
+            BackupFailure.RESTORE_INCOMPLETE to R.string.backup_error_restore_incomplete,
+            BackupFailure.FILE_UNREADABLE to R.string.backup_error_unreadable,
+            BackupFailure.FILE_UNWRITABLE to R.string.backup_error_unwritable,
+        )
+
+    /** Every [BackupFailure] has a message; the map covers the enum (checked by `everyFailureIsExplained`). */
     @StringRes
-    fun failure(failure: BackupFailure): Int =
-        when (failure) {
-            BackupFailure.NOT_A_BACKUP -> R.string.backup_error_not_a_backup
-            BackupFailure.TRUNCATED -> R.string.backup_error_truncated
-            BackupFailure.UNSUPPORTED_FORMAT -> R.string.backup_error_unsupported
-            BackupFailure.PASSPHRASE_REQUIRED -> R.string.backup_error_passphrase_required
-            BackupFailure.WRONG_PASSPHRASE -> R.string.backup_error_wrong_passphrase
-            BackupFailure.CORRUPTED -> R.string.backup_error_corrupted
-            BackupFailure.INVALID_CONTENT -> R.string.backup_error_invalid
-            BackupFailure.RESTORE_FAILED -> R.string.backup_error_restore_failed
-            BackupFailure.FILE_UNREADABLE -> R.string.backup_error_unreadable
-            BackupFailure.FILE_UNWRITABLE -> R.string.backup_error_unwritable
-        }
+    fun failure(failure: BackupFailure): Int = failures.getValue(failure)
 
     @StringRes
     fun table(table: BackupTableKind): Int =

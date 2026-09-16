@@ -59,6 +59,7 @@
   <string name="backup_error_corrupted">پشتیبان آسیب دیده یا تغییر کرده است و بازیابی نمی‌شود.</string>
   <string name="backup_error_invalid">محتوای این پشتیبان معتبر نیست و بازیابی نمی‌شود.</string>
   <string name="backup_error_restore_failed">داده‌های شما جایگزین نشد. هیچ چیزی تغییر نکرد.</string>
+  <string name="backup_error_restore_incomplete">بازیابی کامل نشد و ممکن است بخشی از داده‌های شما جایگزین شده باشد. تقویم دفعهٔ بعد که باز شود آن را کامل یا لغو می‌کند.</string>
   <string name="backup_error_unreadable">پرونده انتخاب‌شده باز نشد.</string>
   <string name="backup_error_unwritable">پشتیبان در آنجا ذخیره نشد. جای دیگری را انتخاب کنید.</string>
   <string name="privacy_title">حریم خصوصی</string>

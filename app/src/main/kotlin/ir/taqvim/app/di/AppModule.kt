@@ -91,6 +91,7 @@ import ir.taqvim.feature.year.YearDaysSource
 import ir.taqvim.feature.year.YearSettingsSource
 import ir.taqvim.feature.year.YearTodaySource
 import ir.taqvim.feature.year.yearFeatureModule
+import java.io.File
 import java.util.Locale
 import kotlin.time.Clock
 import kotlinx.coroutines.CoroutineScope
@@ -136,7 +137,7 @@ val appDataModule =
         // T-604: preference changes that move alarm times reach the scheduler (started by the application).
         single { PreferenceChangeWatcher(get<UserPreferencesRepository>().preferences, get()) }
         // T-605: backup and restore of personal data and preferences (UI in T-1503).
-        single { BackupService(get(), get()) }
+        single { BackupService(get(), get(), File(androidContext().noBackupFilesDir, RESTORE_JOURNAL_DIRECTORY)) }
         // T-603: the bundled city catalog, parsed on first use.
         single { CityCatalogProvider() }
     }
@@ -289,6 +290,9 @@ val settingsPortsModule =
             )
         }
     }
+
+/** Directory under `noBackupFilesDir` holding an unfinished restore (B09). */
+internal const val RESTORE_JOURNAL_DIRECTORY = "restore-journal"
 
 /** Qualifiers of the scheduler's alarm kinds; every source and delivery is collected with `getAll()`. */
 internal const val PRAYER_ALARMS = "prayer"

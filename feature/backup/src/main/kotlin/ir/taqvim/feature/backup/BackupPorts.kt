@@ -47,6 +47,9 @@ enum class BackupFailure {
     /** The device refused to replace the data; nothing was changed. */
     RESTORE_FAILED,
 
+    /** A restore stopped part-way and could not be undone yet; it is finished or undone the next time the app starts. */
+    RESTORE_INCOMPLETE,
+
     /** The chosen file could not be opened. */
     FILE_UNREADABLE,
 
