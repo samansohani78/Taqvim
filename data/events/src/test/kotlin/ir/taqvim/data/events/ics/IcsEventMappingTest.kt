@@ -8,6 +8,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.ics.AlarmTrigger
 import ir.taqvim.core.ics.DisplayAlarm
 import ir.taqvim.core.ics.Frequency
@@ -16,11 +17,14 @@ import ir.taqvim.core.ics.IcsEvent
 import ir.taqvim.core.ics.Recurrence
 import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Jdn
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 import org.junit.jupiter.api.Test
 
 /** T-1003 (U): iCalendar events → personal events, in the Asia/Tehran device zone. */
@@ -64,7 +68,7 @@ class IcsEventMappingTest {
     }
 
     @Test
-    fun `timed events keep their zone, UTC and floating times go to the device zone`() {
+    fun `timed events keep their zone, UTC stays UTC and floating times go to the device zone`() {
         val berlin =
             import(
                 IcsEvent(
@@ -83,8 +87,8 @@ class IcsEventMappingTest {
                     IcsDateTime.Utc(Instant.parse("2026-07-10T21:00:00Z")),
                 ),
             ).event
-        listOf(utc.startJdn, utc.startMinute, utc.endJdn, utc.endMinute) shouldBe
-            listOf(day(2026, 7, 10), 570, day(2026, 7, 11), 30)
+        listOf(utc.startJdn, utc.startMinute, utc.endJdn, utc.endMinute, utc.timeZoneId) shouldBe
+            listOf(day(2026, 7, 10), 360, day(2026, 7, 10), 1_260, "UTC")
 
         val floating = import(IcsEvent("f", IcsDateTime.Floating(LocalDateTime(2026, 1, 1, 8, 0)))).event
         listOf(floating.startMinute, floating.endMinute, floating.timeZoneId) shouldBe listOf(480, 480, "Asia/Tehran")
@@ -101,8 +105,8 @@ class IcsEventMappingTest {
     }
 
     @Test
-    fun `a date-time UNTIL of a timed event becomes its day in the event zone`() {
-        val imported =
+    fun `a date-time UNTIL keeps its time of day, so the last day drops when the cutoff is earlier`() {
+        val tehranSeries =
             import(
                 IcsEvent(
                     "weekly",
@@ -112,10 +116,71 @@ class IcsEventMappingTest {
                 ),
             )
 
-        imported.recurrence shouldBe RecurrenceRule(Frequency.WEEKLY, until = LocalDate(2026, 7, 24).toJdn())
+        // 21:30 UTC is 01:00 in Tehran the next day: exactly the start time, and UNTIL includes it.
+        tehranSeries.recurrence shouldBe RecurrenceRule(Frequency.WEEKLY, until = LocalDate(2026, 7, 24).toJdn())
+        untilOf("2026-09-15T09:00:00Z") shouldBe LocalDate(2026, 9, 14).toJdn()
+        untilOf("2026-09-15T10:00:00Z") shouldBe LocalDate(2026, 9, 15).toJdn()
+        untilOf("2026-09-15T11:00:00Z") shouldBe LocalDate(2026, 9, 15).toJdn()
         import(
             IcsEvent("yearly", date(2026, 3, 21), recurrence = Recurrence(Frequency.YEARLY, until = date(2030, 3, 21))),
         ).recurrence shouldBe RecurrenceRule(Frequency.YEARLY, until = LocalDate(2030, 3, 21).toJdn())
+    }
+
+    /** The rule's last day for a daily 10:00 UTC series beginning 14 September 2026 and ending at [until]. */
+    private fun untilOf(until: String) =
+        import(
+            IcsEvent(
+                "daily",
+                IcsDateTime.Utc(Instant.parse("2026-09-14T10:00:00Z")),
+                recurrence = Recurrence(Frequency.DAILY, until = IcsDateTime.Utc(Instant.parse(until))),
+            ),
+        ).recurrence
+            ?.until
+
+    @Test
+    fun `a UTC series keeps its UTC instants across a daylight-saving change`() {
+        val berlinDevice = IcsEventMapping(TimeZone.of("Europe/Berlin"))
+        val utcSeries =
+            berlinDevice
+                .toImported(
+                    IcsEvent(
+                        "utc-weekly",
+                        IcsDateTime.Utc(Instant.parse("2026-03-23T09:00:00Z")),
+                        recurrence = Recurrence(Frequency.WEEKLY),
+                    ),
+                    nowEpochMillis = 1_000,
+                ).event
+
+        listOf(utcSeries.startJdn, utcSeries.startMinute, utcSeries.timeZoneId) shouldBe
+            listOf(day(2026, 3, 23), 540, "UTC")
+        // Berlin changes to summer time on 29 March 2026; the next occurrence still starts at 09:00 UTC.
+        instantOf(utcSeries.startJdn + 7, utcSeries.startMinute, utcSeries.timeZoneId) shouldBe
+            Instant.parse("2026-03-30T09:00:00Z")
+
+        val berlinSeries =
+            berlinDevice
+                .toImported(
+                    IcsEvent(
+                        "zoned-weekly",
+                        IcsDateTime.Zoned(LocalDateTime(2026, 3, 23, 10, 0), "Europe/Berlin"),
+                        recurrence = Recurrence(Frequency.WEEKLY),
+                    ),
+                    nowEpochMillis = 1_000,
+                ).event
+
+        listOf(berlinSeries.startMinute, berlinSeries.timeZoneId) shouldBe listOf(600, "Europe/Berlin")
+        instantOf(berlinSeries.startJdn + 7, berlinSeries.startMinute, berlinSeries.timeZoneId) shouldBe
+            Instant.parse("2026-03-30T08:00:00Z")
+    }
+
+    private fun instantOf(
+        dayJdn: Long,
+        minute: Int?,
+        timeZoneId: String,
+    ): Instant {
+        val date = Jdn(dayJdn).toLocalDate()
+        val minutes = requireNotNull(minute)
+        return LocalDateTime(date, LocalTime(minutes / 60, minutes % 60)).toInstant(TimeZone.of(timeZoneId))
     }
 
     @Test

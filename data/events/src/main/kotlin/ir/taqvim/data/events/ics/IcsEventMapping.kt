@@ -56,7 +56,11 @@ data class ImportedEvent(
     val overrides: List<EventOverrideEntity> = emptyList(),
 )
 
-/** Maps iCalendar events to personal events; floating and UTC times are placed in [zone]. */
+/**
+ * Maps iCalendar events to personal events. Floating times are placed in [zone]; a UTC value keeps UTC as its time
+ * basis, so a UTC series recurs at the same instant of day as the source (RFC 5545 §3.3.5 form #2) instead of
+ * following local wall-clock time across a daylight-saving change.
+ */
 internal class IcsEventMapping(
     private val zone: TimeZone,
 ) {
@@ -150,7 +154,7 @@ internal class IcsEventMapping(
         when (value) {
             is IcsDateTime.Date -> Moment(value.date.toJdn(), null, zone, null)
             is IcsDateTime.Floating -> local(value.dateTime, zone)
-            is IcsDateTime.Utc -> local(value.instant.toLocalDateTime(zone), zone)
+            is IcsDateTime.Utc -> local(value.instant.toLocalDateTime(TimeZone.UTC), TimeZone.UTC)
             is IcsDateTime.Zoned -> local(value.dateTime, TimeZone.of(value.timeZoneId))
         }
 
@@ -200,20 +204,31 @@ internal class IcsEventMapping(
         return taqvim ?: event.recurrence?.let { gregorian(it, start) }
     }
 
-    /** An RRULE as a Gregorian rule; a date-time UNTIL of a timed event becomes its day in the event's time zone. */
+    /** An RRULE as a Gregorian rule, with a date-time UNTIL reduced to the last day an occurrence may start on. */
     private fun gregorian(
         recurrence: Recurrence,
         start: Moment,
     ): CalendarRecurrence {
         val rule = recurrence.toRecurrenceRule()
-        val until = recurrence.until
-        val localUntil =
-            if (until != null && until !is IcsDateTime.Date && start.instant != null) {
-                instantOf(until, start.timeZone).toLocalDateTime(start.timeZone).date.toJdn()
-            } else {
-                rule.until
-            }
-        return CalendarRecurrence(CalendarSystem.GREGORIAN, rule.copy(until = localUntil))
+        val until = lastStartDay(recurrence.until, start) ?: rule.until
+        return CalendarRecurrence(CalendarSystem.GREGORIAN, rule.copy(until = until))
+    }
+
+    /**
+     * The last day an occurrence of a timed series may start on for the instant cutoff [until]: its day in the
+     * series' time zone, or the day before when the series starts later in the day than the cutoff, since UNTIL is
+     * inclusive of an occurrence starting exactly at it (RFC 5545 §3.3.10). `null` for an all-day or DATE cutoff,
+     * which bounds by day already.
+     */
+    private fun lastStartDay(
+        until: IcsDateTime?,
+        start: Moment,
+    ): Jdn? {
+        if (until == null || until is IcsDateTime.Date) return null
+        val startMinute = start.minute ?: return null
+        val cutoff = instantOf(until, start.timeZone).toLocalDateTime(start.timeZone)
+        val day = cutoff.date.toJdn()
+        return if (minuteOf(cutoff) >= startMinute) day else Jdn(day.value - 1)
     }
 
     private fun reminders(
