@@ -108,6 +108,47 @@ class TimeZoneLayerTest {
     }
 
     @Test
+    fun `a band is marked mixed only while one of its other zones has another offset`() {
+        val others = listOf("Europe/Istanbul", "Europe/Nowhere")
+        val cairo = TimeZoneBand("Africa/Cairo", 120, MapPoint(0.5, 0.5), 1, others)
+        // Egypt keeps daylight saving again since 2023: +2 in January like no one else in the band, +3 in July.
+        TimeZoneOffsets.isMixed(cairo, 120, january) shouldBe true
+        TimeZoneOffsets.isMixed(cairo, 180, july) shouldBe false
+        TimeZoneOffsets.isMixed(band("Asia/Tehran", 210), 210, january) shouldBe false
+        val zones = TimeZoneBands(listOf(cairo), emptyList())
+        TimeZoneOffsets
+            .overlay(zones, january, NumeralSystem.LATIN)
+            .labels
+            .single()
+            .mixed shouldBe true
+        TimeZoneOffsets
+            .overlay(zones, july, NumeralSystem.LATIN)
+            .labels
+            .single()
+            .mixed shouldBe false
+    }
+
+    @Test
+    fun `the asset records bands whose places have diverged since 2012`() {
+        val bands = outline.timeZones.bands
+
+        fun others(zone: String) = bands.filter { it.zoneId == zone }.flatMap { it.otherZoneIds }
+
+        // A 2012 +2 band with Cairo and Istanbul; Turkey moved to +3 all year in 2016.
+        others("Africa/Cairo") shouldContainAll listOf("Europe/Istanbul", "Asia/Amman", "Asia/Damascus")
+        // The 2012 +7 band of Novosibirsk also holds Ulaanbaatar (+8) and Omsk (+6).
+        others("Asia/Novosibirsk") shouldContainAll listOf("Asia/Ulaanbaatar", "Asia/Omsk")
+        // China's single band holds Urumqi, whose tz database zone keeps local time (+6).
+        others("Asia/Shanghai") shouldContainAll listOf("Asia/Urumqi")
+        others("Asia/Tehran") shouldBe emptyList()
+        bands.filter { it.otherZoneIds.isNotEmpty() }.all { it.zoneId != null } shouldBe true
+        val overlay = TimeZoneOffsets.overlay(outline.timeZones, january, NumeralSystem.LATIN)
+        val cairo = bands.first { it.zoneId == "Africa/Cairo" && it.otherZoneIds.isNotEmpty() }
+        overlay.labels.single { it.point == cairo.label }.mixed shouldBe true
+        overlay.labels.count { it.mixed } shouldBeLessThan overlay.labels.size
+    }
+
+    @Test
     fun `smaller plates' boundaries show as the zoom grows and every one shows at the maximum zoom`() {
         PlateBoundaries.minimumAreaKm2(1.0) shouldBe PlateBoundaries.AREA_AT_ZOOM_ONE_KM2
         PlateBoundaries.minimumAreaKm2(3.0) shouldBe 10_000.0

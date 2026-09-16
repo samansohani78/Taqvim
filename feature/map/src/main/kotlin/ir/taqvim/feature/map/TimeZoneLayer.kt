@@ -23,12 +23,16 @@ data class TimeZoneOverlay(
     val labels: ImmutableList<OffsetLabel> = persistentListOf(),
 )
 
-/** A band's UTC offset [text] (e.g. "+3:30", in the language's digits) written at [point]. */
+/**
+ * A band's UTC offset [text] (e.g. "+3:30", in the language's digits) written at [point]; [mixed] when places inside the
+ * band have other offsets at the shown moment, so the label is marked.
+ */
 @Immutable
 data class OffsetLabel(
     val point: MapPoint,
     val text: String,
     val areaKm2: Long,
+    val mixed: Boolean = false,
 )
 
 /**
@@ -38,8 +42,11 @@ data class OffsetLabel(
  * differ at that moment. Bands without a zone (oceans, Antarctica, uninhabited islands), or with a zone the platform
  * does not know, get no label, and their boundaries are drawn where the 2012 offsets of both bands differ.
  *
- * Because each band takes the zone of its most populous catalog city, a 2012 band that now holds regions with other
- * offsets shows that city's offset throughout (for example a band with Cairo and Istanbul follows Cairo). The tz
+ * This is an approximation (review I09): each band takes the zone of its most populous catalog city, so a 2012 band that
+ * now holds regions with other offsets shows that city's offset throughout (for example a band with Cairo and Istanbul
+ * follows Cairo). The asset lists, per band, the other zones of its catalog places whose offsets differed at generation
+ * time; when any of them differs from the band's zone at the shown moment, the band's label is marked
+ * ([OffsetLabel.mixed]) and the legend explains the mark. Geometry is never corrected. The tz
  * database's own conventions carry over: Europe/Dublin keeps Irish summer time as standard time (the total offset is
  * still right), and a band whose city is Urumqi would follow Asia/Urumqi's local time (UTC+6) rather than China's
  * official UTC+8; in the bundled asset China's band follows Asia/Shanghai.
@@ -66,7 +73,9 @@ object TimeZoneOffsets {
         val labels =
             bands.bands
                 .mapIndexedNotNull { index, band ->
-                    offsets[index]?.let { OffsetLabel(band.label, text(it, numerals), band.areaKm2) }
+                    offsets[index]?.let {
+                        OffsetLabel(band.label, text(it, numerals), band.areaKm2, isMixed(band, it, instant))
+                    }
                 }.sortedByDescending { it.areaKm2 }
         return TimeZoneOverlay(boundaries.toImmutableList(), labels.toImmutableList())
     }
@@ -83,6 +92,13 @@ object TimeZoneOffsets {
             }
         }
     }
+
+    /** Whether any of [band]'s other zones has an offset other than [offset] at [instant] (unknown zones are skipped). */
+    fun isMixed(
+        band: TimeZoneBand,
+        offset: Int,
+        instant: Instant,
+    ): Boolean = band.otherZoneIds.any { zone -> minutesAt(zone, instant)?.let { it != offset } ?: false }
 
     /** Whether [boundary] separates bands with different [offsets], or different 2012 offsets where one is unknown. */
     fun isShown(

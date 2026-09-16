@@ -68,9 +68,10 @@ class WorldOutlineTest {
         val parsed =
             WorldOutlineParser.parse(
                 "T Asia/Tehran 210 5142,3570 1600000\nT - 240 5500,2500 90000\n" +
+                    "T Africa/Cairo 120 2801,3524 6000000 Europe/Istanbul,Asia/Amman\n" +
                     "Z 0 1 -18000,9000 18000,-9000\nP 1437 0,0 18000,0\n",
             )
-        val (tehran, sea) = parsed.timeZones.bands
+        val (tehran, sea, cairo) = parsed.timeZones.bands
         tehran.zoneId shouldBe "Asia/Tehran"
         tehran.offset2012Minutes shouldBe 210
         tehran.areaKm2 shouldBe 1_600_000
@@ -78,6 +79,8 @@ class WorldOutlineTest {
         tehran.label.y shouldBe ((90 - 35.7) / 180 plusOrMinus 1e-6)
         sea.zoneId shouldBe null
         sea.offset2012Minutes shouldBe 240
+        tehran.otherZoneIds shouldBe emptyList()
+        cairo.otherZoneIds shouldBe listOf("Europe/Istanbul", "Asia/Amman")
         val boundary = parsed.timeZones.boundaries.single()
         (boundary.first to boundary.second) shouldBe (0 to 1)
         boundary.line.toList() shouldBe listOf(0f, 0f, 1f, 1f)
@@ -98,6 +101,9 @@ class WorldOutlineTest {
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("L0,0 1,1\n") }
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T Asia/Tehran 210 0,0\n") }
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T - x 0,0 1\n") }
+        shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T - 0 0,0 1 Europe/Istanbul\n") }
+        shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T Africa/Cairo 0 0,0 1 A,,B\n") }
+        shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T Africa/Cairo 0 0,0 1 A B\n") }
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("P big 0,0 1,1\n") }
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T - 0 0,0 1\nZ 0 1 0,0 1,1\n") }
     }

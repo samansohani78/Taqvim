@@ -51,6 +51,7 @@
     <string name="map_legend_time_zone">مرز منطقهٔ زمانی</string>
     <string name="map_legend_plate">مرز صفحه</string>
     <string name="map_time_zones_note">شکل نوارها از Natural Earth (۲۰۱۲)؛ اختلاف ساعت‌ها با قواعد منطقهٔ زمانی همین دستگاه برای زمان نمایش‌داده‌شده محاسبه می‌شود</string>
+    <string name="map_time_zones_mixed_note">* در این نوار جاهایی با اختلاف ساعت دیگری هم هست؛ برچسب آن اختلاف ساعت بزرگ‌ترین شهرش را نشان می‌دهد</string>
     <string name="map_plates_zoom_note">مرز صفحه‌های کوچک‌تر با بزرگ‌نمایی نمایان می‌شود</string>
     <string name="map_plates_attribution">چندضلعی‌های صفحه‌ها: Matthews و همکاران (۲۰۱۶)، CC BY 4.0، ساده‌شده برای نمایش</string>
 </resources>

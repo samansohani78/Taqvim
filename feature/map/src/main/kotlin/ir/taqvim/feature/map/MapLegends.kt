@@ -60,6 +60,7 @@ private fun LineLegends(
     if (MapLayer.TIME_ZONES in layers) {
         Legend(listOf(palette.timeZone to R.string.map_legend_time_zone))
         Text(stringResource(R.string.map_time_zones_note), style = MaterialTheme.typography.bodySmall)
+        Text(stringResource(R.string.map_time_zones_mixed_note), style = MaterialTheme.typography.bodySmall)
     }
     if (MapLayer.TECTONIC_PLATES in layers) {
         Legend(listOf(MapPalette.PLATE to R.string.map_legend_plate))

@@ -5,9 +5,10 @@
 # source-sha256: aa52ab97e5f906693f31fe2e625c9d6be78a4e74fcd4142a7261235b355cacfe
 # cities-sha256: c2c86a2d67a0fd2fd3c4f1aef855c7900959b06dc7ad320c450976b1748904fc
 # generator: tools/geodata/natural_earth_time_zones.py
-# format: T = band (representative IANA zone or -, 2012 offset in minutes, label lon,lat, area km2), one per band in index order; Z = boundary between two bands (their indices); lon,lat pairs in hundredths of a degree; Douglas-Peucker tolerance 0.05 degree
+# format: T = band (representative IANA zone or -, 2012 offset in minutes, label lon,lat, area km2, optional comma-separated other zones with another offset), one per band in index order; Z = boundary between two bands (their indices); lon,lat pairs in hundredths of a degree; Douglas-Peucker tolerance 0.05 degree
 # bands: 128 (53 with a catalog city, 7 with their feature's city, 68 without); tz database 2026c
-# body-sha256: 64a368020fd8d8cc49b6b411f6289f58bb3993eda205f27ab4c349fb457112fc
+# mixed bands: 23 (reference instants 2026-01-15T12:00Z, 2026-07-15T12:00Z; other zones only when their zone.tab location is within 1500 km of the city)
+# body-sha256: e1f86658ab16bc8ac5d7c1ffe426c1a2c3d220defc5d53d9bc3039302ef94267
 T - -600 -14991,8039 593448
 T - -600 17665,5356 425894
 T - -660 -16517,7984 659403
@@ -17,44 +18,44 @@ T Pacific/Pago_Pago -660 -16546,-4806 7028003
 T Pacific/Honolulu -600 -15786,2130 26230930
 T - -720 -17614,-6307 1246768
 T - -720 -17609,8136 238233
-T America/Phoenix -420 -10789,1339 19508657
+T America/Phoenix -420 -10789,1339 19508657 America/Chihuahua,America/Edmonton,America/Denver,America/Boise,America/Vancouver,America/Inuvik,America/Resolute
 T - -570 -13976,-950 471698
-T America/Mexico_City -360 -9240,835 22700494
-T America/New_York -300 -7638,2304 18121046
+T America/Mexico_City -360 -9240,835 22700494 America/Chicago,America/Bogota,America/Winnipeg,America/Cancun,America/Menominee,America/Iqaluit
+T America/New_York -300 -7638,2304 18121046 America/Lima,America/Bogota,America/Guayaquil,America/Panama,America/Jamaica
 T America/St_Johns -210 -5596,4937 207496
 T - -240 -5988,8636 85334
 T - -60 -1433,7822 741557
-T America/Sao_Paulo -240 -6185,-60 18846199
+T America/Sao_Paulo -240 -6185,-60 18846199 America/Puerto_Rico,America/La_Paz,America/Manaus,America/Santo_Domingo,America/Santiago,America/Cuiaba,America/Campo_Grande,America/Halifax,America/Porto_Velho,America/Port_of_Spain,America/Guyana,America/Rio_Branco,America/Martinique,America/Boa_Vista,America/Curacao,America/Guadeloupe,America/Moncton,Atlantic/Bermuda,America/Antigua,America/Grenada,America/Dominica,America/St_Kitts,America/Goose_Bay,America/Blanc-Sablon,America/Thule
 T America/Sao_Paulo -240 -5594,4672 2
 T - -120 -2993,8683 65077
 T Atlantic/South_Georgia -120 -3021,-599 19492893
-T Atlantic/Cape_Verde -60 -1624,-812 16036445
-T America/Los_Angeles -480 -12126,-635 19387750
+T Atlantic/Cape_Verde -60 -1624,-812 16036445 Atlantic/Azores
+T America/Los_Angeles -480 -12126,-635 19387750 America/Whitehorse
 T - -480 -12076,8272 327427
-T America/Bogota 780 -17215,-1139 2067950
+T America/Bogota 780 -17215,-1139 2067950 Pacific/Tongatapu,Pacific/Kanton
 T - 840 -15533,-310 1114443
-T Australia/Brisbane 600 14906,-1107 18779143
+T Australia/Brisbane 600 14906,-1107 18779143 Australia/Sydney,Australia/Melbourne,Australia/Hobart
 T Asia/Yakutsk 600 13075,7019 3833894
 T Pacific/Noumea 660 16419,-1094 14905197
-T Asia/Vladivostok 660 14107,5286 2156516
+T Asia/Vladivostok 660 14107,5286 2156516 Asia/Sakhalin,Asia/Magadan
 T Asia/Vladivostok 660 15890,7760 1054248
 T Asia/Kamchatka 720 13907,6576 1
 T Asia/Kamchatka 720 13946,6576 1
 T Asia/Kamchatka 720 15862,5306 64
 T Asia/Kamchatka 720 15751,8214 126
-T Asia/Kamchatka 720 16355,6507 4150366
+T Asia/Kamchatka 720 16355,6507 4150366 Asia/Magadan,Asia/Sakhalin
 T Asia/Dubai 240 5991,-2096 14387283
 T - 360 7194,-543 132469
 T Asia/Thimphu 360 9040,2741 39895
 T - 300 5073,-4597 61237
-T Europe/Moscow 240 4871,6763 5261137
-T Asia/Yekaterinburg 360 7382,6367 4904660
+T Europe/Moscow 240 4871,6763 5261137 Asia/Baku,Europe/Samara,Asia/Yerevan,Asia/Tbilisi
+T Asia/Yekaterinburg 360 7382,6367 4904660 Asia/Bishkek
 T Asia/Irkutsk 540 10728,5605 1121071
 T Asia/Tehran 210 5416,3265 1746792
 T Asia/Kabul 270 6601,3384 642391
 T Asia/Kathmandu 345 8392,2825 147305
-T Asia/Shanghai 480 11008,2247 28844905
-T Australia/Adelaide 570 13451,-2409 2521011
+T Asia/Shanghai 480 11008,2247 28844905 Asia/Urumqi,Asia/Krasnoyarsk,Asia/Jakarta
+T Australia/Adelaide 570 13451,-2409 2521011 Australia/Darwin
 T - 630 15900,-3150 10537
 T - 690 16825,-2900 54068
 T America/Caracas -270 -6620,775 1085542
@@ -67,7 +68,7 @@ T Pacific/Auckland 765 -17625,-4400 44468
 T Asia/Dhaka 360 8992,-2334 12988721
 T - 540 13502,8500 161431
 T Asia/Kolkata 330 7276,1012 144581
-T Asia/Jakarta 420 10517,-2297 13340944
+T Asia/Jakarta 420 10517,-2297 13340944 Asia/Makassar
 T Asia/Kolkata 330 9323,947 285878
 T Asia/Kolkata 330 7953,2226 3383544
 T - 300 7059,3983 119
@@ -78,14 +79,14 @@ T - 300 7504,8600 103483
 T Europe/Minsk 180 2803,5353 206637
 T Europe/Kaliningrad 180 2112,5479 17767
 T Europe/Helsinki 120 2492,6171 667709
-T Africa/Cairo 120 2801,3524 6267602
-T Africa/Abidjan 0 -304,-1652 17290141
+T Africa/Cairo 120 2801,3524 6267602 Europe/Istanbul,Asia/Damascus,Africa/Tripoli,Asia/Amman,Europe/Simferopol
+T Africa/Abidjan 0 -304,-1652 17290141 Africa/Casablanca,Europe/Lisbon,Atlantic/Canary,Atlantic/Madeira,Africa/El_Aaiun,Africa/Ceuta
 T - 0 -2005,7776 53920
-T Europe/London 0 -193,6890 2907827
+T Europe/London 0 -193,6890 2907827 Atlantic/Reykjavik
 T - 525 12826,-3184 9930
 T - 180 4502,8650 79051
 T - 420 10501,8576 116077
-T Europe/Paris 60 1296,1526 23915560
+T Europe/Paris 60 1296,1526 23915560 Africa/Kinshasa,Africa/Luanda,Africa/Algiers,Africa/Lagos,Africa/Tunis,Africa/Douala,Africa/Brazzaville,Africa/Ndjamena,Africa/Niamey,Africa/Bangui,Africa/Porto-Novo,Africa/Libreville,Africa/Windhoek,Africa/Malabo
 T - 390 9686,-1204 24532
 T Asia/Yangon 390 9652,2031 763099
 T - -720 -17625,4150 900278
@@ -93,14 +94,14 @@ T - -720 -17625,1125 2480088
 T - -540 -14253,-667 1
 T America/Juneau -540 -14025,4067 14737538
 T - -540 -13497,-5075 5430836
-T Asia/Baghdad 180 4248,-1195 19441928
-T Asia/Novosibirsk 420 8288,5462 1179544
+T Asia/Baghdad 180 4248,-1195 19441928 Africa/Khartoum
+T Asia/Novosibirsk 420 8288,5462 1179544 Asia/Omsk,Asia/Ulaanbaatar
 T - -180 -5649,4683 6311
-T America/Sao_Paulo -180 -4624,1051 26345010
+T America/Sao_Paulo -180 -4624,1051 26345010 America/La_Paz,America/Nuuk
 T Pacific/Auckland 720 -17694,-3032 2365569
 T Pacific/Auckland 720 17476,-3685 1
 T Pacific/Auckland 720 17999,-8823 1
-T Pacific/Auckland 720 17392,-1245 13215127
+T Pacific/Auckland 720 17392,-1245 13215127 Pacific/Fiji,Pacific/Tarawa,Pacific/Majuro,Pacific/Funafuti
 T - -660 -16490,-8411 223562
 T - -600 -14982,-8309 306189
 T - -720 -17629,-8411 111449

@@ -29,6 +29,7 @@ internal class CityLabels(
     val measurer: TextMeasurer,
     val style: TextStyle,
     val utc: String = "",
+    val mixedMarker: String = "",
 )
 
 /** The shaded layers of [overlays], bottom first, shared by the flat map and the globe. */
@@ -147,7 +148,10 @@ internal fun DrawScope.drawOffsetLabels(
     val gap = OFFSET_LABEL_GAP_DP * density
     state.timeZones.labels.forEach { label ->
         val screen = toScreen(label.point) ?: return@forEach
-        val text = labels.measurer.measure(labels.utc + label.text, labels.style)
+        val marker = if (label.mixed) labels.mixedMarker else ""
+        // A left-to-right isolate keeps "UTC+3:30*" in that order inside right-to-left layouts.
+        val written = LEFT_TO_RIGHT_ISOLATE + labels.utc + label.text + marker + POP_DIRECTIONAL_ISOLATE
+        val text = labels.measurer.measure(written, labels.style)
         val box =
             Rect(
                 Offset(screen.x - text.size.width / 2f, screen.y - text.size.height / 2f),
@@ -227,3 +231,5 @@ private const val MARKER_RADIUS = 7f
 private const val CITY_RADIUS_DP = 3f
 private const val CITY_HALO_DP = 1.5f
 private const val OFFSET_LABEL_GAP_DP = 4f
+private const val LEFT_TO_RIGHT_ISOLATE = "\u2066"
+private const val POP_DIRECTIONAL_ISOLATE = "\u2069"

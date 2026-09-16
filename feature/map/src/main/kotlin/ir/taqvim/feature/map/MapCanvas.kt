@@ -45,7 +45,8 @@ internal fun MapCanvas(
 ) {
     val palette = MapPalette.of(MaterialTheme.colorScheme)
     val utc = stringResource(R.string.map_utc)
-    val labels = CityLabels(rememberTextMeasurer(LABEL_CACHE), MaterialTheme.typography.labelSmall, utc)
+    val mixed = stringResource(R.string.map_mixed_offsets_marker)
+    val labels = CityLabels(rememberTextMeasurer(LABEL_CACHE), MaterialTheme.typography.labelSmall, utc, mixed)
     val density = LocalDensity.current.density
     var viewSize by remember { mutableStateOf(ViewSize(0f, 0f)) }
     val currentActions by rememberUpdatedState(actions)

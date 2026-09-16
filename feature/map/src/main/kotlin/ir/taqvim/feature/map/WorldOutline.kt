@@ -26,7 +26,8 @@ class WorldOutline(
  * A time-zone band (one polygon of the source). [zoneId] is the IANA zone of the most populous catalog city inside it
  * (or inside another polygon of its 2012 region), `null` when it has none; the app computes the band's offset from that
  * zone. [offset2012Minutes] is the source's offset, used only to decide the boundaries of bands without a zone. [label]
- * is where the band's offset is written.
+ * is where the band's offset is written. [otherZoneIds] are the zones of other catalog places inside the band whose
+ * offsets differed from [zoneId]'s when the asset was generated (review I09); the app compares them at the shown moment.
  */
 @Immutable
 data class TimeZoneBand(
@@ -34,6 +35,7 @@ data class TimeZoneBand(
     val offset2012Minutes: Int,
     val label: MapPoint,
     val areaKm2: Long,
+    val otherZoneIds: List<String> = emptyList(),
 )
 
 /** The boundary [line] between the bands at indices [first] and [second]. */
@@ -60,7 +62,8 @@ class PlateBoundary(
 
 /**
  * Reads the outline assets: `#` header lines, then `L` (land ring) and `B` (country boundary) lines of "lon,lat" pairs,
- * `T <zone|-> <2012 offset minutes> <label lon,lat> <area km²>` (a time-zone band, in index order),
+ * `T <zone|-> <2012 offset minutes> <label lon,lat> <area km²> [zone,zone…]` (a time-zone band, in index order, with
+ * its optional other zones),
  * `Z <band> <band> lon,lat …` (a time-zone boundary) and `P <km²> lon,lat …` (a plate boundary), all coordinates in
  * hundredths of a degree.
  */
@@ -137,13 +140,21 @@ private class OutlineBuilder {
         tokens: List<String>,
         number: Int,
     ): TimeZoneBand {
-        require(tokens.size == BAND_TOKENS) { "line $number: a band needs a zone, an offset, a label and an area" }
+        require(tokens.size == BAND_TOKENS || tokens.size == BAND_TOKENS + 1) {
+            "line $number: a band needs a zone, an offset, a label, an area and optionally its other zones"
+        }
         val label = pair(tokens[LABEL_TOKEN], number)
+        val zoneId = tokens[1].takeUnless { it == NO_ZONE }
+        val others = tokens.getOrNull(BAND_TOKENS)?.split(',').orEmpty()
+        require(others.none { it.isEmpty() } && (others.isEmpty() || zoneId != null)) {
+            "line $number: other zones need a representative zone and non-empty names"
+        }
         return TimeZoneBand(
-            zoneId = tokens[1].takeUnless { it == NO_ZONE },
+            zoneId = zoneId,
             offset2012Minutes = integer(tokens[2], number),
             label = MapPoint(label.first.toDouble(), label.second.toDouble()),
             areaKm2 = integer(tokens[AREA_TOKEN], number).toLong(),
+            otherZoneIds = others,
         )
     }
 

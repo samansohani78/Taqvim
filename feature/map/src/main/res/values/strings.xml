@@ -64,6 +64,8 @@
     <string name="map_time_zones_note">Band shapes from Natural Earth (2012); offsets computed from this device\'s time-zone rules for the shown time</string>
     <!-- Prefix of a time-zone offset label on the map, e.g. "UTC+3:30"; the abbreviation is not translated. -->
     <string name="map_utc" translatable="false">UTC</string>
+    <string name="map_mixed_offsets_marker" translatable="false">*</string>
+    <string name="map_time_zones_mixed_note">* The band also holds places with another offset; its label shows its largest city\'s</string>
     <string name="map_plates_zoom_note">Boundaries of smaller plates appear as you zoom in</string>
     <!-- Required attribution of the plate data (CC BY 4.0); author names and the licence name stay in Latin script. -->
     <string name="map_plates_attribution">Plate polygons: Matthews et al. (2016), CC BY 4.0, simplified for display</string>

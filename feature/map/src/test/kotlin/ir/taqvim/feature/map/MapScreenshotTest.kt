@@ -145,6 +145,17 @@ class MapScreenshotTest(
                 MapFixtures.state(language, setOf(MapLayer.TECTONIC_PLATES), outline = OUTLINE)
             }
 
+            "map_time_zones_mixed" -> {
+                // January: Cairo's band shows +2 and is marked, since Istanbul and Amman in it are at +3 (review I09).
+                MapFixtures.state(
+                    language,
+                    setOf(MapLayer.TIME_ZONES),
+                    outline = OUTLINE,
+                    instant = Instant.parse("2026-01-15T12:00:00Z"),
+                    viewport = MapViewport(zoom = 3.0, centerX = 0.586, centerY = 0.3),
+                )
+            }
+
             else -> {
                 MapFixtures.state(
                     language,
@@ -188,6 +199,8 @@ class MapScreenshotTest(
                     listOf(LIGHT_LTR, DARK_LTR, LIGHT_RTL, DARK_RTL).map { arrayOf<Any>(sample, it) }
                 } +
                 listOf(arrayOf<Any>("map_lines_globe", LIGHT_LTR)) +
+                // Review I09: a band holding places with another offset is marked.
+                listOf(arrayOf<Any>("map_time_zones_mixed", LIGHT_LTR)) +
                 // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
                 listOf("map_day_night").flatMap { sample ->
                     ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
