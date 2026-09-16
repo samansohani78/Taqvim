@@ -251,7 +251,7 @@ val athanAlarmPortsModule =
  */
 val reminderAlarmPortsModule =
     module {
-        single<ReminderSetupSource> { RoomReminderSetupSource(get(), get(), get(), get()) }
+        single<ReminderSetupSource> { RoomReminderSetupSource(get(), get(), get()) }
         single<OfficialReminderStore> { RoomOfficialReminderStore(get()) }
         single { AlarmInputWatcher(reminderInputChanges(get()), setOf(AlarmKind.REMINDER), get()) }
         single<AlarmSource>(named(REMINDER_ALARMS)) { ReminderAlarmSource(get()) }

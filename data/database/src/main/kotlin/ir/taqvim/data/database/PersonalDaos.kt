@@ -8,6 +8,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
@@ -37,10 +38,20 @@ interface PersonalEventDao {
     suspend fun all(): List<PersonalEventEntity>
 
     /**
-     * Events overlapping the days [fromJdn]..[toJdn] (inclusive), plus recurring events that start on or before
-     * [toJdn] and events with exceptions or overridden occurrences (T-1003), whose occurrences the caller expands. The
-     * exception tables are named so that changing them emits again.
+     * Every event with its recurrence, exceptions, overrides and reminders, in start order, read in one transaction
+     * with a fixed number of queries (review I02).
      */
+    @Transaction
+    @Query("SELECT * FROM personal_events ORDER BY start_jdn, start_minute, id")
+    suspend fun allWithReminders(): List<PersonalEventReminderDetails>
+
+    /**
+     * Events overlapping the days [fromJdn]..[toJdn] (inclusive), plus recurring events that start on or before
+     * [toJdn] and events with exceptions or overridden occurrences (T-1003), whose occurrences the caller expands,
+     * each with its recurrence, exceptions and overrides read in the same transaction (review I02). Changing any of
+     * those tables emits again.
+     */
+    @Transaction
     @Query(
         """
         SELECT * FROM personal_events
@@ -53,7 +64,7 @@ interface PersonalEventDao {
     fun observeInRange(
         fromJdn: Long,
         toJdn: Long,
-    ): Flow<List<PersonalEventEntity>>
+    ): Flow<List<PersonalEventDetails>>
 
     @Upsert
     suspend fun upsertRecurrence(recurrence: EventRecurrenceEntity)

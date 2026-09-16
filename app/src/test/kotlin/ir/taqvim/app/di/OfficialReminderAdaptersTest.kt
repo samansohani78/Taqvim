@@ -77,7 +77,6 @@ class OfficialReminderAdaptersTest {
             val setup =
                 RoomReminderSetupSource(
                     events = database.personalEventDao(),
-                    reminders = database.reminderDao(),
                     officialReminders = dao,
                     preferences = preferences,
                     zone = { TimeZone.of("Asia/Tehran") },

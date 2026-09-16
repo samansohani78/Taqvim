@@ -75,9 +75,9 @@ class PersonalDaoTest {
             events.upsertRecurrence(RecurrenceRule(Frequency.WEEKLY).toEntity(recurring, CalendarSystem.PERSIAN))
 
             events.observeInRange(START + 10, START + 20).test {
-                awaitItem().map { it.id } shouldBe listOf(recurring, overlapping)
+                awaitItem().map { it.event.id } shouldBe listOf(recurring, overlapping)
                 events.delete(recurring)
-                awaitItem().map { it.id } shouldBe listOf(overlapping)
+                awaitItem().map { it.event.id } shouldBe listOf(overlapping)
                 cancelAndIgnoreRemainingEvents()
             }
         }
@@ -148,12 +148,13 @@ class PersonalDaoTest {
             val moved = events.insert(event("moved later", START + 200))
 
             events.observeInRange(START + 10, START + 20).test {
-                awaitItem().map { it.id } shouldBe listOf(recurring)
+                awaitItem().map { it.event.id } shouldBe listOf(recurring)
                 events.insertExceptions(listOf(EventExceptionEntity(recurring, START + 13)))
-                awaitItem().map { it.id } shouldBe listOf(recurring)
+                awaitItem().single().exceptions shouldBe listOf(EventExceptionEntity(recurring, START + 13))
                 val earlier = EventOverrideEntity(moved, START + 200, "m", "", START + 15, null, START + 15)
                 events.upsertOverrides(listOf(earlier))
-                awaitItem().map { it.id } shouldBe listOf(recurring, moved)
+                awaitItem().map { it.event.id to it.overrides } shouldBe
+                    listOf(recurring to emptyList(), moved to listOf(earlier))
                 cancelAndIgnoreRemainingEvents()
             }
         }

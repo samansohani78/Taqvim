@@ -53,19 +53,20 @@ data class EventInputs(
 
 /**
  * [PersonalEventsSource] over the `personal_events` and `event_recurrences` tables (T-601) and the exception days and
- * overridden occurrences of recurring events (T-1003).
+ * overridden occurrences of recurring events (T-1003), each emission read in one transaction with a fixed number of
+ * queries (review I02).
  */
 class RoomPersonalEventsSource(
     private val dao: PersonalEventDao,
 ) : PersonalEventsSource {
     override fun events(days: JdnRange): Flow<List<PersonalEventRecord>> =
-        dao.observeInRange(days.start.value, days.endInclusive.value).map { events ->
-            events.map {
+        dao.observeInRange(days.start.value, days.endInclusive.value).map { rows ->
+            rows.map { row ->
                 PersonalEventRecord(
-                    event = it,
-                    recurrence = dao.getRecurrence(it.id)?.toRule(),
-                    exceptions = dao.exceptionDays(it.id).map(::Jdn).toSet(),
-                    overrides = dao.overrides(it.id),
+                    event = row.event,
+                    recurrence = row.recurrence?.toRule(),
+                    exceptions = row.exceptions.mapTo(HashSet()) { Jdn(it.dayJdn) },
+                    overrides = row.overrides.sortedBy { it.originalJdn },
                 )
             }
         }

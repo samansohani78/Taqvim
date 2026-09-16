@@ -20,7 +20,6 @@ import ir.taqvim.data.database.OfficialReminderDao
 import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalEventDao
 import ir.taqvim.data.database.PersonalEventEntity
-import ir.taqvim.data.database.ReminderDao
 import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ScheduledAlarmEntity
 import ir.taqvim.data.database.TaqvimDatabase
@@ -50,11 +49,11 @@ import kotlinx.datetime.TimeZone
 /**
  * [ReminderSetupSource] (T-1001, T-1002) over the Room personal events and their enabled reminders (T-601) and the
  * enabled official reminder opt-ins, with the user's calendars and Islamic variant, official event titles in the app
- * language, the stored all-day reminder time and the device [zone].
+ * language, the stored all-day reminder time and the device [zone]. The events and their rules, exceptions, overrides
+ * and reminders are read in one transaction with a fixed number of queries (review I02).
  */
 internal class RoomReminderSetupSource(
     private val events: PersonalEventDao,
-    private val reminders: ReminderDao,
     private val officialReminders: OfficialReminderDao,
     private val preferences: UserPreferencesRepository,
     private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
@@ -65,14 +64,14 @@ internal class RoomReminderSetupSource(
         val arithmetic = current.availableArithmetic()
         val calendars = CalendarProvider { arithmetic[it] }
         val personal =
-            events.all().mapNotNull { entity ->
+            events.allWithReminders().mapNotNull { row ->
                 reminderEvent(
-                    entity,
+                    row.event,
                     arithmetic,
-                    events.getRecurrence(entity.id)?.toRule(),
-                    reminders.reminders(entity.id),
-                    events.exceptionDays(entity.id),
-                    events.overrides(entity.id),
+                    row.recurrence?.toRule(),
+                    row.reminders.sortedWith(compareBy({ it.minutesBefore }, { it.id })),
+                    row.exceptions.map { it.dayJdn }.sorted(),
+                    row.overrides.sortedBy { it.originalJdn },
                 )
             }
         return ReminderSetup(
