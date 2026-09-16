@@ -7,6 +7,8 @@ package ir.taqvim.app.di
 import androidx.work.WorkManager
 import ir.taqvim.core.calendar.ClockTodayProvider
 import ir.taqvim.core.calendar.TodayProvider
+import ir.taqvim.core.events.EventSource
+import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.data.database.AlarmKind
 import ir.taqvim.data.database.DeviceEventDao
 import ir.taqvim.data.database.IcsSubscriptionDao
@@ -22,6 +24,7 @@ import ir.taqvim.data.events.eventsDataModule
 import ir.taqvim.data.events.ics.SubscriptionRefreshScheduler
 import ir.taqvim.data.events.ics.SubscriptionRefresher
 import ir.taqvim.data.events.ics.icsDataModule
+import ir.taqvim.data.events.toRecord
 import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
 import ir.taqvim.data.preferences.DeviceLanguages
@@ -212,11 +215,15 @@ val searchTimelineAthanPortsModule =
                 official = OfficialEventSearchSource(language = { preferences.currentLanguage() }, today = get()),
                 stores =
                     SearchEventStores(
-                        personal = { personal.all() },
+                        personal = { personal.allDetails().map { it.toRecord() } },
                         device = { from, to -> devices.observeInRange(from, to).first() },
                         subscriptions = { from, to -> feeds.observeEvents(from, to).first() },
                     ),
                 today = get(),
+                calendars = {
+                    IslamicCalendarSelection(preferences.preferences.first().islamicVariant)
+                        .providerFor(EventSource.USER)
+                },
             )
         }
         single<RecentQueriesStore> { PreferencesRecentQueriesStore(get()) }

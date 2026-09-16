@@ -38,6 +38,14 @@ interface PersonalEventDao {
     suspend fun all(): List<PersonalEventEntity>
 
     /**
+     * Every event with its recurrence, exceptions and overrides, in start order, read in one transaction with a fixed
+     * number of queries (review I02); used by search (T-804).
+     */
+    @Transaction
+    @Query("SELECT * FROM personal_events ORDER BY start_jdn, start_minute, id")
+    suspend fun allDetails(): List<PersonalEventDetails>
+
+    /**
      * Every event with its recurrence, exceptions, overrides and reminders, in start order, read in one transaction
      * with a fixed number of queries (review I02).
      */

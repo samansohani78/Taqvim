@@ -11,6 +11,7 @@ import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.PersonalEventDao
+import ir.taqvim.data.database.PersonalEventDetails
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.toRule
 import ir.taqvim.data.devicecalendar.DeviceEvent
@@ -60,17 +61,17 @@ class RoomPersonalEventsSource(
     private val dao: PersonalEventDao,
 ) : PersonalEventsSource {
     override fun events(days: JdnRange): Flow<List<PersonalEventRecord>> =
-        dao.observeInRange(days.start.value, days.endInclusive.value).map { rows ->
-            rows.map { row ->
-                PersonalEventRecord(
-                    event = row.event,
-                    recurrence = row.recurrence?.toRule(),
-                    exceptions = row.exceptions.mapTo(HashSet()) { Jdn(it.dayJdn) },
-                    overrides = row.overrides.sortedBy { it.originalJdn },
-                )
-            }
-        }
+        dao.observeInRange(days.start.value, days.endInclusive.value).map { rows -> rows.map { it.toRecord() } }
 }
+
+/** This row as a [PersonalEventRecord]: the rule parsed, exception days as a set and overrides in original order. */
+fun PersonalEventDetails.toRecord(): PersonalEventRecord =
+    PersonalEventRecord(
+        event = event,
+        recurrence = recurrence?.toRule(),
+        exceptions = exceptions.mapTo(HashSet()) { Jdn(it.dayJdn) },
+        overrides = overrides.sortedBy { it.originalJdn },
+    )
 
 /** [IcsEventsSource] over the `ics_events_cache` table (T-601). */
 class RoomIcsEventsSource(

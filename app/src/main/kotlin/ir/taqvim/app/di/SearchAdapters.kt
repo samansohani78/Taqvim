@@ -5,12 +5,14 @@
 package ir.taqvim.app.di
 
 import ir.taqvim.core.calendar.TodayProvider
+import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.DeviceEventCacheEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.devicecalendar.DeviceEventMapping
+import ir.taqvim.data.events.PersonalEventDays
+import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.search.SearchEvent
@@ -36,8 +38,8 @@ internal class PreferencesSearchSettingsSource(
 
 /** The stored and cached events the search reads, each loaded when a query runs (T-601, T-602, T-1003). */
 internal class SearchEventStores(
-    /** Every personal event. */
-    val personal: suspend () -> List<PersonalEventEntity>,
+    /** Every personal event with its recurrence, exception days and overridden occurrences. */
+    val personal: suspend () -> List<PersonalEventRecord>,
     /** Cached device-calendar instances overlapping `[from, to)` epoch milliseconds. */
     val device: suspend (from: Long, to: Long) -> List<DeviceEventCacheEntity>,
     /** Cached occurrences of enabled subscriptions overlapping `[from, to)` epoch milliseconds. */
@@ -47,8 +49,10 @@ internal class SearchEventStores(
 /**
  * [SearchEventSource] (T-804) over every event source: official events through the T-304 index with their aliases,
  * titles in other languages and next occurrence, then personal, device and subscription events whose title contains
- * the query. Device and subscription events are searched from today on, over [window] days, in the device [zone]. At
- * most `limit` events come from each source; the screen ranks them all.
+ * the query. Device and subscription events are searched from today on, over [window] days, in the device [zone]. A
+ * personal event's day is its next occurrence as the calendar shows it (ADR-0031), with recurring events expanded
+ * with the user's personal [calendars] over [window] days. At most `limit` events come from each source; the screen
+ * ranks them all.
  */
 internal class CompositeSearchEventSource(
     private val official: OfficialEventSearchSource,
@@ -56,6 +60,7 @@ internal class CompositeSearchEventSource(
     private val today: TodayProvider,
     private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
     private val window: Int = DEFAULT_WINDOW_DAYS,
+    private val calendars: suspend () -> CalendarProvider = { CalendarProvider.DEFAULT },
     definitions: List<EventDefinition> = OfficialEvents.ALL,
 ) : SearchEventSource {
     private val byId by lazy { definitions.associateBy { it.id.value } }
@@ -72,13 +77,30 @@ internal class CompositeSearchEventSource(
         val fromMillis = from.startMillis(zone)
         val toMillis = (from + window).startMillis(zone)
         val matches: (String) -> Boolean = { SearchMatcher.key(it).contains(key) }
-        val personal = stores.personal().filter { matches(it.title) }.take(limit)
+        val personal = stores.personal().filter { matches(it.event.title) }.take(limit)
         val device = stores.device(fromMillis, toMillis).filter { matches(it.title) }.take(limit)
         val subscriptions = stores.subscriptions(fromMillis, toMillis).filter { matches(it.summary) }.take(limit)
         return officialEvents(query, languageCode, limit, from) +
-            personal.map { it.toSearchEvent(from) } +
+            personal(personal, from, zone) +
             device.map { it.toSearchEvent(from, zone) } +
             subscriptions.map { it.toSearchEvent(from, zone) }
+    }
+
+    private suspend fun personal(
+        records: List<PersonalEventRecord>,
+        today: Jdn,
+        zone: TimeZone,
+    ): List<SearchEvent> {
+        if (records.isEmpty()) return emptyList()
+        val calendars = calendars()
+        return records.map { record ->
+            SearchEvent(
+                id = record.event.id.toString(),
+                kind = SearchEventKind.PERSONAL,
+                title = record.event.title,
+                nextDay = PersonalEventDays.nextShownDay(record, calendars, today, zone, window),
+            )
+        }
     }
 
     private suspend fun officialEvents(
@@ -112,14 +134,6 @@ internal class CompositeSearchEventSource(
         const val DEFAULT_WINDOW_DAYS: Int = 366
     }
 }
-
-private fun PersonalEventEntity.toSearchEvent(today: Jdn): SearchEvent =
-    SearchEvent(
-        id = id.toString(),
-        kind = SearchEventKind.PERSONAL,
-        title = title,
-        nextDay = Jdn(startJdn).takeIf { it >= today },
-    )
 
 private fun DeviceEventCacheEntity.toSearchEvent(
     today: Jdn,

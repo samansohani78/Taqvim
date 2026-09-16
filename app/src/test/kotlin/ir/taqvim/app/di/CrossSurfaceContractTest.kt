@@ -41,7 +41,6 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atTime
 import kotlinx.datetime.toInstant
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 /**
@@ -143,12 +142,6 @@ class CrossSurfaceContractTest {
             search(tehran, day, subscriptions = listOf(row)).single().nextDay shouldBe day + 1
         }
 
-    @Disabled(
-        "I08 finding: search dates personal events by their stored start date in the event's own zone " +
-            "(CompositeSearchEventSource PersonalEventEntity.toSearchEvent), not by the display-zone day the " +
-            "calendar shows (ADR-0031); a 00:30 Tokyo meeting is shown on 14 September in UTC but found on " +
-            "15 September.",
-    )
     @Test
     fun `search finds a Tokyo meeting on the day the timeline shows it`(): Unit =
         runTest {
@@ -159,10 +152,6 @@ class CrossSurfaceContractTest {
             searchDay(tokyo, TimeZone.UTC, today = day - 1) shouldBe day - 1
         }
 
-    @Disabled(
-        "I08 finding: search gives a recurring personal event no next day once its first occurrence is past " +
-            "(nextDay = startJdn only when it is not before today), while the timeline shows its later occurrences.",
-    )
     @Test
     fun `search finds the next occurrence of a recurring series`(): Unit =
         runTest {
@@ -241,14 +230,14 @@ class CrossSurfaceContractTest {
         zone: TimeZone,
         today: Jdn,
     ): Jdn? =
-        search(zone, today, personal = listOf(record.event))
+        search(zone, today, personal = listOf(record))
             .single { it.kind == SearchEventKind.PERSONAL }
             .nextDay
 
     private suspend fun search(
         zone: TimeZone,
         today: Jdn,
-        personal: List<PersonalEventEntity> = emptyList(),
+        personal: List<PersonalEventRecord> = emptyList(),
         subscriptions: List<IcsEventCacheEntity> = emptyList(),
     ) = CompositeSearchEventSource(
         official = OfficialEventSearchSource(language = { "en" }, today = { today }),

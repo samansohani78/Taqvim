@@ -10,11 +10,15 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.calendar.toLocalDate
+import ir.taqvim.core.ics.Frequency
+import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.DeviceEventCacheEntity
+import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.PersonalEventEntity
+import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.search.SearchEvent
@@ -139,6 +143,76 @@ class SearchAdaptersTest {
             source.events("Meeting", "en", limit = 0) shouldBe emptyList()
         }
 
+    @Test
+    fun `a recurring personal event is found on its next occurrence after the first has passed`(): Unit =
+        runTest {
+            val weekly = timed(start = today - 15, minute = 10 * 60, rule = RecurrenceRule(Frequency.WEEKLY))
+
+            personalDay(weekly) shouldBe today + 6
+        }
+
+    @Test
+    fun `a moved occurrence is found on the day it moved to`(): Unit =
+        runTest {
+            val moved = move(original = today, to = today + 2, minute = 9 * 60)
+            val weekly =
+                timed(
+                    start = today - 7,
+                    minute = 10 * 60,
+                    rule = RecurrenceRule(Frequency.WEEKLY),
+                    moves = listOf(moved),
+                )
+
+            personalDay(weekly) shouldBe today + 2
+        }
+
+    @Test
+    fun `a cancelled next occurrence is skipped`(): Unit =
+        runTest {
+            val cancelled = move(original = today + 7, to = today + 7, minute = 10 * 60, cancelled = true)
+            val weekly =
+                timed(
+                    start = today,
+                    minute = 10 * 60,
+                    rule = RecurrenceRule(Frequency.WEEKLY),
+                    moves = listOf(cancelled),
+                )
+
+            personalDay(weekly, from = today + 1) shouldBe today + 14
+        }
+
+    @Test
+    fun `personal results are dated in the display zone ahead of and behind the event zone`(): Unit =
+        runTest {
+            val tokyo = timed(start = today + 3, minute = 30, zoneId = "Asia/Tokyo")
+            val losAngeles = timed(start = today + 3, minute = 23 * 60, zoneId = "America/Los_Angeles")
+
+            personalDay(tokyo, zone = TimeZone.UTC) shouldBe today + 2
+            personalDay(losAngeles, zone = tehran) shouldBe today + 4
+            personalDay(tokyo, zone = TimeZone.of("Asia/Tokyo")) shouldBe today + 3
+        }
+
+    @Test
+    fun `a one-off event beyond the window is still found and a past one has no day`(): Unit =
+        runTest {
+            personalDay(timed(start = today + 400, minute = 8 * 60)) shouldBe today + 400
+            personalDay(timed(start = today - 1, minute = 8 * 60)) shouldBe null
+        }
+
+    /** The day search gives [record] when the device is in [zone] and today is [from]. */
+    private suspend fun personalDay(
+        record: PersonalEventRecord,
+        zone: TimeZone = tehran,
+        from: Jdn = today,
+    ): Jdn? =
+        CompositeSearchEventSource(
+            official = OfficialEventSearchSource(language = { "en" }, today = { from }),
+            stores = SearchEventStores({ listOf(record) }, { _, _ -> emptyList() }, { _, _ -> emptyList() }),
+            today = { from },
+            zone = { zone },
+            window = WINDOW,
+        ).external("Standup").single().nextDay
+
     /** Personal, device and subscription results for [query]. */
     private suspend fun CompositeSearchEventSource.external(query: String): List<SearchEvent> =
         events(query, "en", limit = 5).filter { it.kind != SearchEventKind.OFFICIAL }
@@ -163,21 +237,72 @@ class SearchAdaptersTest {
         const val HOUR = 3_600_000L
         const val DAY = 24 * HOUR
         const val WINDOW = 30
+        const val MINUTES_PER_DAY = 24 * 60
 
         fun personal(
             id: Long,
             title: String,
             start: Jdn,
-        ): PersonalEventEntity =
-            PersonalEventEntity(
-                id = id,
-                title = title,
-                calendarSystem = CalendarSystem.PERSIAN,
-                startJdn = start.value,
-                endJdn = start.value,
-                timeZoneId = "Asia/Tehran",
-                createdAtEpochMillis = 0,
-                updatedAtEpochMillis = 0,
+        ): PersonalEventRecord =
+            PersonalEventRecord(
+                event =
+                    PersonalEventEntity(
+                        id = id,
+                        title = title,
+                        calendarSystem = CalendarSystem.PERSIAN,
+                        startJdn = start.value,
+                        endJdn = start.value,
+                        timeZoneId = "Asia/Tehran",
+                        createdAtEpochMillis = 0,
+                        updatedAtEpochMillis = 0,
+                    ),
+                recurrence = null,
+            )
+
+        /** A one-hour Gregorian "Standup" at [minute] of [start] in [zoneId]. */
+        fun timed(
+            start: Jdn,
+            minute: Int,
+            zoneId: String = "Asia/Tehran",
+            rule: RecurrenceRule? = null,
+            moves: List<EventOverrideEntity> = emptyList(),
+        ): PersonalEventRecord {
+            val end = minute + 60
+            return PersonalEventRecord(
+                event =
+                    PersonalEventEntity(
+                        id = 1,
+                        title = "Standup",
+                        calendarSystem = CalendarSystem.GREGORIAN,
+                        startJdn = start.value,
+                        startMinute = minute,
+                        endJdn = if (end >= MINUTES_PER_DAY) start.value + 1 else start.value,
+                        endMinute = end % MINUTES_PER_DAY,
+                        timeZoneId = zoneId,
+                        createdAtEpochMillis = 0,
+                        updatedAtEpochMillis = 0,
+                    ),
+                recurrence = rule,
+                overrides = moves,
+            )
+        }
+
+        /** The occurrence of [original] moved to [minute] of [to] (or cancelled). */
+        fun move(
+            original: Jdn,
+            to: Jdn,
+            minute: Int,
+            cancelled: Boolean = false,
+        ): EventOverrideEntity =
+            EventOverrideEntity(
+                eventId = 1,
+                originalJdn = original.value,
+                title = "Standup",
+                startJdn = to.value,
+                startMinute = minute,
+                endJdn = to.value,
+                endMinute = minute + 60,
+                cancelled = cancelled,
             )
     }
 }
