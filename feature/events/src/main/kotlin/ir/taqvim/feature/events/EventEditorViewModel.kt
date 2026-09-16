@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.attempt
 import kotlin.time.Clock
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -79,10 +80,11 @@ class EventEditorViewModel(
         val valid = EventValidator.validate(current.form, calendar).isEmpty()
         session.value = current.copy(showErrors = true, busy = valid, storeFailed = false)
         if (valid) {
-            viewModelScope.launch {
-                val saved = runCatching { store.save(current.form.toEvent(calendar)) }
-                finishOrFail(saved.isSuccess, EditorOutcome.SAVED, current.copy(showErrors = true))
-            }
+            viewModelScope
+                .launch {
+                    val saved = attempt { store.save(current.form.toEvent(calendar)) }
+                    finishOrFail(saved.isSuccess, EditorOutcome.SAVED, current.copy(showErrors = true))
+                }.invokeOnCompletion { stopBusy() }
         }
     }
 
@@ -94,9 +96,10 @@ class EventEditorViewModel(
             session.value = EditorSession.Finished(EditorOutcome.DISCARDED)
         } else if (!current.busy) {
             session.value = current.copy(busy = true, storeFailed = false)
-            viewModelScope.launch {
-                finishOrFail(runCatching { store.delete(id) }.isSuccess, EditorOutcome.DELETED, current)
-            }
+            viewModelScope
+                .launch {
+                    finishOrFail(attempt { store.delete(id) }.isSuccess, EditorOutcome.DELETED, current)
+                }.invokeOnCompletion { stopBusy() }
         }
     }
 
@@ -116,7 +119,7 @@ class EventEditorViewModel(
             if (id == null) {
                 newForm(settings)
             } else {
-                runCatching { store.load(id) }
+                attempt { store.load(id) }
                     .getOrNull()
                     ?.takeIf { it.calendar in settings.arithmetic }
                     ?.let { EditorForm.of(it, settings.arithmeticOf(it.calendar), settings.language.numerals) }
@@ -152,6 +155,13 @@ class EventEditorViewModel(
             EditorSession.Loading, EditorSession.NotFound -> {
                 // Nothing to keep before the form opens or when there is no event.
             }
+        }
+    }
+
+    /** Ends a cancelled save or delete: nothing is in progress any more and no failure is shown (review I04). */
+    private fun stopBusy() {
+        session.update { current ->
+            if (current is EditorSession.Editing && current.busy) current.copy(busy = false) else current
         }
     }
 

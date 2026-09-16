@@ -147,4 +147,5 @@ private fun messageText(message: SubscriptionMessage): Int =
         SubscriptionMessage.ALREADY_SUBSCRIBED -> R.string.settings_subscriptions_message_duplicate
         SubscriptionMessage.NETWORK_NOT_ALLOWED -> R.string.settings_subscriptions_message_network
         SubscriptionMessage.FAILED -> R.string.settings_subscriptions_message_failed
+        SubscriptionMessage.CHANGE_FAILED -> R.string.settings_subscriptions_message_change_failed
     }

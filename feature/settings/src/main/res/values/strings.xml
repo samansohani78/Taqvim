@@ -15,6 +15,9 @@
   <string name="settings_location_search_label">Search cities</string>
   <string name="settings_location_searching">Searching cities</string>
   <string name="settings_location_no_results">No city matches “%1$s”</string>
+  <string name="settings_location_search_failed">The city list could not be searched.</string>
+  <string name="settings_location_retry">Try again</string>
+  <string name="settings_location_save_failed">The place could not be saved. Choose it again to retry.</string>
   <string name="settings_location_choose_city">Choose this city</string>
   <!-- Label marking the city that is currently chosen. -->
   <string name="settings_location_chosen_city">Chosen</string>
@@ -257,6 +260,7 @@
   <string name="settings_subscriptions_message_duplicate">You are already subscribed to this calendar</string>
   <string name="settings_subscriptions_message_network">Refreshing over the internet is turned off</string>
   <string name="settings_subscriptions_message_failed">The calendar could not be downloaded</string>
+  <string name="settings_subscriptions_message_change_failed">The change could not be saved. Try again.</string>
   <!-- T-1501 first-run onboarding: three skippable pages (language, location, event sources). -->
   <string name="onboarding_language_title">Choose your language</string>
   <string name="onboarding_language_intro">Welcome to Taqvim. Your language sets the calendars, digits, week and prayer conventions you start with; you can change each of them later in the settings.</string>

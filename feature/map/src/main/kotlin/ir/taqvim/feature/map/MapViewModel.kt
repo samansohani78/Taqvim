@@ -7,6 +7,7 @@ package ir.taqvim.feature.map
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.taqvim.core.model.Coordinates
+import ir.taqvim.core.model.attempt
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Instant
@@ -69,7 +70,7 @@ class MapViewModel(
 
     private val outline: StateFlow<OutlineState> =
         flow {
-            emit(runCatching { outlineSource.load() }.fold({ OutlineState.Ready(it) }, { OutlineState.Unavailable }))
+            emit(attempt { outlineSource.load() }.fold({ OutlineState.Ready(it) }, { OutlineState.Unavailable }))
         }.flowOn(computeDispatcher)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), OutlineState.Loading)
 
@@ -94,7 +95,7 @@ class MapViewModel(
             .map { it.language.code }
             .distinctUntilChanged()
             .mapLatest { code ->
-                runCatching { citySource.citiesByPopulation(code, CityMarkers.CANDIDATES) }.getOrDefault(emptyList())
+                attempt { citySource.citiesByPopulation(code, CityMarkers.CANDIDATES) }.getOrDefault(emptyList())
             }.flowOn(computeDispatcher)
             .onStart { emit(emptyList()) }
 

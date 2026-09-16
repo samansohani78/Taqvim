@@ -7,6 +7,7 @@ package ir.taqvim.feature.settings
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import ir.taqvim.core.model.attempt
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -49,6 +50,9 @@ enum class SubscriptionMessage {
     ALREADY_SUBSCRIBED,
     NETWORK_NOT_ALLOWED,
     FAILED,
+
+    /** Pausing, removing or the network choice could not be stored; the user can try again. */
+    CHANGE_FAILED,
 }
 
 /** User actions of the subscriptions page. */
@@ -109,41 +113,50 @@ class SubscriptionsViewModel(
             return
         }
         state.update { it.copy(adding = true, message = null) }
-        viewModelScope.launch {
-            val outcome = store.add(current.draft.trim())
-            state.update {
-                it.copy(
-                    adding = false,
-                    draft = if (outcome == SubscriptionOutcome.DONE) "" else it.draft,
-                    message = message(outcome, SubscriptionMessage.ADDED),
-                )
-            }
-        }
+        viewModelScope
+            .launch {
+                val outcome = attempt { store.add(current.draft.trim()) }.getOrDefault(SubscriptionOutcome.FAILED)
+                state.update {
+                    it.copy(
+                        draft = if (outcome == SubscriptionOutcome.DONE) "" else it.draft,
+                        message = message(outcome, SubscriptionMessage.ADDED),
+                    )
+                }
+            }.invokeOnCompletion { state.update { it.copy(adding = false) } }
     }
 
     fun onRefresh(id: Long) {
         if (id in refreshing.value) return
         refreshing.update { it + id }
-        viewModelScope.launch {
-            val outcome = store.refresh(id)
-            refreshing.update { it - id }
-            state.update { it.copy(message = message(outcome, SubscriptionMessage.REFRESHED)) }
-        }
+        viewModelScope
+            .launch {
+                val outcome = attempt { store.refresh(id) }.getOrDefault(SubscriptionOutcome.FAILED)
+                state.update { it.copy(message = message(outcome, SubscriptionMessage.REFRESHED)) }
+            }.invokeOnCompletion { refreshing.update { it - id } }
     }
 
     fun onRemove(id: Long) {
-        viewModelScope.launch { store.remove(id) }
+        change { store.remove(id) }
     }
 
     fun onEnabledChanged(
         id: Long,
         enabled: Boolean,
     ) {
-        viewModelScope.launch { store.setEnabled(id, enabled) }
+        change { store.setEnabled(id, enabled) }
     }
 
     fun onNetworkAllowedChanged(allowed: Boolean) {
-        viewModelScope.launch { settings.update { it.copy(subscriptionsNetworkAllowed = allowed) } }
+        change { settings.update { it.copy(subscriptionsNetworkAllowed = allowed) } }
+    }
+
+    /** Runs a stored change; a failure is reported so the user can try again, a cancellation stays silent. */
+    private fun change(write: suspend () -> Unit) {
+        viewModelScope.launch {
+            if (attempt { write() }.isFailure) {
+                state.update { it.copy(message = SubscriptionMessage.CHANGE_FAILED) }
+            }
+        }
     }
 
     private fun SubscriptionItem.toRow(refreshing: Boolean) =

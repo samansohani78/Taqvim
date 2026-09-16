@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.model.Coordinates
+import ir.taqvim.core.model.attempt
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,7 +38,7 @@ class LocationSettingsViewModel(
     val uiState: StateFlow<LocationSettingsUiState> = state.asStateFlow()
 
     private val settings = MutableStateFlow<LocationSettings?>(null)
-    private val query = MutableStateFlow("")
+    private val query = MutableStateFlow(SearchRequest(""))
     private val options = MutableStateFlow<List<CityOption>>(emptyList())
     private val typedCoordinates = MutableStateFlow<Coordinates?>(null)
     private val zoneEdited = MutableStateFlow(false)
@@ -51,7 +52,8 @@ class LocationSettingsViewModel(
         typedCoordinates
             .debounce(DESCRIBE_DEBOUNCE_MILLIS)
             .filterNotNull()
-            .mapLatest(describer::describe)
+            .mapLatest { attempt { describer.describe(it) }.getOrNull() }
+            .filterNotNull()
             .onEach(::onDescribed)
             .launchIn(viewModelScope)
     }
@@ -61,35 +63,48 @@ class LocationSettingsViewModel(
     }
 
     fun onQueryChanged(text: String) {
-        query.value = text
+        query.value = SearchRequest(text)
         state.update {
-            it.copy(search = it.search.copy(query = text, searching = text.isNotBlank(), noResults = false))
+            it.copy(
+                search = it.search.copy(query = text, searching = text.isNotBlank(), noResults = false, failed = false),
+            )
         }
+    }
+
+    /** Runs the failed search for the same text again. */
+    fun onRetrySearch() {
+        val current = query.value
+        query.value = current.copy(attempt = current.attempt + 1)
+        state.update { it.copy(search = it.search.copy(searching = current.text.isNotBlank(), failed = false)) }
     }
 
     fun onCitySelected(id: Long) {
         val option = options.value.firstOrNull { it.id == id } ?: return
         val zone = option.timeZoneId ?: return
-        viewModelScope.launch {
-            store.choose(PlaceChoice(PlaceKind.CITY, option.id, option.name, option.coordinates, zone))
-        }
+        choose(PlaceChoice(PlaceKind.CITY, option.id, option.name, option.coordinates, zone))
     }
 
     /** Looks up the device position; call it once the location permission is granted. */
     fun onLocate() {
         state.update { it.copy(device = DeviceState.Locating) }
-        viewModelScope.launch {
-            val device =
-                when (val fix = deviceLocation.locate()) {
-                    is DeviceFix.Found -> saveDevicePlace(fix.coordinates)
-                    DeviceFix.PermissionDenied -> DeviceState.PermissionDenied
-                    DeviceFix.LocationDisabled -> DeviceState.LocationDisabled
-                    DeviceFix.TimedOut -> DeviceState.TimedOut
-                    DeviceFix.Unavailable -> DeviceState.Unavailable
-                }
-            state.update { it.copy(device = device) }
-        }
+        viewModelScope
+            .launch {
+                val device = attempt { locate() }.getOrDefault(DeviceState.Unavailable)
+                state.update { it.copy(device = device) }
+            }.invokeOnCompletion {
+                // A cancelled lookup leaves nothing in progress; the button can be pressed again.
+                state.update { if (it.device == DeviceState.Locating) it.copy(device = DeviceState.Idle) else it }
+            }
     }
+
+    private suspend fun locate(): DeviceState =
+        when (val fix = deviceLocation.locate()) {
+            is DeviceFix.Found -> saveDevicePlace(fix.coordinates)
+            DeviceFix.PermissionDenied -> DeviceState.PermissionDenied
+            DeviceFix.LocationDisabled -> DeviceState.LocationDisabled
+            DeviceFix.TimedOut -> DeviceState.TimedOut
+            DeviceFix.Unavailable -> DeviceState.Unavailable
+        }
 
     /** The user refused the location permission. */
     fun onPermissionDenied() {
@@ -126,9 +141,20 @@ class LocationSettingsViewModel(
             }
             return
         }
-        viewModelScope.launch {
-            store.choose(PlaceChoice(PlaceKind.COORDINATES, null, manual.suggestedName, coordinates, zone))
+        choose(PlaceChoice(PlaceKind.COORDINATES, null, manual.suggestedName, coordinates, zone)) {
             state.update { it.copy(manual = it.manual.copy(saved = true)) }
+        }
+    }
+
+    /** Stores [place]; a failure is shown so the user can choose it again, a cancellation stays silent. */
+    private fun choose(
+        place: PlaceChoice,
+        onSaved: () -> Unit = {},
+    ) {
+        state.update { it.copy(saveFailed = false) }
+        viewModelScope.launch {
+            val saved = attempt { store.choose(place) }.isSuccess
+            if (saved) onSaved() else state.update { it.copy(saveFailed = true) }
         }
     }
 
@@ -144,12 +170,19 @@ class LocationSettingsViewModel(
         }
     }
 
-    private suspend fun search(text: String) {
-        val found = if (text.isBlank()) emptyList() else citySearch.search(text.trim())
-        options.value = found
-        val rows = LocationStateMapper.rows(found, numerals, settings.value?.place)
-        val noResults = text.isNotBlank() && found.isEmpty()
-        state.update { it.copy(search = it.search.copy(searching = false, results = rows, noResults = noResults)) }
+    private suspend fun search(request: SearchRequest) {
+        val text = request.text
+        val found = if (text.isBlank()) Result.success(emptyList()) else attempt { citySearch.search(text.trim()) }
+        val cities = found.getOrDefault(emptyList())
+        options.value = cities
+        val rows = LocationStateMapper.rows(cities, numerals, settings.value?.place)
+        val noResults = found.isSuccess && text.isNotBlank() && cities.isEmpty()
+        state.update {
+            it.copy(
+                search =
+                    it.search.copy(searching = false, results = rows, noResults = noResults, failed = found.isFailure),
+            )
+        }
     }
 
     private suspend fun saveDevicePlace(coordinates: Coordinates): DeviceState {
@@ -191,6 +224,12 @@ class LocationSettingsViewModel(
     private fun longitude(text: String): Double? = CoordinateInput.longitude(text)
 
     private fun isKnownZone(text: String): Boolean = timeZoneIds.isKnown(text.trim())
+
+    /** A search for [text]; [attempt] changes when the same text is searched again. */
+    private data class SearchRequest(
+        val text: String,
+        val attempt: Int = 0,
+    )
 
     private companion object {
         const val SEARCH_DEBOUNCE_MILLIS = 300L

@@ -7,6 +7,7 @@ package ir.taqvim.feature.calendar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.model.attempt
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Instant
 import kotlinx.collections.immutable.ImmutableList
@@ -179,7 +180,7 @@ class CalendarViewModel(
     private fun toggleReminder(action: CalendarAction.ToggleOfficialReminder) {
         val event = navigation.value.sourceEvent?.takeIf { it.kind == DayEventKind.OFFICIAL } ?: return
         viewModelScope.launch {
-            runCatching { officialReminders.setReminder(event.id, action.daysBefore, action.enabled) }
+            attempt { officialReminders.setReminder(event.id, action.daysBefore, action.enabled) }
                 .onSuccess { if (action.enabled) effectChannel.send(CalendarEffect.RequestNotificationPermission) }
                 .onFailure { effectChannel.send(CalendarEffect.ShowSnackbar(CalendarMessage.SETTING_NOT_SAVED)) }
         }
@@ -232,7 +233,7 @@ class CalendarViewModel(
     private fun store(write: suspend CalendarDisplayStore.() -> Unit) {
         menu.value = CalendarMenu()
         viewModelScope.launch {
-            runCatching { displayStore.write() }
+            attempt { displayStore.write() }
                 .onFailure { effectChannel.send(CalendarEffect.ShowSnackbar(CalendarMessage.SETTING_NOT_SAVED)) }
         }
     }

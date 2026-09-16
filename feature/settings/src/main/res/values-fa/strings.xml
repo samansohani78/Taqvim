@@ -13,6 +13,9 @@
   <string name="settings_location_search_label">جستجوی شهر</string>
   <string name="settings_location_searching">در حال جستجوی شهرها</string>
   <string name="settings_location_no_results">شهری با «%1$s» پیدا نشد</string>
+  <string name="settings_location_search_failed">جست‌وجوی شهرها ممکن نشد.</string>
+  <string name="settings_location_retry">تلاش دوباره</string>
+  <string name="settings_location_save_failed">مکان ذخیره نشد. برای تلاش دوباره آن را دوباره انتخاب کنید.</string>
   <string name="settings_location_choose_city">انتخاب این شهر</string>
   <string name="settings_location_chosen_city">انتخاب‌شده</string>
   <string name="settings_location_city_no_zone">برای این شهر منطقهٔ زمانی ثبت نشده است و نمی‌توان آن را انتخاب کرد.</string>
@@ -198,6 +201,7 @@
   <string name="settings_subscriptions_message_duplicate">این تقویم را از پیش مشترک شده‌اید</string>
   <string name="settings_subscriptions_message_network">به‌روزرسانی از اینترنت خاموش است</string>
   <string name="settings_subscriptions_message_failed">دریافت تقویم ممکن نشد</string>
+  <string name="settings_subscriptions_message_change_failed">تغییر ذخیره نشد. دوباره تلاش کنید.</string>
   <!-- T-1501 first-run onboarding: three skippable pages (language, location, event sources). -->
   <string name="onboarding_language_title">زبان خود را انتخاب کنید</string>
   <string name="onboarding_language_intro">به تقویم خوش آمدید. زبان شما تقویم‌ها، ارقام، آغاز هفته و روش اوقات شرعی آغازین را تعیین می‌کند؛ هر کدام را بعداً در تنظیمات می‌توانید تغییر دهید.</string>

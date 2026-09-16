@@ -22,8 +22,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
@@ -69,6 +71,13 @@ private fun LocationContent(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         CurrentPlaceCard(state.current)
+        if (state.saveFailed) {
+            Text(
+                stringResource(R.string.settings_location_save_failed),
+                modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
+                color = MaterialTheme.colorScheme.error,
+            )
+        }
         SegmentedTabs(
             tabs = LocationMode.entries.map { stringResource(it.label) },
             selectedIndex = state.mode.ordinal,

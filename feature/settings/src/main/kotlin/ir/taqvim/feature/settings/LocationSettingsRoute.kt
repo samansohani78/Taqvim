@@ -54,6 +54,7 @@ fun LocationSettingsRoute(
                 onModeSelected = viewModel::onModeSelected,
                 onQueryChanged = viewModel::onQueryChanged,
                 onCitySelected = viewModel::onCitySelected,
+                onRetrySearch = viewModel::onRetrySearch,
                 onUseDeviceLocation = {
                     if (hasLocationPermission(context)) {
                         viewModel.onLocate()

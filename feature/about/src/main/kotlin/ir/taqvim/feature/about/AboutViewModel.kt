@@ -6,6 +6,7 @@ package ir.taqvim.feature.about
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import ir.taqvim.core.model.attempt
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -77,7 +78,7 @@ class AboutViewModel(
         if (licensesRequested.compareAndSet(expect = false, update = true)) {
             viewModelScope.launch {
                 licenses.value =
-                    runCatching { licenseSource.catalog() }
+                    attempt { licenseSource.catalog() }
                         .fold(
                             onSuccess = { LicensesContent.Ready(it.groups(), it.components.size) },
                             onFailure = { LicensesContent.Unavailable },
@@ -172,7 +173,7 @@ class AboutViewModel(
         licenseText.value = LicenseTextContent(license, text = null, loading = asset != null)
         if (asset == null) return
         viewModelScope.launch {
-            val text = runCatching { licenseSource.text(asset) }.getOrNull()
+            val text = attempt { licenseSource.text(asset) }.getOrNull()
             licenseText.update { current ->
                 if (current?.license?.id == license.id) current.copy(text = text, loading = false) else current
             }

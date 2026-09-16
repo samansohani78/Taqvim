@@ -24,6 +24,8 @@ data class LocationSettingsUiState(
     val search: CitySearchState = CitySearchState(),
     val device: DeviceState = DeviceState.Idle,
     val manual: ManualState = ManualState(),
+    /** Whether the last chosen place could not be stored; choosing it again retries. */
+    val saveFailed: Boolean = false,
 )
 
 /** The stored place, formatted for display. */
@@ -42,6 +44,8 @@ data class CitySearchState(
     val results: ImmutableList<CityRow> = persistentListOf(),
     /** Whether the finished search for a non-blank [query] found nothing. */
     val noResults: Boolean = false,
+    /** Whether the last search failed; retrying runs it again. */
+    val failed: Boolean = false,
 )
 
 /** A search result. */
@@ -97,6 +101,7 @@ data class LocationSettingsActions(
     val onModeSelected: (LocationMode) -> Unit = {},
     val onQueryChanged: (String) -> Unit = {},
     val onCitySelected: (Long) -> Unit = {},
+    val onRetrySearch: () -> Unit = {},
     val onUseDeviceLocation: () -> Unit = {},
     val onLatitudeChanged: (String) -> Unit = {},
     val onLongitudeChanged: (String) -> Unit = {},

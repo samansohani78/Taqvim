@@ -56,6 +56,10 @@ internal fun CitySearchSection(
         if (search.noResults) {
             Text(stringResource(R.string.settings_location_no_results, search.query))
         }
+        if (search.failed) {
+            Text(stringResource(R.string.settings_location_search_failed), color = MaterialTheme.colorScheme.error)
+            OutlinedButton(onClick = actions.onRetrySearch) { Text(stringResource(R.string.settings_location_retry)) }
+        }
         search.results.forEach { row -> CityRowItem(row, actions.onCitySelected) }
     }
 }
