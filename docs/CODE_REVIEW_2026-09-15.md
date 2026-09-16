@@ -317,6 +317,8 @@ These are proposals, not current bugs or commitments. Effort is relative and exc
 | F06 | Visible data-coverage and date-source panel | Shows which years/months are officially sourced, user-corrected or calculated, and why two lunar-calendar variants differ. | Build on citations, `ResolvedHijriDate`, and documented dataset ranges. Small–medium. |
 | F07 | Expose the existing Hebrew calendar in conversion tools | Adds a useful calendar without starting the arithmetic from zero. | Domain implementation exists; enum/integration, names, formatting, settings and round-trip UI tests remain. Medium. |
 
+**Feature status:** F01 done in main@60cca26 (ADR-0034); F02 in main@f31a07c; F07 in main@381f6c0 and main@d15b2a4 (screen-wide month names in progress); F03 in progress.
+
 ## 5. Recommended order
 
 1. **Correct shared event semantics:** B01–B05 and B07–B08. Add the failing examples first, then verify display,
