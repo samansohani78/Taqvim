@@ -103,6 +103,7 @@ class SearchAdaptersTest {
             val dayStart = (today + 1).toLocalDate().atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds()
             val dayEnd = dayStart + DAY
             val started = today.toLocalDate().atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds() - 2 * DAY
+            val feedDay = IcsEventCacheEntity(4, "u1", dayStart, dayEnd, true, "Dentist talk")
             val stores =
                 SearchEventStores(
                     personal = { emptyList() },
@@ -112,12 +113,11 @@ class SearchAdaptersTest {
                             DeviceEventCacheEntity(8, 1, started, dayEnd, true, "Dentist week"),
                         )
                     },
-                    subscriptions = { _, _ -> listOf(IcsEventCacheEntity(4, "u1", dayStart, dayEnd, true, "Dentist talk")) },
+                    subscriptions = { _, _ -> listOf(feedDay) },
                 )
 
-            val inTehran = source(stores).events("Dentist", "en", limit = 5).filter { it.kind != SearchEventKind.OFFICIAL }
-            val inLosAngeles =
-                source(stores, losAngeles).events("Dentist", "en", limit = 5).filter { it.kind != SearchEventKind.OFFICIAL }
+            val inTehran = source(stores).external("Dentist")
+            val inLosAngeles = source(stores, losAngeles).external("Dentist")
 
             inTehran shouldContainExactly
                 listOf(
@@ -138,6 +138,10 @@ class SearchAdaptersTest {
             source.events("  ", "en", limit = 3) shouldBe emptyList()
             source.events("Meeting", "en", limit = 0) shouldBe emptyList()
         }
+
+    /** Personal, device and subscription results for [query]. */
+    private suspend fun CompositeSearchEventSource.external(query: String): List<SearchEvent> =
+        events(query, "en", limit = 5).filter { it.kind != SearchEventKind.OFFICIAL }
 
     private fun stores(): SearchEventStores =
         SearchEventStores({ emptyList() }, { _, _ -> emptyList() }, { _, _ -> emptyList() })

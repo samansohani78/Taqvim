@@ -15,7 +15,7 @@ import kotlinx.datetime.atTime
 import kotlinx.datetime.toInstant
 
 /**
- * The one rule deciding which civil days an event is shown on, for every source (B03, B12).
+ * The one rule deciding which civil days an event is shown on, for every source (ADR-0031; B03, B12).
  *
  * - **All-day events keep their dates**, whatever the display zone: personal and dataset events by the dates the user
  *   or the dataset gives them, device and feed rows by their UTC dates (those sources store UTC-midnight bounds).

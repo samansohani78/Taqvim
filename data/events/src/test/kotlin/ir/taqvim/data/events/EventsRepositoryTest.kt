@@ -207,7 +207,7 @@ class EventsRepositoryTest {
                     PersonalEventRecord(event(4, nowruz), recurrence = null),
                 )
 
-            val days = repository.days(nowruz - 1..nowruz + 1).first().associate { it.jdn to it.personal.map { e -> e.eventId } }
+            val days = repository.personalIds(nowruz - 1..nowruz + 1)
 
             days.getValue(nowruz - 1) shouldBe listOf(1L)
             days.getValue(nowruz) shouldBe listOf(4L)
@@ -230,11 +230,15 @@ class EventsRepositoryTest {
                     ),
                 )
 
-            val days = repository.days(nowruz..nowruz + 1).first().associate { it.jdn to it.personal.map { e -> e.eventId } }
+            val days = repository.personalIds(nowruz..nowruz + 1)
 
             days.getValue(nowruz) shouldBe listOf(1L)
             days.getValue(nowruz + 1) shouldBe listOf(1L)
         }
+
+    /** The personal event ids shown on each day of [range]. */
+    private suspend fun EventsRepository.personalIds(range: JdnRange): Map<Jdn, List<Long>> =
+        days(range).first().associate { day -> day.jdn to day.personal.map { it.eventId } }
 
     private fun repository(
         zone: TimeZone,
