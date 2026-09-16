@@ -59,3 +59,14 @@ sets is a scope decision; the owner made it.
 - Disagreements between the app and USNO are reported and investigated, not hidden: a genuine convention difference is
   documented for each affected record in the test.
 - HKO data stays unused; DT-016 (Chinese lunar new-year dates) remains open, because USNO has no such data set.
+
+## Addendum 2026-09-16 — Hebrew month names (F07)
+
+The owner approved showing the Hebrew calendar in the converter and calendar picker (code-review idea F07). Its month
+names come from Unicode CLDR 48 through the ICU4J public API, generated into `core/i18n`'s `hebrew-months.properties`
+by `tools/i18n/HebrewMonthsGen.java` and re-checked against ICU4J by `HebrewMonthNamesTest`, the same approach as the
+T-200 language table. `HebrewMonthNames` maps CLDR's order to the calendar's numbering from Tishri (12 names in a
+common year, 13 with Adar I and Adar II in a leap year). CLDR has real names for 13 of the 24 launch languages; `ps`,
+`ckb`, `kmr`, `az`, `ne`, `hi`, `tg`, `uz`, `id` and `ms` only inherit the root (English) names and `zh` only has
+generic numbered months, so those are left out and fall back like other missing month names. The `CalendarSystem`
+entry, formatting and screen wiring build on this in a later change.
