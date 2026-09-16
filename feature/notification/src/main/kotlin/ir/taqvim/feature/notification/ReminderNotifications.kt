@@ -67,8 +67,11 @@ internal object ReminderNotifications {
             ReminderKind.OFFICIAL -> CHANNEL_OFFICIAL
         }
 
-    /** The notification id of [reminder]; one notification per occurrence. */
-    fun idOf(reminder: PlannedReminder): Int = reminder.key.hashCode()
+    /**
+     * The notification id of [reminder]; one notification per occurrence. Occurrences on their own day keep the id
+     * older versions used, so their Done and Snooze actions still reach notifications posted before an update.
+     */
+    fun idOf(reminder: PlannedReminder): Int = (if (reminder.moved) reminder.key else reminder.legacyKey).hashCode()
 
     /** The link a tap on [reminder] opens. */
     fun linkOf(reminder: PlannedReminder): Uri {

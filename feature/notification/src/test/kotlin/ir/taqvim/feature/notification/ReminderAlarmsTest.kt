@@ -47,7 +47,7 @@ class ReminderAlarmsTest {
             val log = HistoryDeliveryLog()
             val alarms = ReminderAlarms({ setup }, log, notifier)
             val first = alarms.upcoming(now).first()
-            val key = "PERSONAL:9@${ReminderFixtures.jdnOf(event.start).value}"
+            val key = "PERSONAL:9#${ReminderFixtures.jdnOf(event.start).value}"
 
             alarms.onAlarm(first.sourceId, first.at) shouldBe AlarmDeliveryResult.DELIVERED
             alarms.onAlarm(first.sourceId, first.at) shouldBe AlarmDeliveryResult.SKIPPED
@@ -82,7 +82,7 @@ class ReminderAlarmsTest {
             val refusing = RecordingNotifier(accept = false)
             val alarms = ReminderAlarms({ setup }, log, refusing)
             val first = alarms.upcoming(now).first()
-            val key = "PERSONAL:9@${ReminderFixtures.jdnOf(event.start).value}"
+            val key = "PERSONAL:9#${ReminderFixtures.jdnOf(event.start).value}"
 
             alarms.onAlarm(first.sourceId, first.at) shouldBe AlarmDeliveryResult.FAILED
             log.history.stateOf(key) shouldBe null

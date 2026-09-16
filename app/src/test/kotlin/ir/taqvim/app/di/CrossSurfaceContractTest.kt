@@ -90,12 +90,6 @@ class CrossSurfaceContractTest {
             starts shouldBe setOf(instant(day, 22 * 60, tehran), instant(day + 8, 30, tehran))
         }
 
-    @Disabled(
-        "I08 finding: ReminderPlanner drops the regular occurrence on the day a moved override lands on. " +
-            "A daily 22:00 series whose 17 September instance moves to 18 September 00:30 is shown (and exported) " +
-            "at 18 September 22:00 as well, but no reminder is planned for it; PlannedReminder.key " +
-            "(kind:source@occurrence day) likely collides for the two instances on 18 September.",
-    )
     @Test
     fun `a daily series keeps its own occurrence on the day an override moves to`(): Unit =
         runTest {

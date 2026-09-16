@@ -155,6 +155,14 @@ class ReminderNotificationsTest {
 
         intent.component?.className shouldBe ReminderActionReceiver::class.java.name
         ReminderIntents.reminderOf(intent) shouldBe reminder
+        val moved = reminder.copy(original = reminder.occurrence - 1)
+        val movedBack = ReminderIntents.reminderOf(ReminderIntents.of(context, ReminderIntents.ACTION_SHOW, moved))
+        movedBack?.original shouldBe moved.original
+        movedBack?.let { ReminderNotifications.idOf(it) } shouldBe ReminderNotifications.idOf(moved)
+        // A broadcast from an older version has no original day and keeps its old notification id.
+        val older = ReminderIntents.reminderOf(Intent(intent).apply { removeExtra(ORIGINAL) })
+        older shouldBe reminder
+        older?.let { ReminderNotifications.idOf(it) } shouldBe "OFFICIAL:2@${reminder.occurrence.value}".hashCode()
         ReminderIntents.reminderOf(Intent(intent).putExtra(KIND, "SHIFT")).shouldBeNull()
         ReminderIntents.reminderOf(Intent(intent).apply { removeExtra(AT) }).shouldBeNull()
         ReminderIntents.reminderOf(Intent(intent).putExtra(DAYS_BEFORE, -1)).shouldBeNull()
@@ -202,5 +210,6 @@ class ReminderNotificationsTest {
         const val KIND = "ir.taqvim.feature.notification.extra.REMINDER_KIND"
         const val AT = "ir.taqvim.feature.notification.extra.REMINDER_AT"
         const val DAYS_BEFORE = "ir.taqvim.feature.notification.extra.REMINDER_DAYS_BEFORE"
+        const val ORIGINAL = "ir.taqvim.feature.notification.extra.REMINDER_ORIGINAL"
     }
 }

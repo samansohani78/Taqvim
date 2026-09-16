@@ -120,7 +120,11 @@ enum class ReminderKind {
     OFFICIAL,
 }
 
-/** One reminder to show at [at] for the occurrence of [target] on [occurrence]. */
+/**
+ * One reminder to show at [at] for the occurrence of [target] that takes place on [occurrence]. [original] is the day
+ * the occurrence belongs to in its series (the day an override moved it from; [occurrence] otherwise), which identifies
+ * it even when a moved occurrence lands on the day of another one.
+ */
 data class PlannedReminder(
     val kind: ReminderKind,
     /** Reminder row id (personal) or official reminder id. */
@@ -132,10 +136,27 @@ data class PlannedReminder(
     /** Days between the reminder and the occurrence of an official event; 0 for personal reminders. */
     val daysBefore: Int,
     val at: Instant,
+    val original: Jdn = occurrence,
+    /**
+     * Whether this is the occurrence the planner kept before series identity was used (the one with the earliest
+     * [original] among those of its reminder taking place on [occurrence]), so [legacyKey] refers to it.
+     */
+    val legacyKeyed: Boolean = true,
 ) {
-    /** Identifies the reminder of one occurrence, so it is shown at most once. */
+    /** Identifies the reminder of one occurrence by its series day, so it is shown at most once (ADR-0033 addendum). */
     val key: String
+        get() = "${kind.name}:$sourceId#${original.value}"
+
+    /**
+     * The key used before 2026-09-17 (`kind:source@day the occurrence takes place`), under which reminders delivered
+     * by older versions are recorded; only meaningful when [legacyKeyed].
+     */
+    val legacyKey: String
         get() = "${kind.name}:$sourceId@${occurrence.value}"
+
+    /** Whether an override moved this occurrence to another day. */
+    val moved: Boolean
+        get() = original != occurrence
 
     /** The scheduler's source id: personal reminders keep their id, official ones are negated, so they never clash. */
     val alarmSourceId: Long
@@ -171,13 +192,23 @@ object ReminderPlanner {
         setup: ReminderSetup,
     ): List<PlannedReminder> = candidates(now, setup) { true }.take(MAX_REMINDERS)
 
-    /** The reminder of scheduler source [alarmSourceId] due exactly at [instant], if any. */
+    /** The first reminder of scheduler source [alarmSourceId] due exactly at [instant], if any. */
     fun at(
         alarmSourceId: Long,
         instant: Instant,
         setup: ReminderSetup,
-    ): PlannedReminder? =
-        candidates(instant - 1.milliseconds, setup) { it == alarmSourceId }.firstOrNull { it.at == instant }
+    ): PlannedReminder? = allAt(alarmSourceId, instant, setup).firstOrNull()
+
+    /**
+     * Every reminder of scheduler source [alarmSourceId] due exactly at [instant]: more than one when an override moves
+     * an occurrence onto the start time of another occurrence of the same event.
+     */
+    fun allAt(
+        alarmSourceId: Long,
+        instant: Instant,
+        setup: ReminderSetup,
+    ): List<PlannedReminder> =
+        candidates(instant - 1.milliseconds, setup) { it == alarmSourceId }.filter { it.at == instant }
 
     private fun candidates(
         now: Instant,
@@ -208,7 +239,9 @@ object ReminderPlanner {
     ): List<PlannedReminder> {
         val rules = event.reminders.filter { wanted(it.id) }
         if (rules.isEmpty()) return emptyList()
-        return instances(event, setup.calendars, from, until).flatMap { instance ->
+        val instances = instances(event, setup.calendars, from, until)
+        val firstOriginal = instances.groupBy { it.day }.mapValues { (_, same) -> same.minOf { it.original } }
+        return instances.flatMap { instance ->
             val start = startOf(event, instance, setup)
             rules.map { rule ->
                 PlannedReminder(
@@ -219,13 +252,19 @@ object ReminderPlanner {
                     occurrence = instance.day,
                     daysBefore = 0,
                     at = start - rule.minutesBefore.minutes,
+                    original = instance.original,
+                    legacyKeyed = firstOriginal[instance.day] == instance.original,
                 )
             }
         }
     }
 
-    /** An occurrence of a personal event as it takes place: on [day] at [startMinute] with [title]. */
+    /**
+     * An occurrence of a personal event as it takes place: on [day] at [startMinute] with [title]; [original] is its day
+     * in the series.
+     */
     private data class Instance(
+        val original: Jdn,
         val day: Jdn,
         val startMinute: MinuteOfDay?,
         val title: String,
@@ -268,8 +307,8 @@ object ReminderPlanner {
         val excluded = event.exceptions + cancelled.map { it.original }
         return seriesInstances(all, excluded, kept.associateBy { it.original }, from, until)
             .map { instance ->
-                instance.override?.let { Instance(it.day, it.startMinute, it.title) }
-                    ?: Instance(instance.original, event.startMinute, event.title)
+                instance.override?.let { Instance(instance.original, it.day, it.startMinute, it.title) }
+                    ?: Instance(instance.original, instance.original, event.startMinute, event.title)
             }.filter { it.day in from..until }
     }
 

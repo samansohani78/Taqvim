@@ -62,3 +62,23 @@ exact-alarm permission change. Two paths bypassed that model:
   settings rather than the ones captured when it was snoozed.
 - The athan service writes its snooze on a background coroutine after it stops; the write is a single row.
 - Device checks (T-1102 OEM checklist) still need to confirm delivery under battery restrictions and Do Not Disturb.
+
+## Addendum 2026-09-17 — reminder keys follow the series occurrence
+
+A reminder's delivery key was `KIND:source@day it takes place`. When an override moved an occurrence onto the day of
+another occurrence of the same event, both had the same key, the planner kept only one, and the other was never
+reminded (found by the I08 cross-surface contract test).
+
+- **Key:** `KIND:source#original day`, where the original day is the occurrence's day in its series (the day an
+  override moved it from; the day itself otherwise). Official reminders use their occurrence day. The `#` separator
+  keeps new keys distinct from every key written before.
+- **Older records:** a reminder is also treated as delivered when the log holds its old key
+  (`KIND:source@day it takes place`), but only for the occurrence the old planner kept on that day — the one with the
+  earliest original day — so a reminder delivered before the update is not shown again and the regular occurrence that
+  was previously dropped is still delivered.
+- **Several reminders at one instant:** one alarm delivers every reminder of its source due then (an occurrence moved
+  onto another one's start time); a failure retries only those not yet delivered.
+- **Notifications:** occurrences on their own day keep the notification id of the old key, so Done and Snooze on
+  notifications posted before the update still dismiss them; moved occurrences use the new key. Broadcasts carry the
+  original day; broadcasts without it are read as occurrences on their own day.
+- No schema change: alarm and snooze rows are keyed by source and instant, not by this key.

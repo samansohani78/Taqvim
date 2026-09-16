@@ -29,6 +29,7 @@ internal object ReminderIntents {
     private const val EXTRA_OCCURRENCE = "ir.taqvim.feature.notification.extra.REMINDER_OCCURRENCE"
     private const val EXTRA_DAYS_BEFORE = "ir.taqvim.feature.notification.extra.REMINDER_DAYS_BEFORE"
     private const val EXTRA_AT = "ir.taqvim.feature.notification.extra.REMINDER_AT"
+    private const val EXTRA_ORIGINAL = "ir.taqvim.feature.notification.extra.REMINDER_ORIGINAL"
     private const val MISSING_LONG = Long.MIN_VALUE
     private const val MISSING_INT = Int.MIN_VALUE
 
@@ -47,6 +48,7 @@ internal object ReminderIntents {
             .putExtra(EXTRA_OCCURRENCE, reminder.occurrence.value)
             .putExtra(EXTRA_DAYS_BEFORE, reminder.daysBefore)
             .putExtra(EXTRA_AT, reminder.at.toEpochMilliseconds())
+            .putExtra(EXTRA_ORIGINAL, reminder.original.value)
 
     /** The reminder in [intent], or `null` when its extras are missing or invalid. */
     fun reminderOf(intent: Intent): PlannedReminder? {
@@ -60,7 +62,17 @@ internal object ReminderIntents {
         if (kind == null || target == null || title == null) return null
         val numbers = listOf(source, occurrence, at).none { it == MISSING_LONG } && daysBefore >= 0
         return if (numbers) {
-            PlannedReminder(kind, source, target, title, Jdn(occurrence), daysBefore, Instant.fromEpochMilliseconds(at))
+            PlannedReminder(
+                kind = kind,
+                sourceId = source,
+                target = target,
+                title = title,
+                occurrence = Jdn(occurrence),
+                daysBefore = daysBefore,
+                at = Instant.fromEpochMilliseconds(at),
+                // Intents from older versions have no original day: those occurrences were on their own day.
+                original = Jdn(intent.getLongExtra(EXTRA_ORIGINAL, occurrence)),
+            )
         } else {
             null
         }

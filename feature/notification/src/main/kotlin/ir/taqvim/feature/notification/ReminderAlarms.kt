@@ -58,20 +58,43 @@ class ReminderAlarms(
         snoozed: Boolean = false,
     ): AlarmDeliveryResult =
         mutex.withLock {
-            val reminder = ReminderPlanner.at(sourceId, plannedAt, setup.current())
+            val results =
+                ReminderPlanner.allAt(sourceId, plannedAt, setup.current()).map { reminder ->
+                    when {
+                        !snoozed && isDelivered(reminder) -> {
+                            AlarmDeliveryResult.SKIPPED
+                        }
+
+                        !notifier.show(reminder) -> {
+                            AlarmDeliveryResult.FAILED
+                        }
+
+                        else -> {
+                            AlarmDeliveryResult.DELIVERED.also {
+                                log.record(reminder.key, DeliveryState.DELIVERED)
+                            }
+                        }
+                    }
+                }
             when {
-                reminder == null -> AlarmDeliveryResult.SKIPPED
-                !snoozed && log.state(reminder.key) == DeliveryState.DELIVERED -> AlarmDeliveryResult.SKIPPED
-                !notifier.show(reminder) -> AlarmDeliveryResult.FAILED
-                else -> AlarmDeliveryResult.DELIVERED.also { log.record(reminder.key, DeliveryState.DELIVERED) }
+                AlarmDeliveryResult.FAILED in results -> AlarmDeliveryResult.FAILED
+                AlarmDeliveryResult.DELIVERED in results -> AlarmDeliveryResult.DELIVERED
+                else -> AlarmDeliveryResult.SKIPPED
             }
         }
+
+    /** Whether [reminder] was delivered, also under the key older versions recorded it with. */
+    private suspend fun isDelivered(reminder: PlannedReminder): Boolean =
+        log.state(reminder.key) == DeliveryState.DELIVERED ||
+            (reminder.legacyKeyed && log.state(reminder.legacyKey) == DeliveryState.DELIVERED)
 
     /** Records that the reminder planned at [plannedAt] was given up after repeated failures. */
     suspend fun onGaveUp(
         sourceId: Long,
         plannedAt: Instant,
     ) {
-        ReminderPlanner.at(sourceId, plannedAt, setup.current())?.let { log.record(it.key, DeliveryState.FAILED) }
+        ReminderPlanner.allAt(sourceId, plannedAt, setup.current()).forEach { reminder ->
+            if (!isDelivered(reminder)) log.record(reminder.key, DeliveryState.FAILED)
+        }
     }
 }
