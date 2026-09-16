@@ -16,6 +16,8 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.datetime.TimeZone
 
 /** Why a subscription could not be refreshed. */
@@ -118,7 +120,11 @@ data class SubscriptionRefreshPolicy(
     }
 }
 
-/** Downloads subscribed feeds and replaces their cached occurrences (T-1003). */
+/**
+ * Downloads subscribed feeds and replaces their cached occurrences (T-1003). A refresh writes only fetch metadata, so
+ * changes the user makes while a feed is downloading — pausing it, renaming it, deleting it — survive; refreshes of one
+ * subscription are serialized, so overlapping ones cannot interleave their writes.
+ */
 class SubscriptionRefresher(
     private val dao: IcsSubscriptionDao,
     private val fetcher: IcsFetcher,
@@ -126,6 +132,10 @@ class SubscriptionRefresher(
     private val zone: () -> TimeZone,
     private val policy: SubscriptionRefreshPolicy = SubscriptionRefreshPolicy(),
 ) {
+    /** One lock per subscription id, kept for the life of this refresher (subscriptions are few). */
+    private val locksGuard = Mutex()
+    private val locks = mutableMapOf<Long, Mutex>()
+
     /** Refreshes every due subscription. */
     suspend fun refreshDue(): List<RefreshOutcome> {
         val now = clock.now()
@@ -143,56 +153,70 @@ class SubscriptionRefresher(
     private suspend fun refresh(
         subscription: IcsSubscriptionEntity,
         now: Instant,
+    ): RefreshOutcome = lockFor(subscription.id).withLock { fetchAndStore(subscription, now) }
+
+    private suspend fun fetchAndStore(
+        subscription: IcsSubscriptionEntity,
+        now: Instant,
     ): RefreshOutcome {
+        val id = subscription.id
         val url =
             when (val normalized = SubscriptionUrls.normalize(subscription.url)) {
                 is SubscriptionUrl.Valid -> normalized.url
-                SubscriptionUrl.Insecure -> return RefreshOutcome.Failed(subscription.id, RefreshError.InsecureUrl)
-                SubscriptionUrl.Invalid -> return RefreshOutcome.Failed(subscription.id, RefreshError.InvalidUrl)
+                SubscriptionUrl.Insecure -> return RefreshOutcome.Failed(id, RefreshError.InsecureUrl)
+                SubscriptionUrl.Invalid -> return RefreshOutcome.Failed(id, RefreshError.InvalidUrl)
             }
-        val checked = subscription.copy(lastCheckedAtEpochMillis = now.toEpochMilliseconds())
         return when (val result = fetcher.fetch(url, policy.validatorsFor(subscription, now))) {
             is FetchResult.Modified -> {
-                store(checked, result, now)
+                store(id, result, now)
             }
 
             FetchResult.NotModified -> {
-                dao.updateSubscription(checked)
-                RefreshOutcome.Unchanged(subscription.id)
+                if (dao.markChecked(id, now.toEpochMilliseconds()) > 0) {
+                    RefreshOutcome.Unchanged(id)
+                } else {
+                    RefreshOutcome.Failed(id, RefreshError.NotFound)
+                }
             }
 
             is FetchResult.Failed -> {
-                RefreshOutcome.Failed(subscription.id, RefreshError.Fetch(result.error))
+                RefreshOutcome.Failed(id, RefreshError.Fetch(result.error))
             }
         }
     }
 
     private suspend fun store(
-        subscription: IcsSubscriptionEntity,
+        subscriptionId: Long,
         result: FetchResult.Modified,
         now: Instant,
     ): RefreshOutcome =
         when (val parsed = IcsReader.read(result.body)) {
             is IcsParseResult.Failure -> {
-                RefreshOutcome.Failed(subscription.id, RefreshError.Unreadable)
+                RefreshOutcome.Failed(subscriptionId, RefreshError.Unreadable)
             }
 
             is IcsParseResult.Success -> {
-                val expander = IcsOccurrenceExpander(zone())
-                val window = policy.window(now)
                 val rows =
-                    expander
-                        .expandAll(subscription.id, parsed.calendar.events, window)
+                    IcsOccurrenceExpander(zone())
+                        .expandAll(subscriptionId, parsed.calendar.events, policy.window(now))
                         .distinctBy { it.uid to it.startEpochMillis }
-                dao.replaceEvents(subscription.id, rows)
-                dao.updateSubscription(
-                    subscription.copy(
-                        lastFetchedAtEpochMillis = now.toEpochMilliseconds(),
+                val stored =
+                    dao.storeDownload(
+                        subscriptionId = subscriptionId,
+                        events = rows,
+                        checkedAtEpochMillis = now.toEpochMilliseconds(),
+                        fetchedAtEpochMillis = now.toEpochMilliseconds(),
                         etag = result.validators.etag,
                         lastModified = result.validators.lastModified,
-                    ),
-                )
-                RefreshOutcome.Updated(subscription.id, rows.size, parsed.warnings.size)
+                    )
+                if (stored) {
+                    RefreshOutcome.Updated(subscriptionId, rows.size, parsed.warnings.size)
+                } else {
+                    RefreshOutcome.Failed(subscriptionId, RefreshError.NotFound)
+                }
             }
         }
+
+    private suspend fun lockFor(subscriptionId: Long): Mutex =
+        locksGuard.withLock { locks.getOrPut(subscriptionId) { Mutex() } }
 }

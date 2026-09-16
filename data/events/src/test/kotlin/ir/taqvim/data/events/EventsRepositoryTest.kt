@@ -92,14 +92,17 @@ class EventsRepositoryTest {
         end: Jdn = start,
         system: CalendarSystem = CalendarSystem.PERSIAN,
         startMinute: Int? = null,
+        endMinute: Int? = startMinute?.plus(60),
+        zoneId: String = tehran.id,
     ) = PersonalEventEntity(
         id = id,
         title = "event $id",
         calendarSystem = system,
         startJdn = start.value,
         startMinute = startMinute,
+        endMinute = endMinute,
         endJdn = end.value,
-        timeZoneId = tehran.id,
+        timeZoneId = zoneId,
         createdAtEpochMillis = 0,
         updatedAtEpochMillis = 0,
     )
@@ -184,6 +187,74 @@ class EventsRepositoryTest {
             // All-day occurrences come before timed ones on the same day.
             week.getValue(nowruz + 7).map { it.eventId to it.recurring } shouldBe listOf(4L to false, 2L to true)
         }
+
+    @Test
+    fun `timed personal events are dated in the display zone, all-day ones by their own dates`(): Unit =
+        runTest {
+            val ranges = mutableListOf<JdnRange>()
+            val repository = repository(zone = tehran, personalRanges = ranges)
+            personal.value =
+                listOf(
+                    // 00:30 in Tokyo is 21:00 of the previous day in Tehran.
+                    PersonalEventRecord(event(1, nowruz, startMinute = 30, zoneId = "Asia/Tokyo"), recurrence = null),
+                    // 23:00 in Los Angeles is 09:30 of the next day in Tehran.
+                    PersonalEventRecord(
+                        event(2, nowruz, startMinute = 23 * 60, zoneId = "America/Los_Angeles"),
+                        recurrence = null,
+                    ),
+                    // A UTC event late in the day, as imported feeds store them (E2), also moves.
+                    PersonalEventRecord(event(3, nowruz, startMinute = 22 * 60, zoneId = "UTC"), recurrence = null),
+                    PersonalEventRecord(event(4, nowruz), recurrence = null),
+                )
+
+            val days = repository.days(nowruz - 1..nowruz + 1).first().associate { it.jdn to it.personal.map { e -> e.eventId } }
+
+            days.getValue(nowruz - 1) shouldBe listOf(1L)
+            days.getValue(nowruz) shouldBe listOf(4L)
+            // 22:00 UTC and 23:00 in Los Angeles both fall on the next Tehran day.
+            days.getValue(nowruz + 1) shouldBe listOf(3L, 2L)
+            // Sources are read one day wider, so conversions into the shown range are not missed.
+            ranges.first() shouldBe (nowruz - 2..nowruz + 2)
+        }
+
+    @Test
+    fun `a timed event spanning midnight in the display zone covers both days`(): Unit =
+        runTest {
+            val repository = repository(zone = tehran)
+            personal.value =
+                listOf(
+                    PersonalEventRecord(
+                        // 23:00 on the first day to 00:30 on the next, as the editor stores a span across midnight.
+                        event(1, nowruz, nowruz + 1, startMinute = 23 * 60, endMinute = 30, zoneId = tehran.id),
+                        recurrence = null,
+                    ),
+                )
+
+            val days = repository.days(nowruz..nowruz + 1).first().associate { it.jdn to it.personal.map { e -> e.eventId } }
+
+            days.getValue(nowruz) shouldBe listOf(1L)
+            days.getValue(nowruz + 1) shouldBe listOf(1L)
+        }
+
+    private fun repository(
+        zone: TimeZone,
+        personalRanges: MutableList<JdnRange> = mutableListOf(),
+    ) = EventsRepository(
+        settings = settings,
+        inputs =
+            EventInputs(
+                personal =
+                    PersonalEventsSource { days ->
+                        personalRanges += days
+                        personal
+                    },
+                device = DeviceEventsSource { device },
+                ics = IcsEventsSource { ics },
+            ),
+        clock = clock,
+        zone = { zone },
+        computeDispatcher = Dispatchers.Unconfined,
+    )
 
     private fun nepali(
         id: Long,

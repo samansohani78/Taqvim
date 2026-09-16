@@ -70,7 +70,13 @@ internal data class Snapshot(
     val ics: List<IcsEventCacheEntity>,
 )
 
-/** Builds [DayEvents] from a [Snapshot]; timed events are dated in [zone]. */
+/** One personal [occurrence] and the [days] it is shown on in the display zone (see [EventDays]). */
+internal data class DatedPersonal(
+    val occurrence: PersonalOccurrence,
+    val days: JdnRange,
+)
+
+/** Builds [DayEvents] from a [Snapshot]; timed events are dated in [zone] by the [EventDays] rule. */
 internal class DayEventsAssembler(
     clock: Clock,
     private val zone: TimeZone,
@@ -85,7 +91,8 @@ internal class DayEventsAssembler(
         val official = snapshot.official
         val personal =
             snapshot.personal
-                .flatMap { PersonalExpansion.expand(it, days, official.personalCalendars) }
+                .flatMap { PersonalExpansion.expand(it, EventDays.widened(days), official.personalCalendars) }
+                .map { DatedPersonal(it, EventDays.of(it, zone)) }
                 .sortedWith(PERSONAL_ORDER)
         val ics = snapshot.ics.map { it.toOccurrence(zone) }
         return days.map { jdn ->
@@ -97,7 +104,7 @@ internal class DayEventsAssembler(
                 official = official.visibleOn(jdn, zone),
                 isHoliday = official.isHoliday(jdn),
                 isWeekend = official.isWeekend(jdn),
-                personal = personal.filter { jdn in it.days },
+                personal = personal.filter { jdn in it.days }.map { it.occurrence },
                 device = snapshot.device.filter { jdn in it.days },
                 ics = ics.filter { jdn in it.days },
             )
@@ -114,10 +121,10 @@ internal class DayEventsAssembler(
     }
 
     private companion object {
-        val PERSONAL_ORDER: Comparator<PersonalOccurrence> =
-            compareBy<PersonalOccurrence> { it.days.start }
-                .thenBy { it.startMinute ?: -1 }
-                .thenBy { it.eventId }
+        val PERSONAL_ORDER: Comparator<DatedPersonal> =
+            compareBy<DatedPersonal> { it.days.start }
+                .thenBy { it.occurrence.startMinute ?: -1 }
+                .thenBy { it.occurrence.eventId }
     }
 }
 

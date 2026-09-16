@@ -9,6 +9,7 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.DeviceEventCacheEntity
@@ -23,6 +24,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
 import org.junit.jupiter.api.Test
 
 /** T-804 wiring: the search reads every event source, and its settings follow the preferences. */
@@ -94,6 +96,39 @@ class SearchAdaptersTest {
         }
 
     @Test
+    fun `all-day external events keep their date in every zone and overlapping ones start today`(): Unit =
+        runTest {
+            val losAngeles = TimeZone.of("America/Los_Angeles")
+            // All-day rows are UTC-midnight bounded, like the calendar reads them.
+            val dayStart = (today + 1).toLocalDate().atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds()
+            val dayEnd = dayStart + DAY
+            val started = today.toLocalDate().atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds() - 2 * DAY
+            val stores =
+                SearchEventStores(
+                    personal = { emptyList() },
+                    device = { _, _ ->
+                        listOf(
+                            DeviceEventCacheEntity(7, 1, dayStart, dayEnd, true, "Dentist"),
+                            DeviceEventCacheEntity(8, 1, started, dayEnd, true, "Dentist week"),
+                        )
+                    },
+                    subscriptions = { _, _ -> listOf(IcsEventCacheEntity(4, "u1", dayStart, dayEnd, true, "Dentist talk")) },
+                )
+
+            val inTehran = source(stores).events("Dentist", "en", limit = 5).filter { it.kind != SearchEventKind.OFFICIAL }
+            val inLosAngeles =
+                source(stores, losAngeles).events("Dentist", "en", limit = 5).filter { it.kind != SearchEventKind.OFFICIAL }
+
+            inTehran shouldContainExactly
+                listOf(
+                    SearchEvent("7", SearchEventKind.DEVICE, "Dentist", nextDay = today + 1),
+                    SearchEvent("8", SearchEventKind.DEVICE, "Dentist week", nextDay = today),
+                    SearchEvent("4:u1", SearchEventKind.SUBSCRIPTION, "Dentist talk", nextDay = today + 1),
+                )
+            inLosAngeles shouldBe inTehran
+        }
+
+    @Test
     fun `each source gives at most the limit and a blank query finds nothing`(): Unit =
         runTest {
             val many = (1L..10L).map { personal(it, "Meeting $it", today) }
@@ -107,18 +142,22 @@ class SearchAdaptersTest {
     private fun stores(): SearchEventStores =
         SearchEventStores({ emptyList() }, { _, _ -> emptyList() }, { _, _ -> emptyList() })
 
-    private fun source(stores: SearchEventStores): CompositeSearchEventSource =
+    private fun source(
+        stores: SearchEventStores,
+        zone: TimeZone = tehran,
+    ): CompositeSearchEventSource =
         CompositeSearchEventSource(
             official = OfficialEventSearchSource(language = { "fa" }, today = { today }),
             stores = stores,
             today = { today },
-            zone = { tehran },
+            zone = { zone },
             window = WINDOW,
         )
 
     private companion object {
         const val NOWRUZ = "ir.holiday.nowruz-1"
         const val HOUR = 3_600_000L
+        const val DAY = 24 * HOUR
         const val WINDOW = 30
 
         fun personal(

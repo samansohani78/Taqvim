@@ -58,7 +58,8 @@ internal class IcsOccurrenceExpander(
 
     /**
      * Rows of [event] overlapping [window]; the instances named by the RECURRENCE-ID of [overrides] are replaced by the
-     * overrides, or removed when an override is cancelled.
+     * overrides, or removed when an override is cancelled. A cancelled component has no rows at all, its overrides
+     * included: `STATUS:CANCELLED` cancels the event itself, not only one instance (RFC 5545 §3.8.1.11).
      */
     fun expand(
         subscriptionId: Long,
@@ -66,13 +67,13 @@ internal class IcsOccurrenceExpander(
         window: InstantWindow,
         overrides: List<IcsEvent> = emptyList(),
     ): List<IcsEventCacheEntity> {
+        if (event.cancelled) return emptyList()
         val duration = durationMillis(event)
         val removed = event.exceptionDates + overrides.mapNotNull { it.recurrenceId }
         val excludedMillis = removed.map(::epochMillis).toSet()
         val excludedDays = removed.filterIsInstance<IcsDateTime.Date>().map { it.date }.toSet()
-        val lastDay = dayOfUtc(window.toEpochMillis).plus(MARGIN_DAYS, DateTimeUnit.DAY)
         val replacements = overrides.filterNot { it.cancelled }.flatMap { expand(subscriptionId, it.single(), window) }
-        return (ruleStarts(event, lastDay) + event.recurrenceDates.map { Start(dayOf(it), epochMillis(it)) })
+        return (ruleStarts(event, window, duration) + event.recurrenceDates.map { Start(dayOf(it), epochMillis(it)) })
             .asSequence()
             .filterNot { it.epochMillis in excludedMillis || it.day in excludedDays }
             .distinctBy { it.epochMillis }
@@ -104,20 +105,30 @@ internal class IcsOccurrenceExpander(
             description = event.description.orEmpty(),
         )
 
-    /** DTSTART and, for an RRULE, its occurrences starting on or before [lastDay]. */
+    /**
+     * DTSTART and, for an RRULE, the occurrences of [maxOccurrences] instances lasting [durationMillis] that overlap
+     * [window]. Earlier instances are skipped rather than counted against the cap, so a series that began years ago
+     * still has rows today; COUNT stays anchored at DTSTART (the engine applies it) and UNTIL still ends the series.
+     * Seeking costs one candidate each, and at most [SEEK_BUDGET] candidates are examined in total, so an endless rule
+     * cannot run forever.
+     */
     private fun ruleStarts(
         event: IcsEvent,
-        lastDay: LocalDate,
+        window: InstantWindow,
+        durationMillis: Long,
     ): List<Start> {
         val recurrence = event.recurrence ?: return listOf(Start(dayOf(event.start), epochMillis(event.start)))
         val until = recurrence.until?.let { untilMillis(it, event.start) }
+        val lastDay = dayOfUtc(window.toEpochMillis).plus(MARGIN_DAYS, DateTimeUnit.DAY)
         val first = GregorianCalendarSystem.fromJdn(dayOf(event.start).toJdn())
         return RecurrenceEngine(GregorianCalendarSystem)
             .occurrences(first, recurrence.copy(until = null).toRecurrenceRule())
             .map { it.toLocalDate() }
             .takeWhile { it <= lastDay }
+            .take(SEEK_BUDGET)
             .map { Start(it, epochMillis(event.start.on(it))) }
             .takeWhile { until == null || it.epochMillis <= until }
+            .filter { overlaps(it.epochMillis, durationMillis, window) }
             .take(maxOccurrences)
             .toList()
     }
@@ -202,6 +213,9 @@ internal class IcsOccurrenceExpander(
     companion object {
         /** Most rows kept per event. */
         const val MAX_OCCURRENCES: Int = 1_000
+
+        /** Most rule candidates examined per event, seeking to the window included (about 270 years of daily starts). */
+        const val SEEK_BUDGET: Int = 100_000
         private const val DAY_MILLIS = 86_400_000L
         private const val MARGIN_DAYS = 2
     }

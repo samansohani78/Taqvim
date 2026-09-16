@@ -4,6 +4,7 @@
  */
 package ir.taqvim.data.events.ics
 
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.ics.Frequency
@@ -166,5 +167,60 @@ class IcsOccurrenceExpanderTest {
         mixed.endEpochMillis - mixed.startEpochMillis shouldBe 1.days.inWholeMilliseconds
         val backwards = single(IcsEvent("b", utc("2026-06-01T12:00:00Z"), utc("2026-06-01T11:00:00Z")))
         backwards.endEpochMillis shouldBe backwards.startEpochMillis
+    }
+
+    @Test
+    fun `series that began years ago still reach the requested window`() {
+        val week = InstantWindow(millis("2026-09-15T00:00:00Z"), millis("2026-09-18T00:00:00Z"))
+        val daily =
+            IcsEvent(
+                "old",
+                utc("2020-01-01T09:00:00Z"),
+                utc("2020-01-01T10:00:00Z"),
+                recurrence = Recurrence(Frequency.DAILY),
+            )
+
+        starts(daily, week) shouldBe
+            listOf("2026-09-15T09:00:00Z", "2026-09-16T09:00:00Z", "2026-09-17T09:00:00Z").map(::millis)
+        starts(daily.copy(recurrence = Recurrence(Frequency.WEEKLY)), week) shouldBe
+            listOf(millis("2026-09-16T09:00:00Z"))
+        starts(daily.copy(recurrence = Recurrence(Frequency.MONTHLY)), week).shouldBeEmpty()
+        starts(daily.copy(recurrence = Recurrence(Frequency.MONTHLY)), year2026) shouldHaveSize 12
+        starts(daily.copy(recurrence = Recurrence(Frequency.DAILY, count = 3)), week).shouldBeEmpty()
+        starts(daily.copy(exceptionDates = listOf(utc("2026-09-16T09:00:00Z"))), week) shouldBe
+            listOf("2026-09-15T09:00:00Z", "2026-09-17T09:00:00Z").map(::millis)
+    }
+
+    @Test
+    fun `old instances overlapping the window start and their overrides are kept`() {
+        val week = InstantWindow(millis("2026-09-15T00:00:00Z"), millis("2026-09-18T00:00:00Z"))
+        val long =
+            IcsEvent(
+                "long",
+                utc("2020-09-10T00:00:00Z"),
+                utc("2020-09-20T00:00:00Z"),
+                recurrence = Recurrence(Frequency.YEARLY),
+            )
+        val series =
+            IcsEvent("s", utc("2020-01-01T09:00:00Z"), recurrence = Recurrence(Frequency.DAILY))
+        val moved = IcsEvent("s", utc("2026-09-17T15:00:00Z"), recurrenceId = utc("2026-09-16T09:00:00Z"))
+
+        starts(long, week) shouldBe listOf(millis("2026-09-10T00:00:00Z"))
+        expander.expandAll(3, listOf(series, moved), week).map { it.startEpochMillis } shouldBe
+            listOf("2026-09-15T09:00:00Z", "2026-09-17T09:00:00Z", "2026-09-17T15:00:00Z").map(::millis)
+    }
+
+    @Test
+    fun `cancelled components have no rows, their overrides included`() {
+        val once = IcsEvent("c1", utc("2026-06-01T10:00:00Z"), utc("2026-06-01T11:00:00Z"), summary = "Gone")
+        val master =
+            IcsEvent("c2", utc("2026-06-01T10:00:00Z"), recurrence = Recurrence(Frequency.DAILY, count = 3))
+        val moved = IcsEvent("c2", utc("2026-06-02T15:00:00Z"), recurrenceId = utc("2026-06-02T10:00:00Z"))
+
+        expander.expandAll(3, listOf(once.copy(cancelled = true)), year2026).shouldBeEmpty()
+        expander.expand(3, once.copy(cancelled = true), year2026).shouldBeEmpty()
+        expander.expandAll(3, listOf(once), year2026) shouldHaveSize 1
+        expander.expandAll(3, listOf(master.copy(cancelled = true), moved), year2026).shouldBeEmpty()
+        expander.expandAll(3, listOf(master, moved), year2026) shouldHaveSize 3
     }
 }

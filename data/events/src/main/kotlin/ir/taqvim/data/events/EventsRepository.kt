@@ -33,8 +33,9 @@ class EventsRepository(
     private val computeDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
     /**
-     * One [DayEvents] per day of [days], in order. Timed events are dated in the zone read when collection starts, and
-     * an expiring Hijri offset takes effect at the next emission.
+     * One [DayEvents] per day of [days], in order. Timed events are dated in the zone read when collection starts (the
+     * [EventDays] rule), so every source is read one day wider than [days]; an expiring Hijri offset takes effect at
+     * the next emission.
      */
     fun days(days: JdnRange): Flow<List<DayEvents>> {
         require(!days.isEmpty()) { "days must not be empty" }
@@ -45,7 +46,7 @@ class EventsRepository(
             val snapshots =
                 combine(
                     official,
-                    inputs.personal.events(days),
+                    inputs.personal.events(EventDays.widened(days)),
                     inputs.device.events(days),
                     inputs.ics.events(DeviceEventMapping.window(days, zone)),
                 ) { view, personal, device, ics -> Snapshot(view, personal, device, ics) }

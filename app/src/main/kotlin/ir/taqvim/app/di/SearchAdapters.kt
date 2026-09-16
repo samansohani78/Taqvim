@@ -5,12 +5,12 @@
 package ir.taqvim.app.di
 
 import ir.taqvim.core.calendar.TodayProvider
-import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.DeviceEventCacheEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.PersonalEventEntity
+import ir.taqvim.data.devicecalendar.DeviceEventMapping
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.search.SearchEvent
@@ -19,12 +19,10 @@ import ir.taqvim.feature.search.SearchEventSource
 import ir.taqvim.feature.search.SearchMatcher
 import ir.taqvim.feature.search.SearchSettings
 import ir.taqvim.feature.search.SearchSettingsSource
-import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 
 /** The search screen's preferences (T-804) from the stored user preferences (T-600). */
 internal class PreferencesSearchSettingsSource(
@@ -79,8 +77,8 @@ internal class CompositeSearchEventSource(
         val subscriptions = stores.subscriptions(fromMillis, toMillis).filter { matches(it.summary) }.take(limit)
         return officialEvents(query, languageCode, limit, from) +
             personal.map { it.toSearchEvent(from) } +
-            device.map { it.toSearchEvent(zone) } +
-            subscriptions.map { it.toSearchEvent(zone) }
+            device.map { it.toSearchEvent(from, zone) } +
+            subscriptions.map { it.toSearchEvent(from, zone) }
     }
 
     private suspend fun officialEvents(
@@ -123,19 +121,36 @@ private fun PersonalEventEntity.toSearchEvent(today: Jdn): SearchEvent =
         nextDay = Jdn(startJdn).takeIf { it >= today },
     )
 
-private fun DeviceEventCacheEntity.toSearchEvent(zone: TimeZone): SearchEvent =
-    SearchEvent(eventId.toString(), SearchEventKind.DEVICE, title, nextDay = dayOf(beginEpochMillis, zone))
-
-private fun IcsEventCacheEntity.toSearchEvent(zone: TimeZone): SearchEvent =
-    SearchEvent("$subscriptionId:$uid", SearchEventKind.SUBSCRIPTION, summary, nextDay = dayOf(startEpochMillis, zone))
-
-/** The civil day of [epochMillis] in [zone]. */
-private fun dayOf(
-    epochMillis: Long,
+private fun DeviceEventCacheEntity.toSearchEvent(
+    today: Jdn,
     zone: TimeZone,
-): Jdn =
-    Instant
-        .fromEpochMilliseconds(epochMillis)
-        .toLocalDateTime(zone)
-        .date
-        .toJdn()
+): SearchEvent =
+    SearchEvent(
+        eventId.toString(),
+        SearchEventKind.DEVICE,
+        title,
+        nextDay = dayOf(beginEpochMillis, endEpochMillis, allDay, today, zone),
+    )
+
+private fun IcsEventCacheEntity.toSearchEvent(
+    today: Jdn,
+    zone: TimeZone,
+): SearchEvent =
+    SearchEvent(
+        "$subscriptionId:$uid",
+        SearchEventKind.SUBSCRIPTION,
+        summary,
+        nextDay = dayOf(startEpochMillis, endEpochMillis, allDay, today, zone),
+    )
+
+/**
+ * The day a cached instance is shown on, dated like the calendar (`DeviceEventMapping.days`: all-day rows by their UTC
+ * dates, timed rows in [zone]), never before [today] for an instance that started earlier and still overlaps.
+ */
+private fun dayOf(
+    beginEpochMillis: Long,
+    endEpochMillis: Long,
+    allDay: Boolean,
+    today: Jdn,
+    zone: TimeZone,
+): Jdn = maxOf(DeviceEventMapping.days(beginEpochMillis, endEpochMillis, allDay, zone).start, today)

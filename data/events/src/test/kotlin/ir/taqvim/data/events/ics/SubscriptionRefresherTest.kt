@@ -9,6 +9,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import ir.taqvim.data.database.IcsEventCacheEntity
@@ -18,7 +19,10 @@ import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.TimeZone
@@ -40,6 +44,16 @@ class SubscriptionRefresherTest {
             calls += url to validators
             return responses.removeFirst()
         }
+    }
+
+    /** A fetcher whose [answer] runs while the request is in flight, so a change during a fetch can be scripted. */
+    private class ActionFetcher(
+        private val answer: suspend () -> FetchResult,
+    ) : IcsFetcher {
+        override suspend fun fetch(
+            url: String,
+            validators: HttpValidators,
+        ): FetchResult = answer()
     }
 
     private class SteppingClock(
@@ -183,5 +197,91 @@ class SubscriptionRefresherTest {
 
             refresher.refreshDue() shouldBe listOf(RefreshOutcome.Unchanged(due))
             fetcher.calls.map { it.first } shouldBe listOf("https://example.org/due.ics")
+        }
+
+    private fun refresherWith(answer: suspend () -> FetchResult) =
+        SubscriptionRefresher(dao, ActionFetcher(answer), clock, { TimeZone.of("Asia/Tehran") })
+
+    private suspend fun pause(id: Long) {
+        dao.updateSubscription(dao.getSubscription(id).shouldNotBeNull().copy(enabled = false, displayName = "Mine"))
+    }
+
+    @Test
+    fun aPauseDuringAFetchSurvivesBothAnswers(): Unit =
+        runTest {
+            val unchanged = subscription(url = "https://example.org/304.ics")
+            refresherWith {
+                pause(unchanged)
+                FetchResult.NotModified
+            }.refresh(unchanged) shouldBe RefreshOutcome.Unchanged(unchanged)
+
+            val downloaded = subscription(url = "https://example.org/200.ics")
+            refresherWith {
+                pause(downloaded)
+                FetchResult.Modified(feed, validators)
+            }.refresh(downloaded) shouldBe RefreshOutcome.Updated(downloaded, occurrences = 4, problems = 0)
+
+            listOf(unchanged, downloaded).forEach { id ->
+                dao.getSubscription(id).shouldNotBeNull().let {
+                    listOf(it.enabled, it.displayName) shouldBe listOf(false, "Mine")
+                    it.lastCheckedAtEpochMillis shouldBe clock.current.toEpochMilliseconds()
+                }
+            }
+            cached().filter { it.subscriptionId == downloaded } shouldHaveSize 4
+        }
+
+    @Test
+    fun aDeleteDuringAFetchWritesNothing(): Unit =
+        runTest {
+            val downloaded = subscription(url = "https://example.org/200.ics")
+            refresherWith {
+                dao.deleteSubscription(downloaded)
+                FetchResult.Modified(feed, validators)
+            }.refresh(downloaded) shouldBe RefreshOutcome.Failed(downloaded, RefreshError.NotFound)
+
+            val unchanged = subscription(url = "https://example.org/304.ics")
+            refresherWith {
+                dao.deleteSubscription(unchanged)
+                FetchResult.NotModified
+            }.refresh(unchanged) shouldBe RefreshOutcome.Failed(unchanged, RefreshError.NotFound)
+
+            cached().shouldBeEmpty()
+        }
+
+    @Test
+    fun overlappingRefreshesOfOneSubscriptionDoNotInterleave(): Unit =
+        runTest {
+            val id = subscription()
+            val steps = mutableListOf<String>()
+            val bodies = ArrayDeque(listOf(feed, feed.replace("SUMMARY:Daily", "SUMMARY:Second")))
+            val serialized =
+                refresherWith {
+                    steps += "start"
+                    delay(1.seconds)
+                    steps += "end"
+                    FetchResult.Modified(bodies.removeFirst(), validators)
+                }
+
+            val first = async { serialized.refresh(id) }
+            val second = async { serialized.refresh(id) }
+            listOf(first.await(), second.await()) shouldBe List(2) { RefreshOutcome.Updated(id, 4, 0) }
+
+            steps shouldBe listOf("start", "end", "start", "end")
+            cached().map { it.summary }.toSet() shouldBe setOf("Second", "Once")
+        }
+
+    @Test
+    fun aFeedThatCancelsItsEventsEmptiesTheCache(): Unit =
+        runTest {
+            val id = subscription()
+            fetcher.responses += FetchResult.Modified(feed, validators)
+            refresher.refresh(id)
+            cached() shouldHaveSize 4
+
+            clock.current += 2.hours
+            val cancelled = feed.replace("SUMMARY:", "STATUS:CANCELLED\r\nSUMMARY:")
+            fetcher.responses += FetchResult.Modified(cancelled, HttpValidators("\"v2\""))
+            refresher.refresh(id) shouldBe RefreshOutcome.Updated(id, occurrences = 0, problems = 0)
+            cached().shouldBeEmpty()
         }
 }

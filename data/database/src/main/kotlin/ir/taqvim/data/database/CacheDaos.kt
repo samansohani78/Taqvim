@@ -48,6 +48,53 @@ interface IcsSubscriptionDao {
         insertEvents(events)
     }
 
+    /** Records that the feed of [id] was checked, leaving every field the user can edit untouched. Rows updated. */
+    @Query("UPDATE ics_subscriptions SET last_checked_at_epoch_millis = :checkedAtEpochMillis WHERE id = :id")
+    suspend fun markChecked(
+        id: Long,
+        checkedAtEpochMillis: Long,
+    ): Int
+
+    /** Records a completed download of [id]: only the fetch metadata is written. Rows updated. */
+    @Query(
+        """
+        UPDATE ics_subscriptions SET
+            last_checked_at_epoch_millis = :checkedAtEpochMillis,
+            last_fetched_at_epoch_millis = :fetchedAtEpochMillis,
+            etag = :etag,
+            last_modified = :lastModified
+        WHERE id = :id
+        """,
+    )
+    suspend fun markFetched(
+        id: Long,
+        checkedAtEpochMillis: Long,
+        fetchedAtEpochMillis: Long,
+        etag: String?,
+        lastModified: String?,
+    ): Int
+
+    /**
+     * Atomically replaces the cached occurrences of [subscriptionId] with [events] and stores the validators of the
+     * download that produced them, so the cache and its validators can never disagree. Returns `false` when the
+     * subscription was deleted while the feed was being fetched, leaving nothing written.
+     */
+    @Transaction
+    suspend fun storeDownload(
+        subscriptionId: Long,
+        events: List<IcsEventCacheEntity>,
+        checkedAtEpochMillis: Long,
+        fetchedAtEpochMillis: Long,
+        etag: String?,
+        lastModified: String?,
+    ): Boolean {
+        require(events.all { it.subscriptionId == subscriptionId }) { "events must belong to $subscriptionId" }
+        if (getSubscription(subscriptionId) == null) return false
+        deleteEvents(subscriptionId)
+        insertEvents(events)
+        return markFetched(subscriptionId, checkedAtEpochMillis, fetchedAtEpochMillis, etag, lastModified) > 0
+    }
+
     /** Cached occurrences of enabled subscriptions overlapping `[fromEpochMillis, toEpochMillis)`. */
     @Query(
         """
