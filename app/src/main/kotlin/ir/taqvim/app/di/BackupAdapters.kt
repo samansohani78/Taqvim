@@ -27,6 +27,7 @@ import ir.taqvim.data.database.backup.BackupService
 import ir.taqvim.data.database.backup.BackupTable
 import ir.taqvim.data.database.backup.RecoveryResult
 import ir.taqvim.data.database.backup.RestorableBackup
+import ir.taqvim.data.database.backup.RestoreGate
 import ir.taqvim.data.database.backup.RestoreResult
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.scheduler.RescheduleEvent
@@ -126,6 +127,7 @@ internal class ServiceBackupOperations(
     private val documents: DocumentBytes,
     private val events: SchedulerEvents,
     private val clock: Clock,
+    private val gate: RestoreGate = RestoreGate(recorded = false),
     private val appVersion: () -> String,
 ) : BackupOperations {
     override suspend fun export(
@@ -162,6 +164,8 @@ internal class ServiceBackupOperations(
             }
 
             is RestoreResult.Failed -> {
+                // A restore that could not be undone leaves the stores mixed: hold readers until the next start.
+                if (result.error is BackupError.RestorePending) gate.settle(RecoveryResult.StillPending)
                 BackupRestoreResult.Failed(result.error.toFailure())
             }
         }
@@ -171,22 +175,6 @@ internal class ServiceBackupOperations(
         /** Larger files are not read: no backup of personal data comes near this size. */
         const val MAX_BACKUP_BYTES: Int = 64 * 1024 * 1024
     }
-}
-
-/**
- * Finishes a restore the previous process left unfinished (B09) and, once data and preferences match again, tells the
- * scheduler to recompute every alarm. Run at start-up before the watchers that schedule from the data.
- */
-internal class RestoreRecovery(
-    private val service: BackupService,
-    private val events: SchedulerEvents,
-) {
-    suspend fun run(): RecoveryResult =
-        service.recover().also { result ->
-            if (result is RecoveryResult.Completed || result == RecoveryResult.RolledBack) {
-                events.handle(RescheduleEvent.AlarmInputsChanged(AlarmKind.entries.toSet()))
-            }
-        }
 }
 
 /** A backup read by the [BackupService], ready for [ServiceBackupOperations.restore]. */
@@ -371,10 +359,11 @@ internal fun notificationsAvailable(
 val backupPortsModule =
     module {
         single<DocumentBytes> { ContentResolverDocumentBytes(get()) }
-        single { RestoreRecovery(get(), get()) }
+        single { restoreGateAtStart(get()) }
+        single { RestoreRecovery(get(), get(), get()) }
         single<BackupOperations> {
             val context = androidContext()
-            ServiceBackupOperations(get(), get(), get(), get()) { context.appVersionName() }
+            ServiceBackupOperations(get(), get(), get(), get(), get()) { context.appVersionName() }
         }
         single<BackupLanguageSource> { PreferencesBackupLanguageSource(get()) }
         single<PrivacyDataSource> { RoomPrivacyDataSource(get(), get()) }

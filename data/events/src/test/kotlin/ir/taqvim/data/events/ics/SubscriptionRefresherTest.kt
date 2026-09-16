@@ -15,15 +15,19 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.TaqvimDatabase
+import ir.taqvim.data.database.backup.RecoveryResult
+import ir.taqvim.data.database.backup.RestoreGate
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.TimeZone
 import org.junit.After
@@ -31,6 +35,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /** T-1003 (R): subscription refresh over Room with a scripted fetcher (conditional requests, failures, due checks). */
+@OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
 class SubscriptionRefresherTest {
     private class ScriptedFetcher : IcsFetcher {
@@ -113,6 +118,41 @@ class SubscriptionRefresherTest {
         )
 
     private suspend fun cached(): List<IcsEventCacheEntity> = dao.observeEvents(0, Long.MAX_VALUE).first()
+
+    @Test
+    fun aRefreshRequestedWhileARestoreIsSettledRunsOnlyAfterwards(): Unit =
+        runTest {
+            val id = subscription()
+            fetcher.responses += FetchResult.Modified(feed, validators)
+            val gate = RestoreGate(recorded = true)
+            val held =
+                SubscriptionRefresher(dao, fetcher, clock, { TimeZone.of("Asia/Tehran") }) { gate.awaitSettled() }
+
+            val refresh = async { held.refresh(id) }
+            runCurrent()
+            refresh.isCompleted shouldBe false
+            fetcher.calls shouldBe emptyList()
+
+            gate.settle(RecoveryResult.RolledBack)
+            refresh.await() shouldBe RefreshOutcome.Updated(id, occurrences = 4, problems = 0)
+            fetcher.calls.size shouldBe 1
+        }
+
+    @Test
+    fun aDueRefreshWaitsWhileARestoreStaysIncomplete(): Unit =
+        runTest {
+            subscription()
+            val gate = RestoreGate(recorded = true)
+            gate.settle(RecoveryResult.StillPending)
+            val held =
+                SubscriptionRefresher(dao, fetcher, clock, { TimeZone.of("Asia/Tehran") }) { gate.awaitSettled() }
+
+            val refresh = async { held.refreshDue() }
+            runCurrent()
+            refresh.isCompleted shouldBe false
+            fetcher.calls shouldBe emptyList()
+            refresh.cancel()
+        }
 
     @Test
     fun aChangedFeedReplacesTheCacheAndStoresItsValidators(): Unit =

@@ -123,7 +123,8 @@ data class SubscriptionRefreshPolicy(
 /**
  * Downloads subscribed feeds and replaces their cached occurrences (T-1003). A refresh writes only fetch metadata, so
  * changes the user makes while a feed is downloading — pausing it, renaming it, deleting it — survive; refreshes of one
- * subscription are serialized, so overlapping ones cannot interleave their writes.
+ * subscription are serialized, so overlapping ones cannot interleave their writes. Every refresh first awaits
+ * [awaitReady]; the app passes its restore gate, so no refresh writes while an unfinished restore is settled (ADR-0032).
  */
 class SubscriptionRefresher(
     private val dao: IcsSubscriptionDao,
@@ -131,6 +132,7 @@ class SubscriptionRefresher(
     private val clock: Clock,
     private val zone: () -> TimeZone,
     private val policy: SubscriptionRefreshPolicy = SubscriptionRefreshPolicy(),
+    private val awaitReady: suspend () -> Unit = {},
 ) {
     /** One lock per subscription id, kept for the life of this refresher (subscriptions are few). */
     private val locksGuard = Mutex()
@@ -138,6 +140,7 @@ class SubscriptionRefresher(
 
     /** Refreshes every due subscription. */
     suspend fun refreshDue(): List<RefreshOutcome> {
+        awaitReady()
         val now = clock.now()
         return dao
             .observeSubscriptions()
@@ -147,8 +150,11 @@ class SubscriptionRefresher(
     }
 
     /** Refreshes subscription [id] now, due or not (e.g. when it is added or the user asks). */
-    suspend fun refresh(id: Long): RefreshOutcome =
-        dao.getSubscription(id)?.let { refresh(it, clock.now()) } ?: RefreshOutcome.Failed(id, RefreshError.NotFound)
+    suspend fun refresh(id: Long): RefreshOutcome {
+        awaitReady()
+        val subscription = dao.getSubscription(id) ?: return RefreshOutcome.Failed(id, RefreshError.NotFound)
+        return refresh(subscription, clock.now())
+    }
 
     private suspend fun refresh(
         subscription: IcsSubscriptionEntity,

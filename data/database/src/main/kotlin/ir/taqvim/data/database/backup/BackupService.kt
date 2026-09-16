@@ -77,6 +77,9 @@ class BackupService(
      */
     suspend fun recover(): RecoveryResult = lock.withLock { withContext(NonCancellable) { finishPending() } }
 
+    /** Whether a restore is recorded as unfinished, so start-up can hold readers until [recover] settles it. */
+    fun isRestoreRecorded(): Boolean = journal.isRecorded()
+
     private suspend fun finishPending(): RecoveryResult {
         val pending = withContext(dispatcher) { journal.pending() } ?: return RecoveryResult.NothingPending
         if (pending.direction == RestoreDirection.FORWARD && attempt { apply(pending.target) } == null) {

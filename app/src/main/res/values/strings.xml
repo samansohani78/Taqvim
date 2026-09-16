@@ -32,4 +32,6 @@
   <string name="pending_widgets">Widget settings are not available yet.</string>
   <string name="message_no_upcoming_occurrence">This event has no upcoming date.</string>
   <string name="message_setting_not_saved">The setting could not be saved.</string>
+  <string name="restore_finishing">Finishing the restore…</string>
+  <string name="restore_incomplete">The last restore could not be finished, so your data may be partly replaced. Taqvim will finish or undo it the next time it starts.</string>
 </resources>

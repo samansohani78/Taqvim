@@ -11,6 +11,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -25,6 +26,7 @@ import ir.taqvim.app.di.AppLocales
 import ir.taqvim.app.di.LegacyAppLocales
 import ir.taqvim.app.navigation.AppDestination
 import ir.taqvim.app.navigation.AppIntents
+import ir.taqvim.data.database.backup.RestoreGate
 import java.util.Locale
 import kotlin.time.Clock
 import kotlinx.coroutines.launch
@@ -50,12 +52,15 @@ class MainActivity : ComponentActivity() {
         if (savedInstanceState == null) pendingLink = destinationOf(intent)
         DayChangeAlarm.schedule(this, Clock.System.now(), TimeZone.currentSystemDefault())
         recreateOnLegacyLanguageChange()
+        val restoreGate = get<RestoreGate>()
         setContent {
+            val restore by restoreGate.state.collectAsState()
             TaqvimAppShell(
                 // Test tags readable as resource ids by the macrobenchmarks and profile generator (T-1801).
                 modifier = Modifier.semantics { testTagsAsResourceId = true },
                 link = pendingLink,
                 onLinkOpened = { pendingLink = null },
+                restore = restore,
             )
         }
     }

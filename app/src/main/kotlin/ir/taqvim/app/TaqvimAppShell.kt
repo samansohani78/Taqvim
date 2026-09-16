@@ -31,6 +31,7 @@ import ir.taqvim.app.navigation.rememberAppNavigator
 import ir.taqvim.core.i18n.TextDirection
 import ir.taqvim.core.ui.theme.TaqvimTheme
 import ir.taqvim.core.ui.theme.ThemeSettings
+import ir.taqvim.data.database.backup.RestoreState
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarMessage
 import ir.taqvim.feature.settings.OnboardingRoute
@@ -43,13 +44,15 @@ internal const val ONBOARDING_TAG: String = "screen:onboarding"
 /**
  * The app: the Taqvim theme around the navigation frame and the screens of the back stack (ADR-0015). Until the
  * first-run onboarding (T-1501, ADR-0023) is completed or skipped it is shown instead of the frame. A [link] (T-1103)
- * is opened once the frame is shown, after which [onLinkOpened] is called.
+ * is opened once the frame is shown, after which [onLinkOpened] is called. While a restore left by the previous process
+ * is not settled ([restore]), a waiting screen replaces everything (ADR-0032).
  */
 @Composable
 fun TaqvimAppShell(
     modifier: Modifier = Modifier,
     link: AppDestination? = null,
     onLinkOpened: () -> Unit = {},
+    restore: RestoreState = RestoreState.SETTLED,
 ) {
     val preferences = koinInject<UserPreferencesRepository>()
     val stored by preferences.preferences.collectAsState(initial = null)
@@ -73,16 +76,20 @@ fun TaqvimAppShell(
             }
         }
     TaqvimTheme(stored?.themeSettings() ?: ThemeSettings(), layoutTextDirection()) {
-        when (onboarded) {
-            null -> {
+        when {
+            restore != RestoreState.SETTLED -> {
+                RestoreHold(restore, modifier)
+            }
+
+            onboarded == null -> {
                 Box(modifier.fillMaxSize())
             }
 
-            false -> {
+            onboarded == false -> {
                 OnboardingRoute(modifier.fillMaxSize().testTag(ONBOARDING_TAG))
             }
 
-            true -> {
+            else -> {
                 AppNavigationFrame(navigator.backStack.selectedTab, navigator::select, snackbar, modifier) {
                     AppNavDisplay(navigator, router)
                 }

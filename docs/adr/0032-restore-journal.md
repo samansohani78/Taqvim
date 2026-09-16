@@ -38,5 +38,23 @@ No Room schema or preference proto change is needed.
   incomplete until the next start settles it.
 - A restore temporarily writes up to two copies of the personal data in private storage; they are deleted when the
   restore finishes.
-- Screens opened before recovery finishes may briefly read the interrupted state; alarms and subscriptions are only
-  rescheduled from a settled state. Subscription refresh work already queued in WorkManager is not delayed.
+- Alarms and subscriptions are only rescheduled from a settled state.
+
+## Addendum 2026-09-16 — holding readers until the stores are settled
+
+The first version left two gaps: screens opened before recovery finished could read the interrupted state, and
+subscription refreshes already queued in WorkManager were not delayed. A process-wide `RestoreGate` closes both:
+
+- It starts settled unless a journal existed at start (`BackupService.isRestoreRecorded`, one file lookup), so a normal
+  start never waits.
+- `RestoreRecovery` settles it with the recovery result. `RecoveryResult.StillPending`, and a restore during the session
+  that can be neither finished nor undone, leave it `INCOMPLETE`, which keeps everything held until the next start.
+- `TaqvimAppShell` shows a waiting screen (`RestoreHold`: progress while recovering, an explanation when incomplete)
+  instead of any screen until the gate is settled.
+- `SubscriptionRefresher` awaits the gate before every refresh, so queued or requested refreshes write only after
+  recovery; a refresh held by an incomplete restore waits until WorkManager stops the worker and retries later.
+- The widget triggers, the persistent notification and launcher icon refresh and the language sync now start after
+  recovery, like the preference and reminder watchers.
+
+Not held: system-initiated widget updates and scheduler broadcasts (time zone, time set, boot) received before recovery
+finishes still read the stores; they are recomputed once recovery requests `AlarmInputsChanged` and the watchers start.

@@ -58,6 +58,9 @@ internal class RestoreJournal(
     /** Switches the record to undoing the restore. */
     fun rollBack() = replace(direction, RestoreDirection.ROLLBACK.name.toByteArray())
 
+    /** Whether a restore is recorded as unfinished; a cheap check that reads no snapshot. */
+    fun isRecorded(): Boolean = direction.isFile
+
     /** The unfinished restore, or `null` when there is none (or its record is incomplete or unreadable). */
     fun pending(): PendingRestore? {
         val way =

@@ -27,6 +27,7 @@ import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.backup.BackupError
 import ir.taqvim.data.database.backup.BackupService
 import ir.taqvim.data.database.backup.RecoveryResult
+import ir.taqvim.data.database.backup.RestoreState
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.UserPreferences
@@ -136,17 +137,31 @@ class BackupAdaptersTest {
             val opened = operations.open(FILE, null).shouldBeInstanceOf<BackupOpenResult.Ready>().backup
             val flaky = FailingUserPrefs(UserPreferences.defaultsFor("fa").toProto())
             val service = BackupService(database, UserPreferencesRepository(flaky), journal)
-            val stuck = ServiceBackupOperations(service, documents, events, clock) { "1.2.3" }
-            val recovery = RestoreRecovery(service, events)
+            val gate = restoreGateAtStart(service)
+            gate.state.value shouldBe RestoreState.SETTLED
+            val stuck = ServiceBackupOperations(service, documents, events, clock, gate) { "1.2.3" }
+            val recovery = RestoreRecovery(service, events, gate)
             recovery.run() shouldBe RecoveryResult.NothingPending
 
             flaky.failing = true
             stuck.restore(opened) shouldBe BackupRestoreResult.Failed(BackupFailure.RESTORE_INCOMPLETE)
             handled shouldBe emptyList()
+            gate.state.value shouldBe RestoreState.INCOMPLETE
+
+            // The next start finds the journal, holds readers, and still cannot settle it.
+            val secondService = BackupService(database, UserPreferencesRepository(flaky), journal)
+            val secondGate = restoreGateAtStart(secondService)
+            secondGate.state.value shouldBe RestoreState.RECOVERING
+            RestoreRecovery(secondService, events, secondGate).run() shouldBe RecoveryResult.StillPending
+            secondGate.state.value shouldBe RestoreState.INCOMPLETE
+            handled shouldBe emptyList()
 
             flaky.failing = false
-            val restarted = RestoreRecovery(BackupService(database, UserPreferencesRepository(flaky), journal), events)
-            restarted.run() shouldBe RecoveryResult.RolledBack
+            val restartedService = BackupService(database, UserPreferencesRepository(flaky), journal)
+            val restartedGate = restoreGateAtStart(restartedService)
+            restartedGate.state.value shouldBe RestoreState.RECOVERING
+            RestoreRecovery(restartedService, events, restartedGate).run() shouldBe RecoveryResult.RolledBack
+            restartedGate.state.value shouldBe RestoreState.SETTLED
             handled shouldBe listOf(RescheduleEvent.AlarmInputsChanged(AlarmKind.entries.toSet()))
         }
 

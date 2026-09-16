@@ -16,6 +16,7 @@ import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
 import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.TaqvimDatabase
+import ir.taqvim.data.database.backup.RestoreGate
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
@@ -96,7 +97,11 @@ val icsDataModule =
             val preferences = get<UserPreferencesRepository>().preferences
             IcsExporter(get(), get(), { IcsZones.personalCalendars(preferences) }, get(), IcsZones.system)
         }
-        single { SubscriptionRefresher(get(), get(), get(), IcsZones.system, get()) }
+        single {
+            // Refreshes write the cache, so they wait until an unfinished restore is settled (ADR-0032).
+            val gate = getOrNull<RestoreGate>()
+            SubscriptionRefresher(get(), get(), get(), IcsZones.system, get()) { gate?.awaitSettled() }
+        }
         single { SubscriptionRefreshWorkerFactory(get(), get()) }
         single { SubscriptionRefreshScheduler(get(), get()) }
     }

@@ -62,6 +62,8 @@ class AppModuleTest {
                     SavedStateHandle::class,
                     // The restore journal directory is built inline from the app's no-backup directory (B09).
                     File::class,
+                    // The restore gate is built from a journal check at start-up (restoreGateAtStart, ADR-0032).
+                    Boolean::class,
                 ),
             // The scheduler collects every AlarmSource and AlarmDelivery with getAll(), which verify() cannot follow;
             // the test below checks that the athan's prayer source and delivery are among them (T-604, T-1102).
