@@ -36,6 +36,8 @@ device or storage-failure experiment.
 
 ### B01 — P1 — Old recurring subscriptions disappear — Reproduced
 
+**Status:** Fixed in main@2ecb37a (tests main@c9b0223).
+
 **Where:** [IcsOccurrenceExpander.kt:115](/home/ssohani/Lab/my/repo/Taqvim/data/events/src/main/kotlin/ir/taqvim/data/events/ics/IcsOccurrenceExpander.kt:115).
 
 `ruleStarts()` takes the first 1,000 occurrences from DTSTART before `expand()` filters by the requested window.
@@ -50,6 +52,8 @@ moved overrides. A full re-download must not reproduce the disappearance.
 
 ### B02 — P1 — Daily recurrence ignores BYDAY and BYMONTHDAY — Reproduced
 
+**Status:** Fixed in main@697cc1a.
+
 **Where:** [RecurrenceEngine.kt:128](/home/ssohani/Lab/my/repo/Taqvim/core/ics/src/main/kotlin/ir/taqvim/core/ics/RecurrenceEngine.kt:128).
 
 Starting Monday 2026-09-14, `FREQ=DAILY;BYDAY=MO;COUNT=3` yields September **14, 15, 16**, rather than
@@ -62,6 +66,8 @@ reminder path using that rule. Daily filters must restrict candidates before COU
 **Verify:** daily weekday-only rules, positive/negative month days, multiple filters, and COUNT after filtering.
 
 ### B03 — P1 — Personal events are assigned to the wrong day across time zones — Reproduced
+
+**Status:** Fixed in main@2ecb37a and main@1413bc2 (ADR-0031).
 
 **Where:** [DayEventsAssembler.kt:88](/home/ssohani/Lab/my/repo/Taqvim/data/events/src/main/kotlin/ir/taqvim/data/events/DayEventsAssembler.kt:88),
 [TimelineAdapters.kt:109](/home/ssohani/Lab/my/repo/Taqvim/app/src/main/kotlin/ir/taqvim/app/di/TimelineAdapters.kt:109).
@@ -95,6 +101,8 @@ including year boundaries and validity ranges.
 
 ### B05 — P1 — Import changes a UTC recurrence into local wall-clock recurrence — Reproduced
 
+**Status:** Fixed in main@7d38d7a.
+
 **Where:** [IcsEventMapping.kt:153](/home/ssohani/Lab/my/repo/Taqvim/data/events/src/main/kotlin/ir/taqvim/data/events/ics/IcsEventMapping.kt:153).
 
 A weekly event starting `2026-03-23T09:00:00Z`, imported in Berlin, is stored as 10:00 Europe/Berlin. Its next
@@ -108,6 +116,8 @@ floating, and all-day values in storage where necessary.
 series. Include export/re-import and seconds precision in the compatibility tests.
 
 ### B06 — P2 — Refresh can undo a user's subscription pause — Reproduced
+
+**Status:** Fixed in main@2ecb37a (tests main@c9b0223).
 
 **Where:** [SubscriptionRefresher.kt:160](/home/ssohani/Lab/my/repo/Taqvim/data/events/src/main/kotlin/ir/taqvim/data/events/ics/SubscriptionRefresher.kt:160).
 
@@ -123,6 +133,8 @@ refreshes completing in reverse order.
 
 ### B07 — P2 — Import drops the time component of UNTIL — Reproduced
 
+**Status:** Fixed in main@7d38d7a.
+
 **Where:** [IcsEventMapping.kt:204](/home/ssohani/Lab/my/repo/Taqvim/data/events/src/main/kotlin/ir/taqvim/data/events/ics/IcsEventMapping.kt:204).
 
 A daily event at 10:00 UTC beginning September 14 with UNTIL September 15 at 09:00 UTC should occur once. Import
@@ -135,6 +147,8 @@ time. Do not treat all timestamps on the last day as permitted.
 parity. [RFC 5545 recurrence semantics](https://www.rfc-editor.org/rfc/rfc5545.html#section-3.3.10) define UNTIL as inclusive.
 
 ### B08 — P2 — Cancelled ordinary subscription events remain visible — Reproduced
+
+**Status:** Fixed in main@2ecb37a (tests main@c9b0223).
 
 **Where:** [IcsOccurrenceExpander.kt:50](/home/ssohani/Lab/my/repo/Taqvim/data/events/src/main/kotlin/ir/taqvim/data/events/ics/IcsOccurrenceExpander.kt:50).
 
@@ -195,6 +209,8 @@ inputs and recompute validation. Deliberately exclude backup passphrases from an
 Rotation alone is insufficient because a ViewModel can survive it.
 
 ### B12 — P2 — Search dates all-day external events in the device zone — Traced
+
+**Status:** Fixed in main@2ecb37a and main@1413bc2 (ADR-0031).
 
 **Where:** [SearchAdapters.kt:126](/home/ssohani/Lab/my/repo/Taqvim/app/src/main/kotlin/ir/taqvim/app/di/SearchAdapters.kt:126).
 
