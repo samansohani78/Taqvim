@@ -250,5 +250,35 @@ class SettingsAdaptersTest {
             fromEpochMillis: Long,
             toEpochMillis: Long,
         ): Flow<List<IcsEventCacheEntity>> = flowOf(emptyList())
+
+        override suspend fun markChecked(
+            id: Long,
+            checkedAtEpochMillis: Long,
+        ): Int = update(id) { it.copy(lastCheckedAtEpochMillis = checkedAtEpochMillis) }
+
+        override suspend fun markFetched(
+            id: Long,
+            checkedAtEpochMillis: Long,
+            fetchedAtEpochMillis: Long,
+            etag: String?,
+            lastModified: String?,
+        ): Int =
+            update(id) {
+                it.copy(
+                    lastCheckedAtEpochMillis = checkedAtEpochMillis,
+                    lastFetchedAtEpochMillis = fetchedAtEpochMillis,
+                    etag = etag,
+                    lastModified = lastModified,
+                )
+            }
+
+        private fun update(
+            id: Long,
+            change: (IcsSubscriptionEntity) -> IcsSubscriptionEntity,
+        ): Int {
+            val found = rows.value.count { it.id == id }
+            rows.value = rows.value.map { if (it.id == id) change(it) else it }
+            return found
+        }
     }
 }
