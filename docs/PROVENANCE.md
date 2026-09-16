@@ -896,7 +896,28 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Validation:** Institute of Geophysics official 1405 timetables for 31 Iranian cities (365 days each): Fajr,
   sunrise, Dhuhr, sunset and Maghrib within 1 minute and midnight (middle of sunset→Fajr) within 2 minutes with the
   TEHRAN method; polar day/night, high-latitude rules, Makkah Isha, Hanafi Asr, midnight modes and time ordering.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+- **Precise model (main@7846949, ADR-0029):** `SolarEphemeris.kt`, `SunDay.kt`, `HorizonSettings.kt`,
+  `HighLatitude.kt`. References:
+  1. cosinekitty/astronomy 2.1.19 (MIT) for the apparent Sun (ΔT, nutation, aberration) for years −2000…6000; days
+     further out are shifted by whole 400-year Gregorian cycles into that range (any Long day offset from J2000).
+     The A-09 NOAA calculator now serves only the map's day/night layer; over 1900–2100 the two differ by at most
+     0.0032° in declination and 3.9 s in the equation of time.
+  2. Jean Meeus, *Astronomical Algorithms* 2nd ed., ch. 15 (rising, transit, setting) and ch. 16 (refraction with
+     pressure and temperature); standard refraction 34′ and solar semi-diameter 16′ (matches the Institute's tables
+     best: 99.8 % against 98.5 % with the true radius, which is optional).
+  3. Horizon dip 1.76′√h from *The American Practical Navigator* (NGA Pub. 9); off by default, since the Institute's
+     PDFs state coordinates only.
+  4. `NEAREST_LATITUDE` high-latitude rule: Resolution 6 of the Islamic Fiqh Council's ninth session as endorsed by
+     the European Council for Fatwa and Research, quoted from islamicfiqh.net (retrieved 2026-09-15).
+  5. Diyanet (Türkiye) method from its public statements only: Fajr 18° and Isha 17°
+     (https://www.diyanet.gov.tr/tr-TR/Content/PrintDetail/2921, 17 July 2013) and precaution minutes sunrise −7,
+     Dhuhr +5, Asr +4, Maghrib +7 (https://vakithesaplama.diyanet.gov.tr/temkin.php), both retrieved 2026-09-15; its
+     Asr school, high-latitude rule and rounding are unpublished and follow the user's settings. No Diyanet timetable
+     data is used.
+  Midnight now ends at the next morning's Fajr, as the Institute's tables do. Validation against the 31 official
+  timetables (11 315 days): same minute for 99.8–100 % of Fajr, sunrise, Dhuhr, sunset, Maghrib and midnight (was
+  56–98 %), every prayer within 1 minute; nearest-minute rounding.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; precise model 2026-09-16
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### A-06 — Calculated-observational Islamic months (Yallop)
