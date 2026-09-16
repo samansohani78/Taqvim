@@ -9,9 +9,21 @@ import org.junit.jupiter.api.Test
 
 class PrayerConventionsTest {
     @Test
-    fun `every method of plan A-10 has an identifier`() {
+    fun `every method of plan A-10 and ADR-0029 has an identifier`() {
         PrayerMethod.entries.map { it.name } shouldBe
-            listOf("MWL", "ISNA", "EGYPT", "MAKKAH", "KARACHI", "TEHRAN", "JAFARI", "SINGAPORE", "FRANCE", "RUSSIA")
+            listOf(
+                "MWL",
+                "ISNA",
+                "EGYPT",
+                "MAKKAH",
+                "KARACHI",
+                "TEHRAN",
+                "JAFARI",
+                "SINGAPORE",
+                "FRANCE",
+                "RUSSIA",
+                "DIYANET",
+            )
     }
 
     @Test
