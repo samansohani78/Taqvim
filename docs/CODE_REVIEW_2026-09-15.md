@@ -183,6 +183,8 @@ and alarm/subscription rescheduling only from a consistent restored state.
 
 ### B10 — P2 — System Back bypasses the editor's discard confirmation — Traced
 
+**Status:** Fixed in main@a72f00c.
+
 **Where:** [AppScreens.kt:74](/home/ssohani/Lab/my/repo/Taqvim/app/src/main/kotlin/ir/taqvim/app/navigation/AppScreens.kt:74),
 [EventEditorScreen.kt:63](/home/ssohani/Lab/my/repo/Taqvim/feature/events/src/main/kotlin/ir/taqvim/feature/events/EventEditorScreen.kt:63).
 
@@ -197,6 +199,8 @@ support for predictive back.
 and Back during a pending save. This needs a navigation/device test, not only a ViewModel test.
 
 ### B11 — P2 — Unsaved event drafts do not survive process recreation — Traced
+
+**Status:** Fixed in main@e9b99ec.
 
 **Where:** [EventEditorViewModel.kt:34](/home/ssohani/Lab/my/repo/Taqvim/feature/events/src/main/kotlin/ir/taqvim/feature/events/EventEditorViewModel.kt:34),
 [EventEditorRoute.kt:30](/home/ssohani/Lab/my/repo/Taqvim/feature/events/src/main/kotlin/ir/taqvim/feature/events/EventEditorRoute.kt:30).
@@ -244,6 +248,8 @@ Keep runtime permission and individual channel states distinct if the screen int
 blocked reminder/athan channels where those are surfaced. Device behavior was not exercised in this review.
 
 ### B14 — P2 — Performance gate accepts missing required benchmarks — Reproduced
+
+**Status:** Fixed in main@76d786f.
 
 **Where:** [compare_benchmarks.py:47](/home/ssohani/Lab/my/repo/Taqvim/tools/benchmark/compare_benchmarks.py:47),
 [compare_benchmarks.py:69](/home/ssohani/Lab/my/repo/Taqvim/tools/benchmark/compare_benchmarks.py:69).
