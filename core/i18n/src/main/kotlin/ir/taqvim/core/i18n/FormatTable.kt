@@ -5,7 +5,6 @@
 package ir.taqvim.core.i18n
 
 import ir.taqvim.core.model.CalendarSystem
-import java.util.Properties
 
 /** Units of relative phrases such as "3 days ago". */
 public enum class RelativeUnit {
@@ -47,7 +46,8 @@ public data class ListPatterns(
  * docs/DATA_TODO.md; formatters degrade as documented instead of inventing text.
  *
  * @property weekdays wide weekday names in ISO order (Monday first) per calendar; CLDR names can differ by calendar.
- * @property datePatterns CLDR full date pattern per calendar (Gregorian, Persian, Islamic).
+ * @property datePatterns full date pattern per calendar: CLDR for Gregorian, Persian and Islamic, the documented
+ *   Bikram Sambat pattern (or the Gregorian one) for Nepali.
  * @property eras abbreviated name of the current era per calendar.
  * @property monthNames format-context wide month names per calendar.
  * @property durationUnits unit patterns with `{0}` per plural category.
@@ -82,8 +82,8 @@ public object FormatTable {
     /** Formatting data by language code, for every language of [LanguageTable]. */
     public val formats: Map<String, LanguageFormats> by lazy {
         FormatTableParser
-            .parse(loadResource(), LanguageTable.languages.map { it.code })
-            .mapValues { (code, formats) -> withProductPatterns(code, formats) }
+            .parse(loadPropertiesResource(RESOURCE), LanguageTable.languages.map { it.code })
+            .mapValues { (code, formats) -> withBikramSambat(code, withProductPatterns(code, formats)) }
     }
 
     private fun withProductPatterns(
@@ -97,16 +97,27 @@ public object FormatTable {
                 },
         )
 
+    /**
+     * [formats] with Bikram Sambat names (T-105): CLDR has none, so month names, era and pattern come from
+     * [BikramSambatNames]; languages without an official pattern write these dates with their Gregorian pattern.
+     */
+    private fun withBikramSambat(
+        code: String,
+        formats: LanguageFormats,
+    ): LanguageFormats {
+        val nepali = CalendarSystem.NEPALI
+        val pattern = BikramSambatNames.pattern(code) ?: formats.datePatterns.getValue(CalendarSystem.GREGORIAN)
+        val era = BikramSambatNames.era(code)
+        return formats.copy(
+            datePatterns = formats.datePatterns + (nepali to pattern),
+            eras = if (era == null) formats.eras else formats.eras + (nepali to era),
+            monthNames = formats.monthNames + (nepali to BikramSambatNames.months(code)),
+        )
+    }
+
     /** Formatting data of [language]. */
     public fun of(language: LanguageSpec): LanguageFormats =
         requireNotNull(formats[language.code]) { "no formatting data for '${language.code}'" }
-
-    private fun loadResource(): Map<String, String> {
-        val stream = checkNotNull(FormatTable::class.java.getResourceAsStream(RESOURCE)) { "$RESOURCE is missing" }
-        val properties = Properties()
-        stream.reader(Charsets.UTF_8).use { properties.load(it) }
-        return properties.stringPropertyNames().associateWith { properties.getProperty(it) }
-    }
 }
 
 /** Parses `<code>.<key>=<value>` entries of the formatting table. */

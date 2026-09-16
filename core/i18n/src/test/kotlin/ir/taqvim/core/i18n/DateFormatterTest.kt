@@ -69,10 +69,12 @@ class DateFormatterTest {
         // CLDR separates the year and the abbreviation with a no-break space.
         islamic.replace('\u00A0', ' ').replace('\u202F', ' ').endsWith("1448 г.") shouldBe true
 
-        val nepali = language("ne")
-        val weekday = FormatTable.of(nepali).weekdays.getValue(CalendarSystem.GREGORIAN)[sunday.ordinal]
-        DateFormatter.format(CalendarDate(CalendarSystem.NEPALI, 2083, 5, 28), sunday, nepali, DateStyle.LONG) shouldBe
-            Numerals.localizeDigits("2083 5 28", NumeralSystem.DEVANAGARI) + ", " + weekday
+        // Sunday 13 September 2026 is Bhadra 28, 2083 (ADR-0030).
+        val bhadra28 = CalendarDate(CalendarSystem.NEPALI, 2083, 5, 28)
+        DateFormatter.format(bhadra28, sunday, language("ne"), DateStyle.LONG) shouldBe "वि.सं. २०८३ भदौ २८, आइतबार"
+        DateFormatter.format(bhadra28, sunday, language("en"), DateStyle.LONG) shouldBe "Sunday, Bhadra 28, 2083"
+        DateFormatter.format(bhadra28, sunday, language("ne"), DateStyle.NUMERIC) shouldBe
+            Numerals.localizeDigits("2083/5/28", NumeralSystem.DEVANAGARI)
     }
 
     @Test

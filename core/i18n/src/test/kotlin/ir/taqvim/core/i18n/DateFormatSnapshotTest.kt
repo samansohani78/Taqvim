@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test
 /**
  * The T-202 text matrix: 24 languages × 4 calendars × {long, numeric, iso} for Sunday 13 September 2026.
  * The Persian (1405-06-22) and Iran official lunar (1448-04-01) dates of that day come from the Calendar Center's
- * official 1405 calendar (core/calendar golden/persian fixtures). No verified Bikram Sambat conversion exists yet
- * (docs/DATA_TODO.md), so the Nepali row uses a placeholder date and shows structure only.
+ * official 1405 calendar (core/calendar golden/persian fixtures); its Bikram Sambat date (2083-05-28) is the one
+ * `NepaliCalendarSystem` gives and the official National Panchang BS 2083 confirms (ADR-0030).
  */
 class DateFormatSnapshotTest {
     @Test
@@ -23,7 +23,7 @@ class DateFormatSnapshotTest {
         val header =
             listOf(
                 "# Sunday 2026-09-13 = 1405-06-22 SH = 1448-04-01 AH (Iran official calendar 1405)",
-                "# NEPALI uses the placeholder date 2083-05-28 (structure only, not a verified conversion)",
+                "# and 2083-05-28 BS (National Panchang BS 2083)",
                 "# language<TAB>calendar<TAB>style<TAB>text",
             )
         val rows =

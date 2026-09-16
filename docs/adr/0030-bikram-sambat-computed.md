@@ -70,3 +70,35 @@ below were therefore established from its data:
   handled by an override.
 - The day rule and night exceptions are inferred from official data, not quoted from a published rulebook. The
   committee's written rules, if published, should replace this inference (DT-003).
+
+## Addendum (2026-09-16): names, date format and wiring
+
+**Context.** CLDR has no Bikram Sambat calendar, so the app had no month names, era or date pattern for it
+(DT-007, DT-010), and every screen skipped the calendar. The owner decided on 2026-09-16: Nepali script for `ne`, a
+documented Latin spelling of the official names for every other language until human translators supply names, and
+the calendar in every screen now.
+
+**Decision.**
+
+- **Nepali names** (`core/i18n` `bikram-sambat.properties`, cited there): the civil names printed in the planet-table
+  headings of the official Rashtriya Panchangam BS 2083 — वैशाख, जेठ, असार, साउन, भदौ, असोज, कात्तिक, मङ्सिर, पुस,
+  माघ, फागुन, चैत. The book prints no heading for the first month, so वैशाख is the spelling of its "वैशाखसंक्रान्ति"
+  entry and "वै." day label. The sankranti entries use the Sanskrit forms (ज्येष्ठ, श्रावण, …); the headings' civil
+  forms are the ones people use for dates.
+- **Latin names:** the Government of Nepal's own English spellings rather than an academic transliteration scheme
+  (ISO 15919 or IAST would give forms such as "Vaiśākha" that no Nepali date uses). For each month, the most frequent
+  spelling printed on page 1 of the 89 Nepal Telecommunications Authority monthly reports BS 2070–2080: Baishakh,
+  Jestha, Ashad, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh, Falgun, Chaitra. Every language except `ne`
+  shows these.
+- **Era:** "वि.सं." for `ne`, as printed on the Panchang's cover and headers. The English reports print no era, so
+  other languages show none.
+- **Date pattern:** no official document shows a full written date format. `ne` uses CLDR's `ne` pattern for its
+  other non-Gregorian calendars (`G y MMMM d, EEEE`, e.g. "वि.सं. २०८३ भदौ २८, आइतबार"); other languages write Bikram
+  Sambat dates with their own Gregorian pattern and the Latin names (e.g. "Sunday, Bhadra 28, 2083").
+- **Wiring:** `IslamicCalendarSelection.arithmeticFor` (`core/events`) is the one lookup from `CalendarSystem` to
+  arithmetic, used by the calendar, year, agenda, timeline and Wear screens and by `:app`; `OccurrenceCalculator`,
+  the date parser and `taqvim://` links (`nepali`) know the calendar, and settings offer it.
+
+**Consequences.** Non-Nepali users see romanised month names, including in right-to-left and CJK languages, until
+translations exist (DT-007 stays open for those). A written Bikram Sambat date format from an official source would
+replace the `ne` pattern (DT-010).

@@ -18,7 +18,7 @@
     "months.gregorian": ["ژانویه", "فوریه", "مارس", "آوریل", "مه", "ژوئن", "ژوئیه", "اوت", "سپتامبر", "اکتبر", "نوامبر", "دسامبر"],
     "months.persian": ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
     "months.islamic": ["محرم", "صفر", "ربیع‌الاول", "ربیع‌الثانی", "جمادی‌الاول", "جمادی‌الثانی", "رجب", "شعبان", "رمضان", "شوال", "ذیقعده", "ذیحجه"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "prs",
@@ -38,7 +38,7 @@
     "months.gregorian": ["جنوری", "فبروری", "مارچ", "اپریل", "می", "جون", "جولای", "اگست", "سپتمبر", "اکتوبر", "نومبر", "دسمبر"],
     "months.persian": ["حمل", "ثور", "جوزا", "سرطان", "اسد", "سنبلهٔ", "میزان", "عقرب", "قوس", "جدی", "دلو", "حوت"],
     "months.islamic": ["محرم", "صفر", "ربیع‌الاول", "ربیع‌الثانی", "جمادی‌الاول", "جمادی‌الثانی", "رجب", "شعبان", "رمضان", "شوال", "ذیقعده", "ذیحجه"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ps",
@@ -58,7 +58,7 @@
     "months.gregorian": ["جنوري", "فېبروري", "مارچ", "اپریل", "مۍ", "جون", "جولای", "اګست", "سپتمبر", "اکتوبر", "نومبر", "دسمبر"],
     "months.persian": ["وری", "غویی", "غبرگولی", "چنگاښ", "زمری", "وږی", "تله", "لړم", "لیندۍ", "مرغومی", "سلواغه", "کب"],
     "months.islamic": ["محرم", "صفر", "ربیع اول", "ربيع II", "جمادي اول", "جماعه II", "رجب", "شعبان", "رمضان", "شوال", "ذي القعده", "ذي الحج"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ar",
@@ -78,7 +78,7 @@
     "months.gregorian": ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
     "months.persian": ["فرفردن", "أذربيهشت", "خرداد", "تار", "مرداد", "شهرفار", "مهر", "آيان", "آذر", "دي", "بهمن", "اسفندار"],
     "months.islamic": ["محرم", "صفر", "ربيع الأول", "ربيع الآخر", "جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ckb",
@@ -98,7 +98,7 @@
     "months.gregorian": ["کانوونی دووەم", "شوبات", "ئازار", "نیسان", "ئایار", "حوزەیران", "تەمووز", "ئاب", "ئەیلوول", "تشرینی یەکەم", "تشرینی دووەم", "کانونی یەکەم"],
     "months.persian": null,
     "months.islamic": null,
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "kmr",
@@ -118,7 +118,7 @@
     "months.gregorian": ["rêbendan", "sibat", "adar", "nîsan", "gulan", "hezîran", "tîrmeh", "tebax", "îlon", "cotmeh", "mijdar", "berfanbar"],
     "months.persian": null,
     "months.islamic": ["muherem", "sefer", "rebîʿulewel", "rebîʿulaxer", "cemazîyelewel", "cemazîyelaxer", "receb", "şeʿban", "remezan", "şewal", "zîlqeʿde", "zilhece"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "az",
@@ -138,7 +138,7 @@
     "months.gregorian": ["yanvar", "fevral", "mart", "aprel", "may", "iyun", "iyul", "avqust", "sentyabr", "oktyabr", "noyabr", "dekabr"],
     "months.persian": ["fərvərdin", "ordibeheşt", "xordəd", "tir", "mordəd", "şəhrivar", "mehr", "abən", "azər", "dey", "bəhmən", "isfənd"],
     "months.islamic": ["Məhərrəm", "Səfər", "Rəbiüləvvəl", "Rəbiülaxır", "Cəmadiyələvvəl", "Cəmadiyəlaxır", "Rəcəb", "Şaban", "Ramazan", "Şəvval", "Zilqədə", "Zilhiccə"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "tr",
@@ -158,7 +158,7 @@
     "months.gregorian": ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
     "months.persian": ["Ferverdin", "Ordibeheşt", "Hordad", "Tir", "Mordad", "Şehriver", "Mehr", "Aban", "Azer", "Dey", "Behmen", "Esfend"],
     "months.islamic": ["Muharrem", "Safer", "Rebiülevvel", "Rebiülahir", "Cemaziyelevvel", "Cemaziyelahir", "Recep", "Şaban", "Ramazan", "Şevval", "Zilkade", "Zilhicce"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ur",
@@ -178,7 +178,7 @@
     "months.gregorian": ["جنوری", "فروری", "مارچ", "اپریل", "مئی", "جون", "جولائی", "اگست", "ستمبر", "اکتوبر", "نومبر", "دسمبر"],
     "months.persian": ["فروردن", "آرڈبائش", "خداداد", "تیر", "مرداد", "شہریوار", "مہر", "ابان", "آزر", "ڈے", "بہمن", "اسفند"],
     "months.islamic": ["محرم", "صفر", "ر بیع الاول", "ر بیع الثانی", "جمادی الاول", "جمادی الثانی", "رجب", "شعبان", "رمضان", "شوال", "ذوالقعدۃ", "ذوالحجۃ"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ne",
@@ -198,7 +198,7 @@
     "months.gregorian": ["जनवरी", "फेब्रुअरी", "मार्च", "अप्रिल", "मे", "जुन", "जुलाई", "अगस्ट", "सेप्टेम्बर", "अक्टोबर", "नोभेम्बर", "डिसेम्बर"],
     "months.persian": null,
     "months.islamic": null,
-    "months.nepali": null
+    "months.nepali": ["वैशाख", "जेठ", "असार", "साउन", "भदौ", "असोज", "कात्तिक", "मङ्सिर", "पुस", "माघ", "फागुन", "चैत"]
   },
   {
     "code": "hi",
@@ -218,7 +218,7 @@
     "months.gregorian": ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"],
     "months.persian": ["फर्वादिन", "ओर्दिवेहेस्ट", "खोरर्दाद", "टिर", "मोरदाद", "शाहरीवर्", "मेहर", "अवन", "अज़र", "डे", "बहमन", "ईस्फन्द्"],
     "months.islamic": ["मुहर्रम", "सफर", "राबी प्रथम", "राबी द्वितीय", "जुम्डा प्रथम", "जुम्डा द्वितीय", "रजब", "शावन", "रमजान", "शव्व्ल", "जिल-क्दाह", "जिल्-हिज्जाह"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ta",
@@ -238,7 +238,7 @@
     "months.gregorian": ["ஜனவரி", "பிப்ரவரி", "மார்ச்", "ஏப்ரல்", "மே", "ஜூன்", "ஜூலை", "ஆகஸ்ட்", "செப்டம்பர்", "அக்டோபர்", "நவம்பர்", "டிசம்பர்"],
     "months.persian": ["ஃபர்வாதின்", "ஆர்டிபெஹெஷ்த்", "கொர்தாத்", "திர்", "மொர்தாத்", "ஷாரிவார்", "மெஹ்ர்", "அபான்", "அசார்", "தே", "பஹ்மான்", "எஃபான்"],
     "months.islamic": ["முஹர்ரம்", "சஃபர்", "ரபி 1", "ரபி 2", "ஜுமதா 1", "ஜுமதா 2", "ரஜப்", "ஷஃபான்", "ரமலான்", "ஷவ்வால்", "துல் கஃதா", "துல் ஹிஜ்ஜா"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "bn",
@@ -258,7 +258,7 @@
     "months.gregorian": ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"],
     "months.persian": ["ফ্যাভার্ডিন", "অরডিবেহেশ্ত", "খোর্দ্দ", "তীর", "মর্যাদ", "শাহরিবার", "মেহের", "আবান", "বাজার", "দে", "বাহমান", "এসফ্যান্ড"],
     "months.islamic": ["মুহররম", "সফর", "রবিউল আউয়াল", "রবিউস সানি", "জমাদিউল আউয়াল", "জমাদিউস সানি", "রজব", "শা‘বান", "রমজান", "শাওয়াল", "জ্বিলকদ", "জ্বিলহজ্জ"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "tg",
@@ -278,7 +278,7 @@
     "months.gregorian": ["Январ", "Феврал", "Март", "Апрел", "Май", "Июн", "Июл", "Август", "Сентябр", "Октябр", "Ноябр", "Декабр"],
     "months.persian": ["фарвардин", "урдибиҳишт", "хурдод", "тир", "мурдод", "шаҳривар", "меҳр", "обон", "озар", "дей", "баҳман", "исфанд"],
     "months.islamic": ["Муҳаррам", "Сафар", "Рабеъ I", "Рабеъ II", "Ҷимоди-ул-уло", "Ҷимоди-ул-сони", "Раҷаб", "Шаъбон", "Рамазон", "Шаавол", "Дхул-Қидаҳ", "Дхул-Ҳиҷҷаҳ"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "uz",
@@ -298,7 +298,7 @@
     "months.gregorian": ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"],
     "months.persian": ["farvardin", "oʻrdibehisht", "xurdod", "tur", "murdod", "shahrivar", "mehr", "obon", "ozar", "dey", "bahman", "isfand"],
     "months.islamic": ["Muharram", "Safar", "Rabiʼul avval", "Rabiʼus soniy", "Jumodul avval", "Jumodus soniy", "Rajab", "Sha’bon", "Ramazon", "Shavvol", "Zulqaʼda", "Zulhijja"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "en",
@@ -318,7 +318,7 @@
     "months.gregorian": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "months.persian": ["Farvardin", "Ordibehesht", "Khordad", "Tir", "Mordad", "Shahrivar", "Mehr", "Aban", "Azar", "Dey", "Bahman", "Esfand"],
     "months.islamic": ["Muharram", "Safar", "Rabiʻ I", "Rabiʻ II", "Jumada I", "Jumada II", "Rajab", "Shaʻban", "Ramadan", "Shawwal", "Dhuʻl-Qiʻdah", "Dhuʻl-Hijjah"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ru",
@@ -338,7 +338,7 @@
     "months.gregorian": ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"],
     "months.persian": ["фарвардин", "ордибехешт", "хордад", "тир", "мордад", "шахривер", "мехр", "абан", "азер", "дей", "бахман", "эсфанд"],
     "months.islamic": ["мухаррам", "сафар", "раби-уль-авваль", "раби-уль-ахир", "джумад-уль-авваль", "джумад-уль-ахир", "раджаб", "шаабан", "рамадан", "шавваль", "зуль-каада", "зуль-хиджжа"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "de",
@@ -358,7 +358,7 @@
     "months.gregorian": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
     "months.persian": ["Farwardin", "Ordibehescht", "Chordād", "Tir", "Mordād", "Schahriwar", "Mehr", "Ābān", "Āsar", "Déi", "Bahman", "Essfand"],
     "months.islamic": ["Muharram", "Safar", "Rabiʻ I", "Rabiʻ II", "Dschumada I", "Dschumada II", "Radschab", "Shaʻban", "Ramadan", "Shawwal", "Dhu l-qaʿda", "Dhu l-Hiddscha"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "fr",
@@ -378,7 +378,7 @@
     "months.gregorian": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
     "months.persian": ["farvardin", "ordibehešt", "khordâd", "tir", "mordâd", "šahrivar", "mehr", "âbân", "âzar", "dey", "bahman", "esfand"],
     "months.islamic": ["mouharram", "safar", "rabia al awal", "rabia ath-thani", "joumada al oula", "joumada ath-thania", "rajab", "chaabane", "ramadan", "chawwal", "dhou al qi`da", "dhou al-hijja"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "es",
@@ -398,7 +398,7 @@
     "months.gregorian": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
     "months.persian": ["farvardin", "ordibehesht", "khordad", "tir", "mordad", "shahrivar", "mehr", "aban", "azar", "dey", "bahman", "esfand"],
     "months.islamic": ["muharram", "safar", "rabiʻ I", "rabiʻ II", "jumada I", "jumada II", "rajab", "shaʻban", "ramadán", "shawwal", "dhuʻl-qiʻdah", "dhuʻl-hijjah"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "id",
@@ -418,7 +418,7 @@
     "months.gregorian": ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
     "months.persian": null,
     "months.islamic": ["Muharam", "Safar", "Rabiulawal", "Rabiulakhir", "Jumadilawal", "Jumadilakhir", "Rajab", "Syakban", "Ramadan", "Syawal", "Zulkaidah", "Zulhijah"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ms",
@@ -438,7 +438,7 @@
     "months.gregorian": ["Januari", "Februari", "Mac", "April", "Mei", "Jun", "Julai", "Ogos", "September", "Oktober", "November", "Disember"],
     "months.persian": null,
     "months.islamic": ["Muharam", "Safar", "Rabiulawal", "Rabiulakhir", "Jamadilawal", "Jamadilakhir", "Rejab", "Syaaban", "Ramadan", "Syawal", "Zulkaedah", "Zulhijah"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "zh",
@@ -458,7 +458,7 @@
     "months.gregorian": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
     "months.persian": null,
     "months.islamic": null,
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   },
   {
     "code": "ja",
@@ -478,6 +478,6 @@
     "months.gregorian": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
     "months.persian": ["ファルヴァルディーン", "オルディーベヘシュト", "ホルダード", "ティール", "モルダード", "シャハリーヴァル", "メフル", "アーバーン", "アーザル", "デイ", "バフマン", "エスファンド"],
     "months.islamic": ["ムハッラム", "サフアル", "ラビー・ウル・アウワル", "ラビー・ウッ・サーニー", "ジュマーダル・アウワル", "ジュマーダッサーニー", "ラジャブ", "シャアバーン", "ラマダーン", "シャウワール", "ズル・カイダ", "ズル・ヒッジャ"],
-    "months.nepali": null
+    "months.nepali": ["Baishakh", "Jestha", "Ashad", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
   }
 ]

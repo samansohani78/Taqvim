@@ -6,7 +6,6 @@ package ir.taqvim.core.i18n
 
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Weekday
-import java.util.Properties
 
 /**
  * The launch languages (T-200), loaded from the generated `languages.properties` resource. Native-script text lives
@@ -16,17 +15,10 @@ public object LanguageTable {
     private const val RESOURCE = "languages.properties"
 
     /** Every launch language in presentation order. */
-    public val languages: List<LanguageSpec> by lazy { LanguageTableParser.parse(loadResource()) }
+    public val languages: List<LanguageSpec> by lazy { LanguageTableParser.parse(loadPropertiesResource(RESOURCE)) }
 
     /** The language with [code] (e.g. `fa`, `prs`, `kmr`), or `null`. */
     public fun forCode(code: String): LanguageSpec? = languages.firstOrNull { it.code == code }
-
-    private fun loadResource(): Map<String, String> {
-        val stream = checkNotNull(LanguageTable::class.java.getResourceAsStream(RESOURCE)) { "$RESOURCE is missing" }
-        val properties = Properties()
-        stream.reader(Charsets.UTF_8).use { properties.load(it) }
-        return properties.stringPropertyNames().associateWith { properties.getProperty(it) }
-    }
 }
 
 /** Parses `key=value` entries of the language table: `languages=<codes>` and `<code>.<field>=<value>`. */
@@ -59,7 +51,7 @@ private class LanguageEntry(
                     gregorian = months("gregorian") ?: required("months.gregorian").split(MONTH_SEPARATOR),
                     persian = months("persian"),
                     islamic = months("islamic"),
-                    nepali = months("nepali"),
+                    nepali = months("nepali") ?: BikramSambatNames.months(code),
                 ),
             datePattern = DatePattern.fromCldr(required("datePattern")),
             dayPeriods = DayPeriodNames(required("am"), required("pm")),

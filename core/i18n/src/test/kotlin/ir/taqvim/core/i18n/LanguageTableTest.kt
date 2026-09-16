@@ -44,7 +44,8 @@ class LanguageTableTest {
         missing { it.andPattern } shouldBe setOf("ckb")
         missing { it.monthNames.persian } shouldBe setOf("ckb", "kmr", "ne", "id", "ms", "zh")
         missing { it.monthNames.islamic } shouldBe setOf("ckb", "ne", "zh")
-        missing { it.monthNames.nepali } shouldBe APPROVED.toSet()
+        // Bikram Sambat names come from official Nepali sources for every language (bikram-sambat.properties).
+        missing { it.monthNames.nepali } shouldBe emptySet()
     }
 
     @Test
@@ -64,7 +65,12 @@ class LanguageTableTest {
         english?.monthNames?.forSystem(CalendarSystem.GREGORIAN)?.first() shouldBe "January"
         english?.monthNames?.forSystem(CalendarSystem.PERSIAN)?.first() shouldBe "Farvardin"
         english?.monthNames?.forSystem(CalendarSystem.ISLAMIC)?.first() shouldBe "Muharram"
-        english?.monthNames?.forSystem(CalendarSystem.NEPALI) shouldBe null
+        english?.monthNames?.forSystem(CalendarSystem.NEPALI)?.first() shouldBe "Baishakh"
+        LanguageTable
+            .forCode("ne")
+            ?.monthNames
+            ?.forSystem(CalendarSystem.NEPALI)
+            ?.first() shouldBe "वैशाख"
         LanguageTable.forCode("ckb")?.joinWithAnd("a", "b") shouldBe null
         LanguageTable.forCode("xx") shouldBe null
         LanguageTable.forCode("prs")?.nativeName shouldNotBe LanguageTable.forCode("fa")?.nativeName

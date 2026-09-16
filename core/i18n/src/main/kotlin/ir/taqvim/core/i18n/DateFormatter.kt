@@ -26,7 +26,7 @@ public enum class DateStyle {
  * LONG interprets the CLDR full date pattern: `E…` weekday, `d`/`dd` day, `M`/`MM` month number, `MMM…`/`LLL…` month
  * name, `y` year (`yy` two digits), `G` calendar abbreviation, and quoted literals. Where the language has no month
  * names for the calendar (docs/DATA_TODO.md) the month is written as a number; where it has no calendar abbreviation
- * the `G` field is left out. Nepali dates use the Gregorian pattern, as CLDR has no Bikram Sambat calendar.
+ * the `G` field is left out. Bikram Sambat names and patterns come from [BikramSambatNames], as CLDR has none.
  */
 public object DateFormatter {
     private const val QUOTE = '\''
@@ -73,8 +73,8 @@ public object DateFormatter {
         formats: LanguageFormats,
         numerals: NumeralSystem,
     ): String {
-        val calendar = if (date.system == CalendarSystem.NEPALI) CalendarSystem.GREGORIAN else date.system
-        val pattern = requireNotNull(formats.datePatterns[calendar]) { "no ${date.system} pattern for ${formats.code}" }
+        val pattern =
+            requireNotNull(formats.datePatterns[date.system]) { "no ${date.system} pattern for ${formats.code}" }
         return formatPattern(pattern, date, weekday, formats, numerals)
     }
 
