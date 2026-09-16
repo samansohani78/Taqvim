@@ -1,6 +1,6 @@
 # ADR-0034: Editing or cancelling one occurrence of a repeating personal event
 
-- **Status:** Proposed (design only; implementation pending)
+- **Status:** Accepted (implemented in main@60cca26; F02 preview in main@f31a07c)
 - **Date:** 2026-09-16
 - **Plan reference:** owner-approved review features F01 and F02 (docs/CODE_REVIEW_2026-09-15.md §4, approved
   2026-09-16); T-1000 editor, T-1003 exceptions and overrides, ADR-0011 (recurrence in the event's calendar), ADR-0031
@@ -30,7 +30,7 @@ editor can only change the whole series, so users cannot move or skip one meetin
    its overrides and exceptions (existing cascade).
 4. **Not included:** "This and following occurrences", which needs a series split (a new event plus an UNTIL on the
    old one) and its own decision.
-5. **Preview (F02, main commit with this ADR).** The repeat section lists the next ten occurrences from today,
+5. **Preview (F02, main@f31a07c).** The repeat section lists the next ten occurrences from today,
    expanded by the same `RecurrenceEngine` as the calendar and shown in the user's zone, so leap-day policy, weekday
    choices and zone/DST effects are visible before saving. It ignores overrides of an existing series (it previews the
    rule being edited).
@@ -38,7 +38,9 @@ editor can only change the whole series, so users cannot move or skip one meetin
 ## Consequences
 
 - Store port: `PersonalEventStore` gains `loadOccurrence(eventId, originalJdn)`, `saveOccurrence(...)` and
-  `cancelOccurrence(eventId, originalJdn)`, implemented in `:app` over the existing DAOs; no schema change.
+  `cancelOccurrence(eventId, originalJdn)`, implemented in `:app` over the existing DAOs
+  (`EventOccurrenceEdits`); no schema change. A repeating occurrence is identified in the calendar, agenda and
+  timeline as `eventId@originalJdn` (`PersonalOccurrence.itemId`); search results still open the whole series.
 - Navigation: `AppDestination.EventEditor` gains an optional `occurrence` day, restored with the back stack
   (ADR-0015); drafts (B11) record which mode they belong to.
 - Reminders are rescheduled after an occurrence change through the existing reconciliation (ADR-0033); export and the
