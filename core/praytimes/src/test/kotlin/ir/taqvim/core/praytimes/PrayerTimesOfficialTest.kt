@@ -72,7 +72,7 @@ class PrayerTimesOfficialTest {
                             Triple("dhuhr", distance(row[3], times.dhuhr), 1),
                             Triple("sunset", distance(row[4], times.sunset), 1),
                             Triple("maghrib", distance(row[5], times.maghrib), 1),
-                            Triple("midnight", distance(row[6], times.midnight), 2),
+                            Triple("midnight", distance(row[6], times.midnight), 1),
                         ).filter { (_, minutes, tolerance) -> minutes > tolerance }
                             .map { (prayer, minutes, _) -> "${row[0]} $prayer off by $minutes min" }
                     }

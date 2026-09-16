@@ -112,6 +112,7 @@
   <string name="calendar_method_singapore">مجلس اوگاما اسلام سنگاپور</string>
   <string name="calendar_method_france">اتحادیهٔ سازمان‌های اسلامی فرانسه</string>
   <string name="calendar_method_russia">ادارهٔ روحانی مسلمانان روسیه</string>
+  <string name="calendar_method_diyanet">ریاست امور دینی ترکیه (دیانت)</string>
   <string name="calendar_time_fajr">اذان صبح</string>
   <string name="calendar_time_sunrise">طلوع آفتاب</string>
   <string name="calendar_time_dhuhr">اذان ظهر</string>

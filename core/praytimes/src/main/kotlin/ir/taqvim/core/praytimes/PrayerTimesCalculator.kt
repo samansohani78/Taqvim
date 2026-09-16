@@ -7,9 +7,11 @@ package ir.taqvim.core.praytimes
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
+import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan
-import kotlin.math.roundToInt
+import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.math.tan
 
 /** Prayer times of one day in local time; `null` where a time is undefined under the chosen rules. */
@@ -44,21 +46,42 @@ public sealed interface PrayerTimesResult {
 }
 
 /**
- * Prayer times (A-10) on the NOAA solar equations (A-09). Each event is refined by re-evaluating the Sun at the
- * event's own time; results are rounded to the nearest minute.
+ * Exact prayer times of one day in minutes after local midnight, before the method's minute adjustments and rounding;
+ * values may leave 0‥1440 when a time falls on a neighbouring civil day.
+ */
+internal data class ExactPrayerTimes(
+    val fajr: Double?,
+    val sunrise: Double,
+    val dhuhr: Double,
+    val asr: Double,
+    val sunset: Double,
+    val maghrib: Double?,
+    val isha: Double?,
+    val midnight: Double?,
+)
+
+/** Exact times, or why the day has none. */
+internal sealed interface ExactResult {
+    data class Times(
+        val times: ExactPrayerTimes,
+    ) : ExactResult
+
+    data class Missing(
+        val reason: PrayerTimesResult.Reason,
+    ) : ExactResult
+}
+
+/**
+ * Prayer times (A-10) on the apparent Sun of a high-precision ephemeris (ADR-0029, [SolarEphemeris]): sunrise and
+ * sunset against [HorizonSettings], twilights by depression below the geometric horizon, Asr by the shadow rule on the
+ * declination at transit, the high-latitude rules of [HighLatitude], then the method's minute adjustments and
+ * rounding.
  */
 public object PrayerTimesCalculator {
-    private const val ITERATIONS = 3
     private const val MINUTES_PER_DAY = 1_440.0
-    private const val MINUTES_PER_HOUR = 60.0
-    private const val NOON = 720.0
-    private const val QUARTER_DAY = 360.0
-    private const val MINUTES_PER_DEGREE = 4.0
-    private const val RIGHT_ANGLE = 90.0
+    private const val HALF_TURN = 180.0
     private const val HALF = 0.5
-    private const val SEVENTH = 1.0 / 7.0
-    private const val WHITE_NIGHT_IMSAK_AFTER_DHUHR = 12 * 60.0
-    private const val WHITE_NIGHT_FAJR_AFTER_IMSAK = 30.0
+    private const val NOISE = 1e-9
 
     /** Times for the civil day [day] at [place], whose clocks are [utcOffsetMinutes] ahead of UTC. */
     public fun calculate(
@@ -67,158 +90,137 @@ public object PrayerTimesCalculator {
         utcOffsetMinutes: Int,
         settings: PrayerSettings = PrayerSettings(),
     ): PrayerTimesResult {
-        val sky = DaySky(day, place, utcOffsetMinutes)
-        val sunrise = sky.event(NoaaSolarCalculator.SUNRISE_ZENITH_DEGREES, morning = true)
-        val sunset = sky.event(NoaaSolarCalculator.SUNRISE_ZENITH_DEGREES, morning = false)
-        if (sunrise == null || sunset == null) {
-            val reason =
-                if (sky.sunUpAtNoon()) PrayerTimesResult.Reason.POLAR_DAY else PrayerTimesResult.Reason.POLAR_NIGHT
-            return PrayerTimesResult.Unavailable(reason)
-        }
         val parameters = settings.method.parameters()
-        val dhuhr = sky.noon()
-        val maghrib = maghrib(sky, parameters.maghrib, sunset)
-        val night = sunrise + MINUTES_PER_DAY - sunset
-        val computedFajr = sky.event(RIGHT_ANGLE + parameters.fajrAngle, morning = true)
-        val fajr = adjustFajr(computedFajr, sunrise, dhuhr, night, parameters, settings)
-        val isha = isha(sky, parameters, settings, sunset, maghrib, night)
-        val midnight = midnight(settings.midnight ?: parameters.midnight, sunrise, sunset, fajr, maghrib)
-        val asr = sky.asr(settings.asr.shadowFactor) ?: dhuhr
-        return PrayerTimesResult.Available(
-            PrayerTimes(
-                fajr = fajr?.let(::minute),
-                sunrise = minute(sunrise),
-                dhuhr = minute(dhuhr),
-                asr = minute(asr),
-                sunset = minute(sunset),
-                maghrib = maghrib?.let(::minute),
-                isha = isha?.let(::minute),
-                midnight = midnight?.let(::minute),
-            ),
-        )
+        return when (val exact = exact(day, place, utcOffsetMinutes, settings, parameters)) {
+            is ExactResult.Missing -> PrayerTimesResult.Unavailable(exact.reason)
+            is ExactResult.Times -> PrayerTimesResult.Available(rounded(exact.times, parameters))
+        }
     }
 
+    /**
+     * Exact times under explicit [parameters] (tests and method comparisons). Nights run from a sunset to the next
+     * sunrise: Fajr's high-latitude limit uses the night ending this morning, Isha's the night starting this evening,
+     * and midnight ends at the next morning's sunrise or Fajr. Where a neighbouring day has no sunrise or sunset (the
+     * edge of a polar season), this day's own event stands in for it.
+     */
+    internal fun exact(
+        day: Jdn,
+        place: Coordinates,
+        utcOffsetMinutes: Int,
+        settings: PrayerSettings,
+        parameters: MethodParameters,
+    ): ExactResult {
+        val sky = SunDay.of(day, place, utcOffsetMinutes)
+        val horizon = settings.horizon.sunriseAltitude(sky.distanceAu, place.elevationMeters)
+        val sunrise = sky.altitudeEvent(horizon, morning = true)
+        val sunset = sky.altitudeEvent(horizon, morning = false)
+        if (sunrise == null || sunset == null) {
+            val polarDay = sky.altitudeAt(sky.transit) > horizon
+            return ExactResult.Missing(
+                if (polarDay) PrayerTimesResult.Reason.POLAR_DAY else PrayerTimesResult.Reason.POLAR_NIGHT,
+            )
+        }
+        val rule = settings.highLatitude
+        val previousSunset =
+            SunDay.of(day + -1L, place, utcOffsetMinutes).altitudeEvent(horizon, morning = false) ?: sunset
+        val next = SunDay.of(day + 1L, place, utcOffsetMinutes)
+        val nextSunrise = next.altitudeEvent(horizon, morning = true) ?: sunrise
+        val dhuhr = sky.transit
+        val maghrib = maghrib(sky, parameters.maghrib, sunset)
+        val morningNight = Night(sky, previousSunset - MINUTES_PER_DAY, sunrise, horizon)
+        val fajr = HighLatitude.fajr(rule, parameters.fajrAngle, morningNight, dhuhr)
+        val eveningNight = Night(sky, sunset, nextSunrise + MINUTES_PER_DAY, horizon)
+        val isha = isha(parameters.isha, rule, eveningNight, maghrib ?: sunset)
+        val nextNight = Night(next, sunset - MINUTES_PER_DAY, nextSunrise, horizon)
+        val nextFajr = HighLatitude.fajr(rule, parameters.fajrAngle, nextNight, next.transit)
+        val mode = settings.midnight ?: parameters.midnight
+        val midnight = midnight(mode, sunset, maghrib, nextSunrise, nextFajr)
+        val asr = asr(sky, settings.asr.shadowFactor) ?: dhuhr
+        return ExactResult.Times(ExactPrayerTimes(fajr, sunrise, dhuhr, asr, sunset, maghrib, isha, midnight))
+    }
+
+    private fun isha(
+        rule: IshaRule,
+        highLatitude: HighLatitudeRule,
+        night: Night,
+        maghrib: Double,
+    ): Double? =
+        when (rule) {
+            is IshaRule.MinutesAfterMaghrib -> maghrib + rule.minutes
+            is IshaRule.Angle -> HighLatitude.isha(highLatitude, rule.degreesBelowHorizon, night)
+        }
+
     private fun maghrib(
-        sky: DaySky,
+        sky: SunDay,
         rule: MaghribRule,
         sunset: Double,
     ): Double? =
         when (rule) {
             MaghribRule.AtSunset -> sunset
-            is MaghribRule.Angle -> sky.event(RIGHT_ANGLE + rule.degreesBelowHorizon, morning = false)
+            is MaghribRule.Angle -> sky.altitudeEvent(-rule.degreesBelowHorizon, morning = false)
         }
 
-    private fun adjustFajr(
-        computed: Double?,
-        sunrise: Double,
-        dhuhr: Double,
-        night: Double,
-        parameters: MethodParameters,
-        settings: PrayerSettings,
-    ): Double? {
-        val rule = settings.highLatitude
-        if (rule == HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS) {
-            return computed ?: (dhuhr + WHITE_NIGHT_IMSAK_AFTER_DHUHR + WHITE_NIGHT_FAJR_AFTER_IMSAK - MINUTES_PER_DAY)
-        }
-        val limit = portion(rule, parameters.fajrAngle)?.times(night) ?: return computed
-        return if (computed == null || sunrise - computed > limit) sunrise - limit else computed
-    }
-
-    private fun isha(
-        sky: DaySky,
-        parameters: MethodParameters,
-        settings: PrayerSettings,
-        sunset: Double,
-        maghrib: Double?,
-        night: Double,
-    ): Double? =
-        when (val rule = parameters.isha) {
-            is IshaRule.MinutesAfterMaghrib -> {
-                (maghrib ?: sunset) + rule.minutes
-            }
-
-            is IshaRule.Angle -> {
-                val computed = sky.event(RIGHT_ANGLE + rule.degreesBelowHorizon, morning = false)
-                val limit = portion(settings.highLatitude, rule.degreesBelowHorizon)?.times(night)
-                when {
-                    limit == null -> computed
-                    computed == null || computed - sunset > limit -> sunset + limit
-                    else -> computed
-                }
-            }
-        }
-
+    /** The middle of the interval [mode] names, from this evening to the next morning ([nextSunrise], [nextFajr]). */
     private fun midnight(
         mode: MidnightMode,
-        sunrise: Double,
         sunset: Double,
-        fajr: Double?,
         maghrib: Double?,
+        nextSunrise: Double,
+        nextFajr: Double?,
     ): Double? {
         val fromSunset = mode == MidnightMode.SUNSET_TO_SUNRISE || mode == MidnightMode.SUNSET_TO_FAJR
         val toSunrise = mode == MidnightMode.SUNSET_TO_SUNRISE || mode == MidnightMode.MAGHRIB_TO_SUNRISE
         val start = if (fromSunset) sunset else maghrib
-        val end = if (toSunrise) sunrise else fajr
+        val end = if (toSunrise) nextSunrise else nextFajr
         return if (start == null || end == null) null else (start + end + MINUTES_PER_DAY) / 2
     }
 
-    private fun portion(
-        rule: HighLatitudeRule,
-        angle: Double,
-    ): Double? =
-        when (rule) {
-            HighLatitudeRule.NONE, HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS -> null
-            HighLatitudeRule.MIDDLE_OF_NIGHT -> HALF
-            HighLatitudeRule.ONE_SEVENTH -> SEVENTH
-            HighLatitudeRule.ANGLE_BASED -> angle / MINUTES_PER_HOUR
-        }
+    /**
+     * Asr: the afternoon moment when an object's shadow is [shadowFactor] heights longer than at transit, i.e. the
+     * Sun's altitude is atan(1 / (factor + tan|φ − δ|)) with δ the declination at transit.
+     */
+    private fun asr(
+        sky: SunDay,
+        shadowFactor: Int,
+    ): Double? {
+        val noonShadow = tan(abs(sky.latitude - sky.declinationAt(sky.transit)) * PI / HALF_TURN)
+        return sky.altitudeEvent(atan(1 / (shadowFactor + noonShadow)) * HALF_TURN / PI, morning = false)
+    }
 
-    private fun minute(localMinutes: Double): MinuteOfDay =
-        MinuteOfDay(Math.floorMod(localMinutes.roundToInt(), MINUTES_PER_DAY.toInt()))
+    private fun rounded(
+        exact: ExactPrayerTimes,
+        parameters: MethodParameters,
+    ): PrayerTimes {
+        val adjust = parameters.adjustments
+        val rounding = parameters.rounding
 
-    /** The Sun over one civil day at one place, in local minutes after midnight. */
-    private class DaySky(
-        day: Jdn,
-        private val place: Coordinates,
-        private val utcOffsetMinutes: Int,
-    ) {
-        private val julianDayAtUtcMidnight = day.value - HALF
+        fun minute(
+            value: Double,
+            minutes: Int,
+        ): MinuteOfDay = minuteOf(value + minutes, rounding)
+        return PrayerTimes(
+            fajr = exact.fajr?.let { minute(it, adjust.fajr) },
+            sunrise = minute(exact.sunrise, adjust.sunrise),
+            dhuhr = minute(exact.dhuhr, adjust.dhuhr),
+            asr = minute(exact.asr, adjust.asr),
+            sunset = minute(exact.sunset, 0),
+            maghrib = exact.maghrib?.let { minute(it, adjust.maghrib) },
+            isha = exact.isha?.let { minute(it, adjust.isha) },
+            midnight = exact.midnight?.let { minute(it, 0) },
+        )
+    }
 
-        private fun sunAt(localMinutes: Double): SolarParameters =
-            NoaaSolarCalculator.parameters(julianDayAtUtcMidnight + (localMinutes - utcOffsetMinutes) / MINUTES_PER_DAY)
-
-        private fun noonAt(sun: SolarParameters): Double =
-            NOON - MINUTES_PER_DEGREE * place.longitude - sun.equationOfTimeMinutes + utcOffsetMinutes
-
-        fun noon(): Double = (1..ITERATIONS).fold(NOON) { time, _ -> noonAt(sunAt(time)) }
-
-        fun sunUpAtNoon(): Boolean = abs(place.latitude - sunAt(noon()).declinationDegrees) < RIGHT_ANGLE
-
-        /** Time when the Sun is at [zenithDegrees] in the morning or the evening; `null` if it never is that day. */
-        fun event(
-            zenithDegrees: Double,
-            morning: Boolean,
-        ): Double? {
-            val sign = if (morning) -1 else 1
-            var time: Double? = NOON + sign * QUARTER_DAY
-            repeat(ITERATIONS) {
-                time =
-                    time?.let { current ->
-                        val sun = sunAt(current)
-                        NoaaSolarCalculator
-                            .hourAngleDegrees(place.latitude, sun.declinationDegrees, zenithDegrees)
-                            ?.let { noonAt(sun) + sign * MINUTES_PER_DEGREE * it }
-                    }
+    /** [localMinutes] as a minute of the day under [rounding]; a whisker of floating-point noise is ignored. */
+    internal fun minuteOf(
+        localMinutes: Double,
+        rounding: MinuteRounding,
+    ): MinuteOfDay {
+        val whole =
+            when (rounding) {
+                MinuteRounding.NEAREST -> floor(localMinutes + HALF)
+                MinuteRounding.FLOOR -> floor(localMinutes + NOISE)
+                MinuteRounding.CEILING -> ceil(localMinutes - NOISE)
             }
-            return time
-        }
-
-        /** Asr: the shadow equals [shadowFactor] object heights plus the noon shadow. */
-        fun asr(shadowFactor: Int): Double? {
-            val declination = sunAt(noon()).declinationDegrees
-            val noonShadow = tan(Math.toRadians(abs(place.latitude - declination)))
-            val elevation = Math.toDegrees(atan(1 / (shadowFactor + noonShadow)))
-            return event(RIGHT_ANGLE - elevation, morning = false)
-        }
+        return MinuteOfDay(Math.floorMod(whole.toLong(), MINUTES_PER_DAY.toLong()).toInt())
     }
 }

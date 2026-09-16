@@ -31,19 +31,22 @@ internal fun calendarLabel(system: CalendarSystem): Int =
     }
 
 @StringRes
-internal fun methodLabel(method: PrayerMethod): Int =
-    when (method) {
-        PrayerMethod.MWL -> R.string.wear_method_mwl
-        PrayerMethod.ISNA -> R.string.wear_method_isna
-        PrayerMethod.EGYPT -> R.string.wear_method_egypt
-        PrayerMethod.MAKKAH -> R.string.wear_method_makkah
-        PrayerMethod.KARACHI -> R.string.wear_method_karachi
-        PrayerMethod.TEHRAN -> R.string.wear_method_tehran
-        PrayerMethod.JAFARI -> R.string.wear_method_jafari
-        PrayerMethod.SINGAPORE -> R.string.wear_method_singapore
-        PrayerMethod.FRANCE -> R.string.wear_method_france
-        PrayerMethod.RUSSIA -> R.string.wear_method_russia
-    }
+internal fun methodLabel(method: PrayerMethod): Int = METHOD_LABELS.getValue(method)
+
+private val METHOD_LABELS: Map<PrayerMethod, Int> =
+    mapOf(
+        PrayerMethod.MWL to R.string.wear_method_mwl,
+        PrayerMethod.ISNA to R.string.wear_method_isna,
+        PrayerMethod.EGYPT to R.string.wear_method_egypt,
+        PrayerMethod.MAKKAH to R.string.wear_method_makkah,
+        PrayerMethod.KARACHI to R.string.wear_method_karachi,
+        PrayerMethod.TEHRAN to R.string.wear_method_tehran,
+        PrayerMethod.JAFARI to R.string.wear_method_jafari,
+        PrayerMethod.SINGAPORE to R.string.wear_method_singapore,
+        PrayerMethod.FRANCE to R.string.wear_method_france,
+        PrayerMethod.RUSSIA to R.string.wear_method_russia,
+        PrayerMethod.DIYANET to R.string.wear_method_diyanet,
+    )
 
 @StringRes
 internal fun fieldLabel(field: ConverterField): Int =

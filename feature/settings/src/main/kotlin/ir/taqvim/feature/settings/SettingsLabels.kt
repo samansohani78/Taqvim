@@ -80,6 +80,7 @@ internal object SettingsLabels {
             PrayerMethod.SINGAPORE to R.string.settings_method_singapore,
             PrayerMethod.FRANCE to R.string.settings_method_france,
             PrayerMethod.RUSSIA to R.string.settings_method_russia,
+            PrayerMethod.DIYANET to R.string.settings_method_diyanet,
         )
 
     val asrJuristics: Map<AsrJuristic, Int> =
@@ -94,6 +95,7 @@ internal object SettingsLabels {
             HighLatitudeRule.MIDDLE_OF_NIGHT to R.string.settings_high_latitude_middle,
             HighLatitudeRule.ONE_SEVENTH to R.string.settings_high_latitude_seventh,
             HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS to R.string.settings_high_latitude_white_nights,
+            HighLatitudeRule.NEAREST_LATITUDE to R.string.settings_high_latitude_nearest,
             HighLatitudeRule.NONE to R.string.settings_high_latitude_none,
         )
 }

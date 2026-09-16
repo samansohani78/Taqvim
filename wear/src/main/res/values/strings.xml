@@ -63,6 +63,7 @@
   <string name="wear_method_singapore">Singapore</string>
   <string name="wear_method_france">France</string>
   <string name="wear_method_russia">Russia</string>
+  <string name="wear_method_diyanet">Diyanet (Türkiye)</string>
 
   <string name="wear_complication_date">Date</string>
   <string name="wear_complication_month_progress">Month progress</string>

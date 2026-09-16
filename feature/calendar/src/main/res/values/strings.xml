@@ -151,6 +151,7 @@
   <string name="calendar_method_singapore">Majlis Ugama Islam Singapura</string>
   <string name="calendar_method_france">Union of Islamic Organisations of France</string>
   <string name="calendar_method_russia">Spiritual Administration of Muslims of Russia</string>
+  <string name="calendar_method_diyanet">Presidency of Religious Affairs, Türkiye (Diyanet)</string>
   <!-- Name of the Fajr prayer time, shown in lists of prayer times. -->
   <string name="calendar_time_fajr">Fajr</string>
   <!-- Name of the Sunrise prayer time, shown in lists of prayer times. -->

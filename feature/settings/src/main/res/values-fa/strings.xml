@@ -168,12 +168,14 @@
   <string name="settings_method_singapore">سنگاپور</string>
   <string name="settings_method_france">فرانسه</string>
   <string name="settings_method_russia">روسیه</string>
+  <string name="settings_method_diyanet">ریاست امور دینی ترکیه (دیانت)</string>
   <string name="settings_asr_standard">استاندارد (شافعی، مالکی، حنبلی، جعفری)</string>
   <string name="settings_asr_hanafi">حنفی</string>
   <string name="settings_high_latitude_angle">بر پایهٔ زاویه</string>
   <string name="settings_high_latitude_middle">نیمهٔ شب</string>
   <string name="settings_high_latitude_seventh">یک‌هفتم شب</string>
   <string name="settings_high_latitude_white_nights">روش مؤسسهٔ ژئوفیزیک برای شب‌های سفید</string>
+  <string name="settings_high_latitude_nearest">نزدیک‌ترین عرض جغرافیایی دارای شفق</string>
   <string name="settings_high_latitude_none">بدون تنظیم</string>
   <string name="settings_subscriptions_title">اشتراک‌های تقویم</string>
   <string name="settings_subscriptions_loading">در حال بارگذاری اشتراک‌ها</string>

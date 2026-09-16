@@ -219,6 +219,7 @@
   <string name="settings_method_france">France</string>
   <!-- Prayer time calculation method used in Russia. -->
   <string name="settings_method_russia">Russia</string>
+  <string name="settings_method_diyanet">Presidency of Religious Affairs, Türkiye (Diyanet)</string>
   <string name="settings_asr_standard">Standard (Shafi\'i, Maliki, Hanbali, Jafari)</string>
   <!-- Asr time according to the Hanafi school of jurisprudence. -->
   <string name="settings_asr_hanafi">Hanafi</string>
@@ -227,6 +228,7 @@
   <string name="settings_high_latitude_middle">Middle of the night</string>
   <string name="settings_high_latitude_seventh">One seventh of the night</string>
   <string name="settings_high_latitude_white_nights">Institute of Geophysics rule for white nights</string>
+  <string name="settings_high_latitude_nearest">Nearest latitude with a twilight</string>
   <string name="settings_high_latitude_none">No adjustment</string>
   <string name="settings_subscriptions_title">Calendar subscriptions</string>
   <string name="settings_subscriptions_loading">Loading subscriptions</string>

@@ -90,6 +90,7 @@ internal object DayDetailsLabels {
             R.string.calendar_method_singapore,
             R.string.calendar_method_france,
             R.string.calendar_method_russia,
+            R.string.calendar_method_diyanet,
         )
 
     private val TIMES =

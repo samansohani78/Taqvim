@@ -57,6 +57,7 @@
   <string name="wear_method_singapore">سنگاپور</string>
   <string name="wear_method_france">فرانسه</string>
   <string name="wear_method_russia">روسیه</string>
+  <string name="wear_method_diyanet">دیانت (ترکیه)</string>
 
   <string name="wear_complication_date">تاریخ</string>
   <string name="wear_complication_month_progress">پیشرفت ماه</string>

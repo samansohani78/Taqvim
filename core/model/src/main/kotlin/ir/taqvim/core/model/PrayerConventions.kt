@@ -38,6 +38,9 @@ public enum class PrayerMethod {
 
     /** Spiritual Administration of Muslims of Russia. */
     RUSSIA,
+
+    /** Presidency of Religious Affairs of Türkiye (Diyanet İşleri Başkanlığı). */
+    DIYANET,
 }
 
 /** Juristic convention for the Asr prayer: the object's shadow length relative to its height (A-10). */

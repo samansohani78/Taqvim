@@ -51,6 +51,7 @@ enum PrayerMethodProto {
   PRAYER_METHOD_SINGAPORE = 8;
   PRAYER_METHOD_FRANCE = 9;
   PRAYER_METHOD_RUSSIA = 10;
+  PRAYER_METHOD_DIYANET = 11;
 }
 
 enum AsrJuristicProto {
@@ -172,6 +173,7 @@ enum HighLatitudeRuleProto {
   HIGH_LATITUDE_RULE_ONE_SEVENTH = 3;
   HIGH_LATITUDE_RULE_ANGLE_BASED = 4;
   HIGH_LATITUDE_RULE_GEOPHYSICS_WHITE_NIGHTS = 5;
+  HIGH_LATITUDE_RULE_NEAREST_LATITUDE = 6;
 }
 
 // Bubble level calibration of one device orientation (T-1303), in degrees.
