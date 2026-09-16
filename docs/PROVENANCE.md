@@ -1512,3 +1512,11 @@ verify the sources' own arithmetic before dropping the computed columns.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-16; **reviewer attestation:** pending — no forbidden
   sources consulted.
 
+### Test-only — independent crescent geometry (`core/astronomy/src/test/.../MeeusCrescentGeometry.kt`, I08)
+- **References:** Jean Meeus, *Astronomical Algorithms* 2nd ed., ch. 12, 13, 22, 25, 40 and 47 (Tables 47.A/B truncated
+  to their largest terms) and the Morrison–Stephenson ΔT parabola; no code shared with the app's ephemeris.
+- **Use:** `OdehGeometryCrossCheckTest` (main@cbd40b6) compares it with the app on all 578 Odeh records; tolerances
+  (0.03°, 0.005′, 99 % zone agreement) come from the truncated series' stated accuracy, not from the app's output.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-17; **reviewer attestation:** pending — no forbidden
+  sources consulted.
+
