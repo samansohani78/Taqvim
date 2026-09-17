@@ -48,8 +48,19 @@ interface IcsSubscriptionDao {
         insertEvents(events)
     }
 
-    /** Records that the feed of [id] was checked, leaving every field the user can edit untouched. Rows updated. */
-    @Query("UPDATE ics_subscriptions SET last_checked_at_epoch_millis = :checkedAtEpochMillis WHERE id = :id")
+    /**
+     * Records that the feed of [id] was checked and found unchanged, leaving every field the user can edit untouched
+     * and clearing the last failure. Rows updated.
+     */
+    @Query(
+        """
+        UPDATE ics_subscriptions SET
+            last_checked_at_epoch_millis = :checkedAtEpochMillis,
+            last_error = NULL,
+            last_error_at_epoch_millis = NULL
+        WHERE id = :id
+        """,
+    )
     suspend fun markChecked(
         id: Long,
         checkedAtEpochMillis: Long,
@@ -62,7 +73,10 @@ interface IcsSubscriptionDao {
             last_checked_at_epoch_millis = :checkedAtEpochMillis,
             last_fetched_at_epoch_millis = :fetchedAtEpochMillis,
             etag = :etag,
-            last_modified = :lastModified
+            last_modified = :lastModified,
+            problem_count = :problemCount,
+            last_error = NULL,
+            last_error_at_epoch_millis = NULL
         WHERE id = :id
         """,
     )
@@ -72,7 +86,28 @@ interface IcsSubscriptionDao {
         fetchedAtEpochMillis: Long,
         etag: String?,
         lastModified: String?,
+        problemCount: Int,
     ): Int
+
+    /** Records that refreshing [id] failed with [error] (a [SubscriptionErrorCodes] code). Rows updated. */
+    @Query(
+        "UPDATE ics_subscriptions SET last_error = :error, last_error_at_epoch_millis = :atEpochMillis WHERE id = :id",
+    )
+    suspend fun markFailed(
+        id: Long,
+        error: String,
+        atEpochMillis: Long,
+    ): Int
+
+    /** How many occurrences each subscription has cached, and the span they cover. */
+    @Query(
+        """
+        SELECT subscription_id, COUNT(*) AS event_count, MIN(start_epoch_millis) AS first_start_epoch_millis,
+            MAX(end_epoch_millis) AS last_end_epoch_millis
+        FROM ics_events_cache GROUP BY subscription_id
+        """,
+    )
+    fun observeCacheSummaries(): Flow<List<IcsCacheSummary>>
 
     /**
      * Atomically replaces the cached occurrences of [subscriptionId] with [events] and stores the validators of the
@@ -87,12 +122,15 @@ interface IcsSubscriptionDao {
         fetchedAtEpochMillis: Long,
         etag: String?,
         lastModified: String?,
+        problemCount: Int = 0,
     ): Boolean {
         require(events.all { it.subscriptionId == subscriptionId }) { "events must belong to $subscriptionId" }
         if (getSubscription(subscriptionId) == null) return false
         deleteEvents(subscriptionId)
         insertEvents(events)
-        return markFetched(subscriptionId, checkedAtEpochMillis, fetchedAtEpochMillis, etag, lastModified) > 0
+        val updated =
+            markFetched(subscriptionId, checkedAtEpochMillis, fetchedAtEpochMillis, etag, lastModified, problemCount)
+        return updated > 0
     }
 
     /** Cached occurrences of enabled subscriptions overlapping `[fromEpochMillis, toEpochMillis)`. */

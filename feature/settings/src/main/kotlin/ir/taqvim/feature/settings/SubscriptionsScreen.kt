@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,6 +30,7 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
@@ -93,13 +95,14 @@ private fun SubscriptionsContent(
             )
         }
         if (state.items.isEmpty()) Text(stringResource(R.string.settings_subscriptions_empty))
-        state.items.forEach { SubscriptionCard(it, actions) }
+        state.items.forEach { SubscriptionCard(it, expanded = it.id in state.expanded, actions = actions) }
     }
 }
 
 @Composable
 private fun SubscriptionCard(
     row: SubscriptionRow,
+    expanded: Boolean,
     actions: SubscriptionsActions,
 ) {
     Column(
@@ -109,18 +112,15 @@ private fun SubscriptionCard(
             .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
         SwitchItem(row.name, row.url, row.enabled, { actions.onEnabledChanged(row.id, it) })
+        Text(
+            stringResource(healthText(row)),
+            style = MaterialTheme.typography.bodySmall,
+            color = healthColor(row),
+            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
+        )
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                stringResource(
-                    when {
-                        row.refreshing -> R.string.settings_subscriptions_refreshing
-                        row.downloaded -> R.string.settings_subscriptions_downloaded
-                        else -> R.string.settings_subscriptions_never_downloaded
-                    },
-                ),
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.weight(1f),
-            )
+            DetailsButton(row, expanded) { actions.onDetailsToggled(row.id) }
+            Spacer(Modifier.weight(1f))
             val refresh = stringResource(R.string.settings_subscriptions_refresh, row.name)
             TextButton(
                 onClick = { actions.onRefresh(row.id) },
@@ -133,7 +133,30 @@ private fun SubscriptionCard(
                 modifier = Modifier.semantics { contentDescription = remove },
             ) { Text(stringResource(R.string.settings_subscriptions_remove_button)) }
         }
+        if (expanded) SubscriptionDetailsSection(row)
     }
+}
+
+/** Shows or hides a subscription's details; announced with the subscription's name and whether they are open. */
+@Composable
+private fun DetailsButton(
+    row: SubscriptionRow,
+    expanded: Boolean,
+    onClick: () -> Unit,
+) {
+    val label = stringResource(R.string.settings_subscriptions_details_for, row.name)
+    val state =
+        stringResource(
+            if (expanded) R.string.settings_subscriptions_details_hide else R.string.settings_subscriptions_details,
+        )
+    TextButton(
+        onClick = onClick,
+        modifier =
+            Modifier.semantics {
+                contentDescription = label
+                stateDescription = state
+            },
+    ) { Text(state) }
 }
 
 private fun SubscriptionMessage.isProblem(): Boolean =

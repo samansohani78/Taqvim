@@ -159,7 +159,20 @@ class SubscriptionRefresher(
     private suspend fun refresh(
         subscription: IcsSubscriptionEntity,
         now: Instant,
-    ): RefreshOutcome = lockFor(subscription.id).withLock { fetchAndStore(subscription, now) }
+    ): RefreshOutcome =
+        lockFor(subscription.id).withLock {
+            fetchAndStore(subscription, now).also { recordFailure(it, now) }
+        }
+
+    /** Stores why a refresh failed, so the subscription page can show it until the next answered request (F03). */
+    private suspend fun recordFailure(
+        outcome: RefreshOutcome,
+        now: Instant,
+    ) {
+        val failed = outcome as? RefreshOutcome.Failed ?: return
+        val code = failed.error.storedCode() ?: return
+        dao.markFailed(failed.subscriptionId, code, now.toEpochMilliseconds())
+    }
 
     private suspend fun fetchAndStore(
         subscription: IcsSubscriptionEntity,
@@ -214,6 +227,7 @@ class SubscriptionRefresher(
                         fetchedAtEpochMillis = now.toEpochMilliseconds(),
                         etag = result.validators.etag,
                         lastModified = result.validators.lastModified,
+                        problemCount = parsed.warnings.size,
                     )
                 if (stored) {
                     RefreshOutcome.Updated(subscriptionId, rows.size, parsed.warnings.size)

@@ -9,6 +9,7 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.ui.theme.ThemeMode as UiThemeMode
 import ir.taqvim.core.ui.theme.ThemeSettings
+import ir.taqvim.data.database.IcsCacheSummary
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.IcsSubscriptionEntity
@@ -20,6 +21,7 @@ import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.compass.DeviceOrientation
 import ir.taqvim.feature.compass.LevelCalibration
 import ir.taqvim.feature.compass.Tilt
+import ir.taqvim.feature.settings.SubscriptionHealthData
 import ir.taqvim.feature.settings.SubscriptionItem
 import ir.taqvim.feature.settings.SubscriptionOutcome
 import ir.taqvim.feature.settings.ThemeChoice
@@ -191,7 +193,16 @@ class SettingsAdaptersTest {
             store.add("https://example.org/cal.ics") shouldBe SubscriptionOutcome.ALREADY_SUBSCRIBED
             store.setEnabled(1, enabled = false)
             store.subscriptions().first() shouldBe
-                listOf(SubscriptionItem(1, "example.org", "https://example.org/cal.ics", enabled = false, null))
+                listOf(
+                    SubscriptionItem(
+                        1,
+                        "example.org",
+                        "https://example.org/cal.ics",
+                        enabled = false,
+                        lastFetchedAtEpochMillis = null,
+                        health = SubscriptionHealthData(refreshIntervalMinutes = 1_440),
+                    ),
+                )
             reschedules shouldBe 2
 
             outcome = { RefreshOutcome.Failed(it, RefreshError.Unreadable) }
@@ -262,6 +273,7 @@ class SettingsAdaptersTest {
             fetchedAtEpochMillis: Long,
             etag: String?,
             lastModified: String?,
+            problemCount: Int,
         ): Int =
             update(id) {
                 it.copy(
@@ -269,8 +281,19 @@ class SettingsAdaptersTest {
                     lastFetchedAtEpochMillis = fetchedAtEpochMillis,
                     etag = etag,
                     lastModified = lastModified,
+                    problemCount = problemCount,
+                    lastError = null,
+                    lastErrorAtEpochMillis = null,
                 )
             }
+
+        override suspend fun markFailed(
+            id: Long,
+            error: String,
+            atEpochMillis: Long,
+        ): Int = update(id) { it.copy(lastError = error, lastErrorAtEpochMillis = atEpochMillis) }
+
+        override fun observeCacheSummaries(): Flow<List<IcsCacheSummary>> = flowOf(emptyList())
 
         private fun update(
             id: Long,

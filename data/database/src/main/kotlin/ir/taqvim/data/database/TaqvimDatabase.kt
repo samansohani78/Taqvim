@@ -75,7 +75,7 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 6
+    const val LATEST_VERSION: Int = 7
 
     /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
     private val MIGRATION_1_2: Migration =
@@ -145,6 +145,17 @@ object TaqvimMigrations {
             }
         }
 
+    /** 6 → 7 (F03): the last refresh failure and the reader's problem count of subscriptions. */
+    private val MIGRATION_6_7: Migration =
+        object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE `ics_subscriptions` ADD COLUMN `last_error` TEXT")
+                db.execSQL("ALTER TABLE `ics_subscriptions` ADD COLUMN `last_error_at_epoch_millis` INTEGER")
+                db.execSQL("ALTER TABLE `ics_subscriptions` ADD COLUMN `problem_count` INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
     /** Migrations between consecutive versions, oldest first. */
-    val ALL: List<Migration> = listOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+    val ALL: List<Migration> =
+        listOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
 }

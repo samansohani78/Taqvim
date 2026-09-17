@@ -51,7 +51,7 @@ class SubscriptionsScreenTest {
         settle()
 
         composeRule.onNodeWithText("Holidays feed").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText("Not downloaded yet").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Paused").performScrollTo().assertIsDisplayed()
 
         composeRule.onNode(hasSetTextAction()).performTextInput("ftp://example.org/a.ics")
         click(composeRule.onNodeWithText("Subscribe"))

@@ -11,6 +11,7 @@ import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
 import ir.taqvim.core.uitesting.captureScreenshot
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -41,6 +42,10 @@ class SettingsScreenshotTest(
                 when (sample) {
                     "subscriptions" -> {
                         SubscriptionsScreen(subscriptions, SubscriptionsActions())
+                    }
+
+                    "subscriptions_health" -> {
+                        SubscriptionsScreen(health(rtl), SubscriptionsActions())
                     }
 
                     "search" -> {
@@ -76,6 +81,66 @@ class SettingsScreenshotTest(
                 message = SubscriptionMessage.ADDED,
             )
 
+        /** F03: a failed feed with its details open, a stale one and a paused one. */
+        private fun health(rtl: Boolean): SubscriptionsUiState =
+            SubscriptionsUiState(
+                loading = false,
+                items =
+                    persistentListOf(
+                        healthRow(
+                            1,
+                            "Holidays feed",
+                            SubscriptionHealth.FAILED,
+                            if (rtl) persianDetails else englishDetails,
+                        ),
+                        healthRow(2, "Team", SubscriptionHealth.STALE),
+                        healthRow(3, "School", SubscriptionHealth.PAUSED),
+                    ),
+                expanded = persistentSetOf(1L),
+            )
+
+        private fun healthRow(
+            id: Long,
+            name: String,
+            health: SubscriptionHealth,
+            details: SubscriptionDetails = SubscriptionDetails(),
+        ) = SubscriptionRow(
+            id = id,
+            name = name,
+            url = "https://example.org/${name.lowercase().substringBefore(' ')}.ics",
+            enabled = health != SubscriptionHealth.PAUSED,
+            downloaded = health != SubscriptionHealth.PAUSED,
+            refreshing = false,
+            health = health,
+            details = details,
+        )
+
+        private val englishDetails =
+            SubscriptionDetails(
+                lastSuccess = SubscriptionMoment("Sunday, September 13, 2026", "09:15"),
+                lastCheck = SubscriptionMoment("Tuesday, September 15, 2026", "10:30"),
+                eventCount = "12",
+                cachedFrom = "Saturday, July 11, 2026",
+                cachedUntil = "Monday, October 18, 2027",
+                problems = "2",
+                error = SubscriptionError.SERVER,
+                errorStatus = "503",
+                errorAt = SubscriptionMoment("Tuesday, September 15, 2026", "10:30"),
+            )
+
+        private val persianDetails =
+            SubscriptionDetails(
+                lastSuccess = SubscriptionMoment("یکشنبه ۲۲ شهریور ۱۴۰۵", "۰۹:۱۵"),
+                lastCheck = SubscriptionMoment("سه‌شنبه ۲۴ شهریور ۱۴۰۵", "۱۰:۳۰"),
+                eventCount = "۱۲",
+                cachedFrom = "شنبه ۲۰ تیر ۱۴۰۵",
+                cachedUntil = "دوشنبه ۲۶ مهر ۱۴۰۶",
+                problems = "۲",
+                error = SubscriptionError.SERVER,
+                errorStatus = "۵۰۳",
+                errorAt = SubscriptionMoment("سه‌شنبه ۲۴ شهریور ۱۴۰۵", "۱۰:۳۰"),
+            )
+
         private fun environment(
             theme: ScreenshotTheme,
             direction: LayoutDirection,
@@ -89,6 +154,8 @@ class SettingsScreenshotTest(
                 arrayOf<Any>("home", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
                 arrayOf<Any>("search", environment(ScreenshotTheme.LIGHT, LayoutDirection.Rtl)),
                 arrayOf<Any>("subscriptions", environment(ScreenshotTheme.DARK, LayoutDirection.Ltr)),
+                arrayOf<Any>("subscriptions_health", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
+                arrayOf<Any>("subscriptions_health", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
             ) +
                 // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
                 listOf("home", "search", "subscriptions").flatMap { sample ->

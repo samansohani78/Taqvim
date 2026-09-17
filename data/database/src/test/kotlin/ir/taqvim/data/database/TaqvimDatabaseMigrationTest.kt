@@ -84,6 +84,27 @@ class TaqvimDatabaseMigrationTest {
     }
 
     @Test
+    fun subscriptionsSurviveMigrationFromSixWithoutFailureOrProblems() {
+        val name = "migration-6-7.db"
+        helper.createDatabase(name, 6).use { db ->
+            db.execSQL(
+                "INSERT INTO ics_subscriptions (id, url, display_name, enabled, refresh_interval_minutes, " +
+                    "last_fetched_at_epoch_millis) VALUES (4, 'https://example.org/a.ics', 'A', 1, 60, 1234)",
+            )
+        }
+        helper.runMigrationsAndValidate(name, 7, true, *TaqvimMigrations.ALL.toTypedArray()).use { db ->
+            db
+                .query(
+                    "SELECT url, last_fetched_at_epoch_millis, last_error, last_error_at_epoch_millis, problem_count " +
+                        "FROM ics_subscriptions WHERE id = 4",
+                ).use {
+                    it.moveToFirst()
+                    listOf(it.getString(0), it.getLong(1), it.isNull(2), it.isNull(3), it.getInt(4))
+                } shouldBe listOf("https://example.org/a.ics", 1234L, true, true, 0)
+        }
+    }
+
+    @Test
     fun appDatabaseOpensTheOldestSchema() {
         helper.createDatabase(TaqvimDatabase.NAME, 1).close()
         val db = TaqvimDatabase.build(ApplicationProvider.getApplicationContext<Context>())

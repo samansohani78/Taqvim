@@ -27,7 +27,40 @@ data class IcsSubscriptionEntity(
     val etag: String? = null,
     @ColumnInfo(name = "last_modified") val lastModified: String? = null,
     @ColumnInfo(name = "last_checked_at_epoch_millis") val lastCheckedAtEpochMillis: Long? = null,
+    /** Why the last refresh failed ([SubscriptionErrorCodes]), cleared by the next answered request. */
+    @ColumnInfo(name = "last_error") val lastError: String? = null,
+    @ColumnInfo(name = "last_error_at_epoch_millis") val lastErrorAtEpochMillis: Long? = null,
+    /** How many problems the reader reported in the last downloaded feed (content ignored or approximated). */
+    @ColumnInfo(name = "problem_count", defaultValue = "0") val problemCount: Int = 0,
 )
+
+/** Cached occurrences of one subscription: how many, and the earliest start and latest end. */
+data class IcsCacheSummary(
+    @ColumnInfo(name = "subscription_id") val subscriptionId: Long,
+    @ColumnInfo(name = "event_count") val eventCount: Int,
+    @ColumnInfo(name = "first_start_epoch_millis") val firstStartEpochMillis: Long?,
+    @ColumnInfo(name = "last_end_epoch_millis") val lastEndEpochMillis: Long?,
+)
+
+/**
+ * Stable codes stored in `ics_subscriptions.last_error` (F03): the refresh failure kinds, with an HTTP status as
+ * `HTTP_<code>`.
+ */
+object SubscriptionErrorCodes {
+    const val NETWORK: String = "NETWORK"
+    const val TIMEOUT: String = "TIMEOUT"
+    const val TOO_LARGE: String = "TOO_LARGE"
+    const val INSECURE: String = "INSECURE"
+    const val INVALID_ADDRESS: String = "INVALID_ADDRESS"
+    const val UNREADABLE: String = "UNREADABLE"
+    const val HTTP_PREFIX: String = "HTTP_"
+
+    fun http(status: Int): String = HTTP_PREFIX + status
+
+    /** The HTTP status in [code], or `null` when [code] is not an HTTP failure. */
+    fun httpStatus(code: String): Int? =
+        if (code.startsWith(HTTP_PREFIX)) code.removePrefix(HTTP_PREFIX).toIntOrNull() else null
+}
 
 /** One expanded occurrence of a subscribed feed (`ics_events_cache`), replaced on every refresh. */
 @Entity(

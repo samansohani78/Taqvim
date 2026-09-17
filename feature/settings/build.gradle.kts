@@ -9,6 +9,8 @@ dependencies {
     // T-1500: event sources and the high-latitude rule are chosen as their core types.
     implementation(projects.core.events)
     implementation(projects.core.praytimes)
+    // F03: subscription check times as dates in the language's calendar.
+    implementation(projects.core.calendar)
 }
 
 // T-1700: every captured screenshot state is also audited for accessibility (AccessibilityAudit).

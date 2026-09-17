@@ -15,7 +15,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
-import org.koin.core.module.dsl.viewModelOf
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
@@ -23,7 +22,7 @@ import org.koin.dsl.module
 val generalSettingsFeatureModule: Module =
     module {
         viewModel { params -> SettingsHomeViewModel(get(), params.getOrNull()) }
-        viewModelOf(::SubscriptionsViewModel)
+        viewModel { SubscriptionsViewModel(get(), get()) }
     }
 
 /** Where the settings home leads; the app maps each [SettingsDestination] to its screen. */
@@ -75,6 +74,7 @@ fun SubscriptionsRoute(
                 onRemove = viewModel::onRemove,
                 onEnabledChanged = viewModel::onEnabledChanged,
                 onNetworkAllowedChanged = viewModel::onNetworkAllowedChanged,
+                onDetailsToggled = viewModel::onDetailsToggled,
             )
         }
     SubscriptionsScreen(state, actions, modifier)
