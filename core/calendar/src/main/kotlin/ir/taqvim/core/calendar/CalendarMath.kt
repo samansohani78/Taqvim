@@ -126,7 +126,8 @@ public data class DatePeriod(
 /**
  * Difference from [from] to [to] as years, months and remaining days, measured in this calendar (e.g. from
  * 1404-11-30 to 1405-01-01 in the Persian calendar). Components are negative when [to] precedes [from].
- * Assumes 12-month years, which holds for every Taqvim calendar.
+ * A whole year is as many months as the year it starts in has, so the Hebrew calendar's 13-month years count as one
+ * year each.
  */
 public fun CalendarArithmetic.periodBetween(
     from: CalendarDate,
@@ -138,9 +139,27 @@ public fun CalendarArithmetic.periodBetween(
     }
     val totalMonths = monthsBetween(from, to)
     val anchor = addMonths(from, totalMonths)
-    val years = totalMonths / MONTHS_PER_YEAR
     val days = Math.toIntExact(daysBetween(anchor, to))
-    return DatePeriod(years, totalMonths - years * MONTHS_PER_YEAR, days)
+    val perYear =
+        monthsPerYear ?: return wholeYearsAndMonths(from.year, totalMonths).let { (years, months) ->
+            DatePeriod(years, months, days)
+        }
+    val years = totalMonths / perYear
+    return DatePeriod(years, totalMonths - years * perYear, days)
+}
+
+/** Splits [totalMonths] (non-negative) into whole years starting at [firstYear] and the months left over. */
+private fun CalendarArithmetic.wholeYearsAndMonths(
+    firstYear: Int,
+    totalMonths: Int,
+): Pair<Int, Int> {
+    var years = 0
+    var left = totalMonths
+    while (left >= monthsInYear(firstYear + years)) {
+        left -= monthsInYear(firstYear + years)
+        years++
+    }
+    return years to left
 }
 
 /**
