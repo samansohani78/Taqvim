@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ps) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">د لمانځه وختونه</string>
+  <string name="times_prayer_fajr">سهار</string>
+  <string name="times_prayer_sunrise">لمرختل</string>
+  <string name="times_prayer_dhuhr">ماسپښین</string>
+  <string name="times_prayer_asr">مازدیګر</string>
+  <string name="times_prayer_sunset">لمرلوېدل</string>
+  <string name="times_prayer_maghrib">ماښام</string>
+  <string name="times_prayer_isha">ماسخوتن</string>
+  <string name="times_prayer_midnight">نیمه شپه</string>
+  <string name="times_previous_day">تېره ورځ</string>
+  <string name="times_next_day">بله ورځ</string>
+  <string name="times_today">نن</string>
+  <string name="times_show_all">ټول وختونه ښودل</string>
+  <string name="times_show_fewer">لږ وختونه ښودل</string>
+  <string name="times_next_prayer">%1$s په %2$s کې</string>
+  <string name="times_next_prayer_progress">تر %1$s پورې پاتې وخت</string>
+  <string name="times_sun_path">د لمر لاره له %1$s بجو لمرختو څخه تر %2$s بجو لمرلوېدو پورې</string>
+  <string name="times_polar_day">پدې ورځ لمر نه لوېږي، نو د لمانځه وختونه نه شي محاسبه کېدای.</string>
+  <string name="times_polar_night">پدې ورځ لمر نه راخېژي، نو د لمانځه وختونه نه شي محاسبه کېدای.</string>
+  <string name="times_no_location_title">هېڅ ځای نه دی ټاکل شوی</string>
+  <string name="times_no_location_message">د لمانځه د وختونو لیدو لپاره ښار وټاکئ یا خپل ځای وکاروئ.</string>
+  <string name="times_loading">د لمانځه وختونه پورته کېږي</string>
+  <string name="times_print_report">میاشتنی راپور چاپول</string>
+  <string name="times_report_title">د %1$s د لمانځه وختونه، له %2$s تر %3$s</string>
+  <string name="times_report_date">نېټه</string>
+  <string name="times_report_job">د Taqvim د لمانځه وختونه</string>
+</resources>

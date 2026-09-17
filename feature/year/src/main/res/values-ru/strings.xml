@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ru) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="year_title">Год</string>
+  <string name="year_loading">Загрузка года</string>
+  <string name="year_month_title">%1$s %2$s</string>
+  <string name="year_range">%1$s – %2$s</string>
+  <string name="year_separator">", "</string>
+  <string name="year_today">Сегодня</string>
+  <plurals name="year_holidays">
+    <item quantity="one">%1$s выходной</item>
+    <item quantity="few">%1$s выходных</item>
+    <item quantity="many">%1$s выходных</item>
+    <item quantity="other">%1$s выходного</item>
+  </plurals>
+  <string name="year_previous">Назад</string>
+  <string name="year_next">Далее</string>
+  <string name="year_choose">Годы</string>
+  <string name="year_show_months">Месяцы</string>
+  <string name="year_open_month">Открыть месяц</string>
+  <string name="year_zoom_in">Увеличить</string>
+  <string name="year_zoom_out">Уменьшить</string>
+  <string name="year_calendar_persian">Солнечная хиджра</string>
+  <string name="year_calendar_islamic">Лунная хиджра</string>
+  <string name="year_calendar_gregorian">Григорианский</string>
+  <string name="year_calendar_nepali">Непальский</string>
+  <string name="year_calendar_hebrew">Еврейский</string>
+</resources>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tg) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">Танзимоти виҷет</string>
+  <string name="widget_config_loading">Танзимоти виҷет бор шуда истодааст</string>
+  <string name="widget_config_background">Замина</string>
+  <string name="widget_background_surface">Мавзӯъ</string>
+  <string name="widget_background_primary">Ранги асосӣ</string>
+  <string name="widget_background_secondary">Ранги асосии мулоим</string>
+  <string name="widget_background_black">Сиёҳ</string>
+  <string name="widget_background_white">Сафед</string>
+  <string name="widget_config_transparency">Шаффофӣ</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">Андоза</string>
+  <string name="widget_config_contents">Нишон додан</string>
+  <string name="widget_content_weekday">Рӯзи ҳафта</string>
+  <string name="widget_content_secondary_date">Сана дар тақвими дуюм</string>
+  <string name="widget_content_holidays">Ҷашнҳо рангин</string>
+  <string name="widget_content_events">Рӯйдодҳо</string>
+  <string name="widget_content_next_prayer">Вақти намози оянда</string>
+  <string name="widget_config_secondary_calendar">Тақвими дуюм</string>
+  <string name="widget_calendar_automatic">Худкор</string>
+  <string name="widget_calendar_persian">Ҳиҷрии шамсӣ</string>
+  <string name="widget_calendar_islamic">Ҳиҷрии қамарӣ</string>
+  <string name="widget_calendar_gregorian">Мелодӣ</string>
+  <string name="widget_calendar_nepali">Бикрам Самват</string>
+  <string name="widget_calendar_hebrew">Ибрӣ</string>
+  <string name="widget_config_save">Захира кардан</string>
+  <string name="widget_config_cancel">Бекор кардан</string>
+  <string name="widget_config_save_failed">Танзимот захира нашуд. Боз кӯшиш кунед.</string>
+  <string name="widget_load_failed">Ин виҷет бор нашуд. Барои кушодани Taqvim пахш кунед.</string>
+  <string name="widget_date_1x1_name">Сана</string>
+  <string name="widget_date_1x1_description">Санаи имрӯза дар тақвими шумо</string>
+  <string name="widget_date_clock_4x1_name">Сана ва соат</string>
+  <string name="widget_date_clock_4x1_description">Санаи имрӯза бо вақт</string>
+  <string name="widget_day_summary_2x2_name">Имрӯз</string>
+  <string name="widget_day_summary_2x2_description">Сана, рӯйдодҳои имрӯз ва вақти намози оянда</string>
+  <string name="widget_prayer_strip_4x2_name">Вақтҳои намоз</string>
+  <string name="widget_prayer_strip_4x2_description">Сана бо вақтҳои намози имрӯз</string>
+  <string name="widget_prayer_fajr">Бомдод</string>
+  <string name="widget_prayer_sunrise">Тулӯи офтоб</string>
+  <string name="widget_prayer_dhuhr">Пешин</string>
+  <string name="widget_prayer_asr">Аср</string>
+  <string name="widget_prayer_maghrib">Шом</string>
+  <string name="widget_prayer_isha">Хуфтан</string>
+  <string name="widget_no_events">Имрӯз рӯйдод нест</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Барои вақтҳои намоз макон интихоб кунед</string>
+  <string name="widget_month_interactive_name">Моҳ</string>
+  <string name="widget_month_interactive_description">Моҳ бо ҷашнҳо ва рӯйдодҳо; гузариш байни моҳҳо</string>
+  <string name="widget_month_bitmap_name">Шарҳи моҳ</string>
+  <string name="widget_month_bitmap_description">Тамоми моҳ дар як тасвир</string>
+  <string name="widget_week_strip_name">Ҳафта</string>
+  <string name="widget_week_strip_description">Ҳамин ҳафта бо ҷашнҳо ва рӯйдодҳо</string>
+  <string name="widget_schedule_name">Ҷадвал</string>
+  <string name="widget_schedule_description">Рӯйдодҳои шумо дар 14 рӯзи оянда</string>
+  <string name="widget_sun_arc_name">Офтоб</string>
+  <string name="widget_sun_arc_description">Роҳи офтоб аз тулӯъ то ғуруб</string>
+  <string name="widget_month_previous">Моҳи қаблӣ</string>
+  <string name="widget_month_next">Моҳи баъдӣ</string>
+  <string name="widget_month_today">Имрӯз</string>
+  <string name="widget_month_add">Рӯйдоди нав</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, рӯзи истироҳат</string>
+  <string name="widget_schedule_title">14 рӯзи оянда</string>
+  <string name="widget_schedule_empty">Дар 14 рӯзи оянда рӯйдод нест</string>
+  <string name="widget_sun_description">Тулӯъ %1$s, ғуруб %2$s</string>
+  <string name="widget_no_daylight">Имрӯз дар ин ҷо офтоб тулӯъ ва ғуруб намекунад</string>
+  <string name="widget_moon_name">Ҳолати моҳ</string>
+  <string name="widget_moon_description">Ҳолати моҳ бо моҳи пурра ва моҳи нави оянда</string>
+  <string name="widget_moon_illumination">Равшан %1$s%%</string>
+  <string name="widget_moon_content">Моҳ. %1$s</string>
+  <string name="widget_moon_next_full">Моҳи пурра %1$s</string>
+  <string name="widget_moon_next_new">Моҳи нав %1$s</string>
+  <string name="widget_map_name">Харитаи ҷаҳон</string>
+  <string name="widget_map_description">Рӯз ва шаб дар харитаи ҷаҳон бо ҷои шумо</string>
+  <string name="widget_map_content">Харитаи ҷаҳон бо рӯз ва шаб</string>
+  <string name="widget_map_content_place">Харитаи ҷаҳон бо рӯз, шаб ва ҷои шумо</string>
+  <string name="widget_countdown_name">Шумориши баръакс</string>
+  <string name="widget_countdown_description">Рӯзҳо то санаи интихобкардаи шумо ё вақт аз он</string>
+  <string name="widget_countdown_setup">Дар танзимоти виҷет сана интихоб кунед</string>
+  <string name="widget_countdown_today">Имрӯз</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left">
+    <item quantity="other">рӯз мондааст</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago">
+    <item quantity="other">рӯз пеш</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years">
+    <item quantity="other">сол</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months">
+    <item quantity="other">моҳ</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days">
+    <item quantity="other">рӯз</item>
+  </plurals>
+  <plurals name="widget_countdown_years">
+    <item quantity="other">%1$s сол</item>
+  </plurals>
+  <plurals name="widget_countdown_months">
+    <item quantity="other">%1$s моҳ</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="other">%1$s ҳафта</item>
+  </plurals>
+  <plurals name="widget_countdown_days">
+    <item quantity="other">%1$s рӯз</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Шумориши баръакс</string>
+  <string name="widget_countdown_mode_until">Рӯзҳо то</string>
+  <string name="widget_countdown_mode_since">Вақт аз</string>
+  <string name="widget_countdown_config_label">Унвон (ихтиёрӣ)</string>
+  <string name="widget_countdown_config_occasions">Муносибатҳо</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Тақвим</string>
+  <string name="widget_countdown_config_change_date">Иваз кардани сана</string>
+  <string name="widget_countdown_config_repeats">Ҳар сол</string>
+  <string name="widget_countdown_picker_title">Сана интихоб кунед</string>
+  <string name="widget_countdown_picker_year">Сол</string>
+  <string name="widget_countdown_picker_month">Моҳ</string>
+  <string name="widget_countdown_picker_day">Рӯз</string>
+  <string name="widget_countdown_picker_confirm">Тайёр</string>
+</resources>

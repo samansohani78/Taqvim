@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (az) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">Vidcet ayarları</string>
+  <string name="widget_config_loading">Vidcet ayarları yüklənir</string>
+  <string name="widget_config_background">Fon</string>
+  <string name="widget_background_surface">Mövzu</string>
+  <string name="widget_background_primary">Vurğu</string>
+  <string name="widget_background_secondary">Yumşaq vurğu</string>
+  <string name="widget_background_black">Qara</string>
+  <string name="widget_background_white">Ağ</string>
+  <string name="widget_config_transparency">Şəffaflıq</string>
+  <string name="widget_config_percent">%%%1$d</string>
+  <string name="widget_config_scale">Ölçü</string>
+  <string name="widget_config_contents">Göstər</string>
+  <string name="widget_content_weekday">Həftənin günü</string>
+  <string name="widget_content_secondary_date">İkinci təqvimdə tarix</string>
+  <string name="widget_content_holidays">Bayramlar rəngli</string>
+  <string name="widget_content_events">Tədbirlər</string>
+  <string name="widget_content_next_prayer">Növbəti namaz vaxtı</string>
+  <string name="widget_config_secondary_calendar">İkinci təqvim</string>
+  <string name="widget_calendar_automatic">Avtomatik</string>
+  <string name="widget_calendar_persian">Hicri-şəmsi</string>
+  <string name="widget_calendar_islamic">Hicri-qəməri</string>
+  <string name="widget_calendar_gregorian">Qriqorian</string>
+  <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <string name="widget_calendar_hebrew">Yəhudi</string>
+  <string name="widget_config_save">Yadda saxla</string>
+  <string name="widget_config_cancel">Ləğv et</string>
+  <string name="widget_config_save_failed">Ayarlar yadda saxlanılmadı. Yenidən cəhd edin.</string>
+  <string name="widget_load_failed">Bu vidcet yüklənmədi. Taqvim-i açmaq üçün toxunun.</string>
+  <string name="widget_date_1x1_name">Tarix</string>
+  <string name="widget_date_1x1_description">Təqviminizdə bugünkü tarix</string>
+  <string name="widget_date_clock_4x1_name">Tarix və saat</string>
+  <string name="widget_date_clock_4x1_description">Vaxtla birlikdə bugünkü tarix</string>
+  <string name="widget_day_summary_2x2_name">Bu gün</string>
+  <string name="widget_day_summary_2x2_description">Tarix, bugünkü tədbirlər və növbəti namaz vaxtı</string>
+  <string name="widget_prayer_strip_4x2_name">Namaz vaxtları</string>
+  <string name="widget_prayer_strip_4x2_description">Bugünkü namaz vaxtları ilə tarix</string>
+  <string name="widget_prayer_fajr">Sübh</string>
+  <string name="widget_prayer_sunrise">Günəşin doğuşu</string>
+  <string name="widget_prayer_dhuhr">Zöhr</string>
+  <string name="widget_prayer_asr">Əsr</string>
+  <string name="widget_prayer_maghrib">Məğrib</string>
+  <string name="widget_prayer_isha">İşa</string>
+  <string name="widget_no_events">Bu gün tədbir yoxdur</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Namaz vaxtları üçün məkan seçin</string>
+  <string name="widget_month_interactive_name">Ay</string>
+  <string name="widget_month_interactive_description">Bayramlar və tədbirlərlə ay; aylar arasında keçin</string>
+  <string name="widget_month_bitmap_name">Ay icmalı</string>
+  <string name="widget_month_bitmap_description">Bir şəkildə çəkilmiş bütün ay</string>
+  <string name="widget_week_strip_name">Həftə</string>
+  <string name="widget_week_strip_description">Bayramlar və tədbirlərlə bu həftə</string>
+  <string name="widget_schedule_name">Cədvəl</string>
+  <string name="widget_schedule_description">Növbəti 14 günün tədbirləriniz</string>
+  <string name="widget_sun_arc_name">Günəş</string>
+  <string name="widget_sun_arc_description">Günəşin doğuşdan batışa qədər yolu</string>
+  <string name="widget_month_previous">Əvvəlki ay</string>
+  <string name="widget_month_next">Növbəti ay</string>
+  <string name="widget_month_today">Bu gün</string>
+  <string name="widget_month_add">Yeni tədbir</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, bayram</string>
+  <string name="widget_schedule_title">Növbəti 14 gün</string>
+  <string name="widget_schedule_empty">Növbəti 14 gündə tədbir yoxdur</string>
+  <string name="widget_sun_description">Doğuş %1$s, batış %2$s</string>
+  <string name="widget_no_daylight">Bu gün burada Günəş doğmur və batmır</string>
+  <string name="widget_moon_name">Ayın fazası</string>
+  <string name="widget_moon_description">Növbəti bədirlənmə və yeni Ayla birlikdə Ayın fazası</string>
+  <string name="widget_moon_illumination">İşıqlı %%%1$s</string>
+  <string name="widget_moon_content">Ay. %1$s</string>
+  <string name="widget_moon_next_full">Bədirlənmə %1$s</string>
+  <string name="widget_moon_next_new">Yeni Ay %1$s</string>
+  <string name="widget_map_name">Dünya xəritəsi</string>
+  <string name="widget_map_description">Yerinizlə birlikdə dünya xəritəsində gecə və gündüz</string>
+  <string name="widget_map_content">Gecə və gündüzlü dünya xəritəsi</string>
+  <string name="widget_map_content_place">Gecə, gündüz və yerinizlə dünya xəritəsi</string>
+  <string name="widget_countdown_name">Geri sayım</string>
+  <string name="widget_countdown_description">Seçdiyiniz tarixə qalan günlər və ya ondan keçən vaxt</string>
+  <string name="widget_countdown_setup">Vidcet ayarlarında tarix seçin</string>
+  <string name="widget_countdown_today">Bu gün</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">gün qalıb</item>
+    <item quantity="other">gün qalıb</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">gün əvvəl</item>
+    <item quantity="other">gün əvvəl</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">il</item>
+    <item quantity="other">il</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ay</item>
+    <item quantity="other">ay</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">gün</item>
+    <item quantity="other">gün</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s il</item>
+    <item quantity="other">%1$s il</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s ay</item>
+    <item quantity="other">%1$s ay</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s həftə</item>
+    <item quantity="other">%1$s həftə</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s gün</item>
+    <item quantity="other">%1$s gün</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Geri sayım</string>
+  <string name="widget_countdown_mode_until">Qalan günlər</string>
+  <string name="widget_countdown_mode_since">Keçən vaxt</string>
+  <string name="widget_countdown_config_label">Başlıq (istəyə görə)</string>
+  <string name="widget_countdown_config_occasions">Əlamətdar günlər</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Təqvim</string>
+  <string name="widget_countdown_config_change_date">Tarixi dəyiş</string>
+  <string name="widget_countdown_config_repeats">Hər il</string>
+  <string name="widget_countdown_picker_title">Tarix seçin</string>
+  <string name="widget_countdown_picker_year">İl</string>
+  <string name="widget_countdown_picker_month">Ay</string>
+  <string name="widget_countdown_picker_day">Gün</string>
+  <string name="widget_countdown_picker_confirm">Hazırdır</string>
+</resources>

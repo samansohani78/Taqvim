@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (bn) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">টাইমলাইন</string>
+  <string name="timeline_loading">টাইমলাইন লোড হচ্ছে</string>
+  <string name="timeline_mode_day">দিন</string>
+  <string name="timeline_mode_week">সপ্তাহ</string>
+  <string name="timeline_previous">পূর্ববর্তী</string>
+  <string name="timeline_today">আজ</string>
+  <string name="timeline_next">পরবর্তী</string>
+  <string name="timeline_all_day">সারাদিন</string>
+  <string name="timeline_zoom_in">বড় করুন</string>
+  <string name="timeline_zoom_out">ছোট করুন</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s থেকে %3$s</string>
+  <string name="timeline_event_all_day">%1$s, সারাদিন</string>
+  <string name="timeline_draft">নতুন ইভেন্ট, %1$s থেকে %2$s</string>
+  <string name="timeline_draft_create">তৈরি করুন</string>
+  <string name="timeline_draft_cancel">বাতিল</string>
+  <string name="timeline_draft_earlier">15 মিনিট আগে</string>
+  <string name="timeline_draft_later">15 মিনিট পরে</string>
+  <string name="timeline_draft_longer">15 মিনিট লম্বা</string>
+  <string name="timeline_draft_shorter">15 মিনিট ছোট</string>
+  <string name="timeline_now">এখন %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">নামাজের সময়: %1$s</string>
+  <string name="timeline_prayer_fajr">ফজর</string>
+  <string name="timeline_prayer_sunrise">সূর্যোদয়</string>
+  <string name="timeline_prayer_dhuhr">জোহর</string>
+  <string name="timeline_prayer_asr">আসর</string>
+  <string name="timeline_prayer_sunset">সূর্যাস্ত</string>
+  <string name="timeline_prayer_maghrib">মাগরিব</string>
+  <string name="timeline_prayer_isha">এশা</string>
+</resources>

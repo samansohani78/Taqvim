@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ckb) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">ڕێکخستنەکانی ویجێت</string>
+  <string name="widget_config_loading">ڕێکخستنەکانی ویجێت بار دەکرێن</string>
+  <string name="widget_config_background">باکگراوند</string>
+  <string name="widget_background_surface">ڕووکار</string>
+  <string name="widget_background_primary">ڕەنگی جەخت</string>
+  <string name="widget_background_secondary">ڕەنگی جەختی نەرم</string>
+  <string name="widget_background_black">ڕەش</string>
+  <string name="widget_background_white">سپی</string>
+  <string name="widget_config_transparency">ڕوونی</string>
+  <string name="widget_config_percent">%1$d٪</string>
+  <string name="widget_config_scale">قەبارە</string>
+  <string name="widget_config_contents">پیشاندان</string>
+  <string name="widget_content_weekday">ڕۆژی هەفتە</string>
+  <string name="widget_content_secondary_date">بەروار لە ڕۆژژمێری دووەمدا</string>
+  <string name="widget_content_holidays">پشووەکان بە ڕەنگ</string>
+  <string name="widget_content_events">ڕووداوەکان</string>
+  <string name="widget_content_next_prayer">کاتی نوێژی داهاتوو</string>
+  <string name="widget_config_secondary_calendar">ڕۆژژمێری دووەم</string>
+  <string name="widget_calendar_automatic">خۆکار</string>
+  <string name="widget_calendar_persian">کۆچیی هەتاوی</string>
+  <string name="widget_calendar_islamic">کۆچیی مانگی</string>
+  <string name="widget_calendar_gregorian">زایینی</string>
+  <string name="widget_calendar_nepali">بیکرەم سەمبەت</string>
+  <string name="widget_calendar_hebrew">عیبری</string>
+  <string name="widget_config_save">پاشەکەوتکردن</string>
+  <string name="widget_config_cancel">پاشگەزبوونەوە</string>
+  <string name="widget_config_save_failed">ڕێکخستنەکان پاشەکەوت نەکران. دووبارە هەوڵ بدەرەوە.</string>
+  <string name="widget_load_failed">ئەم ویجێتە بار نەکرا. دەست بدە بۆ کردنەوەی Taqvim.</string>
+  <string name="widget_date_1x1_name">بەروار</string>
+  <string name="widget_date_1x1_description">بەرواری ئەمڕۆ لە ڕۆژژمێرەکەتدا</string>
+  <string name="widget_date_clock_4x1_name">بەروار و کاتژمێر</string>
+  <string name="widget_date_clock_4x1_description">بەرواری ئەمڕۆ لەگەڵ کات</string>
+  <string name="widget_day_summary_2x2_name">ئەمڕۆ</string>
+  <string name="widget_day_summary_2x2_description">بەروار، ڕووداوەکانی ئەمڕۆ و کاتی نوێژی داهاتوو</string>
+  <string name="widget_prayer_strip_4x2_name">کاتەکانی نوێژ</string>
+  <string name="widget_prayer_strip_4x2_description">بەروار لەگەڵ کاتەکانی نوێژی ئەمڕۆ</string>
+  <string name="widget_prayer_fajr">بەیانی</string>
+  <string name="widget_prayer_sunrise">خۆرهەڵاتن</string>
+  <string name="widget_prayer_dhuhr">نیوەڕۆ</string>
+  <string name="widget_prayer_asr">عەسر</string>
+  <string name="widget_prayer_maghrib">ئێوارە</string>
+  <string name="widget_prayer_isha">خەوتنان</string>
+  <string name="widget_no_events">ئەمڕۆ هیچ ڕووداوێک نییە</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">شوێنێک بۆ کاتەکانی نوێژ هەڵبژێرە</string>
+  <string name="widget_month_interactive_name">مانگ</string>
+  <string name="widget_month_interactive_description">مانگ لەگەڵ پشوو و ڕووداوەکان؛ لە نێوان مانگەکاندا بجووڵێ</string>
+  <string name="widget_month_bitmap_name">پوختەی مانگ</string>
+  <string name="widget_month_bitmap_description">هەموو مانگەکە لە یەک وێنەدا</string>
+  <string name="widget_week_strip_name">هەفتە</string>
+  <string name="widget_week_strip_description">ئەم هەفتەیە لەگەڵ پشوو و ڕووداوەکان</string>
+  <string name="widget_schedule_name">خشتە</string>
+  <string name="widget_schedule_description">ڕووداوەکانت لە 14 ڕۆژی داهاتوودا</string>
+  <string name="widget_sun_arc_name">خۆر</string>
+  <string name="widget_sun_arc_description">ڕێڕەوی خۆر لە هەڵاتنەوە تا ئاوابوون</string>
+  <string name="widget_month_previous">مانگی پێشوو</string>
+  <string name="widget_month_next">مانگی دواتر</string>
+  <string name="widget_month_today">ئەمڕۆ</string>
+  <string name="widget_month_add">ڕووداوی نوێ</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s، پشوو</string>
+  <string name="widget_schedule_title">14 ڕۆژی داهاتوو</string>
+  <string name="widget_schedule_empty">لە 14 ڕۆژی داهاتوودا هیچ ڕووداوێک نییە</string>
+  <string name="widget_sun_description">هەڵاتن %1$s، ئاوابوون %2$s</string>
+  <string name="widget_no_daylight">ئەمڕۆ لێرە خۆر هەڵنایەت و ئاوا نابێت</string>
+  <string name="widget_moon_name">قۆناغی مانگ</string>
+  <string name="widget_moon_description">قۆناغی مانگ لەگەڵ مانگی چواردە و مانگی نوێی داهاتوو</string>
+  <string name="widget_moon_illumination">ڕووناک %1$s٪</string>
+  <string name="widget_moon_content">مانگ. %1$s</string>
+  <string name="widget_moon_next_full">مانگی چواردە %1$s</string>
+  <string name="widget_moon_next_new">مانگی نوێ %1$s</string>
+  <string name="widget_map_name">نەخشەی جیهان</string>
+  <string name="widget_map_description">ڕۆژ و شەو لەسەر نەخشەی جیهان لەگەڵ شوێنەکەت</string>
+  <string name="widget_map_content">نەخشەی جیهان لەگەڵ ڕۆژ و شەو</string>
+  <string name="widget_map_content_place">نەخشەی جیهان لەگەڵ ڕۆژ، شەو و شوێنەکەت</string>
+  <string name="widget_countdown_name">پاشەژمێری</string>
+  <string name="widget_countdown_description">ڕۆژەکان تا بەروارێک کە هەڵیدەبژێریت، یان کات لەوەتەی</string>
+  <string name="widget_countdown_setup">لە ڕێکخستنەکانی ویجێتدا بەروارێک هەڵبژێرە</string>
+  <string name="widget_countdown_today">ئەمڕۆ</string>
+  <string name="widget_countdown_join">%1$s، %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ڕۆژ ماوە</item>
+    <item quantity="other">ڕۆژ ماوە</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ڕۆژ لەمەوبەر</item>
+    <item quantity="other">ڕۆژ لەمەوبەر</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ساڵ</item>
+    <item quantity="other">ساڵ</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">مانگ</item>
+    <item quantity="other">مانگ</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ڕۆژ</item>
+    <item quantity="other">ڕۆژ</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s ساڵ</item>
+    <item quantity="other">%1$s ساڵ</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s مانگ</item>
+    <item quantity="other">%1$s مانگ</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s هەفتە</item>
+    <item quantity="other">%1$s هەفتە</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s ڕۆژ</item>
+    <item quantity="other">%1$s ڕۆژ</item>
+  </plurals>
+  <string name="widget_countdown_config_title">پاشەژمێری</string>
+  <string name="widget_countdown_mode_until">ڕۆژ تا</string>
+  <string name="widget_countdown_mode_since">کات لەوەتەی</string>
+  <string name="widget_countdown_config_label">ناونیشان (ئارەزوومەندانە)</string>
+  <string name="widget_countdown_config_occasions">بۆنەکان</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">ڕۆژژمێر</string>
+  <string name="widget_countdown_config_change_date">گۆڕینی بەروار</string>
+  <string name="widget_countdown_config_repeats">هەموو ساڵێک</string>
+  <string name="widget_countdown_picker_title">بەروارێک هەڵبژێرە</string>
+  <string name="widget_countdown_picker_year">ساڵ</string>
+  <string name="widget_countdown_picker_month">مانگ</string>
+  <string name="widget_countdown_picker_day">ڕۆژ</string>
+  <string name="widget_countdown_picker_confirm">تەواو</string>
+</resources>

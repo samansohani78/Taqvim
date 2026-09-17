@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ar) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">مواقيت الصلاة</string>
+  <string name="times_prayer_fajr">الفجر</string>
+  <string name="times_prayer_sunrise">الشروق</string>
+  <string name="times_prayer_dhuhr">الظهر</string>
+  <string name="times_prayer_asr">العصر</string>
+  <string name="times_prayer_sunset">الغروب</string>
+  <string name="times_prayer_maghrib">المغرب</string>
+  <string name="times_prayer_isha">العشاء</string>
+  <string name="times_prayer_midnight">منتصف الليل</string>
+  <string name="times_previous_day">اليوم السابق</string>
+  <string name="times_next_day">اليوم التالي</string>
+  <string name="times_today">اليوم</string>
+  <string name="times_show_all">إظهار كل المواقيت</string>
+  <string name="times_show_fewer">إظهار مواقيت أقل</string>
+  <string name="times_next_prayer">%1$s بعد %2$s</string>
+  <string name="times_next_prayer_progress">الوقت المتبقي حتى %1$s</string>
+  <string name="times_sun_path">مسار الشمس من الشروق في %1$s إلى الغروب في %2$s</string>
+  <string name="times_polar_day">لا تغرب الشمس في هذا اليوم، لذا لا يمكن حساب مواقيت الصلاة.</string>
+  <string name="times_polar_night">لا تشرق الشمس في هذا اليوم، لذا لا يمكن حساب مواقيت الصلاة.</string>
+  <string name="times_no_location_title">لم يُختر مكان</string>
+  <string name="times_no_location_message">اختر مدينة أو استخدم موقعك لرؤية مواقيت الصلاة.</string>
+  <string name="times_loading">جارٍ تحميل مواقيت الصلاة</string>
+  <string name="times_print_report">طباعة التقرير الشهري</string>
+  <string name="times_report_title">مواقيت الصلاة في %1$s، من %2$s إلى %3$s</string>
+  <string name="times_report_date">التاريخ</string>
+  <string name="times_report_job">مواقيت الصلاة من Taqvim</string>
+</resources>

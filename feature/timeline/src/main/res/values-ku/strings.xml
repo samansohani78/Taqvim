@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Xeta demê</string>
+  <string name="timeline_loading">Xeta demê tê barkirin</string>
+  <string name="timeline_mode_day">Roj</string>
+  <string name="timeline_mode_week">Hefte</string>
+  <string name="timeline_previous">Berê</string>
+  <string name="timeline_today">Îro</string>
+  <string name="timeline_next">Pêşve</string>
+  <string name="timeline_all_day">Hemû roj</string>
+  <string name="timeline_zoom_in">Mezin bike</string>
+  <string name="timeline_zoom_out">Biçûk bike</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s heta %3$s</string>
+  <string name="timeline_event_all_day">%1$s, hemû roj</string>
+  <string name="timeline_draft">Bûyera nû, %1$s heta %2$s</string>
+  <string name="timeline_draft_create">Çêke</string>
+  <string name="timeline_draft_cancel">Betal bike</string>
+  <string name="timeline_draft_earlier">15 deqe zûtir</string>
+  <string name="timeline_draft_later">15 deqe derengtir</string>
+  <string name="timeline_draft_longer">15 deqe dirêjtir</string>
+  <string name="timeline_draft_shorter">15 deqe kurttir</string>
+  <string name="timeline_now">Niha %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Demên nimêjê: %1$s</string>
+  <string name="timeline_prayer_fajr">Sibê</string>
+  <string name="timeline_prayer_sunrise">Hilatina rojê</string>
+  <string name="timeline_prayer_dhuhr">Nîvro</string>
+  <string name="timeline_prayer_asr">Ikindî</string>
+  <string name="timeline_prayer_sunset">Ava bûna rojê</string>
+  <string name="timeline_prayer_maghrib">Êvar</string>
+  <string name="timeline_prayer_isha">Eşa</string>
+</resources>

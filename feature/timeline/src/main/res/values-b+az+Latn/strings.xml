@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (az) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Zaman xətti</string>
+  <string name="timeline_loading">Zaman xətti yüklənir</string>
+  <string name="timeline_mode_day">Gün</string>
+  <string name="timeline_mode_week">Həftə</string>
+  <string name="timeline_previous">Əvvəlki</string>
+  <string name="timeline_today">Bu gün</string>
+  <string name="timeline_next">Növbəti</string>
+  <string name="timeline_all_day">Bütün gün</string>
+  <string name="timeline_zoom_in">Böyüt</string>
+  <string name="timeline_zoom_out">Kiçilt</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s – %3$s</string>
+  <string name="timeline_event_all_day">%1$s, bütün gün</string>
+  <string name="timeline_draft">Yeni tədbir, %1$s – %2$s</string>
+  <string name="timeline_draft_create">Yarat</string>
+  <string name="timeline_draft_cancel">Ləğv et</string>
+  <string name="timeline_draft_earlier">15 dəqiqə tez</string>
+  <string name="timeline_draft_later">15 dəqiqə gec</string>
+  <string name="timeline_draft_longer">15 dəqiqə uzun</string>
+  <string name="timeline_draft_shorter">15 dəqiqə qısa</string>
+  <string name="timeline_now">İndi %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Namaz vaxtları: %1$s</string>
+  <string name="timeline_prayer_fajr">Sübh</string>
+  <string name="timeline_prayer_sunrise">Günəşin doğuşu</string>
+  <string name="timeline_prayer_dhuhr">Zöhr</string>
+  <string name="timeline_prayer_asr">Əsr</string>
+  <string name="timeline_prayer_sunset">Günəşin batışı</string>
+  <string name="timeline_prayer_maghrib">Məğrib</string>
+  <string name="timeline_prayer_isha">İşa</string>
+</resources>

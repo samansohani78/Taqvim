@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ta) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">காலவரிசை</string>
+  <string name="timeline_loading">காலவரிசை ஏற்றப்படுகிறது</string>
+  <string name="timeline_mode_day">நாள்</string>
+  <string name="timeline_mode_week">வாரம்</string>
+  <string name="timeline_previous">முந்தைய</string>
+  <string name="timeline_today">இன்று</string>
+  <string name="timeline_next">அடுத்து</string>
+  <string name="timeline_all_day">நாள் முழுவதும்</string>
+  <string name="timeline_zoom_in">பெரிதாக்கு</string>
+  <string name="timeline_zoom_out">சிறிதாக்கு</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s முதல் %3$s வரை</string>
+  <string name="timeline_event_all_day">%1$s, நாள் முழுவதும்</string>
+  <string name="timeline_draft">புதிய நிகழ்வு, %1$s முதல் %2$s வரை</string>
+  <string name="timeline_draft_create">உருவாக்கு</string>
+  <string name="timeline_draft_cancel">ரத்துசெய்</string>
+  <string name="timeline_draft_earlier">15 நிமிடம் முன்</string>
+  <string name="timeline_draft_later">15 நிமிடம் பின்</string>
+  <string name="timeline_draft_longer">15 நிமிடம் நீளம்</string>
+  <string name="timeline_draft_shorter">15 நிமிடம் குறைவு</string>
+  <string name="timeline_now">இப்போது %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">தொழுகை நேரங்கள்: %1$s</string>
+  <string name="timeline_prayer_fajr">ஃபஜ்ர்</string>
+  <string name="timeline_prayer_sunrise">சூரிய உதயம்</string>
+  <string name="timeline_prayer_dhuhr">ளுஹர்</string>
+  <string name="timeline_prayer_asr">அஸர்</string>
+  <string name="timeline_prayer_sunset">சூரிய அஸ்தமனம்</string>
+  <string name="timeline_prayer_maghrib">மஃரிப்</string>
+  <string name="timeline_prayer_isha">இஷா</string>
+</resources>

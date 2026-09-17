@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Namaz vakitleri</string>
+  <string name="times_prayer_fajr">İmsak</string>
+  <string name="times_prayer_sunrise">Güneş doğuşu</string>
+  <string name="times_prayer_dhuhr">Öğle</string>
+  <string name="times_prayer_asr">İkindi</string>
+  <string name="times_prayer_sunset">Güneş batışı</string>
+  <string name="times_prayer_maghrib">Akşam</string>
+  <string name="times_prayer_isha">Yatsı</string>
+  <string name="times_prayer_midnight">Gece yarısı</string>
+  <string name="times_previous_day">Önceki gün</string>
+  <string name="times_next_day">Sonraki gün</string>
+  <string name="times_today">Bugün</string>
+  <string name="times_show_all">Tüm vakitleri göster</string>
+  <string name="times_show_fewer">Daha az vakit göster</string>
+  <string name="times_next_prayer">%1$s, %2$s sonra</string>
+  <string name="times_next_prayer_progress">%1$s vaktine kalan süre</string>
+  <string name="times_sun_path">%1$s doğuşundan %2$s batışına Güneş\'in yolu</string>
+  <string name="times_polar_day">Bu gün Güneş batmıyor, bu yüzden namaz vakitleri hesaplanamaz.</string>
+  <string name="times_polar_night">Bu gün Güneş doğmuyor, bu yüzden namaz vakitleri hesaplanamaz.</string>
+  <string name="times_no_location_title">Yer seçilmedi</string>
+  <string name="times_no_location_message">Namaz vakitlerini görmek için bir şehir seçin veya konumunuzu kullanın.</string>
+  <string name="times_loading">Namaz vakitleri yükleniyor</string>
+  <string name="times_print_report">Aylık raporu yazdır</string>
+  <string name="times_report_title">%1$s namaz vakitleri, %2$s – %3$s</string>
+  <string name="times_report_date">Tarih</string>
+  <string name="times_report_job">Taqvim namaz vakitleri</string>
+</resources>

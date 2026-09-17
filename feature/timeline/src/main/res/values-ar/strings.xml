@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ar) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">الخط الزمني</string>
+  <string name="timeline_loading">جارٍ تحميل الخط الزمني</string>
+  <string name="timeline_mode_day">اليوم</string>
+  <string name="timeline_mode_week">الأسبوع</string>
+  <string name="timeline_previous">السابق</string>
+  <string name="timeline_today">اليوم</string>
+  <string name="timeline_next">التالي</string>
+  <string name="timeline_all_day">طوال اليوم</string>
+  <string name="timeline_zoom_in">تكبير</string>
+  <string name="timeline_zoom_out">تصغير</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">، </string>
+  <string name="timeline_event_timed">%1$s، من %2$s إلى %3$s</string>
+  <string name="timeline_event_all_day">%1$s، طوال اليوم</string>
+  <string name="timeline_draft">حدث جديد، من %1$s إلى %2$s</string>
+  <string name="timeline_draft_create">إنشاء</string>
+  <string name="timeline_draft_cancel">إلغاء</string>
+  <string name="timeline_draft_earlier">أبكر بـ15 دقيقة</string>
+  <string name="timeline_draft_later">أبطأ بـ15 دقيقة</string>
+  <string name="timeline_draft_longer">أطول بـ15 دقيقة</string>
+  <string name="timeline_draft_shorter">أقصر بـ15 دقيقة</string>
+  <string name="timeline_now">الآن %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">مواقيت الصلاة: %1$s</string>
+  <string name="timeline_prayer_fajr">الفجر</string>
+  <string name="timeline_prayer_sunrise">الشروق</string>
+  <string name="timeline_prayer_dhuhr">الظهر</string>
+  <string name="timeline_prayer_asr">العصر</string>
+  <string name="timeline_prayer_sunset">الغروب</string>
+  <string name="timeline_prayer_maghrib">المغرب</string>
+  <string name="timeline_prayer_isha">العشاء</string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ja) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">礼拝時刻</string>
+  <string name="times_prayer_fajr">ファジュル</string>
+  <string name="times_prayer_sunrise">日の出</string>
+  <string name="times_prayer_dhuhr">ズフル</string>
+  <string name="times_prayer_asr">アスル</string>
+  <string name="times_prayer_sunset">日の入り</string>
+  <string name="times_prayer_maghrib">マグリブ</string>
+  <string name="times_prayer_isha">イシャー</string>
+  <string name="times_prayer_midnight">深夜</string>
+  <string name="times_previous_day">前日</string>
+  <string name="times_next_day">翌日</string>
+  <string name="times_today">今日</string>
+  <string name="times_show_all">すべての時刻を表示</string>
+  <string name="times_show_fewer">表示を減らす</string>
+  <string name="times_next_prayer">%1$s まで %2$s</string>
+  <string name="times_next_prayer_progress">%1$s までの時間</string>
+  <string name="times_sun_path">%1$s の日の出から %2$s の日の入りまでの太陽の軌道</string>
+  <string name="times_polar_day">この日は太陽が沈まないため、礼拝時刻を計算できません。</string>
+  <string name="times_polar_night">この日は太陽が昇らないため、礼拝時刻を計算できません。</string>
+  <string name="times_no_location_title">場所が選択されていません</string>
+  <string name="times_no_location_message">礼拝時刻を見るには都市を選ぶか、現在地を使ってください。</string>
+  <string name="times_loading">礼拝時刻を読み込み中</string>
+  <string name="times_print_report">月間表を印刷</string>
+  <string name="times_report_title">%1$s の礼拝時刻、%2$s 〜 %3$s</string>
+  <string name="times_report_date">日付</string>
+  <string name="times_report_job">Taqvim の礼拝時刻</string>
+</resources>

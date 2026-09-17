@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ur) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">اوقاتِ نماز</string>
+  <string name="times_prayer_fajr">فجر</string>
+  <string name="times_prayer_sunrise">طلوعِ آفتاب</string>
+  <string name="times_prayer_dhuhr">ظہر</string>
+  <string name="times_prayer_asr">عصر</string>
+  <string name="times_prayer_sunset">غروبِ آفتاب</string>
+  <string name="times_prayer_maghrib">مغرب</string>
+  <string name="times_prayer_isha">عشاء</string>
+  <string name="times_prayer_midnight">آدھی رات</string>
+  <string name="times_previous_day">پچھلا دن</string>
+  <string name="times_next_day">اگلا دن</string>
+  <string name="times_today">آج</string>
+  <string name="times_show_all">تمام اوقات دکھائیں</string>
+  <string name="times_show_fewer">کم اوقات دکھائیں</string>
+  <string name="times_next_prayer">%1$s، %2$s میں</string>
+  <string name="times_next_prayer_progress">%1$s تک باقی وقت</string>
+  <string name="times_sun_path">%1$s پر طلوع سے %2$s پر غروب تک سورج کا راستہ</string>
+  <string name="times_polar_day">اس دن سورج غروب نہیں ہوتا، اس لیے اوقاتِ نماز کا حساب نہیں ہو سکتا۔</string>
+  <string name="times_polar_night">اس دن سورج طلوع نہیں ہوتا، اس لیے اوقاتِ نماز کا حساب نہیں ہو سکتا۔</string>
+  <string name="times_no_location_title">کوئی جگہ منتخب نہیں</string>
+  <string name="times_no_location_message">اوقاتِ نماز دیکھنے کے لیے کوئی شہر منتخب کریں یا اپنا مقام استعمال کریں۔</string>
+  <string name="times_loading">اوقاتِ نماز لوڈ ہو رہے ہیں</string>
+  <string name="times_print_report">ماہانہ رپورٹ پرنٹ کریں</string>
+  <string name="times_report_title">%1$s کے اوقاتِ نماز، %2$s سے %3$s تک</string>
+  <string name="times_report_date">تاریخ</string>
+  <string name="times_report_job">Taqvim اوقاتِ نماز</string>
+</resources>

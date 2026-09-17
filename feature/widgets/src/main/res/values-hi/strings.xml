@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (hi) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">विजेट सेटिंग</string>
+  <string name="widget_config_loading">विजेट सेटिंग लोड हो रही हैं</string>
+  <string name="widget_config_background">पृष्ठभूमि</string>
+  <string name="widget_background_surface">थीम</string>
+  <string name="widget_background_primary">एक्सेंट</string>
+  <string name="widget_background_secondary">हल्का एक्सेंट</string>
+  <string name="widget_background_black">काला</string>
+  <string name="widget_background_white">सफ़ेद</string>
+  <string name="widget_config_transparency">पारदर्शिता</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">आकार</string>
+  <string name="widget_config_contents">दिखाएं</string>
+  <string name="widget_content_weekday">सप्ताह का दिन</string>
+  <string name="widget_content_secondary_date">दूसरे कैलेंडर में तारीख</string>
+  <string name="widget_content_holidays">छुट्टियां रंग में</string>
+  <string name="widget_content_events">इवेंट</string>
+  <string name="widget_content_next_prayer">अगली नमाज़ का समय</string>
+  <string name="widget_config_secondary_calendar">दूसरा कैलेंडर</string>
+  <string name="widget_calendar_automatic">स्वचालित</string>
+  <string name="widget_calendar_persian">सौर हिजरी</string>
+  <string name="widget_calendar_islamic">चंद्र हिजरी</string>
+  <string name="widget_calendar_gregorian">ग्रेगोरियन</string>
+  <string name="widget_calendar_nepali">विक्रम संवत</string>
+  <string name="widget_calendar_hebrew">हिब्रू</string>
+  <string name="widget_config_save">सहेजें</string>
+  <string name="widget_config_cancel">रद्द करें</string>
+  <string name="widget_config_save_failed">सेटिंग सहेजी नहीं जा सकीं। फिर से कोशिश करें।</string>
+  <string name="widget_load_failed">यह विजेट लोड नहीं हो सका। Taqvim खोलने के लिए टैप करें।</string>
+  <string name="widget_date_1x1_name">तारीख</string>
+  <string name="widget_date_1x1_description">आपके कैलेंडर में आज की तारीख</string>
+  <string name="widget_date_clock_4x1_name">तारीख और घड़ी</string>
+  <string name="widget_date_clock_4x1_description">समय के साथ आज की तारीख</string>
+  <string name="widget_day_summary_2x2_name">आज</string>
+  <string name="widget_day_summary_2x2_description">तारीख, आज के इवेंट और अगली नमाज़ का समय</string>
+  <string name="widget_prayer_strip_4x2_name">नमाज़ के समय</string>
+  <string name="widget_prayer_strip_4x2_description">आज के नमाज़ समय के साथ तारीख</string>
+  <string name="widget_prayer_fajr">फ़ज्र</string>
+  <string name="widget_prayer_sunrise">सूर्योदय</string>
+  <string name="widget_prayer_dhuhr">ज़ुहर</string>
+  <string name="widget_prayer_asr">अस्र</string>
+  <string name="widget_prayer_maghrib">मग़रिब</string>
+  <string name="widget_prayer_isha">इशा</string>
+  <string name="widget_no_events">आज कोई इवेंट नहीं</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">नमाज़ के समय के लिए स्थान चुनें</string>
+  <string name="widget_month_interactive_name">महीना</string>
+  <string name="widget_month_interactive_description">छुट्टियों और इवेंट के साथ महीना; महीनों के बीच जाएं</string>
+  <string name="widget_month_bitmap_name">महीने का अवलोकन</string>
+  <string name="widget_month_bitmap_description">पूरा महीना एक चित्र में</string>
+  <string name="widget_week_strip_name">सप्ताह</string>
+  <string name="widget_week_strip_description">छुट्टियों और इवेंट के साथ यह सप्ताह</string>
+  <string name="widget_schedule_name">शेड्यूल</string>
+  <string name="widget_schedule_description">अगले 14 दिनों के आपके इवेंट</string>
+  <string name="widget_sun_arc_name">सूर्य</string>
+  <string name="widget_sun_arc_description">सूर्योदय से सूर्यास्त तक सूर्य का पथ</string>
+  <string name="widget_month_previous">पिछला महीना</string>
+  <string name="widget_month_next">अगला महीना</string>
+  <string name="widget_month_today">आज</string>
+  <string name="widget_month_add">नया इवेंट</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, छुट्टी</string>
+  <string name="widget_schedule_title">अगले 14 दिन</string>
+  <string name="widget_schedule_empty">अगले 14 दिनों में कोई इवेंट नहीं</string>
+  <string name="widget_sun_description">सूर्योदय %1$s, सूर्यास्त %2$s</string>
+  <string name="widget_no_daylight">आज यहां सूर्य उदय या अस्त नहीं होता</string>
+  <string name="widget_moon_name">चंद्र कला</string>
+  <string name="widget_moon_description">अगली पूर्णिमा और अमावस्या के साथ चंद्र कला</string>
+  <string name="widget_moon_illumination">प्रकाशित %1$s%%</string>
+  <string name="widget_moon_content">चंद्रमा। %1$s</string>
+  <string name="widget_moon_next_full">पूर्णिमा %1$s</string>
+  <string name="widget_moon_next_new">अमावस्या %1$s</string>
+  <string name="widget_map_name">विश्व मानचित्र</string>
+  <string name="widget_map_description">आपकी जगह के साथ विश्व मानचित्र पर दिन और रात</string>
+  <string name="widget_map_content">दिन और रात के साथ विश्व मानचित्र</string>
+  <string name="widget_map_content_place">दिन, रात और आपकी जगह के साथ विश्व मानचित्र</string>
+  <string name="widget_countdown_name">उलटी गिनती</string>
+  <string name="widget_countdown_description">आपकी चुनी तारीख तक के दिन, या उसके बाद का समय</string>
+  <string name="widget_countdown_setup">विजेट सेटिंग में कोई तारीख चुनें</string>
+  <string name="widget_countdown_today">आज</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">दिन बाकी</item>
+    <item quantity="other">दिन बाकी</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">दिन पहले</item>
+    <item quantity="other">दिन पहले</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">वर्ष</item>
+    <item quantity="other">वर्ष</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">महीना</item>
+    <item quantity="other">महीने</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">दिन</item>
+    <item quantity="other">दिन</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s वर्ष</item>
+    <item quantity="other">%1$s वर्ष</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s महीना</item>
+    <item quantity="other">%1$s महीने</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s सप्ताह</item>
+    <item quantity="other">%1$s सप्ताह</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s दिन</item>
+    <item quantity="other">%1$s दिन</item>
+  </plurals>
+  <string name="widget_countdown_config_title">उलटी गिनती</string>
+  <string name="widget_countdown_mode_until">बाकी दिन</string>
+  <string name="widget_countdown_mode_since">बीता समय</string>
+  <string name="widget_countdown_config_label">शीर्षक (वैकल्पिक)</string>
+  <string name="widget_countdown_config_occasions">अवसर</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">कैलेंडर</string>
+  <string name="widget_countdown_config_change_date">तारीख बदलें</string>
+  <string name="widget_countdown_config_repeats">हर वर्ष</string>
+  <string name="widget_countdown_picker_title">तारीख चुनें</string>
+  <string name="widget_countdown_picker_year">वर्ष</string>
+  <string name="widget_countdown_picker_month">महीना</string>
+  <string name="widget_countdown_picker_day">दिन</string>
+  <string name="widget_countdown_picker_confirm">हो गया</string>
+</resources>

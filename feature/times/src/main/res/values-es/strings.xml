@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (es) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Horarios de oración</string>
+  <string name="times_prayer_fajr">Fayr</string>
+  <string name="times_prayer_sunrise">Salida del sol</string>
+  <string name="times_prayer_dhuhr">Dhuhr</string>
+  <string name="times_prayer_asr">Asr</string>
+  <string name="times_prayer_sunset">Puesta del sol</string>
+  <string name="times_prayer_maghrib">Magrib</string>
+  <string name="times_prayer_isha">Isha</string>
+  <string name="times_prayer_midnight">Medianoche</string>
+  <string name="times_previous_day">Día anterior</string>
+  <string name="times_next_day">Día siguiente</string>
+  <string name="times_today">Hoy</string>
+  <string name="times_show_all">Mostrar todos los horarios</string>
+  <string name="times_show_fewer">Mostrar menos horarios</string>
+  <string name="times_next_prayer">%1$s en %2$s</string>
+  <string name="times_next_prayer_progress">Tiempo hasta %1$s</string>
+  <string name="times_sun_path">Trayectoria del Sol desde la salida a las %1$s hasta la puesta a las %2$s</string>
+  <string name="times_polar_day">El Sol no se pone este día, así que no se pueden calcular los horarios de oración.</string>
+  <string name="times_polar_night">El Sol no sale este día, así que no se pueden calcular los horarios de oración.</string>
+  <string name="times_no_location_title">No hay lugar elegido</string>
+  <string name="times_no_location_message">Elige una ciudad o usa tu ubicación para ver los horarios de oración.</string>
+  <string name="times_loading">Cargando horarios de oración</string>
+  <string name="times_print_report">Imprimir informe mensual</string>
+  <string name="times_report_title">Horarios de oración de %1$s, del %2$s al %3$s</string>
+  <string name="times_report_date">Fecha</string>
+  <string name="times_report_job">Horarios de oración de Taqvim</string>
+</resources>

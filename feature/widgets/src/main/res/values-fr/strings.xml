@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (fr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">Paramètres du widget</string>
+  <string name="widget_config_loading">Chargement des paramètres du widget</string>
+  <string name="widget_config_background">Arrière-plan</string>
+  <string name="widget_background_surface">Thème</string>
+  <string name="widget_background_primary">Accent</string>
+  <string name="widget_background_secondary">Accent doux</string>
+  <string name="widget_background_black">Noir</string>
+  <string name="widget_background_white">Blanc</string>
+  <string name="widget_config_transparency">Transparence</string>
+  <string name="widget_config_percent">%1$d %%</string>
+  <string name="widget_config_scale">Taille</string>
+  <string name="widget_config_contents">Afficher</string>
+  <string name="widget_content_weekday">Jour de la semaine</string>
+  <string name="widget_content_secondary_date">Date dans le second calendrier</string>
+  <string name="widget_content_holidays">Jours fériés en couleur</string>
+  <string name="widget_content_events">Événements</string>
+  <string name="widget_content_next_prayer">Prochaine heure de prière</string>
+  <string name="widget_config_secondary_calendar">Second calendrier</string>
+  <string name="widget_calendar_automatic">Automatique</string>
+  <string name="widget_calendar_persian">Hégirien solaire</string>
+  <string name="widget_calendar_islamic">Hégirien lunaire</string>
+  <string name="widget_calendar_gregorian">Grégorien</string>
+  <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <string name="widget_calendar_hebrew">Hébraïque</string>
+  <string name="widget_config_save">Enregistrer</string>
+  <string name="widget_config_cancel">Annuler</string>
+  <string name="widget_config_save_failed">Les paramètres n\'ont pas pu être enregistrés. Réessayez.</string>
+  <string name="widget_load_failed">Ce widget n\'a pas pu être chargé. Touchez pour ouvrir Taqvim.</string>
+  <string name="widget_date_1x1_name">Date</string>
+  <string name="widget_date_1x1_description">La date du jour dans votre calendrier</string>
+  <string name="widget_date_clock_4x1_name">Date et horloge</string>
+  <string name="widget_date_clock_4x1_description">La date du jour avec l\'heure</string>
+  <string name="widget_day_summary_2x2_name">Aujourd\'hui</string>
+  <string name="widget_day_summary_2x2_description">La date, les événements du jour et la prochaine heure de prière</string>
+  <string name="widget_prayer_strip_4x2_name">Heures de prière</string>
+  <string name="widget_prayer_strip_4x2_description">La date avec les heures de prière du jour</string>
+  <string name="widget_prayer_fajr">Fajr</string>
+  <string name="widget_prayer_sunrise">Lever du soleil</string>
+  <string name="widget_prayer_dhuhr">Dhouhr</string>
+  <string name="widget_prayer_asr">Asr</string>
+  <string name="widget_prayer_maghrib">Maghreb</string>
+  <string name="widget_prayer_isha">Icha</string>
+  <string name="widget_no_events">Aucun événement aujourd\'hui</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Choisissez un lieu pour les heures de prière</string>
+  <string name="widget_month_interactive_name">Mois</string>
+  <string name="widget_month_interactive_description">Le mois avec ses jours fériés et événements ; naviguez entre les mois</string>
+  <string name="widget_month_bitmap_name">Aperçu du mois</string>
+  <string name="widget_month_bitmap_description">Le mois entier dessiné en une image</string>
+  <string name="widget_week_strip_name">Semaine</string>
+  <string name="widget_week_strip_description">Cette semaine avec ses jours fériés et événements</string>
+  <string name="widget_schedule_name">Programme</string>
+  <string name="widget_schedule_description">Vos événements des 14 prochains jours</string>
+  <string name="widget_sun_arc_name">Soleil</string>
+  <string name="widget_sun_arc_description">La course du Soleil du lever au coucher</string>
+  <string name="widget_month_previous">Mois précédent</string>
+  <string name="widget_month_next">Mois suivant</string>
+  <string name="widget_month_today">Aujourd\'hui</string>
+  <string name="widget_month_add">Nouvel événement</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, jour férié</string>
+  <string name="widget_schedule_title">14 prochains jours</string>
+  <string name="widget_schedule_empty">Aucun événement dans les 14 prochains jours</string>
+  <string name="widget_sun_description">Lever %1$s, coucher %2$s</string>
+  <string name="widget_no_daylight">Le Soleil ne se lève ni ne se couche ici aujourd\'hui</string>
+  <string name="widget_moon_name">Phase de la Lune</string>
+  <string name="widget_moon_description">La phase de la Lune avec la prochaine pleine et nouvelle lune</string>
+  <string name="widget_moon_illumination">Éclairée à %1$s %%</string>
+  <string name="widget_moon_content">Lune. %1$s</string>
+  <string name="widget_moon_next_full">Pleine lune %1$s</string>
+  <string name="widget_moon_next_new">Nouvelle lune %1$s</string>
+  <string name="widget_map_name">Carte du monde</string>
+  <string name="widget_map_description">Le jour et la nuit sur la carte du monde avec votre lieu</string>
+  <string name="widget_map_content">Carte du monde avec le jour et la nuit</string>
+  <string name="widget_map_content_place">Carte du monde avec le jour, la nuit et votre lieu</string>
+  <string name="widget_countdown_name">Compte à rebours</string>
+  <string name="widget_countdown_description">Jours restants avant une date choisie, ou temps écoulé depuis</string>
+  <string name="widget_countdown_setup">Choisissez une date dans les paramètres du widget</string>
+  <string name="widget_countdown_today">Aujourd\'hui</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">jour restant</item>
+    <item quantity="many">jours restants</item>
+    <item quantity="other">jours restants</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">jour écoulé</item>
+    <item quantity="many">jours écoulés</item>
+    <item quantity="other">jours écoulés</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">an</item>
+    <item quantity="many">ans</item>
+    <item quantity="other">ans</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">mois</item>
+    <item quantity="many">mois</item>
+    <item quantity="other">mois</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">jour</item>
+    <item quantity="many">jours</item>
+    <item quantity="other">jours</item>
+  </plurals>
+  <plurals name="widget_countdown_years">
+    <item quantity="one">%1$s an</item>
+    <item quantity="many">%1$s ans</item>
+    <item quantity="other">%1$s ans</item>
+  </plurals>
+  <plurals name="widget_countdown_months">
+    <item quantity="one">%1$s mois</item>
+    <item quantity="many">%1$s mois</item>
+    <item quantity="other">%1$s mois</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s semaine</item>
+    <item quantity="many">%1$s semaines</item>
+    <item quantity="other">%1$s semaines</item>
+  </plurals>
+  <plurals name="widget_countdown_days">
+    <item quantity="one">%1$s jour</item>
+    <item quantity="many">%1$s jours</item>
+    <item quantity="other">%1$s jours</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Compte à rebours</string>
+  <string name="widget_countdown_mode_until">Jours avant</string>
+  <string name="widget_countdown_mode_since">Temps depuis</string>
+  <string name="widget_countdown_config_label">Titre (facultatif)</string>
+  <string name="widget_countdown_config_occasions">Fêtes</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Calendrier</string>
+  <string name="widget_countdown_config_change_date">Changer la date</string>
+  <string name="widget_countdown_config_repeats">Chaque année</string>
+  <string name="widget_countdown_picker_title">Choisir une date</string>
+  <string name="widget_countdown_picker_year">Année</string>
+  <string name="widget_countdown_picker_month">Mois</string>
+  <string name="widget_countdown_picker_day">Jour</string>
+  <string name="widget_countdown_picker_confirm">OK</string>
+</resources>

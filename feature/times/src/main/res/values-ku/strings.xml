@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Demên nimêjê</string>
+  <string name="times_prayer_fajr">Sibê</string>
+  <string name="times_prayer_sunrise">Hilatina rojê</string>
+  <string name="times_prayer_dhuhr">Nîvro</string>
+  <string name="times_prayer_asr">Ikindî</string>
+  <string name="times_prayer_sunset">Ava bûna rojê</string>
+  <string name="times_prayer_maghrib">Êvar</string>
+  <string name="times_prayer_isha">Eşa</string>
+  <string name="times_prayer_midnight">Nîvê şevê</string>
+  <string name="times_previous_day">Roja berê</string>
+  <string name="times_next_day">Roja din</string>
+  <string name="times_today">Îro</string>
+  <string name="times_show_all">Hemû deman nîşan bide</string>
+  <string name="times_show_fewer">Kêmtir deman nîşan bide</string>
+  <string name="times_next_prayer">%1$s di %2$s de</string>
+  <string name="times_next_prayer_progress">Dem heta %1$s</string>
+  <string name="times_sun_path">Rêya rojê ji hilatinê di %1$s de heta avabûnê di %2$s de</string>
+  <string name="times_polar_day">Di vê rojê de roj ava nabe, ji ber vê yekê demên nimêjê nayên hesabkirin.</string>
+  <string name="times_polar_night">Di vê rojê de roj hilnayê, ji ber vê yekê demên nimêjê nayên hesabkirin.</string>
+  <string name="times_no_location_title">Cih nehatiye hilbijartin</string>
+  <string name="times_no_location_message">Ji bo dîtina demên nimêjê bajarekî hilbijêre an cihê xwe bi kar bîne.</string>
+  <string name="times_loading">Demên nimêjê tên barkirin</string>
+  <string name="times_print_report">Rapora mehane çap bike</string>
+  <string name="times_report_title">Demên nimêjê ji bo %1$s, %2$s heta %3$s</string>
+  <string name="times_report_date">Dîrok</string>
+  <string name="times_report_job">Demên nimêjê yên Taqvim</string>
+</resources>

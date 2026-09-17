@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (uz) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Vaqt chizigʻi</string>
+  <string name="timeline_loading">Vaqt chizigʻi yuklanmoqda</string>
+  <string name="timeline_mode_day">Kun</string>
+  <string name="timeline_mode_week">Hafta</string>
+  <string name="timeline_previous">Oldingi</string>
+  <string name="timeline_today">Bugun</string>
+  <string name="timeline_next">Keyingi</string>
+  <string name="timeline_all_day">Kun boʻyi</string>
+  <string name="timeline_zoom_in">Kattalashtirish</string>
+  <string name="timeline_zoom_out">Kichraytirish</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s – %3$s</string>
+  <string name="timeline_event_all_day">%1$s, kun boʻyi</string>
+  <string name="timeline_draft">Yangi tadbir, %1$s – %2$s</string>
+  <string name="timeline_draft_create">Yaratish</string>
+  <string name="timeline_draft_cancel">Bekor qilish</string>
+  <string name="timeline_draft_earlier">15 daqiqa erta</string>
+  <string name="timeline_draft_later">15 daqiqa kech</string>
+  <string name="timeline_draft_longer">15 daqiqa uzunroq</string>
+  <string name="timeline_draft_shorter">15 daqiqa qisqaroq</string>
+  <string name="timeline_now">Hozir %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Namoz vaqtlari: %1$s</string>
+  <string name="timeline_prayer_fajr">Bomdod</string>
+  <string name="timeline_prayer_sunrise">Quyosh chiqishi</string>
+  <string name="timeline_prayer_dhuhr">Peshin</string>
+  <string name="timeline_prayer_asr">Asr</string>
+  <string name="timeline_prayer_sunset">Quyosh botishi</string>
+  <string name="timeline_prayer_maghrib">Shom</string>
+  <string name="timeline_prayer_isha">Xufton</string>
+</resources>

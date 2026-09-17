@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ru) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Время намаза</string>
+  <string name="times_prayer_fajr">Фаджр</string>
+  <string name="times_prayer_sunrise">Восход</string>
+  <string name="times_prayer_dhuhr">Зухр</string>
+  <string name="times_prayer_asr">Аср</string>
+  <string name="times_prayer_sunset">Закат</string>
+  <string name="times_prayer_maghrib">Магриб</string>
+  <string name="times_prayer_isha">Иша</string>
+  <string name="times_prayer_midnight">Полночь</string>
+  <string name="times_previous_day">Предыдущий день</string>
+  <string name="times_next_day">Следующий день</string>
+  <string name="times_today">Сегодня</string>
+  <string name="times_show_all">Показать всё время</string>
+  <string name="times_show_fewer">Показать меньше</string>
+  <string name="times_next_prayer">%1$s через %2$s</string>
+  <string name="times_next_prayer_progress">Время до %1$s</string>
+  <string name="times_sun_path">Путь Солнца от восхода в %1$s до заката в %2$s</string>
+  <string name="times_polar_day">В этот день Солнце не заходит, поэтому время намаза нельзя рассчитать.</string>
+  <string name="times_polar_night">В этот день Солнце не восходит, поэтому время намаза нельзя рассчитать.</string>
+  <string name="times_no_location_title">Место не выбрано</string>
+  <string name="times_no_location_message">Выберите город или используйте своё местоположение, чтобы увидеть время намаза.</string>
+  <string name="times_loading">Загрузка времени намаза</string>
+  <string name="times_print_report">Печать месячного отчёта</string>
+  <string name="times_report_title">Время намаза: %1$s, с %2$s по %3$s</string>
+  <string name="times_report_date">Дата</string>
+  <string name="times_report_job">Время намаза Taqvim</string>
+</resources>

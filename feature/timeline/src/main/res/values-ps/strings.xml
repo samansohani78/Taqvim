@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ps) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">مهال کرښه</string>
+  <string name="timeline_loading">مهال کرښه پورته کېږي</string>
+  <string name="timeline_mode_day">ورځ</string>
+  <string name="timeline_mode_week">اونۍ</string>
+  <string name="timeline_previous">مخکینی</string>
+  <string name="timeline_today">نن</string>
+  <string name="timeline_next">بل</string>
+  <string name="timeline_all_day">ټوله ورځ</string>
+  <string name="timeline_zoom_in">لوی کول</string>
+  <string name="timeline_zoom_out">کوچنی کول</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">، </string>
+  <string name="timeline_event_timed">%1$s، له %2$s تر %3$s</string>
+  <string name="timeline_event_all_day">%1$s، ټوله ورځ</string>
+  <string name="timeline_draft">نوې پېښه، له %1$s تر %2$s</string>
+  <string name="timeline_draft_create">جوړول</string>
+  <string name="timeline_draft_cancel">لغوه کول</string>
+  <string name="timeline_draft_earlier">15 دقیقې مخکې</string>
+  <string name="timeline_draft_later">15 دقیقې وروسته</string>
+  <string name="timeline_draft_longer">15 دقیقې اوږده</string>
+  <string name="timeline_draft_shorter">15 دقیقې لنډه</string>
+  <string name="timeline_now">اوس %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">د لمانځه وختونه: %1$s</string>
+  <string name="timeline_prayer_fajr">سهار</string>
+  <string name="timeline_prayer_sunrise">لمرختل</string>
+  <string name="timeline_prayer_dhuhr">ماسپښین</string>
+  <string name="timeline_prayer_asr">مازدیګر</string>
+  <string name="timeline_prayer_sunset">لمرلوېدل</string>
+  <string name="timeline_prayer_maghrib">ماښام</string>
+  <string name="timeline_prayer_isha">ماسخوتن</string>
+</resources>

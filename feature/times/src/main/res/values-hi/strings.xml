@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (hi) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">नमाज़ के समय</string>
+  <string name="times_prayer_fajr">फ़ज्र</string>
+  <string name="times_prayer_sunrise">सूर्योदय</string>
+  <string name="times_prayer_dhuhr">ज़ुहर</string>
+  <string name="times_prayer_asr">अस्र</string>
+  <string name="times_prayer_sunset">सूर्यास्त</string>
+  <string name="times_prayer_maghrib">मग़रिब</string>
+  <string name="times_prayer_isha">इशा</string>
+  <string name="times_prayer_midnight">मध्यरात्रि</string>
+  <string name="times_previous_day">पिछला दिन</string>
+  <string name="times_next_day">अगला दिन</string>
+  <string name="times_today">आज</string>
+  <string name="times_show_all">सभी समय दिखाएं</string>
+  <string name="times_show_fewer">कम समय दिखाएं</string>
+  <string name="times_next_prayer">%1$s %2$s में</string>
+  <string name="times_next_prayer_progress">%1$s तक का समय</string>
+  <string name="times_sun_path">%1$s बजे सूर्योदय से %2$s बजे सूर्यास्त तक सूर्य का पथ</string>
+  <string name="times_polar_day">इस दिन सूर्य अस्त नहीं होता, इसलिए नमाज़ के समय की गणना नहीं हो सकती।</string>
+  <string name="times_polar_night">इस दिन सूर्य उदय नहीं होता, इसलिए नमाज़ के समय की गणना नहीं हो सकती।</string>
+  <string name="times_no_location_title">कोई जगह नहीं चुनी गई</string>
+  <string name="times_no_location_message">नमाज़ के समय देखने के लिए कोई शहर चुनें या अपना स्थान इस्तेमाल करें।</string>
+  <string name="times_loading">नमाज़ के समय लोड हो रहे हैं</string>
+  <string name="times_print_report">मासिक रिपोर्ट प्रिंट करें</string>
+  <string name="times_report_title">%1$s के लिए नमाज़ के समय, %2$s से %3$s</string>
+  <string name="times_report_date">तारीख</string>
+  <string name="times_report_job">Taqvim नमाज़ के समय</string>
+</resources>

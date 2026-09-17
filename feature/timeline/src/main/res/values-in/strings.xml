@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (id) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Linimasa</string>
+  <string name="timeline_loading">Memuat linimasa</string>
+  <string name="timeline_mode_day">Hari</string>
+  <string name="timeline_mode_week">Minggu</string>
+  <string name="timeline_previous">Sebelumnya</string>
+  <string name="timeline_today">Hari ini</string>
+  <string name="timeline_next">Berikutnya</string>
+  <string name="timeline_all_day">Sepanjang hari</string>
+  <string name="timeline_zoom_in">Perbesar</string>
+  <string name="timeline_zoom_out">Perkecil</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s sampai %3$s</string>
+  <string name="timeline_event_all_day">%1$s, sepanjang hari</string>
+  <string name="timeline_draft">Acara baru, %1$s sampai %2$s</string>
+  <string name="timeline_draft_create">Buat</string>
+  <string name="timeline_draft_cancel">Batal</string>
+  <string name="timeline_draft_earlier">15 menit lebih awal</string>
+  <string name="timeline_draft_later">15 menit lebih lambat</string>
+  <string name="timeline_draft_longer">15 menit lebih lama</string>
+  <string name="timeline_draft_shorter">15 menit lebih singkat</string>
+  <string name="timeline_now">Sekarang %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Waktu salat: %1$s</string>
+  <string name="timeline_prayer_fajr">Subuh</string>
+  <string name="timeline_prayer_sunrise">Matahari terbit</string>
+  <string name="timeline_prayer_dhuhr">Zuhur</string>
+  <string name="timeline_prayer_asr">Asar</string>
+  <string name="timeline_prayer_sunset">Matahari terbenam</string>
+  <string name="timeline_prayer_maghrib">Magrib</string>
+  <string name="timeline_prayer_isha">Isya</string>
+</resources>

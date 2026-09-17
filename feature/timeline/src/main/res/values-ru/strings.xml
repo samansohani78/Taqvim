@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ru) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Хронология</string>
+  <string name="timeline_loading">Загрузка хронологии</string>
+  <string name="timeline_mode_day">День</string>
+  <string name="timeline_mode_week">Неделя</string>
+  <string name="timeline_previous">Назад</string>
+  <string name="timeline_today">Сегодня</string>
+  <string name="timeline_next">Далее</string>
+  <string name="timeline_all_day">Весь день</string>
+  <string name="timeline_zoom_in">Увеличить</string>
+  <string name="timeline_zoom_out">Уменьшить</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, с %2$s до %3$s</string>
+  <string name="timeline_event_all_day">%1$s, весь день</string>
+  <string name="timeline_draft">Новое событие, с %1$s до %2$s</string>
+  <string name="timeline_draft_create">Создать</string>
+  <string name="timeline_draft_cancel">Отмена</string>
+  <string name="timeline_draft_earlier">На 15 минут раньше</string>
+  <string name="timeline_draft_later">На 15 минут позже</string>
+  <string name="timeline_draft_longer">На 15 минут дольше</string>
+  <string name="timeline_draft_shorter">На 15 минут короче</string>
+  <string name="timeline_now">Сейчас %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Время намаза: %1$s</string>
+  <string name="timeline_prayer_fajr">Фаджр</string>
+  <string name="timeline_prayer_sunrise">Восход</string>
+  <string name="timeline_prayer_dhuhr">Зухр</string>
+  <string name="timeline_prayer_asr">Аср</string>
+  <string name="timeline_prayer_sunset">Закат</string>
+  <string name="timeline_prayer_maghrib">Магриб</string>
+  <string name="timeline_prayer_isha">Иша</string>
+</resources>

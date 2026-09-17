@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ja) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">ウィジェットの設定</string>
+  <string name="widget_config_loading">ウィジェットの設定を読み込み中</string>
+  <string name="widget_config_background">背景</string>
+  <string name="widget_background_surface">テーマ</string>
+  <string name="widget_background_primary">アクセント</string>
+  <string name="widget_background_secondary">淡いアクセント</string>
+  <string name="widget_background_black">黒</string>
+  <string name="widget_background_white">白</string>
+  <string name="widget_config_transparency">透明度</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">サイズ</string>
+  <string name="widget_config_contents">表示</string>
+  <string name="widget_content_weekday">曜日</string>
+  <string name="widget_content_secondary_date">第2のカレンダーの日付</string>
+  <string name="widget_content_holidays">祝日を色付き</string>
+  <string name="widget_content_events">イベント</string>
+  <string name="widget_content_next_prayer">次の礼拝時刻</string>
+  <string name="widget_config_secondary_calendar">第2のカレンダー</string>
+  <string name="widget_calendar_automatic">自動</string>
+  <string name="widget_calendar_persian">太陽ヒジュラ暦</string>
+  <string name="widget_calendar_islamic">太陰ヒジュラ暦</string>
+  <string name="widget_calendar_gregorian">グレゴリオ暦</string>
+  <string name="widget_calendar_nepali">ビクラム暦</string>
+  <string name="widget_calendar_hebrew">ヘブライ暦</string>
+  <string name="widget_config_save">保存</string>
+  <string name="widget_config_cancel">キャンセル</string>
+  <string name="widget_config_save_failed">設定を保存できませんでした。もう一度お試しください。</string>
+  <string name="widget_load_failed">このウィジェットを読み込めませんでした。タップして Taqvim を開いてください。</string>
+  <string name="widget_date_1x1_name">日付</string>
+  <string name="widget_date_1x1_description">あなたのカレンダーでの今日の日付</string>
+  <string name="widget_date_clock_4x1_name">日付と時計</string>
+  <string name="widget_date_clock_4x1_description">今日の日付と時刻</string>
+  <string name="widget_day_summary_2x2_name">今日</string>
+  <string name="widget_day_summary_2x2_description">日付、今日のイベント、次の礼拝時刻</string>
+  <string name="widget_prayer_strip_4x2_name">礼拝時刻</string>
+  <string name="widget_prayer_strip_4x2_description">日付と今日の礼拝時刻</string>
+  <string name="widget_prayer_fajr">ファジュル</string>
+  <string name="widget_prayer_sunrise">日の出</string>
+  <string name="widget_prayer_dhuhr">ズフル</string>
+  <string name="widget_prayer_asr">アスル</string>
+  <string name="widget_prayer_maghrib">マグリブ</string>
+  <string name="widget_prayer_isha">イシャー</string>
+  <string name="widget_no_events">今日はイベントがありません</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">礼拝時刻のために場所を選んでください</string>
+  <string name="widget_month_interactive_name">月</string>
+  <string name="widget_month_interactive_description">祝日とイベント付きの月。月を切り替えられます</string>
+  <string name="widget_month_bitmap_name">月の概観</string>
+  <string name="widget_month_bitmap_description">1枚の画像に描いた1か月</string>
+  <string name="widget_week_strip_name">週</string>
+  <string name="widget_week_strip_description">祝日とイベント付きの今週</string>
+  <string name="widget_schedule_name">スケジュール</string>
+  <string name="widget_schedule_description">今後14日間のイベント</string>
+  <string name="widget_sun_arc_name">太陽</string>
+  <string name="widget_sun_arc_description">日の出から日の入りまでの太陽の軌道</string>
+  <string name="widget_month_previous">前の月</string>
+  <string name="widget_month_next">次の月</string>
+  <string name="widget_month_today">今日</string>
+  <string name="widget_month_add">新しいイベント</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s、祝日</string>
+  <string name="widget_schedule_title">今後14日間</string>
+  <string name="widget_schedule_empty">今後14日間にイベントはありません</string>
+  <string name="widget_sun_description">日の出 %1$s、日の入り %2$s</string>
+  <string name="widget_no_daylight">今日ここでは太陽が昇らず沈みません</string>
+  <string name="widget_moon_name">月相</string>
+  <string name="widget_moon_description">月相と次の満月・新月</string>
+  <string name="widget_moon_illumination">輝面比 %1$s%%</string>
+  <string name="widget_moon_content">月。%1$s</string>
+  <string name="widget_moon_next_full">満月 %1$s</string>
+  <string name="widget_moon_next_new">新月 %1$s</string>
+  <string name="widget_map_name">世界地図</string>
+  <string name="widget_map_description">世界地図の昼夜とあなたの場所</string>
+  <string name="widget_map_content">昼夜を示す世界地図</string>
+  <string name="widget_map_content_place">昼夜とあなたの場所を示す世界地図</string>
+  <string name="widget_countdown_name">カウントダウン</string>
+  <string name="widget_countdown_description">選んだ日付までの日数、またはその日からの経過</string>
+  <string name="widget_countdown_setup">ウィジェットの設定で日付を選んでください</string>
+  <string name="widget_countdown_today">今日</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left">
+    <item quantity="other">日 残り</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago">
+    <item quantity="other">日 前</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years">
+    <item quantity="other">年</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months">
+    <item quantity="other">か月</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days">
+    <item quantity="other">日</item>
+  </plurals>
+  <plurals name="widget_countdown_years">
+    <item quantity="other">%1$s 年</item>
+  </plurals>
+  <plurals name="widget_countdown_months">
+    <item quantity="other">%1$s か月</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="other">%1$s 週</item>
+  </plurals>
+  <plurals name="widget_countdown_days">
+    <item quantity="other">%1$s 日</item>
+  </plurals>
+  <string name="widget_countdown_config_title">カウントダウン</string>
+  <string name="widget_countdown_mode_until">までの日数</string>
+  <string name="widget_countdown_mode_since">からの経過</string>
+  <string name="widget_countdown_config_label">タイトル（任意）</string>
+  <string name="widget_countdown_config_occasions">記念日</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">カレンダー</string>
+  <string name="widget_countdown_config_change_date">日付を変更</string>
+  <string name="widget_countdown_config_repeats">毎年</string>
+  <string name="widget_countdown_picker_title">日付を選ぶ</string>
+  <string name="widget_countdown_picker_year">年</string>
+  <string name="widget_countdown_picker_month">月</string>
+  <string name="widget_countdown_picker_day">日</string>
+  <string name="widget_countdown_picker_confirm">完了</string>
+</resources>

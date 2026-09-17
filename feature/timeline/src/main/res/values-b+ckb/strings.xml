@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ckb) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">هێڵی کات</string>
+  <string name="timeline_loading">هێڵی کات بار دەکرێت</string>
+  <string name="timeline_mode_day">ڕۆژ</string>
+  <string name="timeline_mode_week">هەفتە</string>
+  <string name="timeline_previous">پێشوو</string>
+  <string name="timeline_today">ئەمڕۆ</string>
+  <string name="timeline_next">دواتر</string>
+  <string name="timeline_all_day">هەموو ڕۆژ</string>
+  <string name="timeline_zoom_in">گەورەکردن</string>
+  <string name="timeline_zoom_out">بچووککردنەوە</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">، </string>
+  <string name="timeline_event_timed">%1$s، %2$s تا %3$s</string>
+  <string name="timeline_event_all_day">%1$s، هەموو ڕۆژ</string>
+  <string name="timeline_draft">ڕووداوی نوێ، %1$s تا %2$s</string>
+  <string name="timeline_draft_create">دروستکردن</string>
+  <string name="timeline_draft_cancel">پاشگەزبوونەوە</string>
+  <string name="timeline_draft_earlier">15 خولەک زووتر</string>
+  <string name="timeline_draft_later">15 خولەک درەنگتر</string>
+  <string name="timeline_draft_longer">15 خولەک درێژتر</string>
+  <string name="timeline_draft_shorter">15 خولەک کورتتر</string>
+  <string name="timeline_now">ئێستا %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">کاتەکانی نوێژ: %1$s</string>
+  <string name="timeline_prayer_fajr">بەیانی</string>
+  <string name="timeline_prayer_sunrise">خۆرهەڵاتن</string>
+  <string name="timeline_prayer_dhuhr">نیوەڕۆ</string>
+  <string name="timeline_prayer_asr">عەسر</string>
+  <string name="timeline_prayer_sunset">خۆرئاوابوون</string>
+  <string name="timeline_prayer_maghrib">ئێوارە</string>
+  <string name="timeline_prayer_isha">خەوتنان</string>
+</resources>

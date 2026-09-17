@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Zaman çizelgesi</string>
+  <string name="timeline_loading">Zaman çizelgesi yükleniyor</string>
+  <string name="timeline_mode_day">Gün</string>
+  <string name="timeline_mode_week">Hafta</string>
+  <string name="timeline_previous">Önceki</string>
+  <string name="timeline_today">Bugün</string>
+  <string name="timeline_next">İleri</string>
+  <string name="timeline_all_day">Tüm gün</string>
+  <string name="timeline_zoom_in">Yakınlaştır</string>
+  <string name="timeline_zoom_out">Uzaklaştır</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s – %3$s</string>
+  <string name="timeline_event_all_day">%1$s, tüm gün</string>
+  <string name="timeline_draft">Yeni etkinlik, %1$s – %2$s</string>
+  <string name="timeline_draft_create">Oluştur</string>
+  <string name="timeline_draft_cancel">İptal</string>
+  <string name="timeline_draft_earlier">15 dakika erken</string>
+  <string name="timeline_draft_later">15 dakika geç</string>
+  <string name="timeline_draft_longer">15 dakika uzun</string>
+  <string name="timeline_draft_shorter">15 dakika kısa</string>
+  <string name="timeline_now">Şimdi %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Namaz vakitleri: %1$s</string>
+  <string name="timeline_prayer_fajr">İmsak</string>
+  <string name="timeline_prayer_sunrise">Güneş doğuşu</string>
+  <string name="timeline_prayer_dhuhr">Öğle</string>
+  <string name="timeline_prayer_asr">İkindi</string>
+  <string name="timeline_prayer_sunset">Güneş batışı</string>
+  <string name="timeline_prayer_maghrib">Akşam</string>
+  <string name="timeline_prayer_isha">Yatsı</string>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ja) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">タイムライン</string>
+  <string name="timeline_loading">タイムラインを読み込み中</string>
+  <string name="timeline_mode_day">日</string>
+  <string name="timeline_mode_week">週</string>
+  <string name="timeline_previous">前へ</string>
+  <string name="timeline_today">今日</string>
+  <string name="timeline_next">次へ</string>
+  <string name="timeline_all_day">終日</string>
+  <string name="timeline_zoom_in">拡大</string>
+  <string name="timeline_zoom_out">縮小</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s、%2$s 〜 %3$s</string>
+  <string name="timeline_event_all_day">%1$s、終日</string>
+  <string name="timeline_draft">新しいイベント、%1$s 〜 %2$s</string>
+  <string name="timeline_draft_create">作成</string>
+  <string name="timeline_draft_cancel">キャンセル</string>
+  <string name="timeline_draft_earlier">15 分早める</string>
+  <string name="timeline_draft_later">15 分遅らせる</string>
+  <string name="timeline_draft_longer">15 分長くする</string>
+  <string name="timeline_draft_shorter">15 分短くする</string>
+  <string name="timeline_now">現在 %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">礼拝時刻：%1$s</string>
+  <string name="timeline_prayer_fajr">ファジュル</string>
+  <string name="timeline_prayer_sunrise">日の出</string>
+  <string name="timeline_prayer_dhuhr">ズフル</string>
+  <string name="timeline_prayer_asr">アスル</string>
+  <string name="timeline_prayer_sunset">日の入り</string>
+  <string name="timeline_prayer_maghrib">マグリブ</string>
+  <string name="timeline_prayer_isha">イシャー</string>
+</resources>

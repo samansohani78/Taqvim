@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ru) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">Настройки виджета</string>
+  <string name="widget_config_loading">Загрузка настроек виджета</string>
+  <string name="widget_config_background">Фон</string>
+  <string name="widget_background_surface">Тема</string>
+  <string name="widget_background_primary">Акцент</string>
+  <string name="widget_background_secondary">Мягкий акцент</string>
+  <string name="widget_background_black">Чёрный</string>
+  <string name="widget_background_white">Белый</string>
+  <string name="widget_config_transparency">Прозрачность</string>
+  <string name="widget_config_percent">%1$d %%</string>
+  <string name="widget_config_scale">Размер</string>
+  <string name="widget_config_contents">Показывать</string>
+  <string name="widget_content_weekday">День недели</string>
+  <string name="widget_content_secondary_date">Дата во втором календаре</string>
+  <string name="widget_content_holidays">Праздники цветом</string>
+  <string name="widget_content_events">События</string>
+  <string name="widget_content_next_prayer">Следующее время намаза</string>
+  <string name="widget_config_secondary_calendar">Второй календарь</string>
+  <string name="widget_calendar_automatic">Автоматически</string>
+  <string name="widget_calendar_persian">Солнечная хиджра</string>
+  <string name="widget_calendar_islamic">Лунная хиджра</string>
+  <string name="widget_calendar_gregorian">Григорианский</string>
+  <string name="widget_calendar_nepali">Бикрам Самват</string>
+  <string name="widget_calendar_hebrew">Еврейский</string>
+  <string name="widget_config_save">Сохранить</string>
+  <string name="widget_config_cancel">Отмена</string>
+  <string name="widget_config_save_failed">Не удалось сохранить настройки. Попробуйте ещё раз.</string>
+  <string name="widget_load_failed">Не удалось загрузить этот виджет. Нажмите, чтобы открыть Taqvim.</string>
+  <string name="widget_date_1x1_name">Дата</string>
+  <string name="widget_date_1x1_description">Сегодняшняя дата в вашем календаре</string>
+  <string name="widget_date_clock_4x1_name">Дата и часы</string>
+  <string name="widget_date_clock_4x1_description">Сегодняшняя дата и время</string>
+  <string name="widget_day_summary_2x2_name">Сегодня</string>
+  <string name="widget_day_summary_2x2_description">Дата, сегодняшние события и следующее время намаза</string>
+  <string name="widget_prayer_strip_4x2_name">Время намаза</string>
+  <string name="widget_prayer_strip_4x2_description">Дата и сегодняшнее время намаза</string>
+  <string name="widget_prayer_fajr">Фаджр</string>
+  <string name="widget_prayer_sunrise">Восход</string>
+  <string name="widget_prayer_dhuhr">Зухр</string>
+  <string name="widget_prayer_asr">Аср</string>
+  <string name="widget_prayer_maghrib">Магриб</string>
+  <string name="widget_prayer_isha">Иша</string>
+  <string name="widget_no_events">Сегодня нет событий</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Выберите местоположение для времени намаза</string>
+  <string name="widget_month_interactive_name">Месяц</string>
+  <string name="widget_month_interactive_description">Месяц с праздниками и событиями; переключайтесь между месяцами</string>
+  <string name="widget_month_bitmap_name">Обзор месяца</string>
+  <string name="widget_month_bitmap_description">Весь месяц на одной картинке</string>
+  <string name="widget_week_strip_name">Неделя</string>
+  <string name="widget_week_strip_description">Эта неделя с праздниками и событиями</string>
+  <string name="widget_schedule_name">Расписание</string>
+  <string name="widget_schedule_description">Ваши события на ближайшие 14 дней</string>
+  <string name="widget_sun_arc_name">Солнце</string>
+  <string name="widget_sun_arc_description">Путь Солнца от восхода до заката</string>
+  <string name="widget_month_previous">Предыдущий месяц</string>
+  <string name="widget_month_next">Следующий месяц</string>
+  <string name="widget_month_today">Сегодня</string>
+  <string name="widget_month_add">Новое событие</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, выходной</string>
+  <string name="widget_schedule_title">Ближайшие 14 дней</string>
+  <string name="widget_schedule_empty">Нет событий в ближайшие 14 дней</string>
+  <string name="widget_sun_description">Восход %1$s, закат %2$s</string>
+  <string name="widget_no_daylight">Сегодня здесь Солнце не восходит и не заходит</string>
+  <string name="widget_moon_name">Фаза Луны</string>
+  <string name="widget_moon_description">Фаза Луны и ближайшие полнолуние и новолуние</string>
+  <string name="widget_moon_illumination">Освещено %1$s %%</string>
+  <string name="widget_moon_content">Луна. %1$s</string>
+  <string name="widget_moon_next_full">Полнолуние %1$s</string>
+  <string name="widget_moon_next_new">Новолуние %1$s</string>
+  <string name="widget_map_name">Карта мира</string>
+  <string name="widget_map_description">День и ночь на карте мира с вашим местом</string>
+  <string name="widget_map_content">Карта мира с днём и ночью</string>
+  <string name="widget_map_content_place">Карта мира с днём, ночью и вашим местом</string>
+  <string name="widget_countdown_name">Обратный отсчёт</string>
+  <string name="widget_countdown_description">Дни до выбранной даты или время с неё</string>
+  <string name="widget_countdown_setup">Выберите дату в настройках виджета</string>
+  <string name="widget_countdown_today">Сегодня</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">день остался</item>
+    <item quantity="few">дня осталось</item>
+    <item quantity="many">дней осталось</item>
+    <item quantity="other">дня осталось</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">день назад</item>
+    <item quantity="few">дня назад</item>
+    <item quantity="many">дней назад</item>
+    <item quantity="other">дня назад</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">год</item>
+    <item quantity="few">года</item>
+    <item quantity="many">лет</item>
+    <item quantity="other">года</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">месяц</item>
+    <item quantity="few">месяца</item>
+    <item quantity="many">месяцев</item>
+    <item quantity="other">месяца</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">день</item>
+    <item quantity="few">дня</item>
+    <item quantity="many">дней</item>
+    <item quantity="other">дня</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s год</item>
+    <item quantity="few">%1$s года</item>
+    <item quantity="many">%1$s лет</item>
+    <item quantity="other">%1$s года</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s месяц</item>
+    <item quantity="few">%1$s месяца</item>
+    <item quantity="many">%1$s месяцев</item>
+    <item quantity="other">%1$s месяца</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s неделя</item>
+    <item quantity="few">%1$s недели</item>
+    <item quantity="many">%1$s недель</item>
+    <item quantity="other">%1$s недели</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s день</item>
+    <item quantity="few">%1$s дня</item>
+    <item quantity="many">%1$s дней</item>
+    <item quantity="other">%1$s дня</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Обратный отсчёт</string>
+  <string name="widget_countdown_mode_until">Дней до</string>
+  <string name="widget_countdown_mode_since">Времени с</string>
+  <string name="widget_countdown_config_label">Название (необязательно)</string>
+  <string name="widget_countdown_config_occasions">Памятные даты</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Календарь</string>
+  <string name="widget_countdown_config_change_date">Изменить дату</string>
+  <string name="widget_countdown_config_repeats">Каждый год</string>
+  <string name="widget_countdown_picker_title">Выберите дату</string>
+  <string name="widget_countdown_picker_year">Год</string>
+  <string name="widget_countdown_picker_month">Месяц</string>
+  <string name="widget_countdown_picker_day">День</string>
+  <string name="widget_countdown_picker_confirm">Готово</string>
+</resources>

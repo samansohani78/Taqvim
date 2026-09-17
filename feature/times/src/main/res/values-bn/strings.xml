@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (bn) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">নামাজের সময়</string>
+  <string name="times_prayer_fajr">ফজর</string>
+  <string name="times_prayer_sunrise">সূর্যোদয়</string>
+  <string name="times_prayer_dhuhr">জোহর</string>
+  <string name="times_prayer_asr">আসর</string>
+  <string name="times_prayer_sunset">সূর্যাস্ত</string>
+  <string name="times_prayer_maghrib">মাগরিব</string>
+  <string name="times_prayer_isha">এশা</string>
+  <string name="times_prayer_midnight">মধ্যরাত</string>
+  <string name="times_previous_day">আগের দিন</string>
+  <string name="times_next_day">পরের দিন</string>
+  <string name="times_today">আজ</string>
+  <string name="times_show_all">সব সময় দেখান</string>
+  <string name="times_show_fewer">কম সময় দেখান</string>
+  <string name="times_next_prayer">%1$s, %2$s পরে</string>
+  <string name="times_next_prayer_progress">%1$s পর্যন্ত সময়</string>
+  <string name="times_sun_path">%1$s-এ সূর্যোদয় থেকে %2$s-এ সূর্যাস্ত পর্যন্ত সূর্যের পথ</string>
+  <string name="times_polar_day">এই দিনে সূর্য অস্ত যায় না, তাই নামাজের সময় গণনা করা যায় না।</string>
+  <string name="times_polar_night">এই দিনে সূর্য ওঠে না, তাই নামাজের সময় গণনা করা যায় না।</string>
+  <string name="times_no_location_title">কোনো স্থান বেছে নেওয়া হয়নি</string>
+  <string name="times_no_location_message">নামাজের সময় দেখতে একটি শহর বেছে নিন বা আপনার অবস্থান ব্যবহার করুন।</string>
+  <string name="times_loading">নামাজের সময় লোড হচ্ছে</string>
+  <string name="times_print_report">মাসিক প্রতিবেদন প্রিন্ট করুন</string>
+  <string name="times_report_title">%1$s-এর নামাজের সময়, %2$s থেকে %3$s</string>
+  <string name="times_report_date">তারিখ</string>
+  <string name="times_report_job">Taqvim নামাজের সময়</string>
+</resources>

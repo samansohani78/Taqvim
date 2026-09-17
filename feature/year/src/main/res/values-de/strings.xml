@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (de) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="year_title">Jahr</string>
+  <string name="year_loading">Jahr wird geladen</string>
+  <string name="year_month_title">%1$s %2$s</string>
+  <string name="year_range">%1$s – %2$s</string>
+  <string name="year_separator">", "</string>
+  <string name="year_today">Heute</string>
+  <plurals name="year_holidays">
+    <item quantity="one">%1$s Feiertag</item>
+    <item quantity="other">%1$s Feiertage</item>
+  </plurals>
+  <string name="year_previous">Zurück</string>
+  <string name="year_next">Weiter</string>
+  <string name="year_choose">Jahre</string>
+  <string name="year_show_months">Monate</string>
+  <string name="year_open_month">Monat öffnen</string>
+  <string name="year_zoom_in">Vergrößern</string>
+  <string name="year_zoom_out">Verkleinern</string>
+  <string name="year_calendar_persian">Sonnen-Hidschri</string>
+  <string name="year_calendar_islamic">Mond-Hidschri</string>
+  <string name="year_calendar_gregorian">Gregorianisch</string>
+  <string name="year_calendar_nepali">Nepalesisch</string>
+  <string name="year_calendar_hebrew">Hebräisch</string>
+</resources>

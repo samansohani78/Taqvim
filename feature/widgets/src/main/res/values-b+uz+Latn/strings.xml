@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (uz) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">Vidjet sozlamalari</string>
+  <string name="widget_config_loading">Vidjet sozlamalari yuklanmoqda</string>
+  <string name="widget_config_background">Fon</string>
+  <string name="widget_background_surface">Mavzu</string>
+  <string name="widget_background_primary">Urgʻu rangi</string>
+  <string name="widget_background_secondary">Yumshoq urgʻu rangi</string>
+  <string name="widget_background_black">Qora</string>
+  <string name="widget_background_white">Oq</string>
+  <string name="widget_config_transparency">Shaffoflik</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">Oʻlcham</string>
+  <string name="widget_config_contents">Koʻrsatish</string>
+  <string name="widget_content_weekday">Hafta kuni</string>
+  <string name="widget_content_secondary_date">Ikkinchi taqvimdagi sana</string>
+  <string name="widget_content_holidays">Bayramlar rangli</string>
+  <string name="widget_content_events">Tadbirlar</string>
+  <string name="widget_content_next_prayer">Keyingi namoz vaqti</string>
+  <string name="widget_config_secondary_calendar">Ikkinchi taqvim</string>
+  <string name="widget_calendar_automatic">Avtomatik</string>
+  <string name="widget_calendar_persian">Hijriy-shamsiy</string>
+  <string name="widget_calendar_islamic">Hijriy-qamariy</string>
+  <string name="widget_calendar_gregorian">Grigorian</string>
+  <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <string name="widget_calendar_hebrew">Yahudiy</string>
+  <string name="widget_config_save">Saqlash</string>
+  <string name="widget_config_cancel">Bekor qilish</string>
+  <string name="widget_config_save_failed">Sozlamalar saqlanmadi. Qayta urinib koʻring.</string>
+  <string name="widget_load_failed">Bu vidjet yuklanmadi. Taqvimni ochish uchun bosing.</string>
+  <string name="widget_date_1x1_name">Sana</string>
+  <string name="widget_date_1x1_description">Taqvimingizdagi bugungi sana</string>
+  <string name="widget_date_clock_4x1_name">Sana va soat</string>
+  <string name="widget_date_clock_4x1_description">Vaqt bilan bugungi sana</string>
+  <string name="widget_day_summary_2x2_name">Bugun</string>
+  <string name="widget_day_summary_2x2_description">Sana, bugungi tadbirlar va keyingi namoz vaqti</string>
+  <string name="widget_prayer_strip_4x2_name">Namoz vaqtlari</string>
+  <string name="widget_prayer_strip_4x2_description">Bugungi namoz vaqtlari bilan sana</string>
+  <string name="widget_prayer_fajr">Bomdod</string>
+  <string name="widget_prayer_sunrise">Quyosh chiqishi</string>
+  <string name="widget_prayer_dhuhr">Peshin</string>
+  <string name="widget_prayer_asr">Asr</string>
+  <string name="widget_prayer_maghrib">Shom</string>
+  <string name="widget_prayer_isha">Xufton</string>
+  <string name="widget_no_events">Bugun tadbir yoʻq</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Namoz vaqtlari uchun joylashuv tanlang</string>
+  <string name="widget_month_interactive_name">Oy</string>
+  <string name="widget_month_interactive_description">Bayramlar va tadbirlar bilan oy; oylar orasida oʻting</string>
+  <string name="widget_month_bitmap_name">Oy sharhi</string>
+  <string name="widget_month_bitmap_description">Bitta rasmda chizilgan butun oy</string>
+  <string name="widget_week_strip_name">Hafta</string>
+  <string name="widget_week_strip_description">Bayramlar va tadbirlar bilan shu hafta</string>
+  <string name="widget_schedule_name">Jadval</string>
+  <string name="widget_schedule_description">Keyingi 14 kundagi tadbirlaringiz</string>
+  <string name="widget_sun_arc_name">Quyosh</string>
+  <string name="widget_sun_arc_description">Quyoshning chiqishdan botishgacha yoʻli</string>
+  <string name="widget_month_previous">Oldingi oy</string>
+  <string name="widget_month_next">Keyingi oy</string>
+  <string name="widget_month_today">Bugun</string>
+  <string name="widget_month_add">Yangi tadbir</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, bayram</string>
+  <string name="widget_schedule_title">Keyingi 14 kun</string>
+  <string name="widget_schedule_empty">Keyingi 14 kunda tadbir yoʻq</string>
+  <string name="widget_sun_description">Chiqish %1$s, botish %2$s</string>
+  <string name="widget_no_daylight">Bugun bu yerda Quyosh chiqmaydi va botmaydi</string>
+  <string name="widget_moon_name">Oy fazasi</string>
+  <string name="widget_moon_description">Keyingi toʻlin oy va yangi oy bilan Oy fazasi</string>
+  <string name="widget_moon_illumination">Yoritilgan %1$s%%</string>
+  <string name="widget_moon_content">Oy. %1$s</string>
+  <string name="widget_moon_next_full">Toʻlin oy %1$s</string>
+  <string name="widget_moon_next_new">Yangi oy %1$s</string>
+  <string name="widget_map_name">Dunyo xaritasi</string>
+  <string name="widget_map_description">Joylashuvingiz bilan dunyo xaritasida kun va tun</string>
+  <string name="widget_map_content">Kun va tunli dunyo xaritasi</string>
+  <string name="widget_map_content_place">Kun, tun va joylashuvingiz bilan dunyo xaritasi</string>
+  <string name="widget_countdown_name">Teskari sanoq</string>
+  <string name="widget_countdown_description">Siz tanlagan sanagacha kunlar yoki undan beri oʻtgan vaqt</string>
+  <string name="widget_countdown_setup">Vidjet sozlamalarida sana tanlang</string>
+  <string name="widget_countdown_today">Bugun</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">kun qoldi</item>
+    <item quantity="other">kun qoldi</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">kun oldin</item>
+    <item quantity="other">kun oldin</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">yil</item>
+    <item quantity="other">yil</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">oy</item>
+    <item quantity="other">oy</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">kun</item>
+    <item quantity="other">kun</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s yil</item>
+    <item quantity="other">%1$s yil</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s oy</item>
+    <item quantity="other">%1$s oy</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s hafta</item>
+    <item quantity="other">%1$s hafta</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s kun</item>
+    <item quantity="other">%1$s kun</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Teskari sanoq</string>
+  <string name="widget_countdown_mode_until">Qolgan kunlar</string>
+  <string name="widget_countdown_mode_since">Oʻtgan vaqt</string>
+  <string name="widget_countdown_config_label">Nom (ixtiyoriy)</string>
+  <string name="widget_countdown_config_occasions">Sanalar</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Taqvim</string>
+  <string name="widget_countdown_config_change_date">Sanani oʻzgartirish</string>
+  <string name="widget_countdown_config_repeats">Har yili</string>
+  <string name="widget_countdown_picker_title">Sana tanlang</string>
+  <string name="widget_countdown_picker_year">Yil</string>
+  <string name="widget_countdown_picker_month">Oy</string>
+  <string name="widget_countdown_picker_day">Kun</string>
+  <string name="widget_countdown_picker_confirm">Tayyor</string>
+</resources>

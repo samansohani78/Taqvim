@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tg) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Хати вақт</string>
+  <string name="timeline_loading">Хати вақт бор шуда истодааст</string>
+  <string name="timeline_mode_day">Рӯз</string>
+  <string name="timeline_mode_week">Ҳафта</string>
+  <string name="timeline_previous">Қаблӣ</string>
+  <string name="timeline_today">Имрӯз</string>
+  <string name="timeline_next">Баъдӣ</string>
+  <string name="timeline_all_day">Тамоми рӯз</string>
+  <string name="timeline_zoom_in">Калон кардан</string>
+  <string name="timeline_zoom_out">Хурд кардан</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s то %3$s</string>
+  <string name="timeline_event_all_day">%1$s, тамоми рӯз</string>
+  <string name="timeline_draft">Рӯйдоди нав, %1$s то %2$s</string>
+  <string name="timeline_draft_create">Сохтан</string>
+  <string name="timeline_draft_cancel">Бекор кардан</string>
+  <string name="timeline_draft_earlier">15 дақиқа пештар</string>
+  <string name="timeline_draft_later">15 дақиқа дертар</string>
+  <string name="timeline_draft_longer">15 дақиқа дарозтар</string>
+  <string name="timeline_draft_shorter">15 дақиқа кӯтоҳтар</string>
+  <string name="timeline_now">Ҳозир %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Вақтҳои намоз: %1$s</string>
+  <string name="timeline_prayer_fajr">Бомдод</string>
+  <string name="timeline_prayer_sunrise">Тулӯи офтоб</string>
+  <string name="timeline_prayer_dhuhr">Пешин</string>
+  <string name="timeline_prayer_asr">Аср</string>
+  <string name="timeline_prayer_sunset">Ғуруби офтоб</string>
+  <string name="timeline_prayer_maghrib">Шом</string>
+  <string name="timeline_prayer_isha">Хуфтан</string>
+</resources>

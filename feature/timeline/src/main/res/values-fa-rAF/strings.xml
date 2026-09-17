@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (prs, derived from fa with Dari vocabulary) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<!-- T-900 timeline. -->
+<resources>
+    <string name="timeline_title">خط زمانی</string>
+    <string name="timeline_loading">در حال بارگذاری خط زمانی</string>
+    <string name="timeline_mode_day">روز</string>
+    <string name="timeline_mode_week">هفته</string>
+    <string name="timeline_previous">قبلی</string>
+    <string name="timeline_today">امروز</string>
+    <string name="timeline_next">بعدی</string>
+    <string name="timeline_all_day">تمام روز</string>
+    <string name="timeline_zoom_in">بزرگ‌نمایی</string>
+    <string name="timeline_zoom_out">کوچک‌نمایی</string>
+    <string name="timeline_month_title">%1$s %2$s</string>
+    <string name="timeline_range">%1$s تا %2$s</string>
+    <string name="timeline_separator">، </string>
+    <string name="timeline_event_timed">%1$s، %2$s تا %3$s</string>
+    <string name="timeline_event_all_day">%1$s، تمام روز</string>
+    <string name="timeline_draft">رویداد جدید، %1$s تا %2$s</string>
+    <string name="timeline_draft_create">ایجاد</string>
+    <string name="timeline_draft_cancel">لغو</string>
+    <string name="timeline_draft_earlier">۱۵ دقیقه زودتر</string>
+    <string name="timeline_draft_later">۱۵ دقیقه دیرتر</string>
+    <string name="timeline_draft_longer">۱۵ دقیقه طولانی‌تر</string>
+    <string name="timeline_draft_shorter">۱۵ دقیقه کوتاه‌تر</string>
+    <string name="timeline_now">اکنون %1$s</string>
+    <string name="timeline_prayer_line">%1$s %2$s</string>
+    <string name="timeline_prayer_lines">اوقات شرعی: %1$s</string>
+    <string name="timeline_prayer_fajr">اذان صبح</string>
+    <string name="timeline_prayer_sunrise">طلوع آفتاب</string>
+    <string name="timeline_prayer_dhuhr">اذان ظهر</string>
+    <string name="timeline_prayer_asr">عصر</string>
+    <string name="timeline_prayer_sunset">غروب آفتاب</string>
+    <string name="timeline_prayer_maghrib">اذان مغرب</string>
+    <string name="timeline_prayer_isha">عشا</string>
+</resources>

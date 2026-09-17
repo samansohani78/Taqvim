@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ur) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="wallpaper_label">Taqvim کیلنڈر</string>
+  <string name="wallpaper_description">دن یا رات کے آسمان پر آج کی تاریخ، مہینہ اور چاند</string>
+  <string name="wallpaper_dream_label">Taqvim گھڑی</string>
+</resources>

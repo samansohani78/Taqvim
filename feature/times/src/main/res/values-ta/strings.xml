@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ta) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">தொழுகை நேரங்கள்</string>
+  <string name="times_prayer_fajr">ஃபஜ்ர்</string>
+  <string name="times_prayer_sunrise">சூரிய உதயம்</string>
+  <string name="times_prayer_dhuhr">ளுஹர்</string>
+  <string name="times_prayer_asr">அஸர்</string>
+  <string name="times_prayer_sunset">சூரிய அஸ்தமனம்</string>
+  <string name="times_prayer_maghrib">மஃரிப்</string>
+  <string name="times_prayer_isha">இஷா</string>
+  <string name="times_prayer_midnight">நள்ளிரவு</string>
+  <string name="times_previous_day">முந்தைய நாள்</string>
+  <string name="times_next_day">அடுத்த நாள்</string>
+  <string name="times_today">இன்று</string>
+  <string name="times_show_all">எல்லா நேரங்களையும் காட்டு</string>
+  <string name="times_show_fewer">குறைவான நேரங்களைக் காட்டு</string>
+  <string name="times_next_prayer">%1$s %2$s இல்</string>
+  <string name="times_next_prayer_progress">%1$s வரை உள்ள நேரம்</string>
+  <string name="times_sun_path">%1$s உதயம் முதல் %2$s அஸ்தமனம் வரை சூரியனின் பாதை</string>
+  <string name="times_polar_day">இந்த நாளில் சூரியன் மறைவதில்லை, எனவே தொழுகை நேரங்களைக் கணக்கிட முடியாது.</string>
+  <string name="times_polar_night">இந்த நாளில் சூரியன் உதிப்பதில்லை, எனவே தொழுகை நேரங்களைக் கணக்கிட முடியாது.</string>
+  <string name="times_no_location_title">இடம் எதுவும் தேர்வு செய்யப்படவில்லை</string>
+  <string name="times_no_location_message">தொழுகை நேரங்களைப் பார்க்க ஒரு நகரத்தைத் தேர்வு செய்யவும் அல்லது உங்கள் இடத்தைப் பயன்படுத்தவும்.</string>
+  <string name="times_loading">தொழுகை நேரங்கள் ஏற்றப்படுகின்றன</string>
+  <string name="times_print_report">மாத அறிக்கையை அச்சிடு</string>
+  <string name="times_report_title">%1$s க்கான தொழுகை நேரங்கள், %2$s முதல் %3$s வரை</string>
+  <string name="times_report_date">தேதி</string>
+  <string name="times_report_job">Taqvim தொழுகை நேரங்கள்</string>
+</resources>

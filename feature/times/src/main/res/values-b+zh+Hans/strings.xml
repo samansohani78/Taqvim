@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (zh) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">礼拜时间</string>
+  <string name="times_prayer_fajr">晨礼</string>
+  <string name="times_prayer_sunrise">日出</string>
+  <string name="times_prayer_dhuhr">晌礼</string>
+  <string name="times_prayer_asr">晡礼</string>
+  <string name="times_prayer_sunset">日落</string>
+  <string name="times_prayer_maghrib">昏礼</string>
+  <string name="times_prayer_isha">宵礼</string>
+  <string name="times_prayer_midnight">午夜</string>
+  <string name="times_previous_day">前一天</string>
+  <string name="times_next_day">后一天</string>
+  <string name="times_today">今天</string>
+  <string name="times_show_all">显示全部时间</string>
+  <string name="times_show_fewer">显示较少时间</string>
+  <string name="times_next_prayer">%1$s 还有 %2$s</string>
+  <string name="times_next_prayer_progress">距 %1$s 的时间</string>
+  <string name="times_sun_path">太阳从 %1$s 日出到 %2$s 日落的轨迹</string>
+  <string name="times_polar_day">这一天太阳不落，因此无法计算礼拜时间。</string>
+  <string name="times_polar_night">这一天太阳不升，因此无法计算礼拜时间。</string>
+  <string name="times_no_location_title">尚未选择地点</string>
+  <string name="times_no_location_message">选择城市或使用你的位置以查看礼拜时间。</string>
+  <string name="times_loading">正在加载礼拜时间</string>
+  <string name="times_print_report">打印月度报表</string>
+  <string name="times_report_title">%1$s 的礼拜时间，%2$s 至 %3$s</string>
+  <string name="times_report_date">日期</string>
+  <string name="times_report_job">Taqvim 礼拜时间</string>
+</resources>

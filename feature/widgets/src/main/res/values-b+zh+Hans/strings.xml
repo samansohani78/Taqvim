@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (zh) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">小组件设置</string>
+  <string name="widget_config_loading">正在加载小组件设置</string>
+  <string name="widget_config_background">背景</string>
+  <string name="widget_background_surface">主题</string>
+  <string name="widget_background_primary">强调色</string>
+  <string name="widget_background_secondary">柔和强调色</string>
+  <string name="widget_background_black">黑色</string>
+  <string name="widget_background_white">白色</string>
+  <string name="widget_config_transparency">透明度</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">大小</string>
+  <string name="widget_config_contents">显示</string>
+  <string name="widget_content_weekday">星期</string>
+  <string name="widget_content_secondary_date">第二日历中的日期</string>
+  <string name="widget_content_holidays">彩色假日</string>
+  <string name="widget_content_events">事件</string>
+  <string name="widget_content_next_prayer">下一个礼拜时间</string>
+  <string name="widget_config_secondary_calendar">第二日历</string>
+  <string name="widget_calendar_automatic">自动</string>
+  <string name="widget_calendar_persian">伊斯兰太阳历</string>
+  <string name="widget_calendar_islamic">伊斯兰太阴历</string>
+  <string name="widget_calendar_gregorian">公历</string>
+  <string name="widget_calendar_nepali">比克拉姆历</string>
+  <string name="widget_calendar_hebrew">希伯来历</string>
+  <string name="widget_config_save">保存</string>
+  <string name="widget_config_cancel">取消</string>
+  <string name="widget_config_save_failed">无法保存设置。请重试。</string>
+  <string name="widget_load_failed">无法加载此小组件。点按以打开 Taqvim。</string>
+  <string name="widget_date_1x1_name">日期</string>
+  <string name="widget_date_1x1_description">你的日历中的今日日期</string>
+  <string name="widget_date_clock_4x1_name">日期与时钟</string>
+  <string name="widget_date_clock_4x1_description">今日日期与时间</string>
+  <string name="widget_day_summary_2x2_name">今天</string>
+  <string name="widget_day_summary_2x2_description">日期、今天的事件和下一个礼拜时间</string>
+  <string name="widget_prayer_strip_4x2_name">礼拜时间</string>
+  <string name="widget_prayer_strip_4x2_description">日期与今天的礼拜时间</string>
+  <string name="widget_prayer_fajr">晨礼</string>
+  <string name="widget_prayer_sunrise">日出</string>
+  <string name="widget_prayer_dhuhr">晌礼</string>
+  <string name="widget_prayer_asr">晡礼</string>
+  <string name="widget_prayer_maghrib">昏礼</string>
+  <string name="widget_prayer_isha">宵礼</string>
+  <string name="widget_no_events">今天没有事件</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">请选择位置以显示礼拜时间</string>
+  <string name="widget_month_interactive_name">月</string>
+  <string name="widget_month_interactive_description">含假日和事件的月份；可在月份间切换</string>
+  <string name="widget_month_bitmap_name">月份概览</string>
+  <string name="widget_month_bitmap_description">整月绘制在一张图中</string>
+  <string name="widget_week_strip_name">周</string>
+  <string name="widget_week_strip_description">含假日和事件的本周</string>
+  <string name="widget_schedule_name">日程表</string>
+  <string name="widget_schedule_description">你未来 14 天的事件</string>
+  <string name="widget_sun_arc_name">太阳</string>
+  <string name="widget_sun_arc_description">太阳从日出到日落的轨迹</string>
+  <string name="widget_month_previous">上个月</string>
+  <string name="widget_month_next">下个月</string>
+  <string name="widget_month_today">今天</string>
+  <string name="widget_month_add">新建事件</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s，假日</string>
+  <string name="widget_schedule_title">未来 14 天</string>
+  <string name="widget_schedule_empty">未来 14 天没有事件</string>
+  <string name="widget_sun_description">日出 %1$s，日落 %2$s</string>
+  <string name="widget_no_daylight">今天此地太阳不升也不落</string>
+  <string name="widget_moon_name">月相</string>
+  <string name="widget_moon_description">月相以及下次满月和新月</string>
+  <string name="widget_moon_illumination">照亮 %1$s%%</string>
+  <string name="widget_moon_content">月亮。%1$s</string>
+  <string name="widget_moon_next_full">满月 %1$s</string>
+  <string name="widget_moon_next_new">新月 %1$s</string>
+  <string name="widget_map_name">世界地图</string>
+  <string name="widget_map_description">世界地图上的昼夜与你的位置</string>
+  <string name="widget_map_content">含昼夜的世界地图</string>
+  <string name="widget_map_content_place">含昼夜和你的位置的世界地图</string>
+  <string name="widget_countdown_name">倒计时</string>
+  <string name="widget_countdown_description">距你所选日期的天数，或自该日期起的时间</string>
+  <string name="widget_countdown_setup">请在小组件设置中选择日期</string>
+  <string name="widget_countdown_today">今天</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left">
+    <item quantity="other">天剩余</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago">
+    <item quantity="other">天前</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years">
+    <item quantity="other">年</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months">
+    <item quantity="other">个月</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days">
+    <item quantity="other">天</item>
+  </plurals>
+  <plurals name="widget_countdown_years">
+    <item quantity="other">%1$s 年</item>
+  </plurals>
+  <plurals name="widget_countdown_months">
+    <item quantity="other">%1$s 个月</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="other">%1$s 周</item>
+  </plurals>
+  <plurals name="widget_countdown_days">
+    <item quantity="other">%1$s 天</item>
+  </plurals>
+  <string name="widget_countdown_config_title">倒计时</string>
+  <string name="widget_countdown_mode_until">距离天数</string>
+  <string name="widget_countdown_mode_since">已过时间</string>
+  <string name="widget_countdown_config_label">标题（可选）</string>
+  <string name="widget_countdown_config_occasions">纪念日</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">日历</string>
+  <string name="widget_countdown_config_change_date">更改日期</string>
+  <string name="widget_countdown_config_repeats">每年</string>
+  <string name="widget_countdown_picker_title">选择日期</string>
+  <string name="widget_countdown_picker_year">年</string>
+  <string name="widget_countdown_picker_month">月</string>
+  <string name="widget_countdown_picker_day">日</string>
+  <string name="widget_countdown_picker_confirm">完成</string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ms) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Waktu solat</string>
+  <string name="times_prayer_fajr">Subuh</string>
+  <string name="times_prayer_sunrise">Matahari terbit</string>
+  <string name="times_prayer_dhuhr">Zohor</string>
+  <string name="times_prayer_asr">Asar</string>
+  <string name="times_prayer_sunset">Matahari terbenam</string>
+  <string name="times_prayer_maghrib">Maghrib</string>
+  <string name="times_prayer_isha">Isyak</string>
+  <string name="times_prayer_midnight">Tengah malam</string>
+  <string name="times_previous_day">Hari sebelumnya</string>
+  <string name="times_next_day">Hari seterusnya</string>
+  <string name="times_today">Hari ini</string>
+  <string name="times_show_all">Tunjukkan semua waktu</string>
+  <string name="times_show_fewer">Tunjukkan lebih sedikit waktu</string>
+  <string name="times_next_prayer">%1$s dalam %2$s</string>
+  <string name="times_next_prayer_progress">Masa sehingga %1$s</string>
+  <string name="times_sun_path">Laluan matahari dari terbit pada %1$s hingga terbenam pada %2$s</string>
+  <string name="times_polar_day">Matahari tidak terbenam pada hari ini, jadi waktu solat tidak dapat dikira.</string>
+  <string name="times_polar_night">Matahari tidak terbit pada hari ini, jadi waktu solat tidak dapat dikira.</string>
+  <string name="times_no_location_title">Tiada tempat dipilih</string>
+  <string name="times_no_location_message">Pilih bandar atau gunakan lokasi anda untuk melihat waktu solat.</string>
+  <string name="times_loading">Memuatkan waktu solat</string>
+  <string name="times_print_report">Cetak laporan bulanan</string>
+  <string name="times_report_title">Waktu solat untuk %1$s, %2$s hingga %3$s</string>
+  <string name="times_report_date">Tarikh</string>
+  <string name="times_report_job">Waktu solat Taqvim</string>
+</resources>

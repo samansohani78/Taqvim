@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (fr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Heures de prière</string>
+  <string name="times_prayer_fajr">Fajr</string>
+  <string name="times_prayer_sunrise">Lever du soleil</string>
+  <string name="times_prayer_dhuhr">Dhouhr</string>
+  <string name="times_prayer_asr">Asr</string>
+  <string name="times_prayer_sunset">Coucher du soleil</string>
+  <string name="times_prayer_maghrib">Maghreb</string>
+  <string name="times_prayer_isha">Icha</string>
+  <string name="times_prayer_midnight">Minuit</string>
+  <string name="times_previous_day">Jour précédent</string>
+  <string name="times_next_day">Jour suivant</string>
+  <string name="times_today">Aujourd\'hui</string>
+  <string name="times_show_all">Afficher tous les horaires</string>
+  <string name="times_show_fewer">Afficher moins d\'horaires</string>
+  <string name="times_next_prayer">%1$s dans %2$s</string>
+  <string name="times_next_prayer_progress">Temps restant avant %1$s</string>
+  <string name="times_sun_path">Course du Soleil, du lever à %1$s au coucher à %2$s</string>
+  <string name="times_polar_day">Le Soleil ne se couche pas ce jour-là ; les heures de prière ne peuvent pas être calculées.</string>
+  <string name="times_polar_night">Le Soleil ne se lève pas ce jour-là ; les heures de prière ne peuvent pas être calculées.</string>
+  <string name="times_no_location_title">Aucun lieu choisi</string>
+  <string name="times_no_location_message">Choisissez une ville ou utilisez votre position pour voir les heures de prière.</string>
+  <string name="times_loading">Chargement des heures de prière</string>
+  <string name="times_print_report">Imprimer le rapport mensuel</string>
+  <string name="times_report_title">Heures de prière pour %1$s, du %2$s au %3$s</string>
+  <string name="times_report_date">Date</string>
+  <string name="times_report_job">Heures de prière Taqvim</string>
+</resources>

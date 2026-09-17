@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ur) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">ٹائم لائن</string>
+  <string name="timeline_loading">ٹائم لائن لوڈ ہو رہی ہے</string>
+  <string name="timeline_mode_day">دن</string>
+  <string name="timeline_mode_week">ہفتہ</string>
+  <string name="timeline_previous">پچھلا</string>
+  <string name="timeline_today">آج</string>
+  <string name="timeline_next">اگلا</string>
+  <string name="timeline_all_day">پورا دن</string>
+  <string name="timeline_zoom_in">بڑا کریں</string>
+  <string name="timeline_zoom_out">چھوٹا کریں</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">، </string>
+  <string name="timeline_event_timed">%1$s، %2$s سے %3$s تک</string>
+  <string name="timeline_event_all_day">%1$s، پورا دن</string>
+  <string name="timeline_draft">نیا واقعہ، %1$s سے %2$s تک</string>
+  <string name="timeline_draft_create">بنائیں</string>
+  <string name="timeline_draft_cancel">منسوخ کریں</string>
+  <string name="timeline_draft_earlier">15 منٹ پہلے</string>
+  <string name="timeline_draft_later">15 منٹ بعد</string>
+  <string name="timeline_draft_longer">15 منٹ لمبا</string>
+  <string name="timeline_draft_shorter">15 منٹ چھوٹا</string>
+  <string name="timeline_now">ابھی %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">اوقاتِ نماز: %1$s</string>
+  <string name="timeline_prayer_fajr">فجر</string>
+  <string name="timeline_prayer_sunrise">طلوعِ آفتاب</string>
+  <string name="timeline_prayer_dhuhr">ظہر</string>
+  <string name="timeline_prayer_asr">عصر</string>
+  <string name="timeline_prayer_sunset">غروبِ آفتاب</string>
+  <string name="timeline_prayer_maghrib">مغرب</string>
+  <string name="timeline_prayer_isha">عشاء</string>
+</resources>

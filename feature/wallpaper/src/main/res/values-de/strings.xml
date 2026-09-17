@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (de) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="wallpaper_label">Taqvim-Kalender</string>
+  <string name="wallpaper_description">Das heutige Datum, der Monat und der Mond an einem Tag- oder Nachthimmel</string>
+  <string name="wallpaper_dream_label">Taqvim-Uhr</string>
+</resources>

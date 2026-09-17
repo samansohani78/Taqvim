@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (bn) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">উইজেট সেটিংস</string>
+  <string name="widget_config_loading">উইজেট সেটিংস লোড হচ্ছে</string>
+  <string name="widget_config_background">পটভূমি</string>
+  <string name="widget_background_surface">থিম</string>
+  <string name="widget_background_primary">অ্যাকসেন্ট</string>
+  <string name="widget_background_secondary">নরম অ্যাকসেন্ট</string>
+  <string name="widget_background_black">কালো</string>
+  <string name="widget_background_white">সাদা</string>
+  <string name="widget_config_transparency">স্বচ্ছতা</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">আকার</string>
+  <string name="widget_config_contents">দেখান</string>
+  <string name="widget_content_weekday">বার</string>
+  <string name="widget_content_secondary_date">দ্বিতীয় ক্যালেন্ডারে তারিখ</string>
+  <string name="widget_content_holidays">রঙিন ছুটি</string>
+  <string name="widget_content_events">ইভেন্ট</string>
+  <string name="widget_content_next_prayer">পরবর্তী নামাজের সময়</string>
+  <string name="widget_config_secondary_calendar">দ্বিতীয় ক্যালেন্ডার</string>
+  <string name="widget_calendar_automatic">স্বয়ংক্রিয়</string>
+  <string name="widget_calendar_persian">সৌর হিজরি</string>
+  <string name="widget_calendar_islamic">চান্দ্র হিজরি</string>
+  <string name="widget_calendar_gregorian">গ্রেগরীয়</string>
+  <string name="widget_calendar_nepali">বিক্রম সংবৎ</string>
+  <string name="widget_calendar_hebrew">হিব্রু</string>
+  <string name="widget_config_save">সংরক্ষণ করুন</string>
+  <string name="widget_config_cancel">বাতিল</string>
+  <string name="widget_config_save_failed">সেটিংস সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।</string>
+  <string name="widget_load_failed">এই উইজেট লোড করা যায়নি। Taqvim খুলতে ট্যাপ করুন।</string>
+  <string name="widget_date_1x1_name">তারিখ</string>
+  <string name="widget_date_1x1_description">আপনার ক্যালেন্ডারে আজকের তারিখ</string>
+  <string name="widget_date_clock_4x1_name">তারিখ ও ঘড়ি</string>
+  <string name="widget_date_clock_4x1_description">সময়সহ আজকের তারিখ</string>
+  <string name="widget_day_summary_2x2_name">আজ</string>
+  <string name="widget_day_summary_2x2_description">তারিখ, আজকের ইভেন্ট ও পরবর্তী নামাজের সময়</string>
+  <string name="widget_prayer_strip_4x2_name">নামাজের সময়</string>
+  <string name="widget_prayer_strip_4x2_description">আজকের নামাজের সময়সহ তারিখ</string>
+  <string name="widget_prayer_fajr">ফজর</string>
+  <string name="widget_prayer_sunrise">সূর্যোদয়</string>
+  <string name="widget_prayer_dhuhr">জোহর</string>
+  <string name="widget_prayer_asr">আসর</string>
+  <string name="widget_prayer_maghrib">মাগরিব</string>
+  <string name="widget_prayer_isha">এশা</string>
+  <string name="widget_no_events">আজ কোনো ইভেন্ট নেই</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">নামাজের সময়ের জন্য অবস্থান বেছে নিন</string>
+  <string name="widget_month_interactive_name">মাস</string>
+  <string name="widget_month_interactive_description">ছুটি ও ইভেন্টসহ মাস; মাসের মধ্যে যাতায়াত করুন</string>
+  <string name="widget_month_bitmap_name">মাসের সংক্ষিপ্ত রূপ</string>
+  <string name="widget_month_bitmap_description">একটি ছবিতে আঁকা পুরো মাস</string>
+  <string name="widget_week_strip_name">সপ্তাহ</string>
+  <string name="widget_week_strip_description">ছুটি ও ইভেন্টসহ এই সপ্তাহ</string>
+  <string name="widget_schedule_name">সময়সূচি</string>
+  <string name="widget_schedule_description">আগামী 14 দিনের আপনার ইভেন্ট</string>
+  <string name="widget_sun_arc_name">সূর্য</string>
+  <string name="widget_sun_arc_description">সূর্যোদয় থেকে সূর্যাস্ত পর্যন্ত সূর্যের পথ</string>
+  <string name="widget_month_previous">আগের মাস</string>
+  <string name="widget_month_next">পরের মাস</string>
+  <string name="widget_month_today">আজ</string>
+  <string name="widget_month_add">নতুন ইভেন্ট</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, ছুটি</string>
+  <string name="widget_schedule_title">আগামী 14 দিন</string>
+  <string name="widget_schedule_empty">আগামী 14 দিনে কোনো ইভেন্ট নেই</string>
+  <string name="widget_sun_description">সূর্যোদয় %1$s, সূর্যাস্ত %2$s</string>
+  <string name="widget_no_daylight">আজ এখানে সূর্য ওঠে না বা অস্ত যায় না</string>
+  <string name="widget_moon_name">চাঁদের কলা</string>
+  <string name="widget_moon_description">পরবর্তী পূর্ণিমা ও অমাবস্যাসহ চাঁদের কলা</string>
+  <string name="widget_moon_illumination">আলোকিত %1$s%%</string>
+  <string name="widget_moon_content">চাঁদ। %1$s</string>
+  <string name="widget_moon_next_full">পূর্ণিমা %1$s</string>
+  <string name="widget_moon_next_new">অমাবস্যা %1$s</string>
+  <string name="widget_map_name">বিশ্ব মানচিত্র</string>
+  <string name="widget_map_description">আপনার স্থানসহ বিশ্ব মানচিত্রে দিন ও রাত</string>
+  <string name="widget_map_content">দিন ও রাতসহ বিশ্ব মানচিত্র</string>
+  <string name="widget_map_content_place">দিন, রাত ও আপনার স্থানসহ বিশ্ব মানচিত্র</string>
+  <string name="widget_countdown_name">কাউন্টডাউন</string>
+  <string name="widget_countdown_description">আপনার বেছে নেওয়া তারিখ পর্যন্ত দিন, বা তারপর থেকে সময়</string>
+  <string name="widget_countdown_setup">উইজেট সেটিংসে একটি তারিখ বেছে নিন</string>
+  <string name="widget_countdown_today">আজ</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">দিন বাকি</item>
+    <item quantity="other">দিন বাকি</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">দিন আগে</item>
+    <item quantity="other">দিন আগে</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">বছর</item>
+    <item quantity="other">বছর</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">মাস</item>
+    <item quantity="other">মাস</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">দিন</item>
+    <item quantity="other">দিন</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s বছর</item>
+    <item quantity="other">%1$s বছর</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s মাস</item>
+    <item quantity="other">%1$s মাস</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s সপ্তাহ</item>
+    <item quantity="other">%1$s সপ্তাহ</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s দিন</item>
+    <item quantity="other">%1$s দিন</item>
+  </plurals>
+  <string name="widget_countdown_config_title">কাউন্টডাউন</string>
+  <string name="widget_countdown_mode_until">বাকি দিন</string>
+  <string name="widget_countdown_mode_since">অতিবাহিত সময়</string>
+  <string name="widget_countdown_config_label">শিরোনাম (ঐচ্ছিক)</string>
+  <string name="widget_countdown_config_occasions">উপলক্ষ</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">ক্যালেন্ডার</string>
+  <string name="widget_countdown_config_change_date">তারিখ বদলান</string>
+  <string name="widget_countdown_config_repeats">প্রতি বছর</string>
+  <string name="widget_countdown_picker_title">একটি তারিখ বেছে নিন</string>
+  <string name="widget_countdown_picker_year">বছর</string>
+  <string name="widget_countdown_picker_month">মাস</string>
+  <string name="widget_countdown_picker_day">দিন</string>
+  <string name="widget_countdown_picker_confirm">সম্পন্ন</string>
+</resources>

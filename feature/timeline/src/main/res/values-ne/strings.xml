@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ne) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">समयरेखा</string>
+  <string name="timeline_loading">समयरेखा लोड हुँदैछ</string>
+  <string name="timeline_mode_day">दिन</string>
+  <string name="timeline_mode_week">हप्ता</string>
+  <string name="timeline_previous">अघिल्लो</string>
+  <string name="timeline_today">आज</string>
+  <string name="timeline_next">अर्को</string>
+  <string name="timeline_all_day">दिनभर</string>
+  <string name="timeline_zoom_in">ठूलो पार्नुहोस्</string>
+  <string name="timeline_zoom_out">सानो पार्नुहोस्</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s देखि %3$s</string>
+  <string name="timeline_event_all_day">%1$s, दिनभर</string>
+  <string name="timeline_draft">नयाँ कार्यक्रम, %1$s देखि %2$s</string>
+  <string name="timeline_draft_create">बनाउनुहोस्</string>
+  <string name="timeline_draft_cancel">रद्द गर्नुहोस्</string>
+  <string name="timeline_draft_earlier">15 मिनेट अघि</string>
+  <string name="timeline_draft_later">15 मिनेट पछि</string>
+  <string name="timeline_draft_longer">15 मिनेट लामो</string>
+  <string name="timeline_draft_shorter">15 मिनेट छोटो</string>
+  <string name="timeline_now">अहिले %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">नमाज समय: %1$s</string>
+  <string name="timeline_prayer_fajr">फज्र</string>
+  <string name="timeline_prayer_sunrise">सूर्योदय</string>
+  <string name="timeline_prayer_dhuhr">जुहर</string>
+  <string name="timeline_prayer_asr">असर</string>
+  <string name="timeline_prayer_sunset">सूर्यास्त</string>
+  <string name="timeline_prayer_maghrib">मगरिब</string>
+  <string name="timeline_prayer_isha">इशा</string>
+</resources>

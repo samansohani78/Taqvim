@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (az) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="year_title">İl</string>
+  <string name="year_loading">İl yüklənir</string>
+  <string name="year_month_title">%1$s %2$s</string>
+  <string name="year_range">%1$s – %2$s</string>
+  <string name="year_separator">", "</string>
+  <string name="year_today">Bu gün</string>
+  <plurals name="year_holidays">
+    <item quantity="one">%1$s bayram</item>
+    <item quantity="other">%1$s bayram</item>
+  </plurals>
+  <string name="year_previous">Əvvəlki</string>
+  <string name="year_next">Növbəti</string>
+  <string name="year_choose">İllər</string>
+  <string name="year_show_months">Aylar</string>
+  <string name="year_open_month">Ayı aç</string>
+  <string name="year_zoom_in">Böyüt</string>
+  <string name="year_zoom_out">Kiçilt</string>
+  <string name="year_calendar_persian">Hicri-şəmsi</string>
+  <string name="year_calendar_islamic">Hicri-qəməri</string>
+  <string name="year_calendar_gregorian">Qriqorian</string>
+  <string name="year_calendar_nepali">Nepal</string>
+  <string name="year_calendar_hebrew">Yəhudi</string>
+</resources>

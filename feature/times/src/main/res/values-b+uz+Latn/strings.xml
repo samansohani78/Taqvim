@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (uz) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Namoz vaqtlari</string>
+  <string name="times_prayer_fajr">Bomdod</string>
+  <string name="times_prayer_sunrise">Quyosh chiqishi</string>
+  <string name="times_prayer_dhuhr">Peshin</string>
+  <string name="times_prayer_asr">Asr</string>
+  <string name="times_prayer_sunset">Quyosh botishi</string>
+  <string name="times_prayer_maghrib">Shom</string>
+  <string name="times_prayer_isha">Xufton</string>
+  <string name="times_prayer_midnight">Yarim tun</string>
+  <string name="times_previous_day">Oldingi kun</string>
+  <string name="times_next_day">Keyingi kun</string>
+  <string name="times_today">Bugun</string>
+  <string name="times_show_all">Barcha vaqtlarni koʻrsatish</string>
+  <string name="times_show_fewer">Kamroq vaqt koʻrsatish</string>
+  <string name="times_next_prayer">%1$s, %2$s dan keyin</string>
+  <string name="times_next_prayer_progress">%1$s gacha qolgan vaqt</string>
+  <string name="times_sun_path">Quyoshning %1$s dagi chiqishidan %2$s dagi botishigacha yoʻli</string>
+  <string name="times_polar_day">Bu kuni Quyosh botmaydi, shuning uchun namoz vaqtlarini hisoblab boʻlmaydi.</string>
+  <string name="times_polar_night">Bu kuni Quyosh chiqmaydi, shuning uchun namoz vaqtlarini hisoblab boʻlmaydi.</string>
+  <string name="times_no_location_title">Joy tanlanmagan</string>
+  <string name="times_no_location_message">Namoz vaqtlarini koʻrish uchun shahar tanlang yoki joylashuvingizdan foydalaning.</string>
+  <string name="times_loading">Namoz vaqtlari yuklanmoqda</string>
+  <string name="times_print_report">Oylik hisobotni chop etish</string>
+  <string name="times_report_title">%1$s uchun namoz vaqtlari, %2$s – %3$s</string>
+  <string name="times_report_date">Sana</string>
+  <string name="times_report_job">Taqvim namoz vaqtlari</string>
+</resources>

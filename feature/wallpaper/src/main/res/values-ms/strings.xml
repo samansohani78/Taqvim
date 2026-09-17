@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ms) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="wallpaper_label">Kalendar Taqvim</string>
+  <string name="wallpaper_description">Tarikh hari ini, bulan dan Bulan pada langit siang atau malam</string>
+  <string name="wallpaper_dream_label">Jam Taqvim</string>
+</resources>

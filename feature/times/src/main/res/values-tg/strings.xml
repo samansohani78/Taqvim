@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tg) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Вақтҳои намоз</string>
+  <string name="times_prayer_fajr">Бомдод</string>
+  <string name="times_prayer_sunrise">Тулӯи офтоб</string>
+  <string name="times_prayer_dhuhr">Пешин</string>
+  <string name="times_prayer_asr">Аср</string>
+  <string name="times_prayer_sunset">Ғуруби офтоб</string>
+  <string name="times_prayer_maghrib">Шом</string>
+  <string name="times_prayer_isha">Хуфтан</string>
+  <string name="times_prayer_midnight">Нимашаб</string>
+  <string name="times_previous_day">Рӯзи қаблӣ</string>
+  <string name="times_next_day">Рӯзи баъдӣ</string>
+  <string name="times_today">Имрӯз</string>
+  <string name="times_show_all">Нишон додани ҳамаи вақтҳо</string>
+  <string name="times_show_fewer">Нишон додани вақтҳои камтар</string>
+  <string name="times_next_prayer">%1$s баъд аз %2$s</string>
+  <string name="times_next_prayer_progress">Вақт то %1$s</string>
+  <string name="times_sun_path">Роҳи офтоб аз тулӯъ дар %1$s то ғуруб дар %2$s</string>
+  <string name="times_polar_day">Дар ин рӯз офтоб ғуруб намекунад, бинобар ин вақтҳои намозро ҳисоб кардан мумкин нест.</string>
+  <string name="times_polar_night">Дар ин рӯз офтоб тулӯъ намекунад, бинобар ин вақтҳои намозро ҳисоб кардан мумкин нест.</string>
+  <string name="times_no_location_title">Ҷой интихоб нашудааст</string>
+  <string name="times_no_location_message">Барои дидани вақтҳои намоз шаҳр интихоб кунед ё макони худро истифода баред.</string>
+  <string name="times_loading">Вақтҳои намоз бор шуда истодаанд</string>
+  <string name="times_print_report">Чопи гузориши моҳона</string>
+  <string name="times_report_title">Вақтҳои намози %1$s, %2$s то %3$s</string>
+  <string name="times_report_date">Сана</string>
+  <string name="times_report_job">Вақтҳои намози Taqvim</string>
+</resources>

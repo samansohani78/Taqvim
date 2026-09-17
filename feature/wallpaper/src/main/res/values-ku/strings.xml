@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="wallpaper_label">Salnameya Taqvim</string>
+  <string name="wallpaper_description">Dîroka îro, meh û heyv li ser asîmanê roj an şevê</string>
+  <string name="wallpaper_dream_label">Demjimêra Taqvim</string>
+</resources>

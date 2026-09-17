@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">Mîhengên wîdcetê</string>
+  <string name="widget_config_loading">Mîhengên wîdcetê tên barkirin</string>
+  <string name="widget_config_background">Paşxane</string>
+  <string name="widget_background_surface">Rûkar</string>
+  <string name="widget_background_primary">Rengê giring</string>
+  <string name="widget_background_secondary">Rengê giring ê nerm</string>
+  <string name="widget_background_black">Reş</string>
+  <string name="widget_background_white">Spî</string>
+  <string name="widget_config_transparency">Zelalî</string>
+  <string name="widget_config_percent">%%%1$d</string>
+  <string name="widget_config_scale">Mezinahî</string>
+  <string name="widget_config_contents">Nîşan bide</string>
+  <string name="widget_content_weekday">Roja heftiyê</string>
+  <string name="widget_content_secondary_date">Dîrok di salnameya duyem de</string>
+  <string name="widget_content_holidays">Betlane bi reng</string>
+  <string name="widget_content_events">Bûyer</string>
+  <string name="widget_content_next_prayer">Dema nimêja din</string>
+  <string name="widget_config_secondary_calendar">Salnameya duyem</string>
+  <string name="widget_calendar_automatic">Xweber</string>
+  <string name="widget_calendar_persian">Koçî ya rojî</string>
+  <string name="widget_calendar_islamic">Koçî ya heyvî</string>
+  <string name="widget_calendar_gregorian">Zayînî</string>
+  <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <string name="widget_calendar_hebrew">Îbranî</string>
+  <string name="widget_config_save">Tomar bike</string>
+  <string name="widget_config_cancel">Betal bike</string>
+  <string name="widget_config_save_failed">Mîheng nehatin tomarkirin. Dîsa biceribîne.</string>
+  <string name="widget_load_failed">Ev wîdcet nehat barkirin. Ji bo vekirina Taqvim bitikîne.</string>
+  <string name="widget_date_1x1_name">Dîrok</string>
+  <string name="widget_date_1x1_description">Dîroka îro di salnameya te de</string>
+  <string name="widget_date_clock_4x1_name">Dîrok û demjimêr</string>
+  <string name="widget_date_clock_4x1_description">Dîroka îro bi demê re</string>
+  <string name="widget_day_summary_2x2_name">Îro</string>
+  <string name="widget_day_summary_2x2_description">Dîrok, bûyerên îro û dema nimêja din</string>
+  <string name="widget_prayer_strip_4x2_name">Demên nimêjê</string>
+  <string name="widget_prayer_strip_4x2_description">Dîrok bi demên nimêjê yên îro re</string>
+  <string name="widget_prayer_fajr">Sibê</string>
+  <string name="widget_prayer_sunrise">Hilatina rojê</string>
+  <string name="widget_prayer_dhuhr">Nîvro</string>
+  <string name="widget_prayer_asr">Ikindî</string>
+  <string name="widget_prayer_maghrib">Êvar</string>
+  <string name="widget_prayer_isha">Eşa</string>
+  <string name="widget_no_events">Îro bûyer tune</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Ji bo demên nimêjê cihekî hilbijêre</string>
+  <string name="widget_month_interactive_name">Meh</string>
+  <string name="widget_month_interactive_description">Meh bi betlane û bûyeran; di navbera mehan de bigere</string>
+  <string name="widget_month_bitmap_name">Kurteya mehê</string>
+  <string name="widget_month_bitmap_description">Tevahiya mehê di wêneyekê de</string>
+  <string name="widget_week_strip_name">Hefte</string>
+  <string name="widget_week_strip_description">Ev hefte bi betlane û bûyeran</string>
+  <string name="widget_schedule_name">Bername</string>
+  <string name="widget_schedule_description">Bûyerên te yên 14 rojên pêş</string>
+  <string name="widget_sun_arc_name">Roj</string>
+  <string name="widget_sun_arc_description">Rêya rojê ji hilatinê heta avabûnê</string>
+  <string name="widget_month_previous">Meha berê</string>
+  <string name="widget_month_next">Meha din</string>
+  <string name="widget_month_today">Îro</string>
+  <string name="widget_month_add">Bûyera nû</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, betlane</string>
+  <string name="widget_schedule_title">14 rojên pêş</string>
+  <string name="widget_schedule_empty">Di 14 rojên pêş de bûyer tune</string>
+  <string name="widget_sun_description">Hilatin %1$s, avabûn %2$s</string>
+  <string name="widget_no_daylight">Îro li vir roj hilnayê û ava nabe</string>
+  <string name="widget_moon_name">Qonaxa heyvê</string>
+  <string name="widget_moon_description">Qonaxa heyvê bi heyva tijî û heyva nû ya pêş</string>
+  <string name="widget_moon_illumination">Ronî %%%1$s</string>
+  <string name="widget_moon_content">Heyv. %1$s</string>
+  <string name="widget_moon_next_full">Heyva tijî %1$s</string>
+  <string name="widget_moon_next_new">Heyva nû %1$s</string>
+  <string name="widget_map_name">Nexşeya cîhanê</string>
+  <string name="widget_map_description">Roj û şev li ser nexşeya cîhanê bi cihê te</string>
+  <string name="widget_map_content">Nexşeya cîhanê bi roj û şev</string>
+  <string name="widget_map_content_place">Nexşeya cîhanê bi roj, şev û cihê te</string>
+  <string name="widget_countdown_name">Jimartina paşve</string>
+  <string name="widget_countdown_description">Rojên heta dîrokeke ku tu hildibijêrî, an dema ji wê ve</string>
+  <string name="widget_countdown_setup">Di mîhengên wîdcetê de dîrokekê hilbijêre</string>
+  <string name="widget_countdown_today">Îro</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">roj maye</item>
+    <item quantity="other">roj mane</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">roj berê</item>
+    <item quantity="other">roj berê</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">sal</item>
+    <item quantity="other">sal</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">meh</item>
+    <item quantity="other">meh</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">roj</item>
+    <item quantity="other">roj</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s sal</item>
+    <item quantity="other">%1$s sal</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s meh</item>
+    <item quantity="other">%1$s meh</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s hefte</item>
+    <item quantity="other">%1$s hefte</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s roj</item>
+    <item quantity="other">%1$s roj</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Jimartina paşve</string>
+  <string name="widget_countdown_mode_until">Roj heta</string>
+  <string name="widget_countdown_mode_since">Dem ji</string>
+  <string name="widget_countdown_config_label">Sernav (vebijarkî)</string>
+  <string name="widget_countdown_config_occasions">Bûyerên taybet</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Salname</string>
+  <string name="widget_countdown_config_change_date">Dîrokê biguherîne</string>
+  <string name="widget_countdown_config_repeats">Her sal</string>
+  <string name="widget_countdown_picker_title">Dîrokekê hilbijêre</string>
+  <string name="widget_countdown_picker_year">Sal</string>
+  <string name="widget_countdown_picker_month">Meh</string>
+  <string name="widget_countdown_picker_day">Roj</string>
+  <string name="widget_countdown_picker_confirm">Qediya</string>
+</resources>

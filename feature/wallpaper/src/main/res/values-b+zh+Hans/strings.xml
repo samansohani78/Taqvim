@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (zh) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="wallpaper_label">Taqvim 日历</string>
+  <string name="wallpaper_description">昼夜天空中的今日日期、月份和月亮</string>
+  <string name="wallpaper_dream_label">Taqvim 时钟</string>
+</resources>

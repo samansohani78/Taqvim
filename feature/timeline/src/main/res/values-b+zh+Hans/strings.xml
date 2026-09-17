@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (zh) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">时间线</string>
+  <string name="timeline_loading">正在加载时间线</string>
+  <string name="timeline_mode_day">日</string>
+  <string name="timeline_mode_week">周</string>
+  <string name="timeline_previous">上一个</string>
+  <string name="timeline_today">今天</string>
+  <string name="timeline_next">下一个</string>
+  <string name="timeline_all_day">全天</string>
+  <string name="timeline_zoom_in">放大</string>
+  <string name="timeline_zoom_out">缩小</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s，%2$s 至 %3$s</string>
+  <string name="timeline_event_all_day">%1$s，全天</string>
+  <string name="timeline_draft">新建事件，%1$s 至 %2$s</string>
+  <string name="timeline_draft_create">创建</string>
+  <string name="timeline_draft_cancel">取消</string>
+  <string name="timeline_draft_earlier">提前 15 分钟</string>
+  <string name="timeline_draft_later">推迟 15 分钟</string>
+  <string name="timeline_draft_longer">延长 15 分钟</string>
+  <string name="timeline_draft_shorter">缩短 15 分钟</string>
+  <string name="timeline_now">现在 %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">礼拜时间：%1$s</string>
+  <string name="timeline_prayer_fajr">晨礼</string>
+  <string name="timeline_prayer_sunrise">日出</string>
+  <string name="timeline_prayer_dhuhr">晌礼</string>
+  <string name="timeline_prayer_asr">晡礼</string>
+  <string name="timeline_prayer_sunset">日落</string>
+  <string name="timeline_prayer_maghrib">昏礼</string>
+  <string name="timeline_prayer_isha">宵礼</string>
+</resources>

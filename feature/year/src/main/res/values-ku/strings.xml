@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="year_title">Sal</string>
+  <string name="year_loading">Sal tê barkirin</string>
+  <string name="year_month_title">%1$s %2$s</string>
+  <string name="year_range">%1$s – %2$s</string>
+  <string name="year_separator">", "</string>
+  <string name="year_today">Îro</string>
+  <plurals name="year_holidays">
+    <item quantity="one">%1$s betlane</item>
+    <item quantity="other">%1$s betlane</item>
+  </plurals>
+  <string name="year_previous">Berê</string>
+  <string name="year_next">Pêşve</string>
+  <string name="year_choose">Sal</string>
+  <string name="year_show_months">Meh</string>
+  <string name="year_open_month">Mehê veke</string>
+  <string name="year_zoom_in">Mezin bike</string>
+  <string name="year_zoom_out">Biçûk bike</string>
+  <string name="year_calendar_persian">Koçî ya rojî</string>
+  <string name="year_calendar_islamic">Koçî ya heyvî</string>
+  <string name="year_calendar_gregorian">Zayînî</string>
+  <string name="year_calendar_nepali">Nepalî</string>
+  <string name="year_calendar_hebrew">Îbranî</string>
+</resources>

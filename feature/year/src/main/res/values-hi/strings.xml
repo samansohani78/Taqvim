@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (hi) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="year_title">वर्ष</string>
+  <string name="year_loading">वर्ष लोड हो रहा है</string>
+  <string name="year_month_title">%1$s %2$s</string>
+  <string name="year_range">%1$s – %2$s</string>
+  <string name="year_separator">", "</string>
+  <string name="year_today">आज</string>
+  <plurals name="year_holidays">
+    <item quantity="one">%1$s छुट्टी</item>
+    <item quantity="other">%1$s छुट्टियां</item>
+  </plurals>
+  <string name="year_previous">पिछला</string>
+  <string name="year_next">अगला</string>
+  <string name="year_choose">वर्ष</string>
+  <string name="year_show_months">महीने</string>
+  <string name="year_open_month">महीना खोलें</string>
+  <string name="year_zoom_in">बड़ा करें</string>
+  <string name="year_zoom_out">छोटा करें</string>
+  <string name="year_calendar_persian">सौर हिजरी</string>
+  <string name="year_calendar_islamic">चंद्र हिजरी</string>
+  <string name="year_calendar_gregorian">ग्रेगोरियन</string>
+  <string name="year_calendar_nepali">नेपाली</string>
+  <string name="year_calendar_hebrew">हिब्रू</string>
+</resources>

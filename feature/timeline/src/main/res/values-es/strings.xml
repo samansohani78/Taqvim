@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (es) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">Cronología</string>
+  <string name="timeline_loading">Cargando la cronología</string>
+  <string name="timeline_mode_day">Día</string>
+  <string name="timeline_mode_week">Semana</string>
+  <string name="timeline_previous">Anterior</string>
+  <string name="timeline_today">Hoy</string>
+  <string name="timeline_next">Siguiente</string>
+  <string name="timeline_all_day">Todo el día</string>
+  <string name="timeline_zoom_in">Acercar</string>
+  <string name="timeline_zoom_out">Alejar</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, de %2$s a %3$s</string>
+  <string name="timeline_event_all_day">%1$s, todo el día</string>
+  <string name="timeline_draft">Nuevo evento, de %1$s a %2$s</string>
+  <string name="timeline_draft_create">Crear</string>
+  <string name="timeline_draft_cancel">Cancelar</string>
+  <string name="timeline_draft_earlier">15 minutos antes</string>
+  <string name="timeline_draft_later">15 minutos después</string>
+  <string name="timeline_draft_longer">15 minutos más</string>
+  <string name="timeline_draft_shorter">15 minutos menos</string>
+  <string name="timeline_now">Ahora %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">Horarios de oración: %1$s</string>
+  <string name="timeline_prayer_fajr">Fayr</string>
+  <string name="timeline_prayer_sunrise">Salida del sol</string>
+  <string name="timeline_prayer_dhuhr">Dhuhr</string>
+  <string name="timeline_prayer_asr">Asr</string>
+  <string name="timeline_prayer_sunset">Puesta del sol</string>
+  <string name="timeline_prayer_maghrib">Magrib</string>
+  <string name="timeline_prayer_isha">Isha</string>
+</resources>

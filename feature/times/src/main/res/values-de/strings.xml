@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (de) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">Gebetszeiten</string>
+  <string name="times_prayer_fajr">Fadschr</string>
+  <string name="times_prayer_sunrise">Sonnenaufgang</string>
+  <string name="times_prayer_dhuhr">Dhuhr</string>
+  <string name="times_prayer_asr">Asr</string>
+  <string name="times_prayer_sunset">Sonnenuntergang</string>
+  <string name="times_prayer_maghrib">Maghrib</string>
+  <string name="times_prayer_isha">Ischa</string>
+  <string name="times_prayer_midnight">Mitternacht</string>
+  <string name="times_previous_day">Vorheriger Tag</string>
+  <string name="times_next_day">Nächster Tag</string>
+  <string name="times_today">Heute</string>
+  <string name="times_show_all">Alle Zeiten anzeigen</string>
+  <string name="times_show_fewer">Weniger Zeiten anzeigen</string>
+  <string name="times_next_prayer">%1$s in %2$s</string>
+  <string name="times_next_prayer_progress">Zeit bis %1$s</string>
+  <string name="times_sun_path">Sonnenbahn vom Aufgang um %1$s bis zum Untergang um %2$s</string>
+  <string name="times_polar_day">Die Sonne geht an diesem Tag nicht unter, daher können keine Gebetszeiten berechnet werden.</string>
+  <string name="times_polar_night">Die Sonne geht an diesem Tag nicht auf, daher können keine Gebetszeiten berechnet werden.</string>
+  <string name="times_no_location_title">Kein Ort gewählt</string>
+  <string name="times_no_location_message">Wählen Sie eine Stadt oder verwenden Sie Ihren Standort, um die Gebetszeiten zu sehen.</string>
+  <string name="times_loading">Gebetszeiten werden geladen</string>
+  <string name="times_print_report">Monatsbericht drucken</string>
+  <string name="times_report_title">Gebetszeiten für %1$s, %2$s bis %3$s</string>
+  <string name="times_report_date">Datum</string>
+  <string name="times_report_job">Taqvim-Gebetszeiten</string>
+</resources>

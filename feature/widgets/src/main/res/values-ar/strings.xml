@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ar) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">إعدادات الأداة</string>
+  <string name="widget_config_loading">جارٍ تحميل إعدادات الأداة</string>
+  <string name="widget_config_background">الخلفية</string>
+  <string name="widget_background_surface">المظهر</string>
+  <string name="widget_background_primary">لون التمييز</string>
+  <string name="widget_background_secondary">لون تمييز هادئ</string>
+  <string name="widget_background_black">أسود</string>
+  <string name="widget_background_white">أبيض</string>
+  <string name="widget_config_transparency">الشفافية</string>
+  <string name="widget_config_percent">%1$d٪</string>
+  <string name="widget_config_scale">الحجم</string>
+  <string name="widget_config_contents">إظهار</string>
+  <string name="widget_content_weekday">يوم الأسبوع</string>
+  <string name="widget_content_secondary_date">التاريخ في التقويم الثاني</string>
+  <string name="widget_content_holidays">العطل ملوّنة</string>
+  <string name="widget_content_events">الأحداث</string>
+  <string name="widget_content_next_prayer">وقت الصلاة التالي</string>
+  <string name="widget_config_secondary_calendar">التقويم الثاني</string>
+  <string name="widget_calendar_automatic">تلقائي</string>
+  <string name="widget_calendar_persian">الهجري الشمسي</string>
+  <string name="widget_calendar_islamic">الهجري القمري</string>
+  <string name="widget_calendar_gregorian">الميلادي</string>
+  <string name="widget_calendar_nepali">بكرم سمبت</string>
+  <string name="widget_calendar_hebrew">العبري</string>
+  <string name="widget_config_save">حفظ</string>
+  <string name="widget_config_cancel">إلغاء</string>
+  <string name="widget_config_save_failed">تعذّر حفظ الإعدادات. حاول مرة أخرى.</string>
+  <string name="widget_load_failed">تعذّر تحميل هذه الأداة. اضغط لفتح Taqvim.</string>
+  <string name="widget_date_1x1_name">التاريخ</string>
+  <string name="widget_date_1x1_description">تاريخ اليوم في تقويمك</string>
+  <string name="widget_date_clock_4x1_name">التاريخ والساعة</string>
+  <string name="widget_date_clock_4x1_description">تاريخ اليوم مع الوقت</string>
+  <string name="widget_day_summary_2x2_name">اليوم</string>
+  <string name="widget_day_summary_2x2_description">التاريخ وأحداث اليوم ووقت الصلاة التالي</string>
+  <string name="widget_prayer_strip_4x2_name">مواقيت الصلاة</string>
+  <string name="widget_prayer_strip_4x2_description">التاريخ مع مواقيت صلاة اليوم</string>
+  <string name="widget_prayer_fajr">الفجر</string>
+  <string name="widget_prayer_sunrise">الشروق</string>
+  <string name="widget_prayer_dhuhr">الظهر</string>
+  <string name="widget_prayer_asr">العصر</string>
+  <string name="widget_prayer_maghrib">المغرب</string>
+  <string name="widget_prayer_isha">العشاء</string>
+  <string name="widget_no_events">لا أحداث اليوم</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">اختر موقعًا لمواقيت الصلاة</string>
+  <string name="widget_month_interactive_name">الشهر</string>
+  <string name="widget_month_interactive_description">الشهر مع العطل والأحداث؛ والتنقل بين الأشهر</string>
+  <string name="widget_month_bitmap_name">نظرة على الشهر</string>
+  <string name="widget_month_bitmap_description">الشهر كاملًا مرسومًا في صورة واحدة</string>
+  <string name="widget_week_strip_name">الأسبوع</string>
+  <string name="widget_week_strip_description">هذا الأسبوع مع العطل والأحداث</string>
+  <string name="widget_schedule_name">الجدول</string>
+  <string name="widget_schedule_description">أحداثك في الأيام الـ14 القادمة</string>
+  <string name="widget_sun_arc_name">الشمس</string>
+  <string name="widget_sun_arc_description">مسار الشمس من الشروق إلى الغروب</string>
+  <string name="widget_month_previous">الشهر السابق</string>
+  <string name="widget_month_next">الشهر التالي</string>
+  <string name="widget_month_today">اليوم</string>
+  <string name="widget_month_add">حدث جديد</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s، عطلة</string>
+  <string name="widget_schedule_title">الأيام الـ14 القادمة</string>
+  <string name="widget_schedule_empty">لا أحداث في الأيام الـ14 القادمة</string>
+  <string name="widget_sun_description">الشروق %1$s، الغروب %2$s</string>
+  <string name="widget_no_daylight">لا تشرق الشمس ولا تغرب هنا اليوم</string>
+  <string name="widget_moon_name">طور القمر</string>
+  <string name="widget_moon_description">طور القمر مع البدر والمحاق التاليين</string>
+  <string name="widget_moon_illumination">مضاء %1$s٪</string>
+  <string name="widget_moon_content">القمر. %1$s</string>
+  <string name="widget_moon_next_full">البدر %1$s</string>
+  <string name="widget_moon_next_new">المحاق %1$s</string>
+  <string name="widget_map_name">خريطة العالم</string>
+  <string name="widget_map_description">الليل والنهار على خريطة العالم مع مكانك</string>
+  <string name="widget_map_content">خريطة العالم مع الليل والنهار</string>
+  <string name="widget_map_content_place">خريطة العالم مع الليل والنهار ومكانك</string>
+  <string name="widget_countdown_name">العد التنازلي</string>
+  <string name="widget_countdown_description">الأيام حتى تاريخ تختاره أو الوقت منذه</string>
+  <string name="widget_countdown_setup">اختر تاريخًا في إعدادات الأداة</string>
+  <string name="widget_countdown_today">اليوم</string>
+  <string name="widget_countdown_join">%1$s، %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">يوم متبقٍّ</item>
+    <item quantity="one">يوم متبقٍّ</item>
+    <item quantity="two">يومان متبقيان</item>
+    <item quantity="few">أيام متبقية</item>
+    <item quantity="many">يومًا متبقيًا</item>
+    <item quantity="other">يوم متبقٍّ</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">يوم مضى</item>
+    <item quantity="one">يوم مضى</item>
+    <item quantity="two">يومان مضيا</item>
+    <item quantity="few">أيام مضت</item>
+    <item quantity="many">يومًا مضى</item>
+    <item quantity="other">يوم مضى</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">سنة</item>
+    <item quantity="one">سنة</item>
+    <item quantity="two">سنتان</item>
+    <item quantity="few">سنوات</item>
+    <item quantity="many">سنة</item>
+    <item quantity="other">سنة</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">شهر</item>
+    <item quantity="one">شهر</item>
+    <item quantity="two">شهران</item>
+    <item quantity="few">أشهر</item>
+    <item quantity="many">شهرًا</item>
+    <item quantity="other">شهر</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">يوم</item>
+    <item quantity="one">يوم</item>
+    <item quantity="two">يومان</item>
+    <item quantity="few">أيام</item>
+    <item quantity="many">يومًا</item>
+    <item quantity="other">يوم</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">%1$s سنة</item>
+    <item quantity="one">%1$s سنة</item>
+    <item quantity="two">%1$s سنة</item>
+    <item quantity="few">%1$s سنوات</item>
+    <item quantity="many">%1$s سنة</item>
+    <item quantity="other">%1$s سنة</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">%1$s شهر</item>
+    <item quantity="one">%1$s شهر</item>
+    <item quantity="two">%1$s شهر</item>
+    <item quantity="few">%1$s أشهر</item>
+    <item quantity="many">%1$s شهرًا</item>
+    <item quantity="other">%1$s شهر</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="zero">%1$s أسبوع</item>
+    <item quantity="one">%1$s أسبوع</item>
+    <item quantity="two">%1$s أسبوع</item>
+    <item quantity="few">%1$s أسابيع</item>
+    <item quantity="many">%1$s أسبوعًا</item>
+    <item quantity="other">%1$s أسبوع</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="zero">%1$s يوم</item>
+    <item quantity="one">%1$s يوم</item>
+    <item quantity="two">%1$s يوم</item>
+    <item quantity="few">%1$s أيام</item>
+    <item quantity="many">%1$s يومًا</item>
+    <item quantity="other">%1$s يوم</item>
+  </plurals>
+  <string name="widget_countdown_config_title">العد التنازلي</string>
+  <string name="widget_countdown_mode_until">الأيام حتى</string>
+  <string name="widget_countdown_mode_since">الوقت منذ</string>
+  <string name="widget_countdown_config_label">العنوان (اختياري)</string>
+  <string name="widget_countdown_config_occasions">المناسبات</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">التقويم</string>
+  <string name="widget_countdown_config_change_date">تغيير التاريخ</string>
+  <string name="widget_countdown_config_repeats">كل سنة</string>
+  <string name="widget_countdown_picker_title">اختر تاريخًا</string>
+  <string name="widget_countdown_picker_year">السنة</string>
+  <string name="widget_countdown_picker_month">الشهر</string>
+  <string name="widget_countdown_picker_day">اليوم</string>
+  <string name="widget_countdown_picker_confirm">تم</string>
+</resources>

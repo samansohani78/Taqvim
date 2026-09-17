@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ps) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="wallpaper_label">د Taqvim جنتري</string>
+  <string name="wallpaper_description">د ورځې یا شپې پر آسمان د نن نېټه، میاشت او سپوږمۍ</string>
+  <string name="wallpaper_dream_label">د Taqvim ساعت</string>
+</resources>

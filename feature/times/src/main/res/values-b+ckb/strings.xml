@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ckb) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="times_title">کاتەکانی نوێژ</string>
+  <string name="times_prayer_fajr">بەیانی</string>
+  <string name="times_prayer_sunrise">خۆرهەڵاتن</string>
+  <string name="times_prayer_dhuhr">نیوەڕۆ</string>
+  <string name="times_prayer_asr">عەسر</string>
+  <string name="times_prayer_sunset">خۆرئاوابوون</string>
+  <string name="times_prayer_maghrib">ئێوارە</string>
+  <string name="times_prayer_isha">خەوتنان</string>
+  <string name="times_prayer_midnight">نیوەشەو</string>
+  <string name="times_previous_day">ڕۆژی پێشوو</string>
+  <string name="times_next_day">ڕۆژی دواتر</string>
+  <string name="times_today">ئەمڕۆ</string>
+  <string name="times_show_all">پیشاندانی هەموو کاتەکان</string>
+  <string name="times_show_fewer">پیشاندانی کاتی کەمتر</string>
+  <string name="times_next_prayer">%1$s لە %2$s دا</string>
+  <string name="times_next_prayer_progress">کات تا %1$s</string>
+  <string name="times_sun_path">ڕێڕەوی خۆر لە هەڵاتن لە %1$s تا ئاوابوون لە %2$s</string>
+  <string name="times_polar_day">لەم ڕۆژەدا خۆر ئاوا نابێت، بۆیە کاتەکانی نوێژ ناژمێردرێن.</string>
+  <string name="times_polar_night">لەم ڕۆژەدا خۆر هەڵنایەت، بۆیە کاتەکانی نوێژ ناژمێردرێن.</string>
+  <string name="times_no_location_title">هیچ شوێنێک هەڵنەبژێردراوە</string>
+  <string name="times_no_location_message">شارێک هەڵبژێرە یان شوێنی خۆت بەکاربهێنە بۆ بینینی کاتەکانی نوێژ.</string>
+  <string name="times_loading">کاتەکانی نوێژ بار دەکرێن</string>
+  <string name="times_print_report">چاپکردنی ڕاپۆرتی مانگانە</string>
+  <string name="times_report_title">کاتەکانی نوێژی %1$s، %2$s تا %3$s</string>
+  <string name="times_report_date">بەروار</string>
+  <string name="times_report_job">کاتەکانی نوێژی Taqvim</string>
+</resources>

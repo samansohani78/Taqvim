@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (fr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="wallpaper_label">Calendrier Taqvim</string>
+  <string name="wallpaper_description">La date du jour, le mois et la Lune sur un ciel de jour ou de nuit</string>
+  <string name="wallpaper_dream_label">Horloge Taqvim</string>
+</resources>

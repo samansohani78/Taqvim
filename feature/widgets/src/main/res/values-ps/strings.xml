@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ps) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">د ویجټ تنظیمات</string>
+  <string name="widget_config_loading">د ویجټ تنظیمات پورته کېږي</string>
+  <string name="widget_config_background">شالید</string>
+  <string name="widget_background_surface">بڼه</string>
+  <string name="widget_background_primary">ځانګړی رنګ</string>
+  <string name="widget_background_secondary">نرم ځانګړی رنګ</string>
+  <string name="widget_background_black">تور</string>
+  <string name="widget_background_white">سپین</string>
+  <string name="widget_config_transparency">روڼتیا</string>
+  <string name="widget_config_percent">%1$d٪</string>
+  <string name="widget_config_scale">اندازه</string>
+  <string name="widget_config_contents">ښودل</string>
+  <string name="widget_content_weekday">د اونۍ ورځ</string>
+  <string name="widget_content_secondary_date">په دویمه جنتري کې نېټه</string>
+  <string name="widget_content_holidays">رخصتۍ په رنګ</string>
+  <string name="widget_content_events">پېښې</string>
+  <string name="widget_content_next_prayer">د لمانځه راتلونکی وخت</string>
+  <string name="widget_config_secondary_calendar">دویمه جنتري</string>
+  <string name="widget_calendar_automatic">اتومات</string>
+  <string name="widget_calendar_persian">لمریز هجري</string>
+  <string name="widget_calendar_islamic">سپوږمیز هجري</string>
+  <string name="widget_calendar_gregorian">میلادي</string>
+  <string name="widget_calendar_nepali">بکرم سمبت</string>
+  <string name="widget_calendar_hebrew">عبري</string>
+  <string name="widget_config_save">خوندي کول</string>
+  <string name="widget_config_cancel">لغوه کول</string>
+  <string name="widget_config_save_failed">تنظیمات خوندي نه شول. بیا هڅه وکړئ.</string>
+  <string name="widget_load_failed">دا ویجټ پورته نه شو. د Taqvim پرانیستلو لپاره ټک کړئ.</string>
+  <string name="widget_date_1x1_name">نېټه</string>
+  <string name="widget_date_1x1_description">ستاسو په جنتري کې د نن نېټه</string>
+  <string name="widget_date_clock_4x1_name">نېټه او ساعت</string>
+  <string name="widget_date_clock_4x1_description">د وخت سره د نن نېټه</string>
+  <string name="widget_day_summary_2x2_name">نن</string>
+  <string name="widget_day_summary_2x2_description">نېټه، د نن پېښې او د لمانځه راتلونکی وخت</string>
+  <string name="widget_prayer_strip_4x2_name">د لمانځه وختونه</string>
+  <string name="widget_prayer_strip_4x2_description">د نن د لمانځه وختونو سره نېټه</string>
+  <string name="widget_prayer_fajr">سهار</string>
+  <string name="widget_prayer_sunrise">لمرختل</string>
+  <string name="widget_prayer_dhuhr">ماسپښین</string>
+  <string name="widget_prayer_asr">مازدیګر</string>
+  <string name="widget_prayer_maghrib">ماښام</string>
+  <string name="widget_prayer_isha">ماسخوتن</string>
+  <string name="widget_no_events">نن هېڅ پېښه نشته</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">د لمانځه وختونو لپاره ځای وټاکئ</string>
+  <string name="widget_month_interactive_name">میاشت</string>
+  <string name="widget_month_interactive_description">میاشت د رخصتیو او پېښو سره؛ د میاشتو ترمنځ تګ</string>
+  <string name="widget_month_bitmap_name">د میاشتې لنډیز</string>
+  <string name="widget_month_bitmap_description">ټوله میاشت په یوه انځور کې</string>
+  <string name="widget_week_strip_name">اونۍ</string>
+  <string name="widget_week_strip_description">دا اونۍ د رخصتیو او پېښو سره</string>
+  <string name="widget_schedule_name">مهالوېش</string>
+  <string name="widget_schedule_description">د راتلونکو 14 ورځو ستاسو پېښې</string>
+  <string name="widget_sun_arc_name">لمر</string>
+  <string name="widget_sun_arc_description">له لمرختو تر لمرلوېدو د لمر لاره</string>
+  <string name="widget_month_previous">تېره میاشت</string>
+  <string name="widget_month_next">بله میاشت</string>
+  <string name="widget_month_today">نن</string>
+  <string name="widget_month_add">نوې پېښه</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s، رخصتي</string>
+  <string name="widget_schedule_title">راتلونکې 14 ورځې</string>
+  <string name="widget_schedule_empty">په راتلونکو 14 ورځو کې هېڅ پېښه نشته</string>
+  <string name="widget_sun_description">لمرختل %1$s، لمرلوېدل %2$s</string>
+  <string name="widget_no_daylight">نن دلته لمر نه راخېژي او نه لوېږي</string>
+  <string name="widget_moon_name">د سپوږمۍ بڼه</string>
+  <string name="widget_moon_description">د راتلونکې بشپړې او نوې سپوږمۍ سره د سپوږمۍ بڼه</string>
+  <string name="widget_moon_illumination">رڼا %1$s٪</string>
+  <string name="widget_moon_content">سپوږمۍ. %1$s</string>
+  <string name="widget_moon_next_full">بشپړه سپوږمۍ %1$s</string>
+  <string name="widget_moon_next_new">نوې سپوږمۍ %1$s</string>
+  <string name="widget_map_name">د نړۍ نقشه</string>
+  <string name="widget_map_description">د نړۍ پر نقشه ورځ او شپه ستاسو د ځای سره</string>
+  <string name="widget_map_content">د نړۍ نقشه د ورځې او شپې سره</string>
+  <string name="widget_map_content_place">د نړۍ نقشه د ورځې، شپې او ستاسو د ځای سره</string>
+  <string name="widget_countdown_name">شاته شمېرنه</string>
+  <string name="widget_countdown_description">تر ټاکل شوې نېټې ورځې، یا له هغې راهیسې وخت</string>
+  <string name="widget_countdown_setup">د ویجټ په تنظیماتو کې نېټه وټاکئ</string>
+  <string name="widget_countdown_today">نن</string>
+  <string name="widget_countdown_join">%1$s، %2$s</string>
+  <plurals name="widget_countdown_unit_left" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ورځ پاتې</item>
+    <item quantity="other">ورځې پاتې</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ورځ مخکې</item>
+    <item quantity="other">ورځې مخکې</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">کال</item>
+    <item quantity="other">کاله</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">میاشت</item>
+    <item quantity="other">میاشتې</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">ورځ</item>
+    <item quantity="other">ورځې</item>
+  </plurals>
+  <plurals name="widget_countdown_years" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s کال</item>
+    <item quantity="other">%1$s کاله</item>
+  </plurals>
+  <plurals name="widget_countdown_months" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s میاشت</item>
+    <item quantity="other">%1$s میاشتې</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="one">%1$s اونۍ</item>
+    <item quantity="other">%1$s اونۍ</item>
+  </plurals>
+  <plurals name="widget_countdown_days" tools:ignore="ImpliedQuantity">
+    <item quantity="one">%1$s ورځ</item>
+    <item quantity="other">%1$s ورځې</item>
+  </plurals>
+  <string name="widget_countdown_config_title">شاته شمېرنه</string>
+  <string name="widget_countdown_mode_until">پاتې ورځې</string>
+  <string name="widget_countdown_mode_since">تېر وخت</string>
+  <string name="widget_countdown_config_label">سرلیک (اختیاري)</string>
+  <string name="widget_countdown_config_occasions">مناسبتونه</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">جنتري</string>
+  <string name="widget_countdown_config_change_date">نېټه بدلول</string>
+  <string name="widget_countdown_config_repeats">هر کال</string>
+  <string name="widget_countdown_picker_title">نېټه وټاکئ</string>
+  <string name="widget_countdown_picker_year">کال</string>
+  <string name="widget_countdown_picker_month">میاشت</string>
+  <string name="widget_countdown_picker_day">ورځ</string>
+  <string name="widget_countdown_picker_confirm">ترسره شو</string>
+</resources>

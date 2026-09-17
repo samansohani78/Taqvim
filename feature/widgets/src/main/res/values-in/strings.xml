@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (id) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="widget_config_title">Setelan widget</string>
+  <string name="widget_config_loading">Memuat setelan widget</string>
+  <string name="widget_config_background">Latar</string>
+  <string name="widget_background_surface">Tema</string>
+  <string name="widget_background_primary">Aksen</string>
+  <string name="widget_background_secondary">Aksen lembut</string>
+  <string name="widget_background_black">Hitam</string>
+  <string name="widget_background_white">Putih</string>
+  <string name="widget_config_transparency">Transparansi</string>
+  <string name="widget_config_percent">%1$d%%</string>
+  <string name="widget_config_scale">Ukuran</string>
+  <string name="widget_config_contents">Tampilkan</string>
+  <string name="widget_content_weekday">Hari dalam minggu</string>
+  <string name="widget_content_secondary_date">Tanggal pada kalender kedua</string>
+  <string name="widget_content_holidays">Hari libur berwarna</string>
+  <string name="widget_content_events">Acara</string>
+  <string name="widget_content_next_prayer">Waktu salat berikutnya</string>
+  <string name="widget_config_secondary_calendar">Kalender kedua</string>
+  <string name="widget_calendar_automatic">Otomatis</string>
+  <string name="widget_calendar_persian">Hijriah Syamsiah</string>
+  <string name="widget_calendar_islamic">Hijriah Kamariah</string>
+  <string name="widget_calendar_gregorian">Masehi</string>
+  <string name="widget_calendar_nepali">Bikram Sambat</string>
+  <string name="widget_calendar_hebrew">Ibrani</string>
+  <string name="widget_config_save">Simpan</string>
+  <string name="widget_config_cancel">Batal</string>
+  <string name="widget_config_save_failed">Setelan tidak dapat disimpan. Coba lagi.</string>
+  <string name="widget_load_failed">Widget ini tidak dapat dimuat. Ketuk untuk membuka Taqvim.</string>
+  <string name="widget_date_1x1_name">Tanggal</string>
+  <string name="widget_date_1x1_description">Tanggal hari ini pada kalender Anda</string>
+  <string name="widget_date_clock_4x1_name">Tanggal dan jam</string>
+  <string name="widget_date_clock_4x1_description">Tanggal hari ini beserta waktunya</string>
+  <string name="widget_day_summary_2x2_name">Hari ini</string>
+  <string name="widget_day_summary_2x2_description">Tanggal, acara hari ini, dan waktu salat berikutnya</string>
+  <string name="widget_prayer_strip_4x2_name">Waktu salat</string>
+  <string name="widget_prayer_strip_4x2_description">Tanggal beserta waktu salat hari ini</string>
+  <string name="widget_prayer_fajr">Subuh</string>
+  <string name="widget_prayer_sunrise">Matahari terbit</string>
+  <string name="widget_prayer_dhuhr">Zuhur</string>
+  <string name="widget_prayer_asr">Asar</string>
+  <string name="widget_prayer_maghrib">Magrib</string>
+  <string name="widget_prayer_isha">Isya</string>
+  <string name="widget_no_events">Tidak ada acara hari ini</string>
+  <string name="widget_next_prayer">%1$s %2$s</string>
+  <string name="widget_no_place">Pilih lokasi untuk waktu salat</string>
+  <string name="widget_month_interactive_name">Bulan</string>
+  <string name="widget_month_interactive_description">Bulan beserta hari libur dan acara; berpindah antarbulan</string>
+  <string name="widget_month_bitmap_name">Ikhtisar bulan</string>
+  <string name="widget_month_bitmap_description">Seluruh bulan digambar dalam satu gambar</string>
+  <string name="widget_week_strip_name">Minggu</string>
+  <string name="widget_week_strip_description">Minggu ini beserta hari libur dan acara</string>
+  <string name="widget_schedule_name">Jadwal</string>
+  <string name="widget_schedule_description">Acara Anda dalam 14 hari ke depan</string>
+  <string name="widget_sun_arc_name">Matahari</string>
+  <string name="widget_sun_arc_description">Jalur matahari dari terbit hingga terbenam</string>
+  <string name="widget_month_previous">Bulan sebelumnya</string>
+  <string name="widget_month_next">Bulan berikutnya</string>
+  <string name="widget_month_today">Hari ini</string>
+  <string name="widget_month_add">Acara baru</string>
+  <string name="widget_glyph_back">‹</string>
+  <string name="widget_glyph_forward">›</string>
+  <string name="widget_glyph_add">+</string>
+  <string name="widget_glyph_event">•</string>
+  <string name="widget_day_holiday">%1$s, hari libur</string>
+  <string name="widget_schedule_title">14 hari ke depan</string>
+  <string name="widget_schedule_empty">Tidak ada acara dalam 14 hari ke depan</string>
+  <string name="widget_sun_description">Terbit %1$s, terbenam %2$s</string>
+  <string name="widget_no_daylight">Hari ini matahari tidak terbit atau terbenam di sini</string>
+  <string name="widget_moon_name">Fase bulan</string>
+  <string name="widget_moon_description">Fase bulan beserta purnama dan bulan baru berikutnya</string>
+  <string name="widget_moon_illumination">Tersinari %1$s%%</string>
+  <string name="widget_moon_content">Bulan. %1$s</string>
+  <string name="widget_moon_next_full">Purnama %1$s</string>
+  <string name="widget_moon_next_new">Bulan baru %1$s</string>
+  <string name="widget_map_name">Peta dunia</string>
+  <string name="widget_map_description">Siang dan malam pada peta dunia beserta tempat Anda</string>
+  <string name="widget_map_content">Peta dunia dengan siang dan malam</string>
+  <string name="widget_map_content_place">Peta dunia dengan siang, malam, dan tempat Anda</string>
+  <string name="widget_countdown_name">Hitung mundur</string>
+  <string name="widget_countdown_description">Hari menuju tanggal pilihan Anda, atau waktu sejak tanggal itu</string>
+  <string name="widget_countdown_setup">Pilih tanggal di setelan widget</string>
+  <string name="widget_countdown_today">Hari ini</string>
+  <string name="widget_countdown_join">%1$s, %2$s</string>
+  <plurals name="widget_countdown_unit_left">
+    <item quantity="other">hari lagi</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_ago">
+    <item quantity="other">hari lalu</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_years">
+    <item quantity="other">tahun</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_months">
+    <item quantity="other">bulan</item>
+  </plurals>
+  <plurals name="widget_countdown_unit_days">
+    <item quantity="other">hari</item>
+  </plurals>
+  <plurals name="widget_countdown_years">
+    <item quantity="other">%1$s tahun</item>
+  </plurals>
+  <plurals name="widget_countdown_months">
+    <item quantity="other">%1$s bulan</item>
+  </plurals>
+  <plurals name="widget_countdown_weeks">
+    <item quantity="other">%1$s minggu</item>
+  </plurals>
+  <plurals name="widget_countdown_days">
+    <item quantity="other">%1$s hari</item>
+  </plurals>
+  <string name="widget_countdown_config_title">Hitung mundur</string>
+  <string name="widget_countdown_mode_until">Hari menuju</string>
+  <string name="widget_countdown_mode_since">Waktu sejak</string>
+  <string name="widget_countdown_config_label">Judul (opsional)</string>
+  <string name="widget_countdown_config_occasions">Peringatan</string>
+  <string name="widget_countdown_occasion">%1$s · %2$s</string>
+  <string name="widget_countdown_config_calendar">Kalender</string>
+  <string name="widget_countdown_config_change_date">Ubah tanggal</string>
+  <string name="widget_countdown_config_repeats">Setiap tahun</string>
+  <string name="widget_countdown_picker_title">Pilih tanggal</string>
+  <string name="widget_countdown_picker_year">Tahun</string>
+  <string name="widget_countdown_picker_month">Bulan</string>
+  <string name="widget_countdown_picker_day">Hari</string>
+  <string name="widget_countdown_picker_confirm">Selesai</string>
+</resources>

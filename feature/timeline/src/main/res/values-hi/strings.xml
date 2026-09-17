@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (hi) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="timeline_title">टाइमलाइन</string>
+  <string name="timeline_loading">टाइमलाइन लोड हो रही है</string>
+  <string name="timeline_mode_day">दिन</string>
+  <string name="timeline_mode_week">सप्ताह</string>
+  <string name="timeline_previous">पिछला</string>
+  <string name="timeline_today">आज</string>
+  <string name="timeline_next">अगला</string>
+  <string name="timeline_all_day">पूरे दिन</string>
+  <string name="timeline_zoom_in">बड़ा करें</string>
+  <string name="timeline_zoom_out">छोटा करें</string>
+  <string name="timeline_month_title">%1$s %2$s</string>
+  <string name="timeline_range">%1$s – %2$s</string>
+  <string name="timeline_separator">, </string>
+  <string name="timeline_event_timed">%1$s, %2$s से %3$s</string>
+  <string name="timeline_event_all_day">%1$s, पूरे दिन</string>
+  <string name="timeline_draft">नया इवेंट, %1$s से %2$s</string>
+  <string name="timeline_draft_create">बनाएं</string>
+  <string name="timeline_draft_cancel">रद्द करें</string>
+  <string name="timeline_draft_earlier">15 मिनट पहले</string>
+  <string name="timeline_draft_later">15 मिनट बाद</string>
+  <string name="timeline_draft_longer">15 मिनट लंबा</string>
+  <string name="timeline_draft_shorter">15 मिनट छोटा</string>
+  <string name="timeline_now">अभी %1$s</string>
+  <string name="timeline_prayer_line">%1$s %2$s</string>
+  <string name="timeline_prayer_lines">नमाज़ के समय: %1$s</string>
+  <string name="timeline_prayer_fajr">फ़ज्र</string>
+  <string name="timeline_prayer_sunrise">सूर्योदय</string>
+  <string name="timeline_prayer_dhuhr">ज़ुहर</string>
+  <string name="timeline_prayer_asr">अस्र</string>
+  <string name="timeline_prayer_sunset">सूर्यास्त</string>
+  <string name="timeline_prayer_maghrib">मग़रिब</string>
+  <string name="timeline_prayer_isha">इशा</string>
+</resources>
