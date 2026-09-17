@@ -47,6 +47,9 @@ abstract class CollectDependencyCoordinatesTask : DefaultTask() {
     abstract val runtimeGraphs: ListProperty<ResolvedComponentResult>
 
     @get:Internal
+    abstract val debugGraphs: ListProperty<ResolvedComponentResult>
+
+    @get:Internal
     abstract val buildGraphs: ListProperty<ResolvedComponentResult>
 
     @get:Internal
@@ -60,6 +63,7 @@ abstract class CollectDependencyCoordinatesTask : DefaultTask() {
         val found = sortedMapOf<String, MutableSet<LicenseScope>>()
         mapOf(
             LicenseScope.RUNTIME to runtimeGraphs,
+            LicenseScope.DEBUG to debugGraphs,
             LicenseScope.BUILD to buildGraphs,
             LicenseScope.TEST to testGraphs,
         ).forEach { (scope, graphs) ->
@@ -222,6 +226,7 @@ internal fun Project.registerLicenseCoordinatesTask() {
             val graph = configuration.incoming.resolutionResult.rootComponent
             when (ConfigurationClassifier.classify(projectPath, configuration.name)) {
                 LicenseScope.RUNTIME -> runtimeGraphs.add(graph)
+                LicenseScope.DEBUG -> debugGraphs.add(graph)
                 LicenseScope.BUILD -> buildGraphs.add(graph)
                 LicenseScope.TEST -> testGraphs.add(graph)
                 null -> Unit

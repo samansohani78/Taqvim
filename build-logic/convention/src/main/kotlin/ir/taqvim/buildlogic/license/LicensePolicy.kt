@@ -28,10 +28,14 @@ object LicensePolicy {
         val ids = override?.let { setOf(it.license) } ?: dependency.licenses.mapNotNull { it.spdxId }.toSet()
         return when {
             ids.isEmpty() -> LicenseViolation(dependency, LicenseViolation.Reason.UNKNOWN_LICENSE)
-            ids.any { allowList.permits(it, dependency.scopes) } -> null
+            ids.any { allowList.permits(it, dependency.scopes.map(::asAllowListScope).toSet()) } -> null
             else -> LicenseViolation(dependency, LicenseViolation.Reason.NOT_ALLOWED)
         }
     }
+
+    /** Debug-only dependencies must meet the [LicenseScope.RUNTIME] rules; the allow-list has no separate entry. */
+    private fun asAllowListScope(scope: LicenseScope): LicenseScope =
+        if (scope == LicenseScope.DEBUG) LicenseScope.RUNTIME else scope
 
     /** Human-readable gate result written to the report and used as the failure message. */
     fun summary(
@@ -129,6 +133,7 @@ object ConfigurationClassifier {
             name.startsWith("test") || TEST_MARKERS.any { it in name } -> LicenseScope.TEST
             projectPath in TEST_ONLY_PROJECTS -> LicenseScope.TEST
             projectPath in BUILD_ONLY_PROJECTS -> LicenseScope.BUILD
+            name.startsWith("debug") -> LicenseScope.DEBUG
             else -> LicenseScope.RUNTIME
         }
     }

@@ -14,7 +14,8 @@ class ClassificationAndCodecTest {
     private val table =
         listOf(
             Triple(":app", "releaseRuntimeClasspath", LicenseScope.RUNTIME),
-            Triple(":app", "debugRuntimeClasspath", LicenseScope.RUNTIME),
+            Triple(":app", "debugRuntimeClasspath", LicenseScope.DEBUG),
+            Triple(":feature:about", "debugRuntimeClasspath", LicenseScope.DEBUG),
             Triple(":app", "benchmarkRuntimeClasspath", LicenseScope.RUNTIME),
             Triple(":core:model", "runtimeClasspath", LicenseScope.RUNTIME),
             Triple(":core:model", "testRuntimeClasspath", LicenseScope.TEST),

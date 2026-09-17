@@ -58,6 +58,15 @@ class LicensePolicyTest {
     }
 
     @Test
+    fun `debug-only dependencies follow the runtime rules`() {
+        val debug = setOf(LicenseScope.DEBUG)
+        reason(dep("org.junit:junit:5", debug, "EPL-2.0")) shouldBe LicenseViolation.Reason.NOT_ALLOWED
+        reason(dep("gpl:lib:1", debug, "GPL-2.0-or-later")) shouldBe LicenseViolation.Reason.NOT_ALLOWED
+        val runtimeOnly = AllowList(licenses = mapOf("Apache-2.0" to runtime), overrides = emptyList())
+        LicensePolicy.evaluate(dep("a:b:1", debug, "Apache-2.0"), runtimeOnly) shouldBe null
+    }
+
+    @Test
     fun `copyleft and unknown licenses fail`() {
         reason(dep("org.mariadb.jdbc:mariadb-java-client:3", runtime, "LGPL-2.1-or-later")) shouldBe
             LicenseViolation.Reason.NOT_ALLOWED

@@ -9,6 +9,12 @@ enum class LicenseScope {
     /** Shipped inside an app artifact. */
     RUNTIME,
 
+    /**
+     * Shipped only in debug builds (e.g. LeakCanary). The gate applies the [RUNTIME] rules to it; it is kept apart so
+     * the in-app license list of release builds (T-1504) does not name libraries release builds never contain.
+     */
+    DEBUG,
+
     /** Build tooling that is never shipped: annotation/KSP processors, lint checks, build-time tools. */
     BUILD,
 

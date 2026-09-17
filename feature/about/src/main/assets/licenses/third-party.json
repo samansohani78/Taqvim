@@ -376,12 +376,6 @@
       ]
     },
     {
-      "coordinate": "androidx.compose.ui:ui-test-manifest:1.12.1",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.compose.ui:ui-text-android:1.12.1",
       "licenses": [
         "Apache-2.0"
@@ -394,24 +388,6 @@
       ]
     },
     {
-      "coordinate": "androidx.compose.ui:ui-tooling-android:1.12.1",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.compose.ui:ui-tooling-data-android:1.12.1",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.compose.ui:ui-tooling-data:1.12.1",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.compose.ui:ui-tooling-preview-android:1.12.1",
       "licenses": [
         "Apache-2.0"
@@ -419,12 +395,6 @@
     },
     {
       "coordinate": "androidx.compose.ui:ui-tooling-preview:1.12.1",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.compose.ui:ui-tooling:1.12.1",
       "licenses": [
         "Apache-2.0"
       ]
@@ -521,12 +491,6 @@
     },
     {
       "coordinate": "androidx.core:core-viewtree:1.0.0",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.core:core:1.12.0",
       "licenses": [
         "Apache-2.0"
       ]
