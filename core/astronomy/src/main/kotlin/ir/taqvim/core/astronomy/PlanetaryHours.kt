@@ -6,6 +6,7 @@ package ir.taqvim.core.astronomy
 
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Weekday
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
 
 /** The seven classical planets in Chaldean order (slowest apparent motion first). */
@@ -50,6 +51,7 @@ public sealed interface PlanetaryHoursResult {
 public object PlanetaryHours {
     private const val HOURS_PER_HALF = 12
     private const val HOURS_PER_DAY = 24
+    private val MIN_PERIOD = 1.minutes
 
     /** Planet ruling the first hour of [weekday]. */
     public fun rulerOfDay(weekday: Weekday): ClassicalPlanet =
@@ -93,7 +95,12 @@ public object PlanetaryHours {
         }
     }
 
-    /** Planetary hours for [observer] of the day whose first sunrise follows [from], which falls on [weekday]. */
+    /**
+     * Planetary hours for [observer] of the day whose first sunrise follows [from], which falls on [weekday].
+     * Unavailable when the Sun does not both rise and set, and at the edges of polar days and nights, where it only
+     * grazes the horizon: a rise-set search that starts on such an event finds that same instant again, which would
+     * leave a daytime or night shorter than [MIN_PERIOD].
+     */
     public fun forDay(
         observer: Coordinates,
         from: Instant,
@@ -102,10 +109,13 @@ public object PlanetaryHours {
         val sunrise = Sky.riseSetTransit(CelestialBody.SUN, observer, from).rise
         val sunset = sunrise?.let { Sky.riseSetTransit(CelestialBody.SUN, observer, it).set }
         val nextSunrise = sunset?.let { Sky.riseSetTransit(CelestialBody.SUN, observer, it).rise }
-        return if (sunrise == null || sunset == null || nextSunrise == null) {
-            PlanetaryHoursResult.Unavailable
-        } else {
+        val separated =
+            sunrise != null && sunset != null && nextSunrise != null &&
+                sunset - sunrise >= MIN_PERIOD && nextSunrise - sunset >= MIN_PERIOD
+        return if (separated) {
             PlanetaryHoursResult.Available(hours(weekday, sunrise, sunset, nextSunrise))
+        } else {
+            PlanetaryHoursResult.Unavailable
         }
     }
 }

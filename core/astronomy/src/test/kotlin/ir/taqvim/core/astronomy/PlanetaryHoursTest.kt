@@ -60,4 +60,19 @@ class PlanetaryHoursTest {
         PlanetaryHours.forDay(Coordinates(78.2, 15.6), Instant.parse("2026-12-21T00:00:00Z"), Weekday.MONDAY) shouldBe
             PlanetaryHoursResult.Unavailable
     }
+
+    @Test
+    fun `no hours where the Sun only grazes the horizon at the edge of a polar day or night`() {
+        val tromso = Coordinates(69.6492, 18.9553)
+        // 15 May 2000: the set search from the sunrise finds the evening set, and the rise search from that set finds
+        // the same instant again (the start of the midnight Sun). 15 January 2001: the set search from the sunrise
+        // returns the sunrise itself (the end of the polar night).
+        PlanetaryHours.forDay(tromso, Instant.parse("2000-05-14T22:00:00Z"), Weekday.SUNDAY) shouldBe
+            PlanetaryHoursResult.Unavailable
+        PlanetaryHours.forDay(tromso, Instant.parse("2001-01-14T23:00:00Z"), Weekday.MONDAY) shouldBe
+            PlanetaryHoursResult.Unavailable
+        PlanetaryHours
+            .forDay(tromso, Instant.parse("2001-03-20T23:00:00Z"), Weekday.WEDNESDAY)
+            .shouldBeInstanceOf<PlanetaryHoursResult.Available>()
+    }
 }
