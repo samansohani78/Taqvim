@@ -99,19 +99,15 @@ jobs:
           fi
           sudo chmod 666 /dev/kvm
           ls -l /dev/kvm
+      # The profile generator runs on the Gradle Managed Device pixel6Api34 (API 34 aosp-atd, ADR-0018), which the
+      # Android Gradle plugin downloads and starts itself.
       - name: Generate profiles
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 36
-          target: google_apis
-          arch: x86_64
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: true
-          script: >-
-            ./gradlew :benchmark:connectedBenchmarkAndroidTest
-            -Pandroid.testInstrumentationRunnerArguments.class=ir.taqvim.benchmark.BaselineProfileGenerator
-      # Reviewed by a person and committed as app/src/main/baseline-prof.txt (ADR-0018).
+        run: >-
+          ./gradlew :app:generateBaselineProfile
+          -Pandroid.testoptions.manageddevices.emulator.gpu=swiftshader_indirect
+          --no-configuration-cache
+      # Reviewed by a person and committed under app/src/ (ADR-0018).
       - uses: actions/upload-artifact@v7
         with:
           name: baseline-profiles
-          path: benchmark/build/outputs/connected_android_test_additional_output/
+          path: app/src/*/generated/baselineProfiles/
