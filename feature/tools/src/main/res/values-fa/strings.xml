@@ -61,4 +61,7 @@
   <string name="tools_qr_too_long">این متن برای کد QR بیش از حد طولانی است.</string>
   <string name="tools_qr_image">کد QR متن</string>
   <string name="tools_qr_share">هم‌رسانی کد QR</string>
+  <string name="tools_origin_computed">محاسبه‌شده</string>
+  <string name="tools_origin_official">تاریخ رسمی اعلام‌شده</string>
+  <string name="tools_origin_published">تقویم چاپی</string>
 </resources>

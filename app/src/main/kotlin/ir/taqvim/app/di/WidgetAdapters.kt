@@ -207,12 +207,22 @@ internal fun widgetDependenciesChanged(
         if (old.place != new.place) add(WidgetDependency.LOCATION)
         if (old.place != new.place || old.prayerSettings() != new.prayerSettings()) add(WidgetDependency.PRAYER_TIMES)
         val events = old.app.enabledEventSources != new.app.enabledEventSources || old.weekend != new.weekend
-        if (events || old.islamicVariant != new.islamicVariant) add(WidgetDependency.EVENTS)
+        val islamic = old.islamicVariant != new.islamicVariant || old.islamicOverride != new.islamicOverride
+        if (events || islamic) add(WidgetDependency.EVENTS)
     }
 
 /** What the widgets' texts and colors depend on. */
 private fun UserPreferences.appearanceKey(): List<Any?> =
-    listOf(languageCode, calendars, numerals, themeMode, islamicVariant, hijriOffsetDays, app.dynamicColor)
+    listOf(
+        languageCode,
+        calendars,
+        numerals,
+        themeMode,
+        islamicVariant,
+        islamicOverride,
+        hijriOffsetDays,
+        app.dynamicColor,
+    )
 
 /**
  * Keeps placed widgets current (T-1201…): preference changes redraw the widgets they affect, and changes to personal

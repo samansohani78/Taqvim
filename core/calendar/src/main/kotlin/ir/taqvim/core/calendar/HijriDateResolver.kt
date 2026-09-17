@@ -34,16 +34,13 @@ public data class HijriOffset(
 
 /** Where a displayed lunar Hijri date came from, for the "date source" explanation. */
 public enum class HijriDateSource {
-    /** The Calendar Center's published month starts. */
+    /** An official override the user switched on or imported (ADR-0037), e.g. the Calendar Center's announcements. */
     OFFICIAL_TABLE,
 
     /** The estimate corrected by an active [HijriOffset]. */
     USER_OFFSET,
 
-    /**
-     * The calculated crescent estimate (A-06 Iran calibration) joined to the official table, for dates without
-     * published data (ADR-0027).
-     */
+    /** Computed: the crescent calendar with the Iran calibration (A-06, ADR-0027), joined to any override. */
     CRESCENT_ESTIMATE,
 }
 
@@ -54,7 +51,10 @@ public data class ResolvedHijriDate(
     public val offsetDays: Int,
 )
 
-/** Resolves lunar Hijri dates with precedence official table > user offset > crescent estimate (A-05, ADR-0027). */
+/**
+ * Resolves lunar Hijri dates with precedence official override > user offset > computed (A-05, ADR-0027, ADR-0037);
+ * without an override every date is computed.
+ */
 public class HijriDateResolver(
     private val clock: Clock,
     private val calendar: IranIslamicCalendar = IranIslamicCalendar(),

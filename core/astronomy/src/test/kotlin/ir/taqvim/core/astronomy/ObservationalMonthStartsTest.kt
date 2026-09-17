@@ -12,7 +12,7 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.IranIslamicCalendar
-import ir.taqvim.core.calendar.IranOfficialMonthStarts
+import ir.taqvim.core.calendar.IslamicMonthOverrides
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
@@ -22,7 +22,10 @@ import org.junit.jupiter.api.Test
 
 /** A-06 month starts against the Iranian official table (A-05) and the Umm al-Qura calendar (A-04). */
 class ObservationalMonthStartsTest {
-    private val published = IranIslamicCalendar(IranOfficialMonthStarts.TABLE)
+    /** The official Iranian months bundled as an optional override (ADR-0037), used here as the published oracle. */
+    private val officialTable =
+        IslamicMonthOverrides.parse(IslamicMonthOverrides.bundledIranOfficialText().orEmpty()).getOrThrow().table
+    private val published = IranIslamicCalendar(officialTable)
 
     private fun firstDay(
         calendar: CalendarArithmetic,
@@ -38,7 +41,7 @@ class ObservationalMonthStartsTest {
     /** Month starts covered by the published table. */
     private val officialMonths =
         months(1446, 1448).filter { (year, month) ->
-            IranOfficialMonthStarts.TABLE.covers(firstDay(published, year, month))
+            officialTable.covers(firstDay(published, year, month))
         }
 
     private fun differencesFromOfficial(estimate: CalendarArithmetic): List<Long> =

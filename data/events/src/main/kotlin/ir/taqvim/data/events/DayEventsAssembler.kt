@@ -42,7 +42,11 @@ internal class OfficialView(
     catalog: OfficialCatalog,
     val settings: EventsSettings,
 ) {
-    private val selection = IslamicCalendarSelection(settings.preferences.islamicVariant)
+    private val selection =
+        IslamicCalendarSelection(
+            settings.preferences.islamicVariant,
+            overrides = settings.preferences.islamicOverrides,
+        )
     private val lookup = EventLookup(catalog.definitions, selection, catalog.astronomy)
     private val policy = EventVisibilityPolicy(settings.preferences, selection)
     private val holidays = HolidayCalendar(lookup, settings.preferences.enabledSources, settings.weekend)
@@ -51,7 +55,10 @@ internal class OfficialView(
     val personalCalendars: CalendarProvider = selection.providerFor(EventSource.USER)
 
     /** Arithmetic of the user's Islamic variant. */
-    val islamicCalendar: CalendarArithmetic = IslamicCalendarSelection.calendarFor(selection.preferredVariant)
+    val islamicCalendar: CalendarArithmetic = selection.calendarOf(selection.preferredVariant)
+
+    /** The Iranian calendar with the user's optional official override (ADR-0037). */
+    val iranCalendar: IranIslamicCalendar = IranIslamicCalendar(settings.preferences.islamicOverrides)
 
     fun visibleOn(
         jdn: Jdn,
@@ -79,12 +86,9 @@ internal data class DatedPersonal(
 
 /** Builds [DayEvents] from a [Snapshot]; timed events are dated in [zone] by the [EventDays] rule. */
 internal class DayEventsAssembler(
-    clock: Clock,
+    private val clock: Clock,
     private val zone: TimeZone,
 ) {
-    private val iranIslamic = IranIslamicCalendar()
-    private val resolver = HijriDateResolver(clock, iranIslamic)
-
     fun assemble(
         days: JdnRange,
         snapshot: Snapshot,
@@ -96,8 +100,9 @@ internal class DayEventsAssembler(
                 .map { DatedPersonal(it, EventDays.of(it, zone)) }
                 .sortedWith(PERSONAL_ORDER)
         val ics = snapshot.ics.map { it.toOccurrence(zone) }
+        val resolver = HijriDateResolver(clock, official.iranCalendar)
         return days.map { jdn ->
-            val hijri = resolveIranian(official, jdn)
+            val hijri = resolveIranian(official, resolver, jdn)
             DayEvents(
                 jdn = jdn,
                 islamicDate = hijri?.date ?: official.islamicCalendar.fromJdn(jdn),
@@ -114,6 +119,7 @@ internal class DayEventsAssembler(
 
     private fun resolveIranian(
         official: OfficialView,
+        resolver: HijriDateResolver,
         jdn: Jdn,
     ) = if (official.settings.preferences.islamicVariant == IslamicVariant.IRAN_OFFICIAL) {
         resolver.resolve(jdn, official.settings.hijriOffset)

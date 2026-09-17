@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalResources
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageSpec
@@ -120,9 +121,10 @@ internal class TimelineLabels(
             languageCode: String,
             calendar: CalendarSystem,
             variant: IslamicVariant,
+            overrides: IslamicMonthTable? = null,
         ): TimelineLabels {
             val language = LanguageTable.forCode(languageCode) ?: LanguageTable.languages.first()
-            val arithmetic = TimelineContentBuilder.primaryCalendar(listOf(calendar), variant)
+            val arithmetic = TimelineContentBuilder.primaryCalendar(listOf(calendar), variant, overrides)
             return TimelineLabels(resources, language, arithmetic, abbreviatedWeekdayNames(language))
         }
 
@@ -144,7 +146,20 @@ internal fun rememberTimelineLabels(content: TimelineContent): TimelineLabels {
     val resources = LocalResources.current
     // The same Resources object can change its configuration (locale), so the configuration is a key as well.
     val configuration = LocalConfiguration.current
-    return remember(content.languageCode, content.calendar, content.islamicVariant, resources, configuration) {
-        TimelineLabels.create(resources, content.languageCode, content.calendar, content.islamicVariant)
+    return remember(
+        content.languageCode,
+        content.calendar,
+        content.islamicVariant,
+        content.islamicOverrides,
+        resources,
+        configuration,
+    ) {
+        TimelineLabels.create(
+            resources,
+            content.languageCode,
+            content.calendar,
+            content.islamicVariant,
+            content.islamicOverrides,
+        )
     }
 }

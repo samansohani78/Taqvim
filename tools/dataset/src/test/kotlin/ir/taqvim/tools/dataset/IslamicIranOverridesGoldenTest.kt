@@ -8,7 +8,7 @@ import io.kotest.assertions.withClue
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.IranIslamicCalendar
-import ir.taqvim.core.calendar.IranOfficialMonthStarts
+import ir.taqvim.core.calendar.IslamicMonthOverrides
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
@@ -22,8 +22,9 @@ import kotlinx.serialization.json.int
 import org.junit.jupiter.api.Test
 
 /**
- * D-07: the Islamic Iran override table equals the runtime table of `:core:calendar` month for month, and every start
- * is the first day of its Hijri month in the official daily calendars of 1404 and 1405 (Calendar Center, docs/sources).
+ * D-07: the Islamic Iran override table is the file bundled in `:core:calendar` as the optional official override
+ * (ADR-0037), parses to the same months, and every start is the first day of its Hijri month in the official daily
+ * calendars of 1404 and 1405 (Calendar Center, docs/sources).
  */
 class IslamicIranOverridesGoldenTest {
     private val datasetDirectory = File(property("taqvim.dataset.directory"))
@@ -39,9 +40,14 @@ class IslamicIranOverridesGoldenTest {
     }
 
     @Test
-    fun `the table equals IranOfficialMonthStarts month for month`() {
-        val table = IranOfficialMonthStarts.TABLE
-        val calendar = IranIslamicCalendar()
+    fun `the bundled optional override is this file byte for byte`() {
+        IslamicMonthOverrides.bundledIranOfficialText() shouldBe text
+    }
+
+    @Test
+    fun `the override parses to the same months month for month`() {
+        val table = IslamicMonthOverrides.parse(text).getOrThrow().table
+        val calendar = IranIslamicCalendar(table)
         val published =
             (0 until table.monthCount).associate { offset ->
                 val absolute = table.firstYear * MONTHS + table.firstMonth - 1 + offset

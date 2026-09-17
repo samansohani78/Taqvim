@@ -181,6 +181,7 @@ internal fun UserPreferences.surfaceKey(): List<Any?> =
         calendars,
         numerals,
         islamicVariant,
+        islamicOverride,
         hijriOffsetDays,
         weekend,
         place,

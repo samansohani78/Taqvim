@@ -55,6 +55,7 @@ internal object DayDetailsSamples {
             selectedDay = nowruz,
             calendars = calendars.systems.toImmutableList(),
             selectedDates = calendars.datesOf(nowruz).toImmutableList(),
+            selectedOrigins = calendars.originsOf(nowruz).toImmutableList(),
             monthOffset = 0,
             visibleMonth = calendars.monthStart(nowruz),
             weekStart = settings.weekStart,

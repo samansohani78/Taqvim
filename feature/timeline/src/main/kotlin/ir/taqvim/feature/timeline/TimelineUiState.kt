@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.timeline
 
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
@@ -38,6 +39,8 @@ data class TimelineContent(
     val languageCode: String,
     /** Whether the events of the shown days have loaded. */
     val isLoaded: Boolean,
+    /** Optional official Iranian month starts in use (ADR-0037); `null` when every Islamic date is computed. */
+    val islamicOverrides: IslamicMonthTable? = null,
 )
 
 /** One shown day. */

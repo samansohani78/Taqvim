@@ -31,7 +31,7 @@ class AgendaCalendars(
     val arithmetic: List<CalendarArithmetic> =
         settings.calendars
             .distinct()
-            .map { IslamicCalendarSelection.arithmeticFor(it, settings.islamicVariant) }
+            .map { IslamicCalendarSelection.arithmeticFor(it, settings.islamicVariant, settings.islamicOverrides) }
             .ifEmpty { listOf(GregorianCalendarSystem) }
 
     private val primary: CalendarArithmetic = arithmetic.first()

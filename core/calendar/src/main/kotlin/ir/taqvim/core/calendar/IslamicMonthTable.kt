@@ -42,6 +42,15 @@ public class IslamicMonthTable(
     /** JDN of the first day of the month [index] months after the first month; [monthCount] gives [endJdn]. */
     internal fun startAt(index: Int): Long = starts[index]
 
+    override fun equals(other: Any?): Boolean =
+        other is IslamicMonthTable &&
+            firstYear == other.firstYear &&
+            firstMonth == other.firstMonth &&
+            firstStartJdn == other.firstStartJdn &&
+            monthLengths == other.monthLengths
+
+    override fun hashCode(): Int = listOf(firstYear, firstMonth, firstStartJdn, monthLengths).hashCode()
+
     /** Year and month at [index] months after the first month. */
     internal fun yearMonthAt(index: Int): Pair<Int, Int> {
         val absolute = firstMonth - 1 + index

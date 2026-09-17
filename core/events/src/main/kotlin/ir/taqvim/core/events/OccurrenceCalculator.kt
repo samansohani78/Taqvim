@@ -26,7 +26,7 @@ public fun interface CalendarProvider {
     public fun calendarFor(system: CalendarSystem): CalendarArithmetic?
 
     public companion object {
-        /** Persian (A-02), Iranian official Islamic (A-05), Gregorian and Bikram Sambat (A-07). */
+        /** Persian (A-02), computed Iranian Islamic (A-05 without an override), Gregorian, Bikram Sambat, Hebrew. */
         public val DEFAULT: CalendarProvider =
             CalendarProvider { system ->
                 when (system) {

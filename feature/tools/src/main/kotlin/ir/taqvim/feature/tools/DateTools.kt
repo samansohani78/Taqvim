@@ -5,6 +5,7 @@
 package ir.taqvim.feature.tools
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.originOf
 import ir.taqvim.core.calendar.periodBetween
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
@@ -69,7 +70,13 @@ internal object DateTools {
         val date = calendar.fromJdn(jdn)
 
         fun text(style: DateStyle) = DateFormatter.format(date, jdn.weekday(), settings.language, style)
-        return ConvertedDate(calendar.system, text(DateStyle.LONG), text(DateStyle.NUMERIC), text(DateStyle.ISO))
+        return ConvertedDate(
+            calendar.system,
+            text(DateStyle.LONG),
+            text(DateStyle.NUMERIC),
+            text(DateStyle.ISO),
+            calendar.originOf(jdn),
+        )
     }
 
     private fun context(

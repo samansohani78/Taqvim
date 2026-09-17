@@ -241,4 +241,24 @@
   <string name="onboarding_next">بعدی</string>
   <string name="onboarding_done">شروع</string>
   <string name="onboarding_loading">در حال بارگذاری</string>
+  <string name="settings_item_islamic_override">تاریخ‌های رسمی قمری</string>
+  <string name="settings_islamic_override_title">تاریخ‌های رسمی قمری</string>
+  <string name="settings_islamic_override_loading">در حال بارگذاری تنظیمات تاریخ قمری</string>
+  <string name="settings_islamic_override_intro">تاریخ‌های هجری قمری با قاعدهٔ رؤیت هلال محاسبه می‌شوند تا برنامه برای همهٔ سال‌ها کار کند. می‌توانید به‌جای آن تاریخ‌هایی را که رسماً اعلام شده‌اند به کار ببرید؛ ماه‌های بعد همچنان محاسبه می‌شوند.</string>
+  <string name="settings_islamic_override_status_computed">در حال استفاده: تاریخ‌های محاسبه‌شده</string>
+  <string name="settings_islamic_override_status_official">در حال استفاده: تاریخ‌های رسمی ایران، از %1$s تا %2$s</string>
+  <string name="settings_islamic_override_status_imported">در حال استفاده: تاریخ‌های واردشده، از %1$s تا %2$s</string>
+  <string name="settings_islamic_override_official">استفاده از تاریخ‌های رسمی اعلام‌شده در ایران</string>
+  <string name="settings_islamic_override_official_detail">آغاز ماه‌ها به اعلام مرکز تقویم دانشگاه تهران، همراه برنامه</string>
+  <string name="settings_islamic_override_import">وارد کردن پروندهٔ تاریخ‌ها…</string>
+  <string name="settings_islamic_override_remove">فقط تاریخ‌های محاسبه‌شده</string>
+  <string name="settings_islamic_override_imported">پروندهٔ تاریخ‌ها وارد شد</string>
+  <string name="settings_islamic_override_change_failed">تغییر ذخیره نشد. دوباره تلاش کنید.</string>
+  <string name="settings_islamic_override_broken">پروندهٔ تاریخ‌های انتخاب‌شده دیگر خوانده نمی‌شود؛ تاریخ‌های محاسبه‌شده نمایش داده می‌شوند.</string>
+  <string name="settings_islamic_override_ended">تاریخ‌های رسمی به پایان رسیده‌اند؛ تاریخ‌های بعدی محاسبه می‌شوند.</string>
+  <string name="settings_islamic_override_error_unreadable">پرونده خوانده نشد.</string>
+  <string name="settings_islamic_override_error_too_large">این پرونده برای پروندهٔ تاریخ‌ها بیش از حد بزرگ است.</string>
+  <string name="settings_islamic_override_error_format">این پرونده، پروندهٔ تاریخ‌های تقویم (نسخهٔ ۱) نیست.</string>
+  <string name="settings_islamic_override_error_months">ماه‌های این پرونده ناقص، نابه‌ترتیب یا نادرست‌اند.</string>
+  <string name="settings_islamic_override_error_citation">هر ماه در پرونده باید منبع داشته باشد.</string>
 </resources>

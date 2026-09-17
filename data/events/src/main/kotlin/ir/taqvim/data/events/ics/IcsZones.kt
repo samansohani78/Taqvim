@@ -19,5 +19,8 @@ internal object IcsZones {
 
     /** Calendars of personal events under the user's current Islamic variant, as the events repository uses them. */
     suspend fun personalCalendars(preferences: Flow<UserPreferences>): CalendarProvider =
-        IslamicCalendarSelection(preferences.first().islamicVariant).providerFor(EventSource.USER)
+        preferences
+            .first()
+            .let { IslamicCalendarSelection(it.islamicVariant, overrides = it.islamicOverride.table) }
+            .providerFor(EventSource.USER)
 }

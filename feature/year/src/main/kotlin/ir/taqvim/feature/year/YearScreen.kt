@@ -160,7 +160,8 @@ private fun LoadingYear(modifier: Modifier) {
 }
 
 /** The preferences behind [YearContent], for building year pages. */
-internal fun YearContent.settings(): YearSettings = YearSettings(calendars, weekStart, islamicVariant, languageCode)
+internal fun YearContent.settings(): YearSettings =
+    YearSettings(calendars, weekStart, islamicVariant, languageCode, islamicOverrides)
 
 /** A [YearPageBuilder] for [settings] with texts from the current resources. */
 @Composable

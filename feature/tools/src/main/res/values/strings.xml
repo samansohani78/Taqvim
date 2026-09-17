@@ -81,4 +81,7 @@
   <string name="tools_qr_too_long">This text is too long for a QR code.</string>
   <string name="tools_qr_image">QR code of the text</string>
   <string name="tools_qr_share">Share QR code</string>
+  <string name="tools_origin_computed">Computed</string>
+  <string name="tools_origin_official">Official announced date</string>
+  <string name="tools_origin_published">Printed calendar</string>
 </resources>

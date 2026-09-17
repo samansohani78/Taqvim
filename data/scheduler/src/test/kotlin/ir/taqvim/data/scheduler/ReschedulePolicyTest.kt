@@ -15,6 +15,8 @@ import ir.taqvim.data.preferences.AthanAlert
 import ir.taqvim.data.preferences.AthanPrayer
 import ir.taqvim.data.preferences.AthanSound
 import ir.taqvim.data.preferences.ChosenPlace
+import ir.taqvim.data.preferences.IslamicOverrideOrigin
+import ir.taqvim.data.preferences.IslamicOverrideSetting
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
 import ir.taqvim.data.preferences.UserPreferences
@@ -71,6 +73,7 @@ class ReschedulePolicyTest {
                 base.copy(athan = base.athan.copy(sound = AthanSound("content://athan", null))) to prayer,
                 base.copy(islamicVariant = otherThan(IslamicVariant.entries, base.islamicVariant)) to reminder,
                 base.copy(hijriOffsetDays = 1) to reminder,
+                base.copy(islamicOverride = IslamicOverrideSetting(IslamicOverrideOrigin.IMPORTED, "{}")) to reminder,
                 base.copy(hijriOffsetSetAtEpochMillis = 1L) to reminder,
                 base.copy(themeMode = ThemeMode.DARK) to none,
                 base.copy(languageCode = "en") to none,

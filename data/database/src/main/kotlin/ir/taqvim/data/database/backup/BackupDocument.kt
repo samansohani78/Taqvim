@@ -17,6 +17,7 @@ import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.data.preferences.AppSettings
 import ir.taqvim.data.preferences.AthanPrayer
+import ir.taqvim.data.preferences.IslamicOverrideOrigin
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.ThemeMode
 import kotlinx.serialization.Serializable
@@ -64,6 +65,15 @@ internal data class PreferencesRecord(
     val app: AppSettingsRecord? = null,
     /** Athan settings (T-1101); absent in backups made before them. */
     val athan: AthanRecord? = null,
+    /** The optional official Islamic month starts (ADR-0037); absent when none was switched on. */
+    val islamicOverride: IslamicOverrideRecord? = null,
+)
+
+/** The backed-up optional Islamic override: where it came from and the file text (ADR-0037). */
+@Serializable
+internal data class IslamicOverrideRecord(
+    val origin: IslamicOverrideOrigin,
+    val json: String,
 )
 
 /**

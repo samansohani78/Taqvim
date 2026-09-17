@@ -107,12 +107,7 @@ class CalendarViewModel(
             OverviewInput(day, today, cal, at.place)
         }.distinctUntilChanged()
             .mapLatest<OverviewInput, DayOverview?> {
-                DayDetailsCalculator.overview(
-                    it.day,
-                    it.today,
-                    it.calendars,
-                    it.place,
-                )
+                DayDetailsCalculator.overview(it.day, it.today, it.calendars, it.place)
             }.flowOn(calculationDispatcher)
             .onStart { emit(null) }
 
@@ -328,6 +323,7 @@ class CalendarViewModel(
             selectedDay = selected,
             calendars = calendars.systems.toImmutableList(),
             selectedDates = calendars.datesOf(selected).toImmutableList(),
+            selectedOrigins = calendars.originsOf(selected).toImmutableList(),
             monthOffset = calendars.monthOffset(today, shown),
             visibleMonth = calendars.monthStart(shown),
             weekStart = calendars.settings.weekStart,
@@ -335,6 +331,7 @@ class CalendarViewModel(
             dayDetails = loaded.details?.takeIf { it.jdn == selected },
             search = search,
             islamicVariant = calendars.settings.islamicVariant,
+            islamicOverrides = calendars.settings.islamicOverrides,
             languageCode = calendars.settings.languageCode,
             showWeekNumbers = calendars.settings.showWeekNumbers,
             months = loaded.months,

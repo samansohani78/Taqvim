@@ -1,6 +1,7 @@
 # ADR-0027: Iranian lunar months are computed from the crescent rule for every year
 
-- **Status:** Accepted (supersedes decision 2 of ADR-0009; completes its decision 4)
+- **Status:** Accepted (supersedes decision 2 of ADR-0009; completes its decision 4; decision 5 superseded by
+  ADR-0037)
 - **Date:** 2026-09-15
 - **Plan reference:** docs/PLAN.md §6 A-05, A-06; T-104; ADR-0009 (addenda of 2026-09-13 and 2026-09-14), ADR-0010,
   ADR-0026

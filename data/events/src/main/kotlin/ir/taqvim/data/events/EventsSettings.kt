@@ -34,6 +34,7 @@ fun UserPreferences.toEventsSettings(
                 enabledSources = enabledSources,
                 homeTimeZone = homeTimeZone,
                 islamicVariant = islamicVariant,
+                islamicOverrides = islamicOverride.table,
             ),
         weekend = weekend,
         hijriOffset = storedHijriOffset(),

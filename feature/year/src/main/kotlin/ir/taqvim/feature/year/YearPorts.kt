@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.year
 
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
@@ -19,6 +20,8 @@ data class YearSettings(
     val islamicVariant: IslamicVariant,
     /** App language code (e.g. `fa`): month names, digits and spoken month summaries. */
     val languageCode: String,
+    /** Optional official Iranian month starts in use (ADR-0037); `null` when every Islamic date is computed. */
+    val islamicOverrides: IslamicMonthTable? = null,
 )
 
 /** Whether the civil day [jdn] is an official holiday or a weekend day. */

@@ -14,7 +14,13 @@ import io.kotest.property.Arb
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
+import ir.taqvim.core.calendar.DateOrigin
+import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.IslamicMonthOverrides
+import ir.taqvim.core.calendar.PersianCalendarSystem
+import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.testing.PropertyTesting
@@ -31,6 +37,27 @@ class DateToolsTest {
         input: String,
         settings: ToolsSettings = persian,
     ) = DateTools.convert(input, today, settings).shouldBeInstanceOf<ConverterResult.Converted>()
+
+    @Test
+    fun `each converted date says whether it is computed, official or from the printed calendar`() {
+        val overrides =
+            IslamicMonthOverrides.parse(IslamicMonthOverrides.bundledIranOfficialText().orEmpty()).getOrThrow()
+        val calendars =
+            listOf(
+                PersianCalendarSystem,
+                IranIslamicCalendar(overrides.table),
+                UmmAlQuraCalendar,
+                IranIslamicCalendar(),
+            )
+        val settings = english.copy(calendars = calendars)
+        val ramadan1446 = Jdn(overrides.table.firstStartJdn)
+
+        DateTools.describe(ramadan1446, settings).map { it.origin } shouldBe
+            listOf(DateOrigin.COMPUTED, DateOrigin.OFFICIAL_OVERRIDE, DateOrigin.COMPUTED, DateOrigin.COMPUTED)
+        val muharram1400 = UmmAlQuraCalendar.toJdn(CalendarDate(CalendarSystem.ISLAMIC, 1400, 1, 1))
+        DateTools.describe(muharram1400, settings).map { it.origin } shouldBe
+            listOf(DateOrigin.COMPUTED, DateOrigin.COMPUTED, DateOrigin.PUBLISHED_CALENDAR, DateOrigin.COMPUTED)
+    }
 
     @Test
     fun `a written date is shown in every calendar`() {

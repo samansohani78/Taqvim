@@ -47,6 +47,7 @@ import ir.taqvim.feature.events.NewEventDraft
 import ir.taqvim.feature.events.OccurrenceTarget
 import ir.taqvim.feature.search.SearchRoute
 import ir.taqvim.feature.settings.AthanSettingsRoute
+import ir.taqvim.feature.settings.IslamicOverrideRoute
 import ir.taqvim.feature.settings.LocationSettingsRoute
 import ir.taqvim.feature.settings.SettingsHomeRoute
 import ir.taqvim.feature.settings.SettingsItemId
@@ -222,6 +223,20 @@ private fun SettingsAndInstrumentScreen(
             SearchRoute(modifier, router.search())
         }
 
+        else -> {
+            SettingsPageScreen(destination, navigator, modifier)
+        }
+    }
+}
+
+/** Settings pages opened from settings rows. */
+@Composable
+private fun SettingsPageScreen(
+    destination: AppDestination,
+    navigator: AppNavigator,
+    modifier: Modifier,
+) {
+    when (destination) {
         AppDestination.LocationSettings -> {
             LocationSettingsRoute(modifier, onPickOnMap = { navigator.navigate(AppDestination.MapPick) })
         }
@@ -240,6 +255,10 @@ private fun SettingsAndInstrumentScreen(
 
         AppDestination.Privacy -> {
             PrivacyRoute(modifier)
+        }
+
+        AppDestination.IslamicOverride -> {
+            IslamicOverrideRoute(modifier)
         }
 
         else -> {

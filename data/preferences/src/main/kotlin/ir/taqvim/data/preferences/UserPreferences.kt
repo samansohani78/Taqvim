@@ -4,6 +4,8 @@
  */
 package ir.taqvim.data.preferences
 
+import ir.taqvim.core.calendar.IslamicMonthOverrides
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.NumeralSystem
@@ -19,6 +21,45 @@ enum class ThemeMode {
     LIGHT,
     DARK,
     BLACK,
+}
+
+/** Where the optional official Islamic month starts came from (ADR-0037). */
+enum class IslamicOverrideOrigin {
+    /** No override: every Islamic date is computed. */
+    NONE,
+
+    /** The official Iranian months bundled with the app, switched on by the user. */
+    OFFICIAL_BUNDLED,
+
+    /** A file the user imported. */
+    IMPORTED,
+}
+
+/**
+ * The optional official Islamic month starts (ADR-0037): [origin] and the file [json]. [overrides] is the parsed file,
+ * or `null` when there is none or it no longer parses — the app then shows computed dates.
+ */
+data class IslamicOverrideSetting(
+    val origin: IslamicOverrideOrigin = IslamicOverrideOrigin.NONE,
+    val json: String = "",
+) {
+    /** The parsed override, or `null`. */
+    val overrides: IslamicMonthOverrides? by lazy {
+        if (origin == IslamicOverrideOrigin.NONE) null else IslamicMonthOverrides.parse(json).getOrNull()
+    }
+
+    /** The month table to apply, or `null` for computed dates. */
+    val table: IslamicMonthTable?
+        get() = overrides?.table
+
+    /** Whether an override was chosen but its text does not parse (shown as a notice; dates stay computed). */
+    val isBroken: Boolean
+        get() = origin != IslamicOverrideOrigin.NONE && overrides == null
+
+    companion object {
+        /** No override. */
+        val NONE: IslamicOverrideSetting = IslamicOverrideSetting()
+    }
 }
 
 /** Typed user preferences (docs/PLAN.md §4.4), backed by the `UserPrefs` proto. */
@@ -42,6 +83,8 @@ data class UserPreferences(
     val app: AppSettings = AppSettings.DEFAULT,
     /** Whether the first-run onboarding (T-1501) was completed or skipped on this device. */
     val onboardingCompleted: Boolean = false,
+    /** Optional official Islamic month starts (ADR-0037); by default every Islamic date is computed. */
+    val islamicOverride: IslamicOverrideSetting = IslamicOverrideSetting.NONE,
 ) {
     /**
      * These preferences switched to [languageCode] (T-1501, ADR-0023). A language-derived value (calendars, numerals,

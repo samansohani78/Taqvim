@@ -7,6 +7,7 @@ package ir.taqvim.feature.year
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
@@ -24,7 +25,7 @@ class YearCalendars(
     val arithmetic: List<CalendarArithmetic> =
         settings.calendars
             .distinct()
-            .map { arithmeticFor(it, settings.islamicVariant) }
+            .map { arithmeticFor(it, settings.islamicVariant, settings.islamicOverrides) }
             .ifEmpty { listOf(GregorianCalendarSystem) }
 
     /** The user's calendars in their order; Gregorian when the user has none. */
@@ -95,10 +96,11 @@ class YearCalendars(
             return first.toInt()..last.toInt()
         }
 
-        /** Arithmetic of [system], with [variant] for the Islamic calendar. */
+        /** Arithmetic of [system], with [variant] and the optional official [overrides] for the Islamic calendar. */
         fun arithmeticFor(
             system: CalendarSystem,
             variant: IslamicVariant,
-        ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant)
+            overrides: IslamicMonthTable? = null,
+        ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant, overrides)
     }
 }

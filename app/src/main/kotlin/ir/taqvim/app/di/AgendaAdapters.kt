@@ -25,7 +25,7 @@ internal class PreferencesAgendaSettingsSource(
 ) : AgendaSettingsSource {
     override fun settings(): Flow<AgendaSettings> =
         preferences.preferences
-            .map { AgendaSettings(it.calendars, it.islamicVariant, it.languageCode) }
+            .map { AgendaSettings(it.calendars, it.islamicVariant, it.languageCode, it.islamicOverride.table) }
             .distinctUntilChanged()
 }
 

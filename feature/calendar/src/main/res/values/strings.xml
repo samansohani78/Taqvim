@@ -27,6 +27,9 @@
   <string name="calendar_tab_events">Events</string>
   <!-- Tab in the day details that lists the day's prayer times. -->
   <string name="calendar_tab_times">Times</string>
+  <string name="calendar_origin_computed">Computed</string>
+  <string name="calendar_origin_official">Official announced date</string>
+  <string name="calendar_origin_published">Printed calendar</string>
   <string name="calendar_details_loading">Loading the day</string>
   <string name="calendar_system_persian">Solar Hijri</string>
   <string name="calendar_system_islamic">Lunar Hijri</string>

@@ -7,6 +7,7 @@ package ir.taqvim.data.preferences
 import androidx.datastore.core.CorruptionException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.calendar.IslamicMonthOverrides
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.model.AsrJuristic
@@ -42,6 +43,26 @@ class UserPreferencesMappingTest {
                 defaults.toProto().toDomain() shouldBe defaults
             }
         }
+
+    @Test
+    fun `the Islamic override round-trips and older stores read as computed`() {
+        val bundled = IslamicMonthOverrides.bundledIranOfficialText().orEmpty()
+        val official =
+            UserPreferences.defaultsFor("fa").copy(
+                islamicOverride = IslamicOverrideSetting(IslamicOverrideOrigin.OFFICIAL_BUNDLED, bundled),
+            )
+
+        UserPrefs.getDefaultInstance().toDomain().islamicOverride shouldBe IslamicOverrideSetting.NONE
+        UserPreferences.defaultsFor("fa").islamicOverride.table shouldBe null
+        official.toProto().toDomain() shouldBe official
+        official.islamicOverride.table?.monthCount shouldBe 25
+        official.withLanguage("en").islamicOverride shouldBe official.islamicOverride
+        IslamicOverrideSetting(IslamicOverrideOrigin.IMPORTED, "{").let {
+            it.table shouldBe null
+            it.isBroken shouldBe true
+        }
+        IslamicOverrideSetting.NONE.isBroken shouldBe false
+    }
 
     @TestFactory
     fun `schema migrations`(): List<DynamicTest> {

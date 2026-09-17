@@ -60,6 +60,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object Subscriptions : AppDestination
 
+    /** The optional official Islamic dates page (ADR-0037). */
+    @Serializable
+    data object IslamicOverride : AppDestination
+
     /** The settings home (T-1500), opened at the settings item named [initialItem] when one is given. */
     @Serializable
     data class Settings(

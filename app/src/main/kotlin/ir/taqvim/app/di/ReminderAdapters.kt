@@ -5,6 +5,7 @@
 package ir.taqvim.app.di
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventId
@@ -77,7 +78,14 @@ internal class RoomReminderSetupSource(
         return ReminderSetup(
             events = personal,
             officials = officialReminders.all().mapNotNull(::officialReminder),
-            schedule = officialSchedule(definitions, current.languageSpec().code, current.islamicVariant, calendars),
+            schedule =
+                officialSchedule(
+                    definitions,
+                    current.languageSpec().code,
+                    current.islamicVariant,
+                    calendars,
+                    current.islamicOverride.table,
+                ),
             zone = zone(),
             allDayTime = MinuteOfDay(current.app.allDayReminderMinute),
             calendars = calendars,
@@ -95,8 +103,13 @@ internal fun officialSchedule(
     languageTag: String,
     variant: IslamicVariant,
     calendars: CalendarProvider,
+    overrides: IslamicMonthTable? = null,
 ): CalculatorOfficialEventSchedule =
-    CalculatorOfficialEventSchedule(definitions, languageTag, IslamicCalendarSelection(variant, base = calendars))
+    CalculatorOfficialEventSchedule(
+        definitions,
+        languageTag,
+        IslamicCalendarSelection(variant, base = calendars, overrides = overrides),
+    )
 
 /** [entity] for the reminder planner, or `null` when it is off or unusable (no event id, lead time beyond 30 days). */
 internal fun officialReminder(entity: OfficialReminderEntity): OfficialReminder? =

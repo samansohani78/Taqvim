@@ -14,10 +14,10 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import org.junit.jupiter.api.Test
 
-/** A-05 precedence (official table > user offset > crescent estimate, ADR-0027) and offset expiry. */
+/** A-05 precedence (official override > user offset > computed, ADR-0027, ADR-0037) and offset expiry. */
 class HijriDateResolverTest {
     private val clock = FakeClock()
-    private val calendar = IranIslamicCalendar()
+    private val calendar = IranIslamicCalendar(OfficialIranMonths.overrides.table)
     private val resolver = HijriDateResolver(clock, calendar)
 
     private val officialDay = calendar.toJdn(CalendarDate(CalendarSystem.ISLAMIC, 1447, 10, 1))
@@ -28,6 +28,14 @@ class HijriDateResolverTest {
         val resolved = resolver.resolve(officialDay, HijriOffset(1, clock.now()))
 
         resolved shouldBe ResolvedHijriDate(calendar.fromJdn(officialDay), HijriDateSource.OFFICIAL_TABLE, 0)
+    }
+
+    @Test
+    fun `without an override every date is computed and the offset applies everywhere`() {
+        val computed = HijriDateResolver(clock)
+
+        computed.resolve(officialDay, null).source shouldBe HijriDateSource.CRESCENT_ESTIMATE
+        computed.resolve(officialDay, HijriOffset(1, clock.now())).source shouldBe HijriDateSource.USER_OFFSET
     }
 
     @Test

@@ -9,6 +9,7 @@ import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.TabularIslamicCalendar
@@ -19,18 +20,26 @@ import kotlinx.datetime.TimeZone
 
 /**
  * The Islamic calendar per event source (T-302): [bySource] fixes a variant for some sources; every other source uses
- * the user's [preferredVariant]. Non-Islamic calendars come from [base].
+ * the user's [preferredVariant]. Non-Islamic calendars come from [base]. [overrides] are the optional official Iranian
+ * month starts the user switched on or imported (ADR-0037); without them every Islamic date is computed.
  */
 public class IslamicCalendarSelection(
     public val preferredVariant: IslamicVariant,
     private val bySource: Map<EventSource, IslamicVariant> = DEFAULT_SOURCE_VARIANTS,
     private val base: CalendarProvider = CalendarProvider.DEFAULT,
+    public val overrides: IslamicMonthTable? = null,
 ) : SourceCalendars {
+    private val iranCalendar: CalendarArithmetic by lazy { iranCalendarFor(overrides) }
+
     /** The variant used for events of [source]. */
     public fun variantFor(source: EventSource): IslamicVariant = bySource[source] ?: preferredVariant
 
+    /** Arithmetic for [variant] with this selection's [overrides]. */
+    public fun calendarOf(variant: IslamicVariant): CalendarArithmetic =
+        if (variant == IslamicVariant.IRAN_OFFICIAL) iranCalendar else calendarFor(variant)
+
     override fun providerFor(source: EventSource): CalendarProvider {
-        val islamic = calendarFor(variantFor(source))
+        val islamic = calendarOf(variantFor(source))
         return CalendarProvider { system ->
             val isIslamic = system == CalendarSystem.ISLAMIC
             if (isIslamic) islamic else base.calendarFor(system)
@@ -42,16 +51,25 @@ public class IslamicCalendarSelection(
         public val DEFAULT_SOURCE_VARIANTS: Map<EventSource, IslamicVariant> =
             mapOf(EventSource.IRAN_OFFICIAL to IslamicVariant.IRAN_OFFICIAL)
 
-        private val IRAN_OFFICIAL_CALENDAR = IranIslamicCalendar()
+        private val IRAN_COMPUTED_CALENDAR = IranIslamicCalendar()
 
         /**
-         * Arithmetic for [variant]. The calculated-observational variant (A-06) is the crescent calendar with the Iran
-         * calibration and no official data ([IranCrescentCalendar], ADR-0027); the Iranian official variant uses the
-         * same months wherever nothing is published.
+         * The Iranian calendar: computed, with [overrides] applied when the user switched official dates on (ADR-0037).
          */
-        public fun calendarFor(variant: IslamicVariant): CalendarArithmetic =
+        public fun iranCalendarFor(overrides: IslamicMonthTable?): CalendarArithmetic =
+            overrides?.let(::IranIslamicCalendar) ?: IRAN_COMPUTED_CALENDAR
+
+        /**
+         * Arithmetic for [variant], with [overrides] for the Iranian variant. The calculated-observational variant
+         * (A-06) is the crescent calendar with the Iran calibration ([IranCrescentCalendar], ADR-0027); the Iranian
+         * variant is the same computed calendar unless official months were switched on (ADR-0037).
+         */
+        public fun calendarFor(
+            variant: IslamicVariant,
+            overrides: IslamicMonthTable? = null,
+        ): CalendarArithmetic =
             when (variant) {
-                IslamicVariant.IRAN_OFFICIAL -> IRAN_OFFICIAL_CALENDAR
+                IslamicVariant.IRAN_OFFICIAL -> iranCalendarFor(overrides)
                 IslamicVariant.UMM_AL_QURA -> UmmAlQuraCalendar
                 IslamicVariant.TABULAR_16 -> TabularIslamicCalendar.TYPE_II
                 IslamicVariant.TABULAR_15 -> TabularIslamicCalendar.TYPE_I
@@ -62,10 +80,11 @@ public class IslamicCalendarSelection(
         public fun arithmeticFor(
             system: CalendarSystem,
             variant: IslamicVariant,
+            overrides: IslamicMonthTable? = null,
         ): CalendarArithmetic =
             when (system) {
                 CalendarSystem.PERSIAN -> PersianCalendarSystem
-                CalendarSystem.ISLAMIC -> calendarFor(variant)
+                CalendarSystem.ISLAMIC -> calendarFor(variant, overrides)
                 CalendarSystem.GREGORIAN -> GregorianCalendarSystem
                 CalendarSystem.NEPALI -> NepaliCalendarSystem
                 CalendarSystem.HEBREW -> HebrewCalendarSystem
@@ -85,6 +104,8 @@ public data class EventPreferences(
     public val hideReligiousOutsideHomeZone: Boolean = false,
     /** Islamic variant for sources without a fixed one. */
     public val islamicVariant: IslamicVariant = IslamicVariant.IRAN_OFFICIAL,
+    /** Optional official Iranian month starts (ADR-0037); `null` means every Islamic date is computed. */
+    public val islamicOverrides: IslamicMonthTable? = null,
 )
 
 /**
@@ -95,7 +116,8 @@ public data class EventPreferences(
 public class EventVisibilityPolicy(
     private val preferences: EventPreferences,
     /** Calendars per source, also to be used by the [EventLookup] feeding this policy. */
-    public val calendars: SourceCalendars = IslamicCalendarSelection(preferences.islamicVariant),
+    public val calendars: SourceCalendars =
+        IslamicCalendarSelection(preferences.islamicVariant, overrides = preferences.islamicOverrides),
 ) {
     /** Whether [occurrence] is shown while the device is in [currentTimeZone]. */
     public fun isVisible(

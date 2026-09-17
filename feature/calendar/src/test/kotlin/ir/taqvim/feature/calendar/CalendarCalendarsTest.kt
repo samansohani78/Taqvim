@@ -11,7 +11,9 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import ir.taqvim.core.calendar.CalendarLimits
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.IslamicMonthOverrides
 import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
@@ -30,6 +32,10 @@ import org.junit.jupiter.api.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class CalendarCalendarsTest {
     private val today = gregorian(2026, 3, 18)
+
+    private companion object {
+        val COMPUTED_ORIGINS = List(3) { DateOrigin.COMPUTED }
+    }
 
     @Test
     fun `repeated calendars are skipped, Bikram Sambat is available and Gregorian stands in for none`() {
@@ -51,6 +57,23 @@ class CalendarCalendarsTest {
             UmmAlQuraCalendar
         CalendarCalendars.arithmeticFor(CalendarSystem.NEPALI, IslamicVariant.IRAN_OFFICIAL) shouldBeSameInstanceAs
             NepaliCalendarSystem
+    }
+
+    @Test
+    fun `the Islamic date is computed unless an official override covers the day`() {
+        val overrides =
+            IslamicMonthOverrides
+                .parse(
+                    IslamicMonthOverrides.bundledIranOfficialText().orEmpty(),
+                ).getOrThrow()
+        val computed = COMPUTED_ORIGINS
+        CalendarCalendars(PERSIAN_FIRST).originsOf(today) shouldBe computed
+        val official = CalendarCalendars(PERSIAN_FIRST.copy(islamicOverrides = overrides.table))
+        official.originsOf(today) shouldBe
+            listOf(DateOrigin.COMPUTED, DateOrigin.COMPUTED, DateOrigin.OFFICIAL_OVERRIDE)
+        official.originsOf(gregorian(2040, 1, 1)) shouldBe computed
+        CalendarCalendars(PERSIAN_FIRST.copy(islamicVariant = IslamicVariant.UMM_AL_QURA)).originsOf(today) shouldBe
+            computed
     }
 
     @Test

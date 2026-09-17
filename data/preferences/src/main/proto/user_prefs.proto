@@ -70,6 +70,13 @@ enum IslamicVariantProto {
   ISLAMIC_VARIANT_CALCULATED_OBSERVATIONAL = 5;
 }
 
+// Optional official Islamic month starts (ADR-0037); NONE means every Islamic date is computed.
+enum IslamicOverrideOriginProto {
+  ISLAMIC_OVERRIDE_ORIGIN_NONE = 0;
+  ISLAMIC_OVERRIDE_ORIGIN_OFFICIAL_BUNDLED = 1;
+  ISLAMIC_OVERRIDE_ORIGIN_IMPORTED = 2;
+}
+
 enum ThemeModeProto {
   THEME_MODE_UNSPECIFIED = 0;
   THEME_MODE_SYSTEM = 1;
@@ -156,6 +163,10 @@ message UserPrefs {
   // Whether the first-run onboarding (T-1501) was completed or skipped on this device; stores written before it read
   // as false, so the onboarding is shown once. Not carried in backups (ADR-0023).
   bool onboarding_completed = 16;
+  // Optional official Islamic month starts (ADR-0037): where they came from and the file text; stores written before
+  // these fields read as "no override", so every Islamic date is computed.
+  IslamicOverrideOriginProto islamic_override_origin = 17;
+  string islamic_override_json = 18;
 }
 
 enum EventSourceProto {

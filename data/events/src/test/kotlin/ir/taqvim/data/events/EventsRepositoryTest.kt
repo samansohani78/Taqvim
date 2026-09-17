@@ -12,7 +12,10 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.HijriDateSource
 import ir.taqvim.core.calendar.HijriOffset
+import ir.taqvim.core.calendar.IranCrescentCalendar
 import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.IslamicMonthOverrides
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.calendar.toJdn
@@ -55,6 +58,9 @@ class EventsRepositoryTest {
             override fun now(): Instant = now
         }
 
+    private val officialMonths: IslamicMonthTable =
+        IslamicMonthOverrides.parse(IslamicMonthOverrides.bundledIranOfficialText().orEmpty()).getOrThrow().table
+
     private val settings = MutableStateFlow(settings())
     private val personal = MutableStateFlow<List<PersonalEventRecord>>(emptyList())
     private val device = MutableStateFlow<List<DeviceEvent>>(emptyList())
@@ -82,8 +88,15 @@ class EventsRepositoryTest {
         enabled: Set<EventSource> = setOf(EventSource.IRAN_OFFICIAL),
         variant: IslamicVariant = IslamicVariant.IRAN_OFFICIAL,
         offset: HijriOffset? = null,
+        overrides: IslamicMonthTable? = officialMonths,
     ) = EventsSettings(
-        preferences = EventPreferences(enabledSources = enabled, homeTimeZone = tehran, islamicVariant = variant),
+        preferences =
+            EventPreferences(
+                enabledSources = enabled,
+                homeTimeZone = tehran,
+                islamicVariant = variant,
+                islamicOverrides = overrides,
+            ),
         weekend = setOf(Weekday.FRIDAY),
         hijriOffset = offset,
     )
@@ -120,7 +133,17 @@ class EventsRepositoryTest {
             newYear.official.map { it.definition.id.value } shouldContain "ir.holiday.nowruz-1"
             newYear.isHoliday shouldBe true
             newYear.hijri?.source shouldBe HijriDateSource.OFFICIAL_TABLE
-            newYear.islamicDate shouldBe IranIslamicCalendar().fromJdn(nowruz)
+            newYear.islamicDate shouldBe IranIslamicCalendar(officialMonths).fromJdn(nowruz)
+        }
+
+    @Test
+    fun `without the official override every Hijri date is computed`(): Unit =
+        runTest {
+            settings.value = settings(overrides = null)
+            val newYear = repository.day(nowruz).first()
+
+            newYear.hijri?.source shouldBe HijriDateSource.CRESCENT_ESTIMATE
+            newYear.islamicDate shouldBe IranCrescentCalendar.fromJdn(nowruz)
         }
 
     @Test
@@ -145,7 +168,7 @@ class EventsRepositoryTest {
     fun `the Hijri date follows official table, then user offset, then estimate`(): Unit =
         runTest {
             val offset = HijriOffset(1, now - 1.days)
-            val estimate = IranIslamicCalendar()
+            val estimate = IranIslamicCalendar(officialMonths)
 
             repository
                 .day(farFromTable)

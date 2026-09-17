@@ -140,7 +140,7 @@ class NoPerYearManualDataTest {
             mapOf(
                 Regex("dataset/iran/islamic-iran-overrides\\.json") to
                     "Officially announced Iranian Hijri month starts (moon-sighting decisions): optional on top of " +
-                    "the computed crescent months (ADR-0027), never required for the app to work.",
+                    "the computed crescent months (ADR-0027), never required for the app to work (ADR-0037).",
                 Regex("core/calendar/src/main/resources/.*/islamic-iran-(official|overrides)[\\w.-]*\\.json") to
                     "The same announced Iranian month starts bundled as an optional, user-switchable override, and " +
                     "its JSON schema; the computed calendar is the default.",
@@ -150,10 +150,10 @@ class NoPerYearManualDataTest {
         val ALLOWED_TABLES: Map<Regex, String> =
             mapOf(
                 Regex(".*/IslamicMonthTable\\.kt") to "A container type for month lengths; it holds no dates.",
-                Regex(".*/IranOfficial\\w*\\.kt") to
-                    "Announced Iranian month starts, an optional override of the computed crescent months (ADR-0027).",
                 Regex(".*/IslamicMonthOverrides?\\w*\\.kt") to
                     "Parses and applies an optional month-start override file; it holds no dates itself.",
+                Regex(".*/IslamicOverride\\w*\\.kt") to
+                    "Settings screen, store and file reader of the optional override (ADR-0037); no dates.",
                 Regex(".*/UmmAlQura\\w*\\.kt") to
                     "The printed Umm al-Qura calendar for historical years that no published criterion reproduces " +
                     "(ADR-0028); every other year is computed.",

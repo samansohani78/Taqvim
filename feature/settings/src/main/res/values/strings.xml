@@ -310,4 +310,24 @@
   <!-- Button on the last page that closes the onboarding and opens the calendar. -->
   <string name="onboarding_done">Start</string>
   <string name="onboarding_loading">Loading</string>
+  <string name="settings_item_islamic_override">Official Hijri dates</string>
+  <string name="settings_islamic_override_title">Official Hijri dates</string>
+  <string name="settings_islamic_override_loading">Loading the Hijri date settings</string>
+  <string name="settings_islamic_override_intro">Hijri (lunar) dates are computed from the crescent visibility rule, so the app works for every year. You can apply dates that were officially announced instead; later months stay computed.</string>
+  <string name="settings_islamic_override_status_computed">In use: computed dates</string>
+  <string name="settings_islamic_override_status_official">In use: official dates of Iran, %1$s to %2$s</string>
+  <string name="settings_islamic_override_status_imported">In use: imported dates, %1$s to %2$s</string>
+  <string name="settings_islamic_override_official">Use the official dates announced in Iran</string>
+  <string name="settings_islamic_override_official_detail">Month starts published by the Calendar Center of the University of Tehran, bundled with the app</string>
+  <string name="settings_islamic_override_import">Import a dates file…</string>
+  <string name="settings_islamic_override_remove">Use computed dates only</string>
+  <string name="settings_islamic_override_imported">Dates file imported</string>
+  <string name="settings_islamic_override_change_failed">The change could not be saved. Try again.</string>
+  <string name="settings_islamic_override_broken">The chosen dates file can no longer be read, so computed dates are shown.</string>
+  <string name="settings_islamic_override_ended">The official dates have ended; later dates are computed.</string>
+  <string name="settings_islamic_override_error_unreadable">The file could not be read.</string>
+  <string name="settings_islamic_override_error_too_large">The file is too large to be a dates file.</string>
+  <string name="settings_islamic_override_error_format">This is not a Taqvim dates file (version 1).</string>
+  <string name="settings_islamic_override_error_months">The file has missing, out-of-order or impossible months.</string>
+  <string name="settings_islamic_override_error_citation">Every month in the file needs its source.</string>
 </resources>

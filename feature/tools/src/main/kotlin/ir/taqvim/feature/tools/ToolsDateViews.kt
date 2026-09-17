@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import ir.taqvim.core.calendar.DateOrigin
+import ir.taqvim.core.model.CalendarSystem
 
 /** The date converter: a phrase or date in, the same day in every calendar out. */
 @Composable
@@ -54,9 +56,25 @@ private fun DateCard(date: ConvertedDate) {
                 stringResource(R.string.tools_date_numeric_iso, date.numeric, date.iso),
                 style = MaterialTheme.typography.bodyMedium,
             )
+            if (date.system == CalendarSystem.ISLAMIC) {
+                Text(
+                    stringResource(originLabel(date.origin)),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }
+
+/** The label saying where an Islamic date comes from (ADR-0037). */
+@StringRes
+private fun originLabel(origin: DateOrigin): Int =
+    when (origin) {
+        DateOrigin.COMPUTED -> R.string.tools_origin_computed
+        DateOrigin.OFFICIAL_OVERRIDE -> R.string.tools_origin_official
+        DateOrigin.PUBLISHED_CALENDAR -> R.string.tools_origin_published
+    }
 
 /** The distance between two dates: days, weeks, years/months/days and workdays. */
 @Composable

@@ -88,7 +88,7 @@ private fun LoadingCalendar(modifier: Modifier) {
 
 /** The preferences behind [CalendarContent], for building month pages. */
 internal fun CalendarContent.settings(): CalendarSettings =
-    CalendarSettings(calendars, weekStart, islamicVariant, languageCode, showWeekNumbers)
+    CalendarSettings(calendars, weekStart, islamicVariant, languageCode, showWeekNumbers, islamicOverrides)
 
 /** A [MonthPageBuilder] for [settings] with texts from the current resources and dots in the theme's colors. */
 @Composable

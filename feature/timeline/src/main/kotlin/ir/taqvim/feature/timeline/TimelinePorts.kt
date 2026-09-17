@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.timeline
 
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.IslamicVariant
@@ -22,6 +23,8 @@ data class TimelineSettings(
     val islamicVariant: IslamicVariant,
     /** App language code (e.g. `fa`): month and weekday names, digits and spoken descriptions. */
     val languageCode: String,
+    /** Optional official Iranian month starts in use (ADR-0037); `null` when every Islamic date is computed. */
+    val islamicOverrides: IslamicMonthTable? = null,
 )
 
 /** Where an event on the timeline comes from. */

@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.calendar
 
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.model.CalendarSystem
@@ -28,6 +29,8 @@ data class CalendarSettings(
     val languageCode: String,
     /** Whether the month pager shows a week-number column (T-801). */
     val showWeekNumbers: Boolean = false,
+    /** Optional official Iranian month starts the user switched on or imported (ADR-0037); `null`: computed. */
+    val islamicOverrides: IslamicMonthTable? = null,
 )
 
 /** Where an event shown on a day comes from. */

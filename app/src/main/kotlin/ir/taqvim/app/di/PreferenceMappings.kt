@@ -18,10 +18,10 @@ internal fun UserPreferences.languageSpec(): LanguageSpec =
             LanguageTable.forCode(UserPreferences.FALLBACK_LANGUAGE),
         ) { "language table lacks a fallback" }
 
-/** Arithmetic of every calendar, with the user's Islamic variant. */
+/** Arithmetic of every calendar, with the user's Islamic variant and optional official months (ADR-0037). */
 internal fun UserPreferences.availableArithmetic(): Map<CalendarSystem, CalendarArithmetic> =
-    CalendarSystem.entries.associateWith { CalendarCalendars.arithmeticFor(it, islamicVariant) }
+    CalendarSystem.entries.associateWith { CalendarCalendars.arithmeticFor(it, islamicVariant, islamicOverride.table) }
 
 /** The user's calendars, in the user's order and without repeats. */
 internal fun UserPreferences.availableCalendars(): List<CalendarArithmetic> =
-    calendars.distinct().map { CalendarCalendars.arithmeticFor(it, islamicVariant) }
+    calendars.distinct().map { CalendarCalendars.arithmeticFor(it, islamicVariant, islamicOverride.table) }

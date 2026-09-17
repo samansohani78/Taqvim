@@ -23,6 +23,9 @@ enum class SettingsDestination {
     ATHAN,
     SUBSCRIPTIONS,
     WIDGETS,
+
+    /** Optional official Islamic dates (ADR-0037). */
+    ISLAMIC_OVERRIDE,
 }
 
 /** One option of a choice: a resource [label], or a ready [text] (e.g. a language's own name). */
@@ -31,44 +34,6 @@ data class SettingsOption(
     @param:StringRes val label: Int = 0,
     val text: String? = null,
 )
-
-/** How a settings item reads and changes [GeneralSettings]. */
-sealed interface SettingsControl {
-    /** A switch; when [warning] is set, turning it on is confirmed in a dialog showing that text first. */
-    data class Toggle(
-        val read: (GeneralSettings) -> Boolean,
-        val write: (GeneralSettings, Boolean) -> GeneralSettings,
-        @param:StringRes val warning: Int? = null,
-    ) : SettingsControl
-
-    /** One of [options]; [read] and [write] use option keys. */
-    data class Choice(
-        val options: List<SettingsOption>,
-        val read: (GeneralSettings) -> String,
-        val write: (GeneralSettings, String) -> GeneralSettings,
-    ) : SettingsControl
-
-    /** Any set of [options] (at least one unless [allowEmpty]). */
-    data class MultiChoice(
-        val options: List<SettingsOption>,
-        val allowEmpty: Boolean,
-        val read: (GeneralSettings) -> Set<String>,
-        val write: (GeneralSettings, Set<String>) -> GeneralSettings,
-    ) : SettingsControl
-
-    data class Link(
-        val destination: SettingsDestination,
-    ) : SettingsControl
-
-    data object ClearRecentSearches : SettingsControl
-
-    /** A time of day chosen every [stepMinutes] minutes; [read] and [write] use minutes of the day. */
-    data class TimeOfDay(
-        val stepMinutes: Int,
-        val read: (GeneralSettings) -> Int,
-        val write: (GeneralSettings, Int) -> GeneralSettings,
-    ) : SettingsControl
-}
 
 /** Every item of the settings home, in display order; [keywords] are `|`-separated synonyms for settings search. */
 enum class SettingsItemId(
@@ -106,6 +71,11 @@ enum class SettingsItemId(
     ISLAMIC_VARIANT(
         SettingsTab.INTERFACE_CALENDAR,
         R.string.settings_item_islamic_variant,
+        R.string.settings_keywords_hijri,
+    ),
+    ISLAMIC_OVERRIDE(
+        SettingsTab.INTERFACE_CALENDAR,
+        R.string.settings_item_islamic_override,
         R.string.settings_keywords_hijri,
     ),
     WEEK_NUMBERS(SettingsTab.INTERFACE_CALENDAR, R.string.settings_item_week_numbers, R.string.settings_keywords_week),
@@ -252,6 +222,10 @@ internal object SettingsCatalog {
 
             SettingsItemId.ISLAMIC_VARIANT -> {
                 enumChoice(SettingsLabels.islamicVariants, { it.islamicVariant }) { s, v -> s.copy(islamicVariant = v) }
+            }
+
+            SettingsItemId.ISLAMIC_OVERRIDE -> {
+                SettingsControl.Link(SettingsDestination.ISLAMIC_OVERRIDE)
             }
 
             SettingsItemId.WEEK_NUMBERS -> {

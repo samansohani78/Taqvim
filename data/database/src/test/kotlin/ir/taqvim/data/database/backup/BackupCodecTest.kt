@@ -21,6 +21,8 @@ import ir.taqvim.data.database.backup.BackupFixtures.preferences
 import ir.taqvim.data.preferences.AppSettings
 import ir.taqvim.data.preferences.AthanPreferences
 import ir.taqvim.data.preferences.AthanSound
+import ir.taqvim.data.preferences.IslamicOverrideOrigin
+import ir.taqvim.data.preferences.IslamicOverrideSetting
 import ir.taqvim.data.preferences.LevelOffset
 import java.security.SecureRandom
 import kotlinx.coroutines.runBlocking
@@ -200,6 +202,18 @@ class BackupCodecTest {
 
         backup.data shouldBe data
         backup.preferences shouldBe preferences
+    }
+
+    @Test
+    fun `the Islamic override round-trips and older documents have none`() {
+        val official =
+            preferences.copy(
+                islamicOverride = IslamicOverrideSetting(IslamicOverrideOrigin.IMPORTED, "{\"schemaVersion\":1}"),
+            )
+        val bytes = codec.encode(data, official, metadata, BackupProtection.None)
+
+        ready(codec.decode(bytes)).preferences.islamicOverride shouldBe official.islamicOverride
+        ready(codec.decode(plain())).preferences.islamicOverride shouldBe IslamicOverrideSetting.NONE
     }
 
     @Test

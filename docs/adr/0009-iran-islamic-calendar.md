@@ -1,6 +1,7 @@
 # ADR-0009: Iranian official lunar Hijri calendar — table, aligned estimate and user offset
 
-- **Status:** Accepted (decision 2 superseded and decision 4 completed by ADR-0027)
+- **Status:** Accepted (decision 2 superseded and decision 4 completed by ADR-0027; official months
+  optional since ADR-0037)
 - **Date:** 2026-09-13
 - **Plan reference:** docs/PLAN.md §6 A-05, A-06; T-104; D-07
 

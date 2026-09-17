@@ -26,8 +26,15 @@ internal class PreferencesYearSettingsSource(
 ) : YearSettingsSource {
     override fun settings(): Flow<YearSettings> =
         preferences.preferences
-            .map { YearSettings(it.calendars, it.weekStart, it.islamicVariant, it.languageCode) }
-            .distinctUntilChanged()
+            .map {
+                YearSettings(
+                    it.calendars,
+                    it.weekStart,
+                    it.islamicVariant,
+                    it.languageCode,
+                    it.islamicOverride.table,
+                )
+            }.distinctUntilChanged()
 }
 
 /** Holiday and weekend flags for the year view (T-805) from the days of the events repository (T-305). */

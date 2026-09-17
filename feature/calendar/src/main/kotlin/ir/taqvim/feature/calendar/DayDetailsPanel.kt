@@ -30,6 +30,7 @@ import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.ui.component.MoonDisc
 import ir.taqvim.core.ui.component.ProgressRing
 import ir.taqvim.core.ui.component.SegmentedTabs
@@ -86,10 +87,12 @@ internal fun DayCalendarsTab(
     val resources = LocalResources.current
     val weekday = content.selectedDay.weekday()
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        content.selectedDates.forEach { date ->
+        content.selectedDates.forEachIndexed { index, date ->
+            val origin = content.selectedOrigins.getOrNull(index)?.takeIf { date.system == CalendarSystem.ISLAMIC }
             DetailRow(
                 stringResource(DayDetailsLabels.of(date.system)),
                 DateFormatter.format(date, weekday, language, DateStyle.LONG),
+                note = origin?.let { stringResource(DayDetailsLabels.of(it)) },
             )
         }
         DetailRow(stringResource(R.string.calendar_distance_label), distanceText(resources, overview, language))
@@ -119,10 +122,14 @@ internal fun DetailRow(
     label: String,
     value: String,
     modifier: Modifier = Modifier,
+    note: String? = null,
 ) {
     Column(modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {
         Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text(value, style = MaterialTheme.typography.bodyLarge)
+        note?.let {
+            Text(it, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
     }
 }
 

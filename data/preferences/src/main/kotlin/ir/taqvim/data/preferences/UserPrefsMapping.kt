@@ -12,6 +12,7 @@ import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.data.preferences.proto.AsrJuristicProto
 import ir.taqvim.data.preferences.proto.CalendarSystemProto
+import ir.taqvim.data.preferences.proto.IslamicOverrideOriginProto
 import ir.taqvim.data.preferences.proto.IslamicVariantProto
 import ir.taqvim.data.preferences.proto.NumeralSystemProto
 import ir.taqvim.data.preferences.proto.PrayerMethodProto
@@ -26,6 +27,7 @@ private const val PRAYER = "PRAYER_METHOD_"
 private const val ASR = "ASR_JURISTIC_"
 private const val VARIANT = "ISLAMIC_VARIANT_"
 private const val THEME = "THEME_MODE_"
+private const val OVERRIDE = "ISLAMIC_OVERRIDE_ORIGIN_"
 
 /** The domain value whose name equals [protoName] without [prefix]; `null` for UNSPECIFIED or unknown values. */
 private inline fun <reified T : Enum<T>> domain(
@@ -59,6 +61,11 @@ fun UserPrefs.toDomain(): UserPreferences {
             (if (hasAppSettings()) appSettings.toDomain() else defaults.app)
                 .withEventSourcesFor(defaults.languageCode),
         onboardingCompleted = onboardingCompleted,
+        islamicOverride =
+            IslamicOverrideSetting(
+                domain<IslamicOverrideOrigin>(islamicOverrideOrigin.name, OVERRIDE) ?: IslamicOverrideOrigin.NONE,
+                islamicOverrideJson,
+            ),
     )
 }
 
@@ -82,4 +89,6 @@ fun UserPreferences.toProto(schemaVersion: Int = UserPrefsMigration.CURRENT_SCHE
         .setAthan(athan.toProto())
         .setAppSettings(app.toProto())
         .setOnboardingCompleted(onboardingCompleted)
+        .setIslamicOverrideOrigin(IslamicOverrideOriginProto.valueOf(OVERRIDE + islamicOverride.origin.name))
+        .setIslamicOverrideJson(islamicOverride.json)
         .build()

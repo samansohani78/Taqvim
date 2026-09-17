@@ -22,6 +22,8 @@ import ir.taqvim.data.preferences.AthanAlert
 import ir.taqvim.data.preferences.AthanPrayer
 import ir.taqvim.data.preferences.AthanPreferences
 import ir.taqvim.data.preferences.ChosenPlace
+import ir.taqvim.data.preferences.IslamicOverrideOrigin
+import ir.taqvim.data.preferences.IslamicOverrideSetting
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.preferences.withEventSourcesFor
 
@@ -41,6 +43,9 @@ internal fun UserPreferences.toRecord(): PreferencesRecord =
         place?.toRecord(),
         app.toRecord(),
         athan.toRecord(),
+        islamicOverride
+            .takeUnless { it.origin == IslamicOverrideOrigin.NONE }
+            ?.let { IslamicOverrideRecord(it.origin, it.json) },
     )
 
 internal fun PreferencesRecord.toPreferences(): UserPreferences =
@@ -59,6 +64,8 @@ internal fun PreferencesRecord.toPreferences(): UserPreferences =
         place?.toPlace(),
         app = (app?.toAppSettings() ?: AppSettings.DEFAULT).withEventSourcesFor(languageCode),
         athan = athan?.toAthan() ?: AthanPreferences.DEFAULT,
+        islamicOverride =
+            islamicOverride?.let { IslamicOverrideSetting(it.origin, it.json) } ?: IslamicOverrideSetting.NONE,
     )
 
 /**

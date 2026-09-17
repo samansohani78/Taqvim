@@ -50,7 +50,7 @@ class IranCrescentCalendarTest {
 
     @Test
     fun `the crescent months agree with at least 23 of the 25 official month starts`() {
-        val table = IranOfficialMonthStarts.TABLE
+        val table = OfficialIranMonths.overrides.table
         val agreeing =
             (0 until table.monthCount).count { index ->
                 val (year, month) = table.yearMonthAt(index)

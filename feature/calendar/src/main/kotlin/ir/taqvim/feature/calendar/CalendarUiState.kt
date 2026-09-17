@@ -4,6 +4,8 @@
  */
 package ir.taqvim.feature.calendar
 
+import ir.taqvim.core.calendar.DateOrigin
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
@@ -44,6 +46,10 @@ data class CalendarContent(
     val dayDetails: DayDetails?,
     val search: CalendarSearch,
     val islamicVariant: IslamicVariant,
+    /** Optional official Iranian month starts in use (ADR-0037); `null` when every Islamic date is computed. */
+    val islamicOverrides: IslamicMonthTable? = null,
+    /** Where each of [selectedDates] comes from, in the same order (ADR-0037); empty while unknown. */
+    val selectedOrigins: ImmutableList<DateOrigin> = persistentListOf(),
     /** App language code for month names, digits and spoken dates. */
     val languageCode: String,
     val showWeekNumbers: Boolean,

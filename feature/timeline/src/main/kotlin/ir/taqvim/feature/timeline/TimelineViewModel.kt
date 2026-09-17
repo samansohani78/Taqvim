@@ -187,7 +187,12 @@ private data class ShownDays(
         lines: Map<Jdn, ImmutableList<PrayerLine>>,
     ): TimelineContent {
         val loaded = days?.takeIf { it.range == range }
-        val calendar = TimelineContentBuilder.primaryCalendar(settings.calendars, settings.islamicVariant)
+        val calendar =
+            TimelineContentBuilder.primaryCalendar(
+                settings.calendars,
+                settings.islamicVariant,
+                settings.islamicOverrides,
+            )
         return TimelineContent(
             now = now,
             mode = view.mode,
@@ -200,6 +205,7 @@ private data class ShownDays(
             calendar = calendar.system,
             islamicVariant = settings.islamicVariant,
             languageCode = settings.languageCode,
+            islamicOverrides = settings.islamicOverrides,
             isLoaded = loaded != null,
         )
     }

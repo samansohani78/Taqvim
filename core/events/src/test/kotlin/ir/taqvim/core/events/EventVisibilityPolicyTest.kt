@@ -9,6 +9,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.IranCrescentCalendar
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.calendar.TabularIslamicCalendar
 import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.model.CalendarDate
@@ -171,6 +172,36 @@ class EventVisibilityPolicyTest {
             bySource = emptyMap(),
         ).variantFor(EventSource.IRAN_OFFICIAL) shouldBe
             IslamicVariant.TABULAR_16
+    }
+
+    @Test
+    fun `official Iranian months apply only when an override is given`() {
+        val first = CalendarDate(CalendarSystem.ISLAMIC, 1450, 1, 1)
+        val start = IranCrescentCalendar.toJdn(first).value + 1
+        val table = IslamicMonthTable(1450, 1, start, listOf(29, 30))
+        val computed = IslamicCalendarSelection(IslamicVariant.IRAN_OFFICIAL)
+        val official = IslamicCalendarSelection(IslamicVariant.IRAN_OFFICIAL, overrides = table)
+
+        computed.calendarOf(IslamicVariant.IRAN_OFFICIAL).toJdn(first) shouldBe IranCrescentCalendar.toJdn(first)
+        official.calendarOf(IslamicVariant.IRAN_OFFICIAL).toJdn(first).value shouldBe start
+        official.calendarOf(IslamicVariant.UMM_AL_QURA) shouldBeSameInstanceAs UmmAlQuraCalendar
+        official
+            .providerFor(
+                EventSource.IRAN_OFFICIAL,
+            ).calendarFor(CalendarSystem.ISLAMIC)
+            ?.toJdn(first)
+            ?.value shouldBe
+            start
+        IslamicCalendarSelection
+            .arithmeticFor(CalendarSystem.ISLAMIC, IslamicVariant.IRAN_OFFICIAL, table)
+            .toJdn(first)
+            .value shouldBe start
+        EventVisibilityPolicy(EventPreferences(EventSource.entries.toSet(), home, islamicOverrides = table))
+            .calendars
+            .providerFor(EventSource.IRAN_OFFICIAL)
+            .calendarFor(CalendarSystem.ISLAMIC)
+            ?.toJdn(first)
+            ?.value shouldBe start
     }
 
     @Test

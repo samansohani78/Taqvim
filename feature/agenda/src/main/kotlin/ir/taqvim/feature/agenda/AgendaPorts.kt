@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.agenda
 
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
@@ -17,6 +18,8 @@ data class AgendaSettings(
     val islamicVariant: IslamicVariant,
     /** App language code (e.g. `fa`): month names, dates and digits. */
     val languageCode: String,
+    /** Optional official Iranian month starts in use (ADR-0037); `null` when every Islamic date is computed. */
+    val islamicOverrides: IslamicMonthTable? = null,
 )
 
 /** Where an event of the list comes from. */

@@ -157,6 +157,7 @@ private data class ShownYear(
             islamicVariant = calendars.settings.islamicVariant,
             languageCode = calendars.settings.languageCode,
             days = days?.takeIf { it.key == YearKey(calendars, index, year) }?.days,
+            islamicOverrides = calendars.settings.islamicOverrides,
         )
 
     companion object {

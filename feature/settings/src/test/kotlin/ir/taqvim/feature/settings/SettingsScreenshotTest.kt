@@ -6,6 +6,9 @@ package ir.taqvim.feature.settings
 
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
+import ir.taqvim.core.i18n.LanguageSpec
+import ir.taqvim.core.model.CalendarDate
+import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
 import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
@@ -48,6 +51,10 @@ class SettingsScreenshotTest(
                         SubscriptionsScreen(health(rtl), SubscriptionsActions())
                     }
 
+                    "islamic_override" -> {
+                        IslamicOverrideScreen(islamicOverride(language), IslamicOverrideActions(), onPickFile = {})
+                    }
+
                     "search" -> {
                         SettingsHomeScreen(
                             SettingsHomeUiState(false, query = "تقویم", rows = rows),
@@ -79,6 +86,19 @@ class SettingsScreenshotTest(
                     ),
                 draft = "https://example.org/new.ics",
                 message = SubscriptionMessage.ADDED,
+            )
+
+        /** ADR-0037: the official Iranian dates in use, with a refused import below. */
+        private fun islamicOverride(language: LanguageSpec) =
+            IslamicOverrideUiState(
+                status =
+                    IslamicOverrideStatus(
+                        language = language,
+                        kind = IslamicOverrideKind.OFFICIAL,
+                        firstMonth = CalendarDate(CalendarSystem.ISLAMIC, 1446, 9, 1),
+                        lastMonth = CalendarDate(CalendarSystem.ISLAMIC, 1448, 9, 1),
+                    ),
+                importResult = OverrideImportResult.MISSING_CITATION,
             )
 
         /** F03: a failed feed with its details open, a stale one and a paused one. */
@@ -153,6 +173,8 @@ class SettingsScreenshotTest(
                 arrayOf<Any>("home", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
                 arrayOf<Any>("home", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
                 arrayOf<Any>("search", environment(ScreenshotTheme.LIGHT, LayoutDirection.Rtl)),
+                arrayOf<Any>("islamic_override", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
+                arrayOf<Any>("islamic_override", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
                 arrayOf<Any>("subscriptions", environment(ScreenshotTheme.DARK, LayoutDirection.Ltr)),
                 arrayOf<Any>("subscriptions_health", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
                 arrayOf<Any>("subscriptions_health", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),

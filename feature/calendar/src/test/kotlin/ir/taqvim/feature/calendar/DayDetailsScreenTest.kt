@@ -24,9 +24,12 @@ import androidx.compose.ui.test.performScrollTo
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.model.CalendarSystem
+import kotlinx.collections.immutable.toImmutableList
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -79,6 +82,29 @@ class DayDetailsScreenTest {
         composeRule.onNode(hasContentDescription(skyText(resources, overview, english))).assertExists()
         seasonText(resources, overview, english) shouldBe "Spring: day 1 of 93"
         weekText(resources, overview, english) shouldBe "Day 1 of the week, week 1 of the year"
+        composeRule.onNode(hasText(resources.getString(R.string.calendar_origin_computed))).assertExists()
+    }
+
+    @Test
+    fun `an Islamic date from an official override is labelled and other dates carry no label`() {
+        showIslamicOrigin(DateOrigin.OFFICIAL_OVERRIDE, R.string.calendar_origin_official)
+    }
+
+    @Test
+    fun `an Islamic date from a printed calendar is labelled`() {
+        showIslamicOrigin(DateOrigin.PUBLISHED_CALENDAR, R.string.calendar_origin_published)
+    }
+
+    private fun showIslamicOrigin(
+        origin: DateOrigin,
+        label: Int,
+    ) {
+        val content = DayDetailsSamples.content()
+        val islamic = content.selectedDates.indexOfFirst { it.system == CalendarSystem.ISLAMIC }
+        val origins = content.selectedDates.indices.map { if (it == islamic) origin else DateOrigin.COMPUTED }
+        show(content.copy(selectedOrigins = origins.toImmutableList()))
+        composeRule.onNode(hasText(resources.getString(label))).assertExists()
+        composeRule.onAllNodes(hasText(resources.getString(R.string.calendar_origin_computed))).assertCountEquals(0)
     }
 
     @Test

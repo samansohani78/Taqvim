@@ -6,6 +6,7 @@ package ir.taqvim.feature.calendar
 
 import androidx.annotation.StringRes
 import ir.taqvim.core.astronomy.ZodiacSign
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.PrayerMethod
@@ -23,6 +24,13 @@ internal object DayDetailsLabels {
             R.string.calendar_system_gregorian,
             R.string.calendar_system_nepali,
             R.string.calendar_system_hebrew,
+        )
+
+    private val ORIGINS =
+        listOf(
+            R.string.calendar_origin_computed,
+            R.string.calendar_origin_official,
+            R.string.calendar_origin_published,
         )
 
     private val SEASONS =
@@ -122,6 +130,9 @@ internal object DayDetailsLabels {
             TIMES to PrayerTimeKind.entries.size,
             UNAVAILABLE to PrayerTimesResult.Reason.entries.size,
         )
+
+    @StringRes
+    fun of(origin: DateOrigin): Int = ORIGINS[origin.ordinal]
 
     @StringRes
     fun of(tab: DayDetailsTab): Int = TABS[tab.ordinal]

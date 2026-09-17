@@ -5,6 +5,7 @@
 package ir.taqvim.feature.tools
 
 import androidx.compose.runtime.Immutable
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.model.CalendarSystem
 import kotlinx.collections.immutable.ImmutableList
 
@@ -48,12 +49,13 @@ sealed interface ToolsContent {
     ) : ToolsContent
 }
 
-/** One date in one calendar, already formatted. */
+/** One date in one calendar, already formatted; [origin] tells computed and official dates apart (ADR-0037). */
 data class ConvertedDate(
     val system: CalendarSystem,
     val long: String,
     val numeric: String,
     val iso: String,
+    val origin: DateOrigin = DateOrigin.COMPUTED,
 )
 
 sealed interface ConverterResult {

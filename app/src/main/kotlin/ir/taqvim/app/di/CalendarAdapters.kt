@@ -42,7 +42,14 @@ internal class PreferencesCalendarSettingsSource(
     override fun settings(): Flow<CalendarSettings> =
         preferences.preferences
             .map {
-                CalendarSettings(it.calendars, it.weekStart, it.islamicVariant, it.languageCode, it.app.showWeekNumbers)
+                CalendarSettings(
+                    it.calendars,
+                    it.weekStart,
+                    it.islamicVariant,
+                    it.languageCode,
+                    it.app.showWeekNumbers,
+                    it.islamicOverride.table,
+                )
             }.distinctUntilChanged()
 }
 

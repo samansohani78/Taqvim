@@ -49,8 +49,15 @@ internal class PreferencesTimelineSettingsSource(
 ) : TimelineSettingsSource {
     override fun settings(): Flow<TimelineSettings> =
         preferences.preferences
-            .map { TimelineSettings(it.calendars, it.weekStart, it.islamicVariant, it.languageCode) }
-            .distinctUntilChanged()
+            .map {
+                TimelineSettings(
+                    it.calendars,
+                    it.weekStart,
+                    it.islamicVariant,
+                    it.languageCode,
+                    it.islamicOverride.table,
+                )
+            }.distinctUntilChanged()
 }
 
 /**

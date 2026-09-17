@@ -6,6 +6,7 @@ package ir.taqvim.feature.timeline
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.model.CalendarSystem
@@ -51,8 +52,10 @@ object TimelineContentBuilder {
     fun primaryCalendar(
         calendars: List<CalendarSystem>,
         variant: IslamicVariant,
+        overrides: IslamicMonthTable? = null,
     ): CalendarArithmetic =
-        calendars.firstOrNull()?.let { IslamicCalendarSelection.arithmeticFor(it, variant) } ?: GregorianCalendarSystem
+        calendars.firstOrNull()?.let { IslamicCalendarSelection.arithmeticFor(it, variant, overrides) }
+            ?: GregorianCalendarSystem
 
     /** Columns for [range] with the events of [days] (missing days are empty) and the prayer lines of [lines]. */
     fun columns(

@@ -73,6 +73,7 @@ import ir.taqvim.feature.settings.CitySearch
 import ir.taqvim.feature.settings.DeviceLocation
 import ir.taqvim.feature.settings.ExactAlarmAccess
 import ir.taqvim.feature.settings.GeneralSettingsStore
+import ir.taqvim.feature.settings.IslamicOverrideStore
 import ir.taqvim.feature.settings.LocationSettingsStore
 import ir.taqvim.feature.settings.PlaceDescriber
 import ir.taqvim.feature.settings.SubscriptionsStore
@@ -247,7 +248,8 @@ val searchTimelineAthanPortsModule =
                     ),
                 today = get(),
                 calendars = {
-                    IslamicCalendarSelection(preferences.preferences.first().islamicVariant)
+                    val current = preferences.preferences.first()
+                    IslamicCalendarSelection(current.islamicVariant, overrides = current.islamicOverride.table)
                         .providerFor(EventSource.USER)
                 },
             )
@@ -299,6 +301,9 @@ val settingsPortsModule =
             val preferences = get<UserPreferencesRepository>()
             val scheduler = get<SubscriptionRefreshScheduler>()
             PreferencesGeneralSettingsStore(preferences, subscriptionRescheduler(get(), preferences, scheduler::update))
+        }
+        single<IslamicOverrideStore> {
+            PreferencesIslamicOverrideStore(get(), ContentOverrideFileReader(androidContext()), get())
         }
         single<SubscriptionsStore> {
             val preferences = get<UserPreferencesRepository>()

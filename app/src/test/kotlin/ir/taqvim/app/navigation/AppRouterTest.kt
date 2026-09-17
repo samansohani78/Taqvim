@@ -144,6 +144,7 @@ class AppRouterTest {
                 AppDestination.AthanSettings,
                 AppDestination.Subscriptions,
                 AppDestination.Pending(PendingFeature.WIDGETS),
+                AppDestination.IslamicOverride,
             )
     }
 

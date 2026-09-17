@@ -26,9 +26,13 @@ private const val MONTH_ID = 0
 private const val MONTH_GREGORIAN = 1
 private const val MONTH_LENGTH = 3
 
-/** A-05 against the official calendars of 1404 and 1405 (golden/persian, golden/islamic-iran); joins per ADR-0027. */
+/**
+ * A-05 with the official override switched on, against the official calendars of 1404 and 1405 (golden/persian,
+ * golden/islamic-iran); joins per ADR-0027. The bundled override is the golden oracle here (ADR-0037).
+ */
 class IranIslamicCalendarTest {
-    private val iran = IranIslamicCalendar()
+    private val official = OfficialIranMonths.overrides
+    private val iran = IranIslamicCalendar(official.table)
 
     private fun rows(path: String): List<List<String>> =
         GoldenFile
@@ -95,7 +99,7 @@ class IranIslamicCalendarTest {
         iran.isOfficial(firstOfficial) shouldBe true
         iran.isOfficial(firstAfter) shouldBe false
         iran.fromJdn(Jdn(firstAfter.value - 1)) shouldBe hijri(1448, 9, 30)
-        IranOfficialMonthStarts.TABLE.next shouldBe (1448 to 10)
+        official.table.next shouldBe (1448 to 10)
         (1440..1445).plus(1449..1455).forEach { year ->
             (1..12).forEach { month ->
                 iran.toJdn(hijri(year, month, 1)) shouldBe IranCrescentCalendar.toJdn(hijri(year, month, 1))

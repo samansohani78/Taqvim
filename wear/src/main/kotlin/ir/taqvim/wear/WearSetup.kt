@@ -6,6 +6,7 @@ package ir.taqvim.wear
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.IslamicCalendarSelection
@@ -52,12 +53,13 @@ data class WearSetup(
         get() = place?.timeZone ?: deviceZone
 }
 
-/** Calendar arithmetic for the watch, with the user's Islamic variant. */
+/** Calendar arithmetic for the watch, with the user's Islamic variant and optional official months (ADR-0037). */
 object WearCalendars {
     fun arithmeticFor(
         system: CalendarSystem,
         variant: IslamicVariant,
-    ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant)
+        overrides: IslamicMonthTable? = null,
+    ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant, overrides)
 }
 
 /**
@@ -71,7 +73,7 @@ fun UserPreferences.toWearSetup(
     val language =
         LanguageTable.forCode(languageCode)
             ?: requireNotNull(LanguageTable.forCode(UserPreferences.FALLBACK_LANGUAGE)) { "no fallback language" }
-    val available = calendars.distinct().map { WearCalendars.arithmeticFor(it, islamicVariant) }
+    val available = calendars.distinct().map { WearCalendars.arithmeticFor(it, islamicVariant, islamicOverride.table) }
     return WearSetup(
         language = language,
         numerals = numerals,

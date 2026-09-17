@@ -110,6 +110,7 @@ class ReschedulePolicy {
             if (prayerChanged) add(AlarmKind.PRAYER)
             val hijriChanged =
                 previous.islamicVariant != current.islamicVariant ||
+                    previous.islamicOverride != current.islamicOverride ||
                     previous.hijriOffsetDays != current.hijriOffsetDays ||
                     previous.hijriOffsetSetAtEpochMillis != current.hijriOffsetSetAtEpochMillis
             if (hijriChanged) add(AlarmKind.REMINDER)

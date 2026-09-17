@@ -6,9 +6,12 @@ package ir.taqvim.feature.calendar
 
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.CalendarLimits
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.calendar.addMonths
 import ir.taqvim.core.calendar.monthsBetween
+import ir.taqvim.core.calendar.originOf
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
@@ -26,7 +29,7 @@ class CalendarCalendars(
     val arithmetic: List<CalendarArithmetic> =
         settings.calendars
             .distinct()
-            .map { arithmeticFor(it, settings.islamicVariant) }
+            .map { arithmeticFor(it, settings.islamicVariant, settings.islamicOverrides) }
             .ifEmpty { listOf(GregorianCalendarSystem) }
 
     /** The user's calendars in their order, primary first; Gregorian when the user has none. */
@@ -56,6 +59,9 @@ class CalendarCalendars(
     /** [day] in every available calendar, primary first. */
     fun datesOf(day: Jdn): List<CalendarDate> = arithmetic.map { it.fromJdn(day) }
 
+    /** Where each of [datesOf] comes from: computed, an official override or a printed calendar (ADR-0037). */
+    fun originsOf(day: Jdn): List<DateOrigin> = arithmetic.map { it.originOf(day) }
+
     /** The first day, in the primary calendar, of the month containing [day]. */
     fun monthStart(day: Jdn): CalendarDate {
         val date = primary.fromJdn(day)
@@ -78,10 +84,11 @@ class CalendarCalendars(
     ): Jdn = primary.toJdn(primary.addMonths(monthStart(today), offset))
 
     companion object {
-        /** Arithmetic of [system], with [variant] for the Islamic calendar. */
+        /** Arithmetic of [system], with [variant] and the optional official [overrides] for the Islamic calendar. */
         fun arithmeticFor(
             system: CalendarSystem,
             variant: IslamicVariant,
-        ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant)
+            overrides: IslamicMonthTable? = null,
+        ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant, overrides)
     }
 }

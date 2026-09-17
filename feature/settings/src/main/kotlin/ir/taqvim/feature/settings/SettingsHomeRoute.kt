@@ -4,6 +4,8 @@
  */
 package ir.taqvim.feature.settings
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,11 +20,15 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
-/** Koin bindings of the settings home and subscriptions; `:app` binds [GeneralSettingsStore], [SubscriptionsStore]. */
+/**
+ * Koin bindings of the settings home, subscriptions and official Islamic dates; `:app` binds [GeneralSettingsStore],
+ * [SubscriptionsStore] and [IslamicOverrideStore].
+ */
 val generalSettingsFeatureModule: Module =
     module {
         viewModel { params -> SettingsHomeViewModel(get(), params.getOrNull()) }
         viewModel { SubscriptionsViewModel(get(), get()) }
+        viewModel { IslamicOverrideViewModel(get()) }
     }
 
 /** Where the settings home leads; the app maps each [SettingsDestination] to its screen. */
@@ -78,4 +84,29 @@ fun SubscriptionsRoute(
             )
         }
     SubscriptionsScreen(state, actions, modifier)
+}
+
+/** Types the system file picker offers for an override file. */
+private val OVERRIDE_FILE_TYPES = arrayOf("application/json", "text/plain", "application/octet-stream")
+
+/** The official Islamic dates page (ADR-0037) bound to its [IslamicOverrideViewModel]; files come from the picker. */
+@Composable
+fun IslamicOverrideRoute(
+    modifier: Modifier = Modifier,
+    viewModel: IslamicOverrideViewModel = koinViewModel(),
+) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val picker =
+        rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri?.let { viewModel.onImport(it.toString()) }
+        }
+    val actions =
+        remember(viewModel) {
+            IslamicOverrideActions(
+                onOfficialChanged = viewModel::onOfficialChanged,
+                onImport = viewModel::onImport,
+                onRemove = viewModel::onRemove,
+            )
+        }
+    IslamicOverrideScreen(state, actions, onPickFile = { picker.launch(OVERRIDE_FILE_TYPES) }, modifier = modifier)
 }
