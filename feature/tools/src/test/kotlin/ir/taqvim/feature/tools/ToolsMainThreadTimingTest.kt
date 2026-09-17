@@ -96,7 +96,7 @@ class ToolsMainThreadTimingTest {
                 "QR ${qrText.length} chars ${qrNanos / NANOS_PER_MILLI} ms (formerly on the main thread); " +
                 "longest main-dispatcher task now ${longestNanos.get() / NANOS_PER_MILLI} ms",
         )
-        longestNanos.get() shouldBeLessThan MAIN_BUDGET_NANOS
+        longestNanos.get() shouldBeLessThan TimingTest.budget(MAIN_BUDGET_NANOS)
     }
 
     private fun ConverterResult?.isConverted(): Boolean = (this as? ConverterResult.Converted)?.isToday == false

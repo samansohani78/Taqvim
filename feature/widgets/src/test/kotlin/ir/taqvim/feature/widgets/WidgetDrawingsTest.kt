@@ -111,7 +111,7 @@ class WidgetDrawingsTest {
                 mark.elapsedNow().inWholeMilliseconds
             }
         // Best of several runs, so a busy machine does not fail it; the budget is generous for Robolectric's graphics.
-        best shouldBeLessThan BUDGET_MS
+        best shouldBeLessThan TimingTest.budget(BUDGET_MS)
     }
 
     private fun painted(bitmap: Bitmap): Int {

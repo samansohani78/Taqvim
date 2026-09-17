@@ -140,7 +140,7 @@ class NepaliCalendarSystemTest {
 
         val best = (1..MEASURED_RUNS).minOf { measureTimeMillis { convertAll(days) } }
 
-        best shouldBeLessThan BUDGET_MILLIS
+        best shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
     }
 
     private fun convertAll(days: List<Jdn>): Long = days.sumOf { nepali.fromJdn(it).day.toLong() }

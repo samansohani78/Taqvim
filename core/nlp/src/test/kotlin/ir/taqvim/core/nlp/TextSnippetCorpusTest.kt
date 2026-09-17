@@ -74,7 +74,7 @@ class TextSnippetCorpusTest {
 
         val best = (1..MEASURED_RUNS).minOf { measureTimeMillis { TextDateDetector.detect(text.toString(), context) } }
 
-        best shouldBeLessThan BUDGET_MILLIS
+        best shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
         TextDateDetector.detect(text.toString(), context).size shouldBe expected
     }
 

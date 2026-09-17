@@ -267,7 +267,7 @@ class PrayerModelTest {
         repeat(2) { (0L until 365L).forEach { PrayerTimesCalculator.calculate(start + it, tehran, 210) } }
         val began = System.nanoTime()
         (0L until 365L).forEach { PrayerTimesCalculator.calculate(start + it, tehran, 210) }
-        (System.nanoTime() - began) / 1e6 shouldBeLessThan 50.0
+        (System.nanoTime() - began) / 1e6 shouldBeLessThan TimingTest.budget(50.0)
     }
 
     private companion object {

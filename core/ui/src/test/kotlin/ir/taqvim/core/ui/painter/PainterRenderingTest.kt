@@ -140,7 +140,7 @@ class PainterRenderingTest {
         repeat(WARM_UP) { painter.paint(model, WIDTH, HEIGHT) }
         val best = (1..RUNS).minOf { measureNanoTime { painter.paint(model, WIDTH, HEIGHT) } }
         println("T-702 month bitmap ${WIDTH}x$HEIGHT best of $RUNS: ${best / NANOS_PER_MILLI} ms")
-        assertTrue("best ${best / NANOS_PER_MILLI} ms", best < BUDGET_NANOS)
+        assertTrue("best ${best / NANOS_PER_MILLI} ms", best < TimingTest.budget(BUDGET_NANOS))
     }
 
     private companion object {

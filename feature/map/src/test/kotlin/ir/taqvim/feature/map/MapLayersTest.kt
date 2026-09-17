@@ -138,7 +138,7 @@ class MapLayersTest {
         val sun = SubPoints.sun(MapFixtures.NOON)
         repeat(3) { LayerGrids.illumination(sun, 360, 180) }
         val best = (1..5).minOf { measureTimeMillis { LayerGrids.illumination(sun, 360, 180) } }
-        best shouldBeLessThan 150L
+        best shouldBeLessThan TimingTest.budget(150L)
         abs(sun.latitude) shouldBeGreaterThan 0.0
     }
 }

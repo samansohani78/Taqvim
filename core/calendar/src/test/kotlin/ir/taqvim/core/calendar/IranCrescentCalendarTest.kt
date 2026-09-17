@@ -163,7 +163,7 @@ class IranCrescentCalendarTest {
         val best = (1..MEASURED_RUNS).minOf { measureTimeMillis { convertAll(days) } }
 
         println("ADR-0027 conversions: first use ${firstUse}ms, 1 000 000 cached fromJdn best ${best}ms")
-        best shouldBeLessThan BUDGET_MILLIS
+        best shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
     }
 
     private fun convertAll(days: List<Jdn>): Long = days.sumOf { crescent.fromJdn(it).day.toLong() }

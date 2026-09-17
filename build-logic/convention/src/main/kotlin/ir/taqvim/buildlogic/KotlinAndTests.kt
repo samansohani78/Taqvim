@@ -40,6 +40,7 @@ internal fun Project.configureTestTasks(unitTestTask: String = "test") {
     val limiter = forkedJvmLimiter()
     val updateSnapshots = providers.gradleProperty(UPDATE_SNAPSHOTS_PROPERTY).orElse("false")
     val propertyIterations = providers.gradleProperty(PROPERTY_ITERATIONS_PROPERTY).orElse("1000")
+    val timingScale = providers.gradleProperty(TIMING_SCALE_PROPERTY).orElse("1")
     tasks.withType<Test>().configureEach {
         val timing = name == TIMING_TEST_TASK
         useJUnitPlatform {
@@ -58,6 +59,7 @@ internal fun Project.configureTestTasks(unitTestTask: String = "test") {
         // Fail instead of silently skipping mis-declared tests (e.g. a @Test function that returns a value).
         systemProperty("junit.platform.discovery.issue.severity.critical", "WARNING")
         systemProperty(UPDATE_SNAPSHOTS_PROPERTY, updateSnapshots.get())
+        systemProperty(TIMING_SCALE_PROPERTY, timingScale.get())
         systemProperty(PROPERTY_ITERATIONS_PROPERTY, propertyIterations.get())
         testLogging {
             events(TestLogEvent.FAILED, TestLogEvent.SKIPPED)
@@ -94,6 +96,9 @@ private val TIMING_TAGS = arrayOf("timing", "ir.taqvim.core.testing.TimingTest")
 
 /** Gradle and system property that lets `SnapshotVerifier` (core:testing) rewrite snapshots. */
 private const val UPDATE_SNAPSHOTS_PROPERTY = "taqvim.updateSnapshots"
+
+/** Factor applied to the wall-clock budgets of timing tests (`TimingTest.budget`); CI passes a larger value. */
+private const val TIMING_SCALE_PROPERTY = "taqvim.timingScale"
 
 /** Property-test iteration budget: 1 000 by default, 10 000 nightly (plan §8.1; core:testing PropertyTesting). */
 private const val PROPERTY_ITERATIONS_PROPERTY = "taqvim.propertyIterations"

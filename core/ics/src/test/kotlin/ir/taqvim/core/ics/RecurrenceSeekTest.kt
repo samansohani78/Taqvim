@@ -131,7 +131,7 @@ class RecurrenceSeekTest {
         for ((start, rule) in cases) {
             val began = System.nanoTime()
             repeat(RUNS) { first(start, rule, from) }
-            ((System.nanoTime() - began) / RUNS) shouldBeLessThan SEEK_BUDGET_NANOS
+            ((System.nanoTime() - began) / RUNS) shouldBeLessThan TimingTest.budget(SEEK_BUDGET_NANOS)
         }
     }
 

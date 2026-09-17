@@ -52,7 +52,7 @@ class EventSearchBenchmarkTest {
 
         val best = (1..MEASURED_RUNS).minOf { measureTimeMillis { queries.forEach { index.search(SearchQuery(it)) } } }
 
-        best shouldBeLessThan BUDGET_MILLIS
+        best shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
         index
             .search(SearchQuery(titles.first()))
             .first()

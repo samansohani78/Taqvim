@@ -18,5 +18,25 @@ public interface TimingTest {
 
         /** Tag the Vintage engine derives from `@Category(TimingTest::class)`. */
         public const val CATEGORY_TAG: String = "ir.taqvim.core.testing.TimingTest"
+
+        /** System property with the factor applied to every budget; the build sets it from `-Ptaqvim.timingScale`. */
+        public const val SCALE_PROPERTY: String = "taqvim.timingScale"
+
+        /**
+         * The factor budgets are multiplied by: 1 unless [SCALE_PROPERTY] holds a number of at least 1. Shared CI
+         * runners are slower and noisier than a developer machine, so CI passes a larger factor; local runs keep the
+         * plan's budgets exactly (ADR-0018 addendum).
+         */
+        public val scale: Double
+            get() = System.getProperty(SCALE_PROPERTY)?.toDoubleOrNull()?.takeIf { it >= 1.0 } ?: 1.0
+
+        /** [budget] multiplied by [scale]. */
+        public fun budget(budget: Long): Long = (budget * scale).toLong()
+
+        /** [budget] multiplied by [scale]. */
+        public fun budget(budget: Int): Int = (budget * scale).toInt()
+
+        /** [budget] multiplied by [scale]. */
+        public fun budget(budget: Double): Double = budget * scale
     }
 }

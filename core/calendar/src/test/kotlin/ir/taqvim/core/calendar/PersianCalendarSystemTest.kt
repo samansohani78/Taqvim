@@ -116,7 +116,7 @@ class PersianCalendarSystemTest {
 
         val best = (1..MEASURED_RUNS).minOf { measureTimeMillis { convertAll(days) } }
 
-        best shouldBeLessThan BUDGET_MILLIS
+        best shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
     }
 
     private fun convertAll(days: List<Jdn>): Long = days.sumOf { persian.fromJdn(it).day.toLong() }

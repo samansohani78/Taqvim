@@ -97,7 +97,8 @@ jobs:
           ./gradlew test koverVerify koverXmlReport $TAQVIM_GRADLE_ARGS
       # Wall-clock budgets are load-sensitive, so they run after the parallel tests on a single worker (ADR-0018).
       - name: Timing tests (single worker)
-        run: ./gradlew timingTests --continue --max-workers=1
+        # Shared runners are slower and noisier than the reference machine: budgets get a factor of 2 (ADR-0018).
+        run: ./gradlew timingTests --continue --max-workers=1 -Ptaqvim.timingScale=2
       - uses: actions/upload-artifact@v7
         if: always()
         with:

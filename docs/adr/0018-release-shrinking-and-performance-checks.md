@@ -114,3 +114,12 @@ new artifacts (Google Maven returns HTTP 404), so only libraries already in the 
 - **Network note:** on 2026-09-17 Google Maven first returned 404 for every artifact and later answered 200 for the
   same URLs (plugin metadata, `repository2-3.xml`), so the earlier failures were an outage on Google's side, not a
   local block. The repositories already list `google()` first with content filters.
+
+## Addendum (2026-09-17): timing budgets on CI runners (T-1801)
+
+GitHub's shared runners are slower and noisier than a developer machine: `TextSnippetCorpusTest` took 56 ms against its
+50 ms budget there (run 35187540605) while passing locally. Timing tests now compare with `TimingTest.budget(value)`,
+which multiplies the plan's budget by the `taqvim.timingScale` system property (Gradle property
+`-Ptaqvim.timingScale`, default 1; values below 1 or non-numbers are ignored). The PR workflow runs `timingTests` with
+a factor of 2. Local runs and the device benchmarks keep the §9 budgets unchanged, so a real regression still shows
+there; CI only catches gross slowdowns.

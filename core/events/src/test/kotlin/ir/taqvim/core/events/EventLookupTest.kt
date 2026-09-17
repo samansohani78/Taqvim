@@ -129,7 +129,7 @@ class EventLookupTest {
 
         val best = (1..MEASURED_RUNS).minOf { measureTimeMillis { days.forEach { lookup.eventsOn(it, all) } } }
 
-        best shouldBeLessThan BUDGET_MILLIS
+        best shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
     }
 
     private fun benchmarkDefinitions(): List<EventDefinition> =

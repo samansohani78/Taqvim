@@ -155,7 +155,7 @@ class YearPageBuilderTest {
         // Timing is sensitive to machine load: the best of several runs is compared with the budget.
         val best = (1..MEASURED_RUNS).minOf { measureTimeMillis { builder.build(0, 1405, today, days) } }
 
-        best.toInt() shouldBeLessThan BUDGET_MILLIS
+        best.toInt() shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
     }
 
     private companion object {
