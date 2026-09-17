@@ -22,6 +22,43 @@ Deep links used below are listed in [AUTOMATION.md](AUTOMATION.md) and can be se
 
 ---
 
+## 0. Automated on a Gradle Managed Device
+
+Much of what used to be manual now runs on a real Android 14 emulator (Gradle Managed Device `pixel6Api34`: Pixel 6,
+API 34, `aosp-atd`, x86_64), declared in `app/build.gradle.kts`. It needs `/dev/kvm`, about 4 GB of free RAM and access to
+`dl.google.com` for the first system-image download.
+
+| Command | What it runs |
+|---|---|
+| `./gradlew :app:pixel6Api34DebugAndroidTest` | All device tests below (`app/src/androidTest`) |
+| `./gradlew :app:generateBaselineProfile` | Baseline and startup profiles on the `:benchmark` managed device (RELEASE.md) |
+
+Covered automatically (tick the manual item only where the table in each section still says *manual*):
+
+- **Every screen opens, in `fa` and `en`** (`DeviceSmokeTest`): each documented `taqvim://` link, the four top-level
+  tabs and every More entry open their screen; every tab of each screen is selected; linked screens are rotated to
+  landscape and back; the world map's layer and globe toggles are switched; the onboarding pages open and rotate.
+  A crash, ANR or missing screen fails the run.
+- **Accessibility Test Framework** (`DeviceAccessibilityTest`): ATF errors on the calendar, times, tools, More and
+  every More screen, in `fa` and `en`.
+- **Widgets** (`DeviceSurfacesTest`): all 12 widget providers are bound in a widget host, updated and drawn without
+  the launcher's error view (the device part of §1.1 up to placement; resize and taps stay manual).
+- **Persistent notification** (§7.1, first sentence): posted when enabled, removed when disabled.
+- **Quick Settings tile and shortcuts** (§7.3, §7.4): the tile service and every manifest and dynamic shortcut
+  resolve.
+- **Reminders** (§6.1 step 1–2, the on-time part): a personal event's reminder, scheduled through the persistent
+  scheduler with exact alarms allowed, is posted as a notification on time.
+
+Not automatable here, so still manual:
+
+- **Wear OS (§5):** Gradle Managed Devices only offer phone system images (`aosp`, `google`, `aosp-atd`, `google-atd`,
+  Play Store); Wear OS images need a manually created Wear AVD or a watch.
+- **Real launchers and OEM behaviour (§1, §6.4):** placement by drag, resizing, OEM power management, audio focus and
+  Do Not Disturb need real devices.
+- **TalkBack by ear (§2), physical sensors (compass, level), sound (athan), battery and memory budgets (§8).**
+
+---
+
 ## 1. Widgets (T-1200 – T-1212)
 
 Twelve widgets exist (`WidgetKind`): 1×1 date, 4×1 date + clock, 2×2 day summary, 4×2 prayer strip, month
@@ -309,8 +346,8 @@ Sign-off: ______
 
 ## 10. Core UI scenarios on a device (PLAN §8.3)
 
-The 40 scenarios are covered by Robolectric/Compose tests on the JVM; the instrumented matrix (API 26/30/33/latest)
-runs in `instrumented.yml`. On a device, walk through each scenario once in `fa` and once in `en`; tick it when it
+The 40 scenarios are covered by Robolectric/Compose tests on the JVM, and the screen walk of every scenario runs on the
+managed device (§0). On a device, walk through each scenario once in `fa` and once in `en`; tick it when it
 behaves as described.
 
 | # | Scenario | Expected | `fa` | `en` |

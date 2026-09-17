@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 
@@ -65,7 +66,7 @@ private fun Segments(
             SegmentedButton(
                 selected = index == selectedIndex,
                 onClick = { onSelect(index) },
-                modifier = Modifier.heightIn(min = MIN_SEGMENT_HEIGHT),
+                modifier = Modifier.heightIn(min = MIN_SEGMENT_HEIGHT).testTag(segmentTag(index)),
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = tabs.size),
                 label = { Text(label, maxLines = 1) },
             )
@@ -85,7 +86,7 @@ private fun ScrollingTabs(
             Tab(
                 selected = index == selectedIndex,
                 onClick = { onSelect(index) },
-                modifier = Modifier.heightIn(min = MIN_SEGMENT_HEIGHT),
+                modifier = Modifier.heightIn(min = MIN_SEGMENT_HEIGHT).testTag(segmentTag(index)),
             ) {
                 Text(
                     label,
@@ -97,3 +98,6 @@ private fun ScrollingTabs(
         }
     }
 }
+
+/** Test tag of the tab at [index] of [SegmentedTabs]; device tests select every tab by it (T-1600). */
+fun segmentTag(index: Int): String = "segment:$index"

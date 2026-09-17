@@ -12,6 +12,9 @@ plugins {
     id("androidx.baselineprofile")
 }
 
+/** Gradle Managed Device for the device smoke tests: `./gradlew :app:pixel6Api34DebugAndroidTest` (docs/RELEASE.md). */
+val smokeDevice = "pixel6Api34"
+
 /** Plan §9: release APK at most 8 MB (T-1800). */
 val apkBudgetBytes: Long = 8L * 1024 * 1024
 
@@ -32,6 +35,8 @@ android {
         applicationId = "ir.taqvim.app"
         versionCode = taqvimVersion.code
         versionName = taqvimVersion.name
+        // A device test that hangs (e.g. a screen that never becomes idle) fails after 10 minutes instead of stalling.
+        testInstrumentationRunnerArguments["timeout_msec"] = "600000"
     }
     buildFeatures {
         // Version and build type shown on the About screen and in problem reports (T-1504).
@@ -62,6 +67,17 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("release")
             isDebuggable = false
+        }
+    }
+    testOptions {
+        managedDevices {
+            localDevices {
+                create(smokeDevice) {
+                    device = "Pixel 6"
+                    apiLevel = 34
+                    systemImageSource = "aosp-atd"
+                }
+            }
         }
     }
     bundle {
@@ -145,6 +161,14 @@ dependencies {
     // Screenshot environments of the navigation frame (ADR-0015).
     testImplementation(projects.core.uiTesting)
     testImplementation(libs.kotlinx.coroutines.test)
+
+    // Device smoke tests on the managed device (T-1600, T-1700, T-1200): real Android, not Robolectric.
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.uiautomator)
+    // Brings the Accessibility Test Framework (Apache-2.0) for DeviceAccessibilityTest.
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4.accessibility)
 }
 
 /**
