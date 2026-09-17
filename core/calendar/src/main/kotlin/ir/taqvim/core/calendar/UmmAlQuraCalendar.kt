@@ -11,25 +11,28 @@ import ir.taqvim.core.model.Jdn
 /**
  * Saudi Umm al-Qura calendar (A-04) for every year (ADR-0028).
  *
- * AH [PUBLISHED_FIRST_YEAR]‥[PUBLISHED_LAST_YEAR] follow the published calendar (ICU4J 78.3 data, Unicode License v3;
- * notice in `licenses/ICU-LICENSE.txt`). Every other year is computed from the calendar's astronomical criterion at the
- * Kaʿba ([UmmAlQuraCriterion]) — proleptically before the published years — and, far from the present, from mean lunar
- * months continued from the astronomical ones ([UmmAlQuraMonths]). Every year of [Int] is supported.
+ * Computed at run time for every year except AH [BUNDLED_FIRST_YEAR]‥[BUNDLED_LAST_YEAR]: from AH 1423 by the
+ * calendar's astronomical criterion at the Kaʿba ([UmmAlQuraCriterion]), in AH 1420–1422 by that period's moonset
+ * rule, before the bundled years by the criterion applied proleptically, and far from the present by mean lunar months
+ * continued from the astronomical ones ([UmmAlQuraMonths]). Every year of [Int] is supported.
+ *
+ * The bundled years follow the printed calendar (ICU4J 78.3 data, Unicode License v3; notice in
+ * `licenses/ICU-LICENSE.txt`) because no reproducible rule gives them; they are finite, fixed historical dates.
  */
 public object UmmAlQuraCalendar : CalendarArithmetic {
     override val system: CalendarSystem = CalendarSystem.ISLAMIC
 
-    /** First year of the published calendar. */
-    public const val PUBLISHED_FIRST_YEAR: Int = UmmAlQuraMonths.PUBLISHED_FIRST_YEAR
+    /** First year taken from the bundled printed calendar. */
+    public const val BUNDLED_FIRST_YEAR: Int = UmmAlQuraMonths.BUNDLED_FIRST_YEAR
 
-    /** Last year of the published calendar. */
-    public const val PUBLISHED_LAST_YEAR: Int = UmmAlQuraMonths.PUBLISHED_LAST_YEAR
+    /** Last year taken from the bundled printed calendar; every later year is computed. */
+    public const val BUNDLED_LAST_YEAR: Int = UmmAlQuraMonths.BUNDLED_LAST_YEAR
 
     private const val MONTHS = 12
     private const val COMMON_YEAR_DAYS = 354
 
-    /** `true` when [year] follows the published calendar rather than the computed criterion. */
-    public fun isPublished(year: Int): Boolean = year in PUBLISHED_FIRST_YEAR..PUBLISHED_LAST_YEAR
+    /** `true` when [year] comes from the bundled printed calendar rather than a computed rule. */
+    public fun isBundled(year: Int): Boolean = year in BUNDLED_FIRST_YEAR..BUNDLED_LAST_YEAR
 
     /** Umm al-Qura years have 354 or 355 days (rarely 353 or 356); a year is "leap" when it is longer than 354. */
     override fun isLeapYear(year: Int): Boolean {

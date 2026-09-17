@@ -54,6 +54,19 @@ class UmmAlQuraCriterionTest {
     }
 
     @Test
+    fun `the calendar computes 1420 to 1422 with the moonset rule and 1423 on with the criterion`() {
+        var start = months.start(months.index(1420, 1))
+        (months.index(1420, 1)..months.index(1422, 12)).forEach { index ->
+            withClue(index) { months.start(index) shouldBe start }
+            start = UmmAlQuraCriterion.nextMonthStart(start, requireConjunction = months.yearOf(index + 1) >= 1423)
+        }
+        months.start(months.index(1423, 1)) shouldBe start
+        (1420..1450).forEach { year -> uaq.isBundled(year) shouldBe false }
+        months.isBundled(months.index(1419, 12)) shouldBe true
+        months.isBundled(months.index(1420, 1)) shouldBe false
+    }
+
+    @Test
     fun `after 1450 ICU4J's projection is never earlier than the criterion`() {
         val late =
             (1451..1600).flatMap { year ->

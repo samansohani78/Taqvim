@@ -5,12 +5,15 @@
 package ir.taqvim.core.calendar
 
 /**
- * Published Umm al-Qura month lengths for AH [UmmAlQuraCalendar.PUBLISHED_FIRST_YEAR]‥
- * [UmmAlQuraCalendar.PUBLISHED_LAST_YEAR] (A-04, ADR-0028), one 12-bit mask per year: bit 11 is month 1 … bit 0 is
- * month 12; a set bit means 30 days. These are the years of the Saudi Ministry of Finance's printed Umm al-Qura
- * comparison calendars (1300–1429 and 1420–1450 AH). Data obtained through ICU4J 78.3's public API (Unicode License v3,
- * `licenses/ICU-LICENSE.txt`); see docs/adr/0006-umm-al-qura-table.md. Every other year is computed from the
- * criterion ([UmmAlQuraCriterion]).
+ * Bundled Umm al-Qura month lengths for AH [UmmAlQuraCalendar.BUNDLED_FIRST_YEAR]‥[UmmAlQuraCalendar.BUNDLED_LAST_YEAR]
+ * (A-04, ADR-0028), one 12-bit mask per year: bit 11 is month 1 … bit 0 is month 12; a set bit means 30 days.
+ *
+ * These are the only years that cannot be computed. The Saudi Ministry of Finance's printed comparison calendars fix
+ * them, and no reproducible astronomical rule gives them: before AH 1392 no rule fits, and the rule documented for
+ * AH 1392–1419 reproduces few months (ADR-0028). They are finite historical facts that never change, so they need no
+ * maintenance. Data obtained through ICU4J 78.3's public API (Unicode License v3, `licenses/ICU-LICENSE.txt`); see
+ * docs/adr/0006-umm-al-qura-table.md. From AH 1420 on every month is computed ([UmmAlQuraCriterion]); the published
+ * months of AH 1420–1450 are kept only as a test oracle.
  */
 internal val UMM_AL_QURA_MONTH_MASKS: List<Int> =
     listOf(
@@ -134,35 +137,4 @@ internal val UMM_AL_QURA_MONTH_MASKS: List<Int> =
         0xB2A,
         0xB55,
         0x55C,
-        0x4BD,
-        0x23D,
-        0x91D,
-        0xA95,
-        0xB4A,
-        0xB5A,
-        0x56D,
-        0x2B6,
-        0x93B,
-        0x49B,
-        0x655,
-        0x6A9,
-        0x754,
-        0xB6A,
-        0x56C,
-        0xAAD,
-        0x555,
-        0xB29,
-        0xB92,
-        0xBA9,
-        0x5D4,
-        0xADA,
-        0x55A,
-        0xAAB,
-        0x595,
-        0x749,
-        0x764,
-        0xBAA,
-        0x5B5,
-        0x2B6,
-        0xA56,
     )

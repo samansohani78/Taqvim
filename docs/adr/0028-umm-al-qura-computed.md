@@ -67,3 +67,25 @@ Checked against ICU4J's data with cosinekitty/astronomy 2.1.19 at 21.4225° N, 3
 - The first conversion in a 120-month block pays for about 600 ephemeris searches; the published years cost nothing.
 - Religious authorities may still announce Ramadan, Shawwal or Dhu al-Hijja by sighting; those announcements are not
   part of the computed calendar (van Gent, "Adjustment of the Umm al-Qura Calendar").
+
+## Addendum 2026-09-17 — computed from AH 1420; only AH 1300–1419 bundled
+
+The owner's "computed, not typed" directive (2026-09-17) allows bundled calendar data only where computation is
+impossible, and published tables of computable years only as test oracles. Decision 1 is revised:
+
+- **AH 1423 onward is computed at run time** by the criterion, including AH 1423–1450, which decision 1 used to take from
+  the printed calendar. The published months of AH 1420–1450 are kept only as a golden oracle in
+  `UmmAlQuraCalendarTest` (`PUBLISHED_1420_1450_MASKS`, cross-checked against ICU4J).
+- **AH 1420–1422 are computed** by that period's documented moonset-only rule, chained month by month from the end of
+  the bundled years; this reproduces all 36 published months, and 1 Muharram 1423 lands on the published day.
+- **AH 1300–1419 stay bundled** (120 masks). They are not computable: no rule fits the months before 1392, and the rule
+  documented for 1392–1419 reproduces only 61 of 335 months (about 85 % for the best simple variant). They are finite
+  historical dates of the printed calendar that will never change, so they need no maintenance. The public API names
+  them `BUNDLED_FIRST_YEAR`, `BUNDLED_LAST_YEAR` and `isBundled` (formerly `PUBLISHED_*` and `isPublished`).
+
+**Consequence:** within AH 1420–1450 the app's dates now differ from the printed calendar in exactly two months, the
+marginal cases above. 1 Jumada II 1427 falls one day earlier (conjunction 24 s before sunset, so the rule ends Jumada I
+after 29 days) and 1 Jumada II 1446 one day later (moonset 4 s before sunset, so the rule gives Jumada I 30 days). The
+months after each start on the published days again. Every other month of AH 1420–1450, and every month of AH
+1300–1419, matches the printed calendar exactly. Users who need the announced dates can use the Iranian official or
+another variant; Saudi sighting announcements were never part of this calendar.

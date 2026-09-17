@@ -8,24 +8,28 @@ import kotlin.math.floor
 
 /**
  * First days of every Umm al-Qura month (ADR-0028), addressed by a month index: 0 is Muharram of
- * [PUBLISHED_FIRST_YEAR], and each month adds one.
+ * [BUNDLED_FIRST_YEAR], and each month adds one.
  *
- * - [PUBLISHED_FIRST_YEAR]‥[PUBLISHED_LAST_YEAR]: the published calendar ([UMM_AL_QURA_MONTH_MASKS]).
+ * - [BUNDLED_FIRST_YEAR]‥[BUNDLED_LAST_YEAR]: the printed calendar ([UMM_AL_QURA_MONTH_MASKS]), the only years no rule
+ *   reproduces.
+ * - [MOONSET_RULE_FIRST_YEAR]‥[CONJUNCTION_RULE_FIRST_YEAR] − 1: the moonset-only rule of those years, chained month by
+ *   month from the end of the bundled years.
  * - Other years of [FIRST_ASTRONOMICAL_YEAR]‥[LAST_ASTRONOMICAL_YEAR]: the criterion since AH 1423
  *   ([UmmAlQuraCriterion]), applied forward from each month's own start, computed on first use [BLOCK_MONTHS] at a
- *   time and kept. Before the published years the rule is applied proleptically; after them it is the calendar's
- *   own rule.
+ *   time and kept. Before the bundled years the rule is applied proleptically.
  * - Every other year: mean lunar months continued from the nearer astronomical edge ([MeanLunarMonths]); months keep
  *   29 or 30 days and join the astronomical months without a seam.
  */
 internal object UmmAlQuraMonths {
-    const val PUBLISHED_FIRST_YEAR: Int = 1300
-    const val PUBLISHED_LAST_YEAR: Int = 1450
+    const val BUNDLED_FIRST_YEAR: Int = 1300
+    const val BUNDLED_LAST_YEAR: Int = 1419
+    const val MOONSET_RULE_FIRST_YEAR: Int = 1420
+    const val CONJUNCTION_RULE_FIRST_YEAR: Int = 1423
     const val FIRST_ASTRONOMICAL_YEAR: Int = -3000
     const val LAST_ASTRONOMICAL_YEAR: Int = 3000
 
-    /** JDN of 1 Muharram [PUBLISHED_FIRST_YEAR]. */
-    const val PUBLISHED_START_JDN: Long = 2_408_762L
+    /** JDN of 1 Muharram [BUNDLED_FIRST_YEAR]. */
+    const val BUNDLED_START_JDN: Long = 2_408_762L
 
     private const val MONTHS = 12
     private const val LONG_MONTH = 30
@@ -33,14 +37,28 @@ internal object UmmAlQuraMonths {
     private const val BLOCK_MONTHS = 120
     private const val MEAN_SYNODIC_MONTH = 29.530588853
 
-    /** Month starts of the published years, followed by 1 Muharram [PUBLISHED_LAST_YEAR] + 1. */
-    private val published: LongArray =
+    /** Month starts of the bundled years, followed by 1 Muharram [MOONSET_RULE_FIRST_YEAR]. */
+    private val bundled: LongArray =
         UMM_AL_QURA_MONTH_MASKS
             .flatMap { mask -> (1..MONTHS).map { month -> maskedLength(mask, month) } }
-            .runningFold(PUBLISHED_START_JDN) { start, length -> start + length }
+            .runningFold(BUNDLED_START_JDN) { start, length -> start + length }
             .toLongArray()
 
-    private val publishedMonths: Long = (published.size - 1).toLong()
+    private val bundledMonths: Long = (bundled.size - 1).toLong()
+    private val conjunctionRuleIndex: Long = index(CONJUNCTION_RULE_FIRST_YEAR.toLong(), 1)
+
+    /**
+     * Month starts from 1 Muharram [MOONSET_RULE_FIRST_YEAR] to 1 Muharram [CONJUNCTION_RULE_FIRST_YEAR], each from the
+     * month before it by the rule of the month it starts.
+     */
+    private val moonsetRuleStarts: Lazy<LongArray> =
+        lazy {
+            (bundledMonths + 1..conjunctionRuleIndex)
+                .runningFold(bundled.last()) { start, index ->
+                    val conjunctionRule = yearOf(index) >= CONJUNCTION_RULE_FIRST_YEAR
+                    UmmAlQuraCriterion.nextMonthStart(start, requireConjunction = conjunctionRule)
+                }.toLongArray()
+        }
     val firstAstronomicalIndex: Long = index(FIRST_ASTRONOMICAL_YEAR.toLong(), 1)
     val lastAstronomicalIndex: Long = index(LAST_ASTRONOMICAL_YEAR.toLong(), MONTHS)
 
@@ -60,16 +78,16 @@ internal object UmmAlQuraMonths {
     fun index(
         year: Long,
         month: Int,
-    ): Long = (year - PUBLISHED_FIRST_YEAR) * MONTHS + month - 1
+    ): Long = (year - BUNDLED_FIRST_YEAR) * MONTHS + month - 1
 
     /** Year of month [index]. */
-    fun yearOf(index: Long): Long = PUBLISHED_FIRST_YEAR + Math.floorDiv(index, MONTHS.toLong())
+    fun yearOf(index: Long): Long = BUNDLED_FIRST_YEAR + Math.floorDiv(index, MONTHS.toLong())
 
     /** Month (1‥12) of month [index]. */
     fun monthOf(index: Long): Int = Math.floorMod(index, MONTHS.toLong()).toInt() + 1
 
-    /** Whether month [index] lies in the published years. */
-    fun isPublished(index: Long): Boolean = index in 0 until publishedMonths
+    /** Whether month [index] lies in the bundled years. */
+    fun isBundled(index: Long): Boolean = index in 0 until bundledMonths
 
     /** JDN of the first day of month [index]. */
     fun start(index: Long): Long =
@@ -96,7 +114,7 @@ internal object UmmAlQuraMonths {
         if (jdn < mean.value.firstStart || jdn > mean.value.lastStart) {
             mean.value.estimateIndex(jdn, lastAstronomicalIndex)
         } else {
-            floor((jdn - PUBLISHED_START_JDN) / MEAN_SYNODIC_MONTH).toLong()
+            floor((jdn - BUNDLED_START_JDN) / MEAN_SYNODIC_MONTH).toLong()
         }
 
     private fun astronomicalStart(index: Long): Long {
@@ -112,20 +130,25 @@ internal object UmmAlQuraMonths {
     }
 
     /**
-     * Published months use the published calendar. Every other month follows the criterion from the start of the month
-     * before it; that start is the published one right after the published years, and otherwise found from its own
-     * conjunction. The month just before the published years is kept at 29 or 30 days so the calendars join.
+     * Bundled months use the printed calendar and the moonset-rule years their chained starts. Every other month follows
+     * the criterion from the start of the month before it; that start is the chained one right after the moonset-rule
+     * years, and otherwise found from its own conjunction. The month just before the bundled years is kept at 29 or
+     * 30 days so the calendars join.
      */
     private fun computeStart(index: Long): Long =
         when {
-            index in 0..publishedMonths -> {
-                published[index.toInt()]
+            index in 0..bundledMonths -> {
+                bundled[index.toInt()]
+            }
+
+            index in bundledMonths..conjunctionRuleIndex -> {
+                moonsetRuleStarts.value[(index - bundledMonths).toInt()]
             }
 
             index == -1L -> {
                 UmmAlQuraCriterion
                     .nextMonthStart(previousStart(index - 1))
-                    .coerceIn(published[0] - LONG_MONTH, published[0] - SHORT_MONTH)
+                    .coerceIn(bundled[0] - LONG_MONTH, bundled[0] - SHORT_MONTH)
             }
 
             else -> {
@@ -139,9 +162,9 @@ internal object UmmAlQuraMonths {
     ): Int = if (mask shr (MONTHS - month) and 1 == 1) LONG_MONTH else SHORT_MONTH
 
     private fun previousStart(index: Long): Long =
-        if (index == publishedMonths) {
-            published[index.toInt()]
+        if (index == conjunctionRuleIndex) {
+            moonsetRuleStarts.value.last()
         } else {
-            UmmAlQuraCriterion.monthStartNear(PUBLISHED_START_JDN + index * MEAN_SYNODIC_MONTH)
+            UmmAlQuraCriterion.monthStartNear(BUNDLED_START_JDN + index * MEAN_SYNODIC_MONTH)
         }
 }
