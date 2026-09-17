@@ -9,7 +9,7 @@ enum class IssueKind {
     /** The file is not a single well-formed JSON document. */
     MALFORMED_JSON,
 
-    /** The document violates `dataset/events.v1.json`: fields, enums, missing `fa`, rule parameters, citations. */
+    /** The document violates `dataset/events.v1.json`: fields, enums, a title without `fa` or `ne`, rule parameters, citations. */
     SCHEMA,
 
     /** Two records share an id (within a file or across files). */

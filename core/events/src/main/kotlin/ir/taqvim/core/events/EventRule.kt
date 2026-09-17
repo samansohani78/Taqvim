@@ -4,11 +4,14 @@
  */
 package ir.taqvim.core.events
 
+import ir.taqvim.core.calendar.NepaliLunarDays
+import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.model.Weekday
 import kotlinx.datetime.TimeZone
 
 private const val MAX_MONTH = 12
 private const val MAX_WEEK_OF_MONTH = 5
+private const val MAX_TITHI = NepaliLunarDays.TITHIS_IN_MONTH
 
 private fun requireMonth(month: Int) = require(month in 1..MAX_MONTH) { "month must be in 1..12 (was $month)" }
 
@@ -102,6 +105,26 @@ public sealed interface EventRule {
     ) : EventRule {
         init {
             require(runCatching { TimeZone.of(timeZone) }.isSuccess) { "unknown time zone '$timeZone'" }
+        }
+    }
+
+    /**
+     * A Bikram Sambat lunar festival (ADR-0038): the day of [tithi] (1‥30, 16‥30 the dark half) of amanta lunar [month]
+     * (named by the solar month of its new moon), read at [observance]. It lasts until the day of the next [endTithi] (or
+     * its own day without one) plus [endOffsetDays]. Only meaningful in the NEPALI calendar; see [NepaliLunarDays].
+     */
+    public data class LunarTithi(
+        public val month: Int,
+        public val tithi: Int,
+        public val observance: TithiObservance = TithiObservance.SUNRISE,
+        public val endTithi: Int? = null,
+        public val endOffsetDays: Int = 0,
+    ) : EventRule {
+        init {
+            requireMonth(month)
+            require(tithi in 1..MAX_TITHI) { "tithi must be in 1..30 (was $tithi)" }
+            require(endTithi == null || endTithi in 1..MAX_TITHI) { "endTithi must be in 1..30 (was $endTithi)" }
+            require(endOffsetDays >= 0) { "endOffsetDays must be ≥ 0 (was $endOffsetDays)" }
         }
     }
 }

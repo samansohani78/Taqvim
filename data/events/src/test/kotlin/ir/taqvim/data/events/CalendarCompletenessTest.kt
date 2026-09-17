@@ -9,6 +9,7 @@ import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.longs.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.NepaliLunarDays
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventRule
@@ -169,6 +170,12 @@ class CalendarCompletenessTest {
                     .filter { calendar.toJdn(it).weekday() == rule.weekday }
                     .drop(rule.n - 1)
                     .take(1)
+            }
+
+            is EventRule.LunarTithi -> {
+                NepaliLunarDays
+                    .days(year, rule.month, rule.tithi, rule.observance, rule.endTithi, rule.endOffsetDays)
+                    .map(calendar::fromJdn)
             }
 
             else -> {

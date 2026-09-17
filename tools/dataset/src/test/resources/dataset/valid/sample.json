@@ -246,6 +246,33 @@
       "links": {
         "reference": "https://example.org/equinox"
       }
+    },
+    {
+      "id": "test.nepali-lunar",
+      "calendar": "NEPALI",
+      "source": "NEPAL_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "ne": "नमुना पर्व"
+      },
+      "rule": {
+        "type": "LunarTithi",
+        "month": 6,
+        "tithi": 30,
+        "observance": "SUNSET",
+        "endTithi": 2,
+        "endOffsetDays": 1
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-17",
+      "reviewedBy": "test-fixture"
     }
   ]
 }

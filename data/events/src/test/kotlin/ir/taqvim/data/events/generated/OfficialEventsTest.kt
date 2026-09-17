@@ -21,7 +21,13 @@ class OfficialEventsTest {
         events.shouldNotBeEmpty()
         ids.shouldBeSorted()
         ids.toSet().size shouldBe ids.size
-        events.all { it.citations.isNotEmpty() && it.title.texts.containsKey("fa") }.shouldBeTrue()
+        events
+            .all {
+                it.citations.isNotEmpty() &&
+                    it.title.texts.keys.any { key ->
+                        key == "fa" || key == "ne"
+                    }
+            }.shouldBeTrue()
         val calculator = OccurrenceCalculator(events)
         events.flatMap { calculator.occurrences(it, YEAR_BY_CALENDAR.getValue(it.calendar.name)) }.shouldNotBeEmpty()
     }

@@ -124,6 +124,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> = listOf(
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -183,6 +184,22 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> = listOf(
                 ),
             ),
             EventDefinition(
+                id = EventId("test.nepali-lunar"),
+                calendar = CalendarSystem.NEPALI,
+                source = EventSource.NEPAL_OFFICIAL,
+                category = EventCategory.RELIGIOUS,
+                isHoliday = true,
+                title = LocalizedText(mapOf("ne" to "नमुना पर्व")),
+                rule = EventRule.LunarTithi(month = 6, tithi = 30, observance = TithiObservance.SUNSET, endTithi = 2, endOffsetDays = 1),
+                citations = listOf(
+                    Citation(
+                        url = "https://example.org/source.pdf",
+                        title = "Synthetic test source",
+                        page = "1",
+                    ),
+                ),
+            ),
+            EventDefinition(
                 id = EventId("test.nth-weekday"),
                 calendar = CalendarSystem.GREGORIAN,
                 source = EventSource.INTERNATIONAL,
@@ -198,27 +215,6 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> = listOf(
                 aliases = listOf(
                     "sample alias",
                 ),
-                citations = listOf(
-                    Citation(
-                        url = "https://example.org/source.pdf",
-                        title = "Synthetic test source",
-                        page = "1",
-                    ),
-                ),
-            ),
-            EventDefinition(
-                id = EventId("test.relative"),
-                calendar = CalendarSystem.PERSIAN,
-                source = EventSource.IRAN_OFFICIAL,
-                category = EventCategory.CULTURAL,
-                isHoliday = false,
-                title = LocalizedText(
-                    mapOf(
-                        "fa" to "رویداد نمونه",
-                        "en" to "Sample event",
-                    ),
-                ),
-                rule = EventRule.RelativeToEvent(eventId = EventId("test.base"), offsetDays = 12),
                 citations = listOf(
                     Citation(
                         url = "https://example.org/source.pdf",
@@ -254,6 +250,27 @@ import ir.taqvim.core.model.CalendarSystem
  * Generated from `dataset/` by `:tools:dataset:generateEvents` — do not edit.
  */
 internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> = listOf(
+            EventDefinition(
+                id = EventId("test.relative"),
+                calendar = CalendarSystem.PERSIAN,
+                source = EventSource.IRAN_OFFICIAL,
+                category = EventCategory.CULTURAL,
+                isHoliday = false,
+                title = LocalizedText(
+                    mapOf(
+                        "fa" to "رویداد نمونه",
+                        "en" to "Sample event",
+                    ),
+                ),
+                rule = EventRule.RelativeToEvent(eventId = EventId("test.base"), offsetDays = 12),
+                citations = listOf(
+                    Citation(
+                        url = "https://example.org/source.pdf",
+                        title = "Synthetic test source",
+                        page = "1",
+                    ),
+                ),
+            ),
             EventDefinition(
                 id = EventId("test.single"),
                 calendar = CalendarSystem.PERSIAN,

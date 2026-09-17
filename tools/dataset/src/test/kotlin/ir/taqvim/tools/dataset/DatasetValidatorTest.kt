@@ -37,8 +37,8 @@ class DatasetValidatorTest {
         }
 
     @Test
-    fun `there are 32 invalid fixtures and they cover every issue kind`() {
-        INVALID_FIXTURES.keys shouldHaveSize 32
+    fun `there are 33 invalid fixtures and they cover every issue kind`() {
+        INVALID_FIXTURES.keys shouldHaveSize 33
         INVALID_FIXTURES.values.toSet() shouldBe IssueKind.entries.toSet()
     }
 
@@ -136,6 +136,7 @@ class DatasetValidatorTest {
                 "30-validity-reversed" to IssueKind.INVALID_VALIDITY,
                 "31-single-without-reason" to IssueKind.ONE_OFF_RULE,
                 "32-repeated-single-day" to IssueKind.ONE_OFF_RULE,
+                "33-lunar-tithi-gregorian" to IssueKind.SCHEMA,
             ).toMap()
     }
 }

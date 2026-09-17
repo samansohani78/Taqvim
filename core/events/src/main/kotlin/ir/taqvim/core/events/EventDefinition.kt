@@ -47,21 +47,29 @@ public enum class EventFlag {
     HALF_DAY,
 }
 
-/** Text in several languages, keyed by BCP 47 tag; Persian (`fa`) is mandatory. */
+/**
+ * Text in several languages, keyed by BCP 47 tag. Persian (`fa`) or, for Nepal's official records that carry only
+ * their official Nepali title (ADR-0038), Nepali (`ne`) is mandatory.
+ */
 public data class LocalizedText(
     public val texts: Map<String, String>,
 ) {
     init {
-        require(texts[PERSIAN].orEmpty().isNotBlank()) { "a Persian (fa) text is mandatory" }
+        require(texts[PERSIAN].orEmpty().isNotBlank() || texts[NEPALI].orEmpty().isNotBlank()) {
+            "a Persian (fa) or Nepali (ne) text is mandatory"
+        }
         require(texts.values.all { it.isNotBlank() }) { "localized texts must not be blank" }
     }
 
-    /** The text for [languageTag], falling back to Persian. */
-    public fun forLanguage(languageTag: String): String = texts[languageTag] ?: texts.getValue(PERSIAN)
+    /** The text for [languageTag], falling back to Persian, then Nepali. */
+    public fun forLanguage(languageTag: String): String = texts[languageTag] ?: texts[PERSIAN] ?: texts.getValue(NEPALI)
 
     public companion object {
         /** The mandatory language. */
         public const val PERSIAN: String = "fa"
+
+        /** The mandatory language of records without a Persian text. */
+        public const val NEPALI: String = "ne"
     }
 }
 

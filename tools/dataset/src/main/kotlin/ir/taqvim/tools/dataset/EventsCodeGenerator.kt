@@ -55,6 +55,7 @@ object EventsCodeGenerator {
     private val CITATION = ClassName(EVENTS, "Citation")
     private val VALIDITY = ClassName(EVENTS, "Validity")
     private val ASTRO_KIND = ClassName(EVENTS, "AstroKind")
+    private val TITHI_OBSERVANCE = ClassName("ir.taqvim.core.calendar", "TithiObservance")
     private val CALENDAR_SYSTEM = ClassName(MODEL, "CalendarSystem")
     private val WEEKDAY = ClassName(MODEL, "Weekday")
     private val EVENT_LIST = LIST.parameterizedBy(EVENT_DEFINITION)
@@ -70,6 +71,7 @@ object EventsCodeGenerator {
             "NthDayOfYear" to listOf("n"),
             "RelativeToEvent" to listOf("eventId", "offsetDays"),
             "Astronomical" to listOf("kind", "offsetDays", "timeZone"),
+            "LunarTithi" to listOf("month", "tithi", "observance", "endTithi", "endOffsetDays"),
         )
 
     private const val HEADER =
@@ -202,6 +204,7 @@ object EventsCodeGenerator {
         when (name) {
             "weekday" -> CodeBlock.of("%L = %T.%L", name, WEEKDAY, value.content)
             "kind" -> CodeBlock.of("%L = %T.%L", name, ASTRO_KIND, value.content)
+            "observance" -> CodeBlock.of("%L = %T.%L", name, TITHI_OBSERVANCE, value.content)
             "eventId" -> CodeBlock.of("%L = %T(%S)", name, EVENT_ID, value.content)
             "timeZone" -> CodeBlock.of("%L = %S", name, value.content)
             else -> CodeBlock.of("%L = %L", name, value.int)

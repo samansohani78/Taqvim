@@ -9,6 +9,7 @@ import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.IranIslamicCalendar
 import ir.taqvim.core.calendar.NepaliCalendarSystem
+import ir.taqvim.core.calendar.NepaliLunarDays
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.lastWeekdayOfMonth
 import ir.taqvim.core.calendar.nthWeekdayOfMonth
@@ -187,9 +188,25 @@ private fun directDays(
             }
         }
 
+        is EventRule.LunarTithi -> {
+            lunarDays(rule, calendar, year)
+        }
+
         is EventRule.RelativeToEvent, is EventRule.Astronomical -> {
             emptyList()
         }
+    }
+
+/** Lunar festival days; only the Bikram Sambat calendar has lunar months (ADR-0038). */
+private fun lunarDays(
+    rule: EventRule.LunarTithi,
+    calendar: CalendarArithmetic,
+    year: Int,
+): List<Jdn> =
+    if (calendar.system == CalendarSystem.NEPALI) {
+        NepaliLunarDays.days(year, rule.month, rule.tithi, rule.observance, rule.endTithi, rule.endOffsetDays)
+    } else {
+        emptyList()
     }
 
 private fun validDay(

@@ -24,8 +24,8 @@ Fields follow `EventDefinition` (docs/PLAN.md §4.2) plus `updated` (ISO date) a
 | `source` | `IRAN_OFFICIAL`, `AFGHANISTAN_OFFICIAL`, `NEPAL_OFFICIAL`, `INTERNATIONAL`, `ANCIENT_IRAN` (`USER` is app-only) |
 | `category` | `NATIONAL`, `RELIGIOUS`, `INTERNATIONAL`, `CULTURAL`, `ASTRONOMICAL` (`PERSONAL` is app-only) |
 | `isHoliday` | Official day off |
-| `title` | Language tag → text; `fa` is mandatory |
-| `rule` | Object with a `type` discriminator: `Fixed`, `NthWeekdayOfMonth`, `LastWeekdayOfMonth`, `LastDayOfMonth`, `Single`, `NthDayOfYear`, `RelativeToEvent`, `Astronomical` |
+| `title` | Language tag → text; `fa` is mandatory, or `ne` for records with only an official Nepali title (ADR-0038) |
+| `rule` | Object with a `type` discriminator: `Fixed`, `NthWeekdayOfMonth`, `LastWeekdayOfMonth`, `LastDayOfMonth`, `Single`, `NthDayOfYear`, `RelativeToEvent`, `Astronomical`, `LunarTithi` (Bikram Sambat lunar festivals, `NEPALI` only; ADR-0038) |
 | `validity` | Optional `fromYear` / `toYear` in a named calendar, with its own citation |
 | `oneOffReason` | Required for `Single` rules, forbidden otherwise: why the day is a one-off decision no recurring rule can express (ADR-0036). A day that recurs is a `Fixed` (or other) rule with `validity.fromYear`, never one `Single` per year |
 | `flags`, `aliases`, `links` | Optional |

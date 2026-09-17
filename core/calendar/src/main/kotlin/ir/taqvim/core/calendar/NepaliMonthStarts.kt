@@ -37,7 +37,7 @@ internal object NepaliMonthStarts {
      * Fraction of a day by which Nepal midnight (UTC+05:45) follows Ujjain midnight (75°46′ E), so the Nepal day of a
      * Kali instant is floor(day + fraction + this).
      */
-    private const val NEPAL_AFTER_UJJAIN = 5.75 / 24.0 - (75.0 + 46.0 / 60.0) / 360.0
+    const val NEPAL_AFTER_UJJAIN: Double = 5.75 / 24.0 - (75.0 + 46.0 / 60.0) / 360.0
 
     private val blocks: List<Lazy<LongArray>> = List(CACHED_SPAN / BLOCK_YEARS + 1) { lazy { block(it) } }
 
