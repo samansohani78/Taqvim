@@ -531,6 +531,11 @@
         "validity": {
           "$ref": "#/$defs/validity"
         },
+        "oneOffReason": {
+          "description": "Required for a Single rule and forbidden for every other rule: why the record is a one-off decision that no recurring rule can express (ADR-0036).",
+          "type": "string",
+          "minLength": 1
+        },
         "flags": {
           "type": "array",
           "uniqueItems": true,

@@ -23,47 +23,6 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.mountain-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی کوهستان",
-                        "ar" to "اليوم الدولي للجبال",
-                        "en" to "International Mountain Day",
-                        "es" to "Día Internacional de las Montañas",
-                        "fr" to "Journée internationale de la montagne",
-                        "ru" to "Международный день гор",
-                        "zh" to "国际山岳日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 11),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/mountain-day",
-                        title = "International Mountain Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/245",
-                    "un" to "https://www.un.org/en/observances/mountain-day",
-                ),
-        ),
-        EventDefinition(
             id = EventId("un.nelson-mandela-international-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -348,6 +307,46 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000090448.page=76",
                     "un" to "https://www.un.org/en/observances/press-freedom-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.protect-education-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی حفاظت از آموزش در برابر حملات",
+                        "ar" to "اليوم الدولي لحماية التعليم من الهجمات",
+                        "en" to "International Day to Protect Education from Attack",
+                        "es" to "Día Internacional para Proteger la Educación de Ataques",
+                        "fr" to "Journée internationale pour la protection de l’éducation contre les attaques",
+                        "ru" to "Международный день защиты образования от нападений",
+                        "zh" to "保护教育免受攻击国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 9),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/protect-education-day",
+                        title = "International Day to Protect Education from Attack (observance page)",
+                    ),
+                    Citation(
+                        url = "https://iran.un.org/fa/322427-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D8%AD%D9%81%D8%A7%D8%B8%D8%AA-%D8%A7%D8%B2-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AF%D8%B1-%D8%A8%D8%B1%D8%A7%D8%A8%D8%B1-%D8%AD%D9%85%D9%84%D8%A7%D8%AA-%DB%B2%DB%B0%DB%B2%DB%B6",
+                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی حفاظت از آموزش در برابر حملات ۲۰۲۶",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/74/275",
+                    "un" to "https://www.un.org/en/observances/protect-education-day",
                 ),
         ),
     )

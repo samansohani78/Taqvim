@@ -24,47 +24,6 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_6: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.child-victim-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض",
-                        "ar" to "اليوم الدولي لضحايا العدوان من الأطفال الأبرياء",
-                        "en" to "International Day of Innocent Children Victims of Aggression",
-                        "es" to "Día Internacional de los Niños Víctimas Inocentes de Agresión",
-                        "fr" to "Journée internationale des enfants victimes innocentes de l'agression",
-                        "ru" to "Международный день невинных детей — жертв агрессии",
-                        "zh" to "受侵略戕害的无辜儿童国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 4),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/child-victim-day",
-                        title = "International Day of Innocent Children Victims of Aggression (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/ES-7/8",
-                    "un" to "https://www.un.org/en/observances/child-victim-day",
-                ),
-        ),
-        EventDefinition(
             id = EventId("un.civil-aviation-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -344,6 +303,47 @@ internal val OFFICIAL_EVENTS_PART_6: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://www.un.org/sites/un2.un.org/files/dayoftheseafarer-res19.pdf",
                     "un" to "https://www.imo.org/en/About/Events/Pages/Day-of-the-Seafarer-2025.aspx",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.democracy-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی دموکراسی",
+                        "ar" to "اليوم الدولي للديمقراطية",
+                        "en" to "International Day of Democracy",
+                        "es" to "Día Internacional de la Democracia",
+                        "fr" to "Journée internationale de la démocratie",
+                        "ru" to "Международный день демократии",
+                        "zh" to "国际民主日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 15),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/democracy-day",
+                        title = "International Day of Democracy (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/62/7",
+                    "un" to "https://www.un.org/en/observances/democracy-day",
                 ),
         ),
     )

@@ -23,28 +23,6 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("ir.holiday.imam-ali-birth"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "ولادت حضرت امام علی علیه السلام")),
-            rule = EventRule.Fixed(month = 7, day = 13),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "13",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "12",
-                    ),
-                ),
-        ),
-        EventDefinition(
             id = EventId("ir.holiday.imam-ali-martyrdom"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
@@ -184,6 +162,28 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             isHoliday = true,
             title = LocalizedText(mapOf("fa" to "رحلت حضرت امام خمینی رهبر کبیر انقلاب و بنیان‌گذار جمهوری اسلامی ایران")),
             rule = EventRule.Fixed(month = 3, day = 14),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "6",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "5",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.khordad-15-uprising"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "قیام خونین ۱۵ خرداد")),
+            rule = EventRule.Fixed(month = 3, day = 15),
             citations =
                 listOf(
                     Citation(

@@ -27,6 +27,7 @@ Fields follow `EventDefinition` (docs/PLAN.md §4.2) plus `updated` (ISO date) a
 | `title` | Language tag → text; `fa` is mandatory |
 | `rule` | Object with a `type` discriminator: `Fixed`, `NthWeekdayOfMonth`, `LastWeekdayOfMonth`, `LastDayOfMonth`, `Single`, `NthDayOfYear`, `RelativeToEvent`, `Astronomical` |
 | `validity` | Optional `fromYear` / `toYear` in a named calendar, with its own citation |
+| `oneOffReason` | Required for `Single` rules, forbidden otherwise: why the day is a one-off decision no recurring rule can express (ADR-0036). A day that recurs is a `Fixed` (or other) rule with `validity.fromYear`, never one `Single` per year |
 | `flags`, `aliases`, `links` | Optional |
 | `citations` | At least one `{ url, title, page?, retrieved? }` |
 

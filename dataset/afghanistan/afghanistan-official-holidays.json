@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "events": [
     {
-      "id": "af.holiday.soviet-withdrawal.1404",
+      "id": "af.holiday.soviet-withdrawal",
       "calendar": "PERSIAN",
       "source": "AFGHANISTAN_OFFICIAL",
       "category": "NATIONAL",
@@ -12,10 +12,19 @@
         "prs": "سالروز شکست و اخراج قشون سرخ اتحاد شوروی از افغانستان"
       },
       "rule": {
-        "type": "Single",
-        "year": 1404,
+        "type": "Fixed",
         "month": 11,
         "day": 26
+      },
+      "validity": {
+        "calendar": "PERSIAN",
+        "fromYear": 1404,
+        "citation": {
+          "url": "https://www.bakhtarnews.af/dr/%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%DB%8C%D9%87-%D9%88%D8%B2%D8%A7%D8%B1%D8%AA-%DA%A9%D8%A7%D8%B1-%D9%88-%D8%A7%D9%85%D9%88%D8%B1-%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%DB%8C",
+          "title": "Bakhtar News Agency — «اطلاعیه‌ وزارت کار و امور اجتماعی» (Ministry of Labour and Social Affairs holiday announcement), published 2026-02-11",
+          "page": "article text: 27 Sha'ban 1447 AH = 26 Dalw 1404 SH, public holiday — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+          "retrieved": "2026-09-14"
+        }
       },
       "citations": [
         {
@@ -25,11 +34,11 @@
           "retrieved": "2026-09-14"
         }
       ],
-      "updated": "2026-09-14",
+      "updated": "2026-09-17",
       "reviewedBy": "pending"
     },
     {
-      "id": "af.holiday.arafa.1447",
+      "id": "af.holiday.arafa",
       "calendar": "ISLAMIC",
       "source": "AFGHANISTAN_OFFICIAL",
       "category": "RELIGIOUS",
@@ -39,11 +48,20 @@
         "prs": "روز عرفه"
       },
       "rule": {
-        "type": "Single",
-        "year": 1447,
+        "type": "Fixed",
         "month": 12,
         "day": 9
       },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1447,
+        "citation": {
+          "url": "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
+          "title": "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
+          "page": "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+          "retrieved": "2026-09-14"
+        }
+      },
       "citations": [
         {
           "url": "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
@@ -52,11 +70,11 @@
           "retrieved": "2026-09-14"
         }
       ],
-      "updated": "2026-09-14",
+      "updated": "2026-09-17",
       "reviewedBy": "pending"
     },
     {
-      "id": "af.holiday.eid-al-adha.1447-1",
+      "id": "af.holiday.eid-al-adha.1",
       "calendar": "ISLAMIC",
       "source": "AFGHANISTAN_OFFICIAL",
       "category": "RELIGIOUS",
@@ -66,11 +84,20 @@
         "prs": "عید سعید اضحی"
       },
       "rule": {
-        "type": "Single",
-        "year": 1447,
+        "type": "Fixed",
         "month": 12,
         "day": 10
       },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1447,
+        "citation": {
+          "url": "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
+          "title": "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
+          "page": "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+          "retrieved": "2026-09-14"
+        }
+      },
       "citations": [
         {
           "url": "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
@@ -79,11 +106,11 @@
           "retrieved": "2026-09-14"
         }
       ],
-      "updated": "2026-09-14",
+      "updated": "2026-09-17",
       "reviewedBy": "pending"
     },
     {
-      "id": "af.holiday.eid-al-adha.1447-2",
+      "id": "af.holiday.eid-al-adha.2",
       "calendar": "ISLAMIC",
       "source": "AFGHANISTAN_OFFICIAL",
       "category": "RELIGIOUS",
@@ -93,37 +120,19 @@
         "prs": "عید سعید اضحی"
       },
       "rule": {
-        "type": "Single",
-        "year": 1447,
+        "type": "Fixed",
         "month": 12,
         "day": 11
       },
-      "citations": [
-        {
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1447,
+        "citation": {
           "url": "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
           "title": "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
-          "page": "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH",
+          "page": "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
           "retrieved": "2026-09-14"
         }
-      ],
-      "updated": "2026-09-14",
-      "reviewedBy": "pending"
-    },
-    {
-      "id": "af.holiday.eid-al-adha.1447-3",
-      "calendar": "ISLAMIC",
-      "source": "AFGHANISTAN_OFFICIAL",
-      "category": "RELIGIOUS",
-      "isHoliday": true,
-      "title": {
-        "fa": "عید سعید اضحی",
-        "prs": "عید سعید اضحی"
-      },
-      "rule": {
-        "type": "Single",
-        "year": 1447,
-        "month": 12,
-        "day": 13
       },
       "citations": [
         {
@@ -133,11 +142,11 @@
           "retrieved": "2026-09-14"
         }
       ],
-      "updated": "2026-09-14",
+      "updated": "2026-09-17",
       "reviewedBy": "pending"
     },
     {
-      "id": "af.holiday.kabul-victory.1405",
+      "id": "af.holiday.kabul-victory",
       "calendar": "PERSIAN",
       "source": "AFGHANISTAN_OFFICIAL",
       "category": "NATIONAL",
@@ -148,10 +157,19 @@
         "en": "Day of Victory"
       },
       "rule": {
-        "type": "Single",
-        "year": 1405,
+        "type": "Fixed",
         "month": 5,
         "day": 24
+      },
+      "validity": {
+        "calendar": "PERSIAN",
+        "fromYear": 1405,
+        "citation": {
+          "url": "https://www.bakhtarnews.af/dr/%D8%B1%D9%88%D8%B2-%D8%B4%D9%86%D8%A8%D9%87-%D8%A2%DB%8C%D9%86%D8%AF%D9%87-%D8%AF%D8%B1-%D8%B3%D8%B1%D8%A7%D8%B3%D8%B1-%DA%A9%D8%B4%D9%88%D8%B1-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A7%D8%B3%D8%AA",
+          "title": "Bakhtar News Agency — «روز شنبه آینده در سراسر کشور رخصتی عمومی است» (Ministry of Labour and Social Affairs announcement), published 2026-08-11",
+          "page": "article text: 1 Rabi al-Awwal 1448 AH = 24 Asad 1405 SH (Saturday), public holiday — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+          "retrieved": "2026-09-14"
+        }
       },
       "citations": [
         {
@@ -167,11 +185,11 @@
           "retrieved": "2026-09-14"
         }
       ],
-      "updated": "2026-09-14",
+      "updated": "2026-09-17",
       "reviewedBy": "pending"
     },
     {
-      "id": "af.holiday.independence.1405",
+      "id": "af.holiday.independence",
       "calendar": "PERSIAN",
       "source": "AFGHANISTAN_OFFICIAL",
       "category": "NATIONAL",
@@ -182,10 +200,19 @@
         "en": "Independence anniversary"
       },
       "rule": {
-        "type": "Single",
-        "year": 1405,
+        "type": "Fixed",
         "month": 5,
         "day": 28
+      },
+      "validity": {
+        "calendar": "PERSIAN",
+        "fromYear": 1405,
+        "citation": {
+          "url": "https://www.bakhtarnews.af/dr/%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%DB%8C%D9%87-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%DB%B2%DB%B8-%D8%A7%D8%B3%D8%AF-%D8%B1%D9%88%D8%B2-%D8%A7%D8%B3%D8%AA%D8%B1%D8%AF%D8%A7%D8%AF-%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84-%DA%A9%D8%B4%D9%88%D8%B1",
+          "title": "Bakhtar News Agency — «اطلاعیه رخصتی ۲۸ اسد، روز استرداد استقلال کشور» (holiday announcement; issuing authority not named in the article), published 2026-08-17",
+          "page": "article text: 5 Rabi al-Awwal 1448 AH = 28 Asad 1405 SH (Wednesday), public holiday — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+          "retrieved": "2026-09-14"
+        }
       },
       "citations": [
         {
@@ -201,7 +228,7 @@
           "retrieved": "2026-09-14"
         }
       ],
-      "updated": "2026-09-14",
+      "updated": "2026-09-17",
       "reviewedBy": "pending"
     }
   ]

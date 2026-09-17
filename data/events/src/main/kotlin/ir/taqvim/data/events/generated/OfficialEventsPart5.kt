@@ -23,28 +23,6 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_5: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("ir.holiday.prophet-demise-imam-hasan-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام")),
-            rule = EventRule.Fixed(month = 2, day = 28),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
-                        page = "8",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
-                        page = "7",
-                    ),
-                ),
-        ),
-        EventDefinition(
             id = EventId("ir.holiday.prophet-imam-sadiq-birth"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
@@ -272,6 +250,47 @@ internal val OFFICIAL_EVENTS_PART_5: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/55/201",
                     "un" to "https://www.un.org/en/observances/biological-diversity-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.child-victim-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض",
+                        "ar" to "اليوم الدولي لضحايا العدوان من الأطفال الأبرياء",
+                        "en" to "International Day of Innocent Children Victims of Aggression",
+                        "es" to "Día Internacional de los Niños Víctimas Inocentes de Agresión",
+                        "fr" to "Journée internationale des enfants victimes innocentes de l'agression",
+                        "ru" to "Международный день невинных детей — жертв агрессии",
+                        "zh" to "受侵略戕害的无辜儿童国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 4),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/child-victim-day",
+                        title = "International Day of Innocent Children Victims of Aggression (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/ES-7/8",
+                    "un" to "https://www.un.org/en/observances/child-victim-day",
                 ),
         ),
     )

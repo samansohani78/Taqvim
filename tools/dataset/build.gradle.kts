@@ -51,7 +51,24 @@ tasks.register<JavaExec>("generateEvents") {
 // Official daily rows extracted from the Calendar Center's calendars (golden fixtures of :core:calendar, T-102).
 val officialDaysDirectory = rootProject.layout.projectDirectory.dir("core/calendar/src/test/resources/golden/persian")
 
+// Runtime data scanned by NoPerYearManualDataTest (ADR-0036): assets, resources and table-like sources of every module.
+val runtimeDataFiles =
+    rootProject.layout.projectDirectory.asFileTree.matching {
+        include(
+            "**/src/main/assets/**",
+            "**/src/main/resources/**",
+            "**/src/main/res/raw/**",
+            "**/src/main/kotlin/**/*Table*.kt",
+            "**/src/main/kotlin/**/*MonthStarts*.kt",
+            "**/src/main/kotlin/**/*Override*.kt",
+            "**/src/main/kotlin/**/*Leap*.kt",
+        )
+        exclude("**/build/**", "**/.gradle/**", "**/node_modules/**")
+    }
+
 tasks.withType<Test>().configureEach {
+    systemProperty("taqvim.repository.root", rootProject.layout.projectDirectory.asFile.path)
+    inputs.files(runtimeDataFiles).withPathSensitivity(PathSensitivity.RELATIVE)
     systemProperty("taqvim.dataset.schema", datasetDirectory.file("events.v1.json").asFile.path)
     systemProperty(
         "taqvim.overrides.schema",

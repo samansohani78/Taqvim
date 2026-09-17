@@ -27,7 +27,7 @@ private fun JsonObject.child(key: String): JsonObject? = this[key] as? JsonObjec
 /**
  * Cross-record rules that JSON Schema cannot express: unique ids across all files, existing `RelativeToEvent`
  * targets, day ranges per calendar (the longest month of each calendar: Persian 31/30, Islamic 30, Gregorian by month
- * with 29 February, Nepali 32; Islamic years at most 355 days) and validity years.
+ * with 29 February, Nepali 32; Islamic years at most 355 days), validity years, and one-off records (ADR-0036).
  */
 internal object SemanticChecks {
     private const val PERSIAN_LONG_MONTHS = 6
@@ -40,7 +40,9 @@ internal object SemanticChecks {
 
     fun check(records: List<EventRecord>): List<DatasetIssue> {
         val ids = records.mapNotNull { it.id }.toSet()
-        return duplicateIds(records) + records.flatMap { ruleIssues(it, ids) + validityIssues(it) }
+        return duplicateIds(records) +
+            records.flatMap { ruleIssues(it, ids) + validityIssues(it) + OneOffChecks.reasonIssues(it) } +
+            OneOffChecks.repeatedDays(records)
     }
 
     private fun duplicateIds(records: List<EventRecord>): List<DatasetIssue> =
@@ -137,10 +139,49 @@ internal object SemanticChecks {
         return listOf(issue(record, ".validity", IssueKind.INVALID_VALIDITY, message))
     }
 
-    private fun issue(
+    internal fun issue(
         record: EventRecord,
         path: String,
         kind: IssueKind,
         message: String,
     ) = DatasetIssue(record.file, record.location + path, kind, message)
+}
+
+/**
+ * ADR-0036: every event regenerates from a rule. A `Single` rule is allowed only for a documented one-off decision
+ * (`oneOffReason`), and the same calendar day announced in several years must be one recurring rule instead.
+ */
+internal object OneOffChecks {
+    private const val SINGLE = "Single"
+
+    fun reasonIssues(record: EventRecord): List<DatasetIssue> {
+        val single = record.event.child("rule")?.string("type") == SINGLE
+        val reason = record.event.string("oneOffReason")
+        val message =
+            when {
+                single && reason == null -> "a Single rule needs a oneOffReason; a repeating day needs a recurring rule"
+                !single && reason != null -> "oneOffReason is only allowed on a Single rule"
+                else -> return emptyList()
+            }
+        return listOf(SemanticChecks.issue(record, ".rule", IssueKind.ONE_OFF_RULE, message))
+    }
+
+    fun repeatedDays(records: List<EventRecord>): List<DatasetIssue> =
+        records
+            .mapNotNull { record -> singleDay(record)?.let { it to record } }
+            .groupBy({ it.first }, { it.second })
+            .values
+            .filter { sameDay -> sameDay.mapNotNull { it.event.child("rule")?.integer("year") }.distinct().size > 1 }
+            .flatMap { sameDay ->
+                val first = sameDay.first()
+                sameDay.drop(1).map {
+                    val message = "the same day as ${first.id} in another year; express both as one recurring rule"
+                    SemanticChecks.issue(it, ".rule", IssueKind.ONE_OFF_RULE, message)
+                }
+            }
+
+    private fun singleDay(record: EventRecord): Triple<String?, Int?, Int?>? {
+        val rule = record.event.child("rule")?.takeIf { it.string("type") == SINGLE } ?: return null
+        return Triple(record.calendar, rule.integer("month"), rule.integer("day"))
+    }
 }

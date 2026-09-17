@@ -23,28 +23,6 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("ir.ancient.zoroaster-birthday"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.ANCIENT_IRAN,
-            category = EventCategory.CULTURAL,
-            isHoliday = false,
-            title = LocalizedText(mapOf("fa" to "زادروز زرتشت پیامبر")),
-            rule = EventRule.Fixed(month = 1, day = 6),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf) — 6 Farvardin",
-                        page = "4",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf) — 6 Farvardin",
-                        page = "3",
-                    ),
-                ),
-        ),
-        EventDefinition(
             id = EventId("ir.holiday.arbaeen"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
@@ -195,6 +173,28 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
                         page = "10",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.imam-ali-birth"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "ولادت حضرت امام علی علیه السلام")),
+            rule = EventRule.Fixed(month = 7, day = 13),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        page = "13",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        page = "12",
                     ),
                 ),
         ),

@@ -171,6 +171,7 @@
         "month": 12,
         "day": 29
       },
+      "oneOffReason": "Synthetic one-off decision for the fixture.",
       "citations": [
         {
           "url": "https://example.org/source.pdf",

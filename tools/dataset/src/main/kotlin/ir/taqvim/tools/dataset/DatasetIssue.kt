@@ -23,6 +23,12 @@ enum class IssueKind {
 
     /** A validity without any year, or with `fromYear` after `toYear`. */
     INVALID_VALIDITY,
+
+    /**
+     * A per-year instance a rule could express (ADR-0036): a `Single` rule without `oneOffReason`, a `oneOffReason` on
+     * another rule type, or one-off records on the same calendar day in different years.
+     */
+    ONE_OFF_RULE,
 }
 
 /** One problem found in [file] at [location] (a JSON path). */

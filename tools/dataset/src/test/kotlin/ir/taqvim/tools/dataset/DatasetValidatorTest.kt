@@ -37,8 +37,8 @@ class DatasetValidatorTest {
         }
 
     @Test
-    fun `there are 30 invalid fixtures and they cover every issue kind`() {
-        INVALID_FIXTURES.keys shouldHaveSize 30
+    fun `there are 32 invalid fixtures and they cover every issue kind`() {
+        INVALID_FIXTURES.keys shouldHaveSize 32
         INVALID_FIXTURES.values.toSet() shouldBe IssueKind.entries.toSet()
     }
 
@@ -51,6 +51,21 @@ class DatasetValidatorTest {
         duplicates.map { it.kind }.toSet() shouldBe setOf(IssueKind.DUPLICATE_ID)
         duplicates.first().message shouldContain "a.json"
         validator.validate(mapOf("a.json" to base, "b.json" to relative.replace("test.", "other."))).shouldBeEmpty()
+    }
+
+    @Test
+    fun `a one-off reason is only allowed on a Single rule`() {
+        val single = resource("invalid/31-single-without-reason.json")
+        val reason = "\"oneOffReason\": \"Synthetic one-off decision.\",\n      \"citations\""
+        val withReason = single.replace("\"citations\"", reason)
+        val fixed =
+            withReason.replace(
+                "\"type\": \"Single\",\n        \"year\": 1405,",
+                "\"type\": \"Fixed\",",
+            )
+
+        validator.validate(mapOf("single.json" to withReason)).shouldBeEmpty()
+        validator.validate(mapOf("fixed.json" to fixed)).map { it.kind } shouldBe listOf(IssueKind.ONE_OFF_RULE)
     }
 
     @Test
@@ -119,6 +134,8 @@ class DatasetValidatorTest {
                 "28-islamic-nth-day-360" to IssueKind.DAY_OUT_OF_RANGE,
                 "29-validity-without-years" to IssueKind.INVALID_VALIDITY,
                 "30-validity-reversed" to IssueKind.INVALID_VALIDITY,
+                "31-single-without-reason" to IssueKind.ONE_OFF_RULE,
+                "32-repeated-single-day" to IssueKind.ONE_OFF_RULE,
             ).toMap()
     }
 }

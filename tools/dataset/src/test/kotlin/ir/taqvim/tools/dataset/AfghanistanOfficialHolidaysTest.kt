@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 
 /**
- * D-03: Afghanistan official holidays from Bakhtar News Agency announcements. Each record is one announced day
- * (a `Single` rule in the calendar the announcement uses); the golden file lists, per Solar Hijri year, exactly the
- * dates the cited announcements state.
+ * D-03: Afghanistan official holidays from Bakhtar News Agency announcements. Each record is a recurring `Fixed` rule
+ * valid from its announced year (ADR-0036); the golden file lists, per Solar Hijri year, the announced dates of those
+ * records, and each record must produce its announced date. One-off announced days are not in the dataset.
  */
 class AfghanistanOfficialHolidaysTest {
     private val datasetText = File(property("taqvim.dataset.directory"), DATASET_FILE).readText()
@@ -38,8 +38,12 @@ class AfghanistanOfficialHolidaysTest {
         return golden.map { it.solarYear }.distinct().map { year ->
             DynamicTest.dynamicTest(year) {
                 val expected = golden.filter { it.solarYear == year }.associate { it.id to it.date }
-                events.filter { it.text("id") in expected.keys }.associate { it.text("id") to date(it) } shouldBe
-                    expected
+                val produced =
+                    events.filter { it.text("id") in expected.keys }.associate { event ->
+                        val id = event.text("id")
+                        id to expected[id]?.takeIf { produces(event, it) }
+                    }
+                produced shouldBe expected
             }
         }
     }
@@ -56,7 +60,7 @@ class AfghanistanOfficialHolidaysTest {
                 val citations = (event["citations"] as? JsonArray).orEmpty().mapNotNull { it as? JsonObject }
                 event.text("source") != "AFGHANISTAN_OFFICIAL" ||
                     event["isHoliday"] != JsonPrimitive(true) ||
-                    (event["rule"] as? JsonObject)?.text("type") != "Single" ||
+                    !isRecurring(event) ||
                     (event["title"] as? JsonObject)?.text("fa").isNullOrBlank() ||
                     citations.isEmpty() ||
                     citations.any { citation ->
@@ -66,11 +70,27 @@ class AfghanistanOfficialHolidaysTest {
             .shouldBeEmpty()
     }
 
-    private fun date(event: JsonObject): String {
-        val rule = event["rule"] as? JsonObject ?: JsonObject(emptyMap())
-        val parts = listOf("year", "month", "day").map { (rule[it] as? JsonPrimitive)?.content.orEmpty() }
-        return (listOf(event.text("calendar").orEmpty()) + parts).joinToString(",")
+    /** Whether [event]'s rule yields [date] (`calendar,year,month,day`) in that year. */
+    private fun produces(
+        event: JsonObject,
+        date: String,
+    ): Boolean {
+        val parts = date.split(',')
+        val calendar = parts[0]
+        val year = parts[1]
+        val rule = event["rule"] as? JsonObject ?: return false
+        val sameDay = rule.int("month") == parts[2].toInt() && rule.int("day") == parts[3].toInt()
+        val fromYear = (event["validity"] as? JsonObject)?.int("fromYear")
+        return event.text("calendar") == calendar &&
+            sameDay &&
+            rule.text("type") == "Fixed" &&
+            fromYear != null &&
+            fromYear <= year.toInt()
     }
+
+    private fun isRecurring(event: JsonObject): Boolean =
+        (event["rule"] as? JsonObject)?.text("type") == "Fixed" &&
+            (event["validity"] as? JsonObject)?.int("fromYear") != null
 
     private fun goldenRows(): List<GoldenRow> =
         requireNotNull(javaClass.getResource(GOLDEN)) { "missing $GOLDEN" }
@@ -97,5 +117,8 @@ class AfghanistanOfficialHolidaysTest {
         fun property(name: String): String = requireNotNull(System.getProperty(name)) { "$name is not set" }
 
         fun JsonObject.text(key: String): String? = (this[key] as? JsonPrimitive)?.takeIf { it.isString }?.content
+
+        fun JsonObject.int(key: String): Int? =
+            (this[key] as? JsonPrimitive)?.takeUnless { it.isString }?.content?.toIntOrNull()
     }
 }
