@@ -74,6 +74,8 @@ Persian-calendar or prayer-times GPL/LGPL library.
   `PersianLeapTable.kt` moved to test sources as `PersianLeapTableSnapshot` (the golden for all 6 001 years) and
   `BirashkArithmetic.kt` was deleted, so references 2 and 3 are no longer used at run time. 44 years of −3000…3000 have an
   equinox within 5 minutes of Tehran noon (closest SH 1144, 3 s); official data still overrides per ADR-0008 decision 3.
+- **No runtime override (main@c6f13e6, ADR-0026 addendum 2026-09-17):** official Calendar Center data is a golden
+  test oracle only; `PersianComputedOnlyKonsistTest` fails if production code reads it.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; runtime rule 2026-09-15
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
@@ -97,6 +99,10 @@ Persian-calendar or prayer-times GPL/LGPL library.
   per Hijri year for AH −3000…3000 and continued with the exact mean month beyond, so every Int year works. Official
   months override, joined to the computed months within 29–30-day steps. The aligned tabular estimate is removed;
   `HijriDateSource.CRESCENT_ESTIMATE` labels computed dates. Agreement with the 25 official months: 23/25.
+- **Optional override (main@27950c5, ADR-0037, owner directive 2026-09-17):** the computed months are the default.
+  The official months are an optional override: a bundled byte copy of the D-07 file
+  (`core/calendar/src/main/resources/ir/taqvim/core/calendar/islamic-iran-official.json`, off by default) or a file the
+  user imports, parsed by `IslamicMonthOverrides.kt`; the hand-typed `IranOfficialMonthStarts.kt` is deleted.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; computed months 2026-09-15
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
@@ -1064,6 +1070,9 @@ Persian-calendar or prayer-times GPL/LGPL library.
   joined exactly at both edges cover the rest of the Int range. Agreement with the published calendar: 334/336 months
   in 1423–1450 (misses by 24 s and 4 s), 36/36 for the moonset-only rule of 1420–1422; no simple rule fits before 1420.
   After 1450 the rule differs from ICU's projected table in about a third of months, ICU always one day later.
+- **Bundled range (main@9c33702, ADR-0028 addendum 2026-09-17):** only AH 1300–1419 stays bundled (120 masks, not
+  computable); AH 1420–1422 follow the documented moonset-only rule and AH 1423 onward the criterion at run time. The
+  printed 1420–1450 months are a test oracle only (`PUBLISHED_1420_1450_MASKS`).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; computed months 2026-09-15
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
@@ -1172,6 +1181,10 @@ Persian-calendar or prayer-times GPL/LGPL library.
   Umm al-Qura and civil calendars.
 - **Normalization:** titles copied from the announcement wording (fa, prs; en only where Bakhtar's English site has
   the article); nothing translated.
+- **Rules (main@d995b10, ADR-0036, owner directive 2026-09-17):** the records are six recurring `Fixed` rules with
+  `validity.fromYear` set to the announced year — 26 Dalw (Soviet withdrawal), 24 Asad (Kabul victory), 28 Asad
+  (Independence) in the Persian calendar; 9, 10 and 11 Dhu al-Hijjah in the Islamic calendar — each keeping its
+  citation. The 13 Dhu al-Hijjah 1447 day off depended on that year's weekdays and was removed (DT-031).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14; **reviewer:** pending.
 
 ### D-06 — Ancient Iranian festivals
