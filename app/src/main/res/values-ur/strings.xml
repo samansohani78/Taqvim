@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ur) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">کیلنڈر</string>
+  <string name="nav_times">اوقات</string>
+  <string name="nav_tools">ٹولز</string>
+  <string name="nav_more">مزید</string>
+  <string name="more_year">سال</string>
+  <string name="more_agenda">ایجنڈا</string>
+  <string name="more_search">تلاش</string>
+  <string name="more_astronomy">فلکیات</string>
+  <string name="more_map">دنیا کا نقشہ</string>
+  <string name="map_use_as_place_title">یہ مقام استعمال کریں؟</string>
+  <string name="map_use_as_place_message">کیا ⁨%1$s⁩ کو اوقاتِ نماز، قبلہ اور فلکیات کے لیے اپنے مقام کے طور پر محفوظ کریں؟</string>
+  <string name="map_use_city_message">کیا ⁨%1$s⁩ کو اوقاتِ نماز، قبلہ اور فلکیات کے لیے اپنے مقام کے طور پر محفوظ کریں؟</string>
+  <string name="map_use_as_place_confirm">مقام استعمال کریں</string>
+  <string name="map_use_as_place_cancel">منسوخ کریں</string>
+  <string name="more_compass">قطب نما</string>
+  <string name="more_level">سطح پیما اور پیمانہ</string>
+  <string name="more_settings">ترتیبات</string>
+  <string name="more_backup">بیک اپ اور بحالی</string>
+  <string name="more_privacy">رازداری</string>
+  <string name="more_about">Taqvim کا تعارف</string>
+  <string name="process_text_label">Taqvim میں کھولیں</string>
+  <string name="shortcut_today">آج</string>
+  <string name="shortcut_new_event">نیا واقعہ</string>
+  <string name="shortcut_prayer_times">اوقاتِ نماز</string>
+  <string name="shortcut_converter">تاریخ تبدیل کنندہ</string>
+  <string name="pending_shift_work">شفٹ کا کام ابھی دستیاب نہیں۔</string>
+  <string name="pending_settings">یہ ترتیب ابھی دستیاب نہیں۔</string>
+  <string name="pending_widgets">ویجٹ کی ترتیبات ابھی دستیاب نہیں۔</string>
+  <string name="message_no_upcoming_occurrence">اس واقعے کی کوئی آنے والی تاریخ نہیں۔</string>
+  <string name="message_setting_not_saved">ترتیب محفوظ نہیں ہو سکی۔</string>
+  <string name="restore_finishing">بحالی مکمل کی جا رہی ہے…</string>
+  <string name="restore_incomplete">پچھلی بحالی مکمل نہیں ہو سکی، اس لیے آپ کا ڈیٹا جزوی طور پر بدل گیا ہو سکتا ہے۔ Taqvim اگلی بار شروع ہونے پر اسے مکمل یا واپس کر دے گا۔</string>
+</resources>

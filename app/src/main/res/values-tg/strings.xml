@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tg) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Тақвим</string>
+  <string name="nav_times">Вақтҳо</string>
+  <string name="nav_tools">Асбобҳо</string>
+  <string name="nav_more">Бештар</string>
+  <string name="more_year">Сол</string>
+  <string name="more_agenda">Рӯзнома</string>
+  <string name="more_search">Ҷустуҷӯ</string>
+  <string name="more_astronomy">Ситорашиносӣ</string>
+  <string name="more_map">Харитаи ҷаҳон</string>
+  <string name="map_use_as_place_title">Ин макон истифода шавад?</string>
+  <string name="map_use_as_place_message">⁨%1$s⁩ ҳамчун макони шумо барои вақтҳои намоз, қибла ва ситорашиносӣ захира шавад?</string>
+  <string name="map_use_city_message">⁨%1$s⁩ ҳамчун макони шумо барои вақтҳои намоз, қибла ва ситорашиносӣ захира шавад?</string>
+  <string name="map_use_as_place_confirm">Истифодаи макон</string>
+  <string name="map_use_as_place_cancel">Бекор кардан</string>
+  <string name="more_compass">Қутбнамо</string>
+  <string name="more_level">Тарозу ва ҷадвалхаткаш</string>
+  <string name="more_settings">Танзимот</string>
+  <string name="more_backup">Нусхаи эҳтиётӣ ва барқарорсозӣ</string>
+  <string name="more_privacy">Махфият</string>
+  <string name="more_about">Дар бораи Taqvim</string>
+  <string name="process_text_label">Дар Taqvim кушодан</string>
+  <string name="shortcut_today">Имрӯз</string>
+  <string name="shortcut_new_event">Рӯйдоди нав</string>
+  <string name="shortcut_prayer_times">Вақтҳои намоз</string>
+  <string name="shortcut_converter">Табдилдиҳандаи сана</string>
+  <string name="pending_shift_work">Кори навбатӣ ҳоло дастрас нест.</string>
+  <string name="pending_settings">Ин танзим ҳоло дастрас нест.</string>
+  <string name="pending_widgets">Танзимоти виҷет ҳоло дастрас нест.</string>
+  <string name="message_no_upcoming_occurrence">Ин рӯйдод санаи ояндае надорад.</string>
+  <string name="message_setting_not_saved">Танзим захира нашуд.</string>
+  <string name="restore_finishing">Барқарорсозӣ анҷом дода мешавад…</string>
+  <string name="restore_incomplete">Барқарорсозии охирин анҷом наёфт, бинобар ин маълумоти шумо шояд қисман иваз шуда бошад. Taqvim ҳангоми оғози навбатӣ онро анҷом медиҳад ё бекор мекунад.</string>
+</resources>

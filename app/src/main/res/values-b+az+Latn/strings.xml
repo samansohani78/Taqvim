@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (az) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Təqvim</string>
+  <string name="nav_times">Vaxtlar</string>
+  <string name="nav_tools">Alətlər</string>
+  <string name="nav_more">Daha çox</string>
+  <string name="more_year">İl</string>
+  <string name="more_agenda">Gündəlik</string>
+  <string name="more_search">Axtarış</string>
+  <string name="more_astronomy">Astronomiya</string>
+  <string name="more_map">Dünya xəritəsi</string>
+  <string name="map_use_as_place_title">Bu məkan istifadə edilsin?</string>
+  <string name="map_use_as_place_message">⁨%1$s⁩ namaz vaxtları, qiblə və astronomiya üçün məkanınız kimi yadda saxlanılsın?</string>
+  <string name="map_use_city_message">⁨%1$s⁩ namaz vaxtları, qiblə və astronomiya üçün məkanınız kimi yadda saxlanılsın?</string>
+  <string name="map_use_as_place_confirm">Məkanı istifadə et</string>
+  <string name="map_use_as_place_cancel">Ləğv et</string>
+  <string name="more_compass">Kompas</string>
+  <string name="more_level">Tərəzi və xətkeş</string>
+  <string name="more_settings">Ayarlar</string>
+  <string name="more_backup">Ehtiyat nüsxə və bərpa</string>
+  <string name="more_privacy">Məxfilik</string>
+  <string name="more_about">Taqvim haqqında</string>
+  <string name="process_text_label">Taqvim-də aç</string>
+  <string name="shortcut_today">Bu gün</string>
+  <string name="shortcut_new_event">Yeni tədbir</string>
+  <string name="shortcut_prayer_times">Namaz vaxtları</string>
+  <string name="shortcut_converter">Tarix çevirici</string>
+  <string name="pending_shift_work">Növbəli iş hələ mövcud deyil.</string>
+  <string name="pending_settings">Bu ayar hələ mövcud deyil.</string>
+  <string name="pending_widgets">Vidcet ayarları hələ mövcud deyil.</string>
+  <string name="message_no_upcoming_occurrence">Bu tədbirin qarşıdakı tarixi yoxdur.</string>
+  <string name="message_setting_not_saved">Ayar yadda saxlanılmadı.</string>
+  <string name="restore_finishing">Bərpa tamamlanır…</string>
+  <string name="restore_incomplete">Son bərpa tamamlanmadı, ona görə də məlumatlarınız qismən dəyişdirilmiş ola bilər. Taqvim növbəti açılışda onu tamamlayacaq və ya geri qaytaracaq.</string>
+</resources>

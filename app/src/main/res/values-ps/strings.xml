@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ps) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">جنتري</string>
+  <string name="nav_times">وختونه</string>
+  <string name="nav_tools">وسایل</string>
+  <string name="nav_more">نور</string>
+  <string name="more_year">کال</string>
+  <string name="more_agenda">اجنډا</string>
+  <string name="more_search">لټون</string>
+  <string name="more_astronomy">ستورپوهنه</string>
+  <string name="more_map">د نړۍ نقشه</string>
+  <string name="map_use_as_place_title">دا ځای وکاروئ؟</string>
+  <string name="map_use_as_place_message">آیا ⁨%1$s⁩ د لمانځه وختونو، قبلې او ستورپوهنې لپاره ستاسو د ځای په توګه خوندي شي؟</string>
+  <string name="map_use_city_message">آیا ⁨%1$s⁩ د لمانځه وختونو، قبلې او ستورپوهنې لپاره ستاسو د ځای په توګه خوندي شي؟</string>
+  <string name="map_use_as_place_confirm">ځای کارول</string>
+  <string name="map_use_as_place_cancel">لغوه کول</string>
+  <string name="more_compass">قطب نما</string>
+  <string name="more_level">تراز او خط کش</string>
+  <string name="more_settings">تنظیمات</string>
+  <string name="more_backup">بیک اپ او بیرته راګرځول</string>
+  <string name="more_privacy">محرمیت</string>
+  <string name="more_about">د Taqvim په اړه</string>
+  <string name="process_text_label">په Taqvim کې پرانیستل</string>
+  <string name="shortcut_today">نن</string>
+  <string name="shortcut_new_event">نوې پېښه</string>
+  <string name="shortcut_prayer_times">د لمانځه وختونه</string>
+  <string name="shortcut_converter">د نېټې اړونکی</string>
+  <string name="pending_shift_work">د شفټ کار لا شتون نه لري.</string>
+  <string name="pending_settings">دا تنظیم لا شتون نه لري.</string>
+  <string name="pending_widgets">د ویجټ تنظیمات لا شتون نه لري.</string>
+  <string name="message_no_upcoming_occurrence">دې پېښې راتلونکې نېټه نه لري.</string>
+  <string name="message_setting_not_saved">تنظیم خوندي نه شو.</string>
+  <string name="restore_finishing">بیرته راګرځول پای ته رسېږي…</string>
+  <string name="restore_incomplete">وروستی بیرته راګرځول پای ته ونه رسېد، نو ښايي ستاسو معلومات په نیمګړې توګه بدل شوي وي. Taqvim به یې په راتلونکي ځل پیل کې پوره یا بېرته وګرځوي.</string>
+</resources>

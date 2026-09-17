@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (prs, derived from fa with Dari vocabulary) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources>
+  <string name="app_name">تقویم</string>
+  <string name="nav_calendar">تقویم</string>
+  <string name="nav_times">اوقات</string>
+  <string name="nav_tools">ابزارها</string>
+  <string name="nav_more">بیشتر</string>
+  <string name="more_year">سال</string>
+  <string name="more_agenda">برنامه</string>
+  <string name="more_search">جست‌وجو</string>
+  <string name="more_astronomy">نجوم</string>
+  <string name="more_map">نقشهٔ جهان</string>
+  <string name="map_use_as_place_title">این مکان استفاده شود؟</string>
+  <string name="map_use_as_place_message">مختصات ⁨%1$s⁩ به‌عنوان مکان شما برای اوقات شرعی، قبله و نجوم ذخیره شود؟</string>
+  <string name="map_use_city_message">شهر ⁨%1$s⁩ به‌عنوان مکان شما برای اوقات شرعی، قبله و نجوم ذخیره شود؟</string>
+  <string name="map_use_as_place_confirm">استفاده از این مکان</string>
+  <string name="map_use_as_place_cancel">انصراف</string>
+  <string name="more_compass">قطب‌نما</string>
+  <string name="more_level">تراز و خط‌کش</string>
+  <string name="more_settings">تنظیمات</string>
+  <string name="more_backup">پشتیبان‌گیری و بازیابی</string>
+  <string name="more_privacy">حریم خصوصی</string>
+  <string name="more_about">درباره تقویم</string>
+  <string name="process_text_label">باز کردن در تقویم</string>
+  <!-- T-1215 launcher shortcuts -->
+  <string name="shortcut_today">امروز</string>
+  <string name="shortcut_new_event">رویداد تازه</string>
+  <string name="shortcut_prayer_times">اوقات شرعی</string>
+  <string name="shortcut_converter">تبدیل تاریخ</string>
+  <string name="pending_shift_work">شیفت کاری هنوز در دسترس نیست.</string>
+  <string name="pending_settings">این تنظیم هنوز در دسترس نیست.</string>
+  <string name="pending_widgets">تنظیمات ابزارک‌ها هنوز در دسترس نیست.</string>
+  <string name="message_no_upcoming_occurrence">این رویداد تاریخ آینده‌ای ندارد.</string>
+  <string name="message_setting_not_saved">تنظیم ذخیره نشد.</string>
+  <string name="restore_finishing">در حال تکمیل بازیابی…</string>
+  <string name="restore_incomplete">بازیابی قبلی کامل نشد و ممکن است بخشی از داده‌ها جایگزین شده باشد. تقویم دفعهٔ بعد که باز شود، آن را تکمیل یا لغو می‌کند.</string>
+</resources>

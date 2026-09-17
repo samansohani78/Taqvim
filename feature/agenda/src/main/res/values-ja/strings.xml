@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ja) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">予定リスト</string>
+  <string name="agenda_loading">予定リストを読み込み中</string>
+  <string name="agenda_loading_more">さらに月を読み込み中</string>
+  <string name="agenda_mode_events">イベント</string>
+  <string name="agenda_mode_all_days">すべての日</string>
+  <string name="agenda_today">今日</string>
+  <string name="agenda_print">印刷</string>
+  <string name="agenda_share">共有</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">祝日</string>
+  <string name="agenda_no_events">イベントなし</string>
+  <string name="agenda_empty_month">今月はイベントがありません</string>
+  <string name="agenda_kind_official">公式</string>
+  <string name="agenda_kind_personal">個人</string>
+  <string name="agenda_kind_device">端末のカレンダー</string>
+  <string name="agenda_kind_subscription">購読</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">予定リスト：%1$s – %2$s</string>
+  <string name="agenda_print_job">Taqvim の予定リスト</string>
+</resources>

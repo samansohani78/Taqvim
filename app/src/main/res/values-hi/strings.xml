@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (hi) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">कैलेंडर</string>
+  <string name="nav_times">समय</string>
+  <string name="nav_tools">टूल</string>
+  <string name="nav_more">और</string>
+  <string name="more_year">वर्ष</string>
+  <string name="more_agenda">कार्यसूची</string>
+  <string name="more_search">खोजें</string>
+  <string name="more_astronomy">खगोल विज्ञान</string>
+  <string name="more_map">विश्व मानचित्र</string>
+  <string name="map_use_as_place_title">यह स्थान इस्तेमाल करें?</string>
+  <string name="map_use_as_place_message">नमाज़ के समय, क़िबला और खगोल विज्ञान के लिए ⁨%1$s⁩ को अपने स्थान के रूप में सहेजें?</string>
+  <string name="map_use_city_message">नमाज़ के समय, क़िबला और खगोल विज्ञान के लिए ⁨%1$s⁩ को अपने स्थान के रूप में सहेजें?</string>
+  <string name="map_use_as_place_confirm">स्थान इस्तेमाल करें</string>
+  <string name="map_use_as_place_cancel">रद्द करें</string>
+  <string name="more_compass">कंपास</string>
+  <string name="more_level">लेवल और रूलर</string>
+  <string name="more_settings">सेटिंग</string>
+  <string name="more_backup">बैकअप और पुनर्स्थापना</string>
+  <string name="more_privacy">निजता</string>
+  <string name="more_about">Taqvim के बारे में</string>
+  <string name="process_text_label">Taqvim में खोलें</string>
+  <string name="shortcut_today">आज</string>
+  <string name="shortcut_new_event">नया इवेंट</string>
+  <string name="shortcut_prayer_times">नमाज़ के समय</string>
+  <string name="shortcut_converter">तारीख परिवर्तक</string>
+  <string name="pending_shift_work">शिफ़्ट वर्क अभी उपलब्ध नहीं है।</string>
+  <string name="pending_settings">यह सेटिंग अभी उपलब्ध नहीं है।</string>
+  <string name="pending_widgets">विजेट सेटिंग अभी उपलब्ध नहीं हैं।</string>
+  <string name="message_no_upcoming_occurrence">इस इवेंट की कोई आगामी तारीख नहीं है।</string>
+  <string name="message_setting_not_saved">सेटिंग सहेजी नहीं जा सकी।</string>
+  <string name="restore_finishing">पुनर्स्थापना पूरी हो रही है…</string>
+  <string name="restore_incomplete">पिछली पुनर्स्थापना पूरी नहीं हो सकी, इसलिए आपका डेटा आंशिक रूप से बदला हो सकता है। Taqvim अगली बार शुरू होने पर इसे पूरा करेगा या वापस लेगा।</string>
+</resources>

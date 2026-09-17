@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (hi) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">कार्यसूची</string>
+  <string name="agenda_loading">कार्यसूची लोड हो रही है</string>
+  <string name="agenda_loading_more">और महीने लोड हो रहे हैं</string>
+  <string name="agenda_mode_events">इवेंट</string>
+  <string name="agenda_mode_all_days">सभी दिन</string>
+  <string name="agenda_today">आज</string>
+  <string name="agenda_print">प्रिंट करें</string>
+  <string name="agenda_share">शेयर करें</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">छुट्टी</string>
+  <string name="agenda_no_events">कोई इवेंट नहीं</string>
+  <string name="agenda_empty_month">इस महीने कोई इवेंट नहीं</string>
+  <string name="agenda_kind_official">आधिकारिक</string>
+  <string name="agenda_kind_personal">व्यक्तिगत</string>
+  <string name="agenda_kind_device">डिवाइस कैलेंडर</string>
+  <string name="agenda_kind_subscription">सदस्यता</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">कार्यसूची: %1$s – %2$s</string>
+  <string name="agenda_print_job">Taqvim कार्यसूची</string>
+</resources>

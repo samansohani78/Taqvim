@@ -5,4 +5,9 @@
   <issue id="NewerVersionAvailable" severity="ignore" />
   <issue id="AndroidGradlePluginVersion" severity="ignore" />
   <issue id="OldTargetApi" severity="ignore" />
+  <!-- Indonesian resources must live in `values-in`: Android's resource qualifier for `id` is the legacy code
+       (LocaleFolder enforces this), while locales_config declares the modern `id-ID`. Lint does not map the two,
+       so UnusedTranslation reports the manifest's localeConfig. AppLocalesTest keeps locales_config equal to the
+       language table, and TranslationReportKonsistTest covers every language folder. -->
+  <issue id="UnusedTranslation" severity="ignore" />
 </lint>

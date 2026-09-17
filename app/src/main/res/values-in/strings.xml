@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (id) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Kalender</string>
+  <string name="nav_times">Waktu</string>
+  <string name="nav_tools">Alat</string>
+  <string name="nav_more">Lainnya</string>
+  <string name="more_year">Tahun</string>
+  <string name="more_agenda">Agenda</string>
+  <string name="more_search">Cari</string>
+  <string name="more_astronomy">Astronomi</string>
+  <string name="more_map">Peta dunia</string>
+  <string name="map_use_as_place_title">Gunakan lokasi ini?</string>
+  <string name="map_use_as_place_message">Simpan ⁨%1$s⁩ sebagai lokasi Anda untuk waktu salat, kiblat, dan astronomi?</string>
+  <string name="map_use_city_message">Simpan ⁨%1$s⁩ sebagai lokasi Anda untuk waktu salat, kiblat, dan astronomi?</string>
+  <string name="map_use_as_place_confirm">Gunakan lokasi</string>
+  <string name="map_use_as_place_cancel">Batal</string>
+  <string name="more_compass">Kompas</string>
+  <string name="more_level">Waterpas dan penggaris</string>
+  <string name="more_settings">Setelan</string>
+  <string name="more_backup">Cadangkan dan pulihkan</string>
+  <string name="more_privacy">Privasi</string>
+  <string name="more_about">Tentang Taqvim</string>
+  <string name="process_text_label">Buka di Taqvim</string>
+  <string name="shortcut_today">Hari ini</string>
+  <string name="shortcut_new_event">Acara baru</string>
+  <string name="shortcut_prayer_times">Waktu salat</string>
+  <string name="shortcut_converter">Konverter tanggal</string>
+  <string name="pending_shift_work">Kerja sif belum tersedia.</string>
+  <string name="pending_settings">Setelan ini belum tersedia.</string>
+  <string name="pending_widgets">Setelan widget belum tersedia.</string>
+  <string name="message_no_upcoming_occurrence">Acara ini tidak memiliki tanggal mendatang.</string>
+  <string name="message_setting_not_saved">Setelan tidak dapat disimpan.</string>
+  <string name="restore_finishing">Menyelesaikan pemulihan…</string>
+  <string name="restore_incomplete">Pemulihan terakhir tidak dapat diselesaikan, sehingga data Anda mungkin terganti sebagian. Taqvim akan menyelesaikan atau membatalkannya saat dibuka berikutnya.</string>
+</resources>

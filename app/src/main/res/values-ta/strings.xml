@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ta) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">நாட்காட்டி</string>
+  <string name="nav_times">நேரங்கள்</string>
+  <string name="nav_tools">கருவிகள்</string>
+  <string name="nav_more">மேலும்</string>
+  <string name="more_year">ஆண்டு</string>
+  <string name="more_agenda">நிகழ்ச்சி நிரல்</string>
+  <string name="more_search">தேடு</string>
+  <string name="more_astronomy">வானியல்</string>
+  <string name="more_map">உலக வரைபடம்</string>
+  <string name="map_use_as_place_title">இந்த இடத்தைப் பயன்படுத்தவா?</string>
+  <string name="map_use_as_place_message">தொழுகை நேரங்கள், கிப்லா மற்றும் வானியலுக்கு ⁨%1$s⁩ ஐ உங்கள் இடமாக சேமிக்கவா?</string>
+  <string name="map_use_city_message">தொழுகை நேரங்கள், கிப்லா மற்றும் வானியலுக்கு ⁨%1$s⁩ ஐ உங்கள் இடமாக சேமிக்கவா?</string>
+  <string name="map_use_as_place_confirm">இடத்தைப் பயன்படுத்து</string>
+  <string name="map_use_as_place_cancel">ரத்துசெய்</string>
+  <string name="more_compass">திசைகாட்டி</string>
+  <string name="more_level">நிலை மற்றும் அளவுகோல்</string>
+  <string name="more_settings">அமைப்புகள்</string>
+  <string name="more_backup">காப்புப்பிரதி மற்றும் மீட்பு</string>
+  <string name="more_privacy">தனியுரிமை</string>
+  <string name="more_about">Taqvim பற்றி</string>
+  <string name="process_text_label">Taqvim இல் திற</string>
+  <string name="shortcut_today">இன்று</string>
+  <string name="shortcut_new_event">புதிய நிகழ்வு</string>
+  <string name="shortcut_prayer_times">தொழுகை நேரங்கள்</string>
+  <string name="shortcut_converter">தேதி மாற்றி</string>
+  <string name="pending_shift_work">ஷிப்ட் வேலை இன்னும் கிடைக்கவில்லை.</string>
+  <string name="pending_settings">இந்த அமைப்பு இன்னும் கிடைக்கவில்லை.</string>
+  <string name="pending_widgets">விட்ஜெட் அமைப்புகள் இன்னும் கிடைக்கவில்லை.</string>
+  <string name="message_no_upcoming_occurrence">இந்த நிகழ்வுக்கு வரவிருக்கும் தேதி இல்லை.</string>
+  <string name="message_setting_not_saved">அமைப்பை சேமிக்க முடியவில்லை.</string>
+  <string name="restore_finishing">மீட்பு முடிக்கப்படுகிறது…</string>
+  <string name="restore_incomplete">கடைசி மீட்பை முடிக்க முடியவில்லை, எனவே உங்கள் தரவு பகுதியளவு மாற்றப்பட்டிருக்கலாம். அடுத்த முறை தொடங்கும்போது Taqvim அதை முடிக்கும் அல்லது திரும்பப் பெறும்.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">Rojev</string>
+  <string name="agenda_loading">Rojev tê barkirin</string>
+  <string name="agenda_loading_more">Mehên din tên barkirin</string>
+  <string name="agenda_mode_events">Bûyer</string>
+  <string name="agenda_mode_all_days">Hemû roj</string>
+  <string name="agenda_today">Îro</string>
+  <string name="agenda_print">Çap bike</string>
+  <string name="agenda_share">Parve bike</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Betlane</string>
+  <string name="agenda_no_events">Bûyer tune</string>
+  <string name="agenda_empty_month">Vê mehê bûyer tune</string>
+  <string name="agenda_kind_official">Fermî</string>
+  <string name="agenda_kind_personal">Kesane</string>
+  <string name="agenda_kind_device">Salnameya amûrê</string>
+  <string name="agenda_kind_subscription">Abonetî</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">Rojev: %1$s – %2$s</string>
+  <string name="agenda_print_job">Rojeva Taqvim</string>
+</resources>

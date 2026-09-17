@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tg) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">Рӯзнома</string>
+  <string name="agenda_loading">Рӯзнома бор шуда истодааст</string>
+  <string name="agenda_loading_more">Моҳҳои дигар бор шуда истодаанд</string>
+  <string name="agenda_mode_events">Рӯйдодҳо</string>
+  <string name="agenda_mode_all_days">Ҳамаи рӯзҳо</string>
+  <string name="agenda_today">Имрӯз</string>
+  <string name="agenda_print">Чоп кардан</string>
+  <string name="agenda_share">Мубодила</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Рӯзи истироҳат</string>
+  <string name="agenda_no_events">Рӯйдод нест</string>
+  <string name="agenda_empty_month">Дар ин моҳ рӯйдод нест</string>
+  <string name="agenda_kind_official">Расмӣ</string>
+  <string name="agenda_kind_personal">Шахсӣ</string>
+  <string name="agenda_kind_device">Тақвими дастгоҳ</string>
+  <string name="agenda_kind_subscription">Обуна</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">Рӯзнома: %1$s – %2$s</string>
+  <string name="agenda_print_job">Рӯзномаи Taqvim</string>
+</resources>

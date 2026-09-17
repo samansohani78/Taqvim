@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Takvim</string>
+  <string name="nav_times">Vakitler</string>
+  <string name="nav_tools">Araçlar</string>
+  <string name="nav_more">Daha fazla</string>
+  <string name="more_year">Yıl</string>
+  <string name="more_agenda">Ajanda</string>
+  <string name="more_search">Ara</string>
+  <string name="more_astronomy">Astronomi</string>
+  <string name="more_map">Dünya haritası</string>
+  <string name="map_use_as_place_title">Bu konum kullanılsın mı?</string>
+  <string name="map_use_as_place_message">⁨%1$s⁩ namaz vakitleri, kıble ve astronomi için konumunuz olarak kaydedilsin mi?</string>
+  <string name="map_use_city_message">⁨%1$s⁩ namaz vakitleri, kıble ve astronomi için konumunuz olarak kaydedilsin mi?</string>
+  <string name="map_use_as_place_confirm">Konumu kullan</string>
+  <string name="map_use_as_place_cancel">İptal</string>
+  <string name="more_compass">Pusula</string>
+  <string name="more_level">Su terazisi ve cetvel</string>
+  <string name="more_settings">Ayarlar</string>
+  <string name="more_backup">Yedekleme ve geri yükleme</string>
+  <string name="more_privacy">Gizlilik</string>
+  <string name="more_about">Taqvim hakkında</string>
+  <string name="process_text_label">Taqvim\'de aç</string>
+  <string name="shortcut_today">Bugün</string>
+  <string name="shortcut_new_event">Yeni etkinlik</string>
+  <string name="shortcut_prayer_times">Namaz vakitleri</string>
+  <string name="shortcut_converter">Tarih dönüştürücü</string>
+  <string name="pending_shift_work">Vardiya çalışması henüz kullanılamıyor.</string>
+  <string name="pending_settings">Bu ayar henüz kullanılamıyor.</string>
+  <string name="pending_widgets">Widget ayarları henüz kullanılamıyor.</string>
+  <string name="message_no_upcoming_occurrence">Bu etkinliğin yaklaşan bir tarihi yok.</string>
+  <string name="message_setting_not_saved">Ayar kaydedilemedi.</string>
+  <string name="restore_finishing">Geri yükleme tamamlanıyor…</string>
+  <string name="restore_incomplete">Son geri yükleme tamamlanamadı, bu yüzden verileriniz kısmen değiştirilmiş olabilir. Taqvim bir sonraki açılışta işlemi tamamlayacak ya da geri alacak.</string>
+</resources>

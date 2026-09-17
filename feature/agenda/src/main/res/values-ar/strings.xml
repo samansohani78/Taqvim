@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ar) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">جدول الأعمال</string>
+  <string name="agenda_loading">جارٍ تحميل جدول الأعمال</string>
+  <string name="agenda_loading_more">جارٍ تحميل مزيد من الأشهر</string>
+  <string name="agenda_mode_events">الأحداث</string>
+  <string name="agenda_mode_all_days">كل الأيام</string>
+  <string name="agenda_today">اليوم</string>
+  <string name="agenda_print">طباعة</string>
+  <string name="agenda_share">مشاركة</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">عطلة</string>
+  <string name="agenda_no_events">لا أحداث</string>
+  <string name="agenda_empty_month">لا أحداث هذا الشهر</string>
+  <string name="agenda_kind_official">رسمي</string>
+  <string name="agenda_kind_personal">شخصي</string>
+  <string name="agenda_kind_device">تقويم الجهاز</string>
+  <string name="agenda_kind_subscription">اشتراك</string>
+  <string name="agenda_event_description">%1$s، %2$s</string>
+  <string name="agenda_export_title">جدول الأعمال: %1$s – %2$s</string>
+  <string name="agenda_print_job">جدول أعمال Taqvim</string>
+</resources>

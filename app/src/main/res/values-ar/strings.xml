@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ar) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">التقويم</string>
+  <string name="nav_times">المواقيت</string>
+  <string name="nav_tools">الأدوات</string>
+  <string name="nav_more">المزيد</string>
+  <string name="more_year">السنة</string>
+  <string name="more_agenda">جدول الأعمال</string>
+  <string name="more_search">بحث</string>
+  <string name="more_astronomy">علم الفلك</string>
+  <string name="more_map">خريطة العالم</string>
+  <string name="map_use_as_place_title">هل تريد استخدام هذا الموقع؟</string>
+  <string name="map_use_as_place_message">هل تريد حفظ ⁨%1$s⁩ موقعًا لك لمواقيت الصلاة والقبلة وعلم الفلك؟</string>
+  <string name="map_use_city_message">هل تريد حفظ ⁨%1$s⁩ موقعًا لك لمواقيت الصلاة والقبلة وعلم الفلك؟</string>
+  <string name="map_use_as_place_confirm">استخدام الموقع</string>
+  <string name="map_use_as_place_cancel">إلغاء</string>
+  <string name="more_compass">البوصلة</string>
+  <string name="more_level">الميزان والمسطرة</string>
+  <string name="more_settings">الإعدادات</string>
+  <string name="more_backup">النسخ الاحتياطي والاستعادة</string>
+  <string name="more_privacy">الخصوصية</string>
+  <string name="more_about">حول Taqvim</string>
+  <string name="process_text_label">فتح في Taqvim</string>
+  <string name="shortcut_today">اليوم</string>
+  <string name="shortcut_new_event">حدث جديد</string>
+  <string name="shortcut_prayer_times">مواقيت الصلاة</string>
+  <string name="shortcut_converter">محوّل التاريخ</string>
+  <string name="pending_shift_work">العمل بنظام المناوبات غير متاح بعد.</string>
+  <string name="pending_settings">هذا الإعداد غير متاح بعد.</string>
+  <string name="pending_widgets">إعدادات الأدوات المصغّرة غير متاحة بعد.</string>
+  <string name="message_no_upcoming_occurrence">ليس لهذا الحدث تاريخ قادم.</string>
+  <string name="message_setting_not_saved">تعذّر حفظ الإعداد.</string>
+  <string name="restore_finishing">جارٍ إنهاء الاستعادة…</string>
+  <string name="restore_incomplete">تعذّر إنهاء آخر استعادة، لذا قد تكون بياناتك قد استُبدلت جزئيًا. سيُكمل Taqvim الاستعادة أو يتراجع عنها عند تشغيله في المرة القادمة.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (id) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">Agenda</string>
+  <string name="agenda_loading">Memuat agenda</string>
+  <string name="agenda_loading_more">Memuat bulan lainnya</string>
+  <string name="agenda_mode_events">Acara</string>
+  <string name="agenda_mode_all_days">Semua hari</string>
+  <string name="agenda_today">Hari ini</string>
+  <string name="agenda_print">Cetak</string>
+  <string name="agenda_share">Bagikan</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Hari libur</string>
+  <string name="agenda_no_events">Tidak ada acara</string>
+  <string name="agenda_empty_month">Tidak ada acara bulan ini</string>
+  <string name="agenda_kind_official">Resmi</string>
+  <string name="agenda_kind_personal">Pribadi</string>
+  <string name="agenda_kind_device">Kalender perangkat</string>
+  <string name="agenda_kind_subscription">Langganan</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">Agenda: %1$s – %2$s</string>
+  <string name="agenda_print_job">Agenda Taqvim</string>
+</resources>

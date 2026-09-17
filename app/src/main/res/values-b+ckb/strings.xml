@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ckb) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">ڕۆژژمێر</string>
+  <string name="nav_times">کاتەکان</string>
+  <string name="nav_tools">ئامرازەکان</string>
+  <string name="nav_more">زیاتر</string>
+  <string name="more_year">ساڵ</string>
+  <string name="more_agenda">خشتەی کار</string>
+  <string name="more_search">گەڕان</string>
+  <string name="more_astronomy">ئەستێرەناسی</string>
+  <string name="more_map">نەخشەی جیهان</string>
+  <string name="map_use_as_place_title">ئەم شوێنە بەکاربهێنرێت؟</string>
+  <string name="map_use_as_place_message">⁨%1$s⁩ وەک شوێنی خۆت بۆ کاتەکانی نوێژ، قیبلە و ئەستێرەناسی پاشەکەوت بکرێت؟</string>
+  <string name="map_use_city_message">⁨%1$s⁩ وەک شوێنی خۆت بۆ کاتەکانی نوێژ، قیبلە و ئەستێرەناسی پاشەکەوت بکرێت؟</string>
+  <string name="map_use_as_place_confirm">بەکارهێنانی شوێن</string>
+  <string name="map_use_as_place_cancel">پاشگەزبوونەوە</string>
+  <string name="more_compass">قیبلەنما</string>
+  <string name="more_level">ئاستپێو و ڕاستەپێو</string>
+  <string name="more_settings">ڕێکخستنەکان</string>
+  <string name="more_backup">یەدەگ و گەڕاندنەوە</string>
+  <string name="more_privacy">تایبەتمەندی</string>
+  <string name="more_about">دەربارەی Taqvim</string>
+  <string name="process_text_label">کردنەوە لە Taqvim</string>
+  <string name="shortcut_today">ئەمڕۆ</string>
+  <string name="shortcut_new_event">ڕووداوی نوێ</string>
+  <string name="shortcut_prayer_times">کاتەکانی نوێژ</string>
+  <string name="shortcut_converter">گۆڕەری بەروار</string>
+  <string name="pending_shift_work">کاری نۆرەیی هێشتا بەردەست نییە.</string>
+  <string name="pending_settings">ئەم ڕێکخستنە هێشتا بەردەست نییە.</string>
+  <string name="pending_widgets">ڕێکخستنەکانی ویجێت هێشتا بەردەست نین.</string>
+  <string name="message_no_upcoming_occurrence">ئەم ڕووداوە بەرواری داهاتووی نییە.</string>
+  <string name="message_setting_not_saved">ڕێکخستنەکە پاشەکەوت نەکرا.</string>
+  <string name="restore_finishing">گەڕاندنەوە تەواو دەکرێت…</string>
+  <string name="restore_incomplete">دوایین گەڕاندنەوە تەواو نەبوو، بۆیە لەوانەیە داتاکانت بە بەشێک گۆڕدرابن. Taqvim جاری داهاتوو کە دەست پێ دەکات تەواوی دەکات یان هەڵی دەوەشێنێتەوە.</string>
+</resources>

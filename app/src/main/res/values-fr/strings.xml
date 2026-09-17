@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (fr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Calendrier</string>
+  <string name="nav_times">Horaires</string>
+  <string name="nav_tools">Outils</string>
+  <string name="nav_more">Plus</string>
+  <string name="more_year">Année</string>
+  <string name="more_agenda">Agenda</string>
+  <string name="more_search">Recherche</string>
+  <string name="more_astronomy">Astronomie</string>
+  <string name="more_map">Carte du monde</string>
+  <string name="map_use_as_place_title">Utiliser ce lieu ?</string>
+  <string name="map_use_as_place_message">Enregistrer ⁨%1$s⁩ comme lieu pour les heures de prière, la qibla et l\'astronomie ?</string>
+  <string name="map_use_city_message">Enregistrer ⁨%1$s⁩ comme lieu pour les heures de prière, la qibla et l\'astronomie ?</string>
+  <string name="map_use_as_place_confirm">Utiliser ce lieu</string>
+  <string name="map_use_as_place_cancel">Annuler</string>
+  <string name="more_compass">Boussole</string>
+  <string name="more_level">Niveau et règle</string>
+  <string name="more_settings">Paramètres</string>
+  <string name="more_backup">Sauvegarde et restauration</string>
+  <string name="more_privacy">Confidentialité</string>
+  <string name="more_about">À propos de Taqvim</string>
+  <string name="process_text_label">Ouvrir dans Taqvim</string>
+  <string name="shortcut_today">Aujourd\'hui</string>
+  <string name="shortcut_new_event">Nouvel événement</string>
+  <string name="shortcut_prayer_times">Heures de prière</string>
+  <string name="shortcut_converter">Convertisseur de dates</string>
+  <string name="pending_shift_work">Le travail posté n\'est pas encore disponible.</string>
+  <string name="pending_settings">Ce paramètre n\'est pas encore disponible.</string>
+  <string name="pending_widgets">Les paramètres des widgets ne sont pas encore disponibles.</string>
+  <string name="message_no_upcoming_occurrence">Cet événement n\'a pas de date à venir.</string>
+  <string name="message_setting_not_saved">Le paramètre n\'a pas pu être enregistré.</string>
+  <string name="restore_finishing">Fin de la restauration…</string>
+  <string name="restore_incomplete">La dernière restauration n\'a pas pu se terminer ; vos données sont peut-être partiellement remplacées. Taqvim la terminera ou l\'annulera au prochain démarrage.</string>
+</resources>

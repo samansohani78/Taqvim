@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Salname</string>
+  <string name="nav_times">Dem</string>
+  <string name="nav_tools">Amûr</string>
+  <string name="nav_more">Zêdetir</string>
+  <string name="more_year">Sal</string>
+  <string name="more_agenda">Rojev</string>
+  <string name="more_search">Lêgerîn</string>
+  <string name="more_astronomy">Stêrnasî</string>
+  <string name="more_map">Nexşeya cîhanê</string>
+  <string name="map_use_as_place_title">Ev cih were bikaranîn?</string>
+  <string name="map_use_as_place_message">⁨%1$s⁩ wek cihê te ji bo demên nimêjê, qible û stêrnasiyê were tomarkirin?</string>
+  <string name="map_use_city_message">⁨%1$s⁩ wek cihê te ji bo demên nimêjê, qible û stêrnasiyê were tomarkirin?</string>
+  <string name="map_use_as_place_confirm">Cih bi kar bîne</string>
+  <string name="map_use_as_place_cancel">Betal bike</string>
+  <string name="more_compass">Pûsûle</string>
+  <string name="more_level">Asteng û rastek</string>
+  <string name="more_settings">Mîheng</string>
+  <string name="more_backup">Paşkopî û vegerandin</string>
+  <string name="more_privacy">Nepenîtî</string>
+  <string name="more_about">Derbarê Taqvim</string>
+  <string name="process_text_label">Di Taqvim de veke</string>
+  <string name="shortcut_today">Îro</string>
+  <string name="shortcut_new_event">Bûyera nû</string>
+  <string name="shortcut_prayer_times">Demên nimêjê</string>
+  <string name="shortcut_converter">Guherînera dîrokê</string>
+  <string name="pending_shift_work">Karê nobetê hîn ne amade ye.</string>
+  <string name="pending_settings">Ev mîheng hîn ne amade ye.</string>
+  <string name="pending_widgets">Mîhengên wîdcetê hîn ne amade ne.</string>
+  <string name="message_no_upcoming_occurrence">Ji vê bûyerê re dîroka pêşerojê tune.</string>
+  <string name="message_setting_not_saved">Mîheng nehat tomarkirin.</string>
+  <string name="restore_finishing">Vegerandin tê qedandin…</string>
+  <string name="restore_incomplete">Vegerandina dawî neqediya, ji ber vê yekê dibe ku daneyên te beşek hatibin guhertin. Taqvim dê gava din dest pê bike wê biqedîne an betal bike.</string>
+</resources>

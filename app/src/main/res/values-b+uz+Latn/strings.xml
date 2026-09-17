@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (uz) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Taqvim</string>
+  <string name="nav_times">Vaqtlar</string>
+  <string name="nav_tools">Vositalar</string>
+  <string name="nav_more">Yana</string>
+  <string name="more_year">Yil</string>
+  <string name="more_agenda">Kun tartibi</string>
+  <string name="more_search">Qidiruv</string>
+  <string name="more_astronomy">Astronomiya</string>
+  <string name="more_map">Dunyo xaritasi</string>
+  <string name="map_use_as_place_title">Bu joy ishlatilsinmi?</string>
+  <string name="map_use_as_place_message">⁨%1$s⁩ namoz vaqtlari, qibla va astronomiya uchun joylashuvingiz sifatida saqlansinmi?</string>
+  <string name="map_use_city_message">⁨%1$s⁩ namoz vaqtlari, qibla va astronomiya uchun joylashuvingiz sifatida saqlansinmi?</string>
+  <string name="map_use_as_place_confirm">Joyni ishlatish</string>
+  <string name="map_use_as_place_cancel">Bekor qilish</string>
+  <string name="more_compass">Kompas</string>
+  <string name="more_level">Tarozi va chizgʻich</string>
+  <string name="more_settings">Sozlamalar</string>
+  <string name="more_backup">Zaxira va tiklash</string>
+  <string name="more_privacy">Maxfiylik</string>
+  <string name="more_about">Taqvim haqida</string>
+  <string name="process_text_label">Taqvimda ochish</string>
+  <string name="shortcut_today">Bugun</string>
+  <string name="shortcut_new_event">Yangi tadbir</string>
+  <string name="shortcut_prayer_times">Namoz vaqtlari</string>
+  <string name="shortcut_converter">Sana oʻgirgich</string>
+  <string name="pending_shift_work">Smenali ish hali mavjud emas.</string>
+  <string name="pending_settings">Bu sozlama hali mavjud emas.</string>
+  <string name="pending_widgets">Vidjet sozlamalari hali mavjud emas.</string>
+  <string name="message_no_upcoming_occurrence">Bu tadbirning kelgusi sanasi yoʻq.</string>
+  <string name="message_setting_not_saved">Sozlama saqlanmadi.</string>
+  <string name="restore_finishing">Tiklash yakunlanmoqda…</string>
+  <string name="restore_incomplete">Oxirgi tiklash yakunlanmadi, shuning uchun maʼlumotlaringiz qisman almashtirilgan boʻlishi mumkin. Taqvim keyingi ishga tushishda uni yakunlaydi yoki bekor qiladi.</string>
+</resources>

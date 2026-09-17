@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (az) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">Gündəlik</string>
+  <string name="agenda_loading">Gündəlik yüklənir</string>
+  <string name="agenda_loading_more">Digər aylar yüklənir</string>
+  <string name="agenda_mode_events">Tədbirlər</string>
+  <string name="agenda_mode_all_days">Bütün günlər</string>
+  <string name="agenda_today">Bu gün</string>
+  <string name="agenda_print">Çap et</string>
+  <string name="agenda_share">Paylaş</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Bayram</string>
+  <string name="agenda_no_events">Tədbir yoxdur</string>
+  <string name="agenda_empty_month">Bu ay tədbir yoxdur</string>
+  <string name="agenda_kind_official">Rəsmi</string>
+  <string name="agenda_kind_personal">Şəxsi</string>
+  <string name="agenda_kind_device">Cihaz təqvimi</string>
+  <string name="agenda_kind_subscription">Abunəlik</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">Gündəlik: %1$s – %2$s</string>
+  <string name="agenda_print_job">Taqvim gündəliyi</string>
+</resources>

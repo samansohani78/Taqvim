@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (bn) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">ক্যালেন্ডার</string>
+  <string name="nav_times">সময়</string>
+  <string name="nav_tools">টুল</string>
+  <string name="nav_more">আরও</string>
+  <string name="more_year">বছর</string>
+  <string name="more_agenda">কার্যসূচি</string>
+  <string name="more_search">খুঁজুন</string>
+  <string name="more_astronomy">জ্যোতির্বিজ্ঞান</string>
+  <string name="more_map">বিশ্ব মানচিত্র</string>
+  <string name="map_use_as_place_title">এই অবস্থান ব্যবহার করবেন?</string>
+  <string name="map_use_as_place_message">নামাজের সময়, কিবলা ও জ্যোতির্বিজ্ঞানের জন্য ⁨%1$s⁩ আপনার অবস্থান হিসেবে সংরক্ষণ করবেন?</string>
+  <string name="map_use_city_message">নামাজের সময়, কিবলা ও জ্যোতির্বিজ্ঞানের জন্য ⁨%1$s⁩ আপনার অবস্থান হিসেবে সংরক্ষণ করবেন?</string>
+  <string name="map_use_as_place_confirm">অবস্থান ব্যবহার করুন</string>
+  <string name="map_use_as_place_cancel">বাতিল</string>
+  <string name="more_compass">কম্পাস</string>
+  <string name="more_level">লেভেল ও রুলার</string>
+  <string name="more_settings">সেটিংস</string>
+  <string name="more_backup">ব্যাকআপ ও পুনরুদ্ধার</string>
+  <string name="more_privacy">গোপনীয়তা</string>
+  <string name="more_about">Taqvim সম্পর্কে</string>
+  <string name="process_text_label">Taqvim-এ খুলুন</string>
+  <string name="shortcut_today">আজ</string>
+  <string name="shortcut_new_event">নতুন ইভেন্ট</string>
+  <string name="shortcut_prayer_times">নামাজের সময়</string>
+  <string name="shortcut_converter">তারিখ রূপান্তরকারী</string>
+  <string name="pending_shift_work">শিফট কাজ এখনো উপলব্ধ নয়।</string>
+  <string name="pending_settings">এই সেটিং এখনো উপলব্ধ নয়।</string>
+  <string name="pending_widgets">উইজেট সেটিংস এখনো উপলব্ধ নয়।</string>
+  <string name="message_no_upcoming_occurrence">এই ইভেন্টের কোনো আসন্ন তারিখ নেই।</string>
+  <string name="message_setting_not_saved">সেটিং সংরক্ষণ করা যায়নি।</string>
+  <string name="restore_finishing">পুনরুদ্ধার শেষ হচ্ছে…</string>
+  <string name="restore_incomplete">শেষ পুনরুদ্ধার সম্পন্ন করা যায়নি, তাই আপনার ডেটা আংশিকভাবে প্রতিস্থাপিত হতে পারে। Taqvim পরের বার চালু হলে এটি সম্পন্ন বা বাতিল করবে।</string>
+</resources>

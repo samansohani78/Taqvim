@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (zh) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">日程</string>
+  <string name="agenda_loading">正在加载日程</string>
+  <string name="agenda_loading_more">正在加载更多月份</string>
+  <string name="agenda_mode_events">事件</string>
+  <string name="agenda_mode_all_days">所有日期</string>
+  <string name="agenda_today">今天</string>
+  <string name="agenda_print">打印</string>
+  <string name="agenda_share">分享</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">假日</string>
+  <string name="agenda_no_events">没有事件</string>
+  <string name="agenda_empty_month">本月没有事件</string>
+  <string name="agenda_kind_official">官方</string>
+  <string name="agenda_kind_personal">个人</string>
+  <string name="agenda_kind_device">设备日历</string>
+  <string name="agenda_kind_subscription">订阅</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">日程：%1$s – %2$s</string>
+  <string name="agenda_print_job">Taqvim 日程</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (de) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">Kalender</string>
+  <string name="nav_times">Gebetszeiten</string>
+  <string name="nav_tools">Werkzeuge</string>
+  <string name="nav_more">Mehr</string>
+  <string name="more_year">Jahr</string>
+  <string name="more_agenda">Terminliste</string>
+  <string name="more_search">Suche</string>
+  <string name="more_astronomy">Astronomie</string>
+  <string name="more_map">Weltkarte</string>
+  <string name="map_use_as_place_title">Diesen Ort verwenden?</string>
+  <string name="map_use_as_place_message">⁨%1$s⁩ als Ort für Gebetszeiten, Qibla und Astronomie speichern?</string>
+  <string name="map_use_city_message">⁨%1$s⁩ als Ort für Gebetszeiten, Qibla und Astronomie speichern?</string>
+  <string name="map_use_as_place_confirm">Ort verwenden</string>
+  <string name="map_use_as_place_cancel">Abbrechen</string>
+  <string name="more_compass">Kompass</string>
+  <string name="more_level">Wasserwaage und Lineal</string>
+  <string name="more_settings">Einstellungen</string>
+  <string name="more_backup">Sichern und wiederherstellen</string>
+  <string name="more_privacy">Datenschutz</string>
+  <string name="more_about">Über Taqvim</string>
+  <string name="process_text_label">In Taqvim öffnen</string>
+  <string name="shortcut_today">Heute</string>
+  <string name="shortcut_new_event">Neuer Termin</string>
+  <string name="shortcut_prayer_times">Gebetszeiten</string>
+  <string name="shortcut_converter">Datumsumrechner</string>
+  <string name="pending_shift_work">Schichtarbeit ist noch nicht verfügbar.</string>
+  <string name="pending_settings">Diese Einstellung ist noch nicht verfügbar.</string>
+  <string name="pending_widgets">Widget-Einstellungen sind noch nicht verfügbar.</string>
+  <string name="message_no_upcoming_occurrence">Dieser Termin hat kein kommendes Datum.</string>
+  <string name="message_setting_not_saved">Die Einstellung konnte nicht gespeichert werden.</string>
+  <string name="restore_finishing">Wiederherstellung wird abgeschlossen…</string>
+  <string name="restore_incomplete">Die letzte Wiederherstellung konnte nicht abgeschlossen werden, daher sind Ihre Daten möglicherweise teilweise ersetzt. Taqvim schließt sie beim nächsten Start ab oder macht sie rückgängig.</string>
+</resources>

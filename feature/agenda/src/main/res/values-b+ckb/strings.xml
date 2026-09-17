@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ckb) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">خشتەی کار</string>
+  <string name="agenda_loading">خشتەی کار بار دەکرێت</string>
+  <string name="agenda_loading_more">مانگی زیاتر بار دەکرێت</string>
+  <string name="agenda_mode_events">ڕووداوەکان</string>
+  <string name="agenda_mode_all_days">هەموو ڕۆژەکان</string>
+  <string name="agenda_today">ئەمڕۆ</string>
+  <string name="agenda_print">چاپکردن</string>
+  <string name="agenda_share">هاوبەشکردن</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">پشوو</string>
+  <string name="agenda_no_events">هیچ ڕووداوێک نییە</string>
+  <string name="agenda_empty_month">ئەم مانگە هیچ ڕووداوێک نییە</string>
+  <string name="agenda_kind_official">فەرمی</string>
+  <string name="agenda_kind_personal">کەسی</string>
+  <string name="agenda_kind_device">ڕۆژژمێری ئامێر</string>
+  <string name="agenda_kind_subscription">بەشداربوون</string>
+  <string name="agenda_event_description">%1$s، %2$s</string>
+  <string name="agenda_export_title">خشتەی کار: %1$s – %2$s</string>
+  <string name="agenda_print_job">خشتەی کاری Taqvim</string>
+</resources>

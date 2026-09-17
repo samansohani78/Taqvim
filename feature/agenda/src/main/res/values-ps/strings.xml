@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ps) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">اجنډا</string>
+  <string name="agenda_loading">اجنډا پورته کېږي</string>
+  <string name="agenda_loading_more">نورې میاشتې پورته کېږي</string>
+  <string name="agenda_mode_events">پېښې</string>
+  <string name="agenda_mode_all_days">ټولې ورځې</string>
+  <string name="agenda_today">نن</string>
+  <string name="agenda_print">چاپول</string>
+  <string name="agenda_share">شریکول</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">رخصتي</string>
+  <string name="agenda_no_events">هېڅ پېښه نشته</string>
+  <string name="agenda_empty_month">پدې میاشت کې هېڅ پېښه نشته</string>
+  <string name="agenda_kind_official">رسمي</string>
+  <string name="agenda_kind_personal">شخصي</string>
+  <string name="agenda_kind_device">د وسیلې جنتري</string>
+  <string name="agenda_kind_subscription">ګډون</string>
+  <string name="agenda_event_description">%1$s، %2$s</string>
+  <string name="agenda_export_title">اجنډا: %1$s – %2$s</string>
+  <string name="agenda_print_job">د Taqvim اجنډا</string>
+</resources>

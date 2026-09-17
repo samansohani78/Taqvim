@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ru) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">Повестка</string>
+  <string name="agenda_loading">Загрузка повестки</string>
+  <string name="agenda_loading_more">Загрузка следующих месяцев</string>
+  <string name="agenda_mode_events">События</string>
+  <string name="agenda_mode_all_days">Все дни</string>
+  <string name="agenda_today">Сегодня</string>
+  <string name="agenda_print">Печать</string>
+  <string name="agenda_share">Поделиться</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Выходной</string>
+  <string name="agenda_no_events">Нет событий</string>
+  <string name="agenda_empty_month">В этом месяце нет событий</string>
+  <string name="agenda_kind_official">Официальное</string>
+  <string name="agenda_kind_personal">Личное</string>
+  <string name="agenda_kind_device">Календарь устройства</string>
+  <string name="agenda_kind_subscription">Подписка</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">Повестка: %1$s – %2$s</string>
+  <string name="agenda_print_job">Повестка Taqvim</string>
+</resources>

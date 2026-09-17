@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (prs, derived from fa with Dari vocabulary) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources>
+  <string name="wear_app_name">تقویم</string>
+
+  <string name="wear_today">امروز</string>
+  <string name="wear_month">ماه</string>
+  <string name="wear_converter">تبدیل تاریخ</string>
+  <string name="wear_settings">تنظیمات</string>
+  <string name="wear_loading">در حال بارگذاری…</string>
+  <string name="wear_holidays">تعطیل</string>
+  <string name="wear_other_calendars">تقویم‌های دیگر</string>
+
+  <string name="wear_prayer_fajr">اذان صبح</string>
+  <string name="wear_prayer_dhuhr">اذان ظهر</string>
+  <string name="wear_prayer_asr">عصر</string>
+  <string name="wear_prayer_maghrib">اذان مغرب</string>
+  <string name="wear_prayer_isha">عشا</string>
+  <string name="wear_next_prayer_at">%1$s %2$s</string>
+  <string name="wear_no_place">برای اوقات شرعی، شهر را در تنظیمات انتخاب کنید</string>
+
+  <string name="wear_event_line">%1$s · %2$s</string>
+  <string name="wear_event_today">امروز</string>
+  <string name="wear_event_tomorrow">فردا</string>
+  <plurals name="wear_event_in_days">
+    <item quantity="one">%d روز دیگر</item>
+    <item quantity="other">%d روز دیگر</item>
+  </plurals>
+
+  <string name="wear_month_previous">ماه قبل</string>
+  <string name="wear_month_next">ماه بعد</string>
+  <string name="wear_month_current">ماه جاری</string>
+
+  <string name="wear_converter_year">سال</string>
+  <string name="wear_converter_month">ماه</string>
+  <string name="wear_converter_day">روز</string>
+  <string name="wear_converter_increase">%1$s بعد</string>
+  <string name="wear_converter_decrease">%1$s قبل</string>
+
+  <string name="wear_calendar_persian">هجری شمسی</string>
+  <string name="wear_calendar_islamic">هجری قمری</string>
+  <string name="wear_calendar_gregorian">میلادی</string>
+  <string name="wear_calendar_nepali">بیکرم سامبت</string>
+  <string name="wear_calendar_hebrew">عبری</string>
+
+  <string name="wear_settings_language">زبان</string>
+  <string name="wear_settings_primary_calendar">تقویم اصلی</string>
+  <string name="wear_settings_prayer_method">روش محاسبه اوقات شرعی</string>
+  <string name="wear_settings_city">شهر</string>
+  <string name="wear_settings_city_none">انتخاب نشده</string>
+
+  <string name="wear_method_mwl">رابطه جهان اسلام</string>
+  <string name="wear_method_isna">ISNA (آمریکای شمالی)</string>
+  <string name="wear_method_egypt">مصر</string>
+  <string name="wear_method_makkah">ام‌القری، مکه</string>
+  <string name="wear_method_karachi">کراچی</string>
+  <string name="wear_method_tehran">مؤسسه ژئوفیزیک تهران</string>
+  <string name="wear_method_jafari">جعفری (قم)</string>
+  <string name="wear_method_singapore">سنگاپور</string>
+  <string name="wear_method_france">فرانسه</string>
+  <string name="wear_method_russia">روسیه</string>
+  <string name="wear_method_diyanet">دیانت (ترکیه)</string>
+
+  <string name="wear_complication_date">تاریخ</string>
+  <string name="wear_complication_month_progress">پیشرفت ماه</string>
+  <string name="wear_complication_next_prayer">اوقات شرعی بعدی</string>
+  <string name="wear_month_progress_description">روز %1$s از %2$s</string>
+  <string name="wear_tile_month">ماه</string>
+  <string name="wear_tile_next">اوقات شرعی و مناسبت بعدی</string>
+  <string name="wear_symbol_minus">−</string>
+  <string name="wear_symbol_plus">+</string>
+  <string name="wear_selected">انتخاب‌شده</string>
+</resources>

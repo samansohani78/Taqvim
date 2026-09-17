@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (uz) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">Kun tartibi</string>
+  <string name="agenda_loading">Kun tartibi yuklanmoqda</string>
+  <string name="agenda_loading_more">Boshqa oylar yuklanmoqda</string>
+  <string name="agenda_mode_events">Tadbirlar</string>
+  <string name="agenda_mode_all_days">Barcha kunlar</string>
+  <string name="agenda_today">Bugun</string>
+  <string name="agenda_print">Chop etish</string>
+  <string name="agenda_share">Ulashish</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Bayram</string>
+  <string name="agenda_no_events">Tadbirlar yoʻq</string>
+  <string name="agenda_empty_month">Bu oyda tadbir yoʻq</string>
+  <string name="agenda_kind_official">Rasmiy</string>
+  <string name="agenda_kind_personal">Shaxsiy</string>
+  <string name="agenda_kind_device">Qurilma taqvimi</string>
+  <string name="agenda_kind_subscription">Obuna</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">Kun tartibi: %1$s – %2$s</string>
+  <string name="agenda_print_job">Taqvim kun tartibi</string>
+</resources>

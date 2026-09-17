@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ja) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">カレンダー</string>
+  <string name="nav_times">時刻</string>
+  <string name="nav_tools">ツール</string>
+  <string name="nav_more">その他</string>
+  <string name="more_year">年</string>
+  <string name="more_agenda">予定リスト</string>
+  <string name="more_search">検索</string>
+  <string name="more_astronomy">天文</string>
+  <string name="more_map">世界地図</string>
+  <string name="map_use_as_place_title">この場所を使いますか？</string>
+  <string name="map_use_as_place_message">礼拝時刻・キブラ・天文のための場所として ⁨%1$s⁩ を保存しますか？</string>
+  <string name="map_use_city_message">礼拝時刻・キブラ・天文のための場所として ⁨%1$s⁩ を保存しますか？</string>
+  <string name="map_use_as_place_confirm">この場所を使う</string>
+  <string name="map_use_as_place_cancel">キャンセル</string>
+  <string name="more_compass">コンパス</string>
+  <string name="more_level">水準器と定規</string>
+  <string name="more_settings">設定</string>
+  <string name="more_backup">バックアップと復元</string>
+  <string name="more_privacy">プライバシー</string>
+  <string name="more_about">Taqvim について</string>
+  <string name="process_text_label">Taqvim で開く</string>
+  <string name="shortcut_today">今日</string>
+  <string name="shortcut_new_event">新しいイベント</string>
+  <string name="shortcut_prayer_times">礼拝時刻</string>
+  <string name="shortcut_converter">日付変換</string>
+  <string name="pending_shift_work">シフト勤務はまだ利用できません。</string>
+  <string name="pending_settings">この設定はまだ利用できません。</string>
+  <string name="pending_widgets">ウィジェットの設定はまだ利用できません。</string>
+  <string name="message_no_upcoming_occurrence">このイベントに今後の日付はありません。</string>
+  <string name="message_setting_not_saved">設定を保存できませんでした。</string>
+  <string name="restore_finishing">復元を完了しています…</string>
+  <string name="restore_incomplete">前回の復元を完了できなかったため、データの一部が置き換わっている可能性があります。Taqvim は次回の起動時に完了または取り消します。</string>
+</resources>

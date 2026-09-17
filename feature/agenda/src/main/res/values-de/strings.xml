@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (de) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="agenda_title">Terminliste</string>
+  <string name="agenda_loading">Terminliste wird geladen</string>
+  <string name="agenda_loading_more">Weitere Monate werden geladen</string>
+  <string name="agenda_mode_events">Termine</string>
+  <string name="agenda_mode_all_days">Alle Tage</string>
+  <string name="agenda_today">Heute</string>
+  <string name="agenda_print">Drucken</string>
+  <string name="agenda_share">Teilen</string>
+  <string name="agenda_month_title">%1$s %2$s</string>
+  <string name="agenda_month_range">%1$s – %2$s</string>
+  <string name="agenda_separator">" · "</string>
+  <string name="agenda_holiday">Feiertag</string>
+  <string name="agenda_no_events">Keine Termine</string>
+  <string name="agenda_empty_month">Keine Termine in diesem Monat</string>
+  <string name="agenda_kind_official">Offiziell</string>
+  <string name="agenda_kind_personal">Persönlich</string>
+  <string name="agenda_kind_device">Gerätekalender</string>
+  <string name="agenda_kind_subscription">Abonnement</string>
+  <string name="agenda_event_description">%1$s, %2$s</string>
+  <string name="agenda_export_title">Terminliste: %1$s – %2$s</string>
+  <string name="agenda_print_job">Taqvim-Terminliste</string>
+</resources>

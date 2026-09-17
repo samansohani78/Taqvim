@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (zh) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="app_name">Taqvim</string>
+  <string name="nav_calendar">日历</string>
+  <string name="nav_times">时间</string>
+  <string name="nav_tools">工具</string>
+  <string name="nav_more">更多</string>
+  <string name="more_year">年</string>
+  <string name="more_agenda">日程</string>
+  <string name="more_search">搜索</string>
+  <string name="more_astronomy">天文</string>
+  <string name="more_map">世界地图</string>
+  <string name="map_use_as_place_title">使用此位置吗？</string>
+  <string name="map_use_as_place_message">将 ⁨%1$s⁩ 保存为你用于礼拜时间、朝向和天文的位置吗？</string>
+  <string name="map_use_city_message">将 ⁨%1$s⁩ 保存为你用于礼拜时间、朝向和天文的位置吗？</string>
+  <string name="map_use_as_place_confirm">使用位置</string>
+  <string name="map_use_as_place_cancel">取消</string>
+  <string name="more_compass">指南针</string>
+  <string name="more_level">水平仪和标尺</string>
+  <string name="more_settings">设置</string>
+  <string name="more_backup">备份与恢复</string>
+  <string name="more_privacy">隐私</string>
+  <string name="more_about">关于 Taqvim</string>
+  <string name="process_text_label">在 Taqvim 中打开</string>
+  <string name="shortcut_today">今天</string>
+  <string name="shortcut_new_event">新建事件</string>
+  <string name="shortcut_prayer_times">礼拜时间</string>
+  <string name="shortcut_converter">日期转换器</string>
+  <string name="pending_shift_work">轮班功能尚未提供。</string>
+  <string name="pending_settings">此设置尚未提供。</string>
+  <string name="pending_widgets">小组件设置尚未提供。</string>
+  <string name="message_no_upcoming_occurrence">该事件没有即将到来的日期。</string>
+  <string name="message_setting_not_saved">无法保存该设置。</string>
+  <string name="restore_finishing">正在完成恢复…</string>
+  <string name="restore_incomplete">上次恢复未能完成，你的数据可能被部分替换。Taqvim 会在下次启动时完成或撤销该操作。</string>
+</resources>
