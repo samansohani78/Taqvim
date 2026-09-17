@@ -153,7 +153,7 @@ class CompareBenchmarksTest(unittest.TestCase):
         self.assertEqual(self.gate([], [startup], None), 0)
 
     def test_optional_benchmarks_may_be_missing_or_reported(self) -> None:
-        generator = ("ir.taqvim.benchmark.BaselineProfileGenerator", "generate")
+        generator = ("ir.taqvim.benchmark.BaselineProfileGenerator", "startup")
         required = {
             "required": {".".join(STARTUP): ["timeToInitialFrame"]},
             "optional": {".".join(generator): "run on demand"},

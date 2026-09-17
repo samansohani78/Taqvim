@@ -83,6 +83,7 @@
     ]
   },
   "optional": {
-    "ir.taqvim.benchmark.BaselineProfileGenerator.generate": "Excluded from the nightly job (notClass); run on demand by the baseline-profile job."
+    "ir.taqvim.benchmark.BaselineProfileGenerator.startup": "Excluded from the nightly job (notClass); run on demand by :app:generateBaselineProfile.",
+    "ir.taqvim.benchmark.BaselineProfileGenerator.journeys": "Excluded from the nightly job (notClass); run on demand by :app:generateBaselineProfile."
   }
 }

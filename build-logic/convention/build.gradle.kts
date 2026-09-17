@@ -16,6 +16,8 @@ dependencies {
     implementation(libs.kover.gradlePlugin)
     implementation(libs.roborazzi.gradlePlugin)
     implementation(libs.cyclonedx.gradlePlugin)
+    // Baseline and startup profiles (T-1800, ADR-0018); on the same classpath as AGP so it can see it.
+    implementation(libs.baselineprofile.gradlePlugin)
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)

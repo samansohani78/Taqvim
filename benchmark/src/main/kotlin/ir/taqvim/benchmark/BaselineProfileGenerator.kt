@@ -13,19 +13,31 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * T-1800 baseline and startup profile generator (ADR-0018): cold start → calendar → month swipes → day details →
- * times → search. Needs an API 33+ device or emulator (or a rooted one); the profiles it writes are copied to
- * `app/src/main/baseline-prof.txt` by a person after review. Not part of the nightly benchmark
- * run.
+ * T-1800 baseline and startup profile generator (ADR-0018): [startup] records cold start for the startup profile;
+ * [journeys] records calendar → month swipes → day details → times → search for the baseline profile.
+ * `./gradlew :app:generateBaselineProfile` runs both on the Gradle Managed Device `pixel6Api34` (API 34 aosp-atd) and
+ * writes the profiles to `app/src/main/generated/baselineProfiles`, which are committed after review
+ * (docs/RELEASE.md). Not part of the nightly benchmark run.
  */
 @RunWith(AndroidJUnit4::class)
 class BaselineProfileGenerator {
     @get:Rule
     val rule = BaselineProfileRule()
 
+    /** Cold start to the first month frame: the only journey in the startup profile, which drives dex layout. */
     @Test
-    fun generate(): Unit =
+    fun startup(): Unit =
         rule.collect(packageName = APP_PACKAGE, includeInStartupProfile = true) {
+            pressHome()
+            startActivityAndWait()
+            skipOnboarding()
+            waitForTag(Tags.MONTH_PAGER)
+        }
+
+    /** The main journeys after start-up, recorded into the baseline profile only. */
+    @Test
+    fun journeys(): Unit =
+        rule.collect(packageName = APP_PACKAGE, includeInStartupProfile = false) {
             pressHome()
             startActivityAndWait()
             skipOnboarding()

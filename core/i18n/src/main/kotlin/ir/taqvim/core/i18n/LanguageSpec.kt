@@ -140,6 +140,8 @@ public data class LanguageSpec(
 
     private companion object {
         val PLACEHOLDERS = listOf("{0}", "{1}")
-        val PLACEHOLDER = Regex("""\{[01]}""")
+
+        // Both braces escaped: Android's ICU regex rejects a bare `}` that the JVM accepts (T-1800 profile run).
+        val PLACEHOLDER = Regex("""\{[01]\}""")
     }
 }

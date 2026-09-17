@@ -70,6 +70,8 @@ cyclonedx = "3.4.1"
 [libraries]
 # --- Gradle plugins (consumed by build-logic) ---
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+# T-1800 (ADR-0018): baseline and startup profile generation; build-time only, never in the APK.
+baselineprofile-gradlePlugin = { module = "androidx.benchmark:benchmark-baseline-profile-gradle-plugin", version.ref = "benchmark" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 serialization-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }

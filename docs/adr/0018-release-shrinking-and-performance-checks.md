@@ -91,3 +91,26 @@ new artifacts (Google Maven returns HTTP 404), so only libraries already in the 
 - **CI:** the `unit` job of `pr.yml` runs `./gradlew timingTests --max-workers=1` after the unit tests and coverage
   gate, when everything is already compiled. Budgets are still enforced on every PR, just not under load.
 - **Kover:** timing tests are not needed for coverage; the module gates are checked without them.
+
+## Addendum (2026-09-17): baseline profiles from a Gradle Managed Device (T-1800)
+
+- **Plugin:** `androidx.baselineprofile` (`androidx.benchmark:benchmark-baseline-profile-gradle-plugin`, Apache-2.0,
+  same version as `benchmark` in the catalog) sits on the `build-logic` classpath next to AGP, so modules apply it by
+  id without a version. It is build-time only: nothing from it reaches an APK, the SBOM or the in-app licence list,
+  and the licence gate (which scans module configurations) is unaffected.
+- **Producer:** `:benchmark` applies the plugin and declares the Gradle Managed Device `pixel6Api34` (Pixel 6,
+  API 34, `aosp-atd`). `baselineProfile { managedDevices += "pixel6Api34"; useConnectedDevices = false }` runs
+  `BaselineProfileGenerator` on it. The variant filter keeps the nightly `benchmark` variant and adds the plugin's
+  `nonMinified*`/`benchmark*` variants.
+- **Consumer:** `:app` applies the plugin with `baselineProfile(projects.benchmark)`,
+  `automaticGenerationDuringBuild = false` (normal builds never start an emulator), `saveInSrc = true`,
+  `mergeIntoMain = true` (files land in `app/src/main/generated/baselineProfiles`) and `dexLayoutOptimization = true`
+  (the generator's `includeInStartupProfile = true` startup profile drives dex layout). A build without generated
+  files still works; the app then ships only what `profileinstaller` and the libraries provide.
+- **Command:** `./gradlew :app:generateBaselineProfile` downloads the emulator and system image on first use (needs
+  `/dev/kvm` and access to `dl.google.com`), boots the managed device headless, runs the generator and writes the
+  reviewed profiles into `app/src/main/generated/baselineProfiles`. The files are committed after review
+  (docs/RELEASE.md, "Baseline profile").
+- **Network note:** on 2026-09-17 Google Maven first returned 404 for every artifact and later answered 200 for the
+  same URLs (plugin metadata, `repository2-3.xml`), so the earlier failures were an outage on Google's side, not a
+  local block. The repositories already list `google()` first with content filters.
