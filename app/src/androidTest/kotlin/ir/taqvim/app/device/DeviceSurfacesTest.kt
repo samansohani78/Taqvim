@@ -15,9 +15,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ShortcutManager
+import android.os.Build
 import android.view.View
 import android.widget.RemoteViews
 import androidx.test.core.app.ActivityScenario
+import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
 import ir.taqvim.app.MainActivity
@@ -31,6 +33,7 @@ import org.junit.Test
  * Taqvim's system surfaces on a real Android device (T-1200–T-1215): every widget is bound, updated and drawn without
  * the launcher's error view, the persistent notification is posted, and the tile and shortcuts resolve.
  */
+@SdkSuppress(minSdkVersion = Build.VERSION_CODES.TIRAMISU) // per-app language and POST_NOTIFICATIONS need 13+
 class DeviceSurfacesTest {
     @get:Rule
     val notifications: GrantPermissionRule = GrantPermissionRule.grant(Manifest.permission.POST_NOTIFICATIONS)

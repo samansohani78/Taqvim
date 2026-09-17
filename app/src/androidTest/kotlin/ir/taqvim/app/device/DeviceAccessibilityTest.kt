@@ -5,6 +5,8 @@
 package ir.taqvim.app.device
 
 import android.app.Activity
+import android.os.Build
+import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import androidx.test.runner.lifecycle.Stage
@@ -19,6 +21,7 @@ import org.junit.runners.Parameterized
  * Accessibility Test Framework checks (T-1700) on every top-level screen and More entry of the running app, in a
  * right-to-left and a left-to-right language. Any ATF error fails the test with the screen and the message.
  */
+@SdkSuppress(minSdkVersion = Build.VERSION_CODES.TIRAMISU) // per-app language and POST_NOTIFICATIONS need 13+
 @RunWith(Parameterized::class)
 class DeviceAccessibilityTest(
     private val language: String,

@@ -7,6 +7,8 @@ package ir.taqvim.app.device
 import android.Manifest
 import android.app.Notification
 import android.app.NotificationManager
+import android.os.Build
+import androidx.test.filters.SdkSuppress
 import androidx.test.rule.GrantPermissionRule
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
@@ -25,6 +27,7 @@ import org.koin.core.context.GlobalContext
  * A personal event's reminder (T-1001) is scheduled through the persistent scheduler (T-604, ADR-0033) and fires as a
  * notification on a real device's AlarmManager, with exact alarms allowed as the permission screen would allow them.
  */
+@SdkSuppress(minSdkVersion = Build.VERSION_CODES.TIRAMISU) // per-app language and POST_NOTIFICATIONS need 13+
 class DeviceReminderTest {
     @get:Rule
     val notifications: GrantPermissionRule = GrantPermissionRule.grant(Manifest.permission.POST_NOTIFICATIONS)

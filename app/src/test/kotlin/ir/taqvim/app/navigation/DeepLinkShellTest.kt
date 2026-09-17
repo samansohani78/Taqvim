@@ -4,9 +4,11 @@
  */
 package ir.taqvim.app.navigation
 
+import android.os.Looper
 import androidx.compose.ui.test.junit4.v2.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.app.PREFERENCES_TIMEOUT_MILLIS
 import ir.taqvim.app.TaqvimAppShell
 import ir.taqvim.app.finishOnboarding
 import ir.taqvim.core.calendar.toJdn
@@ -18,6 +20,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.context.stopKoin
+import org.robolectric.Shadows.shadowOf
 
 /** T-1103 in the running shell: a day link opens the calendar on that day; an unreadable link shows the calendar. */
 @RunWith(AndroidJUnit4::class)
@@ -37,6 +40,17 @@ class DeepLinkShellTest {
         stopKoin()
     }
 
+    // The shell settles asynchronously (preferences, restore gate), which can take a moment on a busy machine.
+    private fun waitForScreen(destination: AppDestination) {
+        composeRule.waitUntil(PREFERENCES_TIMEOUT_MILLIS) {
+            shadowOf(Looper.getMainLooper()).idle()
+            composeRule
+                .onAllNodesWithTag(destinationTag(destination), useUnmergedTree = true)
+                .fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+    }
+
     @Test
     fun aDayLinkOpensTheCalendarOnThatDay() {
         val nowruz = DeepLinks.parse("taqvim://day/1405-01-01")
@@ -44,7 +58,7 @@ class DeepLinkShellTest {
         var opened = 0
         composeRule.setContent { TaqvimAppShell(link = nowruz, onLinkOpened = { opened++ }) }
 
-        composeRule.onNodeWithTag(destinationTag(nowruz), useUnmergedTree = true).assertExists()
+        waitForScreen(nowruz)
         assertTrue(opened == 1)
     }
 
@@ -52,6 +66,6 @@ class DeepLinkShellTest {
     fun anUnreadableLinkShowsTheCalendar() {
         composeRule.setContent { TaqvimAppShell(link = DeepLinks.parse("taqvim://nothing-here")) }
 
-        composeRule.onNodeWithTag(destinationTag(AppDestination.Calendar), useUnmergedTree = true).assertExists()
+        waitForScreen(AppDestination.Calendar)
     }
 }

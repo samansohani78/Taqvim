@@ -5,6 +5,8 @@
 package ir.taqvim.app.device
 
 import android.Manifest
+import android.os.Build
+import androidx.test.filters.SdkSuppress
 import androidx.test.rule.GrantPermissionRule
 import androidx.test.uiautomator.By
 import org.junit.Before
@@ -18,6 +20,7 @@ import org.junit.runners.Parameterized
  * each `taqvim://` link, each top-level tab and each More entry, selects every tab of the screen and rotates the linked
  * screens once. A crash, ANR or missing screen fails the test.
  */
+@SdkSuppress(minSdkVersion = Build.VERSION_CODES.TIRAMISU) // per-app language and POST_NOTIFICATIONS need 13+
 @RunWith(Parameterized::class)
 class DeviceSmokeTest(
     private val language: String,
