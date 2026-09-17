@@ -196,7 +196,7 @@ class CrossSurfaceContractTest {
                 zones = flowOf(zone),
                 computeDispatcher = Dispatchers.Unconfined,
             )
-        val source = RepositoryTimelineDaysSource(repository::days, flowOf("en"), zone = { zone })
+        val source = RepositoryTimelineDaysSource(repository::days, flowOf("en"), zones = flowOf(zone))
         return source.days(days).first().flatMap { shownDay ->
             shownDay.events
                 .filter { it.isAllDay || it.startMinute > 0 }

@@ -213,6 +213,18 @@ class EventEditorViewModelTest {
         }
 
     @Test
+    fun `a device zone change keeps the open form's zone`(): Unit =
+        runTest {
+            val viewModel = viewModel()
+            val zone = viewModel.editing.form.timeZoneId
+            settings.flow.value = settings.flow.value.copy(timeZoneId = "Asia/Tokyo")
+
+            // Review I06: only a form created later takes the new zone; the open draft's times never move silently.
+            viewModel.editing.form.timeZoneId shouldBe zone
+            (zone == "Asia/Tokyo") shouldBe false
+        }
+
+    @Test
     fun `actions before the editor opens are ignored`() {
         Dispatchers.setMain(UnconfinedTestDispatcher())
         val viewModel =

@@ -8,6 +8,7 @@ import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.data.preferences.UserPreferencesRepository
@@ -24,10 +25,12 @@ import ir.taqvim.feature.timeline.TimelineSettingsSource
 import ir.taqvim.feature.times.TimesSettingsSource
 import kotlin.time.Clock
 import kotlin.time.Instant
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
@@ -52,16 +55,20 @@ internal class PreferencesTimelineSettingsSource(
 
 /**
  * Timeline days (T-900) from the events repository (T-305), titled in [language]. Dataset events are all-day; timed
- * personal, device and subscription events become minute spans of each civil day in the device [zone].
+ * personal, device and subscription events become minute spans of each civil day in the device zone from [zones], so a
+ * zone change redraws the spans (review I06).
  */
 internal class RepositoryTimelineDaysSource(
     private val days: (JdnRange) -> Flow<List<DayEvents>>,
     private val language: Flow<String>,
-    private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
+    private val zones: Flow<TimeZone> = DeviceTimeZone.current,
 ) : TimelineDaysSource {
     override fun days(range: JdnRange): Flow<List<TimelineDay>> =
-        combine(days.invoke(range), language.distinctUntilChanged()) { days, language ->
-            val zone = zone()
+        combine(days.invoke(range), language.distinctUntilChanged(), zones.distinctUntilChanged()) {
+            days,
+            language,
+            zone,
+            ->
             days.map { it.toTimelineDay(language, zone) }
         }.distinctUntilChanged()
 }
@@ -181,18 +188,28 @@ internal class TimesTimelinePlaceSource(
             .distinctUntilChanged()
 }
 
-/** [TimelineClockSource] (T-900): the device-zone day and minute, emitted again at every minute boundary. */
+/**
+ * [TimelineClockSource] (T-900): the day and minute in the device zone from [zones], emitted again at every minute
+ * boundary and at once when the zone changes (review I06).
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class DeviceTimelineClockSource(
     private val clock: Clock,
-    private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
+    private val zones: Flow<TimeZone> = DeviceTimeZone.current,
 ) : TimelineClockSource {
     override fun now(): Flow<TimelineNow> =
+        zones
+            .distinctUntilChanged()
+            .flatMapLatest { zone -> ticks(zone) }
+            .distinctUntilChanged()
+
+    private fun ticks(zone: TimeZone): Flow<TimelineNow> =
         flow {
             while (true) {
                 val now = clock.now()
-                val local = now.toLocalDateTime(zone())
+                val local = now.toLocalDateTime(zone)
                 emit(TimelineNow(local.date.toJdn(), local.hour * MINUTES_PER_HOUR + local.minute))
                 delay(MILLIS_PER_MINUTE - now.toEpochMilliseconds().mod(MILLIS_PER_MINUTE))
             }
-        }.distinctUntilChanged()
+        }
 }

@@ -86,7 +86,7 @@ class TimelineZoneDatingTest {
                 zones = flowOf(zone),
                 computeDispatcher = Dispatchers.Unconfined,
             )
-        val source = RepositoryTimelineDaysSource(repository::days, flowOf("en"), zone = { zone })
+        val source = RepositoryTimelineDaysSource(repository::days, flowOf("en"), zones = flowOf(zone))
         return source.days(range).first().associate { it.jdn to it.events }
     }
 

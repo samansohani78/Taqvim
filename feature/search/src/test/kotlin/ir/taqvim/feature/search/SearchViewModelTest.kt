@@ -138,6 +138,24 @@ class SearchViewModelTest {
         }
 
     @Test
+    fun `a device zone change runs the search again`(): Unit =
+        runTest {
+            val sources = FakeSearchSources(PERSIAN_FA.copy(timeZoneId = "Asia/Tehran"))
+            val viewModel = viewModel(sources)
+            viewModel.uiState.test {
+                viewModel.onAction(SearchAction.ChangeQuery("Nowruz"))
+                awaitResults()
+                sources.calls shouldContainExactly listOf("Nowruz")
+
+                sources.settingsFlow.value = PERSIAN_FA.copy(timeZoneId = "Asia/Tokyo")
+                // Same results, so the state may not change; the source is asked again.
+                testScheduler.advanceUntilIdle()
+                sources.calls shouldContainExactly listOf("Nowruz", "Nowruz")
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
     fun `a language change rewrites the result days`(): Unit =
         runTest {
             val sources = FakeSearchSources(PERSIAN_FA)

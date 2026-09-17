@@ -14,7 +14,13 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.calendar.CalendarCalendars
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -54,12 +60,24 @@ class EditorAdaptersTest {
         settings.anchors.shouldBeNull()
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun `the settings source uses the device zone of the moment`(): Unit =
+    fun `the settings source follows the device zone`(): Unit =
         runTest {
-            val source = PreferencesEditorSettingsSource(repositoryOf(persian), anchors) { TimeZone.UTC }
+            val zones = MutableStateFlow<TimeZone>(TimeZone.UTC)
+            val source = PreferencesEditorSettingsSource(repositoryOf(persian), anchors, zones)
 
-            source.settings().first().timeZoneId shouldBe "UTC"
+            val zoneIds =
+                async {
+                    source
+                        .settings()
+                        .take(2)
+                        .toList()
+                        .map { it.timeZoneId }
+                }
+            runCurrent()
+            zones.value = TimeZone.of("Asia/Tokyo")
+            zoneIds.await() shouldBe listOf("UTC", "Asia/Tokyo")
         }
 
     @Test

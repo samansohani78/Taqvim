@@ -29,12 +29,14 @@ import ir.taqvim.feature.times.TimesSettings
 import kotlin.time.Clock
 import kotlin.time.Instant
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.currentTime
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -154,7 +156,7 @@ class TimelineAdaptersTest {
             place.place().first() shouldBe TimelinePlace(settings.place, tehran, settings.prayer)
 
             val holiday = dayEvents(isHoliday = true)
-            val source = RepositoryTimelineDaysSource({ flowOf(listOf(holiday)) }, flowOf("fa"), { tehran })
+            val source = RepositoryTimelineDaysSource({ flowOf(listOf(holiday)) }, flowOf("fa"), flowOf(tehran))
             source.days(day..day).first() shouldBe listOf(TimelineDay(day, true, false, emptyList()))
         }
 
@@ -168,10 +170,29 @@ class TimelineAdaptersTest {
                     override fun now(): Instant = Instant.fromEpochMilliseconds(start + currentTime)
                 }
 
-            val values = DeviceTimelineClockSource(clock) { tehran }.now().take(2).toList()
+            val values = DeviceTimelineClockSource(clock, flowOf(tehran)).now().take(2).toList()
 
             // 20:29:40 UTC is 23:59:40 in Tehran; twenty seconds later the next day begins.
             values shouldBe listOf(TimelineNow(day, 1_439), TimelineNow(day + 1, 0))
+        }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `the clock follows a device zone change at once`(): Unit =
+        runTest {
+            val clock =
+                object : Clock {
+                    override fun now(): Instant = at("2026-03-21T20:29:40Z")
+                }
+            val zones = MutableStateFlow(tehran)
+
+            val values = async { DeviceTimelineClockSource(clock, zones).now().take(2).toList() }
+            runCurrent()
+            zones.value = TimeZone.of("Asia/Tokyo")
+
+            // 20:29 UTC is 05:29 the next morning in Tokyo; it shows without waiting for the next minute.
+            values.await() shouldBe listOf(TimelineNow(day, 1_439), TimelineNow(day + 1, 5 * 60 + 29))
+            currentTime shouldBe 0L
         }
 
     private fun at(text: String): Instant = Instant.parse(text)

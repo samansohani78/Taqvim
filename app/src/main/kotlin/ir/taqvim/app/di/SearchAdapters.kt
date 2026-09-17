@@ -11,6 +11,7 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.DeviceEventCacheEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.devicecalendar.DeviceEventMapping
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.PersonalEventDays
 import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.generated.OfficialEvents
@@ -22,18 +23,23 @@ import ir.taqvim.feature.search.SearchMatcher
 import ir.taqvim.feature.search.SearchSettings
 import ir.taqvim.feature.search.SearchSettingsSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
 
-/** The search screen's preferences (T-804) from the stored user preferences (T-600). */
+/**
+ * The search screen's preferences (T-804) from the stored user preferences (T-600), with the device zone from [zones]
+ * so a zone change re-dates the results (review I06).
+ */
 internal class PreferencesSearchSettingsSource(
     private val preferences: UserPreferencesRepository,
+    private val zones: Flow<TimeZone> = DeviceTimeZone.current,
 ) : SearchSettingsSource {
     override fun settings(): Flow<SearchSettings> =
-        preferences.preferences
-            .map { SearchSettings(it.languageSpec().code, it.calendars) }
-            .distinctUntilChanged()
+        combine(preferences.preferences, zones) { stored, zone ->
+            SearchSettings(stored.languageSpec().code, stored.calendars, zone.id)
+        }.distinctUntilChanged()
 }
 
 /** The stored and cached events the search reads, each loaded when a query runs (T-601, T-602, T-1003). */

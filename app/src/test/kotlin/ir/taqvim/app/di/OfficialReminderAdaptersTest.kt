@@ -87,6 +87,24 @@ class OfficialReminderAdaptersTest {
         }
 
     @Test
+    fun theSetupReadsTheDeviceZoneAtEachRecompute(): Unit =
+        runBlocking {
+            var zone = TimeZone.of("Asia/Tehran")
+            val source =
+                RoomReminderSetupSource(
+                    events = database.personalEventDao(),
+                    officialReminders = dao,
+                    preferences = repositoryOf(UserPreferences.defaultsFor("fa")),
+                    zone = { zone },
+                )
+
+            source.current().zone shouldBe TimeZone.of("Asia/Tehran")
+            // The scheduler recomputes on ACTION_TIMEZONE_CHANGED (ReschedulePolicy), after the platform switched zones.
+            zone = TimeZone.of("Asia/Tokyo")
+            source.current().zone shouldBe TimeZone.of("Asia/Tokyo")
+        }
+
+    @Test
     fun changesOfReminderInputsAreAnnounced(): Unit =
         runBlocking {
             val changed = CompletableDeferred<Set<String>>()

@@ -23,6 +23,11 @@ data class SearchSettings(
     val languageCode: String,
     /** The user's calendars in order; the first available one writes result dates and reads typed numbers. */
     val calendars: List<CalendarSystem>,
+    /**
+     * The device time zone id: personal, device and subscription results are dated in it, so a change re-runs the
+     * search (review I06). Empty when the source does not track it.
+     */
+    val timeZoneId: String = "",
 )
 
 /** Where a found event comes from. */

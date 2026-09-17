@@ -20,6 +20,7 @@ import ir.taqvim.data.database.ReminderDao
 import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.toEntity
 import ir.taqvim.data.database.toRule
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.events.ics.TransactionRunner
 import ir.taqvim.data.preferences.UserPreferences
@@ -31,6 +32,7 @@ import ir.taqvim.feature.events.PersonalEventStore
 import kotlin.math.abs
 import kotlin.time.Clock
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
@@ -157,14 +159,19 @@ private fun PersonalEvent.toEntity(
         sourceLink = sourceLink,
     )
 
-/** [EditorSettingsSource] (T-1000) from the stored preferences, with new events in the device's time zone. */
+/**
+ * [EditorSettingsSource] (T-1000) from the stored preferences, with the device zone from [zones] (review I06). The zone
+ * only sets the time zone of a form created after it and the editor's display (today, recurrence preview): an open
+ * form keeps the zone it was created with, so a device zone change never moves a draft's times silently.
+ */
 internal class PreferencesEditorSettingsSource(
     private val preferences: UserPreferencesRepository,
     private val anchors: AnchorLookup?,
-    private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
+    private val zones: Flow<TimeZone> = DeviceTimeZone.current,
 ) : EditorSettingsSource {
     override fun settings(): Flow<EditorSettings> =
-        preferences.preferences.map { editorSettings(it, zone().id, anchors) }.distinctUntilChanged()
+        combine(preferences.preferences, zones) { stored, zone -> editorSettings(stored, zone.id, anchors) }
+            .distinctUntilChanged()
 }
 
 /**

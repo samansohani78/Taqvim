@@ -182,7 +182,9 @@ val appFeaturePortsModule =
             val preferences = get<UserPreferencesRepository>()
             RoomPersonalEventStore(get(), get(), get(), get()) { preferences.preferences.first().availableArithmetic() }
         }
-        single<EditorSettingsSource> { PreferencesEditorSettingsSource(get(), OfficialAnchorLookup()) }
+        single<EditorSettingsSource> {
+            PreferencesEditorSettingsSource(get(), OfficialAnchorLookup(), get(named(DeviceTimeZone.QUALIFIER)))
+        }
         single<AstronomySettingsSource> { TimesAstronomySettingsSource(get()) }
         single<CompassSettingsSource> { PreferencesCompassSettingsSource(get(), get()) }
         single<LevelCalibrationStore> { PreferencesLevelCalibrationStore(get()) }
@@ -227,7 +229,9 @@ val appFeaturePortsModule =
 /** Ports of search (T-804), the timeline (T-900) and the athan settings (T-1101) over the data layer. */
 val searchTimelineAthanPortsModule =
     module {
-        single<SearchSettingsSource> { PreferencesSearchSettingsSource(get()) }
+        single<SearchSettingsSource> {
+            PreferencesSearchSettingsSource(get(), get(named(DeviceTimeZone.QUALIFIER)))
+        }
         single<SearchEventSource> {
             val preferences = get<UserPreferencesRepository>()
             val personal = get<PersonalEventDao>()
@@ -255,10 +259,11 @@ val searchTimelineAthanPortsModule =
             RepositoryTimelineDaysSource(
                 events::days,
                 get<UserPreferencesRepository>().preferences.map { it.languageCode },
+                get(named(DeviceTimeZone.QUALIFIER)),
             )
         }
         single<TimelinePlaceSource> { TimesTimelinePlaceSource(get()) }
-        single<TimelineClockSource> { DeviceTimelineClockSource(get()) }
+        single<TimelineClockSource> { DeviceTimelineClockSource(get(), get(named(DeviceTimeZone.QUALIFIER))) }
         single<AthanSettingsStore> { PreferencesAthanSettingsStore(get()) }
         single<ExactAlarmAccess> { SchedulerExactAlarmAccess(get<AlarmScheduler>().exactAlarmStatus) }
         single<AthanSoundLibrary> { ContentResolverAthanSoundLibrary(get()) }

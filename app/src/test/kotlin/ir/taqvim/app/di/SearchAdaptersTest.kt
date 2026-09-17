@@ -24,7 +24,14 @@ import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.search.SearchEvent
 import ir.taqvim.feature.search.SearchEventKind
 import ir.taqvim.feature.search.SearchSettings
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -42,8 +49,28 @@ class SearchAdaptersTest {
         runTest {
             val preferences = UserPreferences.defaultsFor("fa")
 
-            PreferencesSearchSettingsSource(repositoryOf(preferences)).settings().first() shouldBe
-                SearchSettings("fa", preferences.calendars)
+            PreferencesSearchSettingsSource(repositoryOf(preferences), flowOf(TimeZone.UTC)).settings().first() shouldBe
+                SearchSettings("fa", preferences.calendars, "UTC")
+        }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `search settings change with the device zone`(): Unit =
+        runTest {
+            val zones = MutableStateFlow(TimeZone.of("Asia/Tehran"))
+            val source = PreferencesSearchSettingsSource(repositoryOf(UserPreferences.defaultsFor("fa")), zones)
+
+            val zoneIds =
+                async {
+                    source
+                        .settings()
+                        .take(2)
+                        .toList()
+                        .map { it.timeZoneId }
+                }
+            runCurrent()
+            zones.value = TimeZone.of("Asia/Tokyo")
+            zoneIds.await() shouldBe listOf("Asia/Tehran", "Asia/Tokyo")
         }
 
     @Test
