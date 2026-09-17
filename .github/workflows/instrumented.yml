@@ -15,6 +15,9 @@ permissions:
   contents: read
 
 env:
+  # Without a profile avdmanager picks the image's default phone, which on API 36 is 320dp wide: a month grid then has
+  # 46dp columns and the accessibility checks (T-1700) fail on a touch target no 7-column calendar can widen there.
+  EMULATOR_PROFILE: pixel_6
   GRADLE_OPTS: >-
     -Dorg.gradle.workers.max=4
     -Dorg.gradle.java.installations.fromEnv=JAVA_HOME_21_X64
@@ -53,12 +56,13 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-${{ matrix.api-level }}
+          key: avd-${{ matrix.api-level }}-${{ env.EMULATOR_PROFILE }}
       - name: Create AVD snapshot
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          profile: ${{ env.EMULATOR_PROFILE }}
           target: google_apis
           arch: x86_64
           force-avd-creation: false
@@ -69,6 +73,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          profile: ${{ env.EMULATOR_PROFILE }}
           target: google_apis
           arch: x86_64
           force-avd-creation: false
