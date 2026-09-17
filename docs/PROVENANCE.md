@@ -1130,24 +1130,47 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### D-05 — UN international days
-- **Files:** `dataset/international/un-international-days.json` (93 records); generated
+- **Files:** `dataset/international/un-international-days.json` (102 records); generated
   `data/events/.../generated/OfficialEventsPart4`–`15.kt`; test `tools/dataset/.../UnInternationalDaysTest.kt` with
   golden `tools/dataset/src/test/resources/golden/international/un-international-days-rules.csv`
 - **Sources (public, primary):**
   1. United Nations, List of International Days and Weeks, https://www.un.org/{en,ar,zh,fr,ru,es}/observances/list-days-weeks
-     (retrieved 2026-09-13) — dates and titles in the six UN languages.
-  2. Per-day pages for nth-weekday rules: https://www.un.org/en/observances/habitat-day,
-     https://www.unesco.org/en/days/philosophy.
+     (retrieved 2026-09-13, re-read 2026-09-18) — dates and titles in the six UN languages. The page refuses plain HTTP
+     clients (HTTP 403); it was read through the fetching tool of the agent session.
+  2. Per-day pages for weekday rules: https://www.un.org/en/observances/habitat-day,
+     https://www.unesco.org/en/days/philosophy, https://www.un.org/en/observances/maritime-day,
+     https://www.worldmigratorybirdday.org/ (the organizers named on the UN list: CMS, AEWA, EAAFP and Environment for
+     the Americas).
   3. UN Information Centre Tehran, "مناسبت های ویژه سازمان ملل متحد", https://www.unic-ir.org/event/f-event.htm —
      unreachable (HTTP 522/403); used through the Internet Archive snapshot of 2012-10-05, cited by its archive URL and
-     stored in `docs/sources/unic-tehran-f-event-20121005.html` (MANIFEST): 86 Persian titles and the rules of the
-     International Day of Cooperatives and the road traffic victims day.
-  4. United Nations in the Islamic Republic of Iran, Persian Secretary-General message pages (iran.un.org/fa/…):
-     7 Persian titles.
-- **Normalization:** Arabic ي/ك → Persian ی/ک; obvious typos fixed (e.g. حهانی → جهانی); agency/decade tags removed.
-  Nothing translated. Days renamed or moved since 2012 keep UNIC's Persian name with the current UN date.
-- **Gaps:** 144 days without a primary Persian title (DT-019, DT-023, DT-024); 10 weeks not representable.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+     stored in `docs/sources/unic-tehran-f-event-20121005.html` (MANIFEST): 86 Persian titles, the rules of the
+     International Day of Cooperatives and of the road traffic victims day, and (2026-09-18) the Persian titles and
+     weekday wording of World Migratory Bird Day, World Telecommunication and Information Society Day and World
+     Maritime Day. The list is a two-column table (title, date); it was re-read by date on 2026-09-18, which is how
+     those three rows were found.
+  4. United Nations in the Islamic Republic of Iran, Persian pages (iran.un.org/fa/…): 9 Persian titles, including
+     (2026-09-18) the International Day of Clean Energy and World Soil Day.
+  5. UN Information Centre Tehran Persian news articles, through the Internet Archive (the live site is down):
+     World Radio Day, the International Day of Sport for Development and Peace, World Toilet Day and the Day of
+     Remembrance for all Victims of Chemical Warfare. Each citation names the snapshot whose page renders the title;
+     later snapshots of the same articles are empty shells and were rejected.
+- **Search performed (2026-09-18):** the UNIC archive index (14 984 archived URLs, of which 937 Persian articles) and
+  the Persian search of iran.un.org (576 distinct page titles over nine queries, plus one query per missing day) were
+  read in full. They name no further day of the UN list, so the remaining days are listed in DT-019 rather than guessed.
+- **Rules derived from two list editions:** World Migratory Bird Day is the second Saturday of May — the en list gives
+  9 May and the ar/zh/fr/ru lists 11 May, both second Saturdays, and the UNIC row reads "9 و 10 مه"; its October
+  occurrence is left out (the organizer states 10 October, the UN list 9 October — DT-024). World Maritime Day is the
+  last Thursday of September — the en/es lists give 24 September and the ar/zh/fr lists 26 September, both last
+  Thursdays, and the UNIC row reads "29 سپتامبر (هفته آخر سپتامبر)"; imo.org answered HTTP 500 on 2026-09-18, so its
+  own wording is still wanted (DT-024).
+- **Normalization:** Arabic ي/ك → Persian ی/ک; obvious typos fixed (e.g. حهانی → جهانی، "روز بین الملل یپرندگان مهاجر"
+  → "روز بین‌المللی پرندگان مهاجر"); agency/decade tags removed (e.g. the zh list's [环境署]/[粮农组织]). Nothing
+  translated. Days renamed or moved since 2012 keep UNIC's Persian name with the current UN date — the 17 May day is
+  stored under UNIC's "روز جهانی ارتباطات", the pre-2006 name (DT-023).
+- **Gaps:** 130 days of the UN list without a primary Persian title (DT-019, DT-023, DT-024); 10 weeks not
+  representable. World Cities Day has a Persian title in a UNIC article URL, but no archived snapshot renders the page,
+  so it is not cited and the day stays in DT-019.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13, extended 2026-09-18; **reviewer:** pending.
 
 ### D-07 — Islamic Iran override table
 - **Files:** `dataset/iran/islamic-iran-overrides.json` (26 months, Ramadan 1446 – Shawwal 1448), schema

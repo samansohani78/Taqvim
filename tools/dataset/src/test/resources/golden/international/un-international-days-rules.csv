@@ -2,19 +2,28 @@
 # url: https://www.un.org/en/observances/list-days-weeks
 # retrieved: 2026-09-13
 # reviewer: pending
-# notes: spot checks for D-05. Fixed dates from the UN list; habitat-day rule from https://www.un.org/en/observances/habitat-day ("the first Monday of October of every year"); world-philosophy-day from https://www.unesco.org/en/days/philosophy ("the third Thursday of November"); cooperatives-day (اولين شنبه ژوئيه) and road-traffic-victims-day (سومین یکشنبه نوامبر) from https://www.unic-ir.org/event/f-event.htm (Internet Archive copy 2012-10-05, docs/sources/unic-tehran-f-event-20121005.html)
+# notes: spot checks for D-05. Fixed dates from the UN list; habitat-day rule from https://www.un.org/en/observances/habitat-day ("the first Monday of October of every year"); world-philosophy-day from https://www.unesco.org/en/days/philosophy ("the third Thursday of November"); cooperatives-day (اولين شنبه ژوئيه) and road-traffic-victims-day (سومین یکشنبه نوامبر) from https://www.unic-ir.org/event/f-event.htm (Internet Archive copy 2012-10-05, docs/sources/unic-tehran-f-event-20121005.html) Added 2026-09-18: radio-day, sport-day, clean-energy-day, toilet-day, chemical-warfare-victims-day and soil-day are fixed dates on the UN list; migratory-bird-day is the second Saturday of May (the UN list gives 11 May in the ar/zh/fr/ru editions and 9 May in the en edition, both second Saturdays, and the UNIC list row reads "9 و 10 مه"); maritime-day is the last Thursday of September (UN list 26 September in the ar/zh/fr editions and 24 September in the en/es editions, both last Thursdays; the UNIC list row reads "29 سپتامبر (هفته آخر سپتامبر)"; imo.org was unreachable, HTTP 500, on 2026-09-18).
 id,type,month,day,weekday,n
 un.education-day,Fixed,1,24,,
+un.clean-energy-day,Fixed,1,26,,
+un.radio-day,Fixed,2,13,,
 un.mother-language-day,Fixed,2,21,,
 un.international-nowruz-day,Fixed,3,21,,
 un.water-day,Fixed,3,22,,
+un.sport-day,Fixed,4,6,,
+un.migratory-bird-day,NthWeekdayOfMonth,5,,SATURDAY,2
+un.telecommunication-day,Fixed,5,17,,
 un.environment-day,Fixed,6,5,,
 un.cooperatives-day,NthWeekdayOfMonth,7,,SATURDAY,1
+un.maritime-day,LastWeekdayOfMonth,9,,THURSDAY,
 un.protect-education-day,Fixed,9,9,,
 un.international-day-peace,Fixed,9,21,,
-un.older-persons-day,Fixed,10,1,,
 un.habitat-day,NthWeekdayOfMonth,10,,MONDAY,1
+un.older-persons-day,Fixed,10,1,,
 un.un-day,Fixed,10,24,,
 un.road-traffic-victims-day,NthWeekdayOfMonth,11,,SUNDAY,3
 un.world-philosophy-day,NthWeekdayOfMonth,11,,THURSDAY,3
+un.toilet-day,Fixed,11,19,,
+un.chemical-warfare-victims-day,Fixed,11,30,,
+un.soil-day,Fixed,12,5,,
 un.human-rights-day,Fixed,12,10,,

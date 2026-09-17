@@ -34,7 +34,11 @@ class UnInternationalDaysTest {
     fun `golden count and rule types`() {
         events.size shouldBe EVENT_COUNT
         events.groupingBy { it.rule().text("type") }.eachCount() shouldBe
-            mapOf("Fixed" to FIXED_COUNT, "NthWeekdayOfMonth" to WEEKDAY_COUNT)
+            mapOf(
+                "Fixed" to FIXED_COUNT,
+                "NthWeekdayOfMonth" to WEEKDAY_COUNT,
+                "LastWeekdayOfMonth" to LAST_WEEKDAY_COUNT,
+            )
     }
 
     @Test
@@ -54,7 +58,7 @@ class UnInternationalDaysTest {
                     event["isHoliday"] != JsonPrimitive(false) ||
                     titles?.containsKey("en") != true ||
                     UN_LIST_URL !in urls ||
-                    urls.none { url -> PERSIAN_SOURCES.any { url.startsWith(it) } }
+                    urls.none { url -> PERSIAN_SOURCES.any(url::contains) }
             }.map { it.text("id") }
             .shouldBeEmpty()
     }
@@ -82,11 +86,13 @@ class UnInternationalDaysTest {
         const val DATASET_FILE = "international/un-international-days.json"
         const val GOLDEN = "/golden/international/un-international-days-rules.csv"
         const val UN_LIST_URL = "https://www.un.org/en/observances/list-days-weeks"
-        const val EVENT_COUNT = 93
-        const val FIXED_COUNT = 89
-        const val WEEKDAY_COUNT = 4
-        val PERSIAN_SOURCES =
-            listOf("https://web.archive.org/web/20121005003400/https://www.unic-ir.org/", "https://iran.un.org/fa/")
+        const val EVENT_COUNT = 102
+        const val FIXED_COUNT = 96
+        const val WEEKDAY_COUNT = 5
+        const val LAST_WEEKDAY_COUNT = 1
+
+        /** Persian titles come from UN Information Centre Tehran (live or Internet Archive) or United Nations in Iran. */
+        val PERSIAN_SOURCES = listOf("unic-ir.org", "https://iran.un.org/fa/")
 
         fun property(name: String): String = requireNotNull(System.getProperty(name)) { "$name is not set" }
 

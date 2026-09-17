@@ -14,7 +14,6 @@ import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.model.CalendarSystem
-import ir.taqvim.core.model.Weekday
 
 /**
  * Part 19 of the dataset events.
@@ -24,7 +23,7 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.world-meteorological-day"),
+            id = EventId("un.world-blood-donor-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -32,16 +31,16 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی هواشناسی",
-                        "ar" to "اليوم العالمي للأرصاد الجوية",
-                        "en" to "World Meteorological Day",
-                        "es" to "Día Meteorológico Mundial",
-                        "fr" to "Journée météorologique mondiale",
-                        "ru" to "Всемирный метеорологический день",
-                        "zh" to "世界气象日",
+                        "fa" to "روز جهانی اهداکنندگان خون",
+                        "ar" to "اليوم العالمي للمتبرّعين بالدم",
+                        "en" to "World Blood Donor Day",
+                        "es" to "Día Mundial del Donante de Sangre",
+                        "fr" to "Journée mondiale du donneur de sang",
+                        "ru" to "Всемирный день донора крови",
+                        "zh" to "世界献血者日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 3, day = 23),
+            rule = EventRule.Fixed(month = 6, day = 14),
             citations =
                 listOf(
                     Citation(
@@ -49,8 +48,8 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://wmo.int/about-wmo/world-meteorological-day",
-                        title = "World Meteorological Day (observance page)",
+                        url = "https://www.who.int/campaigns/world-blood-donor-day",
+                        title = "World Blood Donor Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -60,12 +59,12 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://library.wmo.int/viewer/32802?medianame=99_en_#page=66&amp;viewer=picture&amp;o=bookmarks&amp;n=0&amp;q=",
-                    "un" to "https://wmo.int/about-wmo/world-meteorological-day",
+                    "resolution" to "https://apps.who.int/gb/ebwha/pdf_files/WHA58/WHA58_13-en.pdf",
+                    "un" to "https://www.who.int/campaigns/world-blood-donor-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.world-no-tobacco-day"),
+            id = EventId("un.world-book-and-copyright-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -73,16 +72,16 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی خودداری از مصرف دخانیات",
-                        "ar" to "اليوم العالمي للامتناع عن تعاطي التبغ",
-                        "en" to "World No-Tobacco Day",
-                        "es" to "Día Mundial Sin Tabaco",
-                        "fr" to "Journée mondiale sans tabac",
-                        "ru" to "Всемирный день без табака",
-                        "zh" to "世界无烟日",
+                        "fa" to "روز جهانی کتاب و حق پدید آورنده",
+                        "ar" to "اليوم العالمي للكتاب وحقوق المؤلف",
+                        "en" to "World Book and Copyright Day",
+                        "es" to "Día Mundial del Libro y del Derecho de Autor",
+                        "fr" to "Journée mondiale du livre et du droit d'auteur",
+                        "ru" to "Всемирный день книги и авторского права",
+                        "zh" to "世界图书与版权日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 5, day = 31),
+            rule = EventRule.Fixed(month = 4, day = 23),
             citations =
                 listOf(
                     Citation(
@@ -90,8 +89,8 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.who.int/campaigns/world-no-tobacco-day",
-                        title = "World No-Tobacco Day (observance page)",
+                        url = "https://www.unesco.org/en/days/world-book-and-copyright",
+                        title = "World Book and Copyright Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -101,12 +100,12 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://www.who.int/about/governance/world-health-assembly",
-                    "un" to "https://www.who.int/campaigns/world-no-tobacco-day",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803.page=56",
+                    "un" to "https://www.unesco.org/en/days/world-book-and-copyright",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.world-philosophy-day"),
+            id = EventId("un.world-childrens-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -114,15 +113,176 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی فلسفه",
-                        "en" to "World Philosophy Day",
-                        "es" to "Día Mundial de la Filosofía",
-                        "fr" to "Journée mondiale de la philosophie",
-                        "ru" to "Всемирный день философии",
-                        "zh" to "世界哲学日",
+                        "fa" to "روز جهانی کودکان",
+                        "ar" to "اليوم العالمي للطفل",
+                        "en" to "World Children's Day",
+                        "es" to "Día Mundial de la Infancia",
+                        "fr" to "Journée mondiale de l'enfance",
+                        "ru" to "Всемирный день ребенка",
+                        "zh" to "世界儿童日",
                     ),
                 ),
-            rule = EventRule.NthWeekdayOfMonth(month = 11, weekday = Weekday.THURSDAY, n = 3),
+            rule = EventRule.Fixed(month = 11, day = 20),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-childrens-day",
+                        title = "World Children's Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/836(IX)",
+                    "un" to "https://www.un.org/en/observances/world-childrens-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-day-against-child-labour"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی علیه کار کودک",
+                        "ar" to "اليوم العالمي لمكافحة عمل الأطفال",
+                        "en" to "World Day Against Child Labour",
+                        "es" to "Día Mundial contra el Trabajo Infantil",
+                        "fr" to "Journée mondiale contre le travail des enfants",
+                        "ru" to "Всемирный день борьбы с детским трудом",
+                        "zh" to "世界无童工日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 12),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-day-against-child-labour",
+                        title = "World Day Against Child Labour (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/world-day-against-child-labour",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-food-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی غذا",
+                        "ar" to "يوم الأغذية العالمي",
+                        "en" to "World Food Day",
+                        "es" to "Día Mundial de la Alimentación",
+                        "fr" to "Journée mondiale de l'alimentation",
+                        "ru" to "Всемирный день продовольствия",
+                        "zh" to "世界粮食日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 16),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "http://www.fao.org/world-food-day",
+                        title = "World Food Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/35/70",
+                    "un" to "http://www.fao.org/world-food-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-health-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بهداشت",
+                        "en" to "World Health Day",
+                        "fr" to "Journée mondiale de la santé",
+                        "ru" to "Всемирный день здоровья",
+                        "zh" to "世界卫生日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 7),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-health-day",
+                        title = "World Health Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://apps.who.int/iris/bitstream/handle/10665/86099/WHA2.35_eng.pdf",
+                    "un" to "https://www.who.int/campaigns/world-health-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-intellectual-property-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی مالکیت معنوی",
+                        "en" to "World Intellectual Property Day",
+                        "es" to "Día Mundial de la Propiedad Intelectual",
+                        "fr" to "Journée mondiale de la propriété intellectuelle",
+                        "ru" to "Международный день интеллектуальной собственности",
+                        "zh" to "世界知识产权日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 26),
             citations =
                 listOf(
                     Citation(
@@ -130,9 +290,8 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.unesco.org/en/days/philosophy",
-                        title = "World Philosophy Day (observance page)",
-                        page = "\"each year, on the third Thursday of November\"",
+                        url = "http://www.wipo.int/ip-outreach/en/ipday/",
+                        title = "World Intellectual Property Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -142,12 +301,11 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000142825.page=86",
-                    "un" to "https://www.unesco.org/en/days/philosophy",
+                    "un" to "http://www.wipo.int/ip-outreach/en/ipday/",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.world-poetry-day"),
+            id = EventId("un.world-malaria-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -155,25 +313,21 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی شعر",
-                        "ar" to "اليوم العالمي للشعر",
-                        "en" to "World Poetry Day",
-                        "es" to "Día Mundial de la Poesía",
-                        "fr" to "Journée mondiale de la poésie",
-                        "ru" to "Всемирный день поэзии",
-                        "zh" to "世界诗歌日",
+                        "fa" to "روز جهانی مالاریا",
+                        "ar" to "اليوم العالمي للملاريا",
+                        "en" to "World Malaria Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 3, day = 21),
+            rule = EventRule.Fixed(month = 4, day = 25),
             citations =
                 listOf(
                     Citation(
                         url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                        title = "United Nations — List of International Days and Weeks — also the ar editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.unesco.org/en/days/poetry",
-                        title = "World Poetry Day (observance page)",
+                        url = "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021",
+                        title = "World Malaria Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -183,169 +337,7 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000118514.page=70",
-                    "un" to "https://www.unesco.org/en/days/poetry",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-population-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی جمعیت",
-                        "ar" to "اليوم العالمي للسكان",
-                        "en" to "World Population Day",
-                        "es" to "Día Mundial de la Población",
-                        "fr" to "Journée mondiale de la population",
-                        "ru" to "Всемирный день народонаселения",
-                        "zh" to "世界人口日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 11),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/world-population-day",
-                        title = "World Population Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/45/216",
-                    "un" to "https://www.un.org/en/observances/world-population-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-post-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی پست",
-                        "ar" to "اليوم العالمي للبريد",
-                        "en" to "World Post Day",
-                        "fr" to "Journée mondiale de la poste",
-                        "ru" to "Всемирный день почты",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 9),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/world-post-day",
-                        title = "World Post Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/world-post-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-science-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی علم در خدمت صلح و توسعه",
-                        "ar" to "اليوم العالمي للعلوم من أجل السلام والتنمية",
-                        "en" to "World Science Day for Peace and Development",
-                        "es" to "Día Mundial de la Ciencia para la Paz y el Desarrollo",
-                        "fr" to "Semaine mondiale de la science au service de la paix et du développement",
-                        "ru" to "Всемирный день науки за мир и развитие",
-                        "zh" to "争取和平与发展世界科学日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 10),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/world-science-day",
-                        title = "World Science Day for Peace and Development (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000142825",
-                    "un" to "https://www.un.org/en/observances/world-science-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-teachers-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی آموزگاران",
-                        "ar" to "اليوم العالمي للمعلمين",
-                        "en" to "World Teachers’ Day",
-                        "es" to "Día Mundial de los Docentes",
-                        "fr" to "Journée mondiale des enseignants",
-                        "ru" to "Всемирный день учителя",
-                        "zh" to "世界教师日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 5),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/teachers",
-                        title = "World Teachers’ Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000095720.page=5",
-                    "un" to "https://www.unesco.org/en/days/teachers",
+                    "un" to "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021",
                 ),
         ),
     )

@@ -23,6 +23,88 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.international-day-for-the-remembrance-of-the-slave-trade"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی یادبود و الغاء تجارت برده",
+                        "ar" to "اليوم الدولي لاحياء ذكرى تجارة الرقيق وذكرى إلغائها",
+                        "en" to "International Day for the Remembrance of the Slave Trade and Its Abolition",
+                        "es" to "Día Internacional del Recuerdo de la Trata de Esclavos y de su Abolición",
+                        "fr" to "Journée internationale du souvenir de la traite négrière et de son abolition",
+                        "ru" to "Международный день памяти о работорговле и ее ликвидации",
+                        "zh" to "贩卖奴隶及其废除奴隶制国际纪念日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 23),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.unesco.org/en/days/slave-trade-remembrance",
+                        title = "International Day for the Remembrance of the Slave Trade and Its Abolition (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000110220.page=72",
+                    "un" to "https://www.unesco.org/en/days/slave-trade-remembrance",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.international-day-for-tolerance"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی بردباری",
+                        "ar" to "اليوم الدولي للتسامح",
+                        "en" to "International Day for Tolerance",
+                        "es" to "Día Internacional de la Tolerancia",
+                        "fr" to "Journée mondiale de la tolérance",
+                        "ru" to "Международный день, посвященный терпимости",
+                        "zh" to "国际宽容日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 16),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.unesco.org/en/days/tolerance",
+                        title = "International Day for Tolerance (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803_eng#page=75",
+                    "un" to "https://www.unesco.org/en/days/tolerance",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.international-day-of-clean-air-for-blue-skies"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -265,88 +347,6 @@ internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000114048.xml=http://www.unesco.org/ulis/cgi-bin/ulis.pl",
                     "un" to "https://www.unesco.org/en/days/literacy",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-nowruz-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی نوروز",
-                        "ar" to "يوم نوروز الدولي",
-                        "en" to "International Day of Nowruz",
-                        "es" to "Día Internacional del Novruz",
-                        "fr" to "Journée internationale du Novruz",
-                        "ru" to "Международный день Навруз",
-                        "zh" to "国际诺鲁孜节",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/international-nowruz-day",
-                        title = "International Day of Nowruz (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/64/253",
-                    "un" to "https://www.un.org/en/observances/international-nowruz-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.migrants-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی مهاجران",
-                        "ar" to "اليوم الدولي للمهاجرين",
-                        "en" to "International Migrants Day",
-                        "es" to "Día Internacional del Migrante",
-                        "fr" to "Journée internationale des migrants",
-                        "ru" to "Международный день мигранта",
-                        "zh" to "国际移民日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 18),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/migrants-day",
-                        title = "International Migrants Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/55/93",
-                    "un" to "https://www.un.org/en/observances/migrants-day",
                 ),
         ),
     )

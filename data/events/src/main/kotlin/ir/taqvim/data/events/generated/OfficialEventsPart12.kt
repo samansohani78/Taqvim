@@ -24,6 +24,87 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.environment-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی محیط زیست",
+                        "ar" to "اليوم العالمي للبيئة",
+                        "en" to "World Environment Day",
+                        "es" to "Día Mundial del Medio Ambiente",
+                        "fr" to "Journée mondiale de l'environnement",
+                        "ru" to "Всемирный день окружающей среды",
+                        "zh" to "世界环境日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 5),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/environment-day",
+                        title = "World Environment Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/environment-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.environment-in-war-protection-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی پیشگیری از سوء استفاده از محیط زیست در جنگ و مناقشه مسلحانه",
+                        "ar" to "اليوم الدولي لمنع استخدام البيئة في الحروب والصراعات العسكرية",
+                        "en" to "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict",
+                        "es" to "Día Internacional para la Prevención de la Explotación del Medio Ambiente en la Guerra y los Conflictos Armados",
+                        "fr" to "Journée internationale pour la prévention de l'exploitation de l'environnement en temps de guerre et de conflit armé",
+                        "ru" to "Международный день предотвращения эксплуатации окружающей среды во время войны и вооруженных конфликтов",
+                        "zh" to "防止战争和武装冲突糟蹋环境国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 6),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/environment-in-war-protection-day",
+                        title = "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/56/4",
+                    "un" to "https://www.un.org/en/observances/environment-in-war-protection-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.habitat-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -261,88 +342,6 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://www.undocs.org/EN/A/RES/78/286",
                     "un" to "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-for-the-remembrance-of-the-slave-trade"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی یادبود و الغاء تجارت برده",
-                        "ar" to "اليوم الدولي لاحياء ذكرى تجارة الرقيق وذكرى إلغائها",
-                        "en" to "International Day for the Remembrance of the Slave Trade and Its Abolition",
-                        "es" to "Día Internacional del Recuerdo de la Trata de Esclavos y de su Abolición",
-                        "fr" to "Journée internationale du souvenir de la traite négrière et de son abolition",
-                        "ru" to "Международный день памяти о работорговле и ее ликвидации",
-                        "zh" to "贩卖奴隶及其废除奴隶制国际纪念日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 8, day = 23),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/slave-trade-remembrance",
-                        title = "International Day for the Remembrance of the Slave Trade and Its Abolition (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000110220.page=72",
-                    "un" to "https://www.unesco.org/en/days/slave-trade-remembrance",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-for-tolerance"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی بردباری",
-                        "ar" to "اليوم الدولي للتسامح",
-                        "en" to "International Day for Tolerance",
-                        "es" to "Día Internacional de la Tolerancia",
-                        "fr" to "Journée mondiale de la tolérance",
-                        "ru" to "Международный день, посвященный терпимости",
-                        "zh" to "国际宽容日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 16),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/tolerance",
-                        title = "International Day for Tolerance (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803_eng#page=75",
-                    "un" to "https://www.unesco.org/en/days/tolerance",
                 ),
         ),
     )

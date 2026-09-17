@@ -14,6 +14,7 @@ import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Weekday
 
 /**
  * Part 14 of the dataset events.
@@ -22,6 +23,170 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_14: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.international-nowruz-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی نوروز",
+                        "ar" to "يوم نوروز الدولي",
+                        "en" to "International Day of Nowruz",
+                        "es" to "Día Internacional del Novruz",
+                        "fr" to "Journée internationale du Novruz",
+                        "ru" to "Международный день Навруз",
+                        "zh" to "国际诺鲁孜节",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 21),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/international-nowruz-day",
+                        title = "International Day of Nowruz (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/64/253",
+                    "un" to "https://www.un.org/en/observances/international-nowruz-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.maritime-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی دریانوردی",
+                        "ar" to "يوم الملاحة البحرية العالمي",
+                        "en" to "World Maritime Day",
+                        "es" to "Día Marítimo Mundial",
+                        "fr" to "Journée mondiale de la mer",
+                        "zh" to "世界海事日",
+                    ),
+                ),
+            rule = EventRule.LastWeekdayOfMonth(month = 9, weekday = Weekday.THURSDAY),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/maritime-day",
+                        title = "World Maritime Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی دریانوردی — 29 سپتامبر (هفته آخر سپتامبر)\"",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/maritime-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.migrants-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی مهاجران",
+                        "ar" to "اليوم الدولي للمهاجرين",
+                        "en" to "International Migrants Day",
+                        "es" to "Día Internacional del Migrante",
+                        "fr" to "Journée internationale des migrants",
+                        "ru" to "Международный день мигранта",
+                        "zh" to "国际移民日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 18),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/migrants-day",
+                        title = "International Migrants Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/55/93",
+                    "un" to "https://www.un.org/en/observances/migrants-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.migratory-bird-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پرندگان مهاجر",
+                        "ar" to "اليوم العالمي للطيور المهاجرة",
+                        "en" to "World Migratory Bird Day",
+                        "fr" to "Journée mondiale des oiseaux migrateurs",
+                        "ru" to "Всемирный день мигрирующих птиц",
+                        "zh" to "世界候鸟日",
+                    ),
+                ),
+            rule = EventRule.NthWeekdayOfMonth(month = 5, weekday = Weekday.SATURDAY, n = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.worldmigratorybirdday.org/",
+                        title = "World Migratory Bird Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز بین الملل یپرندگان مهاجر — 9 و 10 مه\"",
+                    ),
+                    Citation(
+                        url = "https://www.worldmigratorybirdday.org/",
+                        title = "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.worldmigratorybirdday.org/",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.mine-awareness-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -184,170 +349,6 @@ internal val OFFICIAL_EVENTS_PART_14: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/64/13",
                     "un" to "http://www.un.org/en/events/mandeladay/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.non-violence-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی عدم خشونت",
-                        "ar" to "اليوم الدولي للاعنف",
-                        "en" to "International Day of Non-Violence",
-                        "es" to "Día Internacional de la No Violencia",
-                        "fr" to "Journée internationale de la non-violence",
-                        "ru" to "Международный день ненасилия",
-                        "zh" to "国际非暴力日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/non-violence-day",
-                        title = "International Day of Non-Violence (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/61/271",
-                    "un" to "https://www.un.org/en/observances/non-violence-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.oceans-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی اقیانوس ها",
-                        "ar" to "اليوم العالمي للمحيطات",
-                        "en" to "World Oceans Day",
-                        "es" to "Día Mundial de los Océanos",
-                        "fr" to "Journée mondiale de l'océan",
-                        "ru" to "Всемирный день океанов",
-                        "zh" to "世界海洋日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 8),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/oceans-day",
-                        title = "World Oceans Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/63/111",
-                    "un" to "https://www.un.org/en/observances/oceans-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.older-persons-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی سالمندان",
-                        "ar" to "اليوم الدولي للمسنين",
-                        "en" to "International Day of Older Persons",
-                        "es" to "Día Internacional de las Personas de Edad",
-                        "fr" to "Journée internationale pour les personnes âgées",
-                        "ru" to "Международный день пожилых людей",
-                        "zh" to "国际老年人日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 1),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/older-persons-day",
-                        title = "International Day of Older Persons (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/45/106",
-                    "un" to "https://www.un.org/en/observances/older-persons-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.ozone-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی حفظ لایه اوزون",
-                        "ar" to "اليوم الدولي لحفظ طبقة الأوزون",
-                        "en" to "International Day for the Preservation of the Ozone Layer",
-                        "es" to "Día Internacional de la Preservación de la Capa de Ozono",
-                        "fr" to "Journée internationale de la protection de la couche d'ozone",
-                        "ru" to "Международный день охраны озонового слоя",
-                        "zh" to "保护臭氧层国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 16),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/ozone-day",
-                        title = "International Day for the Preservation of the Ozone Layer (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/49/114",
-                    "un" to "https://www.un.org/en/observances/ozone-day",
                 ),
         ),
     )

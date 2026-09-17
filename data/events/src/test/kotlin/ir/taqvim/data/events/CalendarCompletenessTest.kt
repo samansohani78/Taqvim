@@ -172,6 +172,14 @@ class CalendarCompletenessTest {
                     .take(1)
             }
 
+            is EventRule.LastWeekdayOfMonth -> {
+                (1..calendar.monthLength(year, rule.month))
+                    .map { CalendarDate(calendar.system, year, rule.month, it) }
+                    .filter { calendar.toJdn(it).weekday() == rule.weekday }
+                    .takeLast(1)
+                    .map { calendar.fromJdn(calendar.toJdn(it) + rule.offsetDays) }
+            }
+
             is EventRule.LunarTithi -> {
                 NepaliLunarDays
                     .days(year, rule.month, rule.tithi, rule.observance, rule.endTithi, rule.endOffsetDays)

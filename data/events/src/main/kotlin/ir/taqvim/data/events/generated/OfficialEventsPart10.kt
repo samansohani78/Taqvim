@@ -23,6 +23,88 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.cultural-diversity-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی تنوع فرهنگی برای گفت و گو و توسعه",
+                        "ar" to "اليوم العالمي للتنوع الثقافي من أجل الحوار والتنمية",
+                        "en" to "World Day for Cultural Diversity for Dialogue and Development",
+                        "es" to "Día Mundial de la Diversidad Cultural para el Diálogo y el Desarrollo",
+                        "fr" to "Journée mondiale de la diversité culturelle pour le dialogue et le développement",
+                        "ru" to "Всемирный день культурного разнообразия во имя диалога и развития",
+                        "zh" to "世界文化多样性促进对话和发展日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 21),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/cultural-diversity-day",
+                        title = "World Day for Cultural Diversity for Dialogue and Development (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/57/249",
+                    "un" to "https://www.un.org/en/observances/cultural-diversity-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.day-for-eradicating-poverty"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی ریشه کنی فقر",
+                        "ar" to "اليوم الدولي للقضاء على الفقر",
+                        "en" to "International Day for the Eradication of Poverty",
+                        "es" to "Día Internacional para la Erradicación de la Pobreza",
+                        "fr" to "Journée internationale pour l'élimination de la pauvreté",
+                        "ru" to "Международный день борьбы за ликвидацию нищеты",
+                        "zh" to "消除贫穷国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 17),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/day-for-eradicating-poverty",
+                        title = "International Day for the Eradication of Poverty (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/62/136",
+                    "un" to "https://www.un.org/en/observances/day-for-eradicating-poverty",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.day-of-persons-with-disabilities"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -265,87 +347,6 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/61/225",
                     "un" to "https://www.un.org/en/observances/diabetes-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.disaster-reduction-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی کاهش مصایب طبیعی",
-                        "ar" to "اليوم الدولي للحد من الكوارث",
-                        "en" to "International Day for Disaster Risk Reduction",
-                        "es" to "Día Internacional para la Reducción de los Desastres",
-                        "fr" to "Journée internationale pour la réduction des risques de catastrophes",
-                        "ru" to "Международный день по снижению риска бедствий",
-                        "zh" to "国际减少灾害风险日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 13),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/disaster-reduction-day",
-                        title = "International Day for Disaster Risk Reduction (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/64/200",
-                    "un" to "https://www.un.org/en/observances/disaster-reduction-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.earth-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی مادر زمین",
-                        "ar" to "اليوم الدولي لأمنا الأرض",
-                        "en" to "International Mother Earth Day",
-                        "es" to "Día Internacional de la Madre Tierra",
-                        "fr" to "Journée internationale de la Terre nourricière",
-                        "ru" to "Международный день Матери-Земли",
-                        "zh" to "国际地球母亲日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 22),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/earth-day",
-                        title = "International Mother Earth Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://iran.un.org/fa/45428-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%85%D8%A7%D8%AF%D8%B1-%D8%B2%D9%85%DB%8C%D9%86-%D9%87%D8%B4%D8%AF%D8%A7%D8%B1-%DA%AF%D9%88%D8%AA%D8%B1%D8%B4-%D8%AF%D8%B1-%D9%85%D9%88%D8%B1%D8%AF-%D8%AE%D8%B7%D8%B1-%D9%88%DB%8C%D8%B1%D9%88%D8%B3%E2%80%8C%D9%87%D8%A7-%D9%88-%DA%AF%D8%A7%D8%B2%D9%87%D8%A7%DB%8C-%DA%AF%D9%84%D8%AE%D8%A7%D9%86%D9%87%E2%80%8C%D8%A7%DB%8C",
-                        title = "United Nations in the Islamic Republic of Iran — به مناسبت روز بین المللی مادر زمین: هشدار گوترش در مورد خطر ویروس‌ها و گازهای گلخانه‌ای",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/63/278",
-                    "un" to "https://www.un.org/en/observances/earth-day",
                 ),
         ),
     )

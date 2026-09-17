@@ -46,6 +46,50 @@
       }
     },
     {
+      "id": "un.clean-energy-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی انرژی پاک",
+        "en": "International Day of Clean Energy",
+        "ar": "اليوم الدولي للطاقة النظيفة",
+        "zh": "国际清洁能源日",
+        "fr": "Journée internationale des énergies propres",
+        "ru": "Международный день чистой энергии",
+        "es": "Día Internacional de la Energía Limpia"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 26
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/clean-energy-day",
+          "title": "International Day of Clean Energy (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://iran.un.org/fa/259765-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%A7%D9%86%D8%B1%DA%98%DB%8C-%D9%BE%D8%A7%DA%A9",
+          "title": "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز جهانی انرژی پاک",
+          "retrieved": "2026-09-18"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/clean-energy-day",
+        "resolution": "https://undocs.org/en/A/RES/78/265"
+      }
+    },
+    {
       "id": "un.commemoration-holocaust-victims-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -88,6 +132,51 @@
       "links": {
         "un": "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
         "resolution": "http://undocs.org/en/A/RES/60/7"
+      }
+    },
+    {
+      "id": "un.radio-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی رادیو",
+        "en": "World Radio Day",
+        "ar": "اليوم العالمي للإذاعة",
+        "zh": "世界无线电日",
+        "fr": "Journée mondiale de la radio",
+        "ru": "Всемирный день радио",
+        "es": "Día Mundial de la Radio"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 13
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/radio-day",
+          "title": "World Radio Day (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://web.archive.org/web/20150403105303/http://www.unic-ir.org:80/index.php?option=com_content&view=article&id=984:%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%B1%D8%A7%D8%AF%DB%8C%D9%88-%D8%AF%D8%A8%DB%8C%D8%B1-%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%D8%A7%D8%B1-%D8%B4%D9%86%DB%8C%D8%AF%D9%86-%D9%86%D8%AF%D8%A7%DB%8C-%D8%AC%D9%88%D8%A7%D9%86%D8%A7%D9%86-%D8%B4%D8%AF&catid=8:%D8%B1%D9%88%DB%8C%D8%AF%D8%A7%D8%AF-%D9%87%D8%A7&Itemid=231&lang=fa",
+          "title": "United Nations Information Centre Tehran — به مناسبت روز جهانی رادیو دبیر کل سازمان ملل خواستار شنیدن ندای جوانان شد",
+          "page": "Wayback Machine snapshot of 2015-04-03 (original site unreachable 2026-09-18)",
+          "retrieved": "2026-09-18"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/radio-day",
+        "resolution": "https://undocs.org/en/A/RES/67/124"
       }
     },
     {
@@ -673,6 +762,51 @@
       }
     },
     {
+      "id": "un.sport-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی ورزش برای توسعه و صلح",
+        "en": "International Day of Sport for Development and Peace",
+        "ar": "اليوم الدولي للرياضة من أجل التنمية والسلام",
+        "zh": "体育促进发展与和平国际日",
+        "fr": "Journée internationale du sport au service du développement et de la paix",
+        "ru": "Международный день спорта на благо мира и развития",
+        "es": "Día Internacional del Deporte para el Desarrollo y la Paz"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 6
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/sport-day",
+          "title": "International Day of Sport for Development and Peace (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://web.archive.org/web/20170507003152/http://www.unic-ir.org:80/index.php?option=com_content&view=article&id=2575:%D9%81%D8%B1%D9%88%D8%B1%D8%AF%DB%8C%D9%86-96-%DA%AF%D8%B1%D8%A7%D9%85%D9%8A%D8%AF%D8%A7%D8%B4%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D9%88%D8%B1%D8%B2%D8%B4-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D9%88%D8%B3%D8%B9%D9%87-%D9%88-%D8%B5%D9%84%D8%AD&catid=8:%D8%B1%D9%88%DB%8C%D8%AF%D8%A7%D8%AF-%D9%87%D8%A7&Itemid=231&lang=fa",
+          "title": "United Nations Information Centre Tehran — فروردین ۹۶ گرامیداشت روز جهانی ورزش برای توسعه و صلح",
+          "page": "Wayback Machine snapshot of 2017-05-07 (original site unreachable 2026-09-18)",
+          "retrieved": "2026-09-18"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/sport-day",
+        "resolution": "https://undocs.org/en/A/RES/67/296"
+      }
+    },
+    {
       "id": "un.international-day-of-reflection-on-the-1994-genocide",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -977,6 +1111,55 @@
       }
     },
     {
+      "id": "un.migratory-bird-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی پرندگان مهاجر",
+        "en": "World Migratory Bird Day",
+        "ar": "اليوم العالمي للطيور المهاجرة",
+        "zh": "世界候鸟日",
+        "fr": "Journée mondiale des oiseaux migrateurs",
+        "ru": "Всемирный день мигрирующих птиц"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 5,
+        "weekday": "SATURDAY",
+        "n": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.worldmigratorybirdday.org/",
+          "title": "World Migratory Bird Day (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز بین الملل یپرندگان مهاجر — 9 و 10 مه\"",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.worldmigratorybirdday.org/",
+          "title": "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates",
+          "retrieved": "2026-09-18"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.worldmigratorybirdday.org/"
+      }
+    },
+    {
       "id": "un.press-freedom-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1107,6 +1290,50 @@
       "links": {
         "un": "https://www.un.org/en/observances/international-day-of-families",
         "resolution": "http://undocs.org/en/A/RES/47/237"
+      }
+    },
+    {
+      "id": "un.telecommunication-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی ارتباطات",
+        "en": "World Telecommunication and Information Society Day",
+        "ar": "اليوم العالمي للاتصالات ومجتمع المعلومات",
+        "zh": "世界电信和信息社会日",
+        "fr": "Journée mondiale des télécommunications et de la société de l'information",
+        "es": "Día Mundial de las Telecomunicaciones y la Sociedad de la Información"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 17
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/telecommunication-day",
+          "title": "World Telecommunication and Information Society Day (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی ارتباطات — 17 مه\"",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/telecommunication-day",
+        "resolution": "https://undocs.org/en/A/RES/60/252"
       }
     },
     {
@@ -2316,6 +2543,49 @@
       }
     },
     {
+      "id": "un.maritime-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی دریانوردی",
+        "en": "World Maritime Day",
+        "ar": "يوم الملاحة البحرية العالمي",
+        "zh": "世界海事日",
+        "fr": "Journée mondiale de la mer",
+        "es": "Día Marítimo Mundial"
+      },
+      "rule": {
+        "type": "LastWeekdayOfMonth",
+        "month": 9,
+        "weekday": "THURSDAY"
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/maritime-day",
+          "title": "World Maritime Day (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی دریانوردی — 29 سپتامبر (هفته آخر سپتامبر)\"",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/maritime-day"
+      }
+    },
+    {
       "id": "un.international-day-of-clean-air-for-blue-skies",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -3475,6 +3745,51 @@
       }
     },
     {
+      "id": "un.toilet-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی سرویس بهداشتی",
+        "en": "World Toilet Day",
+        "ar": "اليوم العالمي لدورات المياه",
+        "zh": "世界厕所日",
+        "fr": "Journée mondiale des toilettes",
+        "ru": "Всемирный день туалета",
+        "es": "Día Mundial del Retrete"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 19
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/toilet-day",
+          "title": "World Toilet Day (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://web.archive.org/web/20160801193354/http://unic-ir.org/index.php?option=com_content&view=article&id=199:%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D9%86%D8%AE%D8%B3%D8%AA%DB%8C%D9%86-%DA%AF%D8%B1%D8%A7%D9%85%DB%8C%D8%AF%D8%A7%D8%B4%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%B3%D8%B1%D9%88%DB%8C%D8%B3-%D8%A8%D9%87%D8%AF%D8%A7%D8%B4%D8%AA%DB%8C-%D8%B9%D8%AF%D9%85-%D8%AF%D8%B3%D8%AA%D8%B1%D8%B3%DB%8C-%D8%AF%D9%88-%D9%85%DB%8C%D9%84%DB%8C%D8%A7%D8%B1%D8%AF-%D9%88-500-%D9%85%DB%8C%D9%84%DB%8C%D9%88%D9%86-%D9%86%D9%81%D8%B1-%D8%A7%D8%B2-%D9%85%D8%B1%D8%AF%D9%85-%D8%AC%D9%87%D8%A7%D9%86-%D8%A8%D9%87-%D8%AA%D8%A7%D8%B3%DB%8C%D8%B3%D8%A7%D8%AA-%D8%A8%D9%87%D8%AF%D8%A7%D8%B4%D8%AA%DB%8C-%D9%85%D9%86%D8%A7%D8%B3%D8%A8&catid=10:press-releases-persian&Itemid=185&lang=fa",
+          "title": "United Nations Information Centre Tehran — به مناسبت نخستین گرامیداشت روز جهانی سرویس بهداشتی",
+          "page": "Wayback Machine snapshot of 2016-08-01 (original site unreachable 2026-09-18)",
+          "retrieved": "2026-09-18"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/toilet-day",
+        "resolution": "https://undocs.org/en/A/RES/67/291"
+      }
+    },
+    {
       "id": "un.africa-industrialization-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -3700,6 +4015,50 @@
       }
     },
     {
+      "id": "un.chemical-warfare-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی یادبود قربانیان سلاح های شیمیایی",
+        "en": "Day of Remembrance for all Victims of Chemical Warfare",
+        "ar": "يوم إحياء ذكرى جميع ضحايا الحرب الكيميائية",
+        "zh": "化学战受害者纪念日",
+        "fr": "Journée du souvenir dédiée à toutes les victimes de la guerre chimique",
+        "ru": "День памяти всех жертв применения химического оружия",
+        "es": "Día de Conmemoración de todas las víctimas de la guerra química"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/chemical-warfare-victims-day",
+          "title": "Day of Remembrance for all Victims of Chemical Warfare (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://web.archive.org/web/20140927025001/http://www.unic-ir.org/index.php?option=com_content&view=article&id=392:%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%DB%8C%D8%A7%D8%AF%D8%A8%D9%88%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86%DB%8C%D8%A7%D9%86-%D8%B3%D9%84%D8%A7%D8%AD-%D9%87%D8%A7%DB%8C-%D8%B4%DB%8C%D9%85%DB%8C%D8%A7%DB%8C%DB%8C&catid=8:eventpersian&Itemid=231&lang=fa",
+          "title": "United Nations Information Centre Tehran — روز جهانی یادبود قربانیان سلاح های شیمیایی",
+          "page": "Wayback Machine snapshot of 2014-09-27 (original site unreachable 2026-09-18)",
+          "retrieved": "2026-09-18"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/chemical-warfare-victims-day"
+      }
+    },
+    {
       "id": "un.world-aids-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -3831,6 +4190,50 @@
       "links": {
         "un": "https://www.un.org/en/observances/day-of-persons-with-disabilities",
         "resolution": "https://undocs.org/en/A/RES/47/3"
+      }
+    },
+    {
+      "id": "un.soil-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی خاک",
+        "en": "World Soil Day",
+        "ar": "اليوم العالمي للتربة",
+        "zh": "世界土壤日",
+        "fr": "Journée mondiale des sols",
+        "ru": "Всемирный день почв",
+        "es": "Día Mundial del Suelo"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-soil-day",
+          "title": "World Soil Day (observance page)",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://iran.un.org/fa/285250-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-%D8%A8%D8%B1%D9%86%D8%AF%D9%87-%D8%AC%D8%A7%DB%8C%D8%B2%D9%87-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%AE%D8%A7%DA%A9-2024",
+          "title": "United Nations in the Islamic Republic of Iran — ایران برنده جایزه روز جهانی خاک ۲۰۲۴",
+          "retrieved": "2026-09-18"
+        }
+      ],
+      "updated": "2026-09-18",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-soil-day",
+        "resolution": "https://undocs.org/en/A/RES/68/232"
       }
     },
     {

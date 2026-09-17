@@ -106,6 +106,46 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
+            id = EventId("un.chemical-warfare-victims-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی یادبود قربانیان سلاح های شیمیایی",
+                        "ar" to "يوم إحياء ذكرى جميع ضحايا الحرب الكيميائية",
+                        "en" to "Day of Remembrance for all Victims of Chemical Warfare",
+                        "es" to "Día de Conmemoración de todas las víctimas de la guerra química",
+                        "fr" to "Journée du souvenir dédiée à toutes les victimes de la guerre chimique",
+                        "ru" to "День памяти всех жертв применения химического оружия",
+                        "zh" to "化学战受害者纪念日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 30),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/chemical-warfare-victims-day",
+                        title = "Day of Remembrance for all Victims of Chemical Warfare (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20140927025001/http://www.unic-ir.org/index.php?option=com_content&view=article&id=392:%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%DB%8C%D8%A7%D8%AF%D8%A8%D9%88%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86%DB%8C%D8%A7%D9%86-%D8%B3%D9%84%D8%A7%D8%AD-%D9%87%D8%A7%DB%8C-%D8%B4%DB%8C%D9%85%DB%8C%D8%A7%DB%8C%DB%8C&catid=8:eventpersian&Itemid=231&lang=fa",
+                        title = "United Nations Information Centre Tehran — روز جهانی یادبود قربانیان سلاح های شیمیایی",
+                        page = "Wayback Machine snapshot of 2014-09-27 (original site unreachable 2026-09-18)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/chemical-warfare-victims-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.child-victim-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -188,6 +228,46 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
+            id = EventId("un.clean-energy-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی انرژی پاک",
+                        "ar" to "اليوم الدولي للطاقة النظيفة",
+                        "en" to "International Day of Clean Energy",
+                        "es" to "Día Internacional de la Energía Limpia",
+                        "fr" to "Journée internationale des énergies propres",
+                        "ru" to "Международный день чистой энергии",
+                        "zh" to "国际清洁能源日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 1, day = 26),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/clean-energy-day",
+                        title = "International Day of Clean Energy (observance page)",
+                    ),
+                    Citation(
+                        url = "https://iran.un.org/fa/259765-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%A7%D9%86%D8%B1%DA%98%DB%8C-%D9%BE%D8%A7%DA%A9",
+                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز جهانی انرژی پاک",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/78/265",
+                    "un" to "https://www.un.org/en/observances/clean-energy-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.commemoration-holocaust-victims-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -262,88 +342,6 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/47/90",
                     "un" to "https://www.un.org/en/observances/cooperatives-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cultural-diversity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی تنوع فرهنگی برای گفت و گو و توسعه",
-                        "ar" to "اليوم العالمي للتنوع الثقافي من أجل الحوار والتنمية",
-                        "en" to "World Day for Cultural Diversity for Dialogue and Development",
-                        "es" to "Día Mundial de la Diversidad Cultural para el Diálogo y el Desarrollo",
-                        "fr" to "Journée mondiale de la diversité culturelle pour le dialogue et le développement",
-                        "ru" to "Всемирный день культурного разнообразия во имя диалога и развития",
-                        "zh" to "世界文化多样性促进对话和发展日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/cultural-diversity-day",
-                        title = "World Day for Cultural Diversity for Dialogue and Development (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/249",
-                    "un" to "https://www.un.org/en/observances/cultural-diversity-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.day-for-eradicating-poverty"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی ریشه کنی فقر",
-                        "ar" to "اليوم الدولي للقضاء على الفقر",
-                        "en" to "International Day for the Eradication of Poverty",
-                        "es" to "Día Internacional para la Erradicación de la Pobreza",
-                        "fr" to "Journée internationale pour l'élimination de la pauvreté",
-                        "ru" to "Международный день борьбы за ликвидацию нищеты",
-                        "zh" to "消除贫穷国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 17),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/day-for-eradicating-poverty",
-                        title = "International Day for the Eradication of Poverty (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/62/136",
-                    "un" to "https://www.un.org/en/observances/day-for-eradicating-poverty",
                 ),
         ),
     )
