@@ -33,6 +33,7 @@
   <!-- Name of the Gregorian calendar, shown where the user picks or sees a calendar system. -->
   <string name="calendar_system_gregorian">Gregorian</string>
   <string name="calendar_system_nepali">Bikram Sambat</string>
+  <string name="calendar_system_hebrew">Hebrew</string>
   <string name="calendar_distance_label">From today</string>
   <!-- %1$s is the number of days in the app's digits. -->
   <plurals name="calendar_days_later">

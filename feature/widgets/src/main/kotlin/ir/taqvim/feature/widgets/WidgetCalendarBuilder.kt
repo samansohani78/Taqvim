@@ -12,6 +12,7 @@ import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.i18n.FormatTable
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
@@ -197,8 +198,7 @@ object WidgetCalendarBuilder {
     private fun monthName(
         date: CalendarDate,
         language: LanguageSpec,
-    ): String =
-        FormatTable.of(language).monthNames[date.system]?.getOrNull(date.month - 1) ?: digits(date.month, language)
+    ): String = FormatTable.of(language).monthName(date) ?: digits(date.month, language)
 
     /** The first letter of [name], as calendars print weekday column heads. */
     private fun narrow(name: String?): String =

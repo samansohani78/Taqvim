@@ -192,7 +192,15 @@ internal fun AstronomyDatePicker(
         )
     DatePickerSheet(
         model =
-            DatePickerModel(picker.initial, picker.years, picker.monthNames, picker.daysInMonth, picker.digits, labels),
+            DatePickerModel(
+                picker.initial,
+                picker.years,
+                picker.monthNames,
+                picker.daysInMonth,
+                picker.digits,
+                labels,
+                picker.monthNamesIn,
+            ),
         onConfirm = actions.onDatePicked,
         onDismiss = actions.onDismissPicker,
     )

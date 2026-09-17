@@ -9,6 +9,7 @@ import ir.taqvim.core.astronomy.RiseSetTransit
 import ir.taqvim.core.astronomy.Sky as SkyEngine
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.i18n.monthNamesOf
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.ui.component.DateSelection
@@ -145,20 +146,28 @@ internal object AstronomyStateMapper {
     ): PickerData {
         val calendar = settings.calendar
         val date = calendar.fromJdn(day)
-        val names =
-            settings.language.monthNames.forSystem(calendar.system)
-                ?: requireNotNull(LanguageTable.forCode(FALLBACK_LANGUAGE))
-                    .monthNames
-                    .forSystem(calendar.system)
-                    .orEmpty()
         val text = AstronomyText(settings)
+        val namesIn = { year: Int -> monthNames(settings, year, text) }
         return PickerData(
             initial = DateSelection(date.year, date.month, date.day),
             years = AstronomyDays.years(calendar),
-            monthNames = names.toImmutableList(),
+            monthNames = namesIn(date.year).toImmutableList(),
             daysInMonth = calendar::monthLength,
             digits = text::plain,
+            monthNamesIn = namesIn,
         )
+    }
+
+    /** Month names of [year] in the language, else in English, else the month numbers (13 in a Hebrew leap year). */
+    private fun monthNames(
+        settings: AstronomySettings,
+        year: Int,
+        text: AstronomyText,
+    ): List<String> {
+        val system = settings.calendar.system
+        return settings.language.monthNamesOf(system, year)
+            ?: requireNotNull(LanguageTable.forCode(FALLBACK_LANGUAGE)).monthNamesOf(system, year)
+            ?: (1..settings.calendar.monthsInYear(year)).map(text::plain)
     }
 
     private const val FALLBACK_LANGUAGE = "en"

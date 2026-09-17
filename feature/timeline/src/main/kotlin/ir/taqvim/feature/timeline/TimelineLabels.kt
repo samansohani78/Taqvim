@@ -17,6 +17,7 @@ import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
@@ -108,7 +109,7 @@ internal class TimelineLabels(
 
     private fun monthTitle(day: Jdn): String {
         val date = calendar.fromJdn(day)
-        val name = language.monthNames.forSystem(calendar.system)?.getOrNull(date.month - 1) ?: number(date.month)
+        val name = language.monthName(date) ?: number(date.month)
         return resources.getString(R.string.timeline_month_title, name, number(date.year))
     }
 

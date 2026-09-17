@@ -4,13 +4,13 @@
  */
 package ir.taqvim.feature.agenda
 
-import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.FormatTable
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
@@ -80,10 +80,9 @@ class AgendaListBuilder(
         val lastDates = calendars.datesOf(range.endInclusive)
         val others =
             calendars.arithmetic.indices.drop(1).map { index ->
-                val arithmetic = calendars.arithmetic[index]
-                MonthSpan(monthName(arithmetic, firstDates[index]), monthName(arithmetic, lastDates[index]))
+                MonthSpan(monthName(firstDates[index]), monthName(lastDates[index]))
             }
-        val title = monthName(calendars.arithmetic.first(), firstDates.first())
+        val title = monthName(firstDates.first())
         return AgendaMonthHeader(offset, title, others.toImmutableList())
     }
 
@@ -111,11 +110,8 @@ class AgendaListBuilder(
     }
 
     /** The month of [date] by name in the language, or by number when the language has no names for its calendar. */
-    private fun monthName(
-        arithmetic: CalendarArithmetic,
-        date: CalendarDate,
-    ): MonthName {
-        val name = formats.monthNames[arithmetic.system]?.getOrNull(date.month - 1) ?: digits(date.month.toString())
+    private fun monthName(date: CalendarDate): MonthName {
+        val name = formats.monthName(date) ?: digits(date.month.toString())
         return MonthName(name, digits(date.year.toString()))
     }
 

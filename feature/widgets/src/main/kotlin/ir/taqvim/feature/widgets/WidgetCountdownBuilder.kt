@@ -11,6 +11,7 @@ import ir.taqvim.core.i18n.FormatTable
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthNamesOf
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import kotlinx.collections.immutable.ImmutableList
@@ -69,6 +70,7 @@ data class WidgetCountdownChoices(
     val numerals: NumeralSystem,
     val years: IntRange,
     val dateText: String,
+    val monthNamesIn: (year: Int) -> List<String> = { monthNames },
 )
 
 /**
@@ -109,19 +111,17 @@ data class WidgetCountdownOptions(
     /** The screen's choices while editing [countdown]. */
     fun choices(countdown: WidgetCountdown): WidgetCountdownChoices {
         val calendar = arithmetic(countdown.calendar)
-        val todayYear = calendar.fromJdn(today).year
         val origin = WidgetCountdownMath.origin(countdown.copy(calendar = calendar.system), calendar)
-        val names =
-            FormatTable.of(language).monthNames[calendar.system]
-                ?: (
-                    1..calendar.monthsInYear(
-                        todayYear,
-                    )
-                ).map { Numerals.localizeDigits(it.toString(), language.numerals) }
+        val formats = FormatTable.of(language)
+        val namesIn = { year: Int ->
+            formats.monthNamesOf(calendar.system, year)
+                ?: (1..calendar.monthsInYear(year)).map { Numerals.localizeDigits(it.toString(), language.numerals) }
+        }
         return WidgetCountdownChoices(
             calendars = calendars.map { it.system }.toImmutableList(),
             occasions = occasions.toImmutableList(),
-            monthNames = names.toImmutableList(),
+            monthNames = namesIn(origin.year).toImmutableList(),
+            monthNamesIn = namesIn,
             numerals = language.numerals,
             years = CalendarLimits.years(calendar),
             dateText = WidgetContentBuilder.dayTitle(calendar, calendar.toJdn(origin), language),

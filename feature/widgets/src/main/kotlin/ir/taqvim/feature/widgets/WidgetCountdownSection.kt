@@ -142,7 +142,7 @@ private fun CountdownDatePicker(
             cancel = stringResource(R.string.widget_config_cancel),
         )
     val year = countdown.year.coerceIn(choices.years.first, choices.years.last)
-    val month = countdown.month.coerceIn(1, choices.monthNames.size)
+    val month = countdown.month.coerceIn(1, choices.monthNamesIn(year).size.coerceAtLeast(1))
     val model =
         DatePickerModel(
             initial = DateSelection(year, month, countdown.day.coerceIn(1, actions.daysInMonth(year, month))),
@@ -151,6 +151,7 @@ private fun CountdownDatePicker(
             daysInMonth = actions.daysInMonth,
             formatNumber = { Numerals.localizeDigits(it.toString(), choices.numerals) },
             labels = labels,
+            monthNamesIn = choices.monthNamesIn,
         )
     DatePickerSheet(
         model = model,

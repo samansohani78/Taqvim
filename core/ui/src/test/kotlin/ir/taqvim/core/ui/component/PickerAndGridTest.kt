@@ -227,4 +227,43 @@ class PickerAndGridTest {
         val weekColumn = setOf(columns, 2 * columns + 1)
         assertEquals(List(children) { if (it in weekColumn) 1 else 2 }, counts.toList())
     }
+
+    @Test
+    fun `year-aware month names change the month count`() {
+        val leap = List(13) { "Leap ${it + 1}" }
+        val model =
+            samplePicker().copy(monthNamesIn = { year ->
+                if (year % 2 ==
+                    0
+                ) {
+                    leap
+                } else {
+                    List(12) { "M${it + 1}" }
+                }
+            })
+
+        assertEquals(13, model.monthCount(1404))
+        assertEquals(12, model.monthCount(1405))
+        assertEquals("Leap 13", model.monthName(1404, 13))
+        assertEquals("M12", model.monthName(1405, 13))
+        assertEquals(12, samplePicker().monthCount(1404))
+        assertEquals("Month 3", samplePicker().monthName(1404, 3))
+    }
+
+    @Test
+    fun datePickerFollowsTheMonthsOfTheChosenYear() {
+        var confirmed: DateSelection? = null
+        val names = { year: Int -> List(if (year % 2 == 0) 13 else 12) { "Name ${it + 1}" } }
+        val model = samplePicker(DateSelection(1404, 13, 1)).copy(monthNamesIn = names)
+        composeRule.setContent {
+            TestTheme { DatePickerContent(model, { confirmed = it }, {}) }
+        }
+        composeRule.onNodeWithContentDescription("Month").assert(hasState("Name 13"))
+        setWheel("Year", 1405f)
+        composeRule.waitForIdle()
+        composeRule.onNodeWithContentDescription("Month").assert(hasState("Name 12"))
+        composeRule.onNodeWithText("OK").performClick()
+        assertEquals(1405, confirmed?.year)
+        assertEquals(12, confirmed?.month)
+    }
 }

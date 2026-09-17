@@ -8,6 +8,7 @@ import androidx.compose.runtime.Immutable
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.Jdn
 import kotlinx.collections.immutable.ImmutableList
@@ -171,8 +172,7 @@ class YearPageBuilder(
     }
 
     /** The month's name in the language, or its number where the language has no names for that calendar. */
-    private fun monthName(date: CalendarDate): String =
-        language.monthNames.forSystem(date.system)?.getOrNull(date.month - 1) ?: number(date.month)
+    private fun monthName(date: CalendarDate): String = language.monthName(date) ?: number(date.month)
 
     companion object {
         const val DAYS_PER_WEEK: Int = 7

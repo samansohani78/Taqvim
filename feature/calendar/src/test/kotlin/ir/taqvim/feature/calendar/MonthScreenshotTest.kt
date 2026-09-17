@@ -27,7 +27,8 @@ import org.robolectric.annotation.GraphicsMode
 
 /**
  * T-801 screenshots: the twelve months of 1405 in Persian (light, RTL) and English (light, LTR), and in Nepali (dark,
- * LTR) the twelve Bikram Sambat months of 2083 (T-105), from Baisakh 1 = 14 April 2026.
+ * LTR) the twelve Bikram Sambat months of 2083 (T-105), from Baisakh 1 = 14 April 2026, plus Adar I of the Hebrew leap
+ * year 5787 in English (F07, `enhe`).
  * Events are synthetic: a holiday on the first of each month, a personal event on the 10th, three sources on the 15th.
  * Recorded to `src/test/screenshots/calendar_month_<language>_<month>/`.
  */
@@ -100,7 +101,7 @@ class MonthScreenshotTest(
             val BUSY_KINDS = listOf(DayEventKind.OFFICIAL, DayEventKind.DEVICE, DayEventKind.SUBSCRIPTION)
 
             fun of(code: String): MonthSample {
-                val language = requireNotNull(LanguageTable.forCode(code))
+                val language = requireNotNull(LanguageTable.forCode(code.take(2)))
                 return when (code) {
                     "fa" -> {
                         MonthSample(
@@ -128,6 +129,20 @@ class MonthScreenshotTest(
                         )
                     }
 
+                    // F07: the Hebrew leap year 5787 from 1 Tishri = 12 September 2026, in English.
+                    "enhe" -> {
+                        MonthSample(
+                            CalendarSettings(
+                                listOf(CalendarSystem.HEBREW, CalendarSystem.GREGORIAN),
+                                language.weekStart,
+                                IslamicVariant.UMM_AL_QURA,
+                                language.code,
+                            ),
+                            gregorian(2026, 9, 12),
+                            ScreenshotEnvironment(layoutDirection = LayoutDirection.Ltr),
+                        )
+                    }
+
                     else -> {
                         MonthSample(
                             CalendarSettings(language.calendars, language.weekStart, IslamicVariant.UMM_AL_QURA, code),
@@ -145,6 +160,8 @@ class MonthScreenshotTest(
         @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}_{2}")
         fun parameters(): List<Array<Any>> =
             listOf("fa", "en", "ne").flatMap { code -> (1..12).map { arrayOf<Any>(code, it, 1f) } } +
+                // F07: Adar I of the Hebrew leap year 5787.
+                listOf(arrayOf<Any>("enhe", 6, 1f)) +
                 // T-1701: the first month again at font scale 2.0 in Persian RTL and English LTR.
                 listOf("fa", "en").map { arrayOf<Any>(it, 1, ScreenshotMatrix.LARGE_FONT_SCALE) }
     }

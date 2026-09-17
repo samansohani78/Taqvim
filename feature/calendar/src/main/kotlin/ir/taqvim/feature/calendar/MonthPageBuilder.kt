@@ -10,6 +10,7 @@ import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
@@ -216,8 +217,7 @@ class MonthPageBuilder(
     private fun monthTitle(date: CalendarDate): String = texts.monthTitle(monthName(date), year(date))
 
     /** The month's name in the language, or its number where the language has no names for that calendar. */
-    private fun monthName(date: CalendarDate): String =
-        language.monthNames.forSystem(date.system)?.getOrNull(date.month - 1) ?: number(date.month)
+    private fun monthName(date: CalendarDate): String = language.monthName(date) ?: number(date.month)
 
     private fun year(date: CalendarDate): String = number(date.year)
 

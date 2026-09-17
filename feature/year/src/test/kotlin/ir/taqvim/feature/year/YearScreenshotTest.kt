@@ -24,9 +24,9 @@ import org.robolectric.annotation.GraphicsMode
 
 /**
  * T-805 screenshots: 1405 in Persian (RTL) and the Gregorian year 2026 in English (LTR), light and dark, plus the
- * English year selection, and the Bikram Sambat year 2083 (T-105) in Nepali (dark) and with the official Latin month
- * names in English (`enbs`). Holidays are synthetic (the first day of every third month); weekends follow the language.
- * Recorded to `src/test/screenshots/year_<sample>/`.
+ * English year selection, the Bikram Sambat year 2083 (T-105) in Nepali (dark) and with the official Latin month
+ * names in English (`enbs`), and the 13-month Hebrew year 5787 in English (F07, `enhe`). Holidays are synthetic (the
+ * first day of every third month); weekends follow the language. Recorded to `src/test/screenshots/year_<sample>/`.
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -42,13 +42,7 @@ class YearScreenshotTest(
         val persian = sample.startsWith("fa")
         val dark = sample.endsWith("dark")
         val picking = sample.endsWith("picker")
-        val settings =
-            when {
-                persian -> PERSIAN_FIRST
-                sample.startsWith("ne") -> NEPALI_FIRST
-                sample.startsWith("enbs") -> ENGLISH_NEPALI_FIRST
-                else -> GREGORIAN_FIRST
-            }
+        val settings = SETTINGS.entries.firstOrNull { sample.startsWith(it.key) }?.value ?: GREGORIAN_FIRST
         val environment =
             ScreenshotEnvironment(
                 theme = if (dark) ScreenshotTheme.DARK else ScreenshotTheme.LIGHT,
@@ -120,10 +114,23 @@ class YearScreenshotTest(
 
         private val ENGLISH_NEPALI_FIRST = GREGORIAN_FIRST.copy(calendars = listOf(CalendarSystem.NEPALI))
 
+        /** F07: the Hebrew leap year 5787 (13 months), which contains 14 September 2026. */
+        private val ENGLISH_HEBREW_FIRST =
+            GREGORIAN_FIRST.copy(calendars = listOf(CalendarSystem.HEBREW, CalendarSystem.GREGORIAN))
+
+        /** Settings by sample prefix (checked in order); other samples use [GREGORIAN_FIRST]. */
+        private val SETTINGS =
+            linkedMapOf(
+                "fa" to PERSIAN_FIRST,
+                "ne" to NEPALI_FIRST,
+                "enbs" to ENGLISH_NEPALI_FIRST,
+                "enhe" to ENGLISH_HEBREW_FIRST,
+            )
+
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters(name = "{0}_{1}")
         fun parameters(): List<Array<Any>> =
-            listOf("fa_light", "fa_dark", "en_light", "en_dark", "en_picker", "ne_dark", "enbs_light")
+            listOf("fa_light", "fa_dark", "en_light", "en_dark", "en_picker", "ne_dark", "enbs_light", "enhe_light")
                 .map { arrayOf<Any>(it, 1f) } +
                 // T-1701: again at font scale 2.0.
                 listOf("fa_light", "en_light").map { arrayOf<Any>(it, ScreenshotMatrix.LARGE_FONT_SCALE) }

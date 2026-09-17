@@ -136,6 +136,7 @@ data class PickerData(
     val monthNames: ImmutableList<String>,
     val daysInMonth: (year: Int, month: Int) -> Int,
     val digits: (Int) -> String,
+    val monthNamesIn: (year: Int) -> List<String> = { monthNames },
 )
 
 /** Content of an open dialog. */

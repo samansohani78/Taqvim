@@ -67,7 +67,8 @@ public data class DatePickerLabels(
 
 /**
  * What a [DatePickerSheet] offers: the [initial] date, selectable [years], the calendar's [monthNames] (month 1 first)
- * and [daysInMonth], and [formatNumber] for localized digits. The picker is calendar-agnostic.
+ * and [daysInMonth], and [formatNumber] for localized digits. The picker is calendar-agnostic; calendars whose month
+ * count changes by year (Hebrew, F07) pass [monthNamesIn], which defaults to the same [monthNames] every year.
  */
 @Immutable
 public data class DatePickerModel(
@@ -77,6 +78,7 @@ public data class DatePickerModel(
     public val daysInMonth: (year: Int, month: Int) -> Int,
     public val formatNumber: (Int) -> String,
     public val labels: DatePickerLabels,
+    public val monthNamesIn: (year: Int) -> List<String> = { monthNames },
 ) {
     init {
         require(monthNames.isNotEmpty()) { "A calendar needs month names" }
@@ -85,6 +87,18 @@ public data class DatePickerModel(
 
     /** Name of 1-based [month], clamped to the known months. */
     public fun monthName(month: Int): String = monthNames[(month - 1).coerceIn(0, monthNames.size - 1)]
+
+    /** Name of 1-based [month] of [year], clamped to that year's months. */
+    public fun monthName(
+        year: Int,
+        month: Int,
+    ): String {
+        val names = monthNamesIn(year).ifEmpty { monthNames }
+        return names[(month - 1).coerceIn(0, names.size - 1)]
+    }
+
+    /** How many months [year] has in the picker. */
+    public fun monthCount(year: Int): Int = monthNamesIn(year).ifEmpty { monthNames }.size
 }
 
 /** The body of [DatePickerSheet]: title, day/month/year wheels and cancel/confirm buttons. */
@@ -106,37 +120,47 @@ public fun DatePickerContent(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.semantics { heading() },
         )
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            val days = 1..model.daysInMonth(selection.year, selection.month).coerceAtLeast(1)
-            NumberWheel(
-                selection.day,
-                days,
-                { selection = selection.withDay(it, model.daysInMonth) },
-                model.labels.day,
-                Modifier.weight(1f),
-                model.formatNumber,
-            )
-            NumberWheel(
-                selection.month,
-                1..model.monthNames.size,
-                { selection = selection.withMonth(it, model.daysInMonth) },
-                model.labels.month,
-                Modifier.weight(1.6f),
-                model::monthName,
-            )
-            NumberWheel(
-                selection.year,
-                model.years,
-                { selection = selection.withYear(it, model.daysInMonth) },
-                model.labels.year,
-                Modifier.weight(1.2f),
-                model.formatNumber,
-            )
-        }
+        DateWheels(model, selection) { selection = it }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
             TextButton(onClick = onDismiss) { Text(model.labels.cancel) }
             TextButton(onClick = { onConfirm(selection) }) { Text(model.labels.confirm) }
         }
+    }
+}
+
+/** The day, month and year wheels of [DatePickerContent]; the month wheel follows the months of the chosen year. */
+@Composable
+private fun DateWheels(
+    model: DatePickerModel,
+    selection: DateSelection,
+    onChange: (DateSelection) -> Unit,
+) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        val year = selection.year
+        NumberWheel(
+            selection.day,
+            1..model.daysInMonth(year, selection.month).coerceAtLeast(1),
+            { onChange(selection.withDay(it, model.daysInMonth)) },
+            model.labels.day,
+            Modifier.weight(1f),
+            model.formatNumber,
+        )
+        NumberWheel(
+            selection.month,
+            1..model.monthCount(year),
+            { onChange(selection.withMonth(it, model.daysInMonth)) },
+            model.labels.month,
+            Modifier.weight(1.6f),
+            { month -> model.monthName(year, month) },
+        )
+        NumberWheel(
+            year,
+            model.years,
+            { onChange(selection.inYear(it, model)) },
+            model.labels.year,
+            Modifier.weight(1.2f),
+            model.formatNumber,
+        )
     }
 }
 
@@ -153,3 +177,9 @@ public fun DatePickerSheet(
         DatePickerContent(model, onConfirm, onDismiss)
     }
 }
+
+/** [this] selection moved to [year], with the month clamped to that year's months and the day to the month's length. */
+private fun DateSelection.inYear(
+    year: Int,
+    model: DatePickerModel,
+): DateSelection = copy(year = year, month = month.coerceAtMost(model.monthCount(year))).withDay(day, model.daysInMonth)

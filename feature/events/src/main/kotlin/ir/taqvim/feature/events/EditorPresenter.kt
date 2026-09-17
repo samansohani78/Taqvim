@@ -12,6 +12,7 @@ import ir.taqvim.core.i18n.DurationFormatter
 import ir.taqvim.core.i18n.FormatTable
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthNamesOf
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
@@ -203,10 +204,13 @@ internal object EditorPresenter {
         calendar: CalendarArithmetic,
         language: LanguageSpec,
     ): CalendarPickerData {
-        val months = calendar.monthsInYear(form.start.year)
-        val names =
-            FormatTable.of(language).monthNames[form.calendar]?.takeIf { it.size == months }
+        val formats = FormatTable.of(language)
+        val namesIn = { year: Int ->
+            val months = calendar.monthsInYear(year)
+            formats.monthNamesOf(form.calendar, year)?.takeIf { it.size == months }
                 ?: List(months) { Numerals.format(it + 1L, language.numerals) }
-        return CalendarPickerData(calendar, names.toImmutableList(), CalendarLimits.years(calendar), language.numerals)
+        }
+        val names = namesIn(form.start.year).toImmutableList()
+        return CalendarPickerData(calendar, names, CalendarLimits.years(calendar), language.numerals, namesIn)
     }
 }

@@ -195,6 +195,7 @@ private fun DateSheet(
             daysInMonth = picker::daysInMonth,
             formatNumber = picker::formatNumber,
             labels = labels,
+            monthNamesIn = picker.monthNamesIn,
         )
     DatePickerSheet(model, onConfirm, onDismiss)
 }

@@ -22,6 +22,7 @@ internal object DayDetailsLabels {
             R.string.calendar_system_islamic,
             R.string.calendar_system_gregorian,
             R.string.calendar_system_nepali,
+            R.string.calendar_system_hebrew,
         )
 
     private val SEASONS =

@@ -166,4 +166,24 @@ class YearPageBuilderTest {
         /** One frame at 60 Hz. */
         const val BUDGET_MILLIS = 16
     }
+
+    @Test
+    fun `a Hebrew leap year shows 13 named months and a common year 12`() {
+        val hebrew = PERSIAN_FIRST.copy(calendars = listOf(CalendarSystem.HEBREW), languageCode = "en")
+        val names = builder(hebrew, english)
+        val leap = names.build(0, 5787, today, emptyList()).months.map { it.name }
+        leap.size shouldBe 13
+        leap.subList(5, 7) shouldContainExactly listOf("Adar I", "Adar II")
+        leap.last() shouldBe "Elul"
+        val common = names.build(0, 5786, today, emptyList()).months.map { it.name }
+        common.size shouldBe 12
+        common[5] shouldBe "Adar"
+        val hindi = requireNotNull(LanguageTable.forCode("hi"))
+        builder(hebrew.copy(languageCode = "hi"), hindi)
+            .build(0, 5787, today, emptyList())
+            .months
+            .last()
+            .name shouldBe
+            Numerals.format(13L, hindi.numerals)
+    }
 }

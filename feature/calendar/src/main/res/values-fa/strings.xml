@@ -22,6 +22,7 @@
   <string name="calendar_system_islamic">هجری قمری</string>
   <string name="calendar_system_gregorian">میلادی</string>
   <string name="calendar_system_nepali">بیکرم سَمبَت</string>
+  <string name="calendar_system_hebrew">عبری</string>
   <string name="calendar_distance_label">فاصله از امروز</string>
   <plurals name="calendar_days_later">
     <item quantity="one">%1$s روز بعد</item>

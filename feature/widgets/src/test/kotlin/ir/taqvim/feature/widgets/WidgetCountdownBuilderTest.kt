@@ -9,9 +9,11 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.model.CalendarSystem
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
@@ -89,5 +91,25 @@ class WidgetCountdownBuilderTest {
         choices.occasions shouldBe listOf(occasion)
         choices.numerals shouldBe en.numerals
         shouldThrow<IllegalArgumentException> { WidgetCountdownOptions(today, en, emptyList(), emptyList()) }
+    }
+
+    @Test
+    fun `Hebrew countdown choices follow the year's months`() {
+        val options =
+            WidgetCountdownOptions(today, en, listOf(HebrewCalendarSystem, GregorianCalendarSystem), emptyList())
+        val start = options.defaultCountdown()
+        start.calendar shouldBe CalendarSystem.HEBREW
+        start.year shouldBe 5787
+
+        val choices = options.choices(start)
+        choices.monthNames.size shouldBe 13
+        choices.monthNames[5] shouldBe "Adar I"
+        choices.monthNamesIn(5786).size shouldBe 12
+        choices.monthNamesIn(5786)[5] shouldBe "Adar"
+        val hindi = requireNotNull(LanguageTable.forCode("hi"))
+        WidgetCountdownOptions(today, hindi, listOf(HebrewCalendarSystem), emptyList())
+            .choices(start)
+            .monthNamesIn(5787)
+            .last() shouldBe Numerals.localizeDigits("13", hindi.numerals)
     }
 }

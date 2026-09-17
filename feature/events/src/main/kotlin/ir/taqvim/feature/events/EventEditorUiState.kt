@@ -154,6 +154,7 @@ data class CalendarPickerData(
     val monthNames: ImmutableList<String>,
     val years: IntRange,
     val numerals: NumeralSystem,
+    val monthNamesIn: (year: Int) -> List<String> = { monthNames },
 ) {
     fun daysInMonth(
         year: Int,

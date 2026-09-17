@@ -186,4 +186,19 @@ class MonthPageBuilderTest {
             MonthPageBuilder(CalendarCalendars(PERSIAN_FIRST), persian, texts, palette, isoWeekdays.drop(1))
         }
     }
+
+    @Test
+    fun `Hebrew month titles follow leap and common years`() {
+        val hebrew = CalendarSettings(listOf(CalendarSystem.HEBREW), Weekday.SUNDAY, IslamicVariant.UMM_AL_QURA, "en")
+        val names = builder(hebrew, english)
+        // 1 Tishri 5787 (a leap year) is 12 September 2026; 5786 is a common year.
+        val tishri = gregorian(2026, 9, 12)
+        names.build(5, tishri, tishri, null).heading.title shouldBe "Adar I 5787"
+        names.build(6, tishri, tishri, null).heading.title shouldBe "Adar II 5787"
+        names.build(12, tishri, tishri, null).heading.title shouldBe "Elul 5787"
+        names.build(-7, tishri, tishri, null).heading.title shouldBe "Adar 5786"
+        val hindi = requireNotNull(LanguageTable.forCode("hi"))
+        builder(hebrew, hindi).build(5, tishri, tishri, null).heading.title shouldBe
+            "${Numerals.format(6L, hindi.numerals)} ${Numerals.format(5787L, hindi.numerals)}"
+    }
 }

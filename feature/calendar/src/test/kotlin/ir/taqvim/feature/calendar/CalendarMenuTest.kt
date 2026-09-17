@@ -91,7 +91,12 @@ class CalendarMenuTest {
                 viewModel.onAction(CalendarAction.OpenSecondaryCalendarChooser)
                 val chooser = awaitContent { it.menu.dialog == CalendarDialog.SECONDARY_CALENDAR }
                 chooser.secondaryChoices shouldBe
-                    listOf(CalendarSystem.ISLAMIC, CalendarSystem.GREGORIAN, CalendarSystem.NEPALI)
+                    listOf(
+                        CalendarSystem.ISLAMIC,
+                        CalendarSystem.GREGORIAN,
+                        CalendarSystem.NEPALI,
+                        CalendarSystem.HEBREW,
+                    )
 
                 viewModel.onAction(CalendarAction.OpenMenu)
                 awaitContent { it.menu.isOpen }
@@ -137,7 +142,12 @@ class CalendarMenuTest {
                 val reordered = awaitContent { it.calendars.getOrNull(1) == CalendarSystem.ISLAMIC }
                 reordered.calendars.first() shouldBe CalendarSystem.PERSIAN
                 reordered.secondaryChoices shouldBe
-                    listOf(CalendarSystem.ISLAMIC, CalendarSystem.GREGORIAN, CalendarSystem.NEPALI)
+                    listOf(
+                        CalendarSystem.ISLAMIC,
+                        CalendarSystem.GREGORIAN,
+                        CalendarSystem.NEPALI,
+                        CalendarSystem.HEBREW,
+                    )
                 store.secondaries shouldBe listOf(CalendarSystem.ISLAMIC)
                 cancelAndIgnoreRemainingEvents()
             }

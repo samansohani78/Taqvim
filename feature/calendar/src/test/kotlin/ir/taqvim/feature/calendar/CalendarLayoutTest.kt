@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.calendar
 
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.calendar.PersianCalendarSystem
@@ -56,8 +57,19 @@ class CalendarLayoutTest {
     fun `month names fall back to English names`() {
         val kurdish = requireNotNull(LanguageTable.forCode("ckb"))
 
-        monthNamesOf(english, CalendarSystem.ISLAMIC) shouldBe english.monthNames.islamic
-        monthNamesOf(kurdish, CalendarSystem.PERSIAN) shouldBe english.monthNames.persian
-        monthNamesOf(persian, CalendarSystem.NEPALI).first() shouldBe "Baishakh"
+        monthNamesOf(english, CalendarSystem.ISLAMIC, 1447) shouldBe english.monthNames.islamic
+        monthNamesOf(kurdish, CalendarSystem.PERSIAN, 1405) shouldBe english.monthNames.persian
+        monthNamesOf(persian, CalendarSystem.NEPALI, 2083).first() shouldBe "Baishakh"
+    }
+
+    @Test
+    fun `Hebrew picker names follow the year`() {
+        val kurdish = requireNotNull(LanguageTable.forCode("ckb"))
+
+        monthNamesOf(english, CalendarSystem.HEBREW, 5787) shouldHaveSize 13
+        monthNamesOf(english, CalendarSystem.HEBREW, 5786) shouldHaveSize 12
+        monthNamesOf(english, CalendarSystem.HEBREW, 5787)[6] shouldBe "Adar II"
+        // No CLDR Hebrew names in Central Kurdish: the English ones are used.
+        monthNamesOf(kurdish, CalendarSystem.HEBREW, 5787) shouldBe monthNamesOf(english, CalendarSystem.HEBREW, 5787)
     }
 }

@@ -13,6 +13,7 @@ import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.FormatTable
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
@@ -177,7 +178,7 @@ internal fun monthName(
     date: CalendarDate,
     setup: WearSetup,
 ): String =
-    FormatTable.of(setup.language).monthNames[date.system]?.getOrNull(date.month - 1)
+    FormatTable.of(setup.language).monthName(date)
         ?: digits(date.month.toString(), setup)
 
 private fun PrayerTimes.ordered(): List<Pair<WearPrayer, MinuteOfDay>> =

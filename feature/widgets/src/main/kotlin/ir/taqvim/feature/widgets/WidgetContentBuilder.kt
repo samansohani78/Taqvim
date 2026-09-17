@@ -10,6 +10,7 @@ import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.i18n.FormatTable
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
@@ -102,7 +103,7 @@ object WidgetContentBuilder {
     ): String {
         val date = calendar.fromJdn(jdn)
         val month =
-            FormatTable.of(language).monthNames[date.system]?.getOrNull(date.month - 1)
+            FormatTable.of(language).monthName(date)
                 ?: digits(date.month.toString(), language)
         return "${digits(date.day.toString(), language)} $month ${digits(date.year.toString(), language)}"
     }

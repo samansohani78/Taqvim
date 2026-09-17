@@ -33,8 +33,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.toggleableState
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
+import ir.taqvim.core.calendar.HebrewCalendar
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.i18n.monthNamesOf
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.ui.component.DatePickerLabels
 import ir.taqvim.core.ui.component.DatePickerModel
@@ -207,18 +209,28 @@ internal fun goToDateModel(
     return DatePickerModel(
         initial = DateSelection(selected.year, selected.month, selected.day),
         years = calendars.pagedYears(content.today),
-        monthNames = monthNamesOf(language, selected.system),
+        monthNames = monthNamesOf(language, selected.system, selected.year),
         daysInMonth = calendars::primaryMonthLength,
         formatNumber = { number(it.toLong(), language) },
         labels = labels,
+        monthNamesIn = { year -> monthNamesOf(language, selected.system, year) },
     )
 }
 
-/** Month names of [system] in [language], else in English, else the month numbers in the language's digits. */
+/**
+ * Month names of [system]'s [year] in [language], else in English, else the month numbers in the language's digits
+ * (13 in a Hebrew leap year, F07).
+ */
 internal fun monthNamesOf(
     language: LanguageSpec,
     system: CalendarSystem,
+    year: Int,
 ): List<String> =
-    language.monthNames.forSystem(system)
-        ?: LanguageTable.forCode(FALLBACK_LANGUAGE)?.monthNames?.forSystem(system)
-        ?: (1..MONTHS_IN_YEAR).map { number(it.toLong(), language) }
+    language.monthNamesOf(system, year)
+        ?: LanguageTable.forCode(FALLBACK_LANGUAGE)?.monthNamesOf(system, year)
+        ?: (1..monthCount(system, year)).map { number(it.toLong(), language) }
+
+private fun monthCount(
+    system: CalendarSystem,
+    year: Int,
+): Int = if (system == CalendarSystem.HEBREW) HebrewCalendar.monthsInYear(year) else MONTHS_IN_YEAR
