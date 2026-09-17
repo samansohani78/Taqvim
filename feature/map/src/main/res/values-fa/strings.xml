@@ -33,6 +33,7 @@
     <string name="map_projection_globe">کرهٔ زمین</string>
     <string name="map_criterion_yallop">یالوپ</string>
     <string name="map_criterion_odeh">عوده</string>
+    <string name="map_crescent_computed_note">محاسبه‌شده از موقعیت خورشید و ماه با معیار انتخاب‌شده</string>
     <string name="map_odeh_a">الف: با چشم غیرمسلح دیده می‌شود</string>
     <string name="map_odeh_b">ب: با ابزار نوری دیده می‌شود، شاید با چشم غیرمسلح</string>
     <string name="map_odeh_c">ج: فقط با ابزار نوری دیده می‌شود</string>

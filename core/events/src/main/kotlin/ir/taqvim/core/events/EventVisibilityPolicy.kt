@@ -47,9 +47,17 @@ public class IslamicCalendarSelection(
     }
 
     public companion object {
-        /** Product default: Iranian official events follow the Iranian official lunar calendar (ADR-0010). */
+        /**
+         * Product default (ADR-0010): Iranian official events follow the Iranian calendar, and Afghan official events
+         * the tabular type II calendar, which gives all four Afghan announcements that name a Hijri day (27 Shaban 1447,
+         * 9 Dhu al-Hijjah 1447, 1 and 5 Rabi al-Awwal 1448), where Umm al-Qura gives two and the Iranian crescent
+         * calendar one (ADR-0010 addendum, DT-033). Both are computed.
+         */
         public val DEFAULT_SOURCE_VARIANTS: Map<EventSource, IslamicVariant> =
-            mapOf(EventSource.IRAN_OFFICIAL to IslamicVariant.IRAN_OFFICIAL)
+            mapOf(
+                EventSource.IRAN_OFFICIAL to IslamicVariant.IRAN_OFFICIAL,
+                EventSource.AFGHANISTAN_OFFICIAL to IslamicVariant.TABULAR_16,
+            )
 
         private val IRAN_COMPUTED_CALENDAR = IranIslamicCalendar()
 

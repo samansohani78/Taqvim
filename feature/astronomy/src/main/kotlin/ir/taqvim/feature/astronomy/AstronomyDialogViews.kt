@@ -137,6 +137,7 @@ private fun MoonInScorpioBody(dialog: AstronomyDialog.MoonInScorpio) {
             ZodiacSystem.IAU_CONSTELLATION -> R.string.astronomy_scorpio_constellation
         }
     Text(stringResource(system), style = MaterialTheme.typography.bodySmall)
+    Text(stringResource(R.string.astronomy_scorpio_computed), style = MaterialTheme.typography.bodySmall)
     if (dialog.periods.isEmpty()) Text(stringResource(R.string.astronomy_no_periods))
     dialog.periods.forEach { Text(stringResource(R.string.astronomy_period, it.start, it.end)) }
 }

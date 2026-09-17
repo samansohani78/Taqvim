@@ -106,6 +106,7 @@ internal fun DayEvents.toCalendarDay(language: String): CalendarDay =
                     occurrence.isHoliday,
                     source = definition.source,
                     citations = definition.citations,
+                    dateOrigin = officialOrigins[definition.id],
                 )
             } +
                 personal.map { item(it.itemId, DayEventKind.PERSONAL, it.title) } +

@@ -30,6 +30,8 @@
   <string name="calendar_origin_computed">Computed</string>
   <string name="calendar_origin_official">Official announced date</string>
   <string name="calendar_origin_published">Printed calendar</string>
+  <!-- Where the date of an official Islamic event comes from; %1$s is "Computed", "Official announced date" or "Printed calendar". -->
+  <string name="calendar_event_date_origin">Date: %1$s</string>
   <string name="calendar_details_loading">Loading the day</string>
   <string name="calendar_system_persian">Solar Hijri</string>
   <string name="calendar_system_islamic">Lunar Hijri</string>

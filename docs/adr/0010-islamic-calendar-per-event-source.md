@@ -25,3 +25,29 @@ Product default, implemented as a parameter of the event lookup and policy (`:co
 - The mapping is configuration, not a statement about which calendar any country officially uses; sources such as
   Afghanistan's official events can be pointed at a different calendar once a primary source documents it.
 - Changing the preferred variant only affects non-Iranian lunar events.
+
+## Addendum 2026-09-17 — Afghan official events use tabular type II (DT-002, DT-031–DT-033)
+
+No Afghan primary source documents which Hijri calendar the country uses, and the owner's directive of 2026-09-17 asks
+for a computed calendar wherever published data is missing. Four Afghan announcements in the dataset name a Hijri day
+(27 Shaban 1447, 9 Dhu al-Hijjah 1447, 1 and 5 Rabi al-Awwal 1448, all from Bakhtar News Agency). Placing them with
+each computed calendar:
+
+| Calendar | Announced days matched |
+|---|---|
+| Tabular type II (`TABULAR_16`) | 4 of 4 |
+| Umm al-Qura (ADR-0028) | 2 of 4 |
+| Iranian crescent calendar (ADR-0037) | 1 of 4 |
+
+Decision:
+
+- `AFGHANISTAN_OFFICIAL` events always use tabular type II (`DEFAULT_SOURCE_VARIANTS`), whatever the user's preferred
+  variant; other non-Iranian sources still follow the preference.
+- Every official occurrence placed by the Islamic calendar carries the `DateOrigin` of its day (ADR-0037):
+  `DayEvents.officialOrigins`, shown in the event's source card as "Date: Computed", "Date: Official announced date" or
+  "Date: Printed calendar". Afghan dates are always "Computed"; Iranian dates are "Computed" unless an imported
+  official override covers the month.
+
+Consequences: Afghan Islamic holidays no longer move when the user changes the preferred variant. The match rests on
+four dates; a published Afghan calendar or month announcements (DATA_TODO DT-033) would replace this evidence, and an
+announced date can be applied through the Islamic month overrides without code changes.

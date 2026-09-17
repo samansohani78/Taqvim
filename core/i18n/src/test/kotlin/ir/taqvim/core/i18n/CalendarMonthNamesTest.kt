@@ -45,8 +45,9 @@ class CalendarMonthNamesTest {
     }
 
     @Test
-    fun `languages without CLDR Hebrew names get none`() {
-        hindi.monthNamesOf(CalendarSystem.HEBREW, 5784).shouldBeNull()
-        FormatTable.of(hindi).monthName(CalendarDate(CalendarSystem.HEBREW, 5785, 1, 1)).shouldBeNull()
+    fun `languages without CLDR Hebrew names use machine-translated ones, and unknown languages get none`() {
+        hindi.monthNamesOf(CalendarSystem.HEBREW, 5784).orEmpty() shouldHaveSize 13
+        FormatTable.of(hindi).monthName(CalendarDate(CalendarSystem.HEBREW, 5785, 1, 1)) shouldBe "तिश्री"
+        hindi.copy(code = "xx").monthNamesOf(CalendarSystem.HEBREW, 5784).shouldBeNull()
     }
 }

@@ -86,8 +86,8 @@ class DateFormatterTest {
         DateFormatter.format(adar2, sunday, language("en"), DateStyle.LONG) shouldBe "Sunday, Adar II 14, 5784"
         DateFormatter.format(nisan, sunday, language("en"), DateStyle.LONG) shouldBe "Sunday, Nisan 14, 5785"
         DateFormatter.format(tishri, sunday, language("de"), DateStyle.LONG).contains("Tischri") shouldBe true
-        // `hi` has no CLDR Hebrew names, so the month is written as a number.
-        DateFormatter.format(tishri, sunday, language("hi"), DateStyle.LONG).contains("Tishri") shouldBe false
+        // `hi` has no CLDR Hebrew names, so its machine-translated names are used (DT-037).
+        DateFormatter.format(tishri, sunday, language("hi"), DateStyle.LONG).contains("तिश्री") shouldBe true
     }
 
     @Test

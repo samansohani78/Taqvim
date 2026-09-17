@@ -69,7 +69,8 @@ class CalendarLayoutTest {
         monthNamesOf(english, CalendarSystem.HEBREW, 5787) shouldHaveSize 13
         monthNamesOf(english, CalendarSystem.HEBREW, 5786) shouldHaveSize 12
         monthNamesOf(english, CalendarSystem.HEBREW, 5787)[6] shouldBe "Adar II"
-        // No CLDR Hebrew names in Central Kurdish: the English ones are used.
-        monthNamesOf(kurdish, CalendarSystem.HEBREW, 5787) shouldBe monthNamesOf(english, CalendarSystem.HEBREW, 5787)
+        // No CLDR Hebrew names in Central Kurdish: the marked machine-translated ones are used (DT-037).
+        monthNamesOf(kurdish, CalendarSystem.HEBREW, 5787).first() shouldBe "تیشری"
+        monthNamesOf(kurdish, CalendarSystem.HEBREW, 5787) shouldHaveSize 13
     }
 }

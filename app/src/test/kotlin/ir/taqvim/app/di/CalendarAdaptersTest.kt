@@ -5,6 +5,7 @@
 package ir.taqvim.app.di
 
 import io.kotest.matchers.shouldBe
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.events.Occurrence
@@ -56,6 +57,12 @@ class CalendarAdaptersTest {
             )
 
         val day = events.toCalendarDay("en")
+        events
+            .copy(officialOrigins = mapOf(nowruz.id to DateOrigin.COMPUTED))
+            .toCalendarDay("en")
+            .events
+            .first()
+            .dateOrigin shouldBe DateOrigin.COMPUTED
 
         day.jdn shouldBe nowruz1405
         day.isHoliday shouldBe true

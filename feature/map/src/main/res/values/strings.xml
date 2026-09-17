@@ -41,6 +41,8 @@
     <string name="map_criterion_yallop">Yallop</string>
     <!-- Crescent visibility criterion named after Mohammad Odeh, its author; a person's name. -->
     <string name="map_criterion_odeh">Odeh</string>
+    <!-- Note under the crescent-visibility legend: the classes are computed, not taken from a published map. -->
+    <string name="map_crescent_computed_note">Computed from the Sun and Moon positions with the chosen criterion</string>
     <string name="map_odeh_a">A: visible to the naked eye</string>
     <string name="map_odeh_b">B: visible with optical aid, maybe to the naked eye</string>
     <string name="map_odeh_c">C: visible with optical aid only</string>

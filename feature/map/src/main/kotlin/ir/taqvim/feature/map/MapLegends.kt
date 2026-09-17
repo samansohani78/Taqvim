@@ -36,6 +36,7 @@ internal fun MapLegends(
         if (MapLayer.CRESCENT_VISIBILITY in state.layers) {
             CriterionChips(state.crescentCriterion, actions)
             Legend(MapPalette.crescentColors(state.crescentCriterion).zip(crescentLabels(state.crescentCriterion)))
+            Text(stringResource(R.string.map_crescent_computed_note), style = MaterialTheme.typography.bodySmall)
         }
         if (MapLayer.MAGNETIC_DECLINATION in state.layers) {
             Legend(listOf(palette.east to R.string.map_declination_east, palette.west to R.string.map_declination_west))

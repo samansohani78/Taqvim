@@ -4,7 +4,9 @@
  */
 package ir.taqvim.data.events
 
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.calendar.ResolvedHijriDate
+import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.Occurrence
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
@@ -74,4 +76,6 @@ data class DayEvents(
     val personal: List<PersonalOccurrence>,
     val device: List<DeviceEvent>,
     val ics: List<IcsOccurrence>,
+    /** Where the date of each [official] occurrence in the Islamic calendar comes from (DT-002, DT-033); absent otherwise. */
+    val officialOrigins: Map<EventId, DateOrigin> = emptyMap(),
 )

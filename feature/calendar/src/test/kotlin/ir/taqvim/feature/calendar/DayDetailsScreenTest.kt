@@ -25,6 +25,7 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.DateOrigin
+import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageTable
@@ -142,6 +143,21 @@ class DayDetailsScreenTest {
         composeRule.onNode(hasContentDescription(chipDescription(resources, DayDetailsSamples.uncited))).performClick()
         composeRule.onNodeWithText(resources.getString(R.string.calendar_no_citation)).assertExists()
         composeRule.onNodeWithText(resources.getString(R.string.calendar_open_source)).assertDoesNotExist()
+    }
+
+    @Test
+    fun `an official event in the Islamic calendar says where its date comes from`() {
+        val eid =
+            DayDetailsSamples.official.copy(
+                id = "af.holiday.eid-al-adha.1",
+                title = "Eid al-Adha",
+                source = EventSource.AFGHANISTAN_OFFICIAL,
+                dateOrigin = DateOrigin.COMPUTED,
+            )
+        sourceBody(resources, eid) shouldBe "Eid al-Adha\nDate: Computed"
+        sourceBody(resources, eid.copy(dateOrigin = DateOrigin.OFFICIAL_OVERRIDE)) shouldBe
+            "Eid al-Adha\nDate: Official announced date"
+        sourceBody(resources, DayDetailsSamples.official) shouldBe DayDetailsSamples.official.title
     }
 
     @Test

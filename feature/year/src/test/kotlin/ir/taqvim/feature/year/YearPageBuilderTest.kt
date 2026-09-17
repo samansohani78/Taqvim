@@ -183,7 +183,6 @@ class YearPageBuilderTest {
             .build(0, 5787, today, emptyList())
             .months
             .last()
-            .name shouldBe
-            Numerals.format(13L, hindi.numerals)
+            .name shouldBe "एलूल"
     }
 }

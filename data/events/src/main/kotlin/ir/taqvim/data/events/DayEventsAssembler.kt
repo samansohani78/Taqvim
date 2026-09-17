@@ -5,11 +5,14 @@
 package ir.taqvim.data.events
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.calendar.HijriDateResolver
 import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.originOf
 import ir.taqvim.core.events.AstronomicalEventSource
 import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventDefinition
+import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventLookup
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.EventVisibilityPolicy
@@ -19,6 +22,7 @@ import ir.taqvim.core.events.Occurrence
 import ir.taqvim.core.ics.OccurrenceSeries
 import ir.taqvim.core.ics.SeriesInstance
 import ir.taqvim.core.ics.seriesInstances
+import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
@@ -67,6 +71,21 @@ internal class OfficialView(
 
     fun isHoliday(jdn: Jdn): Boolean = holidays.isHoliday(jdn)
 
+    /** The [DateOrigin] of each occurrence in [official] that follows the Islamic calendar, by event id. */
+    fun originsOf(
+        jdn: Jdn,
+        official: List<Occurrence>,
+    ): Map<EventId, DateOrigin> =
+        official
+            .filter { it.definition.calendar == CalendarSystem.ISLAMIC }
+            .mapNotNull { occurrence ->
+                val definition = occurrence.definition
+                selection
+                    .providerFor(definition.source)
+                    .calendarFor(CalendarSystem.ISLAMIC)
+                    ?.let { definition.id to it.originOf(jdn) }
+            }.toMap()
+
     fun isWeekend(jdn: Jdn): Boolean = holidays.isWeekend(jdn)
 }
 
@@ -103,16 +122,18 @@ internal class DayEventsAssembler(
         val resolver = HijriDateResolver(clock, official.iranCalendar)
         return days.map { jdn ->
             val hijri = resolveIranian(official, resolver, jdn)
+            val visible = official.visibleOn(jdn, zone)
             DayEvents(
                 jdn = jdn,
                 islamicDate = hijri?.date ?: official.islamicCalendar.fromJdn(jdn),
                 hijri = hijri,
-                official = official.visibleOn(jdn, zone),
+                official = visible,
                 isHoliday = official.isHoliday(jdn),
                 isWeekend = official.isWeekend(jdn),
                 personal = personal.filter { jdn in it.days }.map { it.occurrence },
                 device = snapshot.device.filter { jdn in it.days },
                 ics = ics.filter { jdn in it.days },
+                officialOrigins = official.originsOf(jdn, visible),
             )
         }
     }

@@ -104,6 +104,7 @@
   <string name="astronomy_moon_in_scorpio_in">قمر در عقرب در سال %1$s</string>
   <string name="astronomy_scorpio_tropical">برج عقرب (۲۱۰ تا ۲۴۰ درجه طول دایرةالبروجی)</string>
   <string name="astronomy_scorpio_constellation">صورت فلکی عقرب (مرزهای اتحادیه بین‌المللی نجوم)</string>
+  <string name="astronomy_scorpio_computed">منبع: محاسبه از موقعیت ماه (بدون تقویم نجومی منتشرشده)</string>
   <string name="astronomy_no_periods">در این سال دوره‌ای نیست.</string>
   <string name="astronomy_period">%1$s تا %2$s</string>
 </resources>

@@ -116,7 +116,7 @@ private fun EventSourceCard(
     val citation = event.citations.firstOrNull()
     TooltipCard(
         title = sourceLabel(resources, event),
-        body = event.title,
+        body = sourceBody(resources, event),
         modifier = Modifier.fillMaxWidth(),
         footnote =
             citation?.let { citationText(resources, it, language) } ?: stringResource(R.string.calendar_no_citation),
@@ -143,6 +143,18 @@ internal fun chipDescription(
         sourceLabel(resources, event),
         resources.getString(R.string.calendar_holiday).takeIf { event.isHoliday },
     ).joinToString(resources.getString(R.string.calendar_separator))
+
+/** The event's title and, for an official event in the Islamic calendar, where its date comes from (DT-033). */
+internal fun sourceBody(
+    resources: Resources,
+    event: DayEventItem,
+): String =
+    listOfNotNull(
+        event.title,
+        event.dateOrigin?.let {
+            resources.getString(R.string.calendar_event_date_origin, resources.getString(DayDetailsLabels.of(it)))
+        },
+    ).joinToString("\n")
 
 /** The dataset source of an official event, or the kind of any other event. */
 internal fun sourceLabel(

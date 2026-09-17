@@ -78,7 +78,6 @@ class HebrewMonthNamesTest {
         HebrewMonthNames.omittedLanguages shouldBe
             setOf("ps", "ckb", "kmr", "az", "ne", "hi", "tg", "uz", "id", "ms", "zh")
         HebrewMonthNames.omittedLanguages.forEach { code ->
-            HebrewMonthNames.months(code, leap = false) shouldBe null
             HebrewMonthNames.locale(code) shouldBe null
             val tag = requireNotNull(LanguageTable.forCode(code)).localeTag
             if (code != "zh") icuNames(tag) shouldBe root
@@ -97,7 +96,35 @@ class HebrewMonthNamesTest {
         HebrewMonthNames.name("en", 5785, 7) shouldBe "Nisan"
         HebrewMonthNames.name("en", 5785, 13) shouldBe null
         HebrewMonthNames.name("en", 5784, 13) shouldBe "Elul"
-        HebrewMonthNames.name("hi", 5784, 1) shouldBe null
+        HebrewMonthNames.name("hi", 5784, 1) shouldBe "तिश्री"
+    }
+
+    @Test
+    fun `machine-translated names fill exactly the CLDR gaps (DT-037)`() {
+        languages.forEach { code ->
+            HebrewMonthNames.isMachineTranslated(code) shouldBe (code in HebrewMonthNames.omittedLanguages)
+            val common = requireNotNull(HebrewMonthNames.months(code, leap = false))
+            val leap = requireNotNull(HebrewMonthNames.months(code, leap = true))
+            common.size shouldBe 12
+            leap.size shouldBe 13
+            (common + leap).forEach { it.isNotBlank() shouldBe true }
+            leap.distinct().size shouldBe 13
+        }
+        HebrewMonthNames.isMachineTranslated("en") shouldBe false
+        HebrewMonthNames.isMachineTranslated("xx") shouldBe false
+        HebrewMonthNames.months("hi", leap = true)?.subList(5, 7) shouldContainExactly
+            listOf("अदार प्रथम", "अदार द्वितीय")
+    }
+
+    @Test
+    fun `every language names every month of every Hebrew year of SH 1380 to 1480`() {
+        // SH 1380–1480 spans AM 5761–5862.
+        (5761..5862).forEach { year ->
+            val months = if (HebrewMonthNames.isLeapYear(year)) 13 else 12
+            languages.forEach { code ->
+                (1..months).forEach { month -> HebrewMonthNames.name(code, year, month).isNullOrBlank() shouldBe false }
+            }
+        }
     }
 
     @Test

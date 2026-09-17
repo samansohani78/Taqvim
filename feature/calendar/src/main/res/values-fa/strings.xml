@@ -20,6 +20,7 @@
   <string name="calendar_origin_computed">محاسبه‌شده</string>
   <string name="calendar_origin_official">تاریخ رسمی اعلام‌شده</string>
   <string name="calendar_origin_published">تقویم چاپی</string>
+  <string name="calendar_event_date_origin">تاریخ: %1$s</string>
   <string name="calendar_details_loading">در حال بارگذاری روز</string>
   <string name="calendar_system_persian">هجری شمسی</string>
   <string name="calendar_system_islamic">هجری قمری</string>

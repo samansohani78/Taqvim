@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.calendar
 
+import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.calendar.IslamicMonthTable
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventSource
@@ -52,6 +53,8 @@ data class DayEventItem(
     val source: EventSource? = null,
     /** Primary-source citations of an official event, shown in its source tooltip. */
     val citations: List<Citation> = emptyList(),
+    /** Where the date of an official event in the Islamic calendar comes from; `null` for other events. */
+    val dateOrigin: DateOrigin? = null,
 )
 
 /** The chosen place for the Times tab and the Moon of the day details (T-802). */

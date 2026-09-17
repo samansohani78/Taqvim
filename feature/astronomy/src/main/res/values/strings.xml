@@ -154,6 +154,7 @@
   <string name="astronomy_moon_in_scorpio_in">Moon in Scorpio in %1$s</string>
   <string name="astronomy_scorpio_tropical">Tropical sign Scorpio (210° to 240° of ecliptic longitude)</string>
   <string name="astronomy_scorpio_constellation">Constellation Scorpius (IAU boundaries)</string>
+  <string name="astronomy_scorpio_computed">Source: computed from the Moon\'s position (no published almanac)</string>
   <string name="astronomy_no_periods">No periods in this year.</string>
   <string name="astronomy_period">%1$s to %2$s</string>
 </resources>

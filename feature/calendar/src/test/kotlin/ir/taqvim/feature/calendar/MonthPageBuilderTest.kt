@@ -199,6 +199,6 @@ class MonthPageBuilderTest {
         names.build(-7, tishri, tishri, null).heading.title shouldBe "Adar 5786"
         val hindi = requireNotNull(LanguageTable.forCode("hi"))
         builder(hebrew, hindi).build(5, tishri, tishri, null).heading.title shouldBe
-            "${Numerals.format(6L, hindi.numerals)} ${Numerals.format(5787L, hindi.numerals)}"
+            "अदार प्रथम ${Numerals.format(5787L, hindi.numerals)}"
     }
 }

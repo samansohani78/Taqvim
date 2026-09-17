@@ -13,7 +13,6 @@ import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.LanguageTable
-import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.model.CalendarSystem
 import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Test
@@ -110,6 +109,6 @@ class WidgetCountdownBuilderTest {
         WidgetCountdownOptions(today, hindi, listOf(HebrewCalendarSystem), emptyList())
             .choices(start)
             .monthNamesIn(5787)
-            .last() shouldBe Numerals.localizeDigits("13", hindi.numerals)
+            .last() shouldBe "एलूल"
     }
 }
