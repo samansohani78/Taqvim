@@ -41,7 +41,9 @@ docs/PLAN.md T-204 (resources), T-1702 (translations), §quality bar ("no hard-c
 ## 4. Weblate project
 
 Weblate is an external hosted service. The project is created by the repository owner; the settings below are
-the intended configuration and are not applied from this repository.
+the intended configuration and are not applied from this repository. The component list, file masks and language
+folders are committed as [`.weblate`](../../.weblate) (the `wlc` CLI format) so that the repository and the server
+agree on paths.
 
 | Setting | Value |
 |---|---|

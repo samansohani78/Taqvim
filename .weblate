@@ -1,0 +1,74 @@
+# Weblate (wlc) configuration for the Taqvim translation project (T-1702).
+# Weblate itself is hosted outside this repository; these settings describe the components
+# the owner creates there, so the CLI and the repository agree on paths and languages.
+# See docs/i18n/TRANSLATING.md and docs/i18n/STRINGS.md §4.
+
+[weblate]
+url = https://hosted.weblate.org/api/
+# TODO(owner): confirm the Weblate instance and replace the URL if the project is self-hosted.
+
+[keys]
+# The API token is never stored in the repository; set WEBLATE_API_KEY in the environment.
+
+[project taqvim]
+url = https://hosted.weblate.org/api/projects/taqvim/
+vcs = git
+push_branch = weblate/translations
+source_language = en
+file_format = aresource
+new_base = %(module)s/src/main/res/values/strings.xml
+filemask = %(module)s/src/main/res/values-*/strings.xml
+license = Proprietary
+check_flags = java-printf-format, icu-flags:strict-xml
+# Machine-translated strings committed on 2026-09-17 carry the comment
+# "<!-- MT: needs review — machine translation … -->" at the top of each file.
+# Review them language by language; fa and en are the reviewed source pair.
+
+# component = module path : Weblate component slug
+[components]
+app = app
+wear = wear
+feature/about = feature-about
+feature/agenda = feature-agenda
+feature/astronomy = feature-astronomy
+feature/backup = feature-backup
+feature/calendar = feature-calendar
+feature/compass = feature-compass
+feature/events = feature-events
+feature/map = feature-map
+feature/notification = feature-notification
+feature/search = feature-search
+feature/settings = feature-settings
+feature/timeline = feature-timeline
+feature/times = feature-times
+feature/tools = feature-tools
+feature/wallpaper = feature-wallpaper
+feature/widgets = feature-widgets
+feature/year = feature-year
+
+[languages]
+# The 24 launch languages (ADR-0007) and their resource folders.
+fa = values-fa
+prs = values-fa-rAF
+ps = values-ps
+ar = values-ar
+ckb = values-b+ckb
+kmr = values-ku
+az = values-b+az+Latn
+tr = values-tr
+ur = values-ur
+ne = values-ne
+hi = values-hi
+ta = values-ta
+bn = values-bn
+tg = values-tg
+uz = values-b+uz+Latn
+en = values
+ru = values-ru
+de = values-de
+fr = values-fr
+es = values-es
+id = values-in
+ms = values-ms
+zh-Hans = values-b+zh+Hans
+ja = values-ja
