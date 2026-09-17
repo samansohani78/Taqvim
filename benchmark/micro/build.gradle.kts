@@ -1,5 +1,8 @@
 plugins {
     alias(libs.plugins.taqvim.android.library)
+    // The Glance timings compose widget content, so the androidTest sources need the Compose compiler: without it the
+    // `provideContent { }` lambda is compiled as a plain function and the call fails with NoSuchMethodError on device.
+    alias(libs.plugins.taqvim.android.compose)
 }
 
 // T-1801: in-process timings of widget bitmap renders, Glance widget compositions and map masks (plan §9: widget render < 30 ms, map mask
