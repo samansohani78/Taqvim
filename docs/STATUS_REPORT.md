@@ -385,4 +385,3 @@ Each line: what to provide → what happens if it is never provided.
 3. Tag `v1.0.0-rc1`, build a signed release once the keystore secrets exist, and upload to the Play closed-testing track.
 4. Run the two-week closed beta (`docs/BETA.md`); confirm the `TODO(owner)` defaults; collect official 1406 calendar data.
 5. Promote through the staged rollout in `docs/RELEASE.md`.
-
