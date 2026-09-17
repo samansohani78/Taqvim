@@ -7,7 +7,7 @@ package ir.taqvim.feature.events
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.calendar.toLocalDate
-import ir.taqvim.core.ics.RecurrenceEngine
+import ir.taqvim.core.ics.OccurrenceSeries
 import ir.taqvim.core.model.Jdn
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
@@ -25,9 +25,10 @@ internal data class PreviewSlot(
 )
 
 /**
- * The next [SIZE] occurrences of the form's repetition from [today] on (review F02), expanded by the same
- * [RecurrenceEngine] as the calendar and then moved from the event's zone into [viewZoneId], so a zone change or DST
- * transition shows as a different local time. Empty while the event does not repeat or the form has errors.
+ * The next [SIZE] occurrences of the form's repetition from [today] on (review F02), expanded by the shared
+ * occurrence pipeline ([OccurrenceSeries], ADR-0035) like the calendar and then moved from the event's zone into
+ * [viewZoneId], so a zone change or DST transition shows as a different local time. Empty while the event does not
+ * repeat or the form has errors.
  */
 internal object RecurrencePreview {
     const val SIZE: Int = 10
@@ -42,7 +43,7 @@ internal object RecurrencePreview {
     ): List<PreviewSlot> {
         val repeat = form.repeat ?: return emptyList()
         if (EventValidator.validate(form, calendar).isNotEmpty()) return emptyList()
-        val days = RecurrenceEngine(calendar).occurrences(form.start, repeat.toRule(calendar), today).take(SIZE)
+        val days = OccurrenceSeries<Nothing>(calendar, form.start, repeat.toRule(calendar)).starts(today).take(SIZE)
         return days.map { day -> slot(form, day, viewZoneId) }.toList()
     }
 

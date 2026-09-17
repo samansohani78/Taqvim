@@ -16,7 +16,8 @@ import ir.taqvim.core.events.EventVisibilityPolicy
 import ir.taqvim.core.events.HolidayCalendar
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.events.Occurrence
-import ir.taqvim.core.ics.RecurrenceEngine
+import ir.taqvim.core.ics.OccurrenceSeries
+import ir.taqvim.core.ics.SeriesInstance
 import ir.taqvim.core.ics.seriesInstances
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
@@ -141,22 +142,42 @@ internal object PersonalExpansion {
     ): List<PersonalOccurrence> {
         val event = record.event
         val length = maxOf(0L, event.endJdn - event.startJdn)
+        return instances(record, calendars, length, days)
+            .map { instance ->
+                val occurrence =
+                    occurrence(record, instance.original..(instance.original + length))
+                        .copy(originalDay = instance.original.takeIf { record.recurrence != null })
+                instance.override?.let { occurrence.overriddenBy(it) } ?: occurrence
+            }.filter { it.days.start <= days.endInclusive && it.days.endInclusive >= days.start }
+    }
+
+    /** The shared pipeline's instances of [record] (ADR-0035); a one-off event needs no calendar arithmetic. */
+    private fun instances(
+        record: PersonalEventRecord,
+        calendars: CalendarProvider,
+        length: Long,
+        days: JdnRange,
+    ): List<SeriesInstance<EventOverrideEntity>> {
+        val event = record.event
+        val first = Jdn(event.startJdn)
         val (cancelled, kept) = record.overrides.partition { it.cancelled }
-        // Overrides can move an earlier occurrence into the days, so the series is read from the first of both.
-        val earliest = days.start - length
-        val from = kept.minOfOrNull { Jdn(it.originalJdn) }?.let { minOf(it, earliest) } ?: earliest
-        return seriesInstances(
-            occurrences = starts(record, calendars, from),
-            excluded = record.exceptions + cancelled.map { Jdn(it.originalJdn) },
-            overrides = kept.associateBy { Jdn(it.originalJdn) },
-            from = days.start - length,
-            until = days.endInclusive,
-        ).map { instance ->
-            val occurrence =
-                occurrence(record, instance.original..(instance.original + length))
-                    .copy(originalDay = instance.original.takeIf { record.recurrence != null })
-            instance.override?.let { occurrence.overriddenBy(it) } ?: occurrence
-        }.filter { it.days.start <= days.endInclusive && it.days.endInclusive >= days.start }
+        val excluded = record.exceptions + cancelled.map { Jdn(it.originalJdn) }
+        val overrides = kept.associateBy { Jdn(it.originalJdn) }
+        val calendar = calendars.calendarFor(event.calendarSystem)
+        return when {
+            calendar != null -> {
+                OccurrenceSeries(calendar, calendar.fromJdn(first), record.recurrence, length, excluded, overrides)
+                    .instances(days.start, days.endInclusive)
+            }
+
+            record.recurrence == null -> {
+                seriesInstances(sequenceOf(first), excluded, overrides, days.start - length, days.endInclusive)
+            }
+
+            else -> {
+                emptyList()
+            }
+        }
     }
 
     private fun occurrence(
@@ -187,18 +208,6 @@ internal object PersonalExpansion {
             endMinute = override.endMinute,
             colorArgb = override.colorArgb ?: colorArgb,
         )
-
-    /** Occurrence starts of [record] on or after [from] (a one-off event keeps its single start). */
-    private fun starts(
-        record: PersonalEventRecord,
-        calendars: CalendarProvider,
-        from: Jdn,
-    ): Sequence<Jdn> {
-        val first = Jdn(record.event.startJdn)
-        val rule = record.recurrence ?: return sequenceOf(first)
-        val calendar = calendars.calendarFor(record.event.calendarSystem) ?: return emptySequence()
-        return RecurrenceEngine(calendar).occurrences(calendar.fromJdn(first), rule, from)
-    }
 }
 
 /** This cache row as an [IcsOccurrence]; all-day rows are UTC-midnight bounded like device instances. */

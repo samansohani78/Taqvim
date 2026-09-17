@@ -5,7 +5,7 @@
 package ir.taqvim.app.di
 
 import ir.taqvim.core.calendar.CalendarArithmetic
-import ir.taqvim.core.ics.RecurrenceEngine
+import ir.taqvim.core.ics.OccurrenceSeries
 import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.EventExceptionEntity
@@ -89,7 +89,7 @@ internal class EventOccurrenceEdits(
         day: Jdn,
     ): Boolean {
         val rule = series.recurrence ?: return false
-        return RecurrenceEngine(calendar).occurrences(series.start, rule, day).firstOrNull() == day
+        return OccurrenceSeries<Nothing>(calendar, series.start, rule).isOccurrence(day)
     }
 }
 

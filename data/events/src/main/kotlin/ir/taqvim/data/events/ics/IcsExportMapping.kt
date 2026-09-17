@@ -11,8 +11,8 @@ import ir.taqvim.core.ics.DisplayAlarm
 import ir.taqvim.core.ics.IcsDateTime
 import ir.taqvim.core.ics.IcsEvent
 import ir.taqvim.core.ics.InvalidDatePolicy
+import ir.taqvim.core.ics.OccurrenceSeries
 import ir.taqvim.core.ics.Recurrence
-import ir.taqvim.core.ics.RecurrenceEngine
 import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
@@ -199,12 +199,18 @@ internal class IcsExportMapping(
         val calendar = calendars.calendarFor(event.calendarSystem) ?: return emptyList()
         val unbounded = rule.count == null && rule.until == null
         val horizon = maxOf(today.value, event.startJdn) + limits.horizonDays
-        val excluded = record.excludedDays.toSet()
-        return RecurrenceEngine(calendar)
-            .occurrences(calendar.fromJdn(Jdn(event.startJdn)), rule)
+        val series =
+            OccurrenceSeries<Nothing>(
+                calendar = calendar,
+                start = calendar.fromJdn(Jdn(event.startJdn)),
+                rule = rule,
+                excluded = record.excludedDays.map(::Jdn).toSet(),
+            )
+        return series
+            .starts()
             .drop(1)
             .takeWhile { !unbounded || it.value <= horizon }
-            .filter { it.value !in excluded }
+            .filter { it !in series.excluded }
             .take(limits.maxRecurrenceDates)
             .map { dateTime(event, it, event.startMinute) }
             .toList()

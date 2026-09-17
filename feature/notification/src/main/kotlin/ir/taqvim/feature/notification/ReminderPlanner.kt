@@ -8,9 +8,8 @@ import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventId
-import ir.taqvim.core.ics.RecurrenceEngine
+import ir.taqvim.core.ics.OccurrenceSeries
 import ir.taqvim.core.ics.RecurrenceRule
-import ir.taqvim.core.ics.seriesInstances
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
@@ -291,8 +290,9 @@ object ReminderPlanner {
     }
 
     /**
-     * Occurrences of [event] taking place from [from] to [until], without exception days and cancelled occurrences and
-     * with changed ones moved (T-1003); none when its calendar is unavailable or its start invalid.
+     * Occurrences of [event] taking place from [from] to [until], from the shared pipeline (ADR-0035): without
+     * exception days and cancelled occurrences and with changed ones moved (T-1003); none when its calendar is
+     * unavailable or its start invalid.
      */
     private fun instances(
         event: ReminderEvent,
@@ -301,11 +301,18 @@ object ReminderPlanner {
         until: Jdn,
     ): List<Instance> {
         val calendar = calendars.calendarFor(event.start.system) ?: return emptyList()
-        val first = runCatching { calendar.toJdn(event.start) }.getOrNull() ?: return emptyList()
-        val all = event.recurrence?.let { RecurrenceEngine(calendar).occurrences(event.start, it) } ?: sequenceOf(first)
+        if (runCatching { calendar.toJdn(event.start) }.isFailure) return emptyList()
         val (cancelled, kept) = event.overrides.partition { it.cancelled }
-        val excluded = event.exceptions + cancelled.map { it.original }
-        return seriesInstances(all, excluded, kept.associateBy { it.original }, from, until)
+        val series =
+            OccurrenceSeries(
+                calendar = calendar,
+                start = event.start,
+                rule = event.recurrence,
+                excluded = event.exceptions + cancelled.map { it.original },
+                overrides = kept.associateBy { it.original },
+            )
+        return series
+            .instances(from, until)
             .map { instance ->
                 instance.override?.let { Instance(instance.original, it.day, it.startMinute, it.title) }
                     ?: Instance(instance.original, instance.original, event.startMinute, event.title)
