@@ -74,7 +74,9 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: ./gradlew connectedDebugAndroidTest --continue
+          # One retry absorbs runner faults seen here (Maven Central HTTP 429, an emulator that boots without its
+          # system services); a real test failure fails both attempts.
+          script: ./gradlew connectedDebugAndroidTest --continue || (sleep 60 && ./gradlew connectedDebugAndroidTest --continue)
       - uses: actions/upload-artifact@v7
         if: always()
         with:
