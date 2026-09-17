@@ -4,18 +4,18 @@ This page says where to report a problem, what to include, and how quickly each 
 (docs/PLAN.md T-1901). Holiday and event data corrections follow the same process, with the extra rules in
 [CONTRIBUTING-DATA.md](CONTRIBUTING-DATA.md).
 
-> **Owner placeholders.** Entries marked `‹OWNER: …›` are decisions or addresses the project owner has not published
-> yet. They must be filled in before the first public release.
+> **Owner defaults.** Values marked with a `TODO(owner)` comment are defaults filled in on 2026-09-17; the owner confirms
+> or replaces them before the first public release (list: docs/MANUAL_TEST_CHECKLIST.md, *Owner defaults to confirm*).
 
 ## Channels
 
 | Channel | Use it for |
 |---|---|
 | **In the app:** More → About → *Report a problem* | Crashes and wrong behaviour. The app prepares the report for you (see [Privacy](#privacy-of-reports)). |
-| **GitHub issue forms** (`‹OWNER: repository URL›/issues/new/choose`) | *Bug report*, *Holiday / event data correction*, *Feature request*. Blank issues are disabled. |
-| **E-mail** `‹OWNER: support address›` | Reports from people without a GitHub account. Until an address is published, the in-app report opens the share sheet instead of an e-mail app. |
+| **GitHub issue forms** ([github.com/samansohani78/Taqvim/issues/new/choose](https://github.com/samansohani78/Taqvim/issues/new/choose) <!-- TODO(owner): confirm repository URL -->) | *Bug report*, *Holiday / event data correction*, *Feature request*. Blank issues are disabled. |
+| **E-mail** support@taqvim.app <!-- TODO(owner): confirm support address --> | Reports from people without a GitHub account. The in-app report still opens the share sheet, so you choose the app that sends it. |
 
-Reports are read in Persian (`fa`) and English (`en`). `‹OWNER: other languages answered, if any›`
+Reports are read in Persian (`fa`) and English (`en`); other languages are answered on a best-effort basis. <!-- TODO(owner): confirm languages answered -->
 
 ## What to include
 
@@ -40,12 +40,13 @@ Reports are read in Persian (`fa`) and English (`en`). `‹OWNER: other language
 |---|---|---|
 | **P0 — crash or data loss** | The app crashes on start or on a common screen; events, reminders or backups are lost; athan or reminders stop firing for everyone | Fix released within **48 hours** of confirmation |
 | **Holiday data error** | An official holiday on the wrong day, missing or wrongly marked as a day off | Corrected within **72 hours** of confirming the primary source |
-| **P1 — major feature broken** | A screen unusable for some devices or languages, wrong prayer times for a method | `‹OWNER: target›` |
-| **P2 — minor problem** | Layout glitches, untranslated text, small inaccuracies | `‹OWNER: target›` |
+| **P1 — major feature broken** | A screen unusable for some devices or languages, wrong prayer times for a method | Fix released within **7 days** of confirmation <!-- TODO(owner): confirm P1 target --> |
+| **P2 — minor problem** | Layout glitches, untranslated text, small inaccuracies | Fixed in the next scheduled release, within **30 days** <!-- TODO(owner): confirm P2 target --> |
 | **Feature request** | New features and improvements | Considered for planning; no fixed time |
 
 The 48-hour and 72-hour targets come from the plan. A report is *confirmed* when it has been reproduced, or when the
-primary source for a data correction has been checked. `‹OWNER: first-response time for new reports›`
+primary source for a data correction has been checked. New reports get a first response within **2 working days**.
+<!-- TODO(owner): confirm first-response time -->
 
 ### Data-only corrections
 
@@ -58,10 +59,10 @@ corrected release.
 Each new issue carries the `triage` label until it is sorted:
 
 1. **Reproduce or verify.** For data corrections, open the cited source and check the page.
-2. **Set the severity** (table above) and replace `triage` with the matching label. `‹OWNER: label names for P0/P1/P2›`
+2. **Set the severity** (table above) and replace `triage` with the matching label: `P0`, `P1`, `P2` or `data-error`. <!-- TODO(owner): confirm label names -->
 3. **P0 or holiday data error:** start the fix at once; the response time is counted from this step.
 4. **Missing information:** ask for it, and close the issue if there is no answer within
-   `‹OWNER: number of days›`.
+   **14 days**. <!-- TODO(owner): confirm stale-issue days -->
 5. **Unverifiable data:** add the record to [docs/DATA_TODO.md](docs/DATA_TODO.md) instead of guessing, and link the
    issue.
 

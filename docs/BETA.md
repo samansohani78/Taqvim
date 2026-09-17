@@ -4,20 +4,20 @@ The plan's beta program (docs/PLAN.md T-1902): a **two-week closed beta** with a
 crash-free sessions are **≥ 99.9%**. Release mechanics are in [RELEASE.md](RELEASE.md); how testers report problems is
 in [SUPPORT.md](../SUPPORT.md).
 
-> **Not started.** No build has been distributed and no store account is configured. Entries marked `‹OWNER: …›` need
-> the owner. Nothing is uploaded without the owner's approval.
+> **Not started.** No build has been distributed and no store account is configured. Values marked with a `TODO(owner)`
+> comment are defaults filled in on 2026-09-17 for the owner to confirm. Nothing is uploaded without the owner's approval.
 
 ## Tracks and builds
 
 - **Google Play closed testing** is the beta track (RELEASE.md, *Distribution*). Testers join through an opt-in link.
-  `‹OWNER: Play closed-testing track and tester group (e-mail list or Google Group)›`
+  Track: Play *Closed testing – Beta*; testers join through the Google Group `taqvim-beta`. <!-- TODO(owner): confirm track and tester group -->
 - Beta builds are tagged `vX.Y.Z-beta.N` and carry that `versionName`, so every report names its build. The GitHub
   release for a beta tag is a draft pre-release (`release.yml`).
 - A new beta build is uploaded when a P0 or holiday data error is fixed, or at the end of the first week.
 
 ## Joining (tester instructions)
 
-1. Open the opt-in link `‹OWNER: Play opt-in URL›` with the Google account you use on your phone and accept.
+1. Open the opt-in link that Play Console creates for the beta track <!-- TODO(owner): confirm opt-in URL --> with the Google account you use on your phone and accept.
 2. Install or update Taqvim from Google Play. It may take a few hours before the beta version appears.
 3. Use Taqvim as your everyday calendar for two weeks, in your usual language (Persian and English are fully supported).
 4. To leave, open the same link and choose to leave the program, then reinstall from the public listing when it exists.
@@ -40,7 +40,8 @@ plan's manual release checklist (§8.1), core UI scenarios (§8.3) and budgets (
 Before the beta starts:
 
 - [ ] The build passed every release blocker in RELEASE.md except the manual sign-offs.
-- [ ] Testers cover `fa` and `en`, and at least one each of `prs`, `ar`, `ckb` and `ne` users. `‹OWNER: tester list›`
+- [ ] Testers cover `fa` and `en`, and at least one each of `prs`, `ar`, `ckb` and `ne` users; at least two testers per listed language, recruited
+      through the tester group. <!-- TODO(owner): confirm tester list -->
 - [ ] Devices cover low-end API 26, a mid-range phone, a tablet or foldable, and the OEM matrix for athan.
 
 During the two weeks, testers and the team confirm:
@@ -69,9 +70,9 @@ The beta ends, and the release moves to the open track and staged rollout (RELEA
 
 If crash-free sessions fall below 99.9%, the beta continues with a fixed build; the 7-day window restarts with it.
 
-## Owner placeholders
+## Owner defaults to confirm
 
-- Play closed-testing track and tester group
-- Play opt-in URL
-- Tester list covering the listed languages and devices
-- Beta start date (the two weeks are counted from the first build reaching testers)
+Filled with defaults on 2026-09-17 (see [MANUAL_TEST_CHECKLIST.md](MANUAL_TEST_CHECKLIST.md), *Owner defaults to
+confirm*): the closed-testing track and tester group, the opt-in URL (created by Play Console), the tester list, and
+the beta start date, which is the day the first beta build reaches testers. The device-level checks for the beta are
+in MANUAL_TEST_CHECKLIST.md.

@@ -8,9 +8,11 @@ is in [ADR-0016](adr/0016-automation-links-and-broadcasts.md).
 
 Please report security problems privately, not in public issues.
 
-- Contact: ‹OWNER: security contact address›
-- Encryption key for reports (optional): ‹OWNER: PGP key or other secure channel›
-- Expected first response: ‹OWNER: response time›
+- Contact: support@taqvim.app with the subject "Security", or GitHub private vulnerability reporting on
+  [samansohani78/Taqvim](https://github.com/samansohani78/Taqvim/security/advisories/new). <!-- TODO(owner): confirm security contact -->
+- Encryption key for reports (optional): none published; use GitHub private vulnerability reporting for confidential
+  details. <!-- TODO(owner): confirm secure channel -->
+- Expected first response: within 3 working days. <!-- TODO(owner): confirm security response time -->
 
 Include the app version (More → About), the Android version, and steps to reproduce. Do not include other people's
 personal data.
