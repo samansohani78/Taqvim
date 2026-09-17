@@ -17,6 +17,7 @@ import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.datetime.TimeZone
 
 /** Shared test data: rounded sample places, fixed instants and the calculator over the generated dataset. */
@@ -66,7 +67,7 @@ class TestWearApplication :
                     },
                 ),
             clock = WearFixtures.fixedClock(WearFixtures.NOWRUZ_MORNING),
-            deviceZone = { WearFixtures.TEHRAN_ZONE },
+            deviceZones = flowOf(WearFixtures.TEHRAN_ZONE),
             cityCatalog = lazy { CityCatalog.loadBundled() },
             calculator = WearFixtures.calculator,
         )

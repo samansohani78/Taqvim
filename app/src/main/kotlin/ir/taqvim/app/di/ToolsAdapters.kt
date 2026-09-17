@@ -11,6 +11,7 @@ import ir.taqvim.core.workdays.WorkdayCalculator
 import ir.taqvim.core.workdays.WorkdayProfile
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.database.toProfile
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.tools.ToolsSettings
@@ -22,22 +23,26 @@ import kotlinx.datetime.TimeZone
 
 /**
  * [ToolsSettingsSource] (T-1400) from the stored preferences and the default workday profile (T-504): the app language,
- * the device's time zone, the user's computable calendars (the tools' defaults when none is) and workday arithmetic
+ * the device's time zone (re-emitted when it changes, review I06), the user's computable calendars (the tools' defaults when none is) and workday arithmetic
  * over the official events when a default profile exists. The time-zone board starts empty until T-1500 stores it.
  */
 internal class PreferencesToolsSettingsSource(
     private val preferences: UserPreferencesRepository,
     private val workdayProfile: Flow<WorkdayProfile?>,
-    private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
+    private val zones: Flow<TimeZone> = DeviceTimeZone.current,
     loadLookup: () -> EventLookup = { EventLookup(OfficialEvents.ALL) },
 ) : ToolsSettingsSource {
     private val lookup by lazy(loadLookup)
 
     override fun settings(): Flow<ToolsSettings> =
-        combine(preferences.preferences, workdayProfile.distinctUntilChanged()) { preferences, profile ->
+        combine(
+            preferences.preferences,
+            workdayProfile.distinctUntilChanged(),
+            zones.distinctUntilChanged(),
+        ) { preferences, profile, zone ->
             ToolsSettings(
                 language = preferences.languageSpec(),
-                homeZone = zone(),
+                homeZone = zone,
                 calendars = preferences.availableCalendars().ifEmpty { ToolsSettings.DEFAULT_CALENDARS },
                 boardZones = preferences.app.timeZoneBoard,
                 workdays = profile?.let { WorkdayCalculator(lookup, it) },

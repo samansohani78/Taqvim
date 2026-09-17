@@ -6,6 +6,8 @@ package ir.taqvim.data.devicecalendar
 
 import android.Manifest
 import android.app.Application
+import android.content.Intent
+import android.os.Looper
 import android.provider.CalendarContract
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
@@ -19,7 +21,9 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.TaqvimDatabase
 import kotlin.time.Instant
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -43,7 +47,7 @@ class DeviceCalendarRepositoryTest {
         DeviceCalendarRepository(
             source = CalendarInstancesSource(application),
             dao = db.deviceEventDao(),
-            zone = { zone },
+            zones = flowOf(zone),
             ioDispatcher = Dispatchers.Unconfined,
         )
     private val day10 = day(10)..day(10)
@@ -106,6 +110,53 @@ class DeviceCalendarRepositoryTest {
             val allDay = repository.events(day10).first { it.isNotEmpty() }.last()
             allDay.days shouldBe day10
             allDay.colorArgb shouldBe 0xFF112233.toInt()
+        }
+
+    @Test
+    fun aDeviceZoneChangeRedatesTheInstances(): Unit =
+        runTest {
+            permission(granted = true)
+            provider.rows += fixtures
+            val zones = MutableStateFlow(zone)
+            val moving =
+                DeviceCalendarRepository(
+                    source = CalendarInstancesSource(application),
+                    dao = db.deviceEventDao(),
+                    zones = zones,
+                    ioDispatcher = Dispatchers.Unconfined,
+                )
+
+            moving.events(day10).test {
+                // 21:00–22:00 UTC is already the next day at UTC+03:30 …
+                awaitIds(listOf(3L, 1L))
+                zones.value = TimeZone.UTC
+                // … and on the 10th in UTC.
+                awaitIds(listOf(3L, 1L, 6L))
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
+    fun theDeviceZoneStreamFollowsTimeZoneBroadcasts(): Unit =
+        runTest {
+            var current = zone
+            DeviceTimeZone.changes(application) { current }.test {
+                awaitItem() shouldBe zone
+                current = TimeZone.of("Asia/Tokyo")
+                application.sendBroadcast(Intent(Intent.ACTION_TIMEZONE_CHANGED))
+                shadowOf(Looper.getMainLooper()).idle()
+                awaitItem() shouldBe TimeZone.of("Asia/Tokyo")
+                // Another broadcast without a change emits nothing; unrelated broadcasts are not received.
+                application.sendBroadcast(Intent(Intent.ACTION_TIMEZONE_CHANGED))
+                application.sendBroadcast(Intent(Intent.ACTION_TIME_CHANGED))
+                shadowOf(Looper.getMainLooper()).idle()
+                expectNoEvents()
+                cancelAndIgnoreRemainingEvents()
+            }
+            // The receiver is unregistered when collection ends.
+            shadowOf(application).registeredReceivers.none { receiver ->
+                receiver.intentFilter.hasAction(Intent.ACTION_TIMEZONE_CHANGED)
+            } shouldBe true
         }
 
     @Test

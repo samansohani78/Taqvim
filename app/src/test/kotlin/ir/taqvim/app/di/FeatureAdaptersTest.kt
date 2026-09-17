@@ -39,11 +39,15 @@ import ir.taqvim.feature.year.YearDay
 import ir.taqvim.feature.year.YearSettings
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -120,7 +124,7 @@ class FeatureAdaptersTest {
                 PreferencesToolsSettingsSource(
                     preferences = repositoryOf(persian.copy(calendars = listOf(CalendarSystem.NEPALI))),
                     workdayProfile = profile,
-                    zone = { TimeZone.of("Asia/Kabul") },
+                    zones = flowOf(TimeZone.of("Asia/Kabul")),
                     loadLookup = {
                         lookups++
                         EventLookup(emptyList())
@@ -149,6 +153,25 @@ class FeatureAdaptersTest {
                 .first()
                 .calendars
                 .first() shouldBeSameInstanceAs PersianCalendarSystem
+        }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `tools settings follow a device zone change`(): Unit =
+        runTest {
+            val zones = MutableStateFlow(TimeZone.of("Asia/Tehran"))
+            val source = PreferencesToolsSettingsSource(repositoryOf(persian), flowOf(null), zones = zones)
+            val zonesSeen =
+                async(UnconfinedTestDispatcher(testScheduler)) {
+                    source
+                        .settings()
+                        .map { it.homeZone }
+                        .take(2)
+                        .toList()
+                }
+            zones.value = TimeZone.of("Asia/Tokyo")
+
+            zonesSeen.await() shouldBe listOf(TimeZone.of("Asia/Tehran"), TimeZone.of("Asia/Tokyo"))
         }
 
     @Test

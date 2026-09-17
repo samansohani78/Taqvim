@@ -132,7 +132,7 @@ class ExportExpansionContractTest {
                         ics = IcsEventsSource { flowOf(emptyList()) },
                     ),
                 clock = clock,
-                zone = { zone },
+                zones = flowOf(zone),
                 computeDispatcher = Dispatchers.Unconfined,
             )
         return repository

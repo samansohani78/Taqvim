@@ -8,9 +8,11 @@ import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.database.DeviceEventDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -25,13 +27,19 @@ import kotlinx.datetime.TimeZone
 class DeviceCalendarRepository(
     private val source: InstancesSource,
     private val dao: DeviceEventDao,
-    private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
+    private val zones: Flow<TimeZone> = DeviceTimeZone.current,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
-    /** Instances touching [days], dated in the device zone read when collection starts. */
+    /** Instances touching [days], dated in the current device zone; a zone change re-reads the shifted window. */
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun events(days: JdnRange): Flow<List<DeviceEvent>> =
+        zones.distinctUntilChanged().flatMapLatest { zone -> eventsIn(days, zone) }
+
+    private fun eventsIn(
+        days: JdnRange,
+        zone: TimeZone,
+    ): Flow<List<DeviceEvent>> =
         channelFlow {
-            val zone = zone()
             val window = DeviceEventMapping.window(days, zone)
             launch { source.changes().onStart { emit(Unit) }.collect { refresh(window) } }
             dao

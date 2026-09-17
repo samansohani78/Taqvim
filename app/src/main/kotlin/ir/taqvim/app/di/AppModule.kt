@@ -18,6 +18,7 @@ import ir.taqvim.data.database.WorkdayProfileDao
 import ir.taqvim.data.database.backup.BackupService
 import ir.taqvim.data.devicecalendar.CalendarInstancesSource
 import ir.taqvim.data.devicecalendar.DeviceCalendarRepository
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.devicecalendar.InstancesSource
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.eventsDataModule
@@ -99,10 +100,16 @@ import kotlin.time.Clock
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.datetime.TimeZone
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.onClose
+import org.koin.core.module.dsl.withOptions
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -131,7 +138,18 @@ val appDataModule =
             UserPreferencesRepository(dataStore)
         }
         single<InstancesSource> { CalendarInstancesSource(androidContext()) }
-        single { DeviceCalendarRepository(get(), get()) }
+        // Review I06: one device time-zone stream for the process; its replay is dropped when nobody listens, so a
+        // new collector never starts from a zone that changed meanwhile.
+        single(named(DEVICE_ZONE_SCOPE)) { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
+            .withOptions { onClose { it?.cancel() } }
+        single<Flow<TimeZone>>(named(DeviceTimeZone.QUALIFIER)) {
+            DeviceTimeZone.changes(androidContext()).shareIn(
+                get<CoroutineScope>(named(DEVICE_ZONE_SCOPE)),
+                SharingStarted.WhileSubscribed(ZONE_STOP_TIMEOUT_MILLIS, replayExpirationMillis = 0),
+                replay = 1,
+            )
+        }
+        single { DeviceCalendarRepository(get(), get(), zones = get(named(DeviceTimeZone.QUALIFIER))) }
         // T-1003: iCalendar documents and periodic subscription refresh; the worker factory is installed by the
         // application's WorkManager configuration.
         single { androidContext().contentResolver }
@@ -170,7 +188,11 @@ val appFeaturePortsModule =
         single<LevelCalibrationStore> { PreferencesLevelCalibrationStore(get()) }
         single<ToolsSettingsSource> {
             val profiles = get<WorkdayProfileDao>().observeAll()
-            PreferencesToolsSettingsSource(get(), profiles.map { it.defaultProfile() })
+            PreferencesToolsSettingsSource(
+                get(),
+                profiles.map { it.defaultProfile() },
+                zones = get(named(DeviceTimeZone.QUALIFIER)),
+            )
         }
         single<YearSettingsSource> { PreferencesYearSettingsSource(get()) }
         single<YearDaysSource> {
@@ -292,6 +314,12 @@ internal const val RESTORE_JOURNAL_DIRECTORY = "restore-journal"
 /** Qualifiers of the scheduler's alarm kinds; every source and delivery is collected with `getAll()`. */
 internal const val PRAYER_ALARMS = "prayer"
 internal const val REMINDER_ALARMS = "reminder"
+
+/** How long the shared device time-zone stream keeps its receiver after the last collector leaves. */
+private const val ZONE_STOP_TIMEOUT_MILLIS = 5_000L
+
+/** Qualifier of the scope sharing the device time-zone stream; cancelled when Koin stops. */
+private const val DEVICE_ZONE_SCOPE = "deviceZoneScope"
 
 /** Root Koin module. Feature and data modules contribute their bindings here as they are implemented. */
 val appModule =

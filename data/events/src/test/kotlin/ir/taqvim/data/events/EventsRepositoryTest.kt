@@ -37,6 +37,8 @@ import kotlin.time.Instant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -72,7 +74,7 @@ class EventsRepositoryTest {
                         },
                 ),
             clock = clock,
-            zone = { tehran },
+            zones = flowOf(tehran),
             computeDispatcher = Dispatchers.Unconfined,
         )
 
@@ -220,6 +222,43 @@ class EventsRepositoryTest {
         }
 
     @Test
+    fun `a device zone change re-dates timed events without re-reading the settings`(): Unit =
+        runTest {
+            val zones = MutableStateFlow(tehran)
+            var settingsReads = 0
+            val repository =
+                EventsRepository(
+                    settings = settings.onStart { settingsReads++ },
+                    inputs =
+                        EventInputs(
+                            personal = PersonalEventsSource { personal },
+                            device = DeviceEventsSource { device },
+                            ics = IcsEventsSource { ics },
+                        ),
+                    clock = clock,
+                    zones = zones,
+                    computeDispatcher = Dispatchers.Unconfined,
+                )
+            // 00:30 in Tokyo: the previous day in Tehran, the same day in Tokyo.
+            personal.value =
+                listOf(
+                    PersonalEventRecord(event(1, nowruz, startMinute = 30, zoneId = "Asia/Tokyo"), recurrence = null),
+                )
+
+            repository.days(nowruz - 1..nowruz).test {
+                awaitItem().map { day -> day.personal.map { it.eventId } } shouldBe listOf(listOf(1L), emptyList())
+                zones.value = TimeZone.of("Asia/Tokyo")
+                awaitItem().map { day -> day.personal.map { it.eventId } } shouldBe listOf(emptyList(), listOf(1L))
+                // The same zone again changes nothing.
+                zones.value = TimeZone.of("Asia/Tokyo")
+                expectNoEvents()
+                cancelAndIgnoreRemainingEvents()
+            }
+            // The settings stream stays subscribed across the zone change.
+            settingsReads shouldBe 1
+        }
+
+    @Test
     fun `a timed event spanning midnight in the display zone covers both days`(): Unit =
         runTest {
             val repository = repository(zone = tehran)
@@ -258,7 +297,7 @@ class EventsRepositoryTest {
                 ics = IcsEventsSource { ics },
             ),
         clock = clock,
-        zone = { zone },
+        zones = flowOf(zone),
         computeDispatcher = Dispatchers.Unconfined,
     )
 

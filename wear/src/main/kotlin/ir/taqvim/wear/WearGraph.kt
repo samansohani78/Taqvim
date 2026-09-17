@@ -6,6 +6,7 @@ package ir.taqvim.wear
 
 import android.app.Application
 import android.content.Context
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.location.CityCatalog
 import ir.taqvim.data.preferences.UserPreferencesRepository
@@ -15,9 +16,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
 
 /** Something that holds the watch's object graph: the application, or a test application. */
@@ -43,7 +45,7 @@ internal fun Context.wearGraph(): WearGraph =
 class WearGraph(
     val preferences: UserPreferencesRepository,
     val clock: Clock,
-    private val deviceZone: () -> TimeZone,
+    private val deviceZones: Flow<TimeZone>,
     private val cityCatalog: Lazy<CityCatalog>,
     val calculator: WearDayCalculator,
 ) {
@@ -51,11 +53,11 @@ class WearGraph(
     val catalog: CityCatalog
         get() = cityCatalog.value
 
-    /** The watch setup, re-emitted after every preference change. */
+    /** The watch setup, re-emitted after every preference change and every device time-zone change (review I06). */
     val setups: Flow<WearSetup> =
-        preferences.preferences
-            .map { stored -> stored.toWearSetup(deviceZone()) { id, code -> catalog.city(id)?.name(code) } }
-            .flowOn(Dispatchers.Default)
+        combine(preferences.preferences, deviceZones.distinctUntilChanged()) { stored, zone ->
+            stored.toWearSetup(zone) { id, code -> catalog.city(id)?.name(code) }
+        }.flowOn(Dispatchers.Default)
 
     suspend fun setup(): WearSetup = setups.first()
 
@@ -77,7 +79,7 @@ class WearGraph(
                         ),
                     ),
                 clock = clock,
-                deviceZone = { TimeZone.currentSystemDefault() },
+                deviceZones = DeviceTimeZone.changes(context),
                 cityCatalog = lazy { CityCatalog.loadBundled() },
                 calculator = WearDayCalculator(OfficialEvents.ALL),
             )

@@ -83,7 +83,7 @@ class TimelineZoneDatingTest {
                         ics = IcsEventsSource { flowOf(emptyList()) },
                     ),
                 clock = clock,
-                zone = { zone },
+                zones = flowOf(zone),
                 computeDispatcher = Dispatchers.Unconfined,
             )
         val source = RepositoryTimelineDaysSource(repository::days, flowOf("en"), zone = { zone })

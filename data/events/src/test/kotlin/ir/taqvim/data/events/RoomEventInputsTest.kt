@@ -24,6 +24,7 @@ import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.toEntity
 import ir.taqvim.data.devicecalendar.CalendarInstancesSource
 import ir.taqvim.data.devicecalendar.DeviceCalendarRepository
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.devicecalendar.InstantWindow
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import kotlin.time.Clock
@@ -32,11 +33,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.TimeZone
 import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
@@ -140,6 +144,7 @@ class RoomEventInputsTest {
                                 )
                             }
                             single<Clock> { clock }
+                            single<Flow<TimeZone>>(named(DeviceTimeZone.QUALIFIER)) { DeviceTimeZone.current }
                         },
                     )
                 }.koin

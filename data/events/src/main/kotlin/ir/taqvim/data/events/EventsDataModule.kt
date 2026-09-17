@@ -5,13 +5,16 @@
 package ir.taqvim.data.events
 
 import ir.taqvim.data.devicecalendar.DeviceCalendarRepository
+import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import kotlinx.coroutines.flow.map
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
  * Koin bindings of the events repository (ADR-0002). It needs `PersonalEventDao`, `IcsSubscriptionDao`,
- * `DeviceCalendarRepository`, `UserPreferencesRepository` and `kotlin.time.Clock` from other modules.
+ * `DeviceCalendarRepository`, `UserPreferencesRepository`, `kotlin.time.Clock` and the shared device time-zone stream
+ * (qualified [DeviceTimeZone.QUALIFIER]) from other modules.
  */
 val eventsDataModule =
     module {
@@ -27,6 +30,7 @@ val eventsDataModule =
                 settings = get<UserPreferencesRepository>().preferences.map { it.toEventsSettings() },
                 inputs = EventInputs(get(), get(), get()),
                 clock = get(),
+                zones = get(named(DeviceTimeZone.QUALIFIER)),
             )
         }
     }

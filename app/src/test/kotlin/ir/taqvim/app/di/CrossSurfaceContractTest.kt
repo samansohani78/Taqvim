@@ -193,7 +193,7 @@ class CrossSurfaceContractTest {
                         ics = IcsEventsSource { flowOf(feed) },
                     ),
                 clock = clock,
-                zone = { zone },
+                zones = flowOf(zone),
                 computeDispatcher = Dispatchers.Unconfined,
             )
         val source = RepositoryTimelineDaysSource(repository::days, flowOf("en"), zone = { zone })
