@@ -1532,3 +1532,22 @@ verify the sources' own arithmetic before dropping the computed columns.
   (0.03°, 0.005′, 99 % zone agreement) come from the truncated series' stated accuracy, not from the app's output.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-17; **reviewer attestation:** pending — no forbidden
   sources consulted.
+
+### D-04 — Nepal official public holidays (T-300, ADR-0038)
+- **Files:** `dataset/nepal/nepal-official-holidays.json` (27 records); generated `data/events/.../generated/*`; golden
+  `tools/dataset/src/test/resources/golden/nepal/nepal-official-holidays.csv`; `core/calendar` `NepaliLunarDays.kt`,
+  `SuryaSiddhantaMoon.kt`; `core/events` `EventRule.LunarTithi` (main@8676be7).
+- **Sources** (Government of Nepal, Ministry of Home Affairs, cited not archived, retrieved 2026-09-17; scans read visually):
+  1. Public holidays of BS 2082 — Nepal Rajpatra Part 5, Vol. 74 No. 59 (2081-11-15),
+     https://moha.gov.np/page/government-and-public-holidays-in-2082, SHA-256
+     `ff66950dd42b5e79ef5977b9d55a7973445f7c6bd1aada7450416b23424d5674`.
+  2. Public holidays of BS 2083 — Vol. 75 No. 67 (2082-11-18),
+     https://moha.gov.np/page/government-and-public-holidays-in-2083, SHA-256
+     `ffbabf83cad254b485504627f9e47fce6c1a7a28e2693a399ae88bf9c0279a29`.
+  3. National Panchang BS 2082/2083 (npns.gov.np; A-07) for the tithi convention.
+- **Rules:** Bikram Sambat, Gregorian and Islamic `Fixed` days and 11 `LunarTithi` rules (lunar month, tithi, observance
+  at sunrise/sunset/midnight, optional span) computed from a Surya Siddhanta Moon in Nepal time; a modern ephemeris misses
+  two notice dates (Chhath 2082, Phulpati 2083). Every dated day of both notices is reproduced exactly. Titles are the
+  official Nepali wording only.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-17; **reviewer attestation:** pending — no forbidden
+  sources consulted.
