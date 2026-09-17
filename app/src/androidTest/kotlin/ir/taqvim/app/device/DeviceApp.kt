@@ -12,6 +12,7 @@ import android.os.ParcelFileDescriptor
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
+import androidx.test.uiautomator.Direction
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
@@ -96,11 +97,20 @@ internal fun openLink(
     awaitTag(tag)
 }
 
-/** The node tagged [tag] (test tags are resource ids in `MainActivity`), failing when it does not appear. */
-internal fun awaitTag(tag: String): UiObject2 =
-    checkNotNull(device.wait(Until.findObject(By.res(tag)), DEVICE_TIMEOUT_MILLIS)) {
-        "$tag is not shown; the app crashed or the screen did not open"
+/**
+ * The node tagged [tag] (test tags are resource ids in `MainActivity`), failing when it does not appear. Lists longer
+ * than the screen, such as More on a short device, are scrolled down while looking for it.
+ */
+internal fun awaitTag(tag: String): UiObject2 {
+    device.wait(Until.findObject(By.res(tag)), DEVICE_TIMEOUT_MILLIS)?.let { return it }
+    repeat(SCROLL_ATTEMPTS) {
+        val list = device.findObject(By.scrollable(true)) ?: return@repeat
+        list.scroll(Direction.DOWN, SCROLL_FRACTION)
+        device.waitForIdle(IDLE_MILLIS)
+        device.findObject(By.res(tag))?.let { return it }
     }
+    error("$tag is not shown; the app crashed or the screen did not open")
+}
 
 /** Selects every tab of the current screen once (not the app's navigation tabs), composing each tab's content. */
 internal fun visitTabs() {
@@ -136,6 +146,10 @@ internal fun assertInFront() {
 
 private const val POLL_MILLIS = 200L
 private const val IDLE_MILLIS = 1_000L
+
+/** How often a list is scrolled while looking for a tag, and how much of its height each scroll moves. */
+private const val SCROLL_ATTEMPTS = 4
+private const val SCROLL_FRACTION = 0.8f
 
 /** `segmentTag` of `:core:ui`: the tabs of `SegmentedTabs`, used by the screens with tabs. */
 private val SEGMENT_TAG = Regex("""segment:\d+""").toPattern()
