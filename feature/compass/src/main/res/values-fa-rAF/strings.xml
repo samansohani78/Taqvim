@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (prs, derived from fa with Dari vocabulary) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources>
+  <string name="compass_title">قطب‌نما</string>
+  <string name="compass_loading">در حال راه‌اندازی قطب‌نما</string>
+  <string name="compass_unavailable_title">حسگر قطب‌نما موجود نیست</string>
+  <string name="compass_unavailable_message">این دستگاه حسگر چرخش یا مغناطیس‌سنج ندارد و قطب‌نما کار نمی‌کند.</string>
+  <string name="compass_heading">%1$s° %2$s</string>
+  <string name="compass_heading_announcement">جهت %1$s درجه، %2$s</string>
+  <string name="compass_true_north">نسبت به شمال جغرافیایی</string>
+  <string name="compass_magnetic_north">نسبت به شمال مغناطیسی</string>
+  <string name="compass_calibrate_hint">دقت کم است: موبایل را دور از اجسام فلزی به شکل عدد ۸ حرکت دهید.</string>
+  <string name="compass_choose_place">برای دیدن قبله، خورشید، ماه و شمال جغرافیایی یک مکان انتخاب کنید.</string>
+  <string name="compass_qibla">قبله %1$s°، %2$s</string>
+  <string name="compass_qibla_ahead">روبه‌رو</string>
+  <string name="compass_qibla_undefined">جهت قبله در این مکان تعریف نشده است.</string>
+  <string name="compass_turn_right">%1$s° به راست بچرخید</string>
+  <string name="compass_turn_left">%1$s° به چپ بچرخید</string>
+  <string name="compass_sun">خورشید</string>
+  <string name="compass_moon">ماه</string>
+  <string name="compass_body">%1$s %2$s°، %3$s</string>
+  <string name="compass_above_horizon">%1$s° بالای افق</string>
+  <string name="compass_below_horizon">%1$s° زیر افق</string>
+  <string name="compass_stopped">توقف</string>
+  <string name="compass_sun_path">مسیر خورشید</string>
+  <string name="compass_letter_north">ش</string>
+  <string name="compass_letter_east">خ</string>
+  <string name="compass_letter_south">ج</string>
+  <string name="compass_letter_west">غ</string>
+  <string name="compass_point_n">شمال</string>
+  <string name="compass_point_ne">شمال شرقی</string>
+  <string name="compass_point_e">شرق</string>
+  <string name="compass_point_se">جنوب شرقی</string>
+  <string name="compass_point_s">جنوب</string>
+  <string name="compass_point_sw">جنوب غربی</string>
+  <string name="compass_point_w">غرب</string>
+  <string name="compass_point_nw">شمال غربی</string>
+  <string name="level_title">تراز</string>
+  <string name="level_tab_level">تراز حبابی</string>
+  <string name="level_tab_ruler">خط‌کش</string>
+  <string name="level_loading">در حال راه‌اندازی تراز</string>
+  <string name="level_unavailable_title">حسگر حرکت موجود نیست</string>
+  <string name="level_unavailable_message">این دستگاه شتاب‌سنج ندارد و تراز کار نمی‌کند.</string>
+  <string name="level_orientation_flat">خوابیده</string>
+  <string name="level_orientation_portrait">ایستاده (عمودی)</string>
+  <string name="level_orientation_landscape">روی لبه (افقی)</string>
+  <string name="level_is_level">سطح تراز است</string>
+  <string name="level_tilt_two_axes">شیب %1$s° در عرض، %2$s° در طول</string>
+  <string name="level_tilt_one_axis">شیب %1$s°</string>
+  <string name="level_calibrate">تنظیم صفر</string>
+  <string name="level_reset_calibration">حذف تنظیم صفر</string>
+  <string name="level_unit_cm">سانتی‌متر</string>
+  <string name="level_unit_inch">اینچ</string>
+  <string name="level_ruler_description">خط‌کش در امتداد لبهٔ بالای صفحه</string>
+</resources>

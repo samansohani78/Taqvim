@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (prs, derived from fa with Dari vocabulary) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources>
+  <!-- T-1102 athan playback -->
+  <string name="notification_athan_channel_name">اذان</string>
+  <string name="notification_athan_channel_description">پخش اذان در اوقاتی که روشن کرده‌اید</string>
+  <string name="notification_athan_title_fajr">اذان صبح</string>
+  <string name="notification_athan_title_dhuhr">اذان ظهر</string>
+  <string name="notification_athan_title_asr">اذان عصر</string>
+  <string name="notification_athan_title_maghrib">اذان مغرب</string>
+  <string name="notification_athan_title_isha">اذان عشا</string>
+  <string name="notification_athan_text">برای قطع اذان «توقف» را بزنید</string>
+  <string name="notification_athan_stop">توقف</string>
+  <string name="notification_athan_snooze">تعویق</string>
+  <!-- T-1001 / T-1002 reminders -->
+  <string name="notification_reminder_channel_personal_name">یادآوری رویدادها</string>
+  <string name="notification_reminder_channel_personal_description">یادآوری رویدادهایی که ساخته‌اید</string>
+  <string name="notification_reminder_channel_official_name">یادآوری مناسبت‌ها</string>
+  <string name="notification_reminder_channel_official_description">یادآوری مناسبت‌های رسمی که دنبال می‌کنید</string>
+  <string name="notification_reminder_text_personal">رویداد پیش رو</string>
+  <string name="notification_reminder_text_official_today">امروز</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d روز دیگر</item>
+    <item quantity="other">%1$d روز دیگر</item>
+  </plurals>
+  <string name="notification_reminder_done">انجام شد</string>
+  <string name="notification_reminder_snooze">تعویق</string>
+  <!-- T-1213 persistent notification -->
+  <string name="notification_persistent_channel_name">تاریخ امروز</string>
+  <string name="notification_persistent_channel_description">نمایش تاریخ امروز و وقت نماز بعدی در نوار وضعیت</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <!-- T-1215 Quick Settings tile -->
+  <string name="notification_tile_label">امروز</string>
+  <string name="notification_tile_description">%1$s، %2$s</string>
+</resources>

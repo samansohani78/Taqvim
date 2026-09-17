@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (de) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Adhan</string>
+  <string name="notification_athan_channel_description">Spielt den Adhan zu den eingeschalteten Gebetszeiten</string>
+  <string name="notification_athan_title_fajr">Fadschr-Adhan</string>
+  <string name="notification_athan_title_dhuhr">Dhuhr-Adhan</string>
+  <string name="notification_athan_title_asr">Asr-Adhan</string>
+  <string name="notification_athan_title_maghrib">Maghrib-Adhan</string>
+  <string name="notification_athan_title_isha">Ischa-Adhan</string>
+  <string name="notification_athan_text">Tippen Sie auf „Stopp“, um den Adhan stummzuschalten</string>
+  <string name="notification_athan_stop">Stopp</string>
+  <string name="notification_athan_snooze">Schlummern</string>
+  <string name="notification_reminder_channel_personal_name">Terminerinnerungen</string>
+  <string name="notification_reminder_channel_personal_description">Erinnerungen an Ihre eigenen Termine</string>
+  <string name="notification_reminder_channel_official_name">Erinnerungen an Anlässe</string>
+  <string name="notification_reminder_channel_official_description">Erinnerungen an die offiziellen Anlässe, denen Sie folgen</string>
+  <string name="notification_reminder_text_personal">Bevorstehender Termin</string>
+  <string name="notification_reminder_text_official_today">Heute</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">In %1$d Tag</item>
+    <item quantity="other">In %1$d Tagen</item>
+  </plurals>
+  <string name="notification_reminder_done">Erledigt</string>
+  <string name="notification_reminder_snooze">Schlummern</string>
+  <string name="notification_persistent_channel_name">Heutiges Datum</string>
+  <string name="notification_persistent_channel_description">Zeigt das heutige Datum und die nächste Gebetszeit in der Statusleiste</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Heute</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

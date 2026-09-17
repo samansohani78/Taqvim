@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ur) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">اذان</string>
+  <string name="notification_athan_channel_description">آپ کے آن کردہ اوقاتِ نماز پر اذان بجاتا ہے</string>
+  <string name="notification_athan_title_fajr">فجر کی اذان</string>
+  <string name="notification_athan_title_dhuhr">ظہر کی اذان</string>
+  <string name="notification_athan_title_asr">عصر کی اذان</string>
+  <string name="notification_athan_title_maghrib">مغرب کی اذان</string>
+  <string name="notification_athan_title_isha">عشاء کی اذان</string>
+  <string name="notification_athan_text">اذان خاموش کرنے کے لیے روکیں پر ٹیپ کریں</string>
+  <string name="notification_athan_stop">روکیں</string>
+  <string name="notification_athan_snooze">اسنوز</string>
+  <string name="notification_reminder_channel_personal_name">واقعات کی یاد دہانیاں</string>
+  <string name="notification_reminder_channel_personal_description">آپ کے بنائے ہوئے واقعات کی یاد دہانیاں</string>
+  <string name="notification_reminder_channel_official_name">مواقع کی یاد دہانیاں</string>
+  <string name="notification_reminder_channel_official_description">آپ کے فالو کردہ سرکاری مواقع کی یاد دہانیاں</string>
+  <string name="notification_reminder_text_personal">آنے والا واقعہ</string>
+  <string name="notification_reminder_text_official_today">آج</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d دن میں</item>
+    <item quantity="other">%1$d دنوں میں</item>
+  </plurals>
+  <string name="notification_reminder_done">ہو گیا</string>
+  <string name="notification_reminder_snooze">اسنوز</string>
+  <string name="notification_persistent_channel_name">آج کی تاریخ</string>
+  <string name="notification_persistent_channel_description">اسٹیٹس بار میں آج کی تاریخ اور اگلی نماز کا وقت دکھاتا ہے</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">آج</string>
+  <string name="notification_tile_description">%1$s، %2$s</string>
+</resources>

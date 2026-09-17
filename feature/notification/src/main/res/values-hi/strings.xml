@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (hi) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">अज़ान</string>
+  <string name="notification_athan_channel_description">आपके चालू किए नमाज़ के समय पर अज़ान बजाता है</string>
+  <string name="notification_athan_title_fajr">फ़ज्र की अज़ान</string>
+  <string name="notification_athan_title_dhuhr">ज़ुहर की अज़ान</string>
+  <string name="notification_athan_title_asr">अस्र की अज़ान</string>
+  <string name="notification_athan_title_maghrib">मग़रिब की अज़ान</string>
+  <string name="notification_athan_title_isha">इशा की अज़ान</string>
+  <string name="notification_athan_text">अज़ान बंद करने के लिए रोकें पर टैप करें</string>
+  <string name="notification_athan_stop">रोकें</string>
+  <string name="notification_athan_snooze">स्नूज़ करें</string>
+  <string name="notification_reminder_channel_personal_name">इवेंट रिमाइंडर</string>
+  <string name="notification_reminder_channel_personal_description">आपके बनाए इवेंट के रिमाइंडर</string>
+  <string name="notification_reminder_channel_official_name">अवसर रिमाइंडर</string>
+  <string name="notification_reminder_channel_official_description">आपके फ़ॉलो किए आधिकारिक अवसरों के रिमाइंडर</string>
+  <string name="notification_reminder_text_personal">आगामी इवेंट</string>
+  <string name="notification_reminder_text_official_today">आज</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d दिन में</item>
+    <item quantity="other">%1$d दिन में</item>
+  </plurals>
+  <string name="notification_reminder_done">हो गया</string>
+  <string name="notification_reminder_snooze">स्नूज़ करें</string>
+  <string name="notification_persistent_channel_name">आज की तारीख</string>
+  <string name="notification_persistent_channel_description">स्टेटस बार में आज की तारीख और अगली नमाज़ का समय दिखाता है</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">आज</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

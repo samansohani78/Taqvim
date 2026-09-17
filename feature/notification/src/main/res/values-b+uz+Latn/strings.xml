@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (uz) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Azon</string>
+  <string name="notification_athan_channel_description">Siz yoqqan namoz vaqtlarida azon chaladi</string>
+  <string name="notification_athan_title_fajr">Bomdod azoni</string>
+  <string name="notification_athan_title_dhuhr">Peshin azoni</string>
+  <string name="notification_athan_title_asr">Asr azoni</string>
+  <string name="notification_athan_title_maghrib">Shom azoni</string>
+  <string name="notification_athan_title_isha">Xufton azoni</string>
+  <string name="notification_athan_text">Azonni oʻchirish uchun Toʻxtatish tugmasini bosing</string>
+  <string name="notification_athan_stop">Toʻxtatish</string>
+  <string name="notification_athan_snooze">Kechiktirish</string>
+  <string name="notification_reminder_channel_personal_name">Tadbir eslatmalari</string>
+  <string name="notification_reminder_channel_personal_description">Siz yaratgan tadbirlar eslatmalari</string>
+  <string name="notification_reminder_channel_official_name">Sana eslatmalari</string>
+  <string name="notification_reminder_channel_official_description">Siz kuzatadigan rasmiy sanalar eslatmalari</string>
+  <string name="notification_reminder_text_personal">Yaqinlashayotgan tadbir</string>
+  <string name="notification_reminder_text_official_today">Bugun</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d kundan keyin</item>
+    <item quantity="other">%1$d kundan keyin</item>
+  </plurals>
+  <string name="notification_reminder_done">Bajarildi</string>
+  <string name="notification_reminder_snooze">Kechiktirish</string>
+  <string name="notification_persistent_channel_name">Bugungi sana</string>
+  <string name="notification_persistent_channel_description">Holat qatorida bugungi sana va keyingi namoz vaqtini koʻrsatadi</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Bugun</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

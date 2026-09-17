@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (zh) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">宣礼</string>
+  <string name="notification_athan_channel_description">在你开启的礼拜时间播放宣礼</string>
+  <string name="notification_athan_title_fajr">晨礼宣礼</string>
+  <string name="notification_athan_title_dhuhr">晌礼宣礼</string>
+  <string name="notification_athan_title_asr">晡礼宣礼</string>
+  <string name="notification_athan_title_maghrib">昏礼宣礼</string>
+  <string name="notification_athan_title_isha">宵礼宣礼</string>
+  <string name="notification_athan_text">点按“停止”以静音宣礼</string>
+  <string name="notification_athan_stop">停止</string>
+  <string name="notification_athan_snooze">稍后提醒</string>
+  <string name="notification_reminder_channel_personal_name">事件提醒</string>
+  <string name="notification_reminder_channel_personal_description">你创建的事件的提醒</string>
+  <string name="notification_reminder_channel_official_name">纪念日提醒</string>
+  <string name="notification_reminder_channel_official_description">你关注的官方纪念日的提醒</string>
+  <string name="notification_reminder_text_personal">即将到来的事件</string>
+  <string name="notification_reminder_text_official_today">今天</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="other">%1$d 天后</item>
+  </plurals>
+  <string name="notification_reminder_done">完成</string>
+  <string name="notification_reminder_snooze">稍后提醒</string>
+  <string name="notification_persistent_channel_name">今天的日期</string>
+  <string name="notification_persistent_channel_description">在状态栏显示今天的日期和下一个礼拜时间</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">今天</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tg) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Азон</string>
+  <string name="notification_athan_channel_description">Дар вақтҳои намозе, ки фаъол кардаед, азон садо медиҳад</string>
+  <string name="notification_athan_title_fajr">Азони бомдод</string>
+  <string name="notification_athan_title_dhuhr">Азони пешин</string>
+  <string name="notification_athan_title_asr">Азони аср</string>
+  <string name="notification_athan_title_maghrib">Азони шом</string>
+  <string name="notification_athan_title_isha">Азони хуфтан</string>
+  <string name="notification_athan_text">Барои хомӯш кардани азон «Қатъ кардан»-ро пахш кунед</string>
+  <string name="notification_athan_stop">Қатъ кардан</string>
+  <string name="notification_athan_snooze">Мавқуф гузоштан</string>
+  <string name="notification_reminder_channel_personal_name">Ёдраскуниҳои рӯйдод</string>
+  <string name="notification_reminder_channel_personal_description">Ёдраскуниҳои рӯйдодҳое, ки шумо сохтаед</string>
+  <string name="notification_reminder_channel_official_name">Ёдраскуниҳои муносибатҳо</string>
+  <string name="notification_reminder_channel_official_description">Ёдраскуниҳои муносибатҳои расмие, ки шумо пайгирӣ мекунед</string>
+  <string name="notification_reminder_text_personal">Рӯйдоди наздик</string>
+  <string name="notification_reminder_text_official_today">Имрӯз</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="other">Баъд аз %1$d рӯз</item>
+  </plurals>
+  <string name="notification_reminder_done">Тайёр</string>
+  <string name="notification_reminder_snooze">Мавқуф гузоштан</string>
+  <string name="notification_persistent_channel_name">Санаи имрӯза</string>
+  <string name="notification_persistent_channel_description">Санаи имрӯза ва вақти намози ояндаро дар сатри ҳолат нишон медиҳад</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Имрӯз</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

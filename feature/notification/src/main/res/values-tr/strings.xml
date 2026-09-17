@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (tr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Ezan</string>
+  <string name="notification_athan_channel_description">Açtığınız namaz vakitlerinde ezanı çalar</string>
+  <string name="notification_athan_title_fajr">İmsak ezanı</string>
+  <string name="notification_athan_title_dhuhr">Öğle ezanı</string>
+  <string name="notification_athan_title_asr">İkindi ezanı</string>
+  <string name="notification_athan_title_maghrib">Akşam ezanı</string>
+  <string name="notification_athan_title_isha">Yatsı ezanı</string>
+  <string name="notification_athan_text">Ezanı susturmak için Durdur\'a dokunun</string>
+  <string name="notification_athan_stop">Durdur</string>
+  <string name="notification_athan_snooze">Ertele</string>
+  <string name="notification_reminder_channel_personal_name">Etkinlik hatırlatıcıları</string>
+  <string name="notification_reminder_channel_personal_description">Oluşturduğunuz etkinliklerin hatırlatıcıları</string>
+  <string name="notification_reminder_channel_official_name">Özel gün hatırlatıcıları</string>
+  <string name="notification_reminder_channel_official_description">Takip ettiğiniz resmî özel günlerin hatırlatıcıları</string>
+  <string name="notification_reminder_text_personal">Yaklaşan etkinlik</string>
+  <string name="notification_reminder_text_official_today">Bugün</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d gün içinde</item>
+    <item quantity="other">%1$d gün içinde</item>
+  </plurals>
+  <string name="notification_reminder_done">Tamamlandı</string>
+  <string name="notification_reminder_snooze">Ertele</string>
+  <string name="notification_persistent_channel_name">Bugünün tarihi</string>
+  <string name="notification_persistent_channel_description">Durum çubuğunda bugünün tarihini ve sonraki namaz vaktini gösterir</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Bugün</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

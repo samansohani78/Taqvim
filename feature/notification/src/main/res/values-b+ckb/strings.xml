@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ckb) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">بانگ</string>
+  <string name="notification_athan_channel_description">لە ئەو کاتانەی نوێژدا کە هەڵتکردوون بانگ لێدەدات</string>
+  <string name="notification_athan_title_fajr">بانگی بەیانی</string>
+  <string name="notification_athan_title_dhuhr">بانگی نیوەڕۆ</string>
+  <string name="notification_athan_title_asr">بانگی عەسر</string>
+  <string name="notification_athan_title_maghrib">بانگی ئێوارە</string>
+  <string name="notification_athan_title_isha">بانگی خەوتنان</string>
+  <string name="notification_athan_text">بۆ بێدەنگکردنی بانگ دەست لە «وەستاندن» بدە</string>
+  <string name="notification_athan_stop">وەستاندن</string>
+  <string name="notification_athan_snooze">دواخستن</string>
+  <string name="notification_reminder_channel_personal_name">بیرخەرەوەکانی ڕووداو</string>
+  <string name="notification_reminder_channel_personal_description">بیرخەرەوەی ئەو ڕووداوانەی دروستت کردوون</string>
+  <string name="notification_reminder_channel_official_name">بیرخەرەوەکانی بۆنە</string>
+  <string name="notification_reminder_channel_official_description">بیرخەرەوەی ئەو بۆنە فەرمییانەی بەدوایاندا دەچیت</string>
+  <string name="notification_reminder_text_personal">ڕووداوی داهاتوو</string>
+  <string name="notification_reminder_text_official_today">ئەمڕۆ</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">لە %1$d ڕۆژدا</item>
+    <item quantity="other">لە %1$d ڕۆژدا</item>
+  </plurals>
+  <string name="notification_reminder_done">تەواو</string>
+  <string name="notification_reminder_snooze">دواخستن</string>
+  <string name="notification_persistent_channel_name">بەرواری ئەمڕۆ</string>
+  <string name="notification_persistent_channel_description">بەرواری ئەمڕۆ و کاتی نوێژی داهاتوو لە شریتی دۆخدا پیشان دەدات</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">ئەمڕۆ</string>
+  <string name="notification_tile_description">%1$s، %2$s</string>
+</resources>

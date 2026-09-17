@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ja) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">アザーン</string>
+  <string name="notification_athan_channel_description">オンにした礼拝時刻にアザーンを鳴らします</string>
+  <string name="notification_athan_title_fajr">ファジュルのアザーン</string>
+  <string name="notification_athan_title_dhuhr">ズフルのアザーン</string>
+  <string name="notification_athan_title_asr">アスルのアザーン</string>
+  <string name="notification_athan_title_maghrib">マグリブのアザーン</string>
+  <string name="notification_athan_title_isha">イシャーのアザーン</string>
+  <string name="notification_athan_text">アザーンを止めるには「停止」をタップ</string>
+  <string name="notification_athan_stop">停止</string>
+  <string name="notification_athan_snooze">スヌーズ</string>
+  <string name="notification_reminder_channel_personal_name">イベントのリマインダー</string>
+  <string name="notification_reminder_channel_personal_description">自分で作成したイベントのリマインダー</string>
+  <string name="notification_reminder_channel_official_name">記念日のリマインダー</string>
+  <string name="notification_reminder_channel_official_description">フォロー中の公式な記念日のリマインダー</string>
+  <string name="notification_reminder_text_personal">まもなくのイベント</string>
+  <string name="notification_reminder_text_official_today">今日</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="other">%1$d 日後</item>
+  </plurals>
+  <string name="notification_reminder_done">完了</string>
+  <string name="notification_reminder_snooze">スヌーズ</string>
+  <string name="notification_persistent_channel_name">今日の日付</string>
+  <string name="notification_persistent_channel_description">ステータスバーに今日の日付と次の礼拝時刻を表示します</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">今日</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

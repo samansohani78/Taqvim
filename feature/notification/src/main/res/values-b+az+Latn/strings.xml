@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (az) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Azan</string>
+  <string name="notification_athan_channel_description">Yandırdığınız namaz vaxtlarında azanı səsləndirir</string>
+  <string name="notification_athan_title_fajr">Sübh azanı</string>
+  <string name="notification_athan_title_dhuhr">Zöhr azanı</string>
+  <string name="notification_athan_title_asr">Əsr azanı</string>
+  <string name="notification_athan_title_maghrib">Məğrib azanı</string>
+  <string name="notification_athan_title_isha">İşa azanı</string>
+  <string name="notification_athan_text">Azanı susdurmaq üçün Dayandır düyməsinə toxunun</string>
+  <string name="notification_athan_stop">Dayandır</string>
+  <string name="notification_athan_snooze">Təxirə sal</string>
+  <string name="notification_reminder_channel_personal_name">Tədbir xatırlatmaları</string>
+  <string name="notification_reminder_channel_personal_description">Yaratdığınız tədbirlərin xatırlatmaları</string>
+  <string name="notification_reminder_channel_official_name">Əlamətdar gün xatırlatmaları</string>
+  <string name="notification_reminder_channel_official_description">İzlədiyiniz rəsmi əlamətdar günlərin xatırlatmaları</string>
+  <string name="notification_reminder_text_personal">Qarşıdakı tədbir</string>
+  <string name="notification_reminder_text_official_today">Bu gün</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d gün sonra</item>
+    <item quantity="other">%1$d gün sonra</item>
+  </plurals>
+  <string name="notification_reminder_done">Hazırdır</string>
+  <string name="notification_reminder_snooze">Təxirə sal</string>
+  <string name="notification_persistent_channel_name">Bugünkü tarix</string>
+  <string name="notification_persistent_channel_description">Status panelində bugünkü tarixi və növbəti namaz vaxtını göstərir</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Bu gün</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

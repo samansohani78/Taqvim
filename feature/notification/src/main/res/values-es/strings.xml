@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (es) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Adhan</string>
+  <string name="notification_athan_channel_description">Reproduce el adhan en los horarios de oración que activaste</string>
+  <string name="notification_athan_title_fajr">Adhan de Fayr</string>
+  <string name="notification_athan_title_dhuhr">Adhan de Dhuhr</string>
+  <string name="notification_athan_title_asr">Adhan de Asr</string>
+  <string name="notification_athan_title_maghrib">Adhan de Magrib</string>
+  <string name="notification_athan_title_isha">Adhan de Isha</string>
+  <string name="notification_athan_text">Toca Detener para silenciar el adhan</string>
+  <string name="notification_athan_stop">Detener</string>
+  <string name="notification_athan_snooze">Posponer</string>
+  <string name="notification_reminder_channel_personal_name">Recordatorios de eventos</string>
+  <string name="notification_reminder_channel_personal_description">Recordatorios de los eventos que creaste</string>
+  <string name="notification_reminder_channel_official_name">Recordatorios de celebraciones</string>
+  <string name="notification_reminder_channel_official_description">Recordatorios de las celebraciones oficiales que sigues</string>
+  <string name="notification_reminder_text_personal">Próximo evento</string>
+  <string name="notification_reminder_text_official_today">Hoy</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">Dentro de %1$d día</item>
+    <item quantity="many">Dentro de %1$d días</item>
+    <item quantity="other">Dentro de %1$d días</item>
+  </plurals>
+  <string name="notification_reminder_done">Hecho</string>
+  <string name="notification_reminder_snooze">Posponer</string>
+  <string name="notification_persistent_channel_name">Fecha de hoy</string>
+  <string name="notification_persistent_channel_description">Muestra la fecha de hoy y el próximo horario de oración en la barra de estado</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Hoy</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

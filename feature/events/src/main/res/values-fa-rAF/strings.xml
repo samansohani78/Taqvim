@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (prs, derived from fa with Dari vocabulary) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources>
+  <string name="events_editor_new_title">رویداد جدید</string>
+  <string name="events_editor_edit_title">ویرایش رویداد</string>
+  <string name="events_loading">در حال بارگذاری رویداد</string>
+  <string name="events_not_found_title">رویداد پیدا نشد</string>
+  <string name="events_not_found_message">این رویداد حذف شده است یا قابل ویرایش نیست.</string>
+  <string name="events_title_label">عنوان</string>
+  <string name="events_date_phrase_label">تاریخ به صورت نوشتاری</string>
+  <string name="events_date_phrase_apply">تنظیم تاریخ</string>
+  <string name="events_date_phrase_unrecognized">در این متن تاریخی پیدا نشد</string>
+  <string name="events_calendar_label">تقویم</string>
+  <string name="events_calendar_persian">هجری شمسی</string>
+  <string name="events_calendar_islamic">هجری قمری</string>
+  <string name="events_calendar_gregorian">میلادی</string>
+  <string name="events_calendar_nepali">بیکرم سَمبَت</string>
+  <string name="events_calendar_hebrew">عبری</string>
+  <string name="events_all_day">تمام روز</string>
+  <string name="events_starts">شروع</string>
+  <string name="events_ends">پایان</string>
+  <string name="events_start_date_description">تاریخ شروع: %1$s</string>
+  <string name="events_end_date_description">تاریخ پایان: %1$s</string>
+  <string name="events_start_time_description">ساعت شروع: %1$s</string>
+  <string name="events_end_time_description">ساعت پایان: %1$s</string>
+  <string name="events_pick_start_date">تاریخ شروع</string>
+  <string name="events_pick_end_date">تاریخ پایان</string>
+  <string name="events_pick_until">تکرار تا</string>
+  <string name="events_pick_start_time">ساعت شروع</string>
+  <string name="events_pick_end_time">ساعت پایان</string>
+  <string name="events_picker_year">سال</string>
+  <string name="events_picker_month">ماه</string>
+  <string name="events_picker_day">روز</string>
+  <string name="events_picker_hour">ساعت</string>
+  <string name="events_picker_minute">دقیقه</string>
+  <string name="events_picker_confirm">تأیید</string>
+  <string name="events_picker_cancel">انصراف</string>
+  <string name="events_repeat_label">تکرار</string>
+  <string name="events_repeat_none">بدون تکرار</string>
+  <string name="events_repeat_daily">روزانه</string>
+  <string name="events_repeat_weekly">هفتگی</string>
+  <string name="events_repeat_monthly">ماهانه</string>
+  <string name="events_repeat_yearly">سالانه</string>
+  <string name="events_interval_days">هر چند روز</string>
+  <string name="events_interval_weeks">هر چند هفته</string>
+  <string name="events_interval_months">هر چند ماه</string>
+  <string name="events_interval_years">هر چند سال</string>
+  <string name="events_repeat_on_days">تکرار در روزهای</string>
+  <string name="events_invalid_days_label">وقتی این روز در ماه وجود ندارد</string>
+  <string name="events_invalid_days_skip">از آن ماه صرف‌نظر شود</string>
+  <string name="events_invalid_days_next">به روز بعد منتقل شود</string>
+  <string name="events_invalid_days_last">آخرین روز ماه در نظر گرفته شود</string>
+  <string name="events_repeat_end_label">پایان تکرار</string>
+  <string name="events_repeat_end_never">هرگز</string>
+  <string name="events_repeat_end_count">پس از چند بار</string>
+  <string name="events_repeat_end_until">در تاریخ</string>
+  <string name="events_repeat_count_label">تعداد دفعات</string>
+  <string name="events_until_description">تکرار تا %1$s</string>
+  <string name="events_reminders_label">یادآوری‌ها</string>
+  <string name="events_reminder_at_start">هنگام شروع</string>
+  <string name="events_reminder_before">%1$s قبل</string>
+  <string name="events_reminder_remove">حذف یادآوری: %1$s</string>
+  <string name="events_reminder_remove_short">حذف</string>
+  <string name="events_reminder_add">افزودن یادآوری</string>
+  <string name="events_color_label">رنگ</string>
+  <string name="events_color_none">بدون رنگ</string>
+  <string name="events_color_option">رنگ %1$s</string>
+  <string name="events_notes_label">یادداشت</string>
+  <string name="events_link_label">پیوند منبع</string>
+  <string name="events_save">ذخیره</string>
+  <string name="events_cancel">انصراف</string>
+  <string name="events_delete">حذف</string>
+  <string name="events_store_failed">ذخیره یا حذف رویداد انجام نشد. دوباره تلاش کنید.</string>
+  <string name="events_errors_summary">برای ذخیره، موارد مشخص‌شده را اصلاح کنید.</string>
+  <string name="events_discard_title">تغییرات کنار گذاشته شود؟</string>
+  <string name="events_discard_message">تغییراتی که در این رویداد داده‌اید از بین می‌رود.</string>
+  <string name="events_discard_confirm">کنار گذاشتن</string>
+  <string name="events_keep_editing">ادامه ویرایش</string>
+  <string name="events_delete_title">این رویداد حذف شود؟</string>
+  <string name="events_delete_message">رویداد و یادآوری‌های آن حذف می‌شود.</string>
+  <string name="events_delete_confirm">حذف رویداد</string>
+  <string name="events_error_title_required">عنوانی وارد کنید</string>
+  <string name="events_error_title_too_long">عنوان خیلی طولانی است</string>
+  <string name="events_error_notes_too_long">یادداشت خیلی طولانی است</string>
+  <string name="events_error_link">نشانی وب را با https:// وارد کنید</string>
+  <string name="events_error_end_before_start">پایان رویداد پیش از شروع آن است</string>
+  <string name="events_error_interval">عددی صحیح از ۱ تا ۹۹۹ وارد کنید</string>
+  <string name="events_error_count">عددی صحیح از ۱ تا ۹۹۹۹ وارد کنید</string>
+  <string name="events_error_until_before_start">پایان تکرار پیش از شروع رویداد است</string>
+  <string name="events_error_too_many_reminders">حداکثر ۵ یادآوری مجاز است</string>
+  <string name="events_error_reminder">یکی از یادآوری‌ها خارج از محدوده است</string>
+  <!-- Heading of the list of the next dates on which a repeating event occurs. -->
+  <string name="events_repeat_preview_label">رخدادهای بعدی</string>
+  <!-- An upcoming occurrence of a timed repeating event: %1$s is the date, %2$s the local time. -->
+  <string name="events_repeat_preview_timed">%1$s، ساعت %2$s</string>
+  <!-- Title of the question asked when a repeating event is opened from one of its days. -->
+  <string name="events_scope_title">ویرایش رویداد تکراری</string>
+  <!-- Question: edit one occurrence of a repeating event or all of them. -->
+  <string name="events_scope_message">فقط همین رخداد تغییر کند یا همهٔ رخدادهای این رویداد؟</string>
+  <!-- Answer: edit only the occurrence the event was opened from. -->
+  <string name="events_scope_this">همین رخداد</string>
+  <!-- Answer: edit the whole repeating event. -->
+  <string name="events_scope_all">همهٔ رخدادها</string>
+  <!-- Button that removes one occurrence of a repeating event. -->
+  <string name="events_cancel_occurrence">لغو این رخداد</string>
+  <!-- Title of the confirmation before removing one occurrence. -->
+  <string name="events_cancel_occurrence_title">این رخداد لغو شود؟</string>
+  <!-- Explanation in the confirmation before removing one occurrence. -->
+  <string name="events_cancel_occurrence_message">فقط همین رخداد حذف می‌شود و بقیهٔ رخدادها می‌مانند.</string>
+  <!-- Confirm button that removes one occurrence. -->
+  <string name="events_cancel_occurrence_confirm">لغو رخداد</string>
+  <!-- Note above the form when only one occurrence of a repeating event is edited. -->
+  <string name="events_occurrence_note">تغییرها فقط روی همین رخداد اعمال می‌شود.</string>
+</resources>

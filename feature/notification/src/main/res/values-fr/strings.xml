@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (fr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Adhan</string>
+  <string name="notification_athan_channel_description">Joue l\'adhan aux heures de prière que vous avez activées</string>
+  <string name="notification_athan_title_fajr">Adhan de Fajr</string>
+  <string name="notification_athan_title_dhuhr">Adhan de Dhouhr</string>
+  <string name="notification_athan_title_asr">Adhan d\'Asr</string>
+  <string name="notification_athan_title_maghrib">Adhan du Maghreb</string>
+  <string name="notification_athan_title_isha">Adhan d\'Icha</string>
+  <string name="notification_athan_text">Touchez Arrêter pour couper l\'adhan</string>
+  <string name="notification_athan_stop">Arrêter</string>
+  <string name="notification_athan_snooze">Répéter</string>
+  <string name="notification_reminder_channel_personal_name">Rappels d\'événements</string>
+  <string name="notification_reminder_channel_personal_description">Rappels des événements que vous avez créés</string>
+  <string name="notification_reminder_channel_official_name">Rappels de fêtes</string>
+  <string name="notification_reminder_channel_official_description">Rappels des fêtes officielles que vous suivez</string>
+  <string name="notification_reminder_text_personal">Événement à venir</string>
+  <string name="notification_reminder_text_official_today">Aujourd\'hui</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">Dans %1$d jour</item>
+    <item quantity="many">Dans %1$d jours</item>
+    <item quantity="other">Dans %1$d jours</item>
+  </plurals>
+  <string name="notification_reminder_done">Terminé</string>
+  <string name="notification_reminder_snooze">Répéter</string>
+  <string name="notification_persistent_channel_name">Date du jour</string>
+  <string name="notification_persistent_channel_description">Affiche la date du jour et la prochaine heure de prière dans la barre d\'état</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Aujourd\'hui</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

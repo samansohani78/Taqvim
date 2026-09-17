@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (kmr) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">Bang</string>
+  <string name="notification_athan_channel_description">Di demên nimêjê yên ku te vekirine de bangê lê dide</string>
+  <string name="notification_athan_title_fajr">Banga sibê</string>
+  <string name="notification_athan_title_dhuhr">Banga nîvro</string>
+  <string name="notification_athan_title_asr">Banga ikindiyê</string>
+  <string name="notification_athan_title_maghrib">Banga êvarê</string>
+  <string name="notification_athan_title_isha">Banga eşayê</string>
+  <string name="notification_athan_text">Ji bo bêdengkirina bangê li Rawestîne bitikîne</string>
+  <string name="notification_athan_stop">Rawestîne</string>
+  <string name="notification_athan_snooze">Paşde bixe</string>
+  <string name="notification_reminder_channel_personal_name">Bîranînên bûyeran</string>
+  <string name="notification_reminder_channel_personal_description">Bîranînên bûyerên ku te çêkirine</string>
+  <string name="notification_reminder_channel_official_name">Bîranînên bûyerên taybet</string>
+  <string name="notification_reminder_channel_official_description">Bîranînên bûyerên fermî yên ku tu dişopînî</string>
+  <string name="notification_reminder_text_personal">Bûyera pêş</string>
+  <string name="notification_reminder_text_official_today">Îro</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">Di %1$d rojê de</item>
+    <item quantity="other">Di %1$d rojan de</item>
+  </plurals>
+  <string name="notification_reminder_done">Qediya</string>
+  <string name="notification_reminder_snooze">Paşde bixe</string>
+  <string name="notification_persistent_channel_name">Dîroka îro</string>
+  <string name="notification_persistent_channel_description">Di darika rewşê de dîroka îro û dema nimêja din nîşan dide</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">Îro</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

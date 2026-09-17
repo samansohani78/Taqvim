@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ta) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">அதான்</string>
+  <string name="notification_athan_channel_description">நீங்கள் இயக்கிய தொழுகை நேரங்களில் அதானை ஒலிக்கிறது</string>
+  <string name="notification_athan_title_fajr">ஃபஜ்ர் அதான்</string>
+  <string name="notification_athan_title_dhuhr">ளுஹர் அதான்</string>
+  <string name="notification_athan_title_asr">அஸர் அதான்</string>
+  <string name="notification_athan_title_maghrib">மஃரிப் அதான்</string>
+  <string name="notification_athan_title_isha">இஷா அதான்</string>
+  <string name="notification_athan_text">அதானை நிறுத்த நிறுத்து என்பதைத் தட்டவும்</string>
+  <string name="notification_athan_stop">நிறுத்து</string>
+  <string name="notification_athan_snooze">தள்ளிவை</string>
+  <string name="notification_reminder_channel_personal_name">நிகழ்வு நினைவூட்டல்கள்</string>
+  <string name="notification_reminder_channel_personal_description">நீங்கள் உருவாக்கிய நிகழ்வுகளின் நினைவூட்டல்கள்</string>
+  <string name="notification_reminder_channel_official_name">சிறப்பு நாள் நினைவூட்டல்கள்</string>
+  <string name="notification_reminder_channel_official_description">நீங்கள் பின்தொடரும் அதிகாரப்பூர்வ சிறப்பு நாட்களின் நினைவூட்டல்கள்</string>
+  <string name="notification_reminder_text_personal">வரவிருக்கும் நிகழ்வு</string>
+  <string name="notification_reminder_text_official_today">இன்று</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="one">%1$d நாளில்</item>
+    <item quantity="other">%1$d நாட்களில்</item>
+  </plurals>
+  <string name="notification_reminder_done">முடிந்தது</string>
+  <string name="notification_reminder_snooze">தள்ளிவை</string>
+  <string name="notification_persistent_channel_name">இன்றைய தேதி</string>
+  <string name="notification_persistent_channel_description">நிலைப் பட்டியில் இன்றைய தேதியையும் அடுத்த தொழுகை நேரத்தையும் காட்டுகிறது</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">இன்று</string>
+  <string name="notification_tile_description">%1$s, %2$s</string>
+</resources>

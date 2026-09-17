@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ar) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="notification_athan_channel_name">الأذان</string>
+  <string name="notification_athan_channel_description">يرفع الأذان في مواقيت الصلاة التي فعّلتها</string>
+  <string name="notification_athan_title_fajr">أذان الفجر</string>
+  <string name="notification_athan_title_dhuhr">أذان الظهر</string>
+  <string name="notification_athan_title_asr">أذان العصر</string>
+  <string name="notification_athan_title_maghrib">أذان المغرب</string>
+  <string name="notification_athan_title_isha">أذان العشاء</string>
+  <string name="notification_athan_text">اضغط إيقاف لإسكات الأذان</string>
+  <string name="notification_athan_stop">إيقاف</string>
+  <string name="notification_athan_snooze">غفوة</string>
+  <string name="notification_reminder_channel_personal_name">تذكيرات الأحداث</string>
+  <string name="notification_reminder_channel_personal_description">تذكيرات بالأحداث التي أنشأتها</string>
+  <string name="notification_reminder_channel_official_name">تذكيرات المناسبات</string>
+  <string name="notification_reminder_channel_official_description">تذكيرات بالمناسبات الرسمية التي تتابعها</string>
+  <string name="notification_reminder_text_personal">حدث قادم</string>
+  <string name="notification_reminder_text_official_today">اليوم</string>
+  <plurals name="notification_reminder_text_official_days">
+    <item quantity="zero">بعد %1$d يوم</item>
+    <item quantity="one">بعد %1$d يوم</item>
+    <item quantity="two">بعد %1$d يوم</item>
+    <item quantity="few">بعد %1$d أيام</item>
+    <item quantity="many">بعد %1$d يومًا</item>
+    <item quantity="other">بعد %1$d يوم</item>
+  </plurals>
+  <string name="notification_reminder_done">تم</string>
+  <string name="notification_reminder_snooze">غفوة</string>
+  <string name="notification_persistent_channel_name">تاريخ اليوم</string>
+  <string name="notification_persistent_channel_description">يعرض تاريخ اليوم ووقت الصلاة التالي في شريط الحالة</string>
+  <string name="notification_persistent_next_prayer">%1$s %2$s</string>
+  <string name="notification_tile_label">اليوم</string>
+  <string name="notification_tile_description">%1$s، %2$s</string>
+</resources>
