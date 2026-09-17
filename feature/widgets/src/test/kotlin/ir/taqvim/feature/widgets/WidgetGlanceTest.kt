@@ -29,7 +29,7 @@ class WidgetGlanceTest {
         size: WidgetSize = WidgetSize.MEDIUM,
         checks: androidx.glance.appwidget.testing.unit.GlanceAppWidgetUnitTest.() -> Unit,
     ) {
-        runGlanceAppWidgetUnitTest {
+        runGlanceAppWidgetUnitTest(GLANCE_TEST_TIMEOUT) {
             setContext(context)
             setAppWidgetSize(DpSize(size.widthDp.dp, size.heightDp.dp))
             provideComposable {
@@ -73,7 +73,7 @@ class WidgetGlanceTest {
 
     @Test
     fun messagesReplaceContent() {
-        runGlanceAppWidgetUnitTest {
+        runGlanceAppWidgetUnitTest(GLANCE_TEST_TIMEOUT) {
             setContext(context)
             provideComposable {
                 WidgetFrame(allParts, onClick = null) { style ->

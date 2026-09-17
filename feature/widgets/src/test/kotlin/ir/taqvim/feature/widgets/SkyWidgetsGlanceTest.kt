@@ -55,7 +55,7 @@ class SkyWidgetsGlanceTest {
         checks: GlanceAppWidgetUnitTest.() -> Unit,
     ) {
         val config = WidgetConfig.defaultFor(widget.kind)
-        runGlanceAppWidgetUnitTest {
+        runGlanceAppWidgetUnitTest(GLANCE_TEST_TIMEOUT) {
             setContext(context)
             setAppWidgetSize(DpSize(size.widthDp.dp, size.heightDp.dp))
             provideComposable {

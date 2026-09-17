@@ -74,7 +74,7 @@ class CalendarWidgetsGlanceTest {
         config: WidgetConfig = WidgetConfig.defaultFor(widget.kind),
         checks: GlanceAppWidgetUnitTest.() -> Unit,
     ) {
-        runGlanceAppWidgetUnitTest {
+        runGlanceAppWidgetUnitTest(GLANCE_TEST_TIMEOUT) {
             setContext(context)
             setAppWidgetSize(DpSize(size.widthDp.dp, size.heightDp.dp))
             provideComposable {
