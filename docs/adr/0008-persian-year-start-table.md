@@ -1,6 +1,7 @@
 # ADR-0008: Persian year starts from a generated table, with an arithmetic fallback
 
-- **Status:** Accepted; decisions 2 and 4 superseded by ADR-0026 (year starts computed at run time for every year)
+- **Status:** Accepted; decisions 2 and 4 superseded by ADR-0026 (year starts computed at run time for every year);
+  decision 3 superseded by the ADR-0026 addendum of 2026-09-17 (official data is a golden oracle only, no override)
 - **Date:** 2026-09-13
 - **Plan reference:** docs/PLAN.md §6 A-02, T-102
 

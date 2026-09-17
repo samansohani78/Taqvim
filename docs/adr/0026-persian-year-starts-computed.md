@@ -1,6 +1,7 @@
 # ADR-0026: Persian year starts are computed at run time for every year
 
-- **Status:** Accepted (supersedes decisions 2 and 4 of ADR-0008)
+- **Status:** Accepted (supersedes decisions 2 and 4 of ADR-0008; the 2026-09-17 addendum supersedes ADR-0008 decision 3
+  and this ADR's decision 5)
 - **Date:** 2026-09-15
 - **Plan reference:** docs/PLAN.md §6 A-02, T-102; ADR-0002 (module rules), ADR-0003 (permissive dependencies),
   ADR-0008, ADR-0025
@@ -55,3 +56,17 @@ derived from the rule, and the fallback followed a different rule from A-02.
   searches.
 - The standalone Wear app, which uses `:core:calendar` but not `:core:astronomy`, now ships the astronomy library
   (a 214 KB jar before shrinking).
+
+## Addendum 2026-09-17 — official data is a golden oracle only
+
+The owner directed on 2026-09-17 that Persian leap years and Nowruz come from the astronomical equinox computation at
+the Tehran meridian, with the official leap-year table allowed only as a golden test oracle, never as a runtime
+override. This replaces decision 5 above and ADR-0008 decision 3: there is no per-year override mechanism, and none is
+added if a publication ever disagrees — the disagreement is reported by the golden tests and investigated instead.
+
+No runtime override existed after main@dfe6f17, so nothing was removed from the app. The rule is now enforced:
+`PersianComputedOnlyKonsistTest` fails if any production file references the official Persian fixtures
+(`golden/persian`, the leap-year and Nowruz tables, the 1404/1405 daily calendars, the former leap table) or if
+`PersianCalendarSystem`/`PersianYearStarts` gain an override input. The official data stays in
+`core/calendar/src/test/resources/golden/persian/` and is checked by `PersianCalendarOfficialTest` (leap years
+1206–1498, every day of 1404 and 1405, Nowruz instants), `PersianCalendarAstronomyTest` and `PersianIcuOracleTest`.

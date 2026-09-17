@@ -13,7 +13,8 @@ import ir.taqvim.core.model.Jdn
  *
  * 1 Farvardin follows [PersianYearStartRule] for every [Int] year, computed at run time: from the true March equinox
  * for [ASTRONOMICAL_FIRST_YEAR]‥[ASTRONOMICAL_LAST_YEAR], and from the mean March equinox continued from those edges
- * beyond them. The Calendar Center's official leap years (1206–1498) agree with the rule, so no year is overridden.
+ * beyond them. Official data never changes a year: the Calendar Center's leap years (1206–1498), its 1404/1405 calendars
+ * and Nowruz instants are golden test oracles only (ADR-0026 addendum, 2026-09-17), and they agree with the rule.
  * See docs/adr/0026-persian-year-starts-computed.md.
  */
 public object PersianCalendarSystem : CalendarArithmetic {
