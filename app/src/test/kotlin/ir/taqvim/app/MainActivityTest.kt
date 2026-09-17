@@ -34,6 +34,6 @@ class MainActivityTest {
         check(GlobalContext.getOrNull() != null) { "Koin must be started by TaqvimApplication" }
         composeRule.finishOnboarding()
         composeRule.onNodeWithTag(tabTag(TopLevelTab.CALENDAR)).assertIsDisplayed()
-        composeRule.onNodeWithTag(destinationTag(AppDestination.Calendar)).assertExists()
+        composeRule.onNodeWithTag(destinationTag(AppDestination.Calendar), useUnmergedTree = true).assertExists()
     }
 }

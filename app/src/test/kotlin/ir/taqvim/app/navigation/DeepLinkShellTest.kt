@@ -44,7 +44,7 @@ class DeepLinkShellTest {
         var opened = 0
         composeRule.setContent { TaqvimAppShell(link = nowruz, onLinkOpened = { opened++ }) }
 
-        composeRule.onNodeWithTag(destinationTag(nowruz)).assertExists()
+        composeRule.onNodeWithTag(destinationTag(nowruz), useUnmergedTree = true).assertExists()
         assertTrue(opened == 1)
     }
 
@@ -52,6 +52,6 @@ class DeepLinkShellTest {
     fun anUnreadableLinkShowsTheCalendar() {
         composeRule.setContent { TaqvimAppShell(link = DeepLinks.parse("taqvim://nothing-here")) }
 
-        composeRule.onNodeWithTag(destinationTag(AppDestination.Calendar)).assertExists()
+        composeRule.onNodeWithTag(destinationTag(AppDestination.Calendar), useUnmergedTree = true).assertExists()
     }
 }

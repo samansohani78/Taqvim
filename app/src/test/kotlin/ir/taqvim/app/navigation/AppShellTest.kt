@@ -91,5 +91,7 @@ class AppShellTest {
         assertEquals(Uri.withAppendedPath(CalendarContract.Events.CONTENT_URI, "5"), event.data)
     }
 
-    private fun screen(destination: AppDestination) = composeRule.onNodeWithTag(destinationTag(destination))
+    // Screens are containers for tests only; a parent that merges semantics must not hide them.
+    private fun screen(destination: AppDestination) =
+        composeRule.onNodeWithTag(destinationTag(destination), useUnmergedTree = true)
 }
