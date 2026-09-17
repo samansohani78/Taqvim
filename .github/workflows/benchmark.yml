@@ -66,6 +66,12 @@ jobs:
         with:
           name: benchmark-results
           path: build/benchmark-results/
+      - name: Instrumented reports (why a benchmark failed)
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark-test-reports
+          path: "**/build/reports/androidTests/"
       - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1801, T-1803)
         run: |
           python3 -m unittest discover -s tools/benchmark
