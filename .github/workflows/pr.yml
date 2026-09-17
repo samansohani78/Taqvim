@@ -32,7 +32,17 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
-      - run: ./gradlew spotlessCheck detekt lint konsistTest $TAQVIM_GRADLE_ARGS
+      - name: Python tool tests and generator checks
+        run: |
+          for suite in tools/benchmark tools/geodata tools/ci; do
+            python3 -m unittest discover -s "$suite"
+          done
+          for generator in tools/usno/*.py; do
+            python3 "$generator" --check
+          done
+      - run: |
+          # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
+          ./gradlew spotlessCheck detekt lint konsistTest $TAQVIM_GRADLE_ARGS
       - name: Translation completeness report (T-1702)
         if: always()
         uses: actions/upload-artifact@v7
@@ -40,18 +50,32 @@ jobs:
           name: translation-report
           path: konsist/build/reports/translations/
       - name: Compose stability (T-1802, ADR-0021)
-        run: ./gradlew composeStabilityCheck -Ptaqvim.composeMetrics=true $TAQVIM_GRADLE_ARGS
+        run: |
+          # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
+          ./gradlew composeStabilityCheck -Ptaqvim.composeMetrics=true $TAQVIM_GRADLE_ARGS
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: compose-compiler-reports
           path: "**/build/compose/"
-      - name: Upload SARIF (lint + detekt)
+      - name: Merge SARIF reports (one run per tool)
         if: always()
+        run: |
+          find . -path ./.gradle -prune -o -path '*/build/reports/*' -name '*.sarif' -print0 \
+            | xargs -0 --no-run-if-empty python3 tools/ci/merge_sarif.py build/sarif
+      - name: Upload SARIF (detekt)
+        if: always() && hashFiles('build/sarif/detekt.sarif') != ''
         uses: github/codeql-action/upload-sarif@v4
         with:
-          sarif_file: .
-          category: static-analysis
+          sarif_file: build/sarif/detekt.sarif
+          category: detekt
+        continue-on-error: true
+      - name: Upload SARIF (Android Lint)
+        if: always() && hashFiles('build/sarif/android-lint.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: build/sarif/android-lint.sarif
+          category: android-lint
         continue-on-error: true
       - uses: actions/upload-artifact@v7
         if: failure()
@@ -68,7 +92,9 @@ jobs:
       - uses: ./.github/actions/setup
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
-      - run: ./gradlew test koverVerify koverXmlReport $TAQVIM_GRADLE_ARGS
+      - run: |
+          # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
+          ./gradlew test koverVerify koverXmlReport $TAQVIM_GRADLE_ARGS
       # Wall-clock budgets are load-sensitive, so they run after the parallel tests on a single worker (ADR-0018).
       - name: Timing tests (single worker)
         run: ./gradlew timingTests --continue --max-workers=1
@@ -88,7 +114,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
-      - run: ./gradlew verifyRoborazziDebug $TAQVIM_GRADLE_ARGS
+      - run: |
+          # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
+          ./gradlew verifyRoborazziDebug $TAQVIM_GRADLE_ARGS
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
@@ -134,10 +162,14 @@ jobs:
       # golden tests. GenerateEventsCliTest fails when the committed data/events sources are stale.
       - name: Validate dataset (D-01)
         if: steps.detect.outputs.present == 'true'
-        run: ./gradlew :tools:dataset:validate $TAQVIM_GRADLE_ARGS
+        run: |
+          # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
+          ./gradlew :tools:dataset:validate $TAQVIM_GRADLE_ARGS
       - name: Generator and golden tests (D-08, D-02)
         if: steps.detect.outputs.present == 'true'
-        run: ./gradlew :tools:dataset:test :data:events:test $TAQVIM_GRADLE_ARGS
+        run: |
+          # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
+          ./gradlew :tools:dataset:test :data:events:test $TAQVIM_GRADLE_ARGS
       - uses: actions/upload-artifact@v7
         if: failure() && steps.detect.outputs.present == 'true'
         with:
@@ -156,7 +188,9 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
       # T-1800 (ADR-0018): the shrunk release keeps what reflection needs and stays within the plan §9 APK budget.
-      - run: ./gradlew assemble :app:verifyReleaseShrinking :app:checkReleaseApkSize $TAQVIM_GRADLE_ARGS
+      - run: |
+          # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
+          ./gradlew assemble :app:verifyReleaseShrinking :app:checkReleaseApkSize $TAQVIM_GRADLE_ARGS
 
   workflows:
     name: Workflow lint
