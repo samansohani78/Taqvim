@@ -31,6 +31,13 @@ jobs:
       fail-fast: false
       matrix:
         api-level: [26, 30, 33, 36]
+        include:
+          # API 26 cannot resume from the cached `default_boot` snapshot: the restored framework has no system
+          # services ("cmd: Can't find service: settings", "adb: device offline") while sys.boot_completed reads 1,
+          # so the runner's `adb shell input keyevent 82` blocks until the job timeout and no test starts. It passed
+          # only on a cache miss (a cold boot). Cold-boot it every time; the other levels resume from the snapshot.
+          - api-level: 26
+            boot-options: -no-snapshot
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
@@ -70,6 +77,8 @@ jobs:
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
       - name: Run connected tests
+        # A healthy leg takes 5–15 minutes; a hung emulator now fails this step instead of being cancelled at 90.
+        timeout-minutes: 60
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
@@ -77,10 +86,12 @@ jobs:
           target: google_apis
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: >-
+            ${{ matrix.boot-options || '-no-snapshot-save' }}
+            -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          # One retry absorbs runner faults seen here (Maven Central HTTP 429, an emulator that boots without its
-          # system services); a real test failure fails both attempts.
+          # One retry absorbs runner faults seen here (Maven Central HTTP 429); a real test failure fails both
+          # attempts. It cannot help an emulator that hangs before the script starts (see boot-options above).
           # The watch tests (:wear) need a Wear OS image; they run on the wearApi34 managed device, not on this phone.
           script: ./gradlew connectedDebugAndroidTest -x :wear:connectedDebugAndroidTest --continue || (sleep 60 && ./gradlew connectedDebugAndroidTest -x :wear:connectedDebugAndroidTest --continue)
       - uses: actions/upload-artifact@v7
