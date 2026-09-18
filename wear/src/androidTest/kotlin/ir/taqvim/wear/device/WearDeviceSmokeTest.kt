@@ -5,6 +5,7 @@
 package ir.taqvim.wear.device
 
 import androidx.test.uiautomator.By
+import androidx.test.uiautomator.Direction
 import ir.taqvim.wear.MONTH_NEXT_TAG
 import ir.taqvim.wear.MONTH_PREVIOUS_TAG
 import ir.taqvim.wear.WearRoutes
@@ -44,9 +45,9 @@ class WearDeviceSmokeTest(
     @Test
     fun theMonthScreenSteps() {
         openScreen(openTag(WearRoutes.MONTH), WearRoutes.MONTH)
-        awaitTag(MONTH_NEXT_TAG).click()
+        tapTag(MONTH_NEXT_TAG)
         awaitScreen(WearRoutes.MONTH)
-        awaitTag(MONTH_PREVIOUS_TAG).click()
+        tapTag(MONTH_PREVIOUS_TAG)
         awaitScreen(WearRoutes.MONTH)
         assertInFront()
     }
@@ -54,13 +55,25 @@ class WearDeviceSmokeTest(
     @Test
     fun theConverterStepsEveryField() {
         openScreen(openTag(WearRoutes.CONVERTER), WearRoutes.CONVERTER)
-        // `StepperRow` is the only converter control with a content description (`wear_converter_decrease`).
-        val steppers = device.findObjects(By.clickable(true)).filter { !it.contentDescription.isNullOrBlank() }
-        check(steppers.size >= STEPPERS) { "the converter shows ${steppers.size} steppers, expected $STEPPERS" }
-        steppers.forEach { stepper ->
-            stepper.click()
+        // `StepperRow` is the only converter control with a content description (`wear_converter_decrease`). The
+        // converter list is taller than the watch screen and composes only what is on it, so the steppers are
+        // collected and tapped pass by pass while the list scrolls down.
+        val stepped = mutableSetOf<String>()
+        repeat(CONVERTER_PASSES) {
+            device
+                .findObjects(By.clickable(true))
+                .filter { !it.contentDescription.isNullOrBlank() }
+                .forEach { stepper ->
+                    val description = stepper.contentDescription
+                    if (stepped.add(description)) {
+                        tapDescription(description)
+                        device.waitForIdle(IDLE_MILLIS)
+                    }
+                }
+            device.findObject(By.scrollable(true))?.scroll(Direction.DOWN, CONVERTER_SCROLL)
             device.waitForIdle(IDLE_MILLIS)
         }
+        check(stepped.size >= STEPPERS) { "the converter shows ${stepped.size} steppers, expected $STEPPERS" }
         awaitScreen(WearRoutes.CONVERTER)
         assertInFront()
     }
@@ -86,6 +99,10 @@ class WearDeviceSmokeTest(
 
         /** The converter has a minus and a plus button per field (year, month, day). */
         private const val STEPPERS = 6
+
+        /** How many times the converter list is scrolled while collecting its steppers, and by how much. */
+        private const val CONVERTER_PASSES = 5
+        private const val CONVERTER_SCROLL = 0.4f
 
         private const val IDLE_MILLIS = 500L
     }
