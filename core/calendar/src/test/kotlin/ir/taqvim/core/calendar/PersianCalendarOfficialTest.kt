@@ -50,11 +50,11 @@ class PersianCalendarOfficialTest {
     }
 
     @TestFactory
-    fun `every day of the official 1404 and 1405 calendars converts both ways`(): List<DynamicTest> =
-        listOf("iran-official-1404-days.csv", "iran-official-1405-days.csv").map { name ->
-            DynamicTest.dynamicTest(name) {
-                val days = rows(name)
-                days shouldHaveSize 365
+    fun `every day of the official calendars converts both ways`(): List<DynamicTest> =
+        OfficialIranCalendars.imported.map { calendar ->
+            DynamicTest.dynamicTest(calendar.fixture) {
+                val days = OfficialIranCalendars.rows(calendar.fixture)
+                days shouldHaveSize calendar.days
                 days
                     .filterNot { row ->
                         val jdn = gregorianJdn(row[GREGORIAN_COLUMN])

@@ -43,16 +43,28 @@ public object ObservationalMonthStarts {
         firstYear: Int,
         lastYear: Int,
         visibleUpTo: CrescentVisibilityClass = CrescentVisibilityClass.C,
+    ): IslamicMonthTable = table(places, firstYear, lastYear, CrescentSighting.yallop(visibleUpTo))
+
+    /**
+     * Month table for [firstYear]‥[lastYear] where [sighting] decides, for each of [places], whether the crescent is
+     * seen on the evening of day 29. Any other rule than Yallop's default plugs in here; the refit of
+     * `IslamicCalibrationReportTest` searches over such rules (docs/adr/0040-islamic-calibration-refit.md).
+     */
+    public fun table(
+        places: List<Coordinates>,
+        firstYear: Int,
+        lastYear: Int,
+        sighting: CrescentSighting,
     ): IslamicMonthTable {
         require(places.isNotEmpty()) { "at least one observing place is needed" }
         require(firstYear <= lastYear) { "firstYear must not be after lastYear" }
         val firstTabularMonth = CalendarDate(CalendarSystem.ISLAMIC, firstYear - 1, MONTHS - SETTLING_MONTHS + 1, 1)
         var start = TabularIslamicCalendar.TYPE_II.toJdn(firstTabularMonth).value
-        repeat(SETTLING_MONTHS) { start += monthLength(places, start, visibleUpTo) }
+        repeat(SETTLING_MONTHS) { start += monthLength(places, start, sighting) }
         val firstStart = start
         val lengths =
             List((lastYear - firstYear + 1) * MONTHS) {
-                monthLength(places, start, visibleUpTo).also { start += it }
+                monthLength(places, start, sighting).also { start += it }
             }
         return IslamicMonthTable(firstYear, 1, firstStart, lengths)
     }
@@ -61,13 +73,10 @@ public object ObservationalMonthStarts {
     private fun monthLength(
         places: List<Coordinates>,
         startJdn: Long,
-        visibleUpTo: CrescentVisibilityClass,
+        sighting: CrescentSighting,
     ): Int {
         val checkDay = startJdn + DAY_OF_CRESCENT_CHECK - 1
-        val seen =
-            places.any { place ->
-                Yallop.evening(place, localNoon(checkDay, place))?.let { it.visibility <= visibleUpTo } ?: false
-            }
+        val seen = places.any { place -> sighting.seen(place, localNoon(checkDay, place)) }
         return if (seen) DAY_OF_CRESCENT_CHECK else DAY_OF_CRESCENT_CHECK + 1
     }
 

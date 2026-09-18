@@ -12,7 +12,6 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
-import ir.taqvim.core.testing.GoldenFile
 import kotlin.random.Random
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.Test
@@ -34,13 +33,6 @@ class IranIslamicCalendarTest {
     private val official = OfficialIranMonths.overrides
     private val iran = IranIslamicCalendar(official.table)
 
-    private fun rows(path: String): List<List<String>> =
-        GoldenFile
-            .load("golden/$path")
-            .lines
-            .drop(1)
-            .map { it.split(',') }
-
     private fun date(
         system: CalendarSystem,
         iso: String,
@@ -59,10 +51,10 @@ class IranIslamicCalendarTest {
 
     @TestFactory
     fun `every day of the official calendars has its official lunar date`(): List<DynamicTest> =
-        listOf("iran-official-1404-days.csv", "iran-official-1405-days.csv").map { name ->
-            DynamicTest.dynamicTest(name) {
-                val days = rows("persian/$name")
-                days shouldHaveSize 365
+        OfficialIranCalendars.imported.map { calendar ->
+            DynamicTest.dynamicTest(calendar.fixture) {
+                val days = OfficialIranCalendars.rows(calendar.fixture)
+                days shouldHaveSize calendar.days
                 days
                     .filterNot { row ->
                         val jdn = gregorianJdn(row[DAY_GREGORIAN])
@@ -75,9 +67,9 @@ class IranIslamicCalendarTest {
 
     @Test
     fun `month starts and lengths match the published table`() {
-        val months = rows("islamic-iran/official-month-starts-1446-1448.csv")
+        val months = OfficialIranCalendars.monthStarts
 
-        months shouldHaveSize 26
+        months shouldHaveSize official.table.monthCount + 1
         months
             .filterNot { row ->
                 val (year, month) = row[MONTH_ID].split('-').map(String::toInt)

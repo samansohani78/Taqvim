@@ -948,7 +948,10 @@ Persian-calendar or prayer-times GPL/LGPL library.
   real evenings around a new moon; agreement with the official Iranian month starts (A-05) and within a day of
   Umm al-Qura (A-04).
 - **Calibration:** `IranCrescentCalibration` (any of five cities, class D) was chosen by measuring agreement with
-  the 25 published Iranian month starts (23/25); see the ADR-0009 addendum.
+  the 25 published Iranian month starts (23/25); see the ADR-0009 addendum. Since 2026-09-18 the refit is run by
+  `IslamicCalibrationReportTest` over Yallop A–D, Odeh A–C and three sets of observing places, for Iran, Saudi Arabia
+  and Afghanistan; it writes `docs/data-todo/islamic-calibration-report.md` (ADR-0040). Agreement on 2026-09-18:
+  Iran 23/25, Saudi Arabia 370/372, Afghanistan 5/5. `CrescentSighting` is the plug-in point for a rule.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
@@ -1181,7 +1184,8 @@ Persian-calendar or prayer-times GPL/LGPL library.
   https://calendar.ut.ac.ir/Fa/, owner-supplied, retrieved 2026-09-13; page cited per month.
 - **Extraction:** poppler `pdftotext -bbox` with the T-102 column parser; a start is the Persian day whose lunar column
   reads day 1. Ramadan 1446 derived from the printed 20 Ramadan 1446 on 1 Farvardin 1404 (page 4), noted in its
-  citation. Identical to the T-104 table and golden fixture.
+  citation. Identical to the T-104 table and golden fixture. Written by `tools/iran/official_calendar_import.py`
+  since 2026-09-18 (ADR-0040), byte for byte the same file as the hand-made one.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14; **reviewer:** pending.
 
 ### D-03 — Afghanistan official holidays
@@ -1300,7 +1304,8 @@ Persian-calendar or prayer-times GPL/LGPL library.
   marks carry the previous month/year. Every row was validated for consecutive Solar Hijri days, weekday cycle,
   lunar-month progression (29/30-day months) and consecutive Gregorian dates — 730 rows, 0 errors. Holiday flags
   come from the "(تعطیل)" marker in the occasion text nearest the row (26 per year; the fixed national holidays were
-  checked by hand).
+  checked by hand). Since 2026-09-18 this extraction is `tools/iran/official_calendar_import.py` (ADR-0040), which
+  reproduces both hand-made daily fixtures row for row and imports any further `Calendar-<year>.pdf` the same way.
 - **Interpretation:** the leap table's Gregorian column is the civil date of the March equinox in Iran time, not
   1 Farvardin (it differs from the official calendars' 1 Farvardin 1404 and 1405); confirmed by computation for all
   293 years.
@@ -1349,16 +1354,29 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 
 ### core/calendar — `golden/persian/*` (T-102)
 - `official-leap-years-1206-1498.csv` — official leap markers and equinox dates, 293 rows (`Kabise Shamsi 1206-1498.pdf`, pp. 1–11).
-- `iran-official-1404-days.csv`, `iran-official-1405-days.csv` — one row per day: Solar Hijri date, ISO weekday,
-  Iran official lunar Hijri date, Gregorian date, official holiday flag, page (`Calendar-1404.pdf`, `Calendar-1405.pdf`).
+- `iran-official-<year>-days.csv` (1404, 1405) — one row per day: Solar Hijri date, ISO weekday,
+  Iran official lunar Hijri date, Gregorian date, official holiday flag, page (`Calendar-<year>.pdf`). Imported by
+  `tools/iran/official_calendar_import.py` with `pdftotext -bbox`; see ADR-0040.
 - `official-nowruz-instants.csv` — moment of the vernal equinox printed on the title page of each official calendar.
 - `century-boundaries.csv` — weekdays of 1 Farvardin 1, 101, 1301, 1401 and 29 Esfand 100, 200, 1400 (`century15th.pdf`).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
 
-### core/calendar — `golden/islamic-iran/official-month-starts-1446-1448.csv` (T-104)
-- First day (Gregorian and Solar Hijri) and length of each official Iranian lunar month, Ramadan 1446 – Shawwal 1448,
-  from `Calendar-1404.pdf` and `Calendar-1405.pdf`; the Ramadan 1446 row is derived as described in A-05.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
+### core/calendar — `golden/islamic-iran/*` (T-104, ADR-0040)
+- `official-month-starts.csv` — first day (Gregorian and Solar Hijri) and length of each official Iranian lunar
+  month the stored calendars establish, today Ramadan 1446 – Shawwal 1448 from `Calendar-1404.pdf` and
+  `Calendar-1405.pdf`; the Ramadan 1446 row is derived as described in A-05.
+- `official-calendars.csv` — the index of imported calendars (year, file, SHA-256, pages, days, daily fixture) that
+  the tests iterate instead of naming fixtures.
+- Both are written by `tools/iran/official_calendar_import.py`, which also writes
+  `dataset/iran/islamic-iran-overrides.json`; rerunning it on the two stored calendars reproduces the fixtures the
+  first, hand-made extraction produced.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13, regenerated 2026-09-18; **reviewer:** pending.
+
+### core/astronomy — `golden/islamic-afghanistan/bakhtar-announced-dates.csv` (ADR-0040)
+- Every lunar Hijri date a Bakhtar News Agency announcement states together with its Solar Hijri day or its weekday
+  (five rows from four announcements, the same articles the Afghan dataset records cite). The only official Afghan
+  evidence on lunar month starts found so far; used to measure the agreement of the Afghan calendar.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-18; **reviewer:** pending.
 
 ### core/praytimes — `golden/noaa/noaa-solar-day-2010-06-21.csv` (T-400)
 - NOAA Solar Calculations spreadsheet (day), cached results of its sample inputs; no values were computed by Taqvim.

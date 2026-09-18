@@ -1,0 +1,8 @@
+# source: University of Tehran, Institute of Geophysics, Calendar Center — official calendars of Iran stored in docs/sources, one row per imported calendar
+# url: https://calendar.ut.ac.ir/Fa/
+# retrieved: 2026-09-13
+# reviewer: pending
+# notes: written by tools/iran/official_calendar_import.py so that a calendar added to docs/sources is picked up by the tests without editing them; days is the number of rows of the daily fixture named here
+solar_year,source_file,sha256,first_page,last_page,days,fixture
+1404,docs/sources/Calendar-1404.pdf,057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945,4,15,365,golden/persian/iran-official-1404-days.csv
+1405,docs/sources/Calendar-1405.pdf,8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c,3,14,365,golden/persian/iran-official-1405-days.csv

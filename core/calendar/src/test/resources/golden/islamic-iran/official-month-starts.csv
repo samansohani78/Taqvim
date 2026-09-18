@@ -1,9 +1,9 @@
-# source: University of Tehran, Institute of Geophysics, Calendar Center — Official calendar of Iran 1404 and 1405 SH (Calendar-1404.pdf, Calendar-1405.pdf), first days of the Iranian official lunar Hijri months
+# source: University of Tehran, Institute of Geophysics, Calendar Center — first days of the Iranian official lunar Hijri months, read from the daily tables of the official calendars of Iran (1404, 1405 SH)
 # url: https://calendar.ut.ac.ir/Fa/
 # retrieved: 2026-09-13
-# page: 4-16
+# page: 3-15
 # reviewer: pending
-# notes: owner-supplied PDF sha256=057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945 / 8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c; extracted with pdftotext -bbox (see docs/PROVENANCE.md) and validated for day, weekday, lunar-month and Gregorian continuity; the Ramadan 1446 row is derived: the 1404 calendar prints 20 Ramadan 1446 on 1 Farvardin 1404 (page 4), so Ramadan began 19 days earlier, and 1 Shawwal 1446 on 11 Farvardin gives it 29 days
+# notes: Calendar-1404.pdf sha256=057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945, Calendar-1405.pdf sha256=8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c; derived by tools/iran/official_calendar_import.py from the daily fixtures it writes, never typed; length_days is empty where the calendars do not print the whole month; 1446-09: Derived: the calendar prints 20 Ramadan 1446 on 1 Farvardin 1404, so the month began 19 days earlier (12 Esfand 1403).
 hijri_month,first_day_gregorian,first_day_persian,length_days
 1446-09,2025-03-02,1403-12-12,29
 1446-10,2025-03-31,1404-01-11,29

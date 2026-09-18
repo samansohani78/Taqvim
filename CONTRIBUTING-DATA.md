@@ -50,6 +50,35 @@ covers changes under `dataset/`. Code contributions follow the pull-request temp
 6. Open a pull request and complete the "Dataset changes" checklist. To report a wrong date without a pull request,
    use the *Holiday / event data correction* issue form. It also requires a primary source.
 
+## Official calendars (Iran)
+
+The daily tables of the Calendar Center's yearly calendars are imported, never typed. To add one:
+
+1. Put the PDF in `docs/sources/` as `Calendar-<solar year>.pdf` (for example `Calendar-1403.pdf`).
+2. Add its row to [`docs/sources/MANIFEST.md`](docs/sources/MANIFEST.md). Running step 3 without one prints the row
+   to paste — page count, byte size and SHA-256 — so nothing is measured by hand; fill in the content description.
+
+3. Import it (needs `poppler-utils`; `--check` only reports whether the fixtures are stale):
+
+   ```bash
+   tools/iran/official_calendar_import.py
+   ```
+
+   This rewrites the daily fixture of every stored calendar, the index
+   `core/calendar/src/test/resources/golden/islamic-iran/official-calendars.csv`, the month starts next to it and
+   `dataset/iran/islamic-iran-overrides.json`. It stops with an error rather than guessing if a page is unreadable, a
+   month name is unknown or a day does not follow the day above it.
+4. Refresh the calibration report and run the tests that read the fixtures:
+
+   ```bash
+   ./gradlew :core:astronomy:test -Ptaqvim.updateSnapshots=true
+   ./gradlew :core:calendar:test :tools:dataset:test :tools:dataset:validate
+   ```
+
+   The tests iterate the index, so no test names a fixture and none has to be edited. Review the diff of
+   [`docs/data-todo/islamic-calibration-report.md`](docs/data-todo/islamic-calibration-report.md): it is where the
+   agreement per region changes (ADR-0040).
+
 ## Continuous integration
 
 - **PR workflow, "Dataset validation" job:** `:tools:dataset:validate`, then the generator and golden tests

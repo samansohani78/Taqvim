@@ -136,7 +136,7 @@ Summary: 38 rows — 7 DONE, 7 PARTIAL, 24 BLOCKED. Every blocked row needs a pr
 | ID | Needed data | Status | Blocks | Note |
 |---|---|---|---|---|
 | DT-001 | Official leap years 1499–1500 SH and Nowruz instants 1390–1403, 1406–1420 | PARTIAL | T-102 acceptance (remaining years), T-104 | Partly resolved 2026-09-13: official leap years 1206–1498 and Nowruz instants 1404–1405 are golden fixtures (docs/sources) |
-| DT-002 | Official Iranian lunar month starts for the rest of PLAN D-07's range (1390–1410) | PARTIAL | T-104, D-07 | Partly resolved: Ramadan 1446 – Shawwal 1448 in `dataset/iran/islamic-iran-overrides.json` (D-07, main@6dfb3be) and the core table; 1390–1403 and … |
+| DT-002 | Official Iranian lunar month starts for the rest of PLAN D-07's range (1390–1410) | PARTIAL | T-104, D-07 | Partly resolved: Ramadan 1446 – Shawwal 1448 in `dataset/iran/islamic-iran-overrides.json` (D-07, main@6dfb3be) and the core table; 1390–1403 and … Since 2026-09-18 (ADR-0040) importing one more calendar is a single command, and the calibration agreement is reported per region in `docs/data-todo/islamic-calibration-report.md` (Iran 92.0 %, Saudi Arabia 99.5 %, Afghanistan 100 %) |
 | DT-003 | Bikram Sambat month lengths | DONE | T-105, D-04 | Resolved by algorithm |
 | DT-004 | Central Kurdish (`ckb`) "and" list pattern | BLOCKED | T-200 `andPattern` | Open |
 | DT-005 | Persian (Solar Hijri) month names in `ckb`, `kmr`, `ne`, `id`, `ms`, `zh` | BLOCKED | T-200 `monthNames.persian` | Open |

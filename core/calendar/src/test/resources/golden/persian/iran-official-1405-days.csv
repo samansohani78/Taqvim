@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 3-14
 # reviewer: pending
-# notes: owner-supplied PDF sha256=8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c; extracted with pdftotext -bbox (see docs/PROVENANCE.md) and validated for day, weekday, lunar-month and Gregorian continuity
+# notes: owner-supplied PDF sha256=8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c; extracted from the cited pages with pdftotext -bbox by tools/iran/official_calendar_import.py, which checks that the printed weekday, the Solar Hijri day, the lunar Hijri day and the Gregorian date all run day by day; nothing is typed by hand
 persian,weekday_iso,hijri_iran,gregorian,official_holiday,page
 1405-01-01,6,1447-10-01,2026-03-21,true,3
 1405-01-02,7,1447-10-02,2026-03-22,true,3
