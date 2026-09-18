@@ -68,10 +68,59 @@ jobs:
           disable-animations: true
           # One retry absorbs runner faults seen here (Maven Central HTTP 429); a real test failure fails both
           # attempts. It cannot help an emulator that hangs before the script starts.
-          # The watch tests (:wear) need a Wear OS image; they run on the wearApi34 managed device, not on this phone.
+          # The watch tests (:wear) need a Wear OS image; they run in the `wear` job below, not on this phone.
           script: ./gradlew connectedDebugAndroidTest -x :wear:connectedDebugAndroidTest --continue || (sleep 60 && ./gradlew connectedDebugAndroidTest -x :wear:connectedDebugAndroidTest --continue)
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: instrumented-reports-api-${{ matrix.api-level }}
           path: "**/build/reports/androidTests/"
+
+  wear:
+    # The watch device suite (T-1600): smoke navigation in fa and en, both tiles rendered by the ProtoLayout renderer,
+    # and the complication providers. It needs a Wear OS image, so it runs here and not in the phone sweep above.
+    name: Wear OS 34
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - name: Enable KVM
+        run: |
+          if [ ! -e /dev/kvm ]; then
+            echo "::error::/dev/kvm is not available on this runner; the emulator needs hardware acceleration"
+            exit 1
+          fi
+          sudo mkdir -p /etc/udev/rules.d
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          if command -v udevadm > /dev/null; then
+            sudo udevadm control --reload-rules
+            sudo udevadm trigger --name-match=kvm
+          fi
+          sudo chmod 666 /dev/kvm
+          ls -l /dev/kvm
+      - name: Run watch device tests
+        # Cold boot, like the phone legs: a resumed snapshot came up without system services.
+        timeout-minutes: 60
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: android-wear
+          arch: x86_64
+          profile: wearos_small_round
+          force-avd-creation: false
+          emulator-options: >-
+            -no-snapshot
+            -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: ./gradlew :wear:connectedDebugAndroidTest
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          # The test reports and the two tile PNGs WearTileDeviceTest writes to the additional test output directory.
+          name: instrumented-reports-wear-api-34
+          path: |
+            wear/build/reports/androidTests/
+            wear/build/outputs/connected_android_test_additional_output/
+            wear/build/outputs/androidTest-results/
