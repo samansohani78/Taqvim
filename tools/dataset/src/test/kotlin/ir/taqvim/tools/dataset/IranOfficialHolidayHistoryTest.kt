@@ -174,8 +174,8 @@ class IranOfficialHolidayHistoryTest {
         const val PERSIAN_START_COLUMN = 2
         val YEAR_FILE = Regex("""\d{4}\.csv""")
 
-        // The editions of 1395, 1396, 1401 and 1402 cannot be read (their digits do not extract).
-        val EXPECTED_YEARS = (1381..1394) + (1397..1400) + (1403..1405)
+        // Every edition of 1381–1405; the digits of 1395, 1396, 1401 and 1402 are read from their glyphs.
+        val EXPECTED_YEARS = (1381..1405).toList()
 
         val REPORT_HEADER =
             """
@@ -204,7 +204,7 @@ class IranOfficialHolidayHistoryTest {
             official calendar marks the day (تعطیل), with that page as its citation:
 
             - `imam-hasan-askari-martyrdom` (8 Rabi al-Awwal): a holiday from 1440 AH (Calendar-1397.pdf page 13). The
-              calendars of 1381–1396 print the day without (تعطیل); 1395 and 1396 were checked in their occasion text.
+              calendars of 1381–1396 print the day without (تعطیل), and every calendar from 1397 on with it.
             - `eid-al-fitr-holiday` (2 Shawwal): a holiday from 1433 AH (Calendar-1391.pdf page 8); up to 1390 only
               1 Shawwal is.
             """.trimIndent()

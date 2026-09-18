@@ -94,7 +94,7 @@ internal fun regions(): List<Region> = listOf(iran(), iranHistory(), saudiArabia
 private const val IRAN_FIRST_YEAR = 1446
 private const val IRAN_LAST_YEAR = 1448
 private const val IRAN_THRESHOLD = 0.90
-private const val IRAN_HISTORY_THRESHOLD = 0.90
+private const val IRAN_HISTORY_THRESHOLD = 0.91
 private const val SAUDI_FIRST_YEAR = 1420
 private const val SAUDI_LAST_YEAR = 1450
 private const val SAUDI_THRESHOLD = 0.99
@@ -171,7 +171,7 @@ private fun iranHistory(): Region {
         threshold = IRAN_HISTORY_THRESHOLD,
         note =
             "One anchor per lunar month start the calendars establish (printed, counted back, or moved by an " +
-                "announcement the calendar notes); `*` marks the held-out calendars 1403–1405. The months are " +
+                "announcement the calendar notes); `*` marks the held-out calendars 1401–1405. The months are " +
                 "chained from AH ${anchors.minOf { it.date.year }}, so a day lost stays lost until a crescent check " +
                 "restores it; the evening-decision section below scores each month on its own.",
     )

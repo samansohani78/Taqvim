@@ -26,10 +26,14 @@ Written by `IranOfficialHolidayHistoryTest`; run `./gradlew :tools:dataset:test
 | 1392 | 26 | 0 / 0 | `imam-hasan-askari-martyrdom` 10-20 | 4 / 0 |
 | 1393 | 26 | 0 / 0 | `imam-hasan-askari-martyrdom` 10-10 | 2 / 0 |
 | 1394 | 26 | 0 / 0 | `imam-hasan-askari-martyrdom` 09-29 | 0 / 0 |
+| 1395 | 26 | 0 / 0 | `imam-hasan-askari-martyrdom` 09-18 | 0 / 0 |
+| 1396 | 26 | 0 / 0 | `imam-hasan-askari-martyrdom` 09-06 | 0 / 0 |
 | 1397 | 27 | 0 / 0 | — | 0 / 0 |
 | 1398 | 26 | 0 / 0 | — | 0 / 0 |
 | 1399 | 27 | 0 / 0 | — | 0 / 0 |
 | 1400 | 28 | 0 / 0 | — | 0 / 0 |
+| 1401 | 27 | 0 / 0 | — | 0 / 0 |
+| 1402 | 27 | 0 / 0 | — | 0 / 0 |
 | 1403 | 26 | 0 / 0 | — | 0 / 0 |
 | 1404 | 26 | 0 / 0 | — | 0 / 0 |
 | 1405 | 26 | 0 / 0 | — | 0 / 0 |
@@ -38,7 +42,7 @@ Two holidays were added by law during these years; each record's `validity` star
 official calendar marks the day (تعطیل), with that page as its citation:
 
 - `imam-hasan-askari-martyrdom` (8 Rabi al-Awwal): a holiday from 1440 AH (Calendar-1397.pdf page 13). The
-  calendars of 1381–1396 print the day without (تعطیل); 1395 and 1396 were checked in their occasion text.
+  calendars of 1381–1396 print the day without (تعطیل), and every calendar from 1397 on with it.
 - `eid-al-fitr-holiday` (2 Shawwal): a holiday from 1433 AH (Calendar-1391.pdf page 8); up to 1390 only
   1 Shawwal is.
 

@@ -11,7 +11,7 @@ import json
 import pathlib
 
 from official_calendar_pdf import SOURCES, URL
-from official_calendar_sources import ERRATA, LAYOUTS, OVERRIDE_YEARS, REJECTED
+from official_calendar_sources import ERRATA, LAYOUTS, LAYOUT_GLYPHS, OVERRIDE_YEARS
 
 DAYS_DIRECTORY = "core/calendar/src/test/resources/golden/persian/official"
 MONTHS_DIRECTORY = "core/calendar/src/test/resources/golden/islamic-iran"
@@ -48,6 +48,16 @@ def errata_note(solar_year):
                    for erratum in ERRATA.get(solar_year, ()))
 
 
+def glyph_note(solar_year):
+    if LAYOUTS[solar_year] != LAYOUT_GLYPHS:
+        return ""
+    return ("; this edition's text layer names several digit glyphs with one character, so every digit is read from "
+            "the glyph the page draws (official_calendar_glyphs.py): templates labelled by the Solar Hijri and "
+            "Gregorian days, which the neighbouring official calendars fix, and checked page by page against the "
+            "other pages' templates before any digit is used; a digit in the occasion text whose glyph matches no "
+            "template closely is written as ؟")
+
+
 def days_csv(reader, digest, retrieved):
     lines = header(
         f"Official calendar of Iran {reader.solar_year} SH ({pathlib.Path(reader.path).name}), daily table",
@@ -56,7 +66,7 @@ def days_csv(reader, digest, retrieved):
         f"pdftotext -bbox by {TOOL}, which checks that the printed weekday, the Solar Hijri day, the lunar Hijri day "
         f"and the Gregorian date all run day by day; nothing is typed by hand; hijri_iran is the lunar date as "
         f"printed; occasion is the occasion text as printed (Latin commas turned into Persian ones)"
-        + errata_note(reader.solar_year),
+        + errata_note(reader.solar_year) + glyph_note(reader.solar_year),
     ) + ["persian,weekday_iso,hijri_iran,gregorian,official_holiday,page,occasion"]
     lines += [f"{row['persian']},{row['weekday_iso']},{lunar(row)},{row['gregorian'].isoformat()},"
               f"{str(row['official_holiday']).lower()},{row['page']},{printed_text(row['occasion'])}"
@@ -83,8 +93,9 @@ def holidays_csv(reader, digest, retrieved, notice):
     return "\n".join(lines) + "\n"
 
 
-def index_csv(readers, digests, retrieved):
-    rejected = "; ".join(f"{year} not imported: {reason}" for year, reason in sorted(REJECTED.items()))
+def index_csv(readers, digests, retrieved, rejected_years):
+    rejected = "; ".join(f"{year} not imported: {reason}" for year, reason in sorted(rejected_years.items()))
+    rejected = rejected or "every calendar in the directory is imported"
     lines = header(
         f"official calendars of Iran stored in {SOURCES}, one row per imported calendar", retrieved, None,
         f"written by {TOOL} so that a calendar added to {SOURCES} is picked up by the tests without editing them; "
@@ -102,9 +113,11 @@ def persian_iso(persian):
     return f"{persian[0]}-{persian[1]:02d}-{persian[2]:02d}"
 
 
-def history_csv(starts, readers, digests, retrieved):
+def history_csv(starts, readers, digests, retrieved, rejected_years):
     files = ", ".join(f"{pathlib.Path(reader.path).name} sha256={digest}" for reader, digest in zip(readers, digests))
-    rejected = ", ".join(str(year) for year in sorted(REJECTED))
+    gaps = ", ".join(str(year) for year in sorted(rejected_years))
+    edges = (f"including the months on either side of the years not imported ({gaps}, see official-calendars.csv)"
+             if gaps else "that is, at the two ends of the imported range")
     lines = header(
         "first days of the Iranian official lunar Hijri months, read from the daily tables of the official calendars "
         f"of Iran {readers[0].solar_year}–{readers[-1].solar_year} SH", retrieved, None,
@@ -113,8 +126,7 @@ def history_csv(starts, readers, digests, retrieved):
         "announced = the calendar's notice says the month began a day later or earlier by official announcement than "
         "its computed table shows, and the month is moved by that day (the month before it gains or loses the day; "
         "the announced month's own length is left empty, since the notice does not say when it ended). "
-        "length_days is empty where the calendars do not print the whole month, including the months on either "
-        f"side of the years not imported ({rejected}, see official-calendars.csv). The calendars are the Calendar "
+        f"length_days is empty where the calendars do not print the whole month, {edges}. The calendars are the Calendar "
         "Center's computed calendars as published before each year; they are the official calendar, not a record "
         "of later sighting announcements, except where a notice says so",
     ) + ["hijri_month,first_day_gregorian,first_day_persian,length_days,basis,solar_year,page"]

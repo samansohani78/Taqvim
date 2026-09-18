@@ -26,7 +26,7 @@ import org.junit.jupiter.api.TestFactory
 class IslamicCalibrationReportTest {
     private val regions = regions()
     private val scores = regions.associateWith { region -> score(region, region.shipped) }
-    private val evenings = historyCriteria(historyModel).map { scoreEvenings(it) }
+    private val evenings = historyCriteria(historyModel, lenientHistoryModel).map { scoreEvenings(it) }
 
     @TestFactory
     fun `every region reaches its documented agreement`(): List<DynamicTest> =
@@ -141,7 +141,7 @@ class IslamicCalibrationReportTest {
         const val GENERATOR = "core/astronomy IslamicCalibrationReportTest"
         const val MISSES_LISTED = 6
         const val EVENING_FIT_FLOOR = 0.90
-        const val EVENING_HELD_OUT_FLOOR = 0.89
+        const val EVENING_HELD_OUT_FLOOR = 0.93
         val BEST_FIRST =
             compareByDescending<Agreement> { it.share }
                 .thenBy { !it.shipped }

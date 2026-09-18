@@ -7,7 +7,10 @@ package ir.taqvim.core.astronomy
 import java.time.Month
 
 /** Every criterion of the evening-decision refit on 1381–1405 (ADR-0041), the shipped one first. */
-internal fun historyCriteria(model: LogisticCrescentModel): List<EveningCriterion> =
+internal fun historyCriteria(
+    model: LogisticCrescentModel,
+    lenientModel: LogisticCrescentModel,
+): List<EveningCriterion> =
     listOf(
         yallopCriterion(CrescentVisibilityClass.D, shipped = true),
         yallopCriterion(CrescentVisibilityClass.C),
@@ -16,12 +19,23 @@ internal fun historyCriteria(model: LogisticCrescentModel): List<EveningCriterio
         odehCriterion(OdehZone.C),
         odehCriterion(OdehZone.D),
         model.criterion(),
+        lenientModel.criterion("logistic, fitted on AH $LENIENT_ERA_START onward, five cities"),
     )
 
 /** The logistic model fitted on the fit months only. */
 internal val historyModel: LogisticCrescentModel by lazy {
     LogisticCrescentModel.fit(HistoryEvenings.all.filterNot { it.month.heldOut })
 }
+
+/**
+ * The logistic model fitted on the fit months of AH [LENIENT_ERA_START] onward only: ADR-0041 step (b), since the
+ * Calendar Center's practice before that year differs (see the eras below).
+ */
+internal val lenientHistoryModel: LogisticCrescentModel by lazy {
+    LogisticCrescentModel.fit(HistoryEvenings.all.filter { !it.month.heldOut && it.month.year >= LENIENT_ERA_START })
+}
+
+internal const val LENIENT_ERA_START = 1428
 
 /** Appends the evening-decision section of the calibration report. */
 internal fun StringBuilder.appendEveningDecision(scores: List<EveningScore>) {
@@ -34,8 +48,9 @@ internal fun StringBuilder.appendEveningDecision(scores: List<EveningScore>) {
         "Each official month whose length the calendars print is one decision: given the official first day, does " +
             "the criterion give the month 29 days (crescent seen on the evening of day 29 at any of the five " +
             "cities) or 30? ${evenings.size} decisions: ${evenings.size - held} fit (calendars 1381–1400) and $held " +
-            "held out (1403–1405; the 1395, 1396, 1401 and 1402 calendars have no readable text layer). The logistic " +
-            "model is fitted on the fit months only.",
+            "held out (calendars 1401–1405; the digits of 1395, 1396, 1401 and 1402 are read from their glyphs). " +
+            "The logistic models are fitted on the fit months only, the second on those of AH " +
+            "$LENIENT_ERA_START onward.",
     )
     appendLine()
     appendLine("| Criterion | Fit | Held out |")
@@ -48,6 +63,8 @@ internal fun StringBuilder.appendEveningDecision(scores: List<EveningScore>) {
     }
     appendLine()
     appendLine("Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): ${weights(historyModel)}.")
+    appendLine()
+    appendLine("Fitted on AH $LENIENT_ERA_START onward: ${weights(lenientHistoryModel)}.")
     scores.firstOrNull { it.criterion.shipped }?.let { appendEras(it) }
     scores.forEach { appendMisses(it) }
 }
@@ -66,7 +83,7 @@ private fun StringBuilder.appendEras(shipped: EveningScore) {
     }
 }
 
-private val ERAS = listOf("1423–1427" to 1423..1427, "1428–1448" to 1428..1448)
+private val ERAS = listOf("1423–1427" to (1423 until LENIENT_ERA_START), "1428–1448" to (LENIENT_ERA_START..1448))
 
 private fun StringBuilder.appendMisses(score: EveningScore) {
     appendLine()

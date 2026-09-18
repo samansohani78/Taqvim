@@ -1,6 +1,6 @@
 # Copyright (c) 2026 Saman Sohani. All Rights Reserved.
 # Proprietary and confidential. See the LICENSE file in the repository root.
-"""Unit tests of the official-calendar importer (T-104, ADR-0040): python3 -m unittest discover -s tools/iran."""
+"""Unit tests of the official-calendar importer (T-104, ADR-0040): python3 -m unittest discover -s tools/sources/iran."""
 import datetime
 import hashlib
 import pathlib
@@ -11,6 +11,7 @@ import unittest
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
+import official_calendar_glyphs as glyphs  # noqa: E402
 import official_calendar_import as importer  # noqa: E402
 import official_calendar_pdf as pdf  # noqa: E402
 import official_calendar_sources as sources  # noqa: E402
@@ -155,10 +156,11 @@ class ErratumTest(unittest.TestCase):
 
 
 class SourcesTest(unittest.TestCase):
-    def test_rejected_editions_are_listed_with_a_reason_and_never_read(self):
-        self.assertEqual([1395, 1396, 1401, 1402], sorted(sources.REJECTED))
-        self.assertTrue(all(sources.REJECTED.values()))
-        self.assertFalse(set(sources.REJECTED) & set(sources.readable_years()))
+    def test_editions_with_misnamed_digits_are_read_from_their_glyphs(self):
+        self.assertEqual([1395, 1396, 1401, 1402], sources.glyph_years())
+        self.assertEqual({}, sources.REJECTED)
+        self.assertFalse(set(sources.glyph_years()) & set(sources.readable_years()))
+        self.assertEqual(list(range(1381, 1406)), sorted(sources.readable_years() + sources.glyph_years()))
 
     def test_every_year_from_1381_to_1405_has_a_layout(self):
         self.assertEqual(list(range(1381, 1406)), sorted(sources.LAYOUTS))
@@ -232,7 +234,88 @@ class LayoutTest(unittest.TestCase):
         self.assertEqual({10: (-1, 1)}, sources.announcements(path, pdf.page_count(path)))
 
 
-@unittest.skipUnless(POPPLER, "needs poppler-utils")
+def features(*values):
+    return glyphs.numpy.array(values, dtype=float)
+
+
+@unittest.skipUnless(glyphs.AVAILABLE, "needs numpy and Pillow")
+class TemplatesTest(unittest.TestCase):
+    """The acceptance rule of official_calendar_glyphs.Templates, on made-up feature vectors."""
+
+    def setUp(self):
+        self.templates = glyphs.Templates([
+            ("1", "7", features(0, 0), 1),
+            ("1", "8", features(100, 0), 2),
+            ("1", "0", features(0, 30), 3),
+            ("6", "2", features(5, 5), 1),
+        ])
+
+    def test_a_glyph_equal_to_a_template_is_read_as_its_digit(self):
+        self.assertEqual("7", self.templates.read("1", features(0, 0)))
+        self.assertEqual("2", self.templates.read("6", features(5, 5.5)))
+
+    def test_only_templates_of_the_same_extracted_character_are_candidates(self):
+        self.assertIsNone(self.templates.read("3", features(0, 0)))
+        self.assertIsNone(self.templates.read("6", features(0, 0)))
+
+    def test_a_glyph_near_no_template_is_not_read(self):
+        self.assertIsNone(self.templates.read("1", features(50, 0)))
+
+    def test_a_glyph_near_two_digits_is_not_read(self):
+        close = glyphs.Templates(self.templates.samples + [("1", "9", features(0, 10), 4)])
+        self.assertIsNone(close.read("1", features(0, 0)))
+
+    def test_the_excluded_page_does_not_vote(self):
+        self.assertIsNone(self.templates.read("1", features(0, 0), excluded_page=1))
+
+
+def cell_word(text, x0, x1):
+    return {"x0": x0, "x1": x1, "y": 100.0, "y1": 110.0, "text": text}
+
+
+class RowTokensTest(unittest.TestCase):
+    def test_a_number_keeps_its_words_and_names_stay_text(self):
+        inside = [cell_word("6", 500, 505), cell_word('"', 470, 475), cell_word("0", 432, 436),
+                  cell_word("01", 437, 441), cell_word("رمضان", 400, 424), cell_word("0443", 378, 396)]
+        tokens = glyphs.row_tokens(inside)
+        self.assertEqual(["6", '"', "001", "رمضان", "0443"], [text for text, _ in tokens])
+        self.assertEqual(["0", "01"], [part["text"] for part in tokens[2][1]])
+        self.assertIsNone(tokens[1][1])
+
+
+@unittest.skipUnless(POPPLER and shutil.which("pdftoppm") and glyphs.AVAILABLE, "needs poppler-utils, numpy, Pillow")
+class GlyphLayoutTest(unittest.TestCase):
+    """The 1401 edition, whose text layer reads the page title as 0410: its digits come from their glyphs."""
+
+    @classmethod
+    def setUpClass(cls):
+        path = sources.calendar_path(1401)
+        cls.digits = glyphs.DigitReader(path, datetime.date(2022, 3, 21), importer.month_lengths(1401))
+        cls.reader = pdf.Reader(path, 1401, words_of=cls.digits.page_words)
+
+    def test_every_labelled_digit_is_read_right_from_the_other_pages(self):
+        self.assertEqual(list(range(4, 16)), self.digits.month_pages)
+        self.assertEqual(len(self.digits.templates.samples), self.digits.validated)
+
+    def test_the_first_row_of_ordibehesht_is_read_as_printed(self):
+        self.assertEqual(31, self.reader.read_page(5))
+        row = self.reader.rows[0]
+        self.assertEqual("1401-02-01", row["persian"])
+        self.assertEqual(4, row["weekday_iso"])
+        self.assertEqual((1443, 9, 19), (row["hijri_year"], row["hijri_month"], row["hijri_day"]))
+        self.assertEqual(datetime.date(2022, 4, 21), row["gregorian"])
+
+    def test_occasion_digits_in_the_table_font_are_read_too(self):
+        reader = pdf.Reader(sources.calendar_path(1401), 1401, words_of=self.digits.page_words)
+        self.assertEqual(31, reader.read_page(4))
+        self.assertIn("(1342 هو ش)", reader.rows[1]["occasion"])
+
+    def test_the_text_layer_alone_misreads_the_same_row(self):
+        words = [word for word in pdf.page_words(sources.calendar_path(1401), 5) if word["text"].isdigit()]
+        self.assertIn("0443", [word["text"] for word in words])
+
+
+@unittest.skipUnless(POPPLER and shutil.which("pdftoppm") and glyphs.AVAILABLE, "needs poppler-utils, numpy, Pillow")
 class StoredSourcesTest(unittest.TestCase):
     def run_tool(self, name):
         return subprocess.run([sys.executable, str(HERE / name), "--check"], capture_output=True, text=True,

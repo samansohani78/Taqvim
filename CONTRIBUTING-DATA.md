@@ -55,8 +55,11 @@ covers changes under `dataset/`. Code contributions follow the pull-request temp
 The daily tables of the Calendar Center's yearly calendars are imported, never typed. To add one:
 
 1. Put the PDF in `docs/sources/iran/` as `Calendar-<solar year>.pdf` (for example `Calendar-1406.pdf`), and add the
-   year's layout to `tools/sources/iran/official_calendar_sources.py` (an edition whose text layer cannot be read goes
-   into `REJECTED` with the reason, never into the fixtures).
+   year's layout to `tools/sources/iran/official_calendar_sources.py`. An edition whose text layer names digits
+   wrongly but draws them correctly gets `LAYOUT_GLYPHS`: its digits are then read from the drawn glyphs (needs numpy
+   and Pillow), and the year is imported only if every Solar Hijri and Gregorian digit its month pages print is read
+   right from the other pages. An edition that cannot be read at all goes into `REJECTED` with the reason, never into
+   the fixtures.
 2. Add its row to [`docs/sources/iran/MANIFEST.md`](docs/sources/iran/MANIFEST.md). Running step 3 without one prints
    the row to paste — page count, byte size and SHA-256 — so nothing is measured by hand; fill in kind, layout, date
    supplied and the content description.

@@ -19,19 +19,19 @@ from official_calendar_pdf import INVISIBLE, LETTERS, REPO, SOURCES, HIJRI_MONTH
 LAYOUT_2002 = "ut-daily-2002"  # 1381–1386: a "Dear user" notice page in 1381 and 1383–1385; Wednesday misspelt in 1381
 LAYOUT_2008 = "ut-daily-2008"  # 1387–1394, 1397–1400, 1403: year-overview and Nowruz pages among the month pages
 LAYOUT_2025 = "ut-daily-2025"  # 1404–1405: month pages only
-LAYOUT_BAD_DIGITS = "ut-daily-bad-digits"  # 1395, 1396, 1401, 1402: see REJECTED
+# 1395, 1396, 1401 and 1402 have the 2008 layout, but their text layer names several digit glyphs with one character
+# (0, 7, 8 and 9 all extract as 1 in the 1401 edition, whose own title then reads 0410), so their digits are read from
+# the glyphs the page draws (official_calendar_glyphs.py).
+LAYOUT_GLYPHS = "ut-daily-2008-glyphs"
 
 LAYOUTS = {year: LAYOUT_2002 for year in range(1381, 1387)}
 LAYOUTS.update({year: LAYOUT_2008 for year in (*range(1387, 1395), *range(1397, 1401), 1403)})
 LAYOUTS.update({1404: LAYOUT_2025, 1405: LAYOUT_2025})
-LAYOUTS.update({year: LAYOUT_BAD_DIGITS for year in (1395, 1396, 1401, 1402)})
+LAYOUTS.update({year: LAYOUT_GLYPHS for year in (1395, 1396, 1401, 1402)})
 
-BAD_DIGITS = (
-    "the text layer maps several digit glyphs to one character (for example 0, 7, 8 and 9 all extract as 1 in the "
-    "1401 edition, whose own title then reads 0410), so no date on the page can be read; the printed page is fine, "
-    "but reading it would need OCR, which the importer does not do"
-)
-REJECTED = {year: BAD_DIGITS for year, layout in LAYOUTS.items() if layout == LAYOUT_BAD_DIGITS}
+# Editions the importer cannot read at all, with the reason. Empty since the glyph reader recovered the last four;
+# a year whose glyphs fail the reader's gate is reported by the importer instead of being imported.
+REJECTED = {}
 
 # The calendars whose lunar months make up the optional official override of ADR-0037. Extending the shipped
 # override to earlier years is a product decision of its own; the other years are test oracles only.
@@ -60,8 +60,13 @@ def calendar_path(solar_year):
 
 
 def readable_years():
-    """Every year in [LAYOUTS] the importer reads, oldest first."""
-    return [year for year in sorted(LAYOUTS) if year not in REJECTED]
+    """Every year in [LAYOUTS] whose text layer the importer reads directly, oldest first."""
+    return [year for year in sorted(LAYOUTS) if year not in REJECTED and LAYOUTS[year] != LAYOUT_GLYPHS]
+
+
+def glyph_years():
+    """Every year whose digits are read from their glyphs, oldest first (see [LAYOUT_GLYPHS])."""
+    return [year for year in sorted(LAYOUTS) if year not in REJECTED and LAYOUTS[year] == LAYOUT_GLYPHS]
 
 
 def page_text(path, page):

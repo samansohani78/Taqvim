@@ -92,8 +92,8 @@ internal class LogisticCrescentModel private constructor(
     fun seen(site: SiteEvening): Boolean = probability(site) >= HALF
 
     /** The model as a criterion: seen when any of the five cities is. */
-    fun criterion(): EveningCriterion =
-        EveningCriterion("logistic (age, lag, ARCV, ARCL, W), five cities") { evening -> evening.sites.any(::seen) }
+    fun criterion(name: String = "logistic (age, lag, ARCV, ARCL, W), five cities"): EveningCriterion =
+        EveningCriterion(name) { evening -> evening.sites.any(::seen) }
 
     private fun row(site: SiteEvening): DoubleArray = rowOf(features(site))
 

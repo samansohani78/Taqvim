@@ -19,7 +19,11 @@ It reads every readable calendar listed there and writes
   * `tools/dataset/src/test/resources/golden/iran/iran-official-holidays-<year>.csv` — the official holiday dates.
 
 Nothing here is typed by hand: every value comes from `pdftotext -bbox` output of the cited page (the reading itself
-is in official_calendar_pdf.py). The tool fails loudly on a checksum that does not match the manifest, a calendar
+is in official_calendar_pdf.py). Editions whose text layer names several digit glyphs with one character (layout
+ut-daily-2008-glyphs: 1395, 1396, 1401, 1402) have their digits read from the drawn glyphs instead
+(official_calendar_glyphs.py): templates labelled by the Solar Hijri and Gregorian days that the neighbouring
+imported calendars and the official leap-year table fix, and a page-by-page gate that must read every labelled digit
+right before the year is used; a year that fails the gate is reported and left out, never guessed. The tool fails loudly on a checksum that does not match the manifest, a calendar
 whose pages do not add up to the whole year, or a table that does not run day by day in all three calendars.
 
 Usage: tools/sources/iran/official_calendar_import.py [--check]
@@ -29,6 +33,7 @@ import datetime
 import pathlib
 import sys
 
+from official_calendar_glyphs import DigitReader, RejectedYear
 from official_calendar_pdf import Reader, page_count, supplied_on, verified
 from official_calendar_sources import (
     ERRATA,
@@ -37,6 +42,7 @@ from official_calendar_sources import (
     REJECTED,
     announcements,
     calendar_path,
+    glyph_years,
     readable_years,
 )
 from official_calendar_outputs import (
@@ -199,18 +205,50 @@ def announced(starts, readers, notices):
     return result
 
 
-def read_calendar(solar_year):
+def month_lengths(year):
+    return [persian_length(year, month) for month in range(1, 13)]
+
+
+def first_day(solar_year, readers):
+    """1 Farvardin of [solar_year], from the nearest imported calendars on both sides and the official leap-year
+    table: the day after the earlier one ends, counted forward, must land on the later one's first day."""
+    before = [reader for reader in readers if reader.solar_year < solar_year]
+    after = [reader for reader in readers if reader.solar_year > solar_year]
+    if not before or not after:
+        raise RejectedYear(f"{solar_year}: no imported calendar on both sides to fix its first day")
+    earlier, later = before[-1], after[0]
+    day = earlier.rows[-1]["gregorian"] + datetime.timedelta(days=1)
+    for year in range(earlier.solar_year + 1, solar_year):
+        day += datetime.timedelta(days=sum(month_lengths(year)))
+    check = day
+    for year in range(solar_year, later.solar_year):
+        check += datetime.timedelta(days=sum(month_lengths(year)))
+    if check != later.rows[0]["gregorian"]:
+        raise SystemExit(f"{solar_year}: the leap-year table does not join {earlier.solar_year} and {later.solar_year}")
+    return day
+
+
+def read_glyph_calendar(solar_year, readers):
+    """A year whose digits are read from their glyphs; the reader's own gate has already passed when it returns."""
+    path = calendar_path(solar_year)
+    verified(path)
+    digits = DigitReader(path, first_day(solar_year, readers), month_lengths(solar_year))
+    result = read_calendar(solar_year, digits.page_words)
+    return result, digits
+
+
+def read_calendar(solar_year, words_of=None):
     path = calendar_path(solar_year)
     digest = verified(path)
     pages = page_count(path)
-    reader = Reader(path, solar_year, ERRATA.get(solar_year, ()))
+    reader = Reader(path, solar_year, ERRATA.get(solar_year, ()), **({"words_of": words_of} if words_of else {}))
     for page in range(1, pages + 1):
         reader.read_page(page)
     check_days(reader)
     return reader, digest, announcements(path, pages)
 
 
-def outputs_for(readers, digests, notices):
+def outputs_for(readers, digests, notices, rejected):
     starts = month_starts(readers)
     history = announced(starts, readers, notices)
     override = [reader for reader in readers if reader.solar_year in OVERRIDE_YEARS]
@@ -224,27 +262,39 @@ def outputs_for(readers, digests, notices):
         outputs[f"{HOLIDAYS_DIRECTORY}/iran-official-holidays-{reader.solar_year}.csv"] = \
             holidays_csv(reader, digest, retrieved[reader.solar_year], notice)
     override_retrieved = max(retrieved[reader.solar_year] for reader in override)
-    outputs[INDEX] = index_csv(readers, digests, latest)
-    outputs[HISTORY] = history_csv(history, readers, digests, latest)
+    outputs[INDEX] = index_csv(readers, digests, latest, rejected)
+    outputs[HISTORY] = history_csv(history, readers, digests, latest, rejected)
     outputs[MONTH_STARTS] = month_starts_csv(override_starts, override, override_retrieved)
     outputs[OVERRIDES] = overrides_json(override_starts, override_retrieved)
     return outputs, history
 
 
 def main():
-    readers, digests, notices = [], [], {}
+    readers, digests, notices, rejected, gates = [], [], {}, dict(REJECTED), {}
     for solar_year in readable_years():
         reader, digest, notice = read_calendar(solar_year)
         readers.append(reader)
         digests.append(digest)
         if notice:
             notices[solar_year] = notice
-    outputs, history = outputs_for(readers, digests, notices)
+    for solar_year in glyph_years():
+        try:
+            (reader, digest, notice), digits = read_glyph_calendar(solar_year, readers)
+        except RejectedYear as error:
+            rejected[solar_year] = f"the digits could not be read from their glyphs: {error}"
+            continue
+        gates[solar_year] = digits
+        index = sum(1 for other in readers if other.solar_year < solar_year)
+        readers.insert(index, reader)
+        digests.insert(index, digest)
+        if notice:
+            notices[solar_year] = notice
+    outputs, history = outputs_for(readers, digests, notices, rejected)
     stale = [path for path, text in outputs.items()
              if not (REPO / path).is_file() or (REPO / path).read_text(encoding="utf-8") != text]
     summary = (f"{len(readers)} calendars ({readers[0].solar_year}–{readers[-1].solar_year}), "
                f"{sum(len(reader.rows) for reader in readers)} days, {len(history)} lunar months; not readable: "
-               f"{', '.join(str(year) for year in sorted(REJECTED))}")
+               f"{', '.join(str(year) for year in sorted(rejected)) or 'none'}")
     if "--check" in sys.argv[1:]:
         if stale:
             raise SystemExit(f"out of date: {', '.join(sorted(stale))}; rerun {pathlib.Path(__file__).name}")
@@ -257,7 +307,11 @@ def main():
         skipped = ", ".join(str(page) for page, _ in reader.skipped) or "none"
         print(f"{reader.solar_year} SH ({LAYOUTS[reader.solar_year]}): {len(reader.rows)} days; pages not in the "
               f"daily table: {skipped}")
-    for year, reason in sorted(REJECTED.items()):
+    for year, digits in sorted(gates.items()):
+        print(f"{year} SH: digits read from glyphs; gate: {digits.validated} of {len(digits.templates.samples)} "
+              f"labelled digits on month pages {digits.month_pages[0]}–{digits.month_pages[-1]} read right from the "
+              f"other pages' glyphs")
+    for year, reason in sorted(rejected.items()):
         print(f"{year} SH: not imported — {reason}")
     print(summary)
     print(f"changed: {len(stale)} file(s)")

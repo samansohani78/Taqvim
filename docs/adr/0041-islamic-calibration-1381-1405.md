@@ -102,3 +102,50 @@ bounds any fit near 91–93 %.
 - The report grows from one Iranian region to two plus the evening section; the test still runs in a few seconds
   because every evening's geometry is computed once.
 - The logistic weights live in test code only. Nothing in the app changes.
+
+## Addendum 2026-09-18 — all 25 calendars, and the refit on AH 1428 onward
+
+Steps (a)–(c) of the recommendation are done.
+
+- **(a) The four missing years are imported.** The 1395, 1396, 1401 and 1402 editions name several digit glyphs with
+  one character in their text layer. Their digits are now read from the glyphs the page draws
+  (`tools/sources/iran/official_calendar_glyphs.py`, layout `ut-daily-2008-glyphs`): templates labelled by the Solar
+  Hijri and Gregorian days that the neighbouring official calendars and the official leap-year table fix, accepted
+  only on a near-exact match with a wide margin to any other digit, behind a gate that must read every labelled
+  digit of each month page right from the other pages' templates (1 300/1 300 in 1395, 1 296/1 296 in each of the
+  others). All 9 131 days of 1381–1405 run day by day in all three calendars and equal the computed Persian calendar.
+  The history grows from 262 to **310 month starts** and the decisions from 255 to **305: 244 fit (1381–1400), 61 held
+  out (1401–1405)**.
+- **(b) Refit on AH 1428 onward** (`lenientHistoryModel`, test code only), since the Calendar Center's practice
+  before AH 1428 differs (all 7 early misses are months it made longer, all 17 later ones crescents it accepted).
+- **(c) The report** (`docs/data-todo/islamic-calibration-report.md`):
+
+| Criterion (five cities) | Fit | Held out | Chained over 310 starts |
+|---|---|---|---|
+| **Yallop ≤ D (shipped)** | 91.4 % (223/244) | 95.1 % (58/61) | 92.3 % (286/310) |
+| Yallop ≤ C | 89.3 % (218/244) | 88.5 % (54/61) | 88.7 % |
+| Yallop ≤ E | 91.4 % (223/244) | 95.1 % (58/61) | — |
+| Odeh ≤ B | 89.3 % (218/244) | 86.9 % (53/61) | 88.4 % |
+| Odeh ≤ C | 82.0 % (200/244) | 83.6 % (51/61) | 82.6 % |
+| Odeh ≤ D | 50.4 % (123/244) | 50.8 % (31/61) | — |
+| Logistic, fitted on 1381–1400 | 92.6 % (226/244) | 96.7 % (59/61) | 93.5 % |
+| **Logistic, fitted on AH 1428 onward** | 93.0 % (227/244) | **100.0 % (61/61)** | — |
+| Tabular II / I | — | — | 61.6 % / 61.9 % |
+
+The shipped criterion now misses 24 of 305 decisions (was 23 of 255): the one new miss, 1437-10, lies in the fit
+years 1395–1396; its held-out misses are still 1446-04, 1447-04 and 1448-04, all crescents the calendar accepted.
+
+**The adoption bar is met.** The logistic model fitted on AH 1428 onward reads every held-out decision right, three
+more than Yallop ≤ D (61 against 58), which is the margin the recommendation asked for. Weights (standardised
+intercept, age, lag, ARCV, ARCL, W): 0.64, −2.49, 7.83, −2.86, 11.92, −0.63.
+
+**Recommendation.** Adopt it as the default of `IranCrescentCalibration` through a new ADR — this addendum does not
+switch it. That ADR should (1) move the weights and feature scaling from test code into `:core:astronomy` main code
+with the fit reproducible from the fixtures, (2) keep Yallop ≤ D as the documented fallback, (3) keep the held-out
+check as a floor so a later official calendar that disagrees is caught, and (4) note the remaining risk: the held-out
+set is 61 decisions, all in the lenient era the model was fitted on, so a return to the earlier practice would not
+be caught before the next calendar is imported. The optional official override (ADR-0037) keeps published dates
+either way.
+
+**Floors** (`IslamicCalibrationReportTest`): fit ≥ 0.90 (unchanged; 0.914 today), held out ≥ **0.93** (was 0.89; one
+more miss would be 57/61 = 0.934), chained ≥ **0.91** for the "Iran 1381–1405" region (was 0.90; 0.923 today).

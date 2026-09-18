@@ -958,6 +958,10 @@ Persian-calendar or prayer-times GPL/LGPL library.
   91.9 % held out, 91.2 % chained. The logistic model (Moon age, lag, ARCV, ARCL, W; Newton's method with a ridge
   term, fitted on the fit months only, written from the textbook definition in test code) reaches 92.2 % / 97.3 % /
   93.1 % and is reported, not shipped. The Moon's age comes from cosinekitty/astronomy 2.1.19 (MIT) `searchMoonPhase`.
+  Updated the same day with all 25 calendars (the digits of 1395, 1396, 1401, 1402 read from their glyphs; ADR-0041
+  addendum): 310 starts, 305 decisions split 244 fit (1381–1400) / 61 held out (1401–1405). Yallop ≤ D: 91.4 % /
+  95.1 % / 92.3 %; the logistic model fitted on 1381–1400: 92.6 % / 96.7 % / 93.5 %; fitted on AH 1428 onward only
+  (ADR-0041 step (b)): 93.0 % / 100.0 % (61/61), which meets the adoption bar; still test code only, not shipped.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
@@ -1315,11 +1319,26 @@ Persian-calendar or prayer-times GPL/LGPL library.
   come from the "(تعطیل)" marker in the occasion text nearest the row (26 per year; the fixed national holidays were
   checked by hand). Since 2026-09-18 this extraction is `tools/sources/iran/official_calendar_import.py` (ADR-0040), which
   reproduces both hand-made daily fixtures row for row and imports any further `Calendar-<year>.pdf` the same way.
-- **1381–1405 import (2026-09-18, ADR-0040 addendum):** 21 of the 25 yearly calendars read (four layouts); 1395, 1396,
-  1401 and 1402 are not imported because their text layer maps several digit glyphs to one character. Two misprints
+- **1381–1405 import (2026-09-18, ADR-0040 addendum):** all 25 yearly calendars read (three text-layer layouts, plus
+  the glyph reading below). Two misprints
   are corrected from the documents themselves (`ERRATA` in `tools/sources/iran/official_calendar_sources.py`: 1381
   Shahrivar lunar days, 1383 Esfand lunar year); the 1381 and 1383–1385 notices of an announced month are read from the
   PDFs and applied only to the month-start history. Every imported day agrees with the computed Persian calendar.
+- **Digits read from glyphs (1395, 1396, 1401, 1402; 2026-09-18, ADR-0041 addendum):** these editions embed CID
+  fonts whose ToUnicode map gives several digit glyphs one character (in 1401 the glyphs of 7, 8, 9 and 0 all extract
+  as "1", and the rest are permuted), while the glyphs are drawn correctly. `tools/sources/iran/official_calendar_glyphs.py`
+  renders each page with `pdftoppm` at 300 dpi, splits every digit word's box into connected ink components, and
+  reads each by the nearest labelled glyph extracted as the same character (L1 distance on a 16×16 image plus height
+  and width), accepting it only within 1.0 with every other digit at least 20 away. Labels come only from values the
+  documents fix: row n of each month page is Solar Hijri day n, and its Gregorian day and year follow from 1 Farvardin,
+  taken from the neighbouring imported official calendars and the official leap-year table (counted forward from the
+  one before and checked against the one after) — never from the app's calendar. Gate: every labelled digit of each
+  month page must be read right with the other pages' templates only — 1 300/1 300 (1395), 1 296/1 296 (1396, 1401,
+  1402); the nearest labelled glyph is at distance 0 except for three lunar days of 1402 (0.03), and the nearest
+  other digit is never closer than 44. The table font's digits then clear the same test; occasion text in 1395 and
+  1396 is set in a font with no labelled glyphs, so its digits (years of historical events) are written ؟ in the
+  fixtures (about 367 characters a year; 1401 and 1402 have 1–2). No OCR package, no trained model: numpy and Pillow
+  (tools only) and poppler.
 - **Nowruz instants 1360–1403:** `tahvil-sal.txt`, the Calendar Center's list "لحظه تحویل سال‌های گذشته" as supplied by the
   owner, read by `tools/sources/iran/nowruz_instants_import.py` (checks weekday, Solar Hijri day and Gregorian date of
   each entry against each other). Two entries are irregular: 1362 misspells ثانیه (read), and 1380 prints "ساعت 17 و
@@ -1356,11 +1375,11 @@ Persian-calendar or prayer-times GPL/LGPL library.
   date by date against the extracted daily rows (26/26 holidays in each year). No translations: there is no primary
   source for them.
 - **History 1381–1405 (2026-09-18):** the records were checked against the official holidays of every readable
-  calendar of 1381–1405 (21 editions; `golden/iran/iran-official-holidays-<year>.csv`, written by the importer from
+  calendar of 1381–1405 (all 25 editions; `golden/iran/iran-official-holidays-<year>.csv`, written by the importer from
   the days marked "(تعطیل)"). Read with the printed lunar dates, the rules give exactly the official holidays of every
   year once two records carry a `validity` range, each citing the first calendar that marks the day: 8 Rabi al-Awwal
   (`imam-hasan-askari-martyrdom`) from 1440 AH, `Calendar-1397.pdf` page 13 — the editions of 1381–1396 print it
-  without "(تعطیل)", 1395 and 1396 checked in their occasion text since their digits do not extract; and 2 Shawwal
+  without "(تعطیل)" and every edition from 1397 on with it, so the change is pinned between 1396 and 1397; and 2 Shawwal
   (`eid-al-fitr-holiday`) from 1433 AH, `Calendar-1391.pdf` page 8, where up to 1390 only 1 Shawwal is a holiday. No
   other rule changed. `IranOfficialHolidayHistoryTest` keeps it so and writes the per-year comparison, including the
   holidays that move with the computed lunar calendar, to `docs/data-todo/iran-holiday-history.md`.

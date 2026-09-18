@@ -42,34 +42,34 @@ No candidate does better than the shipped calendar, so it stays as it is.
 
 ## Iran 1381–1405 SH (Calendar Center, every readable official calendar)
 
-262 official facts, AH 1423–1448. One anchor per lunar month start the calendars establish (printed, counted back, or moved by an announcement the calendar notes); `*` marks the held-out calendars 1403–1405. The months are chained from AH 1423, so a day lost stays lost until a crescent check restores it; the evening-decision section below scores each month on its own.
+310 official facts, AH 1423–1448. One anchor per lunar month start the calendars establish (printed, counted back, or moved by an announcement the calendar notes); `*` marks the held-out calendars 1401–1405. The months are chained from AH 1423, so a day lost stays lost until a crescent check restores it; the evening-decision section below scores each month on its own.
 
-**Shipped: five cities, Yallop ≤ D (shipped, ADR-0027) — 91.2 % (239/262).**
+**Shipped: five cities, Yallop ≤ D (shipped, ADR-0027) — 92.3 % (286/310).**
 
-Missed: 1423-09 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1426-01 (-1 d), 1426-11 (-1 d), 1428-09 (+1 d), 1429-07 (+1 d), 1429-10 (+1 d), 1430-05 (+1 d), 1430-10 (+1 d), 1431-06 (+1 d), 1431-11 (+1 d), 1432-09 (+1 d), 1433-10 (+1 d), 1434-11 (+1 d), 1435-02 (+1 d), 1435-08 (+1 d), 1436-11 (+1 d), 1446-05* (+1 d), 1447-05* (+1 d), 1448-05* (+1 d).
+Missed: 1423-09 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1426-01 (-1 d), 1426-11 (-1 d), 1428-09 (+1 d), 1429-07 (+1 d), 1429-10 (+1 d), 1430-05 (+1 d), 1430-10 (+1 d), 1431-06 (+1 d), 1431-11 (+1 d), 1432-09 (+1 d), 1433-10 (+1 d), 1434-11 (+1 d), 1435-02 (+1 d), 1435-08 (+1 d), 1436-11 (+1 d), 1437-11 (+1 d), 1446-05* (+1 d), 1447-05* (+1 d), 1448-05* (+1 d).
 
 | Calendar tried | Agreement | Missed |
 |---|---|---|
-| logistic (ADR-0041), five cities | 93.1 % | 1423-09 (-1 d), 1423-11 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1426-01 (-1 d), … |
-| five cities, Yallop ≤ D (shipped, ADR-0027) | 91.2 % | 1423-09 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1426-01 (-1 d), … |
-| Yallop ≤ D, five cities | 91.2 % | 1423-09 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1426-01 (-1 d), … |
-| Yallop ≤ C, five cities | 88.2 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1428-06 (+1 d), 1428-09 (+1 d), 1428-10 (+1 d), … |
-| Odeh ≤ B, five cities | 87.8 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1428-06 (+1 d), 1428-09 (+1 d), 1428-10 (+1 d), … |
-| Yallop ≤ D, Tehran | 86.3 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
-| Odeh ≤ C, Tehran | 82.4 % | 1423-04 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), 1423-11 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), … |
-| Yallop ≤ C, Tehran | 82.4 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
-| Odeh ≤ B, Tehran | 81.7 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
-| Odeh ≤ C, five cities | 81.7 % | 1423-04 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), 1423-11 (-1 d), 1424-02 (-1 d), 1424-08 (-1 d), … |
-| Yallop ≤ B, five cities | 79.4 % | 1423-02 (+1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-03 (+1 d), 1426-05 (+1 d), 1426-09 (+1 d), … |
-| Yallop ≤ B, Tehran | 73.3 % | 1423-02 (+1 d), 1425-10 (+1 d), 1426-03 (+1 d), 1426-05 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
-| Odeh ≤ A, five cities | 65.3 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
-| Yallop ≤ A, five cities | 65.3 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
-| type I | 62.2 % | 1423-01 (-1 d), 1423-03 (-1 d), 1423-04 (-1 d), 1423-05 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), … |
-| type II | 61.8 % | 1423-01 (-1 d), 1423-03 (-1 d), 1423-04 (-1 d), 1423-05 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), … |
-| Odeh ≤ A, Tehran | 59.2 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
-| Yallop ≤ A, Tehran | 59.2 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
+| logistic (ADR-0041), five cities | 93.5 % | 1423-09 (-1 d), 1423-11 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), … |
+| five cities, Yallop ≤ D (shipped, ADR-0027) | 92.3 % | 1423-09 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1426-01 (-1 d), … |
+| Yallop ≤ D, five cities | 92.3 % | 1423-09 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1426-01 (-1 d), … |
+| Yallop ≤ C, five cities | 88.7 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1428-06 (+1 d), 1428-09 (+1 d), 1428-10 (+1 d), … |
+| Odeh ≤ B, five cities | 88.4 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1428-06 (+1 d), 1428-09 (+1 d), 1428-10 (+1 d), … |
+| Yallop ≤ D, Tehran | 86.8 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
+| Odeh ≤ C, Tehran | 83.2 % | 1423-04 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), 1423-11 (-1 d), 1424-02 (-1 d), 1424-12 (-1 d), … |
+| Yallop ≤ C, Tehran | 83.2 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
+| Odeh ≤ B, Tehran | 82.6 % | 1423-02 (+1 d), 1425-05 (-1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
+| Odeh ≤ C, five cities | 82.6 % | 1423-04 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), 1423-11 (-1 d), 1424-02 (-1 d), 1424-08 (-1 d), … |
+| Yallop ≤ B, five cities | 79.7 % | 1423-02 (+1 d), 1425-08 (-1 d), 1425-10 (+1 d), 1426-03 (+1 d), 1426-05 (+1 d), 1426-09 (+1 d), … |
+| Yallop ≤ B, Tehran | 73.5 % | 1423-02 (+1 d), 1425-10 (+1 d), 1426-03 (+1 d), 1426-05 (+1 d), 1426-09 (+1 d), 1427-10 (+1 d), … |
+| Yallop ≤ A, five cities | 65.8 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
+| Odeh ≤ A, five cities | 65.5 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
+| type I | 61.9 % | 1423-01 (-1 d), 1423-03 (-1 d), 1423-04 (-1 d), 1423-05 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), … |
+| type II | 61.6 % | 1423-01 (-1 d), 1423-03 (-1 d), 1423-04 (-1 d), 1423-05 (-1 d), 1423-07 (-1 d), 1423-09 (-1 d), … |
+| Odeh ≤ A, Tehran | 59.0 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
+| Yallop ≤ A, Tehran | 59.0 % | 1423-02 (+1 d), 1423-06 (+1 d), 1424-03 (+1 d), 1424-05 (+1 d), 1424-07 (+1 d), 1424-09 (+1 d), … |
 
-**logistic (ADR-0041), five cities fits better (93.1 %).** Reported, not adopted: the shipped calendar changes only by a decision recorded in an ADR (ADR-0040, ADR-0041).
+**logistic (ADR-0041), five cities fits better (93.5 %).** Reported, not adopted: the shipped calendar changes only by a decision recorded in an ADR (ADR-0040, ADR-0041).
 
 ## Saudi Arabia (printed Umm al-Qura calendar, ICU4J as the oracle)
 
@@ -116,22 +116,25 @@ No candidate does better than the shipped calendar, so it stays as it is.
 
 ## Iran 1381–1405 SH: the evening of day 29 (ADR-0041)
 
-Each official month whose length the calendars print is one decision: given the official first day, does the criterion give the month 29 days (crescent seen on the evening of day 29 at any of the five cities) or 30? 255 decisions: 218 fit (calendars 1381–1400) and 37 held out (1403–1405; the 1395, 1396, 1401 and 1402 calendars have no readable text layer). The logistic model is fitted on the fit months only.
+Each official month whose length the calendars print is one decision: given the official first day, does the criterion give the month 29 days (crescent seen on the evening of day 29 at any of the five cities) or 30? 305 decisions: 244 fit (calendars 1381–1400) and 61 held out (calendars 1401–1405; the digits of 1395, 1396, 1401 and 1402 are read from their glyphs). The logistic models are fitted on the fit months only, the second on those of AH 1428 onward.
 
 | Criterion | Fit | Held out |
 |---|---|---|
-| Yallop ≤ D, five cities (shipped, ADR-0027) | 90.8 % (198/218) | 91.9 % (34/37) |
-| Yallop ≤ C, five cities | 89.0 % (194/218) | 86.5 % (32/37) |
-| Yallop ≤ E, five cities | 90.8 % (198/218) | 91.9 % (34/37) |
-| Odeh ≤ B, five cities | 89.0 % (194/218) | 83.8 % (31/37) |
-| Odeh ≤ C, five cities | 81.2 % (177/218) | 81.1 % (30/37) |
-| Odeh ≤ D, five cities | 50.9 % (111/218) | 54.1 % (20/37) |
-| logistic (age, lag, ARCV, ARCL, W), five cities | 92.2 % (201/218) | 97.3 % (36/37) |
+| Yallop ≤ D, five cities (shipped, ADR-0027) | 91.4 % (223/244) | 95.1 % (58/61) |
+| Yallop ≤ C, five cities | 89.3 % (218/244) | 88.5 % (54/61) |
+| Yallop ≤ E, five cities | 91.4 % (223/244) | 95.1 % (58/61) |
+| Odeh ≤ B, five cities | 89.3 % (218/244) | 86.9 % (53/61) |
+| Odeh ≤ C, five cities | 82.0 % (200/244) | 83.6 % (51/61) |
+| Odeh ≤ D, five cities | 50.4 % (123/244) | 50.8 % (31/61) |
+| logistic (age, lag, ARCV, ARCL, W), five cities | 92.6 % (226/244) | 96.7 % (59/61) |
+| logistic, fitted on AH 1428 onward, five cities | 93.0 % (227/244) | 100.0 % (61/61) |
 
-Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.96, 5.82, -3.29, 12.11, -6.01.
+Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.75, -2.01, 4.99, -2.59, 12.95, -6.87.
+
+Fitted on AH 1428 onward: 0.64, -2.49, 7.83, -2.86, 11.92, -0.63.
 
 - AH 1423–1427: 7 shipped misses — 7 where the calendar has 30 days and the criterion 29 (the calendar is stricter), 0 where it has 29 and the criterion 30 (the calendar is more lenient).
-- AH 1428–1448: 16 shipped misses — 0 where the calendar has 30 days and the criterion 29 (the calendar is stricter), 16 where it has 29 and the criterion 30 (the calendar is more lenient).
+- AH 1428–1448: 17 shipped misses — 0 where the calendar has 30 days and the criterion 29 (the calendar is stricter), 17 where it has 29 and the criterion 30 (the calendar is more lenient).
 
 ### Missed by Yallop ≤ D, five cities (shipped, ADR-0027)
 
@@ -157,6 +160,7 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1435-01 | 2013-11-05 | 29 d | 30 d | -0.244 | 0.979 | marginal: best q -0.244 is at Yallop's class D/E limit (−0.232); winter evening |
 | 1435-07 | 2014-05-01 | 29 d | 30 d | -0.247 | 1.099 | marginal: best q -0.247 is at Yallop's class D/E limit (−0.232) |
 | 1436-10 | 2015-07-18 | 29 d | 30 d | -0.436 | -0.715 | marginal: best V -0.715 is at Odeh's zone C/D limit (−0.96) |
+| 1437-10 | 2016-07-06 | 29 d | 30 d | -0.529 | -1.690 | the calendar accepts a fainter crescent than the criterion (best class F) |
 | 1446-04 (held out) | 2024-10-05 | 29 d | 30 d | -0.451 | -0.861 | marginal: best V -0.861 is at Odeh's zone C/D limit (−0.96); winter evening |
 | 1447-04 (held out) | 2025-09-24 | 29 d | 30 d | -0.512 | -1.449 | the calendar accepts a fainter crescent than the criterion (best class F) |
 | 1448-04 (held out) | 2026-09-13 | 29 d | 30 d | -0.613 | -2.473 | the calendar accepts a fainter crescent than the criterion (best class F) |
@@ -187,8 +191,12 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1435-01 | 2013-11-05 | 29 d | 30 d | -0.244 | 0.979 | marginal: best q -0.244 is at Yallop's class D/E limit (−0.232); winter evening |
 | 1435-07 | 2014-05-01 | 29 d | 30 d | -0.247 | 1.099 | marginal: best q -0.247 is at Yallop's class D/E limit (−0.232) |
 | 1436-10 | 2015-07-18 | 29 d | 30 d | -0.436 | -0.715 | marginal: best V -0.715 is at Odeh's zone C/D limit (−0.96) |
+| 1437-10 | 2016-07-06 | 29 d | 30 d | -0.529 | -1.690 | the calendar accepts a fainter crescent than the criterion (best class F) |
+| 1438-11 | 2017-07-25 | 29 d | 30 d | -0.162 | 1.863 | the calendar accepts a fainter crescent than the criterion (best class D) |
 | 1442-09 | 2021-04-14 | 29 d | 30 d | -0.212 | 1.458 | marginal: best q -0.212 is at Yallop's class D/E limit (−0.232) |
 | 1443-01 | 2021-08-10 | 29 d | 30 d | -0.224 | 1.239 | marginal: best q -0.224 is at Yallop's class D/E limit (−0.232) |
+| 1443-09 (held out) | 2022-04-03 | 29 d | 30 d | -0.209 | 1.459 | marginal: best q -0.209 is at Yallop's class D/E limit (−0.232) |
+| 1445-07 (held out) | 2024-01-13 | 29 d | 30 d | -0.193 | 1.480 | the calendar accepts a fainter crescent than the criterion (best class D); winter evening |
 | 1446-04 (held out) | 2024-10-05 | 29 d | 30 d | -0.451 | -0.861 | marginal: best V -0.861 is at Odeh's zone C/D limit (−0.96); winter evening |
 | 1447-04 (held out) | 2025-09-24 | 29 d | 30 d | -0.512 | -1.449 | the calendar accepts a fainter crescent than the criterion (best class F) |
 | 1447-12 (held out) | 2026-05-18 | 29 d | 30 d | -0.166 | 1.735 | the calendar accepts a fainter crescent than the criterion (best class D) |
@@ -218,6 +226,7 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1434-10 | 2013-08-09 | 29 d | 30 d | -0.325 | 0.346 | the calendar accepts a fainter crescent than the criterion (best class F) |
 | 1436-02 | 2014-11-24 | 30 d | 29 d | -0.232 | 1.123 | marginal: best q -0.232 is at Yallop's class D/E limit (−0.232); winter evening |
 | 1436-10 | 2015-07-18 | 29 d | 30 d | -0.436 | -0.715 | marginal: best V -0.715 is at Odeh's zone C/D limit (−0.96) |
+| 1437-10 | 2016-07-06 | 29 d | 30 d | -0.529 | -1.690 | the calendar accepts a fainter crescent than the criterion (best class F) |
 | 1441-12 | 2020-07-22 | 30 d | 29 d | -0.260 | 0.848 | marginal: best q -0.260 is at Yallop's class D/E limit (−0.232) |
 | 1446-04 (held out) | 2024-10-05 | 29 d | 30 d | -0.451 | -0.861 | marginal: best V -0.861 is at Odeh's zone C/D limit (−0.96); winter evening |
 | 1447-04 (held out) | 2025-09-24 | 29 d | 30 d | -0.512 | -1.449 | the calendar accepts a fainter crescent than the criterion (best class F) |
@@ -249,8 +258,12 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1435-01 | 2013-11-05 | 29 d | 30 d | -0.244 | 0.979 | marginal: best q -0.244 is at Yallop's class D/E limit (−0.232); winter evening |
 | 1435-07 | 2014-05-01 | 29 d | 30 d | -0.247 | 1.099 | marginal: best q -0.247 is at Yallop's class D/E limit (−0.232) |
 | 1436-10 | 2015-07-18 | 29 d | 30 d | -0.436 | -0.715 | marginal: best V -0.715 is at Odeh's zone C/D limit (−0.96) |
+| 1437-10 | 2016-07-06 | 29 d | 30 d | -0.529 | -1.690 | the calendar accepts a fainter crescent than the criterion (best class F) |
+| 1438-11 | 2017-07-25 | 29 d | 30 d | -0.162 | 1.863 | the calendar accepts a fainter crescent than the criterion (best class D) |
 | 1442-09 | 2021-04-14 | 29 d | 30 d | -0.212 | 1.458 | marginal: best q -0.212 is at Yallop's class D/E limit (−0.232) |
 | 1443-01 | 2021-08-10 | 29 d | 30 d | -0.224 | 1.239 | marginal: best q -0.224 is at Yallop's class D/E limit (−0.232) |
+| 1443-09 (held out) | 2022-04-03 | 29 d | 30 d | -0.209 | 1.459 | marginal: best q -0.209 is at Yallop's class D/E limit (−0.232) |
+| 1445-07 (held out) | 2024-01-13 | 29 d | 30 d | -0.193 | 1.480 | the calendar accepts a fainter crescent than the criterion (best class D); winter evening |
 | 1446-04 (held out) | 2024-10-05 | 29 d | 30 d | -0.451 | -0.861 | marginal: best V -0.861 is at Odeh's zone C/D limit (−0.96); winter evening |
 | 1446-11 (held out) | 2025-04-29 | 29 d | 30 d | -0.147 | 1.932 | the calendar accepts a fainter crescent than the criterion (best class C) |
 | 1447-04 (held out) | 2025-09-24 | 29 d | 30 d | -0.512 | -1.449 | the calendar accepts a fainter crescent than the criterion (best class F) |
@@ -294,6 +307,9 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1436-02 | 2014-11-24 | 30 d | 29 d | -0.232 | 1.123 | marginal: best q -0.232 is at Yallop's class D/E limit (−0.232); winter evening |
 | 1437-03 | 2015-12-13 | 30 d | 29 d | -0.313 | 0.368 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1437-05 | 2016-02-10 | 30 d | 29 d | -0.355 | -0.110 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1437-10 | 2016-07-06 | 29 d | 30 d | -0.529 | -1.690 | the calendar accepts a fainter crescent than the criterion (best class F) |
+| 1438-04 | 2016-12-31 | 30 d | 29 d | -0.388 | -0.327 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1439-05 | 2018-01-19 | 30 d | 29 d | -0.298 | 0.588 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1440-01 | 2018-09-11 | 30 d | 29 d | -0.354 | -0.044 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1440-05 | 2019-01-08 | 30 d | 29 d | -0.375 | -0.139 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1440-08 | 2019-04-07 | 30 d | 29 d | -0.351 | 0.044 | the calendar rejects a crescent the criterion counts (best class F) |
@@ -303,6 +319,9 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1441-12 | 2020-07-22 | 30 d | 29 d | -0.260 | 0.848 | marginal: best q -0.260 is at Yallop's class D/E limit (−0.232) |
 | 1442-11 | 2021-06-12 | 30 d | 29 d | -0.334 | 0.231 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1443-03 | 2021-10-08 | 30 d | 29 d | -0.296 | 0.486 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1443-11 (held out) | 2022-06-01 | 30 d | 29 d | -0.397 | -0.358 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1444-02 (held out) | 2022-08-29 | 30 d | 29 d | -0.333 | 0.207 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1444-11 (held out) | 2023-05-21 | 30 d | 29 d | -0.410 | -0.515 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1445-10 (held out) | 2024-04-10 | 30 d | 29 d | -0.324 | 0.231 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1446-08 (held out) | 2025-01-31 | 30 d | 29 d | -0.305 | 0.393 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1447-04 (held out) | 2025-09-24 | 29 d | 30 d | -0.512 | -1.449 | the calendar accepts a fainter crescent than the criterion (best class F) |
@@ -397,6 +416,19 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1437-02 | 2015-11-13 | 30 d | 29 d | -0.698 | -3.349 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1437-03 | 2015-12-13 | 30 d | 29 d | -0.313 | 0.368 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1437-05 | 2016-02-10 | 30 d | 29 d | -0.355 | -0.110 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1437-08 | 2016-05-08 | 30 d | 29 d | -0.637 | -2.813 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1437-11 | 2016-08-04 | 30 d | 29 d | -1.001 | -6.298 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1437-12 | 2016-09-03 | 30 d | 29 d | -0.483 | -1.208 | marginal: best V -1.208 is at Odeh's zone C/D limit (−0.96) |
+| 1438-02 | 2016-11-01 | 30 d | 29 d | -0.747 | -3.781 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1438-03 | 2016-12-01 | 30 d | 29 d | -0.653 | -2.887 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1438-04 | 2016-12-31 | 30 d | 29 d | -0.388 | -0.327 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1438-06 | 2017-02-28 | 30 d | 29 d | -0.467 | -1.167 | marginal: best V -1.167 is at Odeh's zone C/D limit (−0.96) |
+| 1438-09 | 2017-05-27 | 30 d | 29 d | -0.627 | -2.733 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1438-12 | 2017-08-23 | 30 d | 29 d | -0.595 | -2.368 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1439-02 | 2017-10-21 | 30 d | 29 d | -0.711 | -3.443 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1439-03 | 2017-11-20 | 30 d | 29 d | -0.672 | -3.048 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1439-04 | 2017-12-20 | 30 d | 29 d | -0.601 | -2.360 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1439-05 | 2018-01-19 | 30 d | 29 d | -0.298 | 0.588 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1439-07 | 2018-03-19 | 30 d | 29 d | -0.454 | -1.003 | marginal: best V -1.003 is at Odeh's zone C/D limit (−0.96) |
 | 1439-10 | 2018-06-15 | 30 d | 29 d | -0.564 | -2.139 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1440-01 | 2018-09-11 | 30 d | 29 d | -0.354 | -0.044 | the calendar rejects a crescent the criterion counts (best class F) |
@@ -422,6 +454,20 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1443-02 | 2021-09-08 | 30 d | 29 d | -0.740 | -3.833 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1443-03 | 2021-10-08 | 30 d | 29 d | -0.296 | 0.486 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
 | 1443-06 | 2022-01-04 | 30 d | 29 d | -0.751 | -3.928 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1443-08 | 2022-03-04 | 30 d | 29 d | -0.757 | -3.928 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1443-10 (held out) | 2022-05-02 | 30 d | 29 d | -0.919 | -5.474 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1443-11 (held out) | 2022-06-01 | 30 d | 29 d | -0.397 | -0.358 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1444-01 (held out) | 2022-07-30 | 30 d | 29 d | -0.562 | -2.007 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1444-02 (held out) | 2022-08-29 | 30 d | 29 d | -0.333 | 0.207 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1444-04 (held out) | 2022-10-27 | 30 d | 29 d | -0.589 | -2.349 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1444-07 (held out) | 2023-01-23 | 30 d | 29 d | -0.756 | -4.004 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1444-09 (held out) | 2023-03-23 | 30 d | 29 d | -0.558 | -2.028 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1444-11 (held out) | 2023-05-21 | 30 d | 29 d | -0.410 | -0.515 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1445-01 (held out) | 2023-07-19 | 30 d | 29 d | -0.631 | -2.653 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1445-02 (held out) | 2023-08-18 | 30 d | 29 d | -0.574 | -2.095 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1445-03 (held out) | 2023-09-17 | 30 d | 29 d | -0.472 | -1.107 | marginal: best V -1.107 is at Odeh's zone C/D limit (−0.96) |
+| 1445-05 (held out) | 2023-11-15 | 30 d | 29 d | -0.679 | -3.197 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1445-08 (held out) | 2024-02-11 | 30 d | 29 d | -0.848 | -4.910 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1445-10 (held out) | 2024-04-10 | 30 d | 29 d | -0.324 | 0.231 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1446-01 (held out) | 2024-07-07 | 30 d | 29 d | -0.696 | -3.310 | the calendar rejects a crescent the criterion counts (best class F) |
 | 1446-02 (held out) | 2024-08-06 | 30 d | 29 d | -0.625 | -2.598 | the calendar rejects a crescent the criterion counts (best class F) |
@@ -446,6 +492,7 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 |---|---|---|---|---|---|---|
 | 1423-08 | 2002-10-08 | 30 d | 29 d | -0.210 | 1.333 | length set by the official announcement of the next month (a sighting report); winter evening |
 | 1423-10 | 2002-12-06 | 30 d | 29 d | -0.323 | 0.296 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1424-01 | 2003-03-05 | 30 d | 29 d | -0.202 | 1.552 | marginal: best q -0.202 is at Yallop's class D/E limit (−0.232) |
 | 1424-11 | 2003-12-25 | 30 d | 29 d | -0.211 | 1.354 | marginal: best q -0.211 is at Yallop's class D/E limit (−0.232); winter evening |
 | 1425-04 | 2004-05-21 | 30 d | 29 d | -0.083 | 2.723 | the calendar rejects a crescent the criterion counts (best class C) |
 | 1425-07 | 2004-08-18 | 30 d | 29 d | 0.003 | 3.514 | the calendar rejects a crescent the criterion counts (best class B) |
@@ -459,6 +506,29 @@ Logistic weights (intercept, age, lag, ARCV, ARCL, W; standardised): -0.59, -1.9
 | 1432-06 | 2011-05-05 | 30 d | 29 d | -0.234 | 1.189 | marginal: best q -0.234 is at Yallop's class D/E limit (−0.232) |
 | 1435-01 | 2013-11-05 | 29 d | 30 d | -0.244 | 0.979 | marginal: best q -0.244 is at Yallop's class D/E limit (−0.232); winter evening |
 | 1436-02 | 2014-11-24 | 30 d | 29 d | -0.232 | 1.123 | marginal: best q -0.232 is at Yallop's class D/E limit (−0.232); winter evening |
-| 1436-10 | 2015-07-18 | 29 d | 30 d | -0.436 | -0.715 | marginal: best V -0.715 is at Odeh's zone C/D limit (−0.96) |
+| 1437-10 | 2016-07-06 | 29 d | 30 d | -0.529 | -1.690 | the calendar accepts a fainter crescent than the criterion (best class F) |
 | 1443-01 | 2021-08-10 | 29 d | 30 d | -0.224 | 1.239 | marginal: best q -0.224 is at Yallop's class D/E limit (−0.232) |
+| 1443-09 (held out) | 2022-04-03 | 29 d | 30 d | -0.209 | 1.459 | marginal: best q -0.209 is at Yallop's class D/E limit (−0.232) |
 | 1448-04 (held out) | 2026-09-13 | 29 d | 30 d | -0.613 | -2.473 | the calendar accepts a fainter crescent than the criterion (best class F) |
+
+### Missed by logistic, fitted on AH 1428 onward, five cities
+
+| Month | First day | Official | Criterion | Best Yallop q | Best Odeh V | Probable reason |
+|---|---|---|---|---|---|---|
+| 1423-06 | 2002-08-10 | 30 d | 29 d | -0.253 | 0.889 | marginal: best q -0.253 is at Yallop's class D/E limit (−0.232) |
+| 1423-08 | 2002-10-08 | 30 d | 29 d | -0.210 | 1.333 | length set by the official announcement of the next month (a sighting report); winter evening |
+| 1423-10 | 2002-12-06 | 30 d | 29 d | -0.323 | 0.296 | the calendar rejects a crescent the criterion counts (best class F); winter evening |
+| 1424-01 | 2003-03-05 | 30 d | 29 d | -0.202 | 1.552 | marginal: best q -0.202 is at Yallop's class D/E limit (−0.232) |
+| 1424-11 | 2003-12-25 | 30 d | 29 d | -0.211 | 1.354 | marginal: best q -0.211 is at Yallop's class D/E limit (−0.232); winter evening |
+| 1425-04 | 2004-05-21 | 30 d | 29 d | -0.083 | 2.723 | the calendar rejects a crescent the criterion counts (best class C) |
+| 1425-07 | 2004-08-18 | 30 d | 29 d | 0.003 | 3.514 | the calendar rejects a crescent the criterion counts (best class B) |
+| 1425-12 | 2005-01-12 | 30 d | 29 d | -0.170 | 1.724 | the calendar rejects a crescent the criterion counts (best class D); winter evening |
+| 1426-10 | 2005-11-04 | 30 d | 29 d | -0.216 | 1.347 | marginal: best q -0.216 is at Yallop's class D/E limit (−0.232); winter evening |
+| 1427-08 | 2006-08-26 | 30 d | 29 d | -0.343 | 0.201 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1432-06 | 2011-05-05 | 30 d | 29 d | -0.234 | 1.189 | marginal: best q -0.234 is at Yallop's class D/E limit (−0.232) |
+| 1432-11 | 2011-09-29 | 30 d | 29 d | -0.473 | -1.223 | marginal: best V -1.223 is at Odeh's zone C/D limit (−0.96) |
+| 1435-10 | 2014-07-29 | 30 d | 29 d | -0.497 | -1.311 | the calendar rejects a crescent the criterion counts (best class F) |
+| 1436-02 | 2014-11-24 | 30 d | 29 d | -0.232 | 1.123 | marginal: best q -0.232 is at Yallop's class D/E limit (−0.232); winter evening |
+| 1437-10 | 2016-07-06 | 29 d | 30 d | -0.529 | -1.690 | the calendar accepts a fainter crescent than the criterion (best class F) |
+| 1441-12 | 2020-07-22 | 30 d | 29 d | -0.260 | 0.848 | marginal: best q -0.260 is at Yallop's class D/E limit (−0.232) |
+| 1443-03 | 2021-10-08 | 30 d | 29 d | -0.296 | 0.486 | the calendar rejects a crescent the criterion counts (best class F); winter evening |

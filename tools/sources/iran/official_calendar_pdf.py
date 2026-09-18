@@ -146,7 +146,7 @@ def page_words(path, page):
         x_min, y_min, x_max, y_max = (float(match.group(index)) for index in range(1, 5))
         text = normalise(match.group(5))
         if text:
-            words.append({"x0": x_min, "x1": x_max, "y": y_min, "text": text})
+            words.append({"x0": x_min, "x1": x_max, "y": y_min, "y1": y_max, "text": text})
     return words
 
 
@@ -411,8 +411,9 @@ class Reader:
     whole year is checked afterwards by the importer.
     """
 
-    def __init__(self, path, solar_year, errata=()):
+    def __init__(self, path, solar_year, errata=(), words_of=page_words):
         self.path = path
+        self.words_of = words_of
         self.solar_year = solar_year
         self.errata = list(errata)
         self.applied = set()
@@ -423,7 +424,7 @@ class Reader:
     def read_page(self, page):
         previous, count = dict(self.previous), len(self.rows)
         try:
-            for row in day_rows(page_words(self.path, page)):
+            for row in day_rows(self.words_of(self.path, page)):
                 self.add(page, row)
         except ValueError as error:
             self.previous, self.rows[count:] = previous, []

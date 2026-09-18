@@ -107,3 +107,9 @@ now reads four layouts (ids in `official_calendar_sources.py`):
 - **Refit not done here.** The calibration report still scores the override months; refitting on the 262-month
   history is the next step (brief item 4). Done in ADR-0041: the shipped criterion stays; the report gains the
   1381–1405 region and the evening-decision section.
+
+**Update 2026-09-18 (later the same day).** The four years listed above as not imported are now imported: their
+digits are read from the glyphs the pages draw (`tools/sources/iran/official_calendar_glyphs.py`, layout
+`ut-daily-2008-glyphs`), behind a gate that must read every Solar Hijri and Gregorian digit of each month page right
+from the other pages. All 25 years (9 131 days) agree with the computed Persian calendar, and the history has 310
+months. Details and the refit on the full history: ADR-0041 addendum.
