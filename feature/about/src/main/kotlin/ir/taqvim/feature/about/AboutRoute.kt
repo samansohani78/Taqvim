@@ -97,7 +97,7 @@ private fun aboutActions(
         onSendReport = {
             viewModel.report(reportTexts(resources))?.let { report ->
                 val chooserTitle = resources.getString(R.string.about_report_chooser)
-                AboutIntents.start(context, AboutIntents.report(report, chooserTitle))
+                AboutIntents.start(context, AboutIntents.report(context, report, chooserTitle))
             }
             viewModel.onReportSent()
         },
@@ -135,21 +135,25 @@ internal object AboutIntents {
             if (subject != null) putExtra(Intent.EXTRA_SUBJECT, subject)
         }
 
-    /** An e-mail to the report's recipient, or the share sheet when there is none, behind a chooser. */
+    /**
+     * An e-mail to the report's recipient behind a chooser, or the share sheet when the report has no address or no
+     * installed app takes e-mail (the manifest's `queries` entry makes that visible on Android 11+).
+     */
     fun report(
+        context: Context,
         report: ProblemReport,
         chooserTitle: String,
     ): Intent {
-        val recipient = report.recipient
-        val send =
-            if (recipient == null) {
-                share(report.subject, report.body)
-            } else {
+        val email =
+            report.recipient?.let { recipient ->
                 Intent(Intent.ACTION_SENDTO, "mailto:".toUri())
                     .putExtra(Intent.EXTRA_EMAIL, arrayOf(recipient))
                     .putExtra(Intent.EXTRA_SUBJECT, report.subject)
                     .putExtra(Intent.EXTRA_TEXT, report.body)
             }
+        val send =
+            email?.takeIf { it.resolveActivity(context.packageManager) != null }
+                ?: share(report.subject, report.body)
         return Intent.createChooser(send, chooserTitle)
     }
 

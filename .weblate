@@ -4,8 +4,8 @@
 # See docs/i18n/TRANSLATING.md and docs/i18n/STRINGS.md §4.
 
 [weblate]
+# Hosted Weblate, confirmed by the owner on 2026-09-18.
 url = https://hosted.weblate.org/api/
-# TODO(owner): confirm the Weblate instance and replace the URL if the project is self-hosted.
 
 [keys]
 # The API token is never stored in the repository; set WEBLATE_API_KEY in the environment.

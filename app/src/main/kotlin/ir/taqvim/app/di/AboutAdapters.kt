@@ -23,7 +23,8 @@ import org.koin.dsl.module
 
 /**
  * Ports of the About screen (T-1504): the app's build facts with the app language, and the local diagnostics ring
- * (T-601). The project publishes no website, source or support address yet, so every [AboutLinks] entry is hidden.
+ * (T-601). Problem reports are addressed to [SUPPORT_EMAIL]; no website, source or privacy link is published yet, so
+ * those [AboutLinks] entries stay hidden.
  */
 val aboutPortsModule: Module =
     module {
@@ -33,6 +34,15 @@ val aboutPortsModule: Module =
         }
         single<DiagnosticsSource> { RoomDiagnosticsSource(get<TaqvimDatabase>().diagnosticsDao()) }
     }
+
+/**
+ * Where problem reports are addressed (SUPPORT.md; confirmed by the owner on 2026-09-18). It is an address, not a
+ * translated string, so it is a constant rather than a string resource.
+ */
+internal const val SUPPORT_EMAIL = "support@taqvim.app"
+
+/** The public links of the About page: only the support address is published so far. */
+internal val publishedLinks = AboutLinks(supportEmail = SUPPORT_EMAIL)
 
 /** The version and build type of the installed app. */
 internal data class AppBuild(
@@ -51,7 +61,7 @@ internal data class AppBuild(
 internal class PreferencesAboutInfoSource(
     private val build: AppBuild,
     private val languageCodes: Flow<String>,
-    private val links: AboutLinks = AboutLinks(),
+    private val links: AboutLinks = publishedLinks,
 ) : AboutInfoSource {
     override fun about(): Flow<AboutInfo> =
         languageCodes.distinctUntilChanged().map { language ->

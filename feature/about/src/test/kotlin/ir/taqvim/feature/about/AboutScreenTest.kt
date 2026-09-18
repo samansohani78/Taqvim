@@ -6,7 +6,9 @@ package ir.taqvim.feature.about
 
 import android.app.Application
 import android.content.ClipboardManager
+import android.content.ComponentName
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
@@ -54,6 +56,20 @@ class AboutScreenTest {
             )
         composeRule.setContent { AboutTestTheme { AboutRoute(viewModel = viewModel) } }
         return viewModel
+    }
+
+    /** Makes an e-mail app visible to the package manager, as a phone with one installed would. */
+    private fun installEmailApp() {
+        val component = ComponentName("mail.example", "mail.example.ComposeActivity")
+        val shadow = shadowOf(application.packageManager)
+        shadow.addActivityIfNotPresent(component)
+        shadow.addIntentFilterForActivity(
+            component,
+            IntentFilter(Intent.ACTION_SENDTO).apply {
+                addCategory(Intent.CATEGORY_DEFAULT)
+                addDataScheme("mailto")
+            },
+        )
     }
 
     @Test
@@ -161,6 +177,7 @@ class AboutScreenTest {
 
     @Test
     fun reportIntentIsBuiltWithoutPersonalDataAfterConfirmation() {
+        installEmailApp()
         route()
         composeRule.onNodeWithText("Report a problem").performScrollTo().performClick()
         composeRule.onNodeWithText("Send a problem report?").assertIsDisplayed()
@@ -177,6 +194,31 @@ class AboutScreenTest {
         assertTrue(body.contains("1.0.0") && body.contains("Pixel 8") && body.contains("16 (API 36)"))
         AboutFixtures.personalData.forEach { assertFalse("report contains $it", body.contains(it)) }
         composeRule.onNodeWithText("Send a problem report?").assertDoesNotExist()
+    }
+
+    @Test
+    fun reportFallsBackToTheShareSheetWithoutAnEmailApp() {
+        route()
+        composeRule.onNodeWithText("Report a problem").performScrollTo().performClick()
+        composeRule.onNodeWithText("Continue").performClick()
+
+        val chooser = shadowOf(application).nextStartedActivity
+        assertEquals(Intent.ACTION_CHOOSER, chooser.action)
+        val send = requireNotNull(chooser.getParcelableExtra(Intent.EXTRA_INTENT, Intent::class.java))
+        assertEquals(Intent.ACTION_SEND, send.action)
+        assertNull(send.getStringArrayExtra(Intent.EXTRA_EMAIL))
+        val body = requireNotNull(send.getStringExtra(Intent.EXTRA_TEXT))
+        assertTrue(body.contains("1.0.0"))
+        AboutFixtures.personalData.forEach { assertFalse("report contains $it", body.contains(it)) }
+    }
+
+    @Test
+    fun startingAnIntentNoAppCanHandleReportsFailureInsteadOfCrashing() {
+        shadowOf(application).checkActivities(true)
+
+        val started = AboutIntents.start(application, Intent("ir.taqvim.test.NOTHING_HANDLES_THIS"))
+
+        assertFalse(started)
     }
 
     @Test

@@ -32,9 +32,9 @@ off in the table above.
 
 0. The component list, file masks and language folders are kept in [`.weblate`](../../.weblate) at the repository
    root (the `wlc` CLI format); the Weblate server settings themselves are in STRINGS.md §4.
-1. The owner creates the Weblate project with the settings in STRINGS.md §4 (Hosted Weblate, `https://hosted.weblate.org/projects/taqvim/` <!-- TODO(owner): confirm Weblate instance -->).
+1. The owner creates the Weblate project with the settings in STRINGS.md §4 (Hosted Weblate, `https://hosted.weblate.org/projects/taqvim/`).
 2. Translators work in Weblate on the English source files. Weblate pushes a `weblate/translations` branch.
-3. A pull request from that branch runs every CI gate below. A language reviewer (the project owner for `fa` and `en`; one volunteer reviewer per other language, recorded in the sign-off table <!-- TODO(owner): confirm reviewers per language -->)
+3. A pull request from that branch runs every CI gate below. A language reviewer (the project owner for `fa` and `en`; one volunteer reviewer per other language, recorded in the sign-off table)
    approves it.
 4. After the first complete review of a language, record the sign-off in the table above (date and reviewer).
 

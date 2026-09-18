@@ -33,10 +33,16 @@ class AboutAdaptersTest {
 
             source.about().toList() shouldBe
                 listOf(
-                    AboutInfo("1.2.3", 42, "release", "fa", AboutLinks()),
-                    AboutInfo("1.2.3", 42, "release", "en", AboutLinks()),
+                    AboutInfo("1.2.3", 42, "release", "fa", publishedLinks),
+                    AboutInfo("1.2.3", 42, "release", "en", publishedLinks),
                 )
         }
+
+    @Test
+    fun `problem reports are addressed to the published support address and nothing else is linked`() {
+        SUPPORT_EMAIL shouldBe "support@taqvim.app"
+        publishedLinks shouldBe AboutLinks(supportEmail = SUPPORT_EMAIL)
+    }
 
     @Test
     fun `the current build comes from Gradle`() {

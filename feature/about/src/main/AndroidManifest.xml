@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- T-1504: package visibility (Android 11+) so the problem report can tell whether an e-mail app is installed;
+       without a match it falls back to the share sheet. Nothing is queried beyond this filter. -->
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.SENDTO" />
+      <data android:scheme="mailto" />
+    </intent>
+  </queries>
+</manifest>

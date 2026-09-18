@@ -149,7 +149,8 @@ with TalkBack on, once in `fa` and once in `en`.
 17. Open the world map; zoom, pick-centre and per-city actions are offered as custom actions.
 18. Open Settings; each item reads its title, value and role (switch, choice); change one.
 19. Open Backup; the passphrase field is announced as a password field; the privacy dashboard reads each permission.
-20. Open About → Report a problem; the prepared report and the share action are reachable.
+20. Open About → Report a problem; the prepared report and the share action are reachable. *Continue* opens the
+    e-mail app addressed to support@taqvim.app, or the share sheet on a device without one.
 
 Expected: no unlabeled control, no focus trap, reading order follows the visual order (RTL in `fa`).
 
@@ -387,10 +388,11 @@ behaves as described.
 
 ---
 
-## Owner defaults to confirm
+## Owner defaults confirmed on 2026-09-18
 
-These support-document placeholders were filled with defaults on 2026-09-17 (owner directive, Phase 3). Each is
-marked `<!-- TODO(owner): confirm … -->` where it appears. Replace the value if it is wrong and remove the comment.
+These support-document values were filled with defaults on 2026-09-17 (owner directive, Phase 3) and **confirmed by
+the owner on 2026-09-18**. The table is the record of what was confirmed; the documents now state each value without a
+marker. Changing one means changing it in the file named beside it, and here.
 
 | File | Placeholder | Default filled in |
 |---|---|---|

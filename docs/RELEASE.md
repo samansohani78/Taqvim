@@ -4,8 +4,8 @@ How a Taqvim version is numbered, built, signed, checked and distributed (docs/P
 closed beta that precedes the first public release is described in [BETA.md](BETA.md) (T-1902).
 
 > **Nothing is published yet.** The repository has not been pushed to GitHub and no store account is configured. Every
-> step below that uploads, tags a public repository or submits to a store needs the owner's approval first. Values
-> marked with a `TODO(owner)` comment are defaults filled in on 2026-09-17 for the owner to confirm.
+> step below that uploads, tags a public repository or submits to a store needs the owner's approval first. The owner
+> confirmed the values below (holders, reviewers, device matrix, rollout, listing and URLs) on 2026-09-18.
 
 ## Versioning
 
@@ -62,8 +62,8 @@ The GitHub release is created as a draft so a person reviews the artifacts and n
   - `TAQVIM_KEYSTORE_BASE64` — the upload/release keystore, base64-encoded;
   - `TAQVIM_KEYSTORE_PASSWORD`, `TAQVIM_KEY_ALIAS`, `TAQVIM_KEY_PASSWORD`.
 - Google Play: use Play App Signing; the CI key is the **upload** key. Keep an offline backup of the upload keystore
-  and its passwords. The project owner (Saman Sohani) holds both. <!-- TODO(owner): confirm keystore and Play Console holder -->
-- Protect the `release` environment with required reviewers. Required reviewer: the project owner. <!-- TODO(owner): confirm release reviewers -->
+  and its passwords. The project owner (Saman Sohani) holds both.
+- Protect the `release` environment with required reviewers. Required reviewer: the project owner.
 - A lost upload key is reset through Play Console support; a leaked key must be rotated before the next upload.
 
 ## Changelog
@@ -100,7 +100,7 @@ Record each sign-off (name, date, build) in the GitHub release notes draft befor
 
 - [ ] **OEM / athan** — athan and reminders fire on time on the OEM test matrix (exact alarms, battery optimisation,
       Do Not Disturb Fajr bypass, reboot), following [MANUAL_TEST_CHECKLIST.md](MANUAL_TEST_CHECKLIST.md) §6 and its OEM
-      matrix (§6.4). <!-- TODO(owner): confirm OEM device matrix -->
+      matrix (§6.4).
 - [ ] **Widgets** — every widget places, renders, updates at midnight and prayer times, and opens its link (T-1200 to
       T-1215; all widgets are built and unit-tested, device placement, tap and render checks are still to do).
 - [ ] **TalkBack** — manual pass on a device over the 40 core scenarios (§8.3); the automated checks (T-1700) do not
@@ -120,7 +120,7 @@ Record each sign-off (name, date, build) in the GitHub release notes draft befor
 Tracks, in order: **internal** → **closed** (the beta, [BETA.md](BETA.md)) → **open** → **production** with a staged
 rollout, e.g. 1% → 5% → 20% → 50% → 100%, advancing only while crash-free sessions stay ≥ 99.9% (§9) and no P0 is open
 ([SUPPORT.md](../SUPPORT.md)). Play Console app `ir.taqvim`; rollout 1% → 5% → 20% → 50% → 100% with at least 24 hours
-per step. <!-- TODO(owner): confirm Play app, rollout and hold times -->
+per step.
 
 Store listing text and graphics live in the repository so they are reviewed like code:
 
@@ -131,13 +131,13 @@ store/metadata/android/
 ```
 
 The layout follows the widely used fastlane `supply` convention. The directory is not created yet, because the listing
-text in `fa` and `en` is still to be drafted from the README before the first upload <!-- TODO(owner): confirm store listing copy -->;
-uploading stays manual (no Play service account) <!-- TODO(owner): confirm Play service account -->.
+text in `fa` and `en` is still to be drafted from the README before the first upload;
+uploading stays manual (no Play service account).
 
 ### GitHub Releases
 
 Each tag produces a draft release with the signed APK and AAB, `SHA256SUMS`, the SBOM (`bom.json`) and the license
-report, on [github.com/samansohani78/Taqvim/releases](https://github.com/samansohani78/Taqvim/releases). <!-- TODO(owner): confirm repository URL -->
+report, on [github.com/samansohani78/Taqvim/releases](https://github.com/samansohani78/Taqvim/releases).
 
 ### F-Droid
 
@@ -179,8 +179,8 @@ The app's baseline and startup profiles are generated on a Gradle Managed Device
 - **When:** before each release candidate, and after large changes to start-up or the month screen.
 - Normal builds never start an emulator (`automaticGenerationDuringBuild = false`) and work without the files.
 
-## Owner defaults to confirm
+## Owner defaults (confirmed 2026-09-18)
 
-The values above marked `TODO(owner)` were filled in with defaults on 2026-09-17 (keystore and Play Console holder,
-release reviewers, OEM matrix, Play app and rollout, store listing copy, Play service account, repository URL). The
-full list is in [MANUAL_TEST_CHECKLIST.md](MANUAL_TEST_CHECKLIST.md), *Owner defaults to confirm*.
+The owner confirmed the values above on 2026-09-18: keystore and Play Console holder, release reviewers, OEM matrix,
+Play app and rollout, store listing copy, Play service account and repository URL. The full record is in
+[MANUAL_TEST_CHECKLIST.md](MANUAL_TEST_CHECKLIST.md), *Owner defaults confirmed on 2026-09-18*.
