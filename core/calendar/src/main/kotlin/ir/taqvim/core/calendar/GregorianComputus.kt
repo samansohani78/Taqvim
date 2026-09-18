@@ -29,7 +29,7 @@ public object GregorianComputus {
 
     /** Easter Sunday of [year]; throws [IllegalArgumentException] before [FIRST_YEAR]. */
     public fun easter(year: Int): CalendarDate {
-        require(year >= FIRST_YEAR) { "Gregorian Easter starts in $FIRST_YEAR (was $year)" }
+        requireInCalendarRange(year >= FIRST_YEAR) { "Gregorian Easter starts in $FIRST_YEAR (was $year)" }
         val monthAndDay = monthAndDayNumber(year)
         return CalendarDate(
             CalendarSystem.GREGORIAN,

@@ -101,7 +101,7 @@ internal object UmmAlQuraMonths {
     fun indexContaining(jdn: Long): Long {
         val first = index(Int.MIN_VALUE.toLong(), 1)
         val afterLast = index(Int.MAX_VALUE.toLong(), MONTHS) + 1
-        require(jdn >= start(first) && jdn < start(afterLast)) {
+        requireInCalendarRange(jdn >= start(first) && jdn < start(afterLast)) {
             "JDN $jdn is outside the Umm al-Qura years ${Int.MIN_VALUE}..${Int.MAX_VALUE}"
         }
         var index = estimateIndex(jdn)

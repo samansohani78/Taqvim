@@ -24,7 +24,7 @@ public object JulianComputus {
 
     /** Easter Sunday of Julian [year] as a Julian date. */
     public fun easter(year: Long): JulianDate {
-        require(year in JulianCalendar.MIN_YEAR..JulianCalendar.MAX_YEAR) {
+        requireInCalendarRange(year in JulianCalendar.MIN_YEAR..JulianCalendar.MAX_YEAR) {
             "Julian Easter needs a year in ${JulianCalendar.MIN_YEAR}..${JulianCalendar.MAX_YEAR} (was $year)"
         }
         val monthAndDay = monthAndDayNumber(year)
@@ -45,7 +45,7 @@ public object JulianComputus {
      * [GregorianComputus.FIRST_YEAR], when the two calendars diverged, through [ORTHODOX_LAST_YEAR].
      */
     public fun orthodoxEaster(year: Int): CalendarDate {
-        require(year in GregorianComputus.FIRST_YEAR..ORTHODOX_LAST_YEAR) {
+        requireInCalendarRange(year in GregorianComputus.FIRST_YEAR..ORTHODOX_LAST_YEAR) {
             "Orthodox Easter needs a year in ${GregorianComputus.FIRST_YEAR}..$ORTHODOX_LAST_YEAR (was $year)"
         }
         return GregorianCalendarSystem.fromJdn(easterJdn(year.toLong()))

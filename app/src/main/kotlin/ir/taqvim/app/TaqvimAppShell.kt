@@ -112,4 +112,5 @@ private val CalendarMessage.text: Int
         when (this) {
             CalendarMessage.NO_UPCOMING_OCCURRENCE -> R.string.message_no_upcoming_occurrence
             CalendarMessage.SETTING_NOT_SAVED -> R.string.message_setting_not_saved
+            CalendarMessage.DATE_OUT_OF_RANGE -> R.string.message_date_out_of_range
         }

@@ -32,6 +32,7 @@
   <string name="pending_widgets">Vidjet sozlamalari hali mavjud emas.</string>
   <string name="message_no_upcoming_occurrence">Bu tadbirning kelgusi sanasi yoʻq.</string>
   <string name="message_setting_not_saved">Sozlama saqlanmadi.</string>
+  <string name="message_date_out_of_range">Bu sana ko‘rsatilgan taqvimlardan tashqarida; eng yaqin sana ko‘rsatildi.</string>
   <string name="restore_finishing">Tiklash yakunlanmoqda…</string>
   <string name="restore_incomplete">Oxirgi tiklash yakunlanmadi, shuning uchun maʼlumotlaringiz qisman almashtirilgan boʻlishi mumkin. Taqvim keyingi ishga tushishda uni yakunlaydi yoki bekor qiladi.</string>
 </resources>

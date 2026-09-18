@@ -32,6 +32,7 @@
   <string name="pending_widgets">د ویجټ تنظیمات لا شتون نه لري.</string>
   <string name="message_no_upcoming_occurrence">دې پېښې راتلونکې نېټه نه لري.</string>
   <string name="message_setting_not_saved">تنظیم خوندي نه شو.</string>
+  <string name="message_date_out_of_range">هغه نېټه د ښودل شويو کليزو څخه بهر ده؛ نږدې ممکنه نېټه وښودل شوه.</string>
   <string name="restore_finishing">بیرته راګرځول پای ته رسېږي…</string>
   <string name="restore_incomplete">وروستی بیرته راګرځول پای ته ونه رسېد، نو ښايي ستاسو معلومات په نیمګړې توګه بدل شوي وي. Taqvim به یې په راتلونکي ځل پیل کې پوره یا بېرته وګرځوي.</string>
 </resources>

@@ -32,6 +32,7 @@
   <string name="pending_widgets">Vidcet ayarları hələ mövcud deyil.</string>
   <string name="message_no_upcoming_occurrence">Bu tədbirin qarşıdakı tarixi yoxdur.</string>
   <string name="message_setting_not_saved">Ayar yadda saxlanılmadı.</string>
+  <string name="message_date_out_of_range">Bu tarix göstərilən təqvimlərin hüdudlarından kənardadır; ən yaxın tarix göstərildi.</string>
   <string name="restore_finishing">Bərpa tamamlanır…</string>
   <string name="restore_incomplete">Son bərpa tamamlanmadı, ona görə də məlumatlarınız qismən dəyişdirilmiş ola bilər. Taqvim növbəti açılışda onu tamamlayacaq və ya geri qaytaracaq.</string>
 </resources>

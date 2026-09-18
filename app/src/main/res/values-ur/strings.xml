@@ -32,6 +32,7 @@
   <string name="pending_widgets">ویجٹ کی ترتیبات ابھی دستیاب نہیں۔</string>
   <string name="message_no_upcoming_occurrence">اس واقعے کی کوئی آنے والی تاریخ نہیں۔</string>
   <string name="message_setting_not_saved">ترتیب محفوظ نہیں ہو سکی۔</string>
+  <string name="message_date_out_of_range">یہ تاریخ دکھائے گئے کیلنڈروں سے باہر ہے؛ قریب ترین تاریخ دکھائی گئی ہے۔</string>
   <string name="restore_finishing">بحالی مکمل کی جا رہی ہے…</string>
   <string name="restore_incomplete">پچھلی بحالی مکمل نہیں ہو سکی، اس لیے آپ کا ڈیٹا جزوی طور پر بدل گیا ہو سکتا ہے۔ Taqvim اگلی بار شروع ہونے پر اسے مکمل یا واپس کر دے گا۔</string>
 </resources>

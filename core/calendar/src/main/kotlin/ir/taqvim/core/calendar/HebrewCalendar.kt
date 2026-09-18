@@ -122,7 +122,7 @@ public object HebrewCalendar {
 
     /** Day number of 1 Tishri of [year], for [MIN_YEAR]..[MAX_YEAR] + 1. */
     public fun newYear(year: Int): Jdn {
-        require(year >= MIN_YEAR) { "Hebrew year must be ≥ $MIN_YEAR (was $year)" }
+        requireInCalendarRange(year >= MIN_YEAR) { "Hebrew year must be ≥ $MIN_YEAR (was $year)" }
         return Jdn(EPOCH_JDN - 1 + daysToNewYear(year))
     }
 
@@ -177,7 +177,7 @@ public object HebrewCalendar {
 
     /** The Hebrew date of [jdn]; throws [IllegalArgumentException] outside [FIRST_JDN]..[LAST_JDN]. */
     public fun fromJdn(jdn: Jdn): HebrewDate {
-        require(jdn.value in FIRST_JDN..LAST_JDN) { "Day $jdn is outside the supported Hebrew years" }
+        requireInCalendarRange(jdn.value in FIRST_JDN..LAST_JDN) { "Day $jdn is outside the supported Hebrew years" }
         var year = estimatedYear(jdn)
         while (newYear(year + 1) <= jdn) year++
         while (newYear(year) > jdn) year--
@@ -224,6 +224,6 @@ public object HebrewCalendar {
     }
 
     private fun checkYear(year: Int) {
-        require(year in MIN_YEAR..MAX_YEAR) { "Hebrew year must be in $MIN_YEAR..$MAX_YEAR (was $year)" }
+        requireInCalendarRange(year in MIN_YEAR..MAX_YEAR) { "Hebrew year must be in $MIN_YEAR..$MAX_YEAR (was $year)" }
     }
 }

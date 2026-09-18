@@ -32,6 +32,7 @@
   <string name="pending_widgets">Widget ayarları henüz kullanılamıyor.</string>
   <string name="message_no_upcoming_occurrence">Bu etkinliğin yaklaşan bir tarihi yok.</string>
   <string name="message_setting_not_saved">Ayar kaydedilemedi.</string>
+  <string name="message_date_out_of_range">Bu tarih gösterilen takvimlerin dışında; en yakın tarih gösterildi.</string>
   <string name="restore_finishing">Geri yükleme tamamlanıyor…</string>
   <string name="restore_incomplete">Son geri yükleme tamamlanamadı, bu yüzden verileriniz kısmen değiştirilmiş olabilir. Taqvim bir sonraki açılışta işlemi tamamlayacak ya da geri alacak.</string>
 </resources>

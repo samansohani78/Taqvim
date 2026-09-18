@@ -44,7 +44,7 @@ internal class LunarMonthArithmetic(
 
     fun fromJdn(jdn: Jdn): CalendarDate {
         val day = jdn.value
-        require(day >= startJdn(firstIndex) && day < startJdn(endIndex)) {
+        requireInCalendarRange(day >= startJdn(firstIndex) && day < startJdn(endIndex)) {
             "JDN $day is outside the Hijri years ${Int.MIN_VALUE}..${Int.MAX_VALUE}"
         }
         var index = IranCrescentMonths.estimateIndex(day).coerceIn(firstIndex, endIndex - 1)

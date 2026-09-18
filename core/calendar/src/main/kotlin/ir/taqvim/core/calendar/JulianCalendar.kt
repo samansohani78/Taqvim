@@ -84,7 +84,9 @@ public object JulianCalendar {
 
     /** Julian date of [jdn]; throws outside [FIRST_JDN]..[LAST_JDN]. */
     public fun fromJdn(jdn: Jdn): JulianDate {
-        require(jdn.value in FIRST_JDN..LAST_JDN) { "Julian day numbers must be in $FIRST_JDN..$LAST_JDN (was $jdn)" }
+        requireInCalendarRange(jdn.value in FIRST_JDN..LAST_JDN) {
+            "Julian day numbers must be in $FIRST_JDN..$LAST_JDN (was $jdn)"
+        }
         val cycles = Math.floorDiv(jdn.value - JDN_OF_YEAR_ZERO, DAYS_PER_CYCLE)
         val (yearInCycle, month, day) = richardsFromJdn(jdn.value - cycles * DAYS_PER_CYCLE)
         return JulianDate(yearInCycle + cycles * YEARS_PER_CYCLE, month, day)

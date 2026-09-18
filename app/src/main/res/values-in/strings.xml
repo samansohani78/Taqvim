@@ -32,6 +32,7 @@
   <string name="pending_widgets">Setelan widget belum tersedia.</string>
   <string name="message_no_upcoming_occurrence">Acara ini tidak memiliki tanggal mendatang.</string>
   <string name="message_setting_not_saved">Setelan tidak dapat disimpan.</string>
+  <string name="message_date_out_of_range">Tanggal itu di luar kalender yang ditampilkan; tanggal terdekat ditampilkan.</string>
   <string name="restore_finishing">Menyelesaikan pemulihan…</string>
   <string name="restore_incomplete">Pemulihan terakhir tidak dapat diselesaikan, sehingga data Anda mungkin terganti sebagian. Taqvim akan menyelesaikan atau membatalkannya saat dibuka berikutnya.</string>
 </resources>

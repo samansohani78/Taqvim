@@ -32,6 +32,7 @@
   <string name="pending_widgets">উইজেট সেটিংস এখনো উপলব্ধ নয়।</string>
   <string name="message_no_upcoming_occurrence">এই ইভেন্টের কোনো আসন্ন তারিখ নেই।</string>
   <string name="message_setting_not_saved">সেটিং সংরক্ষণ করা যায়নি।</string>
+  <string name="message_date_out_of_range">এই তারিখটি দেখানো ক্যালেন্ডারগুলির সীমার বাইরে; নিকটতম তারিখ দেখানো হয়েছে।</string>
   <string name="restore_finishing">পুনরুদ্ধার শেষ হচ্ছে…</string>
   <string name="restore_incomplete">শেষ পুনরুদ্ধার সম্পন্ন করা যায়নি, তাই আপনার ডেটা আংশিকভাবে প্রতিস্থাপিত হতে পারে। Taqvim পরের বার চালু হলে এটি সম্পন্ন বা বাতিল করবে।</string>
 </resources>

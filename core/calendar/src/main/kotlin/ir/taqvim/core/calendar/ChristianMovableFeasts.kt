@@ -79,7 +79,9 @@ public object ChristianMovableFeasts {
      * effect. Defined for [JulianCalendar.MIN_YEAR]..[GregorianComputus.LAST_YEAR]; other years are rejected.
      */
     public fun civilForYear(year: Long): Map<MovableFeast, Jdn> {
-        require(year <= GregorianComputus.LAST_YEAR) { "year must be ≤ ${GregorianComputus.LAST_YEAR} (was $year)" }
+        requireInCalendarRange(year <= GregorianComputus.LAST_YEAR) {
+            "year must be ≤ ${GregorianComputus.LAST_YEAR} (was $year)"
+        }
         return when {
             year >= GregorianComputus.FIRST_YEAR -> {
                 forYear(year.toInt()).mapValues { (_, date) -> GregorianCalendarSystem.toJdn(date) }

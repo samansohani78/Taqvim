@@ -32,6 +32,7 @@
   <string name="pending_widgets">विजेट सेटिङ अहिलेसम्म उपलब्ध छैनन्।</string>
   <string name="message_no_upcoming_occurrence">यो कार्यक्रमको कुनै आगामी मिति छैन।</string>
   <string name="message_setting_not_saved">सेटिङ सुरक्षित गर्न सकिएन।</string>
+  <string name="message_date_out_of_range">त्यो मिति देखाइएका पात्रोहरूको सीमाबाहिर छ; नजिकको मिति देखाइयो।</string>
   <string name="restore_finishing">पुनर्स्थापना पूरा हुँदैछ…</string>
   <string name="restore_incomplete">पछिल्लो पुनर्स्थापना पूरा हुन सकेन, त्यसैले तपाईंको डाटा आंशिक रूपमा बदलिएको हुन सक्छ। Taqvim अर्को पटक सुरु हुँदा यसलाई पूरा गर्नेछ वा फिर्ता लिनेछ।</string>
 </resources>

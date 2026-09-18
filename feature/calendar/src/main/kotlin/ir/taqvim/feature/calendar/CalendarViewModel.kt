@@ -106,16 +106,21 @@ class CalendarViewModel(
         ) { day, today, cal, at ->
             OverviewInput(day, today, cal, at.place)
         }.distinctUntilChanged()
-            .mapLatest<OverviewInput, DayOverview?> {
-                DayDetailsCalculator.overview(it.day, it.today, it.calendars, it.place)
+            .mapLatest<OverviewInput, DayOverview?> { input ->
+                CalendarRangeGuard.orNull("overview of ${input.day.value}") {
+                    DayDetailsCalculator.overview(input.day, input.today, input.calendars, input.place)
+                }
             }.flowOn(calculationDispatcher)
             .onStart { emit(null) }
 
     private val times: Flow<DayTimesState> =
         combine(selectedDay, place.filterNotNull(), nowSource.now()) { day, at, now -> TimesInput(day, at.place, now) }
             .mapLatest { input ->
-                input.place?.let { DayTimesState.Ready(DayDetailsCalculator.times(input.day, it, input.now)) }
-                    ?: DayTimesState.NoPlace
+                val place = input.place ?: return@mapLatest DayTimesState.NoPlace
+                CalendarRangeGuard
+                    .orNull("times of ${input.day.value}") {
+                        DayTimesState.Ready(DayDetailsCalculator.times(input.day, place, input.now))
+                    } ?: DayTimesState.Loading
             }.flowOn(calculationDispatcher)
             .distinctUntilChanged()
             .onStart { emit(DayTimesState.Loading) }
@@ -144,7 +149,9 @@ class CalendarViewModel(
             combine(search, menu, reminders, ::Triple),
             combine(dayDetails, months, overview, times, ::Loaded),
         ) { today, calendars, state, (search, menu, reminders), loaded ->
-            CalendarUiState(content(today, calendars, state, search, loaded, menu).copy(officialReminders = reminders))
+            CalendarUiState(
+                calendarContent(today, calendars, state, search, loaded, menu).copy(officialReminders = reminders),
+            )
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), CalendarUiState())
 
     fun onAction(action: CalendarAction) {
@@ -264,7 +271,19 @@ class CalendarViewModel(
         day: Jdn,
         tab: DayDetailsTab? = null,
     ) {
-        navigation.update { it.copy(selectedDay = day, shownDay = day, tab = tab ?: it.tab, sourceEvent = null) }
+        val safe = inRangeDay(day)
+        if (safe != day) emit(CalendarEffect.ShowSnackbar(CalendarMessage.DATE_OUT_OF_RANGE))
+        navigation.update { it.copy(selectedDay = safe, shownDay = safe, tab = tab ?: it.tab, sourceEvent = null) }
+    }
+
+    /**
+     * [day] itself, or the closest day the shown calendars can express (BUG-1). Days are clamped only once today and
+     * the settings have loaded; [content] clamps again, so nothing outside the range reaches the screen either way.
+     */
+    private fun inRangeDay(day: Jdn): Jdn {
+        val calendars = calendars.value ?: return day
+        val today = today.value ?: return day
+        return CalendarRangeGuard.nearestValid(calendars, day, today)
     }
 
     /** Shows the month at [offset] of the current pager position; ignored until today and the settings load. */
@@ -274,7 +293,11 @@ class CalendarViewModel(
         if (today == null || calendars == null) return
         navigation.update { state ->
             val shown = state.shownDay ?: state.selectedDay ?: today
-            state.copy(shownDay = calendars.monthStartAt(today, offset(calendars.monthOffset(today, shown))))
+            val wanted =
+                CalendarRangeGuard.orNull("month start") {
+                    calendars.monthStartAt(today, offset(calendars.monthOffset(today, shown)))
+                }
+            state.copy(shownDay = wanted?.let { CalendarRangeGuard.nearestValid(calendars, it, today) } ?: shown)
         }
     }
 
@@ -308,80 +331,28 @@ class CalendarViewModel(
         viewModelScope.launch { effectChannel.send(effect) }
     }
 
-    private fun content(
-        today: Jdn,
-        calendars: CalendarCalendars,
-        state: NavigationState,
-        search: CalendarSearch,
-        loaded: Loaded,
-        menu: CalendarMenu,
-    ): CalendarContent {
-        val selected = state.selectedDay ?: today
-        val shown = state.shownDay ?: selected
-        return CalendarContent(
-            today = today,
-            selectedDay = selected,
-            calendars = calendars.systems.toImmutableList(),
-            selectedDates = calendars.datesOf(selected).toImmutableList(),
-            selectedOrigins = calendars.originsOf(selected).toImmutableList(),
-            monthOffset = calendars.monthOffset(today, shown),
-            visibleMonth = calendars.monthStart(shown),
-            weekStart = calendars.settings.weekStart,
-            selectedTab = state.tab,
-            dayDetails = loaded.details?.takeIf { it.jdn == selected },
-            search = search,
-            islamicVariant = calendars.settings.islamicVariant,
-            islamicOverrides = calendars.settings.islamicOverrides,
-            languageCode = calendars.settings.languageCode,
-            showWeekNumbers = calendars.settings.showWeekNumbers,
-            months = loaded.months,
-            overview = loaded.overview?.takeIf { it.day == selected },
-            times =
-                loaded.times.takeIf { it !is DayTimesState.Ready || it.times.day == selected } ?: DayTimesState.Loading,
-            sourceEvent = state.sourceEvent,
-            menu = menu,
-            secondaryChoices = calendars.secondaryChoices.toImmutableList(),
-        )
-    }
-
-    /** What loads after today and the preferences: the selected day's details and the pager's months. */
-    private data class Loaded(
-        val details: DayDetails?,
-        val months: ImmutableList<MonthEvents>,
-        val overview: DayOverview?,
-        val times: DayTimesState,
-    )
-
     /** The months the pager needs: those around [offset] months from the month of [today]. */
-    private data class MonthWindow(
+    internal data class MonthWindow(
         val today: Jdn,
         val calendars: CalendarCalendars,
         val offset: Int,
     )
 
-    private data class LoadedPlace(
+    internal data class LoadedPlace(
         val place: CalendarPlace?,
     )
 
-    private data class OverviewInput(
+    internal data class OverviewInput(
         val day: Jdn,
         val today: Jdn,
         val calendars: CalendarCalendars,
         val place: CalendarPlace?,
     )
 
-    private data class TimesInput(
+    internal data class TimesInput(
         val day: Jdn,
         val place: CalendarPlace?,
         val now: Instant,
-    )
-
-    /** `null` days follow today: no explicit selection, or the shown month is the selected day's month. */
-    private data class NavigationState(
-        val selectedDay: Jdn? = null,
-        val shownDay: Jdn? = null,
-        val tab: DayDetailsTab = DayDetailsTab.CALENDARS,
-        val sourceEvent: DayEventItem? = null,
     )
 
     private companion object {

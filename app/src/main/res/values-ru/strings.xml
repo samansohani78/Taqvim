@@ -32,6 +32,7 @@
   <string name="pending_widgets">Настройки виджетов пока недоступны.</string>
   <string name="message_no_upcoming_occurrence">У этого события нет предстоящей даты.</string>
   <string name="message_setting_not_saved">Не удалось сохранить настройку.</string>
+  <string name="message_date_out_of_range">Эта дата вне показанных календарей; показана ближайшая возможная дата.</string>
   <string name="restore_finishing">Завершение восстановления…</string>
   <string name="restore_incomplete">Последнее восстановление не завершилось, поэтому ваши данные могли быть заменены частично. Taqvim завершит или отменит его при следующем запуске.</string>
 </resources>

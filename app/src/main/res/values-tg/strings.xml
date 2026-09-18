@@ -32,6 +32,7 @@
   <string name="pending_widgets">Танзимоти виҷет ҳоло дастрас нест.</string>
   <string name="message_no_upcoming_occurrence">Ин рӯйдод санаи ояндае надорад.</string>
   <string name="message_setting_not_saved">Танзим захира нашуд.</string>
+  <string name="message_date_out_of_range">Ин сана берун аз тақвимҳои нишондодашуда аст; наздиктарин сана нишон дода шуд.</string>
   <string name="restore_finishing">Барқарорсозӣ анҷом дода мешавад…</string>
   <string name="restore_incomplete">Барқарорсозии охирин анҷом наёфт, бинобар ин маълумоти шумо шояд қисман иваз шуда бошад. Taqvim ҳангоми оғози навбатӣ онро анҷом медиҳад ё бекор мекунад.</string>
 </resources>

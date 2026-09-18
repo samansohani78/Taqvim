@@ -55,7 +55,7 @@ internal object PersianYearStarts {
 
     /** The year containing [jdn]; throws [IllegalArgumentException] for days outside the years of [Int]. */
     fun yearContaining(jdn: Long): Int {
-        require(jdn >= startJdn(Int.MIN_VALUE.toLong()) && jdn < startJdn(Int.MAX_VALUE + 1L)) {
+        requireInCalendarRange(jdn >= startJdn(Int.MIN_VALUE.toLong()) && jdn < startJdn(Int.MAX_VALUE + 1L)) {
             "JDN $jdn is outside the Persian years ${Int.MIN_VALUE}..${Int.MAX_VALUE}"
         }
         var year = mean.value.estimateYear(jdn, LAST_ASTRONOMICAL_YEAR)

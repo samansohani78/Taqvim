@@ -51,7 +51,7 @@ public object NepaliCalendarSystem : CalendarArithmetic {
 
     /** The Bikram Sambat date of [jdn]; throws [IllegalArgumentException] for days outside the years of [Int]. */
     override fun fromJdn(jdn: Jdn): CalendarDate {
-        require(jdn.value in supportedDays.value) {
+        requireInCalendarRange(jdn.value in supportedDays.value) {
             "JDN ${jdn.value} is outside the Nepali years ${Int.MIN_VALUE}..${Int.MAX_VALUE}"
         }
         val year = yearContaining(jdn.value)

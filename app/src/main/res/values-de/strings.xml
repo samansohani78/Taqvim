@@ -32,6 +32,7 @@
   <string name="pending_widgets">Widget-Einstellungen sind noch nicht verfügbar.</string>
   <string name="message_no_upcoming_occurrence">Dieser Termin hat kein kommendes Datum.</string>
   <string name="message_setting_not_saved">Die Einstellung konnte nicht gespeichert werden.</string>
+  <string name="message_date_out_of_range">Dieses Datum liegt außerhalb der angezeigten Kalender; das nächstgelegene wird gezeigt.</string>
   <string name="restore_finishing">Wiederherstellung wird abgeschlossen…</string>
   <string name="restore_incomplete">Die letzte Wiederherstellung konnte nicht abgeschlossen werden, daher sind Ihre Daten möglicherweise teilweise ersetzt. Taqvim schließt sie beim nächsten Start ab oder macht sie rückgängig.</string>
 </resources>

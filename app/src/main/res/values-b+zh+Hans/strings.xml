@@ -32,6 +32,7 @@
   <string name="pending_widgets">小组件设置尚未提供。</string>
   <string name="message_no_upcoming_occurrence">该事件没有即将到来的日期。</string>
   <string name="message_setting_not_saved">无法保存该设置。</string>
+  <string name="message_date_out_of_range">该日期超出所显示日历的范围；已显示最接近的日期。</string>
   <string name="restore_finishing">正在完成恢复…</string>
   <string name="restore_incomplete">上次恢复未能完成，你的数据可能被部分替换。Taqvim 会在下次启动时完成或撤销该操作。</string>
 </resources>

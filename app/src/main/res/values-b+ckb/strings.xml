@@ -32,6 +32,7 @@
   <string name="pending_widgets">ڕێکخستنەکانی ویجێت هێشتا بەردەست نین.</string>
   <string name="message_no_upcoming_occurrence">ئەم ڕووداوە بەرواری داهاتووی نییە.</string>
   <string name="message_setting_not_saved">ڕێکخستنەکە پاشەکەوت نەکرا.</string>
+  <string name="message_date_out_of_range">ئەو ڕێکەوتە لە دەرەوەی ئەو ڕۆژمێرانەیە کە پیشان دەدرێن؛ نزیکترین ڕێکەوت پیشان درا.</string>
   <string name="restore_finishing">گەڕاندنەوە تەواو دەکرێت…</string>
   <string name="restore_incomplete">دوایین گەڕاندنەوە تەواو نەبوو، بۆیە لەوانەیە داتاکانت بە بەشێک گۆڕدرابن. Taqvim جاری داهاتوو کە دەست پێ دەکات تەواوی دەکات یان هەڵی دەوەشێنێتەوە.</string>
 </resources>

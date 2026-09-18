@@ -32,6 +32,7 @@
   <string name="pending_widgets">விட்ஜெட் அமைப்புகள் இன்னும் கிடைக்கவில்லை.</string>
   <string name="message_no_upcoming_occurrence">இந்த நிகழ்வுக்கு வரவிருக்கும் தேதி இல்லை.</string>
   <string name="message_setting_not_saved">அமைப்பை சேமிக்க முடியவில்லை.</string>
+  <string name="message_date_out_of_range">அந்தத் தேதி காட்டப்படும் நாட்காட்டிகளுக்கு வெளியே உள்ளது; அருகிலுள்ள தேதி காட்டப்பட்டது.</string>
   <string name="restore_finishing">மீட்பு முடிக்கப்படுகிறது…</string>
   <string name="restore_incomplete">கடைசி மீட்பை முடிக்க முடியவில்லை, எனவே உங்கள் தரவு பகுதியளவு மாற்றப்பட்டிருக்கலாம். அடுத்த முறை தொடங்கும்போது Taqvim அதை முடிக்கும் அல்லது திரும்பப் பெறும்.</string>
 </resources>

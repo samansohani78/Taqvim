@@ -32,6 +32,7 @@
   <string name="pending_widgets">إعدادات الأدوات المصغّرة غير متاحة بعد.</string>
   <string name="message_no_upcoming_occurrence">ليس لهذا الحدث تاريخ قادم.</string>
   <string name="message_setting_not_saved">تعذّر حفظ الإعداد.</string>
+  <string name="message_date_out_of_range">هذا التاريخ خارج التقويمات المعروضة؛ عُرض أقرب تاريخ ممكن.</string>
   <string name="restore_finishing">جارٍ إنهاء الاستعادة…</string>
   <string name="restore_incomplete">تعذّر إنهاء آخر استعادة، لذا قد تكون بياناتك قد استُبدلت جزئيًا. سيُكمل Taqvim الاستعادة أو يتراجع عنها عند تشغيله في المرة القادمة.</string>
 </resources>

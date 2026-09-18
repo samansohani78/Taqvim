@@ -32,6 +32,7 @@
   <string name="pending_widgets">تنظیمات ابزارک‌ها هنوز در دسترس نیست.</string>
   <string name="message_no_upcoming_occurrence">این رویداد تاریخ آینده‌ای ندارد.</string>
   <string name="message_setting_not_saved">تنظیم ذخیره نشد.</string>
+  <string name="message_date_out_of_range">آن تاریخ خارج از تقویم‌های نمایش‌داده‌شده است؛ نزدیک‌ترین تاریخ ممکن نشان داده شد.</string>
   <string name="restore_finishing">در حال تکمیل بازیابی…</string>
   <string name="restore_incomplete">بازیابی قبلی کامل نشد و ممکن است بخشی از داده‌ها جایگزین شده باشد. تقویم دفعهٔ بعد که باز شود، آن را تکمیل یا لغو می‌کند.</string>
 </resources>

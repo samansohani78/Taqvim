@@ -96,7 +96,10 @@ private fun MonthPageSlot(
     val today = content.today
     val selected = content.selectedDay
     val page by produceState<MonthPage?>(null, builder, offset, today, selected, events) {
-        value = withContext(Dispatchers.Default) { builder.build(offset, today, selected, events) }
+        value =
+            withContext(Dispatchers.Default) {
+                CalendarRangeGuard.orNull("month page $offset") { builder.build(offset, today, selected, events) }
+            }
     }
     val built = page
     if (built == null) {

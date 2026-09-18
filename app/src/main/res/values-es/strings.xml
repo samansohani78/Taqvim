@@ -32,6 +32,7 @@
   <string name="pending_widgets">Los ajustes de widgets aún no están disponibles.</string>
   <string name="message_no_upcoming_occurrence">Este evento no tiene fechas próximas.</string>
   <string name="message_setting_not_saved">No se pudo guardar el ajuste.</string>
+  <string name="message_date_out_of_range">Esa fecha está fuera de los calendarios mostrados; se muestra la más cercana.</string>
   <string name="restore_finishing">Terminando la restauración…</string>
   <string name="restore_incomplete">La última restauración no pudo terminar, así que tus datos pueden estar reemplazados en parte. Taqvim la terminará o la deshará la próxima vez que se inicie.</string>
 </resources>

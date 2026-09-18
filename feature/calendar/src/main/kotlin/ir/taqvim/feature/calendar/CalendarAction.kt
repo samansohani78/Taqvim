@@ -131,6 +131,9 @@ enum class CalendarMessage {
 
     /** A display choice of the menu could not be stored (T-803). */
     SETTING_NOT_SAVED,
+
+    /** A day was asked for that the shown calendars cannot express; the nearest one they can is shown (BUG-1). */
+    DATE_OUT_OF_RANGE,
 }
 
 /** One-shot effects of the calendar screen. */

@@ -32,6 +32,7 @@
   <string name="pending_widgets">Mîhengên wîdcetê hîn ne amade ne.</string>
   <string name="message_no_upcoming_occurrence">Ji vê bûyerê re dîroka pêşerojê tune.</string>
   <string name="message_setting_not_saved">Mîheng nehat tomarkirin.</string>
+  <string name="message_date_out_of_range">Ew dîrok li derveyî salnameyên nîşandayî ye; dîroka herî nêzîk hat nîşandan.</string>
   <string name="restore_finishing">Vegerandin tê qedandin…</string>
   <string name="restore_incomplete">Vegerandina dawî neqediya, ji ber vê yekê dibe ku daneyên te beşek hatibin guhertin. Taqvim dê gava din dest pê bike wê biqedîne an betal bike.</string>
 </resources>
