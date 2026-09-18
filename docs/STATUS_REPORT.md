@@ -403,13 +403,29 @@ engineering is expected.
 
 **Next release steps**
 
-1. Get every GitHub workflow green, then tag `v1.0.0-rc1` (pending; the tag is deliberately not pushed while CI is red).
+1. `v1.0.0-rc1` is tagged and pushed (main@54f9299, 2026-09-18). The PR workflow was green on the preceding pushes and the
+   full local suite passes; the Benchmarks workflow run was still in flight when the tag was made, and the device-only
+   budgets below stay unverified.
 2. Add the keystore secrets and build a signed release; without them the workflow produces unsigned artifacts.
 3. Run `docs/MANUAL_TEST_CHECKLIST.md` on at least one phone, one tablet and one Wear device, including the TalkBack
    pass (T-1700) and the OEM matrix (T-1102).
 4. Create the Play Console app and the closed-testing track, upload the RC, run the two-week beta (`docs/BETA.md`).
 5. Confirm the `TODO(owner)` defaults, collect the official 1406 Iranian calendar and the current Nepal gazette, then
    promote through the staged rollout in `docs/RELEASE.md`.
+
+
+### Fixed after the report was first written (2026-09-18)
+
+Two bugs that only a real Android runtime could show, both found by running the app on an emulator:
+
+- **The release build crashed at launch** (main@1a79898). R8 full mode repackages classes, so three relative
+  `Class.getResourceAsStream` lookups — the i18n language tables, the city list and the official Iranian months —
+  read nothing in any minified build. `ClasspathResourceKonsistTest` now fails the build on a relative lookup.
+- **The app crashed at launch on every device** (main@f7b87f2). A regex the JVM accepts is rejected by Android's ICU;
+  `AndroidRegexKonsistTest` guards it. Found while generating the baseline profile.
+
+Both were invisible to the JVM and Robolectric suites, which is why the managed-device runs (main@9a152e5) and the
+nightly benchmark job matter as gates.
 
 ## 6. Ready for release: what I need from you
 
@@ -418,7 +434,8 @@ outside publication is done and tested: 103 of 115 task rows DONE, 3 PARTIAL, 9 
 The full local gate suite is green on main@41a6b04 — 3 970 JVM test cases and 12 instrumented cases, 0 failures,
 96.1 % line / 85.3 % branch merged coverage, release APK 6.9 MiB of an 8 MiB budget. All calendar and astronomy data
 is computed for any year (proved for every day of 1380–1480 SH), so the app never needs a yearly data drop. The one
-thing standing between this commit and the `v1.0.0-rc1` tag is a green GitHub Actions run.
+tag `v1.0.0-rc1` marks this state (main@54f9299). Confirming the Benchmarks workflow run is the one check that was
+still in flight when it was cut.
 
 **What only you can do, most valuable first.** Each line: what to provide, where it goes, and what happens if it never
 arrives.
@@ -436,5 +453,5 @@ arrives.
 | 9 | Optional: human review of the 22 machine-translated languages, and Hebrew month names in 11 of them | Weblate (`docs/i18n/TRANSLATING.md`) | Those languages ship marked `MT: needs review` |
 | 10 | Optional goldens: crescent-visibility maps (DT-034), a panchang with tithi times (DT-014), a Moon-in-Scorpio almanac (DT-013), house tables (DT-018), golden/blue-hour tables (DT-017), reusable prayer timetables outside Iran (DT-011), a redistributable athan recording (DT-028) | `docs/sources/` | Those features keep working from computation, with no external cross-check and the stock alarm sound |
 
-**What I do next, without asking:** finish the GitHub CI run, tag `v1.0.0-rc1` once it is green, and keep
+**What I do next, without asking:** confirm the last Benchmarks workflow run and keep
 `docs/PROGRESS.md`, `docs/DATA_TODO.md` and this report current.
