@@ -91,6 +91,56 @@ class CellTest(unittest.TestCase):
              word("(", 250, 254)]))
 
 
+def line(text, y, x0=47.0):
+    """One printed occasion line starting at [x0] (the column's left margin, 47, when it fills the column)."""
+    return [word(text, x0, 296.0, y)]
+
+
+def weekday(y):
+    return {"y": y, "x0": 505.0, "text": "شنبه"}
+
+
+def occasion_rows(cells, lines):
+    words = [item for printed in lines for item in printed]
+    return [" ".join(word["text"] for printed in row for word in printed)
+            for row in pdf.occasion_lines(words, cells, [300.0] * len(cells))]
+
+
+class OccasionLinesTest(unittest.TestCase):
+    """Which day a printed occasion line belongs to: the three placements found in the editions."""
+
+    def test_a_top_aligned_cell_keeps_its_wrapped_holiday_line(self):
+        # 1384 page 15: the 22 Bahman cell starts on its weekday's line and wraps down past the halfway line.
+        cells = [weekday(508.4), weekday(525.9), weekday(555.0)]
+        rows = occasion_rows(cells, [line("اسرا", 508.7, 206.0), line("پیروزی", 526.2),
+                                     line("(تعطیل)", 540.5, 148.0)])
+        self.assertEqual(rows, ["اسرا", "پیروزی (تعطیل)", ""])
+
+    def test_a_centred_cell_reaching_past_the_halfway_line_stays_with_its_day(self):
+        # 1404 page 6: 14 Khordad's three lines are centred on it; 15 Khordad has two; 16 Khordad one.
+        cells = [weekday(370.5), weekday(397.5), weekday(430.1), weekday(454.9)]
+        rows = occasion_rows(cells, [
+            line("باقر", 367.4, 150.0), line("خمینی", 384.0), line("رهبری", 399.4), line("1368", 412.3, 250.0),
+            line("عرفه", 425.6), line("محیط", 438.4, 240.0), line("قربان", 451.7, 120.0)])
+        self.assertEqual(rows, ["باقر", "خمینی رهبری 1368", "عرفه محیط", "قربان"])
+
+    def test_one_line_cells_on_neighbouring_days_are_not_merged(self):
+        # 1403 page 7: Tasua, Ashura and the next day each print one short line; a wrapped cell above them fills
+        # the column, as every page has one.
+        cells = [weekday(622.8), weekday(646.1), weekday(665.4), weekday(683.5)]
+        rows = occasion_rows(cells, [line("بهشتی", 616.0), line("سردشت", 629.6, 150.0),
+                                     line("تاسوعا", 648.4, 120.0), line("عاشورا", 667.6, 110.0),
+                                     line("اسرا", 683.5, 180.0)])
+        self.assertEqual(rows, ["بهشتی سردشت", "تاسوعا", "عاشورا", "اسرا"])
+
+    def test_the_last_row_of_a_page_keeps_its_last_line(self):
+        # 1403 page 9: the last day's cell is centred on it and its third line, with "(holiday)", is low on the page.
+        cells = [weekday(711.5), weekday(730.8), weekday(762.0)]
+        rows = occasion_rows(cells, [line("شهریار", 711.7, 82.0), line("رسول", 748.5), line("صادق", 762.8),
+                                     line("(تعطیل)", 777.1, 70.0)])
+        self.assertEqual(rows, ["شهریار", "", "رسول صادق (تعطیل)"])
+
+
 class ErratumTest(unittest.TestCase):
     erratum = pdf.Erratum("hijri_day", (6, 2), (6, 17), 6, 9, "test")
 

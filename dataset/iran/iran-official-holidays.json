@@ -479,6 +479,16 @@
         "month": 3,
         "day": 8
       },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1440,
+        "citation": {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1397 SH (docs/sources/iran/Calendar-1397.pdf)",
+          "page": "13: 8 Rabi al-Awwal 1440 (1397-08-25), martyrdom of Imam Hasan Askari and the beginning of the Imamate of the Twelfth Imam, marked (تعطیل) — the first year it is a holiday. The official calendars of 1381–1396 print 8 Rabi al-Awwal without (تعطیل), the last three at Calendar-1394.pdf page 12 (1437), Calendar-1395.pdf page 10 (1438) and Calendar-1396.pdf page 14 (1439); the 1395 and 1396 editions were read from their occasion text only, since their digits do not extract.",
+          "retrieved": "2026-09-18"
+        }
+      },
       "citations": [
         {
           "url": "https://calendar.ut.ac.ir/Fa/",
@@ -493,7 +503,7 @@
           "retrieved": "2026-09-13"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-18",
       "reviewedBy": "pending"
     },
     {
@@ -727,6 +737,16 @@
         "month": 10,
         "day": 2
       },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1433,
+        "citation": {
+          "url": "https://calendar.ut.ac.ir/Fa/",
+          "title": "Official calendar of Iran 1391 SH (docs/sources/iran/Calendar-1391.pdf)",
+          "page": "8: 2 Shawwal 1433 (1391-05-30) is printed \"تعطیل به مناسبت عید سعید فطر\", the first year it is a holiday. The official calendars of 1381–1390 print 2 Shawwal without (تعطیل), e.g. Calendar-1390.pdf page 10 (2 Shawwal 1432 = 1390-06-10).",
+          "retrieved": "2026-09-18"
+        }
+      },
       "citations": [
         {
           "url": "https://calendar.ut.ac.ir/Fa/",
@@ -741,7 +761,7 @@
           "retrieved": "2026-09-13"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-18",
       "reviewedBy": "pending"
     },
     {

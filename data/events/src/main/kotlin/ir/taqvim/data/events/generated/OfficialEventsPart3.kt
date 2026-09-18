@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -52,6 +53,18 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             isHoliday = true,
             title = LocalizedText(mapOf("fa" to "شهادت حضرت امام حسن عسکری علیه السلام و آغاز امامت حضرت ولی عصر (عجل الله تعالی فرجه)")),
             rule = EventRule.Fixed(month = 3, day = 8),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.ISLAMIC,
+                    fromYear = 1_440,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://calendar.ut.ac.ir/Fa/",
+                            title = "Official calendar of Iran 1397 SH (docs/sources/iran/Calendar-1397.pdf)",
+                            page = "13: 8 Rabi al-Awwal 1440 (1397-08-25), martyrdom of Imam Hasan Askari and the beginning of the Imamate of the Twelfth Imam, marked (تعطیل) — the first year it is a holiday. The official calendars of 1381–1396 print 8 Rabi al-Awwal without (تعطیل), the last three at Calendar-1394.pdf page 12 (1437), Calendar-1395.pdf page 10 (1438) and Calendar-1396.pdf page 14 (1439); the 1395 and 1396 editions were read from their occasion text only, since their digits do not extract.",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(

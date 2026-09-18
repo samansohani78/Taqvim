@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -118,6 +119,18 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
             isHoliday = true,
             title = LocalizedText(mapOf("fa" to "تعطیل به مناسبت عید سعید فطر")),
             rule = EventRule.Fixed(month = 10, day = 2),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.ISLAMIC,
+                    fromYear = 1_433,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://calendar.ut.ac.ir/Fa/",
+                            title = "Official calendar of Iran 1391 SH (docs/sources/iran/Calendar-1391.pdf)",
+                            page = "8: 2 Shawwal 1433 (1391-05-30) is printed \"تعطیل به مناسبت عید سعید فطر\", the first year it is a holiday. The official calendars of 1381–1390 print 2 Shawwal without (تعطیل), e.g. Calendar-1390.pdf page 10 (2 Shawwal 1432 = 1390-06-10).",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(

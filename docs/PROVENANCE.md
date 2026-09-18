@@ -1355,7 +1355,17 @@ Persian-calendar or prayer-times GPL/LGPL library.
   other year (lunar holidays move by about 11 days) or the rendered page. Rules were derived from both years and checked
   date by date against the extracted daily rows (26/26 holidays in each year). No translations: there is no primary
   source for them.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending (sign-off checklist in D-02).
+- **History 1381–1405 (2026-09-18):** the records were checked against the official holidays of every readable
+  calendar of 1381–1405 (21 editions; `golden/iran/iran-official-holidays-<year>.csv`, written by the importer from
+  the days marked "(تعطیل)"). Read with the printed lunar dates, the rules give exactly the official holidays of every
+  year once two records carry a `validity` range, each citing the first calendar that marks the day: 8 Rabi al-Awwal
+  (`imam-hasan-askari-martyrdom`) from 1440 AH, `Calendar-1397.pdf` page 13 — the editions of 1381–1396 print it
+  without "(تعطیل)", 1395 and 1396 checked in their occasion text since their digits do not extract; and 2 Shawwal
+  (`eid-al-fitr-holiday`) from 1433 AH, `Calendar-1391.pdf` page 8, where up to 1390 only 1 Shawwal is a holiday. No
+  other rule changed. `IranOfficialHolidayHistoryTest` keeps it so and writes the per-year comparison, including the
+  holidays that move with the computed lunar calendar, to `docs/data-todo/iran-holiday-history.md`.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13, history 2026-09-18; **reviewer:** pending (sign-off
+  checklist in D-02).
 
 ### core/i18n — `formats.properties` (T-202)
 - **Source:** Unicode CLDR 48 through the ICU4J 78.3 public API (Unicode-3.0), retrieved 2026-09-13: full date
@@ -1384,7 +1394,13 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 - `official/<year>.csv` (1381–1394, 1397–1400, 1403–1405; `iran-official-<year>-days.csv` for 1404/1405 until
   2026-09-18) — one row per day: Solar Hijri date, ISO weekday, Iran official lunar Hijri date as printed, Gregorian
   date, official holiday flag, page and the occasion text as printed (`Calendar-<year>.pdf`). Imported by
-  `tools/sources/iran/official_calendar_import.py` with `pdftotext -bbox`; see ADR-0040.
+  `tools/sources/iran/official_calendar_import.py` with `pdftotext -bbox`; see ADR-0040. The holiday flag is
+  "(تعطیل)" in the day's occasion text, so each printed occasion line has to reach the right day: editions centre a
+  multi-line cell on its weekday cell (most) or start it on the weekday's line (1383–1386, 1390–1391), and crowded
+  cells cross the halfway line to the next row. Since 2026-09-18 every row takes a run of consecutive lines chosen
+  so that each cell lines up with its weekday cell and reads as one justified cell (all lines but the last fill the
+  column); each page keeps the better of the two alignments. The first extraction had cut 22 holidays loose this
+  way, moving "(تعطیل)" to the following day.
 - `official-nowruz-instants.csv` — moment of the vernal equinox printed on the title page of each official calendar.
 - `official-nowruz-instants-1360-1403.csv` — the list of past Nowruz instants (`tahvil-sal.txt`), written by
   `tools/sources/iran/nowruz_instants_import.py`; the tests compare every instant with the computed March equinox.

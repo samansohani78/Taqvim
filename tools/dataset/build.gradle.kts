@@ -54,6 +54,14 @@ val officialDaysDirectory =
         "core/calendar/src/test/resources/golden/persian/official",
     )
 
+// The per-year comparison of IranOfficialHolidayHistoryTest (D-01), rewritten with -Ptaqvim.updateSnapshots=true, and
+// the official lunar month starts whose "announced" rows explain holidays an announcement moved.
+val iranHolidayHistoryReport = rootProject.layout.projectDirectory.file("docs/data-todo/iran-holiday-history.md")
+val iranOfficialMonthStarts =
+    rootProject.layout.projectDirectory.file(
+        "core/calendar/src/test/resources/golden/islamic-iran/official-month-starts-1381-1405.csv",
+    )
+
 // Runtime data scanned by NoPerYearManualDataTest (ADR-0036): assets, resources and table-like sources of every module.
 val runtimeDataFiles =
     rootProject.layout.projectDirectory.asFileTree.matching {
@@ -81,6 +89,10 @@ tasks.withType<Test>().configureEach {
     systemProperty("taqvim.official.days.directory", officialDaysDirectory.asFile.path)
     inputs.dir(datasetDirectory).withPathSensitivity(PathSensitivity.RELATIVE)
     inputs.dir(officialDaysDirectory).withPathSensitivity(PathSensitivity.RELATIVE)
+    systemProperty("taqvim.iran.holiday.history.report", iranHolidayHistoryReport.asFile.path)
+    inputs.files(iranHolidayHistoryReport).withPathSensitivity(PathSensitivity.RELATIVE)
+    systemProperty("taqvim.iran.official.month.starts", iranOfficialMonthStarts.asFile.path)
+    inputs.files(iranOfficialMonthStarts).withPathSensitivity(PathSensitivity.RELATIVE)
     systemProperty("taqvim.generated.events.directory", generatedEventsDirectory.asFile.path)
     inputs.files(generatedEventsDirectory).withPathSensitivity(PathSensitivity.RELATIVE)
 }

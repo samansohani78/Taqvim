@@ -59,6 +59,13 @@ COLUMNS = ["persian_day", "persian_month", "hijri_day", "hijri_month", "hijri_ye
 CELL = re.compile(r'\d+|"|[^\d\s"]+')
 COLUMN_GAP = 6.0
 LINE_TOLERANCE = 3.0
+# How far from its weekday cell a one-line occasion may sit and still count as on the same line.
+ROW_TOP_TOLERANCE = 3.0
+# Keeps [partition] from piling the lines of neighbouring rows onto one row whose anchor they happen to balance.
+SPREAD_WEIGHT = 0.3
+# A line whose left edge is this close to the column's left margin fills the column (see [shape_cost]).
+FULL_LINE_TOLERANCE = 6.0
+SHORT_LINE_PENALTY = 10.0
 
 
 LATIN_RUN = re.compile(r"[0-9A-Za-z٠-٩۰-۹]+")
@@ -208,18 +215,114 @@ def bands_of(cells):
 def day_rows(words):
     """One entry per day of the printed table: its weekday, its [COLUMNS] cells and the occasions printed with it."""
     cells = weekday_cells(words)
-    rows = []
+    rows, tables = [], []
     for (top, bottom), weekday in zip(bands_of(cells), cells):
         inside = [word for word in words if top <= word["y"] < bottom and word["x0"] < weekday["x0"]]
         row_cells, table_left = table_cells(groups_of(inside), weekday["y"])
-        occasion = [word for word in inside if word["x1"] < table_left]
+        tables.append(table_left)
         rows.append({
             "weekday": weekday["text"],
             "cells": row_cells,
-            "occasion": occasion_text(occasion),
             "footnote": any(FOOTNOTE in word["text"] for word in inside if word["x1"] >= table_left),
         })
+    occasions = occasion_lines(words, cells, tables)
+    for row, lines in zip(rows, occasions):
+        row["occasion"] = occasion_text([word for line in lines for word in line])
     return rows
+
+
+def occasion_lines(words, cells, tables):
+    """The occasion lines of every day row. Editions differ in where a cell of several lines sits: most centre it on
+    the weekday cell, some start it on the weekday's line and wrap downwards, and a crowded cell may reach past the
+    halfway line to its neighbour (1404 page 4) or run two days' texts into one paragraph (1398 page 13). So each row
+    gets a run of consecutive lines, chosen so that every cell lines up with its weekday cell — by its middle line if
+    the page centres its cells, by its first line if it top-aligns them — and each page keeps the model that fits it
+    best. Halfway bands would give a wrapped line, often the one carrying "(holiday)", to the next day."""
+    if not cells:
+        return []
+    ys = [cell["y"] for cell in cells]
+    spacing = sorted(right - left for left, right in zip(ys, ys[1:]))[len(ys) // 2] if len(ys) > 1 else INFINITY
+    table_left = min(tables)
+    lines = [
+        line for line in text_lines([word for word in words if word["x1"] < table_left])
+        if ys[0] - spacing / 2 <= line[0]["y"] < ys[-1] + spacing
+    ]
+    offset = baseline_offset(lines, ys)
+    margin = min((word["x0"] for line in lines for word in line), default=0.0) + FULL_LINE_TOLERANCE
+    full = {id(line) for line in lines if min(word["x0"] for word in line) <= margin}
+    readings = [partition(lines, ys, offset, anchor, full) for anchor in (middle_line, first_line)]
+    cost, assigned = min(readings, key=lambda reading: reading[0])
+    return assigned
+
+
+def baseline_offset(lines, ys):
+    """How far below its weekday cell a one-line occasion sits on this page (the fonts differ by edition)."""
+    near = sorted(
+        line[0]["y"] - y for line in lines for y in ys if abs(line[0]["y"] - y) <= ROW_TOP_TOLERANCE
+    )
+    return near[len(near) // 2] if near else 0.0
+
+
+def partition(lines, ys, offset, anchor, full):
+    """Cheapest split of [lines] into consecutive runs, one per row (a run may be empty). A run costs the distance
+    between its anchor and its row, plus [SPREAD_WEIGHT] times the distance of each of its lines from the row, plus
+    what [shape_cost] charges for a run that does not look like one justified cell; a run may not reach its
+    neighbours' weekday cells."""
+    rows, count = len(ys), len(lines)
+    best = [[INFINITY] * (count + 1) for _ in range(rows + 1)]
+    choice = [[0] * (count + 1) for _ in range(rows + 1)]
+    best[0][0] = 0.0
+    for row in range(1, rows + 1):
+        centre = ys[row - 1] + offset
+        above = ys[row - 2] + offset if row > 1 else -INFINITY
+        below = ys[row] + offset if row < rows else centre + (centre - above if row > 1 else INFINITY)
+        for end in range(count + 1):
+            for start in range(end, -1, -1):
+                run = lines[start:end]
+                if run and not (above < run[0][0]["y"] and run[-1][0]["y"] < below):
+                    break
+                cost = best[row - 1][start] + run_cost(run, centre, anchor) + shape_cost(run, full)
+                if cost < best[row][end]:
+                    best[row][end], choice[row][end] = cost, start
+    assigned, end = [], count
+    for row in range(rows, 0, -1):
+        start = choice[row][end]
+        assigned.insert(0, lines[start:end])
+        end = start
+    return best[rows][count], assigned
+
+
+def run_cost(run, centre, anchor):
+    if not run:
+        return 0.0
+    return abs(anchor(run) - centre) + SPREAD_WEIGHT * sum(abs(line[0]["y"] - centre) for line in run)
+
+
+def shape_cost(run, full):
+    """The occasion column is justified: every line of a cell but its last reaches the left margin ([full]). A short
+    line inside a run means the run joins two cells; a run ending on a full line may have lost its last line."""
+    if not run:
+        return 0.0
+    broken = sum(1 for line in run[:-1] if id(line) not in full)
+    return SHORT_LINE_PENALTY * broken + (SHORT_LINE_PENALTY / 2 if id(run[-1]) in full else 0.0)
+
+
+def text_lines(words):
+    lines = []
+    for word in sorted(words, key=lambda word: word["y"]):
+        if lines and abs(word["y"] - lines[-1][0]["y"]) <= LINE_TOLERANCE:
+            lines[-1].append(word)
+        else:
+            lines.append([word])
+    return lines
+
+
+def first_line(lines):
+    return lines[0][0]["y"]
+
+
+def middle_line(lines):
+    return (lines[0][0]["y"] + lines[-1][0]["y"]) / 2
 
 
 def occasion_text(words):
