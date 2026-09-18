@@ -50,6 +50,7 @@
   <string name="about_data_open_source">Kaynak sayfasını aç</string>
   <string name="about_data_open_source_of">%1$s kaynak sayfasını aç</string>
   <string name="about_data_license_text">Lisansı oku</string>
+  <string name="about_data_license_of">%1$s lisansını oku</string>
   <string name="about_level_all">Tümü</string>
   <string name="about_level_info">Bilgi ve üstü</string>
   <string name="about_level_warn">Uyarılar ve hatalar</string>

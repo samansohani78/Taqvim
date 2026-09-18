@@ -48,6 +48,7 @@
   <string name="about_data_open_source">Кушодани саҳифаи манбаъ</string>
   <string name="about_data_open_source_of">Кушодани саҳифаи манбаи %1$s</string>
   <string name="about_data_license_text">Хондани иҷозатнома</string>
+  <string name="about_data_license_of">Хондани иҷозатномаи %1$s</string>
   <string name="about_level_all">Ҳама</string>
   <string name="about_level_info">Маълумот ва болотар</string>
   <string name="about_level_warn">Огоҳиҳо ва хатоҳо</string>

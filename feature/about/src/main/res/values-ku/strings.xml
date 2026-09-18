@@ -50,6 +50,7 @@
   <string name="about_data_open_source">Rûpela çavkaniyê veke</string>
   <string name="about_data_open_source_of">Rûpela çavkaniyê ya %1$s veke</string>
   <string name="about_data_license_text">Lîsansê bixwîne</string>
+  <string name="about_data_license_of">Lîsansa %1$s bixwîne</string>
   <string name="about_level_all">Hemû</string>
   <string name="about_level_info">Agahî û jortir</string>
   <string name="about_level_warn">Hişyarî û çewtî</string>

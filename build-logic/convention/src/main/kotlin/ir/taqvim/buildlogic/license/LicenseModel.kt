@@ -81,16 +81,31 @@ data class LicenseOverride(
     }
 }
 
+/**
+ * A license allowed for *data* that is bundled with the app or used to validate it (ADR-0039).
+ * Data is never code: it has no Maven coordinate, so the dependency gate never sees it. [attributionRequired]
+ * records whether the license obliges us to name the creators, which About > Data sources then has to do.
+ */
+data class DataLicenseEntry(
+    val id: String,
+    val attributionRequired: Boolean,
+    val note: String? = null,
+)
+
 /** Parsed `config/license/allowed-licenses.json`. */
 data class AllowList(
     val licenses: Map<String, Set<LicenseScope>>,
     val overrides: List<LicenseOverride>,
+    val dataLicenses: List<DataLicenseEntry> = emptyList(),
 ) {
     /** True when [spdxId] is allowed in every one of [scopes]. */
     fun permits(
         spdxId: String,
         scopes: Set<LicenseScope>,
     ): Boolean = licenses[spdxId]?.containsAll(scopes) == true
+
+    /** The bundled-data entry for [spdxId], or `null` when that license may not be used for data. */
+    fun dataLicense(spdxId: String): DataLicenseEntry? = dataLicenses.firstOrNull { it.id == spdxId }
 }
 
 /** A dependency rejected by the license gate. */

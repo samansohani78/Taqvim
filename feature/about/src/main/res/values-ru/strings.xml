@@ -54,6 +54,7 @@
   <string name="about_data_open_source">Открыть страницу источника</string>
   <string name="about_data_open_source_of">Открыть страницу источника %1$s</string>
   <string name="about_data_license_text">Прочитать лицензию</string>
+  <string name="about_data_license_of">Прочитать лицензию %1$s</string>
   <string name="about_level_all">Все</string>
   <string name="about_level_info">Информация и выше</string>
   <string name="about_level_warn">Предупреждения и ошибки</string>

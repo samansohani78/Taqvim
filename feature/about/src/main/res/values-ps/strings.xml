@@ -50,6 +50,7 @@
   <string name="about_data_open_source">د سرچینې پاڼه پرانیستل</string>
   <string name="about_data_open_source_of">د %1$s د سرچینې پاڼه پرانیستل</string>
   <string name="about_data_license_text">جواز لوستل</string>
+  <string name="about_data_license_of">د %1$s جواز ولولئ</string>
   <string name="about_level_all">ټول</string>
   <string name="about_level_info">معلومات او پورته</string>
   <string name="about_level_warn">خبرداري او تېروتنې</string>

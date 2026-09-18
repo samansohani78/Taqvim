@@ -1277,8 +1277,13 @@ Persian-calendar or prayer-times GPL/LGPL library.
   boundary evolution and kinematics since the late Paleozoic", Zenodo 10526157 (`Matthews_etal_2016_GPC.zip` v1.0,
   SHA-256 `06d444d22a55ff4c265199955168c537511d1d9feea958850e754e7c5759e33d`; file
   `CorrectedModel/StaticGeometries/StaticPolygons/PresentDay_StaticPlatePolygons_Matthews.shp`, 2 048 polygons, 387
-  plate ids), retrieved 2026-09-15. CC BY 4.0 — attribution shown in the map legend and in About › Data sources
-  (`MATTHEWS_PLATES`); "simplified for display". No GPlates/pyGPlates or GPML files used. 1 246 edges between plates.
+  plate ids), retrieved 2026-09-15. CC BY 4.0, admitted for bundled data by ADR-0039 (`dataLicenses` in
+  `config/license/allowed-licenses.json`; a CC BY *dependency* stays forbidden). The required attribution (CC BY 4.0
+  §3(a)) is shown twice: the short credit drawn on the map itself (`map_plates_attribution`) and the full credit line in
+  About › Data sources (`DataSource.MATTHEWS_PLATES.attribution`, `about_source_matthews_attribution`) — creators,
+  year, article title, the Zenodo link, the licence name with its URI, the "as is" disclaimer and the modification:
+  the present-day static plate polygons were converted to the lines shared by two plates and simplified for display.
+  No GPlates/pyGPlates or GPML files used. 1 246 edges between plates.
 - **Rejected sources** (licence research, owner decision 2026-09-15): timezone-boundary-builder (ODbL share-alike),
   PB2002 and its USGS and fraxen copies (no licence from the author), GEM Global Active Faults (CC BY-SA), UTIG PLATES
   (no licence).

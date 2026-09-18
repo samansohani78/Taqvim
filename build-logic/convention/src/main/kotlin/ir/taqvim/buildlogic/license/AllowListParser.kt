@@ -17,6 +17,9 @@ object AllowListParser {
 
     private val MODULE_PATTERN = Regex("""^[A-Za-z0-9_.\-]+:[A-Za-z0-9_.\-]+$""")
 
+    private const val ATTRIBUTION_REQUIRED = "required"
+    private val ATTRIBUTION_VALUES = listOf(ATTRIBUTION_REQUIRED, "none")
+
     /** Parses [json] into an [AllowList]. */
     fun parse(json: String): AllowList {
         val parsed =
@@ -28,7 +31,37 @@ object AllowListParser {
             "Unsupported allow-list schemaVersion '$schemaVersion' (expected $SUPPORTED_SCHEMA_VERSION)"
         }
         val licenses = parseLicenses(root["licenses"])
-        return AllowList(licenses = licenses, overrides = parseOverrides(root["overrides"], licenses.keys))
+        return AllowList(
+            licenses = licenses,
+            overrides = parseOverrides(root["overrides"], licenses.keys),
+            dataLicenses = parseDataLicenses(root["dataLicenses"]),
+        )
+    }
+
+    /**
+     * Parses the optional `dataLicenses` section: the licenses that bundled data may carry (ADR-0039).
+     * `attribution` is `required` or `none`; nothing else is accepted, so a typo cannot silently drop an obligation.
+     */
+    private fun parseDataLicenses(node: Any?): List<DataLicenseEntry> {
+        if (node == null) return emptyList()
+        val entries = node as? List<*> ?: throw IllegalArgumentException("'dataLicenses' must be an array")
+        val seen = LinkedHashSet<String>()
+        return entries.mapIndexed { index, entry ->
+            val path = "dataLicenses[$index]"
+            val obj = entry as? Map<*, *> ?: throw IllegalArgumentException("$path must be an object")
+            val id = (obj["id"] as? String)?.trim().orEmpty()
+            require(id.isNotEmpty()) { "$path.id is required" }
+            require(seen.add(id)) { "Duplicate data license id '$id'" }
+            val attribution = obj["attribution"] as? String
+            require(attribution in ATTRIBUTION_VALUES) {
+                "$path.attribution must be one of ${ATTRIBUTION_VALUES.joinToString(", ")}"
+            }
+            DataLicenseEntry(
+                id = id,
+                attributionRequired = attribution == ATTRIBUTION_REQUIRED,
+                note = (obj["note"] as? String)?.trim()?.ifEmpty { null },
+            )
+        }
     }
 
     private fun parseLicenses(node: Any?): Map<String, Set<LicenseScope>> {

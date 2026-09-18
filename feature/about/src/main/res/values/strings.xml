@@ -30,6 +30,8 @@
   <string name="about_license_text_missing">The full text is not included in the app; open the license page.</string>
   <string name="about_source_cldr">Unicode CLDR</string>
   <string name="about_source_cldr_description">Month and weekday names, date patterns and plural rules for every language</string>
+  <!-- Attribution of the CLDR data (Unicode License v3); the organisation name stays in Latin script. -->
+  <string name="about_source_cldr_attribution" translatable="false">© 1991–2026 Unicode, Inc. CLDR locale data, used under the Unicode License v3 (https://www.unicode.org/license.txt). Distributed WITHOUT WARRANTY OF ANY KIND. Modified: only the fields Taqvim needs are extracted and reformatted.</string>
   <string name="about_source_calendar_center">Calendar Center, Institute of Geophysics, University of Tehran</string>
   <string name="about_source_calendar_center_description">Official calendars of Iran: leap years, holidays, lunar month starts and prayer timetables</string>
   <string name="about_source_un">United Nations</string>
@@ -43,6 +45,8 @@
   <!-- Data source: a scientific plate-tectonics model; author names stay in Latin script. -->
   <string name="about_source_matthews">EarthByte plate model (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">Tectonic plate boundaries on the world map, simplified</string>
+  <!-- Required CC BY 4.0 attribution of the plate data; the citation stays verbatim in Latin script. -->
+  <string name="about_source_matthews_attribution" translatable="false">Matthews, K. J., Maloney, K. T., Zahirovic, S., Williams, S. E., Seton, M., Müller, R. D. (2016). “Global plate boundary evolution and kinematics since the late Paleozoic”, Global and Planetary Change 146, 226–250. Data: “Matthews et al. (2016) plate model”, Zenodo record 10526157 (https://zenodo.org/records/10526157), © the authors, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), provided “as is” without warranties. Modified by Taqvim: the present-day static plate polygons were converted to the lines shared by two plates and simplified for display.</string>
   <string name="about_source_noaa">NOAA Global Monitoring Laboratory</string>
   <string name="about_source_noaa_description">Solar position equations used for prayer times</string>
   <string name="about_data_license_unicode">License: Unicode License v3</string>
@@ -53,6 +57,7 @@
   <string name="about_data_open_source">Open source page</string>
   <string name="about_data_open_source_of">Open the source page of %1$s</string>
   <string name="about_data_license_text">Read the license</string>
+  <string name="about_data_license_of">Read the license of %1$s</string>
   <!-- Diagnostics filter: show log entries of all severity levels. -->
   <string name="about_level_all">All</string>
   <string name="about_level_info">Information and above</string>

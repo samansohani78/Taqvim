@@ -50,6 +50,7 @@
   <string name="about_data_open_source">ماخذ کا صفحہ کھولیں</string>
   <string name="about_data_open_source_of">%1$s کے ماخذ کا صفحہ کھولیں</string>
   <string name="about_data_license_text">لائسنس پڑھیں</string>
+  <string name="about_data_license_of">%1$s کا لائسنس پڑھیں</string>
   <string name="about_level_all">سب</string>
   <string name="about_level_info">معلومات اور اس سے اوپر</string>
   <string name="about_level_warn">انتباہات اور غلطیاں</string>

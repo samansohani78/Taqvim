@@ -19,7 +19,9 @@ class AllowListParserTest {
         licenses: String = defaultLicenses,
         overrides: String = "[]",
         schemaVersion: String = "1",
-    ) = """{ "schemaVersion": $schemaVersion, "licenses": $licenses, "overrides": $overrides }"""
+        dataLicenses: String? = null,
+    ) = """{ "schemaVersion": $schemaVersion, "licenses": $licenses, "overrides": $overrides""" +
+        (dataLicenses?.let { """, "dataLicenses": $it""" } ?: "") + " }"
 
     private fun failure(json: String): String =
         shouldThrow<IllegalArgumentException> { AllowListParser.parse(json) }.message.orEmpty()
@@ -32,6 +34,43 @@ class AllowListParserTest {
         allowList.permits("EPL-2.0", setOf(LicenseScope.TEST)) shouldBe true
         allowList.permits("EPL-2.0", setOf(LicenseScope.RUNTIME)) shouldBe false
         allowList.licenses.keys.none { it.contains("GPL") || it.startsWith("MPL") } shouldBe true
+    }
+
+    @Test
+    fun `the repository allow-list admits CC BY for data only`() {
+        val allowList = AllowListParser.parse(File("../../config/license/allowed-licenses.json").readText())
+
+        // ADR-0039: attribution-only data licenses are allowed for bundled data, never for a code dependency.
+        allowList.dataLicense("CC-BY-4.0")?.attributionRequired shouldBe true
+        allowList.dataLicense("LicenseRef-Public-Domain")?.attributionRequired shouldBe false
+        allowList.licenses.keys.none { it.startsWith("CC-BY") } shouldBe true
+        allowList.dataLicenses.map { it.id }.none { it.contains("SA") || it.contains("NC") } shouldBe true
+    }
+
+    @Test
+    fun `parses data licenses and defaults them to empty`() {
+        val json = """[{ "id": "CC-BY-4.0", "attribution": "required", "note": " plates " }]"""
+
+        AllowListParser.parse(doc(dataLicenses = json)).dataLicenses shouldContainExactly
+            listOf(DataLicenseEntry("CC-BY-4.0", attributionRequired = true, note = "plates"))
+        AllowListParser.parse(doc()).dataLicenses shouldBe emptyList()
+        AllowListParser.parse(doc(dataLicenses = json)).dataLicense("MIT") shouldBe null
+    }
+
+    @Test
+    fun `rejects invalid data licenses`() {
+        failure(doc(dataLicenses = "{}")) shouldContain "'dataLicenses' must be an array"
+        failure(doc(dataLicenses = "[1]")) shouldContain "dataLicenses[0] must be an object"
+        failure(doc(dataLicenses = """[{ "attribution": "none" }]""")) shouldContain "dataLicenses[0].id is required"
+        failure(
+            doc(dataLicenses = """[{ "id": "CC-BY-4.0", "attribution": "maybe" }]"""),
+        ) shouldContain "dataLicenses[0].attribution must be one of required, none"
+        failure(
+            doc(
+                dataLicenses =
+                    """[{ "id": "CC0-1.0", "attribution": "none" }, { "id": "CC0-1.0", "attribution": "none" }]""",
+            ),
+        ) shouldContain "Duplicate data license id 'CC0-1.0'"
     }
 
     @Test

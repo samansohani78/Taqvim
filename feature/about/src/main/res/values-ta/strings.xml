@@ -50,6 +50,7 @@
   <string name="about_data_open_source">மூலப் பக்கத்தைத் திற</string>
   <string name="about_data_open_source_of">%1$s இன் மூலப் பக்கத்தைத் திற</string>
   <string name="about_data_license_text">உரிமத்தைப் படி</string>
+  <string name="about_data_license_of">%1$s இன் உரிமத்தைப் படிக்கவும்</string>
   <string name="about_level_all">அனைத்தும்</string>
   <string name="about_level_info">தகவலும் அதற்கு மேலும்</string>
   <string name="about_level_warn">எச்சரிக்கைகளும் பிழைகளும்</string>

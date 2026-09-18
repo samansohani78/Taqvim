@@ -48,6 +48,7 @@
   <string name="about_data_open_source">出典ページを開く</string>
   <string name="about_data_open_source_of">%1$s の出典ページを開く</string>
   <string name="about_data_license_text">ライセンスを読む</string>
+  <string name="about_data_license_of">%1$s のライセンスを読む</string>
   <string name="about_level_all">すべて</string>
   <string name="about_level_info">情報以上</string>
   <string name="about_level_warn">警告とエラー</string>

@@ -48,6 +48,7 @@
   <string name="about_data_open_source">打开来源页面</string>
   <string name="about_data_open_source_of">打开 %1$s 的来源页面</string>
   <string name="about_data_license_text">阅读许可证</string>
+  <string name="about_data_license_of">阅读 %1$s 的许可协议</string>
   <string name="about_level_all">全部</string>
   <string name="about_level_info">信息及以上</string>
   <string name="about_level_warn">警告和错误</string>

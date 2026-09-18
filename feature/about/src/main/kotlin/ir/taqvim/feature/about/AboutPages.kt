@@ -127,23 +127,49 @@ internal fun DataSourcesPage(actions: AboutActions) {
                 Text(title, style = MaterialTheme.typography.titleMedium)
                 Text(stringResource(source.description), style = MaterialTheme.typography.bodyMedium)
                 Text(stringResource(source.license.label), style = MaterialTheme.typography.bodySmall)
+                // The credit line a license such as CC BY 4.0 obliges us to show, verbatim and in Latin script
+                // whatever the app language is (ADR-0039).
+                source.attribution?.let { attribution ->
+                    Text(stringResource(attribution), style = MaterialTheme.typography.bodySmall.ltr())
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     // Every source has this button; TalkBack names the source so they can be told apart (T-1700).
                     val openDescription = stringResource(R.string.about_data_open_source_of, title)
+                    val licenseDescription = stringResource(R.string.about_data_license_of, title)
                     OutlinedButton(
                         onClick = { actions.onOpenLink(source.url) },
                         modifier = Modifier.semantics { contentDescription = openDescription },
                     ) {
                         Text(stringResource(R.string.about_data_open_source))
                     }
-                    if (source.license == DataLicense.UNICODE_3_0) {
-                        OutlinedButton(onClick = actions.onOpenDataLicense) {
+                    val onLicense = licenseAction(source, actions)
+                    if (onLicense != null) {
+                        OutlinedButton(
+                            onClick = onLicense,
+                            modifier = Modifier.semantics { contentDescription = licenseDescription },
+                        ) {
                             Text(stringResource(R.string.about_data_license_text))
                         }
                     }
                 }
             }
         }
+    }
+}
+
+/**
+ * Opens the license of [source]: the bundled Unicode text, or the license deed on the web when the data carries a
+ * public license such as CC BY 4.0. `null` means the license has no text to show beyond the source page itself.
+ */
+private fun licenseAction(
+    source: DataSource,
+    actions: AboutActions,
+): (() -> Unit)? {
+    val deedUrl = source.license.deedUrl
+    return when {
+        source.license == DataLicense.UNICODE_3_0 -> actions.onOpenDataLicense
+        deedUrl != null -> ({ actions.onOpenLink(deedUrl) })
+        else -> null
     }
 }
 

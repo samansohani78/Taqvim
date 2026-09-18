@@ -48,6 +48,7 @@
   <string name="about_data_open_source">Buka halaman sumber</string>
   <string name="about_data_open_source_of">Buka halaman sumber %1$s</string>
   <string name="about_data_license_text">Baca lisensi</string>
+  <string name="about_data_license_of">Baca lisensi %1$s</string>
   <string name="about_level_all">Semua</string>
   <string name="about_level_info">Informasi ke atas</string>
   <string name="about_level_warn">Peringatan dan galat</string>

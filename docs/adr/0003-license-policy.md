@@ -20,7 +20,8 @@ Allowed licenses (SPDX), per dependency scope:
 | EPL-2.0 | ❌ | ❌ | ✅ |
 
 Everything else — GPL, LGPL, AGPL, MPL, CDDL, EPL in runtime, unknown or missing license — fails the
-build. The machine-readable allow-list is `config/license/allowed-licenses.json`; the gate is the
+build. This table is about **dependencies**; data files bundled with the app follow the separate `dataLicenses`
+section of the same file (ADR-0039), which also admits CC BY 4.0 — for data only, never for a dependency. The machine-readable allow-list is `config/license/allowed-licenses.json`; the gate is the
 `licenseCheck` task (T-001), which scans every resolved dependency (direct and transitive) of every
 module and configuration.
 

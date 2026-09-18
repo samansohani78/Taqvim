@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Taqvim dependency license allow-list. Policy: docs/adr/0003-license-policy.md. Scopes: runtime (shipped), build (annotation processors, lint checks, compiler plugins), test (unit/instrumented/benchmark only).",
+  "description": "Taqvim license allow-list. Policy: docs/adr/0003-license-policy.md. 'licenses' covers Maven dependencies, per scope: runtime (shipped), build (annotation processors, lint checks, compiler plugins), test (unit/instrumented/benchmark only). 'dataLicenses' covers data files bundled with the app or used to validate it (docs/adr/0039-cc-by-data-license.md); those are never code and never enter the dependency graph.",
   "licenses": [
     {
       "id": "Apache-2.0",
@@ -86,6 +86,34 @@
         "test"
       ],
       "adr": "docs/adr/0005-test-scope-license-exceptions.md (junit:junit 4.x, required by Robolectric/Compose UI Test/Macrobenchmark)"
+    }
+  ],
+  "dataLicenses": [
+    {
+      "id": "Unicode-3.0",
+      "attribution": "required",
+      "note": "CLDR locale data. The license text is bundled verbatim and the About entry carries the copyright notice."
+    },
+    {
+      "id": "CC0-1.0",
+      "attribution": "none",
+      "note": "Public-domain dedication; usable for bundled data without conditions."
+    },
+    {
+      "id": "LicenseRef-Public-Domain",
+      "attribution": "none",
+      "note": "Works without copyright (Natural Earth, NOAA, USNO, US federal agencies)."
+    },
+    {
+      "id": "LicenseRef-Cited-Publication",
+      "attribution": "none",
+      "note": "No license is granted or needed: only facts are used and the app recomputes them. The About entry names and links the publication, which is the citation; docs/PROVENANCE.md carries the full reference."
+    },
+    {
+      "id": "CC-BY-4.0",
+      "attribution": "required",
+      "adr": "docs/adr/0039-cc-by-data-license.md (bundled data only; never a code dependency)",
+      "note": "Attribution-only; the About > Data sources entry carries creators, year, source link, license name and URI, disclaimer and the note on modifications (CC BY 4.0 section 3(a))."
     }
   ],
   "overrides": [

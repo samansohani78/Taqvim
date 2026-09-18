@@ -49,6 +49,7 @@
   <string name="about_data_open_source">باز کردن صفحهٔ منبع</string>
   <string name="about_data_open_source_of">باز کردن صفحهٔ منبع %1$s</string>
   <string name="about_data_license_text">خواندن مجوز</string>
+  <string name="about_data_license_of">خواندن مجوز %1$s</string>
   <string name="about_level_all">همه</string>
   <string name="about_level_info">اطلاعات و بالاتر</string>
   <string name="about_level_warn">هشدارها و خطاها</string>

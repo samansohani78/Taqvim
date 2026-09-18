@@ -50,6 +50,7 @@
   <string name="about_data_open_source">উৎস পৃষ্ঠা খুলুন</string>
   <string name="about_data_open_source_of">%1$s-এর উৎস পৃষ্ঠা খুলুন</string>
   <string name="about_data_license_text">লাইসেন্স পড়ুন</string>
+  <string name="about_data_license_of">%1$s-এর লাইসেন্স পড়ুন</string>
   <string name="about_level_all">সব</string>
   <string name="about_level_info">তথ্য ও তার ওপরে</string>
   <string name="about_level_warn">সতর্কতা ও ত্রুটি</string>

@@ -50,6 +50,7 @@
   <string name="about_data_open_source">Manba sahifasini ochish</string>
   <string name="about_data_open_source_of">%1$s manba sahifasini ochish</string>
   <string name="about_data_license_text">Litsenziyani oʻqish</string>
+  <string name="about_data_license_of">%1$s litsenziyasini o‘qish</string>
   <string name="about_level_all">Hammasi</string>
   <string name="about_level_info">Maʼlumot va yuqori</string>
   <string name="about_level_warn">Ogohlantirishlar va xatolar</string>

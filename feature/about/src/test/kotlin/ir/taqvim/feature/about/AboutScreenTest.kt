@@ -9,14 +9,16 @@ import android.content.ClipboardManager
 import android.content.ComponentName
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasContentDescription
+import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performScrollToNode
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.flow.flowOf
@@ -139,7 +141,7 @@ class AboutScreenTest {
     }
 
     @Test
-    fun dataSourcesOfferTheUnicodeLicenseOnlyForCldr() {
+    fun dataSourcesOpenTheBundledLicenseTextAndTheCcByDeed() {
         val calls = mutableListOf<String>()
         show(
             AboutUiState(page = AboutPage.DATA_SOURCES, canGoBack = true),
@@ -147,10 +149,18 @@ class AboutScreenTest {
         )
 
         composeRule.onNodeWithText("Unicode CLDR").assertIsDisplayed()
-        composeRule.onAllNodesWithText("Read the license").assertCountEquals(1)
-        composeRule.onNodeWithText("Read the license").performClick()
+        composeRule.onNodeWithContentDescription("Read the license of Unicode CLDR").performClick()
         composeRule.onAllNodesWithText("Open source page")[0].performClick()
-        assertEquals(listOf("unicode", DataSource.CLDR.url), calls)
+        // ADR-0039: the plate data is CC BY 4.0, so its row credits the creators and links the license deed.
+        val plates = "EarthByte plate model (Matthews et al. 2016)"
+        val plateLicense = "Read the license of $plates"
+        composeRule.onNode(hasScrollAction()).performScrollToNode(hasContentDescription(plateLicense))
+        composeRule.onNodeWithText("Matthews, K. J.", substring = true).assertIsDisplayed()
+        composeRule.onNodeWithContentDescription(plateLicense).performClick()
+        assertEquals(
+            listOf("unicode", DataSource.CLDR.url, "https://creativecommons.org/licenses/by/4.0/"),
+            calls,
+        )
     }
 
     @Test

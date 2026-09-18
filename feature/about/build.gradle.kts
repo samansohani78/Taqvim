@@ -17,6 +17,13 @@ tasks.withType<Test>().configureEach {
             .dir("src/main/assets")
             .asFile.path,
     )
+    // ADR-0039: the bundled-data licenses of `DataSource` are checked against the repository allow-list.
+    systemProperty(
+        "taqvim.license.allowlist",
+        rootProject.layout.projectDirectory
+            .file("config/license/allowed-licenses.json")
+            .asFile.path,
+    )
     systemProperty(
         "taqvim.license.report",
         rootProject.layout.buildDirectory

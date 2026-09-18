@@ -50,6 +50,7 @@
   <string name="about_data_open_source">کردنەوەی پەڕەی سەرچاوە</string>
   <string name="about_data_open_source_of">کردنەوەی پەڕەی سەرچاوەی %1$s</string>
   <string name="about_data_license_text">خوێندنەوەی مۆڵەت</string>
+  <string name="about_data_license_of">خوێندنەوەی مۆڵەتی %1$s</string>
   <string name="about_level_all">هەموو</string>
   <string name="about_level_info">زانیاری و سەرووتر</string>
   <string name="about_level_warn">ئاگادارکردنەوە و هەڵەکان</string>

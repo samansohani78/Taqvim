@@ -50,6 +50,7 @@
   <string name="about_data_open_source">Quellseite öffnen</string>
   <string name="about_data_open_source_of">Quellseite von %1$s öffnen</string>
   <string name="about_data_license_text">Lizenz lesen</string>
+  <string name="about_data_license_of">Lizenz von %1$s lesen</string>
   <string name="about_level_all">Alle</string>
   <string name="about_level_info">Information und höher</string>
   <string name="about_level_warn">Warnungen und Fehler</string>
