@@ -81,7 +81,8 @@ jobs:
           disable-animations: true
           # One retry absorbs runner faults seen here (Maven Central HTTP 429, an emulator that boots without its
           # system services); a real test failure fails both attempts.
-          script: ./gradlew connectedDebugAndroidTest --continue || (sleep 60 && ./gradlew connectedDebugAndroidTest --continue)
+          # The watch tests (:wear) need a Wear OS image; they run on the wearApi34 managed device, not on this phone.
+          script: ./gradlew connectedDebugAndroidTest -x :wear:connectedDebugAndroidTest --continue || (sleep 60 && ./gradlew connectedDebugAndroidTest -x :wear:connectedDebugAndroidTest --continue)
       - uses: actions/upload-artifact@v7
         if: always()
         with:

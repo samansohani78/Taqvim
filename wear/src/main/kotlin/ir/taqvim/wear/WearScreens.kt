@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -47,16 +48,17 @@ internal fun Centered(
     Text(text = text, modifier = modifier.fillMaxWidth(), textAlign = TextAlign.Center)
 }
 
-/** A full-width button with [label]. */
+/** A full-width button with [label], tagged with [tag] when the smoke tests need to find it (T-1600). */
 @Composable
 internal fun WideButton(
     label: String,
     onClick: () -> Unit,
     secondary: String? = null,
+    tag: String? = null,
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().let { if (tag == null) it else it.testTag(tag) },
         secondaryLabel = secondary?.let { { Text(it) } },
     ) { Text(label) }
 }
@@ -88,9 +90,28 @@ fun TodayScreen(
                     ?: stringResource(R.string.wear_no_place),
             )
         }
-        item { WideButton(stringResource(R.string.wear_month), { onOpen(WearRoutes.MONTH) }) }
-        item { WideButton(stringResource(R.string.wear_converter), { onOpen(WearRoutes.CONVERTER) }) }
-        item { WideButton(stringResource(R.string.wear_settings), { onOpen(WearRoutes.SETTINGS) }, state.placeName) }
+        item {
+            WideButton(
+                stringResource(R.string.wear_month),
+                { onOpen(WearRoutes.MONTH) },
+                tag = openTag(WearRoutes.MONTH),
+            )
+        }
+        item {
+            WideButton(
+                stringResource(R.string.wear_converter),
+                { onOpen(WearRoutes.CONVERTER) },
+                tag = openTag(WearRoutes.CONVERTER),
+            )
+        }
+        item {
+            WideButton(
+                stringResource(R.string.wear_settings),
+                { onOpen(WearRoutes.SETTINGS) },
+                state.placeName,
+                openTag(WearRoutes.SETTINGS),
+            )
+        }
     }
 }
 
@@ -108,9 +129,11 @@ fun MonthScreen(
         }
         item { ListHeader { Text(month.title) } }
         item { MonthGrid(month) }
-        item { WideButton(stringResource(R.string.wear_month_next), { onShow(1) }) }
-        item { WideButton(stringResource(R.string.wear_month_previous), { onShow(-1) }) }
-        if (state.offset != 0) item { WideButton(stringResource(R.string.wear_month_current), { onShow(0) }) }
+        item { WideButton(stringResource(R.string.wear_month_next), { onShow(1) }, tag = MONTH_NEXT_TAG) }
+        item { WideButton(stringResource(R.string.wear_month_previous), { onShow(-1) }, tag = MONTH_PREVIOUS_TAG) }
+        if (state.offset != 0) {
+            item { WideButton(stringResource(R.string.wear_month_current), { onShow(0) }, tag = MONTH_CURRENT_TAG) }
+        }
     }
 }
 
@@ -151,6 +174,11 @@ private fun GridRow(cells: List<Pair<String, Color>>) {
 }
 
 private const val CELL_WIDTH = 22
+
+/** Test tags of the month screen's buttons, read as resource ids by the watch smoke tests (T-1600). */
+internal const val MONTH_NEXT_TAG = "wear:month:next"
+internal const val MONTH_PREVIOUS_TAG = "wear:month:previous"
+internal const val MONTH_CURRENT_TAG = "wear:month:current"
 
 /** Converter (T-1600): step the year, month and day in one calendar and read the date in the others. */
 @Composable

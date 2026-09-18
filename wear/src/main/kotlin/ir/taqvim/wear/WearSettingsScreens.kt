@@ -12,7 +12,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.wear.compose.material3.ListHeader
 import androidx.wear.compose.material3.Text
-import androidx.wear.compose.navigation.composable
 import ir.taqvim.core.model.PrayerMethod
 
 /** Settings and its choice lists; every choice is stored on the watch and returns to the summary. */
@@ -21,11 +20,11 @@ internal fun NavGraphBuilder.settingsDestinations(
     onOpen: (String) -> Unit,
     onDone: () -> Unit,
 ) {
-    composable(WearRoutes.SETTINGS) { SettingsRoute(graph) { _, state -> SettingsScreen(state, onOpen) } }
-    composable(WearRoutes.LANGUAGE) { SettingsRoute(graph) { model, state -> LanguageChoice(model, state, onDone) } }
-    composable(WearRoutes.CALENDAR) { SettingsRoute(graph) { model, state -> CalendarChoice(model, state, onDone) } }
-    composable(WearRoutes.METHOD) { SettingsRoute(graph) { model, state -> MethodChoice(model, state, onDone) } }
-    composable(WearRoutes.CITY) { SettingsRoute(graph) { model, state -> CityChoice(model, state, onDone) } }
+    screen(WearRoutes.SETTINGS) { SettingsRoute(graph) { _, state -> SettingsScreen(state, onOpen) } }
+    screen(WearRoutes.LANGUAGE) { SettingsRoute(graph) { model, state -> LanguageChoice(model, state, onDone) } }
+    screen(WearRoutes.CALENDAR) { SettingsRoute(graph) { model, state -> CalendarChoice(model, state, onDone) } }
+    screen(WearRoutes.METHOD) { SettingsRoute(graph) { model, state -> MethodChoice(model, state, onDone) } }
+    screen(WearRoutes.CITY) { SettingsRoute(graph) { model, state -> CityChoice(model, state, onDone) } }
 }
 
 @Composable
@@ -116,7 +115,12 @@ fun SettingsScreen(
                     .firstOrNull { it.code == state.languageCode }
                     ?.name
                     .orEmpty()
-            WideButton(stringResource(R.string.wear_settings_language), { onOpen(WearRoutes.LANGUAGE) }, language)
+            WideButton(
+                stringResource(R.string.wear_settings_language),
+                { onOpen(WearRoutes.LANGUAGE) },
+                language,
+                openTag(WearRoutes.LANGUAGE),
+            )
         }
         item {
             val calendar = state.primaryCalendar?.let { stringResource(calendarLabel(it)) }
@@ -124,15 +128,26 @@ fun SettingsScreen(
                 stringResource(R.string.wear_settings_primary_calendar),
                 { onOpen(WearRoutes.CALENDAR) },
                 calendar,
+                openTag(WearRoutes.CALENDAR),
             )
         }
         item {
             val method = state.prayerMethod?.let { stringResource(methodLabel(it)) }
-            WideButton(stringResource(R.string.wear_settings_prayer_method), { onOpen(WearRoutes.METHOD) }, method)
+            WideButton(
+                stringResource(R.string.wear_settings_prayer_method),
+                { onOpen(WearRoutes.METHOD) },
+                method,
+                openTag(WearRoutes.METHOD),
+            )
         }
         item {
             val place = state.placeName ?: stringResource(R.string.wear_settings_city_none)
-            WideButton(stringResource(R.string.wear_settings_city), { onOpen(WearRoutes.CITY) }, place)
+            WideButton(
+                stringResource(R.string.wear_settings_city),
+                { onOpen(WearRoutes.CITY) },
+                place,
+                openTag(WearRoutes.CITY),
+            )
         }
     }
 }

@@ -7,10 +7,17 @@ package ir.taqvim.wear
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavGraphBuilder
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.TimeText
@@ -23,9 +30,16 @@ class WearActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val graph = wearGraph()
-        setContent { WearApp(graph) }
+        // Test tags readable as resource ids by the watch smoke tests on the managed device (T-1600).
+        setContent { WearApp(graph, Modifier.semantics { testTagsAsResourceId = true }) }
     }
 }
+
+/** The test tag of the screen shown for [route]; the smoke tests read it as a resource id. */
+internal fun screenTag(route: String): String = "wear:" + route.replace('/', ':')
+
+/** The test tag of the button that opens [route]. */
+internal fun openTag(route: String): String = "wear:open:" + route.replace('/', ':')
 
 /** Screens of the watch app. */
 internal object WearRoutes {
@@ -39,24 +53,35 @@ internal object WearRoutes {
     const val CITY = "settings/city"
 }
 
+/** A destination tagged with its route, so the watch smoke tests can wait for the screen (T-1600). */
+internal fun NavGraphBuilder.screen(
+    route: String,
+    content: @Composable () -> Unit,
+) {
+    composable(route) { Box(Modifier.fillMaxSize().testTag(screenTag(route))) { content() } }
+}
+
 /** The watch app: today first, with month, converter and settings one tap away; swipe right goes back. */
 @Composable
-fun WearApp(graph: WearGraph) {
+fun WearApp(
+    graph: WearGraph,
+    modifier: Modifier = Modifier,
+) {
     val navController = rememberSwipeDismissableNavController()
     MaterialTheme {
-        AppScaffold(timeText = { TimeText() }) {
+        AppScaffold(modifier = modifier, timeText = { TimeText() }) {
             SwipeDismissableNavHost(navController = navController, startDestination = WearRoutes.TODAY) {
-                composable(WearRoutes.TODAY) {
+                screen(WearRoutes.TODAY) {
                     val model = viewModel { TodayViewModel(graph) }
                     val state by model.uiState.collectAsStateWithLifecycle()
                     TodayScreen(state, onOpen = { navController.navigate(it) })
                 }
-                composable(WearRoutes.MONTH) {
+                screen(WearRoutes.MONTH) {
                     val model = viewModel { MonthViewModel(graph) }
                     val state by model.uiState.collectAsStateWithLifecycle()
                     MonthScreen(state, onShow = model::show)
                 }
-                composable(WearRoutes.CONVERTER) {
+                screen(WearRoutes.CONVERTER) {
                     val model = viewModel { ConverterViewModel(graph) }
                     val state by model.uiState.collectAsStateWithLifecycle()
                     ConverterScreen(state, onStep = model::step, onSwitch = model::switchCalendar)

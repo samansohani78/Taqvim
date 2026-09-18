@@ -25,12 +25,15 @@ Deep links used below are listed in [AUTOMATION.md](AUTOMATION.md) and can be se
 ## 0. Automated on a Gradle Managed Device
 
 Much of what used to be manual now runs on a real Android 14 emulator (Gradle Managed Device `pixel6Api34`: Pixel 6,
-API 34, `aosp-atd`, x86_64), declared in `app/build.gradle.kts`. It needs `/dev/kvm`, about 4 GB of free RAM and access to
-`dl.google.com` for the first system-image download.
+API 34, `aosp-atd`, x86_64), declared in `app/build.gradle.kts`, and on a real Wear OS 5 watch emulator (Gradle Managed
+Device `wearApi34`: Wear OS Small Round, API 34, `android-wear`, x86_64), declared in `wear/build.gradle.kts`. Each
+needs `/dev/kvm`, about 4 GB of free RAM and access to `dl.google.com` for the first system-image download
+(`system-images;android-34;aosp_atd;x86_64` and `system-images;android-34;android-wear;x86_64`). Run one at a time.
 
 | Command | What it runs |
 |---|---|
-| `./gradlew :app:pixel6Api34DebugAndroidTest` | All device tests below (`app/src/androidTest`) |
+| `./gradlew :app:pixel6Api34DebugAndroidTest` | All phone device tests below (`app/src/androidTest`) |
+| `./gradlew :wear:wearApi34DebugAndroidTest` | All watch device tests below (`wear/src/androidTest`) |
 | `./gradlew :app:generateBaselineProfile` | Baseline and startup profiles on the `:benchmark` managed device (RELEASE.md) |
 
 Covered automatically (tick the manual item only where the table in each section still says *manual*):
@@ -48,11 +51,25 @@ Covered automatically (tick the manual item only where the table in each section
   resolve.
 - **Reminders** (§6.1 step 1–2, the on-time part): a personal event's reminder, scheduled through the persistent
   scheduler with exact alarms allowed, is posted as a notification on time.
+- **Watch app** (§5 steps 1–2, `WearDeviceSmokeTest`): with the watch language set to `fa` and to `en`, today opens
+  the month, the converter and settings, each swipe back returns, the month steps forward and back, every converter
+  stepper is used and each of the four settings choice lists opens.
+- **Watch tiles** (§5 step 3, first half, `WearTileDeviceTest`): both tile services are bound as the system binds
+  them, answer a tile request, and their layouts are rendered by the ProtoLayout renderer; the rendered text is
+  checked against what the watch computes. Each rendered tile is stored as a PNG in
+  `wear/build/outputs/managed_device_android_test_additional_output/` (`wear_tile_month.png`, `wear_tile_next.png`).
+  The same layouts are rendered on the JVM by `WearTileScreenshotTest`, whose committed screenshots are
+  `wear/src/test/screenshots/wear_tile_month/round_fa.png` and `.../wear_tile_next/round_fa.png`
+  (`./gradlew :wear:verifyRoborazziDebug`).
+- **Watch complications** (§5 step 4, the provider half, `WearComplicationDeviceTest`): every complication provider
+  on the device binds and declares the complication types a watch face may ask for. Their values are checked on the
+  JVM by `WearTilesAndComplicationsTest`.
 
 Not automatable here, so still manual:
 
-- **Wear OS (§5):** Gradle Managed Devices only offer phone system images (`aosp`, `google`, `aosp-atd`, `google-atd`,
-  Play Store); Wear OS images need a manually created Wear AVD or a watch.
+- **Wear OS (§5 steps 3–6, the watch-face and time half):** adding a tile or a complication to a watch face, tapping
+  a tile to open the app, and what tiles and complications show after a time-zone change or past midnight need a real
+  watch face, which an instrumentation test cannot drive.
 - **Real launchers and OEM behaviour (§1, §6.4):** placement by drag, resizing, OEM power management, audio focus and
   Do Not Disturb need real devices.
 - **TalkBack by ear (§2), physical sensors (compass, level), sound (athan), battery and memory budgets (§8).**
@@ -197,12 +214,17 @@ Sign-off (tablet): ______ Sign-off (foldable): ______
 
 Standalone watch app (ADR-0019): no phone sync; its own language, main calendar, prayer method and city.
 
-1. Install the Wear build on a watch or Wear emulator (API 30+). Open the app: today's date in the main and secondary
-   calendars is shown.
-2. Open *month*, scroll to the next month and back; open the *converter* and convert a date; open *settings* and change
-   the language, calendar, prayer method and city.
-3. Add the *month* tile and the *next prayer / occasion* tile; both show current content and open the app on tap.
-4. Add each complication (date, month progress, next prayer) to a watch face; each shows correct values.
+Steps 1–2, the tile content of step 3 and the provider half of step 4 run on the `wearApi34` managed device
+(`./gradlew :wear:wearApi34DebugAndroidTest`, §0); the rest needs a watch face and the clock.
+
+1. *(automated)* Install the Wear build on a watch or Wear emulator (API 30+). Open the app: today's date in the main
+   and secondary calendars is shown.
+2. *(automated)* Open *month*, scroll to the next month and back; open the *converter* and convert a date; open
+   *settings* and change the language, calendar, prayer method and city.
+3. Add the *month* tile and the *next prayer / occasion* tile; both show current content *(automated)* and open the
+   app on tap *(manual)*.
+4. Add each complication (date, month progress, next prayer) to a watch face; each shows correct values (the
+   providers themselves are *automated*; the watch face is manual).
 5. Change the watch time zone; the app, tiles and complications follow within a minute.
 6. Wait past midnight and past a prayer time; tiles and complications update.
 
@@ -384,7 +406,7 @@ behaves as described.
 | 37 | ICS import / export; subscription refresh | As §9 | | |
 | 38 | Compass orientation lock; map layers; astronomy slider | Compass stays usable; each map layer draws; slider moves time | | |
 | 39 | Deep links (10 from AUTOMATION.md) and PROCESS_TEXT ("Open in Taqvim") | Each opens the documented screen | | |
-| 40 | Wear smoke | As §5 | | |
+| 40 | Wear smoke (watch face: tile tap, complications, time zone, midnight) | As §5 steps 3–6; steps 1–2 run on `wearApi34` | | |
 
 ---
 
