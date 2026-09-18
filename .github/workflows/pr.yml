@@ -34,7 +34,7 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
       - name: Python tool tests and generator checks
         run: |
-          for suite in tools/benchmark tools/geodata tools/ci; do
+          for suite in tools/benchmark tools/geodata tools/ci tools/iran; do
             python3 -m unittest discover -s "$suite"
           done
           for generator in tools/usno/*.py; do
