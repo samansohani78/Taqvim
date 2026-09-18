@@ -69,7 +69,9 @@ public class IslamicMonthOverrides(
     public companion object {
         private const val SCHEMA_VERSION = 1
         private const val MONTHS_PER_YEAR = 12
-        private const val BUNDLED_IRAN = "islamic-iran-official.json"
+
+        // Absolute: R8 repackages the classes of a release build, so a relative resource name misses the file.
+        private const val BUNDLED_IRAN = "/ir/taqvim/core/calendar/islamic-iran-official.json"
         private val json = Json { ignoreUnknownKeys = true }
 
         /**

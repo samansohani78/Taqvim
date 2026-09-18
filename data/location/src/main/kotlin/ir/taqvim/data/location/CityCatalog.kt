@@ -57,7 +57,9 @@ class CityCatalog(
 
     companion object {
         const val DEFAULT_SEARCH_LIMIT: Int = 50
-        private const val RESOURCE = "cities.tsv"
+
+        // Absolute: R8 repackages the classes of a release build, so a relative resource name misses the file.
+        private const val RESOURCE = "/ir/taqvim/data/location/cities.tsv"
         private const val PREFIX_MATCH = 0
         private const val INNER_MATCH = 1
         private val LATIN_COMBINING_MARKS = '̀'..'ͯ'
