@@ -374,7 +374,7 @@ engineering is expected.
 | Release shrinking, profiles (generated on a Gradle Managed Device) and benchmark gates; timing tests run apart from `test` | [ADR-0018](adr/0018-release-shrinking-and-performance-checks.md) |
 | Nepali lunar holidays expressed as a `LunarTithi` rule instead of a bundled Panchang table | [ADR-0038](adr/0038-nepali-lunar-tithi-rule.md) |
 | CC BY 4.0 admitted for bundled **data** only (ADR-0003 allows it for code nowhere); a CC BY dependency still fails `licenseCheck` | [ADR-0039](adr/0039-cc-by-data-license.md) |
-| Islamic month starts are calibrated against official calendars by a test-time report; the shipped criteria stay unless a candidate beats them | [ADR-0040](adr/0040-islamic-calibration-refit.md) |
+| Islamic month starts are calibrated against official calendars by a test-time report; the shipped criteria stay unless a candidate beats them | [ADR-0040](adr/0040-islamic-calibration-refit.md), [ADR-0041](adr/0041-islamic-calibration-1381-1405.md) |
 | All calendar data computed at run time; official tables demoted to golden oracles or to the optional override; no per-year manual data (enforced by `NoPerYearManualDataTest`) | [ADR-0026](adr/0026-persian-year-starts-computed.md), [ADR-0027](adr/0027-iran-islamic-months-computed.md), [ADR-0028](adr/0028-umm-al-qura-computed.md), [ADR-0030](adr/0030-bikram-sambat-computed.md), [ADR-0037](adr/0037-optional-islamic-override.md), `docs/DATA_AUDIT.md` |
 | Machine translation for 22 languages, marked for review (plan T-1702 said human-only; owner changed this on 2026-09-17) | recorded in Phase 3; workflow in `docs/i18n/TRANSLATING.md` |
 
@@ -433,22 +433,42 @@ Two bugs that only a real Android runtime could show, both found by running the 
 Both were invisible to the JVM and Robolectric suites, which is why the managed-device runs (main@9a152e5) and the
 nightly benchmark job matter as gates.
 
-### Islamic calibration against official calendars (2026-09-18, main@51608b0)
+### Official Iranian calendars 1381–1405 (2026-09-18, main@33d0418, main@7493b47, main@c309fd4)
 
-`IslamicCalibrationReportTest` compares the computed Islamic month starts with every official calendar in the
-repository and writes `docs/data-todo/islamic-calibration-report.md`:
+The owner supplied the Calendar Center's official calendar for every year 1381–1405. They are inventoried in
+`docs/sources/iran/MANIFEST.md` (82 files: 25 yearly calendars, 31 city prayer timetables for 1405, the leap-year
+table, the Nowruz-instant list, a holiday list, a year overview, 3 notices and 19 papers — the papers are cited in
+PROVENANCE and kept out of Git). One command imports them: `tools/sources/iran/official_calendar_import.py`.
 
-| Region | Official source | Agreement | Months missed |
+- **Imported: 21 years, 7 670 days** (1381–1394, 1397–1400, 1403–1405). **Rejected: 1395, 1396, 1401, 1402** — their PDF
+  text layer maps several digits to the same glyph (in 1401, 0, 7, 8 and 9 all read as 1); reading them needs OCR or
+  a clean copy. Nothing was guessed. Two misprints (1381 Shahrivar lunar days, 1383 Esfand Hijri year) are explicit
+  errata.
+- **Persian calendar: 0 mismatches.** Every imported day equals the computed calendar in date, weekday and Gregorian
+  day. The leap-year table 1206–1498 matches, and the 44 Nowruz instants of 1360–1403 lie within **42.8 s** of the
+  computed March equinox (limit ±1 min).
+- **Official holidays: 0 rule errors.** 530 holidays in 21 years; with the printed Hijri dates every year matches
+  exactly. Two changed by law and now carry `validity` with the page cited: Imam Hasan Askari's martyrdom is a
+  holiday from AH 1440 (`Calendar-1397.pdf` p. 13) and 2 Shawwal from AH 1433 (`Calendar-1391.pdf` p. 8). With the
+  app's computed lunar calendar, 40 holidays in 1382–1393 fall a day off because the month started a day off, and
+  10 in 1383–1385 follow later official announcements — all explained; `docs/data-todo/iran-holiday-history.md`.
+- **Islamic calibration on 262 official month starts** (ADR-0041). Fit on 1381–1400 (218 decisions), held out
+  1403–1405 (37; 1401–1402 are unreadable):
+
+| Criterion | Fit | Held out | Chained over 262 starts |
 |---|---|---|---|
-| Iran | Calendar Center PDFs 1404 and 1405 (AH 1446–1448) | 92.0 % (23/25) | Jumada I 1447 and Jumada I 1448, each one day late |
-| Saudi Arabia | Printed Umm al-Qura calendar, AH 1420–1450 | 99.5 % (370/372) | Jumada II 1427 and 1446, the two marginal months of ADR-0028 |
-| Afghanistan | Bakhtar announcements | 100 % (5/5) | none — but 2 of the 5 anchors only pin the start to within a week |
+| **Yallop ≤ D (shipped)** | 90.8 % | 91.9 % | 91.2 % |
+| Yallop ≤ C | 89.0 % | 86.5 % | 88.2 % |
+| Odeh ≤ B | 89.0 % | 83.8 % | 87.8 % |
+| Odeh ≤ C | 81.2 % | 81.1 % | 81.7 % |
+| Logistic (age, lag, ARCV, ARCL, W) | 92.2 % | 97.3 % | 93.1 % |
+| Tabular II / I | — | — | 61.8 % / 62.2 % |
 
-No other rule tried (Yallop A–D and Odeh A–C at three sets of observing places, and both tabular calendars) beats
-what ships, so the defaults are unchanged (ADR-0040). A new official calendar is one command: drop
-`Calendar-<year>.pdf` into `docs/sources/` with its `MANIFEST.md` row, run `tools/iran/official_calendar_import.py`
-(needs poppler-utils), then `./gradlew :core:astronomy:test -Ptaqvim.updateSnapshots=true`. The tests read the
-generated index, so the Persian, Iranian-Islamic and calibration tests extend themselves with no test edits.
+  The shipped criterion stays. The Calendar Center changed practice around AH 1428: before it, all misses are
+  months it made longer than Yallop ≤ D; after it, all misses are crescents Yallop rates E or F that it accepted.
+  No fixed criterion fits both periods. The logistic model is promising but rests on 37 held-out decisions; ADR-0041
+  asks for the four missing years and a refit on AH 1428 onward before any switch. Other regions: Saudi Umm al-Qura
+  99.5 % (370/372), Afghanistan 100 % (5/5, two anchors loose to a week).
 
 ## 6. Ready for release: what I need from you
 
@@ -479,7 +499,7 @@ arrives.
 | 1 | Play Console account for `ir.taqvim`, plus an upload keystore and the four GitHub secrets named in `docs/RELEASE.md` | Play Console; repository → Settings → Secrets | No Play distribution and no signed build; GitHub releases of unsigned APKs still work |
 | 2 | One Android phone, one tablet and one Wear watch for `docs/MANUAL_TEST_CHECKLIST.md` (TalkBack pass, OEM alarm matrix, Wear tiles) | you run the checklist and tick the boxes | T-1700, T-1102, T-1600 device checks and the T-1902 beta criteria stay unsigned |
 | 3 | Beta testers and a `taqvim-beta` Google Group | Play closed testing (`docs/BETA.md`) | The closed beta cannot start, so the release stays a candidate |
-| 4 | Official Iran calendar PDFs (1403, 1406) and newer official Hijri month tables | `docs/sources/` (then `tools/iran/official_calendar_import.py`) or Settings → Official Hijri dates | Dates stay computed and labelled "computed"; goldens cover 1404–1405 only |
+| 4 | A readable copy (correct text layer) of the 1395, 1396, 1401 and 1402 calendars, or approval to OCR them; the 1406 calendar when published | `docs/sources/iran/` (then `tools/sources/iran/official_calendar_import.py`) | Those four years stay out of the goldens and the calibration; the held-out set stays at 37 decisions |
 | 5 | Nepal MoHA holiday gazette for the current and next BS year | `docs/sources/nepal/` | The 27 computed Nepal rules stand; sighting-based and community holidays (DT-038) stay out |
 | 6 | Afghanistan Labour Law holidays article and later Bakhtar announcements | `docs/sources/afghanistan/` | Afghanistan shows the six sourced recurring holidays only |
 | 7 | Persian titles for the 130 remaining UN days | list in `docs/data-todo/un-days-without-persian-title.tsv` | D-05 stays at 102 of ≥ 150 days |

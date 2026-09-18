@@ -83,7 +83,7 @@ Legend for "Currently": **computed** (algorithm at run time), **bundled table** 
 | `core/praytimes/src/test/resources/golden/iran-prayer-times-1405/`, `noaa/` | 31 official city timetables, NOAA samples | prayer-time goldens |
 | `core/ics/.../golden/ics/`, `data/events/.../golden/ics/` | 32 iCalendar fixtures | ICS goldens |
 | `core/nlp/.../golden/nlp/` | phrase and snippet corpora | NLP goldens |
-| `tools/dataset/src/test/resources/golden/` | Iran, Afghanistan, UN, ancient dataset goldens | dataset goldens |
+| `tools/dataset/src/test/resources/golden/` | Iran, Afghanistan, UN, ancient dataset goldens; the official Iranian holiday sets of 21 years 1381–1405 (`iran/iran-official-holidays-<year>.csv`, written by `tools/sources/iran/official_calendar_import.py`) | dataset goldens; `IranOfficialHolidayHistoryTest` checks the Iran rules and their `validity` ranges against every year |
 | `core/testing/.../golden/sample/` | fixture-format self-test | test infrastructure |
 | `docs/sources/` | primary source documents (Iranian sources in `docs/sources/iran/`, inventory in its MANIFEST.md) and the USNO archive | provenance only, never packaged |
 
