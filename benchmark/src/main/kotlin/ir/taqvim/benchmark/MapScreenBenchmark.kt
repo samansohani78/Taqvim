@@ -30,7 +30,9 @@ class MapScreenBenchmark {
             packageName = APP_PACKAGE,
             metrics = listOf(FrameTimingMetric()),
             iterations = ITERATIONS,
-            startupMode = StartupMode.COLD,
+            // WARM, like the other scroll journeys: with COLD the framework kills the app between the setup and the
+            // measured block, so a journey that opens its screen in the setup would measure an empty screen.
+            startupMode = StartupMode.WARM,
             setupBlock = {
                 pressHome()
                 openLink(MAP_LINK)

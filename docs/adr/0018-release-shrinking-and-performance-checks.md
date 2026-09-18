@@ -123,3 +123,25 @@ which multiplies the plan's budget by the `taqvim.timingScale` system property (
 `-Ptaqvim.timingScale`, default 1; values below 1 or non-numbers are ignored). The PR workflow runs `timingTests` with
 a factor of 2. Local runs and the device benchmarks keep the §9 budgets unchanged, so a real regression still shows
 there; CI only catches gross slowdowns.
+
+## Addendum (2026-09-18): what a GitHub-hosted emulator can measure (T-1801)
+
+The nightly Benchmarks job runs on `ubuntu-latest` with a software-rendered emulator, which measures less than a
+phone. Three findings from the first runs that reached the gate (35300935866, 35302152223):
+
+- **Frame timing.** `FrameTimingMetric` reported `frameCount` alone; `frameDurationCpuMs` and `frameOverrunMs` need
+  SurfaceFlinger's frame timeline, which the emulator does not provide. `benchmark/required.json` therefore requires
+  `frameCount` for the frame journeys; the §9 jank budget (under 1 % of frames over 16 ms) is a physical-device check.
+- **Memory.** The month screen reported 261 MB of RSS against the 80 MB of plan §9. A budget may now carry
+  `physicalDeviceOnly: true`; `compare_benchmarks.py` skips it unless `--physical-device` is passed and prints which
+  budgets it skipped. The memory budget is marked that way and is checked on a device before a release
+  (docs/RELEASE.md), not by the nightly job.
+- **Glance compositions.** `GlanceWidgetBenchmark` measured ~403 ms for every widget, within 1 % of each other,
+  because `GlanceAppWidget.compose` includes Glance's own session setup whatever the widget draws. The 30 ms render
+  budget of §9 is about the drawing, which `WidgetRenderBenchmark` measures (1–9 ms on the same emulator), so the
+  Glance entries carry no budget; they stay required, so a regression against the recorded results still shows.
+
+Journeys that open their screen in `setupBlock` use `StartupMode.WARM`: with `COLD` the framework kills the app
+between the setup and the measured block, so the map, timeline and search journeys measured an empty screen and failed
+on a missing tag. A journey that wants a cold start opens the app inside the measured block, as
+`MonthScreenMemoryBenchmark` does.

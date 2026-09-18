@@ -1,42 +1,35 @@
 {
-  "_comment": "Benchmarks the nightly job must report (T-1801), checked by tools/benchmark/compare_benchmarks.py --required. Keys are className.testName; each listed metric prefix must match at least one reported metric. A benchmark that is intentionally not run by the job goes under optional with its reason. A result that is neither required nor optional fails the gate, so a renamed test cannot slip through.",
+  "_comment": "Benchmarks the nightly job must report (T-1801), checked by tools/benchmark/compare_benchmarks.py --required. Keys are className.testName; each listed metric prefix must match at least one reported metric. A benchmark that is intentionally not run by the job goes under optional with its reason. A result that is neither required nor optional fails the gate, so a renamed test cannot slip through. The listed metrics are the ones a GitHub-hosted emulator reports: it has no SurfaceFlinger frame timeline, so FrameTimingMetric yields frameCount alone and the jank metrics frameDurationCpuMs and frameOverrunMs of plan §9 need a physical device (ADR-0018 addendum).",
   "required": {
     "ir.taqvim.benchmark.StartupBenchmark.startupCold": [
-      "timeToInitialFrame"
+      "timeToInitialDisplay"
     ],
     "ir.taqvim.benchmark.StartupBenchmark.startupWarm": [
-      "timeToInitialFrame"
+      "timeToInitialDisplay"
     ],
     "ir.taqvim.benchmark.StartupBenchmark.startupColdWithoutProfile": [
-      "timeToInitialFrame"
+      "timeToInitialDisplay"
     ],
     "ir.taqvim.benchmark.MonthPagerScrollBenchmark.scrollTwentyFourMonths": [
-      "frameDurationCpuMs",
-      "frameOverrunMs"
+      "frameCount"
     ],
     "ir.taqvim.benchmark.ScreenScrollBenchmarks.timelineScroll": [
-      "frameDurationCpuMs",
-      "frameOverrunMs"
+      "frameCount"
     ],
     "ir.taqvim.benchmark.ScreenScrollBenchmarks.searchTyping": [
-      "frameDurationCpuMs",
-      "frameOverrunMs"
+      "frameCount"
     ],
     "ir.taqvim.benchmark.YearViewBenchmark.openYearView": [
-      "frameDurationCpuMs",
-      "frameOverrunMs"
+      "frameCount"
     ],
     "ir.taqvim.benchmark.YearViewBenchmark.pageThroughYears": [
-      "frameDurationCpuMs",
-      "frameOverrunMs"
+      "frameCount"
     ],
     "ir.taqvim.benchmark.YearViewBenchmark.swipeCalendarsAndScrollMonths": [
-      "frameDurationCpuMs",
-      "frameOverrunMs"
+      "frameCount"
     ],
     "ir.taqvim.benchmark.MapScreenBenchmark.mapPanAndZoom": [
-      "frameDurationCpuMs",
-      "frameOverrunMs"
+      "frameCount"
     ],
     "ir.taqvim.benchmark.MonthScreenMemoryBenchmark.monthScreenMemory": [
       "memoryRssAnon",

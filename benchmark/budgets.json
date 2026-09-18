@@ -1,67 +1,67 @@
 {
-  "_comment": "Absolute device budgets from docs/PLAN.md §9, checked by tools/benchmark/compare_benchmarks.py --budgets (T-1803, T-1801). Keys are className.testName; the budgeted metrics are summed. Widget renders and map masks come from :benchmark:micro as timeNs medians.",
+  "_comment": "Absolute device budgets from docs/PLAN.md §9, checked by tools/benchmark/compare_benchmarks.py --budgets (T-1803, T-1801). Keys are className.testName; the budgeted metrics are summed. Widget renders and map masks come from :benchmark:micro as timeNs medians. An entry with physicalDeviceOnly is checked only with --physical-device: the nightly job measures on an emulator, whose RSS is far above a phone's (ADR-0018 addendum). GlanceWidgetBenchmark has no budget: GlanceAppWidget.compose measures Glance's own session, a constant ~400 ms on CI whatever the widget draws, while §9's 30 ms render budget is what WidgetRenderBenchmark measures.",
   "ir.taqvim.benchmark.MonthScreenMemoryBenchmark.monthScreenMemory": {
-    "metricPrefixes": ["memoryRssAnon", "memoryRssFile"],
+    "metricPrefixes": [
+      "memoryRssAnon",
+      "memoryRssFile"
+    ],
     "maximum": 81920,
-    "unit": "KB (80 MB RSS, month screen)"
+    "unit": "KB (80 MB RSS, month screen)",
+    "physicalDeviceOnly": true
   },
   "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.monthBitmap4x4": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 30000000,
     "unit": "ns (30 ms widget render)"
   },
   "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.sunArcBitmap": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 30000000,
     "unit": "ns (30 ms widget render)"
   },
   "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.moonBitmap": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 30000000,
     "unit": "ns (30 ms widget render)"
   },
   "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.progressRingBitmap": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 30000000,
     "unit": "ns (30 ms widget render)"
   },
   "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.mapThumbnailBitmap": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 30000000,
     "unit": "ns (30 ms widget render)"
   },
   "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.mapWidgetContent": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 30000000,
     "unit": "ns (30 ms widget render, grid included)"
   },
-  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.date1x1": {
-    "metricPrefixes": ["timeNs"],
-    "maximum": 30000000,
-    "unit": "ns (30 ms widget render, Glance composition)"
-  },
-  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.dateClock4x1": {
-    "metricPrefixes": ["timeNs"],
-    "maximum": 30000000,
-    "unit": "ns (30 ms widget render, Glance composition)"
-  },
-  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.daySummary2x2": {
-    "metricPrefixes": ["timeNs"],
-    "maximum": 30000000,
-    "unit": "ns (30 ms widget render, Glance composition)"
-  },
-  "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.prayerStrip4x2": {
-    "metricPrefixes": ["timeNs"],
-    "maximum": 30000000,
-    "unit": "ns (30 ms widget render, Glance composition)"
-  },
   "ir.taqvim.benchmark.micro.MapMaskBenchmark.dayNightMask": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 150000000,
     "unit": "ns (150 ms map mask off-main)"
   },
   "ir.taqvim.benchmark.micro.MapMaskBenchmark.moonVisibilityMask": {
-    "metricPrefixes": ["timeNs"],
+    "metricPrefixes": [
+      "timeNs"
+    ],
     "maximum": 150000000,
     "unit": "ns (150 ms map mask off-main)"
   }

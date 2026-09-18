@@ -6,6 +6,9 @@ For every benchmark present in both, each metric's median (``metrics``) or P50 (
 most the threshold. Benchmarks without a baseline are listed and pass, so a new baseline can be committed from the
 uploaded results after review.
 
+A budget marked ``physicalDeviceOnly`` is checked only with ``--physical-device``: the nightly job measures on an
+emulator, whose RSS and frame timing do not carry the absolute device budgets of plan §9.
+
 Lost results fail too (review finding B14):
 
 - with ``--required``, every required benchmark must be reported with each of its metric prefixes, and a result that
@@ -105,17 +108,40 @@ def missing_required(required: dict, current: Results) -> list[str]:
     return found
 
 
-def over_budget(budgets: dict[str, dict], current: Results) -> list[str]:
+def budgeted(
+    budgets: dict[str, dict],
+    physical_device: bool,
+) -> list[tuple[str, dict]]:
+    """The budgets to check on this run, in name order; ``physicalDeviceOnly`` ones need [physical_device]."""
+    return [
+        (name, budget)
+        for name, budget in sorted(budgets.items())
+        if not name.startswith("_") and (physical_device or not budget.get("physicalDeviceOnly"))
+    ]
+
+
+def device_only(budgets: dict[str, dict]) -> list[str]:
+    """The names of the budgets that only a physical device measures (plan §9, ADR-0018 addendum)."""
+    return [
+        name
+        for name, budget in sorted(budgets.items())
+        if not name.startswith("_") and budget.get("physicalDeviceOnly")
+    ]
+
+
+def over_budget(
+    budgets: dict[str, dict],
+    current: Results,
+    physical_device: bool = True,
+) -> list[str]:
     """Lines for every budgeted benchmark (``className.testName``) whose summed budget metrics reach the maximum.
 
     A budget sums the metrics whose names start with one of ``metricPrefixes`` (T-1803: anonymous plus file RSS). A
     benchmark that ran but reported none of them fails too. A budgeted benchmark that did not run is left to the
-    required-benchmark check.
+    required-benchmark check; a ``physicalDeviceOnly`` one is skipped unless [physical_device].
     """
     found = []
-    for name, budget in sorted(budgets.items()):
-        if name.startswith("_"):
-            continue
+    for name, budget in budgeted(budgets, physical_device):
         class_name, _, test = name.rpartition(".")
         metrics = current.get((class_name, test))
         if metrics is None:
@@ -136,16 +162,20 @@ def read_json(path: Path | None) -> dict:
 def failures(args: argparse.Namespace, current: Results, duplicates: list[str]) -> list[str]:
     """Every failure line of the gate, each with its category prefix."""
     required = read_json(args.required)
+    budgets = read_json(args.budgets)
     baseline = load(args.baseline) if args.baseline.is_dir() else {}
     for key in sorted(set(current) - set(baseline)):
         print(f"No baseline for {key[0]}.{key[1]}; recorded only")
+    if not args.physical_device:
+        for name in device_only(budgets):
+            print(f"Budget of {name} needs a physical device; not checked on this run")
     optional = set(required.get("optional", {}))
     return (
         [f"Duplicate result: {name}" for name in duplicates]
         + [f"Missing: {line}" for line in (missing_required(required, current) if args.required else [])]
         + [f"Missing: {line}" for line in lost_since_baseline(baseline, current, optional)]
         + [f"Regression: {line}" for line in regressions(baseline, current, args.threshold)]
-        + [f"Over budget: {line}" for line in over_budget(read_json(args.budgets), current)]
+        + [f"Over budget: {line}" for line in over_budget(budgets, current, args.physical_device)]
     )
 
 
@@ -156,6 +186,11 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--threshold", type=float, default=0.10)
     parser.add_argument("--budgets", type=Path, help="JSON of absolute budgets (plan §9), optional")
     parser.add_argument("--required", type=Path, help="JSON of required and optional benchmarks, optional")
+    parser.add_argument(
+        "--physical-device",
+        action="store_true",
+        help="the results come from a physical device, so the physicalDeviceOnly budgets of plan §9 are checked too",
+    )
     args = parser.parse_args(argv)
     current, duplicates = load_with_duplicates(args.results)
     if not current:

@@ -64,6 +64,19 @@ class CompareBenchmarksTest(unittest.TestCase):
         self.assertEqual(len(compare_benchmarks.over_budget(budgets, renamed)), 1)
         self.assertEqual(compare_benchmarks.over_budget(budgets, {}), [])
 
+    def test_physical_device_budgets_are_skipped_on_an_emulator(self) -> None:
+        budgets = {
+            "ir.taqvim.Memory.rss": {
+                "metricPrefixes": ["memoryRss"],
+                "maximum": 10.0,
+                "physicalDeviceOnly": True,
+            },
+        }
+        over = {("ir.taqvim.Memory", "rss"): {"memoryRssAnonMaxKb": 99.0}}
+        self.assertEqual(compare_benchmarks.over_budget(budgets, over, physical_device=False), [])
+        self.assertEqual(len(compare_benchmarks.over_budget(budgets, over, physical_device=True)), 1)
+        self.assertEqual(compare_benchmarks.device_only(budgets), ["ir.taqvim.Memory.rss"])
+
     def test_budget_file_fails_the_gate(self) -> None:
         with tempfile.TemporaryDirectory() as root:
             results, budget_file = Path(root, "results"), Path(root, "budgets.json")
