@@ -396,8 +396,10 @@ engineering is expected.
    "official override".
 5. **Umm al-Qura** differs from the printed calendar in two marginal months (Jumada II 1427 and 1446) and from
    ICU-based platforms after AH 1450.
-6. **APK headroom is thin.** The release APK is 7 261 536 bytes against the 8 388 608-byte budget — **1.07 MiB left**.
-   Translations for 24 languages cost about 1.5 MiB; the next large asset or language set will break the gate.
+6. **APK size.** The release APK is 6 429 065 bytes against the 8 388 608-byte budget — 76.6 %, **1.87 MiB left**
+   (main@d9dd4da cut 0.80 MiB; the gate now warns from 90 %). The owner's 1.5 MiB target was not reached: the other
+   23 languages take 1.49 MiB and only AAB language splits remove them, which would break in-app language choice
+   for users whose phone language is not one of the app's (ADR-0018 addendum). The owner can switch the split on.
 7. **Wear and OEM coverage is unproven.** The Wear device suite exists and compiles (main@cf87a75) but has never
    executed — the Wear system image cannot be downloaded in this environment — and none of the seven OEM
    alarm/battery profiles in `docs/MANUAL_TEST_CHECKLIST.md` §6.4 has been exercised. Tile rendering is covered by
@@ -453,7 +455,7 @@ generated index, so the Persian, Iranian-Islamic and calibration tests extend th
 **Where the release stands.** Every plan task that can be finished without a physical device, a Play account or an
 outside publication is done and tested: 103 of 115 task rows DONE, 3 PARTIAL, 9 BLOCKED on data or on accounts only.
 The full local gate suite is green on main@41a6b04 — 3 970 JVM test cases and 12 instrumented cases, 0 failures,
-96.1 % line / 85.3 % branch merged coverage, release APK 6.9 MiB of an 8 MiB budget. All calendar and astronomy data
+96.1 % line / 85.3 % branch merged coverage, release APK 6.1 MiB of an 8 MiB budget (main@d9dd4da). All calendar and astronomy data
 is computed for any year (proved for every day of 1380–1480 SH), so the app never needs a yearly data drop. The one
 tag `v1.0.0-rc1` marks this state (main@54f9299). Confirming the Benchmarks workflow run is the one check that was
 still in flight when it was cut.
