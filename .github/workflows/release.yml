@@ -15,6 +15,9 @@ env:
 jobs:
   release:
     name: Signed build, SBOM and GitHub release
+    # Release-candidate tags are verification-only and are not a Taqvim version (docs/RELEASE.md): they go to the job
+    # below instead, because the build rejects any tag that is not vX.Y.Z or vX.Y.Z-beta.N.
+    if: ${{ !contains(github.ref_name, '-rc') }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     environment: release
@@ -31,7 +34,13 @@ jobs:
         env:
           KEYSTORE_BASE64: ${{ secrets.TAQVIM_KEYSTORE_BASE64 }}
         run: |
-          test -n "$KEYSTORE_BASE64" || { echo "::error::TAQVIM_KEYSTORE_BASE64 secret is not set"; exit 1; }
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME is a release tag, so it must be signed, but the repository secret" \
+              "TAQVIM_KEYSTORE_BASE64 is not set. Add TAQVIM_KEYSTORE_BASE64, TAQVIM_KEYSTORE_PASSWORD," \
+              "TAQVIM_KEY_ALIAS and TAQVIM_KEY_PASSWORD to the 'release' environment (docs/RELEASE.md), or use a" \
+              "vX.Y.Z-rcN tag to verify a commit without signing or publishing."
+            exit 1
+          fi
           echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
       - name: Verify gates, build signed AAB/APK and SBOM
         env:
@@ -68,3 +77,41 @@ jobs:
             ${{ runner.temp }}/release/SHA256SUMS
             app/build/reports/cyclonedx-direct/bom.json
             build/reports/licenses/license-report.json
+
+  release-candidate:
+    name: Release candidate — unsigned gates, nothing published
+    # A vX.Y.Z-rcN tag marks a commit as a candidate for the release that follows it. It needs no signing secrets and
+    # publishes nothing, so it runs the release gates on an unsigned build and stops there (docs/RELEASE.md).
+    if: ${{ contains(github.ref_name, '-rc') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - name: Release gates on an unsigned build
+        # No -Ptaqvim.version: an rc tag is not a Taqvim version, so the build uses version.properties.
+        run: >-
+          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:bundleRelease
+          :app:assembleRelease :app:cyclonedxDirectBom
+      - name: Candidate summary
+        shell: bash
+        run: |
+          shopt -s nullglob
+          apks=(app/build/outputs/apk/release/*.apk)
+          aabs=(app/build/outputs/bundle/release/*.aab)
+          test "${#apks[@]}" -gt 0 || { echo "::error::No release APK was built"; exit 1; }
+          test "${#aabs[@]}" -gt 0 || { echo "::error::No release AAB was built"; exit 1; }
+          test -s app/build/reports/cyclonedx-direct/bom.json || { echo "::error::No SBOM was produced"; exit 1; }
+          {
+            echo "### Release candidate $GITHUB_REF_NAME"
+            echo
+            echo "The release gates passed on an unsigned build of \`$GITHUB_SHA\`. Nothing was signed or published:"
+            echo "an rc tag is not a Taqvim version. Tag the same commit \`vX.Y.Z\` or \`vX.Y.Z-beta.N\` to build the"
+            echo "signed release (docs/RELEASE.md)."
+            echo
+            echo '```'
+            ls -l "${apks[@]}" "${aabs[@]}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

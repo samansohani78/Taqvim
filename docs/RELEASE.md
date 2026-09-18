@@ -35,6 +35,10 @@ closed beta that precedes the first public release is described in [BETA.md](BET
   tests with coverage gates, timing tests on a single worker, screenshots, license gate, dataset validation, assemble, workflow lint).
 - A release is a tag `vX.Y.Z` (or `vX.Y.Z-beta.N`) on a green `main` commit. The release build derives `versionName`
   and `versionCode` from the tag and refuses a tag that is not in that form.
+- A **release candidate** is a tag `vX.Y.Z-rcN` marking a commit as a candidate for the release that follows it. It is
+  not a Taqvim version: `TaqvimVersion` rejects it, nothing is signed or published, and `release.yml` only runs the
+  release gates on an unsigned build of that commit. When a candidate holds, tag the same commit `vX.Y.Z` or
+  `vX.Y.Z-beta.N` to build the signed release.
 - Hot fixes for an older release: branch `release/X.Y` from its tag, fix, tag `vX.Y.(Z+1)`, and merge the fix back into
   `main`.
 
@@ -44,7 +48,7 @@ closed beta that precedes the first public release is described in [BETA.md](BET
 |---|---|---|
 | `pr.yml` | every PR and push to `main` | All gates of PLAN §8.1 that run on a JVM; see its job list |
 | `release-dry-run.yml` | manually, or a PR that changes release configuration | License gate and release manifest audit (ADR-0017), unsigned `bundleRelease`/`assembleRelease`, SBOM, changelog preview, **reproducibility check** (a clean rebuild must produce a byte-identical APK). Publishes nothing |
-| `release.yml` | tag `v*` | Tag/version check, license gate and manifest audit, signed AAB and APK, SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags) |
+| `release.yml` | tag `v*` | Tag/version check, license gate and manifest audit, signed AAB and APK, SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags). A `vX.Y.Z-rcN` tag instead runs the gates on an unsigned build and publishes nothing |
 | `benchmark.yml` | nightly / manual | Macrobenchmarks against §9 budgets (T-1801) |
 | `instrumented.yml` | see workflow | Instrumented UI tests on the API matrix |
 
@@ -75,7 +79,7 @@ The GitHub release is created as a draft so a person reviews the artifacts and n
 A release must not be tagged unless all of these hold:
 
 1. **CI green on `main`** — the PR workflow for the tagged commit; the plan's definition of done asks for 7 consecutive
-   green days before 1.0 (§12.1).
+   green days before 1.0 (§12.1). A `vX.Y.Z-rcN` tag on that commit checks the release gates before the real tag.
 2. **License gate** — `./gradlew licenseCheck` passes and the LGPL canary is still rejected (ADR-0003, ADR-0005). The
    in-app license list matches the report (`tools/licenses/about_licenses.py --check`, T-1504).
 3. **SBOM** — `:app:cyclonedxDirectBom` produced; zero forbidden licenses (§12.5). Attached to the GitHub release.
@@ -86,6 +90,9 @@ A release must not be tagged unless all of these hold:
    ≤ 800 ms low-end, month scroll jank < 1% (`benchmark.yml`, T-1801).
 7. **Data** — dataset validation and golden tests green; every new record cited; reviewer sign-off recorded
    (`reviewedBy`, [CONTRIBUTING-DATA.md](../CONTRIBUTING-DATA.md)).
+8. **Signing secrets** — `TAQVIM_KEYSTORE_BASE64`, `TAQVIM_KEYSTORE_PASSWORD`, `TAQVIM_KEY_ALIAS` and
+   `TAQVIM_KEY_PASSWORD` are set in the repository's `release` environment; without them a release tag fails at the
+   first step with that message, and no unsigned artifact is ever published.
 
 ## Release checklist (manual sign-offs)
 
