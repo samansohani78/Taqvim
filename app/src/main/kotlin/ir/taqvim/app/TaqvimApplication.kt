@@ -19,6 +19,7 @@ import ir.taqvim.data.scheduler.PreferenceChangeWatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
@@ -65,5 +66,16 @@ class TaqvimApplication :
         }
         val launcherIcon = get<LauncherIconSwitcher>()
         processScope.launch { AppShortcuts.publish(this@TaqvimApplication, launcherIcon.enabledEntry()) }
+    }
+
+    /**
+     * Ends the process-lifetime work with the process. Android does not call this on a device, but Robolectric does
+     * when it tears an application down: without it the watchers of a finished test keep collecting on
+     * `Dispatchers.Default` and write launcher component state into the next test's package manager, which made
+     * `LauncherIconTest` fail on CI (PR run 35340364471) on an app build byte-identical to a green one.
+     */
+    override fun onTerminate() {
+        processScope.cancel()
+        super.onTerminate()
     }
 }
