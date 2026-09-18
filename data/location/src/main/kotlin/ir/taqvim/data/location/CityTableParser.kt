@@ -7,9 +7,10 @@ package ir.taqvim.data.location
 import ir.taqvim.core.model.Coordinates
 
 /**
- * Parses the bundled `cities.tsv` written by `tools/geodata/natural_earth_cities.py`: `#` header lines (provenance
- * and a `# columns:` list), then one tab-separated row per place. Localized name columns are empty when the name
- * equals the English one. Malformed input is rejected with the line number.
+ * Parses the bundled `cities.tsv` written by `tools/geodata/natural_earth_cities.py`: `#` header lines (provenance,
+ * a `# layout:` note and a `# columns:` list), then the body in column-major layout (T-1800) — one tab-separated
+ * line per column of the header, holding that column's value for every place in the same order. Localized name
+ * columns are empty when the name equals the English one. Malformed input is rejected with the line number.
  */
 internal object CityTableParser {
     private const val COLUMNS_PREFIX = "# columns: "
@@ -17,73 +18,95 @@ internal object CityTableParser {
     private val BASE_COLUMNS = listOf("neId", "country", "region", "latitude", "longitude", "timeZone", "population")
 
     fun parse(lines: Sequence<String>): List<City> {
-        var columns: Map<String, Int>? = null
-        val cities = mutableListOf<City>()
+        var columns: List<String>? = null
+        val body = mutableListOf<String>()
         for ((index, line) in lines.withIndex()) {
             val lineNumber = index + 1
             if (line.startsWith(COLUMNS_PREFIX)) {
-                columns = columnIndex(line.removePrefix(COLUMNS_PREFIX))
-            } else if (!line.startsWith(COMMENT) && line.isNotBlank()) {
-                val known = requireNotNull(columns) { "line $lineNumber: row before the columns header" }
-                cities += Row(lineNumber, line, known).toCity()
+                columns = columnNames(line.removePrefix(COLUMNS_PREFIX))
+            } else if (!line.startsWith(COMMENT)) {
+                requireNotNull(columns) { "line $lineNumber: a column before the columns header" }
+                body += line
             }
         }
-        return cities
+        val known = requireNotNull(columns) { "the columns header is missing" }
+        // A column whose value is empty for every place is an empty line, so only lines past the last column can be
+        // the blank one a reader adds for the file's final newline.
+        while (body.size > known.size && body.last().isEmpty()) body.removeAt(body.lastIndex)
+        require(body.size == known.size) { "expected ${known.size} column lines, found ${body.size}" }
+        return Table(known.zip(body.map { it.split('\t') }).toMap()).cities()
     }
 
-    private fun columnIndex(header: String): Map<String, Int> {
+    private fun columnNames(header: String): List<String> {
         val names = header.split(',')
         val missing = (BASE_COLUMNS + City.PUBLISHED_LANGUAGES) - names.toSet()
         require(missing.isEmpty()) { "columns header lacks $missing" }
         require(names.distinct().size == names.size) { "columns header repeats a column: $names" }
-        return names.withIndex().associate { (index, name) -> name to index }
+        return names
     }
 
-    private class Row(
-        private val lineNumber: Int,
-        line: String,
-        private val columns: Map<String, Int>,
+    /** The parsed columns, each holding one value per place. */
+    private class Table(
+        private val columns: Map<String, List<String>>,
     ) {
-        private val fields = line.split('\t')
+        private val size = columns.values.first().size
 
         init {
-            require(fields.size == columns.size) {
-                "line $lineNumber: expected ${columns.size} fields, found ${fields.size}"
+            val ragged = columns.entries.firstOrNull { it.value.size != size }
+            require(ragged == null) {
+                "column '${ragged?.key}' has ${ragged?.value?.size} places, expected $size"
             }
         }
 
-        private fun field(name: String): String = fields[columns.getValue(name)]
+        fun cities(): List<City> = (0 until size).map(::city)
 
-        private fun optional(name: String): String? = field(name).ifEmpty { null }
+        private fun field(
+            name: String,
+            place: Int,
+        ): String = columns.getValue(name)[place]
 
-        private fun number(name: String): Double =
-            requireNotNull(field(name).toDoubleOrNull()) { "line $lineNumber: invalid $name '${field(name)}'" }
+        private fun optional(
+            name: String,
+            place: Int,
+        ): String? = field(name, place).ifEmpty { null }
 
-        fun toCity(): City {
-            val english = field(City.ENGLISH)
-            require(english.isNotBlank()) { "line $lineNumber: missing English name" }
-            val coordinates =
-                runCatching { Coordinates(number("latitude"), number("longitude")) }
-                    .getOrElse { throw IllegalArgumentException("line $lineNumber: ${it.message}", it) }
+        private fun number(
+            name: String,
+            place: Int,
+        ): Double =
+            requireNotNull(field(name, place).toDoubleOrNull()) {
+                "place ${place + 1}: invalid $name '${field(name, place)}'"
+            }
+
+        private fun city(place: Int): City {
+            val english = field(City.ENGLISH, place)
+            require(english.isNotBlank()) { "place ${place + 1}: missing English name" }
             return City(
-                id = requireNotNull(field("neId").toLongOrNull()) { "line $lineNumber: invalid id '${field("neId")}'" },
+                id =
+                    requireNotNull(field("neId", place).toLongOrNull()) {
+                        "place ${place + 1}: invalid id '${field("neId", place)}'"
+                    },
                 englishName = english,
                 localizedNames =
                     City.PUBLISHED_LANGUAGES
                         .filter { it != City.ENGLISH }
-                        .mapNotNull { code -> optional(code)?.let { code to it } }
+                        .mapNotNull { code -> optional(code, place)?.let { code to it } }
                         .toMap(),
-                countryCode = optional("country"),
-                region = optional("region"),
-                coordinates = coordinates,
-                timeZoneId = optional("timeZone"),
+                countryCode = optional("country", place),
+                region = optional("region", place),
+                coordinates = coordinates(place),
+                timeZoneId = optional("timeZone", place),
                 population =
-                    optional("population")?.let {
+                    optional("population", place)?.let {
                         requireNotNull(it.toLongOrNull()?.takeIf { value -> value >= 0 }) {
-                            "line $lineNumber: invalid population '$it'"
+                            "place ${place + 1}: invalid population '$it'"
                         }
                     },
             )
         }
+
+        private fun coordinates(place: Int): Coordinates =
+            runCatching { Coordinates(number("latitude", place), number("longitude", place)) }
+                .getOrElse { throw IllegalArgumentException("place ${place + 1}: ${it.message}", it) }
     }
 }

@@ -145,3 +145,128 @@ Journeys that open their screen in `setupBlock` use `StartupMode.WARM`: with `CO
 between the setup and the measured block, so the map, timeline and search journeys measured an empty screen and failed
 on a missing tag. A journey that wants a cold start opens the app inside the measured block, as
 `MonthScreenMemoryBenchmark` does.
+
+## Addendum (2026-09-18): APK headroom and a warning margin on the size gate (T-1800)
+
+The release APK was 7 265 104 bytes on main@8a4d8ba (7 261 536 at v1.0.0-rc1), 86.6 % of the 8 MiB budget of plan
+§9, and the gate said nothing until a build went over it. Both are fixed: the gate now warns from 90 % of the budget,
+and four changes take 836 039 bytes (0.80 MiB, 11.5 %) out of the APK without changing what the app does. It is now
+6 429 065 bytes, 76.6 % of the budget.
+
+| part of the APK (compressed size) | before | after | change |
+| --- | ---: | ---: | ---: |
+| `resources.arsc` (stored) | 2 480 524 | 2 017 640 | −462 884 |
+| `cities.tsv` | 713 910 | 536 911 | −176 999 |
+| other Java resources | 127 165 | 30 745 | −96 420 |
+| `assets/map` | 131 646 | 89 323 | −42 323 |
+| `META-INF` | 34 587 | 106 | −34 481 |
+| dex | 3 114 889 | 3 114 545 | −344 |
+| `res/`, `lib/`, other assets | 466 613 | 466 613 | 0 |
+| zip headers and alignment (134 fewer entries: 1 256 → 1 122) | | | −22 588 |
+
+### The gate
+
+`ApkSizeBudget` in `build-logic` turns a measured size into a verdict — within budget, near budget or over budget —
+and formats the line the build prints for it. `:app:checkReleaseApkSize` prints that line at lifecycle level below
+90 % of the budget, as a warning from 90 % up to the budget, and fails only above the budget. The budget itself
+still passes, so the gate fails exactly where it did before. `ApkSizeBudgetTest` covers the boundaries (just under
+90 %, exactly 90 %, one byte under the budget, the budget, one byte over) and the wording of each line, which a
+Gradle task cannot be unit-tested for.
+
+### What was cut
+
+1. **Locale filters (462 884 bytes).** `androidResources.localeFilters` keeps only the 24 launch languages of
+   `locales_config.xml`. The APK carried 88 locales, because appcompat and other AndroidX libraries ship strings for
+   about ninety; each unreachable locale cost roughly 6 kB of resource-table offsets plus its string values, and no
+   language picker in the app can select one. Plain qualifiers sit next to the BCP-47 ones (`zh-rCN` beside
+   `b+zh+Hans`, `az` beside `b+az+Latn`) so the libraries' own translations survive the filter. The debug
+   pseudo-locales `en-rXA` and `ar-rXB` are listed too, or the filter would drop them. `LocaleFiltersTest`
+   fails if a language is added to `LanguageTable` without its filter, or a filter names a language the app does not
+   offer.
+2. **Build-time metadata (130 901 bytes over 134 entries).** `packaging.resources.excludes` drops the packaged
+   `.proto` descriptors (protobuf-javalite, Glance and DataStore each ship their sources), `*.kotlin_builtins` (only
+   kotlin-reflect reads them and nothing depends on it), `DebugProbesKt.bin`, the AndroidX `META-INF/*.version`
+   markers and the `META-INF` licence copies. Apache-2.0 §4(a) is still met: the About screen serves the licence
+   texts from `assets/licenses` (T-1504), which is where the app has always shown them.
+3. **`cities.tsv` column by column (176 999 bytes).** The table is written one line per column instead of one line
+   per place, with the places ordered by country, region and English name and the languages grouped by script.
+   Every value is byte-identical to before — no place, column or decimal was dropped — but a column's values are now
+   adjacent, so deflate finds them inside its 32 kB window. `CityTableParser` reads the new layout and reports
+   problems by place instead of by line; `natural_earth_time_zones.py` reads the table through its `# columns:`
+   header rather than fixed positions.
+4. **Delta-encoded map geometry (42 323 bytes).** In `world-110m.txt`, `time-zones-10m.txt` and
+   `plates-matthews-2016.txt` only the first pair of a line is a position; every later pair is the step from the
+   point before it, still in hundredths of a degree. A band's label stays absolute, being a single point, not a line.
+   The geometry is unchanged — the steps are whole numbers and add back up to the same positions — and small
+   repetitive numbers are what deflate packs well. `line_layers.delta_pairs` does it for every generator and the
+   assets carry their new `# body-sha256`. `time-zones-10m.txt` also records the SHA-256 of the cities table it was
+   derived from; that table's values did not change, only their layout, so the recorded hash was updated rather than
+   the bands recomputed.
+
+### Decision: language splits stay off
+
+`bundle.language.enableSplit` stays `false`. All 24 launch languages ship in the base module.
+
+The measurement: **1 564 338 bytes** of the APK are the 23 languages a device does not use — 648 676 bytes of
+per-locale entry chunks in the resource table and 988 416 bytes of string values reachable only from a non-default
+locale, less the one language the device keeps (about 27 400 and 45 354). Language splits are the only way to take
+that out; nothing else in the APK holds anything near it. That is the whole of the 1.5 MiB that was asked for, and
+it is why the cuts above stop at 836 039 bytes.
+
+It was rejected anyway. The language is chosen inside the app (T-1501, ADR-0023), not taken from the system locale,
+because a Persian calendar is used by people whose phone runs in English or German; Play delivers a language split
+only when the device's own language list asks for it, so a language picked in the app would fall back to English on
+the devices most likely to pick it. The app cannot fetch the missing split either: it holds no `INTERNET` permission
+(T-1804), and on-demand delivery would add Play Feature Delivery, a proprietary Google dependency that ADR-0003 does
+not allow and that the APK published on GitHub could not use. Giving up in-app language choice to save 1.5 MiB of a
+6.1 MiB app is the wrong trade.
+
+The owner can flip `enableSplit` to `true` if they later accept that users whose system locale list names no launch
+language see English until they install one from Play.
+
+### Measured and left alone
+
+- **Dropping appcompat** from the runtime classpath (koin-android pulls it in only for its `ScopeActivity` and
+  `ScopeFragment` helpers, which a Compose app on a `ComponentActivity` never instantiates) was built and measured:
+  21 096 bytes, because R8 and the resource shrinker had already removed nearly all of it. It was reverted for now,
+  since it changes the checked-in `third-party.json` licence list and deserves its own change with the licence gate
+  re-run.
+- **CLDR rows.** Every key kind in `formats.properties` — date patterns, weekday, month and era names per calendar,
+  plural rules, relative times, units and list patterns — is read by `FormatTable`, and the root and English
+  fallbacks are already dropped at generation. What repeats (a language's weekday names are the same in all three
+  calendars) costs almost nothing once deflated, so no row was removed.
+- **`resources.arsc`** is stored uncompressed, as Android requires of an app targeting API 30 or later, so its 2 MB
+  is 2 MB of APK. Sparse resource encoding would shrink its offset tables but needs `minSdk` 32 and Taqvim's is 26;
+  resource-name collapsing has no AGP switch in 9.4.
+- **Glance layouts.** 1 088 of the APK's 1 122 entries are the layouts `glance-appwidget` generates, about 366 kB.
+  They are selected by id at runtime, so the resource shrinker keeps them all; they go when the widgets do.
+
+### Sizes
+
+- Universal release APK: 7 265 104 → **6 429 065 bytes** (76.6 % of the budget).
+- Release AAB: **10 883 140 bytes** (an AAB stores its resources uncompressed; it is not what a device downloads).
+- Per-device download from that AAB: about **6.37 MB** — the APK less the three unused ABI folders (53 128 bytes of
+  the 73 584 in `lib/`); the app has no density-specific resources worth splitting. With language splits it would be
+  about 4.81 MB.
+
+### Three further levers, checked with numbers
+
+- **Duplicate translated values.** The resource table's string pool already stores each distinct value once:
+  32 027 string-valued entries across all configs point at 23 237 pool strings, so 8 790 duplicate references are
+  collapsed and the 186 362 bytes they would have cost are already not being spent. `config/i18n/same-as-source.txt`
+  is a 140-line review list for translators and is not packaged. What is *not* shared is the entry itself: 1 401
+  localized `<string>` entries hold a value identical to the default one and each still costs about 20 bytes of
+  resource table, **28 020 bytes** in total. Deleting them would let Android fall back to the default config, but it
+  would also make `MissingTranslation` fire and would fight the Weblate round-trip, which expects a complete file per
+  language. Not worth 28 kB.
+- **Unreachable resources.** `shrinkResources` is already removing entries, not just blanking files: the linked
+  resource table has 4 795 entries and the APK has 3 556, so **1 239 entries and 357 `res/` files are already gone**
+  — 351 styles, 306 attrs, 123 dimens, 117 drawables, 112 strings, 103 colors, 55 styleables, 43 layouts and the
+  rest. What is left is reachable: 1 162 layouts and 822 ids are the matrix `glance-appwidget` generates and selects
+  by id at runtime, and the 1 302 strings are the app's own UI text. There is no unreachable string or drawable left
+  to drop.
+- **Translator comments and untranslatable strings.** The `<!-- MT: needs review -->` marker sits in 418 of the 437
+  `values-*/strings.xml` files, and **none of them reach the APK**: `resources.arsc` contains the text zero times,
+  because AAPT2 drops XML comments when it compiles a resource file. No `values-*` file carries
+  `translatable="false"`; the 9 untranslatable strings live in the default `values/` only, as they should, so they
+  are stored once rather than per language.

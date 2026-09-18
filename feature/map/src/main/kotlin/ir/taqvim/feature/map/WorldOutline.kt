@@ -65,7 +65,8 @@ class PlateBoundary(
  * `T <zone|-> <2012 offset minutes> <label lon,lat> <area km²> [zone,zone…]` (a time-zone band, in index order, with
  * its optional other zones),
  * `Z <band> <band> lon,lat …` (a time-zone boundary) and `P <km²> lon,lat …` (a plate boundary), all coordinates in
- * hundredths of a degree.
+ * hundredths of a degree. Along a line only the first pair is a position; every later pair is the step from the point
+ * before it (T-1800). A band's label stays absolute, being a single point rather than a line.
  */
 object WorldOutlineParser {
     const val ASSET: String = "map/world-110m.txt"
@@ -173,30 +174,54 @@ private class OutlineBuilder {
         number: Int,
     ): PlateBoundary = PlateBoundary(integer(tokens.getOrNull(1), number).toLong(), points(tokens.drop(2), number))
 
+    /**
+     * The points of one outline part as map units. The first pair is the point itself, every later pair the step
+     * from the point before it (T-1800), so a long line stores small repetitive numbers.
+     */
     private fun points(
         pairs: List<String>,
         number: Int,
     ): FloatArray {
         require(pairs.size >= 2) { "line $number: an outline part needs two points" }
         val values = FloatArray(pairs.size * 2)
+        var longitude = 0
+        var latitude = 0
         pairs.forEachIndexed { index, token ->
-            val (x, y) = pair(token, number)
+            val (stepX, stepY) = hundredths(token, number)
+            longitude += stepX
+            latitude += stepY
+            val (x, y) = mapUnits(longitude, latitude)
             values[2 * index] = x
             values[2 * index + 1] = y
         }
         return values
     }
 
-    /** A "lon,lat" pair in hundredths of a degree as map units. */
+    /** An absolute "lon,lat" pair in hundredths of a degree as map units. */
     private fun pair(
         token: String,
         number: Int,
     ): Pair<Float, Float> {
+        val (longitude, latitude) = hundredths(token, number)
+        return mapUnits(longitude, latitude)
+    }
+
+    /** The two whole numbers of a "lon,lat" token, in hundredths of a degree. */
+    private fun hundredths(
+        token: String,
+        number: Int,
+    ): Pair<Int, Int> {
         val longitude = token.substringBefore(',').toIntOrNull()
         val latitude = token.substringAfter(',', "").toIntOrNull()
         require(longitude != null && latitude != null) { "line $number: '$token' is not lon,lat" }
-        return (longitude / HUNDREDTHS + HALF_TURN) / FULL_TURN to (RIGHT_ANGLE - latitude / HUNDREDTHS) / HALF_TURN
+        return longitude to latitude
     }
+
+    private fun mapUnits(
+        longitude: Int,
+        latitude: Int,
+    ): Pair<Float, Float> =
+        (longitude / HUNDREDTHS + HALF_TURN) / FULL_TURN to (RIGHT_ANGLE - latitude / HUNDREDTHS) / HALF_TURN
 
     private fun integer(
         token: String?,

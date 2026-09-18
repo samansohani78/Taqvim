@@ -26,7 +26,8 @@ Output lines after the header:
   optional last field lists the band's other zones whose offsets differ from the representative zone's;
 - "Z <band> <band> lon,lat ..." (the boundary between two bands, open), simplified with a Douglas-Peucker tolerance of
   TOLERANCE degrees.
-Coordinates are in hundredths of a degree.
+Coordinates are in hundredths of a degree; on a boundary line the first pair is absolute and every later
+pair is relative to the point before it.
 """
 import datetime
 import json
@@ -70,16 +71,33 @@ def tzdata_links():
 def read_cities(path):
     """(lon, lat, zone, population) of catalog cities with a zone known to this machine's tz database.
 
-    Backward names (links such as Asia/Rangoon) are replaced by their canonical zone.
+    cities.tsv is column-major (T-1800): after the header, one line per column of "# columns:" holding that column's
+    value for every place. Backward names (links such as Asia/Rangoon) are replaced by their canonical zone.
     """
     available, links = zoneinfo.available_timezones(), tzdata_links()
+    names, columns = [], []
     with open(path, encoding="utf-8") as handle:
-        rows = [line.rstrip("\n").split("\t") for line in handle if not line.startswith("#")]
+        for line in handle:
+            line = line.rstrip("\n")
+            if line.startswith("# columns: "):
+                names = line.removeprefix("# columns: ").split(",")
+            elif not line.startswith("#") and line:
+                columns.append(line.split("\t"))
+    if len(columns) != len(names):
+        raise ValueError(f"{path}: {len(columns)} column lines for {len(names)} columns")
+    table = dict(zip(names, columns))
     cities = []
-    for row in rows:
-        zone = links.get(row[5], row[5])
+    for place in range(len(table["neId"])):
+        zone = links.get(table["timeZone"][place], table["timeZone"][place])
         if zone in available:
-            cities.append((float(row[4]), float(row[3]), zone, int(row[6] or 0)))
+            cities.append(
+                (
+                    float(table["longitude"][place]),
+                    float(table["latitude"][place]),
+                    zone,
+                    int(table["population"][place] or 0),
+                )
+            )
     return cities
 
 
@@ -219,7 +237,8 @@ def main(argv):
         "# format: T = band (representative IANA zone or -, 2012 offset in minutes, label lon,lat, area km2, optional "
         "comma-separated other zones with another offset), one per "
         f"band in index order; Z = boundary between two bands (their indices); lon,lat pairs in hundredths of a "
-        f"degree; Douglas-Peucker tolerance {TOLERANCE} degree",
+        "degree, a band label absolute and, on a boundary, the first pair absolute and every later one relative to "
+        f"the point before it; Douglas-Peucker tolerance {TOLERANCE} degree",
         f"# bands: {len(parts)} ({own} with a catalog city, {inherited} with their feature's city, {none} without); "
         f"tz database {tz_version()}",
         f"# mixed bands: {mixed} (reference instants "

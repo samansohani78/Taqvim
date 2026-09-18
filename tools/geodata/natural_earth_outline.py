@@ -8,13 +8,16 @@ Usage: natural_earth_outline.py <ne_110m_land.geojson> <ne_110m_admin_0_boundary
        natural_earth_outline.py --check <output.txt>
 
 Output lines after the header: "L" (a land ring, closed) or "B" (a country boundary line, open) followed by
-space-separated "lon,lat" pairs in hundredths of a degree (integers). Coordinates are rounded, consecutive duplicates
-are dropped and parts with fewer than two points are skipped; nothing is added. The header records both source files'
+space-separated "lon,lat" pairs in hundredths of a degree (integers), the first absolute and every later one relative
+to the point before it (T-1800). Coordinates are rounded, consecutive duplicates are dropped and parts with fewer than
+two points are skipped; nothing is added. The header records both source files'
 SHA-256 and the SHA-256 of the body (every line after the header joined with "\n"), which the module's test checks.
 """
 import hashlib
 import json
 import sys
+
+import line_layers
 
 URL = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/{commit}/geojson/{name}"
 
@@ -38,7 +41,7 @@ def encode(tag, points):
         pair = f"{round(lon * 100)},{round(lat * 100)}"
         if not pairs or pairs[-1] != pair:
             pairs.append(pair)
-    return f"{tag} " + " ".join(pairs) if len(pairs) >= 2 else None
+    return f"{tag} " + " ".join(line_layers.delta_pairs(pairs)) if len(pairs) >= 2 else None
 
 
 def body_lines(path, tag):
@@ -85,7 +88,8 @@ def main(argv):
         "# license: public domain (https://www.naturalearthdata.com/about/terms-of-use/)",
         f"# source-sha256-land: {sha256_file(land)}",
         f"# source-sha256-boundaries: {sha256_file(boundaries)}",
-        "# format: L = land ring, B = boundary line; lon,lat pairs in hundredths of a degree",
+        "# format: L = land ring, B = boundary line; lon,lat pairs in hundredths of a degree, the first of a "
+        "line absolute and every later one relative to the point before it",
         f"# body-sha256: {body_hash(body)}",
     ]
     with open(output, "w", encoding="utf-8", newline="\n") as handle:

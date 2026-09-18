@@ -69,7 +69,7 @@ class WorldOutlineTest {
             WorldOutlineParser.parse(
                 "T Asia/Tehran 210 5142,3570 1600000\nT - 240 5500,2500 90000\n" +
                     "T Africa/Cairo 120 2801,3524 6000000 Europe/Istanbul,Asia/Amman\n" +
-                    "Z 0 1 -18000,9000 18000,-9000\nP 1437 0,0 18000,0\n",
+                    "Z 0 1 -18000,9000 36000,-18000\nP 1437 0,0 18000,0\n",
             )
         val (tehran, sea, cairo) = parsed.timeZones.bands
         tehran.zoneId shouldBe "Asia/Tehran"
@@ -93,7 +93,7 @@ class WorldOutlineTest {
 
     @Test
     fun `outline lines are validated`() {
-        val parsed = WorldOutlineParser.parse("# header\n\nL -18000,9000 18000,-9000\n")
+        val parsed = WorldOutlineParser.parse("# header\n\nL -18000,9000 36000,-18000\n")
         parsed.land.single().toList() shouldBe listOf(0f, 0f, 1f, 1f)
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("X 0,0 1,1\n") }
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("L 0,0\n") }
@@ -106,6 +106,39 @@ class WorldOutlineTest {
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T Africa/Cairo 0 0,0 1 A B\n") }
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("P big 0,0 1,1\n") }
         shouldThrow<IllegalArgumentException> { WorldOutlineParser.parse("T - 0 0,0 1\nZ 0 1 0,0 1,1\n") }
+    }
+
+    @Test
+    fun `only the first pair of a line is a position, the rest are steps from the point before`() {
+        val absolute = WorldOutlineParser.parse("L -18000,9000 36000,-18000 0,0\n").land.single()
+        absolute.toList() shouldBe listOf(0f, 0f, 1f, 1f, 1f, 1f)
+        // A band's label is a single point, so it stays absolute next to the delta encoded boundary that follows it.
+        val bands = WorldOutlineParser.parse("T - 0 5142,3570 1\nZ 0 0 5142,3570 0,0\n").timeZones
+        bands.bands
+            .single()
+            .label.x shouldBe ((51.42 + 180) / 360 plusOrMinus 1e-6)
+        bands.boundaries
+            .single()
+            .line
+            .toList() shouldBe
+            listOf(
+                bands.bands
+                    .single()
+                    .label.x
+                    .toFloat(),
+                bands.bands
+                    .single()
+                    .label.y
+                    .toFloat(),
+                bands.bands
+                    .single()
+                    .label.x
+                    .toFloat(),
+                bands.bands
+                    .single()
+                    .label.y
+                    .toFloat(),
+            )
     }
 
     private companion object {

@@ -73,7 +73,26 @@ class EncodeTest(unittest.TestCase):
         keys = [(179.0, 1.0), (179.5, 2.0), (-179.5, 1.0), (-179.0, 2.0)]
         points = {key: key for key in keys}
         lines = line_layers.encode_lines("Z 0 1", [keys], points, 0.0)
-        self.assertEqual(lines, ["Z 0 1 17900,100 17950,200", "Z 0 1 -17950,100 -17900,200"])
+        self.assertEqual(lines, ["Z 0 1 17900,100 50,100", "Z 0 1 -17950,100 50,100"])
+
+
+class DeltaPairsTest(unittest.TestCase):
+    def test_first_pair_is_absolute_and_the_rest_are_steps(self):
+        self.assertEqual(line_layers.delta_pairs(["100,200", "150,190", "150,190"]), ["100,200", "50,-10", "0,0"])
+
+    def test_a_single_pair_is_unchanged(self):
+        self.assertEqual(line_layers.delta_pairs(["-17950,-100"]), ["-17950,-100"])
+
+    def test_the_steps_add_back_up_to_the_positions(self):
+        pairs = ["1,2", "-3,4", "5,-6", "0,0"]
+        encoded = line_layers.delta_pairs(pairs)
+        lon = lat = 0
+        restored = []
+        for step in encoded:
+            dx, dy = (int(value) for value in step.split(","))
+            lon, lat = lon + dx, lat + dy
+            restored.append(f"{lon},{lat}")
+        self.assertEqual(restored, pairs)
 
 
 if __name__ == "__main__":

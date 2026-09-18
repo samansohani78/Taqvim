@@ -1,5 +1,7 @@
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.BuiltArtifactsLoader
+import ir.taqvim.buildlogic.ApkSizeBudget
+import ir.taqvim.buildlogic.ApkSizeStatus
 import ir.taqvim.buildlogic.TaqvimVersion
 import javax.xml.parsers.DocumentBuilderFactory
 
@@ -15,8 +17,8 @@ plugins {
 /** Gradle Managed Device for the device smoke tests: `./gradlew :app:pixel6Api34DebugAndroidTest` (docs/RELEASE.md). */
 val smokeDevice = "pixel6Api34"
 
-/** Plan §9: release APK at most 8 MB (T-1800). */
-val apkBudgetBytes: Long = 8L * 1024 * 1024
+/** Plan §9: release APK at most 8 MB; the build warns from 90 % of it (T-1800). */
+val apkBudgetBytes: Long = ApkSizeBudget.BUDGET_BYTES
 
 /** The release tag passed by CI (`-Ptaqvim.version`), otherwise the checked-in `version.properties` (T-1900). */
 val taqvimVersion: TaqvimVersion =
@@ -27,6 +29,48 @@ val taqvimVersion: TaqvimVersion =
                 .fileContents(rootProject.layout.projectDirectory.file("version.properties"))
                 .asText
                 .orNull,
+    )
+
+/**
+ * T-1800: the locale qualifiers kept in the resource table, one per launch language of
+ * `app/src/main/res/xml/locales_config.xml`, plus the older qualifier spelling that libraries use for the same
+ * language so their translations survive the filter.
+ */
+val launchLocaleFilters =
+    setOf(
+        "en",
+        "ar",
+        "b+az+Latn",
+        "az",
+        "b+ckb",
+        "ckb",
+        "b+uz+Latn",
+        "uz",
+        "b+zh+Hans",
+        "zh",
+        "zh-rCN",
+        "bn",
+        "de",
+        "es",
+        "fa",
+        "fa-rAF",
+        "fr",
+        "hi",
+        "in",
+        "ja",
+        "ku",
+        "ms",
+        "ne",
+        "ps",
+        "ru",
+        "ta",
+        "tg",
+        "tr",
+        "ur",
+        // Debug pseudo-locales (isPseudoLocalesEnabled): the filter would otherwise drop them. Release builds never
+        // generate them, so they cost nothing there.
+        "en-rXA",
+        "ar-rXB",
     )
 
 android {
@@ -84,6 +128,31 @@ android {
         // The app language is chosen in the app (T-1501, ADR-0023), so every language's resources must be installed.
         language {
             enableSplit = false
+        }
+    }
+    androidResources {
+        // T-1800 (ADR-0018 addendum): keep only the 24 launch languages of locales_config.xml. Libraries such as
+        // appcompat ship strings for about ninety locales; the rest cost about 6 kB of resource table each and are
+        // unreachable, because the language picker (T-1501) offers exactly these locales. Kept equal to
+        // LanguageTable by AppLocalesTest; the plain codes next to the BCP-47 ones keep the library translations
+        // that use the older qualifier (values-zh-rCN for b+zh+Hans, values-az for b+az+Latn).
+        localeFilters += launchLocaleFilters
+    }
+    packaging {
+        resources {
+            // T-1800: build-time metadata that no code reads at runtime. The Apache-2.0 notices stay available in
+            // the About screen, which serves them from assets/licenses (T-1504), not from these META-INF copies.
+            excludes +=
+                setOf(
+                    "**/*.proto",
+                    "**/*.proto.bin",
+                    "**/*.kotlin_builtins",
+                    "DebugProbesKt.bin",
+                    "META-INF/*.version",
+                    "META-INF/version-control-info.textproto",
+                    "META-INF/androidx/**",
+                    "META-INF/org/**",
+                )
         }
     }
 }
@@ -236,7 +305,10 @@ abstract class ReleaseShrinkingCheck : DefaultTask() {
     }
 }
 
-/** T-1800 plan §9 budget: every APK of the release variant is at most [budgetBytes] bytes. */
+/**
+ * T-1800 plan §9 budget: every APK of the release variant is at most [budgetBytes] bytes. From [warnAtPercent]
+ * of the budget the build warns, so growth is visible before it blocks a release (T-1800, ADR-0018 addendum).
+ */
 abstract class ApkSizeCheck : DefaultTask() {
     @get:InputFiles
     @get:PathSensitive(PathSensitivity.RELATIVE)
@@ -248,15 +320,31 @@ abstract class ApkSizeCheck : DefaultTask() {
     @get:Input
     abstract val budgetBytes: Property<Long>
 
+    @get:Input
+    abstract val warnAtPercent: Property<Int>
+
     @TaskAction
     fun measure() {
         val artifacts = checkNotNull(loader.get().load(apkDirectory.get())) { "No APKs in ${apkDirectory.get()}" }
-        artifacts.elements.forEach { element ->
-            val apk = File(element.outputFile)
-            val budget = budgetBytes.get()
-            logger.lifecycle("APK ${apk.name}: ${apk.length()} bytes (budget $budget)")
-            check(apk.length() <= budget) { "${apk.name} is ${apk.length()} bytes, over the $budget byte budget" }
+        val reports =
+            artifacts.elements.map { element ->
+                val apk = File(element.outputFile)
+                ApkSizeBudget.report(
+                    name = "APK ${apk.name}",
+                    bytes = apk.length(),
+                    budgetBytes = budgetBytes.get(),
+                    warnAtPercent = warnAtPercent.get(),
+                )
+            }
+        reports.forEach { report ->
+            when (report.status) {
+                ApkSizeStatus.WITHIN_BUDGET -> logger.lifecycle(report.message)
+                ApkSizeStatus.NEAR_BUDGET -> logger.warn("w: ${report.message}")
+                ApkSizeStatus.OVER_BUDGET -> logger.error("e: ${report.message}")
+            }
         }
+        val over = reports.filter { it.status == ApkSizeStatus.OVER_BUDGET }
+        check(over.isEmpty()) { over.joinToString(separator = "; ") { it.message } }
     }
 }
 
@@ -360,10 +448,13 @@ androidComponents {
         }
         tasks.register<ApkSizeCheck>("check${variantName}ApkSize") {
             group = "verification"
-            description = "Fails when a ${variant.name} APK is over the plan §9 size budget (T-1800)."
+            description =
+                "Warns from ${ApkSizeBudget.WARN_AT_PERCENT} % of the plan §9 size budget and fails a " +
+                "${variant.name} APK over it (T-1800)."
             apkDirectory.set(variant.artifacts.get(SingleArtifact.APK))
             loader.set(variant.artifacts.getBuiltArtifactsLoader())
             budgetBytes.set(apkBudgetBytes)
+            warnAtPercent.set(ApkSizeBudget.WARN_AT_PERCENT)
         }
     }
     onVariants { variant ->

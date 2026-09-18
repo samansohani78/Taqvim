@@ -5,8 +5,8 @@
 Boundaries are the polygon edges shared by two polygons whose keys differ (for example two time-zone bands or two
 plate ids). Edges are matched on their endpoints rounded to 1e-5 degree and grouped by the pair of keys they separate;
 each group is chained into polylines through vertices with exactly two of its edges, simplified with the
-Douglas-Peucker algorithm in degrees, rounded to hundredths of a degree and split where a line would jump across the
-antimeridian. The asset format is the one of `natural_earth_outline.py`: header lines starting with "# ", then
+Douglas-Peucker algorithm in degrees, rounded to hundredths of a degree, delta encoded and split where a line would
+jump across the antimeridian. The asset format is the one of `natural_earth_outline.py`: header lines starting with "# ", then
 "<tag> [fields] lon,lat lon,lat ..." lines.
 """
 import collections
@@ -159,8 +159,23 @@ def hundredths(point):
     return f"{round(point[0] * 100)},{round(point[1] * 100)}"
 
 
+def delta_pairs(pairs):
+    """A polyline's pairs with the first point absolute and every later one relative to the point before it (T-1800).
+
+    The values stay in hundredths of a degree. Storing each step rather than each position keeps the numbers small and
+    repetitive, which deflate packs into about a third less space for the same geometry.
+    """
+    out = []
+    previous_lon = previous_lat = 0
+    for pair in pairs:
+        lon, lat = (int(value) for value in pair.split(","))
+        out.append(f"{lon - previous_lon},{lat - previous_lat}")
+        previous_lon, previous_lat = lon, lat
+    return out
+
+
 def encode_lines(tag, lines, points, tolerance):
-    """Asset lines for keyed polylines: simplified, rounded to hundredths, split at antimeridian jumps.
+    """Asset lines for keyed polylines: simplified, rounded to hundredths, delta encoded, split at antimeridian jumps.
 
     `tag` is written before the pairs and may carry fields, e.g. "Z 3 17".
     """
@@ -172,14 +187,14 @@ def encode_lines(tag, lines, points, tolerance):
         for lon, lat in coordinates:
             if previous_lon is not None and abs(lon - previous_lon) > 180:
                 if len(pairs) >= 2:
-                    out.append(f"{tag} " + " ".join(pairs))
+                    out.append(f"{tag} " + " ".join(delta_pairs(pairs)))
                 pairs = []
             pair = hundredths((lon, lat))
             if not pairs or pairs[-1] != pair:
                 pairs.append(pair)
             previous_lon = lon
         if len(pairs) >= 2:
-            out.append(f"{tag} " + " ".join(pairs))
+            out.append(f"{tag} " + " ".join(delta_pairs(pairs)))
     return out
 
 

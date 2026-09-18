@@ -13,7 +13,8 @@ PresentDay_StaticPlatePolygons_Matthews.shp` and `.dbf`) are read directly with 
 software is used.
 
 Output lines after the header: "P <km²>" (a boundary between polygons of two different plate ids, open) followed by
-"lon,lat" pairs in hundredths of a degree, simplified with a Douglas-Peucker tolerance of TOLERANCE degrees. The number
+"lon,lat" pairs in hundredths of a degree (the first of a line absolute, every later one relative to the
+point before it), simplified with a Douglas-Peucker tolerance of TOLERANCE degrees. The number
 is the spherical area of the smaller of the two plates (all polygons of a plate id), so the app can hide microplate
 boundaries at low zoom. Edges between polygons of one plate (for example crust of different ages) are dropped.
 """
@@ -62,7 +63,8 @@ def main(argv):
         f"# source-sha256: {line_layers.sha256_file(source)}",
         "# generator: tools/geodata/matthews_plates.py",
         "# format: P = boundary between polygons of different plate ids (PLATEID1), then the smaller plate's spherical "
-        f"area in km2; lon,lat pairs in hundredths of a degree; Douglas-Peucker tolerance {TOLERANCE} degree",
+        "area in km2; lon,lat pairs in hundredths of a degree, the first of a line absolute and every later one "
+        f"relative to the point before it; Douglas-Peucker tolerance {TOLERANCE} degree",
     ]
     line_layers.write_asset(output, header, body)
     print(

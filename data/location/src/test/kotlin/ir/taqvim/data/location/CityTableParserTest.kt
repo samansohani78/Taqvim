@@ -12,7 +12,7 @@ import io.kotest.matchers.string.shouldContain
 import ir.taqvim.core.model.Coordinates
 import org.junit.jupiter.api.Test
 
-/** T-603: the bundled table format — header, same-as-English columns, name fallback and rejection of bad rows. */
+/** T-603: the bundled table format — header, column-major body, same-as-English columns and rejection of bad input. */
 class CityTableParserTest {
     private val base = listOf("neId", "country", "region", "latitude", "longitude", "timeZone", "population", "en")
     private val columns = base + (City.PUBLISHED_LANGUAGES - City.ENGLISH).sorted()
@@ -31,18 +31,37 @@ class CityTableParserTest {
             "de" to "Teheran",
         )
 
+    private val karaj =
+        mapOf(
+            "neId" to "1159144071",
+            "country" to "IR",
+            "region" to "Alborz",
+            "latitude" to "35.83266",
+            "longitude" to "50.99155",
+            "timeZone" to "Asia/Tehran",
+            "population" to "1967005",
+            "en" to "Karaj",
+            "fa" to "کرج",
+        )
+
     private fun header(names: List<String> = columns) = "# columns: " + names.joinToString(",")
 
-    private fun row(
-        values: Map<String, String>,
+    /** The body of a table: one line per column, holding that column's value for every place. */
+    private fun body(
+        places: List<Map<String, String>>,
         names: List<String> = columns,
-    ) = names.joinToString("\t") { values[it].orEmpty() }
+    ) = names.map { name -> places.joinToString("\t") { it[name].orEmpty() } }
 
     private fun parse(vararg lines: String): List<City> = CityTableParser.parse(lines.asSequence())
 
+    private fun parse(
+        places: List<Map<String, String>>,
+        names: List<String> = columns,
+    ): List<City> = CityTableParser.parse((listOf(header(names)) + body(places, names)).asSequence())
+
     @Test
-    fun `a row keeps published names and empty localized columns mean the English spelling`() {
-        val city = parse("# source: test table", header(), row(tehran)).single()
+    fun `a place keeps published names and empty localized columns mean the English spelling`() {
+        val city = parse(listOf(tehran)).single()
 
         city.id shouldBe 1_159_151_551L
         city.countryCode shouldBe "IR"
@@ -62,11 +81,22 @@ class CityTableParserTest {
     }
 
     @Test
+    fun `the column lines stay aligned, so every place keeps its own values`() {
+        val cities = parse(listOf(tehran, karaj))
+
+        cities.map(City::englishName) shouldBe listOf("Tehran", "Karaj")
+        cities.map { it.name("fa") } shouldBe listOf("تهران", "کرج")
+        cities.map(City::region) shouldBe listOf("Tehran", "Alborz")
+        cities.map(City::population) shouldBe listOf(7_873_000L, 1_967_005L)
+        cities.map { it.coordinates.longitude } shouldBe listOf(51.4224, 50.99155)
+    }
+
+    @Test
     fun `optional fields may be empty and columns may come in any order`() {
         val reordered = columns.reversed()
         val values = mapOf("neId" to "7", "latitude" to "-33.544", "longitude" to "-56.901", "en" to "Trinidad")
 
-        val city = parse(header(reordered), "", row(values, reordered)).single()
+        val city = parse(listOf(values), reordered).single()
 
         city.englishName shouldBe "Trinidad"
         city.coordinates shouldBe Coordinates(-33.544, -56.901)
@@ -78,13 +108,43 @@ class CityTableParserTest {
     }
 
     @Test
-    fun `malformed tables are rejected with the line number`() {
-        shouldThrow<IllegalArgumentException> { parse(row(tehran)) }.message shouldContain
-            "line 1: row before the columns header"
+    fun `a malformed header or body shape is rejected`() {
+        shouldThrow<IllegalArgumentException> { parse(body(listOf(tehran)).first()) }.message shouldContain
+            "line 1: a column before the columns header"
+        shouldThrow<IllegalArgumentException> { parse("# source: test table") }.message shouldContain
+            "the columns header is missing"
         shouldThrow<IllegalArgumentException> { parse(header(columns - "tr")) }.message shouldContain "lacks [tr]"
         shouldThrow<IllegalArgumentException> { parse(header(columns + "neId")) }.message shouldContain "repeats"
-        shouldThrow<IllegalArgumentException> { parse(header(), row(tehran) + "\textra") }.message shouldContain
-            "line 2: expected 21 fields, found 22"
+        shouldThrow<IllegalArgumentException> { parse(header()) }.message shouldContain
+            "expected 21 column lines, found 0"
+        shouldThrow<IllegalArgumentException> {
+            parse(*(listOf(header()) + body(listOf(tehran)) + "extra").toTypedArray())
+        }.message shouldContain "expected 21 column lines, found 22"
+        shouldThrow<IllegalArgumentException> {
+            val ragged = body(listOf(tehran)).toMutableList().also { it[1] = it[1] + "\tIR" }
+            parse(*(listOf(header()) + ragged).toTypedArray())
+        }.message shouldContain "column 'country' has 2 places, expected 1"
+    }
+
+    @Test
+    fun `a column that is empty for every place is a line of its own, not a blank to skip`() {
+        val nameless = mapOf("neId" to "7", "latitude" to "1.0", "longitude" to "2.0", "en" to "Trinidad")
+
+        val city = parse(listOf(nameless)).single()
+
+        city.englishName shouldBe "Trinidad"
+        city.localizedNames.keys.shouldBeEmpty()
+    }
+
+    @Test
+    fun `a blank line after the last column is ignored, as a final newline produces one`() {
+        val cities = parse(*(listOf(header()) + body(listOf(tehran, karaj)) + "").toTypedArray())
+
+        cities.map(City::englishName) shouldBe listOf("Tehran", "Karaj")
+    }
+
+    @Test
+    fun `an unreadable value names the place it belongs to`() {
         listOf(
             ("neId" to "x") to "invalid id",
             ("latitude" to "north") to "invalid latitude",
@@ -92,8 +152,8 @@ class CityTableParserTest {
             ("population" to "-99") to "invalid population",
             ("en" to " ") to "missing English name",
         ).forEach { (change, message) ->
-            val error = shouldThrow<IllegalArgumentException> { parse(header(), row(tehran + change)) }
-            error.message shouldContain "line 2: "
+            val error = shouldThrow<IllegalArgumentException> { parse(listOf(karaj, tehran + change)) }
+            error.message shouldContain "place 2: "
             error.message shouldContain message
         }
     }
