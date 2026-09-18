@@ -433,6 +433,68 @@ Two bugs that only a real Android runtime could show, both found by running the 
 Both were invisible to the JVM and Robolectric suites, which is why the managed-device runs (main@9a152e5) and the
 nightly benchmark job matter as gates.
 
+### Device bug reports of 2026-09-18
+
+**BUG-1 (P0), "crashes after jumping ~20 years back" — not reproduced; the fragility it points at is fixed
+(main@200b6cf).** Driven at ±20/50/100 years through every entry point (fast month swiping, year view, date picker,
+converter, `taqvim://day/…` and `taqvim://timeline/…` deep links, search results, week timeline) in 240 combinations
+of primary calendar × Islamic variant × official override × locale, and on an API 34 emulator in both debug and R8
+release: swiping back 34 years, rotation during navigation, `am send-trim-memory RUNNING_CRITICAL`, process death and
+relaunch at a far month, the official Hijri override on, Hebrew and Nepali as the secondary calendar. `adb logcat -d`
+showed **0 `FATAL EXCEPTION`**, so no stack trace could be attached. Memory stayed flat (PSS ≈ 150 MB debug, ≈ 90 MB
+release).
+
+What the search did find is a real fragility: `HebrewCalendar.fromJdn`, `NepaliCalendarSystem.fromJdn`,
+`LunarMonthArithmetic.fromJdn`, `UmmAlQuraMonths.indexContaining`, `PersianYearStarts.yearContaining` and the computus
+functions throw outside their supported ranges, and three paths let that throw reach the process instead of one
+screen: the `produceState` page build inside composition, the overview and times flows, and the day-details call that
+runs for every restored state and deep link. Those range checks now throw `CalendarRangeException`, and
+`CalendarRangeGuard` catches **only** that type (anything else is rethrown, so ordinary bugs still surface), logs it,
+and falls back to the nearest day every shown calendar can express, with `message_date_out_of_range` in all 24
+languages. Regression test: `LongRangeNavigationTest` (6 tests) — pages at ±20/50/100 years for all 240 combinations,
+day details at those distances for Tehran, Tromsø and Ushuaia, `Int.MIN_VALUE`/`MAX_VALUE` offsets, the fallback, the
+rethrow of a non-range failure, and a heap check that 2 401 pages stay under the 80 MB month budget.
+
+If it happens again, `adb logcat -b crash -d` and the build type would settle it; with main@200b6cf installed the
+guard names the exact day and operation in logcat.
+
+**BUG-2 (P1), "sluggish" — two causes found and fixed (main@b3a300f).**
+
+1. *The UI state was built on the main thread.* `CalendarViewModel.uiState` combined in `viewModelScope`; building the
+   content converts the shown day into every chosen calendar, and the first day of an Islamic month block comes from
+   the ephemeris (ADR-0027, ADR-0028). On the JVM: 20–50 ms per new block, 148 ms on first touch and **378 ms for a
+   20-year jump**, and several times that on a phone. `showMonth`/`pickDate` did the same arithmetic on the main
+   thread. Fixed with `flowOn(calculationDispatcher)` and month arithmetic on that dispatcher, serialised by a
+   `Mutex`.
+2. *Every tap recomposed the whole month grid.* `MonthPageView` wrapped the grid in a `Crossfade` keyed on the
+   selection and rebuilt its callbacks per page, so all 42 `DayCell`s recomposed and a 150 ms animation ran on every
+   tap. The grid now updates in place with stable callbacks.
+
+Measured on the API 34 managed device, `taqvim://day/1385-01-01`, 12 s traced, median of 3 runs:
+
+| | release before | release after | debug before | debug after |
+|---|---:|---:|---:|---:|
+| main-thread frame time | 1 416 ms | **930 ms** | 15 018 ms | **9 726 ms** |
+| frames rendered | 21 | **43** | 24 | **161** |
+| worst frame | 308 ms | **184 ms** | 4 333 ms | **2 825 ms** |
+| cold start (`am start -W`) | 107–146 ms | 109–139 ms | 654–692 ms | 656–687 ms |
+
+Top main-thread hotspots, release, before → after: `traversal` 812 → 535 ms, `draw` 750 → 499 ms, `Record View#draw()`
+702 → 432 ms, `AndroidOwner:measureAndLayout` 673 → 407 ms, `TextAnnotatedStringNode:measure` 603 → 296 ms
+(1 782 → 1 026 calls). Cold start is unchanged because `am start -W` ends at the first frame, before this work runs.
+**The build type dominates what was felt: debug cold-starts in ≈ 660 ms against ≈ 115 ms for release (≈ 5.7×)**, from
+no R8, no baseline profile, JIT-only code and LeakCanary — speed should be judged on a release build. Checked and
+clean: month models and event lookups already build on `Dispatchers.Default`, prayer and astronomy flows already use
+`flowOn`, no bitmap or painter work on the UI path, lazy lists keyed, `CityCatalog` on an IO dispatcher,
+`LanguageTable` lazy, StrictMode debug-only with `penaltyLog`. Regression tests: `MonthPageRecompositionTest` (a
+selection recomposes ≤ 2 cells; it failed at 42 before the fix) and `CalendarOffMainThreadTest`.
+
+**A CI flake fixed on the way (main@e3c2c82).** `LauncherIconTest` failed on a PR run whose app build was
+byte-identical to a green one, and passed when the same commit was re-run. `TaqvimApplication` never cancelled its
+process-lifetime scope: Android never terminates an app on a device, but Robolectric does between tests, so the
+watchers of a finished test kept collecting on `Dispatchers.Default` and wrote launcher component state into a later
+test's package manager. The scope is now cancelled in `onTerminate`.
+
 ### Official Iranian calendars 1381–1405 (2026-09-18, main@33d0418, main@7493b47, main@c309fd4, main@c92223b)
 
 The owner supplied the Calendar Center's official calendar for every year 1381–1405. They are inventoried in
