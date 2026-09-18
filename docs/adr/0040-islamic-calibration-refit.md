@@ -105,4 +105,5 @@ now reads four layouts (ids in `official_calendar_sources.py`):
 - **The optional override stays on 1404–1405** (`OVERRIDE_YEARS`): extending the shipped override to the older years is
   a separate decision, and the other years are test oracles only.
 - **Refit not done here.** The calibration report still scores the override months; refitting on the 262-month
-  history is the next step (brief item 4).
+  history is the next step (brief item 4). Done in ADR-0041: the shipped criterion stays; the report gains the
+  1381–1405 region and the evening-decision section.

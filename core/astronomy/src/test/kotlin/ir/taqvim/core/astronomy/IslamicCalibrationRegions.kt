@@ -89,11 +89,12 @@ internal fun score(
 }
 
 /** Every region the report covers, with the data available today. */
-internal fun regions(): List<Region> = listOf(iran(), saudiArabia(), afghanistan())
+internal fun regions(): List<Region> = listOf(iran(), iranHistory(), saudiArabia(), afghanistan())
 
 private const val IRAN_FIRST_YEAR = 1446
 private const val IRAN_LAST_YEAR = 1448
 private const val IRAN_THRESHOLD = 0.90
+private const val IRAN_HISTORY_THRESHOLD = 0.90
 private const val SAUDI_FIRST_YEAR = 1420
 private const val SAUDI_LAST_YEAR = 1450
 private const val SAUDI_THRESHOLD = 0.99
@@ -143,6 +144,51 @@ private fun iran(): Region {
                 "out until a crescent check corrects it.",
     )
 }
+
+private fun iranHistory(): Region {
+    val anchors =
+        IranMonthHistory.months.map { month ->
+            Anchor(
+                "${month.label}${if (month.heldOut) "*" else ""}",
+                hijri(month.year, month.month, 1),
+                month.startJdn,
+                null,
+            )
+        }
+    return Region(
+        name = "Iran 1381–1405 SH (Calendar Center, every readable official calendar)",
+        anchors = anchors,
+        firstYear = anchors.minOf { it.date.year },
+        lastYear = anchors.maxOf { it.date.year },
+        shipped =
+            Candidate("five cities, Yallop ≤ D (shipped, ADR-0027)") { first, last ->
+                IranIslamicCalendar(IranCrescentCalibration.table(first, last))
+            },
+        refit =
+            crescentCandidates("Tehran", IranCrescentCalibration.SITES.take(1)) +
+                crescentCandidates("five cities", IranCrescentCalibration.SITES) +
+                listOf(logisticCandidate(), tabular("type II"), tabular("type I", TabularIslamicCalendar.TYPE_I)),
+        threshold = IRAN_HISTORY_THRESHOLD,
+        note =
+            "One anchor per lunar month start the calendars establish (printed, counted back, or moved by an " +
+                "announcement the calendar notes); `*` marks the held-out calendars 1403–1405. The months are " +
+                "chained from AH ${anchors.minOf { it.date.year }}, so a day lost stays lost until a crescent check " +
+                "restores it; the evening-decision section below scores each month on its own.",
+    )
+}
+
+/** The logistic model of ADR-0041, fitted on 1381–1400, as a chained month table over the five cities. */
+private fun logisticCandidate() =
+    Candidate("logistic (ADR-0041), five cities") { first, last ->
+        val cache = HashMap<Pair<Coordinates, Long>, Boolean>()
+        val sighting =
+            CrescentSighting { place, from ->
+                cache.getOrPut(place to from.toEpochMilliseconds()) {
+                    HistoryEvenings.siteEvening(place, from)?.let(historyModel::seen) == true
+                }
+            }
+        IranIslamicCalendar(ObservationalMonthStarts.table(IranCrescentCalibration.SITES, first, last, sighting))
+    }
 
 private fun saudiArabia(): Region {
     val anchors =

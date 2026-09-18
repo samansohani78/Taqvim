@@ -952,6 +952,12 @@ Persian-calendar or prayer-times GPL/LGPL library.
   `IslamicCalibrationReportTest` over Yallop A–D, Odeh A–C and three sets of observing places, for Iran, Saudi Arabia
   and Afghanistan; it writes `docs/data-todo/islamic-calibration-report.md` (ADR-0040). Agreement on 2026-09-18:
   Iran 23/25, Saudi Arabia 370/372, Afghanistan 5/5. `CrescentSighting` is the plug-in point for a rule.
+- **Calibration on 1381–1405 (2026-09-18, ADR-0041):** the same test scores every criterion on the 262 official
+  month starts of the Calendar Center's calendars 1381–1405 SH (21 readable), as chained starts and as 255 evening
+  decisions split 218 fit (1381–1400) / 37 held out (1403–1405). Shipped Yallop ≤ D at five cities: 90.8 % fit,
+  91.9 % held out, 91.2 % chained. The logistic model (Moon age, lag, ARCV, ARCL, W; Newton's method with a ridge
+  term, fitted on the fit months only, written from the textbook definition in test code) reaches 92.2 % / 97.3 % /
+  93.1 % and is reported, not shipped. The Moon's age comes from cosinekitty/astronomy 2.1.19 (MIT) `searchMoonPhase`.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 

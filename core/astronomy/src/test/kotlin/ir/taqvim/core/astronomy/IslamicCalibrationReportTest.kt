@@ -26,6 +26,7 @@ import org.junit.jupiter.api.TestFactory
 class IslamicCalibrationReportTest {
     private val regions = regions()
     private val scores = regions.associateWith { region -> score(region, region.shipped) }
+    private val evenings = historyCriteria(historyModel).map { scoreEvenings(it) }
 
     @TestFactory
     fun `every region reaches its documented agreement`(): List<DynamicTest> =
@@ -53,6 +54,16 @@ class IslamicCalibrationReportTest {
     }
 
     @Test
+    fun `the shipped criterion keeps its agreement with the 1381-1405 evenings`() {
+        val shipped = evenings.single { it.criterion.shipped }
+
+        withClue({ shipped.misses.joinToString { it.evening.month.label } }) {
+            shipped.fitShare shouldBeGreaterThanOrEqual EVENING_FIT_FLOOR
+            shipped.heldShare shouldBeGreaterThanOrEqual EVENING_HELD_OUT_FLOOR
+        }
+    }
+
+    @Test
     fun `the report is up to date`() {
         val report = File(System.getProperty(REPORT_PROPERTY) ?: error("$REPORT_PROPERTY is not set"))
 
@@ -71,6 +82,7 @@ class IslamicCalibrationReportTest {
                     "`-Ptaqvim.updateSnapshots=true` to refresh this page.",
             )
             regions.forEach { region -> appendRegion(region) }
+            appendEveningDecision(evenings)
         }
 
     private fun StringBuilder.appendRegion(region: Region) {
@@ -114,8 +126,8 @@ class IslamicCalibrationReportTest {
             }
 
             best.share > shipped.share -> {
-                "**${best.candidate.name} fits better (${best.percent}).** Too few official months to change the " +
-                    "shipped calendar on: revisit once more official calendars are imported (ADR-0040)."
+                "**${best.candidate.name} fits better (${best.percent}).** Reported, not adopted: the shipped " +
+                    "calendar changes only by a decision recorded in an ADR (ADR-0040, ADR-0041)."
             }
 
             else -> {
@@ -128,6 +140,8 @@ class IslamicCalibrationReportTest {
         const val REPORT_PROPERTY = "taqvim.calibration.report"
         const val GENERATOR = "core/astronomy IslamicCalibrationReportTest"
         const val MISSES_LISTED = 6
+        const val EVENING_FIT_FLOOR = 0.90
+        const val EVENING_HELD_OUT_FLOOR = 0.89
         val BEST_FIRST =
             compareByDescending<Agreement> { it.share }
                 .thenBy { !it.shipped }
