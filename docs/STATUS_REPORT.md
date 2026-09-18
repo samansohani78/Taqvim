@@ -286,7 +286,7 @@ Phase 3 emptied most of this list. What is left:
 
 | Item | What remains | Plan |
 |---|---|---|
-| T-1900 / T-1901 / T-003 CI | The workflows must pass on GitHub for the first time; fixes have been pushed (874506f, 42f7228, d8e96ab, 2c8940d, ce2bf17, 361ddf4, 1999885, d9fb503) | Keep iterating on the run logs until every workflow is green, then tag `v1.0.0-rc1` |
+| T-1900 / T-1901 / T-003 CI | Done: all four workflows green on main@dd8cd65, tagged `v1.0.0-rc2` (run URLs in §6) | Keep them green; the signed release build waits for the keystore secrets |
 | T-1902 beta exit criteria | Documented, not exercised | Nothing more to automate; needs the beta itself (list (b)) |
 | T-1600 Wear device checks | Done except the run itself (main@cf87a75): `wearApi34` managed device, 7 device test methods in 11 runs, and two tile screenshots recorded by Roborazzi from the real ProtoLayout renderer. The Wear system image cannot be fetched here — every `dl.google.com` path returns 404 — so the suite has never executed | Run `./gradlew :wear:wearApi34DebugAndroidTest` on a machine with network and `/dev/kvm`; watch-face tile/complication placement stays manual (`docs/MANUAL_TEST_CHECKLIST.md` §7) |
 | T-1801 device measurements | Cold-start and jank numbers from a real phone | Macrobenchmarks run on a connected device only; the managed device gives a first figure but is not a release baseline |
@@ -409,9 +409,9 @@ engineering is expected.
 
 **Next release steps**
 
-1. `v1.0.0-rc1` is tagged and pushed (main@54f9299, 2026-09-18). The PR workflow was green on the preceding pushes and the
-   full local suite passes; the Benchmarks workflow run was still in flight when the tag was made, and the device-only
-   budgets below stay unverified.
+1. `v1.0.0-rc2` is tagged and pushed on main@dd8cd65 (2026-09-18), the first commit on which all four workflows passed
+   (run URLs in §6). `v1.0.0-rc1` (main@54f9299) was cut before that: its Release run failed on missing signing
+   secrets and its PR and Instrumented runs were cancelled by a later push. The device-only budgets stay unverified.
 2. Add the keystore secrets and build a signed release; without them the workflow produces unsigned artifacts.
 3. Run `docs/MANUAL_TEST_CHECKLIST.md` on at least one phone, one tablet and one Wear device, including the TalkBack
    pass (T-1700) and the OEM matrix (T-1102).
@@ -456,9 +456,20 @@ generated index, so the Persian, Iranian-Islamic and calibration tests extend th
 outside publication is done and tested: 103 of 115 task rows DONE, 3 PARTIAL, 9 BLOCKED on data or on accounts only.
 The full local gate suite is green on main@41a6b04 — 3 970 JVM test cases and 12 instrumented cases, 0 failures,
 96.1 % line / 85.3 % branch merged coverage, release APK 6.1 MiB of an 8 MiB budget (main@d9dd4da). All calendar and astronomy data
-is computed for any year (proved for every day of 1380–1480 SH), so the app never needs a yearly data drop. The one
-tag `v1.0.0-rc1` marks this state (main@54f9299). Confirming the Benchmarks workflow run is the one check that was
-still in flight when it was cut.
+is computed for any year (proved for every day of 1380–1480 SH), so the app never needs a yearly data drop. The tag
+`v1.0.0-rc2` marks main@dd8cd65, on which every GitHub workflow is green:
+
+| Workflow | Commit | Result | Run |
+|---|---|---|---|
+| PR | dd8cd65 | success | https://github.com/samansohani78/Taqvim/actions/runs/35327888666 |
+| Benchmarks | dd8cd65 | success | https://github.com/samansohani78/Taqvim/actions/runs/35327888908 |
+| Instrumented tests (API 26, 30, 33, 36) | dd8cd65 | success | https://github.com/samansohani78/Taqvim/actions/runs/35327888637 |
+| Release dry run | dd8cd65 | success | https://github.com/samansohani78/Taqvim/actions/runs/35327892318 |
+
+Getting there took three CI fixes after rc1: release-candidate tags now build unsigned instead of failing on missing
+secrets (main@c5bacfb), and the emulators cold-boot on every API level, because resuming the cached AVD snapshot left
+the framework without system services — API 26 hung until the 90-minute timeout and API 30 failed in two minutes
+(main@bcd23b4, main@dd8cd65).
 
 **What only you can do, most valuable first.** Each line: what to provide, where it goes, and what happens if it never
 arrives.
