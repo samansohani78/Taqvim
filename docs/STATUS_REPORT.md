@@ -373,6 +373,7 @@ engineering is expected.
 | Every dataset event is a rule; `Single` records need an owner decision (plan §4.2 lists `Single`) | [ADR-0036](adr/0036-events-as-rules.md) |
 | Release shrinking, profiles (generated on a Gradle Managed Device) and benchmark gates; timing tests run apart from `test` | [ADR-0018](adr/0018-release-shrinking-and-performance-checks.md) |
 | Nepali lunar holidays expressed as a `LunarTithi` rule instead of a bundled Panchang table | [ADR-0038](adr/0038-nepali-lunar-tithi-rule.md) |
+| CC BY 4.0 admitted for bundled **data** only (ADR-0003 allows it for code nowhere); a CC BY dependency still fails `licenseCheck` | [ADR-0039](adr/0039-cc-by-data-license.md) |
 | All calendar data computed at run time; official tables demoted to golden oracles or to the optional override; no per-year manual data (enforced by `NoPerYearManualDataTest`) | [ADR-0026](adr/0026-persian-year-starts-computed.md), [ADR-0027](adr/0027-iran-islamic-months-computed.md), [ADR-0028](adr/0028-umm-al-qura-computed.md), [ADR-0030](adr/0030-bikram-sambat-computed.md), [ADR-0037](adr/0037-optional-islamic-override.md), `docs/DATA_AUDIT.md` |
 | Machine translation for 22 languages, marked for review (plan T-1702 said human-only; owner changed this on 2026-09-17) | recorded in Phase 3; workflow in `docs/i18n/TRANSLATING.md` |
 
