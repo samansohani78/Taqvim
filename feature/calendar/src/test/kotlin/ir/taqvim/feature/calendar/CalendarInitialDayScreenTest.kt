@@ -8,6 +8,7 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.i18n.LanguageTable
+import kotlinx.coroutines.Dispatchers
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,6 +33,9 @@ class CalendarInitialDayScreenTest {
                 FakePlaceSource(null),
                 FakeNowSource(TEST_NOW),
                 FakeDisplayStore(),
+                // As in CalendarScreenTest: the state is computed off the main thread in production (BUG-2), and
+                // Robolectric's virtual clock cannot wait for a real background dispatcher.
+                calculationDispatcher = Dispatchers.Unconfined,
                 initialDay = gregorian(2026, 12, 25),
             )
         composeRule.setContent { CalendarTestTheme { CalendarRoute(viewModel = viewModel) } }

@@ -22,6 +22,7 @@ import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.Jdn
+import kotlinx.coroutines.Dispatchers
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -56,6 +57,9 @@ class CalendarScreenTest {
                 FakePlaceSource(null),
                 FakeNowSource(TEST_NOW),
                 FakeDisplayStore(),
+                // The screen's state is computed off the main thread in production (BUG-2); Robolectric's clock is
+                // virtual, so a real background dispatcher would never deliver within `waitUntil`'s timeout.
+                calculationDispatcher = Dispatchers.Unconfined,
             )
         composeRule.setContent {
             CalendarTestTheme { CalendarRoute(navigation = navigation, viewModel = viewModel) }

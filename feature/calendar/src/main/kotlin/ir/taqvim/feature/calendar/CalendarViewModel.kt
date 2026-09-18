@@ -37,6 +37,8 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 /**
  * The calendar (home) screen (T-800): selected day, shown month, day-details tab, day events and search, plus the
@@ -53,12 +55,15 @@ class CalendarViewModel(
     placeSource: CalendarPlaceSource,
     nowSource: NowSource,
     private val displayStore: CalendarDisplayStore,
-    calculationDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val calculationDispatcher: CoroutineDispatcher = Dispatchers.Default,
     /** The day selected when the screen opens (a link, the year view or search); `null` follows today. */
     initialDay: Jdn? = null,
     /** Reminders before official events (T-1002). */
     private val officialReminders: OfficialReminderStore = OfficialReminderStore.NONE,
 ) : ViewModel() {
+    /** Month arithmetic runs one action at a time, so the actions keep the order they arrived in. */
+    private val monthLock = Mutex()
+
     private val navigation = MutableStateFlow(NavigationState(selectedDay = initialDay, shownDay = initialDay))
     private val search = MutableStateFlow(CalendarSearch())
     private val menu = MutableStateFlow(CalendarMenu())
@@ -152,7 +157,11 @@ class CalendarViewModel(
             CalendarUiState(
                 calendarContent(today, calendars, state, search, loaded, menu).copy(officialReminders = reminders),
             )
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), CalendarUiState())
+            // Off the main thread (BUG-2): building the content converts the day into every chosen calendar, and the
+            // first day of an Islamic month block is computed from the ephemeris (ADR-0027, ADR-0028) — 20 to 380 ms
+            // per new block on a desktop JVM, several times that on a phone.
+        }.flowOn(calculationDispatcher)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), CalendarUiState())
 
     fun onAction(action: CalendarAction) {
         when (action) {
@@ -228,7 +237,10 @@ class CalendarViewModel(
     private fun pickDate(action: CalendarAction.PickDate) {
         val calendars = calendars.value ?: return
         menu.value = CalendarMenu()
-        select(calendars.primaryDay(action.year, action.month, action.day))
+        // Off the main thread for the same reason as [showMonth]: the picked month may not be computed yet.
+        viewModelScope.launch(calculationDispatcher) {
+            monthLock.withLock { select(calendars.primaryDay(action.year, action.month, action.day)) }
+        }
     }
 
     /** Closes the menu and stores a display choice; a failure is reported in a snackbar. */
@@ -286,11 +298,26 @@ class CalendarViewModel(
         return CalendarRangeGuard.nearestValid(calendars, day, today)
     }
 
-    /** Shows the month at [offset] of the current pager position; ignored until today and the settings load. */
+    /**
+     * Shows the month at [offset] of the current pager position; ignored until today and the settings load. The month
+     * arithmetic runs on [calculationDispatcher] (BUG-2): a month far from today costs tens of milliseconds in a
+     * calendar computed from the ephemeris, which must not land on the main thread. [monthLock] keeps the actions in
+     * the order they arrived.
+     */
     private fun showMonth(offset: (current: Int) -> Int) {
         val today = today.value
         val calendars = calendars.value
         if (today == null || calendars == null) return
+        viewModelScope.launch(
+            calculationDispatcher,
+        ) { monthLock.withLock { updateShownMonth(today, calendars, offset) } }
+    }
+
+    private fun updateShownMonth(
+        today: Jdn,
+        calendars: CalendarCalendars,
+        offset: (current: Int) -> Int,
+    ) {
         navigation.update { state ->
             val shown = state.shownDay ?: state.selectedDay ?: today
             val wanted =

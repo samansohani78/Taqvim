@@ -4,8 +4,6 @@
  */
 package ir.taqvim.feature.calendar
 
-import androidx.compose.animation.Crossfade
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.HorizontalPager
@@ -26,8 +24,6 @@ import kotlinx.coroutines.withContext
 
 /** Test tag of the month pager; also its resource id in macrobenchmarks. */
 const val MONTH_PAGER_TAG: String = "month_pager"
-
-private const val SELECTION_FADE_MILLIS = 150
 
 /**
  * Pages of the month pager: one per month within [CalendarLimits.MAX_MONTH_OFFSET] of today's month either way, the
@@ -110,8 +106,10 @@ private fun MonthPageSlot(
 }
 
 /**
- * The grid of one month page. A change of the selected day cross-fades the grid; other updates (loaded events) are
- * applied in place. Taps select a day, long presses create an event and week numbers open the timeline.
+ * The grid of one month page: every update (a new selection, loaded events) is applied in place, so only the cells
+ * whose model changed recompose (`MonthPageRecompositionTest`). The grid used to cross-fade on a selection, which
+ * composed all 42 cells a second time on every tap and kept an animation running for 150 ms (BUG-2). Taps select a
+ * day, long presses create an event and week numbers open the timeline.
  */
 @Composable
 internal fun MonthPageView(
@@ -119,26 +117,23 @@ internal fun MonthPageView(
     onAction: (CalendarAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Crossfade(
-        targetState = page.selectedIndex,
-        modifier = modifier,
-        animationSpec = tween(SELECTION_FADE_MILLIS),
-        label = "month selection",
-    ) { selectedIndex ->
-        // A fading-out grid keeps the page it was shown with; the current one follows every update of [page].
-        val entered = remember { page }
-        val shown = if (selectedIndex == page.selectedIndex) page else entered
-        val onWeekClick: ((Int) -> Unit)? =
-            if (shown.grid.weekNumbers == null) {
-                null
-            } else {
-                { row -> onAction(CalendarAction.OpenWeek(shown.days[row * MonthLayout.DAYS_PER_WEEK])) }
+    // The callbacks must keep their identity across updates of [page]: a new lambda per update would make Compose
+    // recompose every one of the 42 day cells instead of the two whose model changed (BUG-2).
+    val shown by rememberUpdatedState(page)
+    val latestOnAction by rememberUpdatedState(onAction)
+    val onDayClick = remember { { index: Int -> latestOnAction(CalendarAction.SelectDay(shown.days[index])) } }
+    val onDayLongClick = remember { { index: Int -> latestOnAction(CalendarAction.CreateEvent(shown.days[index])) } }
+    val onWeekClick =
+        remember {
+            { row: Int ->
+                latestOnAction(CalendarAction.OpenWeek(shown.days[row * MonthLayout.DAYS_PER_WEEK]))
             }
-        MonthGrid(
-            model = shown.grid,
-            onDayClick = { onAction(CalendarAction.SelectDay(shown.days[it])) },
-            onDayLongClick = { onAction(CalendarAction.CreateEvent(shown.days[it])) },
-            onWeekClick = onWeekClick,
-        )
-    }
+        }
+    MonthGrid(
+        model = page.grid,
+        onDayClick = onDayClick,
+        onDayLongClick = onDayLongClick,
+        onWeekClick = onWeekClick.takeIf { page.grid.weekNumbers != null },
+        modifier = modifier,
+    )
 }

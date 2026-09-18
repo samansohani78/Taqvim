@@ -12,6 +12,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     // T-806: foldable posture (tabletop) of the adaptive layout.
     implementation(libs.androidx.compose.material3.adaptive)
+    // BUG-2: counts the recompositions of a month page's day cells.
+    testImplementation(projects.core.uiTesting)
 }
 
 // T-1700: every captured screenshot state is also audited for accessibility (AccessibilityAudit).
