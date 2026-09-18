@@ -54,14 +54,15 @@ jobs:
           # Emulator numbers are only used for trend/regression tracking, never as absolute budgets (plan §9).
           # logcat is kept whatever happens: a macrobenchmark that reports "target package is not running" says
           # nothing about the crash that stopped the app.
-          script: |
-            mkdir -p build/benchmark-results
-            status=0
-            ./gradlew :benchmark:connectedBenchmarkAndroidTest :benchmark:micro:connectedReleaseAndroidTest \
-              -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.suppressErrors=EMULATOR,LOW-BATTERY \
-              -Pandroid.testInstrumentationRunnerArguments.notClass=ir.taqvim.benchmark.BaselineProfileGenerator \
-              || status=$?
-            adb logcat -d -b main -b crash > build/benchmark-results/logcat.txt || true
+          # The action runs the script line by line, so this stays one folded line of `;`-separated commands.
+          script: >-
+            mkdir -p build/benchmark-results;
+            status=0;
+            ./gradlew :benchmark:connectedBenchmarkAndroidTest :benchmark:micro:connectedReleaseAndroidTest
+            -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.suppressErrors=EMULATOR,LOW-BATTERY
+            -Pandroid.testInstrumentationRunnerArguments.notClass=ir.taqvim.benchmark.BaselineProfileGenerator
+            || status=$?;
+            adb logcat -d -b main -b crash > build/benchmark-results/logcat.txt || true;
             exit "$status"
       - name: Collect results
         if: always()
