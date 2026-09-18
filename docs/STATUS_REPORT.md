@@ -119,7 +119,7 @@ Summary: 115 rows — 103 DONE, 3 PARTIAL, 9 BLOCKED, 0 NOT STARTED.
 | T-1600 | Wear app | DONE | 4d9bcf4, 5d4cf77, 5f1d9db, 9a152e5 | U: WearTodayTest (5) — Nowruz 1405 fa date, holiday, other calendars, next prayer Dhuhr in Persian digits; after Isha → tomorrow's Fajr; property 2026: next prayer after … | emulator smoke and tile screenshots pending |
 | T-1700 | TalkBack pass | PARTIAL | 9511cd2, f02a7ac, 7eaf900, abdf955, 131eb76, 9a152e5 | A11y: `AccessibilityAudit` (core/ui-testing; 11 tests with planted violations) runs on every screenshot state of core/ui, calendar, events, times, astronomy, compass, … | manual TalkBack device pass and sign-off pending |
 | T-1701 | RTL & font scale | DONE | e55c0c0, 8aa8a63, 86b2592, 74a3b42, 0949d6c | L: `LayoutAudit` (core/ui-testing) runs in every captured screenshot — flags ellipsized, cut-off, over-limit or off-window text — enabled for core/ui and every feature … | manual pass pending |
-| T-1702 | Translations | DONE | 1e3c51b, b579b37, 6e3a842, bc2e422, 577c1f3 | L: TranslationKonsistTest (7) — placeholders match the source (`%%` literal), CLDR plural categories per language, no copies of English outside … | optional human review of the 22 machine-translated languages; Weblate instance URL and per-language reviewers (TODO(owner)) |
+| T-1702 | Translations | DONE | 1e3c51b, b579b37, 6e3a842, bc2e422, 577c1f3 | L: TranslationKonsistTest (7) — placeholders match the source (`%%` literal), CLDR plural categories per language, no copies of English outside … | optional human review of the 22 machine-translated languages; Weblate instance URL and per-language reviewers confirmed 2026-09-18 (main@b70b58f) |
 | T-1800 | Baseline/startup profiles, R8, shrinking | DONE | 14d7fd0, 3718b74, f7b87f2 | build: `:app:verifyReleaseShrinking` — R8 mapping keeps back-stack and backup serializers, WorkManager worker name, proto field names (`shrinking-requirements.txt`) · … | device cold-start measurement (T-1801) |
 | T-1801 | Macrobenchmarks | PARTIAL | 3718b74, e2d6c5c, 51fab98, 76d786f, 0439373, 2c8940d | B: StartupBenchmark (3), MonthPagerScrollBenchmark, ScreenScrollBenchmarks (timeline scroll, search typing), YearViewBenchmark (3, T-805, main@803842f) — compile only · … | not run on a device; no baselines |
 | T-1802 | Compose stability | DONE | c5e943b | build: `composeStabilityCheck` per Compose module (reports via `-Ptaqvim.composeMetrics=true`, CI static job) fails on unstable composable parameters and … | — |
@@ -323,7 +323,7 @@ engineering is expected.
 - **Physical devices, including a Wear OS watch** → run the TalkBack pass (T-1700), the Wear tile and complication checks (T-1600, §7) and the OEM alarm matrix in `docs/MANUAL_TEST_CHECKLIST.md` (Samsung, Xiaomi, Huawei/Honor, Oppo/OnePlus/Realme, Pixel, Motorola, a low-end API 26 phone). Without them those checks stay unsigned and the beta exit criteria (T-1902) are not met.
 - **Beta testers and a Google Group `taqvim-beta`** → create them. Without them the closed beta cannot start.
 - **Weblate instance confirmation** (default `https://hosted.weblate.org/projects/taqvim/`) → confirm or replace. Without it translations stay file-based.
-- **Confirm the flagged support defaults** (every `TODO(owner)` comment; list in `docs/MANUAL_TEST_CHECKLIST.md`, "Owner defaults to confirm"):
+- **Support defaults — confirmed by the owner on 2026-09-18** (the `TODO(owner)` markers are removed, main@b70b58f; the list stays in `docs/MANUAL_TEST_CHECKLIST.md`, "Owner defaults confirmed on 2026-09-18"):
   - `SUPPORT.md` — Repository URL for the issue forms: `https://github.com/samansohani78/Taqvim/issues/new/choose`
   - `SUPPORT.md` — Support e-mail: `support@taqvim.app`
   - `SUPPORT.md` — Other languages answered: Persian and English only; other languages answered on a best-effort basis
@@ -348,7 +348,7 @@ engineering is expected.
   - `docs/BETA.md` — Beta start date: The day the first beta build reaches testers
   - `docs/i18n/TRANSLATING.md` — Weblate instance URL: Hosted Weblate (`https://hosted.weblate.org/projects/taqvim/`)
   - `docs/i18n/TRANSLATING.md` — Reviewer per language: The project owner for `fa` and `en`; one volunteer reviewer per other language, recorded in the sign-off table
-  Without confirmation the defaults stay in the documents; `support@taqvim.app` is not wired into the app (the in-app report opens the share sheet until an address is set).
+  All 29 markers are gone from the seven files that carried them. `support@taqvim.app` is now the recipient of the in-app problem report: `AboutIntents.report` builds an `ACTION_SENDTO mailto:` intent with the redacted body when an e-mail app is installed and falls back to the share sheet otherwise, always through a chooser (main@b70b58f).
 
 ## 4. Known deviations from the plan
 
@@ -410,8 +410,8 @@ engineering is expected.
 3. Run `docs/MANUAL_TEST_CHECKLIST.md` on at least one phone, one tablet and one Wear device, including the TalkBack
    pass (T-1700) and the OEM matrix (T-1102).
 4. Create the Play Console app and the closed-testing track, upload the RC, run the two-week beta (`docs/BETA.md`).
-5. Confirm the `TODO(owner)` defaults, collect the official 1406 Iranian calendar and the current Nepal gazette, then
-   promote through the staged rollout in `docs/RELEASE.md`.
+5. Collect the official 1406 Iranian calendar and the current Nepal gazette, then promote through the staged rollout in
+   `docs/RELEASE.md`. (The `TODO(owner)` defaults were confirmed on 2026-09-18, main@b70b58f.)
 
 
 ### Fixed after the report was first written (2026-09-18)
@@ -444,14 +444,13 @@ arrives.
 |---|---|---|---|
 | 1 | Play Console account for `ir.taqvim`, plus an upload keystore and the four GitHub secrets named in `docs/RELEASE.md` | Play Console; repository → Settings → Secrets | No Play distribution and no signed build; GitHub releases of unsigned APKs still work |
 | 2 | One Android phone, one tablet and one Wear watch for `docs/MANUAL_TEST_CHECKLIST.md` (TalkBack pass, OEM alarm matrix, Wear tiles) | you run the checklist and tick the boxes | T-1700, T-1102, T-1600 device checks and the T-1902 beta criteria stay unsigned |
-| 3 | Confirm or replace the 27 flagged defaults (`TODO(owner)`: support e-mail, SLAs, repository URL, rollout steps, Weblate URL, reviewers) | listed in `docs/MANUAL_TEST_CHECKLIST.md`, "Owner defaults to confirm" | The defaults stay as written; `support@taqvim.app` is not wired into the app (the in-app report opens the share sheet) |
-| 4 | Beta testers and a `taqvim-beta` Google Group | Play closed testing (`docs/BETA.md`) | The closed beta cannot start, so the release stays a candidate |
-| 5 | Official Iran calendar PDFs (1403, 1406) and newer official Hijri month tables | `docs/sources/` or Settings → Official Hijri dates | Dates stay computed and labelled "computed"; goldens cover 1404–1405 only |
-| 6 | Nepal MoHA holiday gazette for the current and next BS year | `docs/sources/nepal/` | The 27 computed Nepal rules stand; sighting-based and community holidays (DT-038) stay out |
-| 7 | Afghanistan Labour Law holidays article and later Bakhtar announcements | `docs/sources/afghanistan/` | Afghanistan shows the six sourced recurring holidays only |
-| 8 | Persian titles for the 130 remaining UN days | list in `docs/data-todo/un-days-without-persian-title.tsv` | D-05 stays at 102 of ≥ 150 days |
-| 9 | Optional: human review of the 22 machine-translated languages, and Hebrew month names in 11 of them | Weblate (`docs/i18n/TRANSLATING.md`) | Those languages ship marked `MT: needs review` |
-| 10 | Optional goldens: crescent-visibility maps (DT-034), a panchang with tithi times (DT-014), a Moon-in-Scorpio almanac (DT-013), house tables (DT-018), golden/blue-hour tables (DT-017), reusable prayer timetables outside Iran (DT-011), a redistributable athan recording (DT-028) | `docs/sources/` | Those features keep working from computation, with no external cross-check and the stock alarm sound |
+| 3 | Beta testers and a `taqvim-beta` Google Group | Play closed testing (`docs/BETA.md`) | The closed beta cannot start, so the release stays a candidate |
+| 4 | Official Iran calendar PDFs (1403, 1406) and newer official Hijri month tables | `docs/sources/` or Settings → Official Hijri dates | Dates stay computed and labelled "computed"; goldens cover 1404–1405 only |
+| 5 | Nepal MoHA holiday gazette for the current and next BS year | `docs/sources/nepal/` | The 27 computed Nepal rules stand; sighting-based and community holidays (DT-038) stay out |
+| 6 | Afghanistan Labour Law holidays article and later Bakhtar announcements | `docs/sources/afghanistan/` | Afghanistan shows the six sourced recurring holidays only |
+| 7 | Persian titles for the 130 remaining UN days | list in `docs/data-todo/un-days-without-persian-title.tsv` | D-05 stays at 102 of ≥ 150 days |
+| 8 | Optional: human review of the 22 machine-translated languages, and Hebrew month names in 11 of them | Weblate (`docs/i18n/TRANSLATING.md`) | Those languages ship marked `MT: needs review` |
+| 9 | Optional goldens: crescent-visibility maps (DT-034), a panchang with tithi times (DT-014), a Moon-in-Scorpio almanac (DT-013), house tables (DT-018), golden/blue-hour tables (DT-017), reusable prayer timetables outside Iran (DT-011), a redistributable athan recording (DT-028) | `docs/sources/` | Those features keep working from computation, with no external cross-check and the stock alarm sound |
 
 **What I do next, without asking:** confirm the last Benchmarks workflow run and keep
 `docs/PROGRESS.md`, `docs/DATA_TODO.md` and this report current.
