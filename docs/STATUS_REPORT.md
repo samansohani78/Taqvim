@@ -288,7 +288,7 @@ Phase 3 emptied most of this list. What is left:
 |---|---|---|
 | T-1900 / T-1901 / T-003 CI | The workflows must pass on GitHub for the first time; fixes have been pushed (874506f, 42f7228, d8e96ab, 2c8940d, ce2bf17, 361ddf4, 1999885, d9fb503) | Keep iterating on the run logs until every workflow is green, then tag `v1.0.0-rc1` |
 | T-1902 beta exit criteria | Documented, not exercised | Nothing more to automate; needs the beta itself (list (b)) |
-| T-1600 Wear device checks | Tile and complication screenshots and an emulator smoke run | Add a Wear managed device (`wearApi34`) and port the app's device suite; until then the Wear checks live in `docs/MANUAL_TEST_CHECKLIST.md` §7 |
+| T-1600 Wear device checks | Done except the run itself (main@cf87a75): `wearApi34` managed device, 7 device test methods in 11 runs, and two tile screenshots recorded by Roborazzi from the real ProtoLayout renderer. The Wear system image cannot be fetched here — every `dl.google.com` path returns 404 — so the suite has never executed | Run `./gradlew :wear:wearApi34DebugAndroidTest` on a machine with network and `/dev/kvm`; watch-face tile/complication placement stays manual (`docs/MANUAL_TEST_CHECKLIST.md` §7) |
 | T-1801 device measurements | Cold-start and jank numbers from a real phone | Macrobenchmarks run on a connected device only; the managed device gives a first figure but is not a release baseline |
 | D-05 / D-06 records | 102 UN days of the planned ≥ 150; 2 historical records | Every further record needs a primary source with a Persian title (DT-019, DT-023, DT-024, DT-029) — see list (b) |
 | DT-004–DT-010, DT-015, DT-020, DT-025, DT-026, DT-037 language data | Names and patterns missing in some languages | Machine-generated where the owner's MT policy allows (marked `MT: needs review`), otherwise the documented fallback; never empty, never crashing |
@@ -397,8 +397,10 @@ engineering is expected.
    ICU-based platforms after AH 1450.
 6. **APK headroom is thin.** The release APK is 7 261 536 bytes against the 8 388 608-byte budget — **1.07 MiB left**.
    Translations for 24 languages cost about 1.5 MiB; the next large asset or language set will break the gate.
-7. **Wear and OEM coverage is unproven.** No Wear device or emulator run, and none of the seven OEM alarm/battery
-   profiles in `docs/MANUAL_TEST_CHECKLIST.md` §6.4 has been exercised.
+7. **Wear and OEM coverage is unproven.** The Wear device suite exists and compiles (main@cf87a75) but has never
+   executed — the Wear system image cannot be downloaded in this environment — and none of the seven OEM
+   alarm/battery profiles in `docs/MANUAL_TEST_CHECKLIST.md` §6.4 has been exercised. Tile rendering is covered by
+   two Roborazzi screenshots, which need no emulator.
 8. **Map time-zone bands** come from 2012 Natural Earth geometry; 23 bands are marked "mixed" (I09).
 9. **No crash reporting** by design, so the beta exit criterion (crash-free ≥ 99.9 %) depends on Play vitals.
 
