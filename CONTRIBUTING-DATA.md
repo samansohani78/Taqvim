@@ -18,7 +18,7 @@ covers changes under `dataset/`. Code contributions follow the pull-request temp
    licences. Do not use them to "check" your work either.
 5. **Keep the document.** When a source is a downloaded file (PDF, image), add it to `docs/sources/` and record its
    size, SHA-256 and content in [`docs/sources/MANIFEST.md`](docs/sources/MANIFEST.md). Cite it in the record's
-   `title`, e.g. `Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)`.
+   `title`, e.g. `Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)`.
 
 ## Workflow
 
@@ -54,20 +54,27 @@ covers changes under `dataset/`. Code contributions follow the pull-request temp
 
 The daily tables of the Calendar Center's yearly calendars are imported, never typed. To add one:
 
-1. Put the PDF in `docs/sources/` as `Calendar-<solar year>.pdf` (for example `Calendar-1403.pdf`).
-2. Add its row to [`docs/sources/MANIFEST.md`](docs/sources/MANIFEST.md). Running step 3 without one prints the row
-   to paste — page count, byte size and SHA-256 — so nothing is measured by hand; fill in the content description.
+1. Put the PDF in `docs/sources/iran/` as `Calendar-<solar year>.pdf` (for example `Calendar-1406.pdf`), and add the
+   year's layout to `tools/sources/iran/official_calendar_sources.py` (an edition whose text layer cannot be read goes
+   into `REJECTED` with the reason, never into the fixtures).
+2. Add its row to [`docs/sources/iran/MANIFEST.md`](docs/sources/iran/MANIFEST.md). Running step 3 without one prints
+   the row to paste — page count, byte size and SHA-256 — so nothing is measured by hand; fill in kind, layout, date
+   supplied and the content description.
 
 3. Import it (needs `poppler-utils`; `--check` only reports whether the fixtures are stale):
 
    ```bash
-   tools/iran/official_calendar_import.py
+   tools/sources/iran/official_calendar_import.py
    ```
 
-   This rewrites the daily fixture of every stored calendar, the index
-   `core/calendar/src/test/resources/golden/islamic-iran/official-calendars.csv`, the month starts next to it and
-   `dataset/iran/islamic-iran-overrides.json`. It stops with an error rather than guessing if a page is unreadable, a
-   month name is unknown or a day does not follow the day above it.
+   This rewrites the daily fixture of every stored calendar (`golden/persian/official/<year>.csv`), the index
+   `core/calendar/src/test/resources/golden/islamic-iran/official-calendars.csv`, the month-start history next to it
+   (`official-month-starts-1381-1405.csv`), the override months and `dataset/iran/islamic-iran-overrides.json`, and
+   the holiday goldens of `:tools:dataset`. It stops with an error rather than guessing if the pages read do not make
+   up the whole year, a month name is unknown or a day does not follow the day above it; a misprint is corrected only
+   through an `Erratum` that states the printed value and the reason, and only where the page prints exactly that.
+   `tools/sources/iran/nowruz_instants_import.py` does the same for the list of past Nowruz instants
+   (`tahvil-sal.txt`).
 4. Refresh the calibration report and run the tests that read the fixtures:
 
    ```bash

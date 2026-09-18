@@ -257,12 +257,12 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf) — 30 Azar",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf) — 30 Azar",
                         page = "12",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf) — 30 Azar",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf) — 30 Azar",
                         page = "11",
                     ),
                     Citation(
@@ -284,12 +284,12 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf) — 6 Farvardin",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf) — 6 Farvardin",
                         page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf) — 6 Farvardin",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf) — 6 Farvardin",
                         page = "3",
                     ),
                 ),

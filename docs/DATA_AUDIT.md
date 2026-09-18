@@ -75,8 +75,8 @@ Legend for "Currently": **computed** (algorithm at run time), **bundled table** 
 
 | Directory | Contents | Used by |
 |---|---|---|
-| `core/calendar/src/test/resources/golden/persian/` | official leap years 1206–1498, Nowruz instants, 1404/1405 daily calendars, century boundaries | Persian calendar tests |
-| `core/calendar/src/test/resources/golden/islamic-iran/` | official month starts (today 1446–1448) and the index of imported calendars, both written by `tools/iran/official_calendar_import.py` (ADR-0040) | Iranian Islamic calendar tests |
+| `core/calendar/src/test/resources/golden/persian/` | official leap years 1206–1498, Nowruz instants (1404/1405 title pages and the 1360–1403 list), the daily calendars of 21 years 1381–1405 (`official/<year>.csv`), century boundaries | Persian calendar tests |
+| `core/calendar/src/test/resources/golden/islamic-iran/` | official month starts of the override calendars (1446–1448), the 262-month history 1381–1405 with its basis (printed, derived, announced) and the index of imported calendars, all written by `tools/sources/iran/official_calendar_import.py` (ADR-0040) | Iranian Islamic calendar tests |
 | `core/calendar/src/test/resources/golden/nepal/` | National Panchang 2082/2083, NTA month starts | Nepali calendar tests |
 | `core/calendar/src/test/resources/golden/usno/` | USNO Islamic, Jewish, Christian observances, US DST | calendar goldens (ADR-0025) |
 | `core/astronomy/src/test/resources/golden/usno/`, `nasa/`, `iran/`, `yallop/`, `odeh/` | seasons, apsides, moon phases, eclipses, official Iranian eclipses and equinoxes, crescent observation facts | astronomy goldens |
@@ -85,7 +85,7 @@ Legend for "Currently": **computed** (algorithm at run time), **bundled table** 
 | `core/nlp/.../golden/nlp/` | phrase and snippet corpora | NLP goldens |
 | `tools/dataset/src/test/resources/golden/` | Iran, Afghanistan, UN, ancient dataset goldens | dataset goldens |
 | `core/testing/.../golden/sample/` | fixture-format self-test | test infrastructure |
-| `docs/sources/` | primary source documents and the USNO archive | provenance only, never packaged |
+| `docs/sources/` | primary source documents (Iranian sources in `docs/sources/iran/`, inventory in its MANIFEST.md) and the USNO archive | provenance only, never packaged |
 
 ## 3. Summary
 

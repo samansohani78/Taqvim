@@ -34,12 +34,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "13",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "12",
                     ),
                 ),
@@ -56,12 +56,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "3",
                     ),
                 ),
@@ -78,12 +78,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "3",
                     ),
                 ),
@@ -100,12 +100,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "3",
                     ),
                 ),
@@ -122,12 +122,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "3",
                     ),
                 ),
@@ -144,12 +144,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "3",
                     ),
                 ),
@@ -166,12 +166,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "15",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "14",
                     ),
                 ),
@@ -188,12 +188,12 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
                         page = "8",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "7",
                     ),
                 ),

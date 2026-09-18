@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Ardebil1405.pdf sha256=6ce7d7fe357d871dd374b514de64132b5c928c89095ab655b04e2dfe35de65cc; coordinates stated in the document: latitude 38.25 N, longitude 48.30 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Ardebil1405.pdf sha256=6ce7d7fe357d871dd374b514de64132b5c928c89095ab655b04e2dfe35de65cc; coordinates stated in the document: latitude 38.25 N, longitude 48.30 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:52,6:19,12:24,18:29,18:48,23:40,1
 1405-01-02,4:51,6:18,12:24,18:30,18:49,23:40,1

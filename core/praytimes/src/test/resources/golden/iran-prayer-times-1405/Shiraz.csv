@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Shiraz1405.pdf sha256=550e0e1c515abcde01cad3146ea07a8c0a58798f8cd803976d878d0f0958c9f2; coordinates stated in the document: latitude 29.61 N, longitude 52.53 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Shiraz1405.pdf sha256=550e0e1c515abcde01cad3146ea07a8c0a58798f8cd803976d878d0f0958c9f2; coordinates stated in the document: latitude 29.61 N, longitude 52.53 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:45,6:03,12:07,18:12,18:29,23:28,1
 1405-01-02,4:44,6:02,12:07,18:12,18:29,23:27,1

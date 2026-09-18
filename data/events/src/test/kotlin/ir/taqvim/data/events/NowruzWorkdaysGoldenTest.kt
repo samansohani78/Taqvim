@@ -23,7 +23,7 @@ import org.junit.jupiter.api.TestFactory
 /**
  * T-504 golden for the Nowruz weeks of 1404 and 1405: with the generated official holidays (D-02/D-08) and a Friday
  * weekend (a user setting, not official data), workday answers match the Calendar Center's daily fixtures
- * (`golden/persian/iran-official-{year}-days.csv`: weekday and official holiday per day).
+ * (`golden/persian/official/{year}.csv`: weekday and official holiday per day).
  */
 class NowruzWorkdaysGoldenTest {
     private val directory =
@@ -41,7 +41,7 @@ class NowruzWorkdaysGoldenTest {
     )
 
     private fun officialDays(year: Int): List<OfficialDay> =
-        File(directory, "iran-official-$year-days.csv")
+        File(directory, "$year.csv")
             .readLines()
             .filterNot { it.startsWith("#") }
             .drop(1)

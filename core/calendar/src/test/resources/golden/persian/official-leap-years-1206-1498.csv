@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-11
 # reviewer: pending
-# notes: docs/sources/Kabise Shamsi 1206-1498.pdf sha256=d897b960b46992226502a21e24c604db9f87cf68fa43f8df368316bee386475e; leap_marker * = quadrennial, ** = quinquennial leap year; march_equinox_date is the table's Gregorian column, which equals the civil date of the March equinox in Iran time (UTC+03:30)
+# notes: docs/sources/iran/Kabise Shamsi 1206-1498.pdf sha256=d897b960b46992226502a21e24c604db9f87cf68fa43f8df368316bee386475e; leap_marker * = quadrennial, ** = quinquennial leap year; march_equinox_date is the table's Gregorian column, which equals the civil date of the March equinox in Iran time (UTC+03:30)
 persian_year,leap_marker,march_equinox_date
 1206,,1827-03-21
 1207,,1828-03-20

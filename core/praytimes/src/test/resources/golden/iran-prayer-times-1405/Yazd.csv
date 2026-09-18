@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Yazd1405.pdf sha256=f8083b5d8d7958b65cf1cb696cbbc3145b196762c1017d269ead1e0e4270db68; coordinates stated in the document: latitude 31.89 N, longitude 54.36 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Yazd1405.pdf sha256=f8083b5d8d7958b65cf1cb696cbbc3145b196762c1017d269ead1e0e4270db68; coordinates stated in the document: latitude 31.89 N, longitude 54.36 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:35,5:55,12:00,18:05,18:22,23:19,1
 1405-01-02,4:34,5:54,11:59,18:05,18:23,23:19,1

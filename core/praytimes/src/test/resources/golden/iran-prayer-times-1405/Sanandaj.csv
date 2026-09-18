@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Sanandaj1405.pdf sha256=8ea28f64f2e7745e8783d6d51b9bdca420e929f1c09718e7eb7bedcad1ef41b7; coordinates stated in the document: latitude 35.31 N, longitude 47.03 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Sanandaj1405.pdf sha256=8ea28f64f2e7745e8783d6d51b9bdca420e929f1c09718e7eb7bedcad1ef41b7; coordinates stated in the document: latitude 35.31 N, longitude 47.03 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,5:01,6:24,12:29,18:34,18:52,23:47,1
 1405-01-02,5:00,6:23,12:29,18:35,18:53,23:47,1

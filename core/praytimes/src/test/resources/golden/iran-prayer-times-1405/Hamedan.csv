@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Hamedan1405.pdf sha256=295a82bf2f5cafaa0e84bd27efc6e838a6c572b1e0e6f0b64aa0f3f2566e5e2d; coordinates stated in the document: latitude 34.80 N, longitude 48.51 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Hamedan1405.pdf sha256=295a82bf2f5cafaa0e84bd27efc6e838a6c572b1e0e6f0b64aa0f3f2566e5e2d; coordinates stated in the document: latitude 34.80 N, longitude 48.51 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:56,6:19,12:23,18:28,18:46,23:41,1
 1405-01-02,4:54,6:17,12:23,18:29,18:47,23:41,1

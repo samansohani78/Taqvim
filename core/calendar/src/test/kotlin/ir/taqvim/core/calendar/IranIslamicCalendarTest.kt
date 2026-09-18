@@ -26,8 +26,9 @@ private const val MONTH_GREGORIAN = 1
 private const val MONTH_LENGTH = 3
 
 /**
- * A-05 with the official override switched on, against the official calendars of 1404 and 1405 (golden/persian,
- * golden/islamic-iran); joins per ADR-0027. The bundled override is the golden oracle here (ADR-0037).
+ * A-05 with the official override switched on, against the official calendars the override is made of (1404 and 1405;
+ * golden/persian/official, golden/islamic-iran); joins per ADR-0027. The bundled override is the golden oracle here
+ * (ADR-0037).
  */
 class IranIslamicCalendarTest {
     private val official = OfficialIranMonths.overrides
@@ -50,8 +51,8 @@ class IranIslamicCalendarTest {
     ) = CalendarDate(CalendarSystem.ISLAMIC, year, month, day)
 
     @TestFactory
-    fun `every day of the official calendars has its official lunar date`(): List<DynamicTest> =
-        OfficialIranCalendars.imported.map { calendar ->
+    fun `every day of the override calendars has its official lunar date`(): List<DynamicTest> =
+        OfficialIranCalendars.override.map { calendar ->
             DynamicTest.dynamicTest(calendar.fixture) {
                 val days = OfficialIranCalendars.rows(calendar.fixture)
                 days shouldHaveSize calendar.days

@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Birjand1405.pdf sha256=0ef07f366dbbb9ecc46891c8b2f116cbb29ce43f1357e5f21f2d14e6adb50409; coordinates stated in the document: latitude 32.87 N, longitude 59.22 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Birjand1405.pdf sha256=0ef07f366dbbb9ecc46891c8b2f116cbb29ce43f1357e5f21f2d14e6adb50409; coordinates stated in the document: latitude 32.87 N, longitude 59.22 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:15,5:36,11:40,17:45,18:03,22:59,1
 1405-01-02,4:14,5:35,11:40,17:46,18:03,22:59,1

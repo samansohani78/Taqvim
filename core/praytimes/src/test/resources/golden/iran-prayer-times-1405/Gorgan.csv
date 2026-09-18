@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Gorgan1405.pdf sha256=bdda200e74a961131884a2176f15a9a4ded90a7fc312e67d6552060c732f9ed4; coordinates stated in the document: latitude 36.84 N, longitude 54.44 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Gorgan1405.pdf sha256=bdda200e74a961131884a2176f15a9a4ded90a7fc312e67d6552060c732f9ed4; coordinates stated in the document: latitude 36.84 N, longitude 54.44 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:30,5:55,11:59,18:05,18:23,23:16,1
 1405-01-02,4:28,5:53,11:59,18:06,18:24,23:16,1

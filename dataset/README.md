@@ -11,8 +11,8 @@ How to add or correct records, CI and the reviewer sign-off checklist: [`CONTRIB
 - `islamic-iran-overrides.v1.json` and `iran/islamic-iran-overrides.json` — the D-07 table of official Iranian Hijri
   month starts, one record per month with its Persian first day and calendar page. `*-overrides.json` files are not
   event files; `./gradlew :tools:dataset:validate` also runs `validateOverrides` (no duplicate months, no gaps, 29/30-day
-  months). Generated, never edited by hand: `tools/iran/official_calendar_import.py` writes it from the official
-  calendars in `docs/sources` together with the `:core:calendar` golden fixtures (ADR-0040).
+  months). Generated, never edited by hand: `tools/sources/iran/official_calendar_import.py` writes it from the official
+  calendars in `docs/sources/iran` (the calendars of `OVERRIDE_YEARS`) together with the `:core:calendar` golden fixtures (ADR-0040).
 
 ## Record format
 

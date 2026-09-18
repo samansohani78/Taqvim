@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Karaj1405.pdf sha256=c20581a872d251479e2627f576f19e79e21bb2aaf9228a293707c416e849dc52; coordinates stated in the document: latitude 35.83 N, longitude 50.97 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Karaj1405.pdf sha256=c20581a872d251479e2627f576f19e79e21bb2aaf9228a293707c416e849dc52; coordinates stated in the document: latitude 35.83 N, longitude 50.97 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:45,6:09,12:13,18:18,18:37,23:31,1
 1405-01-02,4:43,6:07,12:13,18:19,18:37,23:31,1

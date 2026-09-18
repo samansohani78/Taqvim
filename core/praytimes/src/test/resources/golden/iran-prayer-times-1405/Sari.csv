@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Sari1405.pdf sha256=3e9a002d4d1529e18d954afe4bcf7d753e4d3ba6fea9e8d62aa57e84fed459b5; coordinates stated in the document: latitude 36.57 N, longitude 53.06 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Sari1405.pdf sha256=3e9a002d4d1529e18d954afe4bcf7d753e4d3ba6fea9e8d62aa57e84fed459b5; coordinates stated in the document: latitude 36.57 N, longitude 53.06 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:36,6:00,12:05,18:10,18:28,23:22,1
 1405-01-02,4:34,5:59,12:05,18:11,18:29,23:22,1

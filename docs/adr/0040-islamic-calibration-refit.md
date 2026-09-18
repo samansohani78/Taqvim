@@ -18,16 +18,17 @@ calendars arrive. Two things were missing for that promise to be keepable:
 
 ## Decision
 
-1. **One-command importer.** `tools/iran/official_calendar_import.py` reads every `Calendar-<solar year>.pdf` in
-   `docs/sources`, verifies its SHA-256 against `docs/sources/MANIFEST.md`, and extracts the daily
+1. **One-command importer.** `tools/sources/iran/official_calendar_import.py` reads every `Calendar-<solar year>.pdf` in
+   `docs/sources/iran` (moved there on 2026-09-18), verifies its SHA-256 against `docs/sources/iran/MANIFEST.md`, and extracts the daily
    Solar Hijri / lunar Hijri / Gregorian table with `pdftotext -bbox`. It writes
-   - `core/calendar/src/test/resources/golden/persian/iran-official-<year>-days.csv`, one row per printed day;
+   - `core/calendar/src/test/resources/golden/persian/official/<year>.csv`, one row per printed day (named
+     `iran-official-<year>-days.csv` until 2026-09-18);
    - `core/calendar/src/test/resources/golden/islamic-iran/official-calendars.csv`, the index of imported calendars;
    - `core/calendar/src/test/resources/golden/islamic-iran/official-month-starts.csv`, every lunar month start the
      calendars establish;
    - `dataset/iran/islamic-iran-overrides.json`, the optional official override of ADR-0037.
 
-   The reading itself is `tools/iran/official_calendar_pdf.py`. The tool supports `--check`, is idempotent, and fails
+   The reading itself is `tools/sources/iran/official_calendar_pdf.py`. The tool supports `--check`, is idempotent, and fails
    loudly — an unknown month name, a day that does not follow the day above it or a printed weekday that disagrees
    with the Gregorian date all stop the run instead of producing a guess. A calendar with no manifest row stops it
    too, with the row to paste (pages, bytes, SHA-256) printed; the tool never writes the checksum it then verifies. Reading the two stored calendars reproduces the hand-extracted fixtures row for row
@@ -72,8 +73,8 @@ calendars arrive. Two things were missing for that promise to be keepable:
 
 - Agreement on 2026-09-18: **Iran 23/25 = 92.0 %** (Jumada I 1447 and Jumada I 1448 are one day late),
   **Saudi Arabia 370/372 = 99.5 %** (the two marginal months of ADR-0028), **Afghanistan 5/5 = 100 %**.
-- Adding an older Calendar Center calendar is: drop `Calendar-<year>.pdf` in `docs/sources`, add its manifest row,
-  run `tools/iran/official_calendar_import.py`, then
+- Adding an older Calendar Center calendar is: drop `Calendar-<year>.pdf` in `docs/sources/iran`, add its manifest row,
+  run `tools/sources/iran/official_calendar_import.py`, then
   `./gradlew :core:astronomy:test -Ptaqvim.updateSnapshots=true`. The daily fixtures, the month-start fixture, the
   override table, the tests that iterate them and the agreement figures all follow.
 - The importer needs `pdftotext` and `pdfinfo` (poppler-utils), like the other PDF generators in `tools/`. CI does not
@@ -81,3 +82,27 @@ calendars arrive. Two things were missing for that promise to be keepable:
 - The Afghan anchors are the only Afghan evidence found so far. Two of the five constrain the month start only within
   the week, so 100 % there is weaker than the same figure for Iran.
 - ICU4J stays a test-scope oracle in `:core:astronomy` as well as `:core:calendar`; no runtime dependency changes.
+
+## Addendum 2026-09-18 — every official calendar 1381–1405
+
+The owner supplied the Calendar Center's calendars for every Solar Hijri year 1381–1405 and moved all Iranian sources
+to `docs/sources/iran/` (inventory: `docs/sources/iran/MANIFEST.md`). The importer moved to `tools/sources/iran/` and
+now reads four layouts (ids in `official_calendar_sources.py`):
+
+- **21 years imported** (1381–1394, 1397–1400, 1403–1405; 7 670 days). Every day agrees with the computed Persian
+  calendar — date, weekday and Gregorian day — in `PersianCalendarOfficialTest`.
+- **4 years not imported** (1395, 1396, 1401, 1402): their text layer maps several digit glyphs to one character (in
+  1401, 0, 7, 8 and 9 all extract as 1), so no date can be read without OCR. They are listed in the index, not guessed.
+- **Two misprints corrected from the documents themselves**, each as an `Erratum` that applies only where the page
+  prints the stated value: the 1381 Shahrivar page prints lunar days 6–21 for 15–30 Jumada II (the first row and the
+  printed 1 Rajab fix them), and the 1383 Esfand page prints Muharram 1427 for 1426.
+- **Official announcements.** The 1381 and 1383–1385 editions are the Calendar Center's computed calendar with a notice
+  that one month began a day later (Ramadan 1423) or earlier (Shawwal 1425, Ramadan 1426, Shawwal 1427) by official
+  announcement. The daily fixtures keep the printed dates; the month-start history
+  (`golden/islamic-iran/official-month-starts-1381-1405.csv`, 262 months) moves the announced month, gives the month
+  before it the changed length, and leaves the announced month's own length empty. Its `basis` column says which
+  months are printed, derived or announced.
+- **The optional override stays on 1404–1405** (`OVERRIDE_YEARS`): extending the shipped override to the older years is
+  a separate decision, and the other years are test oracles only.
+- **Refit not done here.** The calibration report still scores the override months; refitting on the 262-month
+  history is the next step (brief item 4).

@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Bojnord1405.pdf sha256=d71a8d1d38eb0ea12380897ecdeb20f46d04c1579073f2984b5a07bf2b2ff652; coordinates stated in the document: latitude 37.47 N, longitude 57.33 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Bojnord1405.pdf sha256=d71a8d1d38eb0ea12380897ecdeb20f46d04c1579073f2984b5a07bf2b2ff652; coordinates stated in the document: latitude 37.47 N, longitude 57.33 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:17,5:43,11:48,17:53,18:12,23:04,1
 1405-01-02,4:16,5:42,11:48,17:54,18:13,23:04,1

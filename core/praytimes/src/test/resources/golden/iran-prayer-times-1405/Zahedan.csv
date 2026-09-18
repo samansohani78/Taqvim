@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Zahedan1405.pdf sha256=21208a78f20d43b96e9bfd2fc1615afdcc4629a5885b11806ef2655c8adb9f48; coordinates stated in the document: latitude 29.50 N, longitude 60.86 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Zahedan1405.pdf sha256=21208a78f20d43b96e9bfd2fc1615afdcc4629a5885b11806ef2655c8adb9f48; coordinates stated in the document: latitude 29.50 N, longitude 60.86 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:12,5:30,11:34,17:38,17:55,22:54,1
 1405-01-02,4:10,5:28,11:33,17:39,17:56,22:54,1

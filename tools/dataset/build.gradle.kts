@@ -49,7 +49,10 @@ tasks.register<JavaExec>("generateEvents") {
 }
 
 // Official daily rows extracted from the Calendar Center's calendars (golden fixtures of :core:calendar, T-102).
-val officialDaysDirectory = rootProject.layout.projectDirectory.dir("core/calendar/src/test/resources/golden/persian")
+val officialDaysDirectory =
+    rootProject.layout.projectDirectory.dir(
+        "core/calendar/src/test/resources/golden/persian/official",
+    )
 
 // Runtime data scanned by NoPerYearManualDataTest (ADR-0036): assets, resources and table-like sources of every module.
 val runtimeDataFiles =

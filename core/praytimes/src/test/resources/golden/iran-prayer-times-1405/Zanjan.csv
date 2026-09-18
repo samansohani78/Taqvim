@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Zanjan1405.pdf sha256=40e32450a4429a6376763565c23e94574c1eb37a37f7557865dfc31c63ee0603; coordinates stated in the document: latitude 36.67 N, longitude 48.48 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Zanjan1405.pdf sha256=40e32450a4429a6376763565c23e94574c1eb37a37f7557865dfc31c63ee0603; coordinates stated in the document: latitude 36.67 N, longitude 48.48 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:54,6:19,12:23,18:29,18:47,23:40,1
 1405-01-02,4:52,6:17,12:23,18:29,18:48,23:40,1

@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 3-15
 # reviewer: pending
-# notes: Calendar-1404.pdf sha256=057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945, Calendar-1405.pdf sha256=8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c; derived by tools/iran/official_calendar_import.py from the daily fixtures it writes, never typed; length_days is empty where the calendars do not print the whole month; 1446-09: Derived: the calendar prints 20 Ramadan 1446 on 1 Farvardin 1404, so the month began 19 days earlier (12 Esfand 1403).
+# notes: the months of the optional official override (ADR-0037); derived by tools/sources/iran/official_calendar_import.py from the daily fixtures it writes, never typed; length_days is empty where the calendars do not print the whole month; 1446-09: Derived: the calendar prints 20 Ramadan 1446 on 1 Farvardin 1404, so the month began 19 days earlier (12 Esfand 1403).
 hijri_month,first_day_gregorian,first_day_persian,length_days
 1446-09,2025-03-02,1403-12-12,29
 1446-10,2025-03-31,1404-01-11,29

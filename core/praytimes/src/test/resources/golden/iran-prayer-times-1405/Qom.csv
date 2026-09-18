@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Qom1405.pdf sha256=888fc8baf74dcf9ec838cfebbd7201ab9c27247646b3597ccbb87cbbada03b65; coordinates stated in the document: latitude 34.64 N, longitude 50.88 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Qom1405.pdf sha256=888fc8baf74dcf9ec838cfebbd7201ab9c27247646b3597ccbb87cbbada03b65; coordinates stated in the document: latitude 34.64 N, longitude 50.88 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:46,6:09,12:14,18:19,18:37,23:32,1
 1405-01-02,4:45,6:08,12:13,18:20,18:37,23:32,1

@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Ilam1405.pdf sha256=70ac3f9ffa66512f3804a60e0f8bff3c7c106b24ed3c8858391cb5af82a04660; coordinates stated in the document: latitude 33.63 N, longitude 46.42 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Ilam1405.pdf sha256=70ac3f9ffa66512f3804a60e0f8bff3c7c106b24ed3c8858391cb5af82a04660; coordinates stated in the document: latitude 33.63 N, longitude 46.42 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,5:05,6:27,12:31,18:36,18:54,23:50,1
 1405-01-02,5:04,6:26,12:31,18:37,18:55,23:50,1

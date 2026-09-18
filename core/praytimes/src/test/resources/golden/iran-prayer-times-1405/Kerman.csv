@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Kerman1405pdf.pdf sha256=a4515ee63f3d5dd289b9df45e8ae0edf144e2e109f0e4bc4fd0d93113f2520d7; coordinates stated in the document: latitude 30.29 N, longitude 57.07 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Kerman1405pdf.pdf sha256=a4515ee63f3d5dd289b9df45e8ae0edf144e2e109f0e4bc4fd0d93113f2520d7; coordinates stated in the document: latitude 30.29 N, longitude 57.07 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:26,5:45,11:49,17:54,18:11,23:09,1
 1405-01-02,4:25,5:43,11:49,17:54,18:11,23:09,1

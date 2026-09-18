@@ -20,7 +20,7 @@ import org.junit.jupiter.api.TestFactory
  * to `docs/data-todo/islamic-calibration-report.md`.
  *
  * The report is a snapshot: adding official calendars to `docs/sources` and re-running
- * `tools/iran/official_calendar_import.py` changes the anchors, this test then fails with the line that changed, and
+ * `tools/sources/iran/official_calendar_import.py` changes the anchors, this test then fails with the line that changed, and
  * `./gradlew :core:astronomy:test -Ptaqvim.updateSnapshots=true` rewrites it for review.
  */
 class IslamicCalibrationReportTest {
@@ -67,7 +67,7 @@ class IslamicCalibrationReportTest {
                 "Produced by `IslamicCalibrationReportTest` in `:core:astronomy`. It scores the shipped calendar of " +
                     "each region, and every calendar the refit tries, against the official months stored in the " +
                     "repository today. Import new official calendars with " +
-                    "`tools/iran/official_calendar_import.py`, then rerun the test with " +
+                    "`tools/sources/iran/official_calendar_import.py`, then rerun the test with " +
                     "`-Ptaqvim.updateSnapshots=true` to refresh this page.",
             )
             regions.forEach { region -> appendRegion(region) }

@@ -100,7 +100,7 @@ class IslamicIranOverridesGoldenTest {
     )
 
     private fun officialDays(year: Int): List<OfficialDay> =
-        File(property("taqvim.official.days.directory"), "iran-official-$year-days.csv")
+        File(property("taqvim.official.days.directory"), "$year.csv")
             .readLines()
             .filterNot { it.startsWith("#") || it.isBlank() }
             .drop(1)

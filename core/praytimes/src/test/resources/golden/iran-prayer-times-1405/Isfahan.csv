@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Isfahan1405.pdf sha256=050f5abbd6ae7a470c3379c83cd28ddca20a38564e0ed9523939631c8ef9c876; coordinates stated in the document: latitude 32.65 N, longitude 51.67 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Isfahan1405.pdf sha256=050f5abbd6ae7a470c3379c83cd28ddca20a38564e0ed9523939631c8ef9c876; coordinates stated in the document: latitude 32.65 N, longitude 51.67 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:45,6:06,12:11,18:15,18:33,23:30,1
 1405-01-02,4:44,6:05,12:10,18:16,18:34,23:29,1

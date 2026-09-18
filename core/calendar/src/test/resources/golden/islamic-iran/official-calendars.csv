@@ -1,8 +1,27 @@
-# source: University of Tehran, Institute of Geophysics, Calendar Center — official calendars of Iran stored in docs/sources, one row per imported calendar
+# source: University of Tehran, Institute of Geophysics, Calendar Center — official calendars of Iran stored in docs/sources/iran, one row per imported calendar
 # url: https://calendar.ut.ac.ir/Fa/
-# retrieved: 2026-09-13
+# retrieved: 2026-09-18
 # reviewer: pending
-# notes: written by tools/iran/official_calendar_import.py so that a calendar added to docs/sources is picked up by the tests without editing them; days is the number of rows of the daily fixture named here
-solar_year,source_file,sha256,first_page,last_page,days,fixture
-1404,docs/sources/Calendar-1404.pdf,057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945,4,15,365,golden/persian/iran-official-1404-days.csv
-1405,docs/sources/Calendar-1405.pdf,8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c,3,14,365,golden/persian/iran-official-1405-days.csv
+# notes: written by tools/sources/iran/official_calendar_import.py so that a calendar added to docs/sources/iran is picked up by the tests without editing them; days is the number of rows of the daily fixture named here; override is true for the calendars whose lunar months make up the optional official override (ADR-0037); 1395 not imported: the text layer maps several digit glyphs to one character (for example 0, 7, 8 and 9 all extract as 1 in the 1401 edition, whose own title then reads 0410), so no date on the page can be read; the printed page is fine, but reading it would need OCR, which the importer does not do; 1396 not imported: the text layer maps several digit glyphs to one character (for example 0, 7, 8 and 9 all extract as 1 in the 1401 edition, whose own title then reads 0410), so no date on the page can be read; the printed page is fine, but reading it would need OCR, which the importer does not do; 1401 not imported: the text layer maps several digit glyphs to one character (for example 0, 7, 8 and 9 all extract as 1 in the 1401 edition, whose own title then reads 0410), so no date on the page can be read; the printed page is fine, but reading it would need OCR, which the importer does not do; 1402 not imported: the text layer maps several digit glyphs to one character (for example 0, 7, 8 and 9 all extract as 1 in the 1401 edition, whose own title then reads 0410), so no date on the page can be read; the printed page is fine, but reading it would need OCR, which the importer does not do
+solar_year,source_file,sha256,first_page,last_page,days,fixture,override
+1381,docs/sources/iran/Calendar-1381.pdf,ddadac7f18e8897eb1ca9d6b53b07567edeae2f2cd10c03933938d8ae00d22e7,3,14,365,golden/persian/official/1381.csv,false
+1382,docs/sources/iran/Calendar-1382.pdf,c294d47c37ba4df94456610e5f8cda51f0ae7fa46342e2e702773e7d7549c341,2,13,365,golden/persian/official/1382.csv,false
+1383,docs/sources/iran/Calendar-1383.pdf,e445faf3479c4099b3aaa4c4a2b55f9d9e80566a48fea8914e8abd86d3e548d8,4,16,366,golden/persian/official/1383.csv,false
+1384,docs/sources/iran/Calendar-1384.pdf,94bd5039e7ba7b51d43f02b6ad8412baee5ab37666f399f24b670c7bcee253dc,4,16,365,golden/persian/official/1384.csv,false
+1385,docs/sources/iran/Calendar-1385.pdf,0b1d430578c4cf849f0c6cf56af4eaadc1914653da3a9691f270177d6212d4ae,4,16,365,golden/persian/official/1385.csv,false
+1386,docs/sources/iran/Calendar-1386.pdf,07dfaefd5ad657b6695d124aa6cbdeb854893f94b717e6a899e9d273ea8131e8,3,14,365,golden/persian/official/1386.csv,false
+1387,docs/sources/iran/Calendar-1387.pdf,eaaccc4328a251f6dd9f0fa189189036bb267be853bce66e092ce062d52f3ba4,3,14,366,golden/persian/official/1387.csv,false
+1388,docs/sources/iran/Calendar-1388.pdf,17dacabc93d9bfdeddf47270c001176da76a66a0f555df4b822c789fc61724f2,4,15,365,golden/persian/official/1388.csv,false
+1389,docs/sources/iran/Calendar-1389.pdf,3bd9a663fccbf1a68b17f6d25b82be43e1db43c1c440e3175a4ab3258ce15fc2,4,15,365,golden/persian/official/1389.csv,false
+1390,docs/sources/iran/Calendar-1390.pdf,0561e3bf6305cd04369ff5ae84cc610b2920807a72eb8fd7db9d04880fef858f,5,16,365,golden/persian/official/1390.csv,false
+1391,docs/sources/iran/Calendar-1391.pdf,beb35f3bb688a59bdd891d68e675a00ec80807d1804a9a53ac028ec16f376761,4,15,366,golden/persian/official/1391.csv,false
+1392,docs/sources/iran/Calendar-1392.pdf,73ac27bf82c8cdfd6c7152f854053217fdce65b95a92e045967db5ceb7e068b0,5,16,365,golden/persian/official/1392.csv,false
+1393,docs/sources/iran/Calendar-1393.pdf,c2123db25cd299cd6c1197590e3f864f6b4c0b621d57739962d9d9747a6c5294,6,17,365,golden/persian/official/1393.csv,false
+1394,docs/sources/iran/Calendar-1394.pdf,76e56aaee684532bbfd50aa5bdfa07a04d2d562a638f26b6d839ba668e3741dd,4,15,365,golden/persian/official/1394.csv,false
+1397,docs/sources/iran/Calendar-1397.pdf,a3217eecb75a0f5cc5d9ef0837dbb6ca591cf83b70171f470b6f45ab3e70316b,6,17,365,golden/persian/official/1397.csv,false
+1398,docs/sources/iran/Calendar-1398.pdf,1b260ebd388d893d54aa472d99a9e7015aa9a09fb2bf1c509584a21aca6483e8,6,17,365,golden/persian/official/1398.csv,false
+1399,docs/sources/iran/Calendar-1399.pdf,5af5cf7e5c7752da13530e5067d95ac5d82023e791ca5d4a5ca7b467be089213,4,15,366,golden/persian/official/1399.csv,false
+1400,docs/sources/iran/Calendar-1400.pdf,f3798991d0ad2fcef06733f26b2283d2e9d92371bbb729d3cbaca32978330eb6,3,14,365,golden/persian/official/1400.csv,false
+1403,docs/sources/iran/Calendar-1403.pdf,6cfaa18dae05c748eeab995430810fc15780880ccdff1bbc7cae487e4d2f2e60,4,15,366,golden/persian/official/1403.csv,false
+1404,docs/sources/iran/Calendar-1404.pdf,057a40b265125cf8a1ec9b8133ef797f1635c3ad09ba941cc40614be41558945,4,15,365,golden/persian/official/1404.csv,true
+1405,docs/sources/iran/Calendar-1405.pdf,8e32b520d5da058414b9378d62a01117273336a4c074591f4e84d59ab32a963c,3,14,365,golden/persian/official/1405.csv,true

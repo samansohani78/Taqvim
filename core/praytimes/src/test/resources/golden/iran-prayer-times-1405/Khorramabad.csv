@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Khorramabad1405.pdf sha256=6b562a5d711ed5ec9fa8eba81f123d6b1316c3d129ec39e12a88f2585a81696f; coordinates stated in the document: latitude 33.49 N, longitude 48.36 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Khorramabad1405.pdf sha256=6b562a5d711ed5ec9fa8eba81f123d6b1316c3d129ec39e12a88f2585a81696f; coordinates stated in the document: latitude 33.49 N, longitude 48.36 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:58,6:19,12:24,18:29,18:46,23:43,1
 1405-01-02,4:56,6:18,12:23,18:29,18:47,23:42,1

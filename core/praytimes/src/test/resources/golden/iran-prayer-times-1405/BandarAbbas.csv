@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/BandarAbbas1405.pdf sha256=5ab4162c784df7ab2c63947f5744e79dc36345ec9042c7cdc48feb5d8af6895c; coordinates stated in the document: latitude 27.18 N, longitude 56.28 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/BandarAbbas1405.pdf sha256=5ab4162c784df7ab2c63947f5744e79dc36345ec9042c7cdc48feb5d8af6895c; coordinates stated in the document: latitude 27.18 N, longitude 56.28 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:32,5:48,11:52,17:57,18:13,23:14,1
 1405-01-02,4:31,5:47,11:52,17:57,18:14,23:13,1

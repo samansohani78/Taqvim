@@ -892,7 +892,7 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **References used (public only):**
   1. The plan's method table above.
   2. University of Tehran Institute of Geophysics / Calendar Center, note "Determining Fajr on white nights"
-     (`docs/sources/اذان صبح در شب_های سفید.pdf`, retrieved 2026-09-13): where Fajr cannot be computed, Imsak is
+     (`docs/sources/iran/اذان صبح در شب_های سفید.pdf`, retrieved 2026-09-13): where Fajr cannot be computed, Imsak is
      12 hours after Dhuhr and Fajr half an hour after Imsak (`HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS`).
 - **Implementation note:** own work. Events are found from the NOAA hour-angle equation and refined by re-evaluating the
   Sun at the event time (3 iterations); times are rounded to the nearest minute. The high-latitude portions are
@@ -1180,11 +1180,11 @@ Persian-calendar or prayer-times GPL/LGPL library.
   `dataset/islamic-iran-overrides.v1.json`; tests `tools/dataset/.../IslamicIranOverridesGoldenTest.kt`,
   `OverridesValidatorTest.kt` (synthetic fixtures under `tools/dataset/src/test/resources/overrides/`)
 - **Source:** University of Tehran, Institute of Geophysics, Calendar Center — Official calendars of Iran 1404 SH
-  (docs/sources/Calendar-1404.pdf, pp. 4–14) and 1405 SH (docs/sources/Calendar-1405.pdf, pp. 3–14),
+  (docs/sources/iran/Calendar-1404.pdf, pp. 4–14) and 1405 SH (docs/sources/iran/Calendar-1405.pdf, pp. 3–14),
   https://calendar.ut.ac.ir/Fa/, owner-supplied, retrieved 2026-09-13; page cited per month.
 - **Extraction:** poppler `pdftotext -bbox` with the T-102 column parser; a start is the Persian day whose lunar column
   reads day 1. Ramadan 1446 derived from the printed 20 Ramadan 1446 on 1 Farvardin 1404 (page 4), noted in its
-  citation. Identical to the T-104 table and golden fixture. Written by `tools/iran/official_calendar_import.py`
+  citation. Identical to the T-104 table and golden fixture. Written by `tools/sources/iran/official_calendar_import.py`
   since 2026-09-18 (ADR-0040), byte for byte the same file as the hand-made one.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14; **reviewer:** pending.
 
@@ -1220,7 +1220,7 @@ Persian-calendar or prayer-times GPL/LGPL library.
   `tools/dataset/src/test/resources/golden/ancient-iran/ancient-iranian-festivals-rules.csv`
 - **Sources (public):**
   1. University of Tehran, Institute of Geophysics, Calendar Center — Official calendars of Iran 1404 and 1405 SH
-     (docs/sources/Calendar-1404.pdf pp. 4, 12; Calendar-1405.pdf pp. 3, 11), https://calendar.ut.ac.ir/Fa/ — Persian
+     (docs/sources/iran/Calendar-1404.pdf pp. 4, 12; Calendar-1405.pdf pp. 3, 11), https://calendar.ut.ac.ir/Fa/ — Persian
      titles and dates of زادروز زرتشت پیامبر (6 Farvardin) and شب یلدا (30 Azar).
   2. Encyclopaedia Iranica, "ČELLA", Vol. V, Fasc. 2, pp. 123–125, https://iranicaonline.org/articles/cella (retrieved
      2026-09-14) — the night beginning the great čella (1 Dey) is šab-e čella / šab-e yaldā.
@@ -1295,17 +1295,38 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### Iran official calendar sources (University of Tehran, Institute of Geophysics, Calendar Center)
-- **Files:** `docs/sources/` — inventory with page counts and SHA-256 in `docs/sources/MANIFEST.md`
-- **Obtained:** downloaded by the repository owner in a browser and added on 2026-09-13 (calendar.ut.ac.ir blocks
-  non-browser clients); publisher site https://calendar.ut.ac.ir/Fa/. Exact download URLs to be added by the owner.
+- **Files:** `docs/sources/iran/` (moved from `docs/sources/` on 2026-09-18) — inventory with original name, kind,
+  year(s), layout, page counts, bytes and SHA-256 in `docs/sources/iran/MANIFEST.md`
+- **Obtained:** downloaded by the repository owner in a browser and added on 2026-09-13 (the 1404/1405 calendars,
+  timetables, leap table, notices) and 2026-09-18 (the calendars of 1381–1403, `tahvil-sal.txt`, `Holiday-1405.pdf`,
+  `abstract-1405.pdf` and the papers below); calendar.ut.ac.ir blocks non-browser clients; publisher site
+  https://calendar.ut.ac.ir/Fa/. Exact download URLs to be added by the owner.
 - **Extraction (T-102):** poppler `pdftotext` 2026-09-13. The leap-year table was read from the layout text and
   self-checked (293 consecutive years, no duplicates). The daily tables of the 1404/1405 calendars were parsed by word
   coordinates (`pdftotext -bbox`): each row is anchored on its weekday, values are assigned by column order, and ditto
   marks carry the previous month/year. Every row was validated for consecutive Solar Hijri days, weekday cycle,
   lunar-month progression (29/30-day months) and consecutive Gregorian dates — 730 rows, 0 errors. Holiday flags
   come from the "(تعطیل)" marker in the occasion text nearest the row (26 per year; the fixed national holidays were
-  checked by hand). Since 2026-09-18 this extraction is `tools/iran/official_calendar_import.py` (ADR-0040), which
+  checked by hand). Since 2026-09-18 this extraction is `tools/sources/iran/official_calendar_import.py` (ADR-0040), which
   reproduces both hand-made daily fixtures row for row and imports any further `Calendar-<year>.pdf` the same way.
+- **1381–1405 import (2026-09-18, ADR-0040 addendum):** 21 of the 25 yearly calendars read (four layouts); 1395, 1396,
+  1401 and 1402 are not imported because their text layer maps several digit glyphs to one character. Two misprints
+  are corrected from the documents themselves (`ERRATA` in `tools/sources/iran/official_calendar_sources.py`: 1381
+  Shahrivar lunar days, 1383 Esfand lunar year); the 1381 and 1383–1385 notices of an announced month are read from the
+  PDFs and applied only to the month-start history. Every imported day agrees with the computed Persian calendar.
+- **Nowruz instants 1360–1403:** `tahvil-sal.txt`, the Calendar Center's list "لحظه تحویل سال‌های گذشته" as supplied by the
+  owner, read by `tools/sources/iran/nowruz_instants_import.py` (checks weekday, Solar Hijri day and Gregorian date of
+  each entry against each other). Two entries are irregular: 1362 misspells ثانیه (read), and 1380 prints "ساعت 17 و
+  40 ثانیه", which names no minute, so its instant is left empty.
+- **Papers (references only, not archived, nothing copied):** the owner supplied four articles from the journal
+  *Tarikh-e Elm* (University of Tehran) — R. Abdollahi, "A critique of the 2820-year cycle in the Solar Hijri
+  calendar", no. 2, autumn 1383, pp. 41–59; M. Akrami, "Computing the best intercalation of the Solar Hijri calendar",
+  no. 2, autumn 1383, pp. 61–91; F. Ghasemlu, "Comparison of the methods and equations for Solar Hijri leap years in
+  different sources", no. 5, 1385, pp. 93–143; M.-R. Sayyad, "Mathematical modelling for computing the conventional
+  lunar Hijri calendar", no. 1, autumn 1382, pp. 27–37 — and 13 chapters of an untitled monograph on the history of
+  calendars in Iran and other Islamic countries (2006; author and publisher not stated). They are listed with their
+  SHA-256 in `docs/sources/iran/MANIFEST.md` as background reading; no algorithm, table or text of this repository
+  is taken from them, and the files are kept out of Git (third-party copyright).
 - **Interpretation:** the leap table's Gregorian column is the civil date of the March equinox in Iran time, not
   1 Farvardin (it differs from the official calendars' 1 Farvardin 1404 and 1405); confirmed by computation for all
   293 years.
@@ -1321,8 +1342,8 @@ Persian-calendar or prayer-times GPL/LGPL library.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 
 ### D-02 — Iran official holidays (`dataset/iran/iran-official-holidays.json`)
-- **Source:** University of Tehran Calendar Center, official calendars of 1404 and 1405 SH (`docs/sources`, checksums in
-  `docs/sources/MANIFEST.md`); days marked "(تعطیل)".
+- **Source:** University of Tehran Calendar Center, official calendars of 1404 and 1405 SH (`docs/sources/iran`, checksums
+  in `docs/sources/iran/MANIFEST.md`); days marked "(تعطیل)".
 - **Method:** titles are the official Persian wording; only PDF text-layer artefacts were corrected (lam-alef ligature,
   ی/ک, spacing, words split across lines). Where one cell held several occasions, the holiday was attributed using the
   other year (lunar holidays move by about 11 days) or the rendered page. Rules were derived from both years and checked
@@ -1354,10 +1375,13 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 
 ### core/calendar — `golden/persian/*` (T-102)
 - `official-leap-years-1206-1498.csv` — official leap markers and equinox dates, 293 rows (`Kabise Shamsi 1206-1498.pdf`, pp. 1–11).
-- `iran-official-<year>-days.csv` (1404, 1405) — one row per day: Solar Hijri date, ISO weekday,
-  Iran official lunar Hijri date, Gregorian date, official holiday flag, page (`Calendar-<year>.pdf`). Imported by
-  `tools/iran/official_calendar_import.py` with `pdftotext -bbox`; see ADR-0040.
+- `official/<year>.csv` (1381–1394, 1397–1400, 1403–1405; `iran-official-<year>-days.csv` for 1404/1405 until
+  2026-09-18) — one row per day: Solar Hijri date, ISO weekday, Iran official lunar Hijri date as printed, Gregorian
+  date, official holiday flag, page and the occasion text as printed (`Calendar-<year>.pdf`). Imported by
+  `tools/sources/iran/official_calendar_import.py` with `pdftotext -bbox`; see ADR-0040.
 - `official-nowruz-instants.csv` — moment of the vernal equinox printed on the title page of each official calendar.
+- `official-nowruz-instants-1360-1403.csv` — the list of past Nowruz instants (`tahvil-sal.txt`), written by
+  `tools/sources/iran/nowruz_instants_import.py`; the tests compare every instant with the computed March equinox.
 - `century-boundaries.csv` — weekdays of 1 Farvardin 1, 101, 1301, 1401 and 29 Esfand 100, 200, 1400 (`century15th.pdf`).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
 
@@ -1365,9 +1389,12 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
 - `official-month-starts.csv` — first day (Gregorian and Solar Hijri) and length of each official Iranian lunar
   month the stored calendars establish, today Ramadan 1446 – Shawwal 1448 from `Calendar-1404.pdf` and
   `Calendar-1405.pdf`; the Ramadan 1446 row is derived as described in A-05.
-- `official-calendars.csv` — the index of imported calendars (year, file, SHA-256, pages, days, daily fixture) that
-  the tests iterate instead of naming fixtures.
-- Both are written by `tools/iran/official_calendar_import.py`, which also writes
+- `official-calendars.csv` — the index of imported calendars (year, file, SHA-256, pages, days, daily fixture, whether
+  the calendar feeds the override) that the tests iterate instead of naming fixtures; its notes list the editions not
+  imported and why.
+- `official-month-starts-1381-1405.csv` — the first day of every lunar month the 21 imported calendars establish (262),
+  with its basis (printed, derived, announced) and the page; the announced months follow the calendars' own notices.
+- Both are written by `tools/sources/iran/official_calendar_import.py`, which also writes
   `dataset/iran/islamic-iran-overrides.json`; rerunning it on the two stored calendars reproduces the fixtures the
   first, hand-made extraction produced.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13, regenerated 2026-09-18; **reviewer:** pending.
@@ -1422,9 +1449,9 @@ verify the sources' own arithmetic before dropping the computed columns.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; facts-only rewrite 2026-09-15; **reviewer:** pending.
 
 ### core/astronomy — `golden/iran/official-eclipses-1399-1405.csv`, `golden/iran/iran-provincial-capitals-1405.csv` (T-403)
-- Nine eclipse records from the Calendar Center's official calendars (`docs/sources/Calendar-1404.pdf` pages 2–3,
+- Nine eclipse records from the Calendar Center's official calendars (`docs/sources/iran/Calendar-1404.pdf` pages 2–3,
   `Calendar-1405.pdf` page 2, including its 1399 section) and the notice `اطلاعیه ماه گرفتگی 16 شهریور 1404.pdf`;
-  SHA-256 of each PDF checked against MANIFEST by `tools/iran/official_eclipses_golden.py` (pdftotext -raw, expected
+  SHA-256 of each PDF checked against MANIFEST by `tools/sources/iran/official_eclipses_golden.py` (pdftotext -raw, expected
   record counts per section, `--check`). Clock times are recorded as Iran Standard Time (UTC+03:30); the documents
   name no time zone, place, magnitude or obscuration.
 - Visibility sites: the 31 provincial capitals with the coordinates printed in the official 1405 prayer-time PDFs

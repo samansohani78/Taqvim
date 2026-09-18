@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2026 Saman Sohani. All Rights Reserved.
 # Proprietary and confidential. See the LICENSE file in the repository root.
-"""Reads the daily table of a Calendar Center yearly calendar (`docs/sources/Calendar-<solar year>.pdf`).
+"""Reads the daily table of a Calendar Center yearly calendar (`docs/sources/iran/Calendar-<solar year>.pdf`).
 
 `pdftotext -bbox` gives every word with its box. Each printed day row is anchored on its weekday cell, the rightmost
 column of the table; the remaining cells are read right to left until all of [COLUMNS] are found, and ditto marks
@@ -9,7 +9,7 @@ carry the value of the row above. A word arrives with its letters in visual orde
 lam-alef ligature, which poppler expands in logical order inside that visual run, therefore arrives with its two
 letters swapped, and [name_key] compares names on a key that sorts every run of alef and lam.
 
-Used by tools/iran/official_calendar_import.py; not a command of its own.
+Used by tools/sources/iran/official_calendar_import.py; not a command of its own.
 """
 
 import datetime
@@ -19,9 +19,9 @@ import re
 import subprocess
 import unicodedata
 
-REPO = pathlib.Path(__file__).resolve().parents[2]
-MANIFEST = "docs/sources/MANIFEST.md"
-SOURCES = "docs/sources"
+REPO = pathlib.Path(__file__).resolve().parents[3]
+MANIFEST = "docs/sources/iran/MANIFEST.md"
+SOURCES = "docs/sources/iran"
 URL = "https://calendar.ut.ac.ir/Fa/"
 
 WORD = re.compile(
@@ -47,8 +47,10 @@ GREGORIAN_MONTH_NAMES = [
     ["ژانویه"], ["فوریه"], ["مارس"], ["آوریل"], ["مه", "می"], ["ژوئن"],
     ["ژوئیه", "ژوییه"], ["اوت"], ["سپتامبر"], ["اکتبر"], ["نوامبر"], ["دسامبر"],
 ]
-WEEKDAY_NAMES = [["دوشنبه"], ["سهشنبه"], ["چهارشنبه"], ["پنجشنبه"], ["جمعه"], ["شنبه"], ["یکشنبه"]]
+# The 1381–1386 editions print Wednesday as چهارشبه throughout (a typesetting slip, the same on every page).
+WEEKDAY_NAMES = [["دوشنبه"], ["سهشنبه"], ["چهارشنبه", "چهارشبه"], ["پنجشنبه"], ["جمعه"], ["شنبه"], ["یکشنبه"]]
 HOLIDAY = "تعطیل"
+FOOTNOTE = "*"
 DITTO = '"'
 INFINITY = float("inf")
 
@@ -59,7 +61,7 @@ COLUMN_GAP = 6.0
 LINE_TOLERANCE = 3.0
 
 
-LATIN_RUN = re.compile(r"[0-9A-Za-z]+")
+LATIN_RUN = re.compile(r"[0-9A-Za-z٠-٩۰-۹]+")
 ENTITIES = {"&quot;": DITTO, "&amp;": "&", "&lt;": "<", "&gt;": ">", "&apos;": "'"}
 
 
@@ -75,32 +77,40 @@ def normalise(text):
     return unicodedata.normalize("NFKC", logical).translate(LETTERS).translate(DIGITS).strip()
 
 
-def manifest_digest(name):
-    pattern = re.compile(r"^\| `" + re.escape(name) + r"` \|[^|]*\|[^|]*\| `([0-9a-f]{64})`")
+def manifest_rows():
+    """The rows of docs/sources/iran/MANIFEST.md, keyed by canonical file name."""
+    rows, columns = {}, None
     for line in (REPO / MANIFEST).read_text(encoding="utf-8").splitlines():
-        match = pattern.match(line)
-        if match:
-            return match.group(1)
-    raise SystemExit(f"{name}: no SHA-256 row in {MANIFEST}. Add this row to the table there, in file-name order, "
-                     f"with the content description filled in:\n{manifest_row(f'{SOURCES}/{name}')}")
+        if not line.startswith("| "):
+            continue
+        cells = [cell.strip().strip("`") for cell in line.strip().strip("|").split("|")]
+        if columns is None:
+            columns = cells
+        elif not set(cells[0]) <= {"-"}:
+            rows[cells[0]] = dict(zip(columns, cells))
+    return rows
+
+
+def manifest_digest(name):
+    row = manifest_rows().get(name)
+    if row is None:
+        raise SystemExit(f"{name}: no row in {MANIFEST}. Add one (see the columns there), for example\n"
+                         f"{manifest_row(f'{SOURCES}/{name}')}")
+    return row["SHA-256"]
 
 
 def manifest_row(path):
-    """The manifest row of the document at [path], so a new document is never described by hand."""
+    """A manifest row for the document at [path], so a new document's checksum and size are never typed by hand."""
     document = REPO / path
     digest = hashlib.sha256(document.read_bytes()).hexdigest()
-    return (f"| `{document.name}` | {page_count(path)} | {document.stat().st_size} | `{digest}` | "
-            "Official calendar of Iran for <year> SH (occasions approved by the Public Culture Council; compiled by "
-            "the Calendar Center Council, Institute of Geophysics, University of Tehran). Daily Solar Hijri / lunar "
-            "Hijri / Gregorian table with official holidays. |")
+    return (f"| `{document.name}` | `{document.name}` | `{digest}` | yearly-calendar | <year> | <layout> | "
+            f"{page_count(path)} | {document.stat().st_size} | <date supplied> | <content> |")
 
 
-def manifest_supplied_on():
-    match = re.search(r"supplied by the repository owner on (\d{4}-\d{2}-\d{2})",
-                      (REPO / MANIFEST).read_text(encoding="utf-8"))
-    if match is None:
-        raise SystemExit(f"{MANIFEST}: no 'supplied by the repository owner on <date>' line")
-    return match.group(1)
+def supplied_on(name):
+    """The date the owner supplied [name], from the manifest's Supplied column."""
+    manifest_digest(name)
+    return manifest_rows()[name]["Supplied"]
 
 
 def verified(path):
@@ -139,10 +149,29 @@ def groups_of(words):
     for word in sorted(words, key=lambda word: word["x1"], reverse=True):
         if groups and groups[-1]["x0"] - word["x1"] <= COLUMN_GAP:
             groups[-1]["x0"] = word["x0"]
-            groups[-1]["text"] += word["text"]
+            groups[-1]["words"].append(word)
         else:
-            groups.append({"x0": word["x0"], "x1": word["x1"], "text": word["text"]})
+            groups.append({"x0": word["x0"], "x1": word["x1"], "words": [word]})
+    for group in groups:
+        group["text"] = cell_text(group["words"])
     return groups
+
+
+def cell_text(words):
+    """Text of one cell from its words, right to left. A number the PDF splits into several words (2006 as "200" and
+    "6", 26 as "2" and "6") is left to right, so a run of digit-only words is joined from its leftmost word on."""
+    parts, digits = [], []
+    for word in words:
+        if word["text"].isdigit():
+            digits.insert(0, word["text"])
+            continue
+        if digits:
+            parts.append("".join(digits))
+            digits = []
+        parts.append(word["text"])
+    if digits:
+        parts.append("".join(digits))
+    return "".join(parts)
 
 
 def weekday_cells(words):
@@ -156,8 +185,12 @@ def weekday_cells(words):
     cells = []
     for line in lines:
         for group in groups_of(line):
-            if name_key(group["text"]) in WEEKDAYS:
-                cells.append({"y": line[0]["y"], "x0": group["x0"], "text": group["text"]})
+            # The 1396 edition sets the Solar Hijri day so close to the weekday that both fall in one cell; the
+            # weekday is then the cell's letters, and the day stays inside the row for [table_cells].
+            letters = [word for word in group["words"] if not word["text"].isdigit()]
+            name = cell_text(letters)
+            if letters and name_key(name) in WEEKDAYS:
+                cells.append({"y": line[0]["y"], "x0": min(word["x0"] for word in letters), "text": name})
     return sorted(cells, key=lambda cell: cell["y"])
 
 
@@ -177,11 +210,40 @@ def day_rows(words):
     cells = weekday_cells(words)
     rows = []
     for (top, bottom), weekday in zip(bands_of(cells), cells):
-        inside = [word for word in words if top <= word["y"] < bottom and word["x1"] <= weekday["x0"]]
+        inside = [word for word in words if top <= word["y"] < bottom and word["x0"] < weekday["x0"]]
         row_cells, table_left = table_cells(groups_of(inside), weekday["y"])
-        occasion = " ".join(word["text"] for word in inside if word["x1"] < table_left)
-        rows.append({"weekday": weekday["text"], "cells": row_cells, "occasion": occasion})
+        occasion = [word for word in inside if word["x1"] < table_left]
+        rows.append({
+            "weekday": weekday["text"],
+            "cells": row_cells,
+            "occasion": occasion_text(occasion),
+            "footnote": any(FOOTNOTE in word["text"] for word in inside if word["x1"] >= table_left),
+        })
     return rows
+
+
+def occasion_text(words):
+    """The occasions printed with a day, in reading order: line by line, each line right to left."""
+    lines = []
+    for word in sorted(words, key=lambda word: (word["y"], -word["x1"])):
+        if lines and abs(word["y"] - lines[-1][0]["y"]) <= LINE_TOLERANCE:
+            lines[-1].append(word)
+        else:
+            lines.append([word])
+    text = " ".join(mirrored(" ".join(word["text"] for word in line)) for line in lines)
+    return OPENING_SPACE.sub("(", CLOSING_SPACE.sub(")", " ".join(text.split())))
+
+
+OPENING_SPACE = re.compile(r"\(\s+")
+CLOSING_SPACE = re.compile(r"\s+\)")
+
+
+def mirrored(line):
+    """Older editions keep parentheses in their visual shape, so a line reads ")holiday(": its first bracket closes."""
+    brackets = [character for character in line if character in "()"]
+    if brackets and brackets[0] == ")":
+        return line.translate(str.maketrans("()", ")("))
+    return line
 
 
 def table_cells(groups, y):
@@ -190,7 +252,8 @@ def table_cells(groups, y):
     for group in groups:
         if len(tokens) >= len(COLUMNS):
             break
-        tokens += CELL.findall(group["text"])
+        # A footnote mark (*) stands next to the lunar month it annotates; it is not a cell of its own.
+        tokens += [token for token in CELL.findall(group["text"].replace(FOOTNOTE, " ")) if token.strip()]
         table_left = group["x0"]
     if len(tokens) != len(COLUMNS):
         raise ValueError(f"row at {y}: expected {len(COLUMNS)} printed cells, found {tokens!r}")
@@ -238,44 +301,95 @@ def cell(value, previous, what):
 
 
 class Reader:
-    """Reads the daily table of one calendar, carrying the ditto state from row to row and page to page."""
+    """Reads the daily table of one calendar, carrying the ditto state from row to row and page to page.
 
-    def __init__(self, path, solar_year):
+    A page is taken whole or not at all: a page that is not part of the daily table (a year overview, a list of
+    occasions) fails to parse and leaves no rows behind; [skipped] records why. Whether the pages read make up the
+    whole year is checked afterwards by the importer.
+    """
+
+    def __init__(self, path, solar_year, errata=()):
         self.path = path
         self.solar_year = solar_year
+        self.errata = list(errata)
+        self.applied = set()
         self.previous = {column: None for column in COLUMNS}
         self.rows = []
+        self.skipped = []
 
     def read_page(self, page):
-        rows = day_rows(page_words(self.path, page))
-        for row in rows:
-            self.add(page, row)
-        return len(rows)
+        previous, count = dict(self.previous), len(self.rows)
+        try:
+            for row in day_rows(page_words(self.path, page)):
+                self.add(page, row)
+        except ValueError as error:
+            self.previous, self.rows[count:] = previous, []
+            self.skipped.append((page, str(error)))
+            return 0
+        return len(self.rows) - count
 
     def add(self, page, row):
         resolved = {column: cell(row["cells"][column], self.previous[column], column) for column in COLUMNS}
-        self.previous = resolved
-        gregorian = datetime.date(
-            int(resolved["gregorian_year"]),
-            index_of(resolved["gregorian_month"], GREGORIAN_MONTHS, "Gregorian month"),
-            int(resolved["gregorian_day"]),
-        )
+        self.previous = dict(resolved)
         persian_month = index_of(resolved["persian_month"], PERSIAN_MONTHS, "Solar Hijri month")
-        hijri_month = index_of(resolved["hijri_month"], HIJRI_MONTHS, "lunar Hijri month")
+        persian_day = int(resolved["persian_day"])
+        corrected = self.corrected(persian_month, persian_day, resolved)
+        gregorian = datetime.date(
+            int(corrected["gregorian_year"]),
+            index_of(corrected["gregorian_month"], GREGORIAN_MONTHS, "Gregorian month"),
+            int(corrected["gregorian_day"]),
+        )
+        hijri_month = index_of(corrected["hijri_month"], HIJRI_MONTHS, "lunar Hijri month")
         weekday_iso = index_of(row["weekday"], WEEKDAYS, "weekday")
         if weekday_iso != gregorian.isoweekday():
             raise ValueError(f"{self.path} page {page}: {gregorian} is printed on {row['weekday']}")
         self.rows.append({
-            "persian": f"{self.solar_year}-{persian_month:02d}-{int(resolved['persian_day']):02d}",
+            "persian": f"{self.solar_year}-{persian_month:02d}-{persian_day:02d}",
             "persian_month": persian_month,
-            "persian_day": int(resolved["persian_day"]),
+            "persian_day": persian_day,
             "weekday_iso": weekday_iso,
-            "hijri_year": int(resolved["hijri_year"]),
+            "hijri_year": int(corrected["hijri_year"]),
             "hijri_month": hijri_month,
-            "hijri_day": int(resolved["hijri_day"]),
+            "hijri_day": int(corrected["hijri_day"]),
             "gregorian": gregorian,
             "official_holiday": HOLIDAY in name_key(row["occasion"]),
+            "occasion": row["occasion"],
+            "footnote": row["footnote"],
+            "erratum": corrected is not resolved,
             "page": page,
         })
 
+    def corrected(self, month, day, resolved):
+        """The printed cells with every erratum of this day applied; the printed cells themselves if none applies."""
+        result = resolved
+        for index, erratum in enumerate(self.errata):
+            if erratum.applies(month, day) and int(resolved[erratum.column]) == erratum.printed(month, day):
+                result = dict(result)
+                result[erratum.column] = str(erratum.value(month, day))
+                self.applied.add(index)
+        return result
 
+
+class Erratum:
+    """A misprint in one column over a run of days, corrected from the document's own dates around it.
+
+    [first] and [last] are Solar Hijri (month, day) pairs; [printed] is what the page prints on [first] (a lunar day
+    then counts up by one a day) and [shift] what the correction adds. An erratum changes a cell only where the page
+    prints the value stated, and the importer fails if one is never used, so a re-issued document is not corrected
+    by accident; the corrected table must still pass every day-by-day check.
+    """
+
+    def __init__(self, column, first, last, printed, shift, reason):
+        self.column, self.first, self.last = column, first, last
+        self.printed_first, self.shift, self.reason = printed, shift, reason
+
+    def applies(self, month, day):
+        return self.first <= (month, day) <= self.last
+
+    def printed(self, month, day):
+        if self.column == "hijri_day":
+            return self.printed_first + (day - self.first[1]) if month == self.first[0] else None
+        return self.printed_first
+
+    def value(self, month, day):
+        return self.printed(month, day) + self.shift

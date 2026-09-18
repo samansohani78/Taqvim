@@ -18,7 +18,8 @@ class PersianComputedOnlyKonsistTest {
             "golden/persian",
             "official-leap-years",
             "official-nowruz-instants",
-            "iran-official-14",
+            "persian/official/",
+            "official-month-starts-13",
             "PersianLeapTable",
         )
 

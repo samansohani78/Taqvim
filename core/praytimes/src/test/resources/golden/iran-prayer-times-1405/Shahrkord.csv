@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Shahrkord1405.pdf sha256=cef755a47d4b2f3cf4288a5e7a7e5f29b7e7a820fddb085c47dfa93362ad875f; coordinates stated in the document: latitude 32.33 N, longitude 50.86 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Shahrkord1405.pdf sha256=cef755a47d4b2f3cf4288a5e7a7e5f29b7e7a820fddb085c47dfa93362ad875f; coordinates stated in the document: latitude 32.33 N, longitude 50.86 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:49,6:09,12:14,18:19,18:36,23:33,1
 1405-01-02,4:48,6:08,12:13,18:19,18:37,23:33,1

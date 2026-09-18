@@ -103,7 +103,7 @@ class OccurrenceGoldenTest {
     @Test
     fun `the official calendar's last Friday of Ramadan 1447 uses the Iranian lunar calendar`() {
         // Calendar-1404.pdf page 15: 29 Esfand 1404 (20 March 2026) is "the last Friday of Ramadan" (golden
-        // persian/iran-official-1404-days.csv, lunar date 1447-09-30).
+        // persian/official/1404.csv, lunar date 1447-09-30).
         val lastFriday = event("test.quds-day", CalendarSystem.ISLAMIC, EventRule.LastWeekdayOfMonth(9, Weekday.FRIDAY))
 
         jdnValues(lastFriday, 1447) shouldBe listOf(LocalDate.of(2026, 3, 20).toJdnValue())

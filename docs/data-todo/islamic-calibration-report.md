@@ -1,7 +1,7 @@
 # generated-by: core/astronomy IslamicCalibrationReportTest
 # Islamic calendar calibration — agreement with the official months
 
-Produced by `IslamicCalibrationReportTest` in `:core:astronomy`. It scores the shipped calendar of each region, and every calendar the refit tries, against the official months stored in the repository today. Import new official calendars with `tools/iran/official_calendar_import.py`, then rerun the test with `-Ptaqvim.updateSnapshots=true` to refresh this page.
+Produced by `IslamicCalibrationReportTest` in `:core:astronomy`. It scores the shipped calendar of each region, and every calendar the refit tries, against the official months stored in the repository today. Import new official calendars with `tools/sources/iran/official_calendar_import.py`, then rerun the test with `-Ptaqvim.updateSnapshots=true` to refresh this page.
 
 ## Iran (Calendar Center, official calendars in docs/sources)
 

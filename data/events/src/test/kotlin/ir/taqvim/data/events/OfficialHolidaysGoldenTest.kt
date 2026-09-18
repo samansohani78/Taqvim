@@ -21,7 +21,7 @@ import org.junit.jupiter.api.TestFactory
 /**
  * T-303 golden: with the generated official dataset (D-02/D-08), a day is a holiday exactly when the Calendar
  * Center's official calendar marks it so. Uses the daily fixtures of :core:calendar
- * (`golden/persian/iran-official-{year}-days.csv`); only 1404 and 1405 are available (1403 and 1406 pending).
+ * (`golden/persian/official/{year}.csv`); only 1404 and 1405 are available (1403 and 1406 pending).
  */
 class OfficialHolidaysGoldenTest {
     private val directory =
@@ -35,7 +35,7 @@ class OfficialHolidaysGoldenTest {
         OFFICIAL_YEARS.map { year ->
             DynamicTest.dynamicTest("$year SH") {
                 val rows =
-                    File(directory, "iran-official-$year-days.csv")
+                    File(directory, "$year.csv")
                         .readLines()
                         .filterNot { it.startsWith("#") }
                         .drop(1)

@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Boshehr1405.pdf sha256=9a7108412756f5598ac2869175e726dd0a7d1d2d0629141a73017aa4f6f80cba; coordinates stated in the document: latitude 28.96 N, longitude 50.84 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Boshehr1405.pdf sha256=9a7108412756f5598ac2869175e726dd0a7d1d2d0629141a73017aa4f6f80cba; coordinates stated in the document: latitude 28.96 N, longitude 50.84 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:52,6:10,12:14,18:18,18:35,23:35,1
 1405-01-02,4:51,6:08,12:14,18:19,18:36,23:34,1

@@ -24,7 +24,10 @@ dependencies {
 }
 
 // Official daily rows extracted from the Calendar Center's calendars (golden fixtures of :core:calendar), for T-303.
-val officialDaysDirectory = rootProject.layout.projectDirectory.dir("core/calendar/src/test/resources/golden/persian")
+val officialDaysDirectory =
+    rootProject.layout.projectDirectory.dir(
+        "core/calendar/src/test/resources/golden/persian/official",
+    )
 
 tasks.withType<Test>().configureEach {
     systemProperty("taqvim.official.days.directory", officialDaysDirectory.asFile.path)

@@ -3,7 +3,7 @@
 # retrieved: 2026-09-13
 # page: 1-12
 # reviewer: pending
-# notes: docs/sources/Ahvaz1405.pdf sha256=52113b1992da18b3d046f8a5cc8adc8aa5f6d86f39d1da603a4bfb0494c9703f; coordinates stated in the document: latitude 31.33 N, longitude 48.69 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
+# notes: docs/sources/iran/Ahvaz1405.pdf sha256=52113b1992da18b3d046f8a5cc8adc8aa5f6d86f39d1da603a4bfb0494c9703f; coordinates stated in the document: latitude 31.33 N, longitude 48.69 E (printed with '/' as decimal separator); times in Iran Standard Time (UTC+03:30); columns in the document's order reversed to fajr, sunrise, dhuhr, sunset, maghrib, midnight
 persian,fajr,sunrise,dhuhr,sunset,maghrib,midnight,page
 1405-01-01,4:59,6:18,12:22,18:27,18:44,23:42,1
 1405-01-02,4:57,6:17,12:22,18:28,18:45,23:42,1
