@@ -9,11 +9,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.os.ParcelFileDescriptor
+import android.view.accessibility.AccessibilityNodeInfo
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.BySelector
-import androidx.test.uiautomator.Direction
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
@@ -24,6 +24,7 @@ import ir.taqvim.wear.WearRoutes
 import ir.taqvim.wear.WearSettingsModel
 import ir.taqvim.wear.screenTag
 import java.io.File
+import java.util.regex.Pattern
 import kotlin.math.abs
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -104,20 +105,16 @@ internal fun launchWatchApp() {
 internal fun awaitScreen(route: String): UiObject2 = awaitTag(screenTag(route))
 
 /**
- * The node tagged [tag], failing when it does not appear. Watch lists are taller than the screen, so the list is
- * scrolled while looking for it.
+ * The selector of the node whose test tag is exactly [tag].
+ *
+ * `By.res(String)` matches a resource name anywhere in the id, and the watch tags nest (`wear:settings` is the start
+ * of `wear:settings:language`), so an unanchored selector reports the settings screen as shown while a choice list
+ * is in front — and the test then drives the wrong screen. The pattern is anchored to prevent that.
  */
-internal fun awaitTag(tag: String): UiObject2 {
-    device.wait(Until.findObject(By.res(tag)), DEVICE_TIMEOUT_MILLIS)?.let { return it }
-    repeat(SCROLL_ATTEMPTS) {
-        val list = device.findObject(By.scrollable(true)) ?: return@repeat
-        list.scroll(Direction.DOWN, SCROLL_FRACTION)
-        device.waitForIdle(IDLE_MILLIS)
-        device.findObject(By.res(tag))?.let { return it }
-    }
-    dumpHierarchy(tag)
-    error("$tag is not shown; the watch app crashed or the screen did not open")
-}
+internal fun byTag(tag: String): BySelector = By.res(Pattern.compile("^" + Pattern.quote(tag) + "$"))
+
+/** The node tagged [tag], scrolling the screen while looking for it and failing when it never appears. */
+internal fun awaitTag(tag: String): UiObject2 = awaitVisible(byTag(tag), tag)
 
 /**
  * Taps the node tagged [tag] after bringing it to the middle of the screen.
@@ -127,19 +124,70 @@ internal fun awaitTag(tag: String): UiObject2 {
  * the node towards the centre, where the list applies no transformation, and tapping its visible centre makes the tap
  * land on the control (T-1600).
  */
-internal fun tapTag(tag: String) = tap(By.res(tag), tag)
+internal fun tapTag(tag: String) = tap(byTag(tag), tag)
 
 /** Taps the node whose content description is [description], the same way as [tapTag]. */
 internal fun tapDescription(description: String) = tap(By.desc(description), description)
 
-/** Brings the node matching [selector] to the middle of the screen and taps its visible centre. */
+/**
+ * Taps the node matching [selector], after scrolling it into view.
+ *
+ * The tap is the accessibility click of the node itself, not a gesture at its coordinates: the watch lists morph the
+ * items near the top and bottom edge, so the button drawn there does not cover the middle of its reported bounds and
+ * a tap at those coordinates is lost. A coordinate tap on the centred node remains as a fallback.
+ */
 private fun tap(
     selector: BySelector,
     name: String,
 ) {
-    val centred = centre(selector, name)
-    device.click(centred.centerX(), centred.centerY())
+    awaitVisible(selector, name)
+    if (!clickNode(selector, name)) {
+        val centred = centre(selector, name)
+        device.click(centred.centerX(), centred.centerY())
+    }
     device.waitForIdle(IDLE_MILLIS)
+}
+
+/** Performs the accessibility click of the node matching [selector], or of its nearest clickable parent. */
+private fun clickNode(
+    selector: BySelector,
+    name: String,
+): Boolean {
+    val byDescription = selector.toString().contains("DESC")
+    val matches: (AccessibilityNodeInfo) -> Boolean = { node ->
+        if (byDescription) node.contentDescription?.toString() == name else node.viewIdResourceName == name
+    }
+    val root = InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow
+    val node = root?.let { findNode(it, matches) }?.let(::clickable)
+    return node?.performAction(AccessibilityNodeInfo.ACTION_CLICK) ?: false
+}
+
+/**
+ * [node] itself when it takes clicks, otherwise its nearest parent that does.
+ *
+ * A Wear Material button whose content description sits on the modifier reports `clickable=false` while still
+ * offering the click action, so the action list is consulted as well as the flag.
+ */
+private fun clickable(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
+    var candidate: AccessibilityNodeInfo? = node
+    while (candidate != null && !candidate.takesClicks()) candidate = candidate.parent
+    return candidate
+}
+
+private fun AccessibilityNodeInfo.takesClicks(): Boolean =
+    isClickable || actionList.any { it.id == AccessibilityNodeInfo.ACTION_CLICK }
+
+/** The first node of [node]'s tree for which [matches] holds. */
+private fun findNode(
+    node: AccessibilityNodeInfo,
+    matches: (AccessibilityNodeInfo) -> Boolean,
+): AccessibilityNodeInfo? {
+    if (matches(node)) return node
+    for (index in 0 until node.childCount) {
+        val child = node.getChild(index) ?: continue
+        findNode(child, matches)?.let { return it }
+    }
+    return null
 }
 
 /** Scrolls the node matching [selector] into the middle band of the screen and returns its visible bounds there. */
@@ -151,26 +199,54 @@ private fun centre(
     val middle = device.displayHeight / 2
     val band = device.displayHeight / CENTRE_BAND
     var attempts = 0
-    var list = device.findObject(By.scrollable(true))
-    while (attempts < CENTRE_ATTEMPTS && list != null && abs(bounds.centerY() - middle) > band) {
+    while (attempts < CENTRE_ATTEMPTS && abs(bounds.centerY() - middle) > band) {
         attempts++
-        list.scroll(if (bounds.centerY() > middle) Direction.DOWN else Direction.UP, CENTRE_FRACTION)
-        device.waitForIdle(IDLE_MILLIS)
+        scrollScreen(down = bounds.centerY() > middle)
         bounds = device.findObject(selector)?.visibleBounds ?: bounds
-        list = device.findObject(By.scrollable(true))
     }
     return bounds
 }
 
-/** The node matching [selector], failing with a hierarchy dump when it never appears. */
+/**
+ * The node matching [selector], scrolled into view if needed, failing with a hierarchy dump when it never appears.
+ *
+ * A watch list composes only the items on the screen, and `TransformingLazyColumn` publishes no scrollable node to
+ * the accessibility tree (its dumps report `scrollable=false` for every node), so the list cannot be scrolled through
+ * `UiObject2.scroll`. The screen is swiped instead, first down to the end of the list and then back up, so a node
+ * above the starting position is found as well.
+ */
 private fun awaitVisible(
     selector: BySelector,
     name: String,
-): UiObject2 =
-    device.wait(Until.findObject(selector), DEVICE_TIMEOUT_MILLIS) ?: run {
-        dumpHierarchy(name)
-        error("$name is not shown; the watch app crashed or the screen did not open")
+): UiObject2 {
+    device.wait(Until.findObject(selector), DEVICE_TIMEOUT_MILLIS)?.let { return it }
+    repeat(SCROLL_ATTEMPTS) {
+        scrollScreen(down = true)
+        device.findObject(selector)?.let { return it }
     }
+    repeat(SCROLL_ATTEMPTS * 2) {
+        scrollScreen(down = false)
+        device.findObject(selector)?.let { return it }
+    }
+    dumpHierarchy(name)
+    error("$name is not shown; the watch app crashed or the screen did not open")
+}
+
+/**
+ * Swipes the watch screen vertically, which scrolls the list on it.
+ *
+ * The swipe stays inside the middle band of the screen: a vertical swipe that starts near the top or the bottom edge
+ * of a watch pulls down the system's quick settings or its notification stream instead, which covers the app. The
+ * watch app is never sent a key event to recover from that — `pressBack` on the first screen leaves the app for the
+ * watch face, which is worse than a covered screen that the next swipe uncovers.
+ */
+internal fun scrollScreen(down: Boolean) {
+    val x = device.displayWidth / 2
+    val near = device.displayHeight * SCROLL_NEAR / SCROLL_SCALE
+    val far = device.displayHeight * SCROLL_FAR / SCROLL_SCALE
+    if (down) device.swipe(x, near, x, far, SWIPE_STEPS) else device.swipe(x, far, x, near, SWIPE_STEPS)
+    device.waitForIdle(IDLE_MILLIS)
+}
 
 /** Writes the window hierarchy next to the test output, so a failure on CI names the nodes that were on screen. */
 internal fun dumpHierarchy(tag: String) {
@@ -193,7 +269,7 @@ internal fun openScreen(
 ) {
     repeat(OPEN_ATTEMPTS) { attempt ->
         tapTag(tag)
-        if (device.wait(Until.hasObject(By.res(screenTag(route))), OPEN_TIMEOUT_MILLIS)) {
+        if (device.wait(Until.hasObject(byTag(screenTag(route))), OPEN_TIMEOUT_MILLIS)) {
             awaitScreen(route)
             return
         }
@@ -202,11 +278,57 @@ internal fun openScreen(
     error("${screenTag(route)} did not open after $OPEN_ATTEMPTS taps on $tag")
 }
 
-/** Swipes right from the left edge (Wear's swipe to dismiss) and waits for the screen of [route]. */
-internal fun swipeBack(route: String) {
-    device.swipe(1, device.displayHeight / 2, device.displayWidth - 1, device.displayHeight / 2, SWIPE_STEPS)
-    device.waitForIdle(IDLE_MILLIS)
-    awaitScreen(route)
+/**
+ * Swipes right from the left edge (Wear's swipe to dismiss) and waits until [from] is gone and [to] is shown.
+ *
+ * `SwipeDismissableNavHost` keeps both destinations in the tree while the dismiss animates, so waiting only for the
+ * target would return while the dismissed screen is still on top — and the next gesture would then cancel the
+ * dismiss and leave the test on the wrong screen.
+ */
+internal fun swipeBack(
+    from: String,
+    to: String,
+) {
+    repeat(DISMISS_ATTEMPTS) { attempt ->
+        device.swipe(1, device.displayHeight / 2, device.displayWidth - 1, device.displayHeight / 2, SWIPE_STEPS)
+        device.wait(Until.gone(byTag(screenTag(from))), DEVICE_TIMEOUT_MILLIS)
+        device.waitForIdle(IDLE_MILLIS)
+        // The pop counts only once the dismissed screen stays gone: a swipe that does not pass the dismiss threshold
+        // animates back, and the screen underneath is composed throughout, so a single check can pass while the
+        // dismissed screen is on its way back and the test would then drive it.
+        val cameBack = device.wait(Until.hasObject(byTag(screenTag(from))), SETTLE_MILLIS)
+        if (cameBack != true && device.hasObject(byTag(screenTag(to)))) {
+            awaitScreen(to)
+            return
+        }
+        if (attempt == DISMISS_ATTEMPTS - 1) dumpHierarchy("dismiss-$from")
+    }
+    error("${screenTag(from)} was not dismissed to ${screenTag(to)} after $DISMISS_ATTEMPTS swipes")
+}
+
+/**
+ * Goes back from [from] to [to] with the system's back action, which on a watch dismisses the screen.
+ *
+ * Unlike the swipe, the action is atomic: a swipe that does not pass the dismiss threshold animates back, and a test
+ * that checked while it animated would go on driving the screen it thought it had left. Swipe to dismiss itself is
+ * covered by `todayOpensTheOtherScreensAndSwipingGoesBack`.
+ */
+internal fun goBack(
+    from: String,
+    to: String,
+) {
+    repeat(DISMISS_ATTEMPTS) {
+        device.pressBack()
+        device.wait(Until.gone(byTag(screenTag(from))), DEVICE_TIMEOUT_MILLIS)
+        device.waitForIdle(IDLE_MILLIS)
+        val cameBack = device.wait(Until.hasObject(byTag(screenTag(from))), SETTLE_MILLIS)
+        if (cameBack != true && device.hasObject(byTag(screenTag(to)))) {
+            awaitScreen(to)
+            return
+        }
+    }
+    dumpHierarchy("back-$from")
+    error("${screenTag(from)} did not go back to ${screenTag(to)}")
 }
 
 /** Fails when the watch app is no longer in front (e.g. it crashed). */
@@ -219,15 +341,22 @@ internal fun assertInFront() {
 private const val IDLE_MILLIS = 1_000L
 private const val SWIPE_STEPS = 20
 
-/** How often a list is scrolled while looking for a tag, and how much of its height each scroll moves. */
-private const val SCROLL_ATTEMPTS = 4
-private const val SCROLL_FRACTION = 0.8f
+/** How often the swipe to dismiss is repeated when the screen underneath does not stay in front. */
+private const val DISMISS_ATTEMPTS = 3
+
+/** How long the dismissed screen must stay gone before the pop counts as committed. */
+private const val SETTLE_MILLIS = 1_500L
+
+/** How often the screen is swiped while looking for a node, and the swipe's start and end as parts of the height. */
+private const val SCROLL_ATTEMPTS = 6
+private const val SCROLL_NEAR = 62
+private const val SCROLL_FAR = 38
+private const val SCROLL_SCALE = 100
 
 /** How often a tap is repeated when the screen does not open, and how long each attempt waits for it. */
 private const val OPEN_ATTEMPTS = 3
 private const val OPEN_TIMEOUT_MILLIS = 5_000L
 
-/** Centring a node: how many scrolls, how much of the list each one moves, and the band counted as the middle. */
+/** Centring a node: how many swipes it may take, and the band around the middle that counts as centred. */
 private const val CENTRE_ATTEMPTS = 4
-private const val CENTRE_FRACTION = 0.2f
 private const val CENTRE_BAND = 6

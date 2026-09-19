@@ -5,11 +5,11 @@
 package ir.taqvim.wear.device
 
 import androidx.test.uiautomator.By
-import androidx.test.uiautomator.Direction
 import ir.taqvim.wear.MONTH_NEXT_TAG
 import ir.taqvim.wear.MONTH_PREVIOUS_TAG
 import ir.taqvim.wear.WearRoutes
 import ir.taqvim.wear.openTag
+import java.util.regex.Pattern
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,11 +34,11 @@ class WearDeviceSmokeTest(
     @Test
     fun todayOpensTheOtherScreensAndSwipingGoesBack() {
         openScreen(openTag(WearRoutes.MONTH), WearRoutes.MONTH)
-        swipeBack(WearRoutes.TODAY)
+        swipeBack(WearRoutes.MONTH, WearRoutes.TODAY)
         openScreen(openTag(WearRoutes.CONVERTER), WearRoutes.CONVERTER)
-        swipeBack(WearRoutes.TODAY)
+        swipeBack(WearRoutes.CONVERTER, WearRoutes.TODAY)
         openScreen(openTag(WearRoutes.SETTINGS), WearRoutes.SETTINGS)
-        swipeBack(WearRoutes.TODAY)
+        swipeBack(WearRoutes.SETTINGS, WearRoutes.TODAY)
         assertInFront()
     }
 
@@ -60,18 +60,16 @@ class WearDeviceSmokeTest(
         // collected and tapped pass by pass while the list scrolls down.
         val stepped = mutableSetOf<String>()
         repeat(CONVERTER_PASSES) {
-            device
-                .findObjects(By.clickable(true))
-                .filter { !it.contentDescription.isNullOrBlank() }
-                .forEach { stepper ->
-                    val description = stepper.contentDescription
-                    if (stepped.add(description)) {
-                        tapDescription(description)
-                        device.waitForIdle(IDLE_MILLIS)
-                    }
-                }
-            device.findObject(By.scrollable(true))?.scroll(Direction.DOWN, CONVERTER_SCROLL)
-            device.waitForIdle(IDLE_MILLIS)
+            // The descriptions are read first: tapping one recomposes the list, which makes the other handles stale.
+            // The stepper buttons report `clickable=false` (their content description sits on the modifier), so they
+            // are collected by description rather than by By.clickable.
+            val descriptions =
+                device
+                    .findObjects(By.desc(Pattern.compile(".+")))
+                    .mapNotNull { stepper -> runCatching { stepper.contentDescription }.getOrNull() }
+                    .filter { it.isNotBlank() }
+            descriptions.filter { stepped.add(it) }.forEach { description -> tapDescription(description) }
+            scrollScreen(down = true)
         }
         check(stepped.size >= STEPPERS) { "the converter shows ${stepped.size} steppers, expected $STEPPERS" }
         awaitScreen(WearRoutes.CONVERTER)
@@ -83,7 +81,7 @@ class WearDeviceSmokeTest(
         openScreen(openTag(WearRoutes.SETTINGS), WearRoutes.SETTINGS)
         CHOICES.forEach { route ->
             openScreen(openTag(route), route)
-            swipeBack(WearRoutes.SETTINGS)
+            goBack(route, WearRoutes.SETTINGS)
         }
         assertInFront()
     }
@@ -100,10 +98,7 @@ class WearDeviceSmokeTest(
         /** The converter has a minus and a plus button per field (year, month, day). */
         private const val STEPPERS = 6
 
-        /** How many times the converter list is scrolled while collecting its steppers, and by how much. */
-        private const val CONVERTER_PASSES = 5
-        private const val CONVERTER_SCROLL = 0.4f
-
-        private const val IDLE_MILLIS = 500L
+        /** How many times the converter list is scrolled while collecting its steppers. */
+        private const val CONVERTER_PASSES = 6
     }
 }
