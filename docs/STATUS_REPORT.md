@@ -489,6 +489,35 @@ clean: month models and event lookups already build on `Dispatchers.Default`, pr
 `LanguageTable` lazy, StrictMode debug-only with `penaltyLog`. Regression tests: `MonthPageRecompositionTest` (a
 selection recomposes ≤ 2 cells; it failed at 42 before the fix) and `CalendarOffMainThreadTest`.
 
+**Further work after the first fix, aimed at the reporter's device (OnePlus 15, Android 16, 165 Hz LTPO, main@a89abf4).**
+At 165 Hz a frame must finish in 6.1 ms, not the 16.7 ms a 60 Hz emulator implies, so two more paths were fixed:
+
+1. *Every day cell binary-searched its own font size.* `TextAutoSize.StepBased` re-lays-out a line about seven times to
+   find a fit; a page has up to 42 cells × 4 lines and the pager keeps three pages composed, which is why text
+   measurement remained the top hotspot after main@b3a300f. The grid (now a `SubcomposeLayout`) measures each line
+   kind once per page and lets the cells draw at full size when every label fits inside 95 % of its slot; anything
+   near its limit still shrinks, so no label is clipped (T-1701). Per page change, Robolectric, median of 40:
+   **12.3 → 8.2 ms median, 33.4 → 12.0 ms p90**.
+2. *Tapping a day rebuilt three page models*, converting 42 days into every calendar and reaching the ephemeris at an
+   Islamic month boundary. The selection is mapped onto the built page instead: **218 µs → 9 µs**, three times per tap
+   (on device the build was 20–50 ms, 148 ms on first touch).
+
+Tests: `DayCellFitTest` (5) and two `MonthPageBuilderTest` cases proving the mapped page equals the built one and that
+only two cells become new objects. Checked clean: no `runBlocking` in production, no non-suspend Room queries, no
+DataStore reads in composition, no bitmap work on the UI path, Glance only on widget updates, and the app sets no
+frame-rate hint (correct for an LTPO panel).
+
+**Not measured on a device:** this machine's emulator is 60 Hz and API 34 only (`dl.google.com` 404s), and its
+scripted swipes produced `Total frames rendered: 0`, so the two numbers above are JVM measurements, not frame times.
+On the phone, from a **release** build: `adb shell dumpsys gfxinfo ir.taqvim reset`, swipe for ~30 s, then
+`… framestats`; treat any frame over 6.1 ms as jank, because `gfxinfo`'s own "janky" figure is computed against
+16.7 ms.
+
+**The `benchmark` variant ships no baseline profile** (found while investigating): its merged ART profile has 0
+`ir/taqvim` rules against the release build's 6 269, so every macrobenchmark has measured an unprofiled app and a
+profile regression would be invisible to the nightly gate. Users are unaffected — the release build is correct. Being
+fixed separately, together with the baselines it invalidates.
+
 **A CI flake fixed on the way (main@e3c2c82).** `LauncherIconTest` failed on a PR run whose app build was
 byte-identical to a green one, and passed when the same commit was re-run. `TaqvimApplication` never cancelled its
 process-lifetime scope: Android never terminates an app on a device, but Robolectric does between tests, so the
