@@ -19,7 +19,7 @@ public data class PrayerTimes(
     public val fajr: MinuteOfDay?,
     public val sunrise: MinuteOfDay,
     public val dhuhr: MinuteOfDay,
-    public val asr: MinuteOfDay,
+    public val asr: MinuteOfDay?,
     public val sunset: MinuteOfDay,
     public val maghrib: MinuteOfDay?,
     public val isha: MinuteOfDay?,
@@ -53,7 +53,7 @@ internal data class ExactPrayerTimes(
     val fajr: Double?,
     val sunrise: Double,
     val dhuhr: Double,
-    val asr: Double,
+    val asr: Double?,
     val sunset: Double,
     val maghrib: Double?,
     val isha: Double?,
@@ -82,6 +82,7 @@ public object PrayerTimesCalculator {
     private const val HALF_TURN = 180.0
     private const val HALF = 0.5
     private const val NOISE = 1e-9
+    private const val RIGHT_ANGLE = 90.0
 
     /** Times for the civil day [day] at [place], whose clocks are [utcOffsetMinutes] ahead of UTC. */
     public fun calculate(
@@ -135,7 +136,7 @@ public object PrayerTimesCalculator {
         val nextFajr = HighLatitude.fajr(rule, parameters.fajrAngle, nextNight, next.transit)
         val mode = settings.midnight ?: parameters.midnight
         val midnight = midnight(mode, sunset, maghrib, nextSunrise, nextFajr)
-        val asr = asr(sky, settings.asr.shadowFactor) ?: dhuhr
+        val asr = asr(sky, settings.asr.shadowFactor, dhuhr, sunset)
         return ExactResult.Times(ExactPrayerTimes(fajr, sunrise, dhuhr, asr, sunset, maghrib, isha, midnight))
     }
 
@@ -178,13 +179,24 @@ public object PrayerTimesCalculator {
     /**
      * Asr: the afternoon moment when an object's shadow is [shadowFactor] heights longer than at transit, i.e. the
      * Sun's altitude is atan(1 / (factor + tan|φ − δ|)) with δ the declination at transit.
+     *
+     * `null` when that moment does not exist between [dhuhr] and [sunset] (R05). When the noon zenith distance
+     * |φ − δ| reaches 90° the Sun at transit is not above the true horizon — it is seen only through refraction — so
+     * there is no noon shadow to lengthen, and the formula's tangent turns negative and asks for an altitude the Sun
+     * passes after sunset. The bounds are compared as continuous minutes after this day's midnight, so a sunset that
+     * falls after the next midnight (values beyond 1440) is still a valid upper bound.
      */
     private fun asr(
         sky: SunDay,
         shadowFactor: Int,
+        dhuhr: Double,
+        sunset: Double,
     ): Double? {
-        val noonShadow = tan(abs(sky.latitude - sky.declinationAt(sky.transit)) * PI / HALF_TURN)
-        return sky.altitudeEvent(atan(1 / (shadowFactor + noonShadow)) * HALF_TURN / PI, morning = false)
+        val noonZenith = abs(sky.latitude - sky.declinationAt(sky.transit))
+        if (noonZenith >= RIGHT_ANGLE) return null
+        val noonShadow = tan(noonZenith * PI / HALF_TURN)
+        val altitude = atan(1 / (shadowFactor + noonShadow)) * HALF_TURN / PI
+        return sky.altitudeEvent(altitude, morning = false)?.takeIf { it in dhuhr..sunset }
     }
 
     private fun rounded(
@@ -202,7 +214,7 @@ public object PrayerTimesCalculator {
             fajr = exact.fajr?.let { minute(it, adjust.fajr) },
             sunrise = minute(exact.sunrise, adjust.sunrise),
             dhuhr = minute(exact.dhuhr, adjust.dhuhr),
-            asr = minute(exact.asr, adjust.asr),
+            asr = exact.asr?.let { minute(it, adjust.asr) },
             sunset = minute(exact.sunset, 0),
             maghrib = exact.maghrib?.let { minute(it, adjust.maghrib) },
             isha = exact.isha?.let { minute(it, adjust.isha) },

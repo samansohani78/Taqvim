@@ -132,7 +132,7 @@ class PrayerTimesCalculatorTest {
 
         val standard = times(today, makkah, 180, PrayerSettings(PrayerMethod.MWL))
         val hanafi = times(today, makkah, 180, PrayerSettings(PrayerMethod.MWL, AsrJuristic.HANAFI))
-        after(standard.asr.value, hanafi.asr.value) shouldBeGreaterThan 30
+        after(standard.asr.shouldNotBeNull().value, hanafi.asr.shouldNotBeNull().value) shouldBeGreaterThan 30
 
         val tehranTimes = times(today, tehran, 210)
         after(tehranTimes.sunset.value, tehranTimes.maghrib.shouldNotBeNull().value) shouldBeGreaterThan 10
@@ -189,7 +189,7 @@ class PrayerTimesCalculatorTest {
                         fajr,
                         t.sunrise.value,
                         t.dhuhr.value,
-                        t.asr.value,
+                        t.asr.shouldNotBeNull().value,
                         t.sunset.value,
                         t.maghrib.shouldNotBeNull().value,
                         t.isha.shouldNotBeNull().value,

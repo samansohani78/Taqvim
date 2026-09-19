@@ -133,7 +133,7 @@ object AthanPlanner {
         listOfNotNull(
             times.fajr?.let { AthanPrayer.FAJR to it },
             AthanPrayer.DHUHR to times.dhuhr,
-            AthanPrayer.ASR to times.asr,
+            times.asr?.let { AthanPrayer.ASR to it },
             times.maghrib?.let { AthanPrayer.MAGHRIB to it },
             times.isha?.let { AthanPrayer.ISHA to it },
         )

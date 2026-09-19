@@ -185,7 +185,7 @@ private fun PrayerTimes.ordered(): List<Pair<WearPrayer, MinuteOfDay>> =
     listOfNotNull(
         fajr?.let { WearPrayer.FAJR to it },
         WearPrayer.DHUHR to dhuhr,
-        WearPrayer.ASR to asr,
+        asr?.let { WearPrayer.ASR to it },
         maghrib?.let { WearPrayer.MAGHRIB to it },
         isha?.let { WearPrayer.ISHA to it },
     )

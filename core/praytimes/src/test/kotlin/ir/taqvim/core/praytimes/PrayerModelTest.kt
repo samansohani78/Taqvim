@@ -97,7 +97,7 @@ class PrayerModelTest {
         sky.altitudeAt(times.maghrib.shouldNotBeNull()) shouldBe (-4.5 plusOrMinus 1e-6)
         sky.altitudeAt(times.isha.shouldNotBeNull()) shouldBe (-14.0 plusOrMinus 1e-6)
         AsrJuristic.entries.forEach { juristic ->
-            val asr = exact(day(2026, 9, 13), place, 210, PrayerSettings(asr = juristic)).asr
+            val asr = exact(day(2026, 9, 13), place, 210, PrayerSettings(asr = juristic)).asr.shouldNotBeNull()
             val noonShadow = tan(Math.toRadians(abs(place.latitude - sky.declinationAt(sky.transit))))
             1 / tan(Math.toRadians(sky.altitudeAt(asr))) shouldBe (juristic.shadowFactor + noonShadow plusOrMinus 1e-6)
             asr shouldBeGreaterThan times.dhuhr
@@ -110,7 +110,7 @@ class PrayerModelTest {
         val equatorTimes = exact(equinox, equator, 0, PrayerSettings(PrayerMethod.MWL))
         abs(equatorSky.declinationAt(equatorSky.transit)) shouldBeLessThan 0.2
         Math.toDegrees(atan(1.0)) shouldBe 45.0
-        equatorTimes.asr - equatorTimes.dhuhr shouldBe (180.0 plusOrMinus 1.5)
+        equatorTimes.asr.shouldNotBeNull() - equatorTimes.dhuhr shouldBe (180.0 plusOrMinus 1.5)
     }
 
     @Test
@@ -189,7 +189,7 @@ class PrayerModelTest {
         diyanet.fajr?.value shouldBe minutes(plain.fajr.shouldNotBeNull())
         diyanet.sunrise.value shouldBe minutes(plain.sunrise - 7)
         diyanet.dhuhr.value shouldBe minutes(plain.dhuhr + 5)
-        diyanet.asr.value shouldBe minutes(plain.asr + 4)
+        diyanet.asr?.value shouldBe minutes(plain.asr.shouldNotBeNull() + 4)
         diyanet.sunset.value shouldBe minutes(plain.sunset)
         diyanet.maghrib?.value shouldBe minutes(plain.sunset + 7)
         diyanet.isha?.value shouldBe minutes(plain.isha.shouldNotBeNull())

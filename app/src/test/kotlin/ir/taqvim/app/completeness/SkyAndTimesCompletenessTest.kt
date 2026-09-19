@@ -295,14 +295,14 @@ class SkyAndTimesCompletenessTest {
         val PLACES = listOf(TEHRAN, KABUL, ARCTIC)
 
         /**
-         * Open prayer-time defects this test found at Tromsø on 2026-09-19 (REVIEW R14; reported with R05), allowed
-         * here so every other ordering stays enforced. Remove each entry when `:core:praytimes` is fixed.
-         * - `asr>sunset` on 10 days of 2001–2101 around the winter edge of the polar night, e.g. 2001-11-27: dhuhr 11:32,
-         *   Asr 11:40, sunset 11:39 — the R05 defect on present-day dates, not only in year 4440.
+         * Open prayer-time defects this test found at Tromsø on 2026-09-19 (REVIEW R14), allowed here so every other
+         * ordering stays enforced. Remove each entry when `:core:praytimes` is fixed. (`asr>sunset` on 10 days of
+         * 2001–2101, e.g. 2001-11-27, was R05 and is fixed: Asr is now unavailable when the noon Sun is not above the
+         * true horizon.)
          * - `maghrib>isha` on 2 889 days, e.g. 2001-04-19: maghrib 22:06, isha 22:04 — with the nearest-latitude rule
          *   isha comes from the reference latitude while maghrib does not.
          */
-        val KNOWN_POLAR_ORDER_DEFECTS = setOf("asr>sunset", "maghrib>isha")
+        val KNOWN_POLAR_ORDER_DEFECTS = setOf("maghrib>isha")
 
         fun persianNewYear(year: Int): Jdn =
             PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, year, 1, 1))
