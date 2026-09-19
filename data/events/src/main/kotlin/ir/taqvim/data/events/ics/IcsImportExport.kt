@@ -21,6 +21,8 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.toEntity
 import ir.taqvim.data.database.toRule
 import kotlin.time.Clock
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.datetime.TimeZone
 
 /** Runs database work atomically. */
@@ -76,11 +78,14 @@ class IcsImporter(
     suspend fun import(
         text: String,
         duplicates: DuplicatePolicy = DuplicatePolicy.REPLACE,
-    ): ImportResult =
-        when (val parsed = IcsReader.read(text)) {
+    ): ImportResult {
+        // A long read stops with the import instead of outliving it (review R04).
+        val context = currentCoroutineContext()
+        return when (val parsed = IcsReader.read(text) { context.ensureActive() }) {
             is IcsParseResult.Failure -> ImportResult.Unreadable(parsed.errors)
             is IcsParseResult.Success -> store(parsed, duplicates)
         }
+    }
 
     private suspend fun store(
         parsed: IcsParseResult.Success,

@@ -27,23 +27,88 @@ internal object ContentLines {
     private const val THREE_OCTETS = 3
     private const val FOUR_OCTETS = 4
 
+    /**
+     * Longest logical line accepted, in characters: far beyond any real property (a long DESCRIPTION is a few
+     * kilobytes), so only a hostile or broken file reaches it (review R04).
+     */
+    const val MAX_LOGICAL_CHARS: Int = 256 * 1_024
+
+    /** Most logical lines accepted in one document; a 5 MiB subscription of short lines stays well below it. */
+    const val MAX_LOGICAL_LINES: Int = 250_000
+
+    /** Physical lines read between two calls of the reader's cancellation check. */
+    const val CHECK_EVERY_LINES: Int = 4_096
+
     /** Logical lines of [text] with the 1-based number of their first physical line; accepts CRLF and bare LF. */
-    fun unfold(text: String): List<Pair<Int, String>> {
-        val logical = mutableListOf<Pair<Int, String>>()
-        text.split('\n').forEachIndexed { index, rawLine ->
-            val physical = rawLine.removeSuffix("\r")
-            val previous = logical.lastOrNull()
-            if (previous != null && isContinuation(physical)) {
-                logical[logical.size - 1] = previous.first to previous.second + physical.substring(1)
-            } else if (physical.isNotEmpty()) {
-                logical += (index + 1) to physical
-            }
+    fun unfold(text: String): List<Pair<Int, String>> = unfold(text, mutableListOf()) {}
+
+    /**
+     * Logical lines of [text], appending continuations to one [StringBuilder] so the cost is linear in the input
+     * (each continuation used to copy the whole line built so far). A line over [MAX_LOGICAL_CHARS] or a document
+     * over [MAX_LOGICAL_LINES] adds a problem to [errors] and ends the read; [checkCancelled] runs every
+     * [CHECK_EVERY_LINES] physical lines and may throw to stop it.
+     */
+    fun unfold(
+        text: String,
+        errors: MutableList<IcsProblem>,
+        checkCancelled: () -> Unit,
+    ): List<Pair<Int, String>> {
+        val unfolder = Unfolder(errors)
+        var number = 0
+        var start = 0
+        while (start <= text.length && errors.isEmpty()) {
+            val end = text.indexOf('\n', start).let { if (it < 0) text.length else it }
+            val stop = if (end > start && text[end - 1] == '\r') end - 1 else end
+            number++
+            if (number % CHECK_EVERY_LINES == 0) checkCancelled()
+            if (stop > start) unfolder.physical(text, start, stop, number)
+            start = end + 1
         }
-        return logical
+        return unfolder.finish()
     }
 
-    private fun isContinuation(physical: String): Boolean =
-        physical.isNotEmpty() && (physical[0] == ' ' || physical[0] == '\t')
+    /** The logical lines built so far and the one being built. */
+    private class Unfolder(
+        private val errors: MutableList<IcsProblem>,
+    ) {
+        private val logical = mutableListOf<Pair<Int, String>>()
+        private val current = StringBuilder()
+        private var first = 0
+
+        /** Adds the non-empty physical line `text[start until stop]`, numbered [number]. */
+        fun physical(
+            text: String,
+            start: Int,
+            stop: Int,
+            number: Int,
+        ) {
+            if (current.isNotEmpty() && isContinuation(text[start])) {
+                current.append(text, start + 1, stop)
+                if (current.length > MAX_LOGICAL_CHARS) {
+                    errors += IcsProblem(first, "content line longer than $MAX_LOGICAL_CHARS characters")
+                }
+                return
+            }
+            flush()
+            if (logical.size >= MAX_LOGICAL_LINES) {
+                errors += IcsProblem(number, "more than $MAX_LOGICAL_LINES content lines")
+            }
+            current.append(text, start, stop)
+            first = number
+        }
+
+        fun finish(): List<Pair<Int, String>> {
+            if (errors.isEmpty()) flush()
+            return logical
+        }
+
+        private fun flush() {
+            if (current.isNotEmpty()) logical += first to current.toString()
+            current.setLength(0)
+        }
+    }
+
+    fun isContinuation(char: Char): Boolean = char == ' ' || char == '\t'
 
     /** Physical lines of at most [MAX_OCTETS] UTF-8 octets for [line], never splitting a character (§3.1). */
     fun fold(line: String): List<String> {

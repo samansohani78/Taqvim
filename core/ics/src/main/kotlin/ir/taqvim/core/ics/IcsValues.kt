@@ -169,11 +169,28 @@ internal object IcsValues {
                 interval = parts["INTERVAL"]?.toInt() ?: 1,
                 count = parts["COUNT"]?.toInt(),
                 until = parts["UNTIL"]?.let { requireNotNull(untilValue(it)) { "invalid UNTIL" } },
-                byDay = parts["BYDAY"]?.split(',')?.map(::weekdayNum).orEmpty(),
-                byMonthDay = parts["BYMONTHDAY"]?.split(',')?.map(String::toInt).orEmpty(),
+                byDay =
+                    parts["BYDAY"]
+                        ?.let { list(it) }
+                        ?.map(::weekdayNum)
+                        .orEmpty(),
+                byMonthDay =
+                    parts["BYMONTHDAY"]
+                        ?.let { list(it) }
+                        ?.map(String::toInt)
+                        .orEmpty(),
             )
         }.getOrNull()
     }
+
+    /**
+     * The entries of a BYDAY or BYMONTHDAY list; a list longer than any meaningful one (7 weekdays × 107 ordinals, or
+     * 62 month days) is refused, so a hostile rule cannot make every period scan thousands of entries (review R04).
+     */
+    private fun list(text: String): List<String> =
+        text.split(',').also { require(it.size <= MAX_LIST_ENTRIES) { "list of ${it.size} entries" } }
+
+    private const val MAX_LIST_ENTRIES = 1_000
 
     private fun weekdayNum(text: String): WeekdayNum {
         val match = requireNotNull(WEEKDAY_NUM.matchEntire(text.uppercase())) { "invalid BYDAY '$text'" }

@@ -15,6 +15,8 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -208,8 +210,10 @@ class SubscriptionRefresher(
         subscriptionId: Long,
         result: FetchResult.Modified,
         now: Instant,
-    ): RefreshOutcome =
-        when (val parsed = IcsReader.read(result.body)) {
+    ): RefreshOutcome {
+        // A long read stops with the refresh instead of outliving it (review R04).
+        val context = currentCoroutineContext()
+        return when (val parsed = IcsReader.read(result.body) { context.ensureActive() }) {
             is IcsParseResult.Failure -> {
                 RefreshOutcome.Failed(subscriptionId, RefreshError.Unreadable)
             }
@@ -236,6 +240,7 @@ class SubscriptionRefresher(
                 }
             }
         }
+    }
 
     private suspend fun lockFor(subscriptionId: Long): Mutex =
         locksGuard.withLock { locks.getOrPut(subscriptionId) { Mutex() } }

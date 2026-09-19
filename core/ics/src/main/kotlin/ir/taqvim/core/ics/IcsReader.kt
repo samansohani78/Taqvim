@@ -23,11 +23,20 @@ internal data class Component(
  * BEGIN/END, no VCALENDAR) fail the whole read; events or values that cannot be understood are skipped with a warning.
  */
 public object IcsReader {
-    /** Reads [text], which may use CRLF or bare LF line breaks. */
-    public fun read(text: String): IcsParseResult {
+    /**
+     * Reads [text], which may use CRLF or bare LF line breaks. [checkCancelled] runs every few thousand lines and may
+     * throw to stop a long read (e.g. a coroutine's `ensureActive`), so a large subscription never outlives its
+     * caller (review R04).
+     */
+    public fun read(
+        text: String,
+        checkCancelled: () -> Unit = {},
+    ): IcsParseResult {
         val errors = mutableListOf<IcsProblem>()
+        val unfolded = ContentLines.unfold(text, errors, checkCancelled)
+        if (errors.isNotEmpty()) return IcsParseResult.Failure(errors)
         val lines =
-            ContentLines.unfold(text).mapNotNull { (number, raw) ->
+            unfolded.mapNotNull { (number, raw) ->
                 ContentLines.parse(number, raw).also {
                     if (it ==
                         null
