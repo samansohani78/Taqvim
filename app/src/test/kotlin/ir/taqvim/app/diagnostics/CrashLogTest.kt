@@ -81,6 +81,28 @@ class CrashLogTest {
     }
 
     @Test
+    fun `personal data in exception messages never reaches the stored record`() {
+        // Review R03: the message of an exception is arbitrary text and was written to disk as it was.
+        val capture = CrashCapture(store, CrashContext(facts), { 7_000L }, previous = null)
+        val cause = IllegalArgumentException("title=Meeting with oncologist tomorrow at 35.689123,51.389456")
+        val suppressed = IllegalStateException("\"Private dinner\" for ali@example.com")
+        val failure =
+            RuntimeException("Authorization: Bearer abcdefSECRET while opening content://app/private/token123", cause)
+                .apply { addSuppressed(suppressed) }
+
+        capture.uncaughtException(Thread.currentThread(), failure)
+
+        val text = store.stored().single().text
+        listOf("oncologist", "35.689123", "Private dinner", "ali@example.com", "abcdefSECRET", "token123").forEach {
+            text shouldNotContain it
+        }
+        text shouldContain "java.lang.RuntimeException: Authorization: [redacted]"
+        text shouldContain "Caused by: java.lang.IllegalArgumentException: title=[redacted]"
+        text shouldContain "Suppressed: java.lang.IllegalStateException: [redacted] for [redacted]"
+        text shouldContain "at ir.taqvim.app.diagnostics.CrashLogTest"
+    }
+
+    @Test
     fun `records the crash even when no handler was installed before it`() {
         val capture = CrashCapture(store, CrashContext(facts), { 5_000L }, previous = null)
 

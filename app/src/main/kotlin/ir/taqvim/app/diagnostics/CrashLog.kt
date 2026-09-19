@@ -4,7 +4,10 @@
  */
 package ir.taqvim.app.diagnostics
 
+import ir.taqvim.feature.about.DiagnosticsRedactor
 import java.io.File
+import java.util.Collections
+import java.util.IdentityHashMap
 import java.util.concurrent.atomic.AtomicReference
 
 /**
@@ -114,7 +117,7 @@ class CrashLogStore(
         /** Records kept; older ones are deleted as new ones arrive. */
         const val MAX_FILES: Int = 3
 
-        /** Longest record written; a longer one is cut at its end, keeping the failure and its causes. */
+        /** Longest record written; a longer one is cut at its end (traces are kept short enough to fit). */
         const val MAX_CHARS: Int = 16_000
 
         /** Directory name under the app's private files. */
@@ -125,7 +128,12 @@ class CrashLogStore(
     }
 }
 
-/** The text of a crash record: the facts of the run, then the stack trace with its causes. */
+/**
+ * The text of a crash record: the facts of the run, then the stack trace with its causes and suppressed failures.
+ * The facts are structured values the app chose; an exception message is arbitrary text that may carry an event
+ * title, a place or a token, so every message is redacted before it is stored, not only when it is reported
+ * (review R03). Class names and code frames are kept as they are.
+ */
 internal object CrashRecord {
     fun text(
         facts: CrashFacts,
@@ -143,8 +151,65 @@ internal object CrashRecord {
             "route=${facts.route}",
             "thread=$thread",
             "",
-            error.stackTraceToString(),
+            trace(error),
         ).joinToString("\n")
+
+    /**
+     * The stack trace of [error] in the JVM's own layout, with every message redacted. As the JVM does, a cause or a
+     * suppressed failure omits the frames it shares with the trace around it (`... n more`), and each failure keeps
+     * at most [MAX_FRAMES] of its own, so the causes fit in a record instead of being cut off at its end.
+     */
+    fun trace(error: Throwable): String =
+        buildString {
+            append(error, Enclosing(prefix = "", indent = "", frames = emptyArray()), identitySet())
+        }
+
+    private class Enclosing(
+        val prefix: String,
+        val indent: String,
+        val frames: Array<StackTraceElement>,
+    )
+
+    private fun identitySet(): MutableSet<Throwable> = Collections.newSetFromMap(IdentityHashMap())
+
+    private fun StringBuilder.append(
+        error: Throwable,
+        around: Enclosing,
+        seen: MutableSet<Throwable>,
+    ) {
+        if (!seen.add(error)) {
+            appendLine("${around.indent}${around.prefix}[CIRCULAR REFERENCE: ${error.javaClass.name}]")
+            return
+        }
+        appendLine("${around.indent}${around.prefix}${headline(error)}")
+        val frames = error.stackTrace
+        val own = frames.size - shared(frames, around.frames)
+        frames.take(minOf(own, MAX_FRAMES)).forEach { appendLine("${around.indent}\tat $it") }
+        val omitted = frames.size - minOf(own, MAX_FRAMES)
+        if (omitted > 0) appendLine("${around.indent}\t... $omitted more")
+        error.suppressed.forEach { append(it, Enclosing("Suppressed: ", "${around.indent}\t", frames), seen) }
+        error.cause?.let { append(it, Enclosing("Caused by: ", around.indent, frames), seen) }
+    }
+
+    /** How many frames at the bottom of [frames] are also at the bottom of [enclosing]. */
+    private fun shared(
+        frames: Array<StackTraceElement>,
+        enclosing: Array<StackTraceElement>,
+    ): Int {
+        var count = 0
+        while (count < frames.size && count < enclosing.size &&
+            frames[frames.size - 1 - count] == enclosing[enclosing.size - 1 - count]
+        ) {
+            count++
+        }
+        return count
+    }
+
+    private fun headline(error: Throwable): String =
+        error.message?.let { "${error.javaClass.name}: ${DiagnosticsRedactor.redact(it)}" } ?: error.javaClass.name
+
+    /** Frames kept for one failure; deeper ones are counted in its `... n more` line. */
+    private const val MAX_FRAMES = 40
 }
 
 /**

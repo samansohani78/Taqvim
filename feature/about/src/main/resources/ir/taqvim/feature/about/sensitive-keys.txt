@@ -1,0 +1,49 @@
+# Keys whose value is personal text in the app's languages other than English (review R03).
+# One key per line; DiagnosticsRedactor removes the whole value after "key=" or "key:".
+# Lines starting with # are comments. Keys are matched as whole words, ignoring case.
+# Persian and Dari.
+عنوان
+نام
+توضیحات
+یادداشت
+رمز
+گذرواژه
+ایمیل
+نشانی
+آدرس
+مکان
+شهر
+# Arabic.
+اسم
+الاسم
+الوصف
+ملاحظات
+كلمة المرور
+البريد
+العنوان
+الموقع
+المدينة
+# Pashto.
+سرلیک
+نوم
+پته
+ځای
+پټنوم
+# Central Kurdish and Kurmanji.
+sernav
+nav
+cih
+ناونیشان
+ناو
+وشەی نهێنی
+شوێن
+navnîşan
+şîfre
+# Nepali.
+शीर्षक
+नाम
+ठेगाना
+पासवर्ड
+स्थान
+विवरण
+टिप्पणी

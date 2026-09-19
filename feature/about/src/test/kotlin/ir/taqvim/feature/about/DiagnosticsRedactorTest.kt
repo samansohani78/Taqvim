@@ -84,6 +84,87 @@ class DiagnosticsRedactorTest {
         }
 
     @Test
+    fun `a sensitive value is removed whole, not only its first word`() {
+        // Review R03: only the first word of an unquoted value used to be removed.
+        val cases =
+            mapOf(
+                "title=Meeting with oncologist tomorrow" to "title=[redacted]",
+                "note: call Dr Ahmadi about the biopsy" to "note: [redacted]",
+                "sync title=Meeting with oncologist\ncount=3" to "sync title=[redacted]\ncount=3",
+                "title=a b; place=Tehran clinic" to "title=[redacted]; place=[redacted]",
+            )
+        cases.forEach { (text, redacted) -> DiagnosticsRedactor.redact(text) shouldBe redacted }
+    }
+
+    @Test
+    fun `credentials in headers and bearer tokens are removed`() {
+        val secrets =
+            listOf(
+                "Authorization: Bearer abcdefSECRET",
+                "authorization=Basic dXNlcjpwYXNzd29yZA==",
+                "Proxy-Authorization: Digest abcdefSECRET",
+                "Cookie: session=abcdefSECRET; theme=dark",
+                "Set-Cookie: id=abcdefSECRET",
+                "X-Api-Key: abcdefSECRET",
+                "api_key=abcdefSECRET",
+                "access_token=abcdefSECRET",
+                "refresh-token: abcdefSECRET",
+                "request failed, bearer abcdefSECRET rejected",
+            )
+        secrets.forEach { DiagnosticsRedactor.redact(it) shouldNotContain "abcdefSECRET" }
+    }
+
+    @Test
+    fun `keys in the app's languages are sensitive too`() {
+        val secret = "ملاقات خصوصی با دکتر"
+        val keys =
+            listOf(
+                "عنوان",
+                "نام",
+                "توضیحات",
+                "یادداشت",
+                "رمز",
+                "گذرواژه",
+                "نشانی",
+                "مکان",
+                "شهر",
+                "اسم",
+                "الاسم",
+                "ملاحظات",
+                "كلمة المرور",
+                "العنوان",
+                "الموقع",
+                "سرلیک",
+                "نوم",
+                "پته",
+                "ناونیشان",
+                "ناو",
+                "شوێن",
+                "sernav",
+                "nav",
+                "cih",
+                "शीर्षक",
+                "नाम",
+                "ठेगाना",
+                "स्थान",
+                "टिप्पणी",
+            )
+        keys.forEach { key ->
+            listOf("$key=$secret", "$key: $secret", "$key = $secret").forEach { text ->
+                (text to DiagnosticsRedactor.redact(text)) shouldBe
+                    (text to text.substringBefore(secret) + "[redacted]")
+            }
+        }
+    }
+
+    @Test
+    fun `ordinary words that merely contain a key are kept`() {
+        listOf("rename=done", "renamed: 3 files", "subtitle=ok", "tokenizer: ready").forEach {
+            DiagnosticsRedactor.redact(it) shouldBe it
+        }
+    }
+
+    @Test
     fun `technical text is kept and long digit runs are masked`() {
         listOf("Refreshed 3 subscriptions in 120 ms", "Room migration 2->3 done", "HTTP 304 Not Modified").forEach {
             DiagnosticsRedactor.redact(it) shouldBe it
