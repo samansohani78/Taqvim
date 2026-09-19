@@ -120,6 +120,16 @@ public object HebrewCalendar {
         return if (leap || month < HebrewMonth.ADAR_II) month.ordinal + 1 else month.ordinal
     }
 
+    /** The month numbered [month] in [year]; throws [IllegalArgumentException] for a number the year does not have. */
+    public fun monthOf(
+        year: Int,
+        month: Int,
+    ): HebrewMonth {
+        require(month in 1..monthsInYear(year)) { "Hebrew month must be in 1..${monthsInYear(year)} (was $month)" }
+        val skipsAdarII = !isLeapYear(year) && month > HebrewMonth.ADAR.ordinal + 1
+        return HebrewMonth.entries[if (skipsAdarII) month else month - 1]
+    }
+
     /** Day number of 1 Tishri of [year], for [MIN_YEAR]..[MAX_YEAR] + 1. */
     public fun newYear(year: Int): Jdn {
         requireInCalendarRange(year >= MIN_YEAR) { "Hebrew year must be ≥ $MIN_YEAR (was $year)" }

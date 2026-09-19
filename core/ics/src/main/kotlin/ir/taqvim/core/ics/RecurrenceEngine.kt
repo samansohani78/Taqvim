@@ -346,7 +346,7 @@ private class MonthDays(
 
     fun inYear(year: Int): List<Long> {
         if (rule.byMonthDay.isEmpty() && rule.byDay.isEmpty()) {
-            return listOfNotNull(resolve(year, start.month, start.day))
+            return listOfNotNull(resolve(year, calendar.sameMonthIn(start.year, start.month, year), start.day))
         }
         val months = 1..calendar.monthsInYear(year)
         val byMonthDay = months.flatMap { month -> rule.byMonthDay.mapNotNull { resolve(year, month, it) } }
@@ -385,6 +385,8 @@ private class MonthDays(
         month: Int,
         day: Int,
     ): Long? {
+        val months = calendar.monthsInYear(year)
+        if (month !in 1..months) return missingMonth(year, months)
         val length = calendar.monthLength(year, month)
         val target = if (day > 0) day else length + day + 1
         val first = calendar.toJdn(calendar.date(year, month, 1)).value
@@ -394,6 +396,20 @@ private class MonthDays(
             target < 1 -> first
             rule.invalidDates == InvalidDatePolicy.NEXT_DAY -> first + length
             else -> first + length - 1
+        }
+    }
+
+    /** The policy's replacement for a month [year] does not have: after or on its last day, or none. */
+    private fun missingMonth(
+        year: Int,
+        months: Int,
+    ): Long? {
+        val length = calendar.monthLength(year, months)
+        val last = calendar.toJdn(calendar.date(year, months, length)).value
+        return when (rule.invalidDates) {
+            InvalidDatePolicy.SKIP -> null
+            InvalidDatePolicy.NEXT_DAY -> last + 1
+            InvalidDatePolicy.LAST_DAY_OF_MONTH -> last
         }
     }
 }

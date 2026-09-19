@@ -21,6 +21,27 @@ public object HebrewCalendarSystem : CalendarArithmetic {
 
     override fun monthsInYear(year: Int): Int = HebrewCalendar.monthsInYear(year)
 
+    /**
+     * The named month of [fromYear] in [year] (review R01): Adar I and Adar II of a leap year both fall in Adar of a
+     * common year, Adar of a common year falls in Adar II of a leap year (where Purim and the anniversaries of Adar
+     * are kept), and every other month keeps its name, so Elul — the 13th month of a leap year — stays Elul.
+     */
+    override fun sameMonthIn(
+        fromYear: Int,
+        month: Int,
+        year: Int,
+    ): Int {
+        val named = HebrewCalendar.monthOf(fromYear, month)
+        val leap = isLeapYear(year)
+        val target =
+            when {
+                named == HebrewMonth.ADAR_II && !leap -> HebrewMonth.ADAR
+                named == HebrewMonth.ADAR && leap && !isLeapYear(fromYear) -> HebrewMonth.ADAR_II
+                else -> named
+            }
+        return HebrewCalendar.monthNumber(year, target)
+    }
+
     override fun monthLength(
         year: Int,
         month: Int,

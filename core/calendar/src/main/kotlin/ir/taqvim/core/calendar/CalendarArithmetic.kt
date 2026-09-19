@@ -38,6 +38,17 @@ public interface CalendarArithmetic {
     public val monthsPerYear: Int?
         get() = MONTHS_PER_YEAR
 
+    /**
+     * The month of [year] in which a yearly series begun in [month] of [fromYear] falls. Calendars whose years always
+     * have the same months keep the number; a calendar with an intercalary month maps the month by its name, since
+     * the same number names a different month in its common and leap years.
+     */
+    public fun sameMonthIn(
+        fromYear: Int,
+        month: Int,
+        year: Int,
+    ): Int = month
+
     /** Number of days in [month] of [year]; throws [IllegalArgumentException] for an invalid month. */
     public fun monthLength(
         year: Int,
