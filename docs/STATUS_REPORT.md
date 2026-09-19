@@ -533,10 +533,17 @@ On the phone, from a **release** build: `adb shell dumpsys gfxinfo ir.taqvim res
 `… framestats`; treat any frame over 6.1 ms as jank, because `gfxinfo`'s own "janky" figure is computed against
 16.7 ms.
 
-**The `benchmark` variant ships no baseline profile** (found while investigating): its merged ART profile has 0
-`ir/taqvim` rules against the release build's 6 269, so every macrobenchmark has measured an unprofiled app and a
-profile regression would be invisible to the nightly gate. Users are unaffected — the release build is correct. Being
-fixed separately, together with the baselines it invalidates.
+**The `benchmark` variant shipped no baseline profile — fixed (main@19bc59c).** Its merged ART profile had 0
+`ir/taqvim` rules against the release build's 6 269, so every macrobenchmark measured an app compiled almost without
+its profile. Users were never affected; the release build was always correct. Cause: the `androidx.baselineprofile`
+consumer plugin adds the committed profile only to the variants it manages, and `initWith(release)` copies build-type
+settings, never a source directory. It stayed silent because `CompilationMode.DEFAULT` is
+`Partial(BaselineProfileMode.Require)`, and *any* profile satisfies `Require` — the libraries' rules qualified — so
+`startupCold` and `startupColdWithoutProfile` were measuring nearly the same thing. The benchmark variant now merges
+37 366 lines / 6 269 app rules, identical to release, and `check<Variant>BaselineProfile` fails either variant below
+1 000 app rules (verified by simulating the regression); it runs in `check` and in the PR workflow. No committed
+baseline was invalidated, because `benchmark/baselines` holds none yet — the first recorded baseline must be measured
+on this commit or later (ADR-0018 addendum).
 
 **The next crash will report itself (main@3047b7a).** The device gave no logcat, so the app now keeps its own: an
 uncaught-exception handler installed before the Koin graph (so a failure while building the graph is kept too) chains
