@@ -270,3 +270,34 @@ language see English until they install one from Play.
   because AAPT2 drops XML comments when it compiles a resource file. No `values-*` file carries
   `translatable="false"`; the 9 untranslatable strings live in the default `values/` only, as they should, so they
   are stored once rather than per language.
+
+## Addendum (2026-09-19): the benchmark variant carries the app's baseline profile (T-1800)
+
+Every macrobenchmark runs against the `benchmark` build type: release-like, R8-minified, debug-signed. That variant
+shipped **no rule of the app's own code**. Its merged ART profile held 4 131 rules, all from the AndroidX libraries'
+bundled profiles, against 37 419 rules and 6 269 app rules in `release`.
+
+The cause is the consumer plugin, not AGP: `androidx.baselineprofile` adds the committed profile
+(`app/src/main/generated/baselineProfiles`) to the variants it manages, by calling
+`variant.sources.baselineProfiles.addStaticSourceDirectory` on each of them. A build type declared by hand is not one
+of them, and `initWith(getByName("release"))` copies build-type settings, never a source directory.
+
+Nothing failed, which is the point. `StartupBenchmark` uses `CompilationMode.DEFAULT`, that is
+`Partial(BaselineProfileMode.Require)`, and `Require` is satisfied by *a* profile in the APK — the libraries' rules
+qualified. So the nightly job measured an app compiled almost without its profile: cold start and first-frame numbers
+were pessimistic, `startupCold` and `startupColdWithoutProfile` measured nearly the same thing, and a lost or empty
+profile could never fail the gate.
+
+**Decision.** `app/build.gradle.kts` adds the committed profile to the `benchmark` variant explicitly, and
+`check<Variant>BaselineProfile` (both non-debuggable variants, in `check`) reads the merged profile text AGP hands to
+R8 and fails when fewer than 1 000 rules name the app. The floor sits far below the real 6 269 so ordinary code
+changes never move it and only broken wiring trips it. The check reads the merged *text* because the packaged
+`assets/dexopt/baseline.prof` stores dex indices, not names: from the outside, a profile holding only library rules
+looks much like a complete one.
+
+**Effect.** The benchmark APK's profile went from 11 775 to 16 563 bytes, one dex profile key to two, and 47 074 to
+72 650 bytes uncompressed — the same content as release. No committed benchmark result had to be discarded:
+`benchmark/baselines` does not exist yet, so the regression gate has no recorded numbers, and none of the nine
+absolute budgets in `benchmark/budgets.json` is startup- or frame-sensitive in the app process (one is month-screen
+RSS, the other eight are `:benchmark:micro` widget and map-mask timings in a separate module). The first recorded
+baseline must therefore be measured on this commit or later.

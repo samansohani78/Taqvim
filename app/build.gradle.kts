@@ -3,6 +3,7 @@ import com.android.build.api.variant.BuiltArtifactsLoader
 import ir.taqvim.buildlogic.ApkNativeLibraries
 import ir.taqvim.buildlogic.ApkSizeBudget
 import ir.taqvim.buildlogic.ApkSizeStatus
+import ir.taqvim.buildlogic.BaselineProfileRules
 import ir.taqvim.buildlogic.PageAlignment
 import ir.taqvim.buildlogic.TaqvimVersion
 import javax.xml.parsers.DocumentBuilderFactory
@@ -382,6 +383,38 @@ abstract class PageAlignmentCheck : DefaultTask() {
 }
 
 /**
+ * T-1800: the variant's merged ART profile must hold the app's own rules, not only the ones the AndroidX libraries
+ * bundle. It reads the text AGP merges before R8 renames anything, because the packaged `assets/dexopt/baseline.prof`
+ * stores dex indices instead of names and cannot be asked which classes it covers.
+ */
+abstract class BaselineProfileCheck : DefaultTask() {
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val mergedProfileDirectory: DirectoryProperty
+
+    @get:Input
+    abstract val variantName: Property<String>
+
+    @TaskAction
+    fun verify() {
+        val directory = mergedProfileDirectory.get().asFile
+        val profile =
+            directory.walkTopDown().firstOrNull { it.isFile && it.name == PROFILE_NAME }
+                ?: error(
+                    "No $PROFILE_NAME under $directory. AGP has moved the merged ART profile, so the T-1800 check " +
+                        "cannot see whether ${variantName.get()} still carries the app's baseline profile.",
+                )
+        val report = BaselineProfileRules.report(variantName.get(), profile.readLines())
+        check(report.isComplete) { report.message }
+        logger.lifecycle(report.message)
+    }
+
+    private companion object {
+        const val PROFILE_NAME = "baseline-prof.txt"
+    }
+}
+
+/**
  * T-1900 (docs/RELEASE.md): every output of the variant carries the resolved Taqvim version. Also prints it, so
  * `./gradlew :app:verifyReleaseVersion -Ptaqvim.version=<tag>` shows the name and code a tag produces.
  */
@@ -461,6 +494,31 @@ abstract class ExportedComponentsAudit : DefaultTask() {
 }
 
 androidComponents {
+    // T-1800: the androidx.baselineprofile consumer plugin adds the committed profile
+    // (src/main/generated/baselineProfiles) to the variants it manages, which does not include a hand-made build
+    // type: `initWith(release)` copies the build-type settings, not the profile source. Every macrobenchmark runs
+    // against the benchmark variant, so without this it measured an app compiled from the AndroidX libraries'
+    // bundled profiles only — no rule of its own — and a lost or empty profile could not fail the nightly gate.
+    onVariants(selector().withBuildType("benchmark")) { variant ->
+        variant.sources.baselineProfiles?.addStaticSourceDirectory("src/main/generated/baselineProfiles")
+    }
+    onVariants { variant ->
+        // Both non-debuggable variants: release is what users install, benchmark is what every macrobenchmark runs.
+        if (variant.buildType !in setOf("release", "benchmark")) return@onVariants
+        val variantName = variant.name.replaceFirstChar(Char::uppercase)
+        val merge = "merge${variantName}ArtProfile"
+        val check =
+            tasks.register<BaselineProfileCheck>("check${variantName}BaselineProfile") {
+                group = "verification"
+                description = "Checks that the ${variant.name} ART profile holds the app's rules (T-1800)."
+                dependsOn(merge)
+                mergedProfileDirectory.set(
+                    layout.buildDirectory.dir("intermediates/merged_art_profile/${variant.name}"),
+                )
+                this.variantName.set(variant.name)
+            }
+        tasks.named("check") { dependsOn(check) }
+    }
     onVariants(selector().withBuildType("release")) { variant ->
         val taskName = "audit${variant.name.replaceFirstChar(Char::uppercase)}ExportedComponents"
         val audit =
