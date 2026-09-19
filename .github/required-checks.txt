@@ -1,0 +1,23 @@
+# Check runs that must have concluded `success` on the exact commit a release tag points at (REVIEW R06).
+# One GitHub Actions job name per line, exactly as the job's `name:` renders. release.yml fails closed when any of
+# them is missing, still running, skipped, cancelled or failed. Keep this list in step with the workflows: a renamed
+# job must be renamed here too, or every release tag fails (which is the safe direction).
+#
+# pr.yml (runs on every push to main)
+Static analysis (spotless, detekt, lint, konsist)
+Unit + Robolectric tests, coverage gate
+Screenshot verification (Roborazzi)
+License gate
+Dataset validation
+Assemble (debug + release)
+Workflow lint
+# instrumented.yml (runs on every push to main)
+API 26
+API 30
+API 33
+API 36
+Wear OS 34
+# release-dry-run.yml (dispatch it on the commit before tagging)
+Unsigned release build, SBOM, changelog preview, reproducibility
+# benchmark.yml (dispatch it on the commit before tagging)
+Macrobenchmark (nightly)

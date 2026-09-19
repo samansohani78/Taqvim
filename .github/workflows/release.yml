@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  checks: read
 
 env:
   GRADLE_OPTS: >-
@@ -13,8 +14,35 @@ env:
     -Dorg.gradle.java.installations.fromEnv=JAVA_HOME_21_X64
 
 jobs:
+  qualify:
+    name: Tagged commit is on main and passed every required check
+    # Fails closed (REVIEW R06): nothing below builds, signs or publishes unless the exact tagged commit is on main
+    # and every check in .github/required-checks.txt concluded `success` on it — the PR jobs, all instrumented legs
+    # including Wear, the release dry run and the benchmarks. A missing, running, skipped or cancelled check fails.
+    # Checks are read for the commit rather than re-run here: the instrumented and benchmark jobs take over an hour,
+    # and re-running them inside the release would test a different run than the one that was reviewed.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Tagged commit is on main
+        shell: bash
+        run: |
+          git fetch --no-tags origin main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::$GITHUB_REF_NAME points at $GITHUB_SHA, which is not on main. Tag a commit of main."
+            exit 1
+          fi
+      - name: Every required check passed on the tagged commit
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/ci/verify_required_checks.py "$GITHUB_REPOSITORY" "$GITHUB_SHA" .github/required-checks.txt
+
   release:
     name: Signed build, SBOM and GitHub release
+    needs: qualify
     # Release-candidate tags are verification-only and are not a Taqvim version (docs/RELEASE.md): they go to the job
     # below instead, because the build rejects any tag that is not vX.Y.Z or vX.Y.Z-beta.N.
     if: ${{ !contains(github.ref_name, '-rc') }}
@@ -80,6 +108,7 @@ jobs:
 
   release-candidate:
     name: Release candidate — unsigned gates, nothing published
+    needs: qualify
     # A vX.Y.Z-rcN tag marks a commit as a candidate for the release that follows it. It needs no signing secrets and
     # publishes nothing, so it runs the release gates on an unsigned build and stops there (docs/RELEASE.md).
     if: ${{ contains(github.ref_name, '-rc') }}

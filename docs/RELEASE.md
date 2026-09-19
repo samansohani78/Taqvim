@@ -48,7 +48,7 @@ closed beta that precedes the first public release is described in [BETA.md](BET
 |---|---|---|
 | `pr.yml` | every PR and push to `main` | All gates of PLAN §8.1 that run on a JVM; see its job list |
 | `release-dry-run.yml` | manually, or a PR that changes release configuration | License gate and release manifest audit (ADR-0017), unsigned `bundleRelease`/`assembleRelease`, SBOM, changelog preview, **reproducibility check** (a clean rebuild must produce a byte-identical APK). Publishes nothing |
-| `release.yml` | tag `v*` | Tag/version check, license gate and manifest audit, signed AAB and APK, SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags). A `vX.Y.Z-rcN` tag instead runs the gates on an unsigned build and publishes nothing |
+| `release.yml` | tag `v*` | **First, fail closed:** the tagged commit must be on `main` and every check in `.github/required-checks.txt` (all PR jobs, the four phone legs and the Wear leg, the release dry run, the macrobenchmark) must have concluded `success` on that exact commit — a missing, running, skipped or cancelled check stops the release before anything is built (REVIEW R06, `tools/ci/verify_required_checks.py`). Then: tag/version check, license gate and manifest audit, signed AAB and APK, SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags). A `vX.Y.Z-rcN` tag instead runs the gates on an unsigned build and publishes nothing |
 | `benchmark.yml` | nightly / manual | Macrobenchmarks against §9 budgets (T-1801) |
 | `instrumented.yml` | see workflow | Instrumented UI tests on the API matrix |
 
@@ -75,6 +75,10 @@ The GitHub release is created as a draft so a person reviews the artifacts and n
 - Commit subjects must therefore stay conventional (`type(scope): summary`), citing the task ID as the plan requires.
 
 ## Release blockers
+
+Before tagging, dispatch `release-dry-run.yml` and `benchmark.yml` on the commit (they do not run on push), and wait
+for them and the push-triggered PR and instrumented workflows to finish: `release.yml` refuses a tag whose commit lacks
+any of those results.
 
 A release must not be tagged unless all of these hold:
 
