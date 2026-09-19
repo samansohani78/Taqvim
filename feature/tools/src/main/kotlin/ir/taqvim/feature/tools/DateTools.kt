@@ -84,7 +84,7 @@ internal object DateTools {
         today: Jdn,
     ): ParseContext {
         val primary = settings.calendars.first()
-        return ParseContext.forLanguage(settings.language, today, primary.system).copy(
+        return ParseContext.forLanguage(settings.language, today, primary.system, settings.anchors).copy(
             calendars = ParseContext.DEFAULT_CALENDARS + settings.calendars.associateBy { it.system },
         )
     }

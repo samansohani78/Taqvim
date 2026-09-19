@@ -26,6 +26,7 @@ import ir.taqvim.app.di.AppLocales
 import ir.taqvim.app.di.LegacyAppLocales
 import ir.taqvim.app.navigation.AppDestination
 import ir.taqvim.app.navigation.AppIntents
+import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.data.database.backup.RestoreGate
 import java.util.Locale
 import kotlin.time.Clock
@@ -82,6 +83,11 @@ class MainActivity : ComponentActivity() {
 
     private fun destinationOf(intent: Intent?): AppDestination? =
         AppIntents.destination(intent) {
-            AppIntents.parseContext(Clock.System.now(), TimeZone.currentSystemDefault(), Locale.getDefault().language)
+            AppIntents.parseContext(
+                Clock.System.now(),
+                TimeZone.currentSystemDefault(),
+                Locale.getDefault().language,
+                get<AnchorLookup>(),
+            )
         }
 }

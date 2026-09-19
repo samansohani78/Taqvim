@@ -9,6 +9,7 @@ import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.IranIslamicCalendar
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.LanguageSpec
+import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.core.workdays.WorkdayCalculator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.TimeZone
@@ -25,6 +26,8 @@ data class ToolsSettings(
     val boardZones: List<String> = emptyList(),
     /** Workday arithmetic with the user's profile (F-07), or `null` when none is configured. */
     val workdays: WorkdayCalculator? = null,
+    /** Finds named events for phrases such as "3 days before Nowruz" (T-500); `null` reads none of them. */
+    val anchors: AnchorLookup? = null,
 ) {
     init {
         require(calendars.isNotEmpty()) { "at least one calendar is needed" }

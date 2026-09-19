@@ -37,7 +37,7 @@ internal class RelativeRules(
 
     private fun counted(index: Int): Candidate? {
         val count = Lexicon.number(tokens, index) ?: return null
-        val unit = unitAt(index + 1) ?: return null
+        val unit = unitAt(index + 1)?.takeUnless { anchoredAt(index + 2) } ?: return null
         return direction(index + 2)?.let { (sign, width) ->
             candidate(index until index + 2 + width, shift(unit, sign * count), COUNTED_CONFIDENCE)
         }
@@ -80,6 +80,20 @@ internal class RelativeRules(
         val modifier = before ?: after ?: return null
         val range = if (before != null) index - 1..index else index..index + 1
         return candidate(range, shift(unit, if (modifier == Concept.NEXT) 1 else -1), UNIT_SHIFT_CONFIDENCE)
+    }
+
+    /**
+     * Whether "before …" or "after …" followed by a word starts at [index] (review R02). The count is then measured
+     * from that word — an event such as Nowruz — so only [AnchoredRules] with a lookup can read it. Persian `قبل` is
+     * both "ago" and the first word of "before", so without this "سه روز قبل از نوروز" was read as three days ago.
+     */
+    private fun anchoredAt(index: Int): Boolean {
+        val width =
+            maxOf(
+                Lexicon.concept(tokens, index, Concept.ANCHOR_BEFORE),
+                Lexicon.concept(tokens, index, Concept.ANCHOR_AFTER),
+            )
+        return width > 0 && tokens.getOrNull(index + width)?.type == TokenType.WORD
     }
 
     private fun unitAt(index: Int): Concept? = UNITS.firstOrNull { Lexicon.concept(tokens, index, it) == 1 }

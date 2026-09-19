@@ -10,7 +10,9 @@ import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventLookup
 import ir.taqvim.core.events.EventSearchIndex
 import ir.taqvim.core.events.MatchKind
+import ir.taqvim.core.events.SearchHit
 import ir.taqvim.core.events.SearchQuery
+import ir.taqvim.core.i18n.PersianText
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.nlp.AnchorLookup
@@ -190,8 +192,9 @@ internal fun editorSettings(
 
 /**
  * [AnchorLookup] over the official dataset (T-304) for phrases such as "3 days before Nowruz": the event whose title
- * or alias equals or starts with the query, on its occurrence closest to the reference day (previous, same or next
- * year of its own calendar). Looser matches are ignored so ordinary words never become anchors.
+ * or alias equals the query, starts with it, or contains it as whole words ("نوروز" in "عید نوروز", review R02), on
+ * its occurrence closest to the reference day (previous, same or next year of its own calendar). Fragments of a word
+ * and typo matches are ignored so ordinary words never become anchors.
  */
 internal class OfficialAnchorLookup(
     definitions: List<EventDefinition> = OfficialEvents.ALL,
@@ -203,11 +206,23 @@ internal class OfficialAnchorLookup(
         query: String,
         reference: Jdn,
     ): Jdn? {
-        val definition =
+        val hits =
             index
-                .search(SearchQuery(query, limit = 1))
-                .firstOrNull { it.kind == MatchKind.EXACT || it.kind == MatchKind.PREFIX }
-                ?.definition ?: return null
+                .search(SearchQuery(query, limit = CANDIDATES))
+                .filter { it.kind == MatchKind.EXACT || it.kind == MatchKind.PREFIX || containsWords(it, query) }
+        val best = hits.firstOrNull()?.kind ?: return null
+        // Several days can share a name ("آغاز نوروز", "عید نوروز" …); the phrase means the first of them.
+        return hits
+            .filter { it.kind == best }
+            .mapNotNull { nearest(it.definition, reference) }
+            .minByOrNull { it.value }
+    }
+
+    /** The occurrence of [definition] closest to [reference], in the previous, same or next year of its calendar. */
+    private fun nearest(
+        definition: EventDefinition,
+        reference: Jdn,
+    ): Jdn? {
         val calendar = CalendarProvider.DEFAULT.calendarFor(definition.calendar) ?: return null
         val year = calendar.fromJdn(reference).year
         return (year - 1..year + 1)
@@ -215,5 +230,25 @@ internal class OfficialAnchorLookup(
             .filter { it.definition.id == definition.id }
             .minByOrNull { abs(it.jdn.value - reference.value) }
             ?.jdn
+    }
+
+    /**
+     * Whether [hit]'s text holds [query] as a run of whole words. Both are compared as search keys, which ignore
+     * spaces, so "نو روز" matches the word "نوروز" as the index does; only the title's word boundaries count.
+     */
+    private fun containsWords(
+        hit: SearchHit,
+        query: String,
+    ): Boolean {
+        if (hit.kind != MatchKind.SUBSTRING) return false
+        val wanted = PersianText.searchKey(query)
+        val words = PersianText.normalize(hit.matchedText).split(' ').map(PersianText::searchKey)
+        val runs = words.indices.flatMap { first -> (first until words.size).map { words.subList(first, it + 1) } }
+        return wanted.isNotEmpty() && runs.any { it.joinToString("") == wanted }
+    }
+
+    private companion object {
+        /** Hits examined for a whole-word match; exact and prefix hits rank first, so a few are enough. */
+        const val CANDIDATES = 8
     }
 }

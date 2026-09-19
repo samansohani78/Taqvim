@@ -9,6 +9,7 @@ import ir.taqvim.core.calendar.ClockTodayProvider
 import ir.taqvim.core.calendar.TodayProvider
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.IslamicCalendarSelection
+import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.data.database.AlarmKind
 import ir.taqvim.data.database.DeviceEventDao
 import ir.taqvim.data.database.IcsSubscriptionDao
@@ -183,8 +184,10 @@ val appFeaturePortsModule =
             val preferences = get<UserPreferencesRepository>()
             RoomPersonalEventStore(get(), get(), get(), get()) { preferences.preferences.first().availableArithmetic() }
         }
+        // One lookup for every place a phrase such as "3 days before Nowruz" is read (review R02).
+        single<AnchorLookup> { OfficialAnchorLookup() }
         single<EditorSettingsSource> {
-            PreferencesEditorSettingsSource(get(), OfficialAnchorLookup(), get(named(DeviceTimeZone.QUALIFIER)))
+            PreferencesEditorSettingsSource(get(), get(), get(named(DeviceTimeZone.QUALIFIER)))
         }
         single<AstronomySettingsSource> { TimesAstronomySettingsSource(get()) }
         single<CompassSettingsSource> { PreferencesCompassSettingsSource(get(), get()) }
@@ -195,6 +198,7 @@ val appFeaturePortsModule =
                 get(),
                 profiles.map { it.defaultProfile() },
                 zones = get(named(DeviceTimeZone.QUALIFIER)),
+                anchors = get(),
             )
         }
         single<YearSettingsSource> { PreferencesYearSettingsSource(get()) }

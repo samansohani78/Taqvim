@@ -12,7 +12,9 @@ import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.nlp.DetectionOptions
 import ir.taqvim.core.nlp.ParseContext
+import ir.taqvim.core.nlp.ParseKind
 import ir.taqvim.core.nlp.TextDateDetector
 import ir.taqvim.feature.settings.SettingsItemId
 import java.net.URLDecoder
@@ -208,8 +210,14 @@ internal object DeepLinks {
     }
 }
 
-/** Text selected in another app (`ACTION_PROCESS_TEXT`, T-1103): its first date opens that day, else the converter. */
+/**
+ * Text selected in another app (`ACTION_PROCESS_TEXT`, T-1103): its first date opens that day, else the converter.
+ * Besides written dates it reads offsets from a named event ("سه روز قبل از نوروز", review R02); an event name alone
+ * stays below the detector's confidence floor, so an ordinary word is never taken for a date.
+ */
 internal object ProcessText {
+    private val OPTIONS = DetectionOptions(DetectionOptions.DEFAULT_KINDS + ParseKind.ANCHORED)
+
     fun destination(
         text: String,
         context: ParseContext,
@@ -218,7 +226,7 @@ internal object ProcessText {
         if (trimmed.isEmpty()) return AppDestination.Tools
         val day =
             TextDateDetector
-                .detect(trimmed, context)
+                .detect(trimmed, context, OPTIONS)
                 .firstOrNull()
                 ?.best
                 ?.jdn

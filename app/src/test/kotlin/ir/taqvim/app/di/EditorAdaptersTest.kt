@@ -90,6 +90,15 @@ class EditorAdaptersTest {
         anchors.find("xqzw", nowruz1405).shouldBeNull()
     }
 
+    @Test
+    fun `the name people use finds the first day that bears it, but a fragment of a word finds nothing`() {
+        // Review R02: people say "نوروز"; the dataset names 1 Farvardin "آغاز نوروز" and 2-4 Farvardin "عید نوروز".
+        val nowruz1405 = LocalDate(2026, 3, 21).toJdn()
+        anchors.find("نوروز", nowruz1405 - 3) shouldBe nowruz1405
+        anchors.find("نو روز", nowruz1405 - 3) shouldBe nowruz1405
+        anchors.find("وروز", nowruz1405 - 3).shouldBeNull()
+    }
+
     private companion object {
         /** The dataset's Persian title of 1 Farvardin (dataset/iran/iran-official-holidays.json). */
         const val NOWRUZ_TITLE = "آغاز نوروز"

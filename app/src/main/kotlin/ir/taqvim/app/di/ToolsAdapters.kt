@@ -7,6 +7,7 @@
 package ir.taqvim.app.di
 
 import ir.taqvim.core.events.EventLookup
+import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.core.workdays.WorkdayCalculator
 import ir.taqvim.core.workdays.WorkdayProfile
 import ir.taqvim.data.database.WorkdayProfileEntity
@@ -31,6 +32,7 @@ internal class PreferencesToolsSettingsSource(
     private val workdayProfile: Flow<WorkdayProfile?>,
     private val zones: Flow<TimeZone> = DeviceTimeZone.current,
     loadLookup: () -> EventLookup = { EventLookup(OfficialEvents.ALL) },
+    private val anchors: AnchorLookup? = null,
 ) : ToolsSettingsSource {
     private val lookup by lazy(loadLookup)
 
@@ -46,6 +48,7 @@ internal class PreferencesToolsSettingsSource(
                 calendars = preferences.availableCalendars().ifEmpty { ToolsSettings.DEFAULT_CALENDARS },
                 boardZones = preferences.app.timeZoneBoard,
                 workdays = profile?.let { WorkdayCalculator(lookup, it) },
+                anchors = anchors,
             )
         }
 }

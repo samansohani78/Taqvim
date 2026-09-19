@@ -87,8 +87,17 @@ class RelativePhraseTest {
     }
 
     @Test
+    fun `an offset from an event that cannot be resolved is not read as an offset from today`() {
+        // Review R02: قبل is both "ago" and the start of "before", so this used to read as three days ago.
+        DateParser.parse("سه روز قبل از نوروز", ParseContext(reference)).shouldBeEmpty()
+        DateParser.parse("سه روز بعد از رویداد ناشناخته", persian).shouldBeEmpty()
+        DateParser.parse("3 days before Unknown Festival", english).shouldBeEmpty()
+        offsets(persian, "سه روز قبل" to -3, "سه روز بعد" to 3, "۲ هفته پیش" to -14)
+    }
+
+    @Test
     fun `anchored phrases need a lookup, a unit, a direction and a known event`() {
-        best("۲ روز قبل از جشن نمونه", ParseContext(reference)).kind shouldBe ParseKind.RELATIVE
+        DateParser.parse("۲ روز قبل از جشن نمونه", ParseContext(reference)).shouldBeEmpty()
         DateParser.parse("2 days before Unknown Festival", english).shouldBeEmpty()
         DateParser.parse("2 foo before Sample Festival", english).map { it.span } shouldBe listOf(13..27)
         DateParser.parse("2 days around Sample Festival", english).map { it.span } shouldBe listOf(14..28)

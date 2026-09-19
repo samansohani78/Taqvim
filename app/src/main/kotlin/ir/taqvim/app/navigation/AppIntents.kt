@@ -7,6 +7,7 @@ package ir.taqvim.app.navigation
 import android.content.Intent
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.core.nlp.ParseContext
 import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
@@ -41,14 +42,19 @@ internal object AppIntents {
             }
         }
 
-    /** How selected text is read: as in [languageCode] (English when unsupported), relative to the day of [now]. */
+    /**
+     * How selected text is read: as in [languageCode] (English when unsupported), relative to the day of [now], with
+     * [anchors] naming events for phrases such as "3 days before Nowruz" (review R02).
+     */
     fun parseContext(
         now: Instant,
         zone: TimeZone,
         languageCode: String,
+        anchors: AnchorLookup? = null,
     ): ParseContext {
         val today = now.toJdn(zone)
         val language = LanguageTable.forCode(languageCode) ?: LanguageTable.forCode(FALLBACK_LANGUAGE)
-        return language?.let { ParseContext.forLanguage(it, today) } ?: ParseContext(today)
+        return language?.let { ParseContext.forLanguage(it, today, anchors = anchors) }
+            ?: ParseContext(today, anchors = anchors)
     }
 }

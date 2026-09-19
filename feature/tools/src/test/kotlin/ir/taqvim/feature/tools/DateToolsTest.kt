@@ -23,6 +23,7 @@ import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.core.testing.PropertyTesting
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
@@ -80,6 +81,19 @@ class DateToolsTest {
         result.dates[0].iso shouldBe "1405-03-31"
         result.dates[2].numeric shouldContain "۲۰۲۶"
         DateTools.convert("no date here", today, english) shouldBe ConverterResult.NotRecognized
+    }
+
+    @Test
+    fun `an offset from a named event is read with the settings' anchor lookup, never as an offset from today`() {
+        // Review R02: without the lookup "سه روز قبل از نوروز" used to convert as three days ago.
+        val event = today + 40
+        val anchors = AnchorLookup { query, _ -> event.takeIf { query == "نوروز" } }
+        val phrase = "سه روز قبل از نوروز"
+
+        DateTools.convert(phrase, today, persian.copy(anchors = anchors)) shouldBe
+            ConverterResult.Converted(isToday = false, dates = DateTools.describe(event - 3, persian))
+        DateTools.convert(phrase, today, persian) shouldBe ConverterResult.NotRecognized
+        DateTools.distance(phrase, "", today, persian).from shouldBe DistanceEnd.NotRecognized
     }
 
     @Test

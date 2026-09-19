@@ -7,8 +7,11 @@ package ir.taqvim.app.navigation
 import android.content.Intent
 import android.net.Uri
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.app.di.OfficialAnchorLookup
+import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.nlp.ParseContext
 import kotlin.time.Instant
@@ -49,6 +52,23 @@ class AppIntentsTest {
 
         assertNull(destination(Intent(Intent.ACTION_MAIN)))
         assertNull(destination(null))
+    }
+
+    @Test
+    fun selectedTextOffsetFromAnOfficialEventOpensThatDay() {
+        // Review R02: through the real official-event lookup, as MainActivity supplies it.
+        val now = Instant.parse("2027-03-01T08:00:00Z")
+        val tehran = TimeZone.of("Asia/Tehran")
+        val phrase = "سه روز قبل از نوروز"
+        val selected = Intent(Intent.ACTION_PROCESS_TEXT).putExtra(Intent.EXTRA_PROCESS_TEXT, phrase)
+        val nowruz1406 = PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, 1406, 1, 1))
+
+        val anchored = AppIntents.parseContext(now, tehran, "fa", OfficialAnchorLookup())
+        assertEquals(AppDestination.Day(nowruz1406.value - 3), AppIntents.destination(selected) { anchored })
+
+        // Without a lookup the phrase goes to the converter as written, not to "three days ago".
+        val bare = AppIntents.parseContext(now, tehran, "fa")
+        assertEquals(AppDestination.Converter(phrase), AppIntents.destination(selected) { bare })
     }
 
     @Test
