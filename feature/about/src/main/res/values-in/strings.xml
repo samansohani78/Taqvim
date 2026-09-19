@@ -87,7 +87,7 @@
   <string name="about_faq_topic_notifications">Azan dan pengingat</string>
   <string name="about_faq_topic_backup_privacy">Cadangan dan privasi</string>
   <string name="about_faq_islamic_date_q">Mengapa tanggal Hijriah bisa berbeda satu hari dari kalender lain?</string>
-  <string name="about_faq_islamic_date_a">Bulan Hijriah dimulai saat hilal terlihat, sehingga negara dan kalender dapat memulai bulan pada hari yang berbeda. Dengan metode resmi Iran, Taqvim memakai awal bulan yang diterbitkan Pusat Kalender Universitas Teheran, dan perkiraan astronomis untuk bulan yang belum diterbitkan. Anda dapat memilih metode lain, seperti Umm al-Qura, di setelan.</string>
+  <string name="about_faq_islamic_date_a">Bulan Hijriah dimulai saat hilal terlihat, sehingga negara dan kalender dapat memulai bulan pada hari yang berbeda. Dengan metode Iran, Taqvim menghitung awal setiap bulan menurut aturan visibilitas hilal. Jika Anda mengaktifkan “Tanggal Hijriah resmi” di setelan, bulan yang diumumkan resmi di Iran dipakai untuk periode yang dicakupnya, dan bulan lainnya tetap hasil perhitungan. Anda dapat memilih metode lain, seperti Umm al-Qura, di setelan.</string>
   <string name="about_faq_main_calendar_q">Bagaimana cara mengubah kalender utama atau kedua?</string>
   <string name="about_faq_main_calendar_a">Di setelan, pilih kalender utama dan kalender kedua. Tampilan bulan dan judulnya mengikuti kalender utama, dan setiap hari juga menampilkan tanggalnya pada kalender lain.</string>
   <string name="about_faq_nepali_q">Apakah kalender Nepal (Bikram Sambat) tersedia?</string>

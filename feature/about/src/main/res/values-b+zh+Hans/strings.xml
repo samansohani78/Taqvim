@@ -87,7 +87,7 @@
   <string name="about_faq_topic_notifications">宣礼与提醒</string>
   <string name="about_faq_topic_backup_privacy">备份与隐私</string>
   <string name="about_faq_islamic_date_q">为什么伊斯兰日期可能与其他日历相差一天？</string>
-  <string name="about_faq_islamic_date_a">伊斯兰月份在看到新月时开始，因此不同国家和日历可能在不同的日子开始新月份。使用伊朗官方方法时，Taqvim 采用德黑兰大学日历中心公布的月首，对尚未公布的月份则使用天文估算。你可以在设置中选择其他方法，例如乌姆古拉历。</string>
+  <string name="about_faq_islamic_date_a">伊斯兰月份在看到新月时开始，因此不同国家和日历可能在不同的日子开始新月份。使用伊朗方法时，Taqvim 按新月可见性规则计算每个月的开始。如果在设置中开启“官方希吉来日期”，伊朗官方公布的月份会在其覆盖的期间内使用，其他月份仍为计算结果。你可以在设置中选择其他方法，例如乌姆古拉历。</string>
   <string name="about_faq_main_calendar_q">如何更改主日历或次要日历？</string>
   <string name="about_faq_main_calendar_a">在设置中选择主日历和次要日历。月视图及其标题遵循主日历，每一天也会显示它在其他日历中的日期。</string>
   <string name="about_faq_nepali_q">是否提供尼泊尔（比克拉姆历）日历？</string>

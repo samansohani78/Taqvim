@@ -90,7 +90,7 @@
   <string name="about_faq_topic_notifications">Ezan ve hatırlatıcılar</string>
   <string name="about_faq_topic_backup_privacy">Yedekleme ve gizlilik</string>
   <string name="about_faq_islamic_date_q">Hicri tarih neden başka bir takvimden bir gün farklı olabilir?</string>
-  <string name="about_faq_islamic_date_a">Hicri aylar yeni hilal görüldüğünde başlar, bu yüzden ülkeler ve takvimler bir aya farklı günlerde başlayabilir. İran resmî yöntemiyle Taqvim, Tahran Üniversitesi Takvim Merkezi\'nin yayımladığı ay başlangıçlarını, henüz yayımlanmamış aylar için ise astronomik bir tahmini kullanır. Ayarlardan Ümmü\'l-Kura gibi başka bir yöntem seçebilirsiniz.</string>
+  <string name="about_faq_islamic_date_a">Hicri aylar yeni hilal görüldüğünde başlar, bu yüzden ülkeler ve takvimler bir aya farklı günlerde başlayabilir. İran yönteminde Taqvim her ayın başlangıcını hilalin görünürlük kuralıyla hesaplar. Ayarlarda “Resmî Hicri tarihler”i açarsanız İran\'da resmî olarak ilan edilen aylar kapsadıkları dönem için kullanılır, diğer aylar hesaplanmış olarak kalır. Ayarlardan Ümmü\'l-Kura gibi başka bir yöntem seçebilirsiniz.</string>
   <string name="about_faq_main_calendar_q">Ana veya ikincil takvimi nasıl değiştiririm?</string>
   <string name="about_faq_main_calendar_a">Ayarlarda ana takvimi ve ikincil takvimi seçin. Ay görünümü ve başlığı ana takvimi izler; her gün diğer takvimlerdeki tarihlerini de gösterir.</string>
   <string name="about_faq_nepali_q">Nepal (Bikram Sambat) takvimi var mı?</string>

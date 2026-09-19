@@ -87,7 +87,7 @@
   <string name="about_faq_topic_notifications">Azan dan peringatan</string>
   <string name="about_faq_topic_backup_privacy">Sandaran dan privasi</string>
   <string name="about_faq_islamic_date_q">Mengapa tarikh Hijrah boleh berbeza sehari daripada kalendar lain?</string>
-  <string name="about_faq_islamic_date_a">Bulan Hijrah bermula apabila anak bulan kelihatan, jadi negara dan kalendar boleh memulakan bulan pada hari berlainan. Dengan kaedah rasmi Iran, Taqvim menggunakan permulaan bulan yang diterbitkan oleh Pusat Kalendar Universiti Tehran, dan anggaran astronomi bagi bulan yang belum diterbitkan. Anda boleh memilih kaedah lain, seperti Umm al-Qura, dalam tetapan.</string>
+  <string name="about_faq_islamic_date_a">Bulan Hijrah bermula apabila anak bulan kelihatan, jadi negara dan kalendar boleh memulakan bulan pada hari berlainan. Dengan kaedah Iran, Taqvim mengira permulaan setiap bulan mengikut peraturan kebolehlihatan anak bulan. Jika anda menghidupkan “Tarikh Hijrah rasmi” dalam tetapan, bulan yang diumumkan secara rasmi di Iran digunakan bagi tempoh yang diliputinya, dan bulan lain kekal dikira. Anda boleh memilih kaedah lain, seperti Umm al-Qura, dalam tetapan.</string>
   <string name="about_faq_main_calendar_q">Bagaimana saya menukar kalendar utama atau kedua?</string>
   <string name="about_faq_main_calendar_a">Dalam tetapan, pilih kalendar utama dan kalendar kedua. Paparan bulan dan tajuknya mengikut kalendar utama, dan setiap hari turut menunjukkan tarikhnya dalam kalendar lain.</string>
   <string name="about_faq_nepali_q">Adakah kalendar Nepal (Bikram Sambat) tersedia?</string>

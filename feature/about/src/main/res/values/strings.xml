@@ -104,7 +104,7 @@
   <string name="about_faq_topic_notifications">Athan and reminders</string>
   <string name="about_faq_topic_backup_privacy">Backup and privacy</string>
   <string name="about_faq_islamic_date_q">Why can the Islamic date differ by a day from another calendar?</string>
-  <string name="about_faq_islamic_date_a">Islamic months start when the new crescent is sighted, so countries and calendars can begin a month on different days. With the Iran official method, Taqvim uses the month starts published by the Calendar Center of the University of Tehran, and an astronomical estimate for months not yet published. You can choose another method, such as Umm al-Qura, in settings.</string>
+  <string name="about_faq_islamic_date_a">Islamic months start when the new crescent is sighted, so countries and calendars can begin a month on different days. With the Iran method, Taqvim computes the start of each month from the crescent visibility rule. If you turn on “Official Hijri dates” in settings, the months officially announced in Iran are used for the period they cover, and other months stay computed. You can choose another method, such as Umm al-Qura, in settings.</string>
   <string name="about_faq_main_calendar_q">How do I change the main or secondary calendar?</string>
   <string name="about_faq_main_calendar_a">In settings, choose the main calendar and the secondary calendar. The month view and its title follow the main calendar, and each day also shows its dates in the other calendars.</string>
   <string name="about_faq_nepali_q">Is the Nepali (Bikram Sambat) calendar available?</string>

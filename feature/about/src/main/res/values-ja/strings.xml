@@ -87,7 +87,7 @@
   <string name="about_faq_topic_notifications">アザーンとリマインダー</string>
   <string name="about_faq_topic_backup_privacy">バックアップとプライバシー</string>
   <string name="about_faq_islamic_date_q">イスラム暦の日付が他の暦と1日ずれることがあるのはなぜですか？</string>
-  <string name="about_faq_islamic_date_a">イスラム暦の月は新月が見えたときに始まるため、国や暦によって月の始まりが異なる日になることがあります。イラン公式の方式では、Taqvim はテヘラン大学暦センターが公表した朔を用い、未公表の月には天文計算による推定を用います。設定でウンム・アルクラー暦など別の方式を選べます。</string>
+  <string name="about_faq_islamic_date_a">イスラム暦の月は新月が見えたときに始まるため、国や暦によって月の始まりが異なる日になることがあります。イランの方式では、Taqvim は新月の視認性の規則によって各月の始まりを計算します。設定で「公式のヒジュラ暦日付」をオンにすると、イランで公式に発表された月がその対象期間に使われ、それ以外の月は計算のままです。設定でウンム・アルクラー暦など別の方式を選べます。</string>
   <string name="about_faq_main_calendar_q">メインまたは第2のカレンダーを変更するには？</string>
   <string name="about_faq_main_calendar_a">設定でメインのカレンダーと第2のカレンダーを選びます。月表示とその見出しはメインのカレンダーに従い、各日は他の暦での日付も表示します。</string>
   <string name="about_faq_nepali_q">ネパール暦（ビクラム暦）は使えますか？</string>

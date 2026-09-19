@@ -90,7 +90,7 @@
   <string name="about_faq_topic_notifications">Azon va eslatmalar</string>
   <string name="about_faq_topic_backup_privacy">Zaxira va maxfiylik</string>
   <string name="about_faq_islamic_date_q">Nega hijriy sana boshqa taqvimdan bir kunga farq qilishi mumkin?</string>
-  <string name="about_faq_islamic_date_a">Hijriy oylar yangi hilol koʻringanda boshlanadi, shuning uchun mamlakatlar va taqvimlar oyni turli kunlarda boshlashi mumkin. Eron rasmiy usulida Taqvim Tehron universiteti Taqvim markazi eʼlon qilgan oy boshlanishlaridan, hali eʼlon qilinmagan oylar uchun esa astronomik hisobdan foydalanadi. Sozlamalarda Ummul-Quro kabi boshqa usulni tanlashingiz mumkin.</string>
+  <string name="about_faq_islamic_date_a">Hijriy oylar yangi hilol koʻringanda boshlanadi, shuning uchun mamlakatlar va taqvimlar oyni turli kunlarda boshlashi mumkin. Eron usulida Taqvim har oyning boshlanishini hilol koʻrinishi qoidasi boʻyicha hisoblaydi. Sozlamalarda «Rasmiy hijriy sanalar»ni yoqsangiz, Eronda rasman eʼlon qilingan oylar ular qamragan davr uchun ishlatiladi, boshqa oylar esa hisoblangan holda qoladi. Sozlamalarda Ummul-Quro kabi boshqa usulni tanlashingiz mumkin.</string>
   <string name="about_faq_main_calendar_q">Asosiy yoki ikkinchi taqvimni qanday oʻzgartiraman?</string>
   <string name="about_faq_main_calendar_a">Sozlamalarda asosiy va ikkinchi taqvimni tanlang. Oy koʻrinishi va sarlavhasi asosiy taqvimga mos keladi, har bir kun esa boshqa taqvimlardagi sanalarini ham koʻrsatadi.</string>
   <string name="about_faq_nepali_q">Nepal (Bikram Sambat) taqvimi bormi?</string>

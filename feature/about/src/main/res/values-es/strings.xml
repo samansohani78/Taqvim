@@ -93,7 +93,7 @@
   <string name="about_faq_topic_notifications">Adhan y recordatorios</string>
   <string name="about_faq_topic_backup_privacy">Copias de seguridad y privacidad</string>
   <string name="about_faq_islamic_date_q">¿Por qué la fecha islámica puede diferir un día de otro calendario?</string>
-  <string name="about_faq_islamic_date_a">Los meses islámicos empiezan cuando se avista la nueva luna creciente, así que los países y los calendarios pueden comenzar un mes en días distintos. Con el método oficial de Irán, Taqvim usa los inicios de mes publicados por el Centro del Calendario de la Universidad de Teherán y una estimación astronómica para los meses aún no publicados. Puedes elegir otro método, como Umm al-Qura, en los ajustes.</string>
+  <string name="about_faq_islamic_date_a">Los meses islámicos empiezan cuando se avista la nueva luna creciente, así que los países y los calendarios pueden comenzar un mes en días distintos. Con el método de Irán, Taqvim calcula el inicio de cada mes según la regla de visibilidad de la luna creciente. Si activas «Fechas oficiales de la hégira» en los ajustes, se usan los meses anunciados oficialmente en Irán durante el período que abarcan, y los demás meses siguen siendo calculados. Puedes elegir otro método, como Umm al-Qura, en los ajustes.</string>
   <string name="about_faq_main_calendar_q">¿Cómo cambio el calendario principal o secundario?</string>
   <string name="about_faq_main_calendar_a">En los ajustes, elige el calendario principal y el secundario. La vista del mes y su título siguen el calendario principal, y cada día muestra también sus fechas en los demás calendarios.</string>
   <string name="about_faq_nepali_q">¿Está disponible el calendario nepalí (Bikram Sambat)?</string>
