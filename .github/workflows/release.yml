@@ -93,7 +93,7 @@ jobs:
       - name: Release gates on an unsigned build
         # No -Ptaqvim.version: an rc tag is not a Taqvim version, so the build uses version.properties.
         run: >-
-          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:bundleRelease
+          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:checkReleasePageAlignment :app:bundleRelease
           :app:assembleRelease :app:cyclonedxDirectBom
       - name: Candidate summary
         shell: bash

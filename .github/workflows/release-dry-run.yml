@@ -39,7 +39,7 @@ jobs:
       - name: Release gates and unsigned build
         # Without -Ptaqvim.version the build uses version.properties; verifyReleaseVersion prints and checks it.
         run: >-
-          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:bundleRelease
+          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:checkReleasePageAlignment :app:bundleRelease
           :app:assembleRelease :app:cyclonedxDirectBom
       - name: Check release outputs
         run: |

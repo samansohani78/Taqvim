@@ -191,7 +191,7 @@ jobs:
       # T-1800 (ADR-0018): the shrunk release keeps what reflection needs and stays within the plan §9 APK budget.
       - run: |
           # shellcheck disable=SC2086 # TAQVIM_GRADLE_ARGS holds several Gradle arguments
-          ./gradlew assemble :app:verifyReleaseShrinking :app:checkReleaseApkSize $TAQVIM_GRADLE_ARGS
+          ./gradlew assemble :app:verifyReleaseShrinking :app:checkReleaseApkSize :app:checkReleasePageAlignment $TAQVIM_GRADLE_ARGS
 
   workflows:
     name: Workflow lint

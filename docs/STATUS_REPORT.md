@@ -518,6 +518,38 @@ On the phone, from a **release** build: `adb shell dumpsys gfxinfo ir.taqvim res
 profile regression would be invisible to the nightly gate. Users are unaffected — the release build is correct. Being
 fixed separately, together with the baselines it invalidates.
 
+**The next crash will report itself (main@3047b7a).** The device gave no logcat, so the app now keeps its own: an
+uncaught-exception handler installed before the Koin graph (so a failure while building the graph is kept too) chains
+to the previous handler — Android still logs the crash and kills the process, nothing is swallowed — and writes
+`<app files>/crash/crash-<millis>.txt`: build and variant, Android release and API, manufacturer and model, locale,
+the chosen calendars, Islamic variant, override and language, the screen shown, thread, and the trace with its
+causes. At most 3 records, 16 000 chars each, plain file writes on a dying thread. A "Last crash" row appears on the
+About screen only when one exists, showing the redacted text with a Clear button, and the newest record joins the
+in-app problem report (4 000 chars) through the existing `DiagnosticsRedactor`. Nothing is sent automatically.
+Tests: `CrashLogTest` (7), `CrashReportTest` (5) and 2 `AboutScreenTest` cases; `AppModuleTest` now checks the real
+startup graph.
+
+**Android 16 / `targetSdk 37` / OxygenOS audit.** Applies and was already handled: edge-to-edge (`enableEdgeToEdge`),
+predictive back (`enableOnBackInvokedCallback`, confirmed registering on API 37), foreground-service types
+(`mediaPlayback`, started from an exact alarm), exact-alarm permission checks, implicit-intent and pending-intent
+rules (chooser with a `<queries>` entry, `setPackage`-scoped deep links, receivers not exported), notifications and
+per-app language. Does not apply: large-screen orientation changes (no orientation or resizability flags),
+JobScheduler quotas (one constrained periodic worker). Not verifiable here: OxygenOS background limits, which can
+delay alarms (checklist §6.4) but cannot explain a crash.
+
+**16 KB page sizes — corrected assumption (main@fa56128).** The APK does ship 8 native libraries
+(`androidx.graphics.path`, `datastore_shared_counter`), not none. All are stored uncompressed, start on 16 384-byte
+boundaries and have `PT_LOAD p_align = 0x4000`, so they map on a OnePlus 15. `checkReleasePageAlignment` (build-logic,
+11 unit tests) now fails the build on a compressed, misaligned or under-aligned `lib/**.so`, and runs in the PR,
+release-dry-run and release workflows (main@7afe566) — no JVM or Robolectric test can see this property and the
+local emulators use 4 KB pages.
+
+**Still not reproduced on the reporter's device class.** The release build was run on the only 16 KB-page image that
+exists (`android-37.2 google_apis_ps16k`, `getconf PAGE_SIZE` = 16384, SDK 37) in the reported conditions — fa locale,
+dark theme, font scale 2.0, gesture navigation — with 14 deep-link jumps across ±20/50/100 years, 40 fast swipes,
+4 rotations mid-navigation and `trim-memory RUNNING_CRITICAL`. The crash buffer holds nothing from the app and no
+crash file was written.
+
 **A CI flake fixed on the way (main@e3c2c82).** `LauncherIconTest` failed on a PR run whose app build was
 byte-identical to a green one, and passed when the same commit was re-run. `TaqvimApplication` never cancelled its
 process-lifetime scope: Android never terminates an app on a device, but Robolectric does between tests, so the
