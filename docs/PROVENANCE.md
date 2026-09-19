@@ -991,7 +991,7 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
      horizon (noon zenith distance |φ − δ| ≥ 90°, the Sun seen only through refraction) there is no noon shadow for
      the shadow rule to lengthen, and the formula asks for an altitude the Sun passes after sunset. Asr is then
      `null`, as is any solution outside Dhuhr‥sunset; no time is invented in its place.
-  2. *Isha never precedes Maghrib* (main@<R05-maghrib>). A high-latitude rule estimates an unreached Isha angle as a
+  2. *Isha never precedes Maghrib* (main@2330fe7). A high-latitude rule estimates an unreached Isha angle as a
      portion of the night measured from sunset (above). With the Tehran and Jafari methods Maghrib is itself a
      twilight (4.5° and 4° below the horizon); near the Arctic Circle the Sun sets on a shallow path and reaches that
      depression late, so under `ANGLE_BASED`, `ONE_SEVENTH` and `NEAREST_LATITUDE` the estimate could fall before the
