@@ -9,6 +9,8 @@ import ir.taqvim.core.astronomy.AnimalYear
 import ir.taqvim.core.astronomy.CelestialBody
 import ir.taqvim.core.astronomy.ChineseNewYear
 import ir.taqvim.core.astronomy.Eclipses
+import ir.taqvim.core.astronomy.HouseCusps
+import ir.taqvim.core.astronomy.Houses
 import ir.taqvim.core.astronomy.PlanetaryHours
 import ir.taqvim.core.astronomy.PlanetaryHoursResult
 import ir.taqvim.core.astronomy.Sky
@@ -37,6 +39,20 @@ import org.junit.jupiter.api.Test
  * Owner directive 2026-09-17: prayer times and astronomy are complete for every year of 1380–1480 SH — no missing
  * values and no exceptions. Per-day computations run on every day (about 37 000; the class takes about 35 s), yearly
  * ones on every year. Calendars and events are covered by `CalendarCompletenessTest` in `:data:events`.
+ *
+ * Required and optional values, per place and state (REVIEW R14):
+ * - **Prayer times, Tehran and Kabul:** a result is required every day, with all eight times, in chronological order.
+ * - **Prayer times, Tromsø:** `Unavailable` is a legitimate state (polar day or night). When times are given, the four
+ *   that always exist (sunrise, dhuhr, Asr, sunset) are required and the twilight ones optional, and every time given
+ *   must be in chronological order — which, near the midnight Sun, can run past midnight into the next civil day —
+ *   except the two open defects in [KNOWN_POLAR_ORDER_DEFECTS].
+ * - **Sky, Tehran:** Sun rise, transit and set, a finite Moon phase and illuminated fraction, a tithi, a Moon
+ *   constellation, 24 planetary hours and Placidus cusps are required every day; the Moon may skip a rise or a set on a
+ *   given day, but not all three events.
+ * - **Sky, Tromsø:** planetary hours may be `Unavailable` only when the Sun does not rise; Placidus houses must be
+ *   absent (`null`) — they are undefined inside the polar circle.
+ * The tithi here is only checked for range and for every tithi beginning each year; its dates are not compared with an
+ * independent almanac (DT-014), so this test cannot find a systematic tithi error.
  */
 class SkyAndTimesCompletenessTest {
     private val firstYear = 1380
@@ -96,26 +112,58 @@ class SkyAndTimesCompletenessTest {
         label: String,
         times: PrayerTimes,
     ): String? {
-        val order =
-            listOf(times.fajr, times.sunrise, times.dhuhr, times.asr, times.sunset, times.maghrib, times.isha)
-                .map { it?.value }
-        val complete = order.all { it != null } && times.midnight != null
-        val ascending = order.filterNotNull().zipWithNext().all { (a, b) -> a <= b }
-        return if (complete && ascending) null else "$label: incomplete or unordered times $times"
+        val complete = listOf(times.fajr, times.maghrib, times.isha, times.midnight).all { it != null }
+        val broken = outOfOrder(times)
+        return when {
+            !complete -> "$label: missing times $times"
+            broken.isNotEmpty() -> "$label: $broken out of chronological order $times"
+            else -> null
+        }
     }
 
     private fun arcticOrderProblem(
         label: String,
         times: PrayerTimes,
     ): String? {
-        // Near the midnight Sun the sunset falls after midnight and wraps to the next civil day, so only the times
-        // that always exist are checked: MinuteOfDay keeps them within the day.
-        val present =
-            listOf(times.sunrise, times.dhuhr, times.asr, times.sunset).all {
-                it.value in
-                    0 until MINUTES_PER_DAY
-            }
-        return if (present) null else "$label: times outside the day $times"
+        val broken = outOfOrder(times) - KNOWN_POLAR_ORDER_DEFECTS
+        return if (broken.isEmpty()) null else "$label: $broken out of chronological order $times"
+    }
+
+    /**
+     * The pairs of consecutive times that are out of chronological order, allowing times to cross midnight (REVIEW
+     * R14), plus `"span"` when the day's times cover a whole day or more.
+     *
+     * Times are minutes of the civil day, so a sunset after midnight wraps to a small value. Each time is placed on a
+     * line relative to dhuhr, which is always on its own day: fajr and sunrise before it, Asr, sunset, maghrib and isha
+     * after it, each less than a day away. Consecutive times must then ascend — which an Asr after sunset (REVIEW R05)
+     * fails, while a legitimate next-day sunset passes.
+     */
+    private fun outOfOrder(times: PrayerTimes): Set<String> {
+        val noon = times.dhuhr.value
+        val before = listOf("fajr" to times.fajr, "sunrise" to times.sunrise)
+        val after =
+            listOf(
+                "asr" to times.asr,
+                "sunset" to times.sunset,
+                "maghrib" to times.maghrib,
+                "isha" to times.isha,
+            )
+        val line =
+            before.mapNotNull { (name, time) ->
+                time?.let { name to -Math.floorMod(noon - it.value, MINUTES_PER_DAY) }
+            } +
+                listOf("dhuhr" to 0) +
+                after.mapNotNull { (name, time) ->
+                    time?.let { name to Math.floorMod(it.value - noon, MINUTES_PER_DAY) }
+                }
+        val pairs =
+            line
+                .zipWithNext()
+                .filter { (a, b) ->
+                    a.second > b.second
+                }.map { (a, b) -> "${a.first}>${b.first}" }
+        val span = line.last().second - line.first().second >= MINUTES_PER_DAY
+        return (pairs + listOfNotNull("span".takeIf { span })).toSet()
     }
 
     private fun skyProblems(
@@ -130,7 +178,9 @@ class SkyAndTimesCompletenessTest {
         val fraction = Sky.moonAppearance(midnight, place.coordinates).illuminatedFraction
         val tithi = Tithi.at(midnight).number
         val hours = PlanetaryHours.forDay(place.coordinates, midnight, day.weekday())
+        val houses = Houses.placidus(midnight, place.coordinates)
         return listOfNotNull(
+            housesProblem(label, houses),
             "$label: sun rise/transit/set $sun".takeIf { sun.rise == null || sun.set == null || sun.transit == null },
             "$label: no moon rise, transit or set".takeIf {
                 moon.rise == null && moon.transit == null &&
@@ -150,13 +200,27 @@ class SkyAndTimesCompletenessTest {
         }
     }
 
+    /** Placidus cusps are required outside the polar circles: twelve finite longitudes in 0°…360°. */
+    private fun housesProblem(
+        label: String,
+        houses: HouseCusps?,
+    ): String? {
+        val valid =
+            houses != null && houses.cusps.size == CUSPS && houses.cusps.all { it.isFinite() && it in 0.0..<FULL_TURN }
+        return if (valid) null else "$label: Placidus houses $houses"
+    }
+
     /** In the Arctic the Sun may stay up or down, but then planetary hours must say so rather than fail. */
     private fun arcticProblems(day: Jdn): List<String> {
         val midnight = day.startIn(ARCTIC.zone)
         val sun = Sky.riseSetTransit(CelestialBody.SUN, ARCTIC.coordinates, midnight)
         val hours = PlanetaryHours.forDay(ARCTIC.coordinates, midnight, day.weekday())
         val consistent = hours is PlanetaryHoursResult.Unavailable || sun.rise != null
-        return listOfNotNull("Arctic ${day.value}: $sun but $hours".takeIf { !consistent })
+        val houses = Houses.placidus(midnight, ARCTIC.coordinates)
+        return listOfNotNull(
+            "Arctic ${day.value}: $sun but $hours".takeIf { !consistent },
+            "Arctic ${day.value}: Placidus houses inside the polar circle $houses".takeIf { houses != null },
+        )
     }
 
     private fun yearProblems(year: Int): List<String> {
@@ -211,6 +275,7 @@ class SkyAndTimesCompletenessTest {
         const val FULL_TURN = 360.0
         const val TITHIS = 30
         const val HOURS_PER_DAY = 24
+        const val CUSPS = 12
         const val APSIDES_MAX = 3
         const val QUARTERS_MIN = 48
         const val QUARTERS_MAX = 52
@@ -228,6 +293,16 @@ class SkyAndTimesCompletenessTest {
                 polar = true,
             )
         val PLACES = listOf(TEHRAN, KABUL, ARCTIC)
+
+        /**
+         * Open prayer-time defects this test found at Tromsø on 2026-09-19 (REVIEW R14; reported with R05), allowed
+         * here so every other ordering stays enforced. Remove each entry when `:core:praytimes` is fixed.
+         * - `asr>sunset` on 10 days of 2001–2101 around the winter edge of the polar night, e.g. 2001-11-27: dhuhr 11:32,
+         *   Asr 11:40, sunset 11:39 — the R05 defect on present-day dates, not only in year 4440.
+         * - `maghrib>isha` on 2 889 days, e.g. 2001-04-19: maghrib 22:06, isha 22:04 — with the nearest-latitude rule
+         *   isha comes from the reference latitude while maghrib does not.
+         */
+        val KNOWN_POLAR_ORDER_DEFECTS = setOf("asr>sunset", "maghrib>isha")
 
         fun persianNewYear(year: Int): Jdn =
             PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, year, 1, 1))

@@ -19,6 +19,7 @@ dependencies {
     testImplementation(libs.androidx.work.testing)
     // Nowruz-week golden test of the workday engine (T-504) on the generated official events.
     testImplementation(projects.core.workdays)
+    testImplementation(projects.core.i18n)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
 }

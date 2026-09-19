@@ -16,6 +16,7 @@ import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.events.OccurrenceCalculator
+import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
@@ -30,8 +31,13 @@ import org.junit.jupiter.api.Test
 /**
  * Owner directive 2026-09-17 ("computed, not typed"): the calendar is complete for every day of 1380–1480 SH — every
  * calendar system and Islamic variant converts every day and back, every dataset rule occurs in every year it can, and
- * the day assembler resolves every day under each national language's default settings and with every source on.
- * Prayer times and astronomy are covered by the app's `SkyAndTimesCompletenessTest`.
+ * the day assembler resolves every day under the default settings of every one of the 24 launch languages and with every
+ * source on. Prayer times and astronomy are covered by the app's `SkyAndTimesCompletenessTest`.
+ *
+ * Required and optional day fields (REVIEW R14): the Islamic date is required every day and must convert back to the
+ * day; the source-aware Hijri date is required exactly when the Iranian official variant is chosen and absent
+ * otherwise, and when present it is the day's Islamic date. Lunar-tithi expectations below use `NepaliLunarDays`, the
+ * routine the app itself uses, so they check the rule engine's use of it, not the tithi astronomy (DT-014).
  */
 class CalendarCompletenessTest {
     private val days: JdnRange =
@@ -74,6 +80,14 @@ class CalendarCompletenessTest {
     fun `every day assembles under each language's defaults and with every source on`() {
         val failures = settingsUnderTest().flatMap { (label, settings) -> assemblyProblems(label, settings) }
         failures.shouldBeEmpty()
+    }
+
+    @Test
+    fun `the assembly covers all 24 launch languages`() {
+        LanguageTable.languages
+            .map { it.code }
+            .toSet()
+            .size shouldBe LAUNCH_LANGUAGES
     }
 
     @Test
@@ -193,8 +207,8 @@ class CalendarCompletenessTest {
 
     private fun settingsUnderTest(): List<Pair<String, EventsSettings>> {
         val defaults =
-            NATIONAL_LANGUAGES.map { code ->
-                "defaults of $code" to UserPreferences.defaultsFor(code).toEventsSettings(homeTimeZone = tehran)
+            LanguageTable.languages.map { spec ->
+                "defaults of ${spec.code}" to UserPreferences.defaultsFor(spec).toEventsSettings(homeTimeZone = tehran)
             }
         val everySource =
             IslamicVariant.entries.map { variant ->
@@ -239,6 +253,10 @@ class CalendarCompletenessTest {
                 "$label ${day.jdn}: Islamic date $islamic"
             }
 
+            hijriFieldProblem(view, day) != null -> {
+                "$label ${day.jdn}: ${hijriFieldProblem(view, day)}"
+            }
+
             hijri != null && view.islamicCalendar.isValid(hijri.date.year, hijri.date.month, hijri.date.day).not() -> {
                 "$label ${day.jdn}: resolved Hijri date ${hijri.date} is not valid"
             }
@@ -257,15 +275,28 @@ class CalendarCompletenessTest {
         }
     }
 
+    /** The source-aware Hijri date is required exactly for the Iranian official variant and is the day's Islamic date. */
+    private fun hijriFieldProblem(
+        view: OfficialView,
+        day: DayEvents,
+    ): String? {
+        val required = view.settings.preferences.islamicVariant == IslamicVariant.IRAN_OFFICIAL
+        val hijri = day.hijri
+        return when {
+            required && hijri == null -> "the Iranian official variant resolved no Hijri date"
+            !required && hijri != null -> "a source-aware Hijri date outside the Iranian official variant"
+            hijri != null && hijri.date != day.islamicDate -> "Hijri date ${hijri.date} is not ${day.islamicDate}"
+            else -> null
+        }
+    }
+
     private companion object {
         const val FIRST_YEAR = 1380
         const val LAST_YEAR = 1480
 
         /** Nowruz alone gives four days off, and the law adds many more. */
         const val MIN_HOLIDAYS_PER_YEAR = 15
-
-        /** Languages whose defaults switch on a national source (AppSettings.defaultEventSources), and English. */
-        val NATIONAL_LANGUAGES = listOf("fa", "prs", "ps", "ne", "en")
+        const val LAUNCH_LANGUAGES = 24
 
         fun persianNewYear(year: Int): Jdn =
             PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, year, 1, 1))
