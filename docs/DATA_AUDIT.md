@@ -109,6 +109,7 @@ Legend for "Currently": **computed** (algorithm at run time), **bundled table** 
       override; every Hijri date labelled "computed" or "official override".
 - [x] P1d (main@9c33702) — Umm al-Qura: computed from AH 1420 (moonset rule 1420–1422, criterion from 1423); bundled table only for AH 1300–1419.
 - [x] P1e (main@d995b10, ADR-0036) — Afghanistan `Single` records converted to recurring rules; `NoPerYearManualDataTest` added.
+- [x] REVIEW R09 (2026-09-19) — `NoPerYearManualDataTest` widened through `RuntimeDateScanner`: every non-test source set (not only `src/main`), all of `res/` with its qualifiers (not only `res/raw`), `assets/` and `resources/`; XML parsed for year/month/day attributes and JSON for numeric year/month/day objects; runtime Kotlin judged by its date literals, not its file name. 610 data files and 560 Kotlin sources scanned (16 data files before); 11 planted canaries in `RuntimeDateScannerTest`, including the three the review showed passing.
 - [x] P1f (main@9f23c0b) — completeness test: every day of SH 1380–1480 (36 890 days) in the Persian, Gregorian,
       Nepali and Hebrew calendars and all five Islamic variants, with every dataset rule, the day assembler under each
       language default, prayer times (Tehran, Kabul, Tromsø) and daily and yearly astronomy — no missing values, no

@@ -16,7 +16,8 @@ import org.junit.jupiter.api.Test
 /**
  * "Computed, not typed" (owner directive 2026-09-17, ADR-0036): no runtime data may hold per-year date instances that a
  * rule could express, so nobody has to type next year's dates. Runtime data is the event dataset, the generated
- * `:data:events` sources, every module's `src/main` assets and resources, and table-like Kotlin sources in `src/main`.
+ * `:data:events` sources, and everything a build packages from every non-test source set of every shipped module — all of
+ * `res/` with its qualifiers, `assets/`, `resources/` and the Kotlin sources ([RuntimeDateScanner], REVIEW R09).
  */
 class NoPerYearManualDataTest {
     private val root = File(property("taqvim.repository.root"))
@@ -52,30 +53,28 @@ class NoPerYearManualDataTest {
 
     @Test
     fun `runtime resources and assets hold no calendar dates outside comments`() {
-        val dated =
-            runtimeDataFiles().flatMap { file ->
-                file
-                    .readLines()
-                    .withIndex()
-                    .filterNot { (_, line) -> COMMENT_PREFIXES.any { line.trimStart().startsWith(it) } }
-                    .filter { (_, line) -> ISO_DATE.containsMatchIn(line) }
-                    .map { (index, line) -> "${file.relativeTo(root)}:${index + 1}: ${line.take(PREVIEW)}" }
-            }
+        val overrides =
+            datasetDirectory.walkTopDown().filter { it.isFile && it.name.endsWith(OVERRIDES_SUFFIX) }.toList()
+        val dated = RuntimeDateScanner(root).datedData(ALLOWED_DATED_FILES.keys, overrides)
 
         withClue(dated.joinToString("\n")) { dated.shouldBeEmpty() }
     }
 
     @Test
     fun `table-like runtime sources are justified`() {
-        val tables =
-            mainSourceRoots()
+        val scanner = RuntimeDateScanner(root)
+        val byName =
+            scanner
+                .runtimeKotlinRoots()
                 .flatMap { it.walkTopDown().filter { file -> file.isFile && file.extension == "kt" }.toList() }
                 .filter { TABLE_NAME.matches(it.name) }
                 .map { it.relativeTo(root).invariantSeparatorsPath }
                 .filterNot { path -> ALLOWED_TABLES.keys.any { it.matches(path) } }
+        val byContent = scanner.dateTables(ALLOWED_TABLES.keys)
 
-        withClue("compute these or justify them in ALLOWED_TABLES:\n" + tables.joinToString("\n")) {
-            tables.shouldBeEmpty()
+        withClue("compute these or justify them in ALLOWED_TABLES:\n" + (byName + byContent).joinToString("\n")) {
+            byName.shouldBeEmpty()
+            byContent.shouldBeEmpty()
         }
     }
 
@@ -91,49 +90,13 @@ class NoPerYearManualDataTest {
             .mapNotNull { (it["id"] as? JsonPrimitive)?.content }
             .toList()
 
-    /** Every `src/main` assets, resources and raw-resource directory of the repository, plus non-event dataset files. */
-    private fun runtimeDataFiles(): List<File> {
-        val directories =
-            moduleDirectories().flatMap { module ->
-                RUNTIME_DATA_DIRECTORIES.map { File(module, it) }.filter { it.isDirectory }
-            }
-        val overrides =
-            datasetDirectory.walkTopDown().filter { it.isFile && it.name.endsWith(OVERRIDES_SUFFIX) }.toList()
-        val files = directories.flatMap { directory -> directory.walkTopDown().filter { it.isFile }.toList() }
-        return (files + overrides).filterNot { file ->
-            val path = file.relativeTo(root).invariantSeparatorsPath
-            ALLOWED_DATED_FILES.keys.any { it.matches(path) }
-        }
-    }
-
-    private fun mainSourceRoots(): List<File> =
-        moduleDirectories().map { File(it, "src/main/kotlin") }.filter { it.isDirectory }
-
-    /** Shipped Gradle modules: directories with a build script, except build-only tooling, output and hidden ones. */
-    private fun moduleDirectories(): List<File> =
-        root
-            .walkTopDown()
-            .onEnter { it.name !in SKIPPED_DIRECTORIES && !it.name.startsWith(".") }
-            .filter { it.isDirectory && File(it, BUILD_SCRIPT).isFile }
-            .filterNot { it.relativeTo(root).invariantSeparatorsPath.substringBefore('/') in BUILD_ONLY_ROOTS }
-            .toList()
-
     private companion object {
         const val OVERRIDES_SUFFIX = "-overrides.json"
         const val DEFINITION = "EventDefinition("
         const val SINGLE = "Single"
         const val SINGLE_RULE = "EventRule.Single("
-        const val BUILD_SCRIPT = "build.gradle.kts"
-        const val PREVIEW = 80
         val ID = Regex("""id = EventId\("([^"]+)"\)""")
-        val ISO_DATE = Regex("""\b\d{4}-\d{2}-\d{2}\b""")
-        val COMMENT_PREFIXES = listOf("#", "!", "//")
         val TABLE_NAME = Regex(""".*(Table|MonthStarts|Override|Overrides|Leap)\w*\.kt""")
-        val RUNTIME_DATA_DIRECTORIES = listOf("src/main/assets", "src/main/resources", "src/main/res/raw")
-        val SKIPPED_DIRECTORIES = setOf("build", "node_modules", "usno-data", "gradle")
-
-        /** Modules that never ship in the app: dataset tooling, build logic, lint rules, architecture and benchmarks. */
-        val BUILD_ONLY_ROOTS = setOf("tools", "build-logic", "lint", "konsist", "benchmark")
 
         /** Dated runtime data that no rule can express, each with its reason (see docs/DATA_AUDIT.md). */
         val ALLOWED_DATED_FILES: Map<Regex, String> =
