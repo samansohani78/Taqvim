@@ -4,11 +4,13 @@
  */
 package ir.taqvim.core.praytimes
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.doubles.shouldBeLessThan
 import io.kotest.matchers.doubles.shouldBeLessThanOrEqual
 import io.kotest.matchers.longs.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
 import ir.taqvim.core.testing.PropertyTesting
@@ -18,6 +20,13 @@ import org.junit.jupiter.api.Test
 
 /** ADR-0029: the ephemeris behind prayer times, against NOAA and far from the present. */
 class SolarEphemerisTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_919L, iterations = PropertyTesting.iterations)
+
     @Test
     fun `declination and equation of time agree with NOAA over 1900 to 2100`() {
         var maxDeclination = 0.0
@@ -44,7 +53,7 @@ class SolarEphemerisTest {
             SolarEphemeris.cyclesOutOfRange(-range) shouldBe 0
             SolarEphemeris.cyclesOutOfRange(-range - 1) shouldBe -1
             SolarEphemeris.cyclesOutOfRange(Long.MAX_VALUE) shouldBeGreaterThanOrEqual 1
-            checkAll(PropertyTesting.iterations, Arb.long(-FAR_DAYS..FAR_DAYS)) { days ->
+            checkAll(propertyConfig, Arb.long(-FAR_DAYS..FAR_DAYS)) { days ->
                 val folded = days - SolarEphemeris.cyclesOutOfRange(days) * SolarEphemeris.GREGORIAN_CYCLE_DAYS
                 abs(folded.toDouble()) shouldBeLessThanOrEqual range.toDouble()
                 Math.floorMod(folded - days, SolarEphemeris.GREGORIAN_CYCLE_DAYS) shouldBe 0

@@ -5,6 +5,7 @@
 package ir.taqvim.core.praytimes
 
 import io.kotest.assertions.withClue
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.doubles.plusOrMinus
 import io.kotest.matchers.doubles.shouldBeLessThan
@@ -12,6 +13,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
@@ -25,6 +27,13 @@ import org.junit.jupiter.api.Test
 
 /** A-09 against NOAA's own spreadsheet results (golden/noaa) plus physical invariants. */
 class NoaaSolarCalculatorTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_921L, iterations = PropertyTesting.iterations)
+
     private val noaa = NoaaSolarCalculator
 
     private val rows: List<Map<String, Double>> =
@@ -92,7 +101,7 @@ class NoaaSolarCalculatorTest {
     @Test
     fun `declination and equation of time change continuously`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(FIRST_VALID_MILLIS..LAST_VALID_MILLIS)) { millis ->
+            checkAll(propertyConfig, Arb.long(FIRST_VALID_MILLIS..LAST_VALID_MILLIS)) { millis ->
                 val now = noaa.parameters(noaa.julianDay(Instant.fromEpochMilliseconds(millis)))
                 val minuteLater =
                     noaa.parameters(
@@ -110,7 +119,7 @@ class NoaaSolarCalculatorTest {
     @Test
     fun `azimuth grows through the morning at mid-latitudes`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(-60..60)) { wholeDegrees ->
+            checkAll(propertyConfig, Arb.int(-60..60)) { wholeDegrees ->
                 val longitude = wholeDegrees.toDouble()
                 val noonUtcMinutes = 720 - 4 * longitude
                 val morning =

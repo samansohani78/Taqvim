@@ -5,6 +5,7 @@
 package ir.taqvim.core.praytimes
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.doubles.plusOrMinus
 import io.kotest.matchers.doubles.shouldBeGreaterThan
 import io.kotest.matchers.doubles.shouldBeLessThan
@@ -13,6 +14,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
@@ -36,6 +38,13 @@ import org.junit.jupiter.api.Test
 
 /** ADR-0029: horizon, Asr, high latitudes, method adjustments and rounding of the prayer-time model. */
 class PrayerModelTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private fun day(
         year: Int,
         month: Int,
@@ -216,7 +225,7 @@ class PrayerModelTest {
     fun `times stay ordered, finite and continuous for any year and latitude`(): Unit =
         runBlocking {
             checkAll(
-                PropertyTesting.iterations,
+                propertyConfig,
                 Arb.int(-90..90),
                 Arb.int(-180..180),
                 Arb.long(FIRST_TESTED_JDN..LAST_TESTED_JDN),

@@ -4,6 +4,7 @@
  */
 package ir.taqvim.core.praytimes
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.doubles.shouldBeGreaterThan
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
@@ -12,6 +13,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.enum
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
@@ -29,6 +31,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class PrayerTimesCalculatorTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_922L, iterations = PropertyTesting.iterations)
+
     private val tehran = Coordinates(35.70, 51.42)
 
     private fun day(
@@ -174,7 +183,7 @@ class PrayerTimesCalculatorTest {
     fun `every method gives ordered times at non-polar latitudes`(): Unit =
         runBlocking {
             checkAll(
-                PropertyTesting.iterations,
+                propertyConfig,
                 Arb.enum<PrayerMethod>(),
                 Arb.int(-45..45),
                 Arb.int(-179..179),
