@@ -553,6 +553,16 @@ settings, never a source directory. It stayed silent because `CompilationMode.DE
 baseline was invalidated, because `benchmark/baselines` holds none yet — the first recorded baseline must be measured
 on this commit or later (ADR-0018 addendum).
 
+**A red API 33 leg that was the test setup, not the app (main@3a1c5b4).** On main@ce6d101 all eight `:app` device
+tests that open a screen failed on API 33 with "the app crashed or the screen did not open", twice in the same job,
+while the four that never launch the UI passed and API 26/30/36 were green. The app did not crash — there is no
+`FATAL EXCEPTION` in the job log. Gradle ran every module's instrumented test task in parallel against the single
+emulator: `:app`'s ran from 07:33:13 to 07:38:29, and the device-test tasks of 24 other modules started on the same
+emulator inside that window and took the foreground from the app's UI tests. The race was latent on every leg. A
+build service with `maxParallelUsages = 1`, applied by task type (`DeviceProviderInstrumentTestTask`,
+`ManagedDeviceInstrumentationTestTask` — both confirmed as AGP 9.4's types), now lets one test task use the device at a
+time; assembly tasks that merely end in `AndroidTest` stay parallel. `DeviceTestSerializerTest` (3).
+
 **A CI flake fixed on the way (main@e3c2c82).** `LauncherIconTest` failed on a PR run whose app build was
 byte-identical to a green one, and passed when the same commit was re-run. `TaqvimApplication` never cancelled its
 process-lifetime scope: Android never terminates an app on a device, but Robolectric does between tests, so the
