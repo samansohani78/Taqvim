@@ -91,13 +91,18 @@ private fun MonthPageSlot(
     val events = content.months.firstOrNull { it.offset == offset }?.days
     val today = content.today
     val selected = content.selectedDay
-    val page by produceState<MonthPage?>(null, builder, offset, today, selected, events) {
+    // The selection is not a key: it only marks a cell, so it is applied to the built page instead of building the
+    // page again on every tap, which converted all 42 days of three composed pages into every calendar (BUG-2).
+    val latestSelected by rememberUpdatedState(selected)
+    val base by produceState<MonthPage?>(null, builder, offset, today, events) {
         value =
             withContext(Dispatchers.Default) {
-                CalendarRangeGuard.orNull("month page $offset") { builder.build(offset, today, selected, events) }
+                CalendarRangeGuard.orNull("month page $offset") {
+                    builder.build(offset, today, latestSelected, events)
+                }
             }
     }
-    val built = page
+    val built = remember(base, selected) { base?.withSelection(selected) }
     if (built == null) {
         Box(Modifier.fillMaxSize())
     } else {

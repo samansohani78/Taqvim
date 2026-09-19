@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -203,8 +204,9 @@ class PickerAndGridTest {
         var width by mutableStateOf(300.dp)
         composeRule.setContent {
             Row(Modifier.horizontalScroll(rememberScrollState())) {
-                MonthGridLayout(columns, rows, hasWeekColumn = true, modifier = Modifier.width(width)) {
-                    repeat(children) { index ->
+                val probe: (Int, Int) -> DayCellTextFit = { _, _ -> DayCellTextFit.FULL_SIZE }
+                val counted: @Composable (IntRange) -> Unit = { range ->
+                    range.forEach { index ->
                         Box(
                             Modifier.layout { measurable, constraints ->
                                 counts[index]++
@@ -215,7 +217,21 @@ class PickerAndGridTest {
                         )
                     }
                 }
-                MonthGridLayout(columns, 1, hasWeekColumn = false) { repeat(columns * 2) { Box(Modifier) } }
+                MonthGridLayout(
+                    columns,
+                    rows,
+                    hasWeekColumn = true,
+                    textFit = probe,
+                    modifier = Modifier.width(width),
+                    header = { counted(0 until columns) },
+                ) { counted(columns until children) }
+                MonthGridLayout(
+                    columns,
+                    1,
+                    hasWeekColumn = false,
+                    textFit = probe,
+                    header = { repeat(columns) { Box(Modifier) } },
+                ) { repeat(columns) { Box(Modifier) } }
             }
         }
         composeRule.waitForIdle()

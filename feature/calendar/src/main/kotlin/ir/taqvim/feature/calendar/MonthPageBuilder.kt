@@ -77,7 +77,23 @@ data class MonthPage(
     val days: ImmutableList<Jdn>,
     /** Index of the selected day in [days], or -1 when it is not on this page. */
     val selectedIndex: Int,
-)
+) {
+    /**
+     * The same page with [selected] marked, without building it again. Selecting a day changes nothing a calendar has
+     * to work out — only which cell is filled — so a tap maps the cells it already has instead of converting all 42
+     * days into every calendar once per composed page (BUG-2). Cells that keep their state keep their identity, so
+     * the grid recomposes the two that changed.
+     */
+    fun withSelection(selected: Jdn): MonthPage {
+        val index = days.indexOf(selected)
+        if (index == selectedIndex) return this
+        val cells =
+            grid.cells.mapIndexed { i, cell ->
+                if (cell.isSelected == (i == index)) cell else cell.copy(isSelected = i == index)
+            }
+        return copy(grid = grid.copy(cells = cells), selectedIndex = index)
+    }
+}
 
 /**
  * Builds [MonthPage]s (T-801), meant to run off the main thread: day numbers in the language's digits, the day in the

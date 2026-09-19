@@ -10,6 +10,7 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldStartWith
+import io.kotest.matchers.types.shouldBeSameInstanceAs
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
@@ -58,6 +59,34 @@ class MonthPageBuilderTest {
         kind: DayEventKind,
         holiday: Boolean = false,
     ): DayEventItem = DayEventItem("synthetic-$kind", kind, "Synthetic", holiday)
+
+    @Test
+    fun `moving the selection maps the built page instead of building it again`() {
+        val page = builder().build(offset = 0, today = today, selected = today, events = null)
+        val otherDay = page.days[5]
+
+        val moved = page.withSelection(otherDay)
+
+        // BUG-2: the mapped page must be exactly the page the builder would have built for that selection.
+        moved shouldBe builder().build(offset = 0, today = today, selected = otherDay, events = null)
+        moved.selectedIndex shouldBe 5
+        moved.grid.cells.count { it.isSelected } shouldBe 1
+        // Only the two cells that changed are new objects, so the grid recomposes those two.
+        moved.grid.cells
+            .filterIndexed { i, cell -> cell !== page.grid.cells[i] }
+            .size shouldBe 2
+    }
+
+    @Test
+    fun `selecting the same day changes nothing and a day off the page clears the selection`() {
+        val page = builder().build(offset = 0, today = today, selected = today, events = null)
+
+        page.withSelection(today) shouldBeSameInstanceAs page
+
+        val elsewhere = page.withSelection(page.days.last() + 1)
+        elsewhere.selectedIndex shouldBe -1
+        elsewhere.grid.cells.none { it.isSelected } shouldBe true
+    }
 
     @Test
     fun `Farvardin 1405 starts on its first Saturday and fills six weeks`() {

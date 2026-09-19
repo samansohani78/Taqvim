@@ -88,12 +88,19 @@ private const val OUTSIDE_MONTH_ALPHA = 0.45f
  * the day details panel carry the same information at the user's full font scale.
  */
 internal const val MAX_CELL_FONT_SCALE = 1.3f
-private const val DAY_WEIGHT = 2f
-private const val LABEL_WEIGHT = 1f
+internal const val DAY_WEIGHT = 2f
+internal const val LABEL_WEIGHT = 1f
 private val MIN_LINE_TEXT_SIZE = 5.sp
 private val CELL_SHAPE = RoundedCornerShape(12.dp)
 private val TODAY_BORDER = 2.dp
 private val DOT_SIZE = 5.dp
+private val DOT_TOP_PADDING = 2.dp
+
+/** Inset of the cell's column on every side; the grid's fit probe subtracts it from the cell (`DayCellFit`). */
+internal val CELL_PADDING = 2.dp
+
+/** Height the indicator dots take under the lines, which the fit probe leaves out of the lines' share. */
+internal val DOTS_HEIGHT = DOT_SIZE + DOT_TOP_PADDING
 
 internal fun DayTone.color(colors: ColorScheme): Color =
     when (this) {
@@ -129,18 +136,19 @@ public fun DayCell(
                 selected = model.isSelected
             }.then(selectedFill)
             .then(todayRing)
-            .padding(2.dp),
+            .padding(CELL_PADDING),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
         val density = LocalDensity.current
         val cellDensity = Density(density.density, density.fontScale.coerceAtMost(MAX_CELL_FONT_SCALE))
+        val fit = LocalDayCellTextFit.current
         CompositionLocalProvider(LocalDensity provides cellDensity) {
             val dayStyle = MaterialTheme.typography.titleMedium
             val smallStyle = MaterialTheme.typography.labelSmall
-            FittedLine(model.dayLabel, dayStyle, DayTone.of(model).color(colors), DAY_WEIGHT)
-            model.secondaryLabels.forEach { FittedLine(it, smallStyle, colors.onSurfaceVariant, LABEL_WEIGHT) }
-            model.shiftLabel?.let { FittedLine(it, smallStyle, colors.tertiary, LABEL_WEIGHT) }
+            FittedLine(model.dayLabel, dayStyle, DayTone.of(model).color(colors), DAY_WEIGHT, fit)
+            model.secondaryLabels.forEach { FittedLine(it, smallStyle, colors.onSurfaceVariant, LABEL_WEIGHT, fit) }
+            model.shiftLabel?.let { FittedLine(it, smallStyle, colors.tertiary, LABEL_WEIGHT, fit) }
             if (model.indicators.isNotEmpty()) IndicatorDots(model.indicators)
         }
     }
@@ -149,6 +157,9 @@ public fun DayCell(
 /**
  * One line of a day cell that is never cut off: it takes at most its [weight] share of the cell height and shrinks
  * from [style]'s size until it fits, so short cells (e.g. a stacked phone layout) keep every line whole (T-1701).
+ *
+ * [fit] is [DayCellTextFit.FULL_SIZE] only where the grid has already measured the longest label of this line and
+ * found it well inside the cell; the line is then laid out once instead of about seven times (BUG-2).
  */
 @Composable
 private fun ColumnScope.FittedLine(
@@ -156,6 +167,7 @@ private fun ColumnScope.FittedLine(
     style: TextStyle,
     color: Color,
     weight: Float,
+    fit: DayCellTextFit,
 ) {
     // A fixed sp line height would not shrink with the font, so the line takes the font's own height.
     Text(
@@ -164,13 +176,22 @@ private fun ColumnScope.FittedLine(
         style = style.copy(lineHeight = TextUnit.Unspecified),
         color = color,
         maxLines = 1,
-        autoSize = TextAutoSize.StepBased(minFontSize = MIN_LINE_TEXT_SIZE, maxFontSize = style.fontSize),
+        autoSize =
+            when (fit) {
+                DayCellTextFit.FULL_SIZE -> {
+                    null
+                }
+
+                DayCellTextFit.SHRINK_TO_FIT -> {
+                    TextAutoSize.StepBased(minFontSize = MIN_LINE_TEXT_SIZE, maxFontSize = style.fontSize)
+                }
+            },
     )
 }
 
 @Composable
 private fun IndicatorDots(colors: List<Color>) {
-    Row(Modifier.padding(top = 2.dp), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+    Row(Modifier.padding(top = DOT_TOP_PADDING), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
         colors.take(MAX_INDICATORS).forEach { color ->
             Box(Modifier.size(DOT_SIZE).clip(CircleShape).background(color))
         }

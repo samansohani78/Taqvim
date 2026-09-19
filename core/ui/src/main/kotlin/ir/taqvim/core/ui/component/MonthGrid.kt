@@ -10,15 +10,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.key
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.SubcomposeLayout
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.TextMeasurer
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 
 /** A week-number label of a [MonthGrid] row and its spoken form. */
@@ -96,33 +106,45 @@ internal object MonthGridGeometry {
 private val WEEK_COLUMN_WIDTH = 32.dp
 private val MIN_CELL_HEIGHT = 40.dp
 
+/** Subcomposition slots of [MonthGridLayout]: the weekday header row, then the cells it sizes. */
+private enum class GridSlot { HEADER, BODY }
+
 /**
- * The grid layout (T-701): [columns] header children, then per row an optional week-number child and [columns] cells.
- * Every child is measured exactly once per pass with fixed constraints; placement mirrors in RTL.
+ * The grid layout (T-701): [header] holds [columns] children, [body] holds per row an optional week-number child and
+ * [columns] cells. Every child is measured exactly once per pass with fixed constraints; placement mirrors in RTL.
+ *
+ * The body is subcomposed after the header, because the cells' text fit depends on the cell size, which is only known
+ * once the header has been measured: [textFit] is asked for it and its answer reaches the cells through
+ * [LocalDayCellTextFit] (BUG-2).
  */
 @Composable
 internal fun MonthGridLayout(
     columns: Int,
     rows: Int,
     hasWeekColumn: Boolean,
+    textFit: (cellWidth: Int, cellHeight: Int) -> DayCellTextFit,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit,
+    header: @Composable () -> Unit,
+    body: @Composable () -> Unit,
 ) {
-    Layout(content, modifier) { measurables, constraints ->
+    SubcomposeLayout(modifier) { constraints ->
         val width = if (constraints.hasBoundedWidth) constraints.maxWidth else (MIN_CELL_HEIGHT * columns).roundToPx()
         val leading = if (hasWeekColumn) minOf(WEEK_COLUMN_WIDTH.roundToPx(), width / (columns + 1)) else 0
         val edges = MonthGridGeometry.columnEdges(width, leading, columns)
         val headers =
-            measurables.take(columns).mapIndexed { i, header ->
-                header.measure(Constraints.fixedWidth(edges[i + 1] - edges[i]))
+            subcompose(GridSlot.HEADER, header).mapIndexed { i, measurable ->
+                measurable.measure(Constraints.fixedWidth(edges[i + 1] - edges[i]))
             }
         val headerHeight = headers.maxOfOrNull { it.height } ?: 0
         val bounded = if (constraints.hasBoundedHeight) constraints.maxHeight else null
+        val cellWidth = edges[1] - edges[0]
         val rowHeight =
-            MonthGridGeometry.rowHeight(bounded, headerHeight, rows, edges[1] - edges[0], MIN_CELL_HEIGHT.roundToPx())
+            MonthGridGeometry.rowHeight(bounded, headerHeight, rows, cellWidth, MIN_CELL_HEIGHT.roundToPx())
         val perRow = columns + if (hasWeekColumn) 1 else 0
-        val body =
-            measurables.drop(columns).mapIndexed { i, child ->
+        val fit = textFit(cellWidth, rowHeight)
+        val cells = subcompose(GridSlot.BODY) { CompositionLocalProvider(LocalDayCellTextFit provides fit, body) }
+        val placeables =
+            cells.mapIndexed { i, child ->
                 child.measure(
                     Constraints.fixed(MonthGridGeometry.bodySlot(i, perRow, hasWeekColumn, edges).second, rowHeight),
                 )
@@ -130,7 +152,7 @@ internal fun MonthGridLayout(
         val height = (headerHeight + rowHeight * rows).coerceIn(constraints.minHeight, constraints.maxHeight)
         layout(width, height) {
             headers.forEachIndexed { i, placeable -> placeable.placeRelative(edges[i], 0) }
-            body.forEachIndexed { i, placeable ->
+            placeables.forEachIndexed { i, placeable ->
                 val x = MonthGridGeometry.bodySlot(i, perRow, hasWeekColumn, edges).first
                 placeable.placeRelative(x, headerHeight + (i / perRow) * rowHeight)
             }
@@ -151,8 +173,15 @@ public fun MonthGrid(
     onWeekClick: ((row: Int) -> Unit)? = null,
 ) {
     val columns = model.weekdayLabels.size
-    MonthGridLayout(columns, model.rows, model.weekNumbers != null, modifier) {
-        model.weekdayLabels.forEach { WeekdayHeader(it) }
+    val probe = rememberCellTextFitProbe(model)
+    MonthGridLayout(
+        columns = columns,
+        rows = model.rows,
+        hasWeekColumn = model.weekNumbers != null,
+        textFit = probe,
+        modifier = modifier,
+        header = { model.weekdayLabels.forEach { WeekdayHeader(it) } },
+    ) {
         model.cells.chunked(columns).forEachIndexed { row, week ->
             model.weekNumbers?.let { numbers -> WeekNumber(numbers[row], onWeekClick?.let { { it(row) } }) }
             week.forEachIndexed { column, cell ->
@@ -168,6 +197,84 @@ public fun MonthGrid(
             }
         }
     }
+}
+
+/**
+ * Labels of one line kind are measured at most this many times. A month has at most 31 day numbers and two secondary
+ * dates per cell; a model with more distinct labels than this keeps shrinking rather than pay for the probe.
+ */
+private const val MAX_PROBED_LABELS = 64
+
+/** Layout results the probe keeps, so the labels of the months already seen are measured once, not once per page. */
+private const val LABEL_CACHE_SIZE = 256
+
+/**
+ * Decides once per cell size whether the cells of [model] can draw their lines at full size, by measuring the
+ * distinct label of each line kind (BUG-2). Returning [DayCellTextFit.SHRINK_TO_FIT] is always safe; full size is
+ * reported only when every label sits well inside its slot ([DayCellFit]).
+ */
+@Composable
+internal fun rememberCellTextFitProbe(model: MonthGridModel): (Int, Int) -> DayCellTextFit {
+    val measurer = rememberTextMeasurer(cacheSize = LABEL_CACHE_SIZE)
+    val dayStyle = MaterialTheme.typography.titleMedium
+    val smallStyle = MaterialTheme.typography.labelSmall
+    val density = LocalDensity.current
+    val direction = LocalLayoutDirection.current
+    val cellDensity =
+        remember(density) { Density(density.density, density.fontScale.coerceAtMost(MAX_CELL_FONT_SCALE)) }
+    return remember(model, measurer, dayStyle, smallStyle, cellDensity, direction) {
+        { cellWidth: Int, cellHeight: Int ->
+            val days = model.cells.map { it.dayLabel }.distinct()
+            val small =
+                (model.cells.flatMap { it.secondaryLabels } + model.cells.mapNotNull { it.shiftLabel })
+                    .distinct()
+            if (days.size + small.size > MAX_PROBED_LABELS) {
+                DayCellTextFit.SHRINK_TO_FIT
+            } else {
+                val widest = model.cells.maxOf { it.secondaryLabels.size + if (it.shiftLabel == null) 0 else 1 }
+                val lines =
+                    buildList {
+                        add(measurer.line(days, dayStyle, cellDensity, direction, DAY_WEIGHT))
+                        repeat(widest) { add(measurer.line(small, smallStyle, cellDensity, direction, LABEL_WEIGHT)) }
+                    }
+                val dots =
+                    if (model.cells.any { it.indicators.isNotEmpty() }) {
+                        with(
+                            cellDensity,
+                        ) { DOTS_HEIGHT.roundToPx() }
+                    } else {
+                        0
+                    }
+                val padding = with(cellDensity) { CELL_PADDING.roundToPx() }
+                if (DayCellFit.fitsAtFullSize(cellWidth, cellHeight, padding, dots, lines)) {
+                    DayCellTextFit.FULL_SIZE
+                } else {
+                    DayCellTextFit.SHRINK_TO_FIT
+                }
+            }
+        }
+    }
+}
+
+/** The widest and tallest of [labels] at [style]'s own size, as one line of the cell column. */
+private fun TextMeasurer.line(
+    labels: List<String>,
+    style: TextStyle,
+    density: Density,
+    direction: LayoutDirection,
+    weight: Float,
+): CellLine {
+    val measured =
+        labels.map { label ->
+            measure(
+                text = label,
+                style = style.copy(lineHeight = TextUnit.Unspecified),
+                maxLines = 1,
+                layoutDirection = direction,
+                density = density,
+            ).size
+        }
+    return CellLine(weight, measured.maxOfOrNull { it.width } ?: 0, measured.maxOfOrNull { it.height } ?: 0)
 }
 
 @Composable
