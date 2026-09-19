@@ -455,8 +455,28 @@ languages. Regression test: `LongRangeNavigationTest` (6 tests) — pages at ±2
 day details at those distances for Tehran, Tromsø and Ushuaia, `Int.MIN_VALUE`/`MAX_VALUE` offsets, the fallback, the
 rethrow of a non-range failure, and a heap check that 2 401 pages stay under the 80 MB month budget.
 
-If it happens again, `adb logcat -b crash -d` and the build type would settle it; with main@200b6cf installed the
-guard names the exact day and operation in logcat.
+**Searched again for the owner's device (2026-09-19, main@3047b7a, main@fa56128).** The report names a OnePlus 15 on
+the newest OS, so the search was repeated on the one property that separates it from every emulator used so far:
+16 KB memory pages, which devices shipped with Android 15 and later use. On an `android-37.2 google_apis_ps16k`
+emulator (`getconf PAGE_SIZE` 16384, SDK 37) running the **release** build in the owner's conditions — fa locale,
+dark, font scale 2.0, gesture navigation — a cold start (1 272 ms), 14 deep-link jumps across ±20/50/100 years,
+40 fast swipes, 4 rotations mid-navigation and `trim-memory RUNNING_CRITICAL` produced **no crash**: the crash buffer
+holds nothing from `ir.taqvim.app` and no crash file was written.
+
+That search did find that the APK ships **8 native libraries** (`androidx.graphics.path`, DataStore), which the
+earlier audit had assumed it did not. All eight are stored uncompressed, start on 16 384-byte boundaries and have
+`PT_LOAD p_align` of 0x4000, so they map on a 16 KB page device; a library that failed any of those would make the
+app die at start with `dlopen failed` on exactly this class of phone. `checkReleasePageAlignment` (main@fa56128) now
+fails the build on it — the property is invisible to every JVM, Robolectric and 4 KB-page emulator test.
+
+**The next crash on the device will report itself (main@3047b7a).** Since no logcat can be captured from the phone
+and the app has no crash reporting by design, an uncaught exception handler now keeps the stack trace on the device
+with the build, Android release, device, locale, chosen calendars and the screen shown. It chains to the previous
+handler, so Android still logs and ends the process. The About page then offers "Last crash", redacted and
+clearable, and the newest record rides along in the problem report — sent only when the owner sends it.
+
+So the ask for the owner is now one step: after the next crash, open About → Report a problem and send it. Failing
+that, `adb logcat -b crash -d` and the build type would settle it.
 
 **BUG-2 (P1), "sluggish" — two causes found and fixed (main@b3a300f).**
 
