@@ -13,6 +13,7 @@ import com.android.build.api.variant.HostTestBuilder
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
@@ -36,6 +37,7 @@ internal fun Project.configureAndroidCommon(
         packaging.resources.excludes += setOf("/META-INF/{AL2.0,LGPL2.1}", "/META-INF/LICENSE*.md")
     }
     configureKotlinCompiler()
+    serializeDeviceTests()
     if (hostTests) {
         // Release host tests are disabled, so debug unit tests are the classpath timing tests run with.
         configureTestTasks(unitTestTask = "testDebugUnitTest")
@@ -43,6 +45,23 @@ internal fun Project.configureAndroidCommon(
         addRobolectricTestDependencies()
     }
 }
+
+/**
+ * Lets one instrumented test task at a time use the device (see [DeviceTestSerializer]).
+ *
+ * The tasks are matched by type, not by name: `assembleDebugAndroidTest` and the other build tasks also end in
+ * `AndroidTest` and must stay parallel. `configureEach` keeps this lazy — a task that is never realised is never
+ * configured.
+ */
+private fun Project.serializeDeviceTests() {
+    val serializer = deviceTestSerializer()
+    tasks.configureEach {
+        if (usesTheDevice()) usesService(serializer)
+    }
+}
+
+/** True for AGP's connected-device and managed-device instrumentation test tasks, whatever variant they belong to. */
+private fun Task.usesTheDevice(): Boolean = runsOnADevice(javaClass.name)
 
 private fun Project.addRobolectricTestDependencies() {
     val catalog = libs
