@@ -1,5 +1,32 @@
 {
-  "_comment": "Absolute device budgets from docs/PLAN.md §9, checked by tools/benchmark/compare_benchmarks.py --budgets (T-1803, T-1801). Keys are className.testName; the budgeted metrics are summed. Widget renders and map masks come from :benchmark:micro as timeNs medians. An entry with physicalDeviceOnly is checked only with --physical-device: the nightly job measures on an emulator, whose RSS is far above a phone's (ADR-0018 addendum). GlanceWidgetBenchmark has no budget: GlanceAppWidget.compose measures Glance's own session, a constant ~400 ms on CI whatever the widget draws, while §9's 30 ms render budget is what WidgetRenderBenchmark measures.",
+  "_comment": "Absolute device budgets from docs/PLAN.md §9, checked by tools/benchmark/compare_benchmarks.py --budgets (T-1803, T-1801). Keys are className.testName; the budgeted metrics are summed. Widget renders and map masks come from :benchmark:micro as timeNs medians. An entry with physicalDeviceOnly is checked only with --physical-device: the nightly job measures on an emulator, whose RSS is far above a phone's (ADR-0018 addendum). GlanceWidgetBenchmark has no budget: GlanceAppWidget.compose measures Glance's own session, a constant ~400 ms on CI whatever the widget draws, while §9's 30 ms render budget is what WidgetRenderBenchmark measures. Startup and jank (REVIEW R08): maximum is the plan §9 device budget and physicalDeviceOnly; hostedMaximum is a gross-regression ceiling for the hosted API 36 emulator, three times the median that emulator measured on Benchmarks run 35432306382 (main@98260a4, cold 796.7 ms, warm 752.2 ms, 24-month scroll frame CPU P99 126.3 ms). A ceiling is not a baseline and not a §9 budget: it only stops an absurd result such as a 60-second start from passing. Plan §9 has no warm-start budget; the cold budget bounds it, since a warm start cannot be allowed to take longer. The low-end API 26 cold budget (800 ms) needs a low-end device and is not encoded. Search (< 20 ms per query over 10 000 events) has no benchmark reporting a per-query time yet, so it has no entry.",
+  "ir.taqvim.benchmark.StartupBenchmark.startupCold": {
+    "metricPrefixes": [
+      "timeToInitialDisplay"
+    ],
+    "maximum": 350,
+    "hostedMaximum": 2400,
+    "unit": "ms (cold start to first frame, Pixel 6a class, plan §9)",
+    "physicalDeviceOnly": true
+  },
+  "ir.taqvim.benchmark.StartupBenchmark.startupWarm": {
+    "metricPrefixes": [
+      "timeToInitialDisplay"
+    ],
+    "maximum": 350,
+    "hostedMaximum": 2250,
+    "unit": "ms (warm start, bounded by the §9 cold budget)",
+    "physicalDeviceOnly": true
+  },
+  "ir.taqvim.benchmark.MonthPagerScrollBenchmark.scrollTwentyFourMonths": {
+    "metricPrefixes": [
+      "frameDurationCpuMs.P99"
+    ],
+    "maximum": 16,
+    "hostedMaximum": 380,
+    "unit": "ms P99 frame CPU time (< 1 % of frames over 16 ms, plan §9)",
+    "physicalDeviceOnly": true
+  },
   "ir.taqvim.benchmark.MonthScreenMemoryBenchmark.monthScreenMemory": {
     "metricPrefixes": [
       "memoryRssAnon",

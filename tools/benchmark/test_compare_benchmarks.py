@@ -140,8 +140,8 @@ class CompareBenchmarksTest(unittest.TestCase):
         required = {"required": {".".join(STARTUP): ["timeToInitialFrame"], ".".join(MASK): ["timeNs"]}}
         mask = self.result(MASK, timeNs=4.0)
         startup = self.result(STARTUP, timeToInitialFrameMs=300.0)
-        self.assertEqual(self.gate([], [mask], required), 1)
-        self.assertEqual(self.gate([], [mask, startup], required), 0)
+        self.assertEqual(self.gate([mask, startup], [mask], required), 1)
+        self.assertEqual(self.gate([mask, startup], [mask, startup], required), 0)
 
     def test_missing_required_metric_fails(self) -> None:
         required = {"required": {".".join(STARTUP): ["timeToInitialFrame"]}}
@@ -173,8 +173,8 @@ class CompareBenchmarksTest(unittest.TestCase):
         }
         startup = self.result(STARTUP, timeToInitialFrameMs=300.0)
         profile = self.result(generator, timeNs=1.0)
-        self.assertEqual(self.gate([profile], [startup], required), 0)
-        self.assertEqual(self.gate([], [startup, profile], required), 0)
+        self.assertEqual(self.gate([profile, startup], [startup], required), 0)
+        self.assertEqual(self.gate([startup], [startup, profile], required), 0)
 
     def test_required_file_lists_every_benchmark_test(self) -> None:
         required = json.loads(REQUIRED.read_text(encoding="utf-8"))
@@ -204,6 +204,88 @@ class CompareBenchmarksTest(unittest.TestCase):
                 self.assertIn(f"fun {test}()", sources)
                 self.assertTrue(budget["metricPrefixes"])
                 self.assertGreater(budget["maximum"], 0)
+
+    # REVIEW R08: a gate with no baselines and no absolute startup budget passed a synthetic 60-second start.
+
+    def full_run(self, startup_ms: float, other: float = 1.0) -> list[dict]:
+        """A result for every required benchmark and metric: startups at [startup_ms], everything else [other]."""
+        required = json.loads(REQUIRED.read_text(encoding="utf-8"))["required"]
+        results = []
+        for name, prefixes in required.items():
+            class_name, _, test = name.rpartition(".")
+            value = startup_ms if "StartupBenchmark" in class_name else other
+            metrics = {f"{prefix}{'Ms' if not prefix.endswith('Ms') else ''}": value for prefix in prefixes}
+            benchmark = self.result((class_name, test), **metrics)
+            if "frameCount" in prefixes:
+                # Frame journeys report their frame times as sampled metrics; 10 ms keeps them within every budget.
+                benchmark["sampledMetrics"] = {"frameDurationCpuMs": {"P50": 5.0, "P99": 10.0}}
+            results.append(benchmark)
+        return results
+
+    def repository_gate(self, baseline: list[dict], current: list[dict], *extra: str) -> int:
+        with tempfile.TemporaryDirectory() as root:
+            base, results = Path(root, "baselines"), Path(root, "results")
+            self.write_results(base, *baseline)
+            self.write_results(results, *current)
+            arguments = ["--baseline", str(base), "--results", str(results), "--threshold", "0.10",
+                         "--budgets", str(BUDGETS), "--required", str(REQUIRED), *extra]
+            return compare_benchmarks.main(arguments)
+
+    def test_reviewers_synthetic_sixty_second_start_fails(self) -> None:
+        # The exact case of the review: every required benchmark and metric, startups 60 000 ms, the rest 1, no
+        # baselines, the nightly command line.
+        self.assertEqual(self.repository_gate([], self.full_run(60000.0)), 1)
+
+    def test_sixty_second_start_fails_even_against_a_baseline_of_itself(self) -> None:
+        run = self.full_run(60000.0)
+        self.assertEqual(self.repository_gate(run, run), 1)
+
+    def test_sixty_second_start_fails_in_recording_mode(self) -> None:
+        self.assertEqual(self.repository_gate([], self.full_run(60000.0), "--record-baseline"), 1)
+
+    def test_missing_baseline_of_a_required_benchmark_fails(self) -> None:
+        run = self.full_run(800.0)
+        self.assertEqual(self.repository_gate([], run), 1)
+        self.assertEqual(self.repository_gate(run, run), 0)
+
+    def test_recording_mode_is_never_qualifying(self) -> None:
+        run = self.full_run(800.0)
+        self.assertEqual(self.repository_gate([], run, "--record-baseline"), compare_benchmarks.RECORDED_EXIT)
+        self.assertNotEqual(compare_benchmarks.RECORDED_EXIT, 0)
+
+    def test_hosted_ceiling_and_device_budget_of_cold_start(self) -> None:
+        # 800 ms is what the hosted emulator measures: within its ceiling, far over the §9 device budget.
+        run = self.full_run(800.0)
+        self.assertEqual(self.repository_gate(run, run), 0)
+        self.assertEqual(self.repository_gate(run, run, "--physical-device"), 1)
+        fast = self.full_run(300.0)
+        self.assertEqual(self.repository_gate(fast, fast, "--physical-device"), 0)
+
+    def test_p99_feeds_the_jank_budget_but_not_the_regression_gate(self) -> None:
+        scroll = ("ir.taqvim.benchmark.MonthPagerScrollBenchmark", "scrollTwentyFourMonths")
+
+        def with_p99(p99: float) -> list[dict]:
+            run = [b for b in self.full_run(300.0) if (b["className"], b["name"]) != scroll]
+            frames = self.result(scroll, frameCountMs=100.0)
+            frames["metrics"] = {"frameCount": {"median": 100.0}}
+            frames["sampledMetrics"] = {"frameDurationCpuMs": {"P50": 5.0, "P99": p99}}
+            return run + [frames]
+
+        # P99 doubled against the baseline: not a regression, and still under both limits on a hosted run.
+        self.assertEqual(self.repository_gate(with_p99(100.0), with_p99(200.0)), 0)
+        # Over the hosted ceiling fails; on a device, over 16 ms fails and under it passes.
+        self.assertEqual(self.repository_gate(with_p99(100.0), with_p99(400.0)), 1)
+        self.assertEqual(self.repository_gate(with_p99(10.0), with_p99(20.0), "--physical-device"), 1)
+        self.assertEqual(self.repository_gate(with_p99(10.0), with_p99(12.0), "--physical-device"), 0)
+
+    def test_hosted_ceilings_sit_above_the_device_budgets(self) -> None:
+        budgets = json.loads(BUDGETS.read_text(encoding="utf-8"))
+        for name, budget in budgets.items():
+            if name.startswith("_") or "hostedMaximum" not in budget:
+                continue
+            with self.subTest(name=name):
+                self.assertTrue(budget.get("physicalDeviceOnly"))
+                self.assertGreater(budget["hostedMaximum"], budget["maximum"])
 
 
 if __name__ == "__main__":

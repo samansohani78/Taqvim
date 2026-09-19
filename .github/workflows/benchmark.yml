@@ -9,6 +9,12 @@ on:
         description: Also generate the baseline and startup profiles (T-1800)
         type: boolean
         default: false
+      record-baseline:
+        description: >-
+          Record a first baseline set instead of comparing (REVIEW R08). Non-qualifying: the job ends red with exit 3,
+          and the results artifact is the candidate to review and commit to benchmark/baselines.
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -83,6 +89,8 @@ jobs:
           name: benchmark-test-reports
           path: "**/build/reports/androidTests/"
       - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1801, T-1803)
+        # A required benchmark without a committed baseline fails (REVIEW R08); a recording run exits 3 and never
+        # qualifies a commit for release (.github/required-checks.txt).
         run: |
           python3 -m unittest discover -s tools/benchmark
           python3 tools/benchmark/compare_benchmarks.py \
@@ -90,7 +98,8 @@ jobs:
             --results build/benchmark-results \
             --threshold 0.10 \
             --budgets benchmark/budgets.json \
-            --required benchmark/required.json
+            --required benchmark/required.json \
+            ${{ inputs.record-baseline && '--record-baseline' || '' }}
 
   baseline-profile:
     name: Baseline and startup profiles (on demand)

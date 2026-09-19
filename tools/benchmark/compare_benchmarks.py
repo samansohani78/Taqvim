@@ -3,11 +3,21 @@
 
 Compares AndroidX Benchmark JSON results (``*benchmarkData.json``) with the committed baselines of the same format.
 For every benchmark present in both, each metric's median (``metrics``) or P50 (``sampledMetrics``) may grow by at
-most the threshold. Benchmarks without a baseline are listed and pass, so a new baseline can be committed from the
-uploaded results after review.
+most the threshold. The P99 of each sampled metric is kept as ``<metric>.P99`` for the absolute budgets (the §9 jank
+budget, "< 1 % of frames over 16 ms", is a P99), but is not compared with the baseline, where it would only add noise.
 
-A budget marked ``physicalDeviceOnly`` is checked only with ``--physical-device``: the nightly job measures on an
-emulator, whose RSS and frame timing do not carry the absolute device budgets of plan §9.
+A missing baseline fails (REVIEW R08). With ``--required``, every required benchmark is established, so a result that
+has no committed baseline fails as ``Missing baseline`` — otherwise a regression gate with no baselines would pass
+anything, including a 60-second start. ``--record-baseline`` accepts the missing baselines so a first set can be
+reviewed and committed from the uploaded results, but such a run never qualifies: it exits with code 3 even when
+nothing else failed, so the workflow is red and the release gate (``.github/required-checks.txt``) cannot count it.
+Without ``--required`` there is no established set, and benchmarks without a baseline are only listed.
+
+Absolute budgets (``--budgets``): an entry's ``maximum`` is the plan §9 device budget. One marked
+``physicalDeviceOnly`` is checked against ``maximum`` only with ``--physical-device``, because a hosted emulator's RSS,
+start time and frame timing do not carry device budgets; on a hosted run it is checked against its ``hostedMaximum``
+instead when it has one — a gross-regression ceiling derived from measured emulator values, not a §9 budget — and
+skipped otherwise.
 
 Lost results fail too (review finding B14):
 
@@ -27,15 +37,18 @@ from pathlib import Path
 
 Results = dict[tuple[str, str], dict[str, float]]
 
+P99_SUFFIX = ".P99"
+RECORDED_EXIT = 3
+
 
 def typical_values(benchmark: dict) -> dict[str, float]:
     """The median of each ``metrics`` entry and the P50 of each ``sampledMetrics`` entry."""
     values = {
         name: float(metric["median"]) for name, metric in benchmark.get("metrics", {}).items() if "median" in metric
     }
-    values.update(
-        {name: float(metric["P50"]) for name, metric in benchmark.get("sampledMetrics", {}).items() if "P50" in metric}
-    )
+    sampled = benchmark.get("sampledMetrics", {})
+    values.update({name: float(metric["P50"]) for name, metric in sampled.items() if "P50" in metric})
+    values.update({f"{name}{P99_SUFFIX}": float(metric["P99"]) for name, metric in sampled.items() if "P99" in metric})
     return values
 
 
@@ -63,6 +76,8 @@ def regressions(baseline: Results, current: Results, threshold: float) -> list[s
     found = []
     for key, metrics in sorted(current.items()):
         for name, value in sorted(metrics.items()):
+            if name.endswith(P99_SUFFIX):
+                continue
             reference = baseline.get(key, {}).get(name)
             if reference is not None and reference > 0 and value > reference * (1 + threshold):
                 growth = (value / reference - 1) * 100
@@ -111,13 +126,21 @@ def missing_required(required: dict, current: Results) -> list[str]:
 def budgeted(
     budgets: dict[str, dict],
     physical_device: bool,
-) -> list[tuple[str, dict]]:
-    """The budgets to check on this run, in name order; ``physicalDeviceOnly`` ones need [physical_device]."""
-    return [
-        (name, budget)
-        for name, budget in sorted(budgets.items())
-        if not name.startswith("_") and (physical_device or not budget.get("physicalDeviceOnly"))
-    ]
+) -> list[tuple[str, dict, float]]:
+    """(name, budget, maximum to apply) for the budgets checked on this run, in name order.
+
+    A physical-device run applies every ``maximum``. A hosted run applies ``maximum`` to the budgets that are not
+    ``physicalDeviceOnly``, the ``hostedMaximum`` ceiling to those that are and have one, and skips the rest.
+    """
+    checked = []
+    for name, budget in sorted(budgets.items()):
+        if name.startswith("_"):
+            continue
+        if physical_device or not budget.get("physicalDeviceOnly"):
+            checked.append((name, budget, budget["maximum"]))
+        elif "hostedMaximum" in budget:
+            checked.append((name, budget, budget["hostedMaximum"]))
+    return checked
 
 
 def device_only(budgets: dict[str, dict]) -> list[str]:
@@ -141,17 +164,28 @@ def over_budget(
     required-benchmark check; a ``physicalDeviceOnly`` one is skipped unless [physical_device].
     """
     found = []
-    for name, budget in budgeted(budgets, physical_device):
+    for name, budget, maximum in budgeted(budgets, physical_device):
         class_name, _, test = name.rpartition(".")
         metrics = current.get((class_name, test))
         if metrics is None:
             continue
         prefixes = budget["metricPrefixes"]
         parts = [value for metric, value in metrics.items() if any(metric.startswith(p) for p in prefixes)]
+        kind = "budget" if maximum == budget["maximum"] else "hosted ceiling"
         if not parts:
             found.append(f"{name}: none of {prefixes} were measured")
-        elif sum(parts) >= budget["maximum"]:
-            found.append(f"{name}: {sum(parts):g} ≥ budget {budget['maximum']:g} {budget.get('unit', '')}".rstrip())
+        elif sum(parts) >= maximum:
+            found.append(f"{name}: {sum(parts):g} ≥ {kind} {maximum:g} {budget.get('unit', '')}".rstrip())
+    return found
+
+
+def missing_baselines(required: dict, baseline: Results, current: Results) -> list[str]:
+    """Lines for required (established) benchmarks that were reported but have no committed baseline."""
+    found = []
+    for name in sorted(required.get("required", {})):
+        class_name, _, test = name.rpartition(".")
+        if (class_name, test) in current and (class_name, test) not in baseline:
+            found.append(f"{name}: no committed baseline in benchmark/baselines")
     return found
 
 
@@ -164,14 +198,22 @@ def failures(args: argparse.Namespace, current: Results, duplicates: list[str]) 
     required = read_json(args.required)
     budgets = read_json(args.budgets)
     baseline = load(args.baseline) if args.baseline.is_dir() else {}
+    established = missing_baselines(required, baseline, current) if args.required else []
     for key in sorted(set(current) - set(baseline)):
-        print(f"No baseline for {key[0]}.{key[1]}; recorded only")
+        if f"{key[0]}.{key[1]}" not in required.get("required", {}) or not args.required:
+            print(f"No baseline for {key[0]}.{key[1]}; recorded only")
+    if args.record_baseline:
+        for line in established:
+            print(f"Recording (non-qualifying): {line}")
     if not args.physical_device:
         for name in device_only(budgets):
-            print(f"Budget of {name} needs a physical device; not checked on this run")
+            ceiling = budgets[name].get("hostedMaximum")
+            state = f"checked against the hosted ceiling {ceiling:g}" if ceiling is not None else "not checked"
+            print(f"Budget of {name} needs a physical device; {state} on this run")
     optional = set(required.get("optional", {}))
     return (
         [f"Duplicate result: {name}" for name in duplicates]
+        + ([] if args.record_baseline else [f"Missing baseline: {line}" for line in established])
         + [f"Missing: {line}" for line in (missing_required(required, current) if args.required else [])]
         + [f"Missing: {line}" for line in lost_since_baseline(baseline, current, optional)]
         + [f"Regression: {line}" for line in regressions(baseline, current, args.threshold)]
@@ -191,6 +233,11 @@ def main(argv: list[str]) -> int:
         action="store_true",
         help="the results come from a physical device, so the physicalDeviceOnly budgets of plan §9 are checked too",
     )
+    parser.add_argument(
+        "--record-baseline",
+        action="store_true",
+        help="accept missing baselines to record a first set; the run is non-qualifying and exits 3 when clean",
+    )
     args = parser.parse_args(argv)
     current, duplicates = load_with_duplicates(args.results)
     if not current:
@@ -199,7 +246,13 @@ def main(argv: list[str]) -> int:
     found = failures(args, current, duplicates)
     for line in found:
         print(line)
-    return 1 if found else 0
+    if found:
+        return 1
+    if args.record_baseline:
+        print("Baseline recording run: NON-QUALIFYING. Review the uploaded results, commit them to benchmark/baselines,")
+        print("and run again without --record-baseline before this commit can count as benchmarked.")
+        return RECORDED_EXIT
+    return 0
 
 
 if __name__ == "__main__":

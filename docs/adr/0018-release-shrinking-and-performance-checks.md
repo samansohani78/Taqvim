@@ -301,3 +301,25 @@ looks much like a complete one.
 absolute budgets in `benchmark/budgets.json` is startup- or frame-sensitive in the app process (one is month-screen
 RSS, the other eight are `:benchmark:micro` widget and map-mask timings in a separate module). The first recorded
 baseline must therefore be measured on this commit or later.
+
+## Addendum 2026-09-19 — baselines are required, and startup has budgets (REVIEW R08)
+
+An independent review showed the nightly gate passing a synthetic run whose startups took 60 000 ms: `benchmark/baselines`
+did not exist, so every result was "recorded only", and `budgets.json` had no startup entry. Changes:
+
+- **A required benchmark without a committed baseline fails** (`Missing baseline`). `--record-baseline` (the
+  `record-baseline` input of `benchmark.yml`) accepts the missing baselines so a first set can be recorded, but such a
+  run is **non-qualifying**: it exits 3 even when clean, so the job is red and the release gate cannot count it.
+- **Startup and jank budgets.** Cold and warm start (`timeToInitialDisplayMs`, 350 ms, plan §9) and the 24-month scroll
+  (`frameDurationCpuMs` P99 < 16 ms, the §9 "< 1 % of frames over 16 ms") are `physicalDeviceOnly`. On the hosted
+  emulator they are checked against a `hostedMaximum` — three times the medians that emulator measured on run
+  35432306382 (cold 796.7 ms → 2 400 ms, warm 752.2 ms → 2 250 ms, scroll P99 126.3 ms → 380 ms). A ceiling is a guard
+  against absurd results, not a baseline and not a §9 budget. The P99 of each sampled metric feeds the budgets only; the
+  10 % regression comparison still uses medians and P50s.
+- **Not covered:** the low-end API 26 cold budget (800 ms) needs a low-end device; search (< 20 ms per query over
+  10 000 events) has no benchmark reporting a per-query time.
+
+**Consequence:** until a reviewed baseline set is committed, the nightly job fails on 24 missing baselines, and a
+release tag is refused (the macrobenchmark is a required check). Next step: dispatch `benchmark.yml` with
+`record-baseline`, review the `benchmark-results` artifact, and commit it under `benchmark/baselines` — from a run on a
+commit that carries the app's baseline profile (main@19bc59c or later).
