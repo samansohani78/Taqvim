@@ -44,8 +44,9 @@ import org.junit.jupiter.api.Test
  * - **Prayer times, Tehran and Kabul:** a result is required every day, with all eight times, in chronological order.
  * - **Prayer times, Tromsø:** `Unavailable` is a legitimate state (polar day or night). When times are given, the four
  *   that always exist (sunrise, dhuhr, Asr, sunset) are required and the twilight ones optional, and every time given
- *   must be in chronological order — which, near the midnight Sun, can run past midnight into the next civil day —
- *   except the two open defects in [KNOWN_POLAR_ORDER_DEFECTS].
+ *   must be in chronological order — which, near the midnight Sun, can run past midnight into the next civil day.
+ *   No exception is allowed: the two orderings this test first found broken (`asr>sunset` on 10 days and
+ *   `maghrib>isha` on 2 889 days of 2001–2101, REVIEW R05/R14) are fixed in `:core:praytimes`.
  * - **Sky, Tehran:** Sun rise, transit and set, a finite Moon phase and illuminated fraction, a tithi, a Moon
  *   constellation, 24 planetary hours and Placidus cusps are required every day; the Moon may skip a rise or a set on a
  *   given day, but not all three events.
@@ -125,7 +126,7 @@ class SkyAndTimesCompletenessTest {
         label: String,
         times: PrayerTimes,
     ): String? {
-        val broken = outOfOrder(times) - KNOWN_POLAR_ORDER_DEFECTS
+        val broken = outOfOrder(times)
         return if (broken.isEmpty()) null else "$label: $broken out of chronological order $times"
     }
 
@@ -293,16 +294,6 @@ class SkyAndTimesCompletenessTest {
                 polar = true,
             )
         val PLACES = listOf(TEHRAN, KABUL, ARCTIC)
-
-        /**
-         * Open prayer-time defects this test found at Tromsø on 2026-09-19 (REVIEW R14), allowed here so every other
-         * ordering stays enforced. Remove each entry when `:core:praytimes` is fixed. (`asr>sunset` on 10 days of
-         * 2001–2101, e.g. 2001-11-27, was R05 and is fixed: Asr is now unavailable when the noon Sun is not above the
-         * true horizon.)
-         * - `maghrib>isha` on 2 889 days, e.g. 2001-04-19: maghrib 22:06, isha 22:04 — with the nearest-latitude rule
-         *   isha comes from the reference latitude while maghrib does not.
-         */
-        val KNOWN_POLAR_ORDER_DEFECTS = setOf("maghrib>isha")
 
         fun persianNewYear(year: Int): Jdn =
             PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, year, 1, 1))

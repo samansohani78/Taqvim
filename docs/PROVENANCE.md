@@ -986,6 +986,25 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   Midnight now ends at the next morning's Fajr, as the Institute's tables do. Validation against the 31 official
   timetables (11 315 days): same minute for 99.8–100 % of Fajr, sunrise, Dhuhr, sunset, Maghrib and midnight (was
   56–98 %), every prayer within 1 minute; nearest-minute rounding.
+- **Order within the day (REVIEW R05, 2026-09-19, own decisions; no prayer-time library code consulted):**
+  1. *Asr lies between Dhuhr and sunset, or is absent* (main@fd2df36). Where the noon Sun is not above the true
+     horizon (noon zenith distance |φ − δ| ≥ 90°, the Sun seen only through refraction) there is no noon shadow for
+     the shadow rule to lengthen, and the formula asks for an altitude the Sun passes after sunset. Asr is then
+     `null`, as is any solution outside Dhuhr‥sunset; no time is invented in its place.
+  2. *Isha never precedes Maghrib* (main@<R05-maghrib>). A high-latitude rule estimates an unreached Isha angle as a
+     portion of the night measured from sunset (above). With the Tehran and Jafari methods Maghrib is itself a
+     twilight (4.5° and 4° below the horizon); near the Arctic Circle the Sun sets on a shallow path and reaches that
+     depression late, so under `ANGLE_BASED`, `ONE_SEVENTH` and `NEAREST_LATITUDE` the estimate could fall before the
+     observed Maghrib (Tromsø, 2 889 days of 2001–2101, e.g. 19 April 2001: Maghrib 22:06, Isha 22:04). Decision:
+     Maghrib stays the observed time, because the Sun does reach its angle, and the estimate is raised to Maghrib
+     when it would precede it — Isha then coincides with Maghrib. Measuring the portion from Maghrib instead, or
+     applying the rule to Maghrib too, were rejected: the first would move every Shia high-latitude Isha, and the
+     second would replace an observed time with an estimate. A computed Isha is never affected, since a deeper
+     depression is always reached later the same evening; `MIDDLE_OF_NIGHT`, `NONE` and
+     `GEOPHYSICS_WHITE_NIGHTS` were not affected.
+  Tests: `AsrWithinDaylightTest`, `MaghribBeforeIshaTest` (every rule × every method at Tromsø, every third day of
+  2001–2101) and `SkyAndTimesCompletenessTest`, which enforces full chronological order for Tehran, Kabul and Tromsø
+  on every day of 2001–2101 with no exception.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; precise model 2026-09-16
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 

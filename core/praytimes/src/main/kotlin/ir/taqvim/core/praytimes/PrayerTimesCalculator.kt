@@ -140,6 +140,15 @@ public object PrayerTimesCalculator {
         return ExactResult.Times(ExactPrayerTimes(fajr, sunrise, dhuhr, asr, sunset, maghrib, isha, midnight))
     }
 
+    /**
+     * Isha after [maghrib] (the observed Maghrib, or sunset when the method's Maghrib is at sunset or unreached).
+     *
+     * A high-latitude rule estimates an unreached Isha angle as a portion of the night measured from sunset. When the
+     * method's Maghrib is itself a twilight (the Tehran and Jafari methods, 4–4.5° below the horizon), a shallow sunset
+     * path near the Arctic Circle can put that Maghrib later than the estimate, so the estimate never precedes it: Isha
+     * is then at Maghrib (R05). Maghrib stays the observed time, since the Sun does reach its angle. A computed Isha is
+     * unaffected — a deeper depression is always reached later the same evening.
+     */
     private fun isha(
         rule: IshaRule,
         highLatitude: HighLatitudeRule,
@@ -147,8 +156,18 @@ public object PrayerTimesCalculator {
         maghrib: Double,
     ): Double? =
         when (rule) {
-            is IshaRule.MinutesAfterMaghrib -> maghrib + rule.minutes
-            is IshaRule.Angle -> HighLatitude.isha(highLatitude, rule.degreesBelowHorizon, night)
+            is IshaRule.MinutesAfterMaghrib -> {
+                maghrib + rule.minutes
+            }
+
+            is IshaRule.Angle -> {
+                HighLatitude
+                    .isha(
+                        highLatitude,
+                        rule.degreesBelowHorizon,
+                        night,
+                    )?.coerceAtLeast(maghrib)
+            }
         }
 
     private fun maghrib(
