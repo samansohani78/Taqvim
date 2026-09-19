@@ -30,6 +30,62 @@ Persian-calendar or prayer-times GPL/LGPL library.
 
 ## Algorithms
 
+### Algorithm ID map (PLAN §6 ↔ this file ↔ source files)
+
+PLAN §6 numbers the algorithms A-01 … A-16. Two IDs collide: T-108 and T-109, added to PLAN on 2026-09-15 with
+ADR-0025, call the Hebrew calendar "A-15" and Easter "A-16", while PLAN §6 already uses A-15 for the tithi and A-16 for
+the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gives the two additions new IDs, **A-17**
+(Hebrew) and **A-18** (Easter); the entry headings name the PLAN label they replace. Trace by file, not by ID alone.
+
+| ID | Algorithm (PLAN §6) | Entry in this file | Main source files |
+|---|---|---|---|
+| A-01 | JDN ↔ Gregorian | A-01 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/GregorianCalendarSystem.kt`; `core/model/src/main/kotlin/ir/taqvim/core/model/Jdn.kt` |
+| A-02 | Persian (Solar Hijri), astronomical | A-02 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/PersianCalendarSystem.kt`, `PersianYearStarts.kt`, `CalendarAstronomy.kt` |
+| A-03 | Islamic tabular I/II | A-03 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/TabularIslamicCalendar.kt` |
+| A-04 | Umm al-Qura | A-04 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/UmmAlQuraCalendar.kt`, `UmmAlQuraCriterion.kt`, `UmmAlQuraMonths.kt`, `UmmAlQuraTable.kt` |
+| A-05 | Iranian official lunar Hijri | A-05 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/IranCrescentCalendar.kt`, `IranCrescentMonths.kt`, `IslamicMonthOverrides.kt` |
+| A-06 | Calculated-observational (Yallop) | A-06 | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/ObservationalMonthStarts.kt`, `CrescentSighting.kt` |
+| A-07 | Nepali (Bikram Sambat) | A-07 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/NepaliCalendarSystem.kt`, `NepaliMonthStarts.kt`, `SuryaSiddhantaSun.kt` |
+| A-08 | Week numbering | A-08 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/CalendarMath.kt` (`WeekRule`, `weekOfYear`) |
+| A-09 | Solar position | A-09 | `core/praytimes/src/main/kotlin/ir/taqvim/core/praytimes/NoaaSolarCalculator.kt`, `SolarEphemeris.kt` |
+| A-10 | Prayer times | A-10 | `core/praytimes/src/main/kotlin/ir/taqvim/core/praytimes/PrayerTimesCalculator.kt`, `HighLatitude.kt`, `SunDay.kt` |
+| A-11 | Qibla, great circle | A-11 | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/GreatCircle.kt` |
+| A-12 | Magnetic declination | T-1301 (magnetic layers), T-1302 (compass) | platform `android.hardware.GeomagneticField`, used in `feature/map/…/MapRoute.kt` and `feature/compass/…/MotionSensors.kt`; no own algorithm |
+| A-13 | Astronomy façade | A-13 (four entries) | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/` (cosinekitty/astronomy behind the façade) |
+| A-14 | Houses (Placidus) and lots | A-14 | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Houses.kt` |
+| A-15 | Tithi | T-406 / T-407 | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Tithi.kt`; the Nepali lunar days in `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/NepaliLunarDays.kt`, `SuryaSiddhantaMoon.kt` |
+| A-16 | Persian date grammar | T-500, T-501 | `core/nlp/src/main/kotlin/ir/taqvim/core/nlp/` (`DateParser.kt`, `AbsoluteRules.kt`, `RelativeRules.kt`, `Lexicon.kt`) |
+| A-17 | Hebrew calendar (PLAN T-108 "A-15") | A-17 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/HebrewCalendar.kt`, `JewishObservances.kt` |
+| A-18 | Easter and movable feasts (PLAN T-109 "A-16") | A-18 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/GregorianComputus.kt`, `JulianComputus.kt`, `ChristianMovableFeasts.kt` |
+
+### A-08 — Week numbering, generalised
+- **Module / files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/CalendarMath.kt` — `WeekRule`, `WeekOfYear`, `CalendarArithmetic.weekOfYear`
+- **Task:** T-106
+- **References used (public only):**
+  1. ISO 8601-1:2019, *Date and time — Representations for information interchange — Part 1: Basic rules*, the week
+     calendar: weeks begin on Monday, and week 01 of a week-based year is the week containing that year's first
+     Thursday (equivalently, the first week with at least four days in the year); a day can belong to the last week
+     of the previous week-based year or week 01 of the next.
+  2. Unicode Technical Standard #35 (LDML), Part 4 *Dates*, "Week Data" (`firstDay`, `minDays`): the same rule with the
+     first day of the week and the minimal number of days in the first week as parameters, which is how locales that
+     start the week on Saturday or Sunday number weeks. Unicode License v3; no data copied.
+- **Algorithm (own work):** a rule is (`firstDayOfWeek`, `minimalDaysInFirstWeek` ∈ 1…7); ISO 8601 is (Monday, 4) and
+  "week 1 contains the first day of the year" is (d, 1). For a year *y* of any calendar with a `CalendarArithmetic`
+  (Gregorian, Persian, Islamic, Nepali, Hebrew…), let *F* be the JDN of day 1 of month 1 and *k* the number of days
+  from the last `firstDayOfWeek` on or before *F* to *F*. The week holding *F* starts at *F − k* and holds 7 − *k* days
+  of *y*; week 1 starts there when 7 − *k* ≥ `minimalDaysInFirstWeek`, otherwise seven days later. **Boundary rules:** a
+  date before week 1 of its year belongs to the last week of the previous week-based year; a date on or after week 1 of
+  the next year belongs to week 1 of that year; the week number is ⌊(JDN − start) / 7⌋ + 1 within the week-based
+  year. Years may therefore have 52 or 53 weeks (and a 13-month Hebrew or Nepali-length year more), and
+  `WeekOfYear.weekBasedYear` can differ from the calendar year.
+- **Validation:** `CalendarMathTest` — ISO weeks across the 2020/2021, 2024/2025 and 2026/2027 edges (2021-01-01 is
+  2020-W53, 2024-12-30 is 2025-W01, 2026-12-31 is 2026-W53), Saturday-start first-day weeks, rejected minimal days
+  0 and 8; `PersianCalendarMathTest` — Saturday-start weeks across the 1403/1404/1405/1406 edges (29 Esfand 1405
+  opens week 1 of 1406); `NepaliCalendarMathTest` — first-day Sunday weeks.
+- **Not consulted:** any GPL/LGPL calendar code.
+- **Author / date:** Saman Sohani (via Claude Code), entry written 2026-09-19 for REVIEW R13 (the code dates from
+  T-106); **reviewer attestation:** pending — no forbidden sources consulted.
+
 ### A-01 — JDN ↔ Gregorian
 - **Module / files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/GregorianCalendarSystem.kt`
 - **Task:** T-101
@@ -202,13 +258,20 @@ Persian-calendar or prayer-times GPL/LGPL library.
      obliquity.
   2. NOAA Global Monitoring Laboratory, Solar Calculations spreadsheet (as used for A-09) — mean obliquity series and
      the 0.00256·cos Ω correction.
-  3. The Placidus definition: each intermediate cusp is the ecliptic point lying one or two thirds of its diurnal
-     (houses 11–12) or nocturnal (houses 2–3) semi-arc from the meridian — general astrological-astronomy knowledge; no
-     code or tables copied.
+  3. The Placidus definition (after Placidus de Titis, *Primum mobile*, 1657): each intermediate cusp is the ecliptic
+     point whose time from the meridian is one or two thirds of its own diurnal semi-arc (houses 11–12) or nocturnal
+     semi-arc (houses 2–3). **No precise modern reference (title, edition, page or equation) has been verified for the
+     construction below** — it is written from the definition alone, and a citable source is open as DT-039 (REVIEW
+     R13). No code or tables copied.
   4. cosinekitty/astronomy 2.1.19 (MIT), public API only: `siderealTime` and the A-13 façade (Sun/Moon longitudes, Sun
      altitude for day/night charts).
-- **Implementation note:** own work. Cusps are found by fixed-point iteration on the point's declination (30
-  iterations); Placidus is undefined (`null`) where |latitude| ≥ 90° − obliquity. Lots: day Fortune = ASC + Moon − Sun,
+- **Implementation note:** own work. Construction: for a cusp at fraction *f* (⅓ or ⅔) of the semi-arc, start from
+  the longitude at right ascension RAMC + *f*·(90° or 180°), then repeat 30 times: δ = asin(sin ε · sin λ); diurnal
+  semi-arc DSA = acos(−tan φ · tan δ) with the argument clamped to [−1, 1]; RA = RAMC + *f*·DSA above the horizon, or
+  RAMC + 180° − *f*·(180° − DSA) below it; λ = the ecliptic longitude of that RA. Convergence: a fixed 30-step
+  fixed-point iteration with no tolerance test; the step count was chosen, not derived, and convergence has not been
+  proven — the property tests check the result against the definition (cusps at ⅓ and ⅔ of the semi-arc). Placidus is undefined (`null`) where |latitude| ≥ 90° − ε, the limit at which the
+  iteration's semi-arcs stop existing. Lots: day Fortune = ASC + Moon − Sun,
   Spirit = ASC − Moon + Sun; the formulas swap at night.
 - **Validation:** property tests against the definitions (ascendant on the eastern horizon, midheaven hour angle 0,
   cusps 11/12 at ⅓ and ⅔ semi-arc, ordering and oppositions) for 1950–2050 and latitudes ±60°. Published charts are
@@ -1556,7 +1619,7 @@ verify the sources' own arithmetic before dropping the computed columns.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
   sources consulted.
 
-### A-15 — Hebrew calendar and Jewish observances (T-108, ADR-0025)
+### A-17 — Hebrew calendar and Jewish observances (T-108, ADR-0025; PLAN T-108 labels it "A-15")
 - **Files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/HebrewCalendar.kt`, `JewishObservances.kt`
 - **References (public rule descriptions only):** the fixed Hebrew calendar as codified by Maimonides — 19-year cycle
   with leap years 3, 6, 8, 11, 14, 17, 19; months elapsed ⌊(235y − 234)/19⌋; molad BaHaRaD (day 1, 5 h 204 parts) and
@@ -1569,7 +1632,7 @@ verify the sources' own arithmetic before dropping the computed columns.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-15; **reviewer attestation:** pending — no forbidden
   sources consulted.
 
-### A-16 — Gregorian Easter and movable feasts (T-109, ADR-0025)
+### A-18 — Gregorian Easter and movable feasts (T-109, ADR-0025; PLAN T-109 labels it "A-16")
 - **Files:** `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/GregorianComputus.kt`, `ChristianMovableFeasts.kt`
 - **References:** Jean Meeus, *Astronomical Algorithms* 2nd ed., ch. 8 "Date of Easter" (Gregorian integer algorithm and
   its worked examples); standard liturgical offsets from Easter (Ash Wednesday −46, Palm Sunday −7, Good Friday −2,
