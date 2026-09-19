@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">خوندي بیک اپ یوازې د خپلې پټې جملې سره پرانیستل کېدای شي. Taqvim یې کاپي نه ساتي، نو بیرته نه شي ترلاسه کېدای. داسې پټې جملې سره نوی بیک اپ جوړ کړئ چې یې په یاد ولرئ.</string>
   <string name="about_faq_privacy_q">آیا Taqvim زما معلومات چېرته لېږي؟</string>
   <string name="about_faq_privacy_a">نه. Taqvim حساب او سرور نه لري: ستاسو پېښې، ځایونه او تنظیمات پدې وسیله کې پاتې کېږي. انټرنېټ د هغو جنتري ګډونونو د تازه کولو لپاره کاروي چې تاسو یې اضافه کوئ، او ستاسو د وسیلې د ځای نوم کېدای شي د Android د ځای له خدمت څخه راشي. د ستونزې راپور یوازې هغه وخت جوړېږي چې تاسو یې لېږل غوره کړئ، او د پېښو سرلیکونه، ځایونه، پتې او لینکونه ترې لرې کېږي.</string>
+  <string name="about_crash">وروستی ماتېدل</string>
+  <string name="about_crash_summary">په همدې وسیله کې ساتل کېږي او د ستونزې راپور ته ورګډېږي</string>
+  <string name="about_crash_clear">پاکول</string>
+  <string name="about_crash_none">هېڅ ماتېدل ثبت شوي ندي</string>
+  <string name="about_report_crash">ماتېدل (%1$s):</string>
 </resources>

@@ -29,6 +29,7 @@ class AboutViewModel(
     diagnosticsSource: DiagnosticsSource,
     private val licenseSource: LicenseCatalogSource,
     private val deviceSource: DeviceInfoSource,
+    private val crashSource: CrashReportSource,
 ) : ViewModel() {
     private val pages = MutableStateFlow(listOf(AboutPage.HOME))
     private val minimum = MutableStateFlow(DiagnosticLevel.DEBUG)
@@ -38,6 +39,7 @@ class AboutViewModel(
     private val confirmReport = MutableStateFlow(false)
     private val latestInfo = MutableStateFlow<AboutInfo?>(null)
     private val latestEntries = MutableStateFlow<List<DiagnosticEntry>>(emptyList())
+    private val latestCrashes = MutableStateFlow<List<CrashReport>>(emptyList())
     private val faqTexts = MutableStateFlow<Map<FaqEntry, FaqText>>(emptyMap())
     private val faqQuery = MutableStateFlow("")
     private val faqExpanded = MutableStateFlow<Set<FaqEntry>>(emptySet())
@@ -57,7 +59,10 @@ class AboutViewModel(
             infoSource.about().onEach { latestInfo.value = it },
             diagnosticsSource.recent(DIAGNOSTICS_LIMIT).onEach { latestEntries.value = it },
             minimum,
-        ) { info, entries, level -> DataPart(info, diagnosticsContent(entries, level)) }
+            crashSource.crashes().onEach { latestCrashes.value = it },
+        ) { info, entries, level, crashes ->
+            DataPart(info, diagnosticsContent(entries, level), crashContent(crashes))
+        }
 
     val uiState: StateFlow<AboutUiState> =
         combine(data, navigation) { part, nav ->
@@ -70,6 +75,7 @@ class AboutViewModel(
                 diagnostics = part.diagnostics,
                 confirmReport = nav.confirmReport,
                 faq = nav.faq,
+                crash = part.crash,
             )
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), AboutUiState())
 
@@ -106,6 +112,19 @@ class AboutViewModel(
 
     fun onOpenDiagnostics() {
         push(AboutPage.DIAGNOSTICS)
+    }
+
+    /** Opens the stored crashes of earlier runs. */
+    fun onOpenCrash() {
+        push(AboutPage.CRASH)
+    }
+
+    /** Forgets the stored crashes and returns to the previous page. */
+    fun onClearCrash() {
+        viewModelScope.launch {
+            crashSource.clear()
+            if (pages.value.last() == AboutPage.CRASH) onBack()
+        }
     }
 
     /** Opens the FAQ; [texts] are its questions and answers in the current language, searched by [onFaqQuery]. */
@@ -154,9 +173,17 @@ class AboutViewModel(
             .filter { it.level >= minimum.value }
             .joinToString("\n") { DiagnosticsFormat.line(DiagnosticsRedactor.redact(it)) }
 
-    /** The problem report of the current facts and diagnostics; `null` until the app facts are known. */
+    /** The problem report of the current facts, diagnostics and newest crash; `null` until the app facts are known. */
     fun report(texts: ReportTexts): ProblemReport? =
-        latestInfo.value?.let { ProblemReportComposer.compose(it, deviceSource.device(), latestEntries.value, texts) }
+        latestInfo.value?.let {
+            ProblemReportComposer.compose(
+                it,
+                deviceSource.device(),
+                latestEntries.value,
+                texts,
+                latestCrashes.value.firstOrNull(),
+            )
+        }
 
     /** The confirmed report was handed to the user's app. */
     fun onReportSent() {
@@ -191,6 +218,7 @@ class AboutViewModel(
     private data class DataPart(
         val info: AboutInfo,
         val diagnostics: DiagnosticsContent,
+        val crash: CrashContent,
     )
 
     companion object {
@@ -199,6 +227,14 @@ class AboutViewModel(
         private const val STOP_TIMEOUT_MILLIS = 5_000L
     }
 }
+
+/** Stored crashes as redacted rows, newest first. */
+internal fun crashContent(crashes: List<CrashReport>): CrashContent =
+    CrashContent(
+        crashes
+            .map { CrashRow(DiagnosticsFormat.time(it.atEpochMillis), DiagnosticsRedactor.redact(it.text)) }
+            .toImmutableList(),
+    )
 
 /** Redacted diagnostics rows at or above [minimum]. */
 internal fun diagnosticsContent(

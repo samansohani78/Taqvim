@@ -131,6 +131,7 @@ class FaqScreenTest {
                 { flowOf(emptyList()) },
                 FakeLicenses(AboutFixtures.catalog),
                 { AboutFixtures.device },
+                FakeCrashes(),
             )
         composeRule.setContent { AboutTestTheme { AboutRoute(viewModel = viewModel) } }
 

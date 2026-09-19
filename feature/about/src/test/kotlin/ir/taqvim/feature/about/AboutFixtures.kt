@@ -10,6 +10,8 @@ import ir.taqvim.core.ui.theme.TaqvimTheme
 import ir.taqvim.core.ui.theme.ThemeMode
 import ir.taqvim.core.ui.theme.ThemeSettings
 import java.util.concurrent.atomic.AtomicInteger
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 /** Synthetic app facts, diagnostics with planted personal data, and a small license catalog. */
 internal object AboutFixtures {
@@ -45,6 +47,28 @@ internal object AboutFixtures {
     /** Texts that must never appear in shown, copied, shared or reported diagnostics. */
     val personalData = listOf(TITLE, "Sara", TOKEN, "35.689123", "51.389456", OWNER, "feed.ics")
 
+    /** A stored crash with personal data planted in the same places a real one could carry it. */
+    val crash =
+        CrashReport(
+            atEpochMillis = 1_789_000_100_000,
+            text =
+                """
+                at=1789000100000
+                app=1.0.0 (42, release)
+                android=16 (API 37)
+                device=OnePlus PJZ110
+                locale=fa-IR
+                settings=calendars=PERSIAN+GREGORIAN islamic=IRAN_CRESCENT override=NONE language=fa
+                route=Calendar
+                thread=main
+
+                java.lang.IllegalStateException: no day for "$TITLE" at 35.689123,51.389456
+                    at ir.taqvim.core.calendar.Example.fail(Example.kt:7)
+                    at ir.taqvim.data.backup.Export.write(/data/user/0/ir.taqvim.app/files/$OWNER.ics)
+                    at ir.taqvim.data.events.Fetch.get(https://cal.example.org/feed.ics?token=$TOKEN)
+                """.trimIndent(),
+        )
+
     val apache =
         LicenseInfo(
             id = "Apache-2.0",
@@ -73,7 +97,21 @@ internal object AboutFixtures {
             language = { "Language: $it" },
             diagnostics = { "Diagnostics ($it):" },
             noDiagnostics = "No diagnostics",
+            crash = { "Crash ($it):" },
         )
+}
+
+/** Stored crashes for tests; [clear] forgets them, as the About screen's button does. */
+internal class FakeCrashes(
+    initial: List<CrashReport> = emptyList(),
+) : CrashReportSource {
+    private val state = MutableStateFlow(initial)
+
+    override fun crashes(): Flow<List<CrashReport>> = state
+
+    override suspend fun clear() {
+        state.value = emptyList()
+    }
 }
 
 /** A license source over [catalog] (`null` fails) and [texts] by asset, counting catalog loads. */

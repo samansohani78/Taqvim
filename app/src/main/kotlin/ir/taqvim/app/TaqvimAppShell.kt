@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
 import ir.taqvim.app.di.themeSettings
+import ir.taqvim.app.diagnostics.CrashContext
 import ir.taqvim.app.navigation.AppDestination
 import ir.taqvim.app.navigation.AppNavDisplay
 import ir.taqvim.app.navigation.AppNavigationFrame
@@ -67,6 +68,7 @@ fun TaqvimAppShell(
     }
     val context = LocalContext.current
     val resources = LocalResources.current
+    RecordShownScreen(navigator.backStack.top)
     val snackbar = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val router =
@@ -96,6 +98,16 @@ fun TaqvimAppShell(
             }
         }
     }
+}
+
+/**
+ * Keeps the crash log's facts on the screen now shown (T-1504), so a crash report that arrives without a logcat says
+ * where the app was.
+ */
+@Composable
+private fun RecordShownScreen(shown: AppDestination) {
+    val crashContext = koinInject<CrashContext>()
+    LaunchedEffect(crashContext, shown) { crashContext.onRoute(shown::class.simpleName.orEmpty()) }
 }
 
 /** The writing direction of the current configuration (the app language, T-1501). */

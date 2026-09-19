@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">सुरक्षित बैकअप सिर्फ़ उसके पासफ़्रेज़ से खोला जा सकता है। Taqvim इसकी कोई प्रति नहीं रखता, इसलिए इसे वापस नहीं पाया जा सकता। ऐसे पासफ़्रेज़ के साथ नया बैकअप बनाएं जो आपको याद रहे।</string>
   <string name="about_faq_privacy_q">क्या Taqvim मेरा डेटा कहीं भेजता है?</string>
   <string name="about_faq_privacy_a">नहीं। Taqvim का कोई खाता या सर्वर नहीं है: आपके इवेंट, जगहें और सेटिंग इसी डिवाइस पर रहती हैं। यह आपकी जोड़ी गई कैलेंडर सदस्यताओं को रीफ़्रेश करने के लिए इंटरनेट इस्तेमाल करता है, और आपके डिवाइस स्थान का नाम Android की स्थान सेवा से आ सकता है। समस्या रिपोर्ट तभी बनती है जब आप उसे भेजना चुनें, और उसमें से इवेंट शीर्षक, जगहें, पते और लिंक हटा दिए जाते हैं।</string>
+  <string name="about_crash">पिछला क्रैश</string>
+  <string name="about_crash_summary">इसी डिवाइस पर रखा जाता है और समस्या रिपोर्ट में जोड़ा जाता है</string>
+  <string name="about_crash_clear">मिटाएँ</string>
+  <string name="about_crash_none">कोई क्रैश दर्ज नहीं हुआ</string>
+  <string name="about_report_crash">क्रैश (%1$s):</string>
 </resources>

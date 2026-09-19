@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">Korumalı bir yedek yalnızca parolasıyla açılabilir. Taqvim parolanın kopyasını tutmaz, bu yüzden kurtarılamaz. Hatırlayabileceğiniz bir parolayla yeni bir yedek oluşturun.</string>
   <string name="about_faq_privacy_q">Taqvim verilerimi bir yere gönderiyor mu?</string>
   <string name="about_faq_privacy_a">Hayır. Taqvim\'in hesabı ve sunucusu yoktur: etkinlikleriniz, yerleriniz ve ayarlarınız bu cihazda kalır. İnternet, eklediğiniz takvim aboneliklerini yenilemek için kullanılır ve cihaz konumunuzun adı Android konum hizmetinden gelebilir. Sorun raporu yalnızca siz göndermeyi seçtiğinizde, etkinlik başlıkları, yerler, adresler ve bağlantılar kaldırılarak oluşturulur.</string>
+  <string name="about_crash">Son çökme</string>
+  <string name="about_crash_summary">Bu cihazda saklanır ve sorun raporuna eklenir</string>
+  <string name="about_crash_clear">Temizle</string>
+  <string name="about_crash_none">Hiçbir çökme kaydedilmedi</string>
+  <string name="about_report_crash">Çökme (%1$s):</string>
 </resources>

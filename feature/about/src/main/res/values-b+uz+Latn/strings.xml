@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">Himoyalangan zaxirani faqat uning parol iborasi bilan ochish mumkin. Taqvim uning nusxasini saqlamaydi, shuning uchun uni tiklab boʻlmaydi. Eslab qola oladigan parol iborasi bilan yangi zaxira yarating.</string>
   <string name="about_faq_privacy_q">Taqvim maʼlumotlarimni biror joyga yuboradimi?</string>
   <string name="about_faq_privacy_a">Yoʻq. Taqvimda hisob ham, server ham yoʻq: tadbirlaringiz, joylaringiz va sozlamalaringiz shu qurilmada qoladi. Internet siz qoʻshgan taqvim obunalarini yangilash uchun ishlatiladi, qurilma joylashuvi nomi esa Android joylashuv xizmatidan kelishi mumkin. Muammo hisoboti faqat siz yuborishni tanlaganingizda, tadbir nomlari, joylar, manzillar va havolalar olib tashlangan holda yaratiladi.</string>
+  <string name="about_crash">Oxirgi nosozlik</string>
+  <string name="about_crash_summary">Shu qurilmada saqlanadi va muammo hisobotiga qo‘shiladi</string>
+  <string name="about_crash_clear">Tozalash</string>
+  <string name="about_crash_none">Hech qanday nosozlik qayd etilmadi</string>
+  <string name="about_report_crash">Nosozlik (%1$s):</string>
 </resources>

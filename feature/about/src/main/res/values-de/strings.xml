@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">Eine geschützte Sicherung lässt sich nur mit ihrer Passphrase öffnen. Taqvim speichert keine Kopie davon, daher kann sie nicht wiederhergestellt werden. Erstellen Sie eine neue Sicherung mit einer Passphrase, die Sie sich merken können.</string>
   <string name="about_faq_privacy_q">Sendet Taqvim meine Daten irgendwohin?</string>
   <string name="about_faq_privacy_a">Nein. Taqvim hat kein Konto und keinen Server: Ihre Termine, Orte und Einstellungen bleiben auf diesem Gerät. Die App nutzt das Internet, um die von Ihnen hinzugefügten Kalenderabonnements zu aktualisieren, und der Name Ihres Gerätestandorts kann vom Standortdienst von Android stammen. Ein Problembericht wird nur erstellt, wenn Sie ihn senden möchten, und Termintitel, Orte, Adressen und Links werden daraus entfernt.</string>
+  <string name="about_crash">Letzter Absturz</string>
+  <string name="about_crash_summary">Bleibt auf diesem Gerät und wird der Problemmeldung beigefügt</string>
+  <string name="about_crash_clear">Löschen</string>
+  <string name="about_crash_none">Kein Absturz aufgezeichnet</string>
+  <string name="about_report_crash">Absturz (%1$s):</string>
 </resources>

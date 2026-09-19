@@ -116,4 +116,9 @@
   <string name="about_faq_passphrase_a">保護されたバックアップはそのパスフレーズでのみ開けます。Taqvim は控えを保持しないため復元できません。覚えられるパスフレーズで新しいバックアップを作成してください。</string>
   <string name="about_faq_privacy_q">Taqvim は私のデータをどこかに送信しますか？</string>
   <string name="about_faq_privacy_a">いいえ。Taqvim にはアカウントもサーバーもありません。イベント、場所、設定はこの端末に残ります。追加したカレンダー購読の更新にはインターネットを使い、端末の位置の名称は Android の位置情報サービスから取得されることがあります。問題の報告は送信を選んだときにのみ作成され、イベントのタイトル、場所、住所、リンクは削除されます。</string>
+  <string name="about_crash">最後のクラッシュ</string>
+  <string name="about_crash_summary">この端末に保存され、問題レポートに追加されます</string>
+  <string name="about_crash_clear">消去</string>
+  <string name="about_crash_none">クラッシュは記録されていません</string>
+  <string name="about_report_crash">クラッシュ（%1$s）:</string>
 </resources>

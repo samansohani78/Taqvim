@@ -116,4 +116,9 @@
   <string name="about_faq_passphrase_a">受保护的备份只能用其口令打开。Taqvim 不保存口令副本，因此无法找回。请使用你能记住的口令重新创建备份。</string>
   <string name="about_faq_privacy_q">Taqvim 会把我的数据发送到别处吗？</string>
   <string name="about_faq_privacy_a">不会。Taqvim 没有账号也没有服务器：你的事件、地点和设置都保留在本设备上。它使用网络刷新你添加的日历订阅，设备位置的名称可能来自 Android 的定位服务。问题报告只有在你选择发送时才会生成，并且会移除事件标题、地点、地址和链接。</string>
+  <string name="about_crash">最近一次崩溃</string>
+  <string name="about_crash_summary">仅保存在本设备，并会加入问题报告</string>
+  <string name="about_crash_clear">清除</string>
+  <string name="about_crash_none">未记录到崩溃</string>
+  <string name="about_report_crash">崩溃（%1$s）：</string>
 </resources>

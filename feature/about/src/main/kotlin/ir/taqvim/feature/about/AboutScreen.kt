@@ -44,11 +44,12 @@ fun AboutScreen(
     ScreenSurface(modifier, topBar = { AboutTopBar(state, actions) }) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
             when (state.page) {
-                AboutPage.HOME -> AboutHome(state.info, actions)
+                AboutPage.HOME -> AboutHome(state.info, state.crash, actions)
                 AboutPage.LICENSES -> LicensesPage(state.licenses, actions)
                 AboutPage.LICENSE_TEXT -> LicenseTextPage(state.licenseText, actions)
                 AboutPage.DATA_SOURCES -> DataSourcesPage(actions)
                 AboutPage.DIAGNOSTICS -> DiagnosticsPage(state.diagnostics, actions)
+                AboutPage.CRASH -> CrashPage(state.crash, actions)
                 AboutPage.FAQ -> FaqPage(state.faq, actions)
             }
         }
@@ -86,6 +87,10 @@ private fun AboutTopBar(
                 stringResource(R.string.about_diagnostics)
             }
 
+            AboutPage.CRASH -> {
+                stringResource(R.string.about_crash)
+            }
+
             AboutPage.FAQ -> {
                 stringResource(R.string.about_faq)
             }
@@ -102,6 +107,7 @@ private fun AboutTopBar(
 @Composable
 private fun AboutHome(
     info: AboutInfo?,
+    crash: CrashContent,
     actions: AboutActions,
 ) {
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
@@ -127,6 +133,12 @@ private fun AboutHome(
         }
         AboutRow(stringResource(R.string.about_diagnostics), stringResource(R.string.about_diagnostics_summary)) {
             actions.onOpenDiagnostics()
+        }
+        // Only a run that crashed has anything to show, so the entry stays hidden until then.
+        if (crash.rows.isNotEmpty()) {
+            AboutRow(stringResource(R.string.about_crash), stringResource(R.string.about_crash_summary)) {
+                actions.onOpenCrash()
+            }
         }
         AboutRow(stringResource(R.string.about_report), stringResource(R.string.about_report_summary)) {
             actions.onRequestReport()

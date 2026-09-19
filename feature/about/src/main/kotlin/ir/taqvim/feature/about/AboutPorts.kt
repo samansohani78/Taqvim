@@ -53,6 +53,23 @@ fun interface DiagnosticsSource {
     fun recent(limit: Int): Flow<List<DiagnosticEntry>>
 }
 
+/**
+ * A crash of an earlier run, kept in app-private storage (T-1504). [text] is the whole stored record — the facts of
+ * the run and the stack trace — and is redacted like every other diagnostic before it is shown or reported.
+ */
+data class CrashReport(
+    val atEpochMillis: Long,
+    val text: String,
+)
+
+/** The crashes stored since the user last cleared them, newest first. */
+interface CrashReportSource {
+    fun crashes(): Flow<List<CrashReport>>
+
+    /** Forgets every stored crash. */
+    suspend fun clear()
+}
+
 /** Device facts included in a problem report: no identifiers, only the maker, model and Android version. */
 data class DeviceInfo(
     val manufacturer: String,

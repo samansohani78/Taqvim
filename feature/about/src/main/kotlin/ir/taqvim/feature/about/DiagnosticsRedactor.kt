@@ -48,7 +48,9 @@ object DiagnosticsRedactor {
 
 /** Plain-text form of diagnostics entries, one line each. */
 internal object DiagnosticsFormat {
-    fun time(entry: DiagnosticEntry): String = Instant.fromEpochMilliseconds(entry.atEpochMillis).toString()
+    fun time(atEpochMillis: Long): String = Instant.fromEpochMilliseconds(atEpochMillis).toString()
+
+    fun time(entry: DiagnosticEntry): String = time(entry.atEpochMillis)
 
     fun line(entry: DiagnosticEntry): String = "${time(entry)} ${entry.level} ${entry.tag}: ${entry.message}"
 }

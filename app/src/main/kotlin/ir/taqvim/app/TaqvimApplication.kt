@@ -8,11 +8,14 @@ import android.app.Application
 import androidx.work.Configuration
 import ir.taqvim.app.automation.AppShortcuts
 import ir.taqvim.app.automation.LauncherIconSwitcher
+import ir.taqvim.app.di.AppBuild
 import ir.taqvim.app.di.AppLanguageSync
 import ir.taqvim.app.di.RestoreRecovery
 import ir.taqvim.app.di.SurfaceRefreshWatcher
 import ir.taqvim.app.di.WidgetTriggerWatcher
-import ir.taqvim.app.di.appModule
+import ir.taqvim.app.diagnostics.CrashDiagnostics
+import ir.taqvim.app.diagnostics.CrashSettingsWatcher
+import ir.taqvim.app.diagnostics.startupModules
 import ir.taqvim.data.events.ics.SubscriptionRefreshWorkerFactory
 import ir.taqvim.data.scheduler.AlarmInputWatcher
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
@@ -45,9 +48,11 @@ class TaqvimApplication :
     override fun onCreate() {
         super.onCreate()
         DebugStrictMode.install(BuildConfig.DEBUG)
+        // Installed before the DI graph, so a failure while it is built is kept for the next problem report (T-1504).
+        val crash = CrashDiagnostics.install(this, AppBuild.current().summary)
         startKoin {
             androidContext(this@TaqvimApplication)
-            modules(appModule)
+            modules(startupModules(crash))
         }
         val recovery = get<RestoreRecovery>()
         val watcher = get<PreferenceChangeWatcher>()
@@ -55,6 +60,7 @@ class TaqvimApplication :
         val widgetTriggers = get<WidgetTriggerWatcher>()
         val languageSync = get<AppLanguageSync>()
         val surfaces = get<SurfaceRefreshWatcher>()
+        val crashFacts = get<CrashSettingsWatcher>()
         processScope.launch {
             // Everything that reads or schedules from the stores starts only once they are settled (ADR-0032).
             recovery.run()
@@ -63,6 +69,7 @@ class TaqvimApplication :
             launch { widgetTriggers.watch() }
             launch { languageSync.run() }
             launch { surfaces.watch() }
+            launch { crashFacts.watch() }
         }
         val launcherIcon = get<LauncherIconSwitcher>()
         processScope.launch { AppShortcuts.publish(this@TaqvimApplication, launcherIcon.enabledEntry()) }

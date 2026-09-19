@@ -131,4 +131,9 @@
   <string name="about_faq_passphrase_a">لا يمكن فتح النسخة الاحتياطية المحمية إلا بعبارة مرورها. لا يحتفظ Taqvim بنسخة منها، لذا لا يمكن استرجاعها. أنشئ نسخة احتياطية جديدة بعبارة مرور يمكنك تذكرها.</string>
   <string name="about_faq_privacy_q">هل يرسل Taqvim بياناتي إلى أي مكان؟</string>
   <string name="about_faq_privacy_a">لا. ليس لـTaqvim حساب ولا خادم: تبقى أحداثك وأماكنك وإعداداتك على هذا الجهاز. يستخدم الإنترنت لتحديث اشتراكات التقويم التي تضيفها، وقد يأتي اسم موقع جهازك من خدمة الموقع في Android. لا يُنشأ تقرير المشكلة إلا عندما تختار إرساله، مع حذف عناوين الأحداث والأماكن والعناوين البريدية والروابط.</string>
+  <string name="about_crash">آخر تعطل</string>
+  <string name="about_crash_summary">يُحفظ على هذا الجهاز ويُضاف إلى تقرير المشكلة</string>
+  <string name="about_crash_clear">مسح</string>
+  <string name="about_crash_none">لم يُسجَّل أي تعطل</string>
+  <string name="about_report_crash">تعطل (%1$s):</string>
 </resources>

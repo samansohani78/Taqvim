@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">सुरक्षित ब्याकअप त्यसको पासफ्रेजबाट मात्र खोल्न सकिन्छ। Taqvim ले त्यसको प्रति राख्दैन, त्यसैले पुनः प्राप्त गर्न सकिँदैन। सम्झन सकिने पासफ्रेजसहित नयाँ ब्याकअप बनाउनुहोस्।</string>
   <string name="about_faq_privacy_q">Taqvim ले मेरो डाटा कतै पठाउँछ?</string>
   <string name="about_faq_privacy_a">पठाउँदैन। Taqvim को कुनै खाता वा सर्भर छैन: तपाईंका कार्यक्रम, ठाउँ र सेटिङ यसै यन्त्रमा रहन्छन्। तपाईंले थप्नुभएका पात्रो सदस्यता ताजा गर्न इन्टरनेट प्रयोग गर्छ, र तपाईंको यन्त्र स्थानको नाम Android को स्थान सेवाबाट आउन सक्छ। समस्या रिपोर्ट तपाईंले पठाउन रोज्दा मात्र बनाइन्छ, कार्यक्रम शीर्षक, ठाउँ, ठेगाना र लिङ्क हटाएर।</string>
+  <string name="about_crash">पछिल्लो क्र्यास</string>
+  <string name="about_crash_summary">यही उपकरणमा राखिन्छ र समस्या प्रतिवेदनमा थपिन्छ</string>
+  <string name="about_crash_clear">हटाउनुहोस्</string>
+  <string name="about_crash_none">कुनै क्र्यास अभिलेख भएन</string>
+  <string name="about_report_crash">क्र्यास (%1$s):</string>
 </resources>

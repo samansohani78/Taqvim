@@ -15,6 +15,7 @@ enum class AboutPage {
     LICENSE_TEXT,
     DATA_SOURCES,
     DIAGNOSTICS,
+    CRASH,
     FAQ,
 }
 
@@ -39,6 +40,19 @@ data class AboutUiState(
     val confirmReport: Boolean = false,
     /** The in-app FAQ (T-1901). */
     val faq: FaqContent = FaqContent(),
+    /** Crashes of earlier runs kept on this device; empty hides the entry. */
+    val crash: CrashContent = CrashContent(),
+)
+
+/** Stored crashes, already redacted, newest first. */
+data class CrashContent(
+    val rows: ImmutableList<CrashRow> = persistentListOf(),
+)
+
+/** One stored crash: when it happened and its redacted text. */
+data class CrashRow(
+    val time: String,
+    val text: String,
 )
 
 /** The open-source license list. */
@@ -84,6 +98,8 @@ data class AboutActions(
     val onOpenDataLicense: () -> Unit = {},
     val onOpenDataSources: () -> Unit = {},
     val onOpenDiagnostics: () -> Unit = {},
+    val onOpenCrash: () -> Unit = {},
+    val onClearCrash: () -> Unit = {},
     val onMinimumLevel: (DiagnosticLevel) -> Unit = {},
     val onOpenLink: (String) -> Unit = {},
     val onCopyDiagnostics: () -> Unit = {},

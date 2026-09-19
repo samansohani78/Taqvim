@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">Paşkopiyeke parastî tenê bi şîfreya xwe vedibe. Taqvim kopiyekê wê nahêle, ji ber vê yekê nayê vegerandin. Paşkopiyeke nû bi şîfreyeke ku tu dikarî bi bîr bînî çêke.</string>
   <string name="about_faq_privacy_q">Taqvim daneyên min dişîne derekê?</string>
   <string name="about_faq_privacy_a">Na. Taqvim ne hesab û ne jî pêşkêşker heye: bûyer, cih û mîhengên te li ser vê amûrê dimînin. Ew înternetê ji bo nûkirina abonetiyên salnameyê yên ku tu zêde dikî bi kar tîne, û dibe ku navê cihê amûra te ji xizmeta cihê ya Android were. Rapora pirsgirêkê tenê dema tu biryar bidî ku bişînî tê çêkirin, bi rakirina sernavên bûyeran, cih, navnîşan û girêdanan.</string>
+  <string name="about_crash">دوایین تێکچوون</string>
+  <string name="about_crash_summary">لەم ئامێرەدا دەمێنێتەوە و بۆ ڕاپۆرتی کێشە زیاد دەکرێت</string>
+  <string name="about_crash_clear">سڕینەوە</string>
+  <string name="about_crash_none">هیچ تێکچوونێک تۆمار نەکراوە</string>
+  <string name="about_report_crash">تێکچوون (%1$s):</string>
 </resources>

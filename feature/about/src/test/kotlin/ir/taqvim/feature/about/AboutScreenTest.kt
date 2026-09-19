@@ -9,6 +9,7 @@ import android.content.ClipboardManager
 import android.content.ComponentName
 import android.content.Intent
 import android.content.IntentFilter
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasScrollAction
@@ -48,13 +49,14 @@ class AboutScreenTest {
         composeRule.setContent { AboutTestTheme { AboutScreen(state, actions) } }
     }
 
-    private fun route(): AboutViewModel {
+    private fun route(crashes: CrashReportSource = FakeCrashes()): AboutViewModel {
         val viewModel =
             AboutViewModel(
                 { flowOf(AboutFixtures.info) },
                 { flowOf(AboutFixtures.entries) },
                 FakeLicenses(AboutFixtures.catalog),
                 { AboutFixtures.device },
+                crashes,
             )
         composeRule.setContent { AboutTestTheme { AboutRoute(viewModel = viewModel) } }
         return viewModel
@@ -251,5 +253,34 @@ class AboutScreenTest {
         val text = clip.getItemAt(0).text.toString()
         assertEquals(4, text.lines().size)
         AboutFixtures.personalData.forEach { assertFalse("clipboard contains $it", text.contains(it)) }
+    }
+
+    @Test
+    fun `the crash entry appears only after a crash and clearing forgets it`() {
+        val crashes = FakeCrashes(listOf(AboutFixtures.crash))
+        route(crashes)
+        composeRule.waitForIdle()
+
+        composeRule.onNodeWithText("Last crash").performScrollTo().performClick()
+        composeRule.waitForIdle()
+
+        // The stored record is shown redacted, with the facts that identify the run.
+        composeRule.onNodeWithText("device=OnePlus PJZ110", substring = true).assertIsDisplayed()
+        AboutFixtures.personalData.forEach {
+            composeRule.onAllNodesWithText(it, substring = true).assertCountEquals(0)
+        }
+
+        composeRule.onNodeWithText("Clear").performClick()
+        composeRule.waitForIdle()
+
+        composeRule.onAllNodesWithText("Last crash").assertCountEquals(0)
+    }
+
+    @Test
+    fun `a run that never crashed has no crash entry`() {
+        route()
+        composeRule.waitForIdle()
+
+        composeRule.onAllNodesWithText("Last crash").assertCountEquals(0)
     }
 }

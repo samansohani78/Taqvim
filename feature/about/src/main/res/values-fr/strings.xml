@@ -122,4 +122,9 @@
   <string name="about_faq_passphrase_a">Une sauvegarde protégée ne peut être ouverte qu\'avec sa phrase secrète. Taqvim n\'en garde aucune copie, elle ne peut donc pas être récupérée. Créez une nouvelle sauvegarde avec une phrase secrète dont vous vous souviendrez.</string>
   <string name="about_faq_privacy_q">Taqvim envoie-t-il mes données quelque part ?</string>
   <string name="about_faq_privacy_a">Non. Taqvim n\'a ni compte ni serveur : vos événements, lieux et paramètres restent sur cet appareil. L\'application utilise Internet pour actualiser les abonnements de calendrier que vous ajoutez, et le nom de la position de votre appareil peut provenir du service de localisation d\'Android. Un rapport de problème n\'est créé que si vous choisissez de l\'envoyer, sans les titres d\'événements, lieux, adresses et liens.</string>
+  <string name="about_crash">Dernier plantage</string>
+  <string name="about_crash_summary">Conservé sur cet appareil et ajouté au rapport de problème</string>
+  <string name="about_crash_clear">Effacer</string>
+  <string name="about_crash_none">Aucun plantage enregistré</string>
+  <string name="about_report_crash">Plantage (%1$s) :</string>
 </resources>

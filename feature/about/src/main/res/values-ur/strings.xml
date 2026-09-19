@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">محفوظ بیک اپ صرف اس کے پاس فریز سے کھل سکتا ہے۔ Taqvim اس کی کوئی نقل نہیں رکھتا، اس لیے اسے بازیافت نہیں کیا جا سکتا۔ ایسے پاس فریز کے ساتھ نیا بیک اپ بنائیں جو آپ کو یاد رہے۔</string>
   <string name="about_faq_privacy_q">کیا Taqvim میرا ڈیٹا کہیں بھیجتا ہے؟</string>
   <string name="about_faq_privacy_a">نہیں۔ Taqvim کا کوئی اکاؤنٹ یا سرور نہیں: آپ کے واقعات، مقامات اور ترتیبات اسی آلے پر رہتے ہیں۔ یہ آپ کی شامل کردہ کیلنڈر سبسکرپشنز تازہ کرنے کے لیے انٹرنیٹ استعمال کرتا ہے، اور آپ کے آلے کے مقام کا نام Android کی مقام سروس سے آ سکتا ہے۔ مسئلے کی رپورٹ صرف تب بنتی ہے جب آپ اسے بھیجنا چاہیں، اور اس سے واقعات کے عنوانات، مقامات، پتے اور لنکس ہٹا دیے جاتے ہیں۔</string>
+  <string name="about_crash">آخری کریش</string>
+  <string name="about_crash_summary">اسی ڈیوائس پر محفوظ رہتا ہے اور مسئلے کی رپورٹ میں شامل کیا جاتا ہے</string>
+  <string name="about_crash_clear">صاف کریں</string>
+  <string name="about_crash_none">کوئی کریش ریکارڈ نہیں ہوا</string>
+  <string name="about_report_crash">کریش (%1$s):</string>
 </resources>

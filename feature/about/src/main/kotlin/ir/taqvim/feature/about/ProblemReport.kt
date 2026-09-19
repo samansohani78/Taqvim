@@ -20,18 +20,27 @@ data class ReportTexts(
     val language: (String) -> String,
     val diagnostics: (count: Int) -> String,
     val noDiagnostics: String,
+    /** Heading of the stored crash, given the time it happened. */
+    val crash: (time: String) -> String,
 )
 
-/** Builds problem reports: app, device and language facts plus the newest diagnostics, redacted (F-16). */
+/**
+ * Builds problem reports: app, device and language facts, the newest stored crash and the newest diagnostics, all
+ * redacted (F-16).
+ */
 object ProblemReportComposer {
     /** Most diagnostics entries a report carries. */
     const val MAX_ENTRIES: Int = 200
+
+    /** Longest crash text a report carries; a longer one is cut at its start, which holds the failure itself. */
+    const val MAX_CRASH_CHARS: Int = 4_000
 
     fun compose(
         info: AboutInfo,
         device: DeviceInfo,
         entries: List<DiagnosticEntry>,
         texts: ReportTexts,
+        crash: CrashReport? = null,
     ): ProblemReport {
         val facts =
             listOf(
@@ -43,6 +52,16 @@ object ProblemReportComposer {
         val lines = entries.take(MAX_ENTRIES).map { DiagnosticsFormat.line(DiagnosticsRedactor.redact(it)) }
         val diagnostics =
             if (lines.isEmpty()) listOf(texts.noDiagnostics) else listOf(texts.diagnostics(lines.size)) + lines
-        return ProblemReport(info.links.supportEmail, texts.subject, (facts + "" + diagnostics).joinToString("\n"))
+        val body = facts + crashSection(crash, texts) + "" + diagnostics
+        return ProblemReport(info.links.supportEmail, texts.subject, body.joinToString("\n"))
+    }
+
+    private fun crashSection(
+        crash: CrashReport?,
+        texts: ReportTexts,
+    ): List<String> {
+        if (crash == null) return emptyList()
+        val text = DiagnosticsRedactor.redact(crash.text).take(MAX_CRASH_CHARS)
+        return listOf("", texts.crash(DiagnosticsFormat.time(crash.atEpochMillis)), text)
     }
 }

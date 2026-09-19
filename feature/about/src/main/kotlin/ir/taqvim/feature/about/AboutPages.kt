@@ -82,6 +82,39 @@ internal fun LicensesPage(
     }
 }
 
+/** The crashes of earlier runs (T-1504), redacted like the diagnostics, with a button that forgets them. */
+@Composable
+internal fun CrashPage(
+    content: CrashContent,
+    actions: AboutActions,
+) {
+    if (content.rows.isEmpty()) {
+        EmptyState(title = stringResource(R.string.about_crash_none))
+        return
+    }
+    LazyColumn(Modifier.fillMaxSize()) {
+        item {
+            OutlinedButton(onClick = actions.onClearCrash, modifier = Modifier.padding(16.dp)) {
+                Text(stringResource(R.string.about_crash_clear))
+            }
+        }
+        items(content.rows, key = { it.time }) { row ->
+            SelectionContainer {
+                Column(Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+                    Text(row.time, style = MaterialTheme.typography.labelLarge.ltr())
+                    Text(
+                        row.text,
+                        style =
+                            MaterialTheme.typography.bodySmall
+                                .copy(fontFamily = FontFamily.Monospace)
+                                .ltr(),
+                    )
+                }
+            }
+        }
+    }
+}
+
 @Composable
 internal fun LicenseTextPage(
     content: LicenseTextContent?,

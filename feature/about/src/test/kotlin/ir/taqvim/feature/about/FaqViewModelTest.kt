@@ -40,6 +40,7 @@ class FaqViewModelTest {
             { MutableStateFlow(emptyList()) },
             FakeLicenses(AboutFixtures.catalog),
             { AboutFixtures.device },
+            FakeCrashes(),
         )
     }
 

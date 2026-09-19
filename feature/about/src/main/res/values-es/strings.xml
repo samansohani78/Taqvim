@@ -122,4 +122,9 @@
   <string name="about_faq_passphrase_a">Una copia protegida solo se puede abrir con su frase de acceso. Taqvim no guarda ninguna copia de ella, así que no se puede recuperar. Haz una nueva copia con una frase de acceso que puedas recordar.</string>
   <string name="about_faq_privacy_q">¿Taqvim envía mis datos a algún sitio?</string>
   <string name="about_faq_privacy_a">No. Taqvim no tiene cuenta ni servidor: tus eventos, lugares y ajustes se quedan en este dispositivo. Usa internet para actualizar las suscripciones de calendario que añadas, y el nombre de la ubicación del dispositivo puede proceder del servicio de ubicación de Android. Solo se crea un informe de problema cuando decides enviarlo, sin títulos de eventos, lugares, direcciones ni enlaces.</string>
+  <string name="about_crash">Último fallo</string>
+  <string name="about_crash_summary">Se guarda en este dispositivo y se añade al informe de problema</string>
+  <string name="about_crash_clear">Borrar</string>
+  <string name="about_crash_none">No se registró ningún fallo</string>
+  <string name="about_report_crash">Fallo (%1$s):</string>
 </resources>

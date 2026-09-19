@@ -78,6 +78,8 @@ private fun aboutActions(
         onOpenDataLicense = viewModel::onOpenDataLicense,
         onOpenDataSources = viewModel::onOpenDataSources,
         onOpenDiagnostics = viewModel::onOpenDiagnostics,
+        onOpenCrash = viewModel::onOpenCrash,
+        onClearCrash = viewModel::onClearCrash,
         onMinimumLevel = viewModel::onMinimumLevel,
         onOpenLink = { url -> AboutIntents.start(context, AboutIntents.view(url)) },
         onCopyDiagnostics = {
@@ -113,6 +115,7 @@ internal fun reportTexts(resources: Resources): ReportTexts =
         language = { resources.getString(R.string.about_report_language, it) },
         diagnostics = { resources.getString(R.string.about_report_diagnostics, it) },
         noDiagnostics = resources.getString(R.string.about_report_no_diagnostics),
+        crash = { resources.getString(R.string.about_report_crash, it) },
     )
 
 /** Intents of the About screen; nothing is uploaded, every report goes through an app the user picks. */

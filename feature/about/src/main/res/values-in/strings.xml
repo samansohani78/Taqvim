@@ -116,4 +116,9 @@
   <string name="about_faq_passphrase_a">Cadangan terlindungi hanya dapat dibuka dengan frasa sandinya. Taqvim tidak menyimpan salinannya, sehingga tidak dapat dipulihkan. Buat cadangan baru dengan frasa sandi yang dapat Anda ingat.</string>
   <string name="about_faq_privacy_q">Apakah Taqvim mengirim data saya ke suatu tempat?</string>
   <string name="about_faq_privacy_a">Tidak. Taqvim tidak punya akun dan server: acara, tempat, dan setelan Anda tetap di perangkat ini. Internet dipakai untuk menyegarkan langganan kalender yang Anda tambahkan, dan nama lokasi perangkat Anda bisa berasal dari layanan lokasi Android. Laporan masalah hanya dibuat saat Anda memilih mengirimnya, dengan judul acara, tempat, alamat, dan tautan dihapus.</string>
+  <string name="about_crash">Kerusakan terakhir</string>
+  <string name="about_crash_summary">Disimpan di perangkat ini dan ditambahkan ke laporan masalah</string>
+  <string name="about_crash_clear">Hapus</string>
+  <string name="about_crash_none">Tidak ada kerusakan yang tercatat</string>
+  <string name="about_report_crash">Kerusakan (%1$s):</string>
 </resources>

@@ -36,6 +36,7 @@ class AboutViewModelTest {
     private fun TestScope.viewModel(
         licenses: LicenseCatalogSource = FakeLicenses(AboutFixtures.catalog, apacheText),
         entries: MutableStateFlow<List<DiagnosticEntry>> = MutableStateFlow(AboutFixtures.entries),
+        crashes: CrashReportSource = FakeCrashes(),
     ): AboutViewModel {
         Dispatchers.setMain(StandardTestDispatcher(testScheduler))
         return AboutViewModel(
@@ -43,6 +44,7 @@ class AboutViewModelTest {
             { entries },
             licenses,
             { AboutFixtures.device },
+            crashes,
         )
     }
 

@@ -133,4 +133,9 @@
   <string name="about_faq_passphrase_a">A protected backup can be opened only with its passphrase. Taqvim keeps no copy of it, so it cannot be recovered. Make a new backup with a passphrase you can remember.</string>
   <string name="about_faq_privacy_q">Does Taqvim send my data anywhere?</string>
   <string name="about_faq_privacy_a">No. Taqvim has no account and no server: your events, places and settings stay on this device. It uses the internet to refresh the calendar subscriptions you add, and the name of your device location may come from the location service of Android. A problem report is created only when you choose to send it, with event titles, places, addresses and links removed.</string>
+  <string name="about_crash">Last crash</string>
+  <string name="about_crash_summary">Kept on this device and added to a problem report</string>
+  <string name="about_crash_clear">Clear</string>
+  <string name="about_crash_none">No crash was recorded</string>
+  <string name="about_report_crash">Crash (%1$s):</string>
 </resources>

@@ -50,6 +50,9 @@ internal data class AppBuild(
     val versionCode: Long,
     val buildType: String,
 ) {
+    /** One line for a crash record, e.g. `1.0.0 (10099, release)`. */
+    val summary: String get() = "$versionName ($versionCode, $buildType)"
+
     companion object {
         /** The facts Gradle wrote into `BuildConfig` for this build. */
         fun current(): AppBuild =

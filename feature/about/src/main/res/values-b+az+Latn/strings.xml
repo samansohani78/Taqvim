@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">Qorunan ehtiyat nüsxə yalnız öz parol ifadəsi ilə açıla bilər. Taqvim onun surətini saxlamır, ona görə bərpa etmək olmur. Yadda saxlaya biləcəyiniz parol ifadəsi ilə yeni ehtiyat nüsxə yaradın.</string>
   <string name="about_faq_privacy_q">Taqvim məlumatlarımı hara isə göndərir?</string>
   <string name="about_faq_privacy_a">Xeyr. Taqvim-in hesabı və serveri yoxdur: tədbirləriniz, yerləriniz və ayarlarınız bu cihazda qalır. İnternet əlavə etdiyiniz təqvim abunəliklərini yeniləmək üçün istifadə olunur, cihaz məkanınızın adı isə Android-in məkan xidmətindən gələ bilər. Problem hesabatı yalnız siz göndərməyi seçəndə, tədbir adları, yerlər, ünvanlar və keçidlər silinməklə yaradılır.</string>
+  <string name="about_crash">Son çökmə</string>
+  <string name="about_crash_summary">Bu cihazda saxlanılır və problem hesabatına əlavə olunur</string>
+  <string name="about_crash_clear">Təmizlə</string>
+  <string name="about_crash_none">Heç bir çökmə qeyd olunmayıb</string>
+  <string name="about_report_crash">Çökmə (%1$s):</string>
 </resources>

@@ -119,4 +119,9 @@
   <string name="about_faq_passphrase_a">সুরক্ষিত ব্যাকআপ শুধু তার পাসফ্রেজ দিয়েই খোলা যায়। Taqvim এর কোনো কপি রাখে না, তাই এটি পুনরুদ্ধার করা যায় না। মনে রাখতে পারবেন এমন পাসফ্রেজ দিয়ে নতুন ব্যাকআপ তৈরি করুন।</string>
   <string name="about_faq_privacy_q">Taqvim কি আমার ডেটা কোথাও পাঠায়?</string>
   <string name="about_faq_privacy_a">না। Taqvim-এর কোনো অ্যাকাউন্ট বা সার্ভার নেই: আপনার ইভেন্ট, স্থান ও সেটিংস এই ডিভাইসেই থাকে। আপনার যোগ করা ক্যালেন্ডার সাবস্ক্রিপশন রিফ্রেশ করতে এটি ইন্টারনেট ব্যবহার করে, এবং আপনার ডিভাইসের অবস্থানের নাম Android-এর অবস্থান পরিষেবা থেকে আসতে পারে। সমস্যার রিপোর্ট শুধু আপনি পাঠাতে চাইলে তৈরি হয়, ইভেন্টের শিরোনাম, স্থান, ঠিকানা ও লিংক সরিয়ে।</string>
+  <string name="about_crash">সর্বশেষ ক্র্যাশ</string>
+  <string name="about_crash_summary">এই ডিভাইসেই রাখা হয় এবং সমস্যা প্রতিবেদনে যোগ করা হয়</string>
+  <string name="about_crash_clear">মুছুন</string>
+  <string name="about_crash_none">কোনো ক্র্যাশ রেকর্ড হয়নি</string>
+  <string name="about_report_crash">ক্র্যাশ (%1$s):</string>
 </resources>
