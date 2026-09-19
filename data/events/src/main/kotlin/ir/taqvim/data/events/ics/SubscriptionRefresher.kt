@@ -136,9 +136,8 @@ class SubscriptionRefresher(
     private val policy: SubscriptionRefreshPolicy = SubscriptionRefreshPolicy(),
     private val awaitReady: suspend () -> Unit = {},
 ) {
-    /** One lock per subscription id, kept for the life of this refresher (subscriptions are few). */
-    private val locksGuard = Mutex()
-    private val locks = mutableMapOf<Long, Mutex>()
+    /** Serialises the refreshes of one subscription; a fixed set, so deleted subscriptions leave nothing behind. */
+    private val locks = StripedLocks()
 
     /** Refreshes every due subscription. */
     suspend fun refreshDue(): List<RefreshOutcome> {
@@ -242,6 +241,5 @@ class SubscriptionRefresher(
         }
     }
 
-    private suspend fun lockFor(subscriptionId: Long): Mutex =
-        locksGuard.withLock { locks.getOrPut(subscriptionId) { Mutex() } }
+    private fun lockFor(subscriptionId: Long): Mutex = locks.lockFor(subscriptionId)
 }
