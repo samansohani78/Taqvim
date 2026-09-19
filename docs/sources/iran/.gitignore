@@ -1,18 +1,72 @@
-# Third-party papers: cited in docs/PROVENANCE.md and listed with their SHA-256 in MANIFEST.md, not archived.
-Abdolahi.pdf
-Akrami.pdf
-Ghasemlu.pdf
-sayyad.pdf
-1.pdf
-2.pdf
-3.pdf
-4.pdf
-5.pdf
-6.pdf
-7.pdf
-8.pdf
-9.pdf
-10.pdf
-11.pdf
-12.pdf
-13.pdf
+# Allow-list (REVIEW R12): nothing in this directory is tracked unless it is named below as data.
+# Every file here is ignored by default, so a paper or any other new document cannot be staged by accident;
+# a new data file needs its MANIFEST.md row (with a data kind, not `paper`) and a line here. Papers are cited in
+# docs/PROVENANCE.md and listed with their SHA-256 in MANIFEST.md, but not archived (third-party copyright, as
+# decided for the van Gent pages on 2026-09-15). tools/sources/iran/test_official_calendar_import.py checks that
+# this list and the manifest's data rows agree, that papers stay ignored, and that every tracked file is data.
+*
+!.gitignore
+!MANIFEST.md
+!Ahvaz1405.pdf
+!Arak1405.pdf
+!Ardebil1405.pdf
+!BandarAbbas1405.pdf
+!Birjand1405.pdf
+!Bojnord1405.pdf
+!Boshehr1405.pdf
+!Calendar-1381.pdf
+!Calendar-1382.pdf
+!Calendar-1383.pdf
+!Calendar-1384.pdf
+!Calendar-1385.pdf
+!Calendar-1386.pdf
+!Calendar-1387.pdf
+!Calendar-1388.pdf
+!Calendar-1389.pdf
+!Calendar-1390.pdf
+!Calendar-1391.pdf
+!Calendar-1392.pdf
+!Calendar-1393.pdf
+!Calendar-1394.pdf
+!Calendar-1395.pdf
+!Calendar-1396.pdf
+!Calendar-1397.pdf
+!Calendar-1398.pdf
+!Calendar-1399.pdf
+!Calendar-1400.pdf
+!Calendar-1401.pdf
+!Calendar-1402.pdf
+!Calendar-1403.pdf
+!Calendar-1404.pdf
+!Calendar-1405.pdf
+!Gorgan1405.pdf
+!Hamedan1405.pdf
+!Holiday-1405.pdf
+!Ilam1405.pdf
+!Isfahan1405.pdf
+!Kabise Shamsi 1206-1498.pdf
+!Karaj1405.pdf
+!Kerman1405pdf.pdf
+!Kermanshah1405.pdf
+!Khorramabad1405.pdf
+!Mashhad1405.pdf
+!Orumyeh1405.pdf
+!Qazvin1405.pdf
+!Qom1405.pdf
+!Rasht1405.pdf
+!Sanandaj1405.pdf
+!Sari1405.pdf
+!Semnan1405.pdf
+!Shahrkord1405.pdf
+!Shiraz1405.pdf
+!Tabriz1405.pdf
+!Tehran1405.pdf
+!Yasooj1405.pdf
+!Yazd1405.pdf
+!Zahedan1405.pdf
+!Zanjan1405.pdf
+!abstract-1405.pdf
+!century15th.pdf
+!tahvil-sal.txt
+!اذان صبح در شب_های سفید.pdf
+!اطلاعیه ماه گرفتگی 16 شهریور 1404.pdf

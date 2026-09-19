@@ -186,6 +186,55 @@ class ManifestTest(unittest.TestCase):
                 self.assertEqual("paper", row["Kind"], name)
                 self.assertIn("not archived", row["Content"], name)
 
+    # REVIEW R12: papers are cited, not archived, and the exclusion is an allow-list rather than a list of names.
+
+    @staticmethod
+    def data_names():
+        return {name for name, row in pdf.manifest_rows().items() if row["Kind"] != "paper"}
+
+    @staticmethod
+    def allow_listed():
+        lines = (MANIFEST.parent / ".gitignore").read_text(encoding="utf-8").splitlines()
+        names = {line[1:].replace("\\", "") for line in lines if line.startswith("!")}
+        return names - {".gitignore", "MANIFEST.md"}
+
+    def test_the_gitignore_allow_list_is_exactly_the_data_rows(self):
+        self.assertEqual(self.data_names(), self.allow_listed())
+        self.assertIn("*", (MANIFEST.parent / ".gitignore").read_text(encoding="utf-8").splitlines())
+
+    @unittest.skipUnless(shutil.which("git"), "needs git")
+    def test_papers_and_unclassified_files_are_ignored_and_data_is_not(self):
+        def ignored(name):
+            result = subprocess.run(["git", "check-ignore", "-q", "--no-index", name], cwd=MANIFEST.parent)
+            return result.returncode == 0
+
+        papers = {name for name, row in pdf.manifest_rows().items() if row["Kind"] == "paper"}
+        for name in sorted(papers | {"new-paper.pdf", "Unknown1405-notes.pdf"}):
+            self.assertTrue(ignored(name), name)
+        for name in sorted(self.data_names()):
+            self.assertFalse(ignored(name), name)
+
+    @unittest.skipUnless(shutil.which("git"), "needs git")
+    def test_every_tracked_source_file_is_classified_as_data(self):
+        listed = subprocess.run(
+            ["git", "ls-files", "-z", "docs/sources"], cwd=ROOT, capture_output=True, check=True
+        ).stdout.decode("utf-8").split("\0")
+        tracked = [path for path in listed if path]
+        self.assertTrue(tracked)
+        rows = pdf.manifest_rows()
+        root_manifest = (ROOT / "docs/sources/MANIFEST.md").read_text(encoding="utf-8")
+        for path in tracked:
+            relative = path.removeprefix("docs/sources/")
+            with self.subTest(path=path):
+                if relative.startswith("iran/"):
+                    name = relative.removeprefix("iran/")
+                    if name in (".gitignore", "MANIFEST.md"):
+                        continue
+                    self.assertIn(name, rows)
+                    self.assertNotEqual("paper", rows[name]["Kind"])
+                elif relative != "MANIFEST.md":
+                    self.assertIn(relative, root_manifest)
+
     def test_every_yearly_calendar_is_named_for_its_year(self):
         calendars = {name for name, row in pdf.manifest_rows().items() if row["Kind"] == "yearly-calendar"}
         self.assertEqual({f"Calendar-{year}.pdf" for year in range(1381, 1406)}, calendars)
