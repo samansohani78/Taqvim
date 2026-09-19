@@ -1,7 +1,9 @@
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.BuiltArtifactsLoader
+import ir.taqvim.buildlogic.ApkNativeLibraries
 import ir.taqvim.buildlogic.ApkSizeBudget
 import ir.taqvim.buildlogic.ApkSizeStatus
+import ir.taqvim.buildlogic.PageAlignment
 import ir.taqvim.buildlogic.TaqvimVersion
 import javax.xml.parsers.DocumentBuilderFactory
 
@@ -349,6 +351,37 @@ abstract class ApkSizeCheck : DefaultTask() {
 }
 
 /**
+ * T-1800: every native library of the release APK must be usable on a device with 16 KB memory pages (Android 15 and
+ * later ship them; the owner's OnePlus 15 is one). A library that is compressed, not on a page boundary, or built
+ * with 4 KB segments cannot be mapped there and the app dies at start with `dlopen failed`. Nothing in the JVM or
+ * Robolectric suites can see this, and the emulators here use 4 KB pages, so the build checks the APK itself.
+ */
+abstract class PageAlignmentCheck : DefaultTask() {
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val apkDirectory: DirectoryProperty
+
+    @get:Internal
+    abstract val loader: Property<BuiltArtifactsLoader>
+
+    @TaskAction
+    fun verify() {
+        val artifacts = checkNotNull(loader.get().load(apkDirectory.get())) { "No APKs in ${apkDirectory.get()}" }
+        artifacts.elements.forEach { element ->
+            val apk = File(element.outputFile)
+            val libraries = ApkNativeLibraries.read(apk.readBytes())
+            val problems = PageAlignment.problems(libraries)
+            check(problems.isEmpty()) {
+                "Native libraries of ${apk.name} are not ready for 16 KB pages:\n" + problems.joinToString("\n")
+            }
+            logger.lifecycle(
+                "${apk.name}: ${libraries.size} native libraries mapped at ${PageAlignment.PAGE_BYTES} bytes",
+            )
+        }
+    }
+}
+
+/**
  * T-1900 (docs/RELEASE.md): every output of the variant carries the resolved Taqvim version. Also prints it, so
  * `./gradlew :app:verifyReleaseVersion -Ptaqvim.version=<tag>` shows the name and code a tag produces.
  */
@@ -445,6 +478,13 @@ androidComponents {
             description = "Checks the R8 mapping of ${variant.name} against shrinking-requirements.txt (T-1800)."
             mapping.set(variant.artifacts.get(SingleArtifact.OBFUSCATION_MAPPING_FILE))
             requirements.set(layout.projectDirectory.file("shrinking-requirements.txt"))
+        }
+        tasks.register<PageAlignmentCheck>("check${variantName}PageAlignment") {
+            group = "verification"
+            description =
+                "Checks that every native library of ${variant.name} can be mapped on a 16 KB page device (T-1800)."
+            apkDirectory.set(variant.artifacts.get(SingleArtifact.APK))
+            loader.set(variant.artifacts.getBuiltArtifactsLoader())
         }
         tasks.register<ApkSizeCheck>("check${variantName}ApkSize") {
             group = "verification"
