@@ -501,6 +501,7 @@
       }
     },
     "ruleAstronomical": {
+      "description": "The day of kind's instant, read in timeZone, plus offsetDays (ADR-0044). month is required for NEW_MOON and FULL_MOON (which recur about monthly) to name which one; equinoxes and solstices, which happen once a year, leave it out. When two such instants fall in the same civil month, the earlier is kept.",
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -522,6 +523,9 @@
         "timeZone": {
           "type": "string",
           "pattern": "^[A-Za-z]+(/[A-Za-z0-9_+-]+)*$"
+        },
+        "month": {
+          "$ref": "#/$defs/month"
         }
       }
     },

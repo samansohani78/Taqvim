@@ -13,7 +13,6 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
-import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -23,6 +22,47 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_32: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.volunteer-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
+                        "ar" to "اليوم الدولي للمتطوعين من أجل التنمية الاقتصادية والاجتماعية",
+                        "en" to "International Volunteer Day for Economic and Social Development",
+                        "es" to "Día Internacional de los Voluntarios",
+                        "fr" to "Journée internationale des volontaires",
+                        "ru" to "Международный день добровольцев во имя экономического и социального развития",
+                        "zh" to "国际志愿人员日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 5),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/volunteer-day",
+                        title = "International Volunteer Day for Economic and Social Development (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/40/212",
+                    "un" to "https://www.un.org/en/observances/volunteer-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.water-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -253,55 +293,6 @@ internal val OFFICIAL_EVENTS_PART_32: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/women-judges-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.women-searchers-missing-persons-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی ارج‌گذاری به زنان جوینده مفقودان",
-                        "en" to "International Day of Recognition for Women Searchers of Missing Persons",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 19),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_026,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://docs.un.org/en/A/RES/80/301",
-                            title = "International Day of Recognition for Women Searchers of Missing Persons (UN General Assembly resolution A/RES/80/301)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://docs.un.org/en/A/RES/80/301",
-                        title = "International Day of Recognition for Women Searchers of Missing Persons (UN General Assembly resolution A/RES/80/301)",
-                    ),
-                    Citation(
-                        url = "https://news.un.org/en/story/2026/09/1168264",
-                        title = "UN News — General Assembly adopts International Day of Recognition for Women Searchers of Missing Persons",
-                    ),
-                    Citation(
-                        url = "https://press.un.org/en/2026/ga12775.doc.htm",
-                        title = "UN Meetings Coverage — GA/12775",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://docs.un.org/en/A/RES/80/301",
                 ),
         ),
     )

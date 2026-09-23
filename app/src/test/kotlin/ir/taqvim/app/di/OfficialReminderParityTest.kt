@@ -18,6 +18,7 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferences
 import kotlinx.datetime.TimeZone
@@ -53,7 +54,7 @@ class OfficialReminderParityTest {
     ): Map<EventId, List<Jdn>> {
         val selection = IslamicCalendarSelection(variant, base = calendars)
         val sources = EventSource.entries.toSet()
-        val lookup = EventLookup(OfficialEvents.ALL, selection)
+        val lookup = EventLookup(OfficialEvents.ALL, selection, SkyAstronomicalEventSource)
         val policy = EventVisibilityPolicy(EventPreferences(sources, TimeZone.UTC, islamicVariant = variant), selection)
         return (from.value..until.value)
             .flatMap { day -> policy.visible(lookup.eventsOn(Jdn(day), sources), TimeZone.UTC) }

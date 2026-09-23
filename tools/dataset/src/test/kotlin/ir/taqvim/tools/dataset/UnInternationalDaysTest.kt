@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test
  * titles either from UN Information Centre Tehran and the United Nations in Iran, or — where no primary Persian
  * source exists — machine-translated from the official English title and marked `titleReview: ["fa"]` (owner decision
  * 2026-09-23, ADR-0042, R07/D-05: a missing Persian source no longer keeps a well-sourced day out of the dataset).
- * Rules are spot-checked against the cited pages; days that cannot yet be expressed as a rule (e.g. Vesak, DT-040)
- * are listed in `docs/DATA_TODO.md`, not in the dataset.
+ * Rules are spot-checked against the cited pages. Vesak, the Day of the Full Moon (DT-040) needed a rule of its own
+ * kind besides: `Astronomical`/`FULL_MOON` with `month = 5` and its UTC/earliest-of-two-in-May tie-break (ADR-0044).
  */
 class UnInternationalDaysTest {
     private val datasetText = File(property("taqvim.dataset.directory"), DATASET_FILE).readText()
@@ -42,6 +42,7 @@ class UnInternationalDaysTest {
                 "Fixed" to FIXED_COUNT,
                 "NthWeekdayOfMonth" to WEEKDAY_COUNT,
                 "LastWeekdayOfMonth" to LAST_WEEKDAY_COUNT,
+                "Astronomical" to ASTRONOMICAL_COUNT,
             )
     }
 
@@ -110,13 +111,20 @@ class UnInternationalDaysTest {
         const val DATASET_FILE = "international/un-international-days.json"
         const val GOLDEN = "/golden/international/un-international-days-rules.csv"
         const val UN_LIST_URL = "https://www.un.org/en/observances/list-days-weeks"
-        const val EVENT_COUNT = 234
+        const val EVENT_COUNT = 235
         const val FIXED_COUNT = 228
         const val WEEKDAY_COUNT = 5
         const val LAST_WEEKDAY_COUNT = 1
 
-        /** R07/D-05, 2026-09-23: 132 days added with an official citation but no Persian source (ADR-0042). */
-        const val TITLE_REVIEW_COUNT = 132
+        /** Vesak, the Day of the Full Moon (DT-040, ADR-0044): the day of the May FULL_MOON, UTC, month = 5. */
+        const val ASTRONOMICAL_COUNT = 1
+
+        /**
+         * R07/D-05, 2026-09-23: 132 days added with an official citation but no Persian source (ADR-0042), plus
+         * Vesak (DT-040, ADR-0044), whose full-moon rule was the only remaining gap once ADR-0042 removed the
+         * Persian-source requirement.
+         */
+        const val TITLE_REVIEW_COUNT = 133
 
         /** Persian titles come from UN Information Centre Tehran (live or Internet Archive) or United Nations in Iran. */
         val PERSIAN_SOURCES = listOf("unic-ir.org", "https://iran.un.org/fa/")

@@ -97,14 +97,25 @@ public sealed interface EventRule {
         public val offsetDays: Int,
     ) : EventRule
 
-    /** [offsetDays] after the local day (in [timeZone]) of each [kind] instant. */
+    /**
+     * [offsetDays] after the local day (in [timeZone]) of each [kind] instant (ADR-0044).
+     *
+     * Equinoxes and solstices happen once a year, so [month] is left `null` and every instant in the calendar's year
+     * becomes an occurrence. `NEW_MOON` and `FULL_MOON` happen about once a lunar month (~29.5 days), so naming
+     * [month] (1–12, in [EventDefinition.calendar]) keeps only the day of the first such instant whose offset day
+     * falls in that month of the rule's own calendar year — the tie-break for the rare month with two (e.g. May
+     * 2026): the earlier one is kept, the later is left out, as the "blue moon" convention already treats a second
+     * full moon in a month as the extra one.
+     */
     public data class Astronomical(
         public val kind: AstroKind,
         public val offsetDays: Int,
         public val timeZone: String,
+        public val month: Int? = null,
     ) : EventRule {
         init {
             require(runCatching { TimeZone.of(timeZone) }.isSuccess) { "unknown time zone '$timeZone'" }
+            month?.let(::requireMonth)
         }
     }
 

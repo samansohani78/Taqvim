@@ -70,7 +70,7 @@ object EventsCodeGenerator {
             "Single" to listOf("year", "month", "day"),
             "NthDayOfYear" to listOf("n"),
             "RelativeToEvent" to listOf("eventId", "offsetDays"),
-            "Astronomical" to listOf("kind", "offsetDays", "timeZone"),
+            "Astronomical" to listOf("kind", "offsetDays", "timeZone", "month"),
             "LunarTithi" to listOf("month", "tithi", "observance", "endTithi", "endOffsetDays"),
         )
 

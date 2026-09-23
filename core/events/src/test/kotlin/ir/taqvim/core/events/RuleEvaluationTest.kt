@@ -18,6 +18,7 @@ import java.time.YearMonth
 import java.time.temporal.TemporalAdjusters
 import kotlin.time.Instant
 import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 
 /** At least ten cases per rule, each checked against java.time or ICU4J (T-300). */
@@ -143,6 +144,63 @@ class RuleEvaluationTest {
             days(utc, year, calculator) shouldBe listOf(LocalDate.of(year, 3, 20))
         }
     }
+
+    @TestFactory
+    fun `Astronomical with month keeps the earliest FULL_MOON of that month (ADR-0044)`(): List<DynamicTest> {
+        // A source shaped like every real "blue moon" May in the USNO golden (e.g. 2026: 1 May 17:23Z, 31 May
+        // 08:45Z): two full moons, one at each end of May, and one more in April and June so the month filter is
+        // exercised, not just an already-single-element list.
+        val source =
+            AstronomicalEventSource { kind, from, until ->
+                require(kind == AstroKind.FULL_MOON)
+                val year = from.toString().take(4).toInt()
+                listOf(
+                    Instant.parse("$year-04-15T00:00:00Z"),
+                    Instant.parse("$year-05-01T17:23:00Z"),
+                    Instant.parse("$year-05-31T08:45:00Z"),
+                    Instant.parse("$year-06-14T00:00:00Z"),
+                ).filter { it >= from && it < until }
+            }
+        val vesak =
+            event(
+                "test.vesak",
+                CalendarSystem.GREGORIAN,
+                EventRule.Astronomical(AstroKind.FULL_MOON, 0, "UTC", month = 5),
+            )
+        val calculator = OccurrenceCalculator(listOf(vesak), astronomy = source)
+        return cases("day of the full moon in May", years) { year ->
+            days(vesak, year, calculator) shouldBe listOf(LocalDate.of(year, 5, 1))
+        }
+    }
+
+    @Test
+    fun `Astronomical converts one instant to the expected civil day across time zones, including the date line`() {
+        // 2024's real USNO full moon (core/astronomy golden/usno/moon-phases-1700-2100.csv): 2024-05-23T13:53:00Z.
+        val instant = "2024-05-23T13:53:00Z"
+        val source = AstronomicalEventSource { _, _, _ -> listOf(Instant.parse(instant)) }
+        // Pacific/Kiritimati (UTC+14) and Etc/GMT+11 (UTC-11) sit either side of the international date line.
+        listOf("UTC", "Pacific/Kiritimati", "Etc/GMT+11", "Asia/Tehran").forEach { zone ->
+            val definition = event("test.zone-$zone", CalendarSystem.GREGORIAN, rule(zone))
+            val calculator = OccurrenceCalculator(listOf(definition), astronomy = source)
+            val expected =
+                java.time.Instant
+                    .parse(instant)
+                    .atZone(java.time.ZoneId.of(zone))
+                    .toLocalDate()
+            days(definition, 2024, calculator) shouldBe listOf(expected)
+        }
+    }
+
+    @Test
+    fun `Astronomical treats an instant exactly at midnight as the day it begins`() {
+        val source = AstronomicalEventSource { _, _, _ -> listOf(Instant.parse("2024-05-01T00:00:00Z")) }
+        val rule = EventRule.Astronomical(AstroKind.FULL_MOON, 0, "UTC", month = 5)
+        val definition = event("test.midnight", CalendarSystem.GREGORIAN, rule)
+        val calculator = OccurrenceCalculator(listOf(definition), astronomy = source)
+        days(definition, 2024, calculator) shouldBe listOf(LocalDate.of(2024, 5, 1))
+    }
+
+    private fun rule(timeZone: String) = EventRule.Astronomical(AstroKind.FULL_MOON, 0, timeZone, month = 5)
 
     private companion object {
         const val MILLIS_PER_DAY = 86_400_000L

@@ -15,6 +15,7 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.EventsRepository
+import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.CalendarDay
@@ -142,7 +143,7 @@ internal class OfficialEventSearchSource(
     definitions: List<EventDefinition> = OfficialEvents.ALL,
 ) : EventSearchSource {
     private val index by lazy { EventSearchIndex(definitions) }
-    private val lookup by lazy { EventLookup(definitions) }
+    private val lookup by lazy { EventLookup(definitions, astronomy = SkyAstronomicalEventSource) }
 
     override suspend fun search(
         text: String,

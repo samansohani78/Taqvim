@@ -13,6 +13,7 @@ import ir.taqvim.core.workdays.WorkdayProfile
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.database.toProfile
 import ir.taqvim.data.devicecalendar.DeviceTimeZone
+import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.tools.ToolsSettings
@@ -31,7 +32,7 @@ internal class PreferencesToolsSettingsSource(
     private val preferences: UserPreferencesRepository,
     private val workdayProfile: Flow<WorkdayProfile?>,
     private val zones: Flow<TimeZone> = DeviceTimeZone.current,
-    loadLookup: () -> EventLookup = { EventLookup(OfficialEvents.ALL) },
+    loadLookup: () -> EventLookup = { EventLookup(OfficialEvents.ALL, astronomy = SkyAstronomicalEventSource) },
     private val anchors: AnchorLookup? = null,
 ) : ToolsSettingsSource {
     private val lookup by lazy(loadLookup)

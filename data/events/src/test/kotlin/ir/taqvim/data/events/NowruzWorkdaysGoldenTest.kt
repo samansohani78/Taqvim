@@ -31,7 +31,7 @@ class NowruzWorkdaysGoldenTest {
 
     private val calculator =
         WorkdayCalculator(
-            EventLookup(OfficialEvents.ALL),
+            EventLookup(OfficialEvents.ALL, astronomy = SkyAstronomicalEventSource),
             WorkdayProfile(weekend = setOf(Weekday.FRIDAY), holidaySources = setOf(EventSource.IRAN_OFFICIAL)),
         )
 

@@ -11,6 +11,8 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.CalendarArithmetic
 import ir.taqvim.core.calendar.NepaliLunarDays
 import ir.taqvim.core.calendar.PersianCalendarSystem
+import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
@@ -26,6 +28,7 @@ import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferences
 import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
 import org.junit.jupiter.api.Test
 
 /**
@@ -144,7 +147,7 @@ class CalendarCompletenessTest {
     ): List<String> {
         val provider = selection.providerFor(definition.source)
         val calendar = provider.calendarFor(definition.calendar) ?: return listOf("${definition.id} has no calendar")
-        val calculator = OccurrenceCalculator(OfficialEvents.ALL, provider)
+        val calculator = OccurrenceCalculator(OfficialEvents.ALL, provider, SkyAstronomicalEventSource)
         val years = (calendar.fromJdn(days.start).year + 1) until calendar.fromJdn(days.endInclusive).year
         return years.mapNotNull { year ->
             val occurrences = calculator.occurrences(definition, year)
@@ -198,6 +201,21 @@ class CalendarCompletenessTest {
                 NepaliLunarDays
                     .days(year, rule.month, rule.tithi, rule.observance, rule.endTithi, rule.endOffsetDays)
                     .map(calendar::fromJdn)
+            }
+
+            is EventRule.Astronomical -> {
+                val zone = TimeZone.of(rule.timeZone)
+                val from = calendar.toJdn(CalendarDate(calendar.system, year, 1, 1)).toLocalDate().atStartOfDayIn(zone)
+                val until =
+                    calendar.toJdn(CalendarDate(calendar.system, year + 1, 1, 1)).toLocalDate().atStartOfDayIn(zone)
+                val instantDays =
+                    SkyAstronomicalEventSource
+                        .instants(rule.kind, from, until)
+                        .filter { it >= from && it < until }
+                        .sorted()
+                        .map { calendar.fromJdn(it.toJdn(zone) + rule.offsetDays) }
+                val month = rule.month
+                if (month == null) instantDays else instantDays.filter { it.month == month }.take(1)
             }
 
             else -> {

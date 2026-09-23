@@ -27,6 +27,13 @@ class DatasetValidatorTest {
         RULE_TYPES.forEach { sample shouldContain "\"$it\"" }
     }
 
+    @Test
+    fun `an Astronomical FULL_MOON rule with a month passes (ADR-0044, DT-040)`() {
+        val fullMoonInMay = resource("valid/full-moon-in-may.json")
+
+        validator.validate(mapOf("full-moon-in-may.json" to fullMoonInMay)).shouldBeEmpty()
+    }
+
     @TestFactory
     fun `each invalid fixture reports exactly its one issue`(): List<DynamicTest> =
         INVALID_FIXTURES.map { (name, kind) ->

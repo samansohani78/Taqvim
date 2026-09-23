@@ -35,10 +35,10 @@ import kotlin.time.Clock
 import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 
-/** The dataset [definitions] and the [astronomy] their `Astronomical` rules need (none in the dataset so far). */
+/** The dataset [definitions] and the [astronomy] their `Astronomical` rules need (ADR-0044: Vesak's full moon). */
 data class OfficialCatalog(
     val definitions: List<EventDefinition> = OfficialEvents.ALL,
-    val astronomy: AstronomicalEventSource? = null,
+    val astronomy: AstronomicalEventSource? = SkyAstronomicalEventSource,
 )
 
 /** Dataset lookups for one [settings] value; rebuilt only when the settings change. */

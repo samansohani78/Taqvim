@@ -23,6 +23,36 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_34: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.world-chagas-disease-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بیماری شاگاس",
+                        "en" to "World Chagas Disease Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 14),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-chagas-disease-day",
+                        title = "World Chagas Disease Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.who.int/campaigns/world-chagas-disease-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.world-chess-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -271,45 +301,6 @@ internal val OFFICIAL_EVENTS_PART_34: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.who.int/campaigns/world-hepatitis-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-intellectual-property-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی مالکیت معنوی",
-                        "en" to "World Intellectual Property Day",
-                        "es" to "Día Mundial de la Propiedad Intelectual",
-                        "fr" to "Journée mondiale de la propriété intellectuelle",
-                        "ru" to "Международный день интеллектуальной собственности",
-                        "zh" to "世界知识产权日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 26),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "http://www.wipo.int/ip-outreach/en/ipday/",
-                        title = "World Intellectual Property Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "http://www.wipo.int/ip-outreach/en/ipday/",
                 ),
         ),
     )

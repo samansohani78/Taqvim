@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test
  * national official holiday marks a day only for the users whose default sources include that country.
  */
 class DefaultEventSourcesGoldenTest {
-    private val lookup = EventLookup(OfficialEvents.ALL)
+    private val lookup = EventLookup(OfficialEvents.ALL, astronomy = SkyAstronomicalEventSource)
 
     /** 28 Asad 1405, Afghanistan's Independence Day holiday announced for 2026-08-19 (D-03). */
     private val afghanIndependence = PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, 1405, 5, 28))

@@ -121,10 +121,14 @@ public class OccurrenceCalculator(
         val (start, end) = yearSpan(calendar, year)
         val from = start.toLocalDate().atStartOfDayIn(zone)
         val until = end.toLocalDate().atStartOfDayIn(zone)
-        return source
-            .instants(rule.kind, from, until)
-            .filter { it >= from && it < until }
-            .map { it.toJdn(zone) + rule.offsetDays }
+        val days =
+            source
+                .instants(rule.kind, from, until)
+                .filter { it >= from && it < until }
+                .sorted()
+                .map { it.toJdn(zone) + rule.offsetDays }
+        val month = rule.month ?: return days
+        return listOfNotNull(days.firstOrNull { calendar.fromJdn(it).month == month })
     }
 
     private fun requireResolvable(start: EventDefinition) {

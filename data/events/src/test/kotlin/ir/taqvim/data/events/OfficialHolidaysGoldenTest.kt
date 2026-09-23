@@ -28,7 +28,11 @@ class OfficialHolidaysGoldenTest {
         File(requireNotNull(System.getProperty(DIRECTORY_PROPERTY)) { "$DIRECTORY_PROPERTY is not set" })
 
     private val calendar =
-        HolidayCalendar(EventLookup(OfficialEvents.ALL), setOf(EventSource.IRAN_OFFICIAL), weekend = emptySet())
+        HolidayCalendar(
+            EventLookup(OfficialEvents.ALL, astronomy = SkyAstronomicalEventSource),
+            setOf(EventSource.IRAN_OFFICIAL),
+            weekend = emptySet(),
+        )
 
     @TestFactory
     fun `the dataset's holidays are exactly the official holidays`(): List<DynamicTest> =

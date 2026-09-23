@@ -21,6 +21,7 @@ import ir.taqvim.core.model.MinuteOfDay
 import ir.taqvim.core.praytimes.PrayerTimes
 import ir.taqvim.core.praytimes.PrayerTimesCalculator
 import ir.taqvim.core.praytimes.PrayerTimesResult
+import ir.taqvim.data.events.SkyAstronomicalEventSource
 import java.util.Locale
 import kotlin.time.Instant
 import kotlinx.datetime.LocalDateTime
@@ -206,7 +207,7 @@ private class LookupCache(
 
     fun forVariant(variant: IslamicVariant): EventLookup {
         current?.takeIf { it.first == variant }?.let { return it.second }
-        val lookup = EventLookup(definitions, IslamicCalendarSelection(variant))
+        val lookup = EventLookup(definitions, IslamicCalendarSelection(variant), SkyAstronomicalEventSource)
         current = variant to lookup
         return lookup
     }

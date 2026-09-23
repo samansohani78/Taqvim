@@ -44,6 +44,16 @@ class EventsCodeGeneratorTest {
     }
 
     @Test
+    fun `an Astronomical rule's optional month is generated (ADR-0044)`() {
+        val fullMoon = mapOf("full-moon-in-may.json" to resource("valid/full-moon-in-may.json"))
+
+        val rendered = EventsCodeGenerator.generate(fullMoon).joinToString("\n") { it.content }
+
+        rendered shouldContain "kind = AstroKind.FULL_MOON"
+        rendered shouldContain "month = 5"
+    }
+
+    @Test
     fun `an empty dataset still yields an index`() {
         val sources = EventsCodeGenerator.generate(mapOf("empty.json" to """{"schemaVersion":1,"events":[]}"""))
 

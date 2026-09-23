@@ -25,6 +25,7 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.ScheduledAlarmEntity
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.toRule
+import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.scheduler.AlarmDelivery
@@ -109,6 +110,7 @@ internal fun officialSchedule(
         definitions,
         languageTag,
         IslamicCalendarSelection(variant, base = calendars, overrides = overrides),
+        SkyAstronomicalEventSource,
     )
 
 /** [entity] for the reminder planner, or `null` when it is off or unusable (no event id, lead time beyond 30 days). */

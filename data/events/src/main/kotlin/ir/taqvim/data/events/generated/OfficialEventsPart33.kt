@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -22,6 +23,55 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_33: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.women-searchers-missing-persons-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی ارج‌گذاری به زنان جوینده مفقودان",
+                        "en" to "International Day of Recognition for Women Searchers of Missing Persons",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 19),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_026,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/80/301",
+                            title = "International Day of Recognition for Women Searchers of Missing Persons (UN General Assembly resolution A/RES/80/301)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://docs.un.org/en/A/RES/80/301",
+                        title = "International Day of Recognition for Women Searchers of Missing Persons (UN General Assembly resolution A/RES/80/301)",
+                    ),
+                    Citation(
+                        url = "https://news.un.org/en/story/2026/09/1168264",
+                        title = "UN News — General Assembly adopts International Day of Recognition for Women Searchers of Missing Persons",
+                    ),
+                    Citation(
+                        url = "https://press.un.org/en/2026/ga12775.doc.htm",
+                        title = "UN Meetings Coverage — GA/12775",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://docs.un.org/en/A/RES/80/301",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.womens-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -282,36 +332,6 @@ internal val OFFICIAL_EVENTS_PART_33: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803.page=56",
                     "un" to "https://www.unesco.org/en/days/world-book-and-copyright",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-chagas-disease-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی بیماری شاگاس",
-                        "en" to "World Chagas Disease Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 14),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.who.int/campaigns/world-chagas-disease-day",
-                        title = "World Chagas Disease Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.who.int/campaigns/world-chagas-disease-day",
                 ),
         ),
     )

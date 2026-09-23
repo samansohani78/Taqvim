@@ -9,6 +9,7 @@ import io.kotest.matchers.collections.shouldBeSorted
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.events.OccurrenceCalculator
+import ir.taqvim.data.events.SkyAstronomicalEventSource
 import org.junit.jupiter.api.Test
 
 /** D-08: the generated dataset loads as typed definitions the rule engine accepts. */
@@ -28,7 +29,7 @@ class OfficialEventsTest {
                         key == "fa" || key == "ne"
                     }
             }.shouldBeTrue()
-        val calculator = OccurrenceCalculator(events)
+        val calculator = OccurrenceCalculator(events, astronomy = SkyAstronomicalEventSource)
         events.flatMap { calculator.occurrences(it, YEAR_BY_CALENDAR.getValue(it.calendar.name)) }.shouldNotBeEmpty()
     }
 

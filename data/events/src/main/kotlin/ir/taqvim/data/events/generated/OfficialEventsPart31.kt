@@ -6,6 +6,7 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.events.AstroKind
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -13,6 +14,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -224,6 +226,48 @@ internal val OFFICIAL_EVENTS_PART_31: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
+            id = EventId("un.vesak-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "ویساک، روز ماه کامل",
+                        "en" to "Vesak, the Day of the Full Moon",
+                    ),
+                ),
+            rule = EventRule.Astronomical(kind = AstroKind.FULL_MOON, offsetDays = 0, timeZone = "UTC", month = 5),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 1_999,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://undocs.org/en/A/RES/54/115",
+                            title = "General Assembly resolution 54/115: International recognition of the Day of Vesak at United Nations Headquarters and other United Nations offices (1999)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/vesak-day",
+                        title = "Vesak Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/54/115",
+                    "un" to "https://www.un.org/en/observances/vesak-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.victims-enforced-disappearance"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -251,47 +295,6 @@ internal val OFFICIAL_EVENTS_PART_31: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/victims-enforced-disappearance",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.volunteer-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
-                        "ar" to "اليوم الدولي للمتطوعين من أجل التنمية الاقتصادية والاجتماعية",
-                        "en" to "International Volunteer Day for Economic and Social Development",
-                        "es" to "Día Internacional de los Voluntarios",
-                        "fr" to "Journée internationale des volontaires",
-                        "ru" to "Международный день добровольцев во имя экономического и социального развития",
-                        "zh" to "国际志愿人员日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 5),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/volunteer-day",
-                        title = "International Volunteer Day for Economic and Social Development (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/40/212",
-                    "un" to "https://www.un.org/en/observances/volunteer-day",
                 ),
         ),
     )

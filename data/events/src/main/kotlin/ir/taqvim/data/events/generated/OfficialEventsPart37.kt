@@ -24,6 +24,46 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_37: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.world-tuberculosis-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بیماری سل",
+                        "ar" to "اليوم العالمي للسل",
+                        "en" to "World Tuberculosis Day",
+                        "es" to "Día Mundial de la Tuberculosis",
+                        "fr" to "Journée mondiale de la lutte contre la tuberculose",
+                        "ru" to "Всемирный день борьбы против туберкулеза",
+                        "zh" to "世界防治结核病日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 24),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-tb-day/",
+                        title = "World Tuberculosis Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.who.int/campaigns/world-tb-day/",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.world-turkic-language-family-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -253,36 +293,6 @@ internal val OFFICIAL_EVENTS_PART_37: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.unaids.org/en/zero-discrimination-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.zero-waste-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پسماند صفر",
-                        "en" to "International Day of Zero Waste",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 30),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/zero-waste-day",
-                        title = "International Day of Zero Waste (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/zero-waste-day",
                 ),
         ),
     )

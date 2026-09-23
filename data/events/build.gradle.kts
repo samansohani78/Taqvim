@@ -6,6 +6,8 @@ dependencies {
     implementation(projects.core.model)
     // Generated OfficialEvents exposes EventDefinition (D-08).
     api(projects.core.events)
+    // SkyAstronomicalEventSource computes Astronomical rule instants (ADR-0042, T-403).
+    implementation(projects.core.astronomy)
     // T-305: personal and iCalendar tables, preferences and device instances are combined with the dataset.
     api(projects.data.database)
     api(projects.data.preferences)

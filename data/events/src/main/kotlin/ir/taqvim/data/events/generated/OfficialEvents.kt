@@ -52,5 +52,6 @@ public object OfficialEvents {
             OFFICIAL_EVENTS_PART_34 +
             OFFICIAL_EVENTS_PART_35 +
             OFFICIAL_EVENTS_PART_36 +
-            OFFICIAL_EVENTS_PART_37
+            OFFICIAL_EVENTS_PART_37 +
+            OFFICIAL_EVENTS_PART_38
 }

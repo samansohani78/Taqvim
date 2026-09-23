@@ -23,6 +23,7 @@ import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.toEntity
 import ir.taqvim.data.database.toRule
 import ir.taqvim.data.devicecalendar.DeviceTimeZone
+import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.events.ics.TransactionRunner
 import ir.taqvim.data.preferences.UserPreferences
@@ -200,7 +201,7 @@ internal class OfficialAnchorLookup(
     definitions: List<EventDefinition> = OfficialEvents.ALL,
 ) : AnchorLookup {
     private val index by lazy { EventSearchIndex(definitions) }
-    private val lookup by lazy { EventLookup(definitions) }
+    private val lookup by lazy { EventLookup(definitions, astronomy = SkyAstronomicalEventSource) }
 
     override fun find(
         query: String,
