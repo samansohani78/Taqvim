@@ -5,8 +5,10 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.CalendarDate
@@ -23,6 +25,13 @@ import org.junit.jupiter.api.TestFactory
  * [PersianCalendarMathTest]; Nepali rows (32-day months) and Hebrew 13-month years are in [NepaliCalendarMathTest].
  */
 class CalendarMathTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val gregorian = GregorianCalendarSystem
     private val islamic = TabularIslamicCalendar.TYPE_II
 
@@ -188,7 +197,7 @@ class CalendarMathTest {
         runBlocking {
             val years = Arb.int(-5_000..5_000)
             val shifts = Arb.int(-2_400..2_400)
-            checkAll(PropertyTesting.iterations, years, Arb.int(1..12), shifts) { year, month, k ->
+            checkAll(propertyConfig, years, Arb.int(1..12), shifts) { year, month, k ->
                 val start = g(year, month, 1)
                 gregorian.addMonths(gregorian.addMonths(start, k), -k) shouldBe start
                 val hijriStart = h(year, month, 1)
@@ -197,9 +206,22 @@ class CalendarMathTest {
         }
 
     @Test
+    fun `adding months and back returns the start at the property's own range edges`() {
+        val yearMonths = listOf(-5_000, 5_000).flatMap { year -> listOf(1, 12).map { month -> year to month } }
+        yearMonths
+            .flatMap { pair -> listOf(-2_400, 2_400).map { k -> Triple(pair.first, pair.second, k) } }
+            .forEach { (year, month, k) ->
+                val start = g(year, month, 1)
+                gregorian.addMonths(gregorian.addMonths(start, k), -k) shouldBe start
+                val hijriStart = h(year, month, 1)
+                islamic.addMonths(islamic.addMonths(hijriStart, k), -k) shouldBe hijriStart
+            }
+    }
+
+    @Test
     fun `period components rebuild the target date`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(-400_000..400_000), Arb.int(0..20_000)) { offset, span ->
+            checkAll(propertyConfig, Arb.int(-400_000..400_000), Arb.int(0..20_000)) { offset, span ->
                 val from = gregorian.plusDays(g(2000, 1, 1), offset.toLong())
                 val to = gregorian.plusDays(from, span.toLong())
                 val period = gregorian.periodBetween(from, to)
@@ -207,6 +229,19 @@ class CalendarMathTest {
                 gregorian.plusDays(monthsOnly, period.days.toLong()) shouldBe to
             }
         }
+
+    @Test
+    fun `period components rebuild the target date at the property's own range edges`() {
+        listOf(-400_000, 400_000).forEach { offset ->
+            listOf(0, 20_000).forEach { span ->
+                val from = gregorian.plusDays(g(2000, 1, 1), offset.toLong())
+                val to = gregorian.plusDays(from, span.toLong())
+                val period = gregorian.periodBetween(from, to)
+                val monthsOnly = gregorian.addMonths(from, period.years * 12 + period.months)
+                gregorian.plusDays(monthsOnly, period.days.toLong()) shouldBe to
+            }
+        }
+    }
 
     private companion object {
         val GREGORIAN_MONTHS = listOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)

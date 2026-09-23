@@ -4,11 +4,13 @@
  */
 package ir.taqvim.core.calendar
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
 import ir.taqvim.core.testing.GoldenFile
@@ -20,6 +22,13 @@ import org.junit.jupiter.api.Test
 
 /** T-110 national rule: every USNO date for 1967–9999, then weekday-of-month properties for far years. */
 class UsDaylightSavingRulesTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val usno =
         GoldenFile
             .load("golden/usno/us-daylight-saving-1967-9999.csv")
@@ -43,7 +52,7 @@ class UsDaylightSavingRulesTest {
     @Test
     fun `from 2007 to ten million the change is on the second Sunday of March and the first of November`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(2_007L..10_000_000L)) { year ->
+            checkAll(propertyConfig, Arb.long(2_007L..10_000_000L)) { year ->
                 val dates = UsDaylightSavingRules.forYear(year).shouldNotBeNull()
                 dates.begins.month shouldBe 3
                 (dates.begins.day in 8..14) shouldBe true
@@ -56,9 +65,22 @@ class UsDaylightSavingRulesTest {
         }
 
     @Test
+    fun `the March-November rule holds at the property's own year range edges`() {
+        listOf(2_007L, 10_000_000L).forEach { year ->
+            val dates = UsDaylightSavingRules.forYear(year).shouldNotBeNull()
+            dates.begins.month shouldBe 3
+            (dates.begins.day in 8..14) shouldBe true
+            dates.ends.month shouldBe 11
+            (dates.ends.day in 1..7) shouldBe true
+            sunday(year, dates.begins) shouldBe true
+            sunday(year, dates.ends) shouldBe true
+        }
+    }
+
+    @Test
     fun `any year up to Long MAX_VALUE matches its year in the same 400-year cycle`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(10_000L..Long.MAX_VALUE)) { year ->
+            checkAll(propertyConfig, Arb.long(10_000L..Long.MAX_VALUE)) { year ->
                 val sameCycle = 2_400L + Math.floorMod(year - 2_400L, 400L)
                 val dates = UsDaylightSavingRules.forYear(year).shouldNotBeNull()
                 dates shouldBe UsDaylightSavingRules.forYear(sameCycle).shouldNotBeNull().copy(year = year)

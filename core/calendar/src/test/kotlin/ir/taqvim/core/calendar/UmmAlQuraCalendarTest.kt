@@ -10,10 +10,12 @@ import com.ibm.icu.util.TimeZone
 import com.ibm.icu.util.ULocale
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.withClue
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.CalendarDate
@@ -26,6 +28,13 @@ import org.junit.jupiter.api.Test
 
 /** Golden tests for A-04's bundled years against ICU4J's Umm al-Qura calendar (Unicode License, test scope only). */
 class UmmAlQuraCalendarTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val uaq = UmmAlQuraCalendar
     private val bundled = UmmAlQuraCalendar.BUNDLED_FIRST_YEAR..UmmAlQuraCalendar.BUNDLED_LAST_YEAR
 
@@ -155,7 +164,7 @@ class UmmAlQuraCalendarTest {
     @Test
     fun `round-trips across and beyond the bundled years`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(2_300_000L..2_700_000L)) { value ->
+            checkAll(propertyConfig, Arb.long(2_300_000L..2_700_000L)) { value ->
                 uaq.toJdn(uaq.fromJdn(Jdn(value))) shouldBe Jdn(value)
             }
         }

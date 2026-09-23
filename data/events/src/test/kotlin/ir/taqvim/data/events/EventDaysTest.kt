@@ -4,9 +4,11 @@
  */
 package ir.taqvim.data.events
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.of
 import io.kotest.property.checkAll
@@ -21,6 +23,13 @@ import org.junit.jupiter.api.Test
 
 /** B03 (U/P): which civil days an occurrence covers, in the event's own zone and the display zone. */
 class EventDaysTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val day = LocalDate(2026, 3, 21).toJdn()
     private val tehran = TimeZone.of("Asia/Tehran")
 
@@ -66,7 +75,7 @@ class EventDaysTest {
     fun `every timed occurrence covers one or two days near its own date`(): Unit =
         runBlocking {
             val zones = Arb.of("Asia/Tokyo", "America/Los_Angeles", "UTC", "Asia/Tehran", "Pacific/Kiritimati")
-            checkAll(PropertyTesting.iterations, Arb.int(0..1439), zones, zones) { minute, eventZone, displayZone ->
+            checkAll(propertyConfig, Arb.int(0..1439), zones, zones) { minute, eventZone, displayZone ->
                 val occurrence = occurrence(startMinute = minute, endMinute = minute + 60, zoneId = eventZone)
 
                 val days = EventDays.of(occurrence, TimeZone.of(displayZone))
@@ -78,6 +87,29 @@ class EventDaysTest {
                 (days.endInclusive <= day + 1) shouldBe true
             }
         }
+
+    @Test
+    fun `midnight and one-minute-to-midnight still cover one or two days at the widest zone offsets`() {
+        // A fixed seed permanently commits checkAll to one set of draws; pin minute 0 and minute 1439 (the
+        // Arb.int(0..1439) boundaries) against the widest zone-offset pairs so the day-boundary crossing this
+        // property exists to check is never left untested purely by chance.
+        val zonePairs =
+            listOf(
+                "Asia/Tokyo" to "Asia/Tokyo",
+                "Pacific/Kiritimati" to "America/Los_Angeles",
+                "America/Los_Angeles" to "Pacific/Kiritimati",
+                "UTC" to "UTC",
+            )
+        listOf(0, 1439).forEach { minute ->
+            zonePairs.forEach { (eventZone, displayZone) ->
+                val occurrence = occurrence(startMinute = minute, endMinute = minute + 60, zoneId = eventZone)
+                val days = EventDays.of(occurrence, TimeZone.of(displayZone))
+                (days.endInclusive - days.start) shouldBeIn listOf(0L, 1L)
+                (days.start >= day - 1) shouldBe true
+                (days.endInclusive <= day + 1) shouldBe true
+            }
+        }
+    }
 
     private fun occurrence(
         days: JdnRange = day..day,

@@ -9,9 +9,11 @@ import com.ibm.icu.util.IslamicCalendar
 import com.ibm.icu.util.TimeZone
 import com.ibm.icu.util.ULocale
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
@@ -26,6 +28,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class TabularIslamicCalendarTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val typeII = TabularIslamicCalendar.TYPE_II
     private val typeI = TabularIslamicCalendar.TYPE_I
 
@@ -80,7 +89,7 @@ class TabularIslamicCalendarTest {
     fun `type I and type II differ by exactly one day during cycle year 16`(): Unit =
         runBlocking {
             val years = Arb.int(-3_000..3_000)
-            checkAll(PropertyTesting.iterations, years, Arb.int(1..12), Arb.int(1..29)) { year, month, day ->
+            checkAll(propertyConfig, years, Arb.int(1..12), Arb.int(1..29)) { year, month, day ->
                 val cycleYear = Math.floorMod(year - 1, 30) + 1
                 val expected = if (cycleYear == 16) 1L else 0L
                 typeI.toJdn(hijri(year, month, day)) - typeII.toJdn(hijri(year, month, day)) shouldBe expected
@@ -88,13 +97,34 @@ class TabularIslamicCalendarTest {
         }
 
     @Test
+    fun `type I and type II differ by exactly one day at the property's own range edges`() {
+        val years = listOf(-3_000, 3_000)
+        val months = listOf(1, 12)
+        val days = listOf(1, 29)
+        val corners = years.flatMap { year -> months.flatMap { month -> days.map { day -> Triple(year, month, day) } } }
+        corners.forEach { (year, month, day) ->
+            val cycleYear = Math.floorMod(year - 1, 30) + 1
+            val expected = if (cycleYear == 16) 1L else 0L
+            typeI.toJdn(hijri(year, month, day)) - typeII.toJdn(hijri(year, month, day)) shouldBe expected
+        }
+    }
+
+    @Test
     fun `both variants round-trip`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(-5_000_000L..10_000_000L)) { value ->
+            checkAll(propertyConfig, Arb.long(-5_000_000L..10_000_000L)) { value ->
                 typeII.toJdn(typeII.fromJdn(Jdn(value))) shouldBe Jdn(value)
                 typeI.toJdn(typeI.fromJdn(Jdn(value))) shouldBe Jdn(value)
             }
         }
+
+    @Test
+    fun `both variants round-trip at the property's own range edges`() {
+        listOf(-5_000_000L, 10_000_000L).forEach { value ->
+            typeII.toJdn(typeII.fromJdn(Jdn(value))) shouldBe Jdn(value)
+            typeI.toJdn(typeI.fromJdn(Jdn(value))) shouldBe Jdn(value)
+        }
+    }
 
     @Test
     fun `type II agrees with ICU4J civil Islamic calendar on 100 000 random days`() {

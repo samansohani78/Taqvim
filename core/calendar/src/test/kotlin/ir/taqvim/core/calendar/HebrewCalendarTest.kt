@@ -5,11 +5,13 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.collections.shouldNotBeIn
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.choice
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
@@ -24,6 +26,13 @@ import org.junit.jupiter.api.Test
 
 /** T-108 Hebrew calendar rules, over ordinary years and years near the numeric limits. */
 class HebrewCalendarTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val hebrew = HebrewCalendar
 
     /** Years around the epoch, up to a million years out, and near both ends of the supported range. */
@@ -47,7 +56,7 @@ class HebrewCalendarTest {
     fun `leap years follow the 19-year cycle`(): Unit =
         runBlocking {
             (1..19).filter { hebrew.isLeapYear(it) } shouldBe listOf(3, 6, 8, 11, 14, 17, 19)
-            checkAll(PropertyTesting.iterations, Arb.int(Int.MIN_VALUE..Int.MAX_VALUE - 19)) { year ->
+            checkAll(propertyConfig, Arb.int(Int.MIN_VALUE..Int.MAX_VALUE - 19)) { year ->
                 hebrew.isLeapYear(year + 19) shouldBe hebrew.isLeapYear(year)
                 (year until year + 19).count { hebrew.isLeapYear(it) } shouldBe 7
                 hebrew.monthsInYear(year) shouldBe if (hebrew.isLeapYear(year)) 13 else 12
@@ -55,9 +64,18 @@ class HebrewCalendarTest {
         }
 
     @Test
+    fun `leap years follow the 19-year cycle at the property's own range edges`() {
+        listOf(Int.MIN_VALUE, Int.MAX_VALUE - 19).forEach { year ->
+            hebrew.isLeapYear(year + 19) shouldBe hebrew.isLeapYear(year)
+            (year until year + 19).count { hebrew.isLeapYear(it) } shouldBe 7
+            hebrew.monthsInYear(year) shouldBe if (hebrew.isLeapYear(year)) 13 else 12
+        }
+    }
+
+    @Test
     fun `years have one of the six lengths and their months add up`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, years) { year ->
+            checkAll(propertyConfig, years) { year ->
                 val length = hebrew.yearLength(year)
                 length shouldBeIn if (hebrew.isLeapYear(year)) listOf(383, 384, 385) else listOf(353, 354, 355)
                 (1..hebrew.monthsInYear(year)).sumOf { hebrew.monthLength(year, it) } shouldBe length
@@ -67,14 +85,32 @@ class HebrewCalendarTest {
         }
 
     @Test
+    fun `years have one of the six lengths at exactly MIN_YEAR and MAX_YEAR`() {
+        listOf(MIN_YEAR, MAX_YEAR).forEach { year ->
+            val length = hebrew.yearLength(year)
+            length shouldBeIn if (hebrew.isLeapYear(year)) listOf(383, 384, 385) else listOf(353, 354, 355)
+            (1..hebrew.monthsInYear(year)).sumOf { hebrew.monthLength(year, it) } shouldBe length
+        }
+    }
+
+    @Test
     fun `Rosh Hashanah never falls on Sunday, Wednesday or Friday, nor Pesach on Monday, Wednesday or Friday`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, years) { year ->
+            checkAll(propertyConfig, years) { year ->
                 hebrew.newYear(year).weekday() shouldNotBeIn listOf(Weekday.SUNDAY, Weekday.WEDNESDAY, Weekday.FRIDAY)
                 val pesach = hebrew.toJdn(JewishObservances.date(JewishObservance.PESACH, year))
                 pesach.weekday() shouldNotBeIn listOf(Weekday.MONDAY, Weekday.WEDNESDAY, Weekday.FRIDAY)
             }
         }
+
+    @Test
+    fun `Rosh Hashanah and Pesach avoid their forbidden weekdays at exactly MIN_YEAR and MAX_YEAR`() {
+        listOf(MIN_YEAR, MAX_YEAR).forEach { year ->
+            hebrew.newYear(year).weekday() shouldNotBeIn listOf(Weekday.SUNDAY, Weekday.WEDNESDAY, Weekday.FRIDAY)
+            val pesach = hebrew.toJdn(JewishObservances.date(JewishObservance.PESACH, year))
+            pesach.weekday() shouldNotBeIn listOf(Weekday.MONDAY, Weekday.WEDNESDAY, Weekday.FRIDAY)
+        }
+    }
 
     @Test
     fun `days round-trip across the whole supported range`(): Unit =
@@ -86,7 +122,7 @@ class HebrewCalendarTest {
                     Arb.long(HebrewCalendar.LAST_JDN - 1_000_000L..HebrewCalendar.LAST_JDN),
                     Arb.long(HebrewCalendar.FIRST_JDN..HebrewCalendar.FIRST_JDN + 1_000_000L),
                 )
-            checkAll(PropertyTesting.iterations, days) { value ->
+            checkAll(propertyConfig, days) { value ->
                 val date = hebrew.fromJdn(Jdn(value))
                 hebrew.toJdn(date) shouldBe Jdn(value)
             }
@@ -96,13 +132,23 @@ class HebrewCalendarTest {
     fun `the calendar repeats every 689 472 years`(): Unit =
         runBlocking {
             val cycle = HebrewCalendar.FULL_CYCLE_YEARS
-            checkAll(PropertyTesting.iterations, Arb.int(MIN_YEAR..MAX_YEAR - cycle)) { year ->
+            checkAll(propertyConfig, Arb.int(MIN_YEAR..MAX_YEAR - cycle)) { year ->
                 hebrew.newYear(year + cycle) - hebrew.newYear(year) shouldBe HebrewCalendar.FULL_CYCLE_DAYS
                 hebrew.yearLength(year + cycle) shouldBe hebrew.yearLength(year)
                 hebrew.newYear(year + cycle).weekday() shouldBe hebrew.newYear(year).weekday()
             }
             HebrewCalendar.FULL_CYCLE_DAYS % 7 shouldBe 0L
         }
+
+    @Test
+    fun `the 689 472-year cycle holds at the property's own range edges`() {
+        val cycle = HebrewCalendar.FULL_CYCLE_YEARS
+        listOf(MIN_YEAR, MAX_YEAR - cycle).forEach { year ->
+            hebrew.newYear(year + cycle) - hebrew.newYear(year) shouldBe HebrewCalendar.FULL_CYCLE_DAYS
+            hebrew.yearLength(year + cycle) shouldBe hebrew.yearLength(year)
+            hebrew.newYear(year + cycle).weekday() shouldBe hebrew.newYear(year).weekday()
+        }
+    }
 
     @Test
     fun `the range ends are exact and everything beyond them is rejected`() {

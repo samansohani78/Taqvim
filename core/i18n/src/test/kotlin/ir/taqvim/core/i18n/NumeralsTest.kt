@@ -5,8 +5,10 @@
 package ir.taqvim.core.i18n
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.bigDecimal
 import io.kotest.property.arbitrary.boolean
 import io.kotest.property.arbitrary.enum
@@ -20,6 +22,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 
 class NumeralsTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val systems = Arb.enum<NumeralSystem>()
 
     @Test
@@ -120,23 +129,43 @@ class NumeralsTest {
     @Test
     fun `integers round-trip through every system`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(), systems, Arb.boolean()) { value, system, grouped ->
+            checkAll(propertyConfig, Arb.long(), systems, Arb.boolean()) { value, system, grouped ->
                 Numerals.parseLong(Numerals.format(value, system, grouped)) shouldBe value
             }
         }
 
     @Test
+    fun `integers round-trip at the Long boundaries and zero`() {
+        val valueSystems =
+            listOf(Long.MIN_VALUE, Long.MAX_VALUE, 0L).flatMap { value ->
+                NumeralSystem.entries.map { system -> value to system }
+            }
+        valueSystems
+            .flatMap { pair -> listOf(true, false).map { grouped -> Triple(pair.first, pair.second, grouped) } }
+            .forEach { (value, system, grouped) ->
+                Numerals.parseLong(Numerals.format(value, system, grouped)) shouldBe value
+            }
+    }
+
+    @Test
     fun `decimals round-trip through every system`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.bigDecimal(), systems, Arb.boolean()) { value, system, grouped ->
+            checkAll(propertyConfig, Arb.bigDecimal(), systems, Arb.boolean()) { value, system, grouped ->
                 Numerals.parseDecimal(Numerals.format(value, system, grouped))?.compareTo(value) shouldBe 0
             }
         }
 
     @Test
+    fun `traditional Tamil round-trips at its bounds`() {
+        TamilTraditionalNumerals.parse(TamilTraditionalNumerals.format(1L)) shouldBe 1L
+        TamilTraditionalNumerals.parse(TamilTraditionalNumerals.format(1_000_000_000_000L)) shouldBe
+            1_000_000_000_000L
+    }
+
+    @Test
     fun `traditional Tamil round-trips`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(1L..1_000_000_000_000L)) { value ->
+            checkAll(propertyConfig, Arb.long(1L..1_000_000_000_000L)) { value ->
                 TamilTraditionalNumerals.parse(TamilTraditionalNumerals.format(value)) shouldBe value
             }
         }

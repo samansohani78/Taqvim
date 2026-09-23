@@ -5,9 +5,11 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.choice
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
@@ -20,6 +22,13 @@ import org.junit.jupiter.api.Test
 
 /** ADR-0026: Persian year starts beyond the astronomical years, against an independent exact-integer model. */
 class PersianYearStartsTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val persian = PersianCalendarSystem
     private val first = PersianYearStarts.FIRST_ASTRONOMICAL_YEAR
     private val last = PersianYearStarts.LAST_ASTRONOMICAL_YEAR
@@ -67,7 +76,7 @@ class PersianYearStartsTest {
     @Test
     fun `years beyond the astronomical range match exact integer arithmetic`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, farYears) { year ->
+            checkAll(propertyConfig, farYears) { year ->
                 PersianYearStarts.startJdn(year.toLong()) shouldBe meanEquinoxStart(year.toLong())
             }
             PersianYearStarts.startJdn(Int.MAX_VALUE + 1L) shouldBe meanEquinoxStart(Int.MAX_VALUE + 1L)
@@ -76,7 +85,7 @@ class PersianYearStartsTest {
     @Test
     fun `far years have 365 or 366 days and their dates round-trip`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, farYears, Arb.int(1..12), Arb.int(1..31)) { year, month, rawDay ->
+            checkAll(propertyConfig, farYears, Arb.int(1..12), Arb.int(1..31)) { year, month, rawDay ->
                 val length = PersianYearStarts.startJdn(year + 1L) - PersianYearStarts.startJdn(year.toLong())
                 length shouldBe if (persian.isLeapYear(year)) 366L else 365L
                 persian.monthLength(year, 12) shouldBe if (length == 366L) 30 else 29

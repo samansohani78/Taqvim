@@ -5,11 +5,13 @@
 package ir.taqvim.data.database.backup
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeInstanceOf
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.list
 import io.kotest.property.arbitrary.map
@@ -37,6 +39,13 @@ import org.junit.jupiter.api.Test
 
 /** T-605 (U): file format round trips, passphrase handling, damage detection and forward compatibility. */
 class BackupCodecTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = 40)
+
     private val codec = BackupCodec(SecureRandom(), iterations = 1_000)
     private val secret = "رمز-قوی 2026"
 
@@ -127,7 +136,7 @@ class BackupCodecTest {
                 Arb.list(Arb.int(0x20..0x6FF), 1..12).map { codes ->
                     String(CharArray(codes.size) { codes[it].toChar() })
                 }
-            checkAll(40, passphrases) { passphrase ->
+            checkAll(propertyConfig, passphrases) { passphrase ->
                 val bytes =
                     codec.encode(
                         data,
@@ -139,6 +148,20 @@ class BackupCodecTest {
                 error(bytes, passphrase + "x") shouldBe BackupError.WrongPassphrase
             }
         }
+
+    @Test
+    fun `the shortest, longest and codepoint-boundary passphrases round-trip`() {
+        listOf(
+            "${0x20.toChar()}",
+            String(CharArray(12) { 0x20.toChar() }),
+            String(CharArray(12) { 0x6FF.toChar() }),
+            "${0x20.toChar()}${0x6FF.toChar()}",
+        ).forEach { passphrase ->
+            val bytes = codec.encode(data, preferences, metadata, BackupProtection.Passphrase(passphrase.toCharArray()))
+            ready(codec.decode(bytes, passphrase.toCharArray())).data shouldBe data
+            error(bytes, passphrase + "x") shouldBe BackupError.WrongPassphrase
+        }
+    }
 
     @Test
     fun `tampered encrypted files are rejected`() {

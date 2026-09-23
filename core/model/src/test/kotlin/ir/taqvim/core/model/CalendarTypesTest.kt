@@ -5,10 +5,12 @@
 package ir.taqvim.core.model
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.testing.PropertyTesting
@@ -16,6 +18,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class CalendarTypesTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     @Test
     fun `calendar systems and islamic variants are the planned sets`() {
         CalendarSystem.entries shouldContainExactly
@@ -66,12 +75,23 @@ class CalendarTypesTest {
     @Test
     fun `weekday plus seven is identity`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(0..6), Arb.int(-10_000..10_000)) { index, weeks ->
+            checkAll(propertyConfig, Arb.int(0..6), Arb.int(-10_000..10_000)) { index, weeks ->
                 val weekday = Weekday.entries[index]
                 weekday + 7 * weeks shouldBe weekday
                 (weekday + index).daysAfter(weekday) shouldBe index
             }
         }
+
+    @Test
+    fun `weekday plus seven is identity at the first and last weekday and the widest week offsets`() {
+        listOf(0, 6).forEach { index ->
+            listOf(-10_000, 0, 10_000).forEach { weeks ->
+                val weekday = Weekday.entries[index]
+                weekday + 7 * weeks shouldBe weekday
+                (weekday + index).daysAfter(weekday) shouldBe index
+            }
+        }
+    }
 
     @Test
     fun `coordinates validate their ranges`() {
@@ -115,9 +135,19 @@ class CalendarTypesTest {
     @Test
     fun `wrapping keeps minute of day in range`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(0..1439), Arb.int(-100_000..100_000)) { value, delta ->
+            checkAll(propertyConfig, Arb.int(0..1439), Arb.int(-100_000..100_000)) { value, delta ->
                 val moved = MinuteOfDay(value).plusWrapping(delta)
                 moved.plusWrapping(-delta) shouldBe MinuteOfDay(value)
             }
         }
+
+    @Test
+    fun `wrapping keeps minute of day in range at midnight, end of day and the widest deltas`() {
+        listOf(0, 1439).forEach { value ->
+            listOf(-100_000, 0, 100_000).forEach { delta ->
+                val moved = MinuteOfDay(value).plusWrapping(delta)
+                moved.plusWrapping(-delta) shouldBe MinuteOfDay(value)
+            }
+        }
+    }
 }

@@ -4,8 +4,10 @@
  */
 package ir.taqvim.core.calendar
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.CalendarDate
@@ -28,6 +30,13 @@ import org.junit.jupiter.api.TestFactory
  * the first day of 2084), never typed by hand.
  */
 class NepaliCalendarMathTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val nepali = NepaliCalendarSystem
     private val hebrew = HebrewCalendarSystem
 
@@ -137,11 +146,11 @@ class NepaliCalendarMathTest {
     fun `adding months to a month start and back returns the month start`(): Unit =
         runBlocking {
             val shifts = Arb.int(-400..400)
-            checkAll(PropertyTesting.iterations, Arb.int(1900..2200), Arb.int(1..12), shifts) { year, month, k ->
+            checkAll(propertyConfig, Arb.int(1900..2200), Arb.int(1..12), shifts) { year, month, k ->
                 val start = CalendarDate(CalendarSystem.NEPALI, year, month, 1)
                 nepali.addMonths(nepali.addMonths(start, k), -k) shouldBe start
             }
-            checkAll(PropertyTesting.iterations, Arb.int(5000..6000), Arb.int(1..13), shifts) { year, raw, k ->
+            checkAll(propertyConfig, Arb.int(5000..6000), Arb.int(1..13), shifts) { year, raw, k ->
                 val month = if (raw > hebrew.monthsInYear(year)) 1 else raw
                 val start = CalendarDate(CalendarSystem.HEBREW, year, month, 1)
                 hebrew.addMonths(hebrew.addMonths(start, k), -k) shouldBe start
@@ -162,7 +171,7 @@ class NepaliCalendarMathTest {
     @Test
     fun `Hebrew period components rebuild the target date`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(5000..6000), Arb.int(0..3_000)) { year, span ->
+            checkAll(propertyConfig, Arb.int(5000..6000), Arb.int(0..3_000)) { year, span ->
                 val from = CalendarDate(CalendarSystem.HEBREW, year, 1, 1)
                 val to = hebrew.plusDays(from, span.toLong())
                 val period = hebrew.periodBetween(from, to)

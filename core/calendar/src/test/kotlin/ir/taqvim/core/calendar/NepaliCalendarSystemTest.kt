@@ -5,12 +5,14 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.doubles.plusOrMinus
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.choice
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
@@ -28,6 +30,13 @@ import org.junit.jupiter.api.Test
 
 /** A-07 Bikram Sambat (ADR-0030) against Nepal's official National Panchang and structural properties for any year. */
 class NepaliCalendarSystemTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations / 10)
+
     private val nepali = NepaliCalendarSystem
 
     private val panchang =
@@ -97,7 +106,7 @@ class NepaliCalendarSystemTest {
     @Test
     fun `far years keep solar months and round-trip`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations / 10, farYears) { year -> checkYear(year) }
+            checkAll(propertyConfig, farYears) { year -> checkYear(year) }
         }
 
     @Test

@@ -4,11 +4,13 @@
  */
 package ir.taqvim.core.ics
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldHaveAtMostSize
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.longs.shouldBeLessThanOrEqual
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.bind
 import io.kotest.property.arbitrary.element
 import io.kotest.property.arbitrary.int
@@ -34,6 +36,13 @@ import org.junit.jupiter.api.Test
 
 /** Review I03: seeking to a day gives exactly the later occurrences, and periods stay cheap and bounded. */
 class RecurrenceSeekTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val calendars: List<CalendarArithmetic> =
         listOf(GregorianCalendarSystem, PersianCalendarSystem, TabularIslamicCalendar.TYPE_II, NepaliCalendarSystem)
 
@@ -61,7 +70,7 @@ class RecurrenceSeekTest {
     fun `seeking gives the same occurrences as filtering the whole series`(): Unit =
         runBlocking {
             checkAll(
-                PropertyTesting.iterations,
+                propertyConfig,
                 Arb.element(calendars),
                 rules,
                 Arb.int(2_400_000..2_470_000),
@@ -79,6 +88,35 @@ class RecurrenceSeekTest {
                         .toList()
             }
         }
+
+    @Test
+    fun `seeking gives the same occurrences at the start-day and offset range edges`() {
+        // A fixed seed permanently commits checkAll to one set of draws; pin the Arb.int(2_400_000..2_470_000)
+        // start-day edges together with offset 0 (seeking from the very first occurrence) and offset 20_000 (the
+        // Arb.int(0..20_000) edge), across every calendar and every Frequency, so these edges are never left
+        // untested purely by chance.
+        val calendarFrequencies =
+            calendars.flatMap { calendar -> Frequency.entries.map { frequency -> calendar to frequency } }
+        val dayOffsets =
+            listOf(2_400_000, 2_470_000).flatMap { day -> listOf(0, 20_000).map { offset -> day to offset } }
+        val cases = calendarFrequencies.flatMap { cf -> dayOffsets.map { doff -> cf to doff } }
+        cases.forEach { (cf, doff) ->
+            val (calendar, frequency) = cf
+            val (startDay, offset) = doff
+            val rule = RecurrenceRule(frequency = frequency, interval = 1)
+            val engine = RecurrenceEngine(calendar)
+            val start = calendar.fromJdn(Jdn(startDay.toLong()))
+            val from = Jdn(startDay.toLong() + offset)
+            val sought = engine.occurrences(start, rule, from).take(SAMPLE).toList()
+            val expected =
+                engine
+                    .occurrences(start, rule)
+                    .filter { it >= from }
+                    .take(SAMPLE)
+                    .toList()
+            sought shouldBe expected
+        }
+    }
 
     @Test
     fun `COUNT and UNTIL keep their meaning when seeking`() {

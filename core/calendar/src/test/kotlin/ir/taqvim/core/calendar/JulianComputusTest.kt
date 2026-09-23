@@ -5,10 +5,12 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.comparables.shouldBeGreaterThanOrEqualTo
 import io.kotest.matchers.comparables.shouldBeLessThanOrEqualTo
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
@@ -22,6 +24,13 @@ import org.junit.jupiter.api.Test
 
 /** T-109 Julian calendar and computus, and movable feasts in the civil calendar of every year. */
 class JulianComputusTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private fun julian(
         year: Long,
         month: Int,
@@ -57,12 +66,15 @@ class JulianComputusTest {
     @Test
     fun `Julian days round trip across the whole range`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(JulianCalendar.FIRST_JDN..JulianCalendar.LAST_JDN)) { day ->
+            checkAll(propertyConfig, Arb.long(JulianCalendar.FIRST_JDN..JulianCalendar.LAST_JDN)) { day ->
                 JulianCalendar.toJdn(JulianCalendar.fromJdn(Jdn(day))).value shouldBe day
             }
             (-3_000L..3_000L).forEach { day ->
                 val jdn = Jdn(JulianCalendar.JDN_OF_YEAR_ZERO + day)
                 JulianCalendar.toJdn(JulianCalendar.fromJdn(jdn)) shouldBe jdn
+            }
+            listOf(JulianCalendar.FIRST_JDN, JulianCalendar.LAST_JDN).forEach { day ->
+                JulianCalendar.toJdn(JulianCalendar.fromJdn(Jdn(day))).value shouldBe day
             }
         }
 
@@ -86,19 +98,25 @@ class JulianComputusTest {
     @Test
     fun `Julian Easter is a Sunday from 22 March to 25 April in every year`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(-TEN_MILLION..TEN_MILLION)) { assertJulianEaster(it) }
-            checkAll(PropertyTesting.iterations, Arb.long(JulianCalendar.MIN_YEAR..JulianCalendar.MAX_YEAR)) {
+            checkAll(propertyConfig, Arb.long(-TEN_MILLION..TEN_MILLION)) { assertJulianEaster(it) }
+            checkAll(propertyConfig, Arb.long(JulianCalendar.MIN_YEAR..JulianCalendar.MAX_YEAR)) {
                 assertJulianEaster(it)
             }
             assertJulianEaster(JulianCalendar.MIN_YEAR)
             assertJulianEaster(JulianCalendar.MAX_YEAR)
+            assertJulianEaster(-TEN_MILLION)
+            assertJulianEaster(TEN_MILLION)
         }
 
     @Test
     fun `Julian Easter dates repeat every 532 years`(): Unit =
         runBlocking {
             val lastStart = JulianCalendar.MAX_YEAR - JulianComputus.CYCLE_YEARS
-            checkAll(PropertyTesting.iterations, Arb.long(JulianCalendar.MIN_YEAR..lastStart)) { year ->
+            checkAll(propertyConfig, Arb.long(JulianCalendar.MIN_YEAR..lastStart)) { year ->
+                val later = JulianComputus.easter(year + JulianComputus.CYCLE_YEARS)
+                (later.month to later.day) shouldBe JulianComputus.easter(year).let { it.month to it.day }
+            }
+            listOf(JulianCalendar.MIN_YEAR, lastStart).forEach { year ->
                 val later = JulianComputus.easter(year + JulianComputus.CYCLE_YEARS)
                 (later.month to later.day) shouldBe JulianComputus.easter(year).let { it.month to it.day }
             }
@@ -123,23 +141,30 @@ class JulianComputusTest {
     @Test
     fun `civil feasts keep their weekdays and offsets in every year`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(-TEN_MILLION..GregorianComputus.LAST_YEAR.toLong())) {
+            checkAll(propertyConfig, Arb.long(-TEN_MILLION..GregorianComputus.LAST_YEAR.toLong())) {
                 assertCivilFeasts(it)
             }
             (1_570L..1_600L).forEach(::assertCivilFeasts)
             assertCivilFeasts(JulianCalendar.MIN_YEAR)
+            assertCivilFeasts(-TEN_MILLION)
+            assertCivilFeasts(GregorianComputus.LAST_YEAR.toLong())
         }
 
     @Test
     fun `Orthodox Easter is the Julian computus on the Gregorian calendar`(): Unit =
         runBlocking {
             val years = Arb.int(GregorianComputus.FIRST_YEAR..JulianComputus.ORTHODOX_LAST_YEAR)
-            checkAll(PropertyTesting.iterations, years) { year ->
+            checkAll(propertyConfig, years) { year ->
                 val orthodox = GregorianCalendarSystem.toJdn(JulianComputus.orthodoxEaster(year))
                 orthodox shouldBe JulianComputus.easterJdn(year.toLong())
                 orthodox.weekday() shouldBe Weekday.SUNDAY
                 val western = GregorianCalendarSystem.toJdn(GregorianComputus.easter(year))
                 (orthodox - western) % DAYS_PER_WEEK shouldBe 0L
+            }
+            listOf(GregorianComputus.FIRST_YEAR, JulianComputus.ORTHODOX_LAST_YEAR).forEach { year ->
+                val orthodox = GregorianCalendarSystem.toJdn(JulianComputus.orthodoxEaster(year))
+                orthodox shouldBe JulianComputus.easterJdn(year.toLong())
+                orthodox.weekday() shouldBe Weekday.SUNDAY
             }
             JulianComputus.orthodoxEaster(2_024) shouldBe CalendarDate(CalendarSystem.GREGORIAN, 2_024, 5, 5)
             JulianComputus.orthodoxEaster(JulianComputus.ORTHODOX_LAST_YEAR).year shouldBe Int.MAX_VALUE

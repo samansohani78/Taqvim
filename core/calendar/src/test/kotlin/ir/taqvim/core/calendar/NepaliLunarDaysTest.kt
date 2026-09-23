@@ -6,12 +6,14 @@ package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.withClue
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.longs.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.choice
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
@@ -29,6 +31,13 @@ import org.junit.jupiter.api.Test
  * Rajpatra, Ministry of Home Affairs), plus Teej and Gyalpo Lhosar, which the notices also date.
  */
 class NepaliLunarDaysTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private data class Case(
         val name: String,
         val year: Int,
@@ -120,7 +129,7 @@ class NepaliLunarDaysTest {
                     Arb.int(Int.MIN_VALUE..Int.MIN_VALUE + 1_000),
                     Arb.int(Int.MAX_VALUE - 1_000..Int.MAX_VALUE),
                 )
-            checkAll(PropertyTesting.iterations, years, Arb.int(1..12), Arb.int(1..30)) { year, month, tithi ->
+            checkAll(propertyConfig, years, Arb.int(1..12), Arb.int(1..30)) { year, month, tithi ->
                 val days = NepaliLunarDays.days(year, month, tithi, SUNRISE)
                 days.size shouldBeInRange 0..2
                 val first = NepaliCalendarSystem.firstDayOfYear(year).value

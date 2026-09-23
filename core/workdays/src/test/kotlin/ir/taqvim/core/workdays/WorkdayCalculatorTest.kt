@@ -5,9 +5,11 @@
 package ir.taqvim.core.workdays
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.events.EventCategory
@@ -32,6 +34,13 @@ import org.junit.jupiter.api.TestFactory
 
 /** T-504 on a synthetic profile, checked against an independent java.time oracle. No real-world data. */
 class WorkdayCalculatorTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private fun jdn(date: LocalDate): Jdn = Jdn(date.toEpochDay() + JDN_OF_UNIX_EPOCH)
 
     private fun date(jdn: Jdn): LocalDate = LocalDate.ofEpochDay(jdn.value - JDN_OF_UNIX_EPOCH)
@@ -158,7 +167,7 @@ class WorkdayCalculatorTest {
     @Test
     fun `adding workdays always lands on a workday`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(0..1_500), Arb.int(-30..30)) { offset, n ->
+            checkAll(propertyConfig, Arb.int(0..1_500), Arb.int(-30..30)) { offset, n ->
                 val start = jdn(LocalDate.of(2025, 1, 1).plusDays(offset.toLong()))
                 val result = calculator.addWorkdays(start, n)
                 result.shouldBeInstanceOf<WorkdayResult.Found>()
@@ -166,6 +175,19 @@ class WorkdayCalculatorTest {
                 oracleValue(date(result.jdn)) shouldBe calculator.workValue(result.jdn)
             }
         }
+
+    @Test
+    fun `adding workdays always lands on a workday at the offset and count bounds`() {
+        listOf(0, 1_500).forEach { offset ->
+            listOf(-30, 0, 30).forEach { n ->
+                val start = jdn(LocalDate.of(2025, 1, 1).plusDays(offset.toLong()))
+                val result = calculator.addWorkdays(start, n)
+                result.shouldBeInstanceOf<WorkdayResult.Found>()
+                calculator.isWorkday(result.jdn) shouldBe true
+                oracleValue(date(result.jdn)) shouldBe calculator.workValue(result.jdn)
+            }
+        }
+    }
 
     private companion object {
         const val JDN_OF_UNIX_EPOCH = 2_440_588L

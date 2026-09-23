@@ -4,11 +4,13 @@
  */
 package ir.taqvim.core.ics
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.Codepoint
 import io.kotest.property.arbitrary.element
 import io.kotest.property.arbitrary.string
@@ -18,6 +20,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class ContentLinesTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     @Test
     fun `unfolding joins CRLF, LF and tab continuations and keeps line numbers`() {
         ContentLines.unfold("A:1\r\n B\r\nC:2\n\tD\n\nE:3") shouldBe listOf(1 to "A:1B", 3 to "C:2D", 6 to "E:3")
@@ -85,10 +94,25 @@ class ContentLinesTest {
                     listOf('a', 'Z', '0', ' ', '\t', ';', ',', ':', '"', '\\', '\n').map { Codepoint(it.code) } +
                         listOf(0x0627, 0x0634, 0x06CC, 0x4E2D, 0x1F600).map(::Codepoint)
                 )
-            checkAll(PropertyTesting.iterations, Arb.string(0..200, Arb.element(codepoints))) { text ->
+            checkAll(propertyConfig, Arb.string(0..200, Arb.element(codepoints))) { text ->
                 val physical = ContentLines.fold("DESCRIPTION:" + ContentLines.escapeText(text))
                 val unfolded = ContentLines.unfold(physical.joinToString("\r\n")).single().second
                 ContentLines.unescapeText(unfolded.removePrefix("DESCRIPTION:")) shouldBe text
             }
         }
+
+    @Test
+    fun `escaping and folding round-trip the empty value and the longest value`() {
+        // A fixed seed permanently commits checkAll to one set of lengths drawn from 0..200; pin both ends so an
+        // empty description and a 200-character one (which forces multiple folded physical lines) are never left
+        // untested purely by chance.
+        listOf(
+            "",
+            "a".repeat(70) + "ش".repeat(70) + "😀".repeat(15),
+        ).forEach { text ->
+            val physical = ContentLines.fold("DESCRIPTION:" + ContentLines.escapeText(text))
+            val unfolded = ContentLines.unfold(physical.joinToString("\r\n")).single().second
+            ContentLines.unescapeText(unfolded.removePrefix("DESCRIPTION:")) shouldBe text
+        }
+    }
 }

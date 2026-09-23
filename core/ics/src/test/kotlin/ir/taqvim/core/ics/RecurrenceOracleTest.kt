@@ -5,10 +5,12 @@
 package ir.taqvim.core.ics
 
 import io.kotest.assertions.withClue
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.arbitrary
 import io.kotest.property.arbitrary.element
 import io.kotest.property.arbitrary.enum
@@ -38,6 +40,13 @@ import org.junit.jupiter.api.TestFactory
  * filter that tests each date against the RFC 5545 §3.3.10 definitions. Plus the ordering property in three calendars.
  */
 class RecurrenceOracleTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val engine = RecurrenceEngine(GregorianCalendarSystem)
 
     private fun ruleOf(text: String): RecurrenceRule =
@@ -216,7 +225,7 @@ class RecurrenceOracleTest {
                     )
                 }
             val calendars = Arb.element(CALENDARS)
-            checkAll(PropertyTesting.iterations, rules, calendars, Arb.int(0..50_000)) { rule, calendar, offset ->
+            checkAll(propertyConfig, rules, calendars, Arb.int(0..50_000)) { rule, calendar, offset ->
                 val start = calendar.fromJdn(calendar.toJdn(START_ANCHOR.getValue(calendar.system)).plus(offset))
                 val days =
                     RecurrenceEngine(
@@ -225,6 +234,30 @@ class RecurrenceOracleTest {
                 days.zipWithNext().forEach { (earlier, later) -> (later > earlier) shouldBe true }
             }
         }
+
+    @Test
+    fun `occurrences strictly increase at the offset range edges and with no byDay or byMonthDay`() {
+        // A fixed seed permanently commits checkAll to one set of draws; pin offset 0 and 50_000 (the Arb.int(0..
+        // 50_000) boundaries) together with a rule whose byDay/byMonthDay lists are both empty (the 0-length end of
+        // Arb.list(..., 0..2)), crossed with every Frequency and every calendar, so these edges are never left
+        // untested purely by chance.
+        val frequencyCalendars =
+            Frequency.entries.flatMap { frequency -> CALENDARS.map { calendar -> frequency to calendar } }
+        val cases = frequencyCalendars.flatMap { fc -> listOf(0, 50_000).map { offset -> fc to offset } }
+        cases.forEach { (fc, offset) ->
+            val (frequency, calendar) = fc
+            val rule =
+                RecurrenceRule(frequency = frequency, interval = 1, byDay = emptyList(), byMonthDay = emptyList())
+            val start = calendar.fromJdn(calendar.toJdn(START_ANCHOR.getValue(calendar.system)).plus(offset))
+            val days =
+                RecurrenceEngine(calendar)
+                    .occurrences(start, rule)
+                    .take(OCCURRENCES)
+                    .map { it.value }
+                    .toList()
+            days.zipWithNext().forEach { (earlier, later) -> (later > earlier) shouldBe true }
+        }
+    }
 
     private companion object {
         const val LIMIT = 25

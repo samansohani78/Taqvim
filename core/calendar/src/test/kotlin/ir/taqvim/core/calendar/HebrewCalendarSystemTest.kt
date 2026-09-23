@@ -5,8 +5,10 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.CalendarDate
@@ -18,12 +20,19 @@ import org.junit.jupiter.api.Test
 
 /** F07: [HebrewCalendarSystem] adapts [HebrewCalendar] to [CalendarArithmetic]. */
 class HebrewCalendarSystemTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val hebrew = HebrewCalendarSystem
 
     @Test
     fun `days round trip and agree with HebrewCalendar`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(1_000_000L..4_000_000L)) { day ->
+            checkAll(propertyConfig, Arb.long(1_000_000L..4_000_000L)) { day ->
                 val date = hebrew.fromJdn(Jdn(day))
                 date.system shouldBe CalendarSystem.HEBREW
                 hebrew.toJdn(date) shouldBe Jdn(day)

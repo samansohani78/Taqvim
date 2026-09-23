@@ -5,11 +5,13 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.comparables.shouldBeGreaterThanOrEqualTo
 import io.kotest.matchers.comparables.shouldBeLessThan
 import io.kotest.matchers.comparables.shouldBeLessThanOrEqualTo
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.CalendarDate
@@ -22,6 +24,13 @@ import org.junit.jupiter.api.Test
 
 /** T-805/T-801: the days, years and month distances screens offer, and direct month arithmetic at any distance. */
 class CalendarLimitsTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val calendars =
         listOf(
             GregorianCalendarSystem,
@@ -70,7 +79,7 @@ class CalendarLimitsTest {
     @Test
     fun `direct month arithmetic equals stepping year by year`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(-3_000..3_000), Arb.int(1..12), Arb.int(1..31)) { y, m, d ->
+            checkAll(propertyConfig, Arb.int(-3_000..3_000), Arb.int(1..12), Arb.int(1..31)) { y, m, d ->
                 val date = persian(y, m, d.coerceAtMost(PersianCalendarSystem.monthLength(y, m)))
                 val shift = Math.floorMod(y * 31 + m * 7 + d, 4_801) - 2_400
                 val direct = PersianCalendarSystem.addMonths(date, shift)
@@ -79,6 +88,20 @@ class CalendarLimitsTest {
                 PersianCalendarSystem.monthsBetween(date, target) shouldBe SteppingPersian.monthsBetween(date, target)
             }
         }
+
+    @Test
+    fun `direct month arithmetic equals stepping year by year at the property's own range edges`() {
+        listOf(-3_000, 3_000).forEach { y ->
+            listOf(1 to 1, 12 to 31).forEach { (m, d) ->
+                val date = persian(y, m, d.coerceAtMost(PersianCalendarSystem.monthLength(y, m)))
+                val shift = Math.floorMod(y * 31 + m * 7 + d, 4_801) - 2_400
+                val direct = PersianCalendarSystem.addMonths(date, shift)
+                SteppingPersian.addMonths(date, shift) shouldBe direct
+                val target = persian(direct.year, direct.month, 1 + Math.floorMod(d * 13, 28))
+                PersianCalendarSystem.monthsBetween(date, target) shouldBe SteppingPersian.monthsBetween(date, target)
+            }
+        }
+    }
 
     @Test
     fun `month arithmetic reaches every Int month offset directly`() {

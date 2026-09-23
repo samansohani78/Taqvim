@@ -4,10 +4,12 @@
  */
 package ir.taqvim.core.calendar
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.Jdn
@@ -44,6 +46,13 @@ private const val PROBE_SECOND_OF_DAY = 17L * SECONDS_PER_HOUR
  * device the tz database is the platform's own copy, so this checks the rules and the bridge, not a specific device.
  */
 class UsnoUsDaylightSavingTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     /** The dates USNO gives for one year. */
     private data class UsnoYear(
         val year: Int,
@@ -117,18 +126,29 @@ class UsnoUsDaylightSavingTest {
     @Test
     fun `the tz database follows the national rule beyond the USNO range`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(10_000..10_000_000)) { year ->
-                val dates = UsDaylightSavingRules.forYear(year.toLong()).shouldNotBeNull()
-                zones.forEach { usZone ->
-                    listOf(
-                        offsetsAround(usZone.zone, year, dates.begins) to (usZone.standard to usZone.daylight),
-                        offsetsAround(usZone.zone, year, dates.ends) to (usZone.daylight to usZone.standard),
-                    ).filterNot { (found, expected) -> found == expected }
-                        .map { "${usZone.zone} $year: $it" }
-                        .shouldBeEmpty()
-                }
+            checkAll(propertyConfig, Arb.int(10_000..10_000_000)) { year ->
+                assertFollowsNationalRule(year)
             }
         }
+
+    @Test
+    fun `the year right after the USNO golden's range still follows the national rule`() {
+        // The golden (checked above) only covers 1967..9999; 10 000 is the literal lower bound the property above
+        // draws from, and a fixed seed no longer guarantees hitting it by chance, so it is pinned here directly.
+        assertFollowsNationalRule(10_000)
+    }
+
+    private fun assertFollowsNationalRule(year: Int) {
+        val dates = UsDaylightSavingRules.forYear(year.toLong()).shouldNotBeNull()
+        zones.forEach { usZone ->
+            listOf(
+                offsetsAround(usZone.zone, year, dates.begins) to (usZone.standard to usZone.daylight),
+                offsetsAround(usZone.zone, year, dates.ends) to (usZone.daylight to usZone.standard),
+            ).filterNot { (found, expected) -> found == expected }
+                .map { "${usZone.zone} $year: $it" }
+                .shouldBeEmpty()
+        }
+    }
 
     /** The 17:00 UT offsets in [zone] on the day before [day] of [year] and on that day. */
     private fun offsetsAround(

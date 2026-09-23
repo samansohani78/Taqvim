@@ -5,11 +5,13 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.choice
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
@@ -26,6 +28,13 @@ import org.junit.jupiter.api.Test
 
 /** ADR-0027: the Iran-calibrated crescent months for every year. */
 class IranCrescentCalendarTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val crescent = IranCrescentCalendar
     private val months = IranCrescentMonths
 
@@ -106,7 +115,7 @@ class IranCrescentCalendarTest {
     @Test
     fun `far years have 29 or 30 day months and their dates round-trip`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, farYears, Arb.int(1..12), Arb.int(1..30)) { year, month, rawDay ->
+            checkAll(propertyConfig, farYears, Arb.int(1..12), Arb.int(1..30)) { year, month, rawDay ->
                 val length = crescent.monthLength(year, month)
                 length shouldBeIn listOf(29, 30)
                 val yearDays = (1..12).sumOf { crescent.monthLength(year, it) }

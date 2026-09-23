@@ -5,11 +5,13 @@
 package ir.taqvim.core.ics
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.Weekday
@@ -26,6 +28,13 @@ import kotlinx.datetime.LocalDateTime
 import org.junit.jupiter.api.Test
 
 class IcsValuesTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private fun property(
         name: String = "DTSTART",
         parameters: Map<String, String> = emptyMap(),
@@ -56,10 +65,17 @@ class IcsValuesTest {
     @Test
     fun `formatted durations read back`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(-10_000_000L..10_000_000L)) { seconds ->
+            checkAll(propertyConfig, Arb.long(-10_000_000L..10_000_000L)) { seconds ->
                 IcsValues.duration(IcsValues.formatDuration(seconds.seconds)) shouldBe seconds.seconds
             }
         }
+
+    @Test
+    fun `formatted durations read back at the property's own range edges`() {
+        listOf(-10_000_000L, 10_000_000L).forEach { seconds ->
+            IcsValues.duration(IcsValues.formatDuration(seconds.seconds)) shouldBe seconds.seconds
+        }
+    }
 
     @Test
     fun `date-time forms, invalid values and unknown zones`() {

@@ -6,11 +6,13 @@ package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.withClue
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.ints.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.choice
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
@@ -21,6 +23,13 @@ import org.junit.jupiter.api.Test
 
 /** ADR-0028: the Umm al-Qura criterion against the published calendar, and the calendar beyond it. */
 class UmmAlQuraCriterionTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val uaq = UmmAlQuraCalendar
     private val months = UmmAlQuraMonths
 
@@ -132,7 +141,7 @@ class UmmAlQuraCriterionTest {
                     Arb.int(Int.MIN_VALUE..Int.MIN_VALUE + 10_000),
                     Arb.int(Int.MAX_VALUE - 10_000..Int.MAX_VALUE),
                 )
-            checkAll(PropertyTesting.iterations, farYears, Arb.int(1..12)) { year, month ->
+            checkAll(propertyConfig, farYears, Arb.int(1..12)) { year, month ->
                 val length = uaq.monthLength(year, month)
                 length shouldBeInRange 29..30
                 (1..12).sumOf { uaq.monthLength(year, it) } shouldBeInRange 354..355

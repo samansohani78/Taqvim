@@ -4,8 +4,10 @@
  */
 package ir.taqvim.core.i18n
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.string
 import io.kotest.property.checkAll
 import ir.taqvim.core.testing.PropertyTesting
@@ -15,6 +17,13 @@ import org.junit.jupiter.api.Test
 
 /** T-1701: isolates keep embedded runs in their own direction inside a right-to-left paragraph (java.text.Bidi). */
 class BidiTextTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     /** Embedding levels of [text] laid out in a right-to-left paragraph. */
     private fun rtlLevels(text: String): List<Int> {
         val bidi = Bidi(text, Bidi.DIRECTION_RIGHT_TO_LEFT)
@@ -54,7 +63,7 @@ class BidiTextTest {
     @Test
     fun `isolates are balanced and strip restores the text`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.string()) { raw ->
+            checkAll(propertyConfig, Arb.string()) { raw ->
                 val text = BidiText.strip(raw)
                 listOf(BidiText.ltr(text), BidiText.rtl(text), BidiText.isolate(text)).forEach { wrapped ->
                     BidiText.strip(wrapped) shouldBe text
@@ -63,4 +72,17 @@ class BidiTextTest {
                 }
             }
         }
+
+    @Test
+    fun `isolates are balanced for the empty string and text already carrying isolate marks`() {
+        listOf("", BidiText.ltr("x"), BidiText.rtl("x"), BidiText.isolate("x"), "${BidiText.PDI}${BidiText.LRI}")
+            .forEach { raw ->
+                val text = BidiText.strip(raw)
+                listOf(BidiText.ltr(text), BidiText.rtl(text), BidiText.isolate(text)).forEach { wrapped ->
+                    BidiText.strip(wrapped) shouldBe text
+                    wrapped.count { it == BidiText.PDI } shouldBe 1
+                    wrapped.last() shouldBe BidiText.PDI
+                }
+            }
+    }
 }

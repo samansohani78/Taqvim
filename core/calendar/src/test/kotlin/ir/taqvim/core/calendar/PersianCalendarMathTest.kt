@@ -4,8 +4,10 @@
  */
 package ir.taqvim.core.calendar
 
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.CalendarDate
@@ -22,6 +24,13 @@ import org.junit.jupiter.api.TestFactory
  * weekdays follow the official 1404/1405 calendars (golden/persian, docs/PROVENANCE.md).
  */
 class PersianCalendarMathTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val persian = PersianCalendarSystem
     private val saturdayWeeks = WeekRule.containingFirstDay(Weekday.SATURDAY)
 
@@ -156,7 +165,7 @@ class PersianCalendarMathTest {
     @Test
     fun `adding months to a Persian month start and back returns the month start`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(-5_000..5_000), Arb.int(1..12), Arb.int(-2_400..2_400)) {
+            checkAll(propertyConfig, Arb.int(-5_000..5_000), Arb.int(1..12), Arb.int(-2_400..2_400)) {
                 year,
                 month,
                 k,
@@ -165,4 +174,15 @@ class PersianCalendarMathTest {
                 persian.addMonths(persian.addMonths(start, k), -k) shouldBe start
             }
         }
+
+    @Test
+    fun `adding months and back returns the start at the property's own range edges`() {
+        val yearMonths = listOf(-5_000, 5_000).flatMap { year -> listOf(1, 12).map { month -> year to month } }
+        yearMonths
+            .flatMap { pair -> listOf(-2_400, 2_400).map { k -> Triple(pair.first, pair.second, k) } }
+            .forEach { (year, month, k) ->
+                val start = p(year, month, 1)
+                persian.addMonths(persian.addMonths(start, k), -k) shouldBe start
+            }
+    }
 }

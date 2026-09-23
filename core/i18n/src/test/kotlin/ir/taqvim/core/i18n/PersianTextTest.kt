@@ -5,8 +5,10 @@
 package ir.taqvim.core.i18n
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.char
 import io.kotest.property.arbitrary.choice
 import io.kotest.property.arbitrary.element
@@ -20,6 +22,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 
 class PersianTextTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val zwnj = "‌"
 
     /** 50 normalization pairs: input → expected canonical form. */
@@ -175,7 +184,7 @@ class PersianTextTest {
     @Test
     fun `normalization and search keys are idempotent`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, persianish) { text ->
+            checkAll(propertyConfig, persianish) { text ->
                 val normalized = PersianText.normalize(text)
                 PersianText.normalize(normalized) shouldBe normalized
                 val key = PersianText.searchKey(text)
@@ -186,7 +195,7 @@ class PersianTextTest {
     @Test
     fun `distance is symmetric and zero only for equal strings`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, persianish, persianish) { a, b ->
+            checkAll(propertyConfig, persianish, persianish) { a, b ->
                 val forward = FuzzyMatcher.distance(a, b, maxDistance = 30)
                 forward shouldBe FuzzyMatcher.distance(b, a, maxDistance = 30)
                 (forward == 0) shouldBe (a == b)

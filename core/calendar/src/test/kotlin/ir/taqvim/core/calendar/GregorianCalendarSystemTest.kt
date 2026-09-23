@@ -5,9 +5,11 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
@@ -19,6 +21,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class GregorianCalendarSystemTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val gregorian = GregorianCalendarSystem
 
     private fun date(
@@ -93,15 +102,22 @@ class GregorianCalendarSystemTest {
     @Test
     fun `jdn round-trips through the calendar`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(-1_000_000_000L..1_000_000_000L)) { value ->
+            checkAll(propertyConfig, Arb.long(-1_000_000_000L..1_000_000_000L)) { value ->
                 gregorian.toJdn(gregorian.fromJdn(Jdn(value))) shouldBe Jdn(value)
             }
         }
 
     @Test
+    fun `jdn round-trips at the property's own range edges`() {
+        listOf(-1_000_000_000L, 0L, 1_000_000_000L).forEach { value ->
+            gregorian.toJdn(gregorian.fromJdn(Jdn(value))) shouldBe Jdn(value)
+        }
+    }
+
+    @Test
     fun `dates round-trip and consecutive days differ by one`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(-2_000_000..2_000_000), Arb.int(1..12), Arb.int(1..31)) {
+            checkAll(propertyConfig, Arb.int(-2_000_000..2_000_000), Arb.int(1..12), Arb.int(1..31)) {
                 year,
                 month,
                 rawDay,
@@ -119,4 +135,23 @@ class GregorianCalendarSystemTest {
                 next shouldBe expectedNext
             }
         }
+
+    @Test
+    fun `dates round-trip and consecutive days differ by one at the property's own range edges`() {
+        listOf(-2_000_000, 2_000_000).forEach { year ->
+            listOf(1 to 1, 12 to 31).forEach { (month, rawDay) ->
+                val day = minOf(rawDay, gregorian.monthLength(year, month))
+                val jdn = gregorian.toJdn(date(year, month, day))
+                gregorian.fromJdn(jdn) shouldBe date(year, month, day)
+                val next = gregorian.fromJdn(jdn + 1)
+                val expectedNext =
+                    when {
+                        day < gregorian.monthLength(year, month) -> date(year, month, day + 1)
+                        month < 12 -> date(year, month + 1, 1)
+                        else -> date(year + 1, 1, 1)
+                    }
+                next shouldBe expectedNext
+            }
+        }
+    }
 }

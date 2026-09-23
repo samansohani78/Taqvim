@@ -5,9 +5,11 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.comparables.shouldBeBetween
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.element
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
@@ -23,6 +25,13 @@ import kotlinx.datetime.TimeZone
 import org.junit.jupiter.api.Test
 
 class DateTimeBridgeTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private fun day(
         instant: String,
         zone: TimeZone,
@@ -85,7 +94,7 @@ class DateTimeBridgeTest {
     @Test
     fun `local date bridge agrees with the Gregorian calendar and round-trips`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.long(-100_000_000L..100_000_000L)) { value ->
+            checkAll(propertyConfig, Arb.long(-100_000_000L..100_000_000L)) { value ->
                 val jdn = Jdn(JDN_OF_UNIX_EPOCH + value)
                 val local = jdn.toLocalDate()
                 local.toJdn() shouldBe jdn
@@ -94,6 +103,18 @@ class DateTimeBridgeTest {
                     listOf(gregorian.year, gregorian.month, gregorian.day)
             }
         }
+
+    @Test
+    fun `local date bridge round-trips at the property's own range edges`() {
+        listOf(-100_000_000L, 0L, 100_000_000L).forEach { value ->
+            val jdn = Jdn(JDN_OF_UNIX_EPOCH + value)
+            val local = jdn.toLocalDate()
+            local.toJdn() shouldBe jdn
+            val gregorian = GregorianCalendarSystem.fromJdn(jdn)
+            listOf(local.year, local.month.ordinal + 1, local.day) shouldBe
+                listOf(gregorian.year, gregorian.month, gregorian.day)
+        }
+    }
 
     @Test
     fun `a zone never shifts the civil day by more than one from UTC`(): Unit =
@@ -107,9 +128,19 @@ class DateTimeBridgeTest {
                     TimeZones.LOS_ANGELES,
                 )
             val millis = Arb.long(-2_000_000_000_000L..4_000_000_000_000L)
-            checkAll(PropertyTesting.iterations, millis, zones) { epochMillis, zone ->
+            checkAll(propertyConfig, millis, zones) { epochMillis, zone ->
                 val instant = Instant.fromEpochMilliseconds(epochMillis)
                 (instant.toJdn(zone) - instant.toJdn(TimeZones.UTC)).shouldBeBetween(-1L, 1L)
             }
         }
+
+    @Test
+    fun `zone civil-day shift stays bounded at the millis range edges`() {
+        val zones =
+            listOf(TimeZones.TEHRAN, TimeZones.KABUL, TimeZones.KATHMANDU, TimeZones.BERLIN, TimeZones.LOS_ANGELES)
+        listOf(-2_000_000_000_000L, 0L, 4_000_000_000_000L).forEach { epochMillis ->
+            val instant = Instant.fromEpochMilliseconds(epochMillis)
+            zones.forEach { zone -> (instant.toJdn(zone) - instant.toJdn(TimeZones.UTC)).shouldBeBetween(-1L, 1L) }
+        }
+    }
 }

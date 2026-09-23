@@ -5,11 +5,13 @@
 package ir.taqvim.core.model
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.long
 import io.kotest.property.checkAll
@@ -18,6 +20,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class JdnTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val days = Arb.long(-JDN_BOUND..JDN_BOUND)
     private val offsets = Arb.long(-OFFSET_BOUND..OFFSET_BOUND)
 
@@ -70,20 +79,39 @@ class JdnTest {
     @Test
     fun `plus then minus returns the same day`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, days, offsets) { value, offset ->
+            checkAll(propertyConfig, days, offsets) { value, offset ->
                 Jdn(value) + offset - offset shouldBe Jdn(value)
                 (Jdn(value) + offset) - Jdn(value) shouldBe offset
             }
         }
 
     @Test
+    fun `plus then minus returns the same day at the JDN and offset bounds`() {
+        listOf(-JDN_BOUND, 0L, JDN_BOUND).forEach { value ->
+            listOf(-OFFSET_BOUND, 0L, OFFSET_BOUND).forEach { offset ->
+                Jdn(value) + offset - offset shouldBe Jdn(value)
+                (Jdn(value) + offset) - Jdn(value) shouldBe offset
+            }
+        }
+    }
+
+    @Test
     fun `weekday repeats every seven days`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, days, Arb.int(-1000..1000)) { value, weeks ->
+            checkAll(propertyConfig, days, Arb.int(-1000..1000)) { value, weeks ->
                 (Jdn(value) + 7L * weeks).weekday() shouldBe Jdn(value).weekday()
                 (Jdn(value) + 1).weekday() shouldBe Jdn(value).weekday() + 1
             }
         }
+
+    @Test
+    fun `weekday repeats every seven days at the JDN bounds and widest week counts`() {
+        listOf(-JDN_BOUND, 0L, JDN_BOUND).forEach { value ->
+            listOf(-1000, 0, 1000).forEach { weeks ->
+                (Jdn(value) + 7L * weeks).weekday() shouldBe Jdn(value).weekday()
+            }
+        }
+    }
 
     @Test
     fun `ranges are inclusive and iterable`() {

@@ -5,10 +5,12 @@
 package ir.taqvim.core.calendar
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb
+import io.kotest.property.PropTestConfig
 import io.kotest.property.arbitrary.int
 import io.kotest.property.checkAll
 import ir.taqvim.core.model.CalendarDate
@@ -23,6 +25,13 @@ import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 class PersianCalendarSystemTest {
+    /**
+     * Fixed seed: the same inputs, and so the same covered branches, on every run and machine. The opt-in is for
+     * `iterations`, which Kotest 6 still marks experimental.
+     */
+    @OptIn(ExperimentalKotest::class)
+    private val propertyConfig = PropTestConfig(seed = 20_260_920L, iterations = PropertyTesting.iterations)
+
     private val persian = PersianCalendarSystem
 
     private fun persianDate(
@@ -76,7 +85,7 @@ class PersianCalendarSystemTest {
     @Test
     fun `every year has 365 or 366 days consistent with its leap flag`(): Unit =
         runBlocking {
-            checkAll(PropertyTesting.iterations, Arb.int(-20_000..20_000)) { year ->
+            checkAll(propertyConfig, Arb.int(-20_000..20_000)) { year ->
                 yearLength(year) shouldBe if (persian.isLeapYear(year)) 366L else 365L
             }
         }
@@ -85,7 +94,7 @@ class PersianCalendarSystemTest {
     fun `valid dates round-trip in and beyond the table`(): Unit =
         runBlocking {
             checkAll(
-                PropertyTesting.iterations,
+                propertyConfig,
                 Arb.int(-20_000..20_000),
                 Arb.int(1..12),
                 Arb.int(1..31),
