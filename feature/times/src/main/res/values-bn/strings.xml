@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s-এর নামাজের সময়, %2$s থেকে %3$s</string>
   <string name="times_report_date">তারিখ</string>
   <string name="times_report_job">Taqvim নামাজের সময়</string>
+  <string name="times_phase_new_moon">অমাবস্যা</string>
+  <string name="times_phase_waxing_crescent">বর্ধমান অর্ধচন্দ্র</string>
+  <string name="times_phase_first_quarter">প্রথম চতুর্থাংশ</string>
+  <string name="times_phase_waxing_gibbous">বর্ধমান কুব্জ চাঁদ</string>
+  <string name="times_phase_full_moon">পূর্ণিমা</string>
+  <string name="times_phase_waning_gibbous">ক্ষীয়মাণ কুব্জ চাঁদ</string>
+  <string name="times_phase_third_quarter">শেষ চতুর্থাংশ</string>
+  <string name="times_phase_waning_crescent">ক্ষীয়মাণ অর্ধচন্দ্র</string>
+  <string name="times_moon_summary">%1$s, %2$s আলোকিত</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">চাঁদ</string>
+  <string name="times_moonrise">চন্দ্রোদয়</string>
+  <string name="times_moonset">চন্দ্রাস্ত</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

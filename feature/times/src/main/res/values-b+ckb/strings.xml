@@ -27,4 +27,19 @@
   <string name="times_report_title">کاتەکانی نوێژی %1$s، %2$s تا %3$s</string>
   <string name="times_report_date">بەروار</string>
   <string name="times_report_job">کاتەکانی نوێژی Taqvim</string>
+  <string name="times_phase_new_moon">مانگی نوێ</string>
+  <string name="times_phase_waxing_crescent">مانگی نوێی زیادبوو</string>
+  <string name="times_phase_first_quarter">چارەکی یەکەم</string>
+  <string name="times_phase_waxing_gibbous">مانگی زیادبووی کوپاو</string>
+  <string name="times_phase_full_moon">مانگی چواردە</string>
+  <string name="times_phase_waning_gibbous">مانگی کەمبووی کوپاو</string>
+  <string name="times_phase_third_quarter">چارەکی کۆتایی</string>
+  <string name="times_phase_waning_crescent">مانگی کەمبوو</string>
+  <string name="times_moon_summary">%1$s، %2$s ڕووناک</string>
+  <string name="times_moon_percent">%1$s٪</string>
+  <string name="times_moon_label">مانگ</string>
+  <string name="times_moonrise">مانگهەڵاتن</string>
+  <string name="times_moonset">مانگئاوابوون</string>
+  <string name="times_separator">"، "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

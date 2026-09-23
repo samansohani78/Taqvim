@@ -27,4 +27,19 @@
   <string name="times_report_title">اوقات شرعی %1$s، از %2$s تا %3$s</string>
   <string name="times_report_date">تاریخ</string>
   <string name="times_report_job">اوقات شرعی تقویم</string>
+  <string name="times_phase_new_moon">ماه نو</string>
+  <string name="times_phase_waxing_crescent">هلال رو به افزایش</string>
+  <string name="times_phase_first_quarter">تربیع اول</string>
+  <string name="times_phase_waxing_gibbous">کوژ رو به افزایش</string>
+  <string name="times_phase_full_moon">ماه کامل</string>
+  <string name="times_phase_waning_gibbous">کوژ رو به کاهش</string>
+  <string name="times_phase_third_quarter">تربیع دوم</string>
+  <string name="times_phase_waning_crescent">هلال رو به کاهش</string>
+  <string name="times_moon_summary">%1$s، %2$s روشن</string>
+  <string name="times_moon_percent">%1$s٪</string>
+  <string name="times_moon_label">ماه</string>
+  <string name="times_moonrise">طلوع ماه</string>
+  <string name="times_moonset">غروب ماه</string>
+  <string name="times_separator">"، "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

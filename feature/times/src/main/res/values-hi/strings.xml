@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s के लिए नमाज़ के समय, %2$s से %3$s</string>
   <string name="times_report_date">तारीख</string>
   <string name="times_report_job">Taqvim नमाज़ के समय</string>
+  <string name="times_phase_new_moon">अमावस्या</string>
+  <string name="times_phase_waxing_crescent">बढ़ता अर्धचंद्र</string>
+  <string name="times_phase_first_quarter">प्रथम चौथाई</string>
+  <string name="times_phase_waxing_gibbous">बढ़ता उत्तल चंद्र</string>
+  <string name="times_phase_full_moon">पूर्णिमा</string>
+  <string name="times_phase_waning_gibbous">घटता उत्तल चंद्र</string>
+  <string name="times_phase_third_quarter">अंतिम चौथाई</string>
+  <string name="times_phase_waning_crescent">घटता अर्धचंद्र</string>
+  <string name="times_moon_summary">%1$s, %2$s प्रकाशित</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">चंद्रमा</string>
+  <string name="times_moonrise">चंद्रोदय</string>
+  <string name="times_moonset">चंद्रास्त</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

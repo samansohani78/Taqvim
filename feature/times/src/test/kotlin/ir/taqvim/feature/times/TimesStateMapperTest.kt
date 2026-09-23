@@ -7,10 +7,13 @@ package ir.taqvim.feature.times
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.floats.shouldBeBetween
+import io.kotest.matchers.floats.shouldBeGreaterThanOrEqual
+import io.kotest.matchers.floats.shouldBeLessThanOrEqual
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotBeEmpty
 import io.kotest.matchers.types.shouldBeInstanceOf
 import ir.taqvim.core.i18n.DurationFormatter
 import ir.taqvim.core.praytimes.PrayerTimesResult
@@ -76,7 +79,9 @@ class TimesStateMapperTest {
     }
 
     @Test
-    fun `after the last time of today there is no sun position and no countdown on today's list`() {
+    fun `after the last time of today the countdown runs to tomorrow's first time`() {
+        // The Sun is down, so the arc has no position; the countdown must still run, to the next time there is —
+        // tomorrow's Fajr. Requiring that time to fall on the shown date left the screen dead from Isha until dawn.
         val evening = TimesFixtures.at("2026-06-21T23:30", tehran)
         val content = TimesStateMapper.map(tehran, 0, evening, false).content
         content
@@ -85,8 +90,40 @@ class TimesStateMapperTest {
             .shouldNotBeNull()
             .progress
             .shouldBeNull()
-        content.next.shouldBeNull()
-        content.rows.none { it.isNext } shouldBe true
+        content.next.shouldNotBeNull().kind shouldBe PrayerKind.FAJR
+        content.rows.single { it.isNext }.kind shouldBe PrayerKind.FAJR
+    }
+
+    @Test
+    fun `the moon of the shown day is reported with its phase and rise and set`() {
+        val content = TimesStateMapper.map(tehran, 0, noon, false).content
+        val moon = content.shouldBeInstanceOf<TimesContent.Day>().moon.shouldNotBeNull()
+        moon.illuminatedFraction shouldBeGreaterThanOrEqual 0f
+        moon.illuminatedFraction shouldBeLessThanOrEqual 1f
+        moon.illuminatedPercent.shouldNotBeEmpty()
+        // The new moon of June 2026 falls on the 15th, so noon on the 21st is about six days into the lunation —
+        // first quarter (7.4 days), with the Moon rising in the afternoon and setting after midnight.
+        moon.phase shouldBe MoonPhaseName.FIRST_QUARTER
+        moon.rise.shouldNotBeNull()
+        moon.set.shouldNotBeNull()
+    }
+
+    @Test
+    fun `the moon follows the shown day, not today`() {
+        val today = TimesStateMapper.map(tehran, 0, noon, false).content
+        val later = TimesStateMapper.map(tehran, 10, noon, false).content
+        val a = today.shouldBeInstanceOf<TimesContent.Day>().moon.shouldNotBeNull()
+        val b = later.shouldBeInstanceOf<TimesContent.Day>().moon.shouldNotBeNull()
+        (a.phase == b.phase && a.illuminatedPercent == b.illuminatedPercent) shouldBe false
+    }
+
+    @Test
+    fun `phase names divide the lunation into eight sectors from new moon`() {
+        TimesStateMapper.phaseName(0.0) shouldBe MoonPhaseName.NEW_MOON
+        TimesStateMapper.phaseName(90.0) shouldBe MoonPhaseName.FIRST_QUARTER
+        TimesStateMapper.phaseName(180.0) shouldBe MoonPhaseName.FULL_MOON
+        TimesStateMapper.phaseName(270.0) shouldBe MoonPhaseName.THIRD_QUARTER
+        TimesStateMapper.phaseName(359.9) shouldBe MoonPhaseName.NEW_MOON
     }
 
     @Test

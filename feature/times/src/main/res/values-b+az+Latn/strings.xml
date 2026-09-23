@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s üçün namaz vaxtları, %2$s – %3$s</string>
   <string name="times_report_date">Tarix</string>
   <string name="times_report_job">Taqvim namaz vaxtları</string>
+  <string name="times_phase_new_moon">Yeni Ay</string>
+  <string name="times_phase_waxing_crescent">Böyüyən hilal</string>
+  <string name="times_phase_first_quarter">İlk rüb</string>
+  <string name="times_phase_waxing_gibbous">Böyüyən qabarıq Ay</string>
+  <string name="times_phase_full_moon">Bədirlənmə</string>
+  <string name="times_phase_waning_gibbous">Kiçilən qabarıq Ay</string>
+  <string name="times_phase_third_quarter">Son rüb</string>
+  <string name="times_phase_waning_crescent">Kiçilən hilal</string>
+  <string name="times_moon_summary">%1$s, %2$s işıqlı</string>
+  <string name="times_moon_percent">%%%1$s</string>
+  <string name="times_moon_label">Ay</string>
+  <string name="times_moonrise">Ayın doğuşu</string>
+  <string name="times_moonset">Ayın batışı</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

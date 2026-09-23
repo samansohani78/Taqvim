@@ -27,4 +27,19 @@
   <string name="times_report_title">Вақтҳои намози %1$s, %2$s то %3$s</string>
   <string name="times_report_date">Сана</string>
   <string name="times_report_job">Вақтҳои намози Taqvim</string>
+  <string name="times_phase_new_moon">Моҳи нав</string>
+  <string name="times_phase_waxing_crescent">Ҳилоли афзоянда</string>
+  <string name="times_phase_first_quarter">Чоряки аввал</string>
+  <string name="times_phase_waxing_gibbous">Моҳи афзояндаи барҷаста</string>
+  <string name="times_phase_full_moon">Моҳи пурра</string>
+  <string name="times_phase_waning_gibbous">Моҳи коҳандаи барҷаста</string>
+  <string name="times_phase_third_quarter">Чоряки охир</string>
+  <string name="times_phase_waning_crescent">Ҳилоли коҳанда</string>
+  <string name="times_moon_summary">%1$s, %2$s равшан</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">Моҳ</string>
+  <string name="times_moonrise">Тулӯи моҳ</string>
+  <string name="times_moonset">Ғуруби моҳ</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

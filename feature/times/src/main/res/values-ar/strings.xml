@@ -27,4 +27,19 @@
   <string name="times_report_title">مواقيت الصلاة في %1$s، من %2$s إلى %3$s</string>
   <string name="times_report_date">التاريخ</string>
   <string name="times_report_job">مواقيت الصلاة من Taqvim</string>
+  <string name="times_phase_new_moon">المحاق</string>
+  <string name="times_phase_waxing_crescent">هلال متزايد</string>
+  <string name="times_phase_first_quarter">التربيع الأول</string>
+  <string name="times_phase_waxing_gibbous">أحدب متزايد</string>
+  <string name="times_phase_full_moon">البدر</string>
+  <string name="times_phase_waning_gibbous">أحدب متناقص</string>
+  <string name="times_phase_third_quarter">التربيع الأخير</string>
+  <string name="times_phase_waning_crescent">هلال متناقص</string>
+  <string name="times_moon_summary">%1$s، مضاء بنسبة %2$s</string>
+  <string name="times_moon_percent">%1$s٪</string>
+  <string name="times_moon_label">القمر</string>
+  <string name="times_moonrise">شروق القمر</string>
+  <string name="times_moonset">غروب القمر</string>
+  <string name="times_separator">"، "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

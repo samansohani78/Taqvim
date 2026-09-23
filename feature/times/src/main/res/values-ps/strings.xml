@@ -27,4 +27,19 @@
   <string name="times_report_title">د %1$s د لمانځه وختونه، له %2$s تر %3$s</string>
   <string name="times_report_date">نېټه</string>
   <string name="times_report_job">د Taqvim د لمانځه وختونه</string>
+  <string name="times_phase_new_moon">نوې سپوږمۍ</string>
+  <string name="times_phase_waxing_crescent">مخ پر زیاتېدو میاشت</string>
+  <string name="times_phase_first_quarter">لومړۍ څلورمه</string>
+  <string name="times_phase_waxing_gibbous">مخ پر زیاتېدو غټه سپوږمۍ</string>
+  <string name="times_phase_full_moon">بشپړه سپوږمۍ</string>
+  <string name="times_phase_waning_gibbous">مخ پر کمېدو غټه سپوږمۍ</string>
+  <string name="times_phase_third_quarter">وروستۍ څلورمه</string>
+  <string name="times_phase_waning_crescent">مخ پر کمېدو میاشت</string>
+  <string name="times_moon_summary">%1$s، %2$s رڼا</string>
+  <string name="times_moon_percent">%1$s٪</string>
+  <string name="times_moon_label">سپوږمۍ</string>
+  <string name="times_moonrise">سپوږمۍ ختل</string>
+  <string name="times_moonset">سپوږمۍ لوېدل</string>
+  <string name="times_separator">"، "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

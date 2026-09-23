@@ -27,4 +27,19 @@
   <string name="times_report_title">Waktu salat untuk %1$s, %2$s sampai %3$s</string>
   <string name="times_report_date">Tanggal</string>
   <string name="times_report_job">Waktu salat Taqvim</string>
+  <string name="times_phase_new_moon">Bulan baru</string>
+  <string name="times_phase_waxing_crescent">Sabit membesar</string>
+  <string name="times_phase_first_quarter">Kuartal pertama</string>
+  <string name="times_phase_waxing_gibbous">Cembung membesar</string>
+  <string name="times_phase_full_moon">Bulan purnama</string>
+  <string name="times_phase_waning_gibbous">Cembung mengecil</string>
+  <string name="times_phase_third_quarter">Kuartal akhir</string>
+  <string name="times_phase_waning_crescent">Sabit mengecil</string>
+  <string name="times_moon_summary">%1$s, %2$s tersinari</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">Bulan</string>
+  <string name="times_moonrise">Bulan terbit</string>
+  <string name="times_moonset">Bulan terbenam</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

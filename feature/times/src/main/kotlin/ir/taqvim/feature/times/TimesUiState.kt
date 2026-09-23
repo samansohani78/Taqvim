@@ -34,6 +34,8 @@ sealed interface TimesContent {
         /** Countdown to the next time; only for today. */
         val next: NextPrayerText?,
         val sunPath: SunPath?,
+        /** The Moon on the shown day: phase, lit fraction and its rise and set. */
+        val moon: MoonSummary?,
         /** Why the day has no times (polar day or night), or `null`. */
         val unavailable: PrayerTimesResult.Reason?,
     ) : TimesContent
@@ -45,6 +47,33 @@ data class TimeRow(
     val time: String?,
     val isNext: Boolean,
 )
+
+/**
+ * The Moon on the shown day, already localized: its [phase] at local noon, the lit [illuminatedFraction] (0‥1) that
+ * [brightLimbOnRight] orients, and its [rise] and [set] in the place's time zone, `null` where it does not rise or
+ * set on that day (which happens at high latitudes and, for one day in most months, anywhere).
+ */
+data class MoonSummary(
+    val phase: MoonPhaseName,
+    val illuminatedFraction: Float,
+    /** The lit fraction as a percentage in the language's digits, without a percent sign. */
+    val illuminatedPercent: String,
+    val brightLimbOnRight: Boolean,
+    val rise: String?,
+    val set: String?,
+)
+
+/** The Moon's phase names in order from new moon, one eighth of a lunation each. */
+enum class MoonPhaseName {
+    NEW_MOON,
+    WAXING_CRESCENT,
+    FIRST_QUARTER,
+    WAXING_GIBBOUS,
+    FULL_MOON,
+    WANING_GIBBOUS,
+    THIRD_QUARTER,
+    WANING_CRESCENT,
+}
 
 /** The countdown to the next time, already localized. */
 data class NextPrayerText(

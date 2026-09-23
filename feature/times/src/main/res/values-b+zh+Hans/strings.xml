@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s 的礼拜时间，%2$s 至 %3$s</string>
   <string name="times_report_date">日期</string>
   <string name="times_report_job">Taqvim 礼拜时间</string>
+  <string name="times_phase_new_moon">新月</string>
+  <string name="times_phase_waxing_crescent">蛾眉月</string>
+  <string name="times_phase_first_quarter">上弦月</string>
+  <string name="times_phase_waxing_gibbous">盈凸月</string>
+  <string name="times_phase_full_moon">满月</string>
+  <string name="times_phase_waning_gibbous">亏凸月</string>
+  <string name="times_phase_third_quarter">下弦月</string>
+  <string name="times_phase_waning_crescent">残月</string>
+  <string name="times_moon_summary">%1$s，照亮 %2$s</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">月亮</string>
+  <string name="times_moonrise">月出</string>
+  <string name="times_moonset">月落</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

@@ -27,4 +27,19 @@
   <string name="times_report_title">Heures de prière pour %1$s, du %2$s au %3$s</string>
   <string name="times_report_date">Date</string>
   <string name="times_report_job">Heures de prière Taqvim</string>
+  <string name="times_phase_new_moon">Nouvelle lune</string>
+  <string name="times_phase_waxing_crescent">Premier croissant</string>
+  <string name="times_phase_first_quarter">Premier quartier</string>
+  <string name="times_phase_waxing_gibbous">Gibbeuse croissante</string>
+  <string name="times_phase_full_moon">Pleine lune</string>
+  <string name="times_phase_waning_gibbous">Gibbeuse décroissante</string>
+  <string name="times_phase_third_quarter">Dernier quartier</string>
+  <string name="times_phase_waning_crescent">Dernier croissant</string>
+  <string name="times_moon_summary">%1$s, éclairée à %2$s</string>
+  <string name="times_moon_percent">%1$s %%</string>
+  <string name="times_moon_label">Lune</string>
+  <string name="times_moonrise">Lever de la Lune</string>
+  <string name="times_moonset">Coucher de la Lune</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

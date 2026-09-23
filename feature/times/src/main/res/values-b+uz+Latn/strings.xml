@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s uchun namoz vaqtlari, %2$s – %3$s</string>
   <string name="times_report_date">Sana</string>
   <string name="times_report_job">Taqvim namoz vaqtlari</string>
+  <string name="times_phase_new_moon">Yangi oy</string>
+  <string name="times_phase_waxing_crescent">Oʻsayotgan hilol</string>
+  <string name="times_phase_first_quarter">Birinchi chorak</string>
+  <string name="times_phase_waxing_gibbous">Oʻsayotgan qavariq oy</string>
+  <string name="times_phase_full_moon">Toʻlin oy</string>
+  <string name="times_phase_waning_gibbous">Kamayayotgan qavariq oy</string>
+  <string name="times_phase_third_quarter">Soʻnggi chorak</string>
+  <string name="times_phase_waning_crescent">Kamayayotgan hilol</string>
+  <string name="times_moon_summary">%1$s, %2$s yoritilgan</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">Oy</string>
+  <string name="times_moonrise">Oy chiqishi</string>
+  <string name="times_moonset">Oy botishi</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

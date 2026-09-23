@@ -27,4 +27,19 @@
   <string name="times_report_title">Gebetszeiten für %1$s, %2$s bis %3$s</string>
   <string name="times_report_date">Datum</string>
   <string name="times_report_job">Taqvim-Gebetszeiten</string>
+  <string name="times_phase_new_moon">Neumond</string>
+  <string name="times_phase_waxing_crescent">Zunehmende Sichel</string>
+  <string name="times_phase_first_quarter">Erstes Viertel</string>
+  <string name="times_phase_waxing_gibbous">Zunehmender Dreiviertelmond</string>
+  <string name="times_phase_full_moon">Vollmond</string>
+  <string name="times_phase_waning_gibbous">Abnehmender Dreiviertelmond</string>
+  <string name="times_phase_third_quarter">Letztes Viertel</string>
+  <string name="times_phase_waning_crescent">Abnehmende Sichel</string>
+  <string name="times_moon_summary">%1$s, %2$s beleuchtet</string>
+  <string name="times_moon_percent">%1$s %%</string>
+  <string name="times_moon_label">Mond</string>
+  <string name="times_moonrise">Mondaufgang</string>
+  <string name="times_moonset">Monduntergang</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

@@ -27,4 +27,19 @@
   <string name="times_report_title">Время намаза: %1$s, с %2$s по %3$s</string>
   <string name="times_report_date">Дата</string>
   <string name="times_report_job">Время намаза Taqvim</string>
+  <string name="times_phase_new_moon">Новолуние</string>
+  <string name="times_phase_waxing_crescent">Молодая луна</string>
+  <string name="times_phase_first_quarter">Первая четверть</string>
+  <string name="times_phase_waxing_gibbous">Растущая луна</string>
+  <string name="times_phase_full_moon">Полнолуние</string>
+  <string name="times_phase_waning_gibbous">Убывающая луна</string>
+  <string name="times_phase_third_quarter">Последняя четверть</string>
+  <string name="times_phase_waning_crescent">Старая луна</string>
+  <string name="times_moon_summary">%1$s, освещено %2$s</string>
+  <string name="times_moon_percent">%1$s %%</string>
+  <string name="times_moon_label">Луна</string>
+  <string name="times_moonrise">Восход Луны</string>
+  <string name="times_moonset">Заход Луны</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s کے اوقاتِ نماز، %2$s سے %3$s تک</string>
   <string name="times_report_date">تاریخ</string>
   <string name="times_report_job">Taqvim اوقاتِ نماز</string>
+  <string name="times_phase_new_moon">نیا چاند</string>
+  <string name="times_phase_waxing_crescent">بڑھتا ہوا ہلال</string>
+  <string name="times_phase_first_quarter">پہلا ربع</string>
+  <string name="times_phase_waxing_gibbous">بڑھتا ہوا کُب دار چاند</string>
+  <string name="times_phase_full_moon">پورا چاند</string>
+  <string name="times_phase_waning_gibbous">گھٹتا ہوا کُب دار چاند</string>
+  <string name="times_phase_third_quarter">آخری ربع</string>
+  <string name="times_phase_waning_crescent">گھٹتا ہوا ہلال</string>
+  <string name="times_moon_summary">%1$s، %2$s روشن</string>
+  <string name="times_moon_percent">%1$s٪</string>
+  <string name="times_moon_label">چاند</string>
+  <string name="times_moonrise">طلوعِ ماہتاب</string>
+  <string name="times_moonset">غروبِ ماہتاب</string>
+  <string name="times_separator">"، "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

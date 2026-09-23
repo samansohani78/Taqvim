@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.times
 
+import android.content.res.Resources
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
@@ -36,6 +38,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import ir.taqvim.core.praytimes.PrayerTimesResult
 import ir.taqvim.core.ui.component.EmptyState
+import ir.taqvim.core.ui.component.MoonDisc
 import ir.taqvim.core.ui.component.ProgressRing
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.SunArc
@@ -99,9 +102,33 @@ private fun DayTimes(
             PrayerTimesResult.Reason.POLAR_NIGHT -> Text(stringResource(R.string.times_polar_night))
             null -> TimesList(day, expanded, actions)
         }
+        day.moon?.let { MoonRow(it) }
         OutlinedButton(onClick = actions.onPrintReport, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.times_print_report))
         }
+    }
+}
+
+/**
+ * The Moon of the shown day: its disc, the phase with the lit percentage, and its rise and set where it has them
+ * (T-1100). Read as one element, like the sun arc above it, so TalkBack announces the whole line once.
+ */
+@Composable
+private fun MoonRow(moon: MoonSummary) {
+    val resources = LocalResources.current
+    val text = moonText(resources, moon)
+    Row(
+        Modifier.fillMaxWidth().semantics(mergeDescendants = true) { contentDescription = text },
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        MoonDisc(
+            illuminatedFraction = moon.illuminatedFraction,
+            waxing = moon.brightLimbOnRight,
+            contentDescription = text,
+            modifier = Modifier.size(MOON_SIZE),
+        )
+        Text(text, style = MaterialTheme.typography.bodyMedium)
     }
 }
 
@@ -184,6 +211,41 @@ private fun TimeRowItem(row: TimeRow) {
     }
 }
 
+/** The Moon line: "&lt;phase&gt;, &lt;n&gt;% illuminated", then its rise and set where the day has them. */
+internal fun moonText(
+    resources: Resources,
+    moon: MoonSummary,
+): String {
+    val separator = resources.getString(R.string.times_separator)
+    val percent = resources.getString(R.string.times_moon_percent, moon.illuminatedPercent)
+    val parts =
+        listOfNotNull(
+            resources.getString(R.string.times_moon_summary, resources.getString(moon.phase.label), percent),
+            moon.rise?.let {
+                resources.getString(R.string.times_moon_time, resources.getString(R.string.times_moonrise), it)
+            },
+            moon.set?.let {
+                resources.getString(R.string.times_moon_time, resources.getString(R.string.times_moonset), it)
+            },
+        )
+    return parts.joinToString(separator)
+}
+
+/** String resource naming this phase. */
+@get:StringRes
+internal val MoonPhaseName.label: Int
+    get() =
+        when (this) {
+            MoonPhaseName.NEW_MOON -> R.string.times_phase_new_moon
+            MoonPhaseName.WAXING_CRESCENT -> R.string.times_phase_waxing_crescent
+            MoonPhaseName.FIRST_QUARTER -> R.string.times_phase_first_quarter
+            MoonPhaseName.WAXING_GIBBOUS -> R.string.times_phase_waxing_gibbous
+            MoonPhaseName.FULL_MOON -> R.string.times_phase_full_moon
+            MoonPhaseName.WANING_GIBBOUS -> R.string.times_phase_waning_gibbous
+            MoonPhaseName.THIRD_QUARTER -> R.string.times_phase_third_quarter
+            MoonPhaseName.WANING_CRESCENT -> R.string.times_phase_waning_crescent
+        }
+
 /** String resource naming this time. */
 @get:StringRes
 internal val PrayerKind.label: Int
@@ -198,3 +260,6 @@ internal val PrayerKind.label: Int
             PrayerKind.ISHA -> R.string.times_prayer_isha
             PrayerKind.MIDNIGHT -> R.string.times_prayer_midnight
         }
+
+/** Diameter of the Moon disc, matching the next-prayer ring above it. */
+private val MOON_SIZE = 56.dp

@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s க்கான தொழுகை நேரங்கள், %2$s முதல் %3$s வரை</string>
   <string name="times_report_date">தேதி</string>
   <string name="times_report_job">Taqvim தொழுகை நேரங்கள்</string>
+  <string name="times_phase_new_moon">அமாவாசை</string>
+  <string name="times_phase_waxing_crescent">வளர்பிறை</string>
+  <string name="times_phase_first_quarter">முதல் காலாண்டு</string>
+  <string name="times_phase_waxing_gibbous">வளர்பிறை குவிந்த நிலா</string>
+  <string name="times_phase_full_moon">பௌர்ணமி</string>
+  <string name="times_phase_waning_gibbous">தேய்பிறை குவிந்த நிலா</string>
+  <string name="times_phase_third_quarter">கடைசி காலாண்டு</string>
+  <string name="times_phase_waning_crescent">தேய்பிறை</string>
+  <string name="times_moon_summary">%1$s, %2$s ஒளியூட்டப்பட்டது</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">நிலா</string>
+  <string name="times_moonrise">நிலவு உதயம்</string>
+  <string name="times_moonset">நிலவு மறைவு</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

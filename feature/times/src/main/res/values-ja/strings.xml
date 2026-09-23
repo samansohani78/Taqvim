@@ -27,4 +27,19 @@
   <string name="times_report_title">%1$s の礼拝時刻、%2$s 〜 %3$s</string>
   <string name="times_report_date">日付</string>
   <string name="times_report_job">Taqvim の礼拝時刻</string>
+  <string name="times_phase_new_moon">新月</string>
+  <string name="times_phase_waxing_crescent">三日月</string>
+  <string name="times_phase_first_quarter">上弦</string>
+  <string name="times_phase_waxing_gibbous">十日余りの月</string>
+  <string name="times_phase_full_moon">満月</string>
+  <string name="times_phase_waning_gibbous">寝待月</string>
+  <string name="times_phase_third_quarter">下弦</string>
+  <string name="times_phase_waning_crescent">有明月</string>
+  <string name="times_moon_summary">%1$s、輝面比 %2$s</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">月</string>
+  <string name="times_moonrise">月の出</string>
+  <string name="times_moonset">月の入り</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>

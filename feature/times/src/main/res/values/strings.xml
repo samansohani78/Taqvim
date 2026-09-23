@@ -37,4 +37,19 @@
   <!-- Column heading of the date in the monthly prayer times report. -->
   <string name="times_report_date">Date</string>
   <string name="times_report_job">Taqvim prayer times</string>
+  <string name="times_phase_new_moon">New moon</string>
+  <string name="times_phase_waxing_crescent">Waxing crescent</string>
+  <string name="times_phase_first_quarter">First quarter</string>
+  <string name="times_phase_waxing_gibbous">Waxing gibbous</string>
+  <string name="times_phase_full_moon">Full moon</string>
+  <string name="times_phase_waning_gibbous">Waning gibbous</string>
+  <string name="times_phase_third_quarter">Third quarter</string>
+  <string name="times_phase_waning_crescent">Waning crescent</string>
+  <string name="times_moon_summary">%1$s, %2$s illuminated</string>
+  <string name="times_moon_percent">%1$s%%</string>
+  <string name="times_moon_label">Moon</string>
+  <string name="times_moonrise">Moonrise</string>
+  <string name="times_moonset">Moonset</string>
+  <string name="times_separator">", "</string>
+  <string name="times_moon_time">"%1$s %2$s"</string>
 </resources>
