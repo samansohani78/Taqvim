@@ -90,11 +90,14 @@ private const val OUTSIDE_MONTH_ALPHA = 0.45f
 internal const val MAX_CELL_FONT_SCALE = 1.3f
 internal const val DAY_WEIGHT = 2f
 internal const val LABEL_WEIGHT = 1f
-private val MIN_LINE_TEXT_SIZE = 5.sp
+
+/** Smallest size a cell line shrinks to; the grid's probe lets the cells search below none of its scales. */
+internal val MIN_LINE_TEXT_SIZE = 5.sp
 private val CELL_SHAPE = RoundedCornerShape(12.dp)
 private val TODAY_BORDER = 2.dp
-private val DOT_SIZE = 5.dp
-private val DOT_TOP_PADDING = 2.dp
+internal val DOT_SIZE = 5.dp
+internal val DOT_TOP_PADDING = 2.dp
+internal val DOT_GAP = 2.dp
 
 /** Inset of the cell's column on every side; the grid's fit probe subtracts it from the cell (`DayCellFit`). */
 internal val CELL_PADDING = 2.dp
@@ -127,7 +130,7 @@ public fun DayCell(
     val colors = MaterialTheme.colorScheme
     val selectedFill = if (model.isSelected) Modifier.background(colors.primaryContainer) else Modifier
     val todayRing = if (model.isToday) Modifier.border(TODAY_BORDER, colors.primary, CELL_SHAPE) else Modifier
-    Column(
+    val cell =
         modifier
             .clip(CELL_SHAPE)
             .combinedClickable(onClick = onClick, onLongClick = onLongClick, onLongClickLabel = longClickLabel)
@@ -136,30 +139,67 @@ public fun DayCell(
                 selected = model.isSelected
             }.then(selectedFill)
             .then(todayRing)
-            .padding(CELL_PADDING),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        val density = LocalDensity.current
-        val cellDensity = Density(density.density, density.fontScale.coerceAtMost(MAX_CELL_FONT_SCALE))
-        val fit = LocalDayCellTextFit.current
+            .padding(CELL_PADDING)
+    val density = LocalDensity.current
+    val cellDensity = Density(density.density, density.fontScale.coerceAtMost(MAX_CELL_FONT_SCALE))
+    val fit = LocalDayCellTextFit.current
+    val measurer = LocalCellTextMeasurer.current
+    if (measurer != null && !fit.shrinkToFit) {
+        val (dayStyle, smallStyle) = cellStyles(fit)
+        CellLines(
+            CellDrawing(cellTexts(model, dayStyle, smallStyle, colors), model.indicators),
+            measurer,
+            cellDensity,
+            cell,
+        )
+    } else {
+        CellColumn(model, fit, cellDensity, colors, cell)
+    }
+}
+
+/** The lines of a cell outside a grid, or of a grid whose labels fit no probed scale: each line searches its size. */
+@Composable
+private fun CellColumn(
+    model: DayCellModel,
+    fit: DayCellTextFit,
+    cellDensity: Density,
+    colors: ColorScheme,
+    modifier: Modifier,
+) {
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         CompositionLocalProvider(LocalDensity provides cellDensity) {
             val dayStyle = MaterialTheme.typography.titleMedium
             val smallStyle = MaterialTheme.typography.labelSmall
-            FittedLine(model.dayLabel, dayStyle, DayTone.of(model).color(colors), DAY_WEIGHT, fit)
-            model.secondaryLabels.forEach { FittedLine(it, smallStyle, colors.onSurfaceVariant, LABEL_WEIGHT, fit) }
-            model.shiftLabel?.let { FittedLine(it, smallStyle, colors.tertiary, LABEL_WEIGHT, fit) }
+            val shrink = fit.shrinkToFit
+            FittedLine(model.dayLabel, dayStyle, DayTone.of(model).color(colors), DAY_WEIGHT, fit.dayScale, shrink)
+            model.secondaryLabels.forEach {
+                FittedLine(it, smallStyle, colors.onSurfaceVariant, LABEL_WEIGHT, fit.labelScale, shrink)
+            }
+            model.shiftLabel?.let { FittedLine(it, smallStyle, colors.tertiary, LABEL_WEIGHT, fit.labelScale, shrink) }
             if (model.indicators.isNotEmpty()) IndicatorDots(model.indicators)
         }
     }
 }
 
+/** The text lines of [model] in the order and colors a cell draws them. */
+private fun cellTexts(
+    model: DayCellModel,
+    dayStyle: TextStyle,
+    smallStyle: TextStyle,
+    colors: ColorScheme,
+): List<CellText> =
+    buildList {
+        add(CellText(model.dayLabel, dayStyle, DayTone.of(model).color(colors)))
+        model.secondaryLabels.forEach { add(CellText(it, smallStyle, colors.onSurfaceVariant)) }
+        model.shiftLabel?.let { add(CellText(it, smallStyle, colors.tertiary)) }
+    }
+
 /**
- * One line of a day cell that is never cut off: it takes at most its [weight] share of the cell height and shrinks
- * from [style]'s size until it fits, so short cells (e.g. a stacked phone layout) keep every line whole (T-1701).
+ * One line of a day cell that is never cut off: it takes at most its [weight] share of the cell height.
  *
- * [fit] is [DayCellTextFit.FULL_SIZE] only where the grid has already measured the longest label of this line and
- * found it well inside the cell; the line is then laid out once instead of about seven times (BUG-2).
+ * Inside a month grid the line draws at [scale] times [style]'s size, a scale the grid has measured to fit every label
+ * of the page, so it is laid out once (BUG-2). With [shrinkToFit] — a cell outside a grid, or labels that fit at no
+ * probed scale — it shrinks from [style]'s size until it fits, which costs about seven layouts but always fits (T-1701).
  */
 @Composable
 private fun ColumnScope.FittedLine(
@@ -167,31 +207,32 @@ private fun ColumnScope.FittedLine(
     style: TextStyle,
     color: Color,
     weight: Float,
-    fit: DayCellTextFit,
+    scale: Float,
+    shrinkToFit: Boolean,
 ) {
     // A fixed sp line height would not shrink with the font, so the line takes the font's own height.
+    val lineStyle = style.cellLine(scale)
     Text(
         text,
         modifier = Modifier.weight(weight, fill = false),
-        style = style.copy(lineHeight = TextUnit.Unspecified),
+        style = lineStyle,
         color = color,
         maxLines = 1,
         autoSize =
-            when (fit) {
-                DayCellTextFit.FULL_SIZE -> {
-                    null
-                }
-
-                DayCellTextFit.SHRINK_TO_FIT -> {
-                    TextAutoSize.StepBased(minFontSize = MIN_LINE_TEXT_SIZE, maxFontSize = style.fontSize)
-                }
+            if (shrinkToFit) {
+                TextAutoSize.StepBased(
+                    minFontSize = MIN_LINE_TEXT_SIZE,
+                    maxFontSize = style.fontSize,
+                )
+            } else {
+                null
             },
     )
 }
 
 @Composable
 private fun IndicatorDots(colors: List<Color>) {
-    Row(Modifier.padding(top = DOT_TOP_PADDING), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+    Row(Modifier.padding(top = DOT_TOP_PADDING), horizontalArrangement = Arrangement.spacedBy(DOT_GAP)) {
         colors.take(MAX_INDICATORS).forEach { color ->
             Box(Modifier.size(DOT_SIZE).clip(CircleShape).background(color))
         }

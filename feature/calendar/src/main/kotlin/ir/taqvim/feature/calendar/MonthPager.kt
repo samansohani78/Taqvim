@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.testTag
 import ir.taqvim.core.calendar.CalendarLimits
 import ir.taqvim.core.ui.component.MonthGrid
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.job
 import kotlinx.coroutines.withContext
 
 /** Test tag of the month pager; also its resource id in macrobenchmarks. */
@@ -95,10 +96,16 @@ private fun MonthPageSlot(
     // page again on every tap, which converted all 42 days of three composed pages into every calendar (BUG-2).
     val latestSelected by rememberUpdatedState(selected)
     val base by produceState<MonthPage?>(null, builder, offset, today, events) {
+        // Each run has its own cookie and closes its section however it ends, a restart cancelling it included.
+        val cookie = System.identityHashCode(this)
+        CalendarTrace.beginAsync(CalendarTrace.PAGE_PENDING, cookie)
+        coroutineContext.job.invokeOnCompletion { CalendarTrace.endAsync(CalendarTrace.PAGE_PENDING, cookie) }
         value =
             withContext(Dispatchers.Default) {
-                CalendarRangeGuard.orNull("month page $offset") {
-                    builder.build(offset, today, latestSelected, events)
+                CalendarTrace.section(CalendarTrace.PAGE_BUILD) {
+                    CalendarRangeGuard.orNull("month page $offset") {
+                        builder.build(offset, today, latestSelected, events)
+                    }
                 }
             }
     }

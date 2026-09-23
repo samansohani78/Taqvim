@@ -173,7 +173,8 @@ public fun MonthGrid(
     onWeekClick: ((row: Int) -> Unit)? = null,
 ) {
     val columns = model.weekdayLabels.size
-    val probe = rememberCellTextFitProbe(model)
+    val measurer = rememberTextMeasurer(cacheSize = LABEL_CACHE_SIZE)
+    val probe = rememberCellTextFitProbe(model, measurer)
     MonthGridLayout(
         columns = columns,
         rows = model.rows,
@@ -182,40 +183,59 @@ public fun MonthGrid(
         modifier = modifier,
         header = { model.weekdayLabels.forEach { WeekdayHeader(it) } },
     ) {
-        model.cells.chunked(columns).forEachIndexed { row, week ->
-            model.weekNumbers?.let { numbers -> WeekNumber(numbers[row], onWeekClick?.let { { it(row) } }) }
-            week.forEachIndexed { column, cell ->
-                val index = row * columns + column
-                key(index) {
-                    DayCell(
-                        cell,
-                        onClick = { onDayClick(index) },
-                        onLongClick = onDayLongClick?.let { { it(index) } },
-                        longClickLabel = model.longClickLabel,
-                    )
-                }
+        CompositionLocalProvider(LocalCellTextMeasurer provides measurer) {
+            MonthGridBody(model, columns, onDayClick, onDayLongClick, onWeekClick)
+        }
+    }
+}
+
+/** The week numbers and day cells of [MonthGrid], row by row. */
+@Composable
+private fun MonthGridBody(
+    model: MonthGridModel,
+    columns: Int,
+    onDayClick: (index: Int) -> Unit,
+    onDayLongClick: ((index: Int) -> Unit)?,
+    onWeekClick: ((row: Int) -> Unit)?,
+) {
+    model.cells.chunked(columns).forEachIndexed { row, week ->
+        model.weekNumbers?.let { numbers -> WeekNumber(numbers[row], onWeekClick?.let { { it(row) } }) }
+        week.forEachIndexed { column, cell ->
+            val index = row * columns + column
+            key(index) {
+                DayCell(
+                    cell,
+                    onClick = { onDayClick(index) },
+                    onLongClick = onDayLongClick?.let { { it(index) } },
+                    longClickLabel = model.longClickLabel,
+                )
             }
         }
     }
 }
 
 /**
- * Labels of one line kind are measured at most this many times. A month has at most 31 day numbers and two secondary
- * dates per cell; a model with more distinct labels than this keeps shrinking rather than pay for the probe.
+ * Distinct labels the probe measures at most. A calendar page shows up to 31 day numbers and two secondary dates per
+ * cell, each running through a month of its own — about 31 + 30 + 31 distinct labels. The cap used to be 64, below
+ * that, so every real page skipped the probe and all 42 cells searched their font size on every measure (BUG-2).
+ * Labels are short numbers and the measurer caches them across pages, so a page usually measures only its new ones.
  */
-private const val MAX_PROBED_LABELS = 64
+private const val MAX_PROBED_LABELS = 160
 
 /** Layout results the probe keeps, so the labels of the months already seen are measured once, not once per page. */
-private const val LABEL_CACHE_SIZE = 256
+private const val LABEL_CACHE_SIZE = 512
 
 /**
- * Decides once per cell size whether the cells of [model] can draw their lines at full size, by measuring the
- * distinct label of each line kind (BUG-2). Returning [DayCellTextFit.SHRINK_TO_FIT] is always safe; full size is
- * reported only when every label sits well inside its slot ([DayCellFit]).
+ * Decides once per cell size how the cells of [model] size their lines, by measuring the distinct labels of each line
+ * kind (BUG-2): one scale for the day numbers and one for the small lines, confirmed by measuring the page's labels at
+ * that scale. [DayCellTextFit.SHRINK_TO_FIT] — every cell searching its own size — is left for the grids whose labels
+ * do not fit even at the smallest line size, or that have too many distinct labels to probe.
  */
 @Composable
-internal fun rememberCellTextFitProbe(model: MonthGridModel): (Int, Int) -> DayCellTextFit {
-    val measurer = rememberTextMeasurer(cacheSize = LABEL_CACHE_SIZE)
+internal fun rememberCellTextFitProbe(
+    model: MonthGridModel,
+    measurer: TextMeasurer = rememberTextMeasurer(cacheSize = LABEL_CACHE_SIZE),
+): (Int, Int) -> DayCellTextFit {
     val dayStyle = MaterialTheme.typography.titleMedium
     val smallStyle = MaterialTheme.typography.labelSmall
     val density = LocalDensity.current
@@ -223,59 +243,132 @@ internal fun rememberCellTextFitProbe(model: MonthGridModel): (Int, Int) -> DayC
     val cellDensity =
         remember(density) { Density(density.density, density.fontScale.coerceAtMost(MAX_CELL_FONT_SCALE)) }
     return remember(model, measurer, dayStyle, smallStyle, cellDensity, direction) {
-        { cellWidth: Int, cellHeight: Int ->
-            val days = model.cells.map { it.dayLabel }.distinct()
-            val small =
-                (model.cells.flatMap { it.secondaryLabels } + model.cells.mapNotNull { it.shiftLabel })
-                    .distinct()
-            if (days.size + small.size > MAX_PROBED_LABELS) {
+        val labels = CellLabels.of(model)
+        val probe = CellFitProbe(measurer, dayStyle, smallStyle, cellDensity, direction)
+        val fit: (Int, Int) -> DayCellTextFit = { cellWidth, cellHeight ->
+            if (labels.count > MAX_PROBED_LABELS) {
                 DayCellTextFit.SHRINK_TO_FIT
             } else {
-                val widest = model.cells.maxOf { it.secondaryLabels.size + if (it.shiftLabel == null) 0 else 1 }
-                val lines =
-                    buildList {
-                        add(measurer.line(days, dayStyle, cellDensity, direction, DAY_WEIGHT))
-                        repeat(widest) { add(measurer.line(small, smallStyle, cellDensity, direction, LABEL_WEIGHT)) }
-                    }
-                val dots =
-                    if (model.cells.any { it.indicators.isNotEmpty() }) {
-                        with(
-                            cellDensity,
-                        ) { DOTS_HEIGHT.roundToPx() }
-                    } else {
-                        0
-                    }
-                val padding = with(cellDensity) { CELL_PADDING.roundToPx() }
-                if (DayCellFit.fitsAtFullSize(cellWidth, cellHeight, padding, dots, lines)) {
-                    DayCellTextFit.FULL_SIZE
-                } else {
-                    DayCellTextFit.SHRINK_TO_FIT
-                }
+                probe.fit(labels, cellWidth, cellHeight)
             }
         }
+        fit
     }
 }
 
-/** The widest and tallest of [labels] at [style]'s own size, as one line of the cell column. */
-private fun TextMeasurer.line(
-    labels: List<String>,
-    style: TextStyle,
-    density: Density,
-    direction: LayoutDirection,
-    weight: Float,
-): CellLine {
-    val measured =
-        labels.map { label ->
-            measure(
-                text = label,
-                style = style.copy(lineHeight = TextUnit.Unspecified),
-                maxLines = 1,
-                layoutDirection = direction,
-                density = density,
-            ).size
-        }
-    return CellLine(weight, measured.maxOfOrNull { it.width } ?: 0, measured.maxOfOrNull { it.height } ?: 0)
+/** The distinct labels of a grid's lines, and how many small lines its fullest cell has. */
+internal class CellLabels(
+    val days: List<String>,
+    val small: List<String>,
+    val smallLines: Int,
+    val hasDots: Boolean,
+) {
+    val count: Int get() = days.size + small.size
+
+    companion object {
+        fun of(model: MonthGridModel): CellLabels =
+            CellLabels(
+                days = model.cells.map { it.dayLabel }.distinct(),
+                small =
+                    (model.cells.flatMap { it.secondaryLabels } + model.cells.mapNotNull { it.shiftLabel })
+                        .distinct(),
+                smallLines = model.cells.maxOf { it.secondaryLabels.size + if (it.shiftLabel == null) 0 else 1 },
+                hasDots = model.cells.any { it.indicators.isNotEmpty() },
+            )
+    }
 }
+
+/** Measures a grid's labels to find the font scale of each line kind (see [rememberCellTextFitProbe]). */
+private class CellFitProbe(
+    private val measurer: TextMeasurer,
+    private val dayStyle: TextStyle,
+    private val smallStyle: TextStyle,
+    private val density: Density,
+    private val direction: LayoutDirection,
+) {
+    fun fit(
+        labels: CellLabels,
+        cellWidth: Int,
+        cellHeight: Int,
+    ): DayCellTextFit {
+        val dayLine = measure(labels.days, dayStyle, 1f, DAY_WEIGHT)
+        val smallLine = measure(labels.small, smallStyle, 1f, LABEL_WEIGHT)
+        val lines = listOf(dayLine) + List(labels.smallLines) { smallLine }
+        val dots = if (labels.hasDots) with(density) { DOTS_HEIGHT.roundToPx() } else 0
+        val padding = with(density) { CELL_PADDING.roundToPx() }
+        val scales =
+            DayCellFit.scales(cellWidth, cellHeight, padding, dots, lines) ?: return DayCellTextFit.SHRINK_TO_FIT
+        val slots = Slots(cellWidth, cellHeight, padding, dots, lines.sumOf { it.weight.toDouble() }.toFloat())
+        val day = confirmed(labels.days, dayStyle, DAY_WEIGHT, scales.first(), slots)
+        val small =
+            if (labels.smallLines == 0) 1f else confirmed(labels.small, smallStyle, LABEL_WEIGHT, scales[1], slots)
+        return when {
+            day == null || small == null -> DayCellTextFit.SHRINK_TO_FIT
+            day >= 1f && small >= 1f -> DayCellTextFit.FULL_SIZE
+            else -> DayCellTextFit(day, small)
+        }
+    }
+
+    /**
+     * [scale] or a slightly smaller one at which every one of [labels] fits its slot when measured, or `null` when
+     * none does above the smallest line size; the ratio is exact only to rounding, so it is checked, not trusted.
+     */
+    private fun confirmed(
+        labels: List<String>,
+        style: TextStyle,
+        weight: Float,
+        scale: Float,
+        slots: Slots,
+    ): Float? {
+        var candidate = DayCellFit.snap(scale)
+        repeat(CONFIRM_ATTEMPTS) {
+            if (style.fontSize.value * candidate < MIN_LINE_TEXT_SIZE.value) return null
+            val line = measure(labels, style, candidate, weight)
+            if (DayCellFit.fitsSlot(line.widthPx, line.heightPx, slots.width, slots.heightOf(weight))) return candidate
+            candidate = DayCellFit.snap(candidate - DayCellFit.SCALE_STEP)
+        }
+        return null
+    }
+
+    /** The widest and tallest of [labels] at [scale] times [style]'s size, as one line of the cell column. */
+    private fun measure(
+        labels: List<String>,
+        style: TextStyle,
+        scale: Float,
+        weight: Float,
+    ): CellLine {
+        val scaled = style.cellLine(scale)
+        val measured =
+            labels.map { label ->
+                measurer
+                    .measure(
+                        text = label,
+                        style = scaled,
+                        maxLines = 1,
+                        layoutDirection = direction,
+                        density = density,
+                    ).size
+            }
+        return CellLine(weight, measured.maxOfOrNull { it.width } ?: 0, measured.maxOfOrNull { it.height } ?: 0)
+    }
+}
+
+/** The inner width of a cell and the height its column gives a line of a given weight, in pixels. */
+private class Slots(
+    cellWidth: Int,
+    cellHeight: Int,
+    padding: Int,
+    dots: Int,
+    private val totalWeight: Float,
+) {
+    val width: Float = (cellWidth - 2 * padding).coerceAtLeast(0).toFloat()
+    private val height: Float = (cellHeight - 2 * padding - dots).coerceAtLeast(0).toFloat()
+
+    fun heightOf(weight: Float): Float = height * weight / totalWeight
+}
+
+/** Measurements of one line kind before the probe gives up and lets the cells search their own sizes. */
+private const val CONFIRM_ATTEMPTS = 8
 
 @Composable
 private fun WeekdayHeader(label: String) {
