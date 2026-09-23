@@ -19,12 +19,22 @@ import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.preferences.UserPreferencesRepository
+import java.io.File
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.koin.core.context.GlobalContext
 
-/** How long device tests wait for a screen, a preference write or a system surface. */
-internal const val DEVICE_TIMEOUT_MILLIS: Long = 20_000
+/**
+ * How long device tests wait for a screen, a preference write or a system surface.
+ *
+ * Twenty seconds was enough on a developer machine but not on CI, where `:app` is the first device-test task to run
+ * and its emulator competes with Gradle dexing the other 26 modules' test APKs on a four-core runner: run
+ * 35887995000's API 33 leg failed all twelve UiAutomator tests on a twenty-second wait — including `onboarding:next`,
+ * a screen that reads no data — while the three tests that never look at the screen passed. The same commit, image
+ * (`google_apis` API 33 x86_64) and cold `-no-snapshot -wipe-data` boot pass locally, where the app's own cold start
+ * is 0.9 s, so the wait is what was short, not the app that was broken.
+ */
+internal const val DEVICE_TIMEOUT_MILLIS: Long = 60_000
 
 /** The app under test. */
 internal val appContext: Context
@@ -110,7 +120,31 @@ internal fun awaitTag(tag: String): UiObject2 {
         device.waitForIdle(IDLE_MILLIS)
         device.findObject(By.res(tag))?.let { return it }
     }
-    error("$tag is not shown; the app crashed or the screen did not open")
+    error("$tag is not shown; the app crashed or the screen did not open. ${onScreen(tag)}")
+}
+
+/**
+ * What is actually in front, for a failure message, and a window-hierarchy dump saved next to the test output.
+ *
+ * A bare "not shown" cannot distinguish an app that never started from one hidden behind a system dialog or simply
+ * slower than the wait, which is exactly the question run 35887995000 left open.
+ */
+private fun onScreen(tag: String): String {
+    val focus =
+        runCatching {
+            shell("dumpsys window")
+                .lineSequence()
+                .firstOrNull { it.contains("mCurrentFocus") }
+                ?.trim()
+        }.getOrNull() ?: "unknown focus"
+    runCatching {
+        val directory =
+            InstrumentationRegistry.getArguments().getString("additionalTestOutputDir")?.let(::File)
+                ?: appContext.getExternalFilesDir(null)
+        directory?.mkdirs()
+        device.dumpWindowHierarchy(File(directory, "hierarchy-${tag.replace(':', '-')}.xml"))
+    }
+    return focus
 }
 
 /**
