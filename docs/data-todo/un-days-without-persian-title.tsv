@@ -1,5 +1,6 @@
-# DT-019: UN international days (https://www.un.org/en/observances/list-days-weeks, retrieved 2026-09-18) without a Persian title from a primary UN source
+# DT-019: UN international days (https://www.un.org/en/observances/list-days-weeks, retrieved 2026-09-23) without a Persian title from a primary UN source
 # the archived UN Information Centre Tehran list (2012-10-05) and every reachable Persian page of iran.un.org and of the UNIC Tehran archive were searched on 2026-09-18; these days are named on none of them
+# 2026-09-23 (R07/D-05 re-check, docs/data-todo/un-days-sourcing.md): iran.un.org's newest posts (through 2026-09-21) were re-checked and name no day of this list; two days newly proclaimed since the 2026-09-18 pass were added: World Turkic Language Family Day (12-15, UNESCO 2025) and International Day of Recognition for Women Searchers of Missing Persons (12-19, UN GA 2026) — both too recent for a Persian source to exist yet
 # the 10 international weeks on the UN list are not included: the dataset has no week rule
 # columns: month-day	English title (UN list)	UN page
 01-04	World Braille Day	https://www.un.org/en/observances/braille-day
@@ -127,7 +128,9 @@
 12-12	International Day of Neutrality	https://www.un.org/en/observances/neutrality-day
 12-12	International Universal Health Coverage Day	https://www.un.org/en/observances/universal-health-coverage-day
 12-14	International Day against Colonialism in All its Forms and Manifestations	https://www.un.org/en/observances/anti-colonialism-day
+12-15	World Turkic Language Family Day	https://unesdoc.unesco.org/ark:/48223/pf0000396088
 12-18	Arabic Language Day	https://www.un.org/en/observances/arabiclanguageday
+12-19	International Day of Recognition for Women Searchers of Missing Persons	https://docs.un.org/en/A/RES/80/301
 12-21	World Basketball Day	https://www.un.org/en/observances/world-basketball-day
 12-21	World Meditation Day	https://www.un.org/en/observances/meditation-day
 12-24	International Anti-Cybercrime Day	https://www.unodc.org/unodc/en/cybercrime/day.html
