@@ -7,7 +7,6 @@ package ir.taqvim.app.device
 import android.os.Build
 import androidx.test.filters.SdkSuppress
 import androidx.test.uiautomator.By
-import androidx.test.uiautomator.Until
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarDate
@@ -71,13 +70,9 @@ class DeviceHolidayTest {
         openLink("taqvim://day/$year-1-1", "destination:Day")
         awaitTag(segmentTag(DayDetailsTab.EVENTS.ordinal)).click()
         device.waitForIdle()
-        titles.forEach { title ->
-            device.wait(Until.findObject(By.descContains(title)), DEVICE_TIMEOUT_MILLIS)
-                ?: error("'$title' is not shown on Nowruz's Events tab")
-        }
-        device.wait(Until.findObject(By.descContains(holidayWord)), DEVICE_TIMEOUT_MILLIS)
-            ?: error(
-                "no day cell's description marks a holiday ('$holidayWord'); Nowruz is not shown as one in the grid",
-            )
+        // The day carries more occurrences than fit on one screen since main@0855d52 added the UN observances of
+        // 21 March, so each title is looked for while scrolling rather than on the first screenful.
+        titles.forEach { title -> awaitDescription(title) }
+        awaitDescription(holidayWord)
     }
 }

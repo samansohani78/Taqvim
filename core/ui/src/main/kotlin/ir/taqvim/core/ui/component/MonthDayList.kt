@@ -78,7 +78,7 @@ public fun MonthDayList(
             }
         } else {
             Column(Modifier.fillMaxWidth().testTag(MONTH_DAY_LIST_TAG)) {
-                monthDayListRows(model, columns, colors, onDayClick, onDayLongClick, onWeekClick)
+                MonthDayListRows(model, columns, colors, onDayClick, onDayLongClick, onWeekClick)
             }
         }
     }
@@ -114,7 +114,7 @@ private fun LazyListScope.monthDayListItems(
 
 /** [MonthDayList]'s rows in a plain, non-lazy `Column`, for an unbounded height (an ancestor already scrolls). */
 @Composable
-private fun monthDayListRows(
+private fun MonthDayListRows(
     model: MonthGridModel,
     columns: Int,
     colors: ColorScheme,

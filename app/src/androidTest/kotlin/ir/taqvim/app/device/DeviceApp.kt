@@ -113,6 +113,25 @@ internal fun awaitTag(tag: String): UiObject2 {
     error("$tag is not shown; the app crashed or the screen did not open")
 }
 
+/**
+ * The node whose content description contains [text], scrolling the list while looking for it.
+ *
+ * A day can carry more occurrences than fit on one screen — 21 March 2026 alone holds six UN observances plus Iran's
+ * Nowruz and Eid al-Fitr entries — so a title further down the events list is simply not composed until the list is
+ * scrolled to it. `EventChip` replaces a row's text with a single content description, so the match is on that.
+ */
+internal fun awaitDescription(text: String): UiObject2 {
+    val selector = By.descContains(text)
+    device.wait(Until.findObject(selector), DEVICE_TIMEOUT_MILLIS)?.let { return it }
+    repeat(SCROLL_ATTEMPTS) {
+        val list = device.findObject(By.scrollable(true)) ?: return@repeat
+        list.scroll(Direction.DOWN, SCROLL_FRACTION)
+        device.waitForIdle(IDLE_MILLIS)
+        device.findObject(selector)?.let { return it }
+    }
+    error("no node's description contains '$text'")
+}
+
 /** Selects every tab of the current screen once (not the app's navigation tabs), composing each tab's content. */
 internal fun visitTabs() {
     val count = screenTabs().size

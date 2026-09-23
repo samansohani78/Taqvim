@@ -128,7 +128,14 @@ public class OccurrenceCalculator(
                 .sorted()
                 .map { it.toJdn(zone) + rule.offsetDays }
         val month = rule.month ?: return days
-        return listOfNotNull(days.firstOrNull { calendar.fromJdn(it).month == month })
+        // The month is matched in [year] itself: with a non-zero offsetDays an instant near a year boundary lands in
+        // the neighbouring year, where the same month number would otherwise match and yield a day outside the span.
+        return listOfNotNull(
+            days.firstOrNull {
+                val date = calendar.fromJdn(it)
+                date.month == month && date.year == year
+            },
+        )
     }
 
     private fun requireResolvable(start: EventDefinition) {
