@@ -626,6 +626,35 @@ frame P99, month-screen memory) are still judged only against generous hosted ce
 high-refresh section), so a 10 % regression threshold over them may produce false alarms. Re-record on a stable
 runner, or move the frame metrics to device-only, if the nightly job proves noisy.
 
+### Calendar performance: what was measured, and where it stopped (2026-09-23)
+
+The owner reported the calendar page slow on a OnePlus 15 (165 Hz, so a frame must land in 6.1 ms). Four rounds of
+measurement; the numbers below are month-swipe frame times on the standalone API 37 emulator (software rendering),
+UI-thread own time unless stated.
+
+| Round | Change | Result |
+|---|---|---|
+| 1 (main@b3a300f, a89abf4, e8c03cb, 4eabc1a) | state off the main thread; no whole-grid crossfade; the auto-sized font measured once per page; each cell drawn as one node; a lighter input modifier | P90 **79.7 → 13.2 ms**, P99 **118.2 → 40.2 ms**, frames over 16 ms 39 → 16 |
+| 2 (nothing committed) | reduced per-cell allocation in `MonthPageBuilder`; deeper prefetch (`beyondViewportPageCount` 1→2) | no measurable gain; the prefetch was mildly worse. Established the cause of the worst frames: every `MonthPage:build` slice over 10 ms contained exactly one child, ART's `FullSuspendCheck` — a GC pause, about one per swipe |
+| 3 (nothing committed) | memoising the cell-fit probe | Measured a page swap at 1.23 MB, of which the probe is ~0.5 MB. Rejected: handing back the same fit let `subcompose` reuse the previous body, so a swiped page showed the **previous month** in 4 of 14 runs |
+| 4 (nothing committed) | computing the fit outside the measure block | **Disproved round 3's premise**: counting invocations on unmodified code shows the probe runs once per page and once per resize, never per layout pass, because Compose does not re-measure a `SubcomposeLayout` while constraints are unchanged. The restructure bought 6 %, within noise |
+
+**Where that leaves it.** The remaining ~1.2 MB per swipe is legitimate one-off work for a new month — composing 42 cells
+and measuring that month's new labels — not waste, so there is nothing left to shave without reusing composed pages,
+and deeper prefetching already measured worse. Three rounds committed nothing rather than ship a plausible-sounding
+change, which is the right outcome: round 3's memo would have shown users the wrong month.
+
+**The rest of the app was measured and left alone**: the timeline and search sit at ~10 ms P99, the year view's
+`MiniMonthGrid` already draws in one canvas node, and lists, flows and stability are clean. One experiment — applying
+the month-grid fix to the timeline's hour column — measured *slower* (median 3.91 → 5.11 ms) and was reverted. The
+year view is the slowest screen left: `openYearView` P99 107.8 ms, `pageThroughYears` P99 91.1 ms.
+
+**What only the owner's phone can settle.** Every number here comes from a software-rendered emulator on a contended
+host, where identical code moved P99 by 10 ms between runs. On the phone, from a release build:
+`adb shell dumpsys gfxinfo ir.taqvim reset`, swipe months for ~30 s, then `… framestats`; and a system trace
+(Developer options → System tracing) showing whether `FullSuspendCheck` appears inside `MonthPage:build` on a 16 GB
+phone with a real GPU. If it does not, the GC pauses were an artifact of this machine and the calendar work is done.
+
 ### Independent review of main@98260a4 (2026-09-19)
 
 An independent adversarial review (archived verbatim at `docs/reviews/2026-09-19-adversarial-review.md`) raised 18
