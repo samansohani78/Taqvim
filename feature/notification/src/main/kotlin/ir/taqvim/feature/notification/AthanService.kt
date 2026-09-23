@@ -13,10 +13,13 @@ import android.os.IBinder
 import android.os.Looper
 import androidx.annotation.VisibleForTesting
 import androidx.core.app.ServiceCompat
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.koin.core.context.GlobalContext
 
@@ -29,6 +32,9 @@ class AthanService : Service() {
     private val handler = Handler(Looper.getMainLooper())
     private val timeout = Runnable { finish() }
     private var session: AthanSession? = null
+
+    /** Work the service waits for before it stops (a snooze being stored); cancelled when it is destroyed. */
+    private val work = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     /** The athan being played, for tests. */
     @get:VisibleForTesting
@@ -49,8 +55,7 @@ class AthanService : Service() {
             }
 
             intent?.action == AthanIntents.ACTION_SNOOZE && request != null -> {
-                finish()
-                snooze(request)
+                snooze(request, startId)
             }
 
             else -> {
@@ -61,20 +66,42 @@ class AthanService : Service() {
     }
 
     /**
-     * Snoozes [request] through the app's persistent scheduler (ADR-0033); without the app's graph it falls back to a
-     * one-off system alarm. The write is short and runs outside the service, which stops at once.
+     * Snoozes [request] through the app's persistent scheduler (ADR-0033); without the app's graph, or when the
+     * scheduler cannot store it, a one-off system alarm keeps the snooze (review R16). The sound stops at once, but
+     * the service — still in the foreground, so the process is not reclaimed — stops only once the snooze is stored.
+     * It stops with [startId], so an athan that starts meanwhile keeps playing.
      */
-    private fun snooze(request: AthanRequest) {
+    private fun snooze(
+        request: AthanRequest,
+        startId: Int,
+    ) {
+        release()
         val now = Clock.System.now()
         val snoozer = GlobalContext.getOrNull()?.getOrNull<SnoozeScheduler>()
         if (snoozer == null) {
             AthanSnooze.schedule(this, request, now)
-        } else {
-            CoroutineScope(Dispatchers.Default).launch { snoozer.snoozeAthan(request.athan, now + AthanSnooze.SNOOZE) }
+            finish(startId)
+            return
+        }
+        work.launch {
+            runCatching { snoozer.snoozeAthan(request.athan, now + AthanSnooze.SNOOZE) }
+                .onFailure {
+                    if (it is CancellationException) {
+                        throw it
+                    } else {
+                        AthanSnooze.schedule(
+                            this@AthanService,
+                            request,
+                            now,
+                        )
+                    }
+                }
+            handler.post { finish(startId) }
         }
     }
 
     override fun onDestroy() {
+        work.cancel()
         release()
         super.onDestroy()
     }
@@ -97,6 +124,13 @@ class AthanService : Service() {
         release()
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
         stopSelf()
+    }
+
+    /** Stops the service for the command [startId], unless a later command started another athan. */
+    private fun finish(startId: Int) {
+        if (session != null) return
+        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
+        stopSelf(startId)
     }
 
     private fun release() {

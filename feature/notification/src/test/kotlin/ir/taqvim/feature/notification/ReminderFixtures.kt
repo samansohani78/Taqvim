@@ -19,7 +19,9 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import kotlin.time.Instant
+import kotlinx.coroutines.runInterruptible
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 
@@ -128,5 +130,33 @@ internal class RecordingSnoozer : SnoozeScheduler {
     ) {
         athans += athan to at
         done.countDown()
+    }
+}
+
+/** A [SnoozeScheduler] whose athan write waits until [release], then succeeds or throws [failure]. */
+internal class GatedSnoozer(
+    private val failure: Exception? = null,
+) : SnoozeScheduler {
+    val athans = CopyOnWriteArrayList<Pair<PlannedAthan, Instant>>()
+    val started = CountDownLatch(1)
+    val finished = CountDownLatch(1)
+    private val gate = CountDownLatch(1)
+
+    fun release() = gate.countDown()
+
+    override suspend fun snoozeReminder(
+        reminder: PlannedReminder,
+        at: Instant,
+    ) = Unit
+
+    override suspend fun snoozeAthan(
+        athan: PlannedAthan,
+        at: Instant,
+    ) {
+        started.countDown()
+        runInterruptible { gate.await(5, TimeUnit.SECONDS) }
+        finished.countDown()
+        failure?.let { throw it }
+        athans += athan to at
     }
 }

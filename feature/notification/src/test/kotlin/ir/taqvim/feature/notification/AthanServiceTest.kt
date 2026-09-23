@@ -156,8 +156,8 @@ class AthanServiceTest {
 
             controller.get().onStartCommand(AthanIntents.of(context, AthanIntents.ACTION_SNOOZE, request), 0, 2)
 
-            shadowOf(controller.get()).isStoppedBySelf shouldBe true
             snoozer.done.await(5, TimeUnit.SECONDS) shouldBe true
+            awaitStop(controller.get())
             val (athan, at) = snoozer.athans.single()
             athan shouldBe request.athan
             (at - before - AthanSnooze.SNOOZE < 5.seconds) shouldBe true
@@ -166,6 +166,82 @@ class AthanServiceTest {
         } finally {
             stopKoin()
         }
+    }
+
+    @Test
+    fun theServiceStaysUntilTheSnoozeIsStoredAndTheSoundStopsAtOnce() {
+        // Review R16: the service used to stop at once while the snooze was still being written.
+        val request = AthanFixtures.request()
+        val snoozer = GatedSnoozer()
+        startKoin { modules(module { single<SnoozeScheduler> { snoozer } }) }
+        try {
+            val controller = play(request)
+            controller.get().onStartCommand(AthanIntents.of(context, AthanIntents.ACTION_SNOOZE, request), 0, 2)
+
+            controller.get().currentSession.shouldBeNull()
+            snoozer.started.await(5, TimeUnit.SECONDS) shouldBe true
+            shadowOf(controller.get()).isStoppedBySelf shouldBe false
+
+            snoozer.release()
+            awaitStop(controller.get())
+            snoozer.athans.single().first shouldBe request.athan
+        } finally {
+            stopKoin()
+        }
+    }
+
+    @Test
+    fun aSnoozeTheSchedulerCannotStoreFallsBackToASystemAlarm() {
+        ShadowAlarmManager.setCanScheduleExactAlarms(true)
+        val request = AthanFixtures.request()
+        val snoozer = GatedSnoozer(failure = IllegalStateException("database closed"))
+        startKoin { modules(module { single<SnoozeScheduler> { snoozer } }) }
+        try {
+            val controller = play(request)
+            controller.get().onStartCommand(AthanIntents.of(context, AthanIntents.ACTION_SNOOZE, request), 0, 2)
+            snoozer.release()
+            awaitStop(controller.get())
+
+            val alarms = requireNotNull(context.getSystemService(AlarmManager::class.java))
+
+            @Suppress("DEPRECATION") // Robolectric 4.17 exposes an alarm's PendingIntent only as a deprecated field.
+            val operation = shadowOf(requireNotNull(shadowOf(alarms).scheduledAlarms.single().operation))
+            AthanIntents.requestOf(operation.savedIntent) shouldBe request
+        } finally {
+            stopKoin()
+        }
+    }
+
+    @Test
+    fun anAthanStartedWhileASnoozeIsStoredKeepsPlaying() {
+        val request = AthanFixtures.request()
+        val snoozer = GatedSnoozer()
+        startKoin { modules(module { single<SnoozeScheduler> { snoozer } }) }
+        try {
+            val controller = play(request)
+            controller.get().onStartCommand(AthanIntents.of(context, AthanIntents.ACTION_SNOOZE, request), 0, 2)
+            snoozer.started.await(5, TimeUnit.SECONDS) shouldBe true
+            controller.get().onStartCommand(AthanIntents.of(context, AthanIntents.ACTION_PLAY, request), 0, 3)
+
+            snoozer.release()
+            snoozer.finished.await(5, TimeUnit.SECONDS) shouldBe true
+            shadowOf(Looper.getMainLooper()).idle()
+
+            controller.get().currentSession.shouldNotBeNull()
+            shadowOf(controller.get()).isStoppedBySelf shouldBe false
+        } finally {
+            stopKoin()
+        }
+    }
+
+    /** Runs the main looper until the service stops itself, for work that finishes on another thread. */
+    private fun awaitStop(service: AthanService) {
+        val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(5)
+        while (!shadowOf(service).isStoppedBySelf && System.nanoTime() < deadline) {
+            shadowOf(Looper.getMainLooper()).idle()
+            Thread.sleep(10)
+        }
+        shadowOf(service).isStoppedBySelf shouldBe true
     }
 
     @Test
