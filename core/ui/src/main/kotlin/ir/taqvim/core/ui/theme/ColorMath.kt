@@ -45,7 +45,17 @@ public object ColorMath {
     private const val B_SCALE = 200.0
     private const val HALF_TURN = 180.0
     private const val FULL_TURN = 360.0
-    private const val GAMUT_TOLERANCE = 1e-7
+
+    /**
+     * How far outside 0‥1 a linear channel may sit and still count as inside the gamut.
+     *
+     * The sRGB↔XYZ matrices above are the published four-decimal values (IEC 61966-2-1), so they are only self-
+     * consistent to about 1e-4: converting an in-gamut corner such as pure yellow back through them lands 6.2e-5
+     * outside the range. A tolerance tighter than the matrices' own precision made [fromLch] treat that corner as
+     * out of gamut and desaturate it — 0xFFFFFF00 came back as 0xFFFFF9C5 — so the tolerance matches their
+     * precision. It is far below half of an 8-bit step, so no colour inside the gamut is moved by it.
+     */
+    private const val GAMUT_TOLERANCE = 1e-4
     private const val CHROMA_SEARCH_STEPS = 24
     private const val OPAQUE = 0xFF000000.toInt()
     private const val BYTE = 0xFF

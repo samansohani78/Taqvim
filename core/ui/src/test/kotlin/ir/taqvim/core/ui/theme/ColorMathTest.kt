@@ -51,6 +51,28 @@ class ColorMathTest {
     }
 
     @Test
+    fun `the gamut corners survive a round trip exactly`() {
+        // The published four-decimal sRGB matrices land a corner up to 6.2e-5 outside 0..1, so a gamut tolerance
+        // tighter than their own precision desaturated it: yellow came back as 0xFFFFF9C5, 197 off on blue
+        // (CI run 35851378447). Every corner must round-trip to itself.
+        val corners =
+            listOf(
+                0xFF000000,
+                0xFFFF0000,
+                0xFF00FF00,
+                0xFF0000FF,
+                0xFFFFFF00,
+                0xFF00FFFF,
+                0xFFFF00FF,
+                0xFFFFFFFF,
+            )
+        corners.forEach { corner ->
+            val argb = corner.toInt()
+            channelDistance(ColorMath.fromLch(ColorMath.toLch(argb)), argb) shouldBe 0
+        }
+    }
+
+    @Test
     fun `sRGB colors survive a round trip through LCh`(): Unit =
         runBlocking {
             checkAll(PropertyTesting.iterations, Arb.int()) { value ->
