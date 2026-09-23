@@ -2769,6 +2769,50 @@
       }
     },
     {
+      "id": "un.migratory-bird-day-october",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی پرندگان مهاجر",
+        "en": "World Migratory Bird Day",
+        "ar": "اليوم العالمي للطيور المهاجرة",
+        "zh": "世界候鸟日",
+        "fr": "Journée mondiale des oiseaux migrateurs",
+        "ru": "Всемирный день мигрирующих птиц"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 10,
+        "weekday": "SATURDAY",
+        "n": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.worldmigratorybirdday.org/",
+          "title": "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates: \"World Migratory Bird Day 2026 will take place on 9 May and 10 October, recognizing that migration occurs at different times in the northern and southern hemispheres\"",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; same Persian title as un.migratory-bird-day, the May occurrence of this twice-yearly observance",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.worldmigratorybirdday.org/"
+      }
+    },
+    {
       "id": "un.international-day-of-light",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",

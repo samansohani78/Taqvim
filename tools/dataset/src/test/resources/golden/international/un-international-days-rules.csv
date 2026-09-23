@@ -2,7 +2,7 @@
 # url: https://www.un.org/en/observances/list-days-weeks
 # retrieved: 2026-09-13
 # reviewer: pending
-# notes: spot checks for D-05. Fixed dates from the UN list; habitat-day rule from https://www.un.org/en/observances/habitat-day ("the first Monday of October of every year"); world-philosophy-day from https://www.unesco.org/en/days/philosophy ("the third Thursday of November"); cooperatives-day (اولين شنبه ژوئيه) and road-traffic-victims-day (سومین یکشنبه نوامبر) from https://www.unic-ir.org/event/f-event.htm (Internet Archive copy 2012-10-05, docs/sources/unic-tehran-f-event-20121005.html) Added 2026-09-18: radio-day, sport-day, clean-energy-day, toilet-day, chemical-warfare-victims-day and soil-day are fixed dates on the UN list; migratory-bird-day is the second Saturday of May (the UN list gives 11 May in the ar/zh/fr/ru editions and 9 May in the en edition, both second Saturdays, and the UNIC list row reads "9 و 10 مه"); maritime-day is the last Thursday of September (UN list 26 September in the ar/zh/fr editions and 24 September in the en/es editions, both last Thursdays; the UNIC list row reads "29 سپتامبر (هفته آخر سپتامبر)"; imo.org was unreachable, HTTP 500, on 2026-09-18).
+# notes: spot checks for D-05. Fixed dates from the UN list; habitat-day rule from https://www.un.org/en/observances/habitat-day ("the first Monday of October of every year"); world-philosophy-day from https://www.unesco.org/en/days/philosophy ("the third Thursday of November"); cooperatives-day (اولين شنبه ژوئيه) and road-traffic-victims-day (سومین یکشنبه نوامبر) from https://www.unic-ir.org/event/f-event.htm (Internet Archive copy 2012-10-05, docs/sources/unic-tehran-f-event-20121005.html) Added 2026-09-18: radio-day, sport-day, clean-energy-day, toilet-day, chemical-warfare-victims-day and soil-day are fixed dates on the UN list; migratory-bird-day is the second Saturday of May (the UN list gives 11 May in the ar/zh/fr/ru editions and 9 May in the en edition, both second Saturdays, and the UNIC list row reads "9 و 10 مه"); maritime-day is the last Thursday of September (UN list 26 September in the ar/zh/fr editions and 24 September in the en/es editions, both last Thursdays; the UNIC list row reads "29 سپتامبر (هفته آخر سپتامبر)"; imo.org was unreachable, HTTP 500, on 2026-09-18). Added 2026-09-23 (B4 review of R07/D-05): World Migratory Bird Day is observed twice a year — the second Saturday of May and the second Saturday of October, per https://www.worldmigratorybirdday.org/ ("World Migratory Bird Day 2026 will take place on 9 May and 10 October, recognizing that migration occurs at different times in the northern and southern hemispheres") — so un.migratory-bird-day-october was added alongside the existing May record.
 id,type,month,day,weekday,n
 un.education-day,Fixed,1,24,,
 un.clean-energy-day,Fixed,1,26,,
@@ -12,6 +12,7 @@ un.international-nowruz-day,Fixed,3,21,,
 un.water-day,Fixed,3,22,,
 un.sport-day,Fixed,4,6,,
 un.migratory-bird-day,NthWeekdayOfMonth,5,,SATURDAY,2
+un.migratory-bird-day-october,NthWeekdayOfMonth,10,,SATURDAY,2
 un.telecommunication-day,Fixed,5,17,,
 un.environment-day,Fixed,6,5,,
 un.cooperatives-day,NthWeekdayOfMonth,7,,SATURDAY,1

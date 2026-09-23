@@ -23,6 +23,36 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_30: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.steelpan-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی استیل‌پن",
+                        "en" to "World Steelpan Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 11),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/steelpan-day",
+                        title = "World Steelpan Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/steelpan-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.sustainable-gastronomy-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -282,36 +312,6 @@ internal val OFFICIAL_EVENTS_PART_30: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/tourism-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.tourism-resilience-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی تاب‌آوری گردشگری",
-                        "en" to "Global Tourism Resilience Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 17),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/tourism-resilience-day",
-                        title = "Global Tourism Resilience Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/tourism-resilience-day",
                 ),
         ),
     )

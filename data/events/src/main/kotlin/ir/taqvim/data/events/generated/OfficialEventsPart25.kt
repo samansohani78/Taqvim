@@ -23,6 +23,47 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.mountain-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی کوهستان",
+                        "ar" to "اليوم الدولي للجبال",
+                        "en" to "International Mountain Day",
+                        "es" to "Día Internacional de las Montañas",
+                        "fr" to "Journée internationale de la montagne",
+                        "ru" to "Международный день гор",
+                        "zh" to "国际山岳日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 11),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/mountain-day",
+                        title = "International Mountain Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/57/245",
+                    "un" to "https://www.un.org/en/observances/mountain-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.multilateralism-for-peace-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -274,47 +315,6 @@ internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/45/106",
                     "un" to "https://www.un.org/en/observances/older-persons-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.ozone-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی حفظ لایه اوزون",
-                        "ar" to "اليوم الدولي لحفظ طبقة الأوزون",
-                        "en" to "International Day for the Preservation of the Ozone Layer",
-                        "es" to "Día Internacional de la Preservación de la Capa de Ozono",
-                        "fr" to "Journée internationale de la protection de la couche d'ozone",
-                        "ru" to "Международный день охраны озонового слоя",
-                        "zh" to "保护臭氧层国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 16),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/ozone-day",
-                        title = "International Day for the Preservation of the Ozone Layer (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/49/114",
-                    "un" to "https://www.un.org/en/observances/ozone-day",
                 ),
         ),
     )

@@ -111,9 +111,9 @@ class UnInternationalDaysTest {
         const val DATASET_FILE = "international/un-international-days.json"
         const val GOLDEN = "/golden/international/un-international-days-rules.csv"
         const val UN_LIST_URL = "https://www.un.org/en/observances/list-days-weeks"
-        const val EVENT_COUNT = 235
+        const val EVENT_COUNT = 236
         const val FIXED_COUNT = 228
-        const val WEEKDAY_COUNT = 5
+        const val WEEKDAY_COUNT = 6
         const val LAST_WEEKDAY_COUNT = 1
 
         /** Vesak, the Day of the Full Moon (DT-040, ADR-0044): the day of the May FULL_MOON, UTC, month = 5. */

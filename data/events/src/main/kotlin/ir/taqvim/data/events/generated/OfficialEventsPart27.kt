@@ -24,6 +24,46 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_27: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.protect-education-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی حفاظت از آموزش در برابر حملات",
+                        "ar" to "اليوم الدولي لحماية التعليم من الهجمات",
+                        "en" to "International Day to Protect Education from Attack",
+                        "es" to "Día Internacional para Proteger la Educación de Ataques",
+                        "fr" to "Journée internationale pour la protection de l’éducation contre les attaques",
+                        "ru" to "Международный день защиты образования от нападений",
+                        "zh" to "保护教育免受攻击国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 9),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/protect-education-day",
+                        title = "International Day to Protect Education from Attack (observance page)",
+                    ),
+                    Citation(
+                        url = "https://iran.un.org/fa/322427-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D8%AD%D9%81%D8%A7%D8%B8%D8%AA-%D8%A7%D8%B2-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AF%D8%B1-%D8%A8%D8%B1%D8%A7%D8%A8%D8%B1-%D8%AD%D9%85%D9%84%D8%A7%D8%AA-%DB%B2%DB%B0%DB%B2%DB%B6",
+                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی حفاظت از آموزش در برابر حملات ۲۰۲۶",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/74/275",
+                    "un" to "https://www.un.org/en/observances/protect-education-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.public-service-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -285,36 +325,6 @@ internal val OFFICIAL_EVENTS_PART_27: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/60/5",
                     "un" to "https://www.un.org/en/observances/road-traffic-victims-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.rural-development-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی توسعه روستایی",
-                        "en" to "World Rural Development Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 6),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/rural-development-day",
-                        title = "World Rural Development Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/rural-development-day",
                 ),
         ),
     )

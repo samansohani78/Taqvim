@@ -23,6 +23,36 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_32: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.victims-enforced-disappearance"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی قربانیان ناپدیدشدگان اجباری",
+                        "en" to "International Day of the Victims of Enforced Disappearances",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 30),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/victims-enforced-disappearance",
+                        title = "International Day of the Victims of Enforced Disappearances (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/victims-enforced-disappearance",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.volunteer-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -263,36 +293,6 @@ internal val OFFICIAL_EVENTS_PART_32: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/women-in-diplomacy-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.women-judges-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی قضات زن",
-                        "en" to "International Day of Women Judges",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 10),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/women-judges-day",
-                        title = "International Day of Women Judges (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/women-judges-day",
                 ),
         ),
     )

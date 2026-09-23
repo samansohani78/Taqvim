@@ -23,6 +23,36 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_29: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.snow-leopard-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پلنگ برفی",
+                        "en" to "International Day of the Snow Leopard",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 23),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/snow-leopard-day",
+                        title = "International Day of the Snow Leopard (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/snow-leopard-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.social-justice-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -273,36 +303,6 @@ internal val OFFICIAL_EVENTS_PART_29: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.steelpan-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی استیل‌پن",
-                        "en" to "World Steelpan Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 8, day = 11),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/steelpan-day",
-                        title = "World Steelpan Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/steelpan-day",
                 ),
         ),
     )

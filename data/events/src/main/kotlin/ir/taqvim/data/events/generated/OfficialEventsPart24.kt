@@ -168,6 +168,45 @@ internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
+            id = EventId("un.migratory-bird-day-october"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پرندگان مهاجر",
+                        "ar" to "اليوم العالمي للطيور المهاجرة",
+                        "en" to "World Migratory Bird Day",
+                        "fr" to "Journée mondiale des oiseaux migrateurs",
+                        "ru" to "Всемирный день мигрирующих птиц",
+                        "zh" to "世界候鸟日",
+                    ),
+                ),
+            rule = EventRule.NthWeekdayOfMonth(month = 10, weekday = Weekday.SATURDAY, n = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.worldmigratorybirdday.org/",
+                        title = "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates: \"World Migratory Bird Day 2026 will take place on 9 May and 10 October, recognizing that migration occurs at different times in the northern and southern hemispheres\"",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; same Persian title as un.migratory-bird-day, the May occurrence of this twice-yearly observance",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.worldmigratorybirdday.org/",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.mine-awareness-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -277,47 +316,6 @@ internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/56/262",
                     "un" to "https://www.un.org/en/observances/mother-language-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.mountain-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی کوهستان",
-                        "ar" to "اليوم الدولي للجبال",
-                        "en" to "International Mountain Day",
-                        "es" to "Día Internacional de las Montañas",
-                        "fr" to "Journée internationale de la montagne",
-                        "ru" to "Международный день гор",
-                        "zh" to "国际山岳日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 11),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/mountain-day",
-                        title = "International Mountain Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/245",
-                    "un" to "https://www.un.org/en/observances/mountain-day",
                 ),
         ),
     )

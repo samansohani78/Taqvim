@@ -24,6 +24,47 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_37: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.world-television-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی تلویزیون",
+                        "ar" to "اليوم العالمي للتلفزيون",
+                        "en" to "World Television Day",
+                        "es" to "Día Mundial de la Televisión",
+                        "fr" to "Journée mondiale de la télévision",
+                        "ru" to "Всемирный день телевидения",
+                        "zh" to "世界电视日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 21),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-television-day",
+                        title = "World Television Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/51/205",
+                    "un" to "https://www.un.org/en/observances/world-television-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.world-tuberculosis-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -263,36 +304,6 @@ internal val OFFICIAL_EVENTS_PART_37: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/54/120",
                     "un" to "https://www.un.org/en/observances/youth-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.zero-discrimination-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز عدم تبعیض",
-                        "en" to "Zero Discrimination Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 1),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.unaids.org/en/zero-discrimination-day",
-                        title = "Zero Discrimination Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.unaids.org/en/zero-discrimination-day",
                 ),
         ),
     )

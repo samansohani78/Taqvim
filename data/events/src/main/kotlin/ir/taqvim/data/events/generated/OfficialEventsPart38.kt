@@ -23,6 +23,36 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_38: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.zero-discrimination-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز عدم تبعیض",
+                        "en" to "Zero Discrimination Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 1),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.unaids.org/en/zero-discrimination-day",
+                        title = "Zero Discrimination Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.unaids.org/en/zero-discrimination-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.zero-waste-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,

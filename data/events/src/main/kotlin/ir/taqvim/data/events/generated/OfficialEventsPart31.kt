@@ -25,6 +25,36 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_31: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.tourism-resilience-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی تاب‌آوری گردشگری",
+                        "en" to "Global Tourism Resilience Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 2, day = 17),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/tourism-resilience-day",
+                        title = "Global Tourism Resilience Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/tourism-resilience-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.transatlantic-slave-trade"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -265,36 +295,6 @@ internal val OFFICIAL_EVENTS_PART_31: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/54/115",
                     "un" to "https://www.un.org/en/observances/vesak-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.victims-enforced-disappearance"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی قربانیان ناپدیدشدگان اجباری",
-                        "en" to "International Day of the Victims of Enforced Disappearances",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 8, day = 30),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/victims-enforced-disappearance",
-                        title = "International Day of the Victims of Enforced Disappearances (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/victims-enforced-disappearance",
                 ),
         ),
     )

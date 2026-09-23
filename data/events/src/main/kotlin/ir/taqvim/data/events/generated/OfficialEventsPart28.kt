@@ -23,6 +23,36 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.rural-development-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی توسعه روستایی",
+                        "en" to "World Rural Development Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 6),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/rural-development-day",
+                        title = "World Rural Development Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/rural-development-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.rural-women-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -261,36 +291,6 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/317(IV)",
                     "un" to "https://www.un.org/en/observances/slavery-abolition-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.snow-leopard-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پلنگ برفی",
-                        "en" to "International Day of the Snow Leopard",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 23),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/snow-leopard-day",
-                        title = "International Day of the Snow Leopard (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/snow-leopard-day",
                 ),
         ),
     )
