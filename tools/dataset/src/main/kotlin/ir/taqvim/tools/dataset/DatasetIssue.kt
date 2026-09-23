@@ -29,6 +29,9 @@ enum class IssueKind {
      * another rule type, or one-off records on the same calendar day in different years.
      */
     ONE_OFF_RULE,
+
+    /** A `titleReview` language tag that is not a key of the record's `title` (ADR-0042). */
+    TITLE_REVIEW_UNKNOWN_LANGUAGE,
 }
 
 /** One problem found in [file] at [location] (a JSON path). */

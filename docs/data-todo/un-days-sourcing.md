@@ -89,3 +89,15 @@ Three days were proclaimed too recently to have appeared in the previous pass. N
   is every day title on the current UN list (236 raw list entries; "World Migratory Bird Day" is listed twice, for
   its May and October dates — the May occurrence is the shipped rule, per DT-024, and the October occurrence is
   already tracked there, not duplicated here).
+
+## Resolution (2026-09-23 addendum, ADR-0042)
+
+The owner decided the same day: a missing *Persian title* should not keep a well-sourced day out of the dataset. All
+132 rows above (every one of them a `Fixed` month/day; none needed a weekday-ordinal rule) are now records in
+`dataset/international/un-international-days.json`, each keeping its official citation from this pass and carrying
+a machine-translated Persian title marked `titleReview: ["fa"]` — the dataset's equivalent of the app's
+`MT: needs review` string marker (docs/i18n/TRANSLATING.md). See ADR-0042 for the schema/validator change and the
+policy; `docs/data-todo/un-days-without-persian-title.tsv` is now the review queue for these 132 titles, not a list
+of days excluded from the app. Vesak is unaffected by this change: its blocker (DT-040) is a missing rule convention,
+not a missing Persian title, and it remains out of the dataset. The dataset now ships **234** UN international days,
+past the ≥150 target of D-05.

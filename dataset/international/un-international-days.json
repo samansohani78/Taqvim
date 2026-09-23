@@ -2,6 +2,42 @@
   "schemaVersion": 1,
   "events": [
     {
+      "id": "un.braille-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Braille Day",
+        "fa": "روز جهانی خط بریل"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 4
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/braille-day",
+          "title": "World Braille Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/braille-day"
+      }
+    },
+    {
       "id": "un.education-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -135,6 +171,294 @@
       }
     },
     {
+      "id": "un.peaceful-coexistence-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Peaceful Coexistence",
+        "fa": "روز بین‌المللی همزیستی مسالمت‌آمیز"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 28
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/peaceful-coexistence-day",
+          "title": "International Day of Peaceful Coexistence (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/peaceful-coexistence-day"
+      }
+    },
+    {
+      "id": "un.world-wetlands-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Wetlands Day",
+        "fa": "روز جهانی تالاب‌ها"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-wetlands-day",
+          "title": "World Wetlands Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-wetlands-day"
+      }
+    },
+    {
+      "id": "un.human-fraternity",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Human Fraternity",
+        "fa": "روز بین‌المللی برادری انسانی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 4
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/human-fraternity",
+          "title": "International Day of Human Fraternity (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/human-fraternity"
+      }
+    },
+    {
+      "id": "un.female-genital-mutilation-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Zero Tolerance to Female Genital Mutilation",
+        "fa": "روز بین‌المللی عدم تحمل ختنه زنان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 6
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/female-genital-mutilation-day",
+          "title": "International Day of Zero Tolerance to Female Genital Mutilation (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/female-genital-mutilation-day"
+      }
+    },
+    {
+      "id": "un.arabian-leopard-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the Arabian Leopard",
+        "fa": "روز بین‌المللی پلنگ عربی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/arabian-leopard-day",
+          "title": "International Day of the Arabian Leopard (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/arabian-leopard-day"
+      }
+    },
+    {
+      "id": "un.world-pulses-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Pulses Day",
+        "fa": "روز جهانی حبوبات"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.fao.org/world-pulses-day/en",
+          "title": "World Pulses Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.fao.org/world-pulses-day/en"
+      }
+    },
+    {
+      "id": "un.women-and-girls-in-science-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Women and Girls in Science",
+        "fa": "روز بین‌المللی زنان و دختران در علم"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/women-and-girls-in-science-day/",
+          "title": "International Day of Women and Girls in Science (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/women-and-girls-in-science-day/"
+      }
+    },
+    {
+      "id": "un.prevention-extremism-when-conducive-terrorism-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism",
+        "fa": "روز بین‌المللی پیشگیری از افراط‌گرایی خشونت‌آمیز در صورت منتهی‌شدن به تروریسم"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day",
+          "title": "International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day"
+      }
+    },
+    {
       "id": "un.radio-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -177,6 +501,42 @@
       "links": {
         "un": "https://www.un.org/en/observances/radio-day",
         "resolution": "https://undocs.org/en/A/RES/67/124"
+      }
+    },
+    {
+      "id": "un.tourism-resilience-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Global Tourism Resilience Day",
+        "fa": "روز جهانی تاب‌آوری گردشگری"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 2,
+        "day": 17
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/tourism-resilience-day",
+          "title": "Global Tourism Resilience Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/tourism-resilience-day"
       }
     },
     {
@@ -270,6 +630,150 @@
       }
     },
     {
+      "id": "un.seagrass-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Seagrass Day",
+        "fa": "روز جهانی علف‌های دریایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/seagrass-day",
+          "title": "World Seagrass Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/seagrass-day"
+      }
+    },
+    {
+      "id": "un.zero-discrimination-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Zero Discrimination Day",
+        "fa": "روز عدم تبعیض"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.unaids.org/en/zero-discrimination-day",
+          "title": "Zero Discrimination Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unaids.org/en/zero-discrimination-day"
+      }
+    },
+    {
+      "id": "un.world-wildlife-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Wildlife Day",
+        "fa": "روز جهانی حیات وحش"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-wildlife-day",
+          "title": "World Wildlife Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-wildlife-day"
+      }
+    },
+    {
+      "id": "un.disarmament-non-proliferation-awareness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for Disarmament and Non-Proliferation Awareness",
+        "fa": "روز بین‌المللی آگاهی از خلع سلاح و منع اشاعه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day",
+          "title": "International Day for Disarmament and Non-Proliferation Awareness (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day"
+      }
+    },
+    {
       "id": "un.womens-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -311,6 +815,150 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/womens-day"
+      }
+    },
+    {
+      "id": "un.women-judges-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Women Judges",
+        "fa": "روز بین‌المللی قضات زن"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/women-judges-day",
+          "title": "International Day of Women Judges (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/women-judges-day"
+      }
+    },
+    {
+      "id": "un.anti-islamophobia-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day to Combat Islamophobia",
+        "fa": "روز بین‌المللی مبارزه با اسلام‌هراسی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/anti-islamophobia-day",
+          "title": "International Day to Combat Islamophobia (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/anti-islamophobia-day"
+      }
+    },
+    {
+      "id": "un.french-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "French Language Day",
+        "fa": "روز زبان فرانسوی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/fr/observances/french-language-day/",
+          "title": "French Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/fr/observances/french-language-day/"
+      }
+    },
+    {
+      "id": "un.happiness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Happiness",
+        "fa": "روز جهانی شادی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/happiness-day",
+          "title": "International Day of Happiness (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/happiness-day"
       }
     },
     {
@@ -445,6 +1093,114 @@
       "links": {
         "un": "https://www.unesco.org/en/days/poetry",
         "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000118514.page=70"
+      }
+    },
+    {
+      "id": "un.international-day-of-forests",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Forests",
+        "fa": "روز بین‌المللی جنگل‌ها"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.fao.org/international-day-of-forests/en",
+          "title": "International Day of Forests (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.fao.org/international-day-of-forests/en"
+      }
+    },
+    {
+      "id": "un.world-glaciers-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Day for Glaciers",
+        "fa": "روز جهانی یخچال‌های طبیعی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-glaciers-day",
+          "title": "World Day for Glaciers (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-glaciers-day"
+      }
+    },
+    {
+      "id": "un.down-syndrome-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Down Syndrome Day",
+        "fa": "روز جهانی سندرم داون"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/down-syndrome-day",
+          "title": "World Down Syndrome Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/down-syndrome-day"
       }
     },
     {
@@ -672,6 +1428,78 @@
       }
     },
     {
+      "id": "un.detained-staff-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Solidarity with Detained and Missing Staff Members",
+        "fa": "روز بین‌المللی همبستگی با کارکنان بازداشت‌شده و مفقود"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/detained-staff-day",
+          "title": "International Day of Solidarity with Detained and Missing Staff Members (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/detained-staff-day"
+      }
+    },
+    {
+      "id": "un.zero-waste-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Zero Waste",
+        "fa": "روز بین‌المللی پسماند صفر"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 3,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/zero-waste-day",
+          "title": "International Day of Zero Waste (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/zero-waste-day"
+      }
+    },
+    {
       "id": "un.autism-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -759,6 +1587,42 @@
       "links": {
         "un": "https://www.un.org/en/observances/mine-awareness-day",
         "resolution": "http://undocs.org/en/A/RES/60/97"
+      }
+    },
+    {
+      "id": "un.conscience-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Conscience",
+        "fa": "روز بین‌المللی وجدان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/conscience-day",
+          "title": "International Day of Conscience (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/conscience-day"
       }
     },
     {
@@ -895,6 +1759,186 @@
       }
     },
     {
+      "id": "un.human-spaceflight-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Human Space Flight",
+        "fa": "روز بین‌المللی پرواز فضایی انسان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/human-spaceflight-day",
+          "title": "International Day of Human Space Flight (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/human-spaceflight-day"
+      }
+    },
+    {
+      "id": "un.world-chagas-disease-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Chagas Disease Day",
+        "fa": "روز جهانی بیماری شاگاس"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 14
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-chagas-disease-day",
+          "title": "World Chagas Disease Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-chagas-disease-day"
+      }
+    },
+    {
+      "id": "un.wellness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Wellness Day",
+        "fa": "روز بین‌المللی تندرستی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/wellness-day",
+          "title": "International Wellness Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/wellness-day"
+      }
+    },
+    {
+      "id": "un.chinese-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Chinese Language Day",
+        "fa": "روز زبان چینی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/zh/observances/chinese-language-day",
+          "title": "Chinese Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/zh/observances/chinese-language-day"
+      }
+    },
+    {
+      "id": "un.creativity-and-innovation-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Creativity and Innovation Day",
+        "fa": "روز جهانی خلاقیت و نوآوری"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/creativity-and-innovation-day",
+          "title": "World Creativity and Innovation Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/creativity-and-innovation-day"
+      }
+    },
+    {
       "id": "un.earth-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -984,6 +2028,150 @@
       }
     },
     {
+      "id": "un.english-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "English Language Day",
+        "fa": "روز زبان انگلیسی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/english-language-day",
+          "title": "English Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/english-language-day"
+      }
+    },
+    {
+      "id": "un.girls-in-ict-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Girls in ICT Day",
+        "fa": "روز بین‌المللی دختران در فناوری اطلاعات و ارتباطات"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.itu.int/women-and-girls/girls-in-ict/",
+          "title": "International Girls in ICT Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.itu.int/women-and-girls/girls-in-ict/"
+      }
+    },
+    {
+      "id": "un.spanish-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Spanish Language Day",
+        "fa": "روز زبان اسپانیایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/es/observances/spanish-language-day",
+          "title": "Spanish Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/es/observances/spanish-language-day"
+      }
+    },
+    {
+      "id": "un.multilateralism-for-peace-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Multilateralism and Diplomacy for Peace",
+        "fa": "روز بین‌المللی چندجانبه‌گرایی و دیپلماسی برای صلح"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/Multilateralism-for-Peace-day",
+          "title": "International Day of Multilateralism and Diplomacy for Peace (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/Multilateralism-for-Peace-day"
+      }
+    },
+    {
       "id": "un.world-malaria-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1021,6 +2209,42 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021"
+      }
+    },
+    {
+      "id": "un.delegates-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Delegate's Day",
+        "fa": "روز بین‌المللی نمایندگان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/delegates-day",
+          "title": "International Delegate's Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/delegates-day"
       }
     },
     {
@@ -1067,6 +2291,42 @@
       }
     },
     {
+      "id": "un.chernobyl-remembrance-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Chernobyl Disaster Remembrance Day",
+        "fa": "روز بین‌المللی یادبود فاجعه چرنوبیل"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 26
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/chernobyl-remembrance-day",
+          "title": "International Chernobyl Disaster Remembrance Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/chernobyl-remembrance-day"
+      }
+    },
+    {
       "id": "un.work-safety-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1108,6 +2368,355 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/work-safety-day"
+      }
+    },
+    {
+      "id": "un.earthquake-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day in Memory of the Victims of Earthquakes",
+        "fa": "روز بین‌المللی یادبود قربانیان زلزله"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/earthquake-victims-day",
+          "title": "International Day in Memory of the Victims of Earthquakes (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/earthquake-victims-day"
+      }
+    },
+    {
+      "id": "un.jazz-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Jazz Day",
+        "fa": "روز جهانی جاز"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 4,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/jazz-day",
+          "title": "International Jazz Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/jazz-day"
+      }
+    },
+    {
+      "id": "un.tuna-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Tuna Day",
+        "fa": "روز جهانی ماهی تن"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/tuna-day",
+          "title": "World Tuna Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/tuna-day"
+      }
+    },
+    {
+      "id": "un.press-freedom-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی آزادی مطبوعاتی",
+        "en": "World Press Freedom Day",
+        "ar": "اليوم العالمي لحرية الصحافة",
+        "zh": "世界新闻自由日",
+        "fr": "Journée mondiale de la liberté de la presse",
+        "ru": "Всемирный день свободы печати",
+        "es": "Día Mundial de la Libertad de Prensa"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/press-freedom-day",
+          "title": "World Press Freedom Day (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/press-freedom-day",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000090448.page=76"
+      }
+    },
+    {
+      "id": "un.world-portuguese-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Portuguese Language Day",
+        "fa": "روز جهانی زبان پرتغالی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/portuguese-language",
+          "title": "World Portuguese Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/portuguese-language"
+      }
+    },
+    {
+      "id": "un.second-world-war-remembrance-days",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "زمان بزرگداشت و آشتی برای کسانی که زندگی خود را در جریان جنگ جهانی دوم از دست دادند",
+        "en": "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War",
+        "zh": "缅怀第二次世界大战的所有死难者的悼念与和解的时刻",
+        "fr": "Journées du souvenir et de la réconciliation en l'honneur des morts de la Seconde Guerre mondiale",
+        "ru": "Дни памяти и примирения, посвященные погибшим во Второй мировой войне"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 8
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/second-world-war-remembrance-days",
+          "title": "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/second-world-war-remembrance-days",
+        "resolution": "http://undocs.org/en/A/RES/59/26"
+      }
+    },
+    {
+      "id": "un.argania-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Argania",
+        "fa": "روز بین‌المللی درخت آرگان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 10
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/argania-day",
+          "title": "International Day of Argania (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/argania-day"
+      }
+    },
+    {
+      "id": "un.international-day-of-plant-health",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Plant Health",
+        "fa": "روز بین‌المللی سلامت گیاهان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.fao.org/plant-health-day/en",
+          "title": "International Day of Plant Health (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.fao.org/plant-health-day/en"
+      }
+    },
+    {
+      "id": "un.international-day-of-families",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی خانواده‌ها",
+        "en": "International Day of Families",
+        "ar": "اليوم الدولي للأسر",
+        "zh": "国际家庭日",
+        "fr": "Journée internationale des familles",
+        "ru": "Международный день семей",
+        "es": "Día Internacional de las Familias"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-day-of-families",
+          "title": "International Day of Families (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-day-of-families",
+        "resolution": "http://undocs.org/en/A/RES/47/237"
       }
     },
     {
@@ -1160,136 +2769,75 @@
       }
     },
     {
-      "id": "un.press-freedom-day",
+      "id": "un.international-day-of-light",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی آزادی مطبوعاتی",
-        "en": "World Press Freedom Day",
-        "ar": "اليوم العالمي لحرية الصحافة",
-        "zh": "世界新闻自由日",
-        "fr": "Journée mondiale de la liberté de la presse",
-        "ru": "Всемирный день свободы печати",
-        "es": "Día Mundial de la Libertad de Prensa"
+        "en": "International Day of Light",
+        "fa": "روز بین‌المللی نور"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
         "type": "Fixed",
         "month": 5,
-        "day": 3
+        "day": 16
       },
       "citations": [
         {
           "url": "https://www.un.org/en/observances/list-days-weeks",
-          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-          "retrieved": "2026-09-13"
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
         },
         {
-          "url": "https://www.un.org/en/observances/press-freedom-day",
-          "title": "World Press Freedom Day (observance page)",
-          "retrieved": "2026-09-13"
-        },
-        {
-          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-          "retrieved": "2026-09-13"
+          "url": "https://www.unesco.org/en/days/light",
+          "title": "International Day of Light (observance page)",
+          "retrieved": "2026-09-23"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-23",
       "reviewedBy": "pending",
       "links": {
-        "un": "https://www.un.org/en/observances/press-freedom-day",
-        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000090448.page=76"
+        "un": "https://www.unesco.org/en/days/light"
       }
     },
     {
-      "id": "un.second-world-war-remembrance-days",
+      "id": "un.living-in-peace-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "زمان بزرگداشت و آشتی برای کسانی که زندگی خود را در جریان جنگ جهانی دوم از دست دادند",
-        "en": "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War",
-        "zh": "缅怀第二次世界大战的所有死难者的悼念与和解的时刻",
-        "fr": "Journées du souvenir et de la réconciliation en l'honneur des morts de la Seconde Guerre mondiale",
-        "ru": "Дни памяти и примирения, посвященные погибшим во Второй мировой войне"
+        "en": "International Day of Living Together in Peace",
+        "fa": "روز بین‌المللی زندگی مسالمت‌آمیز در کنار هم"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
         "type": "Fixed",
         "month": 5,
-        "day": 8
+        "day": 16
       },
       "citations": [
         {
           "url": "https://www.un.org/en/observances/list-days-weeks",
-          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
-          "retrieved": "2026-09-13"
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
         },
         {
-          "url": "https://www.un.org/en/observances/second-world-war-remembrance-days",
-          "title": "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War (observance page)",
-          "retrieved": "2026-09-13"
-        },
-        {
-          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-          "retrieved": "2026-09-13"
+          "url": "https://www.un.org/en/observances/living-in-peace-day",
+          "title": "International Day of Living Together in Peace (observance page)",
+          "retrieved": "2026-09-23"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-23",
       "reviewedBy": "pending",
       "links": {
-        "un": "https://www.un.org/en/observances/second-world-war-remembrance-days",
-        "resolution": "http://undocs.org/en/A/RES/59/26"
-      }
-    },
-    {
-      "id": "un.international-day-of-families",
-      "calendar": "GREGORIAN",
-      "source": "INTERNATIONAL",
-      "category": "INTERNATIONAL",
-      "isHoliday": false,
-      "title": {
-        "fa": "روز بین‌المللی خانواده‌ها",
-        "en": "International Day of Families",
-        "ar": "اليوم الدولي للأسر",
-        "zh": "国际家庭日",
-        "fr": "Journée internationale des familles",
-        "ru": "Международный день семей",
-        "es": "Día Internacional de las Familias"
-      },
-      "rule": {
-        "type": "Fixed",
-        "month": 5,
-        "day": 15
-      },
-      "citations": [
-        {
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-          "retrieved": "2026-09-13"
-        },
-        {
-          "url": "https://www.un.org/en/observances/international-day-of-families",
-          "title": "International Day of Families (observance page)",
-          "retrieved": "2026-09-13"
-        },
-        {
-          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-          "retrieved": "2026-09-13"
-        }
-      ],
-      "updated": "2026-09-13",
-      "reviewedBy": "pending",
-      "links": {
-        "un": "https://www.un.org/en/observances/international-day-of-families",
-        "resolution": "http://undocs.org/en/A/RES/47/237"
+        "un": "https://www.un.org/en/observances/living-in-peace-day"
       }
     },
     {
@@ -1334,6 +2882,78 @@
       "links": {
         "un": "https://www.un.org/en/observances/telecommunication-day",
         "resolution": "https://undocs.org/en/A/RES/60/252"
+      }
+    },
+    {
+      "id": "un.fair-play-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Fair Play Day",
+        "fa": "روز جهانی بازی منصفانه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 19
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/fair-play-day",
+          "title": "World Fair Play Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/fair-play-day"
+      }
+    },
+    {
+      "id": "un.world-bee-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Bee Day",
+        "fa": "روز جهانی زنبور عسل"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.fao.org/world-bee-day/en",
+          "title": "World Bee Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.fao.org/world-bee-day/en"
       }
     },
     {
@@ -1382,6 +3002,42 @@
       }
     },
     {
+      "id": "un.international-tea-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Tea Day",
+        "fa": "روز بین‌المللی چای"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.fao.org/international-tea-day/en",
+          "title": "International Tea Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.fao.org/international-tea-day/en"
+      }
+    },
+    {
       "id": "un.biological-diversity-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1424,6 +3080,114 @@
       "links": {
         "un": "https://www.un.org/en/observances/biological-diversity-day",
         "resolution": "https://undocs.org/en/A/RES/55/201"
+      }
+    },
+    {
+      "id": "un.end-fistula-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day to End Obstetric Fistula",
+        "fa": "روز بین‌المللی پایان دادن به فیستول مامایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-fistula-day",
+          "title": "International Day to End Obstetric Fistula (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-fistula-day"
+      }
+    },
+    {
+      "id": "un.markhor-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the Markhor",
+        "fa": "روز بین‌المللی مارخور"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/markhor-day",
+          "title": "International Day of the Markhor (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/markhor-day"
+      }
+    },
+    {
+      "id": "un.football-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Football Day",
+        "fa": "روز جهانی فوتبال"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/football-day",
+          "title": "World Football Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/football-day"
       }
     },
     {
@@ -1472,6 +3236,42 @@
       }
     },
     {
+      "id": "un.international-day-of-potato",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Potato",
+        "fa": "روز بین‌المللی سیب‌زمینی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 5,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.fao.org/international-potato-day/en",
+          "title": "International Day of Potato (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.fao.org/international-potato-day/en"
+      }
+    },
+    {
       "id": "un.world-no-tobacco-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1514,6 +3314,78 @@
       "links": {
         "un": "https://www.who.int/campaigns/world-no-tobacco-day",
         "resolution": "https://www.who.int/about/governance/world-health-assembly"
+      }
+    },
+    {
+      "id": "un.parents-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Global Day of Parents",
+        "fa": "روز جهانی والدین"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/parents-day",
+          "title": "Global Day of Parents (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/parents-day"
+      }
+    },
+    {
+      "id": "un.bicycle-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Bicycle Day",
+        "fa": "روز جهانی دوچرخه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/bicycle-day",
+          "title": "World Bicycle Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/bicycle-day"
       }
     },
     {
@@ -1606,6 +3478,114 @@
       }
     },
     {
+      "id": "un.end-illegal-fishing-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for the Fight against Illegal, Unreported and Unregulated Fishing",
+        "fa": "روز بین‌المللی مبارزه با صید غیرقانونی، گزارش‌نشده و بی‌ضابطه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-illegal-fishing-day",
+          "title": "International Day for the Fight against Illegal, Unreported and Unregulated Fishing (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-illegal-fishing-day"
+      }
+    },
+    {
+      "id": "un.russian-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Russian Language Day",
+        "fa": "روز زبان روسی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 6
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/russian-language-day",
+          "title": "Russian Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/russian-language-day"
+      }
+    },
+    {
+      "id": "un.food-safety-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Food Safety Day",
+        "fa": "روز جهانی ایمنی غذا"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/food-safety-day",
+          "title": "World Food Safety Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/food-safety-day"
+      }
+    },
+    {
       "id": "un.oceans-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1695,6 +3675,42 @@
       }
     },
     {
+      "id": "un.international-day-of-play",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Play",
+        "fa": "روز بین‌المللی بازی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-day-of-play",
+          "title": "International Day of Play (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-day-of-play"
+      }
+    },
+    {
       "id": "un.world-day-against-child-labour",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1736,6 +3752,42 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-day-against-child-labour"
+      }
+    },
+    {
+      "id": "un.albinism-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Albinism Awareness Day",
+        "fa": "روز بین‌المللی آگاهی از آلبینیسم"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 13
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/albinism-day",
+          "title": "International Albinism Awareness Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/albinism-day"
       }
     },
     {
@@ -1784,6 +3836,78 @@
       }
     },
     {
+      "id": "un.elder-abuse-awareness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Elder Abuse Awareness Day",
+        "fa": "روز جهانی آگاهی از آزار سالمندان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/elder-abuse-awareness-day",
+          "title": "World Elder Abuse Awareness Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/elder-abuse-awareness-day"
+      }
+    },
+    {
+      "id": "un.remittances-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Family Remittances",
+        "fa": "روز بین‌المللی حواله‌های خانوادگی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 16
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/remittances-day",
+          "title": "International Day of Family Remittances (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/remittances-day"
+      }
+    },
+    {
       "id": "un.desertification-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1829,6 +3953,114 @@
       }
     },
     {
+      "id": "un.countering-hate-speech",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for Countering Hate Speech",
+        "fa": "روز بین‌المللی مقابله با نفرت‌پراکنی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/countering-hate-speech",
+          "title": "International Day for Countering Hate Speech (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/countering-hate-speech"
+      }
+    },
+    {
+      "id": "un.sustainable-gastronomy-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Sustainable Gastronomy Day",
+        "fa": "روز جهانی گاسترونومی پایدار"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.fao.org/sustainable-gastronomy-day/en",
+          "title": "Sustainable Gastronomy Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.fao.org/sustainable-gastronomy-day/en"
+      }
+    },
+    {
+      "id": "un.end-sexual-violence-in-conflict-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for the Elimination of Sexual Violence in Conflict",
+        "fa": "روز بین‌المللی ریشه‌کنی خشونت جنسی در منازعات"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 19
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day",
+          "title": "International Day for the Elimination of Sexual Violence in Conflict (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day"
+      }
+    },
+    {
       "id": "un.refugee-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -1871,6 +4103,78 @@
       "links": {
         "un": "https://www.un.org/en/observances/refugee-day",
         "resolution": "http://undocs.org/en/A/RES/55/76"
+      }
+    },
+    {
+      "id": "un.yoga-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Yoga",
+        "fa": "روز جهانی یوگا"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/yoga-day",
+          "title": "International Day of Yoga (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/yoga-day"
+      }
+    },
+    {
+      "id": "un.solstice-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the Celebration of the Solstice",
+        "fa": "روز بین‌المللی گرامیداشت انقلاب تابستانی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/solstice-day",
+          "title": "International Day of the Celebration of the Solstice (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/solstice-day"
       }
     },
     {
@@ -1961,6 +4265,42 @@
       "links": {
         "un": "https://www.un.org/en/observances/widows-day",
         "resolution": "https://undocs.org/en/A/RES/65/189"
+      }
+    },
+    {
+      "id": "un.women-in-diplomacy-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Women in Diplomacy",
+        "fa": "روز بین‌المللی زنان در دیپلماسی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/women-in-diplomacy-day",
+          "title": "International Day of Women in Diplomacy (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/women-in-diplomacy-day"
       }
     },
     {
@@ -2099,44 +4439,255 @@
       }
     },
     {
-      "id": "un.cooperatives-day",
+      "id": "un.deafblindness-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین‌المللی تعاونیها",
-        "en": "International Day of Cooperatives"
+        "en": "International Day of Deafblindness",
+        "fa": "روز بین‌المللی ناشنوایی-نابینایی"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
-        "type": "NthWeekdayOfMonth",
-        "month": 7,
-        "weekday": "SATURDAY",
-        "n": 1
+        "type": "Fixed",
+        "month": 6,
+        "day": 27
       },
       "citations": [
         {
           "url": "https://www.un.org/en/observances/list-days-weeks",
-          "title": "United Nations — List of International Days and Weeks",
-          "retrieved": "2026-09-13"
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
         },
         {
-          "url": "https://www.un.org/en/observances/cooperatives-day",
-          "title": "International Day of Cooperatives (observance page)",
-          "retrieved": "2026-09-13"
-        },
-        {
-          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: اولين شنبه ژوئيه",
-          "retrieved": "2026-09-13"
+          "url": "https://www.un.org/en/observances/deafblindness-day",
+          "title": "International Day of Deafblindness (observance page)",
+          "retrieved": "2026-09-23"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-23",
       "reviewedBy": "pending",
       "links": {
-        "un": "https://www.un.org/en/observances/cooperatives-day",
-        "resolution": "https://undocs.org/en/A/RES/47/90"
+        "un": "https://www.un.org/en/observances/deafblindness-day"
+      }
+    },
+    {
+      "id": "un.micro-small-medium-businesses-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Micro-, Small and Medium-sized Enterprises Day",
+        "fa": "روز کسب‌وکارهای خرد، کوچک و متوسط"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 27
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/micro-small-medium-businesses-day",
+          "title": "Micro-, Small and Medium-sized Enterprises Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/micro-small-medium-businesses-day"
+      }
+    },
+    {
+      "id": "un.tropics-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the Tropics",
+        "fa": "روز بین‌المللی مناطق حاره‌ای"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/tropics-day",
+          "title": "International Day of the Tropics (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/tropics-day"
+      }
+    },
+    {
+      "id": "un.asteroid-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Asteroid Day",
+        "fa": "روز بین‌المللی سیارک"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/asteroid-day",
+          "title": "International Asteroid Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/asteroid-day"
+      }
+    },
+    {
+      "id": "un.parliamentarism-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Parliamentarism",
+        "fa": "روز بین‌المللی پارلمانتاریسم"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 6,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/parliamentarism-day",
+          "title": "International Day of Parliamentarism (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/parliamentarism-day"
+      }
+    },
+    {
+      "id": "un.rural-development-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Rural Development Day",
+        "fa": "روز جهانی توسعه روستایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 6
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/rural-development-day",
+          "title": "World Rural Development Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/rural-development-day"
+      }
+    },
+    {
+      "id": "un.kiswahili-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Kiswahili Language Day",
+        "fa": "روز جهانی زبان سواحیلی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/kiswahili-day",
+          "title": "World Kiswahili Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/kiswahili-day"
       }
     },
     {
@@ -2185,6 +4736,227 @@
       }
     },
     {
+      "id": "un.srebrenica-genocide-commemoration-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica",
+        "fa": "روز بین‌المللی تأمل و یادبود نسل‌کشی سال ۱۹۹۵ سربرنیتسا"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day",
+          "title": "International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day"
+      }
+    },
+    {
+      "id": "un.horse-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Horse Day",
+        "fa": "روز جهانی اسب"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/horse-day",
+          "title": "World Horse Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/horse-day"
+      }
+    },
+    {
+      "id": "un.day-of-combating-sand-and-dust-storms",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Combating Sand and Dust Storms",
+        "fa": "روز بین‌المللی مبارزه با طوفان‌های شن و گرد و غبار"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms",
+          "title": "International Day of Combating Sand and Dust Storms (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms"
+      }
+    },
+    {
+      "id": "un.hope-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Hope",
+        "fa": "روز بین‌المللی امید"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/hope-day",
+          "title": "International Day of Hope (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/hope-day"
+      }
+    },
+    {
+      "id": "un.world-youth-skills-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Youth Skills Day",
+        "fa": "روز جهانی مهارت‌های جوانان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-youth-skills-day",
+          "title": "World Youth Skills Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-youth-skills-day"
+      }
+    },
+    {
+      "id": "un.cooperatives-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز بین‌المللی تعاونیها",
+        "en": "International Day of Cooperatives"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 7,
+        "weekday": "SATURDAY",
+        "n": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/cooperatives-day",
+          "title": "International Day of Cooperatives (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: اولين شنبه ژوئيه",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/cooperatives-day",
+        "resolution": "https://undocs.org/en/A/RES/47/90"
+      }
+    },
+    {
       "id": "un.nelson-mandela-international-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -2227,6 +4999,222 @@
       "links": {
         "un": "http://www.un.org/en/events/mandeladay/",
         "resolution": "https://undocs.org/en/A/RES/64/13"
+      }
+    },
+    {
+      "id": "un.moon-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Moon Day",
+        "fa": "روز بین‌المللی ماه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/moon-day",
+          "title": "International Moon Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/moon-day"
+      }
+    },
+    {
+      "id": "un.world-chess-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Chess Day",
+        "fa": "روز جهانی شطرنج"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-chess-day",
+          "title": "World Chess Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-chess-day"
+      }
+    },
+    {
+      "id": "un.judicial-well-being-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for Judicial Well-being",
+        "fa": "روز بین‌المللی رفاه قضایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/judicial-well-being-day",
+          "title": "International Day for Judicial Well-being (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/judicial-well-being-day"
+      }
+    },
+    {
+      "id": "un.women-girls-african-descent",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Women and Girls of African Descent",
+        "fa": "روز بین‌المللی زنان و دختران تبار آفریقایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/women-girls-african-descent",
+          "title": "International Day of Women and Girls of African Descent (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/women-girls-african-descent"
+      }
+    },
+    {
+      "id": "un.drowning-prevention-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Drowning Prevention Day",
+        "fa": "روز جهانی پیشگیری از غرق‌شدگی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 25
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/drowning-prevention-day",
+          "title": "World Drowning Prevention Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/drowning-prevention-day"
+      }
+    },
+    {
+      "id": "un.world-hepatitis-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Hepatitis Day",
+        "fa": "روز جهانی هپاتیت"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 28
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-hepatitis-day",
+          "title": "World Hepatitis Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-hepatitis-day"
       }
     },
     {
@@ -2274,6 +5262,78 @@
       }
     },
     {
+      "id": "un.friendship-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Friendship",
+        "fa": "روز بین‌المللی دوستی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 7,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/friendship-day",
+          "title": "International Day of Friendship (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/friendship-day"
+      }
+    },
+    {
+      "id": "un.landlocked-developing-countries-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Awareness of the Special Development Needs and Challenges of Landlocked Developing Countries",
+        "fa": "روز بین‌المللی آگاهی از نیازها و چالش‌های ویژه توسعه‌ای کشورهای درحال‌توسعه محصور در خشکی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 6
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/landlocked-developing-countries-day",
+          "title": "International Day of Awareness of the Special Development Needs and Challenges of Landlocked Developing Countries (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/landlocked-developing-countries-day"
+      }
+    },
+    {
       "id": "un.indigenous-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -2316,6 +5376,42 @@
       "links": {
         "un": "https://www.un.org/en/observances/indigenous-day",
         "resolution": "https://undocs.org/en/A/RES/49/214"
+      }
+    },
+    {
+      "id": "un.steelpan-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Steelpan Day",
+        "fa": "روز جهانی استیل‌پن"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/steelpan-day",
+          "title": "World Steelpan Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/steelpan-day"
       }
     },
     {
@@ -2453,6 +5549,42 @@
       }
     },
     {
+      "id": "un.religious-based-violence-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day Commemorating the Victims of Acts of Violence Based on Religion or Belief",
+        "fa": "روز بین‌المللی یادبود قربانیان اعمال خشونت بر اساس دین یا باور"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 22
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/religious-based-violence-victims-day",
+          "title": "International Day Commemorating the Victims of Acts of Violence Based on Religion or Belief (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/religious-based-violence-victims-day"
+      }
+    },
+    {
       "id": "un.international-day-for-the-remembrance-of-the-slave-trade",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -2495,6 +5627,42 @@
       "links": {
         "un": "https://www.unesco.org/en/days/slave-trade-remembrance",
         "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000110220.page=72"
+      }
+    },
+    {
+      "id": "un.world-lake-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Lake Day",
+        "fa": "روز جهانی دریاچه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 27
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-lake-day",
+          "title": "World Lake Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-lake-day"
       }
     },
     {
@@ -2543,46 +5711,147 @@
       }
     },
     {
-      "id": "un.maritime-day",
+      "id": "un.victims-enforced-disappearance",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی دریانوردی",
-        "en": "World Maritime Day",
-        "ar": "يوم الملاحة البحرية العالمي",
-        "zh": "世界海事日",
-        "fr": "Journée mondiale de la mer",
-        "es": "Día Marítimo Mundial"
+        "en": "International Day of the Victims of Enforced Disappearances",
+        "fa": "روز بین‌المللی قربانیان ناپدیدشدگان اجباری"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
-        "type": "LastWeekdayOfMonth",
-        "month": 9,
-        "weekday": "THURSDAY"
+        "type": "Fixed",
+        "month": 8,
+        "day": 30
       },
       "citations": [
         {
           "url": "https://www.un.org/en/observances/list-days-weeks",
           "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-          "retrieved": "2026-09-18"
+          "retrieved": "2026-09-23"
         },
         {
-          "url": "https://www.un.org/en/observances/maritime-day",
-          "title": "World Maritime Day (observance page)",
-          "retrieved": "2026-09-18"
-        },
-        {
-          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی دریانوردی — 29 سپتامبر (هفته آخر سپتامبر)\"",
-          "retrieved": "2026-09-13"
+          "url": "https://www.un.org/en/observances/victims-enforced-disappearance",
+          "title": "International Day of the Victims of Enforced Disappearances (observance page)",
+          "retrieved": "2026-09-23"
         }
       ],
-      "updated": "2026-09-18",
+      "updated": "2026-09-23",
       "reviewedBy": "pending",
       "links": {
-        "un": "https://www.un.org/en/observances/maritime-day"
+        "un": "https://www.un.org/en/observances/victims-enforced-disappearance"
+      }
+    },
+    {
+      "id": "un.african-descent-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for People of African Descent",
+        "fa": "روز بین‌المللی افراد تبار آفریقایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 8,
+        "day": 31
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/african-descent-day",
+          "title": "International Day for People of African Descent (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/african-descent-day"
+      }
+    },
+    {
+      "id": "un.charity-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Charity",
+        "fa": "روز بین‌المللی نیکوکاری"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/charity-day",
+          "title": "International Day of Charity (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/charity-day"
+      }
+    },
+    {
+      "id": "un.indigenous-women-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the World's Indigenous Women and Girls",
+        "fa": "روز بین‌المللی زنان و دختران بومی جهان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/indigenous-women-day",
+          "title": "International Day of the World's Indigenous Women and Girls (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/indigenous-women-day"
       }
     },
     {
@@ -2627,6 +5896,78 @@
       "links": {
         "un": "https://www.cleanairblueskies.org/",
         "resolution": "https://undocs.org/en/A/RES/74/212"
+      }
+    },
+    {
+      "id": "un.police-cooperation-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Police Cooperation",
+        "fa": "روز بین‌المللی همکاری پلیسی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/police-cooperation-day",
+          "title": "International Day of Police Cooperation (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/police-cooperation-day"
+      }
+    },
+    {
+      "id": "un.duchenne-awareness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Duchenne Awareness Day",
+        "fa": "روز جهانی آگاهی از دیستروفی عضلانی دوشن"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/duchenne-awareness-day",
+          "title": "World Duchenne Awareness Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/duchenne-awareness-day"
       }
     },
     {
@@ -2854,6 +6195,186 @@
       }
     },
     {
+      "id": "un.interventional-cardiology-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for Interventional Cardiology",
+        "fa": "روز بین‌المللی قلب و عروق مداخله‌ای"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 16
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/interventional-cardiology-day",
+          "title": "International Day for Interventional Cardiology (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/interventional-cardiology-day"
+      }
+    },
+    {
+      "id": "un.science-technology-and-innovation-for-south-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Science, Technology and Innovation for the South",
+        "fa": "روز بین‌المللی علم، فناوری و نوآوری برای کشورهای جنوب"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 16
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+          "title": "International Day of Science, Technology and Innovation for the South (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day"
+      }
+    },
+    {
+      "id": "un.world-patient-safety-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Patient Safety Day",
+        "fa": "روز جهانی ایمنی بیمار"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 17
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-patient-safety-day/",
+          "title": "World Patient Safety Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-patient-safety-day/"
+      }
+    },
+    {
+      "id": "un.equal-pay-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Equal Pay Day",
+        "fa": "روز بین‌المللی برابری دستمزد"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/equal-pay-day",
+          "title": "International Equal Pay Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/equal-pay-day"
+      }
+    },
+    {
+      "id": "un.cleanup-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Cleanup Day",
+        "fa": "روز جهانی پاکسازی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 20
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/cleanup-day",
+          "title": "World Cleanup Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/cleanup-day"
+      }
+    },
+    {
       "id": "un.international-day-peace",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -2896,6 +6417,78 @@
       "links": {
         "un": "https://www.un.org/en/observances/international-day-peace",
         "resolution": "https://undocs.org/en/A/RES/36/67"
+      }
+    },
+    {
+      "id": "un.sign-languages-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Sign Languages",
+        "fa": "روز بین‌المللی زبان‌های اشاره"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/sign-languages-day",
+          "title": "International Day of Sign Languages (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/sign-languages-day"
+      }
+    },
+    {
+      "id": "un.nuclear-weapons-elimination-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for the Total Elimination of Nuclear Weapons",
+        "fa": "روز بین‌المللی ریشه‌کنی کامل سلاح‌های هسته‌ای"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 26
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/nuclear-weapons-elimination-day",
+          "title": "International Day for the Total Elimination of Nuclear Weapons (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/nuclear-weapons-elimination-day"
       }
     },
     {
@@ -2943,45 +6536,154 @@
       }
     },
     {
-      "id": "un.habitat-day",
+      "id": "un.information-access-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی اسکان بشری",
-        "en": "World Habitat Day"
+        "en": "International Day for Universal Access to Information",
+        "fa": "روز بین‌المللی دسترسی همگانی به اطلاعات"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
-        "type": "NthWeekdayOfMonth",
-        "month": 10,
-        "weekday": "MONDAY",
-        "n": 1
+        "type": "Fixed",
+        "month": 9,
+        "day": 28
       },
       "citations": [
         {
           "url": "https://www.un.org/en/observances/list-days-weeks",
-          "title": "United Nations — List of International Days and Weeks",
-          "retrieved": "2026-09-13"
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
         },
         {
-          "url": "https://www.un.org/en/observances/habitat-day",
-          "title": "World Habitat Day (observance page)",
-          "retrieved": "2026-09-13",
-          "page": "Background: \"the first Monday of October of every year\""
+          "url": "https://www.un.org/en/observances/information-access-day",
+          "title": "International Day for Universal Access to Information (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/information-access-day"
+      }
+    },
+    {
+      "id": "un.maritime-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی دریانوردی",
+        "en": "World Maritime Day",
+        "ar": "يوم الملاحة البحرية العالمي",
+        "zh": "世界海事日",
+        "fr": "Journée mondiale de la mer",
+        "es": "Día Marítimo Mundial"
+      },
+      "rule": {
+        "type": "LastWeekdayOfMonth",
+        "month": 9,
+        "weekday": "THURSDAY"
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-18"
+        },
+        {
+          "url": "https://www.un.org/en/observances/maritime-day",
+          "title": "World Maritime Day (observance page)",
+          "retrieved": "2026-09-18"
         },
         {
           "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
           "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی دریانوردی — 29 سپتامبر (هفته آخر سپتامبر)\"",
           "retrieved": "2026-09-13"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-18",
       "reviewedBy": "pending",
       "links": {
-        "un": "https://www.un.org/en/observances/habitat-day",
-        "resolution": "http://undocs.org/en/A/RES/40/202"
+        "un": "https://www.un.org/en/observances/maritime-day"
+      }
+    },
+    {
+      "id": "un.end-food-waste-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Awareness of Food Loss and Waste",
+        "fa": "روز بین‌المللی آگاهی از تلفات و ضایعات غذایی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 29
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-food-waste-day/",
+          "title": "International Day of Awareness of Food Loss and Waste (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-food-waste-day/"
+      }
+    },
+    {
+      "id": "un.international-translation-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Translation Day",
+        "fa": "روز بین‌المللی ترجمه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 9,
+        "day": 30
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-translation-day",
+          "title": "International Translation Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-translation-day"
       }
     },
     {
@@ -3027,6 +6729,42 @@
       "links": {
         "un": "https://www.un.org/en/observances/older-persons-day",
         "resolution": "http://undocs.org/en/A/RES/45/106"
+      }
+    },
+    {
+      "id": "un.international-coffee-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Coffee Day",
+        "fa": "روز بین‌المللی قهوه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://docs.un.org/en/A/RES/80/248",
+          "title": "International Coffee Day (UN General Assembly resolution A/RES/80/248)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "resolution": "https://docs.un.org/en/A/RES/80/248"
       }
     },
     {
@@ -3120,6 +6858,42 @@
       }
     },
     {
+      "id": "un.cotton-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Cotton Day",
+        "fa": "روز جهانی پنبه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/cotton-day",
+          "title": "World Cotton Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/cotton-day"
+      }
+    },
+    {
       "id": "un.world-post-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -3203,6 +6977,42 @@
       "reviewedBy": "pending",
       "links": {
         "un": "http://www.who.int/mental_health/world-mental-health-day/en/"
+      }
+    },
+    {
+      "id": "un.girl-child-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the Girl Child",
+        "fa": "روز بین‌المللی دختران"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 11
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/girl-child-day",
+          "title": "International Day of the Girl Child (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/girl-child-day"
       }
     },
     {
@@ -3296,6 +7106,48 @@
       }
     },
     {
+      "id": "un.habitat-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی اسکان بشری",
+        "en": "World Habitat Day"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 10,
+        "weekday": "MONDAY",
+        "n": 1
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/habitat-day",
+          "title": "World Habitat Day (observance page)",
+          "retrieved": "2026-09-13",
+          "page": "Background: \"the first Monday of October of every year\""
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/habitat-day",
+        "resolution": "http://undocs.org/en/A/RES/40/202"
+      }
+    },
+    {
       "id": "un.world-food-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -3383,6 +7235,42 @@
       "links": {
         "un": "https://www.un.org/en/observances/day-for-eradicating-poverty",
         "resolution": "http://undocs.org/en/A/RES/62/136"
+      }
+    },
+    {
+      "id": "un.snow-leopard-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the Snow Leopard",
+        "fa": "روز بین‌المللی پلنگ برفی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 23
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/snow-leopard-day",
+          "title": "International Day of the Snow Leopard (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/snow-leopard-day"
       }
     },
     {
@@ -3474,94 +7362,183 @@
       }
     },
     {
-      "id": "un.road-traffic-victims-day",
+      "id": "un.audiovisual-heritage",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی یادآوری قربانیان ترافیک جاده ها",
-        "en": "World Day of Remembrance for Road Traffic Victims",
-        "ar": "اليوم العالمي لإحياء ذكرى ضحايا حوادث الطرق",
-        "zh": "世界道路交通事故受害者纪念日",
-        "ru": "Всемирный день памяти жертв дорожно-транспортных происшествий",
-        "es": "Día mundial en recuerdo de las víctimas de los accidentes de tráfico"
+        "en": "World Day for Audiovisual Heritage",
+        "fa": "روز جهانی میراث سمعی و بصری"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
-        "type": "NthWeekdayOfMonth",
-        "month": 11,
-        "weekday": "SUNDAY",
-        "n": 3
+        "type": "Fixed",
+        "month": 10,
+        "day": 27
       },
       "citations": [
         {
           "url": "https://www.un.org/en/observances/list-days-weeks",
-          "title": "United Nations — List of International Days and Weeks — also the ar, zh, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-          "retrieved": "2026-09-13"
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
         },
         {
-          "url": "https://www.un.org/en/observances/road-traffic-victims-day",
-          "title": "World Day of Remembrance for Road Traffic Victims (observance page)",
-          "retrieved": "2026-09-13"
-        },
-        {
-          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: سومین یکشنبه نوامبر",
-          "retrieved": "2026-09-13"
+          "url": "https://www.unesco.org/en/days/audiovisual-heritage",
+          "title": "World Day for Audiovisual Heritage (observance page)",
+          "retrieved": "2026-09-23"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-23",
       "reviewedBy": "pending",
       "links": {
-        "un": "https://www.un.org/en/observances/road-traffic-victims-day",
-        "resolution": "http://undocs.org/en/A/RES/60/5"
+        "un": "https://www.unesco.org/en/days/audiovisual-heritage"
       }
     },
     {
-      "id": "un.world-philosophy-day",
+      "id": "un.care-and-support-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی فلسفه",
-        "en": "World Philosophy Day",
-        "zh": "世界哲学日",
-        "fr": "Journée mondiale de la philosophie",
-        "ru": "Всемирный день философии",
-        "es": "Día Mundial de la Filosofía"
+        "en": "International Day of Care and Support",
+        "fa": "روز بین‌المللی مراقبت و حمایت"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
-        "type": "NthWeekdayOfMonth",
-        "month": 11,
-        "weekday": "THURSDAY",
-        "n": 3
+        "type": "Fixed",
+        "month": 10,
+        "day": 29
       },
       "citations": [
         {
           "url": "https://www.un.org/en/observances/list-days-weeks",
-          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-          "retrieved": "2026-09-13"
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
         },
         {
-          "url": "https://www.unesco.org/en/days/philosophy",
-          "title": "World Philosophy Day (observance page)",
-          "retrieved": "2026-09-13",
-          "page": "\"each year, on the third Thursday of November\""
-        },
-        {
-          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-          "retrieved": "2026-09-13"
+          "url": "https://www.un.org/en/observances/care-and-support-day",
+          "title": "International Day of Care and Support (observance page)",
+          "retrieved": "2026-09-23"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-23",
       "reviewedBy": "pending",
       "links": {
-        "un": "https://www.unesco.org/en/days/philosophy",
-        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000142825.page=86"
+        "un": "https://www.un.org/en/observances/care-and-support-day"
+      }
+    },
+    {
+      "id": "un.cities-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Cities Day",
+        "fa": "روز جهانی شهرها"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 31
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/cities-day",
+          "title": "World Cities Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/cities-day"
+      }
+    },
+    {
+      "id": "un.end-impunity-crimes-against-journalists",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day to End Impunity for Crimes against Journalists",
+        "fa": "روز بین‌المللی پایان دادن به معافیت از مجازات جرایم علیه روزنامه‌نگاران"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 2
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/end-impunity-crimes-against-journalists",
+          "title": "International Day to End Impunity for Crimes against Journalists (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/end-impunity-crimes-against-journalists"
+      }
+    },
+    {
+      "id": "un.tsunami-awareness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Tsunami Awareness Day",
+        "fa": "روز جهانی آگاهی از سونامی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 5
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/tsunami-awareness-day",
+          "title": "World Tsunami Awareness Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/tsunami-awareness-day"
       }
     },
     {
@@ -3700,6 +7677,133 @@
       }
     },
     {
+      "id": "un.fight-against-transnational-crime-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime",
+        "fa": "روز بین‌المللی پیشگیری و مبارزه با همه اشکال جرایم سازمان‌یافته فراملی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/fight-against-transnational-crime-day",
+          "title": "International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/fight-against-transnational-crime-day"
+      }
+    },
+    {
+      "id": "un.road-traffic-victims-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی یادآوری قربانیان ترافیک جاده ها",
+        "en": "World Day of Remembrance for Road Traffic Victims",
+        "ar": "اليوم العالمي لإحياء ذكرى ضحايا حوادث الطرق",
+        "zh": "世界道路交通事故受害者纪念日",
+        "ru": "Всемирный день памяти жертв дорожно-транспортных происшествий",
+        "es": "Día mundial en recuerdo de las víctimas de los accidentes de tráfico"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 11,
+        "weekday": "SUNDAY",
+        "n": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.un.org/en/observances/road-traffic-victims-day",
+          "title": "World Day of Remembrance for Road Traffic Victims (observance page)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: سومین یکشنبه نوامبر",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/road-traffic-victims-day",
+        "resolution": "http://undocs.org/en/A/RES/60/5"
+      }
+    },
+    {
+      "id": "un.world-philosophy-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز جهانی فلسفه",
+        "en": "World Philosophy Day",
+        "zh": "世界哲学日",
+        "fr": "Journée mondiale de la philosophie",
+        "ru": "Всемирный день философии",
+        "es": "Día Mundial de la Filosofía"
+      },
+      "rule": {
+        "type": "NthWeekdayOfMonth",
+        "month": 11,
+        "weekday": "THURSDAY",
+        "n": 3
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+          "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://www.unesco.org/en/days/philosophy",
+          "title": "World Philosophy Day (observance page)",
+          "retrieved": "2026-09-13",
+          "page": "\"each year, on the third Thursday of November\""
+        },
+        {
+          "url": "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+          "title": "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+          "page": "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+          "retrieved": "2026-09-13"
+        }
+      ],
+      "updated": "2026-09-13",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unesco.org/en/days/philosophy",
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000142825.page=86"
+      }
+    },
+    {
       "id": "un.international-day-for-tolerance",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -3742,6 +7846,78 @@
       "links": {
         "un": "https://www.unesco.org/en/days/tolerance",
         "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000101803_eng#page=75"
+      }
+    },
+    {
+      "id": "un.mediterranean-diet-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of the Mediterranean Diet",
+        "fa": "روز بین‌المللی رژیم غذایی مدیترانه‌ای"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 16
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://docs.un.org/en/A/RES/80/174",
+          "title": "International Day of the Mediterranean Diet (UN General Assembly resolution A/RES/80/174)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "resolution": "https://docs.un.org/en/A/RES/80/174"
+      }
+    },
+    {
+      "id": "un.child-sexual-exploitation-prevention-and-healing-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence",
+        "fa": "روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
+          "title": "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day"
       }
     },
     {
@@ -3925,6 +8101,42 @@
       }
     },
     {
+      "id": "un.conjoined-twins-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Conjoined Twins Day",
+        "fa": "روز جهانی دوقلوهای به‌هم‌چسبیده"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/conjoined-twins-day",
+          "title": "World Conjoined Twins Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/conjoined-twins-day"
+      }
+    },
+    {
       "id": "un.ending-violence-against-women-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -3967,6 +8179,78 @@
       "links": {
         "un": "https://www.un.org/en/observances/ending-violence-against-women-day",
         "resolution": "http://undocs.org/en/A/RES/32/40"
+      }
+    },
+    {
+      "id": "un.sustainable-transport-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Sustainable Transport Day",
+        "fa": "روز جهانی حمل‌ونقل پایدار"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 26
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/sustainable-transport-day",
+          "title": "World Sustainable Transport Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/sustainable-transport-day"
+      }
+    },
+    {
+      "id": "un.child-early-forced-marriage-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day for the Elimination of Child, Early and Forced Marriage",
+        "fa": "روز بین‌المللی ریشه‌کنی ازدواج کودکان، ازدواج زودهنگام و اجباری"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 11,
+        "day": 27
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://docs.un.org/en/A/80/L.99",
+          "title": "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly draft resolution A/80/L.99)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "resolution": "https://docs.un.org/en/A/80/L.99"
       }
     },
     {
@@ -4193,6 +8477,78 @@
       }
     },
     {
+      "id": "un.day-against-unilateral-coercive-measures",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day Against Unilateral Coercive Measures",
+        "fa": "روز بین‌المللی مخالفت با اقدامات قهری یکجانبه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 4
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/day-against-unilateral-coercive-measures",
+          "title": "International Day Against Unilateral Coercive Measures (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/day-against-unilateral-coercive-measures"
+      }
+    },
+    {
+      "id": "un.international-day-of-banks",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Banks",
+        "fa": "روز بین‌المللی بانک‌ها"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 4
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-day-of-banks",
+          "title": "International Day of Banks (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-day-of-banks"
+      }
+    },
+    {
       "id": "un.soil-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -4372,6 +8728,42 @@
       }
     },
     {
+      "id": "un.genocide-prevention-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime",
+        "fa": "روز بین‌المللی یادبود و کرامت قربانیان جنایت نسل‌کشی و پیشگیری از این جنایت"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 9
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/genocide-prevention-day",
+          "title": "International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/genocide-prevention-day"
+      }
+    },
+    {
       "id": "un.human-rights-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -4461,6 +8853,159 @@
       }
     },
     {
+      "id": "un.neutrality-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Neutrality",
+        "fa": "روز بین‌المللی بی‌طرفی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/neutrality-day",
+          "title": "International Day of Neutrality (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/neutrality-day"
+      }
+    },
+    {
+      "id": "un.universal-health-coverage-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Universal Health Coverage Day",
+        "fa": "روز بین‌المللی پوشش همگانی سلامت"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 12
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/universal-health-coverage-day",
+          "title": "International Universal Health Coverage Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/universal-health-coverage-day"
+      }
+    },
+    {
+      "id": "un.anti-colonialism-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day against Colonialism in All its Forms and Manifestations",
+        "fa": "روز بین‌المللی مبارزه با استعمار در همه اشکال و مظاهر آن"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 14
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/anti-colonialism-day",
+          "title": "International Day against Colonialism in All its Forms and Manifestations (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/anti-colonialism-day"
+      }
+    },
+    {
+      "id": "un.world-turkic-language-family-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Turkic Language Family Day",
+        "fa": "روز جهانی خانواده زبان‌های ترکی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 15
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://unesdoc.unesco.org/ark:/48223/pf0000396088",
+          "title": "World Turkic Language Family Day (UNESCO General Conference, 43rd session, resolution 43 C/57, Samarkand, 2025)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000396088"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://unesdoc.unesco.org/ark:/48223/pf0000396088",
+          "title": "World Turkic Language Family Day (UNESCO General Conference, 43rd session, resolution 43 C/57, Samarkand, 2025)",
+          "retrieved": "2026-09-23"
+        }
+      }
+    },
+    {
       "id": "un.migrants-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -4506,6 +9051,97 @@
       }
     },
     {
+      "id": "un.arabic-language-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Arabic Language Day",
+        "fa": "روز زبان عربی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 18
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/arabiclanguageday",
+          "title": "Arabic Language Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/arabiclanguageday"
+      }
+    },
+    {
+      "id": "un.women-searchers-missing-persons-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Recognition for Women Searchers of Missing Persons",
+        "fa": "روز بین‌المللی ارج‌گذاری به زنان جوینده مفقودان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 19
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://docs.un.org/en/A/RES/80/301",
+          "title": "International Day of Recognition for Women Searchers of Missing Persons (UN General Assembly resolution A/RES/80/301)",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://news.un.org/en/story/2026/09/1168264",
+          "title": "UN News — General Assembly adopts International Day of Recognition for Women Searchers of Missing Persons",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://press.un.org/en/2026/ga12775.doc.htm",
+          "title": "UN Meetings Coverage — GA/12775",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "resolution": "https://docs.un.org/en/A/RES/80/301"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2026,
+        "citation": {
+          "url": "https://docs.un.org/en/A/RES/80/301",
+          "title": "International Day of Recognition for Women Searchers of Missing Persons (UN General Assembly resolution A/RES/80/301)",
+          "retrieved": "2026-09-23"
+        }
+      }
+    },
+    {
       "id": "un.human-solidarity-day",
       "calendar": "GREGORIAN",
       "source": "INTERNATIONAL",
@@ -4548,6 +9184,150 @@
       "links": {
         "un": "https://www.un.org/en/observances/human-solidarity-day",
         "resolution": "https://undocs.org/en/A/RES/60/209"
+      }
+    },
+    {
+      "id": "un.world-basketball-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Basketball Day",
+        "fa": "روز جهانی بسکتبال"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-basketball-day",
+          "title": "World Basketball Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-basketball-day"
+      }
+    },
+    {
+      "id": "un.meditation-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Meditation Day",
+        "fa": "روز جهانی مراقبه"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 21
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/meditation-day",
+          "title": "World Meditation Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/meditation-day"
+      }
+    },
+    {
+      "id": "un.anti-cybercrime-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Anti-Cybercrime Day",
+        "fa": "روز بین‌المللی مبارزه با جرایم سایبری"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 24
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.unodc.org/unodc/en/cybercrime/day.html",
+          "title": "International Anti-Cybercrime Day (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.unodc.org/unodc/en/cybercrime/day.html"
+      }
+    },
+    {
+      "id": "un.epidemic-preparedness-day",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Day of Epidemic Preparedness",
+        "fa": "روز بین‌المللی آمادگی در برابر بیماری‌های همه‌گیر"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 27
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.un.org/en/observances/epidemic-preparedness-day",
+          "title": "International Day of Epidemic Preparedness (observance page)",
+          "retrieved": "2026-09-23"
+        }
+      ],
+      "updated": "2026-09-23",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/epidemic-preparedness-day"
       }
     }
   ]

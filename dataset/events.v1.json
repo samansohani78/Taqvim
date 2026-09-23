@@ -140,6 +140,15 @@
         "maxLength": 200
       }
     },
+    "titleReview": {
+      "description": "Language tags of `title` whose text is machine-translated from the official-source language and not yet reviewed by a human (owner decision 2026-09-23, ADR-0042, R07/D-05): the dataset equivalent of the app's `<!-- MT: needs review -->` string marker (docs/i18n/TRANSLATING.md). Each tag must also be a key of `title`; a reviewer removes the tag once the translation has been checked.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/languageTag"
+      }
+    },
     "citation": {
       "type": "object",
       "additionalProperties": false,
@@ -617,6 +626,9 @@
         },
         "title": {
           "$ref": "#/$defs/localizedText"
+        },
+        "titleReview": {
+          "$ref": "#/$defs/titleReview"
         },
         "rule": {
           "$ref": "#/$defs/rule"

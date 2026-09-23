@@ -37,8 +37,8 @@ class DatasetValidatorTest {
         }
 
     @Test
-    fun `there are 33 invalid fixtures and they cover every issue kind`() {
-        INVALID_FIXTURES.keys shouldHaveSize 33
+    fun `there are 34 invalid fixtures and they cover every issue kind`() {
+        INVALID_FIXTURES.keys shouldHaveSize 34
         INVALID_FIXTURES.values.toSet() shouldBe IssueKind.entries.toSet()
     }
 
@@ -137,6 +137,7 @@ class DatasetValidatorTest {
                 "31-single-without-reason" to IssueKind.ONE_OFF_RULE,
                 "32-repeated-single-day" to IssueKind.ONE_OFF_RULE,
                 "33-lunar-tithi-gregorian" to IssueKind.SCHEMA,
+                "34-title-review-unknown-language" to IssueKind.TITLE_REVIEW_UNKNOWN_LANGUAGE,
             ).toMap()
     }
 }

@@ -86,6 +86,9 @@
         "fa": "رویداد نمونه",
         "en": "Sample event"
       },
+      "titleReview": [
+        "fa"
+      ],
       "rule": {
         "type": "NthWeekdayOfMonth",
         "month": 11,

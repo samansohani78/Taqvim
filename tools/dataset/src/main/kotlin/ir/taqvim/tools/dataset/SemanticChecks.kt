@@ -4,6 +4,7 @@
  */
 package ir.taqvim.tools.dataset
 
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.intOrNull
@@ -41,8 +42,30 @@ internal object SemanticChecks {
     fun check(records: List<EventRecord>): List<DatasetIssue> {
         val ids = records.mapNotNull { it.id }.toSet()
         return duplicateIds(records) +
-            records.flatMap { ruleIssues(it, ids) + validityIssues(it) + OneOffChecks.reasonIssues(it) } +
+            records.flatMap {
+                ruleIssues(it, ids) + validityIssues(it) + OneOffChecks.reasonIssues(it) + titleReviewIssues(it)
+            } +
             OneOffChecks.repeatedDays(records)
+    }
+
+    /** ADR-0042: every `titleReview` language tag must name a language the record's `title` actually carries. */
+    private fun titleReviewIssues(record: EventRecord): List<DatasetIssue> {
+        val tags = (record.event["titleReview"] as? JsonArray)?.mapNotNull { (it as? JsonPrimitive)?.content }.orEmpty()
+        val titles =
+            record.event
+                .child("title")
+                ?.keys
+                .orEmpty()
+        return tags
+            .filter { it !in titles }
+            .map {
+                issue(
+                    record,
+                    ".titleReview",
+                    IssueKind.TITLE_REVIEW_UNKNOWN_LANGUAGE,
+                    "titleReview names '$it', which is not a key of title",
+                )
+            }
     }
 
     private fun duplicateIds(records: List<EventRecord>): List<DatasetIssue> =

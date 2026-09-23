@@ -1,137 +1,144 @@
-# DT-019: UN international days (https://www.un.org/en/observances/list-days-weeks, retrieved 2026-09-23) without a Persian title from a primary UN source
+# DT-019 review queue: the 132 UN international days added to dataset/international/un-international-days.json on
+# 2026-09-23 (R07/D-05, ADR-0042) with a machine-translated Persian title marked `titleReview: ["fa"]`, because no
+# primary Persian source (UNIC Tehran or the United Nations in Iran) names them. This file used to be a sourcing
+# blocker (these days were excluded from the dataset); it is now a review queue: each row is a record already
+# shipped, whose `fa` title still needs a human reviewer, ideally checked against a native Persian source when one
+# appears. Reviewing a row means editing the record's `fa` title in the dataset and removing "fa" from its
+# `titleReview` array (docs/i18n/TRANSLATING.md's `MT: needs review` marker is the same idea for app strings).
 # the archived UN Information Centre Tehran list (2012-10-05) and every reachable Persian page of iran.un.org and of the UNIC Tehran archive were searched on 2026-09-18; these days are named on none of them
-# 2026-09-23 (R07/D-05 re-check, docs/data-todo/un-days-sourcing.md): iran.un.org's newest posts (through 2026-09-21) were re-checked and name no day of this list; two days newly proclaimed since the 2026-09-18 pass were added: World Turkic Language Family Day (12-15, UNESCO 2025) and International Day of Recognition for Women Searchers of Missing Persons (12-19, UN GA 2026) — both too recent for a Persian source to exist yet
+# 2026-09-23 (R07/D-05 re-check, docs/data-todo/un-days-sourcing.md): iran.un.org's newest posts (through 2026-09-21) were re-checked and name no day of this list; two days newly proclaimed since the 2026-09-18 pass were added: World Turkic Language Family Day (un.world-turkic-language-family-day, UNESCO 2025) and International Day of Recognition for Women Searchers of Missing Persons (un.women-searchers-missing-persons-day, UN GA 2026) — both too recent for a Persian source to exist yet
 # the 10 international weeks on the UN list are not included: the dataset has no week rule
-# columns: month-day	English title (UN list)	UN page
-01-04	World Braille Day	https://www.un.org/en/observances/braille-day
-01-28	International Day of Peaceful Coexistence	https://www.un.org/en/observances/peaceful-coexistence-day
-02-02	World Wetlands Day	https://www.un.org/en/observances/world-wetlands-day
-02-04	International Day of Human Fraternity	https://www.un.org/en/observances/human-fraternity
-02-06	International Day of Zero Tolerance to Female Genital Mutilation	https://www.un.org/en/observances/female-genital-mutilation-day
-02-10	International Day of the Arabian Leopard	https://www.un.org/en/observances/arabian-leopard-day
-02-10	World Pulses Day	https://www.fao.org/world-pulses-day/en
-02-11	International Day of Women and Girls in Science	https://www.un.org/en/observances/women-and-girls-in-science-day/
-02-12	International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism	https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day
-02-17	Global Tourism Resilience Day	https://www.un.org/en/observances/tourism-resilience-day
-03-01	World Seagrass Day	https://www.un.org/en/observances/seagrass-day
-03-01	Zero Discrimination Day	https://www.unaids.org/en/zero-discrimination-day
-03-03	World Wildlife Day	https://www.un.org/en/observances/world-wildlife-day
-03-05	International Day for Disarmament and Non-Proliferation Awareness	https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day
-03-10	International Day of Women Judges	https://www.un.org/en/observances/women-judges-day
-03-15	International Day to Combat Islamophobia	https://www.un.org/en/observances/anti-islamophobia-day
-03-20	French Language Day	https://www.un.org/fr/observances/french-language-day/
-03-20	International Day of Happiness	https://www.un.org/en/observances/happiness-day
-03-21	International Day of Forests	https://www.fao.org/international-day-of-forests/en
-03-21	World Day for Glaciers	https://www.un.org/en/observances/world-glaciers-day
-03-21	World Down Syndrome Day	https://www.un.org/en/observances/down-syndrome-day
-03-25	International Day of Solidarity with Detained and Missing Staff Members	https://www.un.org/en/observances/detained-staff-day
-03-30	International Day of Zero Waste	https://www.un.org/en/observances/zero-waste-day
-04-05	International Day of Conscience	https://www.un.org/en/observances/conscience-day
-04-12	International Day of Human Space Flight	https://www.un.org/en/observances/human-spaceflight-day
-04-14	World Chagas Disease Day	https://www.who.int/campaigns/world-chagas-disease-day
-04-15	International Wellness Day	https://www.un.org/en/observances/wellness-day
-04-20	Chinese Language Day	https://www.un.org/zh/observances/chinese-language-day
-04-21	World Creativity and Innovation Day	https://www.un.org/en/observances/creativity-and-innovation-day
-04-23	English Language Day	https://www.un.org/en/observances/english-language-day
-04-23	International Girls in ICT Day	https://www.itu.int/women-and-girls/girls-in-ict/
-04-23	Spanish Language Day	https://www.un.org/es/observances/spanish-language-day
-04-24	International Day of Multilateralism and Diplomacy for Peace	https://www.un.org/en/observances/Multilateralism-for-Peace-day
-04-25	International Delegate's Day	https://www.un.org/en/observances/delegates-day
-04-26	International Chernobyl Disaster Remembrance Day	https://www.un.org/en/observances/chernobyl-remembrance-day
-04-29	International Day in Memory of the Victims of Earthquakes	https://www.un.org/en/observances/earthquake-victims-day
-04-30	International Jazz Day	https://www.un.org/en/observances/jazz-day
-05-02	World Tuna Day	https://www.un.org/en/observances/tuna-day
-05-05	World Portuguese Language Day	https://www.unesco.org/en/days/portuguese-language
-05-10	International Day of Argania	https://www.un.org/en/observances/argania-day
-05-12	International Day of Plant Health	https://www.fao.org/plant-health-day/en
-05-16	International Day of Light	https://www.unesco.org/en/days/light
-05-16	International Day of Living Together in Peace	https://www.un.org/en/observances/living-in-peace-day
-05-19	World Fair Play Day	https://www.un.org/en/observances/fair-play-day
-05-20	World Bee Day	https://www.fao.org/world-bee-day/en
-05-21	International Tea Day	https://www.fao.org/international-tea-day/en
-05-23	International Day to End Obstetric Fistula	https://www.un.org/en/observances/end-fistula-day
-05-24	International Day of the Markhor	https://www.un.org/en/observances/markhor-day
-05-25	World Football Day	https://www.un.org/en/observances/football-day
-05-30	International Day of Potato	https://www.fao.org/international-potato-day/en
-06-01	Global Day of Parents	https://www.un.org/en/observances/parents-day
-06-03	World Bicycle Day	https://www.un.org/en/observances/bicycle-day
-06-05	International Day for the Fight against Illegal, Unreported and Unregulated Fishing	https://www.un.org/en/observances/end-illegal-fishing-day
-06-06	Russian Language Day	https://www.un.org/en/observances/russian-language-day
-06-07	World Food Safety Day	https://www.un.org/en/observances/food-safety-day
-06-11	International Day of Play	https://www.un.org/en/observances/international-day-of-play
-06-13	International Albinism Awareness Day	https://www.un.org/en/observances/albinism-day
-06-15	World Elder Abuse Awareness Day	https://www.un.org/en/observances/elder-abuse-awareness-day
-06-16	International Day of Family Remittances	https://www.un.org/en/observances/remittances-day
-06-18	International Day for Countering Hate Speech	https://www.un.org/en/observances/countering-hate-speech
-06-18	Sustainable Gastronomy Day	https://www.fao.org/sustainable-gastronomy-day/en
-06-19	International Day for the Elimination of Sexual Violence in Conflict	https://www.un.org/en/observances/end-sexual-violence-in-conflict-day
-06-21	International Day of Yoga	https://www.un.org/en/observances/yoga-day
-06-21	International Day of the Celebration of the Solstice	https://www.un.org/en/observances/solstice-day
-06-24	International Day of Women in Diplomacy	https://www.un.org/en/observances/women-in-diplomacy-day
-06-27	International Day of Deafblindness	https://www.un.org/en/observances/deafblindness-day
-06-27	Micro-, Small and Medium-sized Enterprises Day	https://www.un.org/en/observances/micro-small-medium-businesses-day
-06-29	International Day of the Tropics	https://www.un.org/en/observances/tropics-day
-06-30	International Asteroid Day	https://www.un.org/en/observances/asteroid-day
-06-30	International Day of Parliamentarism	https://www.un.org/en/observances/parliamentarism-day
-07-06	World Rural Development Day	https://www.un.org/en/observances/rural-development-day
-07-07	World Kiswahili Language Day	https://www.un.org/en/observances/kiswahili-day
-07-11	International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica	https://www.un.org/en/observances/srebrenica-genocide-commemoration-day
-07-11	World Horse Day	https://www.un.org/en/observances/horse-day
-07-12	International Day of Combating Sand and Dust Storms	https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms
-07-12	International Day of Hope	https://www.un.org/en/observances/hope-day
-07-15	World Youth Skills Day	https://www.un.org/en/observances/world-youth-skills-day
-07-20	International Moon Day	https://www.un.org/en/observances/moon-day
-07-20	World Chess Day	https://www.un.org/en/observances/world-chess-day
-07-25	International Day for Judicial Well-being	https://www.un.org/en/observances/judicial-well-being-day
-07-25	International Day of Women and Girls of African Descent	https://www.un.org/en/observances/women-girls-african-descent
-07-25	World Drowning Prevention Day	https://www.un.org/en/observances/drowning-prevention-day
-07-28	World Hepatitis Day	https://www.who.int/campaigns/world-hepatitis-day
-07-30	International Day of Friendship	https://www.un.org/en/observances/friendship-day
-08-06	International Day of Awareness of the Special Development Needs and Challenges of Landlocked Developing Countries	https://www.un.org/en/observances/landlocked-developing-countries-day
-08-11	World Steelpan Day	https://www.un.org/en/observances/steelpan-day
-08-22	International Day Commemorating the Victims of Acts of Violence Based on Religion or Belief	https://www.un.org/en/observances/religious-based-violence-victims-day
-08-27	World Lake Day	https://www.un.org/en/observances/world-lake-day
-08-30	International Day of the Victims of Enforced Disappearances	https://www.un.org/en/observances/victims-enforced-disappearance
-08-31	International Day for People of African Descent	https://www.un.org/en/observances/african-descent-day
-09-05	International Day of Charity	https://www.un.org/en/observances/charity-day
-09-05	International Day of the World's Indigenous Women and Girls	https://www.un.org/en/observances/indigenous-women-day
-09-07	International Day of Police Cooperation	https://www.un.org/en/observances/police-cooperation-day
-09-07	World Duchenne Awareness Day	https://www.un.org/en/observances/duchenne-awareness-day
-09-16	International Day for Interventional Cardiology	https://www.un.org/en/observances/interventional-cardiology-day
-09-16	International Day of Science, Technology and Innovation for the South	https://www.un.org/en/observances/science-technology-and-innovation-for-south-day
-09-17	World Patient Safety Day	https://www.who.int/campaigns/world-patient-safety-day/
-09-18	International Equal Pay Day	https://www.un.org/en/observances/equal-pay-day
-09-20	World Cleanup Day	https://www.un.org/en/observances/cleanup-day
-09-23	International Day of Sign Languages	https://www.un.org/en/observances/sign-languages-day
-09-26	International Day for the Total Elimination of Nuclear Weapons	https://www.un.org/en/observances/nuclear-weapons-elimination-day
-09-28	International Day for Universal Access to Information	https://www.un.org/en/observances/information-access-day
-09-29	International Day of Awareness of Food Loss and Waste	https://www.un.org/en/observances/end-food-waste-day/
-09-30	International Translation Day	https://www.un.org/en/observances/international-translation-day
-10-01	International Coffee Day	https://docs.un.org/en/A/RES/80/248
-10-07	World Cotton Day	https://www.un.org/en/observances/cotton-day
-10-11	International Day of the Girl Child	https://www.un.org/en/observances/girl-child-day
-10-23	International Day of the Snow Leopard	https://www.un.org/en/observances/snow-leopard-day
-10-27	World Day for Audiovisual Heritage	https://www.unesco.org/en/days/audiovisual-heritage
-10-29	International Day of Care and Support	https://www.un.org/en/observances/care-and-support-day
-10-31	World Cities Day	https://www.un.org/en/observances/cities-day
-11-02	International Day to End Impunity for Crimes against Journalists	https://www.un.org/en/observances/end-impunity-crimes-against-journalists
-11-05	World Tsunami Awareness Day	https://www.un.org/en/observances/tsunami-awareness-day
-11-15	International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime	https://www.un.org/en/observances/fight-against-transnational-crime-day
-11-16	International Day of the Mediterranean Diet	https://docs.un.org/en/A/RES/80/174
-11-18	World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence	https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day
-11-24	World Conjoined Twins Day	https://www.un.org/en/observances/conjoined-twins-day
-11-26	World Sustainable Transport Day	https://www.un.org/en/observances/sustainable-transport-day
-11-27	International Day for the Elimination of Child, Early and Forced Marriage	https://docs.un.org/en/A/80/L.99
-12-04	International Day Against Unilateral Coercive Measures	https://www.un.org/en/observances/day-against-unilateral-coercive-measures
-12-04	International Day of Banks	https://www.un.org/en/observances/international-day-of-banks
-12-09	International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime	https://www.un.org/en/observances/genocide-prevention-day
-12-12	International Day of Neutrality	https://www.un.org/en/observances/neutrality-day
-12-12	International Universal Health Coverage Day	https://www.un.org/en/observances/universal-health-coverage-day
-12-14	International Day against Colonialism in All its Forms and Manifestations	https://www.un.org/en/observances/anti-colonialism-day
-12-15	World Turkic Language Family Day	https://unesdoc.unesco.org/ark:/48223/pf0000396088
-12-18	Arabic Language Day	https://www.un.org/en/observances/arabiclanguageday
-12-19	International Day of Recognition for Women Searchers of Missing Persons	https://docs.un.org/en/A/RES/80/301
-12-21	World Basketball Day	https://www.un.org/en/observances/world-basketball-day
-12-21	World Meditation Day	https://www.un.org/en/observances/meditation-day
-12-24	International Anti-Cybercrime Day	https://www.unodc.org/unodc/en/cybercrime/day.html
-12-27	International Day of Epidemic Preparedness	https://www.un.org/en/observances/epidemic-preparedness-day
+# Vesak (UN GA res. 54/115) is tracked separately as DT-040: its blocker is a missing rule type (the day of the full moon in May), not a missing Persian title
+# columns: dataset id	English title (dataset)	official source page (observance page, or resolution/proclamation document)
+un.braille-day	World Braille Day	https://www.un.org/en/observances/braille-day
+un.peaceful-coexistence-day	International Day of Peaceful Coexistence	https://www.un.org/en/observances/peaceful-coexistence-day
+un.world-wetlands-day	World Wetlands Day	https://www.un.org/en/observances/world-wetlands-day
+un.human-fraternity	International Day of Human Fraternity	https://www.un.org/en/observances/human-fraternity
+un.female-genital-mutilation-day	International Day of Zero Tolerance to Female Genital Mutilation	https://www.un.org/en/observances/female-genital-mutilation-day
+un.arabian-leopard-day	International Day of the Arabian Leopard	https://www.un.org/en/observances/arabian-leopard-day
+un.world-pulses-day	World Pulses Day	https://www.fao.org/world-pulses-day/en
+un.women-and-girls-in-science-day	International Day of Women and Girls in Science	https://www.un.org/en/observances/women-and-girls-in-science-day/
+un.prevention-extremism-when-conducive-terrorism-day	International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism	https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day
+un.tourism-resilience-day	Global Tourism Resilience Day	https://www.un.org/en/observances/tourism-resilience-day
+un.seagrass-day	World Seagrass Day	https://www.un.org/en/observances/seagrass-day
+un.zero-discrimination-day	Zero Discrimination Day	https://www.unaids.org/en/zero-discrimination-day
+un.world-wildlife-day	World Wildlife Day	https://www.un.org/en/observances/world-wildlife-day
+un.disarmament-non-proliferation-awareness-day	International Day for Disarmament and Non-Proliferation Awareness	https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day
+un.women-judges-day	International Day of Women Judges	https://www.un.org/en/observances/women-judges-day
+un.anti-islamophobia-day	International Day to Combat Islamophobia	https://www.un.org/en/observances/anti-islamophobia-day
+un.french-language-day	French Language Day	https://www.un.org/fr/observances/french-language-day/
+un.happiness-day	International Day of Happiness	https://www.un.org/en/observances/happiness-day
+un.international-day-of-forests	International Day of Forests	https://www.fao.org/international-day-of-forests/en
+un.world-glaciers-day	World Day for Glaciers	https://www.un.org/en/observances/world-glaciers-day
+un.down-syndrome-day	World Down Syndrome Day	https://www.un.org/en/observances/down-syndrome-day
+un.detained-staff-day	International Day of Solidarity with Detained and Missing Staff Members	https://www.un.org/en/observances/detained-staff-day
+un.zero-waste-day	International Day of Zero Waste	https://www.un.org/en/observances/zero-waste-day
+un.conscience-day	International Day of Conscience	https://www.un.org/en/observances/conscience-day
+un.human-spaceflight-day	International Day of Human Space Flight	https://www.un.org/en/observances/human-spaceflight-day
+un.world-chagas-disease-day	World Chagas Disease Day	https://www.who.int/campaigns/world-chagas-disease-day
+un.wellness-day	International Wellness Day	https://www.un.org/en/observances/wellness-day
+un.chinese-language-day	Chinese Language Day	https://www.un.org/zh/observances/chinese-language-day
+un.creativity-and-innovation-day	World Creativity and Innovation Day	https://www.un.org/en/observances/creativity-and-innovation-day
+un.english-language-day	English Language Day	https://www.un.org/en/observances/english-language-day
+un.girls-in-ict-day	International Girls in ICT Day	https://www.itu.int/women-and-girls/girls-in-ict/
+un.spanish-language-day	Spanish Language Day	https://www.un.org/es/observances/spanish-language-day
+un.multilateralism-for-peace-day	International Day of Multilateralism and Diplomacy for Peace	https://www.un.org/en/observances/Multilateralism-for-Peace-day
+un.delegates-day	International Delegate's Day	https://www.un.org/en/observances/delegates-day
+un.chernobyl-remembrance-day	International Chernobyl Disaster Remembrance Day	https://www.un.org/en/observances/chernobyl-remembrance-day
+un.earthquake-victims-day	International Day in Memory of the Victims of Earthquakes	https://www.un.org/en/observances/earthquake-victims-day
+un.jazz-day	International Jazz Day	https://www.un.org/en/observances/jazz-day
+un.tuna-day	World Tuna Day	https://www.un.org/en/observances/tuna-day
+un.world-portuguese-language-day	World Portuguese Language Day	https://www.unesco.org/en/days/portuguese-language
+un.argania-day	International Day of Argania	https://www.un.org/en/observances/argania-day
+un.international-day-of-plant-health	International Day of Plant Health	https://www.fao.org/plant-health-day/en
+un.international-day-of-light	International Day of Light	https://www.unesco.org/en/days/light
+un.living-in-peace-day	International Day of Living Together in Peace	https://www.un.org/en/observances/living-in-peace-day
+un.fair-play-day	World Fair Play Day	https://www.un.org/en/observances/fair-play-day
+un.world-bee-day	World Bee Day	https://www.fao.org/world-bee-day/en
+un.international-tea-day	International Tea Day	https://www.fao.org/international-tea-day/en
+un.end-fistula-day	International Day to End Obstetric Fistula	https://www.un.org/en/observances/end-fistula-day
+un.markhor-day	International Day of the Markhor	https://www.un.org/en/observances/markhor-day
+un.football-day	World Football Day	https://www.un.org/en/observances/football-day
+un.international-day-of-potato	International Day of Potato	https://www.fao.org/international-potato-day/en
+un.parents-day	Global Day of Parents	https://www.un.org/en/observances/parents-day
+un.bicycle-day	World Bicycle Day	https://www.un.org/en/observances/bicycle-day
+un.end-illegal-fishing-day	International Day for the Fight against Illegal, Unreported and Unregulated Fishing	https://www.un.org/en/observances/end-illegal-fishing-day
+un.russian-language-day	Russian Language Day	https://www.un.org/en/observances/russian-language-day
+un.food-safety-day	World Food Safety Day	https://www.un.org/en/observances/food-safety-day
+un.international-day-of-play	International Day of Play	https://www.un.org/en/observances/international-day-of-play
+un.albinism-day	International Albinism Awareness Day	https://www.un.org/en/observances/albinism-day
+un.elder-abuse-awareness-day	World Elder Abuse Awareness Day	https://www.un.org/en/observances/elder-abuse-awareness-day
+un.remittances-day	International Day of Family Remittances	https://www.un.org/en/observances/remittances-day
+un.countering-hate-speech	International Day for Countering Hate Speech	https://www.un.org/en/observances/countering-hate-speech
+un.sustainable-gastronomy-day	Sustainable Gastronomy Day	https://www.fao.org/sustainable-gastronomy-day/en
+un.end-sexual-violence-in-conflict-day	International Day for the Elimination of Sexual Violence in Conflict	https://www.un.org/en/observances/end-sexual-violence-in-conflict-day
+un.yoga-day	International Day of Yoga	https://www.un.org/en/observances/yoga-day
+un.solstice-day	International Day of the Celebration of the Solstice	https://www.un.org/en/observances/solstice-day
+un.women-in-diplomacy-day	International Day of Women in Diplomacy	https://www.un.org/en/observances/women-in-diplomacy-day
+un.deafblindness-day	International Day of Deafblindness	https://www.un.org/en/observances/deafblindness-day
+un.micro-small-medium-businesses-day	Micro-, Small and Medium-sized Enterprises Day	https://www.un.org/en/observances/micro-small-medium-businesses-day
+un.tropics-day	International Day of the Tropics	https://www.un.org/en/observances/tropics-day
+un.asteroid-day	International Asteroid Day	https://www.un.org/en/observances/asteroid-day
+un.parliamentarism-day	International Day of Parliamentarism	https://www.un.org/en/observances/parliamentarism-day
+un.rural-development-day	World Rural Development Day	https://www.un.org/en/observances/rural-development-day
+un.kiswahili-day	World Kiswahili Language Day	https://www.un.org/en/observances/kiswahili-day
+un.srebrenica-genocide-commemoration-day	International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica	https://www.un.org/en/observances/srebrenica-genocide-commemoration-day
+un.horse-day	World Horse Day	https://www.un.org/en/observances/horse-day
+un.day-of-combating-sand-and-dust-storms	International Day of Combating Sand and Dust Storms	https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms
+un.hope-day	International Day of Hope	https://www.un.org/en/observances/hope-day
+un.world-youth-skills-day	World Youth Skills Day	https://www.un.org/en/observances/world-youth-skills-day
+un.moon-day	International Moon Day	https://www.un.org/en/observances/moon-day
+un.world-chess-day	World Chess Day	https://www.un.org/en/observances/world-chess-day
+un.judicial-well-being-day	International Day for Judicial Well-being	https://www.un.org/en/observances/judicial-well-being-day
+un.women-girls-african-descent	International Day of Women and Girls of African Descent	https://www.un.org/en/observances/women-girls-african-descent
+un.drowning-prevention-day	World Drowning Prevention Day	https://www.un.org/en/observances/drowning-prevention-day
+un.world-hepatitis-day	World Hepatitis Day	https://www.who.int/campaigns/world-hepatitis-day
+un.friendship-day	International Day of Friendship	https://www.un.org/en/observances/friendship-day
+un.landlocked-developing-countries-day	International Day of Awareness of the Special Development Needs and Challenges of Landlocked Developing Countries	https://www.un.org/en/observances/landlocked-developing-countries-day
+un.steelpan-day	World Steelpan Day	https://www.un.org/en/observances/steelpan-day
+un.religious-based-violence-victims-day	International Day Commemorating the Victims of Acts of Violence Based on Religion or Belief	https://www.un.org/en/observances/religious-based-violence-victims-day
+un.world-lake-day	World Lake Day	https://www.un.org/en/observances/world-lake-day
+un.victims-enforced-disappearance	International Day of the Victims of Enforced Disappearances	https://www.un.org/en/observances/victims-enforced-disappearance
+un.african-descent-day	International Day for People of African Descent	https://www.un.org/en/observances/african-descent-day
+un.charity-day	International Day of Charity	https://www.un.org/en/observances/charity-day
+un.indigenous-women-day	International Day of the World's Indigenous Women and Girls	https://www.un.org/en/observances/indigenous-women-day
+un.police-cooperation-day	International Day of Police Cooperation	https://www.un.org/en/observances/police-cooperation-day
+un.duchenne-awareness-day	World Duchenne Awareness Day	https://www.un.org/en/observances/duchenne-awareness-day
+un.interventional-cardiology-day	International Day for Interventional Cardiology	https://www.un.org/en/observances/interventional-cardiology-day
+un.science-technology-and-innovation-for-south-day	International Day of Science, Technology and Innovation for the South	https://www.un.org/en/observances/science-technology-and-innovation-for-south-day
+un.world-patient-safety-day	World Patient Safety Day	https://www.who.int/campaigns/world-patient-safety-day/
+un.equal-pay-day	International Equal Pay Day	https://www.un.org/en/observances/equal-pay-day
+un.cleanup-day	World Cleanup Day	https://www.un.org/en/observances/cleanup-day
+un.sign-languages-day	International Day of Sign Languages	https://www.un.org/en/observances/sign-languages-day
+un.nuclear-weapons-elimination-day	International Day for the Total Elimination of Nuclear Weapons	https://www.un.org/en/observances/nuclear-weapons-elimination-day
+un.information-access-day	International Day for Universal Access to Information	https://www.un.org/en/observances/information-access-day
+un.end-food-waste-day	International Day of Awareness of Food Loss and Waste	https://www.un.org/en/observances/end-food-waste-day/
+un.international-translation-day	International Translation Day	https://www.un.org/en/observances/international-translation-day
+un.international-coffee-day	International Coffee Day	https://docs.un.org/en/A/RES/80/248
+un.cotton-day	World Cotton Day	https://www.un.org/en/observances/cotton-day
+un.girl-child-day	International Day of the Girl Child	https://www.un.org/en/observances/girl-child-day
+un.snow-leopard-day	International Day of the Snow Leopard	https://www.un.org/en/observances/snow-leopard-day
+un.audiovisual-heritage	World Day for Audiovisual Heritage	https://www.unesco.org/en/days/audiovisual-heritage
+un.care-and-support-day	International Day of Care and Support	https://www.un.org/en/observances/care-and-support-day
+un.cities-day	World Cities Day	https://www.un.org/en/observances/cities-day
+un.end-impunity-crimes-against-journalists	International Day to End Impunity for Crimes against Journalists	https://www.un.org/en/observances/end-impunity-crimes-against-journalists
+un.tsunami-awareness-day	World Tsunami Awareness Day	https://www.un.org/en/observances/tsunami-awareness-day
+un.fight-against-transnational-crime-day	International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime	https://www.un.org/en/observances/fight-against-transnational-crime-day
+un.mediterranean-diet-day	International Day of the Mediterranean Diet	https://docs.un.org/en/A/RES/80/174
+un.child-sexual-exploitation-prevention-and-healing-day	World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence	https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day
+un.conjoined-twins-day	World Conjoined Twins Day	https://www.un.org/en/observances/conjoined-twins-day
+un.sustainable-transport-day	World Sustainable Transport Day	https://www.un.org/en/observances/sustainable-transport-day
+un.child-early-forced-marriage-day	International Day for the Elimination of Child, Early and Forced Marriage	https://docs.un.org/en/A/80/L.99
+un.day-against-unilateral-coercive-measures	International Day Against Unilateral Coercive Measures	https://www.un.org/en/observances/day-against-unilateral-coercive-measures
+un.international-day-of-banks	International Day of Banks	https://www.un.org/en/observances/international-day-of-banks
+un.genocide-prevention-day	International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime	https://www.un.org/en/observances/genocide-prevention-day
+un.neutrality-day	International Day of Neutrality	https://www.un.org/en/observances/neutrality-day
+un.universal-health-coverage-day	International Universal Health Coverage Day	https://www.un.org/en/observances/universal-health-coverage-day
+un.anti-colonialism-day	International Day against Colonialism in All its Forms and Manifestations	https://www.un.org/en/observances/anti-colonialism-day
+un.world-turkic-language-family-day	World Turkic Language Family Day	https://unesdoc.unesco.org/ark:/48223/pf0000396088
+un.arabic-language-day	Arabic Language Day	https://www.un.org/en/observances/arabiclanguageday
+un.women-searchers-missing-persons-day	International Day of Recognition for Women Searchers of Missing Persons	https://docs.un.org/en/A/RES/80/301
+un.world-basketball-day	World Basketball Day	https://www.un.org/en/observances/world-basketball-day
+un.meditation-day	World Meditation Day	https://www.un.org/en/observances/meditation-day
+un.anti-cybercrime-day	International Anti-Cybercrime Day	https://www.unodc.org/unodc/en/cybercrime/day.html
+un.epidemic-preparedness-day	International Day of Epidemic Preparedness	https://www.un.org/en/observances/epidemic-preparedness-day

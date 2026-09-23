@@ -5,6 +5,7 @@
 package ir.taqvim.tools.dataset
 
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import java.io.File
 import kotlinx.serialization.json.Json
@@ -14,9 +15,12 @@ import kotlinx.serialization.json.JsonPrimitive
 import org.junit.jupiter.api.Test
 
 /**
- * D-05: the UN international days compiled from the United Nations list (titles in the UN languages) with Persian
- * titles from UN Information Centre Tehran and the United Nations in Iran. Rules are spot-checked against the cited
- * pages; days without a primary Persian title are listed in docs/DATA_TODO.md, not in the dataset.
+ * D-05: the UN international days compiled from the United Nations list (titles in the UN languages), with Persian
+ * titles either from UN Information Centre Tehran and the United Nations in Iran, or — where no primary Persian
+ * source exists — machine-translated from the official English title and marked `titleReview: ["fa"]` (owner decision
+ * 2026-09-23, ADR-0042, R07/D-05: a missing Persian source no longer keeps a well-sourced day out of the dataset).
+ * Rules are spot-checked against the cited pages; days that cannot yet be expressed as a rule (e.g. Vesak, DT-040)
+ * are listed in `docs/DATA_TODO.md`, not in the dataset.
  */
 class UnInternationalDaysTest {
     private val datasetText = File(property("taqvim.dataset.directory"), DATASET_FILE).readText()
@@ -48,17 +52,32 @@ class UnInternationalDaysTest {
     }
 
     @Test
-    fun `every record is an international observance with cited Persian and English titles`() {
+    fun `every record is cited, has an English title, and a Persian source or a reviewable machine translation`() {
         events
             .filter { event ->
                 val titles = event["title"] as? JsonObject
                 val urls = event.citations().mapNotNull { it.text("url") }
+                val hasPersianSource = urls.any { url -> PERSIAN_SOURCES.any(url::contains) }
+                val faNeedsReview = "fa" in event.titleReview()
                 event.text("source") != "INTERNATIONAL" ||
                     event.text("category") != "INTERNATIONAL" ||
                     event["isHoliday"] != JsonPrimitive(false) ||
                     titles?.containsKey("en") != true ||
                     UN_LIST_URL !in urls ||
-                    urls.none { url -> PERSIAN_SOURCES.any(url::contains) }
+                    (!hasPersianSource && !faNeedsReview)
+            }.map { it.text("id") }
+            .shouldBeEmpty()
+    }
+
+    @Test
+    fun `machine-translated titles are marked for review and carry both an English and a Persian title`() {
+        val marked = events.filter { "fa" in it.titleReview() }
+
+        marked shouldHaveSize TITLE_REVIEW_COUNT
+        marked
+            .filter { event ->
+                val titles = event["title"] as? JsonObject
+                titles?.containsKey("en") != true || titles.containsKey("fa") != true
             }.map { it.text("id") }
             .shouldBeEmpty()
     }
@@ -82,14 +101,22 @@ class UnInternationalDaysTest {
     private fun JsonObject.citations(): List<JsonObject> =
         (this["citations"] as? JsonArray).orEmpty().mapNotNull { it as? JsonObject }
 
+    private fun JsonObject.titleReview(): List<String> =
+        (this["titleReview"] as? JsonArray)
+            .orEmpty()
+            .mapNotNull { (it as? JsonPrimitive)?.takeIf { p -> p.isString }?.content }
+
     private companion object {
         const val DATASET_FILE = "international/un-international-days.json"
         const val GOLDEN = "/golden/international/un-international-days-rules.csv"
         const val UN_LIST_URL = "https://www.un.org/en/observances/list-days-weeks"
-        const val EVENT_COUNT = 102
-        const val FIXED_COUNT = 96
+        const val EVENT_COUNT = 234
+        const val FIXED_COUNT = 228
         const val WEEKDAY_COUNT = 5
         const val LAST_WEEKDAY_COUNT = 1
+
+        /** R07/D-05, 2026-09-23: 132 days added with an official citation but no Persian source (ADR-0042). */
+        const val TITLE_REVIEW_COUNT = 132
 
         /** Persian titles come from UN Information Centre Tehran (live or Internet Archive) or United Nations in Iran. */
         val PERSIAN_SOURCES = listOf("unic-ir.org", "https://iran.un.org/fa/")

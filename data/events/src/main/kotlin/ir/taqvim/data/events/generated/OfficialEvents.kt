@@ -36,5 +36,21 @@ public object OfficialEvents {
             OFFICIAL_EVENTS_PART_18 +
             OFFICIAL_EVENTS_PART_19 +
             OFFICIAL_EVENTS_PART_20 +
-            OFFICIAL_EVENTS_PART_21
+            OFFICIAL_EVENTS_PART_21 +
+            OFFICIAL_EVENTS_PART_22 +
+            OFFICIAL_EVENTS_PART_23 +
+            OFFICIAL_EVENTS_PART_24 +
+            OFFICIAL_EVENTS_PART_25 +
+            OFFICIAL_EVENTS_PART_26 +
+            OFFICIAL_EVENTS_PART_27 +
+            OFFICIAL_EVENTS_PART_28 +
+            OFFICIAL_EVENTS_PART_29 +
+            OFFICIAL_EVENTS_PART_30 +
+            OFFICIAL_EVENTS_PART_31 +
+            OFFICIAL_EVENTS_PART_32 +
+            OFFICIAL_EVENTS_PART_33 +
+            OFFICIAL_EVENTS_PART_34 +
+            OFFICIAL_EVENTS_PART_35 +
+            OFFICIAL_EVENTS_PART_36 +
+            OFFICIAL_EVENTS_PART_37
 }

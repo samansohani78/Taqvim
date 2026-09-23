@@ -271,7 +271,7 @@ internal val OFFICIAL_EVENTS_PART_8: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
-            id = EventId("un.anti-corruption-day"),
+            id = EventId("un.african-descent-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -279,36 +279,25 @@ internal val OFFICIAL_EVENTS_PART_8: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین المللی مبارزه با فساد",
-                        "ar" to "اليوم الدولي لمكافحة الفساد",
-                        "en" to "International Anti-Corruption Day",
-                        "es" to "Día Internacional contra la Corrupción",
-                        "fr" to "Journée internationale contre la corruption",
-                        "ru" to "Международный день борьбы с коррупцией",
-                        "zh" to "国际反腐败日",
+                        "fa" to "روز بین‌المللی افراد تبار آفریقایی",
+                        "en" to "International Day for People of African Descent",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 12, day = 9),
+            rule = EventRule.Fixed(month = 8, day = 31),
             citations =
                 listOf(
                     Citation(
                         url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/anti-corruption-day",
-                        title = "International Anti-Corruption Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                        url = "https://www.un.org/en/observances/african-descent-day",
+                        title = "International Day for People of African Descent (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/58/4",
-                    "un" to "https://www.un.org/en/observances/anti-corruption-day",
+                    "un" to "https://www.un.org/en/observances/african-descent-day",
                 ),
         ),
     )

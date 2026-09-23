@@ -16,14 +16,14 @@ import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.model.CalendarSystem
 
 /**
- * Part 11 of the dataset events.
+ * Part 31 of the dataset events.
  *
  * Generated from `dataset/` by `:tools:dataset:generateEvents` — do not edit.
  */
-internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
+internal val OFFICIAL_EVENTS_PART_31: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.chemical-warfare-victims-day"),
+            id = EventId("un.transatlantic-slave-trade"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -31,146 +31,16 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی یادبود قربانیان سلاح های شیمیایی",
-                        "ar" to "يوم إحياء ذكرى جميع ضحايا الحرب الكيميائية",
-                        "en" to "Day of Remembrance for all Victims of Chemical Warfare",
-                        "es" to "Día de Conmemoración de todas las víctimas de la guerra química",
-                        "fr" to "Journée du souvenir dédiée à toutes les victimes de la guerre chimique",
-                        "ru" to "День памяти всех жертв применения химического оружия",
-                        "zh" to "化学战受害者纪念日",
+                        "fa" to "روز بین المللی یاد بود قربانیان بردگی و تجارت برده از آن سوی اقیانوس اطلس",
+                        "ar" to "اليوم الدولي لإحياء ذكرى ضحايا الرق وتجارة الرقيق عبر المحيط الأطلسي",
+                        "en" to "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade",
+                        "es" to "Día Internacional de Recuerdo de las Víctimas de la Esclavitud y la Trata Transatlántica de Esclavos",
+                        "fr" to "Journée internationale de commémoration des victimes de l’esclavage et de la traite transatlantique des esclaves",
+                        "ru" to "Международный день памяти жертв рабства и трансатлантической работорговли",
+                        "zh" to "奴隶制和跨大西洋贩卖奴隶行为受害者国际纪念日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 11, day = 30),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/chemical-warfare-victims-day",
-                        title = "Day of Remembrance for all Victims of Chemical Warfare (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20140927025001/http://www.unic-ir.org/index.php?option=com_content&view=article&id=392:%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%DB%8C%D8%A7%D8%AF%D8%A8%D9%88%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86%DB%8C%D8%A7%D9%86-%D8%B3%D9%84%D8%A7%D8%AD-%D9%87%D8%A7%DB%8C-%D8%B4%DB%8C%D9%85%DB%8C%D8%A7%DB%8C%DB%8C&catid=8:eventpersian&Itemid=231&lang=fa",
-                        title = "United Nations Information Centre Tehran — روز جهانی یادبود قربانیان سلاح های شیمیایی",
-                        page = "Wayback Machine snapshot of 2014-09-27 (original site unreachable 2026-09-18)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/chemical-warfare-victims-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.chernobyl-remembrance-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی یادبود فاجعه چرنوبیل",
-                        "en" to "International Chernobyl Disaster Remembrance Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 26),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/chernobyl-remembrance-day",
-                        title = "International Chernobyl Disaster Remembrance Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/chernobyl-remembrance-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.child-early-forced-marriage-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی ریشه‌کنی ازدواج کودکان، ازدواج زودهنگام و اجباری",
-                        "en" to "International Day for the Elimination of Child, Early and Forced Marriage",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 27),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://docs.un.org/en/A/80/L.99",
-                        title = "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly draft resolution A/80/L.99)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://docs.un.org/en/A/80/L.99",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.child-sexual-exploitation-prevention-and-healing-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان",
-                        "en" to "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 18),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
-                        title = "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.child-victim-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض",
-                        "ar" to "اليوم الدولي لضحايا العدوان من الأطفال الأبرياء",
-                        "en" to "International Day of Innocent Children Victims of Aggression",
-                        "es" to "Día Internacional de los Niños Víctimas Inocentes de Agresión",
-                        "fr" to "Journée internationale des enfants victimes innocentes de l'agression",
-                        "ru" to "Международный день невинных детей — жертв агрессии",
-                        "zh" to "受侵略戕害的无辜儿童国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 4),
+            rule = EventRule.Fixed(month = 3, day = 25),
             citations =
                 listOf(
                     Citation(
@@ -178,8 +48,8 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/child-victim-day",
-                        title = "International Day of Innocent Children Victims of Aggression (observance page)",
+                        url = "https://www.un.org/en/observances/transatlantic-slave-trade",
+                        title = "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -189,12 +59,12 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/ES-7/8",
-                    "un" to "https://www.un.org/en/observances/child-victim-day",
+                    "resolution" to "http://undocs.org/en/A/RES/62/122",
+                    "un" to "https://www.un.org/en/observances/transatlantic-slave-trade",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.chinese-language-day"),
+            id = EventId("un.tropics-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -202,11 +72,11 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز زبان چینی",
-                        "en" to "Chinese Language Day",
+                        "fa" to "روز بین‌المللی مناطق حاره‌ای",
+                        "en" to "International Day of the Tropics",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 4, day = 20),
+            rule = EventRule.Fixed(month = 6, day = 29),
             citations =
                 listOf(
                     Citation(
@@ -214,17 +84,17 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/zh/observances/chinese-language-day",
-                        title = "Chinese Language Day (observance page)",
+                        url = "https://www.un.org/en/observances/tropics-day",
+                        title = "International Day of the Tropics (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/zh/observances/chinese-language-day",
+                    "un" to "https://www.un.org/en/observances/tropics-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.cities-day"),
+            id = EventId("un.tsunami-awareness-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -232,11 +102,11 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی شهرها",
-                        "en" to "World Cities Day",
+                        "fa" to "روز جهانی آگاهی از سونامی",
+                        "en" to "World Tsunami Awareness Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 10, day = 31),
+            rule = EventRule.Fixed(month = 11, day = 5),
             citations =
                 listOf(
                     Citation(
@@ -244,17 +114,17 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/cities-day",
-                        title = "World Cities Day (observance page)",
+                        url = "https://www.un.org/en/observances/tsunami-awareness-day",
+                        title = "World Tsunami Awareness Day (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/cities-day",
+                    "un" to "https://www.un.org/en/observances/tsunami-awareness-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.civil-aviation-day"),
+            id = EventId("un.tuna-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -262,16 +132,46 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین المللی هواپیمایی غیر نظامی",
-                        "ar" to "يوم الطيران المدني الدولي",
-                        "en" to "International Civil Aviation Day",
-                        "es" to "Día de la Aviación Civil Internacional",
-                        "fr" to "Journée de l'aviation civile internationale",
-                        "ru" to "Международный день гражданской авиации",
-                        "zh" to "国际民航日",
+                        "fa" to "روز جهانی ماهی تن",
+                        "en" to "World Tuna Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 12, day = 7),
+            rule = EventRule.Fixed(month = 5, day = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/tuna-day",
+                        title = "World Tuna Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/tuna-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.un-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز ملل متحد",
+                        "ar" to "يوم الأمم المتحدة",
+                        "en" to "United Nations Day",
+                        "es" to "Día de las Naciones Unidas",
+                        "fr" to "Journée des Nations Unies",
+                        "ru" to "День Организации Объединенных Наций",
+                        "zh" to "联合国日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 24),
             citations =
                 listOf(
                     Citation(
@@ -279,8 +179,8 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/civil-aviation-day",
-                        title = "International Civil Aviation Day (observance page)",
+                        url = "https://www.un.org/en/observances/un-day",
+                        title = "United Nations Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -290,8 +190,108 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/51/33",
-                    "un" to "https://www.un.org/en/observances/civil-aviation-day",
+                    "un" to "https://www.un.org/en/observances/un-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.universal-health-coverage-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پوشش همگانی سلامت",
+                        "en" to "International Universal Health Coverage Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 12),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/universal-health-coverage-day",
+                        title = "International Universal Health Coverage Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/universal-health-coverage-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.victims-enforced-disappearance"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی قربانیان ناپدیدشدگان اجباری",
+                        "en" to "International Day of the Victims of Enforced Disappearances",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 30),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/victims-enforced-disappearance",
+                        title = "International Day of the Victims of Enforced Disappearances (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/victims-enforced-disappearance",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.volunteer-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
+                        "ar" to "اليوم الدولي للمتطوعين من أجل التنمية الاقتصادية والاجتماعية",
+                        "en" to "International Volunteer Day for Economic and Social Development",
+                        "es" to "Día Internacional de los Voluntarios",
+                        "fr" to "Journée internationale des volontaires",
+                        "ru" to "Международный день добровольцев во имя экономического и социального развития",
+                        "zh" to "国际志愿人员日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 5),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/volunteer-day",
+                        title = "International Volunteer Day for Economic and Social Development (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/40/212",
+                    "un" to "https://www.un.org/en/observances/volunteer-day",
                 ),
         ),
     )

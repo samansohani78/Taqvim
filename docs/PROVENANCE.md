@@ -1225,7 +1225,8 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### D-05 — UN international days
-- **Files:** `dataset/international/un-international-days.json` (102 records); generated
+- **Files:** `dataset/international/un-international-days.json` (234 records: 102 with a primary Persian source, 132
+  added 2026-09-23 with a machine-translated Persian title marked `titleReview`, ADR-0042); generated
   `data/events/.../generated/OfficialEventsPart4`–`15.kt`; test `tools/dataset/.../UnInternationalDaysTest.kt` with
   golden `tools/dataset/src/test/resources/golden/international/un-international-days-rules.csv`
 - **Sources (public, primary):**
@@ -1262,10 +1263,23 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   → "روز بین‌المللی پرندگان مهاجر"); agency/decade tags removed (e.g. the zh list's [环境署]/[粮农组织]). Nothing
   translated. Days renamed or moved since 2012 keep UNIC's Persian name with the current UN date — the 17 May day is
   stored under UNIC's "روز جهانی ارتباطات", the pre-2006 name (DT-023).
-- **Gaps:** 130 days of the UN list without a primary Persian title (DT-019, DT-023, DT-024); 10 weeks not
-  representable. World Cities Day has a Persian title in a UNIC article URL, but no archived snapshot renders the page,
-  so it is not cited and the day stays in DT-019.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13, extended 2026-09-18; **reviewer:** pending.
+- **Gaps:** 10 weeks on the UN list are not representable (no week rule). World Cities Day has a Persian title in a
+  UNIC article URL, but no archived snapshot renders the page, so it is not cited and it is one of the 132 marked
+  records below rather than a 103rd primary-Persian-source one.
+- **2026-09-23 addition (R07/D-05, ADR-0042):** `docs/data-todo/un-days-sourcing.md` re-fetched the UN list and found
+  132 further days, each with an official (English-language) UN, UNESCO, WHO or FAO citation for its date and
+  existence, but none with a primary Persian source (the same 576-page iran.un.org and 937-article unic-ir.org corpus
+  read on 2026-09-18 names none of them; two of the 132 — World Turkic Language Family Day, UNESCO 43 C/57, and
+  International Day of Recognition for Women Searchers of Missing Persons, A/RES/80/301 — were proclaimed too
+  recently for any Persian source to exist yet). ADR-0042 records the owner's decision that a missing Persian *title*
+  no longer excludes a well-sourced day: all 132 are added as `Fixed` records citing the UN list plus their specific
+  observance or resolution page (`retrieved 2026-09-23`), with a Persian title machine-translated from the official
+  English name by the authoring agent and marked `titleReview: ["fa"]` (schema `dataset/events.v1.json`, validator
+  `SemanticChecks.titleReviewIssues`). `docs/data-todo/un-days-without-persian-title.tsv` is repurposed from a
+  sourcing blocker into the review queue for these 132 titles (DT-019). Vesak (UN GA res. 54/115) stays out: its
+  blocker is a missing rule convention for "the day of the full moon in May" (DT-040), not a missing Persian title.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13, extended 2026-09-18 and 2026-09-23; **reviewer:**
+  pending.
 
 ### D-07 — Islamic Iran override table
 - **Files:** `dataset/iran/islamic-iran-overrides.json` (26 months, Ramadan 1446 – Shawwal 1448), schema
