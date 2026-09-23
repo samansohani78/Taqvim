@@ -16,8 +16,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import ir.taqvim.core.calendar.CalendarLimits
+import ir.taqvim.core.ui.component.MonthDayList
+import ir.taqvim.core.ui.component.MonthDisplayMode
 import ir.taqvim.core.ui.component.MonthGrid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.job
@@ -118,10 +121,14 @@ private fun MonthPageSlot(
 }
 
 /**
- * The grid of one month page: every update (a new selection, loaded events) is applied in place, so only the cells
- * whose model changed recompose (`MonthPageRecompositionTest`). The grid used to cross-fade on a selection, which
- * composed all 42 cells a second time on every tap and kept an animation running for 150 ms (BUG-2). Taps select a
- * day, long presses create an event and week numbers open the timeline.
+ * The month page: every update (a new selection, loaded events) is applied in place, so only the cells whose model
+ * changed recompose (`MonthPageRecompositionTest`). The grid used to cross-fade on a selection, which composed all
+ * 42 cells a second time on every tap and kept an animation running for 150 ms (BUG-2). Taps select a day, long
+ * presses create an event and week numbers open the timeline.
+ *
+ * Above [MonthDisplayMode]'s font-scale cap the page shows [MonthDayList] instead of [MonthGrid] (R10, T-1701): a
+ * month grid gives every cell the same fixed size, which cannot fit a system font scale much larger than the
+ * default, so it would either clip the day's text or force it back down to a size the user did not ask for.
  */
 @Composable
 internal fun MonthPageView(
@@ -141,11 +148,26 @@ internal fun MonthPageView(
                 latestOnAction(CalendarAction.OpenWeek(shown.days[row * MonthLayout.DAYS_PER_WEEK]))
             }
         }
-    MonthGrid(
-        model = page.grid,
-        onDayClick = onDayClick,
-        onDayLongClick = onDayLongClick,
-        onWeekClick = onWeekClick.takeIf { page.grid.weekNumbers != null },
-        modifier = modifier,
-    )
+    val hasWeekClick = onWeekClick.takeIf { page.grid.weekNumbers != null }
+    when (MonthDisplayMode.forFontScale(LocalDensity.current.fontScale)) {
+        MonthDisplayMode.GRID -> {
+            MonthGrid(
+                model = page.grid,
+                onDayClick = onDayClick,
+                onDayLongClick = onDayLongClick,
+                onWeekClick = hasWeekClick,
+                modifier = modifier,
+            )
+        }
+
+        MonthDisplayMode.LIST -> {
+            MonthDayList(
+                model = page.grid,
+                onDayClick = onDayClick,
+                onDayLongClick = onDayLongClick,
+                onWeekClick = hasWeekClick,
+                modifier = modifier,
+            )
+        }
+    }
 }

@@ -81,7 +81,7 @@ internal const val MAX_INDICATORS = 3
 private const val OUTSIDE_MONTH_ALPHA = 0.45f
 
 /** Opacity of the Material pressed state layer over a pressed day. */
-private const val PRESSED_ALPHA = 0.10f
+internal const val PRESSED_ALPHA = 0.10f
 
 /**
  * Largest font scale applied inside a day cell. A month grid has a fixed cell size per screen, so larger user font
@@ -95,7 +95,7 @@ internal const val LABEL_WEIGHT = 1f
 /** Smallest size a cell line shrinks to; the grid's probe lets the cells search below none of its scales. */
 internal val MIN_LINE_TEXT_SIZE = 5.sp
 private val CELL_SHAPE = RoundedCornerShape(12.dp)
-private val TODAY_BORDER = 2.dp
+internal val TODAY_BORDER = 2.dp
 internal val DOT_SIZE = 5.dp
 internal val DOT_TOP_PADDING = 2.dp
 internal val DOT_GAP = 2.dp
@@ -182,7 +182,7 @@ private fun CellColumn(
 }
 
 /** The text lines of [model] in the order and colors a cell draws them. */
-private fun cellTexts(
+internal fun cellTexts(
     model: DayCellModel,
     dayStyle: TextStyle,
     smallStyle: TextStyle,
@@ -231,7 +231,7 @@ private fun ColumnScope.FittedLine(
 }
 
 @Composable
-private fun IndicatorDots(colors: List<Color>) {
+internal fun IndicatorDots(colors: List<Color>) {
     Row(Modifier.padding(top = DOT_TOP_PADDING), horizontalArrangement = Arrangement.spacedBy(DOT_GAP)) {
         colors.take(MAX_INDICATORS).forEach { color ->
             Box(Modifier.size(DOT_SIZE).clip(CircleShape).background(color))
