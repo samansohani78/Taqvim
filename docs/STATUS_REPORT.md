@@ -608,6 +608,24 @@ PROVENANCE and kept out of Git). One command imports them: `tools/sources/iran/o
   caveat that every held-out decision lies in the era it was fitted on. Other regions: Saudi Umm al-Qura 99.5 %
   (370/372), Afghanistan 100 % (5/5, two anchors loose to a week).
 
+### Benchmark baselines recorded (2026-09-23)
+
+R08 made a missing baseline fail, so the nightly gate had nothing to compare against and any release tag stayed red.
+A recording run (`benchmark.yml` with `record-baseline`, run 35851378563 on main@4eabc1a) measured all 24 required
+benchmarks on the hosted API 36 emulator; its results are committed under `benchmark/baselines` and the comparator
+now exits 0 against them. A recording run always exits 3, so it can never qualify a release by itself.
+
+Headline medians on that hardware: cold start 802.6 ms, warm start 694.7 ms. **The baseline profile shows no
+measurable gain there** — `startupCold` 802.6 ms against `startupColdWithoutProfile` 805.6 ms — even though the
+benchmark variant now carries all 6 269 app rules (main@19bc59c) and `CompilationMode.DEFAULT` would fail without a
+profile. On an x86_64 emulator with warm page cache that is expected; the gain belongs to an arm64 phone, so the
+profile's value stays unproven until a device run. The four device-only budgets (cold and warm start, 24-month scroll
+frame P99, month-screen memory) are still judged only against generous hosted ceilings, not against the PLAN budgets.
+
+**These baselines are emulator numbers and will drift**: hosted runners vary by up to 2× on frame counts (see the
+high-refresh section), so a 10 % regression threshold over them may produce false alarms. Re-record on a stable
+runner, or move the frame metrics to device-only, if the nightly job proves noisy.
+
 ### Independent review of main@98260a4 (2026-09-19)
 
 An independent adversarial review (archived verbatim at `docs/reviews/2026-09-19-adversarial-review.md`) raised 18
