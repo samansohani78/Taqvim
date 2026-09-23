@@ -608,6 +608,41 @@ PROVENANCE and kept out of Git). One command imports them: `tools/sources/iran/o
   caveat that every held-out decision lies in the era it was fitted on. Other regions: Saudi Umm al-Qura 99.5 %
   (370/372), Afghanistan 100 % (5/5, two anchors loose to a week).
 
+### Independent review of main@98260a4 (2026-09-19)
+
+An independent adversarial review (archived verbatim at `docs/reviews/2026-09-19-adversarial-review.md`) raised 18
+findings and recommended against shipping. **15 are fixed; 3 need an owner decision.** Every fix was reproduced as a
+failing test first.
+
+| ID | Finding | State |
+|---|---|---|
+| R01 | Hebrew yearly recurrence from month 13 threw in the next common year | Fixed — main@5faac8a, main@cd068d9: recurrence follows the *named* month across leap and common years |
+| R02 | "سه روز قبل از نوروز" silently became "three days ago" in the tools screen and PROCESS_TEXT | Fixed — main@a8ee5a9: the event anchor is supplied at every entry point, and an unresolved anchor is refused instead of dropped |
+| R03 | The problem-report redactor leaked multiword titles, `Authorization` credentials and localized keys | Fixed — main@f724596: whole values are redacted, credentials and localized keys covered, and a crash is redacted **before** it is stored |
+| R04 | Unfolding an iCalendar file was quadratic (960 KB took 8 s) | Fixed — main@afc0915: linear unfolding with bounds on what one file may cost |
+| R05 | Prayer-time ordering broke at high latitude | Fixed — main@fd2df36 (Asr must fall inside the day's daylight or be unavailable) and main@2330fe7 (Maghrib stays observed; a high-latitude Isha estimate is raised to it). The review found only a year-4440 case; the tightened test found **10 days with Asr after sunset and 2 889 days with Maghrib after Isha at Tromsø in 2001–2101** — all now 0 |
+| R06 | A release tag could be signed without its tests passing | Fixed — main@4e58d50: a `qualify` job requires the tagged commit to be on `main` and every check in `.github/required-checks.txt` to have concluded `success` on that exact SHA; verified by refusing two real commits |
+| R07 | 102 UN international days against the plan's ≥ 150 | **Owner decision** — see below |
+| R08 | The benchmark gate passed a synthetic 60-second startup | Fixed — main@b211d26: a missing baseline fails, `--record-baseline` always exits non-zero, and startup and jank have absolute budgets. **Consequence: the nightly benchmark, and so any release tag, stays red until a reviewed baseline set is recorded and committed** |
+| R09 | The no-per-year-data gate missed XML, qualified resources and JSON date objects | Fixed — main@71fc57c: every packaged runtime input is scanned (610 data files and 560 Kotlin files, against 16 before), with 11 planted canaries |
+| R10 | Day cells cap the font scale at 1.3 while the system asks for 2.0 | **Owner decision** — see below |
+| R11 | 12 device cases against the plan's 40 journeys | **Owner decision** — see below |
+| R12 | Two third-party papers were tracked in Git | Fixed — main@cb34afa: both untracked (files kept on disk, manifest rows and hashes kept), and the exclusion is now an allow-list with tests. History still contains them; it was not rewritten |
+| R13 | Week numbering had no provenance entry; Placidus had no precise reference | Fixed — main@4c9f08b: A-08 entry citing ISO 8601-1:2019 and UTS #35, a PLAN→entry→file ID map, and the Placidus construction stated exactly with its convergence left unproven (DT-039 asks for a citable source) |
+| R14 | Completeness tests asserted less than the claim | Fixed — main@ddd2d23: all 24 languages' defaults, the Iran-specific Hijri date required exactly when that variant is chosen, chronological prayer order with day offsets, houses required at Tehran and absent inside the polar circle |
+| R15 | The subscription lock map grew for the life of the process | Fixed — main@f99f5f9 |
+| R16 | The athan snooze was written after the service stopped | Fixed — main@ed932f4: the sound stops at once, the service stays in the foreground until the write lands, then stops with its own `startId`; a failed write falls back to the system alarm |
+| R17 | The FAQ claimed official month starts that are opt-in | Fixed — main@fdfacdd: all 24 locales corrected, each naming its own setting label, with a test tying the text to the real default |
+| R18 | SECURITY.md understated the exported components and denied a log call | Fixed — main@efa1620: all 54 exported components listed by group with their protection, the one `android.util.Log` call documented, and a test that fails against the old document |
+
+**The three that need you:**
+
+| ID | What it would take | Recommendation |
+|---|---|---|
+| R07 | 48 more UN days need primary sources with Persian titles (1–2 days of work once the sources exist); separately all 164 records carry `reviewedBy: pending` | Either supply the sources, or lower the v1 target to the 102 sourced days and record that decision — shipping 102 while the plan says 150 is the only open acceptance criterion in the dataset |
+| R10 | 3–5 days: above 1.3× show the month as a list of days, because a 7-column grid cannot hold 2× text on a phone; keep the grid below that; then screenshots at 2.0 would test real 2.0 text | Do it before the accessibility sign-off — a `fs200` screenshot currently passes while the text is capped at 1.3 |
+| R11 | 1–1.5 weeks: stable IDs for the plan's journeys, one instrumented test each asserting what persists (event → reminder, backup → restore, timeline drag), across fa/en/ne/ckb/ar and API 26/30/33/36 | Worth it before the beta; main@3a1c5b4's device-test serializer makes the longer suite practical |
+
 ## 6. Ready for release: what I need from you
 
 **Where the release stands.** Every plan task that can be finished without a physical device, a Play account or an
