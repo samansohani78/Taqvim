@@ -4,10 +4,8 @@
  */
 package ir.taqvim.core.ui.component
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -82,6 +80,9 @@ internal const val MAX_INDICATORS = 3
 
 private const val OUTSIDE_MONTH_ALPHA = 0.45f
 
+/** Opacity of the Material pressed state layer over a pressed day. */
+private const val PRESSED_ALPHA = 0.10f
+
 /**
  * Largest font scale applied inside a day cell. A month grid has a fixed cell size per screen, so larger user font
  * scales are capped here instead of clipping the day and its secondary dates (T-1701); the cell's spoken summary and
@@ -118,7 +119,6 @@ internal fun DayTone.color(colors: ColorScheme): Color =
  * services read [DayCellModel.contentDescription] and the selection state; [longClickLabel] names the long-press action
  * (e.g. "new event").
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 public fun DayCell(
     model: DayCellModel,
@@ -133,7 +133,7 @@ public fun DayCell(
     val cell =
         modifier
             .clip(CELL_SHAPE)
-            .combinedClickable(onClick = onClick, onLongClick = onLongClick, onLongClickLabel = longClickLabel)
+            .dayCellInput(onClick, onLongClick, longClickLabel, colors.onSurface.copy(alpha = PRESSED_ALPHA))
             .clearAndSetSemantics {
                 contentDescription = model.contentDescription
                 selected = model.isSelected
