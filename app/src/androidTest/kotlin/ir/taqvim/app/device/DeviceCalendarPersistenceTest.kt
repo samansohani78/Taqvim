@@ -5,6 +5,7 @@
 package ir.taqvim.app.device
 
 import android.os.Build
+import androidx.datastore.dataStoreFile
 import androidx.test.filters.SdkSuppress
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.Until
@@ -15,10 +16,9 @@ import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.data.preferences.UserPreferencesRepository
+import ir.taqvim.data.preferences.UserPrefsSerializer
+import ir.taqvim.data.preferences.toDomain
 import kotlin.time.Clock
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.TimeZone
@@ -31,12 +31,16 @@ import org.junit.Test
  *
  * This module's instrumented tests are self-instrumenting: the test code runs inside the app's own process (no
  * `android:targetProcess` split, no Test Orchestrator in `app/build.gradle.kts`), so `am force-stop` on the app would
- * abort the instrumentation itself rather than exercise a clean "restart". Durability is instead proven the way a new
- * process would actually experience it: a brand-new [UserPreferencesRepository] is built over
- * [UserPreferencesRepository.createDataStore] pointed at the same on-disk file (`user_prefs.pb`), bypassing the
- * running app's live Koin singleton and its in-memory `StateFlow` entirely — a cold read of the same bytes a fresh
- * process would open at start-up. Only after that cold read succeeds is the app asked to show the day, so the UI
- * assertion also exercises the ordinary (still-running) read path.
+ * abort the instrumentation itself rather than exercise a clean "restart". A second, independent
+ * [UserPreferencesRepository]/`DataStore` over the same file was tried first and rejected at run time:
+ * `IllegalStateException: There are multiple DataStores active for the same file` — DataStore enforces a single
+ * active instance per file via its coordinator/file lock, so that approach cannot work in-process at all, on any API
+ * level (CI run 35854629904). Durability is instead proven by reading the exact bytes on disk directly, bypassing
+ * DataStore (and its coordinator) entirely: [UserPrefsSerializer] — the same `Serializer` `UserPreferencesRepository`
+ * itself uses — parses the file `UserPreferencesRepository.createDataStore` points at, with no `DataStore` instance
+ * involved and therefore no conflict with the running app's own singleton. `updatePreferences` only returns after its
+ * suspend `dataStore.updateData` call has committed, so by the time the write returns, these are the literal
+ * committed bytes a fresh process would open at start-up, not an in-memory value.
  */
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.TIRAMISU) // useLanguage needs LocaleManager (ADR-0023)
 class DeviceCalendarPersistenceTest {
@@ -80,15 +84,10 @@ class DeviceCalendarPersistenceTest {
         }
     }
 
-    /** The preferences read from a second, independent [UserPreferencesRepository] over the same on-disk file. */
+    /** The preferences parsed straight from the on-disk file, without creating a second `DataStore` over it. */
     private fun coldRead() =
         runBlocking {
-            val scope = CoroutineScope(SupervisorJob())
-            try {
-                val store = UserPreferencesRepository.createDataStore(appContext, scope) { "fa" }
-                UserPreferencesRepository(store).preferences.first()
-            } finally {
-                scope.cancel()
-            }
+            val file = appContext.dataStoreFile(UserPreferencesRepository.FILE_NAME)
+            file.inputStream().use { UserPrefsSerializer.readFrom(it) }.toDomain()
         }
 }

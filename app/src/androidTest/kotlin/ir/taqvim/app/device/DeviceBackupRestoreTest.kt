@@ -12,11 +12,13 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.Until
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.ui.component.segmentTag
 import ir.taqvim.data.database.backup.BackupMetadata
 import ir.taqvim.data.database.backup.BackupProtection
 import ir.taqvim.data.database.backup.BackupReadResult
 import ir.taqvim.data.database.backup.BackupService
 import ir.taqvim.data.database.backup.RestoreResult
+import ir.taqvim.feature.calendar.DayDetailsTab
 import ir.taqvim.feature.events.PersonalEvent
 import ir.taqvim.feature.events.PersonalEventStore
 import kotlin.time.Clock
@@ -35,6 +37,18 @@ import org.koin.core.context.GlobalContext
  * suites sharing this install (no `clearPackageData`, ADR-... none configured) may still need — the smallest
  * destructive action that only a real restore, not the app simply staying alive, can undo is enough to prove the
  * journey.
+ *
+ * A first version asserted the title right after opening the day; it failed on CI (run 35854629904, API 33 and 36)
+ * for the same two reasons [DeviceHolidayTest] did, confirmed by reproducing both locally on `d1api33` — neither is
+ * the restore's fault:
+ * - `AppDestination.Day`'s day-details pane defaults to the `CALENDARS` tab, and an event's title lives on the
+ *   `EVENTS` tab (`DayDetailsPanel.kt`), which nothing had selected. Fixed by selecting
+ *   `segmentTag(DayDetailsTab.EVENTS.ordinal)` first.
+ * - `By.textContains(TITLE)` still found nothing (confirmed with a window-hierarchy dump): the event row is an
+ *   `EventChip` (`core/ui/component/EventChip.kt`), which uses `.clearAndSetSemantics { contentDescription = ... }`
+ *   to expose only a `contentDescription` (starting with the title; `DayEventsTab.kt`'s `chipDescription`), not
+ *   plain text. Fixed by matching `By.descContains(TITLE)` instead. The restored event was on screen the whole time;
+ *   the selector could not see it.
  */
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.TIRAMISU) // useLanguage needs LocaleManager (ADR-0023)
 class DeviceBackupRestoreTest {
@@ -72,8 +86,10 @@ class DeviceBackupRestoreTest {
             check(runBlocking { store.load(id) }?.title == TITLE) { "the event is not back in storage after restore" }
 
             openLink("taqvim://day/${date.year}-${date.month}-${date.day}?calendar=gregorian", "destination:Day")
-            device.wait(Until.findObject(By.textContains(TITLE)), DEVICE_TIMEOUT_MILLIS)
-                ?: error("'$TITLE' is not shown on its day after restore")
+            awaitTag(segmentTag(DayDetailsTab.EVENTS.ordinal)).click()
+            device.waitForIdle()
+            device.wait(Until.findObject(By.descContains(TITLE)), DEVICE_TIMEOUT_MILLIS)
+                ?: error("'$TITLE' is not shown on its day's Events tab after restore")
         } finally {
             runBlocking { runCatching { store.delete(id) } }
         }

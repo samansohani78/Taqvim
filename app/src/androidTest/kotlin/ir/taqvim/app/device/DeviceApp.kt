@@ -13,6 +13,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.Direction
+import androidx.test.uiautomator.StaleObjectException
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
@@ -116,8 +117,28 @@ internal fun awaitTag(tag: String): UiObject2 {
 internal fun visitTabs() {
     val count = screenTabs().size
     repeat(count) { index ->
-        screenTabs().getOrNull(index)?.click()
+        clickRetryingStale { screenTabs().getOrNull(index) }
         device.waitForIdle(IDLE_MILLIS)
+    }
+}
+
+/**
+ * Clicks the object [find] returns, retrying with a freshly found object when the accessibility tree changed under it
+ * (`StaleObjectException`) between being listed and being clicked, e.g. mid recomposition (seen once in CI run
+ * 35854629904, `DeviceSmokeTest#everyTabAndMoreEntryOpens[fa]` on API 33 only — API 36 in the same run was clean, so
+ * this is a timing race rather than a deterministic failure). Re-querying [find] rather than retrying the same click
+ * matters: the stale object's node is gone for good, but the tab it represents is still there to find again.
+ */
+private fun clickRetryingStale(find: () -> UiObject2?) {
+    repeat(STALE_CLICK_ATTEMPTS) { attempt ->
+        val target = find() ?: return
+        try {
+            target.click()
+            return
+        } catch (stale: StaleObjectException) {
+            if (attempt == STALE_CLICK_ATTEMPTS - 1) throw stale
+            device.waitForIdle(IDLE_MILLIS)
+        }
     }
 }
 
@@ -150,6 +171,9 @@ private const val IDLE_MILLIS = 1_000L
 /** How often a list is scrolled while looking for a tag, and how much of its height each scroll moves. */
 private const val SCROLL_ATTEMPTS = 4
 private const val SCROLL_FRACTION = 0.8f
+
+/** How many times [clickRetryingStale] re-finds its target after a `StaleObjectException`. */
+private const val STALE_CLICK_ATTEMPTS = 3
 
 /** `segmentTag` of `:core:ui`: the tabs of `SegmentedTabs`, used by the screens with tabs. */
 private val SEGMENT_TAG = Regex("""segment:\d+""").toPattern()

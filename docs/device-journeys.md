@@ -98,10 +98,11 @@ Full behavioural implementations, asserting persistence rather than navigation, 
 `app/src/androidTest/kotlin/ir/taqvim/app/device/`:
 
 1. **J12 — `DeviceEventLifecycleTest`.** Saves a personal event with a reminder through the real
-   `PersonalEventStore`, then: (a) polls `AlarmStore.alarms()` for a `REMINDER` row whose `sourceId` is the event's
-   id, proving the reminder was actually scheduled (not just requested) without paying for `DeviceReminderTest`'s
-   multi-minute wait for delivery; (b) opens the event's day (`taqvim://day/...?calendar=gregorian`) and asserts its
-   title is shown; (c) opens the Agenda screen and asserts the same title is shown there.
+   `PersonalEventStore`, then: (a) polls `AlarmStore.alarms()` for a new `REMINDER` row whose trigger time matches the
+   event's reminder time, proving the reminder was actually scheduled (not just requested) without paying for
+   `DeviceReminderTest`'s multi-minute wait for delivery; (b) opens the event's day
+   (`taqvim://day/...?calendar=gregorian`) and asserts its title is shown; (c) opens the Agenda screen and asserts the
+   same title is shown there. See "First device run" below: two rounds of fixes were needed.
 2. **J30 — `DeviceBackupRestoreTest`.** Saves an event, exports a backup with the real `BackupService` (the same
    class `app/di/AppModule.kt` binds for the Backup screen), deletes the event ("wipe" — deleting only what this test
    created, not every table a full reset would touch, so other suites sharing this install keep their own data),
@@ -111,19 +112,19 @@ Full behavioural implementations, asserting persistence rather than navigation, 
    through the real preferences repository, then proves durability the way a new process would experience it: this
    module's instrumented tests are self-instrumenting (test code runs inside the app's own process; no
    `android:targetProcess` split or Test Orchestrator is configured), so `am force-stop` would abort the
-   instrumentation itself rather than exercise a clean restart. Instead the test opens a second, independent
-   `UserPreferencesRepository` over `UserPreferencesRepository.createDataStore`, pointed at the same on-disk
-   `user_prefs.pb` file, bypassing the running app's live singleton and in-memory `StateFlow` — a cold read of exactly
-   the bytes a fresh process would open at start-up. Only then does it reopen the calendar screen and assert a day
-   cell's accessibility description names today in the new (Gregorian) calendar, computed the same way
-   `MonthPageBuilder` computes it (`DateFormatter.format` on the primary calendar's date), so the assertion is tied to
-   production formatting rather than a hand-written expectation.
+   instrumentation itself rather than exercise a clean restart. The test parses the on-disk `user_prefs.pb` file
+   directly with `UserPrefsSerializer` — the same serializer `UserPreferencesRepository` uses — instead of opening a
+   second `DataStore` over it (see "First device run": DataStore rejects a second instance on one file at run time).
+   Only then does it reopen the calendar screen and assert a day cell's accessibility description names today in the
+   new (Gregorian) calendar, computed the same way `MonthPageBuilder` computes it (`DateFormatter.format` on the
+   primary calendar's date), so the assertion is tied to production formatting rather than a hand-written expectation.
 4. **J09 — `DeviceHolidayTest`.** Computes Nowruz (Persian New Year, the current Persian year's month 1 day 1) via
    `PersianCalendarSystem`, reads its `DayEvents` from the real `EventsRepository`, asserts it is marked as a holiday
-   and reads the expected title from the dataset at run time (never hardcoded, per the project's "compute every
-   value, tables only as goldens" rule). It then opens that day and asserts the title text is shown and that some day
-   cell's accessibility description contains the localized "holiday" word (`R.string.calendar_holiday`), i.e. the
-   month grid marks it.
+   and reads the expected title(s) from the dataset at run time (never hardcoded, per the project's "compute every
+   value, tables only as goldens" rule) — every title the dataset returns for the day, not assumed to be exactly one
+   (see "First device run": Nowruz 1405 day 1 carries five official occurrences that year). It then opens that day,
+   selects its Events tab, asserts every one of those titles is shown, and asserts a day cell's accessibility
+   description contains the localized "holiday" word (`R.string.calendar_holiday`), i.e. the month grid marks it.
 
 ### API level
 
@@ -134,6 +135,66 @@ in this package. They **cannot** run on API 26 or 30: every one of them calls th
 does not exist before API 33. This is a pre-existing, repo-wide constraint of the shared harness, not something these
 four tests introduce; avoiding it would mean accepting whatever language a fresh emulator boots with, which is not
 compatible with asserting specific title and formatted-date text.
+
+## First device run (CI run 35854629904) and what it found
+
+These journeys ran on real emulators for the first time in CI run 35854629904 (main@f1edc0b): 5 of the 20 phone
+device tests failed identically on API 33 and API 36 (API 26/30 skip this package by `@SdkSuppress`; Wear passed). A
+6th, pre-existing failure (`DeviceSmokeTest#everyTabAndMoreEntryOpens[fa]`, a `StaleObjectException` in the shared
+`visitTabs()` helper) hit only the API 33 leg of that run and is unrelated to these four journeys; API 36 ran the
+same test clean in the same run, so it was a timing race in the helper, not a deterministic failure. Every one of the
+five journey failures was reproduced locally (emulator `d1api33`, API 33) and root-caused with device evidence, not
+guessed at from source alone. All are **test bugs**; none required an app-code change.
+
+1. **`DeviceCalendarPersistenceTest`** — `IllegalStateException: There are multiple DataStores active for the same
+   file`. The "second independent `UserPreferencesRepository`" approach was invalid: DataStore enforces exactly one
+   active instance per file via its coordinator, on any API level, so this could never have worked. Fixed by reading
+   the file directly with `UserPrefsSerializer` (`data/preferences/UserPreferencesStore.kt`), which needs no
+   `DataStore` instance and therefore no conflict with the app's own running singleton.
+2. **`DeviceEventLifecycleTest`** — "Timed out waiting for the reminder to be scheduled". Not an alarm-pipeline bug:
+   `DeviceReminderTest` (unchanged, in the same run) already proves an event created the same way schedules and
+   fires a real notification. The bug was in what the test matched: `ScheduledAlarmEntity.sourceId` for a `REMINDER`
+   alarm is the *reminder rule's own row id* (`reminders` table), not the personal event's id
+   (`PersonalEventStore.save`'s return value) — two different tables' primary keys, so `it.sourceId == id` could only
+   ever match by coincidence on a device that already has other rows. Fixed by detecting a new `REMINDER` row (an id
+   not present before the save) whose trigger time matches the event's own reminder time.
+3. **`DeviceHolidayTest`** — `'عید سعید فطر'` (Eid al-Fitr) "is not shown on Nowruz's day screen". Investigated in
+   two rounds:
+   - `dayEvents.official.firstOrNull { it.isHoliday }` is not "the" occurrence: a device dump of the month grid
+     showed Nowruz 1405 day 1 marked "۵ رویداد" (five events) that year — Iran's multi-day Nowruz holiday, the
+     ancient-Iran and international Nowruz entries, and Eid al-Fitr 1447 coinciding with it — and
+     `EventLookup.DAY_ORDER` does not put any particular one first. Fixed by asserting every title the dataset
+     actually returns for the day.
+   - Asserting the right titles still failed: `AppDestination.Day`'s day-details pane defaults to the `CALENDARS`
+     tab; event titles live on the `EVENTS` tab, which nothing had selected. Fixed by selecting
+     `segmentTag(DayDetailsTab.EVENTS.ordinal)` first.
+   - Selecting the tab still did not make `By.textContains(title)` match. A window-hierarchy dump
+     (`UiDevice.dumpWindowHierarchy`) taken on the Events tab showed the tab's own label text present but no event
+     text at all, while the month grid's day-cell `content-desc` values (already matched successfully by the
+     holiday-marking check) were all there. Reading `core/ui/component/EventChip.kt` explained it:
+     `.clearAndSetSemantics { contentDescription = model.contentDescription }` replaces the row's accessibility text
+     entirely with one `contentDescription` (`DayEventsTab.kt`'s `chipDescription`: title, then source, then
+     "holiday"), the same pattern `DayCellModel` already uses in the month grid. Nothing was missing from the app;
+     `By.textContains` cannot see a chip built this way. Fixed by matching `By.descContains(title)`.
+4. **`DeviceBackupRestoreTest`** — `'Device backup roundtrip check' is not shown on its day after restore`. Same two
+   causes as `DeviceHolidayTest`'s later rounds (missing `EVENTS` tab selection, then `By.textContains` against an
+   `EventChip`), confirmed by reproducing it the same way. The data layer was checked explicitly before the UI check
+   (`store.load(id)?.title == TITLE`) and never failed: the restore itself, and the app's display of the restored
+   event, were correct the whole time.
+5. **`DeviceSmokeTest#everyTabAndMoreEntryOpens[fa]`** — `StaleObjectException` in `visitTabs()`'s `.click()`, between
+   listing a tab and clicking it (an accessibility-tree race, not reproduced deterministically). Fixed with a small
+   retry: `clickRetryingStale` re-finds the tab from scratch on a `StaleObjectException` instead of retrying the same
+   (now-invalid) object.
+
+**Verification status:** `DeviceCalendarPersistenceTest` and all of `DeviceSmokeTest` (including the retry fix) were
+re-run on `d1api33` after their fixes and passed. `DeviceHolidayTest`'s tab-selection and multi-title fixes were
+re-run and, at that point, reproduced the `EventChip` semantics finding directly via the window-hierarchy dump above.
+The final `By.descContains` fix that follows from that finding — applied identically to
+`DeviceHolidayTest`, `DeviceBackupRestoreTest` and `DeviceEventLifecycleTest`'s day and agenda checks — is
+compile-verified (`:app:compileDebugAndroidTestKotlin`, `spotlessCheck`, `:app:detekt` all clean) but the emulator was
+needed for another agent's work before a final full re-run could confirm all three green in the same session; the
+mechanism is confirmed directly from `EventChip`'s source and the dump, not inferred, so this is recorded as a
+settled root cause with a pending final confirmation run, not an open question about the app's correctness.
 
 ## The harness (declarative journeys, a missing one fails)
 
