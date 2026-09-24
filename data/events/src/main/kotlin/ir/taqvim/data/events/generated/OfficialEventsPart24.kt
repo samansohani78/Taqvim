@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Weekday
 
@@ -23,6 +24,250 @@ import ir.taqvim.core.model.Weekday
  */
 internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.landlocked-developing-countries-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی آگاهی از نیازها و چالش‌های ویژه توسعه‌ای کشورهای درحال‌توسعه محصور در خشکی",
+                        "en" to "International Day of Awareness of the Special Development Needs and Challenges of Landlocked Developing Countries",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 6),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/landlocked-developing-countries-day",
+                            title = "Landlocked Developing Countries Day — A/RES/79/320 (2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/landlocked-developing-countries-day",
+                        title = "International Day of Awareness of the Special Development Needs and Challenges of Landlocked Developing Countries (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/landlocked-developing-countries-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.living-in-peace-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی زندگی مسالمت‌آمیز در کنار هم",
+                        "en" to "International Day of Living Together in Peace",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 16),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_017,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/living-in-peace-day",
+                            title = "International Day of Living Together in Peace (UN General Assembly A/RES/72/130, adopted 8 Dec 2017)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/living-in-peace-day",
+                        title = "International Day of Living Together in Peace (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/living-in-peace-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.maritime-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی دریانوردی",
+                        "ar" to "يوم الملاحة البحرية العالمي",
+                        "en" to "World Maritime Day",
+                        "es" to "Día Marítimo Mundial",
+                        "fr" to "Journée mondiale de la mer",
+                        "zh" to "世界海事日",
+                    ),
+                ),
+            rule = EventRule.LastWeekdayOfMonth(month = 9, weekday = Weekday.THURSDAY),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/maritime-day",
+                        title = "World Maritime Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی دریانوردی — 29 سپتامبر (هفته آخر سپتامبر)\"",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/maritime-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.markhor-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی مارخور",
+                        "en" to "International Day of the Markhor",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 24),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/markhor-day",
+                            title = "International Day of the Markhor — A/RES/78/278 (2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/markhor-day",
+                        title = "International Day of the Markhor (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/markhor-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.media-information-literacy-week"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "هفته جهانی سواد رسانه‌ای و اطلاعاتی",
+                        "en" to "Global Media and Information Literacy Week",
+                    ),
+                ),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 10, day = 24), lengthDays = 8),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_021,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/media-information-literacy-week",
+                            title = "General Assembly resolution A/RES/75/267 (2021): Global Media and Information Literacy Week, 24-31 October",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/media-information-literacy-week",
+                        title = "General Assembly resolution A/RES/75/267 (2021): Global Media and Information Literacy Week, 24-31 October",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/media-information-literacy-week",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.meditation-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی مراقبه",
+                        "en" to "World Meditation Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 21),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/meditation-day",
+                            title = "World Meditation Day — A/RES/79/137 (2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/meditation-day",
+                        title = "World Meditation Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/meditation-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.mediterranean-diet-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -67,6 +312,17 @@ internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 6, day = 27),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_017,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/micro-small-medium-businesses-day",
+                            title = "Micro-, Small and Medium-sized Enterprises Day — A/RES/71/279 (6 April 2017)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -81,241 +337,6 @@ internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/micro-small-medium-businesses-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.migrants-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی مهاجران",
-                        "ar" to "اليوم الدولي للمهاجرين",
-                        "en" to "International Migrants Day",
-                        "es" to "Día Internacional del Migrante",
-                        "fr" to "Journée internationale des migrants",
-                        "ru" to "Международный день мигранта",
-                        "zh" to "国际移民日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 18),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/migrants-day",
-                        title = "International Migrants Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/55/93",
-                    "un" to "https://www.un.org/en/observances/migrants-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.migratory-bird-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پرندگان مهاجر",
-                        "ar" to "اليوم العالمي للطيور المهاجرة",
-                        "en" to "World Migratory Bird Day",
-                        "fr" to "Journée mondiale des oiseaux migrateurs",
-                        "ru" to "Всемирный день мигрирующих птиц",
-                        "zh" to "世界候鸟日",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 5, weekday = Weekday.SATURDAY, n = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.worldmigratorybirdday.org/",
-                        title = "World Migratory Bird Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز بین الملل یپرندگان مهاجر — 9 و 10 مه\"",
-                    ),
-                    Citation(
-                        url = "https://www.worldmigratorybirdday.org/",
-                        title = "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.worldmigratorybirdday.org/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.migratory-bird-day-october"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پرندگان مهاجر",
-                        "ar" to "اليوم العالمي للطيور المهاجرة",
-                        "en" to "World Migratory Bird Day",
-                        "fr" to "Journée mondiale des oiseaux migrateurs",
-                        "ru" to "Всемирный день мигрирующих птиц",
-                        "zh" to "世界候鸟日",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 10, weekday = Weekday.SATURDAY, n = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.worldmigratorybirdday.org/",
-                        title = "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates: \"World Migratory Bird Day 2026 will take place on 9 May and 10 October, recognizing that migration occurs at different times in the northern and southern hemispheres\"",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; same Persian title as un.migratory-bird-day, the May occurrence of this twice-yearly observance",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.worldmigratorybirdday.org/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.mine-awareness-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی آگاهی از مین و کمک به اقدام علیه مین",
-                        "ar" to "اليوم الدولي للتوعية بخطر الألغام",
-                        "en" to "International Day for Mine Awareness and Assistance in Mine Action",
-                        "es" to "Día Internacional de información sobre el peligro de las minas y de asistencia para las actividades relativas a las minas",
-                        "fr" to "Journée internationale pour la sensibilisation aux mines et l'assistance à la lutte antimines",
-                        "ru" to "Международный день просвещения по вопросам минной опасности и помощи в деятельности, связанной с разминированием",
-                        "zh" to "国际提高地雷意识和协助地雷行动日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 4),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/mine-awareness-day",
-                        title = "International Day for Mine Awareness and Assistance in Mine Action (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/60/97",
-                    "un" to "https://www.un.org/en/observances/mine-awareness-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.moon-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی ماه",
-                        "en" to "International Moon Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 20),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/moon-day",
-                        title = "International Moon Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/moon-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.mother-language-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی زبان مادری",
-                        "ar" to "اليوم الدولي للغة الأم",
-                        "en" to "International Mother Language Day",
-                        "es" to "Día Internacional de la Lengua Materna",
-                        "fr" to "Journée internationale de la langue maternelle",
-                        "ru" to "Международный день родного языка",
-                        "zh" to "国际母语日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/mother-language-day",
-                        title = "International Mother Language Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/56/262",
-                    "un" to "https://www.un.org/en/observances/mother-language-day",
                 ),
         ),
     )

@@ -7,7 +7,7 @@
 # `titleReview` array (docs/i18n/TRANSLATING.md's `MT: needs review` marker is the same idea for app strings).
 # the archived UN Information Centre Tehran list (2012-10-05) and every reachable Persian page of iran.un.org and of the UNIC Tehran archive were searched on 2026-09-18; these days are named on none of them
 # 2026-09-23 (R07/D-05 re-check, docs/data-todo/un-days-sourcing.md): iran.un.org's newest posts (through 2026-09-21) were re-checked and name no day of this list; two days newly proclaimed since the 2026-09-18 pass were added: World Turkic Language Family Day (un.world-turkic-language-family-day, UNESCO 2025) and International Day of Recognition for Women Searchers of Missing Persons (un.women-searchers-missing-persons-day, UN GA 2026) — both too recent for a Persian source to exist yet
-# the 10 international weeks on the UN list are not included: the dataset has no week rule
+# the 10 international weeks on the UN list are now shipped as `Week` rule records (ADR-0046, DT-041, 2026-09-24); like the 132 days above, none has an official Persian source, so each carries a machine-translated title and is queued below for review: un.interfaith-harmony-week, un.racism-solidarity-week, un.immunization-week, un.non-self-governing-week, un.breastfeeding-week, un.science-and-peace-week, un.amr-awareness-week, un.media-information-literacy-week, un.space-week, un.disarmament-week
 # Vesak (UN GA res. 54/115) is tracked separately as DT-040: its blocker is a missing rule type (the day of the full moon in May), not a missing Persian title
 # columns: dataset id	English title (dataset)	official source page (observance page, or resolution/proclamation document)
 un.braille-day	World Braille Day	https://www.un.org/en/observances/braille-day
@@ -142,3 +142,13 @@ un.world-basketball-day	World Basketball Day	https://www.un.org/en/observances/w
 un.meditation-day	World Meditation Day	https://www.un.org/en/observances/meditation-day
 un.anti-cybercrime-day	International Anti-Cybercrime Day	https://www.unodc.org/unodc/en/cybercrime/day.html
 un.epidemic-preparedness-day	International Day of Epidemic Preparedness	https://www.un.org/en/observances/epidemic-preparedness-day
+un.interfaith-harmony-week	World Interfaith Harmony Week	https://www.un.org/en/observances/interfaith-harmony-week
+un.racism-solidarity-week	Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination	https://www.un.org/en/observances/week-solidarity-peoples-struggling-against-racism-and-racial-discrimination
+un.immunization-week	World Immunization Week	https://www.who.int/campaigns/world-immunization-week
+un.non-self-governing-week	Week of Solidarity with the Peoples of Non-Self-Governing Territories	https://www.un.org/en/observances/non-self-governing-week
+un.breastfeeding-week	World Breastfeeding Week	https://www.who.int/campaigns/world-breastfeeding-week
+un.science-and-peace-week	International Week of Science and Peace	https://www.un.org/en/observances/international-week-science-and-peace
+un.amr-awareness-week	World AMR Awareness Week	https://www.who.int/campaigns/world-amr-awareness-week
+un.media-information-literacy-week	Global Media and Information Literacy Week	https://www.un.org/en/observances/media-information-literacy-week
+un.space-week	World Space Week	https://www.un.org/en/observances/world-space-week
+un.disarmament-week	Disarmament Week	https://www.un.org/en/observances/disarmament-week

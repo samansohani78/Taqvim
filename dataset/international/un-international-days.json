@@ -35,6 +35,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/braille-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.un.org/en/observances/braille-day/background",
+          "title": "World Braille Day — General Assembly resolution A/RES/73/161 (November 2018)"
+        }
       }
     },
     {
@@ -204,6 +212,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/peaceful-coexistence-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/peaceful-coexistence-day",
+          "title": "International Day of Peaceful Coexistence — A/RES/79/269 (4 March 2025)"
+        }
       }
     },
     {
@@ -240,6 +256,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-wetlands-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-wetlands-day/background",
+          "title": "World Wetlands Day — General Assembly proclamation, 30 August 2021"
+        }
       }
     },
     {
@@ -276,6 +300,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/human-fraternity"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2020,
+        "citation": {
+          "url": "https://www.un.org/en/observances/human-fraternity",
+          "title": "International Day of Human Fraternity — resolution 75/200"
+        }
       }
     },
     {
@@ -312,6 +344,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/female-genital-mutilation-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2012,
+        "citation": {
+          "url": "https://www.un.org/en/observances/female-genital-mutilation-day",
+          "title": "Zero Tolerance to FGM Day — A/RES/67/146 (2012)"
+        }
       }
     },
     {
@@ -348,6 +388,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/arabian-leopard-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://www.un.org/en/observances/arabian-leopard-day",
+          "title": "International Day of the Arabian Leopard — resolution 77/295 (June 2023)"
+        }
       }
     },
     {
@@ -384,6 +432,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/world-pulses-day/en"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-pulses-day/background",
+          "title": "World Pulses Day — A/RES/73/251 (2019)"
+        }
       }
     },
     {
@@ -420,6 +476,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/women-and-girls-in-science-day/"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2015,
+        "citation": {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "International Day of Women and Girls in Science -- GA resolution A/RES/70/212 (22 Dec 2015)"
+        }
       }
     },
     {
@@ -456,6 +520,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day",
+          "title": "International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism — A/RES/77/243 (2022)"
+        }
       }
     },
     {
@@ -537,6 +609,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/tourism-resilience-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://www.un.org/en/observances/tourism-resilience-day",
+          "title": "Global Tourism Resilience Day — A/RES/77/269 (2023)"
+        }
       }
     },
     {
@@ -663,6 +743,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/seagrass-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/seagrass-day",
+          "title": "World Seagrass Day — A/RES/76/265 (May 2022)"
+        }
       }
     },
     {
@@ -699,6 +787,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.unaids.org/en/zero-discrimination-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2014,
+        "citation": {
+          "url": "https://www.unaids.org/en/resources/presscentre/pressreleaseandstatementarchive/2014/february/20140227zerodiscrimination",
+          "title": "Zero Discrimination Day launched by UNAIDS, first observed 1 March 2014"
+        }
       }
     },
     {
@@ -735,6 +831,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-wildlife-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2013,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-wildlife-day/background",
+          "title": "World Wildlife Day — General Assembly decision, 20 December 2013"
+        }
       }
     },
     {
@@ -771,6 +875,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day",
+          "title": "International Day for Disarmament and Non-Proliferation Awareness -- GA resolution A/RES/77/51 (7 Dec 2022)"
+        }
       }
     },
     {
@@ -851,6 +963,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/women-judges-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/women-judges-day",
+          "title": "International Day of Women Judges — resolution 75/274 (26 April 2021)"
+        }
       }
     },
     {
@@ -887,6 +1007,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/anti-islamophobia-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/anti-islamophobia-day",
+          "title": "International Day to Combat Islamophobia — A/RES/76/254 (2022)"
+        }
       }
     },
     {
@@ -923,6 +1051,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/fr/observances/french-language-day/"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.un.org/en/observances/russian-language-day",
+          "title": "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages"
+        }
       }
     },
     {
@@ -959,6 +1095,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/happiness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2012,
+        "citation": {
+          "url": "https://www.un.org/en/observances/happiness-day",
+          "title": "International Day of Happiness — resolution 66/281 (12 July 2012)"
+        }
       }
     },
     {
@@ -1129,6 +1273,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/international-day-of-forests/en"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2012,
+        "citation": {
+          "url": "https://www.fao.org/international-day-of-forests/en",
+          "title": "International Day of Forests -- GA resolution A/RES/67/200 (2012)"
+        }
       }
     },
     {
@@ -1165,6 +1317,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-glaciers-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-glaciers-day",
+          "title": "World Day for Glaciers -- GA resolution A/RES/77/158 (2022)"
+        }
       }
     },
     {
@@ -1201,6 +1361,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/down-syndrome-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2011,
+        "citation": {
+          "url": "https://www.un.org/en/observances/down-syndrome-day",
+          "title": "World Down Syndrome Day (A/RES/66/149, adopted 19 December 2011; adoption-year convention, consistent with un.vesak-day/ADR-0044)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -1461,6 +1630,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/detained-staff-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 1994,
+        "citation": {
+          "url": "https://www.un.org/en/observances/detained-staff-day",
+          "title": "International Day of Solidarity with Detained and Missing Staff Members -- linked to GA resolution A/RES/49/59 (1994)"
+        }
       }
     },
     {
@@ -1497,6 +1674,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/zero-waste-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/zero-waste-day",
+          "title": "International Day of Zero Waste — A/RES/77/161 (14 December 2022)"
+        }
       }
     },
     {
@@ -1623,6 +1808,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/conscience-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/conscience-day",
+          "title": "International Day of Conscience (UN General Assembly A/RES/73/329, adopted 25 Jul 2019)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -1792,6 +1986,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/human-spaceflight-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2011,
+        "citation": {
+          "url": "https://www.un.org/en/observances/human-spaceflight-day",
+          "title": "International Day of Human Space Flight — A/RES/65/271 (7 April 2011)"
+        }
       }
     },
     {
@@ -1828,6 +2030,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.who.int/campaigns/world-chagas-disease-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.who.int/campaigns/world-chagas-disease-day",
+          "title": "World Chagas Disease Day (72nd World Health Assembly decision WHA72.20, May 2019)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -1864,6 +2075,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/wellness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2026,
+        "citation": {
+          "url": "https://www.un.org/en/observances/wellness-day",
+          "title": "International Wellness Day (UN General Assembly A/RES/80/249, adopted 10 Mar 2026)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -1900,6 +2120,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/zh/observances/chinese-language-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.un.org/en/observances/russian-language-day",
+          "title": "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages"
+        }
       }
     },
     {
@@ -1936,6 +2164,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/creativity-and-innovation-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/creativity-and-innovation-day",
+          "title": "World Creativity and Innovation Day (UN General Assembly A/RES/71/284, adopted 27 Apr 2017)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -2061,6 +2298,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/english-language-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.un.org/en/observances/russian-language-day",
+          "title": "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages"
+        }
       }
     },
     {
@@ -2097,6 +2342,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.itu.int/women-and-girls/girls-in-ict/"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
+          "title": "International Girls in ICT Day (ITU Plenipotentiary Conference Resolution 70, 2010)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -2133,6 +2387,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/es/observances/spanish-language-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.un.org/en/observances/russian-language-day",
+          "title": "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages"
+        }
       }
     },
     {
@@ -2169,6 +2431,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/Multilateralism-for-Peace-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.un.org/en/observances/multilateralism-for-peace-day",
+          "title": "International Day of Multilateralism and Diplomacy for Peace — A/RES/73/127 (12 December 2018)"
+        }
       }
     },
     {
@@ -2245,6 +2515,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/delegates-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/delegates-day",
+          "title": "International Delegate's Day — resolution 73/286 (2019)"
+        }
       }
     },
     {
@@ -2324,6 +2602,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/chernobyl-remembrance-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2016,
+        "citation": {
+          "url": "https://www.un.org/en/observances/chernobyl-remembrance-day",
+          "title": "International Chernobyl Disaster Remembrance Day — resolution 71/125 (8 December 2016)"
+        }
       }
     },
     {
@@ -2404,6 +2690,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/earthquake-victims-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/earthquake-victims-day",
+          "title": "International Day in Memory of the Victims of Earthquakes — A/RES/79/285 (April 2025)"
+        }
       }
     },
     {
@@ -2440,6 +2734,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/jazz-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2011,
+        "citation": {
+          "url": "https://www.un.org/en/observances/jazz-day",
+          "title": "International Jazz Day — UNESCO General Conference, November 2011"
+        }
       }
     },
     {
@@ -2476,6 +2778,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/tuna-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2016,
+        "citation": {
+          "url": "https://www.un.org/en/observances/tuna-day",
+          "title": "World Tuna Day (UN General Assembly A/RES/71/124, adopted 7 Dec 2016)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -2557,6 +2868,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.unesco.org/en/days/portuguese-language"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-portuguese-language-day-unesco",
+          "title": "World Portuguese Language Day (UNESCO General Conference proclamation, 12 Nov 2019)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -2636,6 +2956,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/argania-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/argania-day",
+          "title": "International Day of Argania — A/RES/75/262 (2021)"
+        }
       }
     },
     {
@@ -2672,6 +3000,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/plant-health-day/en"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/international-day-plant-health",
+          "title": "International Day of Plant Health (UN General Assembly A/RES/76/256, adopted Mar 2022)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -2846,6 +3183,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.unesco.org/en/days/light"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.unesco.org/en/days/light",
+          "title": "International Day of Light (UNESCO General Conference, 39th session, Resolution 39 C/Resolution 16, Nov 2017)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -2882,6 +3228,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/living-in-peace-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/living-in-peace-day",
+          "title": "International Day of Living Together in Peace (UN General Assembly A/RES/72/130, adopted 8 Dec 2017)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -2962,6 +3317,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/fair-play-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/fair-play-day",
+          "title": "World Fair Play Day — A/RES/78/310 (1 July 2024)"
+        }
       }
     },
     {
@@ -2998,6 +3361,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/world-bee-day/en"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.fao.org/world-bee-day/en",
+          "title": "World Bee Day -- 2017, UN General Assembly proclamation"
+        }
       }
     },
     {
@@ -3079,6 +3450,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/international-tea-day/en"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.fao.org/new-york/news/news-detail/UN-adopts-resolution-showcasing-tea/en",
+          "title": "International Tea Day (A/RES/74/151, adopted December 2019)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -3160,6 +3540,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/end-fistula-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2012,
+        "citation": {
+          "url": "https://www.un.org/en/observances/end-fistula-day",
+          "title": "International Day to End Obstetric Fistula — resolution 67/147 (2012)"
+        }
       }
     },
     {
@@ -3196,6 +3584,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/markhor-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/markhor-day",
+          "title": "International Day of the Markhor — A/RES/78/278 (2024)"
+        }
       }
     },
     {
@@ -3232,6 +3628,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/football-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/football-day",
+          "title": "World Football Day — A/RES/78/281 (7 May 2024)"
+        }
       }
     },
     {
@@ -3313,6 +3717,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/international-potato-day/en"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://digitallibrary.un.org/record/4030832",
+          "title": "International Day of Potato (A/RES/78/123, adopted early December 2023)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -3394,6 +3807,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/parents-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2012,
+        "citation": {
+          "url": "https://www.un.org/en/observances/parents-day",
+          "title": "Global Day of Parents — A/RES/66/292 (2012)"
+        }
       }
     },
     {
@@ -3430,6 +3851,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/bicycle-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.un.org/en/observances/bicycle-day",
+          "title": "World Bicycle Day (A/RES/72/272, adopted 12 April 2018)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -3555,6 +3985,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/end-illegal-fishing-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/end-illegal-fishing-day",
+          "title": "International Day for the Fight against IUU Fishing — General Assembly annual fisheries resolution, December 2017"
+        }
       }
     },
     {
@@ -3591,6 +4029,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/russian-language-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.un.org/en/observances/russian-language-day",
+          "title": "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages"
+        }
       }
     },
     {
@@ -3627,6 +4073,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/food-safety-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.un.org/en/observances/food-safety-day",
+          "title": "World Food Safety Day -- GA resolution 73/250 (20 December 2018)"
+        }
       }
     },
     {
@@ -3752,6 +4206,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/international-day-of-play"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/international-day-of-play",
+          "title": "International Day of Play — A/RES/78/268 (2024)"
+        }
       }
     },
     {
@@ -3832,6 +4294,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/albinism-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2014,
+        "citation": {
+          "url": "https://research.un.org/en/docs/ga/quick/regular/69",
+          "title": "International Albinism Awareness Day (A/RES/69/170, adopted 18 December 2014)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -3913,6 +4384,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/elder-abuse-awareness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2011,
+        "citation": {
+          "url": "https://www.un.org/en/observances/elder-abuse-awareness-day/background",
+          "title": "World Elder Abuse Awareness Day (A/RES/66/127, adopted 2011)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -3949,6 +4429,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/remittances-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.un.org/en/observances/remittances-day",
+          "title": "International Day of Family Remittances (A/RES/72/281, adopted 12 June 2018)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -4030,6 +4519,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/countering-hate-speech"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/countering-hate-speech",
+          "title": "International Day for Countering Hate Speech — A/RES/75/309 (July 2021)"
+        }
       }
     },
     {
@@ -4066,6 +4563,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/sustainable-gastronomy-day/en"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2016,
+        "citation": {
+          "url": "https://research.un.org/en/docs/ga/quick/regular/71",
+          "title": "Sustainable Gastronomy Day (A/RES/71/246, adopted 21 December 2016)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -4102,6 +4608,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2015,
+        "citation": {
+          "url": "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day",
+          "title": "International Day for the Elimination of Sexual Violence in Conflict — A/RES/69/293 (19 June 2015)"
+        }
       }
     },
     {
@@ -4183,6 +4697,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/yoga-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2014,
+        "citation": {
+          "url": "https://www.un.org/en/observances/yoga-day",
+          "title": "International Day of Yoga — resolution 69/131 (11 December 2014)"
+        }
       }
     },
     {
@@ -4219,6 +4741,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/solstice-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/solstice-day",
+          "title": "International Day of the Celebration of the Solstice (A/RES/73/300, adopted 20 June 2019)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -4345,6 +4876,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/women-in-diplomacy-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/women-in-diplomacy-day",
+          "title": "International Day of Women in Diplomacy (A/RES/76/269, adopted 20 June 2022)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -4516,6 +5056,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/deafblindness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/deafblindness-day",
+          "title": "International Day of Deafblindness — A/RES/79/294 (16 June 2025)"
+        }
       }
     },
     {
@@ -4552,6 +5100,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/micro-small-medium-businesses-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/micro-small-medium-businesses-day",
+          "title": "Micro-, Small and Medium-sized Enterprises Day — A/RES/71/279 (6 April 2017)"
+        }
       }
     },
     {
@@ -4588,6 +5144,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/tropics-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2016,
+        "citation": {
+          "url": "https://www.un.org/en/observances/tropics-day",
+          "title": "International Day of the Tropics — A/RES/70/267 (2016)"
+        }
       }
     },
     {
@@ -4624,6 +5188,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/asteroid-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2016,
+        "citation": {
+          "url": "https://www.un.org/en/observances/asteroid-day",
+          "title": "International Asteroid Day — A/RES/71/90 (December 2016)"
+        }
       }
     },
     {
@@ -4660,6 +5232,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/parliamentarism-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.un.org/en/observances/parliamentarism-day",
+          "title": "International Day of Parliamentarism — A/RES/72/278 (2018)"
+        }
       }
     },
     {
@@ -4696,6 +5276,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/rural-development-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/rural-development-day",
+          "title": "World Rural Development Day — A/RES/78/326 (6 September 2024)"
+        }
       }
     },
     {
@@ -4732,6 +5320,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/kiswahili-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.unesco.org/en/days/kiswahili-language",
+          "title": "World Kiswahili Language Day — UNESCO 41st General Conference, resolution 41 C/61 (November 2021)"
+        }
       }
     },
     {
@@ -4813,6 +5409,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day",
+          "title": "International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica — A/RES/78/282 (23 May 2024)"
+        }
       }
     },
     {
@@ -4849,6 +5453,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/horse-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/horse-day",
+          "title": "World Horse Day — A/RES/79/291 (3 June 2025)"
+        }
       }
     },
     {
@@ -4885,6 +5497,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms",
+          "title": "International Day of Combating Sand and Dust Storms — A/RES/77/294 (8 June 2023)"
+        }
       }
     },
     {
@@ -4921,6 +5541,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/hope-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/hope-day",
+          "title": "International Day of Hope — A/RES/79/270 (4 March 2025)"
+        }
       }
     },
     {
@@ -4957,6 +5585,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-youth-skills-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2014,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-youth-skills-day",
+          "title": "World Youth Skills Day — General Assembly resolution, 18 December 2014"
+        }
       }
     },
     {
@@ -5079,6 +5715,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/moon-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/moon-day",
+          "title": "International Moon Day — A/RES/76/76 (9 December 2021)"
+        }
       }
     },
     {
@@ -5115,6 +5759,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-chess-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-chess-day",
+          "title": "World Chess Day — A/RES/74/22 (12 December 2019)"
+        }
       }
     },
     {
@@ -5151,6 +5803,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/judicial-well-being-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/judicial-well-being-day",
+          "title": "International Day for Judicial Well-being — A/RES/79/266 (4 March 2025)"
+        }
       }
     },
     {
@@ -5187,6 +5847,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/women-girls-african-descent"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/women-girls-african-descent",
+          "title": "International Day of Women and Girls of African Descent — A/RES/78/323 (13 August 2024)"
+        }
       }
     },
     {
@@ -5223,6 +5891,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/drowning-prevention-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/drowning-prevention-day",
+          "title": "World Drowning Prevention Day — A/RES/75/273 (April 2021)"
+        }
       }
     },
     {
@@ -5259,6 +5935,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.who.int/campaigns/world-hepatitis-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.who.int/campaigns/world-hepatitis-day",
+          "title": "World Hepatitis Day — 63rd World Health Assembly resolution WHA63.18 (19 May 2010)"
+        }
       }
     },
     {
@@ -5339,6 +6023,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/friendship-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2011,
+        "citation": {
+          "url": "https://www.un.org/en/observances/friendship-day",
+          "title": "International Day of Friendship — A/RES/65/275 (2011)"
+        }
       }
     },
     {
@@ -5375,6 +6067,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/landlocked-developing-countries-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/landlocked-developing-countries-day",
+          "title": "Landlocked Developing Countries Day — A/RES/79/320 (2024)"
+        }
       }
     },
     {
@@ -5456,6 +6156,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/steelpan-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://www.un.org/en/observances/steelpan-day",
+          "title": "World Steelpan Day — A/RES/77/316 (24 July 2023)"
+        }
       }
     },
     {
@@ -5626,6 +6334,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/religious-based-violence-victims-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/religious-based-violence-victims-day",
+          "title": "Religious violence victims day — A/RES/73/296 (28 May 2019)"
+        }
       }
     },
     {
@@ -5707,6 +6423,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-lake-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-lake-day",
+          "title": "World Lake Day (A/RES/79/142, adopted 12 December 2024)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -5788,6 +6513,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/victims-enforced-disappearance"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.un.org/en/observances/victims-enforced-disappearance",
+          "title": "International Day of the Victims of Enforced Disappearances (A/RES/65/209, adopted 21 December 2010; adoption-year convention, consistent with un.vesak-day/ADR-0044)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -5824,6 +6558,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/african-descent-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2020,
+        "citation": {
+          "url": "https://research.un.org/en/docs/ga/quick/regular/75",
+          "title": "UN Dag Hammarskjold Library: A/RES/75/170, adopted 16 December 2020 (corroborated by un.org/en/observances/african-descent-day)"
+        }
       }
     },
     {
@@ -5860,6 +6602,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/charity-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2012,
+        "citation": {
+          "url": "https://www.un.org/en/observances/charity-day",
+          "title": "International Day of Charity: GA resolution A/RES/67/105 designated 5 September as the day (67th session, 2012)"
+        }
       }
     },
     {
@@ -5896,6 +6646,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/indigenous-women-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/indigenous-women-day",
+          "title": "International Day of the World's Indigenous Women and Girls — A/RES/80/10 (26 November 2025)"
+        }
       }
     },
     {
@@ -5976,6 +6734,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/police-cooperation-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/police-cooperation-day",
+          "title": "International Day of Police Cooperation — resolution 77/241 (2022)"
+        }
       }
     },
     {
@@ -6012,6 +6778,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/duchenne-awareness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/duchenne-awareness-day",
+          "title": "World Duchenne Awareness Day — A/RES/78/12 (2023, observed beginning 2024)"
+        }
       }
     },
     {
@@ -6272,6 +7046,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/interventional-cardiology-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/interventional-cardiology-day",
+          "title": "International Day for Interventional Cardiology — resolution 76/302 (September 2022)"
+        }
       }
     },
     {
@@ -6308,6 +7090,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+          "title": "International Day of Science, Technology and Innovation for the South — A/RES/78/259 (9 January 2024)"
+        }
       }
     },
     {
@@ -6344,6 +7134,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.who.int/campaigns/world-patient-safety-day/"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.who.int/campaigns/world-patient-safety-day",
+          "title": "World Patient Safety Day: World Health Assembly resolution WHA72.6 'Global action on patient safety' (2019)"
+        }
       }
     },
     {
@@ -6380,6 +7178,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/equal-pay-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/equal-pay-day",
+          "title": "International Equal Pay Day (A/RES/74/142, 2019)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -6416,6 +7223,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/cleanup-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://www.un.org/en/observances/cleanup-day",
+          "title": "World Cleanup Day — resolution 78/122 (8 December 2023)"
+        }
       }
     },
     {
@@ -6497,6 +7312,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/sign-languages-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/sign-languages-day",
+          "title": "International Day of Sign Languages — A/RES/72/161 (19 December 2017)"
+        }
       }
     },
     {
@@ -6533,6 +7356,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/nuclear-weapons-elimination-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2013,
+        "citation": {
+          "url": "https://www.un.org/en/observances/nuclear-weapons-elimination-day",
+          "title": "International Day for the Total Elimination of Nuclear Weapons — resolution 68/32 (December 2013)"
+        }
       }
     },
     {
@@ -6613,6 +7444,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/information-access-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/information-access-day",
+          "title": "International Day for Universal Access to Information — General Assembly, 28 September 2019 (following UNESCO's 2015 declaration)"
+        }
       }
     },
     {
@@ -6692,6 +7531,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/end-food-waste-day/"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/end-food-waste-day",
+          "title": "International Day of Awareness of Food Loss and Waste (A/RES/74/209, 2019)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -6728,6 +7576,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/international-translation-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/international-translation-day",
+          "title": "International Translation Day — resolution 71/288 (24 May 2017)"
+        }
       }
     },
     {
@@ -6809,6 +7665,15 @@
       "reviewedBy": "pending",
       "links": {
         "resolution": "https://docs.un.org/en/A/RES/80/248"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2026,
+        "citation": {
+          "url": "https://docs.un.org/en/A/RES/80/248",
+          "title": "International Coffee Day (A/RES/80/248, adopted 10 March 2026)",
+          "retrieved": "2026-09-24"
+        }
       }
     },
     {
@@ -6935,6 +7800,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/cotton-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/cotton-day",
+          "title": "World Cotton Day — General Assembly proclamation, August 2021"
+        }
       }
     },
     {
@@ -7057,6 +7930,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/girl-child-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2011,
+        "citation": {
+          "url": "https://www.un.org/en/observances/girl-child-day",
+          "title": "International Day of the Girl Child — resolution 66/170 (19 December 2011)"
+        }
       }
     },
     {
@@ -7315,6 +8196,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/snow-leopard-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/snow-leopard-day",
+          "title": "International Day of the Snow Leopard — resolution 79/143 (2024)"
+        }
       }
     },
     {
@@ -7439,6 +8328,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.unesco.org/en/days/audiovisual-heritage"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 1980,
+        "citation": {
+          "url": "https://www.unesco.org/en/days/audiovisual-heritage",
+          "title": "World Day for Audiovisual Heritage: UNESCO's 21st General Conference adopted the Recommendation for the Safeguarding and Preservation of Moving Images (1980)"
+        }
       }
     },
     {
@@ -7511,6 +8408,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/cities-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2014,
+        "citation": {
+          "url": "https://www.un.org/en/observances/cities-day",
+          "title": "World Cities Day -- GA resolution 68/239, first celebrated in 2014"
+        }
       }
     },
     {
@@ -7547,6 +8452,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/end-impunity-crimes-against-journalists"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2013,
+        "citation": {
+          "url": "https://www.un.org/en/observances/end-impunity-crimes-against-journalists",
+          "title": "International Day to End Impunity for Crimes against Journalists — A/RES/68/163 (2013)"
+        }
       }
     },
     {
@@ -7583,6 +8496,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/tsunami-awareness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2015,
+        "citation": {
+          "url": "https://www.un.org/en/observances/tsunami-awareness-day",
+          "title": "World Tsunami Awareness Day — resolution 70/203 (December 2015)"
+        }
       }
     },
     {
@@ -7754,6 +8675,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/fight-against-transnational-crime-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/fight-against-transnational-crime-day",
+          "title": "International Day for the Prevention of and Fight against Transnational Organized Crime — A/RES/78/267 (March 2024)"
+        }
       }
     },
     {
@@ -7962,6 +8891,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2022,
+        "citation": {
+          "url": "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
+          "title": "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence — A/RES/77/8 (7 November 2022)"
+        }
       }
     },
     {
@@ -8178,6 +9115,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/conjoined-twins-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/conjoined-twins-day",
+          "title": "World Conjoined Twins Day — A/RES/78/313 (2024)"
+        }
       }
     },
     {
@@ -8259,6 +9204,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/sustainable-transport-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://www.un.org/en/observances/sustainable-transport-day",
+          "title": "World Sustainable Transport Day — A/RES/77/286 (2023)"
+        }
       }
     },
     {
@@ -8554,6 +9507,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/day-against-unilateral-coercive-measures"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/day-against-unilateral-coercive-measures",
+          "title": "International Day against Unilateral Coercive Measures — resolution 79/293 (June 2025)"
+        }
       }
     },
     {
@@ -8590,6 +9551,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/international-day-of-banks"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2019,
+        "citation": {
+          "url": "https://www.un.org/en/observances/international-day-of-banks",
+          "title": "International Day of Banks — resolution 74/245 (19 December 2019)"
+        }
       }
     },
     {
@@ -8805,6 +9774,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/genocide-prevention-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2015,
+        "citation": {
+          "url": "https://www.un.org/en/observances/genocide-prevention-day",
+          "title": "International Day of Commemoration and Dignity of the Victims of the Crime of Genocide — A/RES/69/323 (29 September 2015)"
+        }
       }
     },
     {
@@ -8930,6 +9907,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/neutrality-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/neutrality-day",
+          "title": "International Day of Neutrality — resolution 71/275 (2 February 2017)"
+        }
       }
     },
     {
@@ -8966,6 +9951,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/universal-health-coverage-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.un.org/en/observances/universal-health-coverage-day",
+          "title": "International Universal Health Coverage Day — resolution 72/138 (2017)"
+        }
       }
     },
     {
@@ -9002,6 +9995,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/anti-colonialism-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://www.un.org/en/observances/anti-colonialism-day",
+          "title": "International Day against Colonialism in All its Forms and Manifestations — A/RES/80/106 (2025)"
+        }
       }
     },
     {
@@ -9128,6 +10129,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/arabiclanguageday"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://www.un.org/en/observances/russian-language-day",
+          "title": "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages"
+        }
       }
     },
     {
@@ -9264,6 +10273,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/world-basketball-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-basketball-day",
+          "title": "World Basketball Day — A/RES/77/324 (25 August 2023)"
+        }
       }
     },
     {
@@ -9300,6 +10317,14 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/meditation-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://www.un.org/en/observances/meditation-day",
+          "title": "World Meditation Day — A/RES/79/137 (2024)"
+        }
       }
     },
     {
@@ -9419,6 +10444,497 @@
           "url": "https://undocs.org/en/A/RES/54/115",
           "title": "General Assembly resolution 54/115: International recognition of the Day of Vesak at United Nations Headquarters and other United Nations offices (1999)",
           "retrieved": "2026-09-23"
+        }
+      }
+    },
+    {
+      "id": "un.interfaith-harmony-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Interfaith Harmony Week",
+        "fa": "هفته جهانی هماهنگی بین ادیان"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 2,
+          "day": 1
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.un.org/en/observances/interfaith-harmony-week",
+          "title": "General Assembly resolution A/RES/65/5 (2010): World Interfaith Harmony Week",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/interfaith-harmony-week",
+        "resolution": "https://undocs.org/en/A/RES/65/5"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2010,
+        "citation": {
+          "url": "https://undocs.org/en/A/RES/65/5",
+          "title": "General Assembly resolution A/RES/65/5 (2010): World Interfaith Harmony Week",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.racism-solidarity-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination",
+        "fa": "هفته همبستگی با مردمان مبارز علیه نژادپرستی و تبعیض نژادی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 3,
+          "day": 21
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.un.org/en/observances/week-solidarity-peoples-struggling-against-racism-and-racial-discrimination",
+          "title": "General Assembly resolution A/RES/34/24 (1979): Programme for the Decade for Action to Combat Racism and Racial Discrimination",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/week-solidarity-peoples-struggling-against-racism-and-racial-discrimination"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 1979,
+        "citation": {
+          "url": "https://www.un.org/en/observances/week-solidarity-peoples-struggling-against-racism-and-racial-discrimination",
+          "title": "General Assembly resolution A/RES/34/24 (1979): Programme for the Decade for Action to Combat Racism and Racial Discrimination",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.immunization-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Immunization Week",
+        "fa": "هفته جهانی ایمن‌سازی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 4,
+          "day": 24
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-immunization-week",
+          "title": "WHO — World Immunization Week (campaign page; WHO's own event archive for this week begins in 2012)",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-immunization-week"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2012,
+        "citation": {
+          "url": "https://www.who.int/campaigns/world-immunization-week",
+          "title": "WHO — World Immunization Week (campaign page; WHO's own event archive for this week begins in 2012)",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.non-self-governing-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Week of Solidarity with the Peoples of Non-Self-Governing Territories",
+        "fa": "هفته همبستگی با مردمان سرزمین‌های غیرخودمختار"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 5,
+          "day": 25
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.un.org/en/observances/non-self-governing-week",
+          "title": "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/non-self-governing-week"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 1999,
+        "citation": {
+          "url": "https://www.un.org/en/observances/non-self-governing-week",
+          "title": "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.breastfeeding-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Breastfeeding Week",
+        "fa": "هفته جهانی شیردهی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 8,
+          "day": 1
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-breastfeeding-week",
+          "title": "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-breastfeeding-week"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.who.int/campaigns/world-breastfeeding-week",
+          "title": "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.science-and-peace-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "International Week of Science and Peace",
+        "fa": "هفته بین‌المللی علم و صلح"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 11,
+          "day": 9
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.un.org/en/observances/international-week-science-and-peace",
+          "title": "General Assembly resolution 43/61 (1988): International Week of Science and Peace",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/international-week-science-and-peace"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 1988,
+        "citation": {
+          "url": "https://www.un.org/en/observances/international-week-science-and-peace",
+          "title": "General Assembly resolution 43/61 (1988): International Week of Science and Peace",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.amr-awareness-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Antimicrobial Resistance Awareness Week",
+        "fa": "هفته جهانی آگاهی از مقاومت ضدمیکروبی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 11,
+          "day": 18
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.who.int/campaigns/world-amr-awareness-week",
+          "title": "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.who.int/campaigns/world-amr-awareness-week"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2018,
+        "citation": {
+          "url": "https://www.who.int/campaigns/world-amr-awareness-week",
+          "title": "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.media-information-literacy-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Global Media and Information Literacy Week",
+        "fa": "هفته جهانی سواد رسانه‌ای و اطلاعاتی"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 10,
+          "day": 24
+        },
+        "lengthDays": 8
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.un.org/en/observances/media-information-literacy-week",
+          "title": "General Assembly resolution A/RES/75/267 (2021): Global Media and Information Literacy Week, 24-31 October",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/media-information-literacy-week"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2021,
+        "citation": {
+          "url": "https://www.un.org/en/observances/media-information-literacy-week",
+          "title": "General Assembly resolution A/RES/75/267 (2021): Global Media and Information Literacy Week, 24-31 October",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.space-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "World Space Week",
+        "fa": "هفته جهانی فضا"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 10,
+          "day": 4
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.un.org/en/observances/world-space-week",
+          "title": "General Assembly resolution A/RES/54/68 (1999): World Space Week",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/world-space-week"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 1999,
+        "citation": {
+          "url": "https://www.un.org/en/observances/world-space-week",
+          "title": "General Assembly resolution A/RES/54/68 (1999): World Space Week",
+          "retrieved": "2026-09-24"
+        }
+      }
+    },
+    {
+      "id": "un.disarmament-week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "en": "Disarmament Week",
+        "fa": "هفته خلع سلاح"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 10,
+          "day": 24
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://www.un.org/en/observances/list-days-weeks",
+          "title": "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+          "retrieved": "2026-09-24"
+        },
+        {
+          "url": "https://www.un.org/en/observances/disarmament-week",
+          "title": "General Assembly special session on disarmament, Final Document (resolution S-10/2, 1978): Disarmament Week, 24-30 October",
+          "retrieved": "2026-09-24"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "pending",
+      "links": {
+        "un": "https://www.un.org/en/observances/disarmament-week"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 1978,
+        "citation": {
+          "url": "https://www.un.org/en/observances/disarmament-week",
+          "title": "General Assembly special session on disarmament, Final Document (resolution S-10/2, 1978): Disarmament Week, 24-30 October",
+          "retrieved": "2026-09-24"
         }
       }
     }

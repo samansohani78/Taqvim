@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -22,6 +23,88 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.cotton-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی پنبه",
+                        "en" to "World Cotton Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_021,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/cotton-day",
+                            title = "World Cotton Day — General Assembly proclamation, August 2021",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/cotton-day",
+                        title = "World Cotton Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/cotton-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.countering-hate-speech"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی مقابله با نفرت‌پراکنی",
+                        "en" to "International Day for Countering Hate Speech",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 18),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_021,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/countering-hate-speech",
+                            title = "International Day for Countering Hate Speech — A/RES/75/309 (July 2021)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/countering-hate-speech",
+                        title = "International Day for Countering Hate Speech (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/countering-hate-speech",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.creativity-and-innovation-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -36,6 +119,17 @@ internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 4, day = 21),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_017,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/creativity-and-innovation-day",
+                            title = "World Creativity and Innovation Day (UN General Assembly A/RES/71/284, adopted 27 Apr 2017)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -107,6 +201,17 @@ internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 12, day = 4),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/day-against-unilateral-coercive-measures",
+                            title = "International Day against Unilateral Coercive Measures — resolution 79/293 (June 2025)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -178,6 +283,17 @@ internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 7, day = 12),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_023,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/day-of-combating-sand-and-dust-storms",
+                            title = "International Day of Combating Sand and Dust Storms — A/RES/77/294 (8 June 2023)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -233,77 +349,6 @@ internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/47/3",
                     "un" to "https://www.un.org/en/observances/day-of-persons-with-disabilities",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.day-of-the-seafarer"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز دریانوردان",
-                        "ar" to "اليوم الدولي للبحارة",
-                        "en" to "Day of the Seafarer",
-                        "es" to "Día de la Gente de Mar (OIM)",
-                        "fr" to "Journée des gens de mer",
-                        "ru" to "День моряка",
-                        "zh" to "海员日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 25),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.imo.org/en/About/Events/Pages/Day-of-the-Seafarer-2025.aspx",
-                        title = "Day of the Seafarer (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://www.un.org/sites/un2.un.org/files/dayoftheseafarer-res19.pdf",
-                    "un" to "https://www.imo.org/en/About/Events/Pages/Day-of-the-Seafarer-2025.aspx",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.deafblindness-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی ناشنوایی-نابینایی",
-                        "en" to "International Day of Deafblindness",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 27),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/deafblindness-day",
-                        title = "International Day of Deafblindness (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/deafblindness-day",
                 ),
         ),
     )

@@ -284,6 +284,17 @@ internal val OFFICIAL_EVENTS_PART_8: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 8, day = 31),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_020,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://research.un.org/en/docs/ga/quick/regular/75",
+                            title = "UN Dag Hammarskjold Library: A/RES/75/170, adopted 16 December 2020 (corroborated by un.org/en/observances/african-descent-day)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(

@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Weekday
 
@@ -23,6 +24,88 @@ import ir.taqvim.core.model.Weekday
  */
 internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.cities-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی شهرها",
+                        "en" to "World Cities Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 31),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_014,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/cities-day",
+                            title = "World Cities Day -- GA resolution 68/239, first celebrated in 2014",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/cities-day",
+                        title = "World Cities Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/cities-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.civil-aviation-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی هواپیمایی غیر نظامی",
+                        "ar" to "يوم الطيران المدني الدولي",
+                        "en" to "International Civil Aviation Day",
+                        "es" to "Día de la Aviación Civil Internacional",
+                        "fr" to "Journée de l'aviation civile internationale",
+                        "ru" to "Международный день гражданской авиации",
+                        "zh" to "国际民航日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 7),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/civil-aviation-day",
+                        title = "International Civil Aviation Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/51/33",
+                    "un" to "https://www.un.org/en/observances/civil-aviation-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.clean-energy-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -77,6 +160,17 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 9, day = 20),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_023,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/cleanup-day",
+                            title = "World Cleanup Day — resolution 78/122 (8 December 2023)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -148,6 +242,17 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 11, day = 24),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/conjoined-twins-day",
+                            title = "World Conjoined Twins Day — A/RES/78/313 (2024)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -178,6 +283,17 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 4, day = 5),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_019,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/conscience-day",
+                            title = "International Day of Conscience (UN General Assembly A/RES/73/329, adopted 25 Jul 2019)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -228,66 +344,6 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/47/90",
                     "un" to "https://www.un.org/en/observances/cooperatives-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cotton-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی پنبه",
-                        "en" to "World Cotton Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 7),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/cotton-day",
-                        title = "World Cotton Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/cotton-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.countering-hate-speech"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی مقابله با نفرت‌پراکنی",
-                        "en" to "International Day for Countering Hate Speech",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 18),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/countering-hate-speech",
-                        title = "International Day for Countering Hate Speech (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/countering-hate-speech",
                 ),
         ),
     )

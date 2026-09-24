@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -22,6 +23,47 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.argania-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی درخت آرگان",
+                        "en" to "International Day of Argania",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 10),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_021,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/argania-day",
+                            title = "International Day of Argania — A/RES/75/262 (2021)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/argania-day",
+                        title = "International Day of Argania (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/argania-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.asteroid-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -36,6 +78,17 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 6, day = 30),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_016,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/asteroid-day",
+                            title = "International Asteroid Day — A/RES/71/90 (December 2016)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -66,6 +119,17 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 10, day = 27),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 1_980,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.unesco.org/en/days/audiovisual-heritage",
+                            title = "World Day for Audiovisual Heritage: UNESCO's 21st General Conference adopted the Recommendation for the Safeguarding and Preservation of Moving Images (1980)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -137,6 +201,17 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 6, day = 3),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_018,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/bicycle-day",
+                            title = "World Bicycle Day (A/RES/72/272, adopted 12 April 2018)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -208,6 +283,17 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 1, day = 4),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_018,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/braille-day/background",
+                            title = "World Braille Day — General Assembly resolution A/RES/73/161 (November 2018)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -225,7 +311,7 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
-            id = EventId("un.care-and-support-day"),
+            id = EventId("un.breastfeeding-week"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -233,11 +319,22 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی مراقبت و حمایت",
-                        "en" to "International Day of Care and Support",
+                        "fa" to "هفته جهانی شیردهی",
+                        "en" to "World Breastfeeding Week",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 10, day = 29),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 8, day = 1), lengthDays = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_018,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.who.int/campaigns/world-breastfeeding-week",
+                            title = "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -245,43 +342,13 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/care-and-support-day",
-                        title = "International Day of Care and Support (observance page)",
+                        url = "https://www.who.int/campaigns/world-breastfeeding-week",
+                        title = "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/care-and-support-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.charity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی نیکوکاری",
-                        "en" to "International Day of Charity",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 5),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/charity-day",
-                        title = "International Day of Charity (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/charity-day",
+                    "un" to "https://www.who.int/campaigns/world-breastfeeding-week",
                 ),
         ),
     )

@@ -43,6 +43,7 @@ class UnInternationalDaysTest {
                 "NthWeekdayOfMonth" to WEEKDAY_COUNT,
                 "LastWeekdayOfMonth" to LAST_WEEKDAY_COUNT,
                 "Astronomical" to ASTRONOMICAL_COUNT,
+                "Week" to WEEK_COUNT,
             )
     }
 
@@ -111,7 +112,7 @@ class UnInternationalDaysTest {
         const val DATASET_FILE = "international/un-international-days.json"
         const val GOLDEN = "/golden/international/un-international-days-rules.csv"
         const val UN_LIST_URL = "https://www.un.org/en/observances/list-days-weeks"
-        const val EVENT_COUNT = 236
+        const val EVENT_COUNT = 246
         const val FIXED_COUNT = 228
         const val WEEKDAY_COUNT = 6
         const val LAST_WEEKDAY_COUNT = 1
@@ -119,12 +120,16 @@ class UnInternationalDaysTest {
         /** Vesak, the Day of the Full Moon (DT-040, ADR-0044): the day of the May FULL_MOON, UTC, month = 5. */
         const val ASTRONOMICAL_COUNT = 1
 
+        /** The 10 UN international weeks (DT-041, ADR-0046). */
+        const val WEEK_COUNT = 10
+
         /**
          * R07/D-05, 2026-09-23: 132 days added with an official citation but no Persian source (ADR-0042), plus
          * Vesak (DT-040, ADR-0044), whose full-moon rule was the only remaining gap once ADR-0042 removed the
-         * Persian-source requirement.
+         * Persian-source requirement, plus the 10 UN international weeks (DT-041, ADR-0046), none of which has an
+         * official Persian source either.
          */
-        const val TITLE_REVIEW_COUNT = 133
+        const val TITLE_REVIEW_COUNT = 143
 
         /** Persian titles come from UN Information Centre Tehran (live or Internet Archive) or United Nations in Iran. */
         val PERSIAN_SOURCES = listOf("unic-ir.org", "https://iran.un.org/fa/")

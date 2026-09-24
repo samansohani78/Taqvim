@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -22,6 +23,77 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.care-and-support-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی مراقبت و حمایت",
+                        "en" to "International Day of Care and Support",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 29),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/care-and-support-day",
+                        title = "International Day of Care and Support (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/care-and-support-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.charity-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی نیکوکاری",
+                        "en" to "International Day of Charity",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 5),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_012,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/charity-day",
+                            title = "International Day of Charity: GA resolution A/RES/67/105 designated 5 September as the day (67th session, 2012)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/charity-day",
+                        title = "International Day of Charity (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/charity-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.chemical-warfare-victims-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -76,6 +148,17 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 4, day = 26),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_016,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/chernobyl-remembrance-day",
+                            title = "International Chernobyl Disaster Remembrance Day — resolution 71/125 (8 December 2016)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -136,6 +219,17 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 11, day = 18),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
+                            title = "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence — A/RES/77/8 (7 November 2022)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -207,6 +301,17 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 4, day = 20),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_010,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/russian-language-day",
+                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -221,77 +326,6 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/zh/observances/chinese-language-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cities-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی شهرها",
-                        "en" to "World Cities Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 31),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/cities-day",
-                        title = "World Cities Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/cities-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.civil-aviation-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی هواپیمایی غیر نظامی",
-                        "ar" to "يوم الطيران المدني الدولي",
-                        "en" to "International Civil Aviation Day",
-                        "es" to "Día de la Aviación Civil Internacional",
-                        "fr" to "Journée de l'aviation civile internationale",
-                        "ru" to "Международный день гражданской авиации",
-                        "zh" to "国际民航日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 7),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/civil-aviation-day",
-                        title = "International Civil Aviation Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/51/33",
-                    "un" to "https://www.un.org/en/observances/civil-aviation-day",
                 ),
         ),
     )

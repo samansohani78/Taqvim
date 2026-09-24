@@ -13,6 +13,7 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -36,6 +37,17 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 6, day = 13),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_014,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://research.un.org/en/docs/ga/quick/regular/69",
+                            title = "International Albinism Awareness Day (A/RES/69/170, adopted 18 December 2014)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -53,6 +65,47 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
+            id = EventId("un.amr-awareness-week"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "هفته جهانی آگاهی از مقاومت ضدمیکروبی",
+                        "en" to "World Antimicrobial Resistance Awareness Week",
+                    ),
+                ),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 11, day = 18), lengthDays = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_018,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.who.int/campaigns/world-amr-awareness-week",
+                            title = "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-amr-awareness-week",
+                        title = "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.who.int/campaigns/world-amr-awareness-week",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.anti-colonialism-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -66,6 +119,17 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 12, day = 14),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/anti-colonialism-day",
+                            title = "International Day against Colonialism in All its Forms and Manifestations — A/RES/80/106 (2025)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -167,6 +231,17 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 3, day = 15),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/anti-islamophobia-day",
+                            title = "International Day to Combat Islamophobia — A/RES/76/254 (2022)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -197,6 +272,17 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 2, day = 10),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_023,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/arabian-leopard-day",
+                            title = "International Day of the Arabian Leopard — resolution 77/295 (June 2023)",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -227,6 +313,17 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 12, day = 18),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_010,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/russian-language-day",
+                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -241,36 +338,6 @@ internal val OFFICIAL_EVENTS_PART_9: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/arabiclanguageday",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.argania-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی درخت آرگان",
-                        "en" to "International Day of Argania",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 10),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/argania-day",
-                        title = "International Day of Argania (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/argania-day",
                 ),
         ),
     )
