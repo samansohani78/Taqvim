@@ -87,6 +87,18 @@ internal class OfficialView(
             }.toMap()
 
     fun isWeekend(jdn: Jdn): Boolean = holidays.isWeekend(jdn)
+
+    /**
+     * Touches the lazily built calendars on the thread that constructs the view.
+     *
+     * The view is shared by every collector, so a lazy left cold here would be initialised under its own monitor by
+     * whichever collector reached it first while the others blocked on that thread.
+     */
+    fun warmUp() {
+        islamicCalendar
+        iranCalendar
+        personalCalendars
+    }
 }
 
 /** The latest value of every input of a day range. */

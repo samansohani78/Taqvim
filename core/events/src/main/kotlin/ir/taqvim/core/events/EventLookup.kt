@@ -96,17 +96,39 @@ public class EventLookup(
         calendars: List<CalendarArithmetic>,
     ): Set<Int> = calendars.flatMapTo(LinkedHashSet()) { calendar -> calendar.fromJdn(jdn).year.let { it - 1..it + 1 } }
 
-    private fun indexed(key: YearKey): Map<Long, List<Occurrence>> =
+    /**
+     * The index of [key], computed **outside** the lock.
+     *
+     * The lock is held only to read and to publish, never across [compute]. One lookup is shared by every collector
+     * of the events repository — the calendar pager's three pages and the day-details pane at once — so computing
+     * under the lock made them serialize: on a two-core CI runner the waiting collectors blocked
+     * `Dispatchers.Default` threads, starving the pool that also builds the UI state, and
+     * `CalendarScreenTest`'s ten-second wait for a month title expired (PR run 35909594358).
+     *
+     * Two threads that miss the same key at the same moment both compute it and the first to publish wins. The result
+     * is a pure function of the key, so the duplicate is wasted work rather than a wrong answer, and it is bounded by
+     * the number of threads racing one cold key.
+     */
+    private fun indexed(key: YearKey): Map<Long, List<Occurrence>> {
         synchronized(lock) {
-            val cached = cache[key]
-            if (cached != null) {
+            cache[key]?.let {
                 hits++
-                cached
-            } else {
-                misses++
-                compute(key).also { cache[key] = it }
+                return it
             }
         }
+        val computed = compute(key)
+        return synchronized(lock) {
+            val published = cache[key]
+            if (published != null) {
+                hits++
+                published
+            } else {
+                misses++
+                cache[key] = computed
+                computed
+            }
+        }
+    }
 
     private fun compute(key: YearKey): Map<Long, List<Occurrence>> =
         definitions

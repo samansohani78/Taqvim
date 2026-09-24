@@ -10,6 +10,7 @@ import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.devicecalendar.DeviceEvent
 import ir.taqvim.data.devicecalendar.DeviceEventMapping
 import ir.taqvim.data.devicecalendar.DeviceTimeZone
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.time.Clock
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,8 @@ class EventsRepository(
     private val catalog: OfficialCatalog = OfficialCatalog(),
     private val computeDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
+    private val shared = AtomicReference<OfficialView?>(null)
+
     /**
      * One [DayEvents] per day of [days], in order. Timed events are dated in the current device zone (the [EventDays]
      * rule), so every source is read one day wider than [days]. A zone change re-reads only the zone-dependent sources;
@@ -43,12 +46,33 @@ class EventsRepository(
     @OptIn(ExperimentalCoroutinesApi::class)
     fun days(days: JdnRange): Flow<List<DayEvents>> {
         require(!days.isEmpty()) { "days must not be empty" }
-        val official = settings.distinctUntilChanged().map { OfficialView(catalog, it) }
+        val official = settings.distinctUntilChanged().map { viewFor(it) }
         val sourced = zones.distinctUntilChanged().flatMapLatest { zone -> sourcesIn(days, zone) }
         return combine(official, sourced) { view, zoned ->
             zoned.assembler.assemble(days, Snapshot(view, zoned.personal, zoned.device, zoned.ics))
         }.distinctUntilChanged()
             .flowOn(computeDispatcher)
+    }
+
+    /**
+     * The lookups for [settings], shared by every collector rather than built per flow.
+     *
+     * The calendar screen collects four of these flows at once — the pager's three pages and the day-details pane —
+     * and rebuilds them on every swipe, so a per-flow view meant each swipe threw away four freshly built event
+     * lookups with their caches and recomputed every year index from the ~300 dataset definitions. The view derives
+     * only from the immutable [EventsSettings], so any instance will do; publication is lock-free and a race simply
+     * builds one spare view rather than making a collector wait for another's construction.
+     */
+    private fun viewFor(settings: EventsSettings): OfficialView {
+        shared.get()?.takeIf { it.settings == settings }?.let { return it }
+        val built = OfficialView(catalog, settings).also { it.warmUp() }
+        val current = shared.get()
+        return if (current != null && current.settings == settings) {
+            current
+        } else {
+            shared.set(built)
+            built
+        }
     }
 
     private fun sourcesIn(
