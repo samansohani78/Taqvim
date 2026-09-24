@@ -20,8 +20,17 @@ import org.junit.jupiter.api.TestFactory
 
 /**
  * T-303 golden: with the generated official dataset (D-02/D-08), a day is a holiday exactly when the Calendar
- * Center's official calendar marks it so. Uses the daily fixtures of :core:calendar
- * (`golden/persian/official/{year}.csv`); only 1404 and 1405 are available (1403 and 1406 pending).
+ * Center's official calendar marks it so, through the runtime path the app uses — `HolidayCalendar` over the
+ * generated catalogue and the **computed** Iranian lunar calendar. Uses the daily fixtures of :core:calendar
+ * (`golden/persian/official/{year}.csv`), of which 25 years are imported (1381–1405, main@33d0418, main@c92223b).
+ *
+ * [OFFICIAL_YEARS] lists the 13 of them whose computed lunar months fall on the same days as the months the calendar
+ * printed, so an Islamic-dated holiday lands on the official day: 1381 and 1394–1405
+ * (`docs/data-todo/iran-holiday-history.md`, the "lunar / announced" column). In 1382–1393 the computed calendar
+ * starts some months a day earlier or later, and in 1383–1385 an announcement moved a month after the calendar was
+ * printed, so those years' Islamic holidays legitimately differ by a day here; the records themselves are checked
+ * against all 25 years, with the printed lunar dates, by `IranOfficialHolidayHistoryTest` in :tools:dataset. 1406 is
+ * not yet published by the Calendar Center.
  */
 class OfficialHolidaysGoldenTest {
     private val directory =
@@ -44,7 +53,7 @@ class OfficialHolidaysGoldenTest {
                         .filterNot { it.startsWith("#") }
                         .drop(1)
                         .map { it.split(',') }
-                rows shouldHaveSize DAYS_IN_YEAR
+                rows shouldHaveSize daysIn(year)
                 val mismatches =
                     rows
                         .filter { row ->
@@ -56,10 +65,16 @@ class OfficialHolidaysGoldenTest {
             }
         }
 
+    /** The length of Persian [year], so a leap year such as 1403 is not read as a short one. */
+    private fun daysIn(year: Int): Int =
+        (
+            PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, year + 1, 1, 1)) -
+                PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, year, 1, 1))
+        ).toInt()
+
     private companion object {
         const val DIRECTORY_PROPERTY = "taqvim.official.days.directory"
-        val OFFICIAL_YEARS = listOf(1404, 1405)
-        const val DAYS_IN_YEAR = 365
+        val OFFICIAL_YEARS = listOf(1381) + (1394..1405).toList()
         const val PERSIAN_COLUMN = 0
         const val HOLIDAY_COLUMN = 4
     }

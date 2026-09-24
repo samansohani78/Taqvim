@@ -22,7 +22,24 @@ public class HolidayCalendar(
 ) {
     /** The holiday occurrences of enabled sources on [jdn], in [EventLookup.DAY_ORDER]; empty on other days. */
     public fun holidayReasons(jdn: Jdn): List<Occurrence> =
-        lookup.eventsOn(jdn, enabledSources).filter { it.isHoliday && it.definition.source in enabledSources }
+        lookup
+            .eventsOn(jdn, enabledSources)
+            .filter { it.isHoliday && it.definition.source in enabledSources && withinValidity(it) }
+
+    /**
+     * Whether [occurrence] falls inside its definition's validity, read in the calendar the validity is written in.
+     *
+     * A holiday a law created or ended is a holiday only in the years the law covers: 8 Rabi al-Awwal became one in
+     * AH 1440 and 2 Shawwal in AH 1433, so the official calendars of the years before print those days without
+     * (تعطیل). Without this the day was reported as a holiday in every year — wrong on screen and in the workday and
+     * distance arithmetic that builds on it. [EventVisibilityPolicy] applies the same rule to what is displayed;
+     * holiday determination has to apply it too, because it does not go through that policy.
+     */
+    private fun withinValidity(occurrence: Occurrence): Boolean {
+        val validity = occurrence.definition.validity ?: return true
+        val calendar = lookup.calendarFor(occurrence.definition.source, validity.calendar) ?: return false
+        return validity.contains(calendar.fromJdn(occurrence.jdn).year)
+    }
 
     /** Whether [jdn] is a holiday of an enabled source. */
     public fun isHoliday(jdn: Jdn): Boolean = holidayReasons(jdn).isNotEmpty()

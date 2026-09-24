@@ -87,4 +87,30 @@ class HolidayCalendarTest {
             HolidayCalendar.forLanguage(lookup, setOf(EventSource.IRAN_OFFICIAL), language).weekend shouldBe weekend
         }
     }
+
+    @Test
+    fun `a holiday a law created is one only in the years the law covers`() {
+        // 8 Rabi al-Awwal became an Iranian holiday in AH 1440 and 2 Shawwal in AH 1433: the official calendars of
+        // the years before print those days without (تعطیل). Holiday determination does not go through
+        // EventVisibilityPolicy, so it has to apply the validity itself (T-303, D-02).
+        val fromYear = 1440
+        val lawful =
+            event("test.law-made-holiday", CalendarSystem.ISLAMIC, EventRule.Fixed(3, 8), isHoliday = true)
+                .copy(
+                    source = EventSource.IRAN_OFFICIAL,
+                    validity = Validity(CalendarSystem.ISLAMIC, fromYear, null, Citation("https://example.org", "t")),
+                )
+        val calendar =
+            HolidayCalendar(EventLookup(listOf(lawful)), setOf(EventSource.IRAN_OFFICIAL), weekend = emptySet())
+        val islamic = CalendarProvider.DEFAULT.calendarFor(CalendarSystem.ISLAMIC)!!
+
+        val before = islamic.toJdn(CalendarDate(CalendarSystem.ISLAMIC, fromYear - 1, 3, 8))
+        val first = islamic.toJdn(CalendarDate(CalendarSystem.ISLAMIC, fromYear, 3, 8))
+        val later = islamic.toJdn(CalendarDate(CalendarSystem.ISLAMIC, fromYear + 3, 3, 8))
+
+        calendar.isHoliday(before) shouldBe false
+        calendar.holidayReasons(before).shouldBeEmpty()
+        calendar.isHoliday(first) shouldBe true
+        calendar.isHoliday(later) shouldBe true
+    }
 }

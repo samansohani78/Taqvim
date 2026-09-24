@@ -33,7 +33,7 @@ public data class CacheStats(
  */
 public class EventLookup(
     definitions: Collection<EventDefinition>,
-    sourceCalendars: SourceCalendars = SourceCalendars.DEFAULT,
+    private val sourceCalendars: SourceCalendars = SourceCalendars.DEFAULT,
     astronomy: AstronomicalEventSource? = null,
     private val capacity: Int = DEFAULT_CAPACITY,
 ) {
@@ -74,6 +74,16 @@ public class EventLookup(
             .values
             .flatten()
             .sortedWith(compareBy<Occurrence> { it.jdn }.then(DAY_ORDER))
+
+    /**
+     * The calendar [system] uses for events of [source], or `null` when that source cannot express it — the same
+     * arithmetic the occurrences were computed with, so a caller can read an occurrence's year in the calendar its
+     * definition is written in, such as a `validity` given in Islamic years.
+     */
+    public fun calendarFor(
+        source: EventSource,
+        system: CalendarSystem,
+    ): CalendarArithmetic? = sourceCalendars.providerFor(source).calendarFor(system)
 
     /**
      * Occurrences on [jdn] from all available calendars for [enabledSources], holidays first, then by source and id.
