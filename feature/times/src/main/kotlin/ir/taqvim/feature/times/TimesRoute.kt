@@ -111,43 +111,49 @@ internal object ReportPrinter {
             container.removeView(webView)
             webView.destroy()
         }
-        webView.webViewClient =
-            object : WebViewClient() {
-                override fun onPageFinished(
-                    view: WebView,
-                    url: String?,
-                ) {
-                    val printManager = context.getSystemService(PrintManager::class.java)
-                    if (printManager == null) {
-                        release()
-                        return
-                    }
-                    // If the WebView cannot build an adapter, that is handled the same way an unavailable print
-                    // service already is: release it instead of leaving the report open with nothing printed.
-                    val adapter = runCatching { view.createPrintDocumentAdapter(jobName) }.getOrNull()
-                    if (adapter == null) {
-                        release()
-                        return
-                    }
-                    printManager.print(
-                        jobName,
-                        ReleasingPrintDocumentAdapter(adapter, ::release),
-                        PrintAttributes.Builder().build(),
-                    )
-                }
-
-                override fun onReceivedError(
-                    view: WebView,
-                    request: WebResourceRequest,
-                    error: WebResourceError,
-                ) {
-                    // The report is a self-contained loadDataWithBaseURL document with no navigation, so this should
-                    // never fire; if it somehow does, release the WebView instead of leaking it forever.
-                    if (request.isForMainFrame) release()
-                }
-            }
+        webView.webViewClient = printingClient(context, jobName, ::release)
         webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null)
     }
+
+    /**
+     * Hands the loaded page to the print service, and releases the WebView on every path that never reaches one: no
+     * print service, a WebView that cannot build an adapter, or a failed load of the main frame.
+     */
+    private fun printingClient(
+        context: Context,
+        jobName: String,
+        release: () -> Unit,
+    ): WebViewClient =
+        object : WebViewClient() {
+            override fun onPageFinished(
+                view: WebView,
+                url: String?,
+            ) {
+                val printManager = context.getSystemService(PrintManager::class.java)
+                // If the WebView cannot build an adapter, that is handled the same way an unavailable print service
+                // already is: release it instead of leaving the report open with nothing printed.
+                val adapter = printManager?.let { runCatching { view.createPrintDocumentAdapter(jobName) }.getOrNull() }
+                if (printManager == null || adapter == null) {
+                    release()
+                    return
+                }
+                printManager.print(
+                    jobName,
+                    ReleasingPrintDocumentAdapter(adapter, release),
+                    PrintAttributes.Builder().build(),
+                )
+            }
+
+            override fun onReceivedError(
+                view: WebView,
+                request: WebResourceRequest,
+                error: WebResourceError,
+            ) {
+                // The report is a self-contained loadDataWithBaseURL document with no navigation, so this should
+                // never fire; if it somehow does, release the WebView instead of leaking it forever.
+                if (request.isForMainFrame) release()
+            }
+        }
 
     /** The Activity that owns [this], if any: a [WebView] needs one to render, not just any [Context]. */
     private tailrec fun Context.findActivity(): Activity? =
