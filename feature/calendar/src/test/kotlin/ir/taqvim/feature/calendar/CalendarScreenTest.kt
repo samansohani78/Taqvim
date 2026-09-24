@@ -14,6 +14,7 @@ import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
@@ -21,6 +22,8 @@ import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.model.CalendarDate
+import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import kotlinx.coroutines.Dispatchers
 import org.junit.Rule
@@ -66,8 +69,41 @@ class CalendarScreenTest {
         }
     }
 
+    /**
+     * Pages to the month [monthsFromFarvardin1405] months from today's, through the pager's own scroll-to-index
+     * action rather than a swipe.
+     *
+     * The 35 flings this replaces were the only reason the test was load-sensitive: a fling has to settle before the
+     * next assertion, and on a CPU-starved machine it does not, which failed CI (run 35909594358) with a 10 s
+     * `ComposeTimeoutException` and made the test unable to judge the change it was guarding. One real swipe is kept,
+     * in `swiping the pager moves to the next and previous month`, so the gesture path is still covered.
+     */
+    private fun goToMonth(monthsFromFarvardin1405: Int) {
+        composeRule.onNodeWithTag(MONTH_PAGER_TAG).performScrollToIndex(MonthPages.pageOf(monthsFromFarvardin1405))
+    }
+
     private fun awaitNode(matcher: SemanticsMatcher) {
         composeRule.waitUntil(TIMEOUT_MILLIS) { composeRule.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+    }
+
+    /**
+     * Waits for the month [monthsFromFarvardin1405] months from today's to be shown: its title in the header **and**
+     * a day cell of that month in the grid.
+     *
+     * The title alone is not enough. It comes from the screen's state, so it appears as soon as the pager reports the
+     * new page, even if that page never builds its days — a fault planted in `MonthPageSlot` (days built only for the
+     * current month) left the old assertion passing while eleven of twelve pages rendered empty.
+     */
+    private fun awaitMonthShown(monthsFromFarvardin1405: Int) {
+        awaitNode(hasText(title(monthsFromFarvardin1405)))
+        awaitNode(hasContentDescription(longDate(midMonth(monthsFromFarvardin1405)), substring = true))
+    }
+
+    /** The 15th of the month [monthsFromFarvardin1405] months from today's, a day every month's page shows. */
+    private fun midMonth(monthsFromFarvardin1405: Int): Jdn {
+        val index = Math.floorMod(monthsFromFarvardin1405, MONTHS)
+        val year = 1405 + Math.floorDiv(monthsFromFarvardin1405, MONTHS)
+        return PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, year, index + 1, 15))
     }
 
     private fun title(monthsFromFarvardin1405: Int): String {
@@ -80,18 +116,23 @@ class CalendarScreenTest {
         DateFormatter.format(PersianCalendarSystem.fromJdn(day), day.weekday(), english, DateStyle.LONG)
 
     @Test
-    fun `swiping twelve months either way shows each month's title`() {
+    fun `paging twelve months either way shows each month's title`() {
         show()
         awaitNode(hasText(title(0)))
 
-        (1..MONTHS).forEach { month ->
-            composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeLeft() }
-            awaitNode(hasText(title(month)))
-        }
-        (MONTHS - 1 downTo -MONTHS).forEach { month ->
-            composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeRight() }
-            awaitNode(hasText(title(month)))
-        }
+        (1..MONTHS).forEach { month -> goToMonth(month).also { awaitMonthShown(month) } }
+        (MONTHS - 1 downTo -MONTHS).forEach { month -> goToMonth(month).also { awaitMonthShown(month) } }
+    }
+
+    @Test
+    fun `swiping the pager moves to the next and previous month`() {
+        show()
+        awaitNode(hasText(title(0)))
+
+        composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeLeft() }
+        awaitNode(hasText(title(1)))
+        composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeRight() }
+        awaitNode(hasText(title(0)))
     }
 
     @Test
