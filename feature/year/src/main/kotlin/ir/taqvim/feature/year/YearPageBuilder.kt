@@ -117,11 +117,30 @@ class YearPageBuilder(
         )
     }
 
-    /** Heading of [year] of calendar [index]. */
+    /** Heading of [year] of calendar [index]: [title] and [subtitle] together. */
     fun heading(
         index: Int,
         year: Int,
-    ): YearHeading {
+    ): YearHeading = YearHeading(title(index, year), subtitle(index, year))
+
+    /** The shown year of calendar [index] in the language's digits: the cheap half of [heading]. */
+    fun title(
+        index: Int,
+        year: Int,
+    ): String = number(calendars.arithmetic[index].fromJdn(calendars.yearDays(index, year).start).year)
+
+    /**
+     * The same days' years in the other calendars, or `null` when there are none.
+     *
+     * This is the expensive half of [heading] and is meant to run off the main thread: it converts the year's first
+     * and last day into every other calendar, and a year no calendar has seen yet costs about 10 ms that way — the
+     * Islamic crescent months of a fresh year are computed from the ephemeris (ADR-0027). A year already visited
+     * costs nothing, because those months are cached.
+     */
+    fun subtitle(
+        index: Int,
+        year: Int,
+    ): String? {
         val days = calendars.yearDays(index, year)
         val others =
             calendars.arithmetic.indices.filter { it != index }.map { other ->
@@ -129,8 +148,7 @@ class YearPageBuilder(
                 val last = calendars.arithmetic[other].fromJdn(days.endInclusive).year
                 if (first == last) number(first) else texts.range(number(first), number(last))
             }
-        val shown = calendars.arithmetic[index].fromJdn(days.start).year
-        return YearHeading(number(shown), others.takeIf { it.isNotEmpty() }?.joinToString(texts.separator))
+        return others.takeIf { it.isNotEmpty() }?.joinToString(texts.separator)
     }
 
     /** [value] in the language's digits. */

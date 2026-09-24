@@ -20,6 +20,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,6 +40,8 @@ import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.SegmentedTabs
 import ir.taqvim.core.ui.component.TopBar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /** Test tag of the next-year button; also its resource id in macrobenchmarks. */
 const val YEAR_NEXT_TAG: String = "year:next"
@@ -77,13 +81,19 @@ internal fun YearFrame(
     modifier: Modifier = Modifier,
     body: @Composable (Modifier) -> Unit,
 ) {
-    val heading =
-        remember(builder, content.calendarIndex, content.year) {
-            builder.heading(content.calendarIndex, content.year)
-        }
+    // The title is one conversion in the shown calendar; the subtitle converts the year into every other calendar,
+    // which costs about 10 ms for a year no calendar has seen yet, so it is built off the main thread like the pages
+    // (T-805). It is cleared first, so a year change never shows the previous year's subtitle; the app bar has a
+    // fixed height, so the gap moves nothing.
+    val title =
+        remember(builder, content.calendarIndex, content.year) { builder.title(content.calendarIndex, content.year) }
+    val subtitle by produceState<String?>(null, builder, content.calendarIndex, content.year) {
+        value = null
+        value = withContext(Dispatchers.Default) { builder.subtitle(content.calendarIndex, content.year) }
+    }
     ScreenSurface(
         modifier = modifier,
-        topBar = { TopBar(heading.title, subtitle = heading.subtitle) },
+        topBar = { TopBar(title, subtitle = subtitle) },
     ) { padding ->
         Column(Modifier.fillMaxSize().padding(padding)) {
             if (content.calendars.size > 1) {

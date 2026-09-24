@@ -7,8 +7,11 @@ package ir.taqvim.feature.year
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.ints.shouldBeLessThan
+import io.kotest.matchers.longs.shouldBeGreaterThanOrEqual
+import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.Numerals
@@ -158,6 +161,36 @@ class YearPageBuilderTest {
         best.toInt() shouldBeLessThan TimingTest.budget(BUDGET_MILLIS)
     }
 
+    @Test
+    fun `the heading is its title and its subtitle`() {
+        val builder = builder()
+
+        builder.heading(0, 1405) shouldBe YearHeading(builder.title(0, 1405), builder.subtitle(0, 1405))
+        builder.subtitle(0, 1405)?.shouldContain(persianDigits(2026))
+        builder(PERSIAN_FIRST.copy(calendars = listOf(CalendarSystem.PERSIAN))).subtitle(0, 1405).shouldBeNull()
+    }
+
+    @Test
+    @Tag(TimingTest.TAG)
+    fun `the title of a year no calendar has seen costs far less than its subtitle`() {
+        // The title is what the year screen computes on the main thread; the subtitle converts the year into every
+        // other calendar and is built off it (T-805). A year nothing has cached costs milliseconds that way, because
+        // the Islamic crescent months come from the ephemeris (ADR-0027). The two are compared with each other
+        // rather than with a wall-clock budget, so a slower machine or a larger CI factor scales both alike.
+        val builder = builder()
+        repeat(WARM_UP_RUNS) { builder.heading(0, 1405) }
+        var titleYear = FIRST_UNSEEN_YEAR
+        var subtitleYear = FIRST_UNSEEN_YEAR + MEASURED_RUNS
+
+        val title = (1..MEASURED_RUNS).minOf { measureTimeMillis { builder.title(0, titleYear++) } }
+        val subtitle = (1..MEASURED_RUNS).minOf { measureTimeMillis { builder.subtitle(0, subtitleYear++) } }
+
+        // Guards the comparison itself: these years must be inside the ephemeris range, where a fresh year is real
+        // work. Beyond it the months come from mean lunar months and cost nothing, which would prove nothing here.
+        subtitle shouldBeGreaterThanOrEqual MEASURABLE_SUBTITLE_MILLIS
+        (title * TITLE_CHEAPER_BY) shouldBeLessThan subtitle
+    }
+
     private companion object {
         val PERSIAN_ARITHMETIC = YearCalendars(PERSIAN_FIRST).arithmetic.first()
         const val WARM_UP_RUNS = 5
@@ -165,6 +198,18 @@ class YearPageBuilderTest {
 
         /** One frame at 60 Hz. */
         const val BUDGET_MILLIS = 16
+
+        /** The title must be at least this many times cheaper than the subtitle of an equally fresh year. */
+        const val TITLE_CHEAPER_BY = 3
+
+        /** Below this the subtitle is not doing real work, so the comparison would prove nothing. */
+        const val MEASURABLE_SUBTITLE_MILLIS = 2L
+
+        /**
+         * Fresh for every run and inside the ephemeris range of the Islamic calendars (ADR-0028), where converting a
+         * year the app has not seen is genuine work; past about 2400 the months come from mean lunar months instead.
+         */
+        const val FIRST_UNSEEN_YEAR = 2_200
     }
 
     @Test
