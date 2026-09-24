@@ -21,7 +21,9 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.TaqvimDatabase
 import kotlin.time.Instant
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -92,6 +94,13 @@ class DeviceCalendarRepositoryTest {
         var events = awaitItem()
         while (events.map { it.eventId } != ids) events = awaitItem()
     }
+
+    private suspend fun cachedIds(window: InstantWindow): List<Long> =
+        db
+            .deviceEventDao()
+            .observeInRange(window.fromEpochMillis, window.toEpochMillis)
+            .first()
+            .map { it.eventId }
 
     private fun notifyProviderChange() {
         application.contentResolver.notifyChange(CalendarContract.Events.CONTENT_URI, null)
@@ -186,13 +195,13 @@ class DeviceCalendarRepositoryTest {
                 permission(granted = false)
                 notifyProviderChange()
                 awaitIds(emptyList())
+                // Asserted here, not after the block: the empty list is the reader being told there is nothing to
+                // show, and by then the rows must already be gone. Asserting after `cancel` instead let a CI run
+                // pass while the deletion was still owed to a refresh the cancellation had ended (run 36046477919).
+                cachedIds(window).shouldBeEmpty()
                 cancelAndIgnoreRemainingEvents()
             }
-            db
-                .deviceEventDao()
-                .observeInRange(window.fromEpochMillis, window.toEpochMillis)
-                .first()
-                .shouldBeEmpty()
+            cachedIds(window).shouldBeEmpty()
         }
 
     @Test
@@ -205,7 +214,64 @@ class DeviceCalendarRepositoryTest {
 
             provider.failure = IllegalStateException("provider crashed")
             repository.refresh(window) shouldBe InstancesResult.Unavailable
-            val cached = db.deviceEventDao().observeInRange(window.fromEpochMillis, window.toEpochMillis).first()
-            cached.map { it.eventId } shouldBe listOf(3L, 2L, 1L, 6L)
+            cachedIds(window) shouldBe listOf(3L, 2L, 1L, 6L)
+        }
+
+    /**
+     * A source that has lost the permission while the provider itself answers nothing, so [refresh] leaves the cache
+     * alone (`Unavailable` means "any cached instances are still valid") and never emits a change.
+     *
+     * It isolates the guarantee the reader relies on from the refresh that usually also delivers it:
+     * `CalendarInstancesSource` would answer `PermissionDenied` here and clear the window on its way through
+     * [DeviceCalendarRepository.refresh], which is why removing that clearing still left every other test passing.
+     */
+    private object SilentDeniedSource : InstancesSource {
+        override fun hasPermission(): Boolean = false
+
+        override fun query(window: InstantWindow): InstancesResult = InstancesResult.Unavailable
+
+        override fun changes(): Flow<Unit> = emptyFlow()
+    }
+
+    @Test
+    fun theReaderIsNeverToldEventsAreGoneWhileTheirRowsRemain(): Unit =
+        runTest {
+            permission(granted = true)
+            provider.rows += fixtures
+            val window = DeviceEventMapping.window(day10, zone)
+            repository.refresh(window) shouldBe InstancesResult.Rows(fixtures)
+            cachedIds(window) shouldBe listOf(3L, 2L, 1L, 6L)
+
+            val denied =
+                DeviceCalendarRepository(
+                    source = SilentDeniedSource,
+                    dao = db.deviceEventDao(),
+                    zones = flowOf(zone),
+                    ioDispatcher = Dispatchers.Unconfined,
+                )
+            denied.events(day10).test {
+                awaitIds(emptyList())
+                cachedIds(window).shouldBeEmpty()
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
+    fun aCollectionStartedWithoutPermissionClearsWhatTheLastOneCached(): Unit =
+        runTest {
+            permission(granted = true)
+            provider.rows += fixtures
+            val window = DeviceEventMapping.window(day10, zone)
+            repository.refresh(window) shouldBe InstancesResult.Rows(fixtures)
+            cachedIds(window) shouldBe listOf(3L, 2L, 1L, 6L)
+
+            // The permission is revoked while nothing is collecting, which is what Android does when the user
+            // withdraws it: the next reader must not be handed rows the app can no longer read.
+            permission(granted = false)
+            repository.events(day10).test {
+                awaitIds(emptyList())
+                cachedIds(window).shouldBeEmpty()
+                cancelAndIgnoreRemainingEvents()
+            }
         }
 }
