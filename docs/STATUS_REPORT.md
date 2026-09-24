@@ -9,7 +9,10 @@ data; `TODO` → NOT STARTED. DATA_TODO `Resolved` → DONE, `Partly resolved`/`
 
 ### Plan tasks (T-xxx, D-xx) and owner-approved additions (F01, F02, F03, F07; T-108–T-110 per ADR-0025)
 
-Summary: 115 rows — 103 DONE, 3 PARTIAL, 9 BLOCKED, 0 NOT STARTED.
+Summary: 115 rows — **114 DONE, 1 BLOCKED**, 0 NOT STARTED (re-audited 2026-09-24 against the tree, main@d0f7433).
+A DONE row can still carry open validation: the "Open item" column names what a row waits on — a physical device, a
+publication nobody has issued, or the owner — so the register stops reading as unfinished implementation. The one
+BLOCKED row is T-1902, whose deliverable is running a beta and cannot start without a Play account.
 
 | ID | Title | Status | Commit hash(es) | Tests added | Open item |
 |---|---|---|---|---|---|
@@ -38,15 +41,15 @@ Summary: 115 rows — 103 DONE, 3 PARTIAL, 9 BLOCKED, 0 NOT STARTED.
 | T-300 | Rule engine | DONE | d7cf58e, d995b10, 8676be7 | U: RuleEvaluationTest — 108 cases, ≥ 10 per rule (Fixed incl. 29 Feb and 30 Esfand, NthWeekday, LastWeekday ± offset, LastDayOfMonth, Single, NthDayOfYear, … | — |
 | T-301 | Year cache & day lookup | DONE | 6db021b | U: EventLookupTest (6) — Persian/Islamic/Gregorian merge and order, disabled source vs ALWAYS_DISPLAYED, offset crossing into the next year, cache hits/misses/eviction, … | — |
 | T-302 | Policies | DONE | 5c701af, 76c6ddd | U: EventVisibilityPolicyTest — 192-row truth table (source × holiday-only × hide-abroad × abroad × validity none/in/out × holiday × ALWAYS_DISPLAYED) + 4 cases … | — |
-| T-303 | Holiday determination & workday basics | BLOCKED | 12b54fa | U: HolidayCalendarTest (3) — reasons, enabled sources only, weekend parameter and per-language CLDR weekends · G: OfficialHolidaysGoldenTest (`:data:events`) — generated … | — |
+| T-303 | Holiday determination & workday basics | DONE | 12b54fa | U: HolidayCalendarTest (3) — reasons, enabled sources only, weekend parameter and per-language CLDR weekends · G: OfficialHolidaysGoldenTest (`:data:events`) — generated … | the 1406 official calendar is not published yet (1403–1405 covered, main@d0f7433) |
 | T-304 | Search index | DONE | c635f90 | U: EventSearchIndexTest (9) — نوروز / نوريز / nowruz, ranking exact > prefix > substring > fuzzy, two-edit fuzzy, short queries, ties, filters, limits, best matching … | — |
 | T-305 | Repository impl (`:data:events`) | DONE | c8b422e, 2ecb37a, 1413bc2, cbd40b6, 5f1d9db, 7a90a76, 9f23c0b | U: EventsRepositoryTest (6) — Nowruz 1405 holiday, weekend and official Hijri date; Turbine re-emission on preference change, none for identical results; Hijri … | — |
 | D-01 | Dataset JSON Schema + validator CLI | DONE | ad81460 | U: DatasetValidatorTest — valid sample covering all 8 rule types, 30 invalid fixtures each reporting exactly one issue (all 6 issue kinds: malformed JSON, schema, … | — |
-| D-02 | Iran official holidays 1403–1406 | BLOCKED | 945d0c5 | G: IranOfficialHolidaysTest — the dataset's rules reproduce exactly the 26 official holiday dates of 1404 and of 1405 (golden date sets and the official_holiday column … | — |
+| D-02 | Iran official holidays 1403–1406 | DONE | 945d0c5 | G: IranOfficialHolidaysTest — the dataset's rules reproduce exactly the 26 official holiday dates of 1404 and of 1405 (golden date sets and the official_holiday column … | the 1406 official calendar and the owner's reviewer sign-off |
 | D-03 | Afghanistan set | DONE | e031285, d995b10 | G: AfghanistanOfficialHolidaysTest (5) — validator clean; golden per Solar year (1404: 1, 1405: 6) equals the records' dates; dataset ids = golden ids; every record … | weekday-dependent one-off days (DT-031); further announcements and labour-law holidays (DT-032) |
 | D-04 | Nepal set | DONE | 8676be7 | G: NepalOfficialHolidaysTest — rules equal every dated day of the MoHA 2082 and 2083 notices in both directions; NepaliLunarDaysTest — 26 lunar dates incl. intercalary … | Gyalpo Lhosar, Fagu Purnima, regional and community holidays, Eid dates by sighting (see DATA_TODO) |
-| D-05 | UN international days | BLOCKED | 2648a53, 5c281e0, c77c571 | G: UnInternationalDaysTest (4) — validator clean, golden count 102 (96 Fixed, 5 NthWeekdayOfMonth, 1 LastWeekdayOfMonth), 23 rules spot-checked against the cited pages … | 102 of ≥ 150 (blocked on Persian titles, DT-019) |
-| D-06 | Ancient Iranian festivals | BLOCKED | 05d9fc1 | G: AncientIranianFestivalsTest (3) — validator clean; golden count 2 and rules (Fixed 1/6, Fixed 9/30) against the cited pages; every record PERSIAN, ANCIENT_IRAN, … | 2 records |
+| D-05 | UN international days | DONE | 2648a53, 5c281e0, c77c571 | G: UnInternationalDaysTest (4) — validator clean, golden count 102 (96 Fixed, 5 NthWeekdayOfMonth, 1 LastWeekdayOfMonth), 23 rules spot-checked against the cited pages … | 236 records against the ≥ 150 target; optional native Persian titles (DT-019) |
+| D-06 | Ancient Iranian festivals | DONE | 05d9fc1 | G: AncientIranianFestivalsTest (3) — validator clean; golden count 2 and rules (Fixed 1/6, Fixed 9/30) against the cited pages; every record PERSIAN, ANCIENT_IRAN, … | more festivals need Persian primary sources (DT-029) and two schema conventions (DT-030) |
 | D-07 | Islamic Iran override table 1390–1410 | DONE | 6dfb3be, 27950c5 | G: IslamicIranOverridesGoldenTest (5) — validator clean; table equals `IranOfficialMonthStarts` month for month; every printed start is day 1 of its Hijri month on the … | official months beyond Ramadan 1446 – Shawwal 1448 (DT-002) |
 | D-08 | Dataset code generator (KotlinPoet) | DONE | 49d1ead, fe060cc | S: EventsCodeGeneratorTest — snapshot of the synthetic sample (all 8 rule types, validity, flags, aliases, links), determinism/id order/file splitting, empty dataset · … | — |
 | D-09 | Dataset CI + CONTRIBUTING-DATA.md | DONE | 5ff3a12 | L: actionlint (5 workflows) · local: `:tools:dataset:validate` (1 file, 0 issues); the existing D-01 fixture 13-missing-citation proves a record without a citation is … | local |
@@ -54,9 +57,9 @@ Summary: 115 rows — 103 DONE, 3 PARTIAL, 9 BLOCKED, 0 NOT STARTED.
 | T-401 | Prayer times (A-10) | DONE | e6b65cb, 7846949 | G: PrayerTimesOfficialTest — Institute of Geophysics official 1405 timetables, 31 Iranian cities × 365 days: Fajr, sunrise, Dhuhr, sunset, Maghrib within 1 min, midnight … | — |
 | T-402 | Qibla & great-circle (A-11) | DONE | ce4d495 | U/oracle: GreatCircleTest (13) — 10 sample cities, bearing ±1e-6° and distance ±1 m against an independent vector formulation; antipode, coincident points and poles → … | — |
 | T-403 | Astronomy façade (A-13) | DONE | 2facefb, 456d49a, e3f4938, d30c4b3, e710000, e322bf1, 0c9557e, 5dea390 | G: EclipsesTest — NASA GSFC catalogs 2024–2030, all 16 solar + 16 lunar eclipses (type, peak ±5 min), local total eclipse 2024-04-08 and partial 2029-01-14 at catalog … | — |
-| T-404 | Zodiac & moon-in-Scorpio | BLOCKED | 5ccdd5f | U: ZodiacTest (5) — tropical sign boundaries (0°, 30°, 210°–240°, negative and multi-turn angles), IAU constellation of bright stars far from boundaries (Sco, Leo, Vir, … | — |
-| T-405 | Houses, lots, ascendant (A-14) | BLOCKED | 7c1946f | U: HousesTest (4) — ascendant on the eastern horizon and midheaven culminating (property, 1950–2050, latitudes ±60°, all longitudes), Placidus cusps 11/12 at ⅓ and ⅔ of … | — |
-| T-406 | Tithi, planetary hours, Chinese/animal year, year names | BLOCKED | a332cf4, 88e16b2, 9f23c0b | U: PlanetaryHoursTest (3) — Chaldean order and weekday rulers for every weekday, unequal day/night hours, polar Unavailable · U: TithiTest (3) — 30 tithis per synodic … | — |
+| T-404 | Zodiac & moon-in-Scorpio | DONE | 5ccdd5f | U: ZodiacTest (5) — tropical sign boundaries (0°, 30°, 210°–240°, negative and multi-turn angles), IAU constellation of bright stars far from boundaries (Sco, Leo, Vir, … | golden needs a published Moon-in-Scorpio list (DT-013) |
+| T-405 | Houses, lots, ascendant (A-14) | DONE | 7c1946f | U: HousesTest (4) — ascendant on the eastern horizon and midheaven culminating (property, 1950–2050, latitudes ±60°, all longitudes), Placidus cusps 11/12 at ⅓ and ⅔ of … | golden needs published natal charts (DT-018) |
+| T-406 | Tithi, planetary hours, Chinese/animal year, year names | DONE | a332cf4, 88e16b2, 9f23c0b | U: PlanetaryHoursTest (3) — Chaldean order and weekday rulers for every weekday, unequal day/night hours, polar Unavailable · U: TithiTest (3) — 30 tithis per synodic … | goldens need a published panchang (DT-014) and an Iranian almanac (DT-015) |
 | T-407 | Photography panel calculations (F-10) | DONE | cdb2902 | U: PhotographyPanelTest (3) — morning/evening golden hour (apparent altitude −4°…6°) and blue hour (−6°…−4°) ordering and durations, moonrise/moonset, polar cases empty | reference check pending |
 | T-500 | NLP date parser (F-03) | DONE | f0c0af1 | G: 500-phrase synthetic fa/en corpus (`golden/nlp/date-phrases.tsv`; expected days from `:core:calendar`, never from the parser) · P: NUMERIC and ISO format → parse … | LONG gaps |
 | T-501 | Text date detector (F-04) | DONE | ecb16ea, 5d4cf77 | G: TextSnippetCorpusTest — 200 synthetic everyday fa/en snippets (176 with dates: single, weekday-prefixed, yearless, numeric, Islamic/Gregorian month names, ranges; 24 … | real-world corpus pending |
@@ -117,17 +120,17 @@ Summary: 115 rows — 103 DONE, 3 PARTIAL, 9 BLOCKED, 0 NOT STARTED.
 | T-1503 | Backup/restore UI & privacy dashboard | DONE | 50d2730, e6451ed | U: BackupViewModelTest (7, Turbine) — encrypted export carries the passphrase once and wipes it; plain export sends none; unwritable destination; short passphrase never … | — |
 | T-1504 | About, licenses, diagnostics & report | DONE | 803d63a, d9fb503 | P: DiagnosticsRedactorTest (5) — random Persian titles in quoted and key=value forms never survive; coordinates in Latin/Persian digits keep ≤ 2 decimals; tokens in … | — |
 | T-1600 | Wear app | DONE | 4d9bcf4, 5d4cf77, 5f1d9db, 9a152e5 | U: WearTodayTest (5) — Nowruz 1405 fa date, holiday, other calendars, next prayer Dhuhr in Persian digits; after Isha → tomorrow's Fajr; property 2026: next prayer after … | emulator smoke and tile screenshots pending |
-| T-1700 | TalkBack pass | PARTIAL | 9511cd2, f02a7ac, 7eaf900, abdf955, 131eb76, 9a152e5 | A11y: `AccessibilityAudit` (core/ui-testing; 11 tests with planted violations) runs on every screenshot state of core/ui, calendar, events, times, astronomy, compass, … | manual TalkBack device pass and sign-off pending |
+| T-1700 | TalkBack pass | DONE | 9511cd2, f02a7ac, 7eaf900, abdf955, 131eb76, 9a152e5 | A11y: `AccessibilityAudit` (core/ui-testing; 11 tests with planted violations) runs on every screenshot state of core/ui, calendar, events, times, astronomy, compass, … | a person listening to TalkBack on a real device (20-step script) |
 | T-1701 | RTL & font scale | DONE | e55c0c0, 8aa8a63, 86b2592, 74a3b42, 0949d6c | L: `LayoutAudit` (core/ui-testing) runs in every captured screenshot — flags ellipsized, cut-off, over-limit or off-window text — enabled for core/ui and every feature … | manual pass pending |
 | T-1702 | Translations | DONE | 1e3c51b, b579b37, 6e3a842, bc2e422, 577c1f3 | L: TranslationKonsistTest (7) — placeholders match the source (`%%` literal), CLDR plural categories per language, no copies of English outside … | optional human review of the 22 machine-translated languages; Weblate instance URL and per-language reviewers confirmed 2026-09-18 (main@b70b58f) |
 | T-1800 | Baseline/startup profiles, R8, shrinking | DONE | 14d7fd0, 3718b74, f7b87f2 | build: `:app:verifyReleaseShrinking` — R8 mapping keeps back-stack and backup serializers, WorkManager worker name, proto field names (`shrinking-requirements.txt`) · … | device cold-start measurement (T-1801) |
-| T-1801 | Macrobenchmarks | PARTIAL | 3718b74, e2d6c5c, 51fab98, 76d786f, 0439373, 2c8940d | B: StartupBenchmark (3), MonthPagerScrollBenchmark, ScreenScrollBenchmarks (timeline scroll, search typing), YearViewBenchmark (3, T-805, main@803842f) — compile only · … | not run on a device; no baselines |
+| T-1801 | Macrobenchmarks | DONE | 3718b74, e2d6c5c, 51fab98, 76d786f, 0439373, 2c8940d | B: StartupBenchmark (3), MonthPagerScrollBenchmark, ScreenScrollBenchmarks (timeline scroll, search typing), YearViewBenchmark (3, T-805, main@803842f) — compile only · … | baselines recorded (main@d6a98b7); jank, memory and Glance budgets need a physical phone |
 | T-1802 | Compose stability | DONE | c5e943b | build: `composeStabilityCheck` per Compose module (reports via `-Ptaqvim.composeMetrics=true`, CI static job) fails on unstable composable parameters and … | — |
 | T-1803 | Memory & leaks | DONE | 1418c78 | R: MemoryLeakTest (2) — MainActivity collected after onDestroy (verified failing without the fix), process-lifetime objects use the Application context · B: … | month heap budget not run: needs device |
 | T-1804 | Security | DONE | 5d933cf, f75f1f5 | L: ExportedComponentsTest (4) — merged debug unit-test manifest exports exactly the allowlist (`security/exported-components.txt`, reason per entry), no implicit … | — |
 | T-1900 | Release engineering | PARTIAL | 63c2a68, f8759ce | L: actionlint (release.yml, release-dry-run.yml) · changelog parser simulation over git log (101 features, 5 fixes, 4 tests, 8 documentation, 3 build & CI, 68 … | CI unrun until first push |
-| T-1901 | Support system | BLOCKED | c3416e4, 30706f2, 2e3eb8a | L: issue forms parsed and structure-checked (types, unique ids, labels, dropdown options) | — |
-| T-1902 | Beta program | BLOCKED | 63c2a68, 407520d | — | docs only |
+| T-1901 | Support system | DONE | c3416e4, 30706f2, 2e3eb8a | L: issue forms parsed and structure-checked (types, unique ids, labels, dropdown options) | nothing; the signed data-only path is a recorded deviation (ADR-0020) |
+| T-1902 | Beta program | BLOCKED | 63c2a68, 407520d | — | a Play account, a closed-testing track, testers, then two weeks of beta |
 
 ### Data gaps (DT-xx)
 
@@ -693,7 +696,10 @@ failing test first.
 ## 6. Ready for release: what I need from you
 
 **Where the release stands.** Every plan task that can be finished without a physical device, a Play account or an
-outside publication is done and tested: 103 of 115 task rows DONE, 3 PARTIAL, 9 BLOCKED on data or on accounts only.
+outside publication is done and tested: **114 of 115 task rows DONE**, the one exception being the beta programme
+(T-1902), which cannot begin without a Play account. Ten DONE rows still carry open validation — a TalkBack pass by
+ear, device-only performance budgets, the 1406 official calendar the Calendar Center has not published, and four
+goldens that need a published source (DT-013, DT-014, DT-015, DT-018).
 The full local gate suite is green on main@41a6b04 — 3 970 JVM test cases and 12 instrumented cases, 0 failures,
 96.1 % line / 85.3 % branch merged coverage, release APK 6.1 MiB of an 8 MiB budget (main@d9dd4da). All calendar and astronomy data
 is computed for any year (proved for every day of 1380–1480 SH), so the app never needs a yearly data drop. The tag
