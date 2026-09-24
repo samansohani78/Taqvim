@@ -180,8 +180,29 @@ The app's baseline and startup profiles are generated on a Gradle Managed Device
   emulator and the API 34 `aosp-atd` system image.
 - **Output:** `app/src/main/generated/baselineProfiles/` (baseline and startup profiles). Review the diff, then commit
   it; release builds pick the files up automatically and use the startup profile for dex layout.
-- **When:** before each release candidate, and after large changes to start-up or the month screen.
+- **When:** before each release candidate, after large changes to start-up or the month screen, and whenever the
+  dataset grows into a new generated `OfficialEventsPart` class — `BaselineProfileFreshnessKonsistTest` fails until
+  the profile covers them all, because a profile that names fewer classes than the APK ships is stale.
 - Normal builds never start an emulator (`automaticGenerationDuringBuild = false`) and work without the files.
+
+### When the managed device cannot generate them
+
+The `aosp-atd` image of `pixel6Api34` is stripped of the storage the generator writes through, so the run can die
+with `ENOTCONN` on `/storage/emulated/0`. Generate against an attached device or a full emulator image instead:
+
+```
+adb devices                                   # one device, booted
+./gradlew :app:generateBaselineProfile -Ptaqvim.profileOnConnectedDevice=true \
+  -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.suppressErrors=EMULATOR,LOW-BATTERY
+```
+
+- The property is read in `benchmark/build.gradle.kts`; without it the managed device is used, as above. Do not edit
+  that file by hand to switch — an undocumented edit is how the profile went stale unnoticed once already.
+- `suppressErrors` is needed only on an emulator or a device on battery; CI passes it for the same reason.
+- Prefer the newest full image available (this project's `c1ps16k`, API 37, generates a fuller profile than API 33),
+  since the rules should describe the platform users run.
+- A profile is a recording, so two runs differ by a few per cent even on one device; review the diff for whole
+  packages disappearing rather than for the exact rule count.
 
 ## Owner defaults (confirmed 2026-09-18)
 
