@@ -88,11 +88,18 @@ jobs:
         with:
           name: benchmark-test-reports
           path: "**/build/reports/androidTests/"
+      - name: Self-test of the gate (fixtures only, no measurements)
+        # Separate step so its output can never be read as a measurement: the fixtures use realistic benchmark names
+        # and millisecond values, and when they shared this job's step a fixture's "Regression: …startupCold…" line
+        # was taken for a real one and chased for a day. The tests also capture the gate's output themselves.
+        run: python3 -m unittest discover -s tools/benchmark
       - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1801, T-1803)
         # A required benchmark without a committed baseline fails (REVIEW R08); a recording run exits 3 and never
-        # qualifies a commit for release (.github/required-checks.txt).
+        # qualifies a commit for release (.github/required-checks.txt). Exit 4 means the control benchmarks moved, so
+        # the runner was degraded and its timings prove nothing: the job still fails, because an inconclusive run has
+        # not benchmarked the commit, but it says so instead of naming regressions it cannot substantiate.
         run: |
-          python3 -m unittest discover -s tools/benchmark
+          set +e
           python3 tools/benchmark/compare_benchmarks.py \
             --baseline benchmark/baselines \
             --results build/benchmark-results \
@@ -100,6 +107,14 @@ jobs:
             --budgets benchmark/budgets.json \
             --required benchmark/required.json \
             ${{ inputs.record-baseline && '--record-baseline' || '' }}
+          status=$?
+          set -e
+          if [ "$status" -eq 4 ]; then
+            echo "::warning title=Benchmarks inconclusive::This runner was degraded: the control benchmarks, which time"\
+              " fixed synthetic work the app cannot affect, moved beyond their band. No regression is claimed. Re-run"\
+              " this job; if it recurs on a healthy runner, re-record benchmark/baselines."
+          fi
+          exit "$status"
 
   baseline-profile:
     name: Baseline and startup profiles (on demand)

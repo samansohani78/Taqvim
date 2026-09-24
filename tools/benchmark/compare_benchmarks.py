@@ -26,7 +26,19 @@ Lost results fail too (review finding B14):
 - a benchmark or metric present in the baseline but missing from the results fails, unless the benchmark is optional;
 - a benchmark reported more than once fails, because only one of the copies could be compared.
 
-Exit code 1 means at least one failure.
+Exit code 1 means at least one failure; exit code 4 means the run was inconclusive (see below).
+
+Runner health (``control`` in ``required.json``): a hosted emulator's speed varies far more than the 10 % threshold,
+so a comparison is only worth reading when the machine behaved. The control benchmarks time fixed synthetic drawing
+and mask computation in process — no UI, no frame timeline, no dataset — so app changes cannot move them. When one
+moves beyond the control band, the machine moved, and every timing in that run is suspect: the gate prints what the
+control measured, says the run is INCONCLUSIVE and exits 4 **without claiming a regression it cannot substantiate**.
+Two nightly runs failed that way with 11-349 % "regressions" over code byte-identical to the baseline commit, which
+cost a day of chasing them. Structural failures (a duplicate result, a missing baseline, a renamed benchmark) do not
+depend on timing, so they still fail with exit 1 even on a degraded machine.
+
+Exit 4 is deliberately not success: a commit whose benchmark run was inconclusive has not been benchmarked, so it
+must not qualify for release (``.github/required-checks.txt``). Re-run the job on a healthy runner.
 """
 from __future__ import annotations
 
@@ -39,6 +51,7 @@ Results = dict[tuple[str, str], dict[str, float]]
 
 P99_SUFFIX = ".P99"
 RECORDED_EXIT = 3
+INCONCLUSIVE_EXIT = 4
 
 
 def typical_values(benchmark: dict) -> dict[str, float]:
@@ -189,12 +202,45 @@ def missing_baselines(required: dict, baseline: Results, current: Results) -> li
     return found
 
 
+def control_moves(required: dict, baseline: Results, current: Results) -> list[str]:
+    """Lines for every control benchmark whose metric moved beyond the control band, in either direction.
+
+    A control that got much *faster* is as good a sign of a changed machine as one that got slower, so the band is
+    two-sided. Only benchmarks listed under ``control.benchmarks`` are examined, and a control missing from either
+    side is left to the structural checks.
+    """
+    control = required.get("control", {})
+    band = control.get("band", 0.50)
+    found = []
+    for name in control.get("benchmarks", []):
+        class_name, _, test = name.rpartition(".")
+        key = (class_name, test)
+        for metric, value in sorted(current.get(key, {}).items()):
+            if metric.endswith(P99_SUFFIX):
+                continue
+            reference = baseline.get(key, {}).get(metric)
+            if reference is None or reference <= 0:
+                continue
+            change = value / reference - 1
+            if abs(change) > band:
+                found.append(f"{name} {metric}: {reference:g} → {value:g} ({change * 100:+.1f} %)")
+    return found
+
+
 def read_json(path: Path | None) -> dict:
     return json.loads(path.read_text(encoding="utf-8")) if path else {}
 
 
-def failures(args: argparse.Namespace, current: Results, duplicates: list[str]) -> list[str]:
-    """Every failure line of the gate, each with its category prefix."""
+def failures(
+    args: argparse.Namespace,
+    current: Results,
+    duplicates: list[str],
+) -> tuple[list[str], list[str], list[str]]:
+    """The gate's findings: (structural failures, timing failures, control moves), each line with its prefix.
+
+    Structural failures hold whatever the machine did; timing failures are only meaningful when the control says the
+    machine behaved.
+    """
     required = read_json(args.required)
     budgets = read_json(args.budgets)
     baseline = load(args.baseline) if args.baseline.is_dir() else {}
@@ -211,14 +257,16 @@ def failures(args: argparse.Namespace, current: Results, duplicates: list[str]) 
             state = f"checked against the hosted ceiling {ceiling:g}" if ceiling is not None else "not checked"
             print(f"Budget of {name} needs a physical device; {state} on this run")
     optional = set(required.get("optional", {}))
-    return (
+    structural = (
         [f"Duplicate result: {name}" for name in duplicates]
         + ([] if args.record_baseline else [f"Missing baseline: {line}" for line in established])
         + [f"Missing: {line}" for line in (missing_required(required, current) if args.required else [])]
         + [f"Missing: {line}" for line in lost_since_baseline(baseline, current, optional)]
-        + [f"Regression: {line}" for line in regressions(baseline, current, args.threshold)]
-        + [f"Over budget: {line}" for line in over_budget(budgets, current, args.physical_device)]
     )
+    timing = [f"Regression: {line}" for line in regressions(baseline, current, args.threshold)] + [
+        f"Over budget: {line}" for line in over_budget(budgets, current, args.physical_device)
+    ]
+    return structural, timing, control_moves(required, baseline, current)
 
 
 def main(argv: list[str]) -> int:
@@ -243,10 +291,20 @@ def main(argv: list[str]) -> int:
     if not current:
         print(f"No benchmark results under {args.results}", file=sys.stderr)
         return 1
-    found = failures(args, current, duplicates)
-    for line in found:
+    structural, timing, control = failures(args, current, duplicates)
+    for line in structural:
         print(line)
-    if found:
+    if control:
+        print("INCONCLUSIVE: the control benchmarks moved, so this machine's timings cannot be compared.")
+        print("These time fixed synthetic work that app changes cannot affect (control in benchmark/required.json):")
+        for line in control:
+            print(f"  Control moved: {line}")
+        print(f"{len(timing)} timing finding(s) withheld: on this machine they are not evidence of a regression.")
+        print("Re-run the job on a healthy runner. Structural failures above, if any, still hold.")
+        return 1 if structural else INCONCLUSIVE_EXIT
+    for line in timing:
+        print(line)
+    if structural or timing:
         return 1
     if args.record_baseline:
         print("Baseline recording run: NON-QUALIFYING. Review the uploaded results, commit them to benchmark/baselines,")

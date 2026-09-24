@@ -78,5 +78,24 @@
   "optional": {
     "ir.taqvim.benchmark.BaselineProfileGenerator.startup": "Excluded from the nightly job (notClass); run on demand by :app:generateBaselineProfile.",
     "ir.taqvim.benchmark.BaselineProfileGenerator.journeys": "Excluded from the nightly job (notClass); run on demand by :app:generateBaselineProfile."
+  },
+  "control": {
+    "_comment": "Runner-health control (T-1801). These microbenchmarks time fixed synthetic drawing and mask computation in process, with no UI, no frame timeline and no dataset, so a change to the app's screens or data cannot move them. When they move far, the machine moved: both degraded nightly runs blew them up while the code that draws them was byte-identical to the baseline commit (run 35953669737 sunArcBitmap +348.8 %, progressRingBitmap +241.3 %; run 36040359691 progressRingBitmap +258.4 %, moonBitmap +75.6 %). A control outside its band makes the whole comparison inconclusive rather than failed, because timings from that machine cannot be trusted. Editing the code one of these benchmarks draws means its baseline must be re-recorded, as for any benchmark.",
+    "benchmarks": [
+      "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.monthBitmap4x4",
+      "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.sunArcBitmap",
+      "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.moonBitmap",
+      "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.progressRingBitmap",
+      "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.mapThumbnailBitmap",
+      "ir.taqvim.benchmark.micro.WidgetRenderBenchmark.mapWidgetContent",
+      "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.date1x1",
+      "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.dateClock4x1",
+      "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.daySummary2x2",
+      "ir.taqvim.benchmark.micro.GlanceWidgetBenchmark.prayerStrip4x2",
+      "ir.taqvim.benchmark.micro.MapMaskBenchmark.dayNightMask",
+      "ir.taqvim.benchmark.micro.MapMaskBenchmark.moonVisibilityMask",
+      "ir.taqvim.benchmark.micro.MapMaskBenchmark.crescentMask"
+    ],
+    "band": 0.5
   }
 }
