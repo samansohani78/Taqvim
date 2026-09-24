@@ -54,6 +54,13 @@ class EventsCodeGeneratorTest {
     }
 
     @Test
+    fun `a Week rule's nested start rule is generated (ADR-0046)`() {
+        val rendered = EventsCodeGenerator.generate(sample).joinToString("\n") { it.content }
+
+        rendered shouldContain "EventRule.Week(start = EventRule.Fixed(month = 10, day = 4), lengthDays = 7)"
+    }
+
+    @Test
     fun `an empty dataset still yields an index`() {
         val sources = EventsCodeGenerator.generate(mapOf("empty.json" to """{"schemaVersion":1,"events":[]}"""))
 

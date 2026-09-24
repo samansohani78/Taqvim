@@ -301,6 +301,27 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> = listOf(
                     ),
                 ),
             ),
+            EventDefinition(
+                id = EventId("test.week"),
+                calendar = CalendarSystem.GREGORIAN,
+                source = EventSource.INTERNATIONAL,
+                category = EventCategory.INTERNATIONAL,
+                isHoliday = false,
+                title = LocalizedText(
+                    mapOf(
+                        "fa" to "رویداد نمونه",
+                        "en" to "Sample event",
+                    ),
+                ),
+                rule = EventRule.Week(start = EventRule.Fixed(month = 10, day = 4), lengthDays = 7),
+                citations = listOf(
+                    Citation(
+                        url = "https://example.org/source.pdf",
+                        title = "Synthetic test source",
+                        page = "1",
+                    ),
+                ),
+            ),
         )
 
 // ===== OfficialEvents.kt

@@ -203,10 +203,24 @@ private fun directDays(
             lunarDays(rule, calendar, year)
         }
 
+        is EventRule.Week -> {
+            weekDays(rule, calendar, year)
+        }
+
         is EventRule.RelativeToEvent, is EventRule.Astronomical -> {
             emptyList()
         }
     }
+
+/** Every day of the [EventRule.Week.lengthDays]-day span starting where [EventRule.Week.start] resolves (ADR-0046). */
+private fun weekDays(
+    rule: EventRule.Week,
+    calendar: CalendarArithmetic,
+    year: Int,
+): List<Jdn> {
+    val start = directDays(rule.start, calendar, year).singleOrNull() ?: return emptyList()
+    return (start..(start + (rule.lengthDays - 1))).toList()
+}
 
 /** Lunar festival days; only the Bikram Sambat calendar has lunar months (ADR-0038). */
 private fun lunarDays(

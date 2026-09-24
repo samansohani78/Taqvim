@@ -8,6 +8,8 @@ import com.ibm.icu.util.Calendar
 import com.ibm.icu.util.PersianCalendar
 import com.ibm.icu.util.TimeZone
 import com.ibm.icu.util.ULocale
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Weekday
@@ -188,6 +190,50 @@ class RuleEvaluationTest {
                     .atZone(java.time.ZoneId.of(zone))
                     .toLocalDate()
             days(definition, 2024, calculator) shouldBe listOf(expected)
+        }
+    }
+
+    @TestFactory
+    fun `Week returns every day of its span, starting where its start rule resolves (ADR-0046)`(): List<DynamicTest> {
+        val fixedStart = EventRule.Fixed(10, 4)
+        val spaceWeek = event("test.space-week", CalendarSystem.GREGORIAN, EventRule.Week(fixedStart, 7))
+        val ordinalStart = EventRule.NthWeekdayOfMonth(11, Weekday.THURSDAY, 4)
+        val ordinalWeek = event("test.ordinal-week", CalendarSystem.GREGORIAN, EventRule.Week(ordinalStart, 7))
+        return cases("World Space Week", years) { year ->
+            val start = LocalDate.of(year, 10, 4)
+            days(spaceWeek, year) shouldBe (0L..6L).map(start::plusDays)
+        } +
+            cases("a week anchored to an ordinal weekday", years) { year ->
+                val fourthThursday =
+                    LocalDate
+                        .of(year, 11, 1)
+                        .with(TemporalAdjusters.dayOfWeekInMonth(4, DayOfWeek.THURSDAY))
+                days(ordinalWeek, year) shouldBe (0L..6L).map(fourthThursday::plusDays)
+            }
+    }
+
+    @Test
+    fun `Week has no occurrence in a year its start rule doesn't resolve`() {
+        val fifthFridayStart = EventRule.NthWeekdayOfMonth(3, Weekday.FRIDAY, 5)
+        val fifthFridayWeek =
+            event("test.fifth-friday-week", CalendarSystem.GREGORIAN, EventRule.Week(fifthFridayStart, 7))
+        val yearsWithoutAFifthFriday =
+            years.filter { year ->
+                val fifthFriday = LocalDate.of(year, 3, 1).with(TemporalAdjusters.dayOfWeekInMonth(5, DayOfWeek.FRIDAY))
+                fifthFriday.monthValue != 3
+            }
+
+        yearsWithoutAFifthFriday.shouldNotBeEmpty()
+        yearsWithoutAFifthFriday.forEach { year -> days(fifthFridayWeek, year) shouldBe emptyList() }
+    }
+
+    @Test
+    fun `Week rejects a start rule that needs another event or astronomy`() {
+        shouldThrow<IllegalArgumentException> {
+            EventRule.Week(EventRule.RelativeToEvent(EventId("test.other"), 1), 7)
+        }
+        shouldThrow<IllegalArgumentException> {
+            EventRule.Week(EventRule.Astronomical(AstroKind.MARCH_EQUINOX, 0, "UTC"), 7)
         }
     }
 

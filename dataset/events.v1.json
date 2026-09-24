@@ -211,7 +211,8 @@
             "NthDayOfYear",
             "RelativeToEvent",
             "Astronomical",
-            "LunarTithi"
+            "LunarTithi",
+            "Week"
           ]
         }
       },
@@ -349,6 +350,21 @@
           },
           "then": {
             "$ref": "#/$defs/ruleLunarTithi"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "Week"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleWeek"
           }
         }
       ]
@@ -571,6 +587,92 @@
       "type": "integer",
       "minimum": 1,
       "maximum": 30
+    },
+    "ruleWeek": {
+      "description": "A lengthDays-day span starting on the day start resolves to (ADR-0046): every day of the span is an occurrence, so the app shows the record on each day of the week, the same way a LunarTithi record with endTithi already shows a multi-day festival. start is restricted (by the weekStart def) to a rule that needs neither another event nor astronomy to resolve on its own: Fixed, NthWeekdayOfMonth or LastWeekdayOfMonth.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "start",
+        "lengthDays"
+      ],
+      "properties": {
+        "type": {
+          "const": "Week"
+        },
+        "start": {
+          "$ref": "#/$defs/weekStart"
+        },
+        "lengthDays": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 14
+        }
+      }
+    },
+    "weekStart": {
+      "description": "The day a Week rule starts on: a fixed date, the nth weekday of a month, or the last weekday of a month (with an optional offset).",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "Fixed",
+            "NthWeekdayOfMonth",
+            "LastWeekdayOfMonth"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "Fixed"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleFixed"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "NthWeekdayOfMonth"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleNthWeekdayOfMonth"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "LastWeekdayOfMonth"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleLastWeekdayOfMonth"
+          }
+        }
+      ]
     },
     "event": {
       "type": "object",

@@ -90,13 +90,22 @@ internal object SemanticChecks {
         ids: Set<String>,
     ): List<DatasetIssue> {
         val rule = record.event.child("rule") ?: return emptyList()
-        return when (rule.string("type")) {
+        return ruleTypeIssues(record, rule, ids)
+    }
+
+    /** [rule] is the record's own rule, or (recursively) a `Week` rule's `start` (ADR-0046). */
+    private fun ruleTypeIssues(
+        record: EventRecord,
+        rule: JsonObject,
+        ids: Set<String>,
+    ): List<DatasetIssue> =
+        when (rule.string("type")) {
             "Fixed", "Single" -> dayIssues(record, rule)
             "NthDayOfYear" -> dayOfYearIssues(record, rule)
             "RelativeToEvent" -> referenceIssues(record, rule, ids)
+            "Week" -> rule.child("start")?.let { ruleTypeIssues(record, it, ids) }.orEmpty()
             else -> emptyList()
         }
-    }
 
     private fun dayIssues(
         record: EventRecord,

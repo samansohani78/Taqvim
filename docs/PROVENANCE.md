@@ -171,7 +171,10 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
 - **Behaviour choices:** a `Fixed`/`Single` day that does not exist in a year (e.g. 30 Esfand in a common year) has no
   occurrence; `LastWeekdayOfMonth` offsets and `Astronomical` offsets may leave the month but keep the rule year;
   `RelativeToEvent` resolves across calendars and rejects cycles, self references and unknown targets up front;
-  astronomical instants come from an injected `AstronomicalEventSource` (implemented by T-403).
+  astronomical instants come from an injected `AstronomicalEventSource` (implemented by T-403); `Week(start,
+  lengthDays)` (ADR-0046) resolves `start` (restricted to `Fixed`, `NthWeekdayOfMonth` or `LastWeekdayOfMonth`) the
+  same way and returns every day of the `lengthDays`-day span from there, each becoming its own occurrence — no
+  external source, own arithmetic on top of the day rules already here.
 - **Validation oracles:** java.time (Gregorian weekday/day-of-year rules), ICU4J 78.3 `IslamicCalendar(ISLAMIC_CIVIL)`
   and `PersianCalendar` (test scope only); the official 1404 calendar's "last Friday of Ramadan" for the Iranian lunar
   calendar.

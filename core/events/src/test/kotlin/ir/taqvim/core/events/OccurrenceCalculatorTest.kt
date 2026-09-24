@@ -89,6 +89,14 @@ class OccurrenceCalculatorTest {
         shouldThrow<IllegalArgumentException> { EventRule.Single(1405, 1, 0) }
         shouldThrow<IllegalArgumentException> { EventRule.NthDayOfYear(0) }
         shouldThrow<IllegalArgumentException> { EventRule.Astronomical(AstroKind.FULL_MOON, 0, "Mars/Olympus") }
+        shouldThrow<IllegalArgumentException> { EventRule.Week(EventRule.Fixed(10, 4), 1) }
+        shouldThrow<IllegalArgumentException> { EventRule.Week(EventRule.Fixed(10, 4), 15) }
+        shouldThrow<IllegalArgumentException> {
+            EventRule.Week(EventRule.RelativeToEvent(EventId("test.x"), 1), 7)
+        }
+        shouldThrow<IllegalArgumentException> {
+            EventRule.Week(EventRule.Astronomical(AstroKind.FULL_MOON, 0, "UTC"), 7)
+        }
         shouldThrow<IllegalArgumentException> { EventId(" ") }
         shouldThrow<IllegalArgumentException> { LocalizedText(mapOf("en" to "Only English")) }
         shouldThrow<IllegalArgumentException> { LocalizedText(mapOf("fa" to "x", "en" to " ")) }
@@ -122,6 +130,11 @@ class OccurrenceCalculatorTest {
                     ) { m, w, o -> EventRule.LastWeekdayOfMonth(m, w, o) },
                     Arb.int(1..12).map { EventRule.LastDayOfMonth(it) },
                     Arb.int(1..366).map { EventRule.NthDayOfYear(it) },
+                    Arb.bind(
+                        Arb.int(1..12),
+                        Arb.int(1..28),
+                        Arb.int(2..14),
+                    ) { m, d, len -> EventRule.Week(EventRule.Fixed(m, d), len) },
                 )
             val systems = Arb.choice(Arb.enum<CalendarSystem>())
             checkAll(PropertyTesting.iterations, rules, systems, Arb.int(1300..1500)) { rule, system, rawYear ->

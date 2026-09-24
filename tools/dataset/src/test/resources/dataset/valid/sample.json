@@ -251,6 +251,35 @@
       }
     },
     {
+      "id": "test.week",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "Week",
+        "start": {
+          "type": "Fixed",
+          "month": 10,
+          "day": 4
+        },
+        "lengthDays": 7
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-09-24",
+      "reviewedBy": "test-fixture"
+    },
+    {
       "id": "test.nepali-lunar",
       "calendar": "NEPALI",
       "source": "NEPAL_OFFICIAL",

@@ -218,6 +218,16 @@ class CalendarCompletenessTest {
                 if (month == null) instantDays else instantDays.filter { it.month == month }.take(1)
             }
 
+            is EventRule.Week -> {
+                val start = expectedDates(rule.start, calendar, year).singleOrNull()
+                if (start == null) {
+                    emptyList()
+                } else {
+                    val startJdn = calendar.toJdn(start)
+                    (0 until rule.lengthDays).map { calendar.fromJdn(startJdn + it) }
+                }
+            }
+
             else -> {
                 error("rule type ${rule::class.simpleName} is not used by the dataset; extend this test")
             }

@@ -12,6 +12,8 @@ import kotlinx.datetime.TimeZone
 private const val MAX_MONTH = 12
 private const val MAX_WEEK_OF_MONTH = 5
 private const val MAX_TITHI = NepaliLunarDays.TITHIS_IN_MONTH
+private const val MIN_WEEK_LENGTH_DAYS = 2
+private const val MAX_WEEK_LENGTH_DAYS = 14
 
 private fun requireMonth(month: Int) = require(month in 1..MAX_MONTH) { "month must be in 1..12 (was $month)" }
 
@@ -136,6 +138,27 @@ public sealed interface EventRule {
             require(tithi in 1..MAX_TITHI) { "tithi must be in 1..30 (was $tithi)" }
             require(endTithi == null || endTithi in 1..MAX_TITHI) { "endTithi must be in 1..30 (was $endTithi)" }
             require(endOffsetDays >= 0) { "endOffsetDays must be ≥ 0 (was $endOffsetDays)" }
+        }
+    }
+
+    /**
+     * [lengthDays] consecutive days starting the day [start] resolves to that year (ADR-0046): every one of those
+     * days becomes an occurrence, so a UN "week" (or any other multi-day observance with a computable start) is shown
+     * on each of its days, the same way [LunarTithi] with [LunarTithi.endTithi] already shows a multi-day Nepali
+     * festival. [start] is restricted to a rule that resolves to a single day on its own, without another event or
+     * astronomy: [Fixed], [NthWeekdayOfMonth] or [LastWeekdayOfMonth].
+     */
+    public data class Week(
+        public val start: EventRule,
+        public val lengthDays: Int,
+    ) : EventRule {
+        init {
+            require(start is Fixed || start is NthWeekdayOfMonth || start is LastWeekdayOfMonth) {
+                "Week.start must be Fixed, NthWeekdayOfMonth or LastWeekdayOfMonth (was ${start::class.simpleName})"
+            }
+            require(lengthDays in MIN_WEEK_LENGTH_DAYS..MAX_WEEK_LENGTH_DAYS) {
+                "lengthDays must be in 2..14 (was $lengthDays)"
+            }
         }
     }
 }

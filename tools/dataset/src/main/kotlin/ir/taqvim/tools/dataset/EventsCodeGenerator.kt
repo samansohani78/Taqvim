@@ -74,6 +74,9 @@ object EventsCodeGenerator {
             "LunarTithi" to listOf("month", "tithi", "observance", "endTithi", "endOffsetDays"),
         )
 
+    /** `Week`'s `start` is a nested rule object, not a flat parameter (ADR-0046); handled separately in [ruleCode]. */
+    private const val WEEK = "Week"
+
     private const val HEADER =
         "/*\n * Copyright (c) 2026 Saman Sohani. All Rights Reserved.\n" +
             " * Proprietary and confidential. See the LICENSE file in the repository root.\n */\n"
@@ -192,6 +195,16 @@ object EventsCodeGenerator {
 
     private fun ruleCode(rule: JsonObject): CodeBlock {
         val type = rule.text("type")
+        if (type == WEEK) {
+            val start = ruleCode(rule.child("start"))
+            val lengthDays = rule.getValue("lengthDays").jsonPrimitive.int
+            return CodeBlock.of(
+                "%T(start = %L, lengthDays = %L)",
+                ClassName(EVENTS, "EventRule", WEEK),
+                start,
+                lengthDays,
+            )
+        }
         val parameters = requireNotNull(RULE_PARAMETERS[type]) { "unknown rule type '$type'" }
         val arguments = parameters.mapNotNull { name -> rule[name]?.let { argument(name, it.jsonPrimitive) } }
         return CodeBlock.of("%T(%L)", ClassName(EVENTS, "EventRule", type), arguments.joinToCode())

@@ -44,8 +44,8 @@ class DatasetValidatorTest {
         }
 
     @Test
-    fun `there are 34 invalid fixtures and they cover every issue kind`() {
-        INVALID_FIXTURES.keys shouldHaveSize 34
+    fun `there are 36 invalid fixtures and they cover every issue kind`() {
+        INVALID_FIXTURES.keys shouldHaveSize 36
         INVALID_FIXTURES.values.toSet() shouldBe IssueKind.entries.toSet()
     }
 
@@ -107,6 +107,7 @@ class DatasetValidatorTest {
                 "NthDayOfYear",
                 "RelativeToEvent",
                 "Astronomical",
+                "Week",
             )
 
         val INVALID_FIXTURES: Map<String, IssueKind> =
@@ -145,6 +146,8 @@ class DatasetValidatorTest {
                 "32-repeated-single-day" to IssueKind.ONE_OFF_RULE,
                 "33-lunar-tithi-gregorian" to IssueKind.SCHEMA,
                 "34-title-review-unknown-language" to IssueKind.TITLE_REVIEW_UNKNOWN_LANGUAGE,
+                "35-week-length-too-short" to IssueKind.SCHEMA,
+                "36-week-start-day-out-of-range" to IssueKind.DAY_OUT_OF_RANGE,
             ).toMap()
     }
 }
