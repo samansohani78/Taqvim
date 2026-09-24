@@ -186,17 +186,11 @@ private fun directDays(
         }
 
         is EventRule.Single -> {
-            if (rule.year == year) listOfNotNull(validDay(calendar, year, rule.month, rule.day)) else emptyList()
+            singleDay(rule, calendar, year)
         }
 
         is EventRule.NthDayOfYear -> {
-            if (rule.n <=
-                calendar.yearLength(year)
-            ) {
-                listOf(yearSpan(calendar, year).first + (rule.n - 1))
-            } else {
-                emptyList()
-            }
+            nthDayOfYear(rule, calendar, year)
         }
 
         is EventRule.LunarTithi -> {
@@ -210,6 +204,25 @@ private fun directDays(
         is EventRule.RelativeToEvent, is EventRule.Astronomical -> {
             emptyList()
         }
+    }
+
+/** The one day a [EventRule.Single] falls on, and only in its own year. */
+private fun singleDay(
+    rule: EventRule.Single,
+    calendar: CalendarArithmetic,
+    year: Int,
+): List<Jdn> = if (rule.year == year) listOfNotNull(validDay(calendar, year, rule.month, rule.day)) else emptyList()
+
+/** The nth day of [year], unless the year is too short to have one (29 Esfand in a common Persian year). */
+private fun nthDayOfYear(
+    rule: EventRule.NthDayOfYear,
+    calendar: CalendarArithmetic,
+    year: Int,
+): List<Jdn> =
+    if (rule.n <= calendar.yearLength(year)) {
+        listOf(yearSpan(calendar, year).first + (rule.n - 1))
+    } else {
+        emptyList()
     }
 
 /** Every day of the [EventRule.Week.lengthDays]-day span starting where [EventRule.Week.start] resolves (ADR-0046). */

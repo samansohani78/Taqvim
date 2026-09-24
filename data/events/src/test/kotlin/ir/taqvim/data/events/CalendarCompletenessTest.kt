@@ -163,6 +163,36 @@ class CalendarCompletenessTest {
         }
     }
 
+    /** The days [rule]'s astronomical instants fall on, in its own time zone, keeping its month filter. */
+    private fun expectedAstronomicalDates(
+        rule: EventRule.Astronomical,
+        calendar: CalendarArithmetic,
+        year: Int,
+    ): List<CalendarDate> {
+        val zone = TimeZone.of(rule.timeZone)
+        val from = calendar.toJdn(CalendarDate(calendar.system, year, 1, 1)).toLocalDate().atStartOfDayIn(zone)
+        val until = calendar.toJdn(CalendarDate(calendar.system, year + 1, 1, 1)).toLocalDate().atStartOfDayIn(zone)
+        val instantDays =
+            SkyAstronomicalEventSource
+                .instants(rule.kind, from, until)
+                .filter { it >= from && it < until }
+                .sorted()
+                .map { calendar.fromJdn(it.toJdn(zone) + rule.offsetDays) }
+        val month = rule.month
+        return if (month == null) instantDays else instantDays.filter { it.month == month }.take(1)
+    }
+
+    /** Every day of the span [rule] starts on, or none when its start rule gives no single day (ADR-0046). */
+    private fun expectedWeekDates(
+        rule: EventRule.Week,
+        calendar: CalendarArithmetic,
+        year: Int,
+    ): List<CalendarDate> {
+        val start = expectedDates(rule.start, calendar, year).singleOrNull() ?: return emptyList()
+        val startJdn = calendar.toJdn(start)
+        return (0 until rule.lengthDays).map { calendar.fromJdn(startJdn + it) }
+    }
+
     /** The dates [rule] must give in [year], computed independently of the rule engine. */
     private fun expectedDates(
         rule: EventRule,
@@ -204,28 +234,11 @@ class CalendarCompletenessTest {
             }
 
             is EventRule.Astronomical -> {
-                val zone = TimeZone.of(rule.timeZone)
-                val from = calendar.toJdn(CalendarDate(calendar.system, year, 1, 1)).toLocalDate().atStartOfDayIn(zone)
-                val until =
-                    calendar.toJdn(CalendarDate(calendar.system, year + 1, 1, 1)).toLocalDate().atStartOfDayIn(zone)
-                val instantDays =
-                    SkyAstronomicalEventSource
-                        .instants(rule.kind, from, until)
-                        .filter { it >= from && it < until }
-                        .sorted()
-                        .map { calendar.fromJdn(it.toJdn(zone) + rule.offsetDays) }
-                val month = rule.month
-                if (month == null) instantDays else instantDays.filter { it.month == month }.take(1)
+                expectedAstronomicalDates(rule, calendar, year)
             }
 
             is EventRule.Week -> {
-                val start = expectedDates(rule.start, calendar, year).singleOrNull()
-                if (start == null) {
-                    emptyList()
-                } else {
-                    val startJdn = calendar.toJdn(start)
-                    (0 until rule.lengthDays).map { calendar.fromJdn(startJdn + it) }
-                }
+                expectedWeekDates(rule, calendar, year)
             }
 
             else -> {
