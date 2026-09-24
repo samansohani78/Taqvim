@@ -31,7 +31,14 @@ import org.junit.jupiter.api.Test
 /** T-1500: settings-screen values survive the proto, older stores read as defaults and stored oddities are repaired. */
 class AppSettingsMappingTest {
     private val flags = Arb.list(Arb.boolean(), 8..8)
-    private val sources = Arb.set(Arb.element(AppSettings.SELECTABLE_SOURCES), 0..AppSettings.SELECTABLE_SOURCES.size)
+
+    // One flag per source rather than `Arb.set`: there are exactly five selectable sources, so asking that generator
+    // for five distinct ones makes it sample until it gives up — "the target size requirement of 5 could not be
+    // satisfied" failed the CI run of main@272f57e. Flags reach all 32 subsets, and every run reaches them.
+    private val sources =
+        Arb
+            .list(Arb.boolean(), AppSettings.SELECTABLE_SOURCES.size..AppSettings.SELECTABLE_SOURCES.size)
+            .map { flags -> AppSettings.SELECTABLE_SOURCES.filterIndexed { index, _ -> flags[index] }.toSet() }
     private val words = Arb.list(Arb.int(0..999).map { "query $it" }, 0..AppSettings.MAX_RECENT_SEARCHES)
     private val offsets = Arb.int(-45..45).map { LevelOffset(it.toDouble(), -it / 2.0) }
 
