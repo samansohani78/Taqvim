@@ -95,7 +95,15 @@ internal fun waitFor(
     }
 }
 
-/** Opens Taqvim on the `taqvim://` [link] (ADR-0016) in a new task and waits for the screen tagged [tag]. */
+/**
+ * Opens Taqvim on the `taqvim://` [link] (ADR-0016) in a new task and waits for the screen tagged [tag].
+ *
+ * The launch is re-issued rather than waited on once. On the API 33 leg of run 36046477959, twelve of twenty tests
+ * failed with the **launcher** still focused after the full wait, while API 26, 30, 36 and Wear passed the same run:
+ * CI starts these tests while Gradle is still building the other modules, so the start can be lost on a starved
+ * emulator. A second intent costs nothing when the first one worked, and a longer single wait does not help an
+ * activity start that never took effect.
+ */
 internal fun openLink(
     link: String,
     tag: String,
@@ -104,7 +112,10 @@ internal fun openLink(
         Intent(Intent.ACTION_VIEW, Uri.parse(link))
             .setPackage(appContext.packageName)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-    appContext.startActivity(intent)
+    repeat(LAUNCH_ATTEMPTS) {
+        appContext.startActivity(intent)
+        device.wait(Until.findObject(By.res(tag)), LAUNCH_WAIT_MILLIS)?.let { return }
+    }
     awaitTag(tag)
 }
 
@@ -120,7 +131,23 @@ internal fun awaitTag(tag: String): UiObject2 {
         device.waitForIdle(IDLE_MILLIS)
         device.findObject(By.res(tag))?.let { return it }
     }
-    error("$tag is not shown; the app crashed or the screen did not open. ${onScreen(tag)}")
+    error("$tag is not shown; ${crashed()}. ${onScreen(tag)}")
+}
+
+/**
+ * Whether the app recorded a crash of its own (main@3047b7a writes one per crash), so a failure says which of the two
+ * happened instead of naming both. `run-as` reads the debug build's own files; anything unexpected reads as unknown.
+ */
+private fun crashed(): String {
+    val listing =
+        runCatching { shell("run-as ${appContext.packageName} ls files/crash").trim() }
+            .getOrNull()
+            .orEmpty()
+    return when {
+        listing.contains("crash-") -> "the app crashed (${listing.lines().joinToString(" ")})"
+        listing.isEmpty() || listing.contains("No such file") -> "the app recorded no crash, so the screen did not open"
+        else -> "the app crashed or the screen did not open"
+    }
 }
 
 /**
@@ -220,6 +247,10 @@ internal fun assertInFront() {
 
 private const val POLL_MILLIS = 200L
 private const val IDLE_MILLIS = 1_000L
+
+/** Launch attempts before the full wait, and how long each one is given. */
+private const val LAUNCH_ATTEMPTS = 2
+private const val LAUNCH_WAIT_MILLIS = 15_000L
 
 /** How often a list is scrolled while looking for a tag, and how much of its height each scroll moves. */
 private const val SCROLL_ATTEMPTS = 4
