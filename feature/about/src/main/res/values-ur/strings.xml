@@ -41,6 +41,8 @@
   <string name="about_source_natural_earth_description">شہروں کے نام اور مقامات، دنیا کے نقشے کا خاکہ اور ٹائم زون کی پٹیاں</string>
   <string name="about_source_matthews">EarthByte پلیٹ ماڈل (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">دنیا کے نقشے پر ٹیکٹونک پلیٹوں کی سادہ کردہ حدود</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">ایران کے صوبے اور اضلاع اُن کے متناسقات کے ساتھ</string>
   <string name="about_source_noaa">NOAA گلوبل مانیٹرنگ لیبارٹری</string>
   <string name="about_source_noaa_description">اوقاتِ نماز کے لیے استعمال ہونے والی سورج کی پوزیشن کی مساواتیں</string>
   <string name="about_data_license_unicode">لائسنس: Unicode License v3</string>

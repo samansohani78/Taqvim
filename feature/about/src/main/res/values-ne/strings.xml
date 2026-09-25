@@ -41,6 +41,8 @@
   <string name="about_source_natural_earth_description">सहरका नाम र स्थिति, विश्व नक्साको रूपरेखा र समय क्षेत्र पट्टीहरू</string>
   <string name="about_source_matthews">EarthByte प्लेट मोडेल (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">विश्व नक्सामा सरलीकृत टेक्टोनिक प्लेट सीमाहरू</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">इरानका प्रान्त र जिल्लाहरू तिनका निर्देशांकसहित</string>
   <string name="about_source_noaa">NOAA ग्लोबल मोनिटरिङ ल्याबोरेटरी</string>
   <string name="about_source_noaa_description">नमाज समयका लागि प्रयोग हुने सूर्य स्थिति समीकरण</string>
   <string name="about_data_license_unicode">इजाजतपत्र: Unicode License v3</string>

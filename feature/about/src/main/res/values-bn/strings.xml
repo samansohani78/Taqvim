@@ -41,6 +41,8 @@
   <string name="about_source_natural_earth_description">শহরের নাম ও অবস্থান, বিশ্ব মানচিত্রের রূপরেখা ও সময় অঞ্চলের ফালি</string>
   <string name="about_source_matthews">EarthByte প্লেট মডেল (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">বিশ্ব মানচিত্রে সরলীকৃত টেকটোনিক প্লেটের সীমানা</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">ইরানের প্রদেশ ও জেলা এবং তাদের স্থানাঙ্ক</string>
   <string name="about_source_noaa">NOAA গ্লোবাল মনিটরিং ল্যাবরেটরি</string>
   <string name="about_source_noaa_description">নামাজের সময়ের জন্য ব্যবহৃত সূর্যের অবস্থানের সমীকরণ</string>
   <string name="about_data_license_unicode">লাইসেন্স: Unicode License v3</string>

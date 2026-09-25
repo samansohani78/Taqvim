@@ -41,6 +41,8 @@
   <string name="about_source_natural_earth_description">நகரப் பெயர்கள், இருப்பிடங்கள், உலக வரைபட எல்லைகள், நேர மண்டலப் பட்டைகள்</string>
   <string name="about_source_matthews">EarthByte தட்டு மாதிரி (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">உலக வரைபடத்தில் எளிமையாக்கப்பட்ட நிலநடுக்கத் தட்டு எல்லைகள்</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">ஈரானின் மாகாணங்களும் மாவட்டங்களும் அவற்றின் ஆயத்தொலைவுகளுடன்</string>
   <string name="about_source_noaa">NOAA உலகளாவிய கண்காணிப்பு ஆய்வகம்</string>
   <string name="about_source_noaa_description">தொழுகை நேரங்களுக்குப் பயன்படும் சூரிய நிலைச் சமன்பாடுகள்</string>
   <string name="about_data_license_unicode">உரிமம்: Unicode License v3</string>

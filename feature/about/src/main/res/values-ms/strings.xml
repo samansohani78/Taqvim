@@ -39,6 +39,8 @@
   <string name="about_source_natural_earth_description">Nama dan kedudukan bandar, garis peta dunia dan jalur zon waktu</string>
   <string name="about_source_matthews">Model plat EarthByte (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">Sempadan plat tektonik pada peta dunia, dipermudah</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">Wilayah dan daerah Iran beserta koordinatnya</string>
   <string name="about_source_noaa">NOAA Global Monitoring Laboratory</string>
   <string name="about_source_noaa_description">Persamaan kedudukan matahari yang digunakan untuk waktu solat</string>
   <string name="about_data_license_unicode">Lesen: Unicode License v3</string>

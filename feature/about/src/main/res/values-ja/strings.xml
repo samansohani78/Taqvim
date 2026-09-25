@@ -39,6 +39,8 @@
   <string name="about_source_natural_earth_description">都市名と位置、世界地図の輪郭、タイムゾーン帯</string>
   <string name="about_source_matthews">EarthByte プレートモデル（Matthews et al. 2016）</string>
   <string name="about_source_matthews_description">世界地図上の簡略化したプレート境界</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">イランの州と郡およびその座標</string>
   <string name="about_source_noaa">NOAA 地球監視研究所</string>
   <string name="about_source_noaa_description">礼拝時刻に用いる太陽位置の計算式</string>
   <string name="about_data_license_unicode">ライセンス：Unicode License v3</string>

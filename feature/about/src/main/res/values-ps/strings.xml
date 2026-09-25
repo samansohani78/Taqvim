@@ -41,6 +41,8 @@
   <string name="about_source_natural_earth_description">د ښارونو نومونه او ځایونه، د نړۍ د نقشې بڼه او د وخت د سیمو پټۍ</string>
   <string name="about_source_matthews">د EarthByte د پلېټونو ماډل (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">د نړۍ پر نقشه د ټکټونیکي پلېټونو ساده شوې پولې</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">د ایران ولایتونه او ولسوالۍ د هغوی له کوارډیناټونو سره</string>
   <string name="about_source_noaa">د NOAA نړیوال څارنې لابراتوار</string>
   <string name="about_source_noaa_description">د لمانځه د وختونو لپاره د لمر د موقعیت معادلې</string>
   <string name="about_data_license_unicode">جواز: Unicode License v3</string>

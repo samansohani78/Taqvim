@@ -39,6 +39,8 @@
   <string name="about_source_natural_earth_description">Ном ва ҷойгиршавии шаҳрҳо, контури харитаи ҷаҳон ва тасмаҳои минтақаи вақт</string>
   <string name="about_source_matthews">Модели плитаҳои EarthByte (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">Марзҳои соддашудаи плитаҳои тектоникӣ дар харитаи ҷаҳон</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">Вилоятҳо ва шаҳристонҳои Эрон бо координатҳояшон</string>
   <string name="about_source_noaa">Озмоишгоҳи назорати ҷаҳонии NOAA</string>
   <string name="about_source_noaa_description">Муодилаҳои мавқеи офтоб барои вақтҳои намоз</string>
   <string name="about_data_license_unicode">Иҷозатнома: Unicode License v3</string>

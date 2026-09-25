@@ -49,6 +49,8 @@
   <string name="about_source_natural_earth_description">أسماء المدن ومواقعها ومخطط خريطة العالم ونطاقات المناطق الزمنية</string>
   <string name="about_source_matthews">نموذج الصفائح EarthByte (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">حدود الصفائح التكتونية على خريطة العالم، مبسّطة</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">محافظات ومقاطعات إيران مع إحداثياتها</string>
   <string name="about_source_noaa">مختبر الرصد العالمي التابع لـNOAA</string>
   <string name="about_source_noaa_description">معادلات موقع الشمس المستخدمة لمواقيت الصلاة</string>
   <string name="about_data_license_unicode">الترخيص: Unicode License v3</string>

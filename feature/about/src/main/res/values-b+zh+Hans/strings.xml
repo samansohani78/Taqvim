@@ -39,6 +39,8 @@
   <string name="about_source_natural_earth_description">城市名称与位置、世界地图轮廓和时区带</string>
   <string name="about_source_matthews">EarthByte 板块模型（Matthews et al. 2016）</string>
   <string name="about_source_matthews_description">世界地图上简化的构造板块边界</string>
+  <string name="about_source_geonames">GeoNames</string>
+  <string name="about_source_geonames_description">伊朗的省与县及其坐标</string>
   <string name="about_source_noaa">NOAA 全球监测实验室</string>
   <string name="about_source_noaa_description">用于礼拜时间的太阳位置公式</string>
   <string name="about_data_license_unicode">许可证：Unicode License v3</string>

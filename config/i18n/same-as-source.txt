@@ -2,6 +2,7 @@
 # One entry per line: `<res dir>: <resource name> | <reason>`. The reason is required.
 feature/about/src/main/res: about_source_cldr | Proper name of the Unicode CLDR project, not translated in Persian
 feature/about/src/main/res: about_source_natural_earth | Proper name of the Natural Earth dataset, not translated in Persian
+feature/about/src/main/res: about_source_geonames | Proper name of the GeoNames gazetteer, not translated in any language
 # Machine-translated languages (T-1702): entries below list the languages that keep the English wording.
 app/src/main/res: app_name | Brand name Taqvim, kept in Latin script (ps ar ckb kmr az tr ur ne hi ta bn tg uz ru de fr es id ms zh ja)
 app/src/main/res: more_agenda | Same word in these languages; no translation needed (fr es id ms)

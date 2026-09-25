@@ -79,6 +79,13 @@ enum class DataSource(
         DataLicense.CC_BY_4_0,
         R.string.about_source_matthews_attribution,
     ),
+    GEONAMES(
+        R.string.about_source_geonames,
+        R.string.about_source_geonames_description,
+        "https://www.geonames.org/",
+        DataLicense.CC_BY_4_0,
+        R.string.about_source_geonames_attribution,
+    ),
     NOAA(
         R.string.about_source_noaa,
         R.string.about_source_noaa_description,
