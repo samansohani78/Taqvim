@@ -124,6 +124,8 @@ class NoPerYearManualDataTest {
                 Regex(".*/ObservationalMonthStarts\\.kt") to "Computed from the crescent criterion; stores no dates.",
                 Regex(".*/(LanguageTable|FormatTable)\\.kt") to "Language names and patterns (CLDR), not dates.",
                 Regex(".*/CityTableParser\\.kt") to "Parses the city catalog (names, coordinates, zones), not dates.",
+                Regex(".*/IranDivisionTableParser\\.kt") to
+                    "Parses the Iran province/county catalog (names, coordinates), not dates (DT-021).",
             )
 
         fun property(name: String): String = requireNotNull(System.getProperty(name)) { "$name is not set" }

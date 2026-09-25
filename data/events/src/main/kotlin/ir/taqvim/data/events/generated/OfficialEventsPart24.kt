@@ -139,6 +139,10 @@ internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
                         title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
                         page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی دریانوردی — 29 سپتامبر (هفته آخر سپتامبر)\"",
                     ),
+                    Citation(
+                        url = "https://www.imo.org/en/about/events/worldmaritimeday",
+                        title = "IMO's own World Maritime Day page (DT-024): \"culminating in the annual celebration on the final Thursday of September\" — the same rule as this record's, in the International Maritime Organization's own words (imo.org returned HTTP 500 on 2026-09-17; reachable again on 2026-09-25)",
+                    ),
                 ),
             links =
                 mapOf(
