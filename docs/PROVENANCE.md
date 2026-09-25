@@ -989,6 +989,37 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   Midnight now ends at the next morning's Fajr, as the Institute's tables do. Validation against the 31 official
   timetables (11 315 days): same minute for 99.8–100 % of Fajr, sunrise, Dhuhr, sunset, Maghrib and midnight (was
   56–98 %), every prayer within 1 minute; nearest-minute rounding.
+- **Method parameters checked against their authorities (T-601, 2026-09-25).** Until now every angle traced only to
+  the plan's own table (§6 A-10), so nothing compared them with the bodies that define them; `PrayerMethodSourcesTest`
+  now pins all eleven methods, since a wrong angle is invisible to every other test (they check the calculator against
+  these same constants).
+  1. *ISNA* — Fiqh Council of North America, General Body Meeting, Dallas, 27–29 October 2017: "The Fiqh Council of
+     North America suggests using 15° for both Fajr and Isha in the USA and using 13° for both Fajr and Isha in
+     Canada, throughout the year" (https://fiqhcouncil.org/the-suggested-calculation-method-for-fajr-and-isha/,
+     retrieved 2026-09-25). The app's 15°/15° matches; the Canadian 13° is a separate regional value it does not ship.
+  2. *Singapore* — MUIS publishes a timetable rather than angles, so the angles were derived from it: "Prayer Times
+     for Singapore, Year 2025" (https://isomer-user-content.by.gov.sg/48/fd9dda10-fd78-42bb-8226-a6524f850d7a/Prayer%20Timetable%202025.pdf,
+     SHA-256 `1ebd5b47e5ba581afa72ac2d63798d272c2df377a1bd205a881b02503df68413`, retrieved 2026-09-25; cited, not
+     archived). Over all 365 published days at 1.3521° N, 103.8198° E, UTC+8, the Subuh depression has median 19.88°
+     (19.67‥20.10) and the Isyak depression median 18.13° (17.90‥18.37) — the spread is its rounding to the whole
+     minute. Confirms 20° and 18°. Its Syuruk and Maghrib sit at −0.72° and −0.96°, i.e. MUIS applies its own small
+     precaution around sunrise and sunset, which the app does not copy.
+  3. *Diyanet* — the cited temkin page was re-read on 2026-09-25 and still states it verbatim: 7 minutes at sunrise
+     and sunset ("güneş doğuş-batışta 7 dakika temkin"), 4 at Asr, and Dhuhr 5 minutes after the Sun is overhead.
+     Matches the shipped adjustments exactly.
+  4. *MWL, Egypt, Karachi, France, Russia, Jafari* — the values are consistent across independent descriptions, but
+     none of those bodies publishes a parameter statement reachable from here, so they rest on the plan's table.
+     *Tehran* needs no such statement: it is validated against the Institute's own 31 city timetables (below).
+- **Known divergence — Umm al-Qura in Ramadan (T-601, 2026-09-25, unresolved).** The method is documented everywhere
+  as Isha 90 minutes after Maghrib and **120 minutes during Ramadan**, the longer interval giving time for iftar
+  before Taraweeh. The app applies 90 minutes all year, so during Ramadan its `MAKKAH` Isha is about half an hour
+  earlier than Saudi Arabia observes — the month when that method is most used. It is **not** changed here because no
+  primary source could be reached to prove it: ummulqura.org.sa serves a JavaScript application with no readable
+  content or discoverable API, moia.gov.sa does not respond, and no peer-reviewed statement of the rule was found;
+  every description available is a secondary aggregator, which this project does not treat as an authority, and the
+  well-known prayer-time libraries that document it are GPL/LGPL and barred by the clean-room rule. Closing this needs
+  one primary source — a Saudi official statement, or an Umm al-Qura timetable covering Ramadan from which the
+  interval can be derived, exactly as the Singapore angles were.
 - **Order within the day (REVIEW R05, 2026-09-19, own decisions; no prayer-time library code consulted):**
   1. *Asr lies between Dhuhr and sunset, or is absent* (main@fd2df36). Where the noon Sun is not above the true
      horizon (noon zenith distance |φ − δ| ≥ 90°, the Sun seen only through refraction) there is no noon shadow for
