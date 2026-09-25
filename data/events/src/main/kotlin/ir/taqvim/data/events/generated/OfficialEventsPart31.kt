@@ -261,6 +261,11 @@ internal val OFFICIAL_EVENTS_PART_31: List<EventDefinition> =
                         title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
                         page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی ارتباطات — 17 مه\"",
                     ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "University of Tehran, Institute of Geophysics, Calendar Center — official calendar of Iran, occasions approved by the Public Culture Council",
+                        page = "Calendar-1382.pdf, Calendar-1383.pdf, Calendar-1384.pdf and Calendar-1385.pdf (docs/sources/iran/) print «روز جهانی ارتباطات» on the day whose Gregorian column reads 17 May (27 Ordibehesht 1382, 28 Ordibehesht 1383, 27 Ordibehesht 1384, 27 Ordibehesht 1385), which is the Persian title shipped here. From Calendar-1386.pdf on, after the day was renamed in 2006, these calendars print Iran's national «روز ارتباطات و روابط عمومی» on that date instead and no longer name the UN day",
+                    ),
                 ),
             links =
                 mapOf(
