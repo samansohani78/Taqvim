@@ -82,8 +82,11 @@ class CalendarScreenTest {
         composeRule.onNodeWithTag(MONTH_PAGER_TAG).performScrollToIndex(MonthPages.pageOf(monthsFromFarvardin1405))
     }
 
-    private fun awaitNode(matcher: SemanticsMatcher) {
-        composeRule.waitUntil(TIMEOUT_MILLIS) { composeRule.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+    private fun awaitNode(
+        matcher: SemanticsMatcher,
+        timeoutMillis: Long = TIMEOUT_MILLIS,
+    ) {
+        composeRule.waitUntil(timeoutMillis) { composeRule.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
     }
 
     /**
@@ -129,10 +132,13 @@ class CalendarScreenTest {
         show()
         awaitNode(hasText(title(0)))
 
+        // A fling has to settle before the new month can be asserted, and on a CI runner that is dexing the rest of
+        // the build it can take far longer than the deterministic cases need: this timed out at 10 s on main@7b12385
+        // while every other case passed. The assertion is unchanged, so a page that never arrives still fails.
         composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeLeft() }
-        awaitNode(hasText(title(1)))
+        awaitNode(hasText(title(1)), GESTURE_TIMEOUT_MILLIS)
         composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeRight() }
-        awaitNode(hasText(title(0)))
+        awaitNode(hasText(title(0)), GESTURE_TIMEOUT_MILLIS)
     }
 
     @Test
@@ -182,5 +188,8 @@ class CalendarScreenTest {
     private companion object {
         const val MONTHS = 12
         const val TIMEOUT_MILLIS = 10_000L
+
+        /** A settling fling needs more room than a state assertion; see the swipe test. */
+        const val GESTURE_TIMEOUT_MILLIS = 60_000L
     }
 }
