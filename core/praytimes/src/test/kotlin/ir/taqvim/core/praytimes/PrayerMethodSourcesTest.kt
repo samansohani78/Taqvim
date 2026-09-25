@@ -36,9 +36,9 @@ class PrayerMethodSourcesTest {
         // Egyptian General Authority of Survey.
         expect(PrayerMethod.EGYPT, fajr = 19.5, isha = IshaRule.Angle(17.5))
 
-        // Umm al-Qura, Makkah: Isha is an interval after Maghrib, not an angle. See the Ramadan note in
-        // docs/PROVENANCE.md A-10 — the app does not lengthen it to 120 minutes in Ramadan.
-        expect(PrayerMethod.MAKKAH, fajr = 18.5, isha = IshaRule.MinutesAfterMaghrib(90))
+        // Umm al-Qura, Makkah: Isha is an interval after Maghrib, not an angle, and the authority's own archived
+        // timetables give 90 minutes outside Ramadan and 120 within it (UmmAlQuraRamadanIshaTest, A-10).
+        expect(PrayerMethod.MAKKAH, fajr = 18.5, isha = IshaRule.MinutesAfterMaghrib(90, ramadanMinutes = 120))
 
         // University of Islamic Sciences, Karachi.
         expect(PrayerMethod.KARACHI, fajr = 18.0, isha = IshaRule.Angle(18.0))

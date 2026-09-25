@@ -4,6 +4,7 @@
  */
 package ir.taqvim.core.praytimes
 
+import ir.taqvim.core.calendar.UmmAlQuraCalendar
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.MinuteOfDay
@@ -131,7 +132,7 @@ public object PrayerTimesCalculator {
         val morningNight = Night(sky, previousSunset - MINUTES_PER_DAY, sunrise, horizon)
         val fajr = HighLatitude.fajr(rule, parameters.fajrAngle, morningNight, dhuhr)
         val eveningNight = Night(sky, sunset, nextSunrise + MINUTES_PER_DAY, horizon)
-        val isha = isha(parameters.isha, rule, eveningNight, maghrib ?: sunset)
+        val isha = isha(parameters.isha, rule, eveningNight, maghrib ?: sunset, day)
         val nextNight = Night(next, sunset - MINUTES_PER_DAY, nextSunrise, horizon)
         val nextFajr = HighLatitude.fajr(rule, parameters.fajrAngle, nextNight, next.transit)
         val mode = settings.midnight ?: parameters.midnight
@@ -154,10 +155,14 @@ public object PrayerTimesCalculator {
         highLatitude: HighLatitudeRule,
         night: Night,
         maghrib: Double,
+        day: Jdn,
     ): Double? =
         when (rule) {
             is IshaRule.MinutesAfterMaghrib -> {
-                maghrib + rule.minutes
+                // Umm al-Qura lengthens the interval in Ramadan, so the month decides it. The evening of a civil day
+                // belongs to the Islamic day that began at the preceding sunset, which is the month of `day` itself:
+                // the Islamic date rolls over at sunset, and this evening is that date's own night.
+                maghrib + rule.minutesIn(UmmAlQuraCalendar.fromJdn(day).month)
             }
 
             is IshaRule.Angle -> {

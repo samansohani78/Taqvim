@@ -14,10 +14,22 @@ public sealed interface IshaRule {
         public val degreesBelowHorizon: Double,
     ) : IshaRule
 
-    /** A fixed number of [minutes] after Maghrib. */
+    /**
+     * A fixed number of [minutes] after Maghrib, lengthened to [ramadanMinutes] during Ramadan where the authority
+     * publishes a longer interval for that month (Umm al-Qura: 90 minutes, 120 in Ramadan — see docs/PROVENANCE.md
+     * A-10). The Islamic month is resolved by the calculator, so no caller can forget to pass it.
+     */
     public data class MinutesAfterMaghrib(
         public val minutes: Int,
-    ) : IshaRule
+        public val ramadanMinutes: Int = minutes,
+    ) : IshaRule {
+        /** The interval to use when the evening falls in [islamicMonth] (1‥12). */
+        public fun minutesIn(islamicMonth: Int): Int = if (islamicMonth == RAMADAN) ramadanMinutes else minutes
+
+        private companion object {
+            const val RAMADAN = 9
+        }
+    }
 }
 
 /** How Maghrib is found. */
@@ -131,7 +143,7 @@ private val METHOD_PARAMETERS: Map<PrayerMethod, MethodParameters> =
         PrayerMethod.MWL to sunni(18.0, IshaRule.Angle(17.0)),
         PrayerMethod.ISNA to sunni(15.0, IshaRule.Angle(15.0)),
         PrayerMethod.EGYPT to sunni(19.5, IshaRule.Angle(17.5)),
-        PrayerMethod.MAKKAH to sunni(18.5, IshaRule.MinutesAfterMaghrib(90)),
+        PrayerMethod.MAKKAH to sunni(18.5, IshaRule.MinutesAfterMaghrib(90, ramadanMinutes = 120)),
         PrayerMethod.KARACHI to sunni(18.0, IshaRule.Angle(18.0)),
         PrayerMethod.TEHRAN to shia(17.7, 14.0, 4.5),
         PrayerMethod.JAFARI to shia(16.0, 14.0, 4.0),
