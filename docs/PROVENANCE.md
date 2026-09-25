@@ -1774,3 +1774,24 @@ verify the sources' own arithmetic before dropping the computed columns.
   official Nepali wording only.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-17; **reviewer attestation:** pending — no forbidden
   sources consulted.
+
+### DT-026 — IAU constellation names (`core/i18n` `iau-constellations.properties`, T-1300)
+- **Source:** the IAU's own official list of the 88 constellations (adopted at its 1922 Rome General Assembly),
+  https://www.iau.org/public/themes/constellations/, which currently redirects through the IAU's own archive mirror
+  https://iauarchive.eso.org/public/themes/constellations/, retrieved 2026-09-25.
+- **Cross-check:** the 88 keys (abbreviations) were verified against the abbreviation set the app's astronomy façade
+  actually returns — `io.github.cosinekitty.astronomy` (`Zodiac.iauConstellation`/`moonConstellation`, `core/astronomy`,
+  untouched by this entry) — by reading its own `ConstellationText` table out of the published jar's bytecode
+  (`astronomy-2.1.19.jar`, MIT-licensed dependency already in the project; no source code copied, only its bundled data
+  constants inspected), not recalled from memory. All 88 keys matched exactly; a handful of misspellings in that
+  library's own bundled English text (`Antila`, `Camelopardis`, `Pisces Austrinus`) were **not** carried over — this
+  file's values are the IAU's own correct spelling (`Antlia`, `Camelopardalis`, `Piscis Austrinus`, `Boötes` with its
+  diaeresis).
+- **Coverage:** one Latin name per constellation, used as the universal fallback for all 24 launch languages (IAU
+  literature and English-language astronomy use these names unchanged; there is no separate "English translation").
+  No CLDR data exists for constellation names at any release (confirmed against ICU4J 78.3/CLDR 48). A localized,
+  non-Latin translation from a national astronomical society or academy remains open per language (DT-026).
+- **Not wired to the display:** `IauConstellationNames` is a new lookup table only; `feature/astronomy`'s T-1300 header
+  still shows the bare IAU abbreviation, wiring it in is outside this pass's i18n/locale/docs scope.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-25; **reviewer attestation:** pending — no forbidden
+  sources consulted.
