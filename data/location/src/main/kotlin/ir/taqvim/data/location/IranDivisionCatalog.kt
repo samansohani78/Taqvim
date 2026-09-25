@@ -10,7 +10,9 @@ class IranDivisionCatalog(
 ) {
     private val byCode: Map<String, IranDivision> = divisions.associateBy(IranDivision::code)
     private val byParentCode: Map<String, List<IranDivision>> =
-        divisions.filter { it.parentCode != null }.groupBy { it.parentCode!! }
+        divisions.mapNotNull { division -> division.parentCode?.let { it to division } }.groupBy({ it.first }) {
+            it.second
+        }
 
     /** The 31 provinces, in the order they are bundled. */
     val provinces: List<IranDivision> = divisions.filter { it.level == IranDivisionLevel.PROVINCE }
