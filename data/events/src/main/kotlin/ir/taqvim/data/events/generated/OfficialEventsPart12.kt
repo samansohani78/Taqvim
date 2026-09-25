@@ -15,7 +15,6 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
-import ir.taqvim.core.model.Weekday
 
 /**
  * Part 12 of the dataset events.
@@ -24,6 +23,159 @@ import ir.taqvim.core.model.Weekday
  */
 internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.child-early-forced-marriage-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی ریشه‌کنی ازدواج کودکان، ازدواج زودهنگام و اجباری",
+                        "en" to "International Day for the Elimination of Child, Early and Forced Marriage",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 27),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://docs.un.org/en/A/80/L.99",
+                        title = "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly draft resolution A/80/L.99)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://docs.un.org/en/A/80/L.99",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.child-sexual-exploitation-prevention-and-healing-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان",
+                        "en" to "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 18),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
+                            title = "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence — A/RES/77/8 (7 November 2022)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
+                        title = "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.child-victim-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض",
+                        "ar" to "اليوم الدولي لضحايا العدوان من الأطفال الأبرياء",
+                        "en" to "International Day of Innocent Children Victims of Aggression",
+                        "es" to "Día Internacional de los Niños Víctimas Inocentes de Agresión",
+                        "fr" to "Journée internationale des enfants victimes innocentes de l'agression",
+                        "ru" to "Международный день невинных детей — жертв агрессии",
+                        "zh" to "受侵略戕害的无辜儿童国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 4),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/child-victim-day",
+                        title = "International Day of Innocent Children Victims of Aggression (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/ES-7/8",
+                    "un" to "https://www.un.org/en/observances/child-victim-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.chinese-language-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز زبان چینی",
+                        "en" to "Chinese Language Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 20),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_010,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/russian-language-day",
+                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/zh/observances/chinese-language-day",
+                        title = "Chinese Language Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/zh/observances/chinese-language-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.cities-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -185,165 +337,6 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/cleanup-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.commemoration-holocaust-victims-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی بزرگداشت خاطره قربانیان هولوکاست",
-                        "ar" to "اليوم الدولي لإحياء ذكرى ضحايا محرقة اليهود",
-                        "en" to "International Day of Commemoration in Memory of the Victims of the Holocaust",
-                        "es" to "Día Internacional de Conmemoración anual en memoria de las víctimas del Holocausto",
-                        "fr" to "Journée internationale dédiée à la mémoire des victimes de l'Holocauste",
-                        "ru" to "Международный день памяти жертв Холокоста",
-                        "zh" to "缅怀大屠杀受难者国际纪念日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 1, day = 27),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
-                        title = "International Day of Commemoration in Memory of the Victims of the Holocaust (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/60/7",
-                    "un" to "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.conjoined-twins-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی دوقلوهای به‌هم‌چسبیده",
-                        "en" to "World Conjoined Twins Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 24),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/conjoined-twins-day",
-                            title = "World Conjoined Twins Day — A/RES/78/313 (2024)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/conjoined-twins-day",
-                        title = "World Conjoined Twins Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/conjoined-twins-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.conscience-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی وجدان",
-                        "en" to "International Day of Conscience",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 5),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/conscience-day",
-                            title = "International Day of Conscience (UN General Assembly A/RES/73/329, adopted 25 Jul 2019)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/conscience-day",
-                        title = "International Day of Conscience (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/conscience-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cooperatives-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی تعاونیها",
-                        "en" to "International Day of Cooperatives",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 7, weekday = Weekday.SATURDAY, n = 1),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/cooperatives-day",
-                        title = "International Day of Cooperatives (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: اولين شنبه ژوئيه",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/47/90",
-                    "un" to "https://www.un.org/en/observances/cooperatives-day",
                 ),
         ),
     )

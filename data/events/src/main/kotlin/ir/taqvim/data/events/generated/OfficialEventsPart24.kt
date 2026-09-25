@@ -25,6 +25,170 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.interventional-cardiology-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی قلب و عروق مداخله‌ای",
+                        "en" to "International Day for Interventional Cardiology",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 16),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/interventional-cardiology-day",
+                            title = "International Day for Interventional Cardiology — resolution 76/302 (September 2022)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/interventional-cardiology-day",
+                        title = "International Day for Interventional Cardiology (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/interventional-cardiology-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.jazz-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی جاز",
+                        "en" to "International Jazz Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 30),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_011,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/jazz-day",
+                            title = "International Jazz Day — UNESCO General Conference, November 2011",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/jazz-day",
+                        title = "International Jazz Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/jazz-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.judicial-well-being-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی رفاه قضایی",
+                        "en" to "International Day for Judicial Well-being",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 25),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/judicial-well-being-day",
+                            title = "International Day for Judicial Well-being — A/RES/79/266 (4 March 2025)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/judicial-well-being-day",
+                        title = "International Day for Judicial Well-being (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/judicial-well-being-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.kiswahili-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی زبان سواحیلی",
+                        "en" to "World Kiswahili Language Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_021,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.unesco.org/en/days/kiswahili-language",
+                            title = "World Kiswahili Language Day — UNESCO 41st General Conference, resolution 41 C/61 (November 2021)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/kiswahili-day",
+                        title = "World Kiswahili Language Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/kiswahili-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.landlocked-developing-countries-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -188,159 +352,6 @@ internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/markhor-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.media-information-literacy-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "هفته جهانی سواد رسانه‌ای و اطلاعاتی",
-                        "en" to "Global Media and Information Literacy Week",
-                    ),
-                ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 10, day = 24), lengthDays = 8),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_021,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/media-information-literacy-week",
-                            title = "General Assembly resolution A/RES/75/267 (2021): Global Media and Information Literacy Week, 24-31 October",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/media-information-literacy-week",
-                        title = "General Assembly resolution A/RES/75/267 (2021): Global Media and Information Literacy Week, 24-31 October",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/media-information-literacy-week",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.meditation-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی مراقبه",
-                        "en" to "World Meditation Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 21),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/meditation-day",
-                            title = "World Meditation Day — A/RES/79/137 (2024)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/meditation-day",
-                        title = "World Meditation Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/meditation-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.mediterranean-diet-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی رژیم غذایی مدیترانه‌ای",
-                        "en" to "International Day of the Mediterranean Diet",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 16),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://docs.un.org/en/A/RES/80/174",
-                        title = "International Day of the Mediterranean Diet (UN General Assembly resolution A/RES/80/174)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://docs.un.org/en/A/RES/80/174",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.micro-small-medium-businesses-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز کسب‌وکارهای خرد، کوچک و متوسط",
-                        "en" to "Micro-, Small and Medium-sized Enterprises Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 27),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/micro-small-medium-businesses-day",
-                            title = "Micro-, Small and Medium-sized Enterprises Day — A/RES/71/279 (6 April 2017)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/micro-small-medium-businesses-day",
-                        title = "Micro-, Small and Medium-sized Enterprises Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/micro-small-medium-businesses-day",
                 ),
         ),
     )

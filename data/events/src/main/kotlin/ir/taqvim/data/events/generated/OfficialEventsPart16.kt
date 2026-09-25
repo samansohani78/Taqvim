@@ -24,6 +24,169 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_16: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.drowning-prevention-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی پیشگیری از غرق‌شدگی",
+                        "en" to "World Drowning Prevention Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 25),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_021,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/drowning-prevention-day",
+                            title = "World Drowning Prevention Day — A/RES/75/273 (April 2021)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/drowning-prevention-day",
+                        title = "World Drowning Prevention Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/drowning-prevention-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.duchenne-awareness-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی آگاهی از دیستروفی عضلانی دوشن",
+                        "en" to "World Duchenne Awareness Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/duchenne-awareness-day",
+                            title = "World Duchenne Awareness Day — A/RES/78/12 (2023, observed beginning 2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/duchenne-awareness-day",
+                        title = "World Duchenne Awareness Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/duchenne-awareness-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.earth-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی مادر زمین",
+                        "ar" to "اليوم الدولي لأمنا الأرض",
+                        "en" to "International Mother Earth Day",
+                        "es" to "Día Internacional de la Madre Tierra",
+                        "fr" to "Journée internationale de la Terre nourricière",
+                        "ru" to "Международный день Матери-Земли",
+                        "zh" to "国际地球母亲日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 22),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/earth-day",
+                        title = "International Mother Earth Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://iran.un.org/fa/45428-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%85%D8%A7%D8%AF%D8%B1-%D8%B2%D9%85%DB%8C%D9%86-%D9%87%D8%B4%D8%AF%D8%A7%D8%B1-%DA%AF%D9%88%D8%AA%D8%B1%D8%B4-%D8%AF%D8%B1-%D9%85%D9%88%D8%B1%D8%AF-%D8%AE%D8%B7%D8%B1-%D9%88%DB%8C%D8%B1%D9%88%D8%B3%E2%80%8C%D9%87%D8%A7-%D9%88-%DA%AF%D8%A7%D8%B2%D9%87%D8%A7%DB%8C-%DA%AF%D9%84%D8%AE%D8%A7%D9%86%D9%87%E2%80%8C%D8%A7%DB%8C",
+                        title = "United Nations in the Islamic Republic of Iran — به مناسبت روز بین المللی مادر زمین: هشدار گوترش در مورد خطر ویروس‌ها و گازهای گلخانه‌ای",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/63/278",
+                    "un" to "https://www.un.org/en/observances/earth-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.earthquake-victims-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی یادبود قربانیان زلزله",
+                        "en" to "International Day in Memory of the Victims of Earthquakes",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 29),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/earthquake-victims-day",
+                            title = "International Day in Memory of the Victims of Earthquakes — A/RES/79/285 (April 2025)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/earthquake-victims-day",
+                        title = "International Day in Memory of the Victims of Earthquakes (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/earthquake-victims-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.education-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -184,169 +347,6 @@ internal val OFFICIAL_EVENTS_PART_16: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/end-fistula-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-food-waste-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی آگاهی از تلفات و ضایعات غذایی",
-                        "en" to "International Day of Awareness of Food Loss and Waste",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 29),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/end-food-waste-day",
-                            title = "International Day of Awareness of Food Loss and Waste (A/RES/74/209, 2019)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-food-waste-day/",
-                        title = "International Day of Awareness of Food Loss and Waste (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/end-food-waste-day/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-human-trafficking-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی مبارزه با قاچاق انسان",
-                        "ar" to "اليوم العالمي لمكافحة الاتجار بالأشخاص",
-                        "en" to "World Day against Trafficking in Persons",
-                        "es" to "Día Mundial contra la Trata",
-                        "fr" to "Journée mondiale de la lutte contre la traite d’êtres humains",
-                        "ru" to "Всемирный день борьбы с торговлей людьми",
-                        "zh" to "世界打击贩运人口日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 30),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-human-trafficking-day",
-                        title = "World Day against Trafficking in Persons (observance page)",
-                    ),
-                    Citation(
-                        url = "https://iran.un.org/fa/86445-%D9%BE%DB%8C%D8%A7%D9%85-%D8%BA%D8%A7%D8%AF%D8%A7-%D9%81%D8%AA%D8%AD%DB%8C-%D9%88%D8%A7%D9%84%DB%8C-%D9%85%D8%AF%DB%8C%D8%B1-%DA%A9%D9%84-%D8%AF%D9%81%D8%AA%D8%B1-%D9%85%D9%82%D8%A7%D8%A8%D9%84%D9%87-%D8%A8%D8%A7-%D9%85%D9%88%D8%A7%D8%AF-%D9%85%D8%AE%D8%AF%D8%B1-%D9%88-%D8%AC%D8%B1%D9%85-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF%D8%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2",
-                        title = "United Nations in the Islamic Republic of Iran — پیام غادا فتحی والی مدیر کل دفتر مقابله با مواد مخدر و جرم سازمان ملل متحد، به مناسبت روز جهانی مبارزه با قاچاق انسان",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/68/192",
-                    "un" to "https://www.un.org/en/observances/end-human-trafficking-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-illegal-fishing-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی مبارزه با صید غیرقانونی، گزارش‌نشده و بی‌ضابطه",
-                        "en" to "International Day for the Fight against Illegal, Unreported and Unregulated Fishing",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 5),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/end-illegal-fishing-day",
-                            title = "International Day for the Fight against IUU Fishing — General Assembly annual fisheries resolution, December 2017",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-illegal-fishing-day",
-                        title = "International Day for the Fight against Illegal, Unreported and Unregulated Fishing (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/end-illegal-fishing-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-impunity-crimes-against-journalists"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پایان دادن به معافیت از مجازات جرایم علیه روزنامه‌نگاران",
-                        "en" to "International Day to End Impunity for Crimes against Journalists",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 2),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_013,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/end-impunity-crimes-against-journalists",
-                            title = "International Day to End Impunity for Crimes against Journalists — A/RES/68/163 (2013)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-impunity-crimes-against-journalists",
-                        title = "International Day to End Impunity for Crimes against Journalists (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/end-impunity-crimes-against-journalists",
                 ),
         ),
     )

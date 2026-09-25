@@ -24,6 +24,159 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.anti-cybercrime-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی مبارزه با جرایم سایبری",
+                        "en" to "International Anti-Cybercrime Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 24),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.unodc.org/unodc/en/cybercrime/day.html",
+                        title = "International Anti-Cybercrime Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.unodc.org/unodc/en/cybercrime/day.html",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.anti-islamophobia-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی مبارزه با اسلام‌هراسی",
+                        "en" to "International Day to Combat Islamophobia",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 15),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/anti-islamophobia-day",
+                            title = "International Day to Combat Islamophobia — A/RES/76/254 (2022)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/anti-islamophobia-day",
+                        title = "International Day to Combat Islamophobia (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/anti-islamophobia-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.arabian-leopard-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پلنگ عربی",
+                        "en" to "International Day of the Arabian Leopard",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 2, day = 10),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_023,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/arabian-leopard-day",
+                            title = "International Day of the Arabian Leopard — resolution 77/295 (June 2023)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/arabian-leopard-day",
+                        title = "International Day of the Arabian Leopard (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/arabian-leopard-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.arabic-language-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز زبان عربی",
+                        "en" to "Arabic Language Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 18),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_010,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/russian-language-day",
+                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/arabiclanguageday",
+                        title = "Arabic Language Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/arabiclanguageday",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.argania-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -185,170 +338,6 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/62/139",
                     "un" to "https://www.un.org/en/observances/autism-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.bicycle-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی دوچرخه",
-                        "en" to "World Bicycle Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 3),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_018,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/bicycle-day",
-                            title = "World Bicycle Day (A/RES/72/272, adopted 12 April 2018)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/bicycle-day",
-                        title = "World Bicycle Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/bicycle-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.biological-diversity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی تنوع زیستی",
-                        "ar" to "اليوم الدولي للتنوع البيولوجي",
-                        "en" to "International Day for Biological Diversity",
-                        "es" to "Día Internacional de la Diversidad Biológica",
-                        "fr" to "Journée internationale de la diversité biologique",
-                        "ru" to "Международный день биологического разнообразия",
-                        "zh" to "生物多样性国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 22),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/biological-diversity-day",
-                        title = "International Day for Biological Diversity (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/55/201",
-                    "un" to "https://www.un.org/en/observances/biological-diversity-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.braille-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی خط بریل",
-                        "en" to "World Braille Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 1, day = 4),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_018,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/braille-day/background",
-                            title = "World Braille Day — General Assembly resolution A/RES/73/161 (November 2018)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/braille-day",
-                        title = "World Braille Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/braille-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.breastfeeding-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "هفته جهانی شیردهی",
-                        "en" to "World Breastfeeding Week",
-                    ),
-                ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 8, day = 1), lengthDays = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_018,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.who.int/campaigns/world-breastfeeding-week",
-                            title = "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.who.int/campaigns/world-breastfeeding-week",
-                        title = "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.who.int/campaigns/world-breastfeeding-week",
                 ),
         ),
     )

@@ -1,8 +1,8 @@
-# source: Bakhtar News Agency (state news agency of Afghanistan) holiday announcements, accepted by the owner as a primary source on 2026-09-14; issuing authority per record citation (Ministry of Labour and Social Affairs unless stated)
+# source: Bakhtar News Agency (state news agency of Afghanistan) holiday announcements, accepted by the owner as a primary source on 2026-09-14, for the announced days; and Article 41 of the Labour Law (No. 35 of 2007), Official Gazette 966, for the Eid spans — ILO NATLEX record 78309 (English translation) and molsa.gov.af (Dari original); issuing authority per record citation
 # url: https://www.bakhtarnews.af/dr/
 # retrieved: 2026-09-14
 # reviewer: pending
-# notes: per Solar Hijri year of the announcement, the exact dates each announcement states. Eid al-Adha 1447: Arafa Tuesday 9 Dhu al-Hijjah, four working days, offices resume Sunday 14 Dhu al-Hijjah; Friday is the only non-working day in that span (Saturday is a working day: 24 Asad 1405 was declared a holiday on a Saturday), so the four days are 9, 10, 11 and 13. Eid al-Fitr 1447, 8 Sawr, Ashura and 12 Rabi al-Awwal are not in the set (no Bakhtar announcement stating their dates was found); per-record article URLs are in dataset/afghanistan/afghanistan-official-holidays.json. Since 2026-09-17 (ADR-0036) the records are Fixed rules valid from the announced year; the announced fourth day 13 Dhu al-Hijjah 1447 (a weekday-dependent one-off no rule expresses) was removed from the dataset and is not listed; each row below is the announced date its record must produce in that year
+# notes: per Solar Hijri year of the announcement, the exact dates each announcement states. Eid al-Adha 1447: Arafa Tuesday 9 Dhu al-Hijjah, four working days, offices resume Sunday 14 Dhu al-Hijjah; Friday is the only non-working day in that span (Saturday is a working day: 24 Asad 1405 was declared a holiday on a Saturday), so the four days are 9, 10, 11 and 13. 8 Sawr, Ashura and 12 Rabi al-Awwal are not in the set: Article 41 of the Labour Law lists them, but the Islamic Emirate has changed that list (it added 24 Asad, which Article 41 does not contain), and no Emirate-era announcement of their dates was reachable. Eid al-Fitr (3 days) and the third day of Eid al-Adha come from Article 41 of the Labour Law (Official Gazette 966), added 2026-09-25: the 1447 announcement lists the four *working* days off (9, 10, 11 and 13, since 12 Dhu al-Hijjah 1447 was a Friday), while Article 41 fixes the span itself at Arafa plus three days of Eid, i.e. 9, 10, 11 and 12; per-record article URLs are in dataset/afghanistan/afghanistan-official-holidays.json. Since 2026-09-17 (ADR-0036) the records are Fixed rules valid from the announced year; the announced fourth day 13 Dhu al-Hijjah 1447 (a weekday-dependent one-off no rule expresses) was removed from the dataset and is not listed; each row below is the announced date its record must produce in that year
 solarYear,id,calendar,year,month,day
 1404,af.holiday.soviet-withdrawal,PERSIAN,1404,11,26
 1405,af.holiday.arafa,ISLAMIC,1447,12,9
@@ -10,3 +10,7 @@ solarYear,id,calendar,year,month,day
 1405,af.holiday.eid-al-adha.2,ISLAMIC,1447,12,11
 1405,af.holiday.kabul-victory,PERSIAN,1405,5,24
 1405,af.holiday.independence,PERSIAN,1405,5,28
+1405,af.holiday.eid-al-adha.3,ISLAMIC,1447,12,12
+1405,af.holiday.eid-al-fitr.1,ISLAMIC,1447,10,1
+1405,af.holiday.eid-al-fitr.2,ISLAMIC,1447,10,2
+1405,af.holiday.eid-al-fitr.3,ISLAMIC,1447,10,3

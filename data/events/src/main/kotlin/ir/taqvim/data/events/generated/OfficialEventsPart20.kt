@@ -24,6 +24,170 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.happiness-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی شادی",
+                        "en" to "International Day of Happiness",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 20),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_012,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/happiness-day",
+                            title = "International Day of Happiness — resolution 66/281 (12 July 2012)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/happiness-day",
+                        title = "International Day of Happiness (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/happiness-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.hope-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی امید",
+                        "en" to "International Day of Hope",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 12),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/hope-day",
+                            title = "International Day of Hope — A/RES/79/270 (4 March 2025)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/hope-day",
+                        title = "International Day of Hope (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/hope-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.horse-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی اسب",
+                        "en" to "World Horse Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 11),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/horse-day",
+                            title = "World Horse Day — A/RES/79/291 (3 June 2025)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/horse-day",
+                        title = "World Horse Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/horse-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.human-fraternity"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی برادری انسانی",
+                        "en" to "International Day of Human Fraternity",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 2, day = 4),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_020,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/human-fraternity",
+                            title = "International Day of Human Fraternity — resolution 75/200",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/human-fraternity",
+                        title = "International Day of Human Fraternity (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/human-fraternity",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.human-rights-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -184,170 +348,6 @@ internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/63/139",
                     "un" to "https://www.un.org/en/observances/humanitarian-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.immunization-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "هفته جهانی ایمن‌سازی",
-                        "en" to "World Immunization Week",
-                    ),
-                ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 4, day = 24), lengthDays = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_012,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.who.int/campaigns/world-immunization-week",
-                            title = "WHO — World Immunization Week (campaign page; WHO's own event archive for this week begins in 2012)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.who.int/campaigns/world-immunization-week",
-                        title = "WHO — World Immunization Week (campaign page; WHO's own event archive for this week begins in 2012)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.who.int/campaigns/world-immunization-week",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.indigenous-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی مردم بومی جهان",
-                        "ar" to "اليوم الدولي للسكان الأصليين في العالم",
-                        "en" to "International Day of the World's Indigenous Peoples",
-                        "es" to "Día Internacional de los Pueblos Indígenas",
-                        "fr" to "Journée internationale des peuples autochtones",
-                        "ru" to "Международный день коренных народов мира",
-                        "zh" to "世界土著人民国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 8, day = 9),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/indigenous-day",
-                        title = "International Day of the World's Indigenous Peoples (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/49/214",
-                    "un" to "https://www.un.org/en/observances/indigenous-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.indigenous-women-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی زنان و دختران بومی جهان",
-                        "en" to "International Day of the World's Indigenous Women and Girls",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 5),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_025,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/indigenous-women-day",
-                            title = "International Day of the World's Indigenous Women and Girls — A/RES/80/10 (26 November 2025)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/indigenous-women-day",
-                        title = "International Day of the World's Indigenous Women and Girls (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/indigenous-women-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.information-access-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی دسترسی همگانی به اطلاعات",
-                        "en" to "International Day for Universal Access to Information",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 28),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/information-access-day",
-                            title = "International Day for Universal Access to Information — General Assembly, 28 September 2019 (following UNESCO's 2015 declaration)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/information-access-day",
-                        title = "International Day for Universal Access to Information (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/information-access-day",
                 ),
         ),
     )

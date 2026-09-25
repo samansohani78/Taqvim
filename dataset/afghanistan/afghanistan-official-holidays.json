@@ -146,6 +146,48 @@
       "reviewedBy": "pending"
     },
     {
+      "id": "af.holiday.eid-al-adha.3",
+      "calendar": "ISLAMIC",
+      "source": "AFGHANISTAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید سعید اضحی",
+        "prs": "عید سعید اضحی"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 12,
+        "day": 12
+      },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1447,
+        "citation": {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(7): «Four days of Eid-e-Said-e-Adhah and Arafat (Three days of Eid and one day of Arafat)» — Arafa 9 plus Eid 10, 11 and 12 Dhu al-Hijjah. The shipped Bakhtar announcement of 2026-05-21 likewise gives four days with offices resuming 14 Dhu al-Hijjah 1447; the dataset held only 10 and 11.",
+          "retrieved": "2026-09-25"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(7): «Four days of Eid-e-Said-e-Adhah and Arafat (Three days of Eid and one day of Arafat)» — Arafa 9 plus Eid 10, 11 and 12 Dhu al-Hijjah. The shipped Bakhtar announcement of 2026-05-21 likewise gives four days with offices resuming 14 Dhu al-Hijjah 1447; the dataset held only 10 and 11.",
+          "retrieved": "2026-09-25"
+        },
+        {
+          "url": "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+          "title": "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette No. 966 text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+          "page": "the Dari original of the article translated above; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
+          "retrieved": "2026-09-25"
+        }
+      ],
+      "updated": "2026-09-25",
+      "reviewedBy": "pending"
+    },
+    {
       "id": "af.holiday.kabul-victory",
       "calendar": "PERSIAN",
       "source": "AFGHANISTAN_OFFICIAL",
@@ -229,6 +271,132 @@
         }
       ],
       "updated": "2026-09-17",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "af.holiday.eid-al-fitr.1",
+      "calendar": "ISLAMIC",
+      "source": "AFGHANISTAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید سعید فطر",
+        "prs": "عید سعید فطر"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 1
+      },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1447,
+        "citation": {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+          "retrieved": "2026-09-25"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+          "retrieved": "2026-09-25"
+        },
+        {
+          "url": "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+          "title": "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette No. 966 text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+          "page": "the Dari original of the article translated above; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
+          "retrieved": "2026-09-25"
+        }
+      ],
+      "updated": "2026-09-25",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "af.holiday.eid-al-fitr.2",
+      "calendar": "ISLAMIC",
+      "source": "AFGHANISTAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید سعید فطر",
+        "prs": "عید سعید فطر"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 2
+      },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1447,
+        "citation": {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+          "retrieved": "2026-09-25"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+          "retrieved": "2026-09-25"
+        },
+        {
+          "url": "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+          "title": "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette No. 966 text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+          "page": "the Dari original of the article translated above; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
+          "retrieved": "2026-09-25"
+        }
+      ],
+      "updated": "2026-09-25",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "af.holiday.eid-al-fitr.3",
+      "calendar": "ISLAMIC",
+      "source": "AFGHANISTAN_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": true,
+      "title": {
+        "fa": "عید سعید فطر",
+        "prs": "عید سعید فطر"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 10,
+        "day": 3
+      },
+      "validity": {
+        "calendar": "ISLAMIC",
+        "fromYear": 1447,
+        "citation": {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+          "retrieved": "2026-09-25"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+          "title": "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+          "page": "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+          "retrieved": "2026-09-25"
+        },
+        {
+          "url": "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+          "title": "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette No. 966 text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+          "page": "the Dari original of the article translated above; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
+          "retrieved": "2026-09-25"
+        }
+      ],
+      "updated": "2026-09-25",
       "reviewedBy": "pending"
     }
   ]

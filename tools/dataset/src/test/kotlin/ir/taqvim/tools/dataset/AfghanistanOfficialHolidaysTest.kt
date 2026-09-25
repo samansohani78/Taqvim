@@ -54,7 +54,7 @@ class AfghanistanOfficialHolidaysTest {
     }
 
     @Test
-    fun `every record is an announced Afghan holiday cited to Bakhtar with a page`() {
+    fun `every record is an Afghan holiday cited to an official source with a page`() {
         events
             .filter { event ->
                 val citations = (event["citations"] as? JsonArray).orEmpty().mapNotNull { it as? JsonObject }
@@ -63,8 +63,9 @@ class AfghanistanOfficialHolidaysTest {
                     !isRecurring(event) ||
                     (event["title"] as? JsonObject)?.text("fa").isNullOrBlank() ||
                     citations.isEmpty() ||
-                    citations.any { citation ->
-                        citation.text("url")?.startsWith(BAKHTAR) != true || citation.text("page").isNullOrBlank()
+                    citations.any { citation -> citation.text("page").isNullOrBlank() } ||
+                    citations.none { citation ->
+                        OFFICIAL_SOURCES.any { citation.text("url")?.startsWith(it) == true }
                     }
             }.map { it.text("id") }
             .shouldBeEmpty()
@@ -112,7 +113,18 @@ class AfghanistanOfficialHolidaysTest {
     private companion object {
         const val DATASET_FILE = "afghanistan/afghanistan-official-holidays.json"
         const val GOLDEN = "/golden/afghanistan/afghanistan-official-holidays.csv"
-        const val BAKHTAR = "https://www.bakhtarnews.af/"
+
+        /**
+         * What may establish an Afghan holiday: the state news agency's announcements (accepted by the owner on
+         * 2026-09-14), and the Labour Law itself — Article 41 lists the public holidays, published as Official
+         * Gazette 966 by the Ministry of Labour and Social Affairs and translated by the ILO in NATLEX 78309.
+         */
+        val OFFICIAL_SOURCES =
+            listOf(
+                "https://www.bakhtarnews.af/",
+                "https://natlex.ilo.org/",
+                "https://molsa.gov.af/",
+            )
 
         fun property(name: String): String = requireNotNull(System.getProperty(name)) { "$name is not set" }
 

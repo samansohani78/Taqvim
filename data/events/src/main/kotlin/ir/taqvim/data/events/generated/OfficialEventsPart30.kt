@@ -24,6 +24,168 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_30: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.science-technology-and-innovation-for-south-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی علم، فناوری و نوآوری برای کشورهای جنوب",
+                        "en" to "International Day of Science, Technology and Innovation for the South",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 16),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+                            title = "International Day of Science, Technology and Innovation for the South — A/RES/78/259 (9 January 2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+                        title = "International Day of Science, Technology and Innovation for the South (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.seagrass-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی علف‌های دریایی",
+                        "en" to "World Seagrass Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 1),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/seagrass-day",
+                            title = "World Seagrass Day — A/RES/76/265 (May 2022)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/seagrass-day",
+                        title = "World Seagrass Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/seagrass-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.second-world-war-remembrance-days"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "زمان بزرگداشت و آشتی برای کسانی که زندگی خود را در جریان جنگ جهانی دوم از دست دادند",
+                        "en" to "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War",
+                        "fr" to "Journées du souvenir et de la réconciliation en l'honneur des morts de la Seconde Guerre mondiale",
+                        "ru" to "Дни памяти и примирения, посвященные погибшим во Второй мировой войне",
+                        "zh" to "缅怀第二次世界大战的所有死难者的悼念与和解的时刻",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 8),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/second-world-war-remembrance-days",
+                        title = "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/59/26",
+                    "un" to "https://www.un.org/en/observances/second-world-war-remembrance-days",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.sign-languages-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی زبان‌های اشاره",
+                        "en" to "International Day of Sign Languages",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 23),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_017,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/sign-languages-day",
+                            title = "International Day of Sign Languages — A/RES/72/161 (19 December 2017)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/sign-languages-day",
+                        title = "International Day of Sign Languages (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/sign-languages-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.slavery-abolition-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -184,170 +346,6 @@ internal val OFFICIAL_EVENTS_PART_30: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/68/232",
                     "un" to "https://www.un.org/en/observances/world-soil-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.solstice-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی گرامیداشت انقلاب تابستانی",
-                        "en" to "International Day of the Celebration of the Solstice",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 21),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/solstice-day",
-                            title = "International Day of the Celebration of the Solstice (A/RES/73/300, adopted 20 June 2019)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/solstice-day",
-                        title = "International Day of the Celebration of the Solstice (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/solstice-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.south-south-cooperation-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز ملل متحد برای همکاری جنوب - جنوب",
-                        "ar" to "يوم الأمم المتحدة للتعاون فيما بين بلدان الجنوب",
-                        "en" to "United Nations Day for South-South Cooperation",
-                        "es" to "Día de las Naciones Unidas para la Cooperación Sur-Sur",
-                        "fr" to "Journée des Nations Unies pour la coopération Sud-Sud",
-                        "ru" to "День сотрудничества Юг — Юг Организации Объединенных Наций",
-                        "zh" to "联合国南南合作日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 12),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/south-south-cooperation-day",
-                        title = "United Nations Day for South-South Cooperation (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/58/220",
-                    "un" to "https://www.un.org/en/observances/south-south-cooperation-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.space-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "هفته جهانی فضا",
-                        "en" to "World Space Week",
-                    ),
-                ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 10, day = 4), lengthDays = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_999,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/world-space-week",
-                            title = "General Assembly resolution A/RES/54/68 (1999): World Space Week",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/world-space-week",
-                        title = "General Assembly resolution A/RES/54/68 (1999): World Space Week",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/world-space-week",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.spanish-language-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز زبان اسپانیایی",
-                        "en" to "Spanish Language Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 23),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/russian-language-day",
-                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/es/observances/spanish-language-day",
-                        title = "Spanish Language Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/es/observances/spanish-language-day",
                 ),
         ),
     )
