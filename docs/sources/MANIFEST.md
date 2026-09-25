@@ -10,6 +10,7 @@ notices and the papers the owner supplied are listed, with their SHA-256, kind, 
 
 | File | Pages | Bytes | SHA-256 | Content |
 |---|---|---|---|---|
+| `nepal/moha-public-holidays-2083.pdf` | 12 | 8618093 | `ffbabf83cad254b485504627f9e47fce6c1a7a28e2693a399ae88bf9c0279a29` | Nepal Rajpatra Part 5, Vol. 75 No. 67 (18 Falgun 2082): the Ministry of Home Affairs notice of public holidays for BS 2083, cited by D-04 and DT-038. Scanned images with no text layer, so it is read page by page; the hash matches the one PROVENANCE already cited for https://moha.gov.np/page/government-and-public-holidays-in-2083. |
 | `unic-tehran-f-event-20121005.html` | — | 78362 | `0e15f1085c6d991536f67c4344d568170060389a738fa1a809592b931cda281d` (as committed, LF line endings; the downloaded CRLF file was 79037 bytes, `27ec144172049388c4a9f9f63e8e7b8fe1ce8646eef84a89a42bb2af759fa8b7`) | United Nations Information Centre Tehran, "مناسبت های ویژه سازمان ملل متحد" (UN special days, Persian), https://www.unic-ir.org/event/f-event.htm — Internet Archive copy https://web.archive.org/web/20121005003400id_/https://www.unic-ir.org/event/f-event.htm (retrieved 2026-09-13; the original site returns HTTP 522/403). Persian titles for D-05. |
 
 Nepal (Bikram Sambat) sources: none supplied yet (T-105, D-04 remain blocked).
