@@ -12,6 +12,7 @@ import io.kotest.matchers.string.shouldEndWith
 import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.calendar.PersianCalendarSystem
+import ir.taqvim.core.i18n.IauConstellationNames
 import org.junit.jupiter.api.Test
 
 /** T-1300: the Earth, Moon and Sun views and the header, mapped and localized. */
@@ -49,6 +50,17 @@ class AstronomyStateMapperTest {
         sky.picker.initial.day shouldBe 31
         sky.picker.monthNames.size shouldBe 12
         sky.picker.daysInMonth(1405, 12) shouldBe PersianCalendarSystem.monthLength(1405, 12)
+    }
+
+    @Test
+    fun `the Moon's constellation is named, not abbreviated`() {
+        // The astronomy library reports only the IAU abbreviation ("Sco"); the screen showed that verbatim until the
+        // IAU's own names were bundled (DT-026). No per-language name is sourced yet, so every language sees the
+        // Latin one.
+        val sky = AstronomyFixtures.sky(tehran, AstronomyFixtures.at("2026-08-28T22:00", tehran))
+
+        sky.header.moonConstellation shouldBe IauConstellationNames.name("Aqr")
+        sky.header.moonConstellation shouldBe "Aquarius"
     }
 
     @Test

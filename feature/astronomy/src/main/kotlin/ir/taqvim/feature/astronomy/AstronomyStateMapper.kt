@@ -8,6 +8,7 @@ import ir.taqvim.core.astronomy.CelestialBody
 import ir.taqvim.core.astronomy.RiseSetTransit
 import ir.taqvim.core.astronomy.Sky as SkyEngine
 import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.i18n.IauConstellationNames
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.monthNamesOf
 import ir.taqvim.core.model.Coordinates
@@ -63,7 +64,10 @@ internal object AstronomyStateMapper {
     ) = HeaderText(
         sunSign = header.sunSign,
         moonSign = header.moonSign,
-        moonConstellation = header.moonConstellation,
+        // The IAU's own name where it has one, e.g. "Sco" → "Scorpius"; the abbreviation is all the astronomy
+        // library reports, and no per-language translation is sourced yet (DT-026).
+        moonConstellation =
+            IauConstellationNames.name(header.moonConstellation) ?: header.moonConstellation,
         phase = phaseName(header.moonPhaseDegrees),
         illumination = text.decimal(header.moonIlluminatedFraction * PERCENT, 0),
         moonDistance = text.integer(Math.round(header.moonDistanceKm)),
