@@ -34,13 +34,12 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_433,
+                    fromYear = 1_432,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://calendar.ut.ac.ir/Fa/",
-                            title = "Official calendar of Iran 1391 SH (docs/sources/iran/Calendar-1391.pdf)",
-                            page = "8: 2 Shawwal 1433 (1391-05-30) is printed \"تعطیل به مناسبت عید سعید فطر\", the first year it is a holiday. The official calendars of 1381–1390 print 2 Shawwal without (تعطیل), e.g. Calendar-1390.pdf page 10 (2 Shawwal 1432 = 1390-06-10).",
+                            url = "https://rc.majlis.ir/fa/law/show/796840",
+                            title = "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
                         ),
                 ),
             citations =
@@ -54,6 +53,10 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "3, 14",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/796840",
+                        title = "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
                     ),
                 ),
         ),
@@ -98,6 +101,10 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "10",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/93217",
+                        title = "قانون اصلاح لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1378/05/25: «روز سوم جمادی‌الثانی به عنوان روز شهادت حضرت فاطمه زهرا (سلام الله علیها) تعطیل رسمی (عمومی) اعلام می‌شود» — the law that made this day a holiday.",
                     ),
                 ),
         ),

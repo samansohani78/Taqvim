@@ -306,9 +306,24 @@
           "title": "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
           "page": "14",
           "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://rc.majlis.ir/fa/law/show/99002",
+          "title": "لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1359/04/08: the base list of official holidays, which includes «29 اسفند تا 4 فروردین».",
+          "retrieved": "2026-09-25"
+        },
+        {
+          "url": "https://rc.majlis.ir/fa/law/show/93217",
+          "title": "قانون اصلاح لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1378/05/25: «…و تعطیلی روز بیست و نهم اسفند ماه لغو می‌گردد» — the 29 Esfand holiday was abolished.",
+          "retrieved": "2026-09-25"
+        },
+        {
+          "url": "https://rc.majlis.ir/fa/law/show/93237",
+          "title": "قانون راجع به تعطیل روز ملی شدن صنعت نفت, approved 1378/08/18, Guardian Council 1378/08/19: «روز ملی شدن صنعت نفت که مصادف با 29 اسفند ماه هر سال می‌باشد کماکان جزء تعطیلات رسمی کشور محسوب می‌شود» — restored three months after the abolition, which is why every official calendar from 1381 SH prints it as (تعطیل).",
+          "retrieved": "2026-09-25"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-25",
       "reviewedBy": "pending"
     },
     {
@@ -563,9 +578,14 @@
           "title": "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
           "page": "10",
           "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://rc.majlis.ir/fa/law/show/93217",
+          "title": "قانون اصلاح لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1378/05/25: «روز سوم جمادی‌الثانی به عنوان روز شهادت حضرت فاطمه زهرا (سلام الله علیها) تعطیل رسمی (عمومی) اعلام می‌شود» — the law that made this day a holiday.",
+          "retrieved": "2026-09-25"
         }
       ],
-      "updated": "2026-09-13",
+      "updated": "2026-09-25",
       "reviewedBy": "pending"
     },
     {
@@ -739,12 +759,11 @@
       },
       "validity": {
         "calendar": "ISLAMIC",
-        "fromYear": 1433,
+        "fromYear": 1432,
         "citation": {
-          "url": "https://calendar.ut.ac.ir/Fa/",
-          "title": "Official calendar of Iran 1391 SH (docs/sources/iran/Calendar-1391.pdf)",
-          "page": "8: 2 Shawwal 1433 (1391-05-30) is printed \"تعطیل به مناسبت عید سعید فطر\", the first year it is a holiday. The official calendars of 1381–1390 print 2 Shawwal without (تعطیل), e.g. Calendar-1390.pdf page 10 (2 Shawwal 1432 = 1390-06-10).",
-          "retrieved": "2026-09-18"
+          "url": "https://rc.majlis.ir/fa/law/show/796840",
+          "title": "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
+          "retrieved": "2026-09-25"
         }
       },
       "citations": [
@@ -759,9 +778,14 @@
           "title": "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
           "page": "3, 14",
           "retrieved": "2026-09-13"
+        },
+        {
+          "url": "https://rc.majlis.ir/fa/law/show/796840",
+          "title": "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
+          "retrieved": "2026-09-25"
         }
       ],
-      "updated": "2026-09-18",
+      "updated": "2026-09-25",
       "reviewedBy": "pending"
     },
     {

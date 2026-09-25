@@ -88,6 +88,18 @@ internal val OFFICIAL_EVENTS_PART_5: List<EventDefinition> =
                         title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
                         page = "14",
                     ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/99002",
+                        title = "لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1359/04/08: the base list of official holidays, which includes «29 اسفند تا 4 فروردین».",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/93217",
+                        title = "قانون اصلاح لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1378/05/25: «…و تعطیلی روز بیست و نهم اسفند ماه لغو می‌گردد» — the 29 Esfand holiday was abolished.",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/93237",
+                        title = "قانون راجع به تعطیل روز ملی شدن صنعت نفت, approved 1378/08/18, Guardian Council 1378/08/19: «روز ملی شدن صنعت نفت که مصادف با 29 اسفند ماه هر سال می‌باشد کماکان جزء تعطیلات رسمی کشور محسوب می‌شود» — restored three months after the abolition, which is why every official calendar from 1381 SH prints it as (تعطیل).",
+                    ),
                 ),
         ),
         EventDefinition(

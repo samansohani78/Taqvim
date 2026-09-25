@@ -21,7 +21,7 @@ Written by `IranOfficialHolidayHistoryTest`; run `./gradlew :tools:dataset:test
 | 1387 | 26 | 0 / 0 | `eid-al-fitr-holiday` 07-11, `imam-hasan-askari-martyrdom` 12-16 | 8 / 0 |
 | 1388 | 25 | 0 / 0 | `eid-al-fitr-holiday` 06-30, `imam-hasan-askari-martyrdom` 12-04 | 4 / 0 |
 | 1389 | 25 | 0 / 0 | `eid-al-fitr-holiday` 06-20, `imam-hasan-askari-martyrdom` 11-23 | 2 / 0 |
-| 1390 | 25 | 0 / 0 | `eid-al-fitr-holiday` 06-10, `imam-hasan-askari-martyrdom` 11-12 | 2 / 0 |
+| 1390 | 25 | 0 / 1 | `imam-hasan-askari-martyrdom` 11-12 | 2 / 0 |
 | 1391 | 25 | 0 / 0 | `imam-hasan-askari-martyrdom` 11-01 | 4 / 0 |
 | 1392 | 26 | 0 / 0 | `imam-hasan-askari-martyrdom` 10-20 | 4 / 0 |
 | 1393 | 26 | 0 / 0 | `imam-hasan-askari-martyrdom` 10-10 | 2 / 0 |
@@ -38,13 +38,17 @@ Written by `IranOfficialHolidayHistoryTest`; run `./gradlew :tools:dataset:test
 | 1404 | 26 | 0 / 0 | — | 0 / 0 |
 | 1405 | 26 | 0 / 0 | — | 0 / 0 |
 
-Two holidays were added by law during these years; each record's `validity` starts at the first year the
-official calendar marks the day (تعطیل), with that page as its citation:
+Two holidays were added by law during these years. A record's `validity` starts when the observance
+began, which is the law's own date where one is published and otherwise the first year the official
+calendar marks the day (تعطیل):
 
 - `imam-hasan-askari-martyrdom` (8 Rabi al-Awwal): a holiday from 1440 AH (Calendar-1397.pdf page 13). The
   calendars of 1381–1396 print the day without (تعطیل), and every calendar from 1397 on with it.
-- `eid-al-fitr-holiday` (2 Shawwal): a holiday from 1433 AH (Calendar-1391.pdf page 8); up to 1390 only
-  1 Shawwal is.
+- `eid-al-fitr-holiday` (2 Shawwal): a holiday from 1432 AH by قانون افزایش تعطیلی عید سعید فطر
+  (rc.majlis.ir/fa/law/show/796840), approved 1390/06/06 and in force from that date. 2 Shawwal 1432 fell
+  on 1390/06/10, four days later, so it was already a holiday; Calendar-1390.pdf prints it without
+  (تعطیل) because it went to print before the law passed, and Calendar-1391.pdf page 8 is the first to
+  print it. The record follows the law, and the comparison above names that one day.
 
 ## Months an announcement moved
 
@@ -103,6 +107,7 @@ The computed calendar is compared here with both.
 | 1389-02-28 | `ir.holiday.fatima-martyrdom` | no | 1431-06-04 | 1431-06-03 | lunar-calendar difference |
 | 1390-05-30 | `ir.holiday.imam-ali-martyrdom` | yes | 1432-09-21 | 1432-09-20 | lunar-calendar difference |
 | 1390-05-31 | `ir.holiday.imam-ali-martyrdom` | no | 1432-09-22 | 1432-09-21 | lunar-calendar difference |
+| 1390-06-10 | `ir.holiday.eid-al-fitr-holiday` | no | 1432-10-02 | 1432-10-02 | printed before the law |
 | 1391-05-29 | `ir.holiday.eid-al-fitr` | yes | 1433-10-01 | 1433-09-30 | lunar-calendar difference |
 | 1391-05-31 | `ir.holiday.eid-al-fitr-holiday` | no | 1433-10-03 | 1433-10-02 | lunar-calendar difference |
 | 1391-06-22 | `ir.holiday.imam-sadiq-martyrdom` | yes | 1433-10-25 | 1433-10-24 | lunar-calendar difference |

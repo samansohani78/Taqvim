@@ -49,10 +49,14 @@ class IranOfficialHolidaysTest {
 
     @Test
     fun `every record cites both official calendars with a page`() {
+        // Both calendars must be cited with the page they print the day on. A record may carry further citations —
+        // the law that created or restored a holiday, for instance — and a law has no page, so only the calendar
+        // citations are required to have one.
         events
             .filter { event ->
                 val citations = (event["citations"] as? JsonArray).orEmpty().mapNotNull { it as? JsonObject }
-                citations.size != YEARS.size || citations.any { it.text("page").isNullOrBlank() }
+                val calendars = citations.filter { it.text("title").orEmpty().contains(CALENDAR_TITLE) }
+                calendars.size != YEARS.size || calendars.any { it.text("page").isNullOrBlank() }
             }.shouldBeEmpty()
     }
 
@@ -120,6 +124,9 @@ class IranOfficialHolidaysTest {
         const val HIJRI_COLUMN = 2
         const val HOLIDAY_COLUMN = 4
         val YEARS = listOf(1404, 1405)
+
+        /** Marks the citations that are official calendars, as opposed to a law or another source. */
+        const val CALENDAR_TITLE = "Official calendar of Iran"
 
         fun property(name: String): String = requireNotNull(System.getProperty(name)) { "$name is not set" }
 

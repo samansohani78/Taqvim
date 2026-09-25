@@ -135,6 +135,19 @@ internal class IranHolidayRules(
     }
 }
 
+/**
+ * Days a law made a holiday after that year's official calendar had already gone to print, so the calendar shows the
+ * day without (تعطیل) while the law says it was a holiday. The records follow the law; naming each day here keeps the
+ * comparison exact everywhere else instead of tolerating a mismatch.
+ */
+internal val PRINTED_BEFORE_THE_LAW =
+    mapOf(
+        "1390-06-10" to
+            "2 Shawwal 1432: قانون افزایش تعطیلی عید سعید فطر (rc.majlis.ir/fa/law/show/796840) is in force from its " +
+            "approval on 1390/06/06, four days before this date; Calendar-1390.pdf went to print earlier and " +
+            "prints the day without (تعطیل).",
+    )
+
 /** How a difference between the computed calendar's holidays and an official calendar's holidays comes about. */
 internal enum class HolidayDifference(
     val label: String,
@@ -144,6 +157,9 @@ internal enum class HolidayDifference(
 
     /** The computed Iranian lunar month starts on another day than the official one. */
     LUNAR_CALENDAR("lunar-calendar difference"),
+
+    /** The law that made the day a holiday passed after that year's calendar had gone to print. */
+    PRINTED_BEFORE_THE_LAW("printed before the law"),
 
     /** Neither: the rule itself is wrong. The history test allows none. */
     RULE_ERROR("rule error"),
@@ -206,6 +222,7 @@ internal class ComputedCalendarComparison(
         val announced = computed.yearMonth in announcedMonths || day.printedHijri.yearMonth in announcedMonths
         val kind =
             when {
+                day.persian.toString() in PRINTED_BEFORE_THE_LAW -> HolidayDifference.PRINTED_BEFORE_THE_LAW
                 announced -> HolidayDifference.ANNOUNCED_SHIFT
                 lunarDiffers -> HolidayDifference.LUNAR_CALENDAR
                 else -> HolidayDifference.RULE_ERROR

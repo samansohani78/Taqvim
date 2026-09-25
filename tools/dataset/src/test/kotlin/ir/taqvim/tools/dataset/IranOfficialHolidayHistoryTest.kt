@@ -56,7 +56,8 @@ class IranOfficialHolidayHistoryTest {
             DynamicTest.dynamicTest("$year") {
                 val produced = rules.evaluate(days, ::printed).holidays.keys
                 val official = days.filter { it.holiday }.map { it.persian.toString() }.toSet()
-                withClue("missing ${official - produced}, extra ${produced - official}") { produced shouldBe official }
+                val expected = official + PRINTED_BEFORE_THE_LAW.keys.filter { it.startsWith("$year-") }
+                withClue("missing ${expected - produced}, extra ${produced - expected}") { produced shouldBe expected }
                 official shouldBe goldenHolidays(year)
             }
         }
@@ -200,13 +201,17 @@ class IranOfficialHolidayHistoryTest {
 
         val LAW_CHANGES =
             """
-            Two holidays were added by law during these years; each record's `validity` starts at the first year the
-            official calendar marks the day (تعطیل), with that page as its citation:
+            Two holidays were added by law during these years. A record's `validity` starts when the observance
+            began, which is the law's own date where one is published and otherwise the first year the official
+            calendar marks the day (تعطیل):
 
             - `imam-hasan-askari-martyrdom` (8 Rabi al-Awwal): a holiday from 1440 AH (Calendar-1397.pdf page 13). The
               calendars of 1381–1396 print the day without (تعطیل), and every calendar from 1397 on with it.
-            - `eid-al-fitr-holiday` (2 Shawwal): a holiday from 1433 AH (Calendar-1391.pdf page 8); up to 1390 only
-              1 Shawwal is.
+            - `eid-al-fitr-holiday` (2 Shawwal): a holiday from 1432 AH by قانون افزایش تعطیلی عید سعید فطر
+              (rc.majlis.ir/fa/law/show/796840), approved 1390/06/06 and in force from that date. 2 Shawwal 1432 fell
+              on 1390/06/10, four days later, so it was already a holiday; Calendar-1390.pdf prints it without
+              (تعطیل) because it went to print before the law passed, and Calendar-1391.pdf page 8 is the first to
+              print it. The record follows the law, and the comparison above names that one day.
             """.trimIndent()
 
         fun property(name: String): String = requireNotNull(System.getProperty(name)) { "$name is not set" }
