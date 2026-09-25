@@ -629,6 +629,31 @@ frame P99, month-screen memory) are still judged only against generous hosted ce
 high-refresh section), so a 10 % regression threshold over them may produce false alarms. Re-record on a stable
 runner, or move the frame metrics to device-only, if the nightly job proves noisy.
 
+### v1.0.0-rc3 (2026-09-25, main@2aac153) — tagged without a benchmarked commit
+
+| Workflow | Result | Run |
+|---|---|---|
+| PR | success | https://github.com/samansohani78/Taqvim/actions/runs/36169389018 |
+| Instrumented tests (API 26, 30, 33, 36, Wear OS 34) | success | https://github.com/samansohani78/Taqvim/actions/runs/36169389071 |
+| Release dry run | success | https://github.com/samansohani78/Taqvim/actions/runs/36171335634 |
+| Benchmarks | **inconclusive** (exit 4) | https://github.com/samansohani78/Taqvim/actions/runs/36171332170 |
+
+**The benchmark has been inconclusive on six consecutive runs**, and the gate is right to say so: its control
+benchmarks time fixed synthetic drawing that no app change can affect, and on these runners they move by hundreds of
+percent in both directions within a single run (`progressRingBitmap` +258 %, `mapWidgetContent` −67 %). A machine that
+is simultaneously three times slower and three times faster on unchanged code cannot judge a 10 % threshold, so the
+gate withholds its timing findings rather than name regressions it cannot substantiate (main@e988cd8).
+
+**The owner chose on 2026-09-25 to tag anyway, with this recorded.** So `v1.0.0-rc3` carries green code checks and
+**no performance verification**: no commit in this candidate has been benchmarked on hardware that can measure it. The
+release workflow's `qualify` job (R06, main@4e58d50) still requires every check in `.github/required-checks.txt` to
+have succeeded on the tagged SHA, so it will refuse to build signed artifacts for this tag — which is the intended
+behaviour, not a fault, and is why the tag is a marker rather than a release.
+
+**What would close it:** one benchmark run on a physical device — the owner's OnePlus 15 — which would both qualify a
+future tag and give the first trustworthy baseline, since every performance number in this report comes from
+software-rendered emulators. `docs/RELEASE.md` records the command.
+
 ### Calendar performance: what was measured, and where it stopped (2026-09-23)
 
 The owner reported the calendar page slow on a OnePlus 15 (165 Hz, so a frame must land in 6.1 ms). Four rounds of
