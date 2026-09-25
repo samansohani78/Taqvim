@@ -36,6 +36,22 @@ are also in `docs/sources/usno/SHA256SUMS`. Use: ADR-0025.
 | `usno/twilight-2026-raw.json` | — | 65333 | `0fe280e10e67c1e0e6ab86ea2a44c901353885e7c7ff3926d86c02d0e9d92f28` | Rise, set, transit and civil twilight on the 21st of each month of 2026 for Tehran, Kabul, Istanbul, Berlin and Sydney (60 responses of `/api/rstt/oneday`), retrieved 2026-09-25. Cross-checks the Sun and the blue hour (DT-011, DT-017, ADR-0047). |
 | `usno/sidereal-2026-raw.json` | — | 31667 | `80cb87411c546fc1889e900c97d52b3e9ae1af9241477a45e85f96841462d6e1` | Greenwich and local apparent sidereal time at 00:00 and 12:00 UT1 on the 2026 equinoxes and solstices for eight places spanning both hemispheres, the prime meridian and the date line (64 responses of `/api/siderealtime`), retrieved 2026-09-25. Cross-checks the angle the ascendant and midheaven are built on (DT-018). |
 
+## Umm al-Qura prayer timetables (`docs/sources/saudi/`)
+
+The daily prayer timetable of 13 Saudi cities that the King Abdulaziz City for Science and Technology (KACST)
+published on the front page of `ummulqura.org.sa`, the site of the calendar authority itself. The site is
+unreachable from the development network and its current pages build the table in the browser, so every day was
+read from an Internet Archive capture of the older server-rendered page. The captured pages are **not** committed
+(the owner's standing rule for copyrighted pages): `umm-al-qura-prayer-tables.json` holds the times as facts, and
+each day cites the capture it was read from and the SHA-256 of exactly those bytes. Written by
+`tools/saudi/umm_al_qura_prayer_tables.py` (needs the network, never runs in CI) and turned into
+`golden/umm-al-qura-prayer-times/saudi-cities.csv` by `tools/saudi/umm_al_qura_prayer_golden.py --check`.
+Use: T-601, DT-011, `UmmAlQuraPublishedTimesTest`, `UmmAlQuraRamadanIshaTest`.
+
+| File | Days | Bytes | SHA-256 | Content |
+|---|---|---|---|---|
+| `saudi/umm-al-qura-prayer-tables.json` | 599 | 1045210 | `912ab07fdec17e694d5b80bee9107242601b2d501c6b39011b2b53b238016669` | Fajr, sunrise, Dhuhr, Asr, Maghrib and Isha for Makkah, Madinah, Riyadh, Buraydah, Dammam, Abha, Tabuk, Hail, Arar, Jazan, Najran, Al Baha and Sakaka, 2009-08-18‥2026-02-09, one capture per day with its URL and the SHA-256 of that page; also the captures rejected because a page could not vouch for the day it showed |
+
 ## R. H. van Gent, "The Umm al-Qura Calendar of Saudi Arabia" (cited, not archived)
 
 Pages of R. H. van Gent's website (Mathematical Institute, Utrecht University;

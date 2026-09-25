@@ -41,8 +41,13 @@ import org.junit.jupiter.api.Test
  * - Shawwal 1431 — Maghrib 06:15, Isha 07:45
  *   (https://web.archive.org/web/20100925161345id_/http://www.ummulqura.org.sa/)
  *
- * The times themselves are not compared: the archived table is KACST's own computation with its own conventions, and
- * this test is about the *interval* the method adds after Maghrib, which is the parameter the app owns.
+ * The times themselves are not compared here: this test is about the *interval* the method adds after Maghrib, which
+ * is the parameter the app owns. They are compared in [UmmAlQuraPublishedTimesTest], which widened the record from
+ * these nine captures to every capture the archive holds. That larger record confirms the interval in Ramadan 1431,
+ * 1432, 1434, 1435, 1444 and 1445 — and shows that **Ramadan 1430, the earliest preserved, still printed 90
+ * minutes**, so the change dates to Ramadan 1431. The rule below applies 120 to every Ramadan, which is right from
+ * 1431 on and half an hour late before it; one archived day is too little to date a rule in the shipped parameters
+ * (DT-011 asks for more captures of 1430 and earlier).
  */
 class UmmAlQuraRamadanIshaTest {
     private val makkah = Coordinates(21.4225, 39.8262)
