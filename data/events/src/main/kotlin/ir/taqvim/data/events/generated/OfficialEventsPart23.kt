@@ -290,8 +290,8 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.fao.org/new-york/news/news-detail/UN-adopts-resolution-showcasing-tea/en",
-                            title = "International Tea Day (A/RES/74/151, adopted December 2019)",
+                            url = "https://docs.un.org/en/A/RES/74/241",
+                            title = "International Tea Day (A/RES/74/241, adopted 19 December 2019)",
                         ),
                 ),
             citations =
@@ -303,6 +303,10 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
                     Citation(
                         url = "https://www.fao.org/international-tea-day/en",
                         title = "International Tea Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://docs.un.org/en/A/RES/74/241",
+                        title = "General Assembly resolution A/RES/74/241 (19 December 2019): \"Decides to designate 21 May as International Tea Day\" — D-05 re-validation (2026-09-25) found the record's validity citation misidentified this resolution as A/RES/74/151 (an unrelated human-rights resolution of 18 December 2019); the 21 May date itself was already correct, only the cited resolution symbol was wrong.",
                     ),
                 ),
             links =

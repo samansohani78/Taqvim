@@ -2322,9 +2322,10 @@
         "fa"
       ],
       "rule": {
-        "type": "Fixed",
+        "type": "NthWeekdayOfMonth",
         "month": 4,
-        "day": 23
+        "weekday": "THURSDAY",
+        "n": 4
       },
       "citations": [
         {
@@ -2336,9 +2337,14 @@
           "url": "https://www.itu.int/women-and-girls/girls-in-ict/",
           "title": "International Girls in ICT Day (observance page)",
           "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
+          "title": "ITU — About International Girls in ICT Day: \"Since 8 April 2011, the ITU has celebrated Girls in ICT Day annually on the fourth Thursday in April\" — D-05 re-validation (2026-09-25) found this record was shipped as a Fixed April 23 date, which is only the fourth Thursday in 3 of 25 years (2015, 2020, 2026); ITU's own page states a floating weekday-ordinal rule, so the rule type was corrected from Fixed to NthWeekdayOfMonth.",
+          "retrieved": "2026-09-25"
         }
       ],
-      "updated": "2026-09-23",
+      "updated": "2026-09-25",
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.itu.int/women-and-girls/girls-in-ict/"
@@ -3450,9 +3456,14 @@
           "url": "https://www.fao.org/international-tea-day/en",
           "title": "International Tea Day (observance page)",
           "retrieved": "2026-09-23"
+        },
+        {
+          "url": "https://docs.un.org/en/A/RES/74/241",
+          "title": "General Assembly resolution A/RES/74/241 (19 December 2019): \"Decides to designate 21 May as International Tea Day\" — D-05 re-validation (2026-09-25) found the record's validity citation misidentified this resolution as A/RES/74/151 (an unrelated human-rights resolution of 18 December 2019); the 21 May date itself was already correct, only the cited resolution symbol was wrong.",
+          "retrieved": "2026-09-25"
         }
       ],
-      "updated": "2026-09-23",
+      "updated": "2026-09-25",
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.fao.org/international-tea-day/en"
@@ -3461,9 +3472,9 @@
         "calendar": "GREGORIAN",
         "fromYear": 2019,
         "citation": {
-          "url": "https://www.fao.org/new-york/news/news-detail/UN-adopts-resolution-showcasing-tea/en",
-          "title": "International Tea Day (A/RES/74/151, adopted December 2019)",
-          "retrieved": "2026-09-24"
+          "url": "https://docs.un.org/en/A/RES/74/241",
+          "title": "International Tea Day (A/RES/74/241, adopted 19 December 2019)",
+          "retrieved": "2026-09-25"
         }
       }
     },

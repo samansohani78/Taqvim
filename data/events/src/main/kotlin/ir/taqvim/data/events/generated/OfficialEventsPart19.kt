@@ -283,7 +283,7 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                         "en" to "International Girls in ICT Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 4, day = 23),
+            rule = EventRule.NthWeekdayOfMonth(month = 4, weekday = Weekday.THURSDAY, n = 4),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
@@ -304,6 +304,10 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
                     Citation(
                         url = "https://www.itu.int/women-and-girls/girls-in-ict/",
                         title = "International Girls in ICT Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
+                        title = "ITU — About International Girls in ICT Day: \"Since 8 April 2011, the ITU has celebrated Girls in ICT Day annually on the fourth Thursday in April\" — D-05 re-validation (2026-09-25) found this record was shipped as a Fixed April 23 date, which is only the fourth Thursday in 3 of 25 years (2015, 2020, 2026); ITU's own page states a floating weekday-ordinal rule, so the rule type was corrected from Fixed to NthWeekdayOfMonth.",
                     ),
                 ),
             links =
