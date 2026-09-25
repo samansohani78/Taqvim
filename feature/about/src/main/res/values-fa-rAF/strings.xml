@@ -42,7 +42,7 @@
   <string name="about_source_matthews">مدل صفحه‌های EarthByte (Matthews و همکاران، ۲۰۱۶)</string>
   <string name="about_source_matthews_description">مرز صفحه‌های زمین‌ساختی روی نقشهٔ جهان، ساده‌شده</string>
   <string name="about_source_geonames">GeoNames</string>
-  <string name="about_source_geonames_description">ولایت‌ها و شهرستان‌های ایران با مختصات آن‌ها</string>
+  <string name="about_source_geonames_description">ولایت‌ها و شهرستان‌های ایران و نام جاها به چند زبان، با مختصات آن‌ها</string>
   <string name="about_source_noaa">آزمایشگاه پایش جهانی NOAA</string>
   <string name="about_source_noaa_description">معادله‌های موقعیت خورشید برای محاسبهٔ اوقات شرعی</string>
   <string name="about_data_license_unicode">مجوز: Unicode License v3</string>

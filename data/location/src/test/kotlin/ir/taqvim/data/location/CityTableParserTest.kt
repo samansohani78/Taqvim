@@ -77,7 +77,8 @@ class CityTableParserTest {
         city.name("prs") shouldBe "تهران"
         city.name("ps") shouldBe "Tehran"
         city.hasPublishedName("es") shouldBe true
-        city.hasPublishedName("ps") shouldBe false
+        city.hasPublishedName("ps") shouldBe true
+        city.hasPublishedName("kmr") shouldBe false
     }
 
     @Test
@@ -116,10 +117,10 @@ class CityTableParserTest {
         shouldThrow<IllegalArgumentException> { parse(header(columns - "tr")) }.message shouldContain "lacks [tr]"
         shouldThrow<IllegalArgumentException> { parse(header(columns + "neId")) }.message shouldContain "repeats"
         shouldThrow<IllegalArgumentException> { parse(header()) }.message shouldContain
-            "expected 21 column lines, found 0"
+            "expected ${columns.size} column lines, found 0"
         shouldThrow<IllegalArgumentException> {
             parse(*(listOf(header()) + body(listOf(tehran)) + "extra").toTypedArray())
-        }.message shouldContain "expected 21 column lines, found 22"
+        }.message shouldContain "expected ${columns.size} column lines, found ${columns.size + 1}"
         shouldThrow<IllegalArgumentException> {
             val ragged = body(listOf(tehran)).toMutableList().also { it[1] = it[1] + "\tIR" }
             parse(*(listOf(header()) + ragged).toTypedArray())

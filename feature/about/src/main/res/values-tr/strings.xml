@@ -42,7 +42,7 @@
   <string name="about_source_matthews">EarthByte levha modeli (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">Dünya haritasında basitleştirilmiş tektonik levha sınırları</string>
   <string name="about_source_geonames">GeoNames</string>
-  <string name="about_source_geonames_description">İran’ın illeri ve ilçeleri, koordinatlarıyla</string>
+  <string name="about_source_geonames_description">İran’ın illeri ve ilçeleri, birkaç dilde yer adları ve koordinatlarıyla</string>
   <string name="about_source_noaa">NOAA Küresel İzleme Laboratuvarı</string>
   <string name="about_source_noaa_description">Namaz vakitleri için kullanılan Güneş konumu denklemleri</string>
   <string name="about_data_license_unicode">Lisans: Unicode License v3</string>

@@ -92,13 +92,17 @@ the calendar in every screen now.
   shows these.
 - **Era:** "वि.सं." for `ne`, as printed on the Panchang's cover and headers. The English reports print no era, so
   other languages show none.
-- **Date pattern:** no official document shows a full written date format. `ne` uses CLDR's `ne` pattern for its
-  other non-Gregorian calendars (`G y MMMM d, EEEE`, e.g. "वि.सं. २०८३ भदौ २८, आइतबार"); other languages write Bikram
-  Sambat dates with their own Gregorian pattern and the Latin names (e.g. "Sunday, Bhadra 28, 2083").
+- **Date pattern (DT-010, resolved 2026-09-25):** "day, full month name, comma, year" — `d MMMM, y`, e.g.
+  "२८ भदौ, २०८३" — read directly from two Government of Nepal sources showing an actual written date, not just a
+  month name: the Nepal Law Commission's statute pages (lawcommission.gov.np, e.g. "१३ माघ, २०८१") and the
+  Department of Printing's Nepal Gazette upload listing (dop.gov.np, e.g. "८ असोज, २०८३"), both retrieved
+  2026-09-25. Neither source glues वि.सं. onto the date itself, so the pattern carries no era (`G`) or weekday
+  (`E`). Other languages write Bikram Sambat dates with their own Gregorian pattern and the Latin names (e.g.
+  "Sunday, Bhadra 28, 2083").
 - **Wiring:** `IslamicCalendarSelection.arithmeticFor` (`core/events`) is the one lookup from `CalendarSystem` to
   arithmetic, used by the calendar, year, agenda, timeline and Wear screens and by `:app`; `OccurrenceCalculator`,
   the date parser and `taqvim://` links (`nepali`) know the calendar, and settings offer it.
 
 **Consequences.** Non-Nepali users see romanised month names, including in right-to-left and CJK languages, until
-translations exist (DT-007 stays open for those). A written Bikram Sambat date format from an official source would
-replace the `ne` pattern (DT-010).
+translations exist (DT-007 stays open for those). DT-010 is now resolved for both the era and the written date
+pattern.

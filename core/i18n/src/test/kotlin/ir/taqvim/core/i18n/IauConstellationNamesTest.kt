@@ -46,6 +46,20 @@ class IauConstellationNamesTest {
         IauConstellationNames.name("Xyz") shouldBe null
     }
 
+    @Test
+    fun `Japanese has a sourced name for all 88 (NAOJ, DT-026), other languages fall back to Latin`() {
+        IauConstellationNames.localizedLanguages shouldBe setOf("ja")
+        EXPECTED_ABBREVIATIONS.forEach { abbreviation ->
+            IauConstellationNames.hasLocalizedName(abbreviation, "ja") shouldBe true
+            IauConstellationNames.name(abbreviation, "ja").shouldNotBeBlank()
+        }
+        IauConstellationNames.name("Sco", "ja") shouldBe "さそり座"
+        IauConstellationNames.name("Ori", "ja") shouldBe "オリオン座"
+        IauConstellationNames.name("Ser", "ja") shouldBe "へび座"
+        IauConstellationNames.hasLocalizedName("Sco", "fa") shouldBe false
+        IauConstellationNames.name("Sco", "fa") shouldBe "Scorpius"
+    }
+
     private companion object {
         val EXPECTED_ABBREVIATIONS =
             setOf(

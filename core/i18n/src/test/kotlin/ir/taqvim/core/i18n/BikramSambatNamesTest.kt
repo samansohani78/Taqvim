@@ -37,7 +37,7 @@ class BikramSambatNamesTest {
     @Test
     fun `only Nepali has an official era and pattern`() {
         BikramSambatNames.era("ne") shouldBe "वि.सं."
-        BikramSambatNames.pattern("ne") shouldBe "G y MMMM d, EEEE"
+        BikramSambatNames.pattern("ne") shouldBe "d MMMM, y"
         BikramSambatNames.era("en") shouldBe null
         BikramSambatNames.pattern("fa") shouldBe null
         val english = FormatTable.of(requireNotNull(LanguageTable.forCode("en")))

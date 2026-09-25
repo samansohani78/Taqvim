@@ -44,7 +44,7 @@
   <string name="about_source_matthews">Modèle de plaques EarthByte (Matthews et al. 2016)</string>
   <string name="about_source_matthews_description">Limites des plaques tectoniques sur la carte du monde, simplifiées</string>
   <string name="about_source_geonames">GeoNames</string>
-  <string name="about_source_geonames_description">Provinces et comtés d’Iran avec leurs coordonnées</string>
+  <string name="about_source_geonames_description">Provinces et comtés d’Iran, et noms de lieux en plusieurs langues, avec leurs coordonnées</string>
   <string name="about_source_noaa">NOAA Global Monitoring Laboratory</string>
   <string name="about_source_noaa_description">Équations de la position du Soleil utilisées pour les heures de prière</string>
   <string name="about_data_license_unicode">Licence : Unicode License v3</string>

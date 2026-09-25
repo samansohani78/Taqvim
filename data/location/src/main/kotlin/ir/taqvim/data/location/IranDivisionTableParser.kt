@@ -8,22 +8,15 @@ import ir.taqvim.core.model.Coordinates
 
 /**
  * Parses the bundled `iran-divisions.tsv` written by `tools/geodata/geonames_iran_divisions.py`: `#` header lines
- * (provenance and a `# columns:` list), then one tab-separated row per division in `code,level,parentCode,en,fa,
- * latitude,longitude` order. `parentCode` is empty for a province. Malformed input is rejected with the line number.
+ * (provenance and a `# columns:` list), then one tab-separated row per division. The base columns (`code`, `level`,
+ * `parentCode`, `en`, `latitude`, `longitude`) and [IranDivision.PUBLISHED_LANGUAGES] must all appear in the header,
+ * in any order; `parentCode` is empty for a province and an empty localized-name field means no published name.
+ * Malformed input is rejected with the line number.
  */
 internal object IranDivisionTableParser {
     private const val COLUMNS_PREFIX = "# columns: "
     private const val COMMENT = "#"
-    private val EXPECTED_COLUMNS = listOf("code", "level", "parentCode", "en", "fa", "latitude", "longitude")
-
-    // Field positions within a row, matching EXPECTED_COLUMNS.
-    private const val CODE = 0
-    private const val LEVEL = 1
-    private const val PARENT_CODE = 2
-    private const val ENGLISH_NAME = 3
-    private const val PERSIAN_NAME = 4
-    private const val LATITUDE = 5
-    private const val LONGITUDE = 6
+    private val BASE_COLUMNS = listOf("code", "level", "parentCode", "en", "latitude", "longitude")
 
     fun parse(lines: Sequence<String>): List<IranDivision> {
         var columns: List<String>? = null
@@ -33,8 +26,8 @@ internal object IranDivisionTableParser {
             if (line.startsWith(COLUMNS_PREFIX)) {
                 columns = columnNames(line.removePrefix(COLUMNS_PREFIX), lineNumber)
             } else if (!line.startsWith(COMMENT) && line.isNotEmpty()) {
-                requireNotNull(columns) { "line $lineNumber: a row before the columns header" }
-                divisions += division(line, lineNumber)
+                val known = requireNotNull(columns) { "line $lineNumber: a row before the columns header" }
+                divisions += division(line, known, lineNumber)
             }
         }
         requireNotNull(columns) { "the columns header is missing" }
@@ -46,29 +39,36 @@ internal object IranDivisionTableParser {
         lineNumber: Int,
     ): List<String> {
         val names = header.split(',')
-        require(names == EXPECTED_COLUMNS) { "line $lineNumber: columns header was $names, expected $EXPECTED_COLUMNS" }
+        val missing = (BASE_COLUMNS + IranDivision.PUBLISHED_LANGUAGES) - names.toSet()
+        require(missing.isEmpty()) { "line $lineNumber: columns header lacks $missing" }
+        require(names.distinct().size == names.size) { "line $lineNumber: columns header repeats a column: $names" }
         return names
     }
 
     private fun division(
         line: String,
+        columns: List<String>,
         lineNumber: Int,
     ): IranDivision {
         val fields = line.split('\t')
-        require(fields.size == EXPECTED_COLUMNS.size) {
-            "line $lineNumber: ${fields.size} fields, expected ${EXPECTED_COLUMNS.size}"
+        require(fields.size == columns.size) {
+            "line $lineNumber: ${fields.size} fields, expected ${columns.size}"
         }
-        val code = fields[CODE]
-        val parentCode = fields[PARENT_CODE]
-        val english = fields[ENGLISH_NAME]
-        val persian = fields[PERSIAN_NAME]
+        val values = columns.zip(fields).toMap()
+
+        fun field(name: String) = values.getValue(name)
+        val parentCode = field("parentCode")
+        val english = field("en")
         return IranDivision(
-            code = code,
-            level = level(fields[LEVEL], lineNumber),
+            code = field("code"),
+            level = level(field("level"), lineNumber),
             parentCode = parentCode.ifEmpty { null },
             englishName = english.ifBlank { error("line $lineNumber: missing English name") },
-            persianName = persian.ifEmpty { null },
-            coordinates = coordinates(fields[LATITUDE], fields[LONGITUDE], lineNumber),
+            localizedNames =
+                IranDivision.PUBLISHED_LANGUAGES
+                    .mapNotNull { code -> field(code).ifEmpty { null }?.let { code to it } }
+                    .toMap(),
+            coordinates = coordinates(field("latitude"), field("longitude"), lineNumber),
         )
     }
 

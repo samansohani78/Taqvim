@@ -71,7 +71,9 @@ class DateFormatterTest {
 
         // Sunday 13 September 2026 is Bhadra 28, 2083 (ADR-0030).
         val bhadra28 = CalendarDate(CalendarSystem.NEPALI, 2083, 5, 28)
-        DateFormatter.format(bhadra28, sunday, language("ne"), DateStyle.LONG) shouldBe "वि.सं. २०८३ भदौ २८, आइतबार"
+        // DT-010: pattern.ne is now "d MMMM, y" (Nepal Law Commission / Department of Printing sources), with no
+        // era or weekday component.
+        DateFormatter.format(bhadra28, sunday, language("ne"), DateStyle.LONG) shouldBe "२८ भदौ, २०८३"
         DateFormatter.format(bhadra28, sunday, language("en"), DateStyle.LONG) shouldBe "Sunday, Bhadra 28, 2083"
         DateFormatter.format(bhadra28, sunday, language("ne"), DateStyle.NUMERIC) shouldBe
             Numerals.localizeDigits("2083/5/28", NumeralSystem.DEVANAGARI)

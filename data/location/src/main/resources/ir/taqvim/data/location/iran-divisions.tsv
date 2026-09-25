@@ -1,477 +1,477 @@
 # source: GeoNames gazetteer, Iran (IR) — administrative divisions, admin level 1 (province) and 2 (county / shahrestan)
 # url: https://download.geonames.org/export/dump/IR.zip
 # sha256: a508c1962f00e637217e42b114d9dec1187abe6db73a9db56731f60dc0d9541f
-# altnames-source: GeoNames alternate names, Iran (IR) — Persian ('fa') names by geonameid
+# altnames-source: GeoNames alternate names, Iran (IR) — fa/ps/ckb/az/uz/ms/tg/ne/ta names by geonameid (DT-020; kmr and prs checked and not usable, see this file's generator docstring)
 # altnames-url: https://download.geonames.org/export/dump/alternatenames/IR.zip
 # altnames-sha256: 52a2f2c70206baa69bc3c9fc65c0426751affb501d3042ff384c9fa20ee19b8e
 # retrieved: 2026-09-25
 # licence: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/ (GeoNames, https://www.geonames.org/about.html); config/license/allowed-licenses.json dataLicenses, ADR-0039
 # generator: tools/geodata/geonames_iran_divisions.py
-# notes: no district (admin level 3 / bakhsh) rows — GeoNames' Iran admin3 coverage is 7 records, far short of the real count (docs/DATA_TODO.md DT-021); a county with no published Persian alternate name (3 of 435, checked 2026-09-25) has an empty fa field
-# columns: code,level,parentCode,en,fa,latitude,longitude
-44	PROVINCE		Alborz Province	البرز	36.01117	50.80956
-32	PROVINCE		Ardabil Province	اردبيل	38.50000	48.00000
-22	PROVINCE		Bushehr Province	بوشهر	28.75000	51.50000
-03	PROVINCE		Chaharmahal and Bakhtiari Province	چهارمحال و بختیاری	32.16667	50.75000
-33	PROVINCE		East Azerbaijan Province	آذربایجان شرقی	38.00000	46.75000
-07	PROVINCE		Fars Province	فارس	29.00000	53.00000
-08	PROVINCE		Gilan Province	گیلان‎	37.16667	49.50000
-37	PROVINCE		Golestan Province	گلستان	37.25000	55.00000
-09	PROVINCE		Hamadan Province	همدان‎	34.83333	48.58333
-11	PROVINCE		Hormozgan Province	هرمزگان	27.75000	56.50000
-10	PROVINCE		Ilam Province	ایلام‎	33.16667	47.00000
-28	PROVINCE		Isfahan Province	اصفهان	33.00000	52.16667
-29	PROVINCE		Kerman Province	کرمان	29.75000	57.25000
-13	PROVINCE		Kermanshah Province	كرمانشاه‎	34.41667	46.75000
-15	PROVINCE		Khuzestan Province	خوزستان	31.50000	49.00000
-05	PROVINCE		Kohgiluyeh and Boyer-Ahmad Province	کهگیلویه و بویراحمد	30.83333	50.66667
-16	PROVINCE		Kurdistan Province	کردستان‎	35.66667	47.00000
-23	PROVINCE		Lorestan Province	لرستان	33.50000	48.50000
-34	PROVINCE		Markazi Province	مرکزی	34.33333	49.83333
-35	PROVINCE		Mazandaran Province	مازَندَران	36.25000	52.33333
-43	PROVINCE		North Khorasan Province	خراسان شمالی	37.50000	57.00000
-38	PROVINCE		Qazvin Province	قزوین‎	36.00000	49.75000
-39	PROVINCE		Qom Province	قم	34.75000	51.00000
-42	PROVINCE		Razavi Khorasan Province	خراسان رضوی	35.25000	59.00000
-25	PROVINCE		Semnan Province	سمنان‎	35.50000	55.00000
-04	PROVINCE		Sistan and Baluchestan Province	سیستان و بلوچستان	28.50000	60.50000
-41	PROVINCE		South Khorasan Province	خراسان جنوبی	32.50000	59.50000
-26	PROVINCE		Tehran Province	استان تهران	35.66667	51.41667
-01	PROVINCE		West Azerbaijan Province	آذَربايجان غَربی	37.66667	45.00000
-40	PROVINCE		Yazd Province	یزد	32.50000	55.58333
-36	PROVINCE		Zanjan Province	استان زنجان	36.50000	48.33333
-9517620	COUNTY	01	Chāypāreh	چايپاره	38.88254	44.99670
-449450	COUNTY	01	Khowy	شهرستان خوی	38.60277	44.76975
-449457	COUNTY	01	Naqadeh	شهرستان نقده	36.97491	45.44941
-9517621	COUNTY	01	Poldasht	شهرستان پلدشت	39.18333	45.08333
-449451	COUNTY	01	Sardasht	شهرستان سردشت	36.22899	45.46173
-449446	COUNTY	01	Shahrestān-e Būkān	شهرستان بوكان	36.60002	46.16664
-449449	COUNTY	01	Shahrestān-e Chāldorān	شهرستان چالدران	39.02370	44.41259
-449455	COUNTY	01	Shahrestān-e Mahābād	شهرستان مهاباد	36.67233	45.73465
-449454	COUNTY	01	Shahrestān-e Mākū	شهرستان ماكو	39.45575	44.59639
-449456	COUNTY	01	Shahrestān-e Mīāndoāb	شهرستان مياندوآب	36.89999	46.20002
-449444	COUNTY	01	Shahrestān-e Orūmīyeh	شهرستان اروميه	37.61499	44.93110
-449445	COUNTY	01	Shahrestān-e Oshnavīyeh	شهرستان اشنويه	37.06870	45.07066
-449447	COUNTY	01	Shahrestān-e Pīrānshahr	شهرستان پيرانشهر	36.70000	45.16667
-449452	COUNTY	01	Shahrestān-e Salmās	شهرستان سلماس	38.13804	44.64400
-449453	COUNTY	01	Shahrestān-e Shāhīn Dezh	شهرستان شاهين دژ	36.67230	46.63695
-449448	COUNTY	01	Shahrestān-e Takāb	شهرستان تكاب	36.51629	47.12272
-9517619	COUNTY	01	Showţ	شهرستان شوط	39.15006	44.83346
-449517	COUNTY	03	Ardal	شهرستان اردل	31.95949	50.31029
-11963425	COUNTY	03	Ben	شهرستان بن	32.53556	50.75201
-11963426	COUNTY	03	Saman	شهرستان سامان	32.44980	50.91379
-449519	COUNTY	03	Shahrekord	شهرستان شهركرد	32.33544	50.75836
-449518	COUNTY	03	Shahrestān-e Borūjen	شهرستان بروجن	31.89647	51.17299
-449520	COUNTY	03	Shahrestān-e Fārsān	شهرستان فارسان	32.22396	50.56592
-9519976	COUNTY	03	Shahrestān-e Kīār	شهرستان کيار	32.00000	50.76667
-449521	COUNTY	03	Shahrestān-e Kūhrang	شهرستان كوهرنگ	32.41455	50.04152
-449522	COUNTY	03	Shahrestān-e Lordegān	شهرستان لردگان	31.46299	50.88549
-11963562	COUNTY	04	Fanuj	شهرستان فنوج	26.57468	59.63856
-11963518	COUNTY	04	Hamoon	شهرستان هامون	30.93686	61.33687
-13452432	COUNTY	04	Hāmūn	شهرستان هامون	30.50784	61.10974
-11963514	COUNTY	04	Mirjaveh	شهرستان میرجاوه	29.01752	61.45046
-11963516	COUNTY	04	Nimruz	شهرستان نیمروز	31.10333	61.41601
-11963510	COUNTY	04	Qaser-e Qand		26.22693	60.74553
-1482480	COUNTY	04	Shahrestān-e Chābahār	شهرستان چابهار	25.44691	61.21075
-9533580	COUNTY	04	Shahrestān-e Dalgān	شهرستان دلگان	27.40340	59.33036
-9533575	COUNTY	04	Shahrestān-e Hīrmand	شهرستان هيرمند	31.20420	61.66805
-1482481	COUNTY	04	Shahrestān-e Khāsh	شهرستان خاش	28.19339	60.76157
-9533581	COUNTY	04	Shahrestān-e Konārak	شهرستان کنارک	25.55123	59.88437
-9533590	COUNTY	04	Shahrestān-e Mehrestān	شهرستان مهرستان	27.02592	61.58705
-1482504	COUNTY	04	Shahrestān-e Nīkshahr	شهرستان نيکشهر	26.25000	60.00000
-13452433	COUNTY	04	Shahrestān-e Nīmrūz	نیمروز	30.99869	60.78461
-12543582	COUNTY	04	Shahrestān-e Qaşr-e Qand	شهرستان قصر قند	26.06270	60.76665
-1482499	COUNTY	04	Shahrestān-e Sarbāz	شهرستان سرباز	26.46901	61.45081
-1482494	COUNTY	04	Shahrestān-e Sarāvān	شهرستان سراوان	27.39244	62.50642
-9533591	COUNTY	04	Shahrestān-e Sīb va Sūrān	شهرستان سيب و سوران	27.33333	61.91667
-1482483	COUNTY	04	Shahrestān-e Zābol	شهرستان زابل	31.04741	61.56620
-1482486	COUNTY	04	Shahrestān-e Zāhedān	شهرستان زاهدان	29.62217	60.16915
-1158999	COUNTY	04	Shahrestān-e Īrānshahr	شهرستان ايرانشهر	27.76803	60.03354
-9533574	COUNTY	04	Zehak	شهرستان زهک	30.83835	61.63663
-11963520	COUNTY	05	Landeh	شهرستان لنده	30.97994	50.42469
-9532946	COUNTY	05	Shahrestān-e Bahma’ī	شهرستان بهمئی	31.05000	50.08333
-449634	COUNTY	05	Shahrestān-e Bowyer Aḩmad	شهرستان بوير احمد	30.87500	51.13333
-9532948	COUNTY	05	Shahrestān-e Bāsht	شهرستان باشت	30.46004	51.07451
-9532947	COUNTY	05	Shahrestān-e Charām	شهرستان چرام	30.77111	50.87050
-449635	COUNTY	05	Shahrestān-e Danā	شهرستان دنا	31.02933	51.25000
-449637	COUNTY	05	Shahrestān-e Gachsārān	شهرستان گچساران	30.30000	50.73333
-449636	COUNTY	05	Shahrestān-e Kohgīlūyeh	شهرستان كهگيلويه	31.05500	50.59900
-449578	COUNTY	07	Jahrom	شهرستان جهرم	28.70331	53.34569
-9520870	COUNTY	07	Khonj	شهرستان خنج	27.94047	53.06737
-125034	COUNTY	07	Mamasanī	شهرستان ممسنی	30.03333	51.38333
-449591	COUNTY	07	Marvdasht	شهرستان مرودشت	30.10564	52.63615
-449593	COUNTY	07	Mohr	شهرستان مهر	27.62265	52.74274
-9520534	COUNTY	07	Rostam	شهرستان رستم	30.40000	51.37090
-449574	COUNTY	07	Shahrestān-e Arsanjān	شهرستان ارسنجان	29.83704	53.38778
-449577	COUNTY	07	Shahrestān-e Bavānāt	شهرستان بوانات	30.29121	53.67292
-449580	COUNTY	07	Shahrestān-e Dārāb	شهرستان داراب	28.56667	54.95000
-8620947	COUNTY	07	Shahrestān-e Eqlīd	شهرستان اقليد	30.70000	52.40000
-449575	COUNTY	07	Shahrestān-e Estahbān	شهرستان استهبان	29.11667	54.00000
-449584	COUNTY	07	Shahrestān-e Farrāshband	شهرستان فراشبند	28.61061	52.20052
-68471	COUNTY	07	Shahrestān-e Fasā	شهرستان فسا	28.94922	53.78896
-449586	COUNTY	07	Shahrestān-e Fīrūzābād	شهرستان فيروزآباد	28.89565	52.56201
-9520869	COUNTY	07	Shahrestān-e Gerāsh	شهرستان گراش	27.65699	53.69659
-9520867	COUNTY	07	Shahrestān-e Kavār	شهرستان کوار	29.22092	52.71424
-9520866	COUNTY	07	Shahrestān-e Kherāmeh	شهرستان خرامه	29.50100	53.26700
-449579	COUNTY	07	Shahrestān-e Khorrambīd	شهرستان خرم بيد	30.57112	53.13523
-449588	COUNTY	07	Shahrestān-e Kāzerūn	شهرستان کارزون	29.52107	51.71275
-449590	COUNTY	07	Shahrestān-e Lāmerd	شهرستان لامرد	27.39316	53.31900
-449589	COUNTY	07	Shahrestān-e Lārestān	شهرستان لارستان	27.71290	54.47730
-449594	COUNTY	07	Shahrestān-e Neyrīz	شهرستان نيريز	29.33333	54.33333
-9520865	COUNTY	07	Shahrestān-e Pāsārgād	شهرستان پاسارگاد	30.13977	53.15304
-449587	COUNTY	07	Shahrestān-e Qīr va Kārzīn	شهرستان قير و کارزين	28.34401	52.91571
-9520868	COUNTY	07	Shahrestān-e Sarvestān	شهرستان سروستان	29.21667	53.13333
-449582	COUNTY	07	Shahrestān-e Sepīdān	شهرستان سپيدان	30.15000	52.10000
-449583	COUNTY	07	Shahrestān-e Shīrāz	شهرستان شيراز	29.59851	52.43280
-449581	COUNTY	07	Shahrestān-e Zarrīn Dasht	شهرستان زرين دشت	28.30000	54.46667
-449573	COUNTY	07	Shahrestān-e Ābādeh	شهرستان آباده	31.25000	52.50000
-449651	COUNTY	08	Amlash	شهرستان املش	36.96667	50.15000
-449653	COUNTY	08	Rasht	شهرستان رشت	37.26667	49.63333
-449658	COUNTY	08	Shaft	شهرستان شفت	37.08333	49.38333
-449652	COUNTY	08	Shahrestān-e Bandar-e Anzalī	شهرستان بندر انزلی	37.45000	49.41333
-449661	COUNTY	08	Shahrestān-e Fūman	شهرستان فومن	37.16337	49.17130
-449663	COUNTY	08	Shahrestān-e Langarūd	شهرستان لنگرود	37.10000	50.12500
-449662	COUNTY	08	Shahrestān-e Lāhījān	شهرستان لاهيجان	37.16700	50.00000
-449664	COUNTY	08	Shahrestān-e Māsāl	شهرستان ماسال	37.30000	49.00000
-449654	COUNTY	08	Shahrestān-e Reẕvānshahr	شهرستان رضوانشهر	37.53333	48.95000
-449655	COUNTY	08	Shahrestān-e Rūdbār	شهرستان رودبار	36.78500	49.60000
-449656	COUNTY	08	Shahrestān-e Rūdsar	شهرستان رودسر	36.86667	50.30000
-449657	COUNTY	08	Shahrestān-e Sīāhkal	شهرستان سياهکل	36.93333	49.85000
-449650	COUNTY	08	Shahrestān-e Āstāneh-ye Ashrafīyeh	شهرستان آستانه اشرفيه	37.33333	50.00000
-449649	COUNTY	08	Shahrestān-e Āstārā	شهرستان آستارا	38.33333	48.75000
-449659	COUNTY	08	Shahrestān-e Şowme‘eh Sarā	شهرستان صومعه سرا	37.35500	49.29750
-8620884	COUNTY	08	Shahrestān-e Ţavālesh	شهرستان طوالش	37.90000	48.78333
-449711	COUNTY	09	Razan	شهرستان رزن	35.43357	48.98170
-449708	COUNTY	09	Shahrestān-e Asadābād	شهرستان اسد آباد	34.78333	48.00000
-449709	COUNTY	09	Shahrestān-e Bahār	شهرستان بهار	34.98612	48.37164
-9523287	COUNTY	09	Shahrestān-e Fāmenīn	شهرستان فامنين	35.09813	49.17369
-449715	COUNTY	09	Shahrestān-e Hamadān	شهرستان همدان	34.82517	48.80310
-449712	COUNTY	09	Shahrestān-e Kabūdarāhang	شهرستان كبودرآهنگ	35.37615	48.38238
-449713	COUNTY	09	Shahrestān-e Malāyer	شهرستان ملايِر	34.32216	48.79741
-449714	COUNTY	09	Shahrestān-e Nahāvand	شهرستان نهاوند	34.21957	48.24670
-449710	COUNTY	09	Shahrestān-e Tūyserkān	شهرستان تويسركان	34.54219	48.33457
-112941	COUNTY	10	Badreh	شهرستان بدرِه	33.31354	47.02365
-11963421	COUNTY	10	Chardavol County	شهرستان چرداول	33.75910	46.56980
-12543583	COUNTY	10	Chardāval	چرداول	33.67952	46.89901
-28354	COUNTY	10	Darrehshahr	شهرستان دره شهر	33.02500	47.57333
-449462	COUNTY	10	Shahrestān-e Dehlorān	شهرستان دهلران	32.62926	47.28063
-449460	COUNTY	10	Shahrestān-e Eyvān	شهرستان ايوان	33.88767	46.15953
-9524084	COUNTY	10	Shahrestān-e Malekshāhī	شهرستان ملکشاهی	33.30081	46.56191
-449464	COUNTY	10	Shahrestān-e Mehrān	شهرستان مهران	33.29591	46.21068
-449458	COUNTY	10	Shahrestān-e Ābdānān	شهرستان آبدانان	32.87830	47.52180
-449459	COUNTY	10	Shahrestān-e Īlām	شهرستان ايلام	33.69591	46.27515
-11963422	COUNTY	10	Sirvan	شهرستان سیروان	33.75460	46.56651
-449702	COUNTY	11	Bandar Lengeh	شهرستان بندر لنگه	26.78333	54.65000
-449700	COUNTY	11	Bastak	شهرستان بستک	27.20000	54.50200
-449706	COUNTY	11	Qeshm	شهرستان قشم	26.78333	55.86667
-449699	COUNTY	11	Shahrestān-e Abū Mūsá	شهرستان ابو موسیٰ	26.05474	55.16243
-449701	COUNTY	11	Shahrestān-e Bandar ‘Abbās	شهرستان بندر عباس	27.53720	56.22429
-9523757	COUNTY	11	Shahrestān-e Bashāgard	شهرستان بشاگرد	26.44004	58.14973
-449703	COUNTY	11	Shahrestān-e Jāsk	شهرستان جاسک	25.86578	58.29089
-8620945	COUNTY	11	Shahrestān-e Khamīr	شهرستان خمير	27.27756	55.50915
-449707	COUNTY	11	Shahrestān-e Mīnāb	شهرستان ميناب	26.94152	57.32685
-8620946	COUNTY	11	Shahrestān-e Pārsīān	شهرستان پارسيان	27.14039	53.23222
-449705	COUNTY	11	Shahrestān-e Rūdān	شهرستان رودان	27.53333	57.11667
-9523758	COUNTY	11	Shahrestān-e Sīrīk	شهرستان سيريک	26.48064	57.23738
-449704	COUNTY	11	Shahrestān-e Ḩājjīābād	شهرستان حاجی آباد	28.06193	56.16021
-8620948	COUNTY	13	Shahrestān-e Dālāhū	شهرستان دالاهو	34.41667	46.25000
-449622	COUNTY	13	Shahrestān-e Eslāmābād-e Gharb	شهرستان اسلام آباد غرب	34.02506	46.67843
-449632	COUNTY	13	Shahrestān-e Gīlān-e Gharb	شهرستان گيلان غرب	34.16794	45.85492
-449633	COUNTY	13	Shahrestān-e Harsīn	شهرستان هرسين	34.35000	47.48333
-449625	COUNTY	13	Shahrestān-e Javānrūd	شهرستان جوانرود	34.85184	46.29841
-449631	COUNTY	13	Shahrestān-e Kangāvar	شهرستان کنگاور	34.48333	47.93333
-449630	COUNTY	13	Shahrestān-e Kermānshāh	شهرستان کرمانشاه	34.29712	47.01427
-449623	COUNTY	13	Shahrestān-e Pāveh	شهرستان پاوه	35.06442	46.25705
-449629	COUNTY	13	Shahrestān-e Qaşr-e Shīrīn	شهرستان قصر شيرين	34.20000	45.63333
-8620949	COUNTY	13	Shahrestān-e Ravānsar	شهرستان روانسر	34.68361	46.58590
-449626	COUNTY	13	Shahrestān-e Sarpol-e Z̄ahāb	شهرستان سرپل ذهاب	34.50000	45.85000
-449624	COUNTY	13	Shahrestān-e S̄alās̄-e Bābā Jānī	شهرستان سلاث باباجانی	34.79105	46.05079
-449628	COUNTY	13	Shahrestān-e Şaḩneh	شهرستان صحنه	34.58333	47.51667
-449627	COUNTY	13	Sonqor	شهرستان سنقر	34.86699	47.54628
-11963429	COUNTY	15	Aghajari	شهرستان آغاجاری	30.69352	49.82819
-9532909	COUNTY	15	Gotvand	شهرستان گتوند	32.23969	48.81522
-9532928	COUNTY	15	Haftkel	شهرستان هفتکل	31.56667	49.40000
-11963430	COUNTY	15	Hamidiyeh	شهرستان حمیدیّه	31.48107	48.43303
-9532924	COUNTY	15	Hoveyzeh	شهرستان هويزه	31.30583	47.94572
-11963434	COUNTY	15	Karun	شهرستان کارون	31.27618	48.64174
-449552	COUNTY	15	Khorramshahr	شهرستان خرمشهر	30.69176	48.21195
-449547	COUNTY	15	Shahrestān-e Ahvāz	شهرستان اهواز	31.33926	48.68695
-9532922	COUNTY	15	Shahrestān-e Andīkā	شهرستان انديکا	32.30788	49.53595
-449546	COUNTY	15	Shahrestān-e Andīmeshk	شهرستان انديمشک	32.70000	48.30000
-449550	COUNTY	15	Shahrestān-e Bandar-e Māhshahr	شهرستان بندر ماهشهر	30.63333	49.11667
-449551	COUNTY	15	Shahrestān-e Behbahān	شهرستان بهبهان	30.53097	50.21477
-449549	COUNTY	15	Shahrestān-e Bāgh-e Malek	شهرستان باغ ملک	31.47663	49.92501
-9532926	COUNTY	15	Shahrestān-e Bāvī	شهرستان باوی	31.52040	48.96469
-449554	COUNTY	15	Shahrestān-e Dasht-e Āzādegān	شهرستان دشت آزادگان	31.68455	48.09876
-449553	COUNTY	15	Shahrestān-e Dezfūl	شهرستان دزفول	32.56667	48.78333
-449561	COUNTY	15	Shahrestān-e Hendījān	شهرستان هنديجان	30.30912	49.73490
-449559	COUNTY	15	Shahrestān-e Lālī	شهرستان لالی	32.41667	49.16667
-449560	COUNTY	15	Shahrestān-e Masjed Soleymān	شهرستان مسجدسليمان	31.98333	49.26667
-449545	COUNTY	15	Shahrestān-e Omīdīyeh	شهرستان اميديه	30.75000	49.70000
-449555	COUNTY	15	Shahrestān-e Rāmhormoz	شهرستان رامهرمز	31.21667	49.65000
-9532929	COUNTY	15	Shahrestān-e Rāmshīr	شهرستان رامشير	30.95000	49.39238
-449556	COUNTY	15	Shahrestān-e Shādegān	شهرستان شادگان	30.64503	48.67283
-449557	COUNTY	15	Shahrestān-e Shūsh	شهرستان شوش	32.02599	48.19710
-449558	COUNTY	15	Shahrestān-e Shūshtar	شهرستان شوشتر	31.91521	49.08482
-449544	COUNTY	15	Shahrestān-e Ābādān	شهرستان آبادان	30.20602	48.60012
-449548	COUNTY	15	Shahrestān-e Īz̄eh	شهرستان ايذه	31.86957	49.98576
-449606	COUNTY	16	Qorveh	شهرستان قروه	35.22526	47.83947
-449605	COUNTY	16	Sanandaj	شهرستان سنندج	35.38376	46.90256
-449604	COUNTY	16	Saqqez	شهرستان سقز	36.15548	46.37865
-449600	COUNTY	16	Shahrestān-e Bāneh	شهرستان بانه	35.99517	45.84652
-449601	COUNTY	16	Shahrestān-e Bījār	شهرستان بيجار	35.86667	47.60000
-9532949	COUNTY	16	Shahrestān-e Dehgolān	شهرستان دهگلان	35.33464	47.35853
-449602	COUNTY	16	Shahrestān-e Dīvāndarreh	شهرستان ديواندرِه	35.94960	46.95789
-449607	COUNTY	16	Shahrestān-e Kāmyārān	شهرستان كامياران	34.90798	46.91319
-449608	COUNTY	16	Shahrestān-e Marīvān	شهرستان مريوان	35.57821	46.34426
-449603	COUNTY	16	Shahrestān-e Sarvābād	شهرستان سرو آباد	35.22522	46.39458
-449501	COUNTY	22	Deylam	شهرستان ديلم	30.02500	50.34333
-449500	COUNTY	22	Deyr	شهرستان دير	28.01950	51.69200
-449497	COUNTY	22	Jam	شهرستان جم	27.95778	52.17600
-449495	COUNTY	22	Shahrestān-e Būshehr	شهرستان بوشهر	29.14186	50.98160
-449498	COUNTY	22	Shahrestān-e Dashtestān	شهرستان دشتستان	29.28333	51.25000
-449499	COUNTY	22	Shahrestān-e Dashtī	شهرستان دشتی	28.48685	51.56182
-449503	COUNTY	22	Shahrestān-e Genāveh	شهرستان گناوه	29.62333	50.63000
-449502	COUNTY	22	Shahrestān-e Kangān	شهرستان كنگان	27.72000	52.27000
-449496	COUNTY	22	Shahrestān-e Tangestān	شهرستان تنگستان	28.88333	51.26667
-9519975	COUNTY	22	‘Asalūyah	شهرستان عسلويه	27.42500	52.72000
-449670	COUNTY	23	Delfan	شهرستان دلفان	34.05000	47.78333
-449671	COUNTY	23	Dorūd	شهرستان دورود	33.52313	49.07248
-449668	COUNTY	23	Pol-e Dokhtar	شهرستان پل دختر	33.13361	47.97070
-11962671	COUNTY	23	Rumeshkhan County	شهرستان رومِشکان	33.27960	47.48995
-449672	COUNTY	23	Selseleh	شهرستان سلسله	33.82985	48.20389
-449666	COUNTY	23	Shahrestān-e Alīgūdarz	شهرستان اليگودرز	33.04651	49.39498
-449665	COUNTY	23	Shahrestān-e Aznā	شهرستان ازنا	33.50450	49.43509
-449667	COUNTY	23	Shahrestān-e Borūjerd	شهرستان بروجرد	33.88897	48.75214
-9533002	COUNTY	23	Shahrestān-e Dūreh	شهرستان دوره	33.60337	47.93319
-449669	COUNTY	23	Shahrestān-e Khorramābād	شهرستان خرم آباد	33.39367	48.56906
-449673	COUNTY	23	Shahrestān-e Kūhdasht	شهرستان كوهدشت	33.55454	47.38381
-124337	COUNTY	25	Mahdishahr	سَنگسَر	35.70930	53.35332
-449569	COUNTY	25	Shahrestān-e Dāmghān	شهرستان دامغان	35.50000	54.33333
-449572	COUNTY	25	Shahrestān-e Garmsār	شهرستان گرمسار	34.92583	52.16297
-9533331	COUNTY	25	Shahrestān-e Mayāmey	شهرستان ميامی	36.61719	56.06062
-449570	COUNTY	25	Shahrestān-e Semnān	شهرستان سمنان	35.05193	53.80126
-449571	COUNTY	25	Shahrestān-e Shāhrūd	شهرستان شاهرود	35.44239	55.60404
-9533333	COUNTY	25	Shahrestān-e Ārādān	شهرستان آرادان	34.89958	52.63352
-9533334	COUNTY	25	Sorkheh	شهرستان سرخه	34.92140	53.14802
-11963423	COUNTY	26	Pardis	شهرستان پردیس	35.74169	51.77705
-11963424	COUNTY	26	Qarchak	شهرستان قرچک	35.43289	51.56597
-9533737	COUNTY	26	Qods	شهرستان قدس	35.70500	51.09067
-449509	COUNTY	26	Rey	شهرستان رِی	35.34967	51.29500
-9533739	COUNTY	26	Shahrestān-e Bahārestān	شهرستان بهارستان	35.52537	51.16278
-449507	COUNTY	26	Shahrestān-e Damāvand	شهرستان دماوند	35.61500	52.18333
-9533740	COUNTY	26	Shahrestān-e Eslāmshahr	شهرستان اسلامشهر	35.58333	51.25000
-449513	COUNTY	26	Shahrestān-e Fīrūzkūh	شهرستان فيروزكوه	35.75000	52.69756
-9533736	COUNTY	26	Shahrestān-e Malārd	شهرستان ملارد	35.61000	50.69667
-449505	COUNTY	26	Shahrestān-e Pākdasht	شهرستان پاكدشت	35.47500	51.77778
-9533741	COUNTY	26	Shahrestān-e Pīshvā	شهرستان پيشوا	35.33000	51.75111
-449508	COUNTY	26	Shahrestān-e Robāţ Karīm	شهرستان رباط كريم	35.48933	51.04978
-449512	COUNTY	26	Shahrestān-e Shahrīār	شهرستان شهريار	35.62828	51.06632
-449511	COUNTY	26	Shahrestān-e Shemīrānāt	شهرستان شميرانات	35.91333	51.61500
-449506	COUNTY	26	Shahrestān-e Tehrān	شهرستان تهران	35.71758	51.40545
-449516	COUNTY	26	Shahrestān-e Varāmīn	شَهرِستانِ وَرامين	35.33081	51.64124
-11962673	COUNTY	28	Buin va Miandasht		33.07241	50.14641
-449485	COUNTY	28	Fereydan	شهرستان فريدن	32.97912	50.41097
-449475	COUNTY	28	Shahrestān-e Ardestān	شهرستان اردستان	33.56742	52.53570
-449477	COUNTY	28	Shahrestān-e Borkhvār	شهرستان برخوار	33.01096	51.76762
-12543581	COUNTY	28	Shahrestān-e Bū‘īn va Mīāndasht	شهرستان بوئین و میاندشت	33.15576	50.08789
-449479	COUNTY	28	Shahrestān-e Chādegān	شهرستان چادگان	32.75000	50.50000
-449483	COUNTY	28	Shahrestān-e Dehāqān	شهرستان دهاقان	31.99157	51.61441
-449476	COUNTY	28	Shahrestān-e Eşfahān	شهرستان اصفهان	32.24264	52.44152
-449487	COUNTY	28	Shahrestān-e Falāvarjān	شهرستان فلاورجان	32.51856	51.53108
-449486	COUNTY	28	Shahrestān-e Fareydūnshahr	شهرستان فريدونشهر	32.85278	50.00539
-449489	COUNTY	28	Shahrestān-e Golpāyegān	شهرستان گلپايگان	33.50000	50.33333
-449480	COUNTY	28	Shahrestān-e Khomeynī Shahr	شهرستان خمينی شهر	32.68354	51.51132
-449481	COUNTY	28	Shahrestān-e Khvānsār	شهرستان خوانسار	33.25619	50.38488
-9519980	COUNTY	28	Shahrestān-e Khūr va Bīābānak	شهرستان خور و بيابانک	33.78504	54.91482
-449488	COUNTY	28	Shahrestān-e Kāshān	شهرستان کاشان	33.91164	51.28412
-449490	COUNTY	28	Shahrestān-e Lenjān	شهرستان لنجان	32.39760	51.21979
-449491	COUNTY	28	Shahrestān-e Mobārakeh	شهرستان مبارکه	32.28152	51.50610
-449493	COUNTY	28	Shahrestān-e Najafābād	شهرستان نجف آباد	32.93333	51.11667
-122490	COUNTY	28	Shahrestān-e Naţanz	نطنز	33.58227	51.91955
-449492	COUNTY	28	Shahrestān-e Nā’īn	شهرستان نائین	33.41579	53.65686
-449482	COUNTY	28	Shahrestān-e Semīrom	شهرستان سميرم	31.28180	51.59672
-449484	COUNTY	28	Shahrestān-e Shahreẕā	شهرستان شهرضا	31.68655	51.90563
-9519981	COUNTY	28	Shahrestān-e Shāhīn Shahr va Meymeh	شهرستان شاهين شهر و ميمه	33.30130	51.19572
-449478	COUNTY	28	Shahrestān-e Tīrān va Karvan	شهرستان تيران و کرون	32.78431	50.95479
-449474	COUNTY	28	Shahrestān-e Ārān va Bīdgol	شهرستان آران و بيدگل	34.10000	51.90000
-449611	COUNTY	29	Bam	شهرستان بم	29.06731	58.20400
-9524452	COUNTY	29	Fahraj	شهرستان فهرج	29.09257	59.14492
-9524453	COUNTY	29	Rīgān	ريگان	28.66855	59.06163
-9524445	COUNTY	29	Shahrestān-e Anār	شهرستان انار	30.84616	55.29718
-449610	COUNTY	29	Shahrestān-e Bardsīr	شهرستان بردسير	29.79442	56.68365
-449609	COUNTY	29	Shahrestān-e Bāft	شهرستان بافت	29.01862	56.47999
-9524449	COUNTY	29	Shahrestān-e Fāryāb	شهرستان فارياب	28.16904	57.23266
-449612	COUNTY	29	Shahrestān-e Jīroft	شهرستان جيرفت	28.77180	57.50029
-449620	COUNTY	29	Shahrestān-e Kahnūj	شهرستان کهنوج	27.89013	57.63829
-449619	COUNTY	29	Shahrestān-e Kermān	شهرستان کرمان	30.32869	58.13935
-9524446	COUNTY	29	Shahrestān-e Kūhbanān	شهرستان کوهبنان	31.33631	56.27288
-449621	COUNTY	29	Shahrestān-e Manūjān	شهرستان منوجان	27.34244	57.64236
-9524451	COUNTY	29	Shahrestān-e Narmāshīr	شهرستان نرماشير	29.26667	58.73333
-9524448	COUNTY	29	Shahrestān-e Orzū‘īyeh	شهرستان ارزوئیه	28.42539	56.50388
-9524455	COUNTY	29	Shahrestān-e Qal‘eh Ganj	شهرستان قلعه گنج	27.14558	58.37823
-449614	COUNTY	29	Shahrestān-e Rafsanjān	شهرستان رفسنجان	30.52778	55.89152
-9524447	COUNTY	29	Shahrestān-e Rābor	شهرستان رابر	29.22644	57.00576
-449613	COUNTY	29	Shahrestān-e Rāvar	شهرستان راور	31.32362	57.13737
-9524454	COUNTY	29	Shahrestān-e Rūdbār-e Jonūbī	شهرستان رودبار جنوبی	27.86845	58.44458
-449617	COUNTY	29	Shahrestān-e Shahr-e Bābak	شهرستان شهر بابک	30.21698	54.99166
-66575	COUNTY	29	Shahrestān-e Sīrjān	شهرستان سيرجان	29.32391	55.68239
-449618	COUNTY	29	Shahrestān-e ‘Anbarābād	شهرستان عنبرآباد	28.40435	58.16304
-449615	COUNTY	29	Zarand	شهرستان زرند	30.85416	56.29322
-449465	COUNTY	32	Shahrestān-e Ardabīl	شهرستان اردبيل	38.24953	48.29903
-449466	COUNTY	32	Shahrestān-e Bīleh Savār	شهرستان بيلِه سوار	39.34267	47.97233
-449470	COUNTY	32	Shahrestān-e Germī	شهرستان گرمی	39.03333	47.87778
-8620950	COUNTY	32	Shahrestān-e Khalkhāl	شهرستان خلخال	37.42500	48.53778
-449469	COUNTY	32	Shahrestān-e Kows̄ar	شهرستان كوثر	37.70878	48.26900
-449471	COUNTY	32	Shahrestān-e Meshgīn Shahr	شهرستان مشگين شهر	38.56000	47.78000
-449472	COUNTY	32	Shahrestān-e Namīn	شهرستان نمين	38.39233	48.46778
-449473	COUNTY	32	Shahrestān-e Nīr	شهرستان نير	37.98667	48.11111
-449467	COUNTY	32	Shahrestān-e Pārsābād	شهرستان پارس آباد	39.54444	47.74222
-9514745	COUNTY	32	Shahrestān-e Sar‘eyn	شهرستان سرعين	38.19222	47.99333
-449427	COUNTY	33	Ahar	شهرستان اهر	38.53343	47.28337
-449436	COUNTY	33	Kaleybar	شهرستان كلِيبر	38.93045	47.13965
-449438	COUNTY	33	Marand	شهرستان مرند	38.56031	45.66182
-449434	COUNTY	33	Shabestar	شهرستان شبستر	38.15556	45.71803
-449429	COUNTY	33	Shahrestān-e Bonāb	شهرستان بناب	37.32158	46.01190
-449428	COUNTY	33	Shahrestān-e Bostānābād	شهرستان بستان آباد	37.80615	46.81780
-449432	COUNTY	33	Shahrestān-e Chārāvīmāq	شهرستان چاراويماق	37.06612	47.11108
-449443	COUNTY	33	Shahrestān-e Hashtrūd	شهرستان هشترود	37.42639	46.91075
-449441	COUNTY	33	Shahrestān-e Herīs	شهرستان هريس	38.23121	46.82576
-449431	COUNTY	33	Shahrestān-e Jolfā	شهرستان جلفا	38.83343	45.91680
-9517647	COUNTY	33	Shahrestān-e Khodā Āfarīn	شهرستان خداآفرين	39.04785	46.98345
-449439	COUNTY	33	Shahrestān-e Malekān	شهرستان ملكان	37.12676	46.20972
-449437	COUNTY	33	Shahrestān-e Marāgheh	شهرستان مراغه	37.36155	46.42513
-449440	COUNTY	33	Shahrestān-e Mīāneh	شهرستان ميانه	37.46169	47.73216
-449426	COUNTY	33	Shahrestān-e Oskū	شهرستان اسكو	37.93546	45.87805
-8620951	COUNTY	33	Shahrestān-e Sarāb	شهرستان سراب	37.98340	47.46679
-449430	COUNTY	33	Shahrestān-e Tabrīz	شهرستان تبريز	38.07542	46.26920
-449442	COUNTY	33	Shahrestān-e Varzaqān	شهرستان ورزقان	38.59492	46.46397
-449425	COUNTY	33	Shahrestān-e Āz̄arshahr	شهرستان آذرشهر	37.73708	45.88009
-449435	COUNTY	33	Shahrestān-e ‘Ajab Shīr	شهرستان عجب شير	37.55069	46.03613
-449692	COUNTY	34	Khomeyn	شهرستان خمِين	33.66278	49.98819
-449690	COUNTY	34	Shahrestān-e Arāk	شَهرِستانِ آراك	34.13333	49.80000
-449693	COUNTY	34	Shahrestān-e Delījān	شهرستان دليجان	34.01116	50.75288
-9533005	COUNTY	34	Shahrestān-e Farahān	شهرستان فرهان	34.63332	49.63617
-9533006	COUNTY	34	Shahrestān-e Khondāb	شهرستان خنداب	34.34248	49.22280
-449697	COUNTY	34	Shahrestān-e Komījān	شهرستان كميجان	34.72716	49.31861
-449698	COUNTY	34	Shahrestān-e Maḩallāt	شهرستان محلات	33.91667	50.41667
-449696	COUNTY	34	Shahrestān-e Shāzand	شهرستان شازند	33.89657	49.30466
-449695	COUNTY	34	Shahrestān-e Sāveh	شهرستان ساوه	35.07148	50.06630
-449694	COUNTY	34	Shahrestān-e Zarandīyeh	شهرستان زرنديه	35.36667	50.33333
-69179	COUNTY	34	Shahrestān-e Āshtīān	شهرستان آشتيان	34.43831	50.06048
-449691	COUNTY	34	Tafresh	شهرستان تفرش	34.76534	50.00260
-449677	COUNTY	35	Behshahr	شهرستان بهشهر	36.65101	53.58838
-449675	COUNTY	35	Bābol	شهرستان بابل	36.30500	52.63333
-449688	COUNTY	35	Nowshahr	شهرستان نوشهر	36.43333	51.60000
-7830204	COUNTY	35	Savadkuh-e Shomali	سوادکوه شمالی	35.97765	52.68246
-12543580	COUNTY	35	Savād Kūh-e Shomālī	سواد کوه شمالی	36.27361	52.85151
-68057	COUNTY	35	Shahrestan-e Kalār Dasht	شهرستان كلار دشت	36.45000	51.11667
-449676	COUNTY	35	Shahrestān-e Bābolsar	شهرستان بابلسر	36.66667	52.73333
-449680	COUNTY	35	Shahrestān-e Chālūs	شهرستان چالوس	36.40066	51.24429
-9533062	COUNTY	35	Shahrestān-e Fareydūnkenār	شهرستان فريدونکنار	36.64781	52.53063
-9533060	COUNTY	35	Shahrestān-e Galūgāh	شهرستان گلوگاه	36.66667	53.80000
-449679	COUNTY	35	Shahrestān-e Jūybār	شهرستان جويبار	36.66666	52.91333
-449685	COUNTY	35	Shahrestān-e Maḩmūdābād	شهرستان محمود آباد	36.60416	52.32950
-9533061	COUNTY	35	Shahrestān-e Mīāndorūd	شهرستان مياندورود	36.54106	53.28153
-449686	COUNTY	35	Shahrestān-e Nekā	شهرستان نكا	36.47008	53.61803
-449687	COUNTY	35	Shahrestān-e Nūr	شهرستان نور	36.31667	51.98333
-449684	COUNTY	35	Shahrestān-e Qā’em Shahr	شهرستان قائم شهر	36.45583	52.88243
-449681	COUNTY	35	Shahrestān-e Rāmsar	شهرستان رامسر	36.76667	50.53333
-449683	COUNTY	35	Shahrestān-e Savādkūh	شهرستان سوادكوه	36.05268	52.96572
-449682	COUNTY	35	Shahrestān-e Sārī	شهرستان ساری	36.33333	53.28333
-449678	COUNTY	35	Shahrestān-e Tonekābon	شهرستان تنكابن	36.61567	50.82696
-449674	COUNTY	35	Shahrestān-e Āmol	شهرستان آمل	36.20000	52.38333
-9533059	COUNTY	35	Shahrestān-e ‘Abbāsābād	شهرستان عباس آباد	36.63333	51.15000
-11962672	COUNTY	35	Simorgh County	شهرستان سیمرغ	36.57914	52.82364
-449562	COUNTY	36	Abhar	شهرستان ابهر	36.30000	49.05000
-449565	COUNTY	36	Khorramdarreh	شهرستان خرمدرِه	36.23333	49.20000
-449564	COUNTY	36	Shahrestān-e Khodābandeh	شهرستان خدابنده	36.00000	48.50000
-449568	COUNTY	36	Shahrestān-e Māhneshān	شهرستان ماهنشان	36.64285	47.58775
-66310	COUNTY	36	Shahrestān-e Zanjān	شَهرِستانِ زَنجان	36.58333	48.25000
-449563	COUNTY	36	Shahrestān-e Ījrūd	شهرستان ايجرود	36.31119	48.20350
-449567	COUNTY	36	Shahrestān-e Ţārom	شهرستان طارِم	36.94333	48.89500
-11963463	COUNTY	36	Soltaniyeh	شهرستان سلطانیه	36.43235	48.79393
-449641	COUNTY	37	Bandar-e Gaz	شهرستان بندر گز	36.71444	53.95444
-9522216	COUNTY	37	Shahrestān-e Gomīshān	شهرستان گميشان	37.15000	54.15000
-449647	COUNTY	37	Shahrestān-e Gonbad-e Kāvūs	شهرستان گنبد كاووس	37.56222	55.10333
-449646	COUNTY	37	Shahrestān-e Gorgān	شهرستان گرگان	36.75500	54.50667
-9522218	COUNTY	37	Shahrestān-e Gālīkesh	شهرستان گاليکش	37.32500	55.67889
-449645	COUNTY	37	Shahrestān-e Kalāleh	شهرستان كلاله	37.54333	55.48000
-449644	COUNTY	37	Shahrestān-e Kordkūy	شهرستان كردكوی	36.67333	54.19333
-9522217	COUNTY	37	Shahrestān-e Marāveh Tappeh	شهرستان مراوه تپه	37.85000	55.93500
-449648	COUNTY	37	Shahrestān-e Mīnūdasht	شهرستان مينودشت	37.13000	55.46000
-449642	COUNTY	37	Shahrestān-e Rāmīān	شهرستان راميان	36.96778	55.08889
-449639	COUNTY	37	Shahrestān-e Āq Qalā	شهرستان آق قلا	37.16667	54.53000
-449638	COUNTY	37	Shahrestān-e Āzādshahr	شهرستان آزادشهر	36.93889	55.35444
-449643	COUNTY	37	Shahrestān-e ‘Alīābād	شهرستان علی آباد	36.83333	54.88333
-449640	COUNTY	37	Torkaman	شهرستان تركمن	36.91889	54.11778
-11963561	COUNTY	38	Alborz	شهرستان اَلبرز	36.18861	50.07829
-11963519	COUNTY	38	Avaj	شهرستان آوج	35.57685	49.22241
-449596	COUNTY	38	Shahrestān-e Bū’īn Zahrā	شهرستان بوئين زهرا	35.79222	49.95889
-449598	COUNTY	38	Shahrestān-e Qazvīn	شهرستان قزوين	36.35000	49.92333
-449597	COUNTY	38	Shahrestān-e Tākestān	شهرستان تاكستان	36.01111	49.54000
-449595	COUNTY	38	Ābyek	شهرستان آبيک	36.11778	50.34133
-449599	COUNTY	39	Qom	شهرستان قم	34.69000	51.04333
-449724	COUNTY	40	Meybod	شهرستان ميبد	31.96122	53.37928
-449716	COUNTY	40	Shahrestān-e Abarkūh	شهرستان ابركوه	31.08318	53.38500
-449717	COUNTY	40	Shahrestān-e Ardakān	شهرستان اردكان	32.59667	54.78500
-449721	COUNTY	40	Shahrestān-e Ashkez̄ar	شَهرِستانِ صَدوق	31.98759	54.04680
-9533896	COUNTY	40	Shahrestān-e Behābād	شهرستان بهاباد	32.00934	56.13586
-449718	COUNTY	40	Shahrestān-e Bāfq	شهرستان بافق	31.66979	55.40074
-449720	COUNTY	40	Shahrestān-e Khātam	شهرستان خاتم	30.31699	54.20483
-449723	COUNTY	40	Shahrestān-e Mehrīz	شهرستان مهريز	31.34728	54.64283
-449725	COUNTY	40	Shahrestān-e Yazd	شَهرِستانِ يَزد	31.88980	54.36069
-449719	COUNTY	40	Taft	شهرستان تفت	31.44780	53.81411
-449532	COUNTY	41	Ferdows	شهرستان فردوس	33.95667	57.97000
-9525806	COUNTY	41	Shahrestān-e Boshrūyeh	شهرستان بشرويه	34.05500	57.44111
-449523	COUNTY	41	Shahrestān-e Bīrjand	شهرستان بيرجند	33.07000	59.25500
-8620944	COUNTY	41	Shahrestān-e Darmīān	شهرستان درميان	32.94889	60.12333
-9534259	COUNTY	41	Shahrestān-e Khūsf	شهرستان خوسف	32.29444	58.63500
-1482419	COUNTY	41	Shahrestān-e Nehbandān	شهرستان نهبندان	31.50000	59.79500
-449534	COUNTY	41	Shahrestān-e Qā’enāt	شهرستان قائنات	33.72434	59.17209
-449524	COUNTY	41	Shahrestān-e Sarbīsheh	شهرستان سربيشه	32.40000	60.08333
-9525807	COUNTY	41	Shahrestān-e Sarāyān	شهرستان سرايان	33.48133	58.31667
-9534260	COUNTY	41	Shahrestān-e Zīrkūh	شهرستان زيرکوه	33.54333	60.18000
-11963427	COUNTY	41	Tabas		32.80304	60.22146
-449525	COUNTY	42	Bardaskan	شهرستان بردسكن	35.24063	57.52274
-449529	COUNTY	42	Dargaz	شهرستان درگز	37.36904	59.01068
-6550	COUNTY	42	Dāvarzan	شهرستان داورزن	36.33333	56.83333
-9526258	COUNTY	42	Fīrūzeh	شهرستان فيروزه	36.31419	58.42171
-9526255	COUNTY	42	Joveyn	شهرستان جوين	36.60831	57.46644
-8620943	COUNTY	42	Mahvelāt	شهرستان مه ولات	34.98995	58.75420
-449538	COUNTY	42	Mashhad	شهرستان مشهد	36.24865	59.80153
-1482443	COUNTY	42	Sarakhs	شهرستان سرخس	36.30000	60.81667
-9526253	COUNTY	42	Shahrestān-e Bajestān	شهرستان بجستان	34.59511	58.16167
-9526343	COUNTY	42	Shahrestān-e Bākharz	شهرستان باخرز	35.02879	60.31275
-9526260	COUNTY	42	Shahrestān-e Bīnālūd	شهرستان طرقبه شانديز	36.28980	59.32266
-449527	COUNTY	42	Shahrestān-e Chenārān	شهرستان چناران	36.70652	59.05552
-449533	COUNTY	42	Shahrestān-e Farīmān	شهرستان فريمان	35.70000	59.83333
-449537	COUNTY	42	Shahrestān-e Gonābād	شهرستان گناباد	34.39006	58.88273
-9526254	COUNTY	42	Shahrestān-e Joghatāy	شهرستان جغتای	36.67908	56.99342
-1482469	COUNTY	42	Shahrestān-e Kalāt	شهرستان كلات	36.90000	59.90000
-449528	COUNTY	42	Shahrestān-e Khalīlābād	شهرستان خليل آباد	35.13968	58.19932
-9526257	COUNTY	42	Shahrestān-e Khowshāb	شهرستان خوشاب	36.48396	58.09942
-1482426	COUNTY	42	Shahrestān-e Khvāf	شهرستان خواف	34.39906	60.02688
-449536	COUNTY	42	Shahrestān-e Kāshmar	شهرستان كاشمر	35.45173	58.47475
-449539	COUNTY	42	Shahrestān-e Neyshābūr	شهرستان نيشابور	36.11031	58.74659
-449535	COUNTY	42	Shahrestān-e Qūchān	شهرستان قوچان	37.12633	58.58476
-449530	COUNTY	42	Shahrestān-e Roshtkhvār	شهرستان رشتخوار	34.91667	59.36667
-449531	COUNTY	42	Shahrestān-e Sabzevār	شهرستان سبزوار	35.90820	57.55509
-449526	COUNTY	42	Shahrestān-e Torbat-e Ḩeydarīyeh	شهرستان تربت حيدريه	35.46667	59.10000
-1482420	COUNTY	42	Shahrestān-e Tāybād	شهرستان تايباد	34.73333	60.73333
-1482421	COUNTY	42	Torbat-e Jām	شهرستان تربت جام	35.47517	60.75145
-9526342	COUNTY	42	Zāveh	شهرستان زاوه	35.28333	59.73333
-9532886	COUNTY	43	Garmeh	شهرستان گرمه	37.15222	56.24667
-11963428	COUNTY	43	Raz and Jargalan	شهرستان راز و جرگلان	37.93060	57.11940
-449541	COUNTY	43	Shahrestān-e Bojnūrd	شهرستان بجنورد	37.56667	57.35667
-449540	COUNTY	43	Shahrestān-e Esfarāyen	شهرستان اسفراين	36.96222	57.54778
-8620942	COUNTY	43	Shahrestān-e Fārūj	شهرستان فاروج	37.18500	58.17778
-449542	COUNTY	43	Shahrestān-e Jājarm	شهرستان جاجرم	37.03778	56.68000
-8620941	COUNTY	43	Shahrestān-e Māneh va Samalqān	شهرستان مانه و سملقان	37.66500	56.60111
-449543	COUNTY	43	Shahrestān-e Shīrvān	شهرستان شيروان	37.54889	57.89111
-11963420	COUNTY	44	Fardis	شهرستان فردیس	35.72318	50.97865
-449514	COUNTY	44	Karaj	شهرِستان كرج	35.96500	51.09500
-9513961	COUNTY	44	Shahrestān-e Eshtehārd	شهرستان اشتهارد	35.72889	50.45889
-449515	COUNTY	44	Shahrestān-e Naz̧arābād	شَهرِستانِ نظر آباد	35.90444	50.52000
-449510	COUNTY	44	Shahrestān-e Sāvojbolāgh	شَهرِستانِ سَواجبُلاغ	35.97778	50.81111
-9513960	COUNTY	44	Shahrestān-e Ţāleqān	شهرستان طالقان	36.21111	50.80889
+# notes: no district (admin level 3 / bakhsh) rows — GeoNames' Iran admin3 coverage is 7 records, far short of the real count (docs/DATA_TODO.md DT-021); a division with no published alternate name in a language has an empty field for it; coverage per language (of 466 divisions): fa=463, ps=31, ckb=30, az=32, uz=31, ms=31, tg=32, ne=1, ta=30
+# columns: code,level,parentCode,en,latitude,longitude,fa,ps,ckb,az,uz,ms,tg,ne,ta
+44	PROVINCE		Alborz Province	36.01117	50.80956	البرز	البرز ولايت	پارێزگای ئەلبورز	Əlburz ostanı	Alborz viloyati	Alborz Province	Устони Албурз		அல்போன்ஸ் மாகாணம்
+32	PROVINCE		Ardabil Province	38.50000	48.00000	اردبيل	اردبيل ولايت	پارێزگای ئەردەوێڵ	Ərdəbil ostanı	Ardabil viloyati	Ardabil	Устони Ардабел		அர்டாபில் மாகாணம்
+22	PROVINCE		Bushehr Province	28.75000	51.50000	بوشهر	بوشهر ولايت	پارێزگای بووشێھر	Buşehr ostanı	Bushehr	Bushehr	Бушеҳр		புஷெர் மாகாணம்
+03	PROVINCE		Chaharmahal and Bakhtiari Province	32.16667	50.75000	چهارمحال و بختیاری	چار محل و بختياري	پارێزگای چوارمەحاڵ و بەختیاری	Çahar-Mahal və Bəxtiyari ostanı	Chahormahol va Baxtiyoriy ustoni	Chaharmahal dan Bakhtiari	Устони Чаҳормаҳолу Бахтиёрӣ		சஹ்ரமஹால் அண்ட் பாக்ஹ்டிரி மாகாணம்
+33	PROVINCE		East Azerbaijan Province	38.00000	46.75000	آذربایجان شرقی	مشرقي ازربايجان	پارێزگای ئازەربایجانی ڕۆژھەڵات	Şərqi Azərbaycan ostanı	Sharqiy Ozarbayjon ustoni	Azarbaijan Timur	Устони Озарбойҷони шарқӣ		கிழக்கு அஜர்பைஜான் மாகாணம்
+07	PROVINCE		Fars Province	29.00000	53.00000	فارس	د فارس ولايت	پارێزگای فارس	Fars ostanı	Fors	Fars	Фарс		பார்ஸ் மாகாணம்
+08	PROVINCE		Gilan Province	37.16667	49.50000	گیلان‎	گيلان	پارێزگای گێڵان	Gilan ostanı	Gilon	Gilan	Устони Гелон		கிளன் மாகாணம்
+37	PROVINCE		Golestan Province	37.25000	55.00000	گلستان	گلستان ولایت	پارێزگای گوڵستان	Gülüstan ostanı	Guliston ustoni	Golestan	Устони Гулистон		கோலெஸ்டன் மாகாணம்
+09	PROVINCE		Hamadan Province	34.83333	48.58333	همدان‎	همدان ولايت	پارێزگای ھەمەدان	Həmədan ostanı	Hamadon ustoni	Hamedan	Устони Ҳамадон	हामादान क्षेत्र	அமாதான் மாகாணம்
+11	PROVINCE		Hormozgan Province	27.75000	56.50000	هرمزگان	هرمزگان	پارێزگای ھورمزگان	Hörmüzgan ostanı	Hurmuzgon ustoni	Hormozgan	Ҳурмузгон		ஹொர்மொஸ்கான் மாகாணம்
+10	PROVINCE		Ilam Province	33.16667	47.00000	ایلام‎	ايلام ولايت	پارێزگای ئیلام	İlam ostanı	Ilom ustoni	Ilam	Устони Элом		இலாம் மாகாணம்
+28	PROVINCE		Isfahan Province	33.00000	52.16667	اصفهان	د اصفهان ولايت	پارێزگای ئەسفەھان	İsfahan ostanı	Isfahon viloyati	Isfahan	Устони Исфаҳон		இசுபான் மாகாணம்
+29	PROVINCE		Kerman Province	29.75000	57.25000	کرمان	د کرمان ولايت	پارێزگای کرمان	Kirman ostanı	Kirmon viloyati	Kerman	Устони Кирмон		கெர்மன் மாகாணம்
+13	PROVINCE		Kermanshah Province	34.41667	46.75000	كرمانشاه‎	کرمانشاه ولايت	پارێزگای کرماشان	Kirmanşah ostanı	Kirmonshoh viloyati	Kermanshah	Устони Кирмоншоҳ		கெர்மன்ஷாஹ் மாகாணம்
+15	PROVINCE		Khuzestan Province	31.50000	49.00000	خوزستان	خوزستان		Xuzistan	Xuziston	Khuzestan	Хӯзистон		
+05	PROVINCE		Kohgiluyeh and Boyer-Ahmad Province	30.83333	50.66667	کهگیلویه و بویراحمد	کهگلويه و بويراحمد	پارێزگای کۆھگیلوویە و بۆیرەحمەد	Kohgiluyə və Boyer-Əhməd ostanı	Koʻhgiluya va Buyir-Ahmad ustoni	Kohkiluyeh dan Buyer Ahmad	Устони Куҳгилӯя ва Буйир Аҳмад		கோகிலுயே
+16	PROVINCE		Kurdistan Province	35.66667	47.00000	کردستان‎	کردستان ولايت	پارێزگای کوردستان	Kürdüstan ostanı	Kurdiston ustoni	Kurdistan	Устони Курдистон		குர்டிஸ்டான் மாகாணம்
+23	PROVINCE		Lorestan Province	33.50000	48.50000	لرستان	لرستان ولایت	پارێزگای لوڕستان	Luristan ostanı	Luriston	Lorestan	Устони Луристон		லொரெஸ்டன் மாகாணம்
+34	PROVINCE		Markazi Province	34.33333	49.83333	مرکزی	مرکزي	پارێزگای مەرکەزی	Mərkəzi ostanı	Markaziy ustoni	Markazi	Устони Марказӣ		மார்கசி மாகாணம்
+35	PROVINCE		Mazandaran Province	36.25000	52.33333	مازَندَران	مازندارن	پارێزگای مازەندەران	Mazandaran ostanı	Mozandaron	Mazandaran	Устони Мозандарон		மாசாந்தரான் மாகாணம்
+43	PROVINCE		North Khorasan Province	37.50000	57.00000	خراسان شمالی	خوراسان، شمالي	پارێزگای خۆراسانی باکوور	Şimali Xorasan ostanı	Shimoliy Xuroson ustoni	Khorasan Utara	Устони Хуросони шимолӣ		வடக்கு க்ஹோரசன் மாகாணம்
+38	PROVINCE		Qazvin Province	36.00000	49.75000	قزوین‎	قزوين ولايت	پارێزگای قەزوین	Qəzvin ostanı	Qazvin viloyati	Qazvin	Устони Қазвин		கஸ்வின் மாகாணம்
+39	PROVINCE		Qom Province	34.75000	51.00000	قم	د قم ولايت	پارێزگای قوم	Qum ostanı	Qum ustoni	Qom	Устони Қум		கொம் மாகாணம்
+42	PROVINCE		Razavi Khorasan Province	35.25000	59.00000	خراسان رضوی	د رضوي خراسان ولايت	پارێزگای خۆراسانی ڕەزەوی	Rəzəvi Xorasan ostanı	Razaviy Xuroson ustoni	Razavi Khorasan	устони Хуросони Разавӣ		ராசாவி க்ஹோரசன் மாகாணம்
+25	PROVINCE		Semnan Province	35.50000	55.00000	سمنان‎	سمنان ولايت	پارێزگای سمنان	Simnan ostanı	Semnan	Wilayah Semnan	Устони Симнон		செம்னன் மாகாணம்
+04	PROVINCE		Sistan and Baluchestan Province	28.50000	60.50000	سیستان و بلوچستان	د سيستان او بلوچستان ولايت	پارێزگای سیستان و بەلۆچستان	Sistan və Bəlucistan ostanı	Siston va Balujiston ustoni	Sistan dan Baluchestan	Устони Сестону Балӯчистон		சிச்தான் மற்றும் பலுசிஸ்த்தான் மாகாணம்
+41	PROVINCE		South Khorasan Province	32.50000	59.50000	خراسان جنوبی	د سهېلي خراسان ولايت	پارێزگای خۆراسانی باشوور	Cənubi Xorasan ostanı	Janubiy Xuroson ustoni	Khorasan Selatan	Устони Хуросони ҷанубӣ		தெற்கு கஹோரசன் மாகாணம்
+26	PROVINCE		Tehran Province	35.66667	51.41667	استان تهران	تهران ولايت	پارێزگای تاران	Tehran ostanı	Tehron ustoni	Teheran	Устони Теҳрон		தெஹ்ரான் மாகாணம்
+01	PROVINCE		West Azerbaijan Province	37.66667	45.00000	آذَربايجان غَربی	مغربي ازربايجان	پارێزگای ئازەربایجانی ڕۆژاوا	Qərbi Azərbaycan ostanı	Gʻarbiy Ozarbayjon ustoni	Azarbaijan Barat	Устони Озарбойчони ғарбӣ		மேற்கு அசார்பைஜான் மாகாணம்
+40	PROVINCE		Yazd Province	32.50000	55.58333	یزد	د یزد ولایت	پارێزگای یەزد	Yəzd ostanı	Yazd viloyati	Yazd	Устони Язд		யாசுது மாகாணம்
+36	PROVINCE		Zanjan Province	36.50000	48.33333	استان زنجان	زنجان ولايت	پارێزگای زەنگان	Zəncan ostanı	Zanjon ustoni	Zanjan	Устони Занҷон		சஞ்சன் மாகாணம்
+9517620	COUNTY	01	Chāypāreh	38.88254	44.99670	چايپاره								
+449450	COUNTY	01	Khowy	38.60277	44.76975	شهرستان خوی								
+449457	COUNTY	01	Naqadeh	36.97491	45.44941	شهرستان نقده								
+9517621	COUNTY	01	Poldasht	39.18333	45.08333	شهرستان پلدشت								
+449451	COUNTY	01	Sardasht	36.22899	45.46173	شهرستان سردشت								
+449446	COUNTY	01	Shahrestān-e Būkān	36.60002	46.16664	شهرستان بوكان								
+449449	COUNTY	01	Shahrestān-e Chāldorān	39.02370	44.41259	شهرستان چالدران								
+449455	COUNTY	01	Shahrestān-e Mahābād	36.67233	45.73465	شهرستان مهاباد								
+449454	COUNTY	01	Shahrestān-e Mākū	39.45575	44.59639	شهرستان ماكو								
+449456	COUNTY	01	Shahrestān-e Mīāndoāb	36.89999	46.20002	شهرستان مياندوآب								
+449444	COUNTY	01	Shahrestān-e Orūmīyeh	37.61499	44.93110	شهرستان اروميه								
+449445	COUNTY	01	Shahrestān-e Oshnavīyeh	37.06870	45.07066	شهرستان اشنويه								
+449447	COUNTY	01	Shahrestān-e Pīrānshahr	36.70000	45.16667	شهرستان پيرانشهر								
+449452	COUNTY	01	Shahrestān-e Salmās	38.13804	44.64400	شهرستان سلماس								
+449453	COUNTY	01	Shahrestān-e Shāhīn Dezh	36.67230	46.63695	شهرستان شاهين دژ								
+449448	COUNTY	01	Shahrestān-e Takāb	36.51629	47.12272	شهرستان تكاب								
+9517619	COUNTY	01	Showţ	39.15006	44.83346	شهرستان شوط								
+449517	COUNTY	03	Ardal	31.95949	50.31029	شهرستان اردل								
+11963425	COUNTY	03	Ben	32.53556	50.75201	شهرستان بن								
+11963426	COUNTY	03	Saman	32.44980	50.91379	شهرستان سامان								
+449519	COUNTY	03	Shahrekord	32.33544	50.75836	شهرستان شهركرد								
+449518	COUNTY	03	Shahrestān-e Borūjen	31.89647	51.17299	شهرستان بروجن								
+449520	COUNTY	03	Shahrestān-e Fārsān	32.22396	50.56592	شهرستان فارسان								
+9519976	COUNTY	03	Shahrestān-e Kīār	32.00000	50.76667	شهرستان کيار								
+449521	COUNTY	03	Shahrestān-e Kūhrang	32.41455	50.04152	شهرستان كوهرنگ								
+449522	COUNTY	03	Shahrestān-e Lordegān	31.46299	50.88549	شهرستان لردگان								
+11963562	COUNTY	04	Fanuj	26.57468	59.63856	شهرستان فنوج								
+11963518	COUNTY	04	Hamoon	30.93686	61.33687	شهرستان هامون								
+13452432	COUNTY	04	Hāmūn	30.50784	61.10974	شهرستان هامون								
+11963514	COUNTY	04	Mirjaveh	29.01752	61.45046	شهرستان میرجاوه								
+11963516	COUNTY	04	Nimruz	31.10333	61.41601	شهرستان نیمروز								
+11963510	COUNTY	04	Qaser-e Qand	26.22693	60.74553									
+1482480	COUNTY	04	Shahrestān-e Chābahār	25.44691	61.21075	شهرستان چابهار								
+9533580	COUNTY	04	Shahrestān-e Dalgān	27.40340	59.33036	شهرستان دلگان								
+9533575	COUNTY	04	Shahrestān-e Hīrmand	31.20420	61.66805	شهرستان هيرمند								
+1482481	COUNTY	04	Shahrestān-e Khāsh	28.19339	60.76157	شهرستان خاش								
+9533581	COUNTY	04	Shahrestān-e Konārak	25.55123	59.88437	شهرستان کنارک								
+9533590	COUNTY	04	Shahrestān-e Mehrestān	27.02592	61.58705	شهرستان مهرستان								
+1482504	COUNTY	04	Shahrestān-e Nīkshahr	26.25000	60.00000	شهرستان نيکشهر								
+13452433	COUNTY	04	Shahrestān-e Nīmrūz	30.99869	60.78461	نیمروز								
+12543582	COUNTY	04	Shahrestān-e Qaşr-e Qand	26.06270	60.76665	شهرستان قصر قند								
+1482499	COUNTY	04	Shahrestān-e Sarbāz	26.46901	61.45081	شهرستان سرباز								
+1482494	COUNTY	04	Shahrestān-e Sarāvān	27.39244	62.50642	شهرستان سراوان								
+9533591	COUNTY	04	Shahrestān-e Sīb va Sūrān	27.33333	61.91667	شهرستان سيب و سوران								
+1482483	COUNTY	04	Shahrestān-e Zābol	31.04741	61.56620	شهرستان زابل								
+1482486	COUNTY	04	Shahrestān-e Zāhedān	29.62217	60.16915	شهرستان زاهدان								
+1158999	COUNTY	04	Shahrestān-e Īrānshahr	27.76803	60.03354	شهرستان ايرانشهر								
+9533574	COUNTY	04	Zehak	30.83835	61.63663	شهرستان زهک								
+11963520	COUNTY	05	Landeh	30.97994	50.42469	شهرستان لنده								
+9532946	COUNTY	05	Shahrestān-e Bahma’ī	31.05000	50.08333	شهرستان بهمئی								
+449634	COUNTY	05	Shahrestān-e Bowyer Aḩmad	30.87500	51.13333	شهرستان بوير احمد								
+9532948	COUNTY	05	Shahrestān-e Bāsht	30.46004	51.07451	شهرستان باشت								
+9532947	COUNTY	05	Shahrestān-e Charām	30.77111	50.87050	شهرستان چرام								
+449635	COUNTY	05	Shahrestān-e Danā	31.02933	51.25000	شهرستان دنا								
+449637	COUNTY	05	Shahrestān-e Gachsārān	30.30000	50.73333	شهرستان گچساران								
+449636	COUNTY	05	Shahrestān-e Kohgīlūyeh	31.05500	50.59900	شهرستان كهگيلويه								
+449578	COUNTY	07	Jahrom	28.70331	53.34569	شهرستان جهرم								
+9520870	COUNTY	07	Khonj	27.94047	53.06737	شهرستان خنج								
+125034	COUNTY	07	Mamasanī	30.03333	51.38333	شهرستان ممسنی								
+449591	COUNTY	07	Marvdasht	30.10564	52.63615	شهرستان مرودشت								
+449593	COUNTY	07	Mohr	27.62265	52.74274	شهرستان مهر								
+9520534	COUNTY	07	Rostam	30.40000	51.37090	شهرستان رستم								
+449574	COUNTY	07	Shahrestān-e Arsanjān	29.83704	53.38778	شهرستان ارسنجان								
+449577	COUNTY	07	Shahrestān-e Bavānāt	30.29121	53.67292	شهرستان بوانات								
+449580	COUNTY	07	Shahrestān-e Dārāb	28.56667	54.95000	شهرستان داراب								
+8620947	COUNTY	07	Shahrestān-e Eqlīd	30.70000	52.40000	شهرستان اقليد								
+449575	COUNTY	07	Shahrestān-e Estahbān	29.11667	54.00000	شهرستان استهبان								
+449584	COUNTY	07	Shahrestān-e Farrāshband	28.61061	52.20052	شهرستان فراشبند								
+68471	COUNTY	07	Shahrestān-e Fasā	28.94922	53.78896	شهرستان فسا								
+449586	COUNTY	07	Shahrestān-e Fīrūzābād	28.89565	52.56201	شهرستان فيروزآباد								
+9520869	COUNTY	07	Shahrestān-e Gerāsh	27.65699	53.69659	شهرستان گراش								
+9520867	COUNTY	07	Shahrestān-e Kavār	29.22092	52.71424	شهرستان کوار								
+9520866	COUNTY	07	Shahrestān-e Kherāmeh	29.50100	53.26700	شهرستان خرامه								
+449579	COUNTY	07	Shahrestān-e Khorrambīd	30.57112	53.13523	شهرستان خرم بيد								
+449588	COUNTY	07	Shahrestān-e Kāzerūn	29.52107	51.71275	شهرستان کارزون								
+449590	COUNTY	07	Shahrestān-e Lāmerd	27.39316	53.31900	شهرستان لامرد								
+449589	COUNTY	07	Shahrestān-e Lārestān	27.71290	54.47730	شهرستان لارستان								
+449594	COUNTY	07	Shahrestān-e Neyrīz	29.33333	54.33333	شهرستان نيريز								
+9520865	COUNTY	07	Shahrestān-e Pāsārgād	30.13977	53.15304	شهرستان پاسارگاد								
+449587	COUNTY	07	Shahrestān-e Qīr va Kārzīn	28.34401	52.91571	شهرستان قير و کارزين								
+9520868	COUNTY	07	Shahrestān-e Sarvestān	29.21667	53.13333	شهرستان سروستان								
+449582	COUNTY	07	Shahrestān-e Sepīdān	30.15000	52.10000	شهرستان سپيدان								
+449583	COUNTY	07	Shahrestān-e Shīrāz	29.59851	52.43280	شهرستان شيراز								
+449581	COUNTY	07	Shahrestān-e Zarrīn Dasht	28.30000	54.46667	شهرستان زرين دشت								
+449573	COUNTY	07	Shahrestān-e Ābādeh	31.25000	52.50000	شهرستان آباده								
+449651	COUNTY	08	Amlash	36.96667	50.15000	شهرستان املش								
+449653	COUNTY	08	Rasht	37.26667	49.63333	شهرستان رشت								
+449658	COUNTY	08	Shaft	37.08333	49.38333	شهرستان شفت								
+449652	COUNTY	08	Shahrestān-e Bandar-e Anzalī	37.45000	49.41333	شهرستان بندر انزلی								
+449661	COUNTY	08	Shahrestān-e Fūman	37.16337	49.17130	شهرستان فومن								
+449663	COUNTY	08	Shahrestān-e Langarūd	37.10000	50.12500	شهرستان لنگرود								
+449662	COUNTY	08	Shahrestān-e Lāhījān	37.16700	50.00000	شهرستان لاهيجان								
+449664	COUNTY	08	Shahrestān-e Māsāl	37.30000	49.00000	شهرستان ماسال								
+449654	COUNTY	08	Shahrestān-e Reẕvānshahr	37.53333	48.95000	شهرستان رضوانشهر								
+449655	COUNTY	08	Shahrestān-e Rūdbār	36.78500	49.60000	شهرستان رودبار								
+449656	COUNTY	08	Shahrestān-e Rūdsar	36.86667	50.30000	شهرستان رودسر								
+449657	COUNTY	08	Shahrestān-e Sīāhkal	36.93333	49.85000	شهرستان سياهکل								
+449650	COUNTY	08	Shahrestān-e Āstāneh-ye Ashrafīyeh	37.33333	50.00000	شهرستان آستانه اشرفيه								
+449649	COUNTY	08	Shahrestān-e Āstārā	38.33333	48.75000	شهرستان آستارا								
+449659	COUNTY	08	Shahrestān-e Şowme‘eh Sarā	37.35500	49.29750	شهرستان صومعه سرا								
+8620884	COUNTY	08	Shahrestān-e Ţavālesh	37.90000	48.78333	شهرستان طوالش								
+449711	COUNTY	09	Razan	35.43357	48.98170	شهرستان رزن								
+449708	COUNTY	09	Shahrestān-e Asadābād	34.78333	48.00000	شهرستان اسد آباد								
+449709	COUNTY	09	Shahrestān-e Bahār	34.98612	48.37164	شهرستان بهار								
+9523287	COUNTY	09	Shahrestān-e Fāmenīn	35.09813	49.17369	شهرستان فامنين								
+449715	COUNTY	09	Shahrestān-e Hamadān	34.82517	48.80310	شهرستان همدان								
+449712	COUNTY	09	Shahrestān-e Kabūdarāhang	35.37615	48.38238	شهرستان كبودرآهنگ								
+449713	COUNTY	09	Shahrestān-e Malāyer	34.32216	48.79741	شهرستان ملايِر								
+449714	COUNTY	09	Shahrestān-e Nahāvand	34.21957	48.24670	شهرستان نهاوند								
+449710	COUNTY	09	Shahrestān-e Tūyserkān	34.54219	48.33457	شهرستان تويسركان								
+112941	COUNTY	10	Badreh	33.31354	47.02365	شهرستان بدرِه								
+11963421	COUNTY	10	Chardavol County	33.75910	46.56980	شهرستان چرداول								
+12543583	COUNTY	10	Chardāval	33.67952	46.89901	چرداول								
+28354	COUNTY	10	Darrehshahr	33.02500	47.57333	شهرستان دره شهر								
+449462	COUNTY	10	Shahrestān-e Dehlorān	32.62926	47.28063	شهرستان دهلران								
+449460	COUNTY	10	Shahrestān-e Eyvān	33.88767	46.15953	شهرستان ايوان								
+9524084	COUNTY	10	Shahrestān-e Malekshāhī	33.30081	46.56191	شهرستان ملکشاهی								
+449464	COUNTY	10	Shahrestān-e Mehrān	33.29591	46.21068	شهرستان مهران								
+449458	COUNTY	10	Shahrestān-e Ābdānān	32.87830	47.52180	شهرستان آبدانان						Шаҳристони Обдонон		
+449459	COUNTY	10	Shahrestān-e Īlām	33.69591	46.27515	شهرستان ايلام								
+11963422	COUNTY	10	Sirvan	33.75460	46.56651	شهرستان سیروان								
+449702	COUNTY	11	Bandar Lengeh	26.78333	54.65000	شهرستان بندر لنگه								
+449700	COUNTY	11	Bastak	27.20000	54.50200	شهرستان بستک			Bəstək					
+449706	COUNTY	11	Qeshm	26.78333	55.86667	شهرستان قشم								
+449699	COUNTY	11	Shahrestān-e Abū Mūsá	26.05474	55.16243	شهرستان ابو موسیٰ								
+449701	COUNTY	11	Shahrestān-e Bandar ‘Abbās	27.53720	56.22429	شهرستان بندر عباس								
+9523757	COUNTY	11	Shahrestān-e Bashāgard	26.44004	58.14973	شهرستان بشاگرد								
+449703	COUNTY	11	Shahrestān-e Jāsk	25.86578	58.29089	شهرستان جاسک								
+8620945	COUNTY	11	Shahrestān-e Khamīr	27.27756	55.50915	شهرستان خمير								
+449707	COUNTY	11	Shahrestān-e Mīnāb	26.94152	57.32685	شهرستان ميناب								
+8620946	COUNTY	11	Shahrestān-e Pārsīān	27.14039	53.23222	شهرستان پارسيان								
+449705	COUNTY	11	Shahrestān-e Rūdān	27.53333	57.11667	شهرستان رودان								
+9523758	COUNTY	11	Shahrestān-e Sīrīk	26.48064	57.23738	شهرستان سيريک								
+449704	COUNTY	11	Shahrestān-e Ḩājjīābād	28.06193	56.16021	شهرستان حاجی آباد								
+8620948	COUNTY	13	Shahrestān-e Dālāhū	34.41667	46.25000	شهرستان دالاهو								
+449622	COUNTY	13	Shahrestān-e Eslāmābād-e Gharb	34.02506	46.67843	شهرستان اسلام آباد غرب								
+449632	COUNTY	13	Shahrestān-e Gīlān-e Gharb	34.16794	45.85492	شهرستان گيلان غرب								
+449633	COUNTY	13	Shahrestān-e Harsīn	34.35000	47.48333	شهرستان هرسين								
+449625	COUNTY	13	Shahrestān-e Javānrūd	34.85184	46.29841	شهرستان جوانرود								
+449631	COUNTY	13	Shahrestān-e Kangāvar	34.48333	47.93333	شهرستان کنگاور								
+449630	COUNTY	13	Shahrestān-e Kermānshāh	34.29712	47.01427	شهرستان کرمانشاه								
+449623	COUNTY	13	Shahrestān-e Pāveh	35.06442	46.25705	شهرستان پاوه								
+449629	COUNTY	13	Shahrestān-e Qaşr-e Shīrīn	34.20000	45.63333	شهرستان قصر شيرين								
+8620949	COUNTY	13	Shahrestān-e Ravānsar	34.68361	46.58590	شهرستان روانسر								
+449626	COUNTY	13	Shahrestān-e Sarpol-e Z̄ahāb	34.50000	45.85000	شهرستان سرپل ذهاب								
+449624	COUNTY	13	Shahrestān-e S̄alās̄-e Bābā Jānī	34.79105	46.05079	شهرستان سلاث باباجانی								
+449628	COUNTY	13	Shahrestān-e Şaḩneh	34.58333	47.51667	شهرستان صحنه								
+449627	COUNTY	13	Sonqor	34.86699	47.54628	شهرستان سنقر								
+11963429	COUNTY	15	Aghajari	30.69352	49.82819	شهرستان آغاجاری								
+9532909	COUNTY	15	Gotvand	32.23969	48.81522	شهرستان گتوند								
+9532928	COUNTY	15	Haftkel	31.56667	49.40000	شهرستان هفتکل								
+11963430	COUNTY	15	Hamidiyeh	31.48107	48.43303	شهرستان حمیدیّه								
+9532924	COUNTY	15	Hoveyzeh	31.30583	47.94572	شهرستان هويزه								
+11963434	COUNTY	15	Karun	31.27618	48.64174	شهرستان کارون								
+449552	COUNTY	15	Khorramshahr	30.69176	48.21195	شهرستان خرمشهر								
+449547	COUNTY	15	Shahrestān-e Ahvāz	31.33926	48.68695	شهرستان اهواز								
+9532922	COUNTY	15	Shahrestān-e Andīkā	32.30788	49.53595	شهرستان انديکا								
+449546	COUNTY	15	Shahrestān-e Andīmeshk	32.70000	48.30000	شهرستان انديمشک								
+449550	COUNTY	15	Shahrestān-e Bandar-e Māhshahr	30.63333	49.11667	شهرستان بندر ماهشهر								
+449551	COUNTY	15	Shahrestān-e Behbahān	30.53097	50.21477	شهرستان بهبهان								
+449549	COUNTY	15	Shahrestān-e Bāgh-e Malek	31.47663	49.92501	شهرستان باغ ملک								
+9532926	COUNTY	15	Shahrestān-e Bāvī	31.52040	48.96469	شهرستان باوی								
+449554	COUNTY	15	Shahrestān-e Dasht-e Āzādegān	31.68455	48.09876	شهرستان دشت آزادگان								
+449553	COUNTY	15	Shahrestān-e Dezfūl	32.56667	48.78333	شهرستان دزفول								
+449561	COUNTY	15	Shahrestān-e Hendījān	30.30912	49.73490	شهرستان هنديجان								
+449559	COUNTY	15	Shahrestān-e Lālī	32.41667	49.16667	شهرستان لالی								
+449560	COUNTY	15	Shahrestān-e Masjed Soleymān	31.98333	49.26667	شهرستان مسجدسليمان								
+449545	COUNTY	15	Shahrestān-e Omīdīyeh	30.75000	49.70000	شهرستان اميديه								
+449555	COUNTY	15	Shahrestān-e Rāmhormoz	31.21667	49.65000	شهرستان رامهرمز								
+9532929	COUNTY	15	Shahrestān-e Rāmshīr	30.95000	49.39238	شهرستان رامشير								
+449556	COUNTY	15	Shahrestān-e Shādegān	30.64503	48.67283	شهرستان شادگان								
+449557	COUNTY	15	Shahrestān-e Shūsh	32.02599	48.19710	شهرستان شوش								
+449558	COUNTY	15	Shahrestān-e Shūshtar	31.91521	49.08482	شهرستان شوشتر								
+449544	COUNTY	15	Shahrestān-e Ābādān	30.20602	48.60012	شهرستان آبادان								
+449548	COUNTY	15	Shahrestān-e Īz̄eh	31.86957	49.98576	شهرستان ايذه								
+449606	COUNTY	16	Qorveh	35.22526	47.83947	شهرستان قروه								
+449605	COUNTY	16	Sanandaj	35.38376	46.90256	شهرستان سنندج								
+449604	COUNTY	16	Saqqez	36.15548	46.37865	شهرستان سقز								
+449600	COUNTY	16	Shahrestān-e Bāneh	35.99517	45.84652	شهرستان بانه								
+449601	COUNTY	16	Shahrestān-e Bījār	35.86667	47.60000	شهرستان بيجار								
+9532949	COUNTY	16	Shahrestān-e Dehgolān	35.33464	47.35853	شهرستان دهگلان								
+449602	COUNTY	16	Shahrestān-e Dīvāndarreh	35.94960	46.95789	شهرستان ديواندرِه								
+449607	COUNTY	16	Shahrestān-e Kāmyārān	34.90798	46.91319	شهرستان كامياران								
+449608	COUNTY	16	Shahrestān-e Marīvān	35.57821	46.34426	شهرستان مريوان								
+449603	COUNTY	16	Shahrestān-e Sarvābād	35.22522	46.39458	شهرستان سرو آباد								
+449501	COUNTY	22	Deylam	30.02500	50.34333	شهرستان ديلم								
+449500	COUNTY	22	Deyr	28.01950	51.69200	شهرستان دير								
+449497	COUNTY	22	Jam	27.95778	52.17600	شهرستان جم								
+449495	COUNTY	22	Shahrestān-e Būshehr	29.14186	50.98160	شهرستان بوشهر								
+449498	COUNTY	22	Shahrestān-e Dashtestān	29.28333	51.25000	شهرستان دشتستان								
+449499	COUNTY	22	Shahrestān-e Dashtī	28.48685	51.56182	شهرستان دشتی								
+449503	COUNTY	22	Shahrestān-e Genāveh	29.62333	50.63000	شهرستان گناوه								
+449502	COUNTY	22	Shahrestān-e Kangān	27.72000	52.27000	شهرستان كنگان								
+449496	COUNTY	22	Shahrestān-e Tangestān	28.88333	51.26667	شهرستان تنگستان								
+9519975	COUNTY	22	‘Asalūyah	27.42500	52.72000	شهرستان عسلويه								
+449670	COUNTY	23	Delfan	34.05000	47.78333	شهرستان دلفان								
+449671	COUNTY	23	Dorūd	33.52313	49.07248	شهرستان دورود								
+449668	COUNTY	23	Pol-e Dokhtar	33.13361	47.97070	شهرستان پل دختر								
+11962671	COUNTY	23	Rumeshkhan County	33.27960	47.48995	شهرستان رومِشکان								
+449672	COUNTY	23	Selseleh	33.82985	48.20389	شهرستان سلسله								
+449666	COUNTY	23	Shahrestān-e Alīgūdarz	33.04651	49.39498	شهرستان اليگودرز								
+449665	COUNTY	23	Shahrestān-e Aznā	33.50450	49.43509	شهرستان ازنا								
+449667	COUNTY	23	Shahrestān-e Borūjerd	33.88897	48.75214	شهرستان بروجرد								
+9533002	COUNTY	23	Shahrestān-e Dūreh	33.60337	47.93319	شهرستان دوره								
+449669	COUNTY	23	Shahrestān-e Khorramābād	33.39367	48.56906	شهرستان خرم آباد								
+449673	COUNTY	23	Shahrestān-e Kūhdasht	33.55454	47.38381	شهرستان كوهدشت								
+124337	COUNTY	25	Mahdishahr	35.70930	53.35332	سَنگسَر								
+449569	COUNTY	25	Shahrestān-e Dāmghān	35.50000	54.33333	شهرستان دامغان								
+449572	COUNTY	25	Shahrestān-e Garmsār	34.92583	52.16297	شهرستان گرمسار								
+9533331	COUNTY	25	Shahrestān-e Mayāmey	36.61719	56.06062	شهرستان ميامی								
+449570	COUNTY	25	Shahrestān-e Semnān	35.05193	53.80126	شهرستان سمنان								
+449571	COUNTY	25	Shahrestān-e Shāhrūd	35.44239	55.60404	شهرستان شاهرود								
+9533333	COUNTY	25	Shahrestān-e Ārādān	34.89958	52.63352	شهرستان آرادان								
+9533334	COUNTY	25	Sorkheh	34.92140	53.14802	شهرستان سرخه								
+11963423	COUNTY	26	Pardis	35.74169	51.77705	شهرستان پردیس								
+11963424	COUNTY	26	Qarchak	35.43289	51.56597	شهرستان قرچک								
+9533737	COUNTY	26	Qods	35.70500	51.09067	شهرستان قدس								
+449509	COUNTY	26	Rey	35.34967	51.29500	شهرستان رِی								
+9533739	COUNTY	26	Shahrestān-e Bahārestān	35.52537	51.16278	شهرستان بهارستان								
+449507	COUNTY	26	Shahrestān-e Damāvand	35.61500	52.18333	شهرستان دماوند								
+9533740	COUNTY	26	Shahrestān-e Eslāmshahr	35.58333	51.25000	شهرستان اسلامشهر								
+449513	COUNTY	26	Shahrestān-e Fīrūzkūh	35.75000	52.69756	شهرستان فيروزكوه								
+9533736	COUNTY	26	Shahrestān-e Malārd	35.61000	50.69667	شهرستان ملارد								
+449505	COUNTY	26	Shahrestān-e Pākdasht	35.47500	51.77778	شهرستان پاكدشت								
+9533741	COUNTY	26	Shahrestān-e Pīshvā	35.33000	51.75111	شهرستان پيشوا								
+449508	COUNTY	26	Shahrestān-e Robāţ Karīm	35.48933	51.04978	شهرستان رباط كريم								
+449512	COUNTY	26	Shahrestān-e Shahrīār	35.62828	51.06632	شهرستان شهريار								
+449511	COUNTY	26	Shahrestān-e Shemīrānāt	35.91333	51.61500	شهرستان شميرانات								
+449506	COUNTY	26	Shahrestān-e Tehrān	35.71758	51.40545	شهرستان تهران								
+449516	COUNTY	26	Shahrestān-e Varāmīn	35.33081	51.64124	شَهرِستانِ وَرامين								
+11962673	COUNTY	28	Buin va Miandasht	33.07241	50.14641									
+449485	COUNTY	28	Fereydan	32.97912	50.41097	شهرستان فريدن								
+449475	COUNTY	28	Shahrestān-e Ardestān	33.56742	52.53570	شهرستان اردستان								
+449477	COUNTY	28	Shahrestān-e Borkhvār	33.01096	51.76762	شهرستان برخوار								
+12543581	COUNTY	28	Shahrestān-e Bū‘īn va Mīāndasht	33.15576	50.08789	شهرستان بوئین و میاندشت								
+449479	COUNTY	28	Shahrestān-e Chādegān	32.75000	50.50000	شهرستان چادگان								
+449483	COUNTY	28	Shahrestān-e Dehāqān	31.99157	51.61441	شهرستان دهاقان								
+449476	COUNTY	28	Shahrestān-e Eşfahān	32.24264	52.44152	شهرستان اصفهان								
+449487	COUNTY	28	Shahrestān-e Falāvarjān	32.51856	51.53108	شهرستان فلاورجان								
+449486	COUNTY	28	Shahrestān-e Fareydūnshahr	32.85278	50.00539	شهرستان فريدونشهر								
+449489	COUNTY	28	Shahrestān-e Golpāyegān	33.50000	50.33333	شهرستان گلپايگان								
+449480	COUNTY	28	Shahrestān-e Khomeynī Shahr	32.68354	51.51132	شهرستان خمينی شهر								
+449481	COUNTY	28	Shahrestān-e Khvānsār	33.25619	50.38488	شهرستان خوانسار								
+9519980	COUNTY	28	Shahrestān-e Khūr va Bīābānak	33.78504	54.91482	شهرستان خور و بيابانک								
+449488	COUNTY	28	Shahrestān-e Kāshān	33.91164	51.28412	شهرستان کاشان								
+449490	COUNTY	28	Shahrestān-e Lenjān	32.39760	51.21979	شهرستان لنجان								
+449491	COUNTY	28	Shahrestān-e Mobārakeh	32.28152	51.50610	شهرستان مبارکه								
+449493	COUNTY	28	Shahrestān-e Najafābād	32.93333	51.11667	شهرستان نجف آباد								
+122490	COUNTY	28	Shahrestān-e Naţanz	33.58227	51.91955	نطنز								
+449492	COUNTY	28	Shahrestān-e Nā’īn	33.41579	53.65686	شهرستان نائین								
+449482	COUNTY	28	Shahrestān-e Semīrom	31.28180	51.59672	شهرستان سميرم								
+449484	COUNTY	28	Shahrestān-e Shahreẕā	31.68655	51.90563	شهرستان شهرضا								
+9519981	COUNTY	28	Shahrestān-e Shāhīn Shahr va Meymeh	33.30130	51.19572	شهرستان شاهين شهر و ميمه								
+449478	COUNTY	28	Shahrestān-e Tīrān va Karvan	32.78431	50.95479	شهرستان تيران و کرون								
+449474	COUNTY	28	Shahrestān-e Ārān va Bīdgol	34.10000	51.90000	شهرستان آران و بيدگل								
+449611	COUNTY	29	Bam	29.06731	58.20400	شهرستان بم								
+9524452	COUNTY	29	Fahraj	29.09257	59.14492	شهرستان فهرج								
+9524453	COUNTY	29	Rīgān	28.66855	59.06163	ريگان								
+9524445	COUNTY	29	Shahrestān-e Anār	30.84616	55.29718	شهرستان انار								
+449610	COUNTY	29	Shahrestān-e Bardsīr	29.79442	56.68365	شهرستان بردسير								
+449609	COUNTY	29	Shahrestān-e Bāft	29.01862	56.47999	شهرستان بافت								
+9524449	COUNTY	29	Shahrestān-e Fāryāb	28.16904	57.23266	شهرستان فارياب								
+449612	COUNTY	29	Shahrestān-e Jīroft	28.77180	57.50029	شهرستان جيرفت								
+449620	COUNTY	29	Shahrestān-e Kahnūj	27.89013	57.63829	شهرستان کهنوج								
+449619	COUNTY	29	Shahrestān-e Kermān	30.32869	58.13935	شهرستان کرمان								
+9524446	COUNTY	29	Shahrestān-e Kūhbanān	31.33631	56.27288	شهرستان کوهبنان								
+449621	COUNTY	29	Shahrestān-e Manūjān	27.34244	57.64236	شهرستان منوجان								
+9524451	COUNTY	29	Shahrestān-e Narmāshīr	29.26667	58.73333	شهرستان نرماشير								
+9524448	COUNTY	29	Shahrestān-e Orzū‘īyeh	28.42539	56.50388	شهرستان ارزوئیه								
+9524455	COUNTY	29	Shahrestān-e Qal‘eh Ganj	27.14558	58.37823	شهرستان قلعه گنج								
+449614	COUNTY	29	Shahrestān-e Rafsanjān	30.52778	55.89152	شهرستان رفسنجان								
+9524447	COUNTY	29	Shahrestān-e Rābor	29.22644	57.00576	شهرستان رابر								
+449613	COUNTY	29	Shahrestān-e Rāvar	31.32362	57.13737	شهرستان راور								
+9524454	COUNTY	29	Shahrestān-e Rūdbār-e Jonūbī	27.86845	58.44458	شهرستان رودبار جنوبی								
+449617	COUNTY	29	Shahrestān-e Shahr-e Bābak	30.21698	54.99166	شهرستان شهر بابک								
+66575	COUNTY	29	Shahrestān-e Sīrjān	29.32391	55.68239	شهرستان سيرجان								
+449618	COUNTY	29	Shahrestān-e ‘Anbarābād	28.40435	58.16304	شهرستان عنبرآباد								
+449615	COUNTY	29	Zarand	30.85416	56.29322	شهرستان زرند								
+449465	COUNTY	32	Shahrestān-e Ardabīl	38.24953	48.29903	شهرستان اردبيل								
+449466	COUNTY	32	Shahrestān-e Bīleh Savār	39.34267	47.97233	شهرستان بيلِه سوار								
+449470	COUNTY	32	Shahrestān-e Germī	39.03333	47.87778	شهرستان گرمی								
+8620950	COUNTY	32	Shahrestān-e Khalkhāl	37.42500	48.53778	شهرستان خلخال								
+449469	COUNTY	32	Shahrestān-e Kows̄ar	37.70878	48.26900	شهرستان كوثر								
+449471	COUNTY	32	Shahrestān-e Meshgīn Shahr	38.56000	47.78000	شهرستان مشگين شهر								
+449472	COUNTY	32	Shahrestān-e Namīn	38.39233	48.46778	شهرستان نمين								
+449473	COUNTY	32	Shahrestān-e Nīr	37.98667	48.11111	شهرستان نير								
+449467	COUNTY	32	Shahrestān-e Pārsābād	39.54444	47.74222	شهرستان پارس آباد								
+9514745	COUNTY	32	Shahrestān-e Sar‘eyn	38.19222	47.99333	شهرستان سرعين								
+449427	COUNTY	33	Ahar	38.53343	47.28337	شهرستان اهر								
+449436	COUNTY	33	Kaleybar	38.93045	47.13965	شهرستان كلِيبر								
+449438	COUNTY	33	Marand	38.56031	45.66182	شهرستان مرند								
+449434	COUNTY	33	Shabestar	38.15556	45.71803	شهرستان شبستر								
+449429	COUNTY	33	Shahrestān-e Bonāb	37.32158	46.01190	شهرستان بناب								
+449428	COUNTY	33	Shahrestān-e Bostānābād	37.80615	46.81780	شهرستان بستان آباد								
+449432	COUNTY	33	Shahrestān-e Chārāvīmāq	37.06612	47.11108	شهرستان چاراويماق								
+449443	COUNTY	33	Shahrestān-e Hashtrūd	37.42639	46.91075	شهرستان هشترود								
+449441	COUNTY	33	Shahrestān-e Herīs	38.23121	46.82576	شهرستان هريس								
+449431	COUNTY	33	Shahrestān-e Jolfā	38.83343	45.91680	شهرستان جلفا								
+9517647	COUNTY	33	Shahrestān-e Khodā Āfarīn	39.04785	46.98345	شهرستان خداآفرين								
+449439	COUNTY	33	Shahrestān-e Malekān	37.12676	46.20972	شهرستان ملكان								
+449437	COUNTY	33	Shahrestān-e Marāgheh	37.36155	46.42513	شهرستان مراغه								
+449440	COUNTY	33	Shahrestān-e Mīāneh	37.46169	47.73216	شهرستان ميانه								
+449426	COUNTY	33	Shahrestān-e Oskū	37.93546	45.87805	شهرستان اسكو								
+8620951	COUNTY	33	Shahrestān-e Sarāb	37.98340	47.46679	شهرستان سراب								
+449430	COUNTY	33	Shahrestān-e Tabrīz	38.07542	46.26920	شهرستان تبريز								
+449442	COUNTY	33	Shahrestān-e Varzaqān	38.59492	46.46397	شهرستان ورزقان								
+449425	COUNTY	33	Shahrestān-e Āz̄arshahr	37.73708	45.88009	شهرستان آذرشهر								
+449435	COUNTY	33	Shahrestān-e ‘Ajab Shīr	37.55069	46.03613	شهرستان عجب شير								
+449692	COUNTY	34	Khomeyn	33.66278	49.98819	شهرستان خمِين								
+449690	COUNTY	34	Shahrestān-e Arāk	34.13333	49.80000	شَهرِستانِ آراك								
+449693	COUNTY	34	Shahrestān-e Delījān	34.01116	50.75288	شهرستان دليجان								
+9533005	COUNTY	34	Shahrestān-e Farahān	34.63332	49.63617	شهرستان فرهان								
+9533006	COUNTY	34	Shahrestān-e Khondāb	34.34248	49.22280	شهرستان خنداب								
+449697	COUNTY	34	Shahrestān-e Komījān	34.72716	49.31861	شهرستان كميجان								
+449698	COUNTY	34	Shahrestān-e Maḩallāt	33.91667	50.41667	شهرستان محلات								
+449696	COUNTY	34	Shahrestān-e Shāzand	33.89657	49.30466	شهرستان شازند								
+449695	COUNTY	34	Shahrestān-e Sāveh	35.07148	50.06630	شهرستان ساوه								
+449694	COUNTY	34	Shahrestān-e Zarandīyeh	35.36667	50.33333	شهرستان زرنديه								
+69179	COUNTY	34	Shahrestān-e Āshtīān	34.43831	50.06048	شهرستان آشتيان								
+449691	COUNTY	34	Tafresh	34.76534	50.00260	شهرستان تفرش								
+449677	COUNTY	35	Behshahr	36.65101	53.58838	شهرستان بهشهر								
+449675	COUNTY	35	Bābol	36.30500	52.63333	شهرستان بابل								
+449688	COUNTY	35	Nowshahr	36.43333	51.60000	شهرستان نوشهر								
+7830204	COUNTY	35	Savadkuh-e Shomali	35.97765	52.68246	سوادکوه شمالی								
+12543580	COUNTY	35	Savād Kūh-e Shomālī	36.27361	52.85151	سواد کوه شمالی								
+68057	COUNTY	35	Shahrestan-e Kalār Dasht	36.45000	51.11667	شهرستان كلار دشت								
+449676	COUNTY	35	Shahrestān-e Bābolsar	36.66667	52.73333	شهرستان بابلسر								
+449680	COUNTY	35	Shahrestān-e Chālūs	36.40066	51.24429	شهرستان چالوس								
+9533062	COUNTY	35	Shahrestān-e Fareydūnkenār	36.64781	52.53063	شهرستان فريدونکنار								
+9533060	COUNTY	35	Shahrestān-e Galūgāh	36.66667	53.80000	شهرستان گلوگاه								
+449679	COUNTY	35	Shahrestān-e Jūybār	36.66666	52.91333	شهرستان جويبار								
+449685	COUNTY	35	Shahrestān-e Maḩmūdābād	36.60416	52.32950	شهرستان محمود آباد								
+9533061	COUNTY	35	Shahrestān-e Mīāndorūd	36.54106	53.28153	شهرستان مياندورود								
+449686	COUNTY	35	Shahrestān-e Nekā	36.47008	53.61803	شهرستان نكا								
+449687	COUNTY	35	Shahrestān-e Nūr	36.31667	51.98333	شهرستان نور								
+449684	COUNTY	35	Shahrestān-e Qā’em Shahr	36.45583	52.88243	شهرستان قائم شهر								
+449681	COUNTY	35	Shahrestān-e Rāmsar	36.76667	50.53333	شهرستان رامسر								
+449683	COUNTY	35	Shahrestān-e Savādkūh	36.05268	52.96572	شهرستان سوادكوه								
+449682	COUNTY	35	Shahrestān-e Sārī	36.33333	53.28333	شهرستان ساری								
+449678	COUNTY	35	Shahrestān-e Tonekābon	36.61567	50.82696	شهرستان تنكابن								
+449674	COUNTY	35	Shahrestān-e Āmol	36.20000	52.38333	شهرستان آمل								
+9533059	COUNTY	35	Shahrestān-e ‘Abbāsābād	36.63333	51.15000	شهرستان عباس آباد								
+11962672	COUNTY	35	Simorgh County	36.57914	52.82364	شهرستان سیمرغ								
+449562	COUNTY	36	Abhar	36.30000	49.05000	شهرستان ابهر								
+449565	COUNTY	36	Khorramdarreh	36.23333	49.20000	شهرستان خرمدرِه								
+449564	COUNTY	36	Shahrestān-e Khodābandeh	36.00000	48.50000	شهرستان خدابنده								
+449568	COUNTY	36	Shahrestān-e Māhneshān	36.64285	47.58775	شهرستان ماهنشان								
+66310	COUNTY	36	Shahrestān-e Zanjān	36.58333	48.25000	شَهرِستانِ زَنجان								
+449563	COUNTY	36	Shahrestān-e Ījrūd	36.31119	48.20350	شهرستان ايجرود								
+449567	COUNTY	36	Shahrestān-e Ţārom	36.94333	48.89500	شهرستان طارِم								
+11963463	COUNTY	36	Soltaniyeh	36.43235	48.79393	شهرستان سلطانیه								
+449641	COUNTY	37	Bandar-e Gaz	36.71444	53.95444	شهرستان بندر گز								
+9522216	COUNTY	37	Shahrestān-e Gomīshān	37.15000	54.15000	شهرستان گميشان								
+449647	COUNTY	37	Shahrestān-e Gonbad-e Kāvūs	37.56222	55.10333	شهرستان گنبد كاووس								
+449646	COUNTY	37	Shahrestān-e Gorgān	36.75500	54.50667	شهرستان گرگان								
+9522218	COUNTY	37	Shahrestān-e Gālīkesh	37.32500	55.67889	شهرستان گاليکش								
+449645	COUNTY	37	Shahrestān-e Kalāleh	37.54333	55.48000	شهرستان كلاله								
+449644	COUNTY	37	Shahrestān-e Kordkūy	36.67333	54.19333	شهرستان كردكوی								
+9522217	COUNTY	37	Shahrestān-e Marāveh Tappeh	37.85000	55.93500	شهرستان مراوه تپه								
+449648	COUNTY	37	Shahrestān-e Mīnūdasht	37.13000	55.46000	شهرستان مينودشت								
+449642	COUNTY	37	Shahrestān-e Rāmīān	36.96778	55.08889	شهرستان راميان								
+449639	COUNTY	37	Shahrestān-e Āq Qalā	37.16667	54.53000	شهرستان آق قلا								
+449638	COUNTY	37	Shahrestān-e Āzādshahr	36.93889	55.35444	شهرستان آزادشهر								
+449643	COUNTY	37	Shahrestān-e ‘Alīābād	36.83333	54.88333	شهرستان علی آباد								
+449640	COUNTY	37	Torkaman	36.91889	54.11778	شهرستان تركمن								
+11963561	COUNTY	38	Alborz	36.18861	50.07829	شهرستان اَلبرز								
+11963519	COUNTY	38	Avaj	35.57685	49.22241	شهرستان آوج								
+449596	COUNTY	38	Shahrestān-e Bū’īn Zahrā	35.79222	49.95889	شهرستان بوئين زهرا								
+449598	COUNTY	38	Shahrestān-e Qazvīn	36.35000	49.92333	شهرستان قزوين								
+449597	COUNTY	38	Shahrestān-e Tākestān	36.01111	49.54000	شهرستان تاكستان								
+449595	COUNTY	38	Ābyek	36.11778	50.34133	شهرستان آبيک								
+449599	COUNTY	39	Qom	34.69000	51.04333	شهرستان قم								
+449724	COUNTY	40	Meybod	31.96122	53.37928	شهرستان ميبد								
+449716	COUNTY	40	Shahrestān-e Abarkūh	31.08318	53.38500	شهرستان ابركوه								
+449717	COUNTY	40	Shahrestān-e Ardakān	32.59667	54.78500	شهرستان اردكان								
+449721	COUNTY	40	Shahrestān-e Ashkez̄ar	31.98759	54.04680	شَهرِستانِ صَدوق								
+9533896	COUNTY	40	Shahrestān-e Behābād	32.00934	56.13586	شهرستان بهاباد								
+449718	COUNTY	40	Shahrestān-e Bāfq	31.66979	55.40074	شهرستان بافق								
+449720	COUNTY	40	Shahrestān-e Khātam	30.31699	54.20483	شهرستان خاتم								
+449723	COUNTY	40	Shahrestān-e Mehrīz	31.34728	54.64283	شهرستان مهريز								
+449725	COUNTY	40	Shahrestān-e Yazd	31.88980	54.36069	شَهرِستانِ يَزد								
+449719	COUNTY	40	Taft	31.44780	53.81411	شهرستان تفت								
+449532	COUNTY	41	Ferdows	33.95667	57.97000	شهرستان فردوس								
+9525806	COUNTY	41	Shahrestān-e Boshrūyeh	34.05500	57.44111	شهرستان بشرويه								
+449523	COUNTY	41	Shahrestān-e Bīrjand	33.07000	59.25500	شهرستان بيرجند								
+8620944	COUNTY	41	Shahrestān-e Darmīān	32.94889	60.12333	شهرستان درميان								
+9534259	COUNTY	41	Shahrestān-e Khūsf	32.29444	58.63500	شهرستان خوسف								
+1482419	COUNTY	41	Shahrestān-e Nehbandān	31.50000	59.79500	شهرستان نهبندان								
+449534	COUNTY	41	Shahrestān-e Qā’enāt	33.72434	59.17209	شهرستان قائنات								
+449524	COUNTY	41	Shahrestān-e Sarbīsheh	32.40000	60.08333	شهرستان سربيشه								
+9525807	COUNTY	41	Shahrestān-e Sarāyān	33.48133	58.31667	شهرستان سرايان								
+9534260	COUNTY	41	Shahrestān-e Zīrkūh	33.54333	60.18000	شهرستان زيرکوه								
+11963427	COUNTY	41	Tabas	32.80304	60.22146									
+449525	COUNTY	42	Bardaskan	35.24063	57.52274	شهرستان بردسكن								
+449529	COUNTY	42	Dargaz	37.36904	59.01068	شهرستان درگز								
+6550	COUNTY	42	Dāvarzan	36.33333	56.83333	شهرستان داورزن								
+9526258	COUNTY	42	Fīrūzeh	36.31419	58.42171	شهرستان فيروزه								
+9526255	COUNTY	42	Joveyn	36.60831	57.46644	شهرستان جوين								
+8620943	COUNTY	42	Mahvelāt	34.98995	58.75420	شهرستان مه ولات								
+449538	COUNTY	42	Mashhad	36.24865	59.80153	شهرستان مشهد								
+1482443	COUNTY	42	Sarakhs	36.30000	60.81667	شهرستان سرخس								
+9526253	COUNTY	42	Shahrestān-e Bajestān	34.59511	58.16167	شهرستان بجستان								
+9526343	COUNTY	42	Shahrestān-e Bākharz	35.02879	60.31275	شهرستان باخرز								
+9526260	COUNTY	42	Shahrestān-e Bīnālūd	36.28980	59.32266	شهرستان طرقبه شانديز								
+449527	COUNTY	42	Shahrestān-e Chenārān	36.70652	59.05552	شهرستان چناران								
+449533	COUNTY	42	Shahrestān-e Farīmān	35.70000	59.83333	شهرستان فريمان								
+449537	COUNTY	42	Shahrestān-e Gonābād	34.39006	58.88273	شهرستان گناباد								
+9526254	COUNTY	42	Shahrestān-e Joghatāy	36.67908	56.99342	شهرستان جغتای								
+1482469	COUNTY	42	Shahrestān-e Kalāt	36.90000	59.90000	شهرستان كلات								
+449528	COUNTY	42	Shahrestān-e Khalīlābād	35.13968	58.19932	شهرستان خليل آباد								
+9526257	COUNTY	42	Shahrestān-e Khowshāb	36.48396	58.09942	شهرستان خوشاب								
+1482426	COUNTY	42	Shahrestān-e Khvāf	34.39906	60.02688	شهرستان خواف								
+449536	COUNTY	42	Shahrestān-e Kāshmar	35.45173	58.47475	شهرستان كاشمر								
+449539	COUNTY	42	Shahrestān-e Neyshābūr	36.11031	58.74659	شهرستان نيشابور								
+449535	COUNTY	42	Shahrestān-e Qūchān	37.12633	58.58476	شهرستان قوچان								
+449530	COUNTY	42	Shahrestān-e Roshtkhvār	34.91667	59.36667	شهرستان رشتخوار								
+449531	COUNTY	42	Shahrestān-e Sabzevār	35.90820	57.55509	شهرستان سبزوار								
+449526	COUNTY	42	Shahrestān-e Torbat-e Ḩeydarīyeh	35.46667	59.10000	شهرستان تربت حيدريه								
+1482420	COUNTY	42	Shahrestān-e Tāybād	34.73333	60.73333	شهرستان تايباد								
+1482421	COUNTY	42	Torbat-e Jām	35.47517	60.75145	شهرستان تربت جام								
+9526342	COUNTY	42	Zāveh	35.28333	59.73333	شهرستان زاوه								
+9532886	COUNTY	43	Garmeh	37.15222	56.24667	شهرستان گرمه								
+11963428	COUNTY	43	Raz and Jargalan	37.93060	57.11940	شهرستان راز و جرگلان								
+449541	COUNTY	43	Shahrestān-e Bojnūrd	37.56667	57.35667	شهرستان بجنورد								
+449540	COUNTY	43	Shahrestān-e Esfarāyen	36.96222	57.54778	شهرستان اسفراين								
+8620942	COUNTY	43	Shahrestān-e Fārūj	37.18500	58.17778	شهرستان فاروج								
+449542	COUNTY	43	Shahrestān-e Jājarm	37.03778	56.68000	شهرستان جاجرم								
+8620941	COUNTY	43	Shahrestān-e Māneh va Samalqān	37.66500	56.60111	شهرستان مانه و سملقان								
+449543	COUNTY	43	Shahrestān-e Shīrvān	37.54889	57.89111	شهرستان شيروان								
+11963420	COUNTY	44	Fardis	35.72318	50.97865	شهرستان فردیس								
+449514	COUNTY	44	Karaj	35.96500	51.09500	شهرِستان كرج								
+9513961	COUNTY	44	Shahrestān-e Eshtehārd	35.72889	50.45889	شهرستان اشتهارد								
+449515	COUNTY	44	Shahrestān-e Naz̧arābād	35.90444	50.52000	شَهرِستانِ نظر آباد								
+449510	COUNTY	44	Shahrestān-e Sāvojbolāgh	35.97778	50.81111	شَهرِستانِ سَواجبُلاغ								
+9513960	COUNTY	44	Shahrestān-e Ţāleqān	36.21111	50.80889	شهرستان طالقان								
