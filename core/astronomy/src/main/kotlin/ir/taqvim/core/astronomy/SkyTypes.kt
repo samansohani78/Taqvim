@@ -107,6 +107,17 @@ public data class SkyPosition(
     public val declinationDegrees: Double,
 )
 
+/**
+ * How high a body stands, both ways the two conventions measure it: [apparentDegrees] is where it is seen, with the
+ * atmosphere bending its light, and [geometricDegrees] is where it actually is. They differ by about 0.57° at the
+ * horizon, so a threshold defined one way is several minutes of time away from the same number defined the other
+ * (ADR-0047).
+ */
+public data class Altitudes(
+    public val apparentDegrees: Double,
+    public val geometricDegrees: Double,
+)
+
 /** Optical libration of the Moon and its geocentric distance and apparent diameter. */
 public data class Libration(
     public val latitudeDegrees: Double,

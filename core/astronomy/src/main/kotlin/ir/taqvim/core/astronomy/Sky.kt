@@ -183,6 +183,27 @@ public object Sky {
         return SkyPosition(horizontal.azimuth, horizontal.altitude, equatorial.ra, equatorial.dec)
     }
 
+    /**
+     * Both altitudes of [body] at [instant] for [observer], from one position computation.
+     *
+     * Thresholds that a published table defines geometrically — civil twilight's −6° — must be compared with
+     * [Altitudes.geometricDegrees]; what an observer sees, and so rise and set, use [Altitudes.apparentDegrees]
+     * (ADR-0047).
+     */
+    public fun altitudes(
+        body: CelestialBody,
+        instant: Instant,
+        observer: Coordinates,
+    ): Altitudes {
+        val time = instant.toAstronomyTime()
+        val place = observer.toObserver()
+        val equatorial = libraryEquator(body.toBody(), time, place, EquatorEpoch.OfDate, Aberration.Corrected)
+        return Altitudes(
+            apparentDegrees = libraryHorizon(time, place, equatorial.ra, equatorial.dec, Refraction.Normal).altitude,
+            geometricDegrees = libraryHorizon(time, place, equatorial.ra, equatorial.dec, Refraction.None).altitude,
+        )
+    }
+
     /** Optical libration of the Moon at [instant]; longitude in −180°‥180°. */
     public fun libration(instant: Instant): Libration =
         libraryLibration(instant.toAstronomyTime()).let {
