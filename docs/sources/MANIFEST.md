@@ -46,6 +46,7 @@ read from an Internet Archive capture of the older server-rendered page. The cap
 each day cites the capture it was read from and the SHA-256 of exactly those bytes. Written by
 `tools/saudi/umm_al_qura_prayer_tables.py` (needs the network, never runs in CI) and turned into
 `golden/umm-al-qura-prayer-times/saudi-cities.csv` by `tools/saudi/umm_al_qura_prayer_golden.py --check`.
+The checksum of the committed file is in `docs/sources/saudi/SHA256SUMS`.
 Use: T-601, DT-011, `UmmAlQuraPublishedTimesTest`, `UmmAlQuraRamadanIshaTest`.
 
 | File | Days | Bytes | SHA-256 | Content |
