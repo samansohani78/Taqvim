@@ -81,21 +81,31 @@ internal val OFFICIAL_EVENTS_PART_2: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.PERSIAN,
-                    fromYear = 1_404,
+                    fromYear = 1_385,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%DB%8C%D9%87-%D9%88%D8%B2%D8%A7%D8%B1%D8%AA-%DA%A9%D8%A7%D8%B1-%D9%88-%D8%A7%D9%85%D9%88%D8%B1-%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%DB%8C",
-                            title = "Bakhtar News Agency — «اطلاعیه‌ وزارت کار و امور اجتماعی» (Ministry of Labour and Social Affairs holiday announcement), published 2026-02-11",
-                            page = "article text: 27 Sha'ban 1447 AH = 26 Dalw 1404 SH, public holiday — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+                            url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(10): «26th of month of Dalwe return of former Soviet Union forces». Article 153 enforces the law from its signature and publication in the Official Gazette, which ILO NATLEX record 78309 dates 2007-02-04 = 15 Dalw 1385 SH; 26 Dalw 1385 (2007-02-15) is the first occurrence after it.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(10): «26th of month of Dalwe return of former Soviet Union forces». Article 153 enforces the law from its signature and publication in the Official Gazette, which ILO NATLEX record 78309 dates 2007-02-04 = 15 Dalw 1385 SH; 26 Dalw 1385 (2007-02-15) is the first occurrence after it.",
+                    ),
+                    Citation(
                         url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%DB%8C%D9%87-%D9%88%D8%B2%D8%A7%D8%B1%D8%AA-%DA%A9%D8%A7%D8%B1-%D9%88-%D8%A7%D9%85%D9%88%D8%B1-%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%DB%8C",
                         title = "Bakhtar News Agency — «اطلاعیه‌ وزارت کار و امور اجتماعی» (Ministry of Labour and Social Affairs holiday announcement), published 2026-02-11",
                         page = "article text: 27 Sha'ban 1447 AH = 26 Dalw 1404 SH, public holiday",
+                    ),
+                    Citation(
+                        url = "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+                        title = "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+                        page = "the Dari original of Article 41; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
                     ),
                 ),
         ),

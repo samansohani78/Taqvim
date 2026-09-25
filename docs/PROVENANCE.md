@@ -1362,6 +1362,17 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   Nawruz, 8 Sawr, 1 Ramadan, 12 Rabi al-Awwal and 10 Muharram were **not** added: this is the Republic's 2007 law,
   and the Islamic Emirate has edited the list — it added 24 Asad, which Article 41 does not contain — so the law
   alone does not establish that a given item is still observed. Those stay in DT-031 awaiting an Emirate-era source.
+- **When each record starts (2026-09-25, ADR-0048).** `validity.fromYear` says when the observance began, not when we
+  found a document about it. The announcements are yearly notices of which days are off that year; Article 41 fixes
+  the holidays themselves, and Article 153 enforces the law from its publication in the Official Gazette, which ILO
+  NATLEX record 78309 dates 2007-02-04 — a date the PDF does not carry, taken from an archived copy of the NATLEX
+  record. Converted with this project's calendars that is 15 Dalw 1385 SH and Muharram 1428 AH, so the law-fixed
+  records start at 1385 SH (26 Dalw), **1386 SH** (28 Asad, whose 1385 occurrence on 2006-08-19 precedes the law) and
+  1428 AH (both Eid spans). 24 Asad keeps 1405 SH: Article 41 does not list it. Before this the earliest Afghan
+  holiday in the app was 2025, so nine holidays of 1400 SH — Eid al-Fitr, Arafa, three days of Eid al-Adha,
+  Independence and the Soviet withdrawal — were hidden. **Open discrepancy:** the ministry's Dari file is
+  «قانون کار ۹۶۶» (Official Gazette 966) while the NATLEX record for the same law says Official Gazette 914 of
+  2007-02-04; both are cited and DT-032 keeps it open.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-14; Labour Law source added 2026-09-25;
   **reviewer:** pending.
 

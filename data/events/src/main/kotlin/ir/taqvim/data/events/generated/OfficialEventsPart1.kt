@@ -40,21 +40,31 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_447,
+                    fromYear = 1_428,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
-                            title = "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
-                            page = "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+                            url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(7): «Four days of Eid-e-Said-e-Adhah and Arafat (Three days of Eid and one day of Arafat)» — Arafa 9 Dhu al-Hijjah. The law took force 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309), so 1428 is the first Islamic year it covers.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(7): «Four days of Eid-e-Said-e-Adhah and Arafat (Three days of Eid and one day of Arafat)» — Arafa 9 Dhu al-Hijjah. The law took force 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309), so 1428 is the first Islamic year it covers.",
+                    ),
+                    Citation(
                         url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
                         title = "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
                         page = "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH",
+                    ),
+                    Citation(
+                        url = "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+                        title = "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+                        page = "the Dari original of Article 41; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
                     ),
                 ),
         ),
@@ -75,21 +85,31 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_447,
+                    fromYear = 1_428,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
-                            title = "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
-                            page = "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+                            url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(7): the first day of Eid al-Adha, 10 Dhu al-Hijjah. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(7): the first day of Eid al-Adha, 10 Dhu al-Hijjah. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
+                    ),
+                    Citation(
                         url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
                         title = "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
                         page = "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH",
+                    ),
+                    Citation(
+                        url = "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+                        title = "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+                        page = "the Dari original of Article 41; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
                     ),
                 ),
         ),
@@ -110,21 +130,31 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_447,
+                    fromYear = 1_428,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
-                            title = "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
-                            page = "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+                            url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(7): the second day of Eid al-Adha, 11 Dhu al-Hijjah. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(7): the second day of Eid al-Adha, 11 Dhu al-Hijjah. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
+                    ),
+                    Citation(
                         url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B9%D9%84%D8%A7%D9%85-%DA%86%D9%87%D8%A7%D8%B1-%D8%B1%D9%88%D8%B2-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B9%D8%B1%D9%81%D9%87-%D9%88-%D8%B9%DB%8C%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86-%D8%AF%D8%B1%D8%A7%D9%81%D8%BA%D8%A7%D9%86%D8%B3%D8%AA%D8%A7%D9%86",
                         title = "Bakhtar News Agency — «اعلام چهار روز رخصتی عمومی به مناسبت روز عرفه و عید قربان درافغانستان» (Ministry of Labour and Social Affairs announcement), published 2026-05-21",
                         page = "summary and article text: Arafa = Tuesday 9 Dhu al-Hijjah 1447 AH; four working days of public holiday; offices resume Sunday 14 Dhu al-Hijjah 1447 AH",
+                    ),
+                    Citation(
+                        url = "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+                        title = "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+                        page = "the Dari original of Article 41; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
                     ),
                 ),
         ),
@@ -145,17 +175,22 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_447,
+                    fromYear = 1_428,
                     toYear = null,
                     citation =
                         Citation(
                             url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
-                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
-                            page = "Article 41(7): «Four days of Eid-e-Said-e-Adhah and Arafat (Three days of Eid and one day of Arafat)» — Arafa 9 plus Eid 10, 11 and 12 Dhu al-Hijjah. The shipped Bakhtar announcement of 2026-05-21 likewise gives four days with offices resuming 14 Dhu al-Hijjah 1447; the dataset held only 10 and 11.",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(7): the third day of Eid al-Adha, 12 Dhu al-Hijjah. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
                         ),
                 ),
             citations =
                 listOf(
+                    Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(7): the third day of Eid al-Adha, 12 Dhu al-Hijjah. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
+                    ),
                     Citation(
                         url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
                         title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
@@ -185,17 +220,22 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_447,
+                    fromYear = 1_428,
                     toYear = null,
                     citation =
                         Citation(
                             url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
-                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
-                            page = "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(6): «The three days of Eid-e-Feter» — 1 Shawwal. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
                         ),
                 ),
             citations =
                 listOf(
+                    Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(6): «The three days of Eid-e-Feter» — 1 Shawwal. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
+                    ),
                     Citation(
                         url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
                         title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
@@ -225,17 +265,22 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_447,
+                    fromYear = 1_428,
                     toYear = null,
                     citation =
                         Citation(
                             url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
-                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
-                            page = "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(6): «The three days of Eid-e-Feter» — 2 Shawwal. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
                         ),
                 ),
             citations =
                 listOf(
+                    Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(6): «The three days of Eid-e-Feter» — 2 Shawwal. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
+                    ),
                     Citation(
                         url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
                         title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
@@ -265,17 +310,22 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_447,
+                    fromYear = 1_428,
                     toYear = null,
                     citation =
                         Citation(
                             url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
-                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
-                            page = "Article 41(6): «The three days of Eid-e-Feter» — 1, 2 and 3 Shawwal. Article 41(6) fixes the span at three days; that Eid al-Fitr itself is a public holiday under the Islamic Emirate is recorded in DT-031 from the Bakhtar announcement of 2026-03-21, which names the holiday without giving its dates.",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(6): «The three days of Eid-e-Feter» — 3 Shawwal. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
                         ),
                 ),
             citations =
                 listOf(
+                    Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(6): «The three days of Eid-e-Feter» — 3 Shawwal. In force from 2007-02-04 = Muharram 1428 AH (Article 153; date from ILO NATLEX record 78309).",
+                    ),
                     Citation(
                         url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
                         title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), Official Gazette No. 966; English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
@@ -306,17 +356,22 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
             validity =
                 Validity(
                     calendar = CalendarSystem.PERSIAN,
-                    fromYear = 1_405,
+                    fromYear = 1_386,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%DB%8C%D9%87-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%DB%B2%DB%B8-%D8%A7%D8%B3%D8%AF-%D8%B1%D9%88%D8%B2-%D8%A7%D8%B3%D8%AA%D8%B1%D8%AF%D8%A7%D8%AF-%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84-%DA%A9%D8%B4%D9%88%D8%B1",
-                            title = "Bakhtar News Agency — «اطلاعیه رخصتی ۲۸ اسد، روز استرداد استقلال کشور» (holiday announcement; issuing authority not named in the article), published 2026-08-17",
-                            page = "article text: 5 Rabi al-Awwal 1448 AH = 28 Asad 1405 SH (Wednesday), public holiday — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the announced day recurs every year on this calendar date, so the record is a Fixed rule valid from the announced year; the citation is the announcement that established it.",
+                            url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                            title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                            page = "Article 41(3): «Twenty-eight of Assad … the day of restoration of independence of the country». The law took force 2007-02-04 = 15 Dalw 1385 SH (Article 153; date from ILO NATLEX record 78309), which is after 28 Asad 1385 (2006-08-19), so the first occurrence it covers is 28 Asad 1386 (2007-08-19).",
                         ),
                 ),
             citations =
                 listOf(
+                    Citation(
+                        url = "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf",
+                        title = "ILO NATLEX record 78309 — Afghanistan, Labour Law (No. 35 of 2007), English translation published by the International Labour Organization. SHA-256 28cb8ba93a578d1ac4c52e97de11b722a6034957f488c87f2efcee59360ead22",
+                        page = "Article 41(3): «Twenty-eight of Assad … the day of restoration of independence of the country». The law took force 2007-02-04 = 15 Dalw 1385 SH (Article 153; date from ILO NATLEX record 78309), which is after 28 Asad 1385 (2006-08-19), so the first occurrence it covers is 28 Asad 1386 (2007-08-19).",
+                    ),
                     Citation(
                         url = "https://www.bakhtarnews.af/dr/%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%DB%8C%D9%87-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%DB%B2%DB%B8-%D8%A7%D8%B3%D8%AF-%D8%B1%D9%88%D8%B2-%D8%A7%D8%B3%D8%AA%D8%B1%D8%AF%D8%A7%D8%AF-%D8%A7%D8%B3%D8%AA%D9%82%D9%84%D8%A7%D9%84-%DA%A9%D8%B4%D9%88%D8%B1",
                         title = "Bakhtar News Agency — «اطلاعیه رخصتی ۲۸ اسد، روز استرداد استقلال کشور» (holiday announcement; issuing authority not named in the article), published 2026-08-17",
@@ -326,6 +381,11 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                         url = "https://www.bakhtarnews.af/en/Afghanistan-Declares-August-19-Public-Holiday-to-Mark-Independence-Anniversary",
                         title = "Bakhtar News Agency (English) — «Afghanistan Declares August 19 Public Holiday to Mark Independence Anniversary» (official announcement), published 2026-08-17",
                         page = "article text: Asad 28 = 5 Rabi al-Awwal 1448 AH = August 19, 2026, government offices closed",
+                    ),
+                    Citation(
+                        url = "https://molsa.gov.af/sites/default/files/2019-06/%D9%82%D8%A7%D9%86%D9%88%D9%86%20%DA%A9%D8%A7%D8%B1%20966.pdf",
+                        title = "Ministry of Labour and Social Affairs of Afghanistan (molsa.gov.af) — «قانون کار ۹۶۶», the Dari Official Gazette text of the Labour Law, still published by the ministry under the Islamic Emirate. SHA-256 9ec90caa871c6ad537f7e0073bede5b2e1e6f0e84afe0bb59eb2022ec1b8686c",
+                        page = "the Dari original of Article 41; its text layer is a custom encoding that does not extract, so the article is quoted from the ILO translation",
                     ),
                 ),
         ),
