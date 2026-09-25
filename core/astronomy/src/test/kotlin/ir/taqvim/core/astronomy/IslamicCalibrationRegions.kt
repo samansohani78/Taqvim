@@ -101,6 +101,9 @@ private const val SAUDI_THRESHOLD = 0.99
 private const val AFGHAN_FIRST_YEAR = 1447
 private const val AFGHAN_LAST_YEAR = 1448
 
+/** 5 of 6 announcements agree (DT-033): the Anadolu-reported Eid al-Fitr 1447 anchor is the one miss. */
+private const val AFGHAN_THRESHOLD = 5.0 / 6.0
+
 private fun hijri(
     year: Int,
     month: Int,
@@ -219,24 +222,33 @@ private fun saudiArabia(): Region {
 
 private fun afghanistan(): Region =
     Region(
-        name = "Afghanistan (Bakhtar News Agency announcements)",
-        anchors = bakhtarAnchors(),
+        name = "Afghanistan (Bakhtar News Agency and Anadolu Agency announcements)",
+        anchors =
+            afghanAnchorsFrom("golden/islamic-afghanistan/bakhtar-announced-dates.csv") +
+                afghanAnchorsFrom("golden/islamic-afghanistan/anadolu-announced-dates.csv"),
         firstYear = AFGHAN_FIRST_YEAR,
         lastYear = AFGHAN_LAST_YEAR,
         shipped = tabular("tabular type II (shipped, ADR-0010)"),
         refit =
             crescentCandidates("Kabul", listOf(KABUL)) +
                 listOf(tabular("type I", TabularIslamicCalendar.TYPE_I)),
-        threshold = 1.0,
+        threshold = AFGHAN_THRESHOLD,
         note =
             "One anchor per lunar Hijri date an announcement states together with its Solar Hijri day or its " +
-                "weekday; a weekday-only anchor constrains the month start within the week only.",
+                "weekday; a weekday-only anchor constrains the month start within the week only. Six announcements " +
+                "in all: five from Bakhtar (DT-031/DT-033) and one from Anadolu Agency's report of the Supreme " +
+                "Court's own Eid al-Fitr 1447 declaration (DT-033), Bakhtar being unreachable to non-browser " +
+                "clients as of 2026-09-25. The Anadolu anchor is the shipped calendar's one miss: the Supreme " +
+                "Court declared 1 Shawwal 1447 for Thursday 2026-03-19, a day before the tabular type II calendar " +
+                "(and Umm al-Qura's own Friday 2026-03-20, which the Gulf states used that month) — a real " +
+                "divergence between the announcement and the shipped model, not a transcription error, so it is " +
+                "reported rather than absorbed into the threshold.",
     )
 
 /** The announced Afghan dates, read from the golden fixture the announcements were transcribed into. */
-private fun bakhtarAnchors(): List<Anchor> =
+private fun afghanAnchorsFrom(resourcePath: String): List<Anchor> =
     GoldenFile
-        .load("golden/islamic-afghanistan/bakhtar-announced-dates.csv")
+        .load(resourcePath)
         .lines
         .drop(1)
         .map { line ->

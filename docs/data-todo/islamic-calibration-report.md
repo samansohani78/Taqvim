@@ -94,23 +94,25 @@ Missed: 1427-06 (-1 d), 1446-06 (+1 d).
 
 No candidate does better than the shipped calendar, so it stays as it is.
 
-## Afghanistan (Bakhtar News Agency announcements)
+## Afghanistan (Bakhtar News Agency and Anadolu Agency announcements)
 
-5 official facts, AH 1447–1448. One anchor per lunar Hijri date an announcement states together with its Solar Hijri day or its weekday; a weekday-only anchor constrains the month start within the week only.
+6 official facts, AH 1447–1448. One anchor per lunar Hijri date an announcement states together with its Solar Hijri day or its weekday; a weekday-only anchor constrains the month start within the week only. Six announcements in all: five from Bakhtar (DT-031/DT-033) and one from Anadolu Agency's report of the Supreme Court's own Eid al-Fitr 1447 declaration (DT-033), Bakhtar being unreachable to non-browser clients as of 2026-09-25. The Anadolu anchor is the shipped calendar's one miss: the Supreme Court declared 1 Shawwal 1447 for Thursday 2026-03-19, a day before the tabular type II calendar (and Umm al-Qura's own Friday 2026-03-20, which the Gulf states used that month) — a real divergence between the announcement and the shipped model, not a transcription error, so it is reported rather than absorbed into the threshold.
 
-**Shipped: tabular type II (shipped, ADR-0010) — 100.0 % (5/5).**
+**Shipped: tabular type II (shipped, ADR-0010) — 83.3 % (5/6).**
+
+Missed: eid-al-fitr-1447 (+1 d).
 
 | Calendar tried | Agreement | Missed |
 |---|---|---|
-| tabular type II (shipped, ADR-0010) | 100.0 % | — |
-| type I | 100.0 % | — |
-| Odeh ≤ A, Kabul | 80.0 % | soviet-withdrawal (+1 d) |
-| Odeh ≤ B, Kabul | 80.0 % | soviet-withdrawal (+1 d) |
-| Yallop ≤ A, Kabul | 80.0 % | soviet-withdrawal (+1 d) |
-| Yallop ≤ B, Kabul | 80.0 % | soviet-withdrawal (+1 d) |
-| Yallop ≤ C, Kabul | 80.0 % | soviet-withdrawal (+1 d) |
-| Yallop ≤ D, Kabul | 80.0 % | soviet-withdrawal (+1 d) |
-| Odeh ≤ C, Kabul | 60.0 % | kabul-victory (-1 d), independence (-1 d) |
+| tabular type II (shipped, ADR-0010) | 83.3 % | eid-al-fitr-1447 (+1 d) |
+| type I | 83.3 % | eid-al-fitr-1447 (+1 d) |
+| Odeh ≤ A, Kabul | 66.7 % | soviet-withdrawal (+1 d), eid-al-fitr-1447 (+2 d) |
+| Odeh ≤ B, Kabul | 66.7 % | soviet-withdrawal (+1 d), eid-al-fitr-1447 (+2 d) |
+| Yallop ≤ A, Kabul | 66.7 % | soviet-withdrawal (+1 d), eid-al-fitr-1447 (+2 d) |
+| Yallop ≤ B, Kabul | 66.7 % | soviet-withdrawal (+1 d), eid-al-fitr-1447 (+2 d) |
+| Yallop ≤ C, Kabul | 66.7 % | soviet-withdrawal (+1 d), eid-al-fitr-1447 (+2 d) |
+| Yallop ≤ D, Kabul | 66.7 % | soviet-withdrawal (+1 d), eid-al-fitr-1447 (+2 d) |
+| Odeh ≤ C, Kabul | 50.0 % | kabul-victory (-1 d), independence (-1 d), eid-al-fitr-1447 (+1 d) |
 
 No candidate does better than the shipped calendar, so it stays as it is.
 

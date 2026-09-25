@@ -1010,16 +1010,26 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   4. *MWL, Egypt, Karachi, France, Russia, Jafari* — the values are consistent across independent descriptions, but
      none of those bodies publishes a parameter statement reachable from here, so they rest on the plan's table.
      *Tehran* needs no such statement: it is validated against the Institute's own 31 city timetables (below).
-- **Known divergence — Umm al-Qura in Ramadan (T-601, 2026-09-25, unresolved).** The method is documented everywhere
-  as Isha 90 minutes after Maghrib and **120 minutes during Ramadan**, the longer interval giving time for iftar
-  before Taraweeh. The app applies 90 minutes all year, so during Ramadan its `MAKKAH` Isha is about half an hour
-  earlier than Saudi Arabia observes — the month when that method is most used. It is **not** changed here because no
-  primary source could be reached to prove it: ummulqura.org.sa serves a JavaScript application with no readable
-  content or discoverable API, moia.gov.sa does not respond, and no peer-reviewed statement of the rule was found;
-  every description available is a secondary aggregator, which this project does not treat as an authority, and the
-  well-known prayer-time libraries that document it are GPL/LGPL and barred by the clean-room rule. Closing this needs
-  one primary source — a Saudi official statement, or an Umm al-Qura timetable covering Ramadan from which the
-  interval can be derived, exactly as the Singapore angles were.
+- **Umm al-Qura's Ramadan Isha (T-601, resolved 2026-09-25).** The method gives Isha 90 minutes after Maghrib and
+  **120 minutes during Ramadan**, the longer interval leaving time for iftar before Taraweeh. The app applied 90 all
+  year, so its `MAKKAH` Isha ran about half an hour early throughout Ramadan — the month that method is most used.
+  The rule was documented only by secondary aggregators and by GPL/LGPL prayer-time libraries, which this project may
+  not read, so it stood unfixed until a primary source was found.
+  - **Source:** the calendar authority's own published timetable. `ummulqura.org.sa` serves a JavaScript application
+    today, but the Internet Archive holds the site from the years when it rendered the table server-side for 13 Saudi
+    cities at a time (computed by KACST, whose control the archived markup names). Nine captures across two Hijri
+    years — 117 city-days — give Isha minus Maghrib as exactly 90 minutes in Sha'ban 1431, Shawwal 1431 and Shawwal
+    1432, and exactly 120 in Ramadan 1431 (three captures) and Ramadan 1432. No capture departs from those values,
+    and the change happens at the month boundary in both directions, which is what separates a rule from a seasonal
+    drift. Makkah's own row: 9 Ramadan 1431 Maghrib 06:49 / Isha 08:49
+    (https://web.archive.org/web/20100819071558id_/http://www.ummulqura.org.sa/); Shawwal 1431 Maghrib 06:15 /
+    Isha 07:45 (https://web.archive.org/web/20100925161345id_/http://www.ummulqura.org.sa/).
+  - **Implementation:** `IshaRule.MinutesAfterMaghrib` carries both intervals and the calculator resolves the Islamic
+    month itself (`core:praytimes` gained an `implementation` dependency on `core:calendar`; core may depend on core),
+    so no caller can forget to pass it — the trap that the `astronomy = null` default set elsewhere in this code base.
+    Pinned by `UmmAlQuraRamadanIshaTest`, whose behavioural case fails at 90 against the archived 120.
+  - **Not derived from the archived times themselves:** those are KACST's computation with its own conventions. Only
+    the interval the method adds after Maghrib — the parameter this app owns — is taken from them.
 - **Order within the day (REVIEW R05, 2026-09-19, own decisions; no prayer-time library code consulted):**
   1. *Asr lies between Dhuhr and sunset, or is absent* (main@fd2df36). Where the noon Sun is not above the true
      horizon (noon zenith distance |φ − δ| ≥ 90°, the Sun seen only through refraction) there is no noon shadow for
@@ -1691,6 +1701,18 @@ header (see `core/testing/README.md`); `FixtureProvenanceKonsistTest` fails the 
   evidence on lunar month starts found so far; used to measure the agreement of the Afghan calendar.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-18; **reviewer:** pending.
 
+### core/astronomy — `golden/islamic-afghanistan/anadolu-announced-dates.csv` (DT-033)
+- One row: Anadolu Agency (state news agency of the Republic of Türkiye), "Afghanistan to observe Eid al-Fitr on
+  Thursday following moon sighting", https://www.aa.com.tr/en/asia-pacific/afghanistan-to-observe-eid-al-fitr-on-thursday-following-moon-sighting-/3870340
+  (published 2026-03-18, retrieved 2026-09-25), reporting the Supreme Court of Afghanistan's own declaration via
+  government spokesman Zabihullah Mujahid that 1 Shawwal 1447 fell on Thursday 2026-03-19 — a day before Saudi
+  Arabia, the UAE, Qatar and Bahrain, who observed it Friday 2026-03-20. Found because Bakhtar itself now returns
+  HTTP 403 to non-browser clients (DT-031); used alongside `bakhtar-announced-dates.csv` in
+  `IslamicCalibrationRegions.kt`. **This anchor is the shipped tabular type II calendar's one miss** (it matches
+  Umm al-Qura's Friday instead) — see `docs/data-todo/islamic-calibration-report.md`, a real divergence reported as
+  a finding, not corrected in the app.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-25; **reviewer:** pending.
+
 ### core/praytimes — `golden/noaa/noaa-solar-day-2010-06-21.csv` (T-400)
 - NOAA Solar Calculations spreadsheet (day), cached results of its sample inputs; no values were computed by Taqvim.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; **reviewer:** pending.
@@ -1733,6 +1755,32 @@ verify the sources' own arithmetic before dropping the computed columns.
   Odeh zone agrees on 569 of 578 records (ARCV mean 0.051°, W mean 0.0052′, V mean 0.055) and the Yallop class on
   295 of 295 (q within 0.0023 on 290 rows; the five outliers are the note's own documented wrong lags/dates).
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; facts-only rewrite 2026-09-15; **reviewer:** pending.
+
+### core/astronomy — `golden/hmnao/moonsighting-uk-visibility-maps.csv` (DT-034, `HmnaoVisibilityMapTest`)
+- 44 (date, place) readings taken off five of HM Nautical Almanac Office's own New Crescent Moon Visibility maps for
+  1447 AH, republished by Moon Sighting UK (ICOUK, UK registered charity No. 1181887),
+  https://www.moonsighting.org.uk/moon/visibility-maps-cat/1447-visibility-maps.html (retrieved 2026-09-25). Each
+  map states "These maps have been produced by HMNAO for Moon Sighting UK (ICOUK)" and is built on NAO Technical
+  Note No 69 (B. D. Yallop) — the same criterion `Yallop` (A-06) implements — with the identical A-F visibility-class
+  legend `CrescentVisibilityClass` uses. Marked "© Crown Copyright... All rights reserved" by ICOUK/HMNAO, so the
+  five source images are cited by URL and SHA-256 (in the golden's own rows), not archived.
+- **This is weaker evidence than a printed table of values** (contrast `yallop/yallop-1997-table4.csv` and
+  `odeh/odeh-2004-table6.csv` above, the publishers' own numbers): here a place's visibility class was read off a
+  JPEG map by pixel colour, not taken from text. Method (full account in the golden's own header): the plot's pixel
+  bounding box was found by detecting the colour-filled rectangle in each image (a consistent 50-1338 x, 86-659 y at
+  1389x1008 px across all five); a place's pixel came from linear interpolation of its longitude/latitude within
+  that box (not calibrated against the printed gridlines, so a systematic offset of roughly a degree is possible);
+  the seven legend swatch colours were sampled from each image's own legend box and every pixel in a centred 21x21
+  block was matched to the nearest swatch, keeping a reading only where one class held ≥95% of the block's votes.
+  Regions with a diagonal "Moon prior to conjunction" hatch were excluded entirely: the hatch's true colour (darkest
+  pixel found in a 160x160 hatched block was RGB(172,8,7)) could not be told apart from plain red by this method, so
+  no reading was risked there. Every kept reading therefore sits well inside a single-coloured band, away from any
+  boundary this method's own uncertainty could cross — sound as a coarse categorical check of the app's classifier,
+  not as a numeric check of q, ARCV or W.
+- **Result:** `HmnaoVisibilityMapTest` asserts exact agreement on all 44 readings across five distinct evenings
+  (2026-02-18, 03-19, 03-20, 03-21, 05-17; Brown Lunations 1276, 1277, 1279) and passes — the app's independent
+  Yallop implementation lands in the same class HMNAO's own software drew on the map at every place tested.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-25; **reviewer:** pending.
 
 ### core/astronomy — `golden/iran/official-eclipses-1399-1405.csv`, `golden/iran/iran-provincial-capitals-1405.csv` (T-403)
 - Nine eclipse records from the Calendar Center's official calendars (`docs/sources/iran/Calendar-1404.pdf` pages 2–3,

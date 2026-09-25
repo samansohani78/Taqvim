@@ -1,0 +1,7 @@
+# source: Anadolu Agency (state news agency of the Republic of Türkiye) — "Afghanistan to observe Eid al-Fitr on Thursday following moon sighting" — reporting the Supreme Court of Afghanistan's own declaration, relayed by government spokesman Zabihullah Mujahid
+# url: https://www.aa.com.tr/en/asia-pacific/afghanistan-to-observe-eid-al-fitr-on-thursday-following-moon-sighting-/3870340
+# retrieved: 2026-09-25
+# reviewer: pending
+# notes: published 2026-03-18, the day before the announced Eid; the article gives the weekday (Thursday) but no Solar Hijri civil date, so weekday_iso is the only constraint here, same shape as the arafa/offices-resume weekday-only anchors from Bakhtar. Diyanet and the Gulf states (Saudi Arabia, UAE, Qatar, Bahrain) marked Eid a day later (Friday 2026-03-20), the divergence DT-033 expects of Afghanistan's own tabular calendar. Used by IslamicCalibrationReportTest alongside the Bakhtar anchors (ADR-0010, tabular type II)
+id,hijri_date,civil_date,weekday_iso,quote
+af.holiday.eid-al-fitr-1447,1447-10-01,,4,Supreme Court of Afghanistan has officially declared Thursday as the first day of Eid al-Fitr
