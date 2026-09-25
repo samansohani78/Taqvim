@@ -1,0 +1,1794 @@
+{
+ "Anchorage|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "01:54:30.7824",
+     "lmst": "01:54:30.4043",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Anchorage|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "13:56:29.0576",
+     "lmst": "13:56:28.6820",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Anchorage|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "07:57:13.9770",
+     "lmst": "07:57:13.4983",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Anchorage|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "19:59:12.2527",
+     "lmst": "19:59:11.7760",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Anchorage|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "13:59:57.1402",
+     "lmst": "13:59:56.5922",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Anchorage|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "02:01:55.4185",
+     "lmst": "02:01:54.8699",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Anchorage|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "19:58:43.7194",
+     "lmst": "19:58:43.1308",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Anchorage|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -149.9003,
+    61.2181
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "08:00:42.0005",
+     "lmst": "08:00:41.4084",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "00:27:02.8464",
+     "lmst": "00:27:02.4683",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "12:29:01.1216",
+     "lmst": "12:29:00.7460",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "06:29:46.0410",
+     "lmst": "06:29:45.5623",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "18:31:44.3167",
+     "lmst": "18:31:43.8400",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "12:32:29.2042",
+     "lmst": "12:32:28.6562",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "00:34:27.4825",
+     "lmst": "00:34:26.9339",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "18:31:15.7834",
+     "lmst": "18:31:15.1948",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Apia|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    -171.7667,
+    -13.8333
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "06:33:14.0645",
+     "lmst": "06:33:13.4724",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "12:47:44.0544",
+     "lmst": "12:47:43.6763",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "00:49:42.3296",
+     "lmst": "00:49:41.9540",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "18:50:27.2490",
+     "lmst": "18:50:26.7703",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "06:52:25.5247",
+     "lmst": "06:52:25.0480",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "00:53:10.4122",
+     "lmst": "00:53:09.8642",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "12:55:08.6905",
+     "lmst": "12:55:08.1419",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "06:51:56.9914",
+     "lmst": "06:51:56.4028",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Berlin|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    13.405,
+    52.52
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "18:53:55.2725",
+     "lmst": "18:53:54.6804",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "11:54:06.8544",
+     "lmst": "11:54:06.4763",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "23:56:05.1296",
+     "lmst": "23:56:04.7540",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "17:56:50.0490",
+     "lmst": "17:56:49.5703",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "05:58:48.3247",
+     "lmst": "05:58:47.8480",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "23:59:33.2122",
+     "lmst": "23:59:32.6642",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "12:01:31.4905",
+     "lmst": "12:01:30.9419",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "05:58:19.7914",
+     "lmst": "05:58:19.2028",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Greenwich|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    0.0,
+    51.4779
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "18:00:18.0725",
+     "lmst": "18:00:17.4804",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "13:50:01.6704",
+     "lmst": "13:50:01.2923",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "01:51:59.9456",
+     "lmst": "01:51:59.5700",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "19:52:44.8650",
+     "lmst": "19:52:44.3863",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "07:54:43.1407",
+     "lmst": "07:54:42.6640",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "01:55:28.0282",
+     "lmst": "01:55:27.4802",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "13:57:26.3065",
+     "lmst": "13:57:25.7579",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "07:54:14.6074",
+     "lmst": "07:54:14.0188",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Istanbul|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    28.9784,
+    41.0082
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "19:56:12.8885",
+     "lmst": "19:56:12.2964",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "16:30:56.6544",
+     "lmst": "16:30:56.2763",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "04:32:54.9296",
+     "lmst": "04:32:54.5540",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "22:33:39.8490",
+     "lmst": "22:33:39.3703",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "10:35:38.1247",
+     "lmst": "10:35:37.6480",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "04:36:23.0122",
+     "lmst": "04:36:22.4642",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "16:38:21.2905",
+     "lmst": "16:38:20.7419",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "10:35:09.5914",
+     "lmst": "10:35:09.0028",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Kabul|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    69.2075,
+    34.5553
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "22:37:07.8725",
+     "lmst": "22:37:07.2804",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "21:58:57.0864",
+     "lmst": "21:58:56.7083",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "10:00:55.3616",
+     "lmst": "10:00:54.9860",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "04:01:40.2810",
+     "lmst": "04:01:39.8023",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "16:03:38.5567",
+     "lmst": "16:03:38.0800",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "10:04:23.4442",
+     "lmst": "10:04:22.8962",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "22:06:21.7225",
+     "lmst": "22:06:21.1739",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "16:03:10.0234",
+     "lmst": "16:03:09.4348",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Sydney|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    151.2093,
+    -33.8688
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "04:05:08.3045",
+     "lmst": "04:05:07.7124",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-03-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3780",
+     "gast": "11:54:06.8544",
+     "gmst": "11:54:06.4763",
+     "last": "15:19:40.2144",
+     "lmst": "15:19:39.8363",
+     "month": 3,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-03-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.3756",
+     "gast": "23:56:05.1296",
+     "gmst": "23:56:04.7540",
+     "last": "03:21:38.4896",
+     "lmst": "03:21:38.1140",
+     "month": 3,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-06-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4787",
+     "gast": "17:56:50.0490",
+     "gmst": "17:56:49.5703",
+     "last": "21:22:23.4090",
+     "lmst": "21:22:22.9303",
+     "month": 6,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-06-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.4767",
+     "gast": "05:58:48.3247",
+     "gmst": "05:58:47.8480",
+     "last": "09:24:21.6847",
+     "lmst": "09:24:21.2080",
+     "month": 6,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-09-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5480",
+     "gast": "23:59:33.2122",
+     "gmst": "23:59:32.6642",
+     "last": "03:25:06.5722",
+     "lmst": "03:25:06.0242",
+     "month": 9,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-09-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5486",
+     "gast": "12:01:31.4905",
+     "gmst": "12:01:30.9419",
+     "last": "15:27:04.8505",
+     "lmst": "15:27:04.3019",
+     "month": 9,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-12-21|00:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5886",
+     "gast": "05:58:19.7914",
+     "gmst": "05:58:19.2028",
+     "last": "09:23:53.1514",
+     "lmst": "09:23:52.5628",
+     "month": 12,
+     "ut1time": "00:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ },
+ "Tehran|2026-12-21|12:00:00": {
+  "apiversion": "4.0.1",
+  "geometry": {
+   "coordinates": [
+    51.389,
+    35.6892
+   ],
+   "height": "0m",
+   "type": "Point"
+  },
+  "properties": {
+   "data": [
+    {
+     "day": 21,
+     "eqofeq": "0.5921",
+     "gast": "18:00:18.0725",
+     "gmst": "18:00:17.4804",
+     "last": "21:25:51.4325",
+     "lmst": "21:25:50.8404",
+     "month": 12,
+     "ut1time": "12:00:00.0",
+     "year": 2026
+    }
+   ],
+   "truncated": false
+  },
+  "type": "Feature"
+ }
+}
