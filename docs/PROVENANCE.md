@@ -261,12 +261,24 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
      obliquity.
   2. NOAA Global Monitoring Laboratory, Solar Calculations spreadsheet (as used for A-09) — mean obliquity series and
      the 0.00256·cos Ω correction.
-  3. The Placidus definition (after Placidus de Titis, *Primum mobile*, 1657): each intermediate cusp is the ecliptic
-     point whose time from the meridian is one or two thirds of its own diurnal semi-arc (houses 11–12) or nocturnal
-     semi-arc (houses 2–3). **No precise modern reference (title, edition, page or equation) has been verified for the
-     construction below** — it is written from the definition alone, and a citable source is open as DT-039 (REVIEW
-     R13). No code or tables copied.
-  4. cosinekitty/astronomy 2.1.19 (MIT), public API only: `siderealTime` and the A-13 façade (Sun/Moon longitudes, Sun
+  3. R. Plantiko, *On Dividing the Sky* (preliminary version, 31 July 2004), definition VI (p. 14) and §5.5
+     "Placidus de Titis" (pp. 27–29). Definition VI gives a point's **temporal mundane position** as
+     µ = (MD_d/SA_d + 3)·90° above the horizon and µ = (MD_n/SA_n + 1)·90° below it, with meridional distances
+     MD_d = α − t, MD_n = α − (t + 180°) and semi-arcs SA_(d/n) = 90° ± arcsin(tan δ · tan Φ); §5.5 states the
+     domification as "the cusp of house XII is the uniquely determined point of the Ecliptic that has made precisely
+     1/3 of the time it needs from rising to culmination". A cusp is therefore the ecliptic point whose µ is a whole
+     multiple of 30°, which fixes the midheaven at 270°, the ascendant at 360°, and cusps 11, 12, 2 and 3 at 300°,
+     330°, 30° and 60°. Only the equations were used; no code or tables were copied.
+     *Clean-room note:* the paper's acknowledgements thank Dieter Koch, an author of the Swiss Ephemeris, which is
+     AGPL and therefore a forbidden input. Nothing from that project — no source, data, tables or fixtures — was
+     read. What was used is this independently published mathematical paper's own equations, which fall under the
+     plan's allowed input "public mathematical formulas" (§0.1).
+  4. Placidus de Titis, *Primum Mobile*, trans. John Cooper (London, 1983 reprint of the 1814 translation) — the
+     originating text, cited here as the construction's origin, via Plantiko's bibliography [24] and M. Wackford,
+     "Placido & the Semi-Arc Method of House Division", *The Traditional Astrologer* 7 (Winter 1994; expanded on
+     Skyscript, 2006), which gives the verbal definition and the same Cooper citation. **Not read directly** — no
+     accessible scan of either edition was reachable, so no page number from Placidus himself is claimed.
+  5. cosinekitty/astronomy 2.1.19 (MIT), public API only: `siderealTime` and the A-13 façade (Sun/Moon longitudes, Sun
      altitude for day/night charts).
 - **Implementation note:** own work. Construction: for a cusp at fraction *f* (⅓ or ⅔) of the semi-arc, start from
   the longitude at right ascension RAMC + *f*·(90° or 180°), then repeat 30 times: δ = asin(sin ε · sin λ); diurnal
@@ -277,9 +289,15 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   iteration's semi-arcs stop existing. Lots: day Fortune = ASC + Moon − Sun,
   Spirit = ASC − Moon + Sun; the formulas swap at night.
 - **Validation:** property tests against the definitions (ascendant on the eastern horizon, midheaven hour angle 0,
-  cusps 11/12 at ⅓ and ⅔ semi-arc, ordering and oppositions) for 1950–2050 and latitudes ±60°. Published charts are
-  pending (DT-018).
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
+  cusps 11/12 at ⅓ and ⅔ semi-arc, ordering and oppositions) for 1950–2050 and latitudes ±60°, plus
+  `every cusp sits at its published mundane position`, which evaluates reference 3's definition VI for the midheaven,
+  ascendant and all four intermediate cusps and asserts µ = 270°, 360°, 300°, 330°, 30° and 60° to 1e-6°. That test
+  states the two below-the-horizon cusps as directly as the older one states the two above them. Both were checked to
+  have teeth by mutation: flipping the sign of the nocturnal offset, and dividing the diurnal semi-arc instead of the
+  nocturnal one, each fail both tests. The angle the cusps are built on is independently checked against USNO sidereal
+  time (`UsnoSiderealTimeTest`, DT-018). Published charts are still pending (DT-018).
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; reference 3 added and the mundane-position test
+  written 2026-09-26 (DT-039).
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### T-500 — Date phrase parser

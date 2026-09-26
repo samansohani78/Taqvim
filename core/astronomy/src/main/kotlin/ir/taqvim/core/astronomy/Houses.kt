@@ -36,7 +36,8 @@ public data class Lots(
 /**
  * Chart angles, Placidus houses and lots (A-14). Local sidereal time comes from the astronomy engine; ecliptic ↔
  * equatorial conversions and the ascendant/midheaven formulas follow J. Meeus, *Astronomical Algorithms*; Placidus
- * cusps divide each point's semi-arc in thirds. See docs/PROVENANCE.md (A-14).
+ * cusps divide each point's semi-arc in thirds, as R. Plantiko, *On Dividing the Sky* (2004), definition VI and §5.5
+ * define it. See docs/PROVENANCE.md (A-14).
  */
 public object Houses {
     private const val FULL_TURN = 360.0
@@ -139,7 +140,8 @@ public object Houses {
 
     /**
      * Placidus cusp whose point is [fraction] of its diurnal (above the horizon, houses 11–12) or nocturnal (houses
-     * 2–3) semi-arc away from the meridian, found by fixed-point iteration on the point's declination.
+     * 2–3) semi-arc away from the meridian, found by fixed-point iteration on the point's declination. Equivalently,
+     * the point whose temporal mundane position is a whole multiple of 30° — the form `HousesTest` asserts against.
      */
     private fun placidusCusp(
         ramc: Double,

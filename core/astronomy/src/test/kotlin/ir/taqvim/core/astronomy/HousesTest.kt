@@ -29,7 +29,9 @@ import org.junit.jupiter.api.Test
 
 /**
  * A-14 checked against the definitions themselves: the ascendant rises on the horizon, the midheaven culminates, and
- * each Placidus cusp sits at a third of its semi-arc. Published charts are not available yet (DATA_TODO).
+ * each Placidus cusp sits at a third of its semi-arc. The last test states the construction the way its published
+ * definition does — as a mundane position — so that the nocturnal cusps are checked as directly as the diurnal ones.
+ * Published charts are not available yet (DT-018).
  */
 class HousesTest {
     private fun rad(degrees: Double) = degrees * PI / 180
@@ -136,5 +138,53 @@ class HousesTest {
         val chart = Houses.placidus(noon, tehran).shouldNotBeNull()
         Houses.lots(noon, tehran, chart.ascendant).dayChart shouldBe true
         Houses.lots(Instant.parse("2026-09-13T20:30:00Z"), tehran, chart.ascendant).dayChart shouldBe false
+    }
+
+    /**
+     * The same four cusps read through the published definition rather than through this file's own restatement of
+     * it. Plantiko, *On Dividing the Sky* (2004), definition VI, gives a point's temporal mundane position as
+     *
+     *     mu = (MDd / SAd + 3) * 90 degrees   above the horizon
+     *     mu = (MDn / SAn + 1) * 90 degrees   below it
+     *
+     * with meridional distances `MDd = a - t`, `MDn = a - (t + 180)` and semi-arcs `SA = 90 +/- asin(tan d tan phi)`.
+     * A cusp is by construction the ecliptic point whose mundane position is a whole multiple of 30 degrees, so the
+     * midheaven sits at 270, the ascendant at 360 and cusps 11, 12, 2 and 3 at 300, 330, 30 and 60. This states the
+     * below-the-horizon cusps as directly as `Placidus cusps trisect the semi-arcs` states the two above it, which
+     * reaches only cusps 11 and 12; that test does catch a wrong nocturnal semi-arc, but through cusp ordering,
+     * which constrains where those cusps may not be rather than saying where they are.
+     */
+    @Test
+    fun `every cusp sits at its published mundane position`(): Unit =
+        runBlocking {
+            checkAll(PropertyTesting.iterations, instants, Arb.int(-60..60), Arb.int(-179..179)) { millis, lat, lon ->
+                val instant = Instant.fromEpochMilliseconds(millis)
+                val place = Coordinates(lat.toDouble(), lon.toDouble())
+                val chart = Houses.placidus(instant, place).shouldNotBeNull()
+                val obliquity = Houses.obliquityDegrees(instant)
+                val ramc = Houses.ramcDegrees(instant, place)
+                mapOf(10 to 270.0, 1 to 0.0, 11 to 300.0, 12 to 330.0, 2 to 30.0, 3 to 60.0).forEach { (cusp, mu) ->
+                    // Compared on the circle: the ascendant lies on the horizon, where the two branches of the
+                    // definition agree but express the same position as 360 and as 0.
+                    val position = mundanePosition(chart.cusps[cusp - 1], obliquity, ramc, place.latitude)
+                    wrap180(position - mu) shouldBe (0.0 plusOrMinus 1e-6)
+                }
+            }
+        }
+
+    /** Definition VI: a point's position within its own semi-arc, in degrees of the 360-degree mundane circle. */
+    private fun mundanePosition(
+        longitude: Double,
+        obliquity: Double,
+        ramc: Double,
+        latitude: Double,
+    ): Double {
+        val (rightAscension, declination) = equatorial(longitude, obliquity)
+        val halfDay = deg(asin((tan(rad(declination)) * tan(rad(latitude))).coerceIn(-1.0, 1.0)))
+        val above = altitude(wrap180(ramc - rightAscension), declination, latitude) >= 0
+        val quadrants = if (above) 3 else 1
+        val meridionalDistance = wrap180(rightAscension - ramc - if (above) 0.0 else 180.0)
+        val semiArc = if (above) 90 + halfDay else 90 - halfDay
+        return (meridionalDistance / semiArc + quadrants) * 90
     }
 }
