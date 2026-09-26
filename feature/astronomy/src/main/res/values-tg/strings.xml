@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Тулӯи офтоб</string>
   <string name="astronomy_solar_noon">Нисфирӯзии офтобӣ</string>
   <string name="astronomy_sunset">Ғуруби офтоб</string>
+  <string name="astronomy_golden_hour_morning">Соати тиллоии субҳ</string>
+  <string name="astronomy_golden_hour_evening">Соати тиллоии бегоҳ</string>
+  <string name="astronomy_blue_hour_morning">Соати кабуди субҳ</string>
+  <string name="astronomy_blue_hour_evening">Соати кабуди бегоҳ</string>
   <string name="astronomy_moon_description">Моҳ: %1$s, %2$s равшан</string>
   <string name="astronomy_sun_path">Роҳи офтоб аз тулӯъ дар %1$s то ғуруб дар %2$s</string>
   <string name="astronomy_season_march_equinox">Эътидоли март</string>

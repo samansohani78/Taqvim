@@ -4,11 +4,14 @@
  */
 package ir.taqvim.feature.astronomy
 
+import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldEndWith
+import io.kotest.matchers.string.shouldMatch
 import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.calendar.PersianCalendarSystem
@@ -86,6 +89,63 @@ class AstronomyStateMapperTest {
         val polar = AstronomyFixtures.sky(tromso, AstronomyFixtures.at("2026-06-21T12:00", tromso))
         polar.earth.dayLength.shouldBeNull()
         polar.sun.progress.shouldBeNull()
+    }
+
+
+    @Test
+    fun `the Sun panel shows the day's golden and blue hours (F-10)`() {
+        val sky = AstronomyFixtures.sky(tehran, AstronomyFixtures.at("2026-06-21T13:05", tehran))
+
+        // Tehran in midsummer: the Sun crosses the -4..6 band once on the way up and once on the way down.
+        sky.sun.goldenHours.map { it.part } shouldBe listOf(DayPart.MORNING, DayPart.EVENING)
+        sky.sun.goldenHours.forEach { it.range shouldMatch Regex("""\d{2}:\d{2}–\d{2}:\d{2}""") }
+        // Zero-padded 24-hour text sorts the way the times do, so this states that the two bands bracket solar noon
+        // — which is what the mapper's morning/evening split is for.
+        val transit = sky.sun.transit.shouldNotBeNull()
+        (sky.sun.goldenHours.first().range < transit) shouldBe true
+        (sky.sun.goldenHours.last().range > transit) shouldBe true
+
+        // Blue hour is the band below golden hour, so the morning blue window ends where the morning golden one
+        // begins and the evening pair meet the other way round. That ordering is the thing worth pinning: it is what
+        // would break if the two bands were ever mapped from the wrong edges.
+        sky.sun.blueHours.map { it.part } shouldBe listOf(DayPart.MORNING, DayPart.EVENING)
+        val morningBlue = sky.sun.blueHours.first().range
+        val morningGold = sky.sun.goldenHours.first().range
+        (morningBlue < morningGold) shouldBe true
+        morningBlue.substringAfter(EN_DASH) shouldBe morningGold.substringBefore(EN_DASH)
+        val eveningBlue = sky.sun.blueHours.last().range
+        val eveningGold = sky.sun.goldenHours.last().range
+        (eveningBlue > eveningGold) shouldBe true
+        eveningGold.substringAfter(EN_DASH) shouldBe eveningBlue.substringBefore(EN_DASH)
+
+        // The Persian panel writes the same window in Persian digits.
+        val persian = AstronomyFixtures.tehran("fa")
+        AstronomyFixtures
+            .sky(persian, AstronomyFixtures.at("2026-06-21T13:05", persian))
+            .sun.goldenHours
+            .first()
+            .range shouldMatch Regex("""[۰-۹]{2}:[۰-۹]{2}–[۰-۹]{2}:[۰-۹]{2}""")
+    }
+
+    private companion object {
+        /** The dash `AstronomyText.range` joins a window's two times with. */
+        const val EN_DASH = "–"
+    }
+
+    @Test
+    fun `a Sun that never sets still has golden light around midnight`() {
+        // Tromso on the June solstice is a polar day, but the Sun still dips to about 3 degrees, inside the band.
+        // The row is therefore not empty here; what empties it is a Sun that stays above 6 degrees or below -4 all
+        // day, which the screen renders as "none" rather than omitting the row.
+        val tromso = AstronomyFixtures.tromso()
+        val polar = AstronomyFixtures.sky(tromso, AstronomyFixtures.at("2026-06-21T12:00", tromso))
+
+        polar.sun.progress.shouldBeNull()
+        polar.sun.goldenHours.shouldNotBeEmpty()
+        polar.sun.goldenHours.forEach { it.range shouldMatch Regex("""\d{2}:\d{2}–\d{2}:\d{2}""") }
+        // The Sun stays well above civil twilight all day, so there is no blue hour at all — the case the screen
+        // renders as a single "none" row rather than dropping silently.
+        polar.sun.blueHours.shouldBeEmpty()
     }
 
     @Test

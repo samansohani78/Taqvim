@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">日の出</string>
   <string name="astronomy_solar_noon">南中</string>
   <string name="astronomy_sunset">日の入り</string>
+  <string name="astronomy_golden_hour_morning">朝のゴールデンアワー</string>
+  <string name="astronomy_golden_hour_evening">夕方のゴールデンアワー</string>
+  <string name="astronomy_blue_hour_morning">朝のブルーアワー</string>
+  <string name="astronomy_blue_hour_evening">夕方のブルーアワー</string>
   <string name="astronomy_moon_description">月：%1$s、輝面比 %2$s</string>
   <string name="astronomy_sun_path">%1$s の日の出から %2$s の日の入りまでの太陽の軌道</string>
   <string name="astronomy_season_march_equinox">3月の春分</string>

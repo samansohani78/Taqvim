@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">طلوعِ آفتاب</string>
   <string name="astronomy_solar_noon">شمسی دوپہر</string>
   <string name="astronomy_sunset">غروبِ آفتاب</string>
+  <string name="astronomy_golden_hour_morning">صبح کا سنہری وقت</string>
+  <string name="astronomy_golden_hour_evening">شام کا سنہری وقت</string>
+  <string name="astronomy_blue_hour_morning">صبح کا نیلا وقت</string>
+  <string name="astronomy_blue_hour_evening">شام کا نیلا وقت</string>
   <string name="astronomy_moon_description">چاند: %1$s، %2$s روشن</string>
   <string name="astronomy_sun_path">%1$s پر طلوع سے %2$s پر غروب تک سورج کا راستہ</string>
   <string name="astronomy_season_march_equinox">مارچ کا اعتدال</string>

@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.astronomy
 
+import ir.taqvim.core.astronomy.TimeInterval
 import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.calendar.toLocalDate
@@ -57,6 +58,16 @@ internal class AstronomyText(
     /** Long date and local time of [instant]. */
     fun dateTime(instant: Instant): String = "${date(instant)} ${time(instant)}"
 
+    /**
+     * The local times of [interval] as `start–end`. No bidi control is added, and the reason is not that the pair
+     * stays left-to-right — it does not. Both times are digit runs of bidi class EN (Persian's U+06F0‥U+06F9
+     * included), and UAX #9 rule N1 has numbers act as right-to-left when resolving the neutrals beside them, so in
+     * a right-to-left paragraph the dash resolves to R and the two times are laid out right-to-left. That is the
+     * wanted result: the Persian screenshot shows the start time on the reading-start side, which is the right side.
+     * Checked on `astronomy_sun/phone_dark_rtl_fs100_fa.png` rather than reasoned about alone.
+     */
+    fun range(interval: TimeInterval): String = time(interval.start) + EN_DASH + time(interval.end)
+
     /** [duration] in words, or `H:MM` where the language has no duration patterns (docs/DATA_TODO.md DT-009). */
     fun duration(duration: Duration): String =
         DurationFormatter.format(duration, settings.language)
@@ -84,6 +95,10 @@ internal class AstronomyText(
     companion object {
         private const val DEGREE = "°"
         private const val MINUTE_SIGN = "′"
+
+        /** U+2013, the dash a time range is written with. */
+        private const val EN_DASH = "–"
+
         private const val MINUTES_PER_HOUR = 60
         private const val MINUTES_PER_DEGREE = 60
         private const val FULL_TURN = 360.0

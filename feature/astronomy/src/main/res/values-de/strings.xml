@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Sonnenaufgang</string>
   <string name="astronomy_solar_noon">Sonnenhöchststand</string>
   <string name="astronomy_sunset">Sonnenuntergang</string>
+  <string name="astronomy_golden_hour_morning">Goldene Stunde am Morgen</string>
+  <string name="astronomy_golden_hour_evening">Goldene Stunde am Abend</string>
+  <string name="astronomy_blue_hour_morning">Blaue Stunde am Morgen</string>
+  <string name="astronomy_blue_hour_evening">Blaue Stunde am Abend</string>
   <string name="astronomy_moon_description">Mond: %1$s, %2$s beleuchtet</string>
   <string name="astronomy_sun_path">Sonnenbahn vom Aufgang um %1$s bis zum Untergang um %2$s</string>
   <string name="astronomy_season_march_equinox">März-Tagundnachtgleiche</string>

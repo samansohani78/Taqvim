@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Matahari terbit</string>
   <string name="astronomy_solar_noon">Tengah hari matahari</string>
   <string name="astronomy_sunset">Matahari terbenam</string>
+  <string name="astronomy_golden_hour_morning">Jam emas pagi</string>
+  <string name="astronomy_golden_hour_evening">Jam emas petang</string>
+  <string name="astronomy_blue_hour_morning">Jam biru pagi</string>
+  <string name="astronomy_blue_hour_evening">Jam biru petang</string>
   <string name="astronomy_moon_description">Bulan: %1$s, %2$s diterangi</string>
   <string name="astronomy_sun_path">Laluan matahari dari terbit pada %1$s hingga terbenam pada %2$s</string>
   <string name="astronomy_season_march_equinox">Ekuinoks Mac</string>

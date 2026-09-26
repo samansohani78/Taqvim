@@ -4,6 +4,8 @@
  */
 package ir.taqvim.feature.astronomy
 
+import ir.taqvim.core.astronomy.PhotographyPanel
+import ir.taqvim.core.astronomy.TimeInterval
 import ir.taqvim.core.astronomy.CelestialBody
 import ir.taqvim.core.astronomy.RiseSetTransit
 import ir.taqvim.core.astronomy.Sky as SkyEngine
@@ -46,7 +48,7 @@ internal object AstronomyStateMapper {
             header = header(header, text),
             earth = earth(header, sunDay, instant, text),
             moon = moon(header, settings, instant, day, text),
-            sun = sun(settings, instant, sunDay, text),
+            sun = sun(settings, instant, day, sunDay, text),
             picker = picker(settings, day),
         )
     }
@@ -120,6 +122,7 @@ internal object AstronomyStateMapper {
     private fun sun(
         settings: AstronomySettings,
         instant: Instant,
+        day: Jdn,
         sunDay: RiseSetTransit,
         text: AstronomyText,
     ): SunText {
@@ -127,6 +130,8 @@ internal object AstronomyStateMapper {
         val rise = sunDay.rise
         val set = sunDay.set
         val progress = if (rise != null && set != null) dayProgress(instant, rise, set) else null
+        // One scan of the day serves both bands; they come from the same window as the rest of the panel.
+        val light = PhotographyPanel.day(settings.place, settings.startOf(day))
         return SunText(
             azimuth = text.degrees(position.azimuthDegrees),
             altitude = text.degrees(position.altitudeDegrees),
@@ -134,7 +139,25 @@ internal object AstronomyStateMapper {
             transit = sunDay.transit?.let(text::time),
             set = set?.let(text::time),
             progress = progress,
+            goldenHours = windows(light.goldenHours, sunDay, text),
+            blueHours = windows(light.blueHours, sunDay, text),
         )
+    }
+
+    /**
+     * [bands] in time order, each labelled by the half of the day it falls in (F-10). A band is called morning when
+     * it ends by the solar transit; where the Sun does not transit, they are taken in the order the engine returns.
+     */
+    private fun windows(
+        bands: List<TimeInterval>,
+        sunDay: RiseSetTransit,
+        text: AstronomyText,
+    ): List<LightWindowText> {
+        val transit = sunDay.transit
+        return bands.mapIndexed { index, band ->
+            val morning = if (transit == null) index == 0 else band.end <= transit
+            LightWindowText(if (morning) DayPart.MORNING else DayPart.EVENING, text.range(band))
+        }
     }
 
     /** Elapsed part of the daylight from [rise] to [set] at [instant], or `null` outside it. */

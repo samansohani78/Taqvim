@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">الشروق</string>
   <string name="astronomy_solar_noon">الزوال الشمسي</string>
   <string name="astronomy_sunset">الغروب</string>
+  <string name="astronomy_golden_hour_morning">الساعة الذهبية الصباحية</string>
+  <string name="astronomy_golden_hour_evening">الساعة الذهبية المسائية</string>
+  <string name="astronomy_blue_hour_morning">الساعة الزرقاء الصباحية</string>
+  <string name="astronomy_blue_hour_evening">الساعة الزرقاء المسائية</string>
   <string name="astronomy_moon_description">القمر: %1$s، مضاء بنسبة %2$s</string>
   <string name="astronomy_sun_path">مسار الشمس من الشروق في %1$s إلى الغروب في %2$s</string>
   <string name="astronomy_season_march_equinox">اعتدال مارس</string>

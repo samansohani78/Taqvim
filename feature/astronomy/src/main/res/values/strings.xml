@@ -63,6 +63,17 @@
   <string name="astronomy_solar_noon">Solar noon</string>
   <!-- Label before the time the Sun sets. -->
   <string name="astronomy_sunset">Sunset</string>
+  <!-- Label before the morning window where the Sun is low and the light is warm. Not a sourced quantity: the band
+       is this app's own convention (docs/adr/0049-golden-hour-is-a-stated-convention.md). -->
+  <string name="astronomy_golden_hour_morning">Morning golden hour</string>
+  <!-- Label before the same window in the evening. -->
+  <string name="astronomy_golden_hour_evening">Evening golden hour</string>
+  <!-- Label before the morning window between civil twilight and the golden hour, when the light is blue. Its lower
+       edge is civil twilight (sourced); the upper edge is shared with the golden hour and is not
+       (docs/adr/0047-blue-hour-follows-civil-twilight.md). -->
+  <string name="astronomy_blue_hour_morning">Morning blue hour</string>
+  <!-- Label before the same window in the evening. -->
+  <string name="astronomy_blue_hour_evening">Evening blue hour</string>
   <string name="astronomy_moon_description">Moon: %1$s, %2$s illuminated</string>
   <string name="astronomy_sun_path">Sun path from sunrise at %1$s to sunset at %2$s</string>
   <string name="astronomy_season_march_equinox">March equinox</string>

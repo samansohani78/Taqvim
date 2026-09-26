@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">सूर्योदय</string>
   <string name="astronomy_solar_noon">सौर मध्याह्न</string>
   <string name="astronomy_sunset">सूर्यास्त</string>
+  <string name="astronomy_golden_hour_morning">बिहानको सुनौलो समय</string>
+  <string name="astronomy_golden_hour_evening">साँझको सुनौलो समय</string>
+  <string name="astronomy_blue_hour_morning">बिहानको नीलो समय</string>
+  <string name="astronomy_blue_hour_evening">साँझको नीलो समय</string>
   <string name="astronomy_moon_description">चन्द्रमा: %1$s, %2$s प्रकाशित</string>
   <string name="astronomy_sun_path">%1$s मा सूर्योदयदेखि %2$s मा सूर्यास्तसम्म सूर्यको मार्ग</string>
   <string name="astronomy_season_march_equinox">मार्च विषुव</string>

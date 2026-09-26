@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">সূর্যোদয়</string>
   <string name="astronomy_solar_noon">সৌর মধ্যাহ্ন</string>
   <string name="astronomy_sunset">সূর্যাস্ত</string>
+  <string name="astronomy_golden_hour_morning">সকালের সোনালি সময়</string>
+  <string name="astronomy_golden_hour_evening">সন্ধ্যার সোনালি সময়</string>
+  <string name="astronomy_blue_hour_morning">সকালের নীল সময়</string>
+  <string name="astronomy_blue_hour_evening">সন্ধ্যার নীল সময়</string>
   <string name="astronomy_moon_description">চাঁদ: %1$s, %2$s আলোকিত</string>
   <string name="astronomy_sun_path">%1$s-এ সূর্যোদয় থেকে %2$s-এ সূর্যাস্ত পর্যন্ত সূর্যের পথ</string>
   <string name="astronomy_season_march_equinox">মার্চ বিষুব</string>

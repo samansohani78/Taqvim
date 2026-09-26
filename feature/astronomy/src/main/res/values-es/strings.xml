@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Salida del Sol</string>
   <string name="astronomy_solar_noon">Mediodía solar</string>
   <string name="astronomy_sunset">Puesta del Sol</string>
+  <string name="astronomy_golden_hour_morning">Hora dorada de la mañana</string>
+  <string name="astronomy_golden_hour_evening">Hora dorada de la tarde</string>
+  <string name="astronomy_blue_hour_morning">Hora azul de la mañana</string>
+  <string name="astronomy_blue_hour_evening">Hora azul de la tarde</string>
   <string name="astronomy_moon_description">Luna: %1$s, iluminada al %2$s</string>
   <string name="astronomy_sun_path">Trayectoria del Sol desde la salida a las %1$s hasta la puesta a las %2$s</string>
   <string name="astronomy_season_march_equinox">Equinoccio de marzo</string>

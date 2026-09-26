@@ -127,7 +127,28 @@ data class SunText(
     val set: String?,
     /** Travelled part of the day's arc (0‥1), `null` while the Sun is down or never sets. */
     val progress: Float?,
+    /**
+     * The day's golden hours (F-10), in time order: the Sun between an apparent −4° and 6°. Empty where it never
+     * enters the band; usually two, one either side of noon. ADR-0049: both edges are this app's convention and
+     * agree with no published table, so they are shown as plain times with no claim of accuracy.
+     */
+    val goldenHours: List<LightWindowText>,
+    /**
+     * The day's blue hours (F-10), in time order: the Sun between civil twilight and an apparent −4°. Unlike the
+     * golden hour, the lower edge *is* sourced — civil twilight, measured geometrically as published tables define
+     * it (ADR-0047) — while the −4° it shares with the golden hour is not.
+     */
+    val blueHours: List<LightWindowText>,
 )
+
+/** One window of low-Sun light: which half of the day it falls in, and the window itself as `start–end`. */
+data class LightWindowText(
+    val part: DayPart,
+    val range: String,
+)
+
+/** The half of the day a window falls in, decided by the solar transit. */
+enum class DayPart { MORNING, EVENING }
 
 /** What the date picker offers for the settings' calendar; [daysInMonth] is a bound calendar function. */
 data class PickerData(

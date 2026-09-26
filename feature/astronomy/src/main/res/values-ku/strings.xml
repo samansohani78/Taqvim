@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Hilatina rojê</string>
   <string name="astronomy_solar_noon">Nîvroya rojê</string>
   <string name="astronomy_sunset">Ava bûna rojê</string>
+  <string name="astronomy_golden_hour_morning">Saeta zêrîn a sibehê</string>
+  <string name="astronomy_golden_hour_evening">Saeta zêrîn a êvarê</string>
+  <string name="astronomy_blue_hour_morning">Saeta şîn a sibehê</string>
+  <string name="astronomy_blue_hour_evening">Saeta şîn a êvarê</string>
   <string name="astronomy_moon_description">Heyv: %1$s, %2$s ronî</string>
   <string name="astronomy_sun_path">Rêya rojê ji hilatinê di %1$s de heta avabûnê di %2$s de</string>
   <string name="astronomy_season_march_equinox">Wekheviya Adarê</string>

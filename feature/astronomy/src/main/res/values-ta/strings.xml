@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">சூரிய உதயம்</string>
   <string name="astronomy_solar_noon">சூரிய நண்பகல்</string>
   <string name="astronomy_sunset">சூரிய அஸ்தமனம்</string>
+  <string name="astronomy_golden_hour_morning">காலைப் பொன்னான நேரம்</string>
+  <string name="astronomy_golden_hour_evening">மாலைப் பொன்னான நேரம்</string>
+  <string name="astronomy_blue_hour_morning">காலை நீல நேரம்</string>
+  <string name="astronomy_blue_hour_evening">மாலை நீல நேரம்</string>
   <string name="astronomy_moon_description">நிலா: %1$s, %2$s ஒளியூட்டப்பட்டது</string>
   <string name="astronomy_sun_path">%1$s உதயம் முதல் %2$s அஸ்தமனம் வரை சூரியனின் பாதை</string>
   <string name="astronomy_season_march_equinox">மார்ச் சமநிலை நாள்</string>

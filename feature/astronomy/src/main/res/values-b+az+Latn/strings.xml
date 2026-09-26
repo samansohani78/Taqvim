@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Günəşin doğuşu</string>
   <string name="astronomy_solar_noon">Günəş günortası</string>
   <string name="astronomy_sunset">Günəşin batışı</string>
+  <string name="astronomy_golden_hour_morning">Səhər qızıl saatı</string>
+  <string name="astronomy_golden_hour_evening">Axşam qızıl saatı</string>
+  <string name="astronomy_blue_hour_morning">Səhər mavi saatı</string>
+  <string name="astronomy_blue_hour_evening">Axşam mavi saatı</string>
   <string name="astronomy_moon_description">Ay: %1$s, %2$s işıqlı</string>
   <string name="astronomy_sun_path">Günəşin %1$s doğuşundan %2$s batışına qədər yolu</string>
   <string name="astronomy_season_march_equinox">Mart gecə-gündüz bərabərliyi</string>

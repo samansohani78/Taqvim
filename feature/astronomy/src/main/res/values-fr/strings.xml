@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Lever du Soleil</string>
   <string name="astronomy_solar_noon">Midi solaire</string>
   <string name="astronomy_sunset">Coucher du Soleil</string>
+  <string name="astronomy_golden_hour_morning">Heure dorée du matin</string>
+  <string name="astronomy_golden_hour_evening">Heure dorée du soir</string>
+  <string name="astronomy_blue_hour_morning">Heure bleue du matin</string>
+  <string name="astronomy_blue_hour_evening">Heure bleue du soir</string>
   <string name="astronomy_moon_description">Lune : %1$s, éclairée à %2$s</string>
   <string name="astronomy_sun_path">Course du Soleil, du lever à %1$s au coucher à %2$s</string>
   <string name="astronomy_season_march_equinox">Équinoxe de mars</string>

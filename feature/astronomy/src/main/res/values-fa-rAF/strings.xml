@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">طلوع آفتاب</string>
   <string name="astronomy_solar_noon">ظهر شمسی</string>
   <string name="astronomy_sunset">غروب آفتاب</string>
+  <string name="astronomy_golden_hour_morning">ساعت طلایی صبح</string>
+  <string name="astronomy_golden_hour_evening">ساعت طلایی عصر</string>
+  <string name="astronomy_blue_hour_morning">ساعت آبی صبح</string>
+  <string name="astronomy_blue_hour_evening">ساعت آبی عصر</string>
   <string name="astronomy_moon_description">ماه: %1$s، روشنایی %2$s</string>
   <string name="astronomy_sun_path">مسیر خورشید از طلوع %1$s تا غروب %2$s</string>
   <string name="astronomy_season_march_equinox">اعتدال مارس</string>

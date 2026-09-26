@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Восход</string>
   <string name="astronomy_solar_noon">Солнечный полдень</string>
   <string name="astronomy_sunset">Закат</string>
+  <string name="astronomy_golden_hour_morning">Утренний золотой час</string>
+  <string name="astronomy_golden_hour_evening">Вечерний золотой час</string>
+  <string name="astronomy_blue_hour_morning">Утренний синий час</string>
+  <string name="astronomy_blue_hour_evening">Вечерний синий час</string>
   <string name="astronomy_moon_description">Луна: %1$s, освещено %2$s</string>
   <string name="astronomy_sun_path">Путь Солнца от восхода в %1$s до заката в %2$s</string>
   <string name="astronomy_season_march_equinox">Мартовское равноденствие</string>

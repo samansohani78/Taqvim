@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">خۆرهەڵاتن</string>
   <string name="astronomy_solar_noon">نیوەڕۆی خۆر</string>
   <string name="astronomy_sunset">خۆرئاوابوون</string>
+  <string name="astronomy_golden_hour_morning">کاتژمێری ئاڵتوونی بەیانی</string>
+  <string name="astronomy_golden_hour_evening">کاتژمێری ئاڵتوونی ئێوارە</string>
+  <string name="astronomy_blue_hour_morning">کاتژمێری شینی بەیانی</string>
+  <string name="astronomy_blue_hour_evening">کاتژمێری شینی ئێوارە</string>
   <string name="astronomy_moon_description">مانگ: %1$s، %2$s ڕووناک</string>
   <string name="astronomy_sun_path">ڕێڕەوی خۆر لە هەڵاتن لە %1$s تا ئاوابوون لە %2$s</string>
   <string name="astronomy_season_march_equinox">یەکسانبوونی ئازار</string>

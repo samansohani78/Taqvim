@@ -213,6 +213,29 @@ private fun SunPanel(sun: SunText) {
         InfoRow(stringResource(R.string.astronomy_sunrise), rise)
         InfoRow(stringResource(R.string.astronomy_solar_noon), sun.transit ?: none)
         InfoRow(stringResource(R.string.astronomy_sunset), set)
+        LightWindowRows(sun.goldenHours, R.string.astronomy_golden_hour_morning, R.string.astronomy_golden_hour_evening)
+        LightWindowRows(sun.blueHours, R.string.astronomy_blue_hour_morning, R.string.astronomy_blue_hour_evening)
+    }
+}
+
+/**
+ * One row per window in [windows]. An empty list is a Sun that never enters the band, which happens at high latitudes
+ * around the solstices; it shows a single row reading "none" rather than dropping out of the panel, so the reason a
+ * photographer finds nothing is on screen instead of being silence.
+ */
+@Composable
+private fun LightWindowRows(
+    windows: List<LightWindowText>,
+    @StringRes morning: Int,
+    @StringRes evening: Int,
+) {
+    if (windows.isEmpty()) {
+        InfoRow(stringResource(morning), stringResource(R.string.astronomy_none))
+        return
+    }
+    windows.forEach { window ->
+        val label = if (window.part == DayPart.MORNING) morning else evening
+        InfoRow(stringResource(label), window.range)
     }
 }
 
@@ -276,12 +299,16 @@ internal fun InfoRow(
         Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}.padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text(label, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        // The label takes the slack and wraps; the value keeps its intrinsic width. The other way round, a long
+        // label at a large font size squeezed the value until it broke mid-number — "05:14–06" over ":06" for a
+        // golden hour at 200% font. Values here are short (a time, a range, an angle); labels are prose and wrap
+        // cleanly.
         Text(
-            value,
+            label,
             style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f),
-            textAlign = TextAlign.End,
         )
+        Text(value, style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.End)
     }
 }

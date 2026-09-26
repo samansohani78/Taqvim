@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">لمرختل</string>
   <string name="astronomy_solar_noon">لمریز غرمه</string>
   <string name="astronomy_sunset">لمرلوېدل</string>
+  <string name="astronomy_golden_hour_morning">د سهار طلايي ساعت</string>
+  <string name="astronomy_golden_hour_evening">د ماښام طلايي ساعت</string>
+  <string name="astronomy_blue_hour_morning">د سهار نیلي ساعت</string>
+  <string name="astronomy_blue_hour_evening">د ماښام نیلي ساعت</string>
   <string name="astronomy_moon_description">سپوږمۍ: %1$s، %2$s رڼا</string>
   <string name="astronomy_sun_path">د لمر لاره له %1$s بجو لمرختو څخه تر %2$s بجو لمرلوېدو پورې</string>
   <string name="astronomy_season_march_equinox">د مارچ اعتدال</string>

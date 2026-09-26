@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">Quyosh chiqishi</string>
   <string name="astronomy_solar_noon">Quyosh tushi</string>
   <string name="astronomy_sunset">Quyosh botishi</string>
+  <string name="astronomy_golden_hour_morning">Ertalabki oltin soat</string>
+  <string name="astronomy_golden_hour_evening">Kechki oltin soat</string>
+  <string name="astronomy_blue_hour_morning">Ertalabki moviy soat</string>
+  <string name="astronomy_blue_hour_evening">Kechki moviy soat</string>
   <string name="astronomy_moon_description">Oy: %1$s, %2$s yoritilgan</string>
   <string name="astronomy_sun_path">Quyoshning %1$s dagi chiqishidan %2$s dagi botishigacha yoʻli</string>
   <string name="astronomy_season_march_equinox">Mart tengkunligi</string>

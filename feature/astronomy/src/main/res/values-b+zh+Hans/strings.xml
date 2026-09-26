@@ -44,6 +44,10 @@
   <string name="astronomy_sunrise">日出</string>
   <string name="astronomy_solar_noon">太阳正午</string>
   <string name="astronomy_sunset">日落</string>
+  <string name="astronomy_golden_hour_morning">清晨黄金时段</string>
+  <string name="astronomy_golden_hour_evening">傍晚黄金时段</string>
+  <string name="astronomy_blue_hour_morning">清晨蓝调时段</string>
+  <string name="astronomy_blue_hour_evening">傍晚蓝调时段</string>
   <string name="astronomy_moon_description">月亮：%1$s，照亮 %2$s</string>
   <string name="astronomy_sun_path">太阳从 %1$s 日出到 %2$s 日落的轨迹</string>
   <string name="astronomy_season_march_equinox">三月春分</string>
