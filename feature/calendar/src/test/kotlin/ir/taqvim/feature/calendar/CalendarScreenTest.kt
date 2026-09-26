@@ -5,6 +5,7 @@
 package ir.taqvim.feature.calendar
 
 import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.TouchInjectionScope
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.isSelected
@@ -132,13 +133,31 @@ class CalendarScreenTest {
         show()
         awaitNode(hasText(title(0)))
 
-        // A fling has to settle before the new month can be asserted, and on a CI runner that is dexing the rest of
-        // the build it can take far longer than the deterministic cases need: this timed out at 10 s on main@7b12385
-        // while every other case passed. The assertion is unchanged, so a page that never arrives still fails.
-        composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeLeft() }
+        swipeAndSettle { swipeLeft() }
         awaitNode(hasText(title(1)), GESTURE_TIMEOUT_MILLIS)
-        composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput { swipeRight() }
+        swipeAndSettle { swipeRight() }
         awaitNode(hasText(title(0)), GESTURE_TIMEOUT_MILLIS)
+    }
+
+    /**
+     * Swipes the pager and drives the fling to a stop on the **test clock**, before anything waits on wall time.
+     *
+     * `waitUntil` times out in wall-clock milliseconds while the fling settles in frames, so on a runner that is
+     * dexing the rest of the build the two are unrelated: the whole budget can expire having rendered almost
+     * nothing. That is the shape of the CI failures — main@7b12385 timed out at 10 s, main@2aac153 raised the budget
+     * to 60 s and it timed out again at 60 s, each time while every deterministic case in this file passed. Raising
+     * it a third time would be the same guess.
+     *
+     * Advancing the clock here makes the settle cost frames instead of seconds, so it no longer competes with the
+     * rest of the build for wall time. The assertions after it are unchanged, and their generous timeout is kept as
+     * a backstop, so a page that genuinely never arrives still fails the test.
+     *
+     * Honest limit: this could not be reproduced locally — the case passes on an idle machine and under twelve CPU
+     * burners alike — so this addresses the mechanism the stack trace implicates, not one observed here.
+     */
+    private fun swipeAndSettle(gesture: TouchInjectionScope.() -> Unit) {
+        composeRule.onNodeWithTag(MONTH_PAGER_TAG).performTouchInput(gesture)
+        composeRule.mainClock.advanceTimeBy(SETTLE_MILLIS)
     }
 
     @Test
@@ -191,5 +210,8 @@ class CalendarScreenTest {
 
         /** A settling fling needs more room than a state assertion; see the swipe test. */
         const val GESTURE_TIMEOUT_MILLIS = 60_000L
+
+        /** Frames of test time given to a fling to settle; a pager snap needs far less. */
+        const val SETTLE_MILLIS = 2_000L
     }
 }
