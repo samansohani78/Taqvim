@@ -91,7 +91,6 @@ class AstronomyStateMapperTest {
         polar.sun.progress.shouldBeNull()
     }
 
-
     @Test
     fun `the Sun panel shows the day's golden and blue hours (F-10)`() {
         val sky = AstronomyFixtures.sky(tehran, AstronomyFixtures.at("2026-06-21T13:05", tehran))
@@ -102,19 +101,39 @@ class AstronomyStateMapperTest {
         // Zero-padded 24-hour text sorts the way the times do, so this states that the two bands bracket solar noon
         // — which is what the mapper's morning/evening split is for.
         val transit = sky.sun.transit.shouldNotBeNull()
-        (sky.sun.goldenHours.first().range < transit) shouldBe true
-        (sky.sun.goldenHours.last().range > transit) shouldBe true
+        (
+            sky.sun.goldenHours
+                .first()
+                .range < transit
+        ) shouldBe true
+        (
+            sky.sun.goldenHours
+                .last()
+                .range > transit
+        ) shouldBe true
 
         // Blue hour is the band below golden hour, so the morning blue window ends where the morning golden one
         // begins and the evening pair meet the other way round. That ordering is the thing worth pinning: it is what
         // would break if the two bands were ever mapped from the wrong edges.
         sky.sun.blueHours.map { it.part } shouldBe listOf(DayPart.MORNING, DayPart.EVENING)
-        val morningBlue = sky.sun.blueHours.first().range
-        val morningGold = sky.sun.goldenHours.first().range
+        val morningBlue =
+            sky.sun.blueHours
+                .first()
+                .range
+        val morningGold =
+            sky.sun.goldenHours
+                .first()
+                .range
         (morningBlue < morningGold) shouldBe true
         morningBlue.substringAfter(EN_DASH) shouldBe morningGold.substringBefore(EN_DASH)
-        val eveningBlue = sky.sun.blueHours.last().range
-        val eveningGold = sky.sun.goldenHours.last().range
+        val eveningBlue =
+            sky.sun.blueHours
+                .last()
+                .range
+        val eveningGold =
+            sky.sun.goldenHours
+                .last()
+                .range
         (eveningBlue > eveningGold) shouldBe true
         eveningGold.substringAfter(EN_DASH) shouldBe eveningBlue.substringBefore(EN_DASH)
 
