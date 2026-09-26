@@ -99,10 +99,18 @@ internal fun waitFor(
  * Opens Taqvim on the `taqvim://` [link] (ADR-0016) in a new task and waits for the screen tagged [tag].
  *
  * The launch is re-issued rather than waited on once. On the API 33 leg of run 36046477959, twelve of twenty tests
- * failed with the **launcher** still focused after the full wait, while API 26, 30, 36 and Wear passed the same run:
- * CI starts these tests while Gradle is still building the other modules, so the start can be lost on a starved
- * emulator. A second intent costs nothing when the first one worked, and a longer single wait does not help an
- * activity start that never took effect.
+ * failed with the **launcher** still focused after the full wait, while API 26, 30, 36 and Wear passed the same run.
+ * A second intent costs nothing when the first one worked, and a longer single wait does not help an activity start
+ * that never took effect.
+ *
+ * That run was read as the tests starting while Gradle still built the other modules, so the start was lost on a
+ * starved emulator. Run 36218561124 shows that is not the whole story, and the note is kept because it misled a later
+ * diagnosis: the same signature appeared there with **the build already finished** — its last build task ended at
+ * 04:50:22 and the app's device tests then ran alone until 05:09:30 — and the workflow's own second attempt failed
+ * the same way on the same emulator. Re-running the job on a fresh runner passed every test unchanged. So the cause
+ * to suspect first is a degraded runner or emulator, not contention with the build, and no retry inside the test can
+ * reach it. Re-run the job before looking for a product defect; four other device configurations passing the same
+ * commit is the signal that it is not one.
  */
 internal fun openLink(
     link: String,
