@@ -629,6 +629,23 @@ frame P99, month-screen memory) are still judged only against generous hosted ce
 high-refresh section), so a 10 % regression threshold over them may produce false alarms. Re-record on a stable
 runner, or move the frame metrics to device-only, if the nightly job proves noisy.
 
+### F-10 had no UI until 2026-09-26, and how that happened
+
+`PhotographyPanel` computed the golden and blue hours, was tested, and was referenced by **nothing outside its own two
+test files**. No screen in the app, on the phone or the watch, could reach it. Every other entry in the plan's feature
+table — shift rotations, countdowns, deep links, diagnostics, WebCal, workdays — has real feature-module code behind
+it; F-10 was the only one that did not.
+
+The cause is upstream of the code. §8 of the plan lists F-10 as *"Golden hour / photography panel: sunrise/sunset/blue
+hour/golden hour, moonrise/moonset, sun & moon azimuth chart"*, but the only task ever written for it is T-407,
+**"Photography panel calculations"**. There was no UI task, so PROGRESS reading 115/116 DONE was accurate against the
+task list while the feature table promised a panel the app did not have. That gap between the two lists is the thing
+to watch for elsewhere: a feature is delivered when a user can reach it, not when its engine passes tests.
+
+Closed by main@e4cf654: the Sun panel now shows morning and evening golden and blue hours. Moonrise and moonset were
+already on the Moon panel. What F-10 still does not have is the **sun & moon azimuth chart**; that remains unbuilt and
+unplanned, and is named here rather than left to be discovered again.
+
 ### v1.0.0-rc3 (2026-09-25, main@2aac153) — tagged without a benchmarked commit
 
 | Workflow | Result | Run |
