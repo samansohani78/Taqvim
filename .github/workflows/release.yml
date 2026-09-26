@@ -76,13 +76,16 @@ jobs:
           TAQVIM_KEYSTORE_PASSWORD: ${{ secrets.TAQVIM_KEYSTORE_PASSWORD }}
           TAQVIM_KEY_ALIAS: ${{ secrets.TAQVIM_KEY_ALIAS }}
           TAQVIM_KEY_PASSWORD: ${{ secrets.TAQVIM_KEY_PASSWORD }}
+        # No :app:bundleRelease. Taqvim is distributed as a sideloadable APK from GitHub Releases, not through Play
+        # (owner decision 2026-09-26), and an .aab cannot be installed by anyone downloading it — attaching one only
+        # invites people to fetch the file that does not work. Add it back the day a Play Console exists.
         run: >-
-          ./gradlew licenseCheck :app:auditReleaseExportedComponents :app:bundleRelease :app:assembleRelease
+          ./gradlew licenseCheck :app:auditReleaseExportedComponents :app:assembleRelease
           :app:cyclonedxDirectBom -Ptaqvim.version="$GITHUB_REF_NAME"
       - name: Checksums
         run: |
           mkdir -p "$RUNNER_TEMP/release"
-          cp app/build/outputs/bundle/release/*.aab app/build/outputs/apk/release/*.apk "$RUNNER_TEMP/release/"
+          cp app/build/outputs/apk/release/*.apk "$RUNNER_TEMP/release/"
           (cd "$RUNNER_TEMP/release" && sha256sum -- * > SHA256SUMS)
           cat "$RUNNER_TEMP/release/SHA256SUMS" >> "$GITHUB_STEP_SUMMARY"
       - name: Changelog from conventional commits
@@ -100,7 +103,6 @@ jobs:
           draft: true
           prerelease: ${{ contains(github.ref_name, '-') }}
           files: |
-            ${{ runner.temp }}/release/*.aab
             ${{ runner.temp }}/release/*.apk
             ${{ runner.temp }}/release/SHA256SUMS
             app/build/reports/cyclonedx-direct/bom.json

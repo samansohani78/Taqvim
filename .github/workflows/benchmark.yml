@@ -95,9 +95,16 @@ jobs:
         run: python3 -m unittest discover -s tools/benchmark
       - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1801, T-1803)
         # A required benchmark without a committed baseline fails (REVIEW R08); a recording run exits 3 and never
-        # qualifies a commit for release (.github/required-checks.txt). Exit 4 means the control benchmarks moved, so
-        # the runner was degraded and its timings prove nothing: the job still fails, because an inconclusive run has
-        # not benchmarked the commit, but it says so instead of naming regressions it cannot substantiate.
+        # qualifies a commit for release (.github/required-checks.txt).
+        #
+        # Exit 4 is different, and since 2026-09-26 it no longer fails the job (owner decision; docs/RELEASE.md).
+        # It means the control benchmarks — which time fixed synthetic work the app cannot affect — moved beyond
+        # their band, so the runner was degraded and its timings prove nothing. That is the absence of a
+        # measurement, not the presence of a regression, and failing on it made this a required check that no
+        # hosted runner could ever pass: seven consecutive dispatches were inconclusive, so no release tag could
+        # build. The job now reports success, states plainly that the commit is unbenchmarked, and keeps failing
+        # on exit 1 — a regression it actually measured. What this buys is releases; what it costs is that a
+        # green tick here means "no regression was measured", not "no regression exists".
         run: |
           set +e
           python3 tools/benchmark/compare_benchmarks.py \
@@ -111,8 +118,17 @@ jobs:
           set -e
           if [ "$status" -eq 4 ]; then
             echo "::warning title=Benchmarks inconclusive::This runner was degraded: the control benchmarks, which time"\
-              " fixed synthetic work the app cannot affect, moved beyond their band. No regression is claimed. Re-run"\
-              " this job; if it recurs on a healthy runner, re-record benchmark/baselines."
+              " fixed synthetic work the app cannot affect, moved beyond their band. No regression is claimed and none"\
+              " is ruled out: this commit is UNBENCHMARKED. Run the macrobenchmarks on a physical device before"\
+              " claiming any performance result for it."
+            {
+              echo "## Benchmarks inconclusive — this commit is unbenchmarked"
+              echo
+              echo "The control benchmarks moved beyond their band, so nothing timed on this runner means anything."
+              echo "This step passes so that a runner which cannot measure does not block a release, but **no"
+              echo "performance claim may be made for this commit**. Only a physical-device run can make one."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
           exit "$status"
 

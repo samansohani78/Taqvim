@@ -48,11 +48,25 @@ closed beta that precedes the first public release is described in [BETA.md](BET
 |---|---|---|
 | `pr.yml` | every PR and push to `main` | All gates of PLAN §8.1 that run on a JVM; see its job list |
 | `release-dry-run.yml` | manually, or a PR that changes release configuration | License gate and release manifest audit (ADR-0017), unsigned `bundleRelease`/`assembleRelease`, SBOM, changelog preview, **reproducibility check** (a clean rebuild must produce a byte-identical APK). Publishes nothing |
-| `release.yml` | tag `v*` | **First, fail closed:** the tagged commit must be on `main` and every check in `.github/required-checks.txt` (all PR jobs, the four phone legs and the Wear leg, the release dry run, the macrobenchmark) must have concluded `success` on that exact commit — a missing, running, skipped or cancelled check stops the release before anything is built (REVIEW R06, `tools/ci/verify_required_checks.py`). Then: tag/version check, license gate and manifest audit, signed AAB and APK, SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags). A `vX.Y.Z-rcN` tag instead runs the gates on an unsigned build and publishes nothing |
-| `benchmark.yml` | nightly / manual | Macrobenchmarks against §9 budgets (T-1801) |
+| `release.yml` | tag `v*` | **First, fail closed:** the tagged commit must be on `main` and every check in `.github/required-checks.txt` (all PR jobs, the four phone legs and the Wear leg, the release dry run, the macrobenchmark) must have concluded `success` on that exact commit — a missing, running, skipped or cancelled check stops the release before anything is built (REVIEW R06, `tools/ci/verify_required_checks.py`). Then: tag/version check, license gate and manifest audit, signed **APK** (no AAB — see *Distribution* below), SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags). A `vX.Y.Z-rcN` tag instead runs the gates on an unsigned build and publishes nothing |
+| `benchmark.yml` | nightly / manual | Macrobenchmarks against §9 budgets (T-1801). Fails on a **measured** regression; an inconclusive run (degraded runner, exit 4) reports success and says the commit is unbenchmarked — see below |
 | `instrumented.yml` | see workflow | Instrumented UI tests on the API matrix |
 
 The GitHub release is created as a draft so a person reviews the artifacts and notes before publishing it.
+
+## Distribution: GitHub Releases, not Google Play
+
+The owner has no Play Console, so as of 2026-09-26 the release attaches **the universal APK only** — plus
+`SHA256SUMS`, the SBOM and the licence report. `app/build.gradle.kts` declares no ABI splits, so one APK serves every
+device.
+
+`release.yml` no longer runs `:app:bundleRelease`: an `.aab` is a Play *upload* format that nobody can install, and
+attaching one to a release page only invites people to download the file that does not work. `release-dry-run.yml`
+still builds a bundle, deliberately — it keeps that path exercised and reproducible against the day a Play Console
+does exist, and it publishes nothing either way.
+
+Users install by downloading the APK and allowing their browser or file manager to install unknown apps. Publish the
+`SHA256SUMS` line for the APK in the release notes so anyone can verify what they downloaded.
 
 ## Signing and secrets
 
@@ -61,10 +75,40 @@ The GitHub release is created as a draft so a person reviews the artifacts and n
 - Secret names (values are never committed or logged):
   - `TAQVIM_KEYSTORE_BASE64` — the upload/release keystore, base64-encoded;
   - `TAQVIM_KEYSTORE_PASSWORD`, `TAQVIM_KEY_ALIAS`, `TAQVIM_KEY_PASSWORD`.
-- Google Play: use Play App Signing; the CI key is the **upload** key. Keep an offline backup of the upload keystore
-  and its passwords. The project owner (Saman Sohani) holds both.
 - Protect the `release` environment with required reviewers. Required reviewer: the project owner.
-- A lost upload key is reset through Play Console support; a leaked key must be rotated before the next upload.
+
+### The signing key cannot be recovered (owner decision 2026-09-26)
+
+Taqvim is distributed as a sideloadable **APK from GitHub Releases**, not through Google Play. That changes what the
+signing key is, and the change is one way:
+
+- With Play App Signing, the CI key is only an *upload* key and Play holds the real one, so a lost upload key is reset
+  through Play Console support. **None of that applies here.** The key in `TAQVIM_KEYSTORE_BASE64` is the key Android
+  itself checks on every update.
+- Android refuses to install an update signed by a different key. So **if this keystore or its passwords are lost,
+  no future build can update an existing installation** — every user would have to uninstall (losing their data) and
+  install afresh. There is no support channel and no reset.
+- Therefore: keep an offline backup of the keystore *and* its passwords, in more than one place, before the first
+  release tag. The project owner (Saman Sohani) holds them.
+- A leaked key is worse than with Play, because anyone holding it can sign an APK that Android will happily install
+  over Taqvim. Rotating it means the same forced uninstall for every user, so treat the backup as a secret, not just
+  as a file you must not lose.
+
+## What a green benchmark check does and does not mean (owner decision 2026-09-26)
+
+`Macrobenchmark (nightly)` is a required check, but hosted GitHub runners cannot measure this app: its control
+benchmarks time fixed synthetic work the app cannot influence, and on these runners they moved by hundreds of percent
+in both directions inside a single run. Seven consecutive dispatches came back inconclusive, which meant **no release
+tag could ever qualify** — `v1.0.0-rc3` produced no artifacts for exactly this reason.
+
+So an inconclusive run (exit 4) now reports **success** and writes "this commit is unbenchmarked" into the job
+summary. The gate keeps failing on exit 1, a regression it actually measured, and on exit 3, a recording run.
+
+Read the tick accordingly. **A green benchmark check means "no regression was measured", not "no regression
+exists".** Where the run was inconclusive, nothing about the commit's performance is known, and no performance claim
+may be made for it in release notes or anywhere else. The only way to obtain a real number is to run the
+macrobenchmarks on a physical device (see the device section below); until that happens, releases ship without
+performance verification, and the release notes should say so.
 
 ## Changelog
 
