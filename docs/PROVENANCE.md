@@ -1798,6 +1798,12 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
     from the Internet Archive captures of `moj.gov.af/content/files/OfficialGazette/…/OG_0<serial>.pdf`
   - serial 1229 (2 دلو 1395 هـ.ش), the Afghanistan Centre at Kabul University's scan, mirrored by the FAO legal
     database as https://faolex.fao.org/docs/pdf/afg209805.pdf
+- **Date pattern (ADR-0050):** the same covers put the fields in the order year → month → day, with `د` before the
+  year and before the month and no weekday. CLDR's own reviewed `ps` Gregorian full pattern, `EEEE د y د MMMM d`, uses
+  the same genitives and the same order, so `ps` joins `fa` and `prs` in writing Persian-calendar full dates with its
+  Gregorian pattern instead of CLDR's root fallback `G y MMMM d, EEEE`. Only the order is taken from the gazette; its
+  Pashto line is a labelled genitive formula, not a date string, and the Dari line on the same cover orders the fields
+  differently, so no pattern is copied from it. The Islamic calendar keeps the root pattern and its era (DT-025).
 - **Values:** `هـ.ش` (U+0647 U+0640 U+002E U+0634) for the Persian (solar Hijri) calendar and `هـ.ق`
   (U+0647 U+0640 U+002E U+0642) for the Islamic (lunar Hijri) one — a tatweel, no trailing full stop, unlike CLDR's
   Persian `ه‍.ش.`. Years are printed in Extended Arabic-Indic digits (U+06F0…U+06F9), which is already `ps.numerals`.

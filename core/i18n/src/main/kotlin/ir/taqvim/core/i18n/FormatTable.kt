@@ -69,14 +69,18 @@ public object FormatTable {
     private const val RESOURCE = "formats.properties"
 
     /**
-     * Product overrides of CLDR full date patterns (docs/adr/0014-persian-long-date-pattern.md). CLDR 48 gives `fa`
-     * and `prs` the Persian-calendar pattern `y MMMM d, EEEE` (year first, Latin comma); Taqvim uses the language's own
-     * CLDR Gregorian full pattern instead. Every other pattern is CLDR data as generated.
+     * Language/calendar pairs that write their full dates with the language's own CLDR **Gregorian** full pattern
+     * instead of CLDR's stored one (docs/adr/0014-persian-long-date-pattern.md, extended by ADR-0050). CLDR gives
+     * these pairs the root fallback `[G ]y MMMM d, EEEE` — year first, weekday last, Latin comma — which none of
+     * these languages writes. Their Gregorian pattern is real, reviewed CLDR data in the same language, so it is used
+     * verbatim; the pattern is never written out here, which keeps this a rule rather than a copy of CLDR data.
+     * Every other pattern is CLDR data as generated.
      */
-    internal val PRODUCT_DATE_PATTERNS: Map<Pair<String, CalendarSystem>, String> =
-        mapOf(
-            ("fa" to CalendarSystem.PERSIAN) to "EEEE d MMMM y",
-            ("prs" to CalendarSystem.PERSIAN) to "EEEE d MMMM y",
+    internal val GREGORIAN_PATTERN_OVERRIDES: Set<Pair<String, CalendarSystem>> =
+        setOf(
+            "fa" to CalendarSystem.PERSIAN,
+            "prs" to CalendarSystem.PERSIAN,
+            "ps" to CalendarSystem.PERSIAN,
         )
 
     /** Era abbreviations CLDR has none for, by language code and calendar; cited in [SourcedEras]. */
@@ -94,13 +98,15 @@ public object FormatTable {
     private fun withProductPatterns(
         code: String,
         formats: LanguageFormats,
-    ): LanguageFormats =
-        formats.copy(
+    ): LanguageFormats {
+        val gregorian = formats.datePatterns[CalendarSystem.GREGORIAN] ?: return formats
+        return formats.copy(
             datePatterns =
                 formats.datePatterns.mapValues { (calendar, cldr) ->
-                    PRODUCT_DATE_PATTERNS[code to calendar] ?: cldr
+                    if (code to calendar in GREGORIAN_PATTERN_OVERRIDES) gregorian else cldr
                 },
         )
+    }
 
     /** [formats] with the sourced era abbreviations of [SourcedEras]; CLDR leaves those pairs without one. */
     private fun withProductEras(

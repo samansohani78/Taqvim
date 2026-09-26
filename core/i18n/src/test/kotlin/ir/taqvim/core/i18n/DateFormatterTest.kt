@@ -106,24 +106,35 @@ class DateFormatterTest {
     }
 
     @Test
-    fun `Persian long dates in fa and prs use the language's CLDR Gregorian pattern (ADR-0014)`() {
-        FormatTable.PRODUCT_DATE_PATTERNS.keys shouldBe
-            setOf("fa" to CalendarSystem.PERSIAN, "prs" to CalendarSystem.PERSIAN)
-        val generated = FormatTableParser.parse(loadGeneratedFormats(), listOf("fa", "prs"))
-        FormatTable.PRODUCT_DATE_PATTERNS.forEach { (key, pattern) ->
-            val (code, calendar) = key
+    fun `Persian long dates in fa, prs and ps use the language's CLDR Gregorian pattern (ADR-0014, ADR-0050)`() {
+        FormatTable.GREGORIAN_PATTERN_OVERRIDES shouldBe
+            setOf(
+                "fa" to CalendarSystem.PERSIAN,
+                "prs" to CalendarSystem.PERSIAN,
+                "ps" to CalendarSystem.PERSIAN,
+            )
+        val codes = FormatTable.GREGORIAN_PATTERN_OVERRIDES.map { it.first }
+        val generated = FormatTableParser.parse(loadGeneratedFormats(), codes)
+        FormatTable.GREGORIAN_PATTERN_OVERRIDES.forEach { (code, calendar) ->
             val cldr = generated.getValue(code)
-            pattern shouldBe cldr.datePatterns.getValue(CalendarSystem.GREGORIAN)
-            cldr.datePatterns.getValue(calendar) shouldBe "y MMMM d, EEEE"
+            // What CLDR stores for the overridden pair is the root fallback these languages do not write: `fa` and
+            // `prs` get it without an era, `ps` with one, and all three put the year first and a Latin comma before
+            // the weekday.
+            cldr.datePatterns.getValue(calendar) shouldBe if (code == "ps") "G y MMMM d, EEEE" else "y MMMM d, EEEE"
             FormatTable.formats
                 .getValue(code)
                 .datePatterns
-                .getValue(calendar) shouldBe pattern
+                .getValue(calendar) shouldBe cldr.datePatterns.getValue(CalendarSystem.GREGORIAN)
         }
 
         val date = CalendarDate(CalendarSystem.PERSIAN, 1405, 6, 22)
         DateFormatter.format(date, sunday, language("fa"), DateStyle.LONG) shouldBe
             Numerals.localizeDigits("یکشنبه 22 شهریور 1405", NumeralSystem.PERSIAN)
+        // Pashto keeps its own `د` genitives and its year → month → day order, which the Official Gazette's covers
+        // corroborate; the era it now has (DT-008) is dropped here exactly as `fa` and `prs` drop theirs, because the
+        // solar Hijri calendar is Afghanistan's default civil calendar. The Islamic calendar keeps its era (DT-025).
+        DateFormatter.format(date, sunday, language("ps"), DateStyle.LONG) shouldBe
+            Numerals.localizeDigits("يونۍ د 1405 د وږی 22", NumeralSystem.PERSIAN)
     }
 
     @Test
@@ -143,13 +154,14 @@ class DateFormatterTest {
         pashto.eras.getValue(CalendarSystem.PERSIAN) shouldBe "هـ.ش"
         pashto.eras.getValue(CalendarSystem.ISLAMIC) shouldBe "هـ.ق"
 
-        // The weekday is the caller's. DT-025 keeps the CLDR root pattern (era first, Latin comma) until it is sourced.
+        // The weekday is the caller's. The Persian-calendar pattern is ADR-0050's, so the era does not render there;
+        // the Islamic calendar still uses CLDR's root pattern and does show it, which is what DT-025 still covers.
         DateFormatter.format(
-            CalendarDate(CalendarSystem.PERSIAN, 1401, 8, 14),
+            CalendarDate(CalendarSystem.ISLAMIC, 1444, 4, 10),
             sunday,
             language("ps"),
             DateStyle.LONG,
-        ) shouldBe Numerals.localizeDigits("هـ.ش 1401 لړم 14, يونۍ", NumeralSystem.PERSIAN)
+        ) shouldBe Numerals.localizeDigits("هـ.ق 1444 ربيع II 10, يونۍ", NumeralSystem.PERSIAN)
     }
 
     /** The generated CLDR table as stored, before product overrides. */
@@ -164,7 +176,7 @@ class DateFormatterTest {
     fun `long dates match ICU4J wherever the language has complete data`(): List<DynamicTest> =
         LanguageTable.languages.flatMap { language ->
             ORACLE_CALENDARS
-                .filter { (calendar, _) -> (language.code to calendar) !in FormatTable.PRODUCT_DATE_PATTERNS }
+                .filter { (calendar, _) -> (language.code to calendar) !in FormatTable.GREGORIAN_PATTERN_OVERRIDES }
                 .filter { (calendar, _) -> (language.code to calendar) !in FormatTable.PRODUCT_ERAS }
                 .filter { (calendar, _) -> hasCompleteData(FormatTable.of(language), calendar) }
                 .map { (calendar, years) ->
