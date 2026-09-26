@@ -90,10 +90,10 @@ class FormatTableTest {
     private fun unitsFor(unit: String): Map<String, String> = mapOf("xx.unit.$unit.other" to "{0} $unit")
 
     private companion object {
+        // `ps:era.persian` and `ps:era.islamic` left this set on 2026-09-26: CLDR still has neither, but
+        // FormatTable.PRODUCT_ERAS now supplies both from Afghanistan's Official Gazette (DT-008).
         val EXPECTED_GAPS =
             setOf(
-                "ps:era.persian",
-                "ps:era.islamic",
                 "ckb:era.persian",
                 "ckb:months.persian",
                 "ckb:era.islamic",

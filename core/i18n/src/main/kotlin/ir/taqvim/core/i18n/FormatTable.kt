@@ -79,11 +79,31 @@ public object FormatTable {
             ("prs" to CalendarSystem.PERSIAN) to "EEEE d MMMM y",
         )
 
+    private const val ERA_RESOURCE = "sourced-eras.properties"
+
+    /**
+     * Era abbreviations for language/calendar pairs CLDR has none for (docs/DATA_TODO.md DT-008), keyed by language
+     * code and calendar. They are hand-curated from an official publication written in the language itself, which
+     * the `sourced-eras.properties` header cites for each one.
+     */
+    internal val PRODUCT_ERAS: Map<Pair<String, CalendarSystem>, String> by lazy {
+        loadPropertiesResource(ERA_RESOURCE).entries.associate { (key, era) ->
+            val (code, calendar) = key.split('.', limit = 2)
+            val system =
+                requireNotNull(CalendarSystem.entries.firstOrNull { it.name.equals(calendar, ignoreCase = true) }) {
+                    "$ERA_RESOURCE names an unknown calendar in '$key'"
+                }
+            (code to system) to era
+        }
+    }
+
     /** Formatting data by language code, for every language of [LanguageTable]. */
     public val formats: Map<String, LanguageFormats> by lazy {
         FormatTableParser
             .parse(loadPropertiesResource(RESOURCE), LanguageTable.languages.map { it.code })
-            .mapValues { (code, formats) -> withHebrew(withBikramSambat(code, withProductPatterns(code, formats))) }
+            .mapValues { (code, formats) ->
+                withHebrew(withBikramSambat(code, withProductEras(code, withProductPatterns(code, formats))))
+            }
     }
 
     private fun withProductPatterns(
@@ -96,6 +116,15 @@ public object FormatTable {
                     PRODUCT_DATE_PATTERNS[code to calendar] ?: cldr
                 },
         )
+
+    /** [formats] with the sourced era abbreviations of [PRODUCT_ERAS]; CLDR leaves these pairs without one. */
+    private fun withProductEras(
+        code: String,
+        formats: LanguageFormats,
+    ): LanguageFormats {
+        val own = PRODUCT_ERAS.filterKeys { (language, _) -> language == code }
+        return if (own.isEmpty()) formats else formats.copy(eras = formats.eras + own.mapKeys { it.key.second })
+    }
 
     /**
      * [formats] with Bikram Sambat names (T-105): CLDR has none, so month names, era and pattern come from

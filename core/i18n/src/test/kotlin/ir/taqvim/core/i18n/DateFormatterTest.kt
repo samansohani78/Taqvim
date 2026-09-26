@@ -126,6 +126,32 @@ class DateFormatterTest {
             Numerals.localizeDigits("یکشنبه 22 شهریور 1405", NumeralSystem.PERSIAN)
     }
 
+    @Test
+    fun `Pashto era abbreviations come from Afghanistan's Official Gazette (DT-008)`() {
+        FormatTable.PRODUCT_ERAS shouldBe
+            mapOf(
+                ("ps" to CalendarSystem.PERSIAN) to "هـ.ش",
+                ("ps" to CalendarSystem.ISLAMIC) to "هـ.ق",
+            )
+        // CLDR has no Pashto era for either calendar, so the generated table stores none (root "AP"/"AH" is dropped).
+        val generated = loadGeneratedFormats()
+        listOf("ps.era.persian", "ps.era.islamic").filter { it in generated.keys }.shouldBeEmpty()
+
+        // The covers of Afghanistan's Official Gazette, e.g. serial 1424 (Ministry of Justice), date every issue in
+        // both calendars: "د ۱۴۰۱ هـ.ش کال د لړم د میاشتې (۱۴)" and "د ۱۴۴۴ هـ.ق کال د ربیع الثاني د میاشتې (۱۰)".
+        val pashto = FormatTable.of(language("ps"))
+        pashto.eras.getValue(CalendarSystem.PERSIAN) shouldBe "هـ.ش"
+        pashto.eras.getValue(CalendarSystem.ISLAMIC) shouldBe "هـ.ق"
+
+        // The weekday is the caller's. DT-025 keeps the CLDR root pattern (era first, Latin comma) until it is sourced.
+        DateFormatter.format(
+            CalendarDate(CalendarSystem.PERSIAN, 1401, 8, 14),
+            sunday,
+            language("ps"),
+            DateStyle.LONG,
+        ) shouldBe Numerals.localizeDigits("هـ.ش 1401 لړم 14, يونۍ", NumeralSystem.PERSIAN)
+    }
+
     /** The generated CLDR table as stored, before product overrides. */
     private fun loadGeneratedFormats(): Map<String, String> {
         val stream = requireNotNull(FormatTable::class.java.getResourceAsStream("formats.properties"))
@@ -139,6 +165,7 @@ class DateFormatterTest {
         LanguageTable.languages.flatMap { language ->
             ORACLE_CALENDARS
                 .filter { (calendar, _) -> (language.code to calendar) !in FormatTable.PRODUCT_DATE_PATTERNS }
+                .filter { (calendar, _) -> (language.code to calendar) !in FormatTable.PRODUCT_ERAS }
                 .filter { (calendar, _) -> hasCompleteData(FormatTable.of(language), calendar) }
                 .map { (calendar, years) ->
                     DynamicTest.dynamicTest("${language.code} $calendar") { compareWithIcu(language, calendar, years) }
