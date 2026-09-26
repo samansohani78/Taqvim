@@ -98,6 +98,16 @@ android {
                 storePassword = providers.environmentVariable("TAQVIM_KEYSTORE_PASSWORD").get()
                 keyAlias = providers.environmentVariable("TAQVIM_KEY_ALIAS").get()
                 keyPassword = providers.environmentVariable("TAQVIM_KEY_PASSWORD").get()
+                // v3 carries proof-of-rotation, and AGP leaves it off by default. Taqvim is sideloaded from GitHub
+                // with no Play App Signing (docs/RELEASE.md), so this is the *only* way the signing key can ever be
+                // replaced: with v3, Android 9+ accepts an update signed by a rotated key; without it, a lost or
+                // leaked key means every user must uninstall and lose their data. It must be on before the first
+                // release, because rotation works only from a v3 signature that shipped earlier.
+                enableV3Signing = true
+                // v1 (JAR signing) is for API < 24 and minSdk is 26, so v2+v3 cover every supported device. v4 only
+                // speeds up `adb install --incremental` and needs a side file the release does not publish.
+                enableV1Signing = false
+                enableV2Signing = true
             }
         }
     }
