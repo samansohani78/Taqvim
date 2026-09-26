@@ -17,11 +17,14 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.model.Coordinates
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
 import org.junit.jupiter.api.Test
 
 /**
- * T-407: golden/blue hour bands and Moon rise/set; a published photographers' ephemeris golden is pending (DATA_TODO).
+ * T-407: golden/blue hour bands and Moon rise/set. The blue hour's lower edge is checked against the USNO in
+ * `UsnoTwilightTest`; the golden hour's two edges have no published definition anywhere and are this app's own
+ * convention (DT-017, ADR-0049), so the cases here pin the convention rather than an external time.
  */
 class PhotographyPanelTest {
     private val tehran = Coordinates(35.70, 51.42)
@@ -54,6 +57,42 @@ class PhotographyPanelTest {
             (interval.end - interval.start).inWholeMinutes shouldBeInRange 5L..40L
         }
         listOfNotNull(day.moonrise, day.moonset).forEach { it.shouldBeBetween(tehranMidnight, tehranMidnight + 1.days) }
+    }
+
+    /**
+     * ADR-0049: the golden hour's edges are this app's convention, so nothing external can check them — this pins
+     * the convention itself, the way `UsnoTwilightTest` pins the blue hour's sourced edge. The two bands must meet
+     * at one apparent altitude and tile −6°‥+6° with no overlap and no gap.
+     */
+    @Test
+    fun `the golden hour's edges are the convention, and the two bands tile without a gap`() {
+        val day = PhotographyPanel.day(tehran, tehranMidnight)
+        val (morningGolden, eveningGolden) = day.goldenHours
+        val (morningBlue, eveningBlue) = day.blueHours
+
+        // The expected altitudes are written as literals, not as the constants, so that moving an edge fails here
+        // instead of silently redefining what this app calls a golden hour.
+        val edges =
+            mapOf(
+                "morning start" to (morningGolden.start to -4.0),
+                "morning end" to (morningGolden.end to 6.0),
+                "evening start" to (eveningGolden.start to 6.0),
+                "evening end" to (eveningGolden.end to -4.0),
+            )
+        edges.forEach { (name, edge) ->
+            val (instant, expected) = edge
+            val altitudes = Sky.altitudes(CelestialBody.SUN, instant, tehran)
+            withClue("golden hour $name at $instant: $altitudes") {
+                // Apparent, not geometric: only BLUE_HOUR_BOTTOM follows a published geometric definition (ADR-0047),
+                // so the geometric altitude at these edges is measurably lower and must stay that way.
+                altitudes.apparentDegrees shouldBe (expected plusOrMinus 0.05)
+                altitudes.geometricDegrees shouldBeLessThan expected - 0.05
+            }
+        }
+        withClue("the bands must meet at BLUE_HOUR_TOP, not overlap or leave a gap") {
+            (morningGolden.start - morningBlue.end).absoluteValue shouldBeLessThan 20.seconds
+            (eveningGolden.end - eveningBlue.start).absoluteValue shouldBeLessThan 20.seconds
+        }
     }
 
     @Test

@@ -1246,6 +1246,36 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   its blue hour opens 2–7 minutes early and closes 2–7 minutes late (largest at Berlin, never the opposite sign).
   `UsnoTwilightTest` pins that direction and bound. The −4° and +6° edges of the golden hour are a product convention
   with no published definition to check against (DT-017).
+- **The golden hour's edges are a stated convention, not a sourced quantity (2026-09-26, DT-017, ADR-0049).** A
+  second, enumerated search for a published definition of "golden hour" found none, and the row is closed by policy
+  on that finding rather than left open for a source that cannot exist. What was consulted: the *Explanatory
+  Supplement to the Astronomical Almanac* (USNO/HMNAO), read in full text — its glossary defines only civil,
+  nautical and astronomical twilight (zenith distances 90°50′–96°, 96°–102°, 102°–108°; §9.341 restates them as
+  altitudes −6°, −12°, −18°), and the strings "golden hour" and "magic hour" occur nowhere in the volume; the USNO's
+  own API responses archived here (`docs/sources/usno/twilight-2026-raw.json`) name only `Rise`, `Set`,
+  `Upper Transit`, `Begin Civil Twilight`, `End Civil Twilight` (aa.usno.navy.mil itself was unreachable from the
+  build network — TLS `wrong version number` on every request — as was HMNAO's WEBSURF, whose certificate chain
+  fails verification); the CIE International Lighting Vocabulary (CIE S 017 / e-ILV), which has no "golden hour" or
+  "magic hour" entry and no term bounded by a solar altitude; CIE S 011 / ISO 15469 (*CIE standard general sky*),
+  which takes solar altitude as a continuous parameter of its luminance distributions, not as a named boundary; the
+  atmospheric-optics literature on low-sun colour (Lee & Hernández-Andrés, *Appl. Opt.* **42**, 445, 2003; Lee,
+  *Appl. Opt.* **33**, 4629, 1994; Spitschan et al., *Sci. Rep.* **6**, 26756, 2016), all of which treat chromaticity
+  and illuminance as smooth functions of elevation with no named knee; and the US National Weather Service glossary
+  (no entry; US aviation's day/night boundary is civil twilight, −6°). Published photographers' ephemerides do state
+  thresholds but disagree and disclaim authority: PhotoPills gives exactly −4°‥+6° while stating "there is no
+  mathematical definition", The Photographer's Ephemeris runs sunrise/sunset‥+6°, and timeanddate.com gives −6°‥+6°
+  while stating the term "doesn't have an official definition". Measured over the 120 bands of
+  `golden/usno/twilight-2026.csv`, those conventions differ materially — median band length 57 min (50–94) for the
+  app, 39 (35–68) for TPE, 68 (60–112) for timeanddate; one degree at the lower edge is worth 4.7–10.3 min (median
+  5.4). **Why the app keeps −4° and +6°:** they came from docs/PLAN.md T-407 with no stated reason, and ADR-0049
+  supplies one — +6° mirrors civil twilight's −6° so the two bands tile −6°‥+6°, −4° is the single altitude that
+  splits that interval into a warm and a blue band (so the bands meet exactly, never overlapping or gapping), and
+  both sit within about a degree of the +5°/−5° knots of the *Explanatory Supplement*'s piecewise ground-illumination
+  fit (Table 9.34.1, after the RCA *Electro-Optics Handbook*), a −5°‥+5° band being within a minute of the app's over
+  the same 120 comparisons (median 57, range 50–93). **The app claims no agreement with any external ephemeris for
+  these times**, and no golden test asserts one; T-407's ±3 min criterion is met by rise, set, transit and the blue
+  hour's civil-twilight edge. `PhotographyPanelTest` pins the convention itself (apparent altitude at each edge, and
+  the two bands meeting) so it cannot drift silently.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 

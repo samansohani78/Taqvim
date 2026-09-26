@@ -30,12 +30,20 @@ public data class PhotographyDay(
  * The other two edges have no published definition to agree with — they are this app's convention — and stay
  * apparent altitudes, so what a photographer sees at −4° is what the band switches on. ADR-0047 records why the two
  * edges are measured differently.
+ *
+ * **The golden hour's −4° and +6° are a stated convention, not a sourced quantity (ADR-0049).** No astronomical
+ * authority, illumination standard or meteorological authority defines the term at all: the *Explanatory Supplement
+ * to the Astronomical Almanac* names only the three twilights, the CIE's lighting vocabulary has no such entry, and
+ * published photographers' ephemerides disagree with one another by up to a quarter of an hour. +6° mirrors civil
+ * twilight's −6° so the two bands tile −6°‥+6°, and −4° is the single altitude that splits that interval into a warm
+ * band and a blue one. The app therefore claims **no** agreement with any external ephemeris for these times; only
+ * [BLUE_HOUR_BOTTOM], rise, set and transit are checked against a published table.
  */
 public object PhotographyPanel {
-    /** Upper altitude of golden hour, degrees. */
+    /** Upper altitude of golden hour, degrees: this app's convention, mirroring civil twilight (ADR-0049). */
     public const val GOLDEN_HOUR_TOP: Double = 6.0
 
-    /** Altitude separating golden and blue hour, degrees. */
+    /** Altitude separating golden and blue hour, degrees: this app's convention, unpublished anywhere (ADR-0049). */
     public const val BLUE_HOUR_TOP: Double = -4.0
 
     /** Lower altitude of blue hour, degrees: civil twilight, measured geometrically as published tables define it. */
