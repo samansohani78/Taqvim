@@ -159,6 +159,17 @@ internal val OFFICIAL_EVENTS_PART_18: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 12, day = 27),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_020,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/75/27",
+                            title = "International Day of Epidemic Preparedness — General Assembly resolution A/RES/75/27, \"Resolution adopted by the General Assembly on 7 December 2020\", para. 1: \"Decides to proclaim 27 December as the International Day of Epidemic Preparedness\".",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(

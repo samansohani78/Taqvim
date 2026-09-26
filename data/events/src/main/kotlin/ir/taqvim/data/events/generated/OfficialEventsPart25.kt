@@ -120,6 +120,17 @@ internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 11, day = 16),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/80/174",
+                            title = "International Day of the Mediterranean Diet — General Assembly resolution A/RES/80/174, \"Resolution adopted by the General Assembly on 18 December 2025\", para. 1: \"Decides to designate 16 November as the International Day of the Mediterranean Diet\".",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -279,6 +290,17 @@ internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.NthWeekdayOfMonth(month = 10, weekday = Weekday.SATURDAY, n = 2),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_017,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.cms.int/campaign/world-migratory-bird-day-wmbd",
+                            title = "World Migratory Bird Day (CMS campaign page) — the October peak day dates from the CMS/AEWA/Environment for the Americas partnership announced \"On 26 October 2017 in the margins of the CMS COP12 in Manila\": \"From 2018 onwards, the new joint campaign adopted the single name of “World Migratory Bird Day” and is celebrated twice a year, on the second Saturday in May and in October\". First October observance: 13 October 2018.",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(

@@ -3153,6 +3153,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.worldmigratorybirdday.org/"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2017,
+        "citation": {
+          "url": "https://www.cms.int/campaign/world-migratory-bird-day-wmbd",
+          "title": "World Migratory Bird Day (CMS campaign page) — the October peak day dates from the CMS/AEWA/Environment for the Americas partnership announced \"On 26 October 2017 in the margins of the CMS COP12 in Manila\": \"From 2018 onwards, the new joint campaign adopted the single name of “World Migratory Bird Day” and is celebrated twice a year, on the second Saturday in May and in October\". First October observance: 13 October 2018.",
+          "retrieved": "2026-09-26"
+        }
       }
     },
     {
@@ -8394,6 +8403,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/care-and-support-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2023,
+        "citation": {
+          "url": "https://docs.un.org/en/A/RES/77/317",
+          "title": "International Day of Care and Support — General Assembly resolution A/RES/77/317, \"Resolution adopted by the General Assembly on 24 July 2023\", para. 1: \"Decides to proclaim 29 October as the International Day of Care and Support\".",
+          "retrieved": "2026-09-26"
+        }
       }
     },
     {
@@ -8877,6 +8895,15 @@
       "reviewedBy": "pending",
       "links": {
         "resolution": "https://docs.un.org/en/A/RES/80/174"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2025,
+        "citation": {
+          "url": "https://docs.un.org/en/A/RES/80/174",
+          "title": "International Day of the Mediterranean Diet — General Assembly resolution A/RES/80/174, \"Resolution adopted by the General Assembly on 18 December 2025\", para. 1: \"Decides to designate 16 November as the International Day of the Mediterranean Diet\".",
+          "retrieved": "2026-09-26"
+        }
       }
     },
     {
@@ -9261,15 +9288,24 @@
           "retrieved": "2026-09-23"
         },
         {
-          "url": "https://docs.un.org/en/A/80/L.99",
-          "title": "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly draft resolution A/80/L.99)",
-          "retrieved": "2026-09-23"
+          "url": "https://docs.un.org/en/A/RES/80/309",
+          "title": "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly resolution A/RES/80/309, adopted 4 September 2026; draft A/80/L.99)",
+          "retrieved": "2026-09-26"
         }
       ],
-      "updated": "2026-09-23",
+      "updated": "2026-09-26",
       "reviewedBy": "pending",
       "links": {
-        "resolution": "https://docs.un.org/en/A/80/L.99"
+        "resolution": "https://docs.un.org/en/A/RES/80/309"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2026,
+        "citation": {
+          "url": "https://docs.un.org/en/A/RES/80/309",
+          "title": "International Day for the Elimination of Child, Early and Forced Marriage — General Assembly resolution A/RES/80/309, \"Resolution adopted by the General Assembly on 4 September 2026 [without reference to a Main Committee (A/80/L.99)]\", para. 1: \"Decides to proclaim 27 November of each year as the International Day for the Elimination of Child, Early and Forced Marriage\".",
+          "retrieved": "2026-09-26"
+        }
       }
     },
     {
@@ -10383,6 +10419,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.unodc.org/unodc/en/cybercrime/day.html"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2024,
+        "citation": {
+          "url": "https://docs.un.org/en/A/RES/79/243",
+          "title": "International Anti-Cybercrime Day — General Assembly resolution A/RES/79/243, \"Resolution adopted by the General Assembly on 24 December 2024\", para. 12: \"Decides that, in order to raise awareness of cybercrime and of the role of the Convention in combating and preventing it, 24 December should be designated International Anti-Cybercrime Day.\"",
+          "retrieved": "2026-09-26"
+        }
       }
     },
     {
@@ -10419,6 +10464,15 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/epidemic-preparedness-day"
+      },
+      "validity": {
+        "calendar": "GREGORIAN",
+        "fromYear": 2020,
+        "citation": {
+          "url": "https://docs.un.org/en/A/RES/75/27",
+          "title": "International Day of Epidemic Preparedness — General Assembly resolution A/RES/75/27, \"Resolution adopted by the General Assembly on 7 December 2020\", para. 1: \"Decides to proclaim 27 December as the International Day of Epidemic Preparedness\".",
+          "retrieved": "2026-09-26"
+        }
       }
     },
     {

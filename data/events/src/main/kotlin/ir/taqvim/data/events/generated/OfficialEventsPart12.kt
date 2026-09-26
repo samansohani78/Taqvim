@@ -37,6 +37,17 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 11, day = 27),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_026,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/80/309",
+                            title = "International Day for the Elimination of Child, Early and Forced Marriage — General Assembly resolution A/RES/80/309, \"Resolution adopted by the General Assembly on 4 September 2026 [without reference to a Main Committee (A/80/L.99)]\", para. 1: \"Decides to proclaim 27 November of each year as the International Day for the Elimination of Child, Early and Forced Marriage\".",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
@@ -44,13 +55,13 @@ internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://docs.un.org/en/A/80/L.99",
-                        title = "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly draft resolution A/80/L.99)",
+                        url = "https://docs.un.org/en/A/RES/80/309",
+                        title = "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly resolution A/RES/80/309, adopted 4 September 2026; draft A/80/L.99)",
                     ),
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://docs.un.org/en/A/80/L.99",
+                    "resolution" to "https://docs.un.org/en/A/RES/80/309",
                 ),
         ),
         EventDefinition(

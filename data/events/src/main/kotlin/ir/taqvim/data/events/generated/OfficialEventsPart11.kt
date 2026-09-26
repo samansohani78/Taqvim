@@ -201,6 +201,17 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 10, day = 29),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_023,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/77/317",
+                            title = "International Day of Care and Support — General Assembly resolution A/RES/77/317, \"Resolution adopted by the General Assembly on 24 July 2023\", para. 1: \"Decides to proclaim 29 October as the International Day of Care and Support\".",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(

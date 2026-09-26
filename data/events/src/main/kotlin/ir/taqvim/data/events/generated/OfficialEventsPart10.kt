@@ -37,6 +37,17 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
                     ),
                 ),
             rule = EventRule.Fixed(month = 12, day = 24),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/79/243",
+                            title = "International Anti-Cybercrime Day — General Assembly resolution A/RES/79/243, \"Resolution adopted by the General Assembly on 24 December 2024\", para. 12: \"Decides that, in order to raise awareness of cybercrime and of the role of the Convention in combating and preventing it, 24 December should be designated International Anti-Cybercrime Day.\"",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
