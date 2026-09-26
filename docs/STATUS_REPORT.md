@@ -629,6 +629,41 @@ frame P99, month-screen memory) are still judged only against generous hosted ce
 high-refresh section), so a 10 % regression threshold over them may produce false alarms. Re-record on a stable
 runner, or move the frame metrics to device-only, if the nightly job proves noisy.
 
+### v1.0.0 released 2026-09-26 (main@4b0980d) — the first published build
+
+https://github.com/samansohani78/Taqvim/releases/tag/v1.0.0
+
+A sideloadable universal APK, 6.6 MB, with `SHA256SUMS`, the SBOM and the licence report. **Not on Google Play**: the
+owner has no Play Console, so `release.yml` publishes the APK only and no `.aab` (ADR-free owner decision, recorded in
+docs/RELEASE.md).
+
+All 14 required checks concluded `success` on the tagged commit, verified with `tools/ci/verify_required_checks.py`
+before the tag was pushed rather than by reading tick marks. The published artifact was then downloaded back from
+GitHub and checked rather than trusted: `sha256 a40cdea6…` matches `SHA256SUMS`, `apksigner` reports v2 **and** v3
+signatures with certificate `fd742bb2…` — the same key tested locally — and the APK is not debuggable.
+
+Three things had to be fixed first, and two are worth remembering:
+
+1. **The benchmark gate could never pass.** It treated exit 4 (control benchmarks moved, runner degraded) as a
+   failure, so a required check that no hosted runner could satisfy blocked every release — `v1.0.0-rc3` produced no
+   artifacts for exactly this reason. Exit 4 now reports success and states the commit is unbenchmarked; exit 1, a
+   measured regression, still fails. **A green benchmark tick now means "no regression was measured", not "none
+   exists".**
+2. **`CalendarScreenTest.swiping the pager…` had failed CI three times.** The first two fixes raised its timeout
+   (10 s → 60 s) on the theory that the fling needed longer; it then timed out at 60 s. The real mismatch is that
+   `waitUntil` times out in wall-clock time while a fling settles in frames, which are unrelated on a loaded runner.
+   Advancing the test clock fixed it — confirmed by the PR job passing on the commit that was tagged.
+3. `Graph Update: pip in /app` is GitHub's own dependency-graph scanner probing for a pip manifest this repo does not
+   have. Not a workflow here, not a required check, nothing to fix.
+
+**What v1.0.0 does not carry:** performance verification (the benchmark was inconclusive for the eighth consecutive
+run), a TalkBack pass by ear, and F-10's sun and moon azimuth chart. All three are stated in the release notes or
+tracked here rather than left to be discovered.
+
+**The signing key is now load-bearing and unrecoverable.** It lives outside the repo on the owner's machine. Android
+refuses an update signed by a different key and there is no Play App Signing to reset it; v3 gives a rotation path,
+but only for devices that already installed a v3-signed build. See docs/RELEASE.md.
+
 ### F-10 had no UI until 2026-09-26, and how that happened
 
 `PhotographyPanel` computed the golden and blue hours, was tested, and was referenced by **nothing outside its own two
