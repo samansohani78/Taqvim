@@ -5,8 +5,8 @@
 
 Natural Earth's "Populated Places" (natural_earth_cities.py's own source) has no name field at all for Pashto (ps),
 Central Kurdish (ckb), Kurmanji (kmr), Azerbaijani (az), Nepali (ne), Tamil (ta), Tajik (tg), Uzbek (uz) or Malay
-(ms) — this script closes that gap for the 8 of those 9 languages GeoNames' `alternateNamesV2` export has usable
-coverage for (see NOTES below for why `kmr` is not one of them; Dari `prs` is handled separately, see NOTES).
+(ms) — this script closes that gap for all 9 from GeoNames' `alternateNamesV2` export (Dari `prs` is handled
+separately, see NOTES).
 
 Usage: geonames_place_names.py <cities.tsv> <cities500.zip> <cities500-url> <alternateNamesV2.zip> <altnames-url>
     <retrieved-date> <output.tsv>
@@ -22,19 +22,30 @@ Pipeline:
      MAX_DISTANCE_KM away, gets no geonameid and so no GeoNames-sourced name in any language (its GEONAMES_LANGUAGES
      columns stay empty, same convention as a Natural Earth language whose name equals English).
   4. Read `alternateNamesV2` (the global per-place alternate-names dump) and, for each matched geonameid, keep the
-     best name in each of GEONAMES_LANGUAGES: prefer non-historic over historic, then the name flagged
-     `isPreferredName`, then a non-colloquial name, in that order; first one found breaks further ties.
-  5. Write the same places in the same order, with 8 new column lines appended.
+     best name in each of GEONAMES_LANGUAGES, read from the export tag SOURCE_TAGS gives it: prefer non-historic
+     over historic, then the name flagged `isPreferredName`, then a non-colloquial name, in that order; first one
+     found breaks further ties.
+  5. Write the same places in the same order, with 9 new column lines appended.
 
 NOTES (docs/DATA_TODO.md DT-020):
   - Matching uses cities500 rather than GeoNames' full `allCountries` dump (which is multiple GB) because Natural
     Earth's populated places are, in practice, almost all above the 500-population cutoff; unmatched places (about
     13% of cities.tsv, checked 2026-09-25) simply carry no GeoNames-sourced name, which is the same "no published
     name" convention already used for missing Natural Earth languages.
-  - `kmr` (Kurmanji) is not added: GeoNames' own `kmr` tag exists (as does a separate `ckb` tag, honoring the
-    ckb/kmr distinction by GeoNames' own language tag rather than guessing from the generic `ku` macrolanguage tag),
-    but only 5 `kmr` rows exist in the entire global dump and none of them match any place bundled here, checked
-    2026-09-25.
+  - `kmr` (Kurmanji) is NOT read from GeoNames' own `kmr` tag, which has only 5 rows in the entire global dump and
+    matches no place bundled here (checked 2026-09-25 and again 2026-09-26). It is read from the generic `ku`
+    macrolanguage tag instead, disambiguated by script: Kurmanji is written in the Latin "Hawar" alphabet and
+    Central Kurdish in the Arabic script, so a `ku` name whose every letter is a Hawar letter is Kurmanji, and the
+    Arabic-script `ku` names are Central Kurdish and are left to the separate `ckb` tag this script already reads.
+    A Latin-script `ku` name is additionally dropped when it carries no Kurmanji information, i.e. when it folds to
+    the English name (normalize()) without using any letter Kurmanji has and English does not (ç/ê/î/ş/û) — that is
+    an untranslated exonym with its diacritics stripped, e.g. "Reykjavik" for Reykjavík, not a Kurmanji name. The
+    result is 128 named places, checked name by name against Kurmanji Wikipedia (ku.wikipedia.org; Central Kurdish
+    is ckb.wikipedia.org): 113 of the 132 candidates are attested there verbatim, 9 more differ only by an attested
+    Kurmanji variant spelling, 8 have no Kurmanji Wikipedia entry but are plain Hawar renderings of the local name,
+    and 1 was rejected by hand, see REJECTED_KURMANJI. Not a single surviving name turned out to be a romanized
+    Central Kurdish form (those exist in the `ku` tag — "Shaxî", "Chemî", "Ṟûbarî …" — but only on streams and
+    mountains, which this file does not carry).
   - `prs` (Dari) is not added here either: GeoNames' `prs` tag has only 6 rows worldwide, of which exactly 1 matches
     a bundled place (a Russian city, geonameid 563708) — far too little to be worth a dedicated column, and `City`
     already gives `prs` a same-script fallback to the `fa` name (`City.NAME_FALLBACKS`), which this single stray
@@ -47,10 +58,50 @@ import sys
 import unicodedata
 import zipfile
 
-# Grouped by script, matching cities.tsv's own convention (natural_earth_cities.py's LANGUAGES comment).
-GEONAMES_LANGUAGES = ["ps", "ckb", "az", "uz", "ms", "tg", "ne", "ta"]
+# Grouped by script, matching cities.tsv's own convention (natural_earth_cities.py's LANGUAGES comment). Each maps
+# to the `alternateNamesV2` language tag it is read from — the same code, except Kurmanji (see the NOTES above).
+SOURCE_TAGS = {
+    "ps": "ps",
+    "ckb": "ckb",
+    "az": "az",
+    "uz": "uz",
+    "ms": "ms",
+    "tg": "tg",
+    "ne": "ne",
+    "ta": "ta",
+    "kmr": "ku",
+}
+GEONAMES_LANGUAGES = list(SOURCE_TAGS)
 MAX_DISTANCE_KM = 100.0
 EARTH_RADIUS_KM = 6371.0
+
+# The Kurmanji "Hawar" alphabet, and the five letters of it English does not have.
+HAWAR_ALPHABET = set("abcçdeêfghiîjklmnopqrsştuûvwxyz")
+KURMANJI_ONLY_LETTERS = set("çêîşû")
+
+# Rejected by hand while spot-checking the `ku` names against Kurmanji Wikipedia (DT-020), keyed by geonameid.
+REJECTED_KURMANJI = {
+    # "Paolo" is the Italian spelling; Kurmanji Wikipedia has "São Paulo", as does GeoNames' own English name.
+    "3448439": "Sao Paolo",
+}
+
+# Unicode format characters that carry no information in a name: bidi marks and embeddings, zero-width joiners and
+# spaces, soft hyphen. GeoNames' crowd-sourced names pick these up (e.g. a trailing U+200E on Persian names).
+FORMAT_CHARACTERS = dict.fromkeys(
+    map(ord, "\u200b\u200c\u200d\u200e\u200f\u202a\u202b\u202c\u202d\u202e\u2066\u2067\u2068\u2069\u00ad"),
+    None,
+)
+
+
+def is_kurmanji(name):
+    """Whether a generic `ku` name is Kurmanji rather than Central Kurdish: written in the Latin Hawar alphabet."""
+    letters = [character for character in name.lower() if character.isalpha()]
+    return bool(letters) and all(character in HAWAR_ALPHABET for character in letters)
+
+
+def carries_kurmanji_information(name, english_name):
+    """False for an untranslated exonym: the English name with its non-Kurmanji diacritics and punctuation gone."""
+    return normalize(name) != normalize(english_name) or bool(set(name.lower()) & KURMANJI_ONLY_LETTERS)
 
 
 def normalize(name):
@@ -137,6 +188,9 @@ def match_geoname_ids(columns, index):
 
 def resolve_alternate_names(altnames_text, wanted_geoname_ids, wanted_languages):
     """Best name per (geonameid, language): prefer non-historic, then preferred, then non-colloquial."""
+    tags = {}
+    for language in wanted_languages:
+        tags.setdefault(SOURCE_TAGS[language], []).append(language)
     best = {}
     for line in altnames_text.splitlines():
         fields = line.split("\t")
@@ -144,11 +198,11 @@ def resolve_alternate_names(altnames_text, wanted_geoname_ids, wanted_languages)
             continue
         while len(fields) < 10:
             fields.append("")
-        _, geoname_id, language, name = fields[:4]
+        _, geoname_id, tag, name = fields[:4]
         is_preferred, _, is_colloquial, is_historic = fields[4:8]
-        if language not in wanted_languages or geoname_id not in wanted_geoname_ids:
+        if tag not in tags or geoname_id not in wanted_geoname_ids:
             continue
-        name = name.strip()
+        name = name.translate(FORMAT_CHARACTERS).strip()
         if not name or any(c in name for c in "\t\r\n"):
             continue
         score = (
@@ -156,9 +210,12 @@ def resolve_alternate_names(altnames_text, wanted_geoname_ids, wanted_languages)
             1 if is_preferred == "1" else 0,
             0 if is_colloquial == "1" else 1,
         )
-        key = (geoname_id, language)
-        if key not in best or score > best[key][0]:
-            best[key] = (score, name)
+        for language in tags[tag]:
+            if language == "kmr" and not (is_kurmanji(name) and REJECTED_KURMANJI.get(geoname_id) != name):
+                continue
+            key = (geoname_id, language)
+            if key not in best or score > best[key][0]:
+                best[key] = (score, name)
     return {key: name for key, (score, name) in best.items()}
 
 
@@ -174,8 +231,18 @@ def main(cities_tsv, cities500_zip, cities500_url, altnames_zip, altnames_url, r
     altnames_bytes, altnames_text = read_zip_member(altnames_zip, "alternateNamesV2.txt")
     resolved = resolve_alternate_names(altnames_text, set(matched), set(GEONAMES_LANGUAGES))
 
+    english_names = table["en"]
+
+    def resolve(place, gid, lang):
+        """The name for a place in a language, or "" — for `kmr` also "" when the name carries nothing English does
+        not, the same "a name equal to the English one is left empty" convention natural_earth_cities.py uses."""
+        name = resolved.get((gid, lang), "") if gid else ""
+        if lang == "kmr" and name and not carries_kurmanji_information(name, english_names[place]):
+            return ""
+        return name
+
     new_columns = {
-        lang: [resolved.get((gid, lang), "") if gid else "" for gid in geoname_ids]
+        lang: [resolve(place, gid, lang) for place, gid in enumerate(geoname_ids)]
         for lang in GEONAMES_LANGUAGES
     }
     for lang in GEONAMES_LANGUAGES:
@@ -188,8 +255,9 @@ def main(cities_tsv, cities500_zip, cities500_url, altnames_zip, altnames_url, r
         "existing places to a GeoNames geonameid by name and coordinate",
         f"# geonames-url: {cities500_url}",
         f"# geonames-sha256: {hashlib.sha256(cities500_bytes).hexdigest()}",
-        "# geonames-altnames-source: GeoNames alternateNamesV2 export, ps/ckb/az/uz/ms/tg/ne/ta names by geonameid "
-        "(DT-020; kmr and prs checked and not usable, see this file's generator docstring)",
+        "# geonames-altnames-source: GeoNames alternateNamesV2 export, ps/ckb/az/uz/ms/tg/ne/ta names by geonameid, "
+        "plus kmr from the Latin-script (Hawar-alphabet) half of the generic `ku` tag (DT-020; prs checked and not "
+        "usable, see this file's generator docstring)",
         f"# geonames-altnames-url: {altnames_url}",
         f"# geonames-altnames-sha256: {hashlib.sha256(altnames_bytes).hexdigest()}",
         f"# geonames-retrieved: {retrieved}",

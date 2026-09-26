@@ -42,6 +42,7 @@ class CityTableParserTest {
             "population" to "1967005",
             "en" to "Karaj",
             "fa" to "کرج",
+            "kmr" to "Kerec",
         )
 
     private fun header(names: List<String> = columns) = "# columns: " + names.joinToString(",")
@@ -76,9 +77,19 @@ class CityTableParserTest {
         city.name("en") shouldBe "Tehran"
         city.name("prs") shouldBe "تهران"
         city.name("ps") shouldBe "Tehran"
+        city.name("kmr") shouldBe "Tehran"
         city.hasPublishedName("es") shouldBe true
         city.hasPublishedName("ps") shouldBe true
-        city.hasPublishedName("kmr") shouldBe false
+        city.hasPublishedName("kmr") shouldBe true
+    }
+
+    @Test
+    fun `a place names in Kurmanji, which DT-020 reads from the Latin-script half of GeoNames' ku tag`() {
+        val karaj = parse(listOf(karaj)).single()
+
+        karaj.name("kmr") shouldBe "Kerec"
+        karaj.name("ckb") shouldBe "Karaj"
+        karaj.hasPublishedName("kmr") shouldBe true
     }
 
     @Test

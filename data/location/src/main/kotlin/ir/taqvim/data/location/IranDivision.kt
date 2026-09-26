@@ -60,13 +60,16 @@ data class IranDivision(
         const val PERSIAN: String = "fa"
 
         /**
-         * Persian, from GeoNames' Iran alternate-names dump directly, plus the 8 languages DT-020 cross-matched from
+         * Persian, from GeoNames' Iran alternate-names dump directly, plus the 9 languages DT-020 cross-matched from
          * the same dump for at least this file's 31 provinces (coverage of the 435 counties is far sparser, and
-         * `ne` names only 1 of them; see this table's generator, `tools/geodata/geonames_iran_divisions.py`). `prs`
-         * and `kmr` are not published here either, for the same reasons `cities.tsv` leaves them out (docs/DATA_TODO.md
-         * DT-020): `prs` falls back to the Persian name via [NAME_FALLBACKS] instead.
+         * `ne` names only 1 of them; see this table's generator, `tools/geodata/geonames_iran_divisions.py`).
+         * Kurmanji (`kmr`) comes from the Latin-script half of GeoNames' generic `ku` tag, Central Kurdish (`ckb`)
+         * from its own tag; Dari (`prs`) is not published here and falls back to the Persian name via
+         * [NAME_FALLBACKS], which is the right answer rather than a gap — Dari and Iranian Persian write these
+         * names identically, and GeoNames has no Dari-tagged name for any Iran division (docs/DATA_TODO.md DT-020).
          */
-        val PUBLISHED_LANGUAGES: Set<String> = setOf(PERSIAN, "ps", "ckb", "az", "ta", "tg", "uz", "ms", "ne")
+        val PUBLISHED_LANGUAGES: Set<String> =
+            setOf(PERSIAN, "ps", "ckb", "kmr", "az", "ta", "tg", "uz", "ms", "ne")
 
         /** Dari (`prs`) is written in the Persian script with Persian place-name spellings. */
         private val NAME_FALLBACKS: Map<String, String> = mapOf("prs" to PERSIAN)

@@ -78,6 +78,7 @@ class IranDivisionTableParserTest {
                         "en" to "Tabriz",
                         "fa" to "تبریز",
                         "az" to "Təbriz",
+                        "kmr" to "Tewrêz",
                         "latitude" to "38.08000",
                         "longitude" to "46.29194",
                     ),
@@ -86,8 +87,8 @@ class IranDivisionTableParserTest {
 
         county.name("az") shouldBe "Təbriz"
         county.hasPublishedName("az") shouldBe true
-        county.hasPublishedName("kmr") shouldBe false
-        county.name("kmr") shouldBe "Tabriz"
+        county.hasPublishedName("kmr") shouldBe true
+        county.name("kmr") shouldBe "Tewrêz"
     }
 
     @Test

@@ -1539,30 +1539,59 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   id, ja, ru, tr, ur, zh. Coordinates from the point geometry rounded to 5 decimals (the LATITUDE/LONGITUDE attributes
   differ for 244 places, by up to 0.76°). A localized name equal to the English one is left empty; −99 and missing
   time zones become empty. Nothing translated or added.
-- **DT-020 addition, resolved 2026-09-25 for 8 of the 10 named languages:** Pashto (`ps`), Central Kurdish (`ckb`),
-  Azerbaijani (`az`), Uzbek (`uz`), Malay (`ms`), Tajik (`tg`), Nepali (`ne`) and Tamil (`ta`) name columns added by
-  `tools/geodata/geonames_place_names.py`, from the GeoNames gazetteer (CC BY 4.0; §T-603 "Iran country divisions"
-  below has the licence text). Two GeoNames exports, retrieved 2026-09-25:
+- **DT-020 addition, resolved 2026-09-25 for 8 languages and 2026-09-26 for Kurmanji:** Pashto (`ps`), Central
+  Kurdish (`ckb`), Azerbaijani (`az`), Uzbek (`uz`), Malay (`ms`), Tajik (`tg`), Nepali (`ne`), Tamil (`ta`) and
+  Kurmanji (`kmr`) name columns added by `tools/geodata/geonames_place_names.py`, from the GeoNames gazetteer
+  (CC BY 4.0; §T-603 "Iran country divisions" below has the licence text). Two GeoNames exports, re-retrieved
+  2026-09-26 when the `kmr` column was added, so that the whole file is reproducible from one pair of inputs (the
+  8 columns first written on 2026-09-25 came out byte-identical from the newer pair):
   - `cities500` (every GeoNames place with population ≥ 500), https://download.geonames.org/export/dump/cities500.zip
-    (SHA-256 `8d07609da318268df79d96c163ff1b6a81f14318c0cb77c3e5799119463ed713`), used only to match each of this
+    (SHA-256 `1a8105f1e64fca2b15f358196524f94b47901d4889733eb81d3257b94816e36e`; the 2026-09-25 retrieval was
+    `8d07609da318268df79d96c163ff1b6a81f14318c0cb77c3e5799119463ed713`), used only to match each of this
     file's places to a GeoNames geonameid: same ISO country code, name matching (case- and diacritic-folded) against
     either GeoNames' `name` or `asciiname`, nearest of any candidates by great-circle distance, accepted within
     100 km. 6297 of 7342 places (86%) matched; the rest (smaller places below the cities500 population threshold,
-    or without a matching name) keep no GeoNames-sourced name in any of the 8 languages.
+    or without a matching name) keep no GeoNames-sourced name in any of the 9 languages.
   - `alternateNamesV2` (the global per-place alternate-names export), https://download.geonames.org/export/dump/alternateNamesV2.zip
-    (SHA-256 `c19d676ecdcbf279c4b3e5124094609feb81280b361d32247d0c5be9a00042d9`): for each matched geonameid, the
+    (SHA-256 `a777df8e7806068aa2e3fc723a39fb4a3a0d09b07b00ffe10dc4bba2a1169e76`; the 2026-09-25 retrieval was
+    `c19d676ecdcbf279c4b3e5124094609feb81280b361d32247d0c5be9a00042d9`): for each matched geonameid, the
     best name per language (preferring non-historic, then `isPreferredName`, then non-colloquial). Coverage of the
-    6297 matched places: ps 1776, ckb 356, az 2179, uz 1915, ms 1922, tg 1990, ne 145, ta 691 — sparse but real,
-    reflecting GeoNames' own uneven crowd-sourced coverage per language, not a transformation error.
-  - **Not added — Kurmanji (`kmr`) and Dari (`prs`), checked 2026-09-25:** GeoNames' own `kmr` tag (honoring the
-    ckb/kmr distinction by GeoNames' own language tag, not the generic `ku` macrolanguage tag) has only 5 rows in
-    the entire global dump, none matching a place in this file. GeoNames' `prs` tag has only 6 rows worldwide, of
-    which exactly 1 matches a bundled place (geonameid 563708, Dzerzhinsk, Russia) — too little to add a dedicated
-    column, and doing so would have disabled `City`'s existing `prs`→`fa` same-script fallback for every other
-    place. Both stay open in docs/DATA_TODO.md DT-020.
+    6297 matched places: ps 1776, ckb 356, az 2179, uz 1915, ms 1922, tg 1990, ne 145, ta 691, kmr 128 — sparse but
+    real, reflecting GeoNames' own uneven crowd-sourced coverage per language, not a transformation error.
+  - **Kurmanji (`kmr`) — read from the generic `ku` tag, split by script, 2026-09-26:** GeoNames' own `kmr` tag has
+    5 rows in the entire global dump (4 of them in the Arabic script) and matches no place in this file, so it is
+    unusable on its own. GeoNames instead tags most Kurdish names with the single generic `ku` macrolanguage code:
+    20 097 rows globally, 11 601 in the Latin script and 8 496 in the Arabic script, and 6 064 of the 8 737 named
+    places carry both. Kurmanji is written in the Latin "Hawar" alphabet and Central Kurdish in the Arabic script,
+    so the split is exact rather than a guess: a `ku` name whose every letter is a Hawar letter
+    (a b c ç d e ê f g h i î j k l m n o p q r s ş t u û v w x y z) is taken as Kurmanji, and the Arabic-script `ku`
+    names are left to the separate `ckb` tag this file already reads. A Latin-script `ku` name that folds to the
+    English name without using a letter Kurmanji has and English does not (ç/ê/î/ş/û) is dropped as an untranslated
+    exonym rather than a name — that removed `Reykjavik` (Reykjavík), `Porto Novo` (Porto-Novo) and `Sao Tome`
+    (São Tomé). 132 candidates resulted; 128 were kept.
+  - **Spot-check of the 128 Kurmanji names, 2026-09-26:** every candidate was checked against Kurmanji Wikipedia
+    (ku.wikipedia.org — Central Kurdish is the separate ckb.wikipedia.org), by Wikidata `kuwiki` sitelink and `ku`
+    label for the 87 places GeoNames gives a Wikidata id, and by direct ku.wikipedia title lookup for the rest.
+    113 of the 132 are attested there verbatim (counting a redirect, which is still an attested spelling); 9 differ
+    only by an attested Kurmanji variant (Yerevan `Êrîvan`/`Rewan`, Marseille `Marsêy`/`Marsîlya`, Deir ez-Zor
+    `Dêrezor`/`Dêra Zorê`, Al-Hasakah `Heseke`/`Hesîçe`, Tashkent `Taşkent`/`Taşkend`, Qom `Qûm`/`Qum`, Ramallah
+    `Ramella`/`Ramellah`, Katowice `Katovîts`, Podgorica `Podgorika`); 8 have no Kurmanji Wikipedia entry at all but
+    are plain Hawar renderings of the local name (`Bezanson`, `Rozarîyo`, `Baqûba`, `Remadî`, `Dîwaniye`, `Tartûs`,
+    `Îdlîb`, `Laziqiye`); and **1 was rejected by hand** — São Paulo's `Sao Paolo`, an Italian-spelled misspelling,
+    listed in the generator's `REJECTED_KURMANJI` so the place keeps its English name instead. No surviving name
+    turned out to be a romanized Central Kurdish form: those do exist under the `ku` tag (`Shaxî …`, `Chemî …`,
+    `Ṟûbarî …`, with the Sorani-romanization letters ł and ṟ) but only on streams and mountains, which this file
+    does not carry. The names are visibly Kurmanji and not Sorani or English — Diyarbakır `Amed`, Gaziantep `Dîlok`,
+    Batman `Êlih`, Tunceli `Mamekî`, Şanlıurfa `Riha`, Sanandaj `Sine`, Kermanshah `Kirmaşan`.
+  - **Not added — Dari (`prs`), checked 2026-09-25 and again 2026-09-26:** GeoNames' `prs` tag has 6 rows in the
+    entire global dump, of which exactly 1 matches a bundled place (geonameid 563708, Dzerzhinsk, Russia), and
+    there is no `fa-AF` tag at all. This is not a gap to fill: Dari and Iranian Persian write these place names
+    identically, so `City`'s existing `prs`→`fa` same-script fallback gives the right name for every place, which
+    a 1-of-6297 `prs` column would have silently switched off. DT-020 closes for `prs` on that reasoning.
   - **Not consulted:** any other calendar/gazetteer app, or GPL/LGPL code; no name was machine-translated — every
-    added name is GeoNames' own published alternate name for that geonameid.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; DT-020 addition 2026-09-25.
+    added name is GeoNames' own published alternate name for that geonameid, and Kurmanji Wikipedia was read only
+    to verify GeoNames' names, never copied from.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-13; DT-020 addition 2026-09-25, Kurmanji 2026-09-26.
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### T-603 — Iran country divisions (`iran-divisions.tsv`; DT-021)
@@ -1579,11 +1608,21 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   `isPreferredName`, or the first one found, per geonameid. The same per-country alternate-names dump also carries
   Pashto (`ps`), Central Kurdish (`ckb`), Azerbaijani (`az`), Uzbek (`uz`), Malay (`ms`), Tajik (`tg`), Nepali (`ne`)
   and Tamil (`ta`) alternate names for Iran's geonameids (DT-020, resolved 2026-09-25 for these 8 languages, added
-  by the same `geonames_iran_divisions.py` in the same pass as the `fa` names, no extra download): coverage is
-  sparse and almost entirely limited to the 31 provinces — of 466 divisions, fa=463, ps=31, ckb=30, az=32, uz=31,
-  ms=31, tg=32, ne=1, ta=30. Kurmanji (`kmr`) and Dari (`prs`) were checked and are NOT written: neither tag has a
-  single alternate name for any Iran division in this dump (checked 2026-09-25); both stay open in DT-020, and
-  `prs` keeps its existing `IranDivision`→`fa` same-script fallback instead.
+  by the same `geonames_iran_divisions.py` in the same pass as the `fa` names, no extra download), and Kurmanji
+  (`kmr`) from the Latin-script half of the same dump's generic `ku` tag (added 2026-09-26, same rule and reasoning
+  as `cities.tsv` above; GeoNames' own `kmr` tag has no row for any Iran division). Coverage is sparse and almost
+  entirely limited to the 31 provinces — of 466 divisions, fa=463, ps=31, ckb=30, az=32, uz=31, ms=31, tg=32, ne=1,
+  ta=30, kmr=31. All 31 Kurmanji province names are unmistakably Kurmanji and not romanized Central Kurdish: they
+  use the Kurmanji izafe and conjunction — `Xorasana Bakur` (North Khorasan), `Xorasana Başûr` (South Khorasan),
+  `Azerbaycana Rojhilat` (East Azerbaijan), `Çarmihal û Bextiyarî`, `Parêzgeha Kurdistan` — where Central Kurdish
+  would write `Rojhełat` and `Parêzgay`, as this file's own `ckb` column does (`پارێزگای کوردستان`). Dari (`prs`)
+  is NOT written: GeoNames has no `prs`-tagged name for any Iran division and no `fa-AF` tag at all, and
+  `IranDivision`'s `prs`→`fa` same-script fallback is the right name rather than a gap, since Dari writes these
+  names exactly as Iranian Persian does; DT-020 closes for `prs` on that reasoning.
+- **Correction, 2026-09-26:** seven Persian province names (Gilan, Hamadan, Ilam, Kermanshah, Kurdistan, Qazvin,
+  Semnan) carried a trailing U+200E LEFT-TO-RIGHT MARK copied from GeoNames' crowd-sourced field. The generator now
+  strips Unicode format characters (bidi marks and embeddings, zero-width joiners and spaces, soft hyphen) from
+  every name; no visible character changed.
 - **Checked, not used:** Statistical Centre of Iran (amar.org.ir) — reachable over plain HTTP but its HTTPS
   certificate chain fails verification (an intermediate signed `sha1WithRSAEncryption` with "unable to get local
   issuer certificate", checked 2026-09-25; the same failure DT-021 recorded on 2026-09-13), so no data was taken
@@ -1601,7 +1640,8 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
 - **District level (bakhsh) not published:** GeoNames' Iran `ADM3` coverage is 7 records against a real count in
   the hundreds or low thousands, checked 2026-09-25 by counting distinct `admin3`-coded rows in the same dump — far
   too sparse to ship; DT-021 stays open for the district level.
-- **Author / date:** Saman Sohani (via Claude Code), 2026-09-25; DT-020 languages added in the same pass.
+- **Author / date:** Saman Sohani (via Claude Code), 2026-09-25; DT-020 languages added in the same pass, Kurmanji
+  and the U+200E correction 2026-09-26.
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
 ### T-1301 — World outline (`world-110m.txt`)

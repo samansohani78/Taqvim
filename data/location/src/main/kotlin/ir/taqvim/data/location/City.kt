@@ -8,7 +8,7 @@ import ir.taqvim.core.model.Coordinates
 
 /**
  * A populated place from the bundled city list (T-603), compiled from Natural Earth "Populated Places" (public
- * domain) plus, for 8 languages Natural Earth does not publish (DT-020), alternate names cross-matched from the
+ * domain) plus, for 9 languages Natural Earth does not publish (DT-020), alternate names cross-matched from the
  * GeoNames gazetteer (CC BY 4.0; see `about_source_geonames_attribution`).
  *
  * [localizedNames] holds the published names that differ from [englishName]. For a language in
@@ -54,11 +54,16 @@ data class City(
          * name and nearest coordinate in GeoNames' `cities500` gazetteer), for the languages Natural Earth has no
          * name field for at all. Coverage is sparse and partial by design (GeoNames' own coverage of each language
          * varies), which is why a missing entry still falls back to [englishName] rather than signalling an error.
-         * Dari (`prs`) and Kurmanji (`kmr`) stay out of this set: GeoNames' own `prs` and `kmr` tags exist but matched
-         * only 1 and 0 of this file's places respectively (docs/DATA_TODO.md DT-020), and adding either to this set
-         * would silently turn off [NAME_FALLBACKS] for every other place in that language.
+         * Kurmanji (`kmr`) comes from the Latin-script (Hawar-alphabet) half of GeoNames' generic `ku` tag and
+         * Central Kurdish (`ckb`) from its own tag, since GeoNames' own `kmr` tag has 5 rows worldwide and matches
+         * nothing here; the two are told apart by script, which is exact, because Kurmanji is written in the Latin
+         * alphabet and Central Kurdish in the Arabic one. Dari (`prs`) stays out of this set on purpose: GeoNames
+         * has 6 `prs`-tagged names worldwide and no `fa-AF` tag at all, and Dari writes place names the same way
+         * Iranian Persian does, so the [NAME_FALLBACKS] entry to `fa` is the right answer for every place rather
+         * than a gap (docs/DATA_TODO.md DT-020).
          */
-        private val GEONAMES_LANGUAGES: Set<String> = setOf("ps", "ckb", "az", "ta", "tg", "uz", "ms", "ne")
+        private val GEONAMES_LANGUAGES: Set<String> =
+            setOf("ps", "ckb", "kmr", "az", "ta", "tg", "uz", "ms", "ne")
 
         /** Languages of the 24 launch languages for which this file publishes place names. */
         val PUBLISHED_LANGUAGES: Set<String> = NATURAL_EARTH_LANGUAGES + GEONAMES_LANGUAGES
