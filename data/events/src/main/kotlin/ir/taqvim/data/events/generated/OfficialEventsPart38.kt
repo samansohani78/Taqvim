@@ -262,7 +262,7 @@ internal val OFFICIAL_EVENTS_PART_38: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000095720.page=5",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000095720#page=5",
                     "un" to "https://www.unesco.org/en/days/teachers",
                 ),
         ),

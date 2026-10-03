@@ -303,7 +303,7 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803.page=56",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803#page=56",
                     "un" to "https://www.unesco.org/en/days/world-book-and-copyright",
                 ),
         ),

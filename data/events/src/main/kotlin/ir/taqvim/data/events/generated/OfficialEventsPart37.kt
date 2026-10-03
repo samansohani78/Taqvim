@@ -301,7 +301,7 @@ internal val OFFICIAL_EVENTS_PART_37: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000142825.page=86",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000142825#page=86",
                     "un" to "https://www.unesco.org/en/days/philosophy",
                 ),
         ),
@@ -342,7 +342,7 @@ internal val OFFICIAL_EVENTS_PART_37: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000118514.page=70",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000118514#page=70",
                     "un" to "https://www.unesco.org/en/days/poetry",
                 ),
         ),

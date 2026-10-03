@@ -101,7 +101,7 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000090448.page=76",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000090448#page=76",
                     "un" to "https://www.un.org/en/observances/press-freedom-day",
                 ),
         ),

@@ -347,7 +347,7 @@ internal val OFFICIAL_EVENTS_PART_21: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000110220.page=72",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000110220#page=72",
                     "un" to "https://www.unesco.org/en/days/slave-trade-remembrance",
                 ),
         ),

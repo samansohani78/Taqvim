@@ -24,21 +24,42 @@ jobs:
             | sort -u > "$RUNNER_TEMP/urls.txt"
           echo "$(wc -l < "$RUNNER_TEMP/urls.txt") distinct URLs"
       - name: Check URLs
+        # Two outcomes, because they mean different things and only one is a defect.
+        #
+        # 404 and 410 say the document is GONE: the citation no longer leads anywhere and the record needs a new
+        # source. That fails the job.
+        #
+        # 403, 429 and 000 say this runner was REFUSED: unesdoc.unesco.org and iranicaonline.org answer 403 to any
+        # non-browser client, and rc.majlis.ir does not answer a GitHub runner at all. A person opening the same link
+        # sees the document. Failing on those made the whole job red every week for reasons no edit could fix, and a
+        # weekly red tick that is always wrong gets ignored — which is how the 2026-09-28 run sat unread, and with it
+        # seven genuinely malformed URLs it could never have distinguished from the noise. They are reported as
+        # warnings and listed in the summary for a person to glance at.
         run: |
-          failures=0
+          gone=0
+          blocked=0
           while IFS= read -r url; do
             status=$(curl --silent --location --output /dev/null --write-out '%{http_code}' \
               --retry 3 --retry-delay 5 --max-time 60 --user-agent "Mozilla/5.0 (Taqvim dataset link check)" \
               "$url" || true)
-            if [[ "$status" =~ ^[23] ]]; then
-              echo "ok $status $url"
-            else
-              echo "::error::Citation URL did not resolve (HTTP $status): $url"
-              echo "- HTTP $status — $url" >> "$GITHUB_STEP_SUMMARY"
-              failures=$((failures + 1))
-            fi
+            case "$status" in
+              2*|3*)
+                echo "ok $status $url"
+                ;;
+              404|410)
+                echo "::error::Citation URL is gone (HTTP $status): $url"
+                echo "- **gone** — HTTP $status — $url" >> "$GITHUB_STEP_SUMMARY"
+                gone=$((gone + 1))
+                ;;
+              *)
+                echo "::warning::Citation URL could not be checked from this runner (HTTP $status): $url"
+                echo "- blocked or unreachable — HTTP $status — $url" >> "$GITHUB_STEP_SUMMARY"
+                blocked=$((blocked + 1))
+                ;;
+            esac
           done < "$RUNNER_TEMP/urls.txt"
-          if [ "$failures" -gt 0 ]; then
-            echo "$failures citation URL(s) did not resolve"
+          echo "$blocked URL(s) could not be checked from this runner; $gone gone" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$gone" -gt 0 ]; then
+            echo "$gone citation URL(s) are gone"
             exit 1
           fi
