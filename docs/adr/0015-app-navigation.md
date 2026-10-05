@@ -16,7 +16,9 @@ list owned by the app.
 
 1. **Destinations** are a `@Serializable` sealed interface `AppDestination : NavKey` in `:app`: one object per screen
    without arguments, `Timeline(initialDay)`, `EventEditor(eventId)` and `Pending(feature)` for planned screens that do
-   not exist yet (shift work, the settings of T-1500).
+   not exist yet. Only shift work (F-08) is still one: the settings of T-1500 have their own screens, and widget
+   settings got theirs on 2026-10-06. `PendingFeature.SETTINGS` remains as the exhaustive fallback of
+   `settingsDestination`, which every current search entry passes without reaching.
 2. **Back stack** (`AppBackStack`, pure and unit-tested): the calendar is always at the bottom. The four top-level tabs
    are Calendar, Times, Tools and More; selecting a tab other than the calendar leaves `[Calendar, tab]` and closes
    screens opened from the previous tab, selecting the current tab returns to its screen, and other screens are pushed
