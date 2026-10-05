@@ -1,0 +1,38 @@
+# source: Joseph Grinnell Dalton, "The Spherical Basis of Astrology; being a comprehensive table of houses for
+#   latitudes 22° to 56°", Boston, F. Spenceley, 1908 — the page headed SID. T. 13h 47m 49s, ARC 206° 57'.2.
+# url: https://www.loc.gov/item/08023915/
+# page: digitised page 0050 of 82; image
+#   https://tile.loc.gov/image-services/iiif/public:gdcmassbookdig:sphericalbasiso00dalt:sphericalbasiso00dalt_0050/full/pct:100.0/0/default.jpg
+# rights: public domain, digitised by the Library of Congress ("The books in this collection are in the public
+#   domain and are free to use and reuse", item record, rights field).
+# retrieved: 2026-10-05
+# reviewer: pending
+#
+# Dalton states the construction on digitised page 0008 — "The twelve astrological Houses are formed by trisecting
+# each of the four natural divisions of the heavens made by the meridian and horizon" — and gives its test on page
+# 0010: "the semi-arc should equal its meridian distance by right ascension". That is Placidus, the same definition
+# PROVENANCE A-14 cites from Plantiko.
+#
+# Only the ascendant and the midheaven are transcribed. Those are printed in full: the ascendant in degrees and
+# minutes of Capricorn for every latitude, the midheaven once in the block header (29° 00' Libra, with its own
+# right ascension 206° 57'.2). The intermediate cusps 11, 12, 2 and 3 use Dalton's compressed notation, where a
+# value prints only the digits that changed from the row above, so transcribing them needs his stated convention
+# and they are deliberately left out rather than guessed (DT-018).
+#
+# ramcDegrees is Dalton's ARC: 206° 57'.2 = 206.9533°. ascendantDegrees is his ascendant converted from
+# <Capricorn degrees>° <minutes>' to ecliptic longitude (Capricorn begins at 270°).
+latitudeDegrees,ramcDegrees,midheavenDegrees,ascendantDegrees
+22,206.9533,209.0000,285.9667
+23,206.9533,209.0000,285.4833
+24,206.9533,209.0000,284.9833
+25,206.9533,209.0000,284.4833
+26,206.9533,209.0000,283.9667
+27,206.9533,209.0000,283.4333
+28,206.9533,209.0000,282.9000
+29,206.9533,209.0000,282.3500
+30,206.9533,209.0000,281.7833
+31,206.9533,209.0000,281.2167
+32,206.9533,209.0000,280.6167
+33,206.9533,209.0000,280.0167
+34,206.9533,209.0000,279.3833
+35,206.9533,209.0000,278.7500

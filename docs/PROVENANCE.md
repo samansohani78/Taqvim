@@ -288,6 +288,17 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   proven — the property tests check the result against the definition (cusps at ⅓ and ⅔ of the semi-arc). Placidus is undefined (`null`) where |latitude| ≥ 90° − ε, the limit at which the
   iteration's semi-arcs stop existing. Lots: day Fortune = ASC + Moon − Sun,
   Spirit = ASC − Moon + Sun; the formulas swap at night.
+- **Independent validation (2026-10-05, DT-018):** Dalton's *The Spherical Basis of Astrology* (Boston, F. Spenceley,
+  1908), a published table of houses for latitudes 22°–56°, digitised in the public domain by the Library of Congress
+  (https://www.loc.gov/item/08023915/). It states this same construction — "the twelve astrological Houses are formed
+  by trisecting each of the four natural divisions of the heavens made by the meridian and horizon" (p. 0008), tested
+  by "the semi-arc should equal its meridian distance by right ascension" (p. 0010) — and `DaltonHousesTest` checks
+  the ascendant and midheaven against his page for sidereal time 13h 47m 49s at fourteen latitudes. **Agreement is
+  better than 0.7 arcminutes on every row**, and the test fails at 0.2, so the bound is measured rather than chosen.
+  This is the first check of A-14 against arithmetic done independently of this project, rather than against the
+  definition the code was written from. Only the ascendant and midheaven are transcribed: Dalton prints the
+  intermediate cusps in a compressed notation where a value shows only the digits that changed from the row above,
+  which is left to a later pass rather than guessed.
 - **Validation:** property tests against the definitions (ascendant on the eastern horizon, midheaven hour angle 0,
   cusps 11/12 at ⅓ and ⅔ semi-arc, ordering and oppositions) for 1950–2050 and latitudes ±60°, plus
   `every cusp sits at its published mundane position`, which evaluates reference 3's definition VI for the midheaven,
