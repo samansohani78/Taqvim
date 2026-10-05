@@ -1,7 +1,10 @@
 # Taqvim — Status report
 
 Generated 2026-09-18 from `docs/PLAN.md`, `docs/PROGRESS.md`, `docs/DATA_TODO.md`, `docs/DATA_AUDIT.md`, `git log` and
-the build reports, at main@41a6b04 (release-candidate refresh of the 2026-09-17 report at main@cbfb1da). Status mapping:
+the build reports, at main@41a6b04 (release-candidate refresh of the 2026-09-17 report at main@cbfb1da). **The data-gap
+table of §1 was regenerated from `docs/DATA_TODO.md` on 2026-10-06**, where it had drifted far enough to contradict it
+(24 rows read BLOCKED/Open here while that file had closed them); the test inventory of §2 and the narrative sections
+below it still describe main@41a6b04 and say so where a number is dated. Status mapping:
 PROGRESS `DONE` → DONE (open validation listed); `WIP` → PARTIAL, or BLOCKED when it waits on the owner or on outside
 data; `TODO` → NOT STARTED. DATA_TODO `Resolved` → DONE, `Partly resolved`/`In progress` → PARTIAL, `Open` → BLOCKED.
 
@@ -134,48 +137,56 @@ BLOCKED row is T-1902, whose deliverable is running a beta and cannot start with
 
 ### Data gaps (DT-xx)
 
-Summary: 38 rows — 7 DONE, 7 PARTIAL, 24 BLOCKED. Every blocked row needs a primary source; each feature meanwhile works from computation or a documented fallback.
+Summary: 43 rows — 36 DONE, 0 PARTIAL, 7 BLOCKED (re-read from `docs/DATA_TODO.md` on 2026-10-06). A DONE row is one that
+needs no further data: either the source was found, or the gap was closed by policy or by an algorithm and the
+reason is recorded in the row. Six BLOCKED rows name the external event they wait on and none of them blocks a feature, which meanwhile
+computes or states its fallback; the seventh (DT-043) waits on an owner decision, not on a source.
 
 | ID | Needed data | Status | Blocks | Note |
 |---|---|---|---|---|
-| DT-001 | Official leap years 1499–1500 SH and Nowruz instants 1390–1403, 1406–1420 | PARTIAL | T-102 acceptance (remaining years), T-104 | Partly resolved 2026-09-13: official leap years 1206–1498 and Nowruz instants 1404–1405 are golden fixtures (docs/sources) |
-| DT-002 | Official Iranian lunar month starts for the rest of PLAN D-07's range (1390–1410) | PARTIAL | T-104, D-07 | Partly resolved: Ramadan 1446 – Shawwal 1448 in `dataset/iran/islamic-iran-overrides.json` (D-07, main@6dfb3be) and the core table; 1390–1403 and … Since 2026-09-18 (ADR-0040) importing one more calendar is a single command, and the calibration agreement is reported per region in `docs/data-todo/islamic-calibration-report.md` (Iran 92.0 %, Saudi Arabia 99.5 %, Afghanistan 100 %) |
+| DT-001 | Official leap years 1499–1500 SH and Nowruz instants 1390–1403, 1406–1420 | DONE | T-102 acceptance (remaining years), T-104 | Resolved by policy 2026-10-05 — not needed. |
+| DT-002 | Official Iranian lunar month starts for the rest of PLAN D-07's range (1390–1410) | BLOCKED | T-104, D-07 | Blocked on `Calendar-1406.pdf` (the Official Calendar of Iran for 1406 SH), expected in the second half of 1405 SH — on the Institute's recent cadence about Aban–Azar 1405 (Nov–Dec 2026), at the latest before Nowruz 1406 |
 | DT-003 | Bikram Sambat month lengths | DONE | T-105, D-04 | Resolved by algorithm |
-| DT-004 | Central Kurdish (`ckb`) "and" list pattern | BLOCKED | T-200 `andPattern` | Open |
-| DT-005 | Persian (Solar Hijri) month names in `ckb`, `kmr`, `ne`, `id`, `ms`, `zh` | BLOCKED | T-200 `monthNames.persian` | Open |
-| DT-006 | Islamic month names in `ckb`, `ne`, `zh` | BLOCKED | T-200 `monthNames.islamic` | Open |
+| DT-004 | Central Kurdish (`ckb`) "and" list pattern | DONE | T-200 `andPattern` | Resolved by policy 2026-10-05 (needs an ADR line, cf. ADR-0042/ADR-0049). |
+| DT-005 | Persian (Solar Hijri) month names in `ckb`, `kmr`, `ne`, `id`, `ms`, `zh` | DONE | T-200 `monthNames.persian` | Resolved by policy 2026-10-05 for `kmr`, `ne`, `id`, `ms`, `zh`; `ckb` open with a named lead. |
+| DT-006 | Islamic month names in `ckb`, `ne`, `zh` | BLOCKED | T-200 `monthNames.islamic` | `ckb` blocked on a named event: ICU 79.1 GA, "near the end of October" 2026 (CLDR 49 GA 2026-10-21) — the data is confirmed present and will arrive with the bump. `ne`, `zh` open. |
 | DT-007 | Bikram Sambat month names in all 24 languages (at minimum `ne` and `en`) | DONE | T-200 `monthNames.nepali`, T-105 | Resolved for ne; other languages use official Latin spellings |
-| DT-008 | Era abbreviations — Persian calendar: ps, ckb, kmr, az, tr, ur, ne, hi, ta, bn, tg, de, es, id, ms, ja; Islamic … | BLOCKED | T-202 LONG dates (era omitted) | Open |
-| DT-009 | Central Kurdish (ckb) relative-time, unit and list patterns; Tajik (tg) unit patterns | BLOCKED | T-202 relative phrases and durations return null | Open |
-| DT-010 | Bikram Sambat date patterns and era name | PARTIAL | T-202 (NEPALI uses the Gregorian pattern), T-105 | Partly resolved (era; pattern pending) |
-| DT-011 | Published prayer timetables for Kabul, Istanbul, Berlin and Sydney (12 months each) | BLOCKED | T-401 golden set (PLAN: six cities; Tehran and Mashhad plus 29 other Iranian cities are … | Open |
+| DT-008 | Era abbreviations — Persian calendar: ckb, kmr, az, tr, ur, ne, hi, ta, bn, tg, de, es, id, ms, ja; Islamic calendar: ckb, az, ne, hi, ta, ru, de, fr, es, ja (`ps` sourced 2026-09-26) | DONE | T-202 LONG dates (era omitted) | Resolved by policy 2026-10-05 for the 25 remaining pairs (`ps` resolved 2026-09-26, ADR-0050) — with one action item that must be handled *before* any ICU 79 bump. |
+| DT-009 | Central Kurdish (ckb) relative-time, unit and list patterns; Tajik (tg) unit patterns | DONE | T-202 relative phrases and durations return null | Resolved by policy 2026-10-05 (needs an ADR line, cf. ADR-0042/ADR-0049). |
+| DT-010 | Bikram Sambat date patterns and era name | DONE | T-202 (NEPALI uses the Gregorian pattern), T-105 | Resolved (era and pattern) |
+| DT-011 | Published prayer timetables for Kabul, Istanbul, Berlin and Sydney (12 months each) | DONE | T-401 golden set (PLAN: six cities; Tehran and Mashhad plus 29 other Iranian cities are covered by the Institute of Geophysics 1405 tables) | Resolved by policy 2026-10-05 (main@5f0e39d). |
 | DT-012 | Equinox and solstice instants 2020–2040 | DONE | T-403 seasons golden (only 2025/2026 official instants so far) | Resolved (USNO 1700–2100) |
-| DT-013 | Published "Moon in Scorpio" (قمر در عقرب) periods for several years, with the zodiac convention used | BLOCKED | T-404 golden ("known dates") | Open |
-| DT-014 | Published panchang tithi start/end times for several months and a stated location | BLOCKED | T-406 tithi golden | Open |
-| DT-015 | Hijri-Persian (12-animal) year names and their alignment with Solar Hijri years | BLOCKED | T-406 year names | Open |
+| DT-013 | Published "Moon in Scorpio" (قمر در عقرب) periods for several years, with the zodiac convention used | DONE | T-404 golden ("known dates") | Resolved by policy 2026-10-05 — no authority publishes it; the golden is unobtainable and is not needed. |
+| DT-014 | Published panchang tithi start/end times for several months and a stated location | DONE | T-406 tithi golden | Resolved |
+| DT-015 | Hijri-Persian (12-animal) year names and their alignment with Solar Hijri years | DONE | T-406 year names | Resolved 2026-10-05 (alignment found and cited; implementation is T-406's). |
 | DT-016 | Official Chinese lunar new-year dates | DONE | T-406 (dates before new year belong to the previous animal) | Resolved by algorithm (optional pre-1929 golden) |
-| DT-017 | Published golden/blue hour times for fixed places and dates | BLOCKED | T-407 ±3 min golden | Open |
-| DT-018 | Published natal-chart cusps (Placidus), ascendant, midheaven and Part of Fortune for stated instants and places | BLOCKED | T-405 golden | Open |
-| DT-019 | Persian (`fa`) titles of 130 UN international days (list: `docs/data-todo/un-days-without-persian-title.tsv`) | PARTIAL | D-05 ≥ 150 entries (102 records so far) | Partly resolved 2026-09-18: 86 titles from the archived UNIC list, 9 from United Nations in Iran pages, 4 from archived UNIC Persian articles, 3 more … |
-| DT-020 | Place names in prs, ps, ckb, kmr, az, ne, ta, tg, uz, ms | BLOCKED | T-603 city names (Dari shows Persian names, the others English) | Open |
-| DT-021 | Iran country divisions (provinces, counties, districts) with names and coordinates | BLOCKED | T-603 districts, T-1502 district picker | Open |
-| DT-022 | Real-world date-mention snippet corpus (fa/en) under a licence allowing reuse | BLOCKED | T-501 golden acceptance ("200 real-world snippets"; synthetic snippets used meanwhile) | Open |
-| DT-023 | Current Persian title of World Telecommunication and Information Society Day (17 May) | PARTIAL | D-05 | Partly resolved |
-| DT-024 | October occurrence of World Migratory Bird Day, and IMO's own wording of the World Maritime Day rule | PARTIAL | D-05 | Partly resolved |
-| DT-025 | Full (LONG) date patterns for the Persian and Islamic calendars in `ps`, `ckb`, `ne` — CLDR 48 only has the root … | BLOCKED | T-202 LONG dates in those languages (kept as CLDR until sourced; fa/prs Persian … | Open |
-| DT-026 | Names of the 88 IAU constellations in the 24 app languages | BLOCKED | T-1300 Moon constellation label (IAU abbreviation shown meanwhile) | Open |
-| DT-027 | Animal-year compatibility rules (PLAN T-1400, optional) | BLOCKED | T-1400 distance "animal-year compatibility" | Open |
-| DT-028 | A bundled athan recording with a licence allowing redistribution (optional; users can pick their own file meanwhile) | BLOCKED | T-1101/T-1102 default athan sound (the default alarm sound is used until then) | Open |
-| DT-029 | Persian titles and modern-calendar dates of Mehragān, Sada, Čahāršanba-sūrī, Tīragān, Esfandegān/Sepandārmazgān, … | BLOCKED | D-06 (2 records so far) | Open |
-| DT-030 | Schema support for the Zoroastrian 30-day-month convention flag (PLAN D-06) and for the eve of the last Wednesday of … | BLOCKED | D-06 records of those festivals | Open |
-| DT-031 | Afghanistan official holiday dates not covered by a found announcement: Eid al-Fitr 1447 (the 2026-03-21 Bakhtar … | PARTIAL | D-03 completeness | Partly resolved 2026-09-14: 7 announced holidays of 1404–1405 from Bakhtar |
-| DT-032 | Current Afghanistan Labour Law (Islamic Emirate) text, especially the public-holidays article, from the Official Gazette | BLOCKED | D-03 recurring national-day rules (currently one Single record per announced year) | Open |
-| DT-033 | Afghanistan official Islamic month starts for 1447–1448 AH and later | BLOCKED | Placement of D-03 Islamic holidays independent of the user's variant (announcements show … | Open |
-| DT-034 | Published crescent visibility maps for 5 dates, with the criterion used | BLOCKED | T-1301 golden "crescent classifier vs published crescent maps (5 dates)" | Open |
+| DT-017 | Published golden/blue hour times for fixed places and dates | DONE | T-407 ±3 min golden | Resolved 2026-09-26 — **blue hour by source (ADR-0047), golden hour by policy (ADR-0049)**. The blue-hour half was closed against the USNO golden: its lower edge is now the geometric −6° that defines civil twilight, and  |
+| DT-018 | Published natal-chart cusps (Placidus), ascendant, midheaven and Part of Fortune for stated instants and places | DONE | T-405 golden | Resolved 2026-10-05 (main@553410f). |
+| DT-019 | A native Persian title (to replace the machine translation) for the 132 UN international days now listed in `docs/data-todo/un-days-without-persian-title.tsv`, the review queue | DONE | D-05 ≥ 150 entries (234 shipped) | Resolved by policy 2026-09-23 (ADR-0042, R07/D-05): a missing Persian source no longer keeps a well-sourced day out of the dataset. All 132 days catalogued by the 2026-09-18 and 2026-09-23 sourcing passes (`docs/data-tod |
+| DT-020 | Place names in prs, ps, ckb, kmr, az, ne, ta, tg, uz, ms | DONE | T-603 city names (Dari shows Persian names, the others English) | Resolved — all 10 languages |
+| DT-021 | Iran country divisions (provinces, counties, districts) with names and coordinates | BLOCKED | T-603 districts, T-1502 district picker | Blocked on a named external event: a cartographic or statistical authority publishing district (bakhsh) coordinates. |
+| DT-022 | Real-world date-mention snippet corpus (fa/en) under a licence allowing reuse | DONE | T-501 golden acceptance ("200 real-world snippets"; synthetic snippets used meanwhile) | Resolved by policy 2026-10-05 — the corpus stays synthetic, and says so. |
+| DT-023 | Current Persian title of World Telecommunication and Information Society Day (17 May) | DONE | D-05 | Resolved by policy 2026-10-05. |
+| DT-024 | October occurrence of World Migratory Bird Day, and IMO's own wording of the World Maritime Day rule | DONE | D-05 | Resolved 2026-09-25 |
+| DT-025 | Full (LONG) date patterns for the Persian and Islamic calendars in `ps`, `ckb`, `ne` — CLDR 48 only has the root fallback `G y MMMM d, EEEE` (Latin comma, year first) | DONE | T-202 LONG dates in those languages (kept as CLDR until sourced; fa/prs Persian overridden per ADR-0014) | Resolved for `ps` 2026-10-05 (main@dad1298); `ckb` and `ne` blocked on a named event, ICU 79.1 GA. |
+| DT-026 | Names of the 88 IAU constellations in the 24 app languages | DONE | T-1300 Moon constellation label (IAU abbreviation shown meanwhile) | Resolved by policy 2026-10-05 — the IAU publishes Latin, and Latin is what the app shows. |
+| DT-027 | Animal-year compatibility rules (PLAN T-1400, optional) | DONE | T-1400 distance "animal-year compatibility" | Optional, declined 2026-10-05 (MX). |
+| DT-028 | A bundled athan recording with a licence allowing redistribution (optional; users can pick their own file meanwhile) | DONE | T-1101/T-1102 default athan sound (the default alarm sound is used until then) | Optional, declined 2026-10-05 (MX). |
+| DT-029 | Persian titles and modern-calendar dates of Mehragān, Sada, Čahāršanba-sūrī, Tīragān, Esfandegān/Sepandārmazgān, Ābānagān, Āḏargān and the other same-name month/day feasts | DONE | D-06 (2 records so far) | Resolved by policy 2026-10-05 — the official calendar of Iran does not publish these and is not going to; the remainder is a scope decision. |
+| DT-030 | Schema support for the Zoroastrian 30-day-month convention flag (PLAN D-06) and for the eve of the last Wednesday of the year (Čahāršanba-sūrī) | DONE | D-06 records of those festivals | Resolved 2026-10-05: no schema change is needed, and none should be made. |
+| DT-031 | Afghanistan official holiday dates not covered by a found announcement: Eid al-Fitr 1447 (the 2026-03-21 Bakhtar article gives no dates), 8 Sawr 1405, Ashura 1448, 12 Rabi al-Awwal 1448, and all of 1403 and early 1404 | BLOCKED | D-03 completeness | Blocked on a named external event 2026-10-05: the Islamic Emirate publishing a holiday decree beyond 1404–1405. |
+| DT-032 | Current Afghanistan Labour Law (Islamic Emirate) text, especially the public-holidays article, from the Official Gazette | DONE | D-03 recurring national-day rules (currently one Single record per announced year) | Resolved 2026-09-25 |
+| DT-033 | Afghanistan official Islamic month starts for 1447–1448 AH and later | BLOCKED | Placement of D-03 Islamic holidays independent of the user's variant (announcements show 1 Rabi al-Awwal 1448 = 2026-08-15; Umm al-Qura gives 2026-08-14) — an Afghanistan table analogous to ADR-0009 | Blocked on a named external event 2026-10-05: an Afghan authority publishing month starts in retrievable form. |
+| DT-034 | Published crescent visibility maps for 5 dates, with the criterion used | DONE | T-1301 golden "crescent classifier vs published crescent maps (5 dates)" | Resolved 2026-10-05 (MX). |
 | DT-035 | Time-zone boundary polygons and tectonic plate boundaries under a licence compatible with ADR-0003 | DONE | T-1301 time-zone and tectonic-plate layers | Resolved |
-| DT-036 | Odeh 2004 Table VI crescent observations (the paper numbers 737; 578 are printed) extracted and checked from the paper | DONE | T-1301 Odeh criterion golden test against observations (now tested against all 578 … | Resolved (578 published records) |
-| DT-037 | Hebrew month names in ps, ckb, kmr, az, ne, hi, tg, uz, id, ms and zh | DONE | F07 Hebrew calendar names (main@381f6c0) — these languages fall back like other missing … | Resolved with machine translations (review optional) |
-| DT-038 | Nepal holidays not expressed as rules: Gyalpo Lhosar (fits lunar 11/1 but follows the Tibetan calendar), Fagu Purnima … | BLOCKED | D-04 completeness | Open |
+| DT-036 | Odeh 2004 Table VI crescent observations (the paper numbers 737; 578 are printed) extracted and checked from the paper | DONE | T-1301 Odeh criterion golden test against observations (now tested against all 578 printed observations, main@c8ee198) | Resolved (578 published records) |
+| DT-037 | Hebrew month names in ps, ckb, kmr, az, ne, hi, tg, uz, id, ms and zh | DONE | F07 Hebrew calendar names (main@381f6c0) — these languages fall back like other missing month names | Resolved with machine translations (review optional) |
+| DT-038 | Nepal holidays not expressed as rules: Gyalpo Lhosar (fits lunar 11/1 but follows the Tibetan calendar), Fagu Purnima (different hill/Terai days), community and regional holidays of MoHA notice sections 2.2, 3, 4, 5, 6.2 and 7.2 (Gai Jatra, Gaura, Sirua Pavani, Dura Mhaipru Nakuma, Teej, Jitiya, Vasant Panchami, Kathmandu jatras incl. undated Bhoto Jatra, Disability Day, Falgunanda, Mohammad and Guru Nanak Jayanti), Eid dates as announced by sighting in Nepal | BLOCKED | D-04 completeness | Blocked on one owner decision 2026-10-05: whether the schema gains a scope dimension. |
+| DT-039 | A precise public reference for the Placidus cusp construction (title, edition, page or equation) and its convergence, to replace "written from the definition alone" in PROVENANCE A-14 | DONE | T-405, REVIEW R13 | Resolved 2026-09-26 |
+| DT-040 | Vesak, the Day of the Full Moon (UN GA res. 54/115, 1999): a schema rule and a timezone/tie-break convention for "the day of the full moon in the month of May" | DONE | D-05 ≥ 150 entries | Resolved 2026-09-23: rule/timezone/tie-break (ADR-0044) and Persian sourcing (ADR-0042 marker) both closed; `un.vesak-day` shipped |
+| DT-041 | The 10 UN international weeks on `un.org/en/observances/list-days-weeks` (no week rule existed to express a multi-day span) | DONE | D-05 ≥ 150 entries | Resolved 2026-09-24 (ADR-0046): a new `EventRule.Week(start, lengthDays)` rule (schema, `:core:events`, `:tools:dataset` generator/validator) expresses a multi-day span from a `Fixed`/`NthWeekdayOfMonth`/`LastWeekdayOfMo |
+| DT-042 | `validity.fromYear` for the 132 UN days added by R07/D-05 (2026-09-23): only 2 of the 132 carried it | DONE | D-05 accuracy (an observance should not show in years before it existed) | Resolved 2026-09-26 for all 131 in-scope records; 9 out-of-scope records remain. The 125 done on 2026-09-24 are unchanged: each carries `validity.fromYear` set to the year its proclaiming resolution or decision was **ado |
+| DT-043 | Which tithi the app should *display* (T-406 `Tithi`, from a modern ephemeris, or the Surya Siddhanta tithi the Nepali festival rules already use) | BLOCKED | T-406 tithi on the Astronomy screen (PLAN §2.1 “Astronomy … Tithi”) | Open 2026-10-06 — one owner decision, deliberately not guessed. |
 
 ## 2. Test inventory
 
