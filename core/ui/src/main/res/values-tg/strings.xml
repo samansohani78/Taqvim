@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Ҷадвалӣ (навъи II)</string>
   <string name="shared_islamic_variant_tabular_15">Ҷадвалӣ (навъи I)</string>
   <string name="shared_islamic_variant_observational">Намоёнии ҳисобшудаи ҳилол</string>
+  <string name="shared_picker_title">Санаро интихоб кунед</string>
+  <string name="shared_picker_year">Сол</string>
+  <string name="shared_picker_month">Моҳ</string>
+  <string name="shared_picker_day">Рӯз</string>
+  <string name="shared_picker_confirm">Тайёр</string>
+  <string name="shared_picker_cancel">Бекор</string>
 </resources>

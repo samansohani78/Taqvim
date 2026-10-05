@@ -8,8 +8,14 @@ import ir.taqvim.core.astronomy.CelestialBody
 import ir.taqvim.core.astronomy.Qibla
 import ir.taqvim.core.astronomy.Sky
 import ir.taqvim.core.astronomy.SkyPosition
+import ir.taqvim.core.i18n.DateFormatter
+import ir.taqvim.core.i18n.DateStyle
+import ir.taqvim.core.i18n.FormatTable
+import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.ui.component.DateSelection
 import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.hours
@@ -42,6 +48,8 @@ data class SkySnapshot(
 /** Pure mapping from settings, sensor heading and sky snapshot to [CompassUiState] (T-1302). */
 object CompassStateMapper {
     private const val PATH_HOURS = 24
+    private const val PICKER_YEARS = 5
+    private const val MINUTES_PER_HOUR = 60
     private const val HOUR_DIGITS = 2
 
     /** The [SkySnapshot] of [place] at [instant]. */
@@ -65,6 +73,53 @@ object CompassStateMapper {
             sunPath = path,
         )
     }
+
+    /**
+     * The planner's state for [settings]: the picker's model, and the planned moment formatted when one is set.
+     *
+     * The calendar and its month names come from the same `:core:calendar` and `:core:i18n` the rest of the app uses,
+     * so the picker speaks the user's calendar without this screen owning any calendar logic of its own.
+     */
+    fun planner(
+        settings: CompassSettings?,
+        today: Jdn,
+        plannedDay: Jdn?,
+        plannedMinute: Int,
+        pickerOpen: Boolean,
+    ): PlannerState {
+        if (settings == null) return PlannerState()
+        val arithmetic = settings.calendar
+        val language = settings.language
+        val formats = FormatTable.of(language)
+        val names = formats.monthNames[arithmetic.system].orEmpty()
+        val shown = arithmetic.fromJdn(plannedDay ?: today)
+        val picker =
+            PickerData(
+                initial = DateSelection(shown.year, shown.month, shown.day),
+                years = (shown.year - PICKER_YEARS)..(shown.year + PICKER_YEARS),
+                monthNames = names.toImmutableList(),
+                daysInMonth = arithmetic::monthLength,
+                digits = { Numerals.format(it.toLong(), language.numerals) },
+            )
+        val moment =
+            plannedDay?.let { day ->
+                PlannedMoment(
+                    dateText = DateFormatter.format(arithmetic.fromJdn(day), day.weekday(), language, DateStyle.LONG),
+                    timeText = clockText(plannedMinute, language),
+                    minuteOfDay = plannedMinute,
+                )
+            }
+        return PlannerState(planned = moment, picker = picker, pickerOpen = pickerOpen)
+    }
+
+    private fun clockText(
+        minuteOfDay: Int,
+        language: LanguageSpec,
+    ): String =
+        Numerals.localizeDigits(
+            "%02d:%02d".format(minuteOfDay / MINUTES_PER_HOUR, minuteOfDay % MINUTES_PER_HOUR),
+            language.numerals,
+        )
 
     /** The screen state; [announced] is the TalkBack bucket from [HeadingAnnouncements]. */
     fun map(

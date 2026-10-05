@@ -15,4 +15,12 @@
   <string name="shared_islamic_variant_tabular_16">Tabular (type II)</string>
   <string name="shared_islamic_variant_tabular_15">Tabular (type I)</string>
   <string name="shared_islamic_variant_observational">Calculated crescent visibility</string>
+  <!-- Generic date-picker chrome. Shared because the picker itself is shared; feature screens that already have
+       their own copies keep them until someone consolidates, which is not this change. -->
+  <string name="shared_picker_title">Choose a date</string>
+  <string name="shared_picker_year">Year</string>
+  <string name="shared_picker_month">Month</string>
+  <string name="shared_picker_day">Day</string>
+  <string name="shared_picker_confirm">Done</string>
+  <string name="shared_picker_cancel">Cancel</string>
 </resources>

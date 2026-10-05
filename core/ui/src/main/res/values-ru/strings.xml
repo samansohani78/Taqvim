@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Табличный (тип II)</string>
   <string name="shared_islamic_variant_tabular_15">Табличный (тип I)</string>
   <string name="shared_islamic_variant_observational">Расчётная видимость полумесяца</string>
+  <string name="shared_picker_title">Выберите дату</string>
+  <string name="shared_picker_year">Год</string>
+  <string name="shared_picker_month">Месяц</string>
+  <string name="shared_picker_day">День</string>
+  <string name="shared_picker_confirm">Готово</string>
+  <string name="shared_picker_cancel">Отмена</string>
 </resources>

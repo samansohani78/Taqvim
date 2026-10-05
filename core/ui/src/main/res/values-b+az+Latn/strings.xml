@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Cədvəl (II tip)</string>
   <string name="shared_islamic_variant_tabular_15">Cədvəl (I tip)</string>
   <string name="shared_islamic_variant_observational">Hesablanmış hilal görünməsi</string>
+  <string name="shared_picker_title">Tarix seçin</string>
+  <string name="shared_picker_year">İl</string>
+  <string name="shared_picker_month">Ay</string>
+  <string name="shared_picker_day">Gün</string>
+  <string name="shared_picker_confirm">Hazır</string>
+  <string name="shared_picker_cancel">Ləğv et</string>
 </resources>

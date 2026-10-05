@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">%1$s° над горизонтом</string>
   <string name="compass_below_horizon">%1$s° под горизонтом</string>
   <string name="compass_stopped">Зафиксировать</string>
+  <string name="compass_plan">Выбрать время</string>
+  <string name="compass_now">Сейчас</string>
+  <string name="compass_planned">Показано %1$s в %2$s</string>
+  <string name="compass_plan_time">Время суток</string>
   <string name="compass_sun_path">Путь Солнца</string>
   <string name="compass_letter_north">С</string>
   <string name="compass_letter_east">В</string>

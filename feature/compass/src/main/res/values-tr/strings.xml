@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">Ufkun %1$s° üstünde</string>
   <string name="compass_below_horizon">Ufkun %1$s° altında</string>
   <string name="compass_stopped">Sabitle</string>
+  <string name="compass_plan">Zaman planla</string>
+  <string name="compass_now">Şimdi</string>
+  <string name="compass_planned">%1$s %2$s gösteriliyor</string>
+  <string name="compass_plan_time">Günün saati</string>
   <string name="compass_sun_path">Güneş\'in yolu</string>
   <string name="compass_letter_north">K</string>
   <string name="compass_letter_east">D</string>

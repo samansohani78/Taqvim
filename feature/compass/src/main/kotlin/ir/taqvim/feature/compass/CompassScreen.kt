@@ -17,7 +17,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +31,10 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import ir.taqvim.core.ui.R as SharedR
+import ir.taqvim.core.ui.component.DatePickerLabels
+import ir.taqvim.core.ui.component.DatePickerModel
+import ir.taqvim.core.ui.component.DatePickerSheet
 import ir.taqvim.core.ui.component.EmptyState
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.TopBar
@@ -113,7 +119,65 @@ private fun DialContent(
                     label = { Text(stringResource(R.string.compass_sun_path)) },
                 )
             }
+            FilterChip(
+                selected = state.planner.planned != null,
+                onClick = actions.onOpenDatePicker,
+                label = { Text(stringResource(R.string.compass_plan)) },
+            )
         }
+        Planner(state.planner, actions)
+    }
+}
+
+/**
+ * The planner (T-1302): which moment the Sun and Moon are drawn for.
+ *
+ * Nothing shows while live, so a compass nobody is planning on looks exactly as it did. Once a day is chosen the
+ * planned moment is named, a slider moves the time within it, and "Now" returns to the clock. The needle keeps
+ * following the device throughout — only these markers move — which is why there is no "paused" language here.
+ */
+@Composable
+private fun Planner(
+    planner: PlannerState,
+    actions: CompassActions,
+) {
+    val planned = planner.planned
+    if (planned != null) {
+        Text(
+            stringResource(R.string.compass_planned, planned.dateText, planned.timeText),
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        val timeLabel = stringResource(R.string.compass_plan_time)
+        Slider(
+            value = planned.minuteOfDay.toFloat(),
+            onValueChange = { minute -> actions.onPlanMinute(minute.toInt()) },
+            valueRange = 0f..LAST_MINUTE_OF_DAY,
+            modifier = Modifier.semantics { contentDescription = timeLabel },
+        )
+        TextButton(onClick = actions.onResumeLive) { Text(stringResource(R.string.compass_now)) }
+    }
+    val picker = planner.picker
+    if (planner.pickerOpen && picker != null) {
+        DatePickerSheet(
+            model =
+                DatePickerModel(
+                    picker.initial,
+                    picker.years,
+                    picker.monthNames,
+                    picker.daysInMonth,
+                    picker.digits,
+                    DatePickerLabels(
+                        title = stringResource(SharedR.string.shared_picker_title),
+                        year = stringResource(SharedR.string.shared_picker_year),
+                        month = stringResource(SharedR.string.shared_picker_month),
+                        day = stringResource(SharedR.string.shared_picker_day),
+                        confirm = stringResource(SharedR.string.shared_picker_confirm),
+                        cancel = stringResource(SharedR.string.shared_picker_cancel),
+                    ),
+                ),
+            onConfirm = actions.onDatePicked,
+            onDismiss = actions.onDismissDatePicker,
+        )
     }
 }
 
@@ -189,3 +253,6 @@ internal val Cardinal.label: Int
             Cardinal.W -> R.string.compass_point_w
             Cardinal.NW -> R.string.compass_point_nw
         }
+
+/** Last minute of the day the planner's time slider can reach. */
+private const val LAST_MINUTE_OF_DAY = 24f * 60f - 1f

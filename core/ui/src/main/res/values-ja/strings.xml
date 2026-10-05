@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">表形式（タイプ II）</string>
   <string name="shared_islamic_variant_tabular_15">表形式（タイプ I）</string>
   <string name="shared_islamic_variant_observational">計算による新月の可視性</string>
+  <string name="shared_picker_title">日付を選択</string>
+  <string name="shared_picker_year">年</string>
+  <string name="shared_picker_month">月</string>
+  <string name="shared_picker_day">日</string>
+  <string name="shared_picker_confirm">完了</string>
+  <string name="shared_picker_cancel">キャンセル</string>
 </resources>

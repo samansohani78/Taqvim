@@ -5,6 +5,9 @@
 package ir.taqvim.feature.compass
 
 import androidx.compose.runtime.Immutable
+import ir.taqvim.core.i18n.LanguageSpec
+import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.ui.component.DateSelection
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -15,6 +18,38 @@ data class CompassUiState(
     val frozen: Boolean = false,
     /** Whether the Sun's path over the next 24 hours is drawn. */
     val showSunPath: Boolean = false,
+    /** The planner (T-1302): which moment the Sun and Moon are drawn for, and the date picker when it is open. */
+    val planner: PlannerState = PlannerState(),
+)
+
+/**
+ * The planner's state.
+ *
+ * [planned] is `null` while the sky follows the clock, which is the default and the behaviour the screen has always
+ * had. The device heading is live in both modes — only the Sun and Moon move with [planned] — so planning never
+ * stops the needle following the phone.
+ */
+data class PlannerState(
+    val planned: PlannedMoment? = null,
+    /** The date picker's model, or `null` before a place and calendar are known. */
+    val picker: PickerData? = null,
+    val pickerOpen: Boolean = false,
+)
+
+/** A planned moment, already formatted: [dateText] in the user's calendar and [timeText] as a clock time. */
+data class PlannedMoment(
+    val dateText: String,
+    val timeText: String,
+    val minuteOfDay: Int,
+)
+
+/** What the date picker needs to speak the user's calendar; mirrors the astronomy screen's picker (T-1300). */
+data class PickerData(
+    val initial: DateSelection,
+    val years: IntRange,
+    val monthNames: ImmutableList<String>,
+    val daysInMonth: (year: Int, month: Int) -> Int,
+    val digits: (Int) -> String,
 )
 
 /** What the compass screen shows. */
@@ -110,4 +145,9 @@ data class PathPoint(
 data class CompassActions(
     val onToggleFrozen: () -> Unit = {},
     val onToggleSunPath: () -> Unit = {},
+    val onOpenDatePicker: () -> Unit = {},
+    val onDismissDatePicker: () -> Unit = {},
+    val onDatePicked: (DateSelection) -> Unit = {},
+    val onPlanMinute: (Int) -> Unit = {},
+    val onResumeLive: () -> Unit = {},
 )

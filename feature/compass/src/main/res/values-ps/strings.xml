@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">له افق %1$s° پورته</string>
   <string name="compass_below_horizon">له افق %1$s° لاندې</string>
   <string name="compass_stopped">درول</string>
+  <string name="compass_plan">وخت پلان کړئ</string>
+  <string name="compass_now">اوس</string>
+  <string name="compass_planned">%1$s په %2$s کې ښودل کېږي</string>
+  <string name="compass_plan_time">د ورځې وخت</string>
   <string name="compass_sun_path">د لمر لاره</string>
   <string name="compass_letter_north">ش</string>
   <string name="compass_letter_east">خ</string>

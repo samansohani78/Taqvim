@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">地平線から %1$s° 上</string>
   <string name="compass_below_horizon">地平線から %1$s° 下</string>
   <string name="compass_stopped">固定</string>
+  <string name="compass_plan">時刻を指定</string>
+  <string name="compass_now">現在</string>
+  <string name="compass_planned">%1$s %2$s を表示中</string>
+  <string name="compass_plan_time">時刻</string>
   <string name="compass_sun_path">太陽の軌道</string>
   <string name="compass_letter_north">北</string>
   <string name="compass_letter_east">東</string>

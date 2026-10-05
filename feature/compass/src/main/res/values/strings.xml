@@ -25,6 +25,14 @@
   <string name="compass_below_horizon">%1$s° below the horizon</string>
   <!-- Toggle chip that freezes the compass dial at its current heading. -->
   <string name="compass_stopped">Stop</string>
+  <!-- Chip that opens the date picker so the Sun and Moon can be shown for another day. -->
+  <string name="compass_plan">Plan a time</string>
+  <!-- Button returning the Sun and Moon to the present. -->
+  <string name="compass_now">Now</string>
+  <!-- Label above the planned date and time; %1$s is the date, %2$s the clock time. -->
+  <string name="compass_planned">Showing %1$s at %2$s</string>
+  <!-- Slider that moves the planned time within the chosen day. -->
+  <string name="compass_plan_time">Time of day</string>
   <string name="compass_sun_path">Sun path</string>
   <!-- One-letter abbreviation of north on the compass dial. -->
   <string name="compass_letter_north">N</string>

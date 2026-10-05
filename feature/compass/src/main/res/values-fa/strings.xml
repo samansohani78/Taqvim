@@ -21,6 +21,10 @@
   <string name="compass_above_horizon">%1$s° بالای افق</string>
   <string name="compass_below_horizon">%1$s° زیر افق</string>
   <string name="compass_stopped">توقف</string>
+  <string name="compass_plan">انتخاب زمان</string>
+  <string name="compass_now">اکنون</string>
+  <string name="compass_planned">نمایش %1$s ساعت %2$s</string>
+  <string name="compass_plan_time">ساعت روز</string>
   <string name="compass_sun_path">مسیر خورشید</string>
   <string name="compass_letter_north">ش</string>
   <string name="compass_letter_east">خ</string>

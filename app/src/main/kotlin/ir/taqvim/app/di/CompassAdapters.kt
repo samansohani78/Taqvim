@@ -4,6 +4,7 @@
  */
 package ir.taqvim.app.di
 
+import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.compass.CompassPlace
 import ir.taqvim.feature.compass.CompassSettings
@@ -29,6 +30,7 @@ internal class PreferencesCompassSettingsSource(
             CompassSettings(
                 language = preferences.languageSpec(),
                 place = times?.let { CompassPlace(it.placeName, it.place, it.timeZone) },
+                calendar = times?.calendar ?: GregorianCalendarSystem,
             )
         }.distinctUntilChanged()
 }

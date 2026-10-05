@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">الجدولي (النوع الثاني)</string>
   <string name="shared_islamic_variant_tabular_15">الجدولي (النوع الأول)</string>
   <string name="shared_islamic_variant_observational">رؤية الهلال المحسوبة</string>
+  <string name="shared_picker_title">اختر تاريخًا</string>
+  <string name="shared_picker_year">السنة</string>
+  <string name="shared_picker_month">الشهر</string>
+  <string name="shared_picker_day">اليوم</string>
+  <string name="shared_picker_confirm">تم</string>
+  <string name="shared_picker_cancel">إلغاء</string>
 </resources>

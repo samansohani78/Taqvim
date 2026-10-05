@@ -5,10 +5,14 @@
 package ir.taqvim.feature.compass
 
 import androidx.compose.runtime.Composable
+import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.GregorianCalendarSystem
+import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.TextDirection
 import ir.taqvim.core.model.Coordinates
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.testing.TimeZones
 import ir.taqvim.core.ui.theme.TaqvimTheme
 import ir.taqvim.core.ui.theme.ThemeMode
@@ -30,12 +34,16 @@ object CompassFixtures {
     /** A fixed declination of 5° east, so expectations do not depend on the magnetic model. */
     val FIVE_EAST: DeclinationModel = DeclinationModel { _, _ -> 5.0 }
 
+    /** 18:45, an evening the planner can show the Sun low for. */
+    const val PLANNED_MINUTE: Int = 18 * 60 + 45
+
     fun language(code: String): LanguageSpec = requireNotNull(LanguageTable.forCode(code)) { "no language $code" }
 
     fun settings(
         languageCode: String = "en",
         place: CompassPlace? = TEHRAN,
-    ): CompassSettings = CompassSettings(language(languageCode), place)
+        calendar: CalendarArithmetic = GregorianCalendarSystem,
+    ): CompassSettings = CompassSettings(language(languageCode), place, calendar)
 
     /** The rotation of a device lying flat whose top edge points at magnetic [heading] degrees. */
     fun flatHeading(heading: Double): RotationMatrix {
@@ -55,11 +63,16 @@ object CompassFixtures {
         place: CompassPlace? = TEHRAN,
         accuracy: CompassAccuracy = CompassAccuracy.HIGH,
         showSunPath: Boolean = false,
+        plannedDay: Jdn? = null,
     ): CompassUiState {
         val settings = settings(languageCode, place)
-        val sky = place?.let { CompassStateMapper.snapshot(it, NOON, FIVE_EAST) }
+        val instant = plannedDay?.atMinuteOfDay(PLANNED_MINUTE, TimeZones.TEHRAN) ?: NOON
+        val sky = place?.let { CompassStateMapper.snapshot(it, instant, FIVE_EAST) }
         val measured = HeadingReading.Measured(heading, accuracy)
-        return CompassStateMapper.map(settings, measured, sky, null, CompassUiState(showSunPath = showSunPath))
+        val today = NOON.toJdn(TimeZones.TEHRAN)
+        val planner = CompassStateMapper.planner(settings, today, plannedDay, PLANNED_MINUTE, false)
+        val flags = CompassUiState(showSunPath = showSunPath, planner = planner)
+        return CompassStateMapper.map(settings, measured, sky, null, flags)
     }
 }
 

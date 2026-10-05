@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">%1$s° über dem Horizont</string>
   <string name="compass_below_horizon">%1$s° unter dem Horizont</string>
   <string name="compass_stopped">Anhalten</string>
+  <string name="compass_plan">Zeit planen</string>
+  <string name="compass_now">Jetzt</string>
+  <string name="compass_planned">Zeigt %1$s um %2$s</string>
+  <string name="compass_plan_time">Tageszeit</string>
   <string name="compass_sun_path">Sonnenbahn</string>
   <string name="compass_letter_north">N</string>
   <string name="compass_letter_east">O</string>

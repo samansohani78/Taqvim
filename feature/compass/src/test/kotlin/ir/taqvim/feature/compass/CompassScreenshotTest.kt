@@ -6,7 +6,9 @@ package ir.taqvim.feature.compass
 
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.unit.LayoutDirection
+import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.NumeralSystem
+import ir.taqvim.core.testing.TimeZones
 import ir.taqvim.core.uitesting.ScreenshotEnvironment
 import ir.taqvim.core.uitesting.ScreenshotMatrix
 import ir.taqvim.core.uitesting.ScreenshotTheme
@@ -19,8 +21,10 @@ import org.robolectric.annotation.GraphicsMode
 
 /**
  * T-1302/T-1303 screenshots: the compass in light and dark × LTR (English) and RTL (Persian) with the Sun's path, the
- * compass without a place, the flat and upright level and the ruler. Recorded to `src/test/screenshots/<sample>/`.
+ * compass without a place, the compass planned for a later evening, the flat and upright level and the ruler. Recorded to `src/test/screenshots/<sample>/`.
  */
+private const val PLAN_AHEAD_DAYS = 10
+
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class CompassScreenshotTest(
@@ -41,6 +45,19 @@ class CompassScreenshotTest(
                     "compass_dial" -> {
                         CompassScreen(
                             CompassFixtures.dial(language, heading = 200.0, showSunPath = true),
+                            CompassActions(),
+                            animatePath = false,
+                        )
+                    }
+
+                    "compass_planned" -> {
+                        CompassScreen(
+                            CompassFixtures.dial(
+                                language,
+                                heading = 200.0,
+                                showSunPath = true,
+                                plannedDay = CompassFixtures.NOON.toJdn(TimeZones.TEHRAN) + PLAN_AHEAD_DAYS,
+                            ),
                             CompassActions(),
                             animatePath = false,
                         )
@@ -99,6 +116,8 @@ class CompassScreenshotTest(
             ).map { arrayOf<Any>("compass_dial", it) } +
                 listOf(
                     arrayOf<Any>("compass_no_place", LIGHT_LTR),
+                    arrayOf<Any>("compass_planned", LIGHT_LTR),
+                    arrayOf<Any>("compass_planned", DARK_RTL),
                     arrayOf<Any>("level_flat", LIGHT_LTR),
                     arrayOf<Any>("level_upright", DARK_RTL),
                     arrayOf<Any>("level_ruler", LIGHT_LTR),

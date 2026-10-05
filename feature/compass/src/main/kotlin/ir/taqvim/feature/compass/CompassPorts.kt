@@ -4,6 +4,8 @@
  */
 package ir.taqvim.feature.compass
 
+import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.model.Coordinates
 import kotlinx.collections.immutable.ImmutableMap
@@ -17,6 +19,8 @@ data class CompassSettings(
     val language: LanguageSpec,
     /** The chosen place, or `null` when none has been chosen (no Qibla, no true north, no Sun/Moon markers). */
     val place: CompassPlace?,
+    /** The user's primary calendar, so the planner's date picker speaks it (T-1302). */
+    val calendar: CalendarArithmetic = GregorianCalendarSystem,
 )
 
 /** A chosen place with its localized [name] and civil [timeZone] (hours of the Sun's path). */

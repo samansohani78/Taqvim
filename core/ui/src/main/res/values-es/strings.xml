@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Tabular (tipo II)</string>
   <string name="shared_islamic_variant_tabular_15">Tabular (tipo I)</string>
   <string name="shared_islamic_variant_observational">Visibilidad calculada del creciente</string>
+  <string name="shared_picker_title">Elegir una fecha</string>
+  <string name="shared_picker_year">Año</string>
+  <string name="shared_picker_month">Mes</string>
+  <string name="shared_picker_day">Día</string>
+  <string name="shared_picker_confirm">Listo</string>
+  <string name="shared_picker_cancel">Cancelar</string>
 </resources>

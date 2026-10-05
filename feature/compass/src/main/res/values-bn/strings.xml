@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">দিগন্তের %1$s° ওপরে</string>
   <string name="compass_below_horizon">দিগন্তের %1$s° নিচে</string>
   <string name="compass_stopped">থামান</string>
+  <string name="compass_plan">সময় পরিকল্পনা</string>
+  <string name="compass_now">এখন</string>
+  <string name="compass_planned">%1$s %2$s-এ দেখানো হচ্ছে</string>
+  <string name="compass_plan_time">দিনের সময়</string>
   <string name="compass_sun_path">সূর্যের পথ</string>
   <string name="compass_letter_north">উ</string>
   <string name="compass_letter_east">পূ</string>

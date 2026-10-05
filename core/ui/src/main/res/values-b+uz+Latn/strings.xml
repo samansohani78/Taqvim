@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Jadvalli (II tur)</string>
   <string name="shared_islamic_variant_tabular_15">Jadvalli (I tur)</string>
   <string name="shared_islamic_variant_observational">Hisoblangan hilol koʻrinishi</string>
+  <string name="shared_picker_title">Sana tanlang</string>
+  <string name="shared_picker_year">Yil</string>
+  <string name="shared_picker_month">Oy</string>
+  <string name="shared_picker_day">Kun</string>
+  <string name="shared_picker_confirm">Tayyor</string>
+  <string name="shared_picker_cancel">Bekor qilish</string>
 </resources>

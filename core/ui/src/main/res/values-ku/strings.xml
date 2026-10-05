@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Tabloyî (cure II)</string>
   <string name="shared_islamic_variant_tabular_15">Tabloyî (cure I)</string>
   <string name="shared_islamic_variant_observational">Dîtina hesabkirî ya heyva nû</string>
+  <string name="shared_picker_title">Dîrokekê hilbijêre</string>
+  <string name="shared_picker_year">Sal</string>
+  <string name="shared_picker_month">Meh</string>
+  <string name="shared_picker_day">Roj</string>
+  <string name="shared_picker_confirm">Temam</string>
+  <string name="shared_picker_cancel">Betal</string>
 </resources>

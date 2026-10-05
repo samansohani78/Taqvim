@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Tabellarisch (Typ II)</string>
   <string name="shared_islamic_variant_tabular_15">Tabellarisch (Typ I)</string>
   <string name="shared_islamic_variant_observational">Berechnete Sichelsichtbarkeit</string>
+  <string name="shared_picker_title">Datum wählen</string>
+  <string name="shared_picker_year">Jahr</string>
+  <string name="shared_picker_month">Monat</string>
+  <string name="shared_picker_day">Tag</string>
+  <string name="shared_picker_confirm">Fertig</string>
+  <string name="shared_picker_cancel">Abbrechen</string>
 </resources>

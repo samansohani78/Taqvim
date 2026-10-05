@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">सारणीबद्ध (प्रकार II)</string>
   <string name="shared_islamic_variant_tabular_15">सारणीबद्ध (प्रकार I)</string>
   <string name="shared_islamic_variant_observational">गणना की गई हिलाल दृश्यता</string>
+  <string name="shared_picker_title">तारीख़ चुनें</string>
+  <string name="shared_picker_year">वर्ष</string>
+  <string name="shared_picker_month">महीना</string>
+  <string name="shared_picker_day">दिन</string>
+  <string name="shared_picker_confirm">हो गया</string>
+  <string name="shared_picker_cancel">रद्द करें</string>
 </resources>

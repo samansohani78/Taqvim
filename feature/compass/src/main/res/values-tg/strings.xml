@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">%1$s° болои уфуқ</string>
   <string name="compass_below_horizon">%1$s° зери уфуқ</string>
   <string name="compass_stopped">Қатъ</string>
+  <string name="compass_plan">Вақтро ба нақша гиред</string>
+  <string name="compass_now">Ҳозир</string>
+  <string name="compass_planned">Намоиши %1$s дар %2$s</string>
+  <string name="compass_plan_time">Вақти рӯз</string>
   <string name="compass_sun_path">Роҳи офтоб</string>
   <string name="compass_letter_north">Ш</string>
   <string name="compass_letter_east">Шр</string>

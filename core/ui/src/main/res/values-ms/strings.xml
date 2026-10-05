@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Jadual (jenis II)</string>
   <string name="shared_islamic_variant_tabular_15">Jadual (jenis I)</string>
   <string name="shared_islamic_variant_observational">Kebolehlihatan anak bulan yang dikira</string>
+  <string name="shared_picker_title">Pilih tarikh</string>
+  <string name="shared_picker_year">Tahun</string>
+  <string name="shared_picker_month">Bulan</string>
+  <string name="shared_picker_day">Hari</string>
+  <string name="shared_picker_confirm">Selesai</string>
+  <string name="shared_picker_cancel">Batal</string>
 </resources>

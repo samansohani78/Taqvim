@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">அட்டவணை (வகை II)</string>
   <string name="shared_islamic_variant_tabular_15">அட்டவணை (வகை I)</string>
   <string name="shared_islamic_variant_observational">கணக்கிடப்பட்ட பிறைத் தெரிவு</string>
+  <string name="shared_picker_title">தேதியைத் தேர்ந்தெடு</string>
+  <string name="shared_picker_year">ஆண்டு</string>
+  <string name="shared_picker_month">மாதம்</string>
+  <string name="shared_picker_day">நாள்</string>
+  <string name="shared_picker_confirm">முடிந்தது</string>
+  <string name="shared_picker_cancel">ரத்து</string>
 </resources>

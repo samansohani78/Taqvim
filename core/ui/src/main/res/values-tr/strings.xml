@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">Tablolu (tip II)</string>
   <string name="shared_islamic_variant_tabular_15">Tablolu (tip I)</string>
   <string name="shared_islamic_variant_observational">Hesaplanmış hilal görünürlüğü</string>
+  <string name="shared_picker_title">Tarih seçin</string>
+  <string name="shared_picker_year">Yıl</string>
+  <string name="shared_picker_month">Ay</string>
+  <string name="shared_picker_day">Gün</string>
+  <string name="shared_picker_confirm">Tamam</string>
+  <string name="shared_picker_cancel">İptal</string>
 </resources>

@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">%1$s° di atas ufuk</string>
   <string name="compass_below_horizon">%1$s° di bawah ufuk</string>
   <string name="compass_stopped">Hentikan</string>
+  <string name="compass_plan">Rencanakan waktu</string>
+  <string name="compass_now">Sekarang</string>
+  <string name="compass_planned">Menampilkan %1$s pukul %2$s</string>
+  <string name="compass_plan_time">Waktu dalam sehari</string>
   <string name="compass_sun_path">Jalur matahari</string>
   <string name="compass_letter_north">U</string>
   <string name="compass_letter_east">T</string>

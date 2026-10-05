@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">तालिकाबद्ध (प्रकार II)</string>
   <string name="shared_islamic_variant_tabular_15">तालिकाबद्ध (प्रकार I)</string>
   <string name="shared_islamic_variant_observational">गणना गरिएको नयाँ चन्द्र दृश्यता</string>
+  <string name="shared_picker_title">मिति छान्नुहोस्</string>
+  <string name="shared_picker_year">वर्ष</string>
+  <string name="shared_picker_month">महिना</string>
+  <string name="shared_picker_day">दिन</string>
+  <string name="shared_picker_confirm">भयो</string>
+  <string name="shared_picker_cancel">रद्द गर्नुहोस्</string>
 </resources>

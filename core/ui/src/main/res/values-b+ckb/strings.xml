@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">خشتەیی (جۆری II)</string>
   <string name="shared_islamic_variant_tabular_15">خشتەیی (جۆری I)</string>
   <string name="shared_islamic_variant_observational">بینینی ژمێردراوی مانگی نوێ</string>
+  <string name="shared_picker_title">ڕێکەوتێک هەڵبژێرە</string>
+  <string name="shared_picker_year">ساڵ</string>
+  <string name="shared_picker_month">مانگ</string>
+  <string name="shared_picker_day">ڕۆژ</string>
+  <string name="shared_picker_confirm">تەواو</string>
+  <string name="shared_picker_cancel">پاشگەزبوونەوە</string>
 </resources>

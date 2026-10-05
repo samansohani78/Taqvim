@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">جدولي (دوهم ډول)</string>
   <string name="shared_islamic_variant_tabular_15">جدولي (لومړی ډول)</string>
   <string name="shared_islamic_variant_observational">د نوې میاشتې محاسبه شوی لیدل</string>
+  <string name="shared_picker_title">نېټه وټاکئ</string>
+  <string name="shared_picker_year">کال</string>
+  <string name="shared_picker_month">مياشت</string>
+  <string name="shared_picker_day">ورځ</string>
+  <string name="shared_picker_confirm">ترسره شو</string>
+  <string name="shared_picker_cancel">لغوه</string>
 </resources>

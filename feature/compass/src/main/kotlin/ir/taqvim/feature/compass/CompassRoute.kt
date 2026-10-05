@@ -44,7 +44,17 @@ fun CompassRoute(
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val actions =
         remember(viewModel) {
-            CompassActions(onToggleFrozen = viewModel::onToggleFrozen, onToggleSunPath = viewModel::onToggleSunPath)
+            CompassActions(
+                onToggleFrozen = viewModel::onToggleFrozen,
+                onToggleSunPath = viewModel::onToggleSunPath,
+                onOpenDatePicker = viewModel::onOpenDatePicker,
+                onDismissDatePicker = viewModel::onDismissDatePicker,
+                // The picker speaks the user's calendar, so the chosen year/month/day is converted back through the
+                // same calendar the planner built the picker with.
+                onDatePicked = viewModel::onDateSelected,
+                onPlanMinute = viewModel::onPlanMinute,
+                onResumeLive = viewModel::onResumeLive,
+            )
         }
     CompassScreen(state, actions, modifier)
 }

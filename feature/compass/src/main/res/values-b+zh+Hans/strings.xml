@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">地平线以上 %1$s°</string>
   <string name="compass_below_horizon">地平线以下 %1$s°</string>
   <string name="compass_stopped">锁定</string>
+  <string name="compass_plan">规划时间</string>
+  <string name="compass_now">现在</string>
+  <string name="compass_planned">显示 %1$s %2$s</string>
+  <string name="compass_plan_time">一天中的时间</string>
   <string name="compass_sun_path">太阳轨迹</string>
   <string name="compass_letter_north">北</string>
   <string name="compass_letter_east">东</string>

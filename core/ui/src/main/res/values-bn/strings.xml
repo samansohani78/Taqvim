@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">সারণিভিত্তিক (ধরন II)</string>
   <string name="shared_islamic_variant_tabular_15">সারণিভিত্তিক (ধরন I)</string>
   <string name="shared_islamic_variant_observational">গণনাকৃত নতুন চাঁদের দৃশ্যমানতা</string>
+  <string name="shared_picker_title">একটি তারিখ বাছুন</string>
+  <string name="shared_picker_year">বছর</string>
+  <string name="shared_picker_month">মাস</string>
+  <string name="shared_picker_day">দিন</string>
+  <string name="shared_picker_confirm">সম্পন্ন</string>
+  <string name="shared_picker_cancel">বাতিল</string>
 </resources>

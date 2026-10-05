@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">क्षितिजभन्दा %1$s° माथि</string>
   <string name="compass_below_horizon">क्षितिजभन्दा %1$s° तल</string>
   <string name="compass_stopped">रोक्नुहोस्</string>
+  <string name="compass_plan">समय योजना गर्नुहोस्</string>
+  <string name="compass_now">अहिले</string>
+  <string name="compass_planned">%1$s %2$s मा देखाइँदै</string>
+  <string name="compass_plan_time">दिनको समय</string>
   <string name="compass_sun_path">सूर्यको मार्ग</string>
   <string name="compass_letter_north">उ</string>
   <string name="compass_letter_east">पू</string>

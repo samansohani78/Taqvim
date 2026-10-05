@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">Ufqdan %1$s° yuqorida</string>
   <string name="compass_below_horizon">Ufqdan %1$s° pastda</string>
   <string name="compass_stopped">Qotirish</string>
+  <string name="compass_plan">Vaqtni rejalash</string>
+  <string name="compass_now">Hozir</string>
+  <string name="compass_planned">%1$s, soat %2$s koʻrsatilmoqda</string>
+  <string name="compass_plan_time">Kun vaqti</string>
   <string name="compass_sun_path">Quyosh yoʻli</string>
   <string name="compass_letter_north">Sh</string>
   <string name="compass_letter_east">Shq</string>

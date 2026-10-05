@@ -5,6 +5,8 @@ plugins {
 dependencies {
     // T-1302/T-1303: Qibla bearing and Sun/Moon azimuths (A-11, A-13); localized digits via :core:ui's i18n API.
     implementation(projects.core.astronomy)
+    // T-1302 planner: the date picker needs the user's calendar for month names and month lengths.
+    implementation(projects.core.calendar)
     implementation(libs.kotlinx.coroutines.core)
 }
 

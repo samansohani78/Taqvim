@@ -5,4 +5,10 @@
   <string name="shared_islamic_variant_tabular_16">جدولی (قسم II)</string>
   <string name="shared_islamic_variant_tabular_15">جدولی (قسم I)</string>
   <string name="shared_islamic_variant_observational">حساب شدہ رویتِ ہلال</string>
+  <string name="shared_picker_title">تاریخ منتخب کریں</string>
+  <string name="shared_picker_year">سال</string>
+  <string name="shared_picker_month">مہینہ</string>
+  <string name="shared_picker_day">دن</string>
+  <string name="shared_picker_confirm">ہو گیا</string>
+  <string name="shared_picker_cancel">منسوخ</string>
 </resources>

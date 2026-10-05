@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">%1$s° سەرووی ئاسۆ</string>
   <string name="compass_below_horizon">%1$s° خوارووی ئاسۆ</string>
   <string name="compass_stopped">چەسپاندن</string>
+  <string name="compass_plan">کاتێک پلان بکە</string>
+  <string name="compass_now">ئێستا</string>
+  <string name="compass_planned">پیشاندانی %1$s لە %2$s</string>
+  <string name="compass_plan_time">کاتی ڕۆژ</string>
   <string name="compass_sun_path">ڕێڕەوی خۆر</string>
   <string name="compass_letter_north">ب</string>
   <string name="compass_letter_east">ڕۆ</string>

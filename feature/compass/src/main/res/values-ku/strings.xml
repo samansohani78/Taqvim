@@ -22,6 +22,10 @@
   <string name="compass_above_horizon">%1$s° li jor asoyê</string>
   <string name="compass_below_horizon">%1$s° li bin asoyê</string>
   <string name="compass_stopped">Bisekinîne</string>
+  <string name="compass_plan">Demekê plan bike</string>
+  <string name="compass_now">Niha</string>
+  <string name="compass_planned">%1$s di %2$s de tê nîşandan</string>
+  <string name="compass_plan_time">Dema rojê</string>
   <string name="compass_sun_path">Rêya rojê</string>
   <string name="compass_letter_north">B</string>
   <string name="compass_letter_east">R</string>
