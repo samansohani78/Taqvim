@@ -59,8 +59,15 @@ class PrayerMethodSourcesTest {
         expect(PrayerMethod.RUSSIA, fajr = 16.0, isha = IshaRule.Angle(15.0))
 
         // Diyanet İşleri Başkanlığı: Fajr 18° and Isha 17° (press statement, 17 July 2013), with the temkin of
-        // https://vakithesaplama.diyanet.gov.tr/temkin.php — re-read 2026-09-25, which states 7 minutes at sunrise
-        // and sunset, 4 at Asr, and Dhuhr 5 minutes after the Sun is overhead.
+        // https://vakithesaplama.diyanet.gov.tr/temkin.php — re-read 2026-09-25 and 2026-10-05, which states
+        // 7 minutes at sunrise and sunset, 4 at Asr, and Dhuhr 5 minutes after the Sun is overhead.
+        //
+        // These are the parameters below latitude 45° — all of Türkiye, Istanbul at 41.0° N included. Beyond 45°
+        // Diyanet estimates Isha and Imsak instead, by Din İşleri Yüksek Kurulu Karar No. 61 of 10–11 June 2009
+        // (kurul.diyanet.gov.tr/tr/kurul/karar/45-enlemin-otesinde-namaz-vakitleri, retrieved 2026-10-05), which
+        // this app does not implement; the 17° angle asserted here is therefore not what Diyanet itself would
+        // publish for, say, Berlin. Its Asr school is published too — asr-ı evvel, the standard shadow factor,
+        // already the default — so no Asr assertion is needed here. See docs/PROVENANCE.md T-601 and DT-011.
         expect(PrayerMethod.DIYANET, fajr = 18.0, isha = IshaRule.Angle(17.0))
         PrayerMethod.DIYANET.parameters().adjustments shouldBe
             TimeAdjustments(sunrise = -7, dhuhr = 5, asr = 4, maghrib = 7)

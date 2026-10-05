@@ -55,8 +55,22 @@ every value comes from an algorithm that works for any year.
    public statements only: Fajr 18°, Isha 17° (press statement, 17 July 2013,
    https://www.diyanet.gov.tr/tr-TR/Content/PrintDetail/2921) and its temkin — sunrise −7, Dhuhr +5, Asr +4,
    Maghrib +7 minutes, none for Fajr and Isha (https://vakithesaplama.diyanet.gov.tr/temkin.php, retrieved
-   2026-09-15). Diyanet publishes no Asr school, high-latitude rule, coordinates or rounding; those follow the user's
-   settings and the nearest minute. No timetable is copied.
+   2026-09-15). Diyanet publishes no coordinates or rounding; those follow the nearest minute. No timetable is copied.
+
+   *Corrected 2026-10-05 (DT-011).* This decision also recorded that Diyanet publishes no Asr school and no
+   high-latitude rule. It publishes both, on its own `diyanet.gov.tr` hosts, and the statements were found on
+   2026-10-05: its calendars take Asr by *asr-ı evvel*, the standard shadow factor k = 1 (Din İşleri Yüksek Kurulu
+   fatwa, https://kurul.diyanet.gov.tr/tr/fetva/-asr-i-evvel--ve--asr-i-sani--ne-demektir-/0193c42d-4d64-7acf-2961-12b0db4e1723),
+   which is already this app's default, so nothing changes; and beyond latitude 45° it estimates Isha and Imsak by
+   Din İşleri Yüksek Kurulu **Karar No. 61 of 10–11 June 2009**
+   (https://kurul.diyanet.gov.tr/tr/kurul/karar/45-enlemin-otesinde-namaz-vakitleri/d681fdc5-924c-4f02-bb74-08dd1c135350):
+   Isha at one third of the shar'i night (sunset to fecr-i sadık) but never later than Maghrib + 1 h 20 min; Imsak
+   from March to September at sunrise minus that interval plus 10 minutes; and beyond latitude 62°, the times of
+   latitude 62°. Karar 61 is **not implemented here.** Türkiye lies wholly below 42.1° N, so the shipped method is
+   faithful for every Turkish city (Istanbul 41.0° N); above 45° — Diyanet's own foreign calendars, Berlin at
+   52.5° N — the app instead applies the user's `HighLatitudeRule`, which is not Diyanet's. Implementing it needs a
+   new `HighLatitudeRule` value, a stored preference and settings strings in every shipped language: an owner
+   decision and an addendum to this ADR. See docs/PROVENANCE.md (T-601) and DATA_TODO DT-011.
 9. **Rounding.** Every method rounds to the nearest minute. For the Institute this is measured: floor and ceiling are
    half a minute off on average against its timetables.
 

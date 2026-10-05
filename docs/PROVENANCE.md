@@ -1002,8 +1002,8 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   5. Diyanet (Türkiye) method from its public statements only: Fajr 18° and Isha 17°
      (https://www.diyanet.gov.tr/tr-TR/Content/PrintDetail/2921, 17 July 2013) and precaution minutes sunrise −7,
      Dhuhr +5, Asr +4, Maghrib +7 (https://vakithesaplama.diyanet.gov.tr/temkin.php), both retrieved 2026-09-15; its
-     Asr school, high-latitude rule and rounding are unpublished and follow the user's settings. No Diyanet timetable
-     data is used.
+     rounding is unpublished and follows the nearest minute. Its Asr school and high-latitude rule **are** published
+     and were found on 2026-10-05 (DT-011, below). No Diyanet timetable data is used.
   Midnight now ends at the next morning's Fajr, as the Institute's tables do. Validation against the 31 official
   timetables (11 315 days): same minute for 99.8–100 % of Fajr, sunrise, Dhuhr, sunset, Maghrib and midnight (was
   56–98 %), every prayer within 1 minute; nearest-minute rounding.
@@ -1024,7 +1024,27 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
      precaution around sunrise and sunset, which the app does not copy.
   3. *Diyanet* — the cited temkin page was re-read on 2026-09-25 and still states it verbatim: 7 minutes at sunrise
      and sunset ("güneş doğuş-batışta 7 dakika temkin"), 4 at Asr, and Dhuhr 5 minutes after the Sun is overhead.
-     Matches the shipped adjustments exactly.
+     Matches the shipped adjustments exactly. Re-read again on 2026-10-05, unchanged, and **two parameters previously
+     recorded as unpublished were found published** (DT-011):
+     - *Asr school.* Din İşleri Yüksek Kurulu fatwa "«Asr-ı evvel» ve «asr-ı sani» ne demektir?"
+       (https://kurul.diyanet.gov.tr/tr/fetva/-asr-i-evvel--ve--asr-i-sani--ne-demektir-/0193c42d-4d64-7acf-2961-12b0db4e1723,
+       retrieved 2026-10-05, HTTP 200): "Diyanet İşleri Başkanlığı, yayınlamakta olduğu Diyanet Takvimi'nde ikindi
+       namazının vaktini, «asr-ı evvel» esasına göre düzenlemiştir." Asr-ı evvel is the shadow equal to the object
+       plus the shadow at transit — the standard factor k = 1, i.e. `AsrJuristic.STANDARD`, which is already the
+       app's default. Nothing to change; the citation closes an open question rather than a defect.
+     - *High-latitude rule.* Din İşleri Yüksek Kurulu **Karar No. 61 of 10–11 June 2009**, "45. Enlemin Ötesinde
+       Namaz Vakitleri" (https://kurul.diyanet.gov.tr/tr/kurul/karar/45-enlemin-otesinde-namaz-vakitleri/d681fdc5-924c-4f02-bb74-08dd1c135350,
+       retrieved 2026-10-05, HTTP 200), which replaced decisions 105 of 15.06.2006 and 48 of 31.05.2007. Beyond
+       latitude 45° Isha stays at one third of the *shar'i* night, the night being sunset to fecr-i sadık (a); where
+       that third would fall later than 1 h 20 min, Isha is set so as not to exceed 1 h 20 min after Maghrib (b);
+       from March to September Imsak is sunrise minus that estimated Maghrib–Isha interval plus 10 minutes, phased in
+       gradually (c); beyond latitude 62° the times of latitude 62° are used (d).
+     **This rule is not implemented**, and the shipped `DIYANET` method is faithful only below latitude 45°. All of
+     Türkiye lies below 42.1° N, so every Turkish city — Istanbul at 41.0° N included — is unaffected. Diyanet's
+     foreign (*yurt dışı*) calendars above 45°, Berlin at 52.5° N among them, would follow Karar 61 and the app does
+     not: there it falls back to whichever `HighLatitudeRule` the user has set, none of which is Diyanet's. Adding a
+     Diyanet rule means a new `HighLatitudeRule` value, a stored preference and settings strings in every shipped
+     language, so it needs an owner decision and an ADR-0029 addendum (DT-011).
   4. *MWL, Egypt, Karachi, France, Russia, Jafari* — the values are consistent across independent descriptions, but
      none of those bodies publishes a parameter statement reachable from here, so they rest on the plan's table.
      *Tehran* needs no such statement: it is validated against the Institute's own 31 city timetables (below).

@@ -131,8 +131,16 @@ public data class PrayerSettings(
  * Standard parameters of each method as listed in docs/PLAN.md §6 A-10. Diyanet (Türkiye): Fajr 18° and Isha 17°
  * (press statement of 17 July 2013, https://www.diyanet.gov.tr/tr-TR/Content/PrintDetail/2921) with its temkin —
  * sunrise 7 minutes earlier, Dhuhr 5 and Asr 4 minutes later, Maghrib 7 minutes after sunset, none for Fajr and Isha
- * (https://vakithesaplama.diyanet.gov.tr/temkin.php). Diyanet publishes no Asr school, high-latitude rule or rounding,
- * so those follow the user's settings and the nearest minute.
+ * (https://vakithesaplama.diyanet.gov.tr/temkin.php). Diyanet publishes no rounding, so that is the nearest minute.
+ *
+ * Diyanet does publish its Asr school and its high-latitude rule (found 2026-10-05, DT-011). Asr is *asr-ı evvel*,
+ * the standard shadow factor k = 1, which is this app's default, so [PrayerSettings.asr] already agrees. Its
+ * high-latitude rule is Din İşleri Yüksek Kurulu Karar No. 61 of 10–11 June 2009: beyond latitude 45° Isha is one
+ * third of the shar'i night (sunset to true dawn) but never later than Maghrib + 1 h 20 min, Imsak from March to
+ * September is sunrise minus that interval plus 10 minutes, and beyond latitude 62° the times of latitude 62° apply.
+ * That rule is **not** implemented: Türkiye lies wholly below 42.1° N, so these parameters are faithful for every
+ * Turkish city, but above 45° — where Diyanet publishes foreign calendars — [PrayerSettings.highLatitude] takes over
+ * and is not Diyanet's rule. Adding it needs an owner decision (see docs/adr/0029-prayer-times-precise-sun.md §8).
  */
 public fun PrayerMethod.parameters(): MethodParameters = METHOD_PARAMETERS.getValue(this)
 
