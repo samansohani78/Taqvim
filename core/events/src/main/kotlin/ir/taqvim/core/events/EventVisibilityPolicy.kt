@@ -108,7 +108,13 @@ public data class EventPreferences(
     public val homeTimeZone: TimeZone,
     /** Show only days off. */
     public val holidaysOnly: Boolean = false,
-    /** Hide religious observances that are not holidays while the device is outside [homeTimeZone]. */
+    /**
+     * Hide religious observances that are not holidays while the device is outside [homeTimeZone].
+     *
+     * No stored setting feeds this and none is planned: the owner declined to surface it on 2026-10-05, because a
+     * traveller losing observances without having asked is worse than seeing a few they do not keep. It stays as a
+     * rule the policy can apply, tested, and is `false` for every user until that decision changes.
+     */
     public val hideReligiousOutsideHomeZone: Boolean = false,
     /** Islamic variant for sources without a fixed one. */
     public val islamicVariant: IslamicVariant = IslamicVariant.IRAN_OFFICIAL,

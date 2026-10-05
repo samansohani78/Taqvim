@@ -67,7 +67,7 @@ internal object DeepLinks {
     fun parse(link: String): AppDestination =
         runCatching { Link.of(link)?.let { HANDLERS[it.host]?.invoke(it) } }.getOrNull() ?: AppDestination.Calendar
 
-    /** `day/<y-m-d>[?calendar=persian|islamic|gregorian]`. */
+    /** `day/<y-m-d>[?calendar=persian|islamic|gregorian|nepali|hebrew]`. */
     private fun day(link: Link): AppDestination? = jdn(link)?.let(AppDestination::Day)
 
     /** `timeline[/<y-m-d>][?calendar=…]`: the week timeline, at the week of that day when one is given. */

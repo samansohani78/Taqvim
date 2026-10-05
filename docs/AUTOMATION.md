@@ -15,6 +15,8 @@ web pages. A link Taqvim cannot read opens the calendar.
 | `taqvim://day/1405-01-01` | The calendar on 1 Farvardin 1405 (Persian calendar by default) |
 | `taqvim://day/2026-03-21?calendar=gregorian` | The calendar on 21 March 2026 |
 | `taqvim://day/1447-10-01?calendar=islamic` | The calendar on 1 Shawwal 1447 (Iran's official Islamic calendar) |
+| `taqvim://day/2082-06-15?calendar=nepali` | The calendar on 15 Ashwin 2082 (Bikram Sambat) |
+| `taqvim://day/5786-07-01?calendar=hebrew` | The calendar on 1 Tishri 5786 (Hebrew calendar) |
 | `taqvim://event/42` | Your event number 42 in the event editor |
 | `taqvim://event/new/1405-01-01` | A new event on 1 Farvardin 1405 in the event editor, saved only when you save it (`?calendar=` as for `day`; `event/new` for today) |
 | `taqvim://occasion/<event id>?day=2461121` | The calendar on that day (used by official-event reminders) |
@@ -34,7 +36,8 @@ web pages. A link Taqvim cannot read opens the calendar.
 
 Rules:
 
-- Dates are `year-month-day` with Latin digits; the calendar is `persian` (default), `islamic` or `gregorian`. A date
+- Dates are `year-month-day` with Latin digits; the calendar is `persian` (default), `islamic`, `gregorian`,
+  `nepali` or `hebrew`. A date
   that does not exist in its calendar (such as `1405-07-31`) is not opened.
 - `day` in `occasion` is a Julian day number; days outside the Gregorian years 1–9999 are ignored.
 - Texts (`date`, `q`) are percent-encoded and cut at 500 characters.
