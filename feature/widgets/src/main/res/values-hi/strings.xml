@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">महीना</string>
   <string name="widget_countdown_picker_day">दिन</string>
   <string name="widget_countdown_picker_confirm">हो गया</string>
+  <string name="widget_list_title">विजेट</string>
+  <string name="widget_list_loading">विजेट लोड हो रहे हैं</string>
+  <string name="widget_list_empty_title">कोई विजेट नहीं जोड़ा गया</string>
+  <string name="widget_list_empty_message">पहले होम स्क्रीन से एक तकवीम विजेट जोड़ें; उसकी सेटिंग्स बाद में यहाँ दिखेंगी।</string>
+  <string name="widget_list_note">हर विजेट की अपनी दिखावट और सामग्री सेटिंग्स होती हैं।</string>
 </resources>

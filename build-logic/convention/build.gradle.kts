@@ -30,6 +30,12 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    // The license tests read `config/license/allowed-licenses.json` from the repository at runtime, which Gradle
+    // cannot see, so without this the task is served from the cache after the policy itself changes.
+    inputs
+        .dir(layout.projectDirectory.dir("../../config/license"))
+        .withPropertyName("licensePolicy")
+        .withPathSensitivity(PathSensitivity.RELATIVE)
 }
 
 gradlePlugin {

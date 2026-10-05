@@ -143,4 +143,9 @@
   <string name="widget_countdown_picker_month">Mes</string>
   <string name="widget_countdown_picker_day">Día</string>
   <string name="widget_countdown_picker_confirm">Listo</string>
+  <string name="widget_list_title">Widgets</string>
+  <string name="widget_list_loading">Cargando widgets</string>
+  <string name="widget_list_empty_title">No hay widgets añadidos</string>
+  <string name="widget_list_empty_message">Añade primero un widget de Taqvim desde la pantalla de inicio; sus ajustes aparecerán aquí después.</string>
+  <string name="widget_list_note">Cada widget tiene sus propios ajustes de apariencia y contenido.</string>
 </resources>

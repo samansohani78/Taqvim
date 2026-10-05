@@ -29,7 +29,6 @@
   <string name="shortcut_converter">Tarih dönüştürücü</string>
   <string name="pending_shift_work">Vardiya çalışması henüz kullanılamıyor.</string>
   <string name="pending_settings">Bu ayar henüz kullanılamıyor.</string>
-  <string name="pending_widgets">Widget ayarları henüz kullanılamıyor.</string>
   <string name="message_no_upcoming_occurrence">Bu etkinliğin yaklaşan bir tarihi yok.</string>
   <string name="message_setting_not_saved">Ayar kaydedilemedi.</string>
   <string name="message_date_out_of_range">Bu tarih gösterilen takvimlerin dışında; en yakın tarih gösterildi.</string>

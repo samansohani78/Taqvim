@@ -29,7 +29,6 @@
   <string name="shortcut_converter">तारीख परिवर्तक</string>
   <string name="pending_shift_work">शिफ़्ट वर्क अभी उपलब्ध नहीं है।</string>
   <string name="pending_settings">यह सेटिंग अभी उपलब्ध नहीं है।</string>
-  <string name="pending_widgets">विजेट सेटिंग अभी उपलब्ध नहीं हैं।</string>
   <string name="message_no_upcoming_occurrence">इस इवेंट की कोई आगामी तारीख नहीं है।</string>
   <string name="message_setting_not_saved">सेटिंग सहेजी नहीं जा सकी।</string>
   <string name="message_date_out_of_range">यह तिथि दिखाए गए कैलेंडरों की सीमा से बाहर है; निकटतम तिथि दिखाई गई है।</string>

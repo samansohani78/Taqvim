@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">مہینہ</string>
   <string name="widget_countdown_picker_day">دن</string>
   <string name="widget_countdown_picker_confirm">ہو گیا</string>
+  <string name="widget_list_title">ویجٹس</string>
+  <string name="widget_list_loading">ویجٹس لوڈ ہو رہے ہیں</string>
+  <string name="widget_list_empty_title">کوئی ویجٹ شامل نہیں</string>
+  <string name="widget_list_empty_message">پہلے ہوم اسکرین سے ایک تقویم ویجٹ شامل کریں؛ اس کی ترتیبات بعد میں یہاں نظر آئیں گی۔</string>
+  <string name="widget_list_note">ہر ویجٹ کی اپنی ظاہری شکل اور مواد کی ترتیبات ہوتی ہیں۔</string>
 </resources>

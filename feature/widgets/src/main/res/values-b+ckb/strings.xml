@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">مانگ</string>
   <string name="widget_countdown_picker_day">ڕۆژ</string>
   <string name="widget_countdown_picker_confirm">تەواو</string>
+  <string name="widget_list_title">ویجێتەکان</string>
+  <string name="widget_list_loading">بارکردنی ویجێتەکان</string>
+  <string name="widget_list_empty_title">هیچ ویجێتێک دانەنراوە</string>
+  <string name="widget_list_empty_message">سەرەتا لە پەڕەی سەرەکییەوە ویجێتێکی تەقویم زیاد بکە؛ پاشان ڕێکخستنەکانی لێرە دەردەکەون.</string>
+  <string name="widget_list_note">هەر ویجێتێک ڕێکخستنی ڕواڵەت و ناوەڕۆکی خۆی هەیە.</string>
 </resources>

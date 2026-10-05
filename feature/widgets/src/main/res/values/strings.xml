@@ -182,4 +182,10 @@
   <string name="widget_countdown_picker_day">Day</string>
   <!-- Button that confirms the chosen date. -->
   <string name="widget_countdown_picker_confirm">Done</string>
+  <!-- T-1200: the widget settings screen, reached from Settings; lists the widgets the user has placed. -->
+  <string name="widget_list_title">Widgets</string>
+  <string name="widget_list_loading">Loading widgets</string>
+  <string name="widget_list_empty_title">No widgets placed</string>
+  <string name="widget_list_empty_message">Add a Taqvim widget from your home screen first; its settings appear here afterwards.</string>
+  <string name="widget_list_note">Each widget keeps its own appearance and content settings.</string>
 </resources>

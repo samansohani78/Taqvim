@@ -125,4 +125,9 @@
   <string name="widget_countdown_picker_month">Моҳ</string>
   <string name="widget_countdown_picker_day">Рӯз</string>
   <string name="widget_countdown_picker_confirm">Тайёр</string>
+  <string name="widget_list_title">Виҷетҳо</string>
+  <string name="widget_list_loading">Боркунии виҷетҳо</string>
+  <string name="widget_list_empty_title">Ягон виҷет гузошта нашудааст</string>
+  <string name="widget_list_empty_message">Аввал аз экрани асосӣ виҷети Тақвимро илова кунед; танзимоти он пас дар ин ҷо пайдо мешавад.</string>
+  <string name="widget_list_note">Ҳар виҷет танзимоти намуд ва мундариҷаи худро дорад.</string>
 </resources>

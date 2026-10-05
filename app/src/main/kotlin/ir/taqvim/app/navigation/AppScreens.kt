@@ -55,6 +55,7 @@ import ir.taqvim.feature.settings.SubscriptionsRoute
 import ir.taqvim.feature.timeline.TimelineRoute
 import ir.taqvim.feature.times.TimesRoute
 import ir.taqvim.feature.tools.ToolsRoute
+import ir.taqvim.feature.widgets.WidgetListRoute
 import ir.taqvim.feature.year.YearRoute
 
 /** The test tag of the screen shown for [destination]. */
@@ -259,6 +260,10 @@ private fun SettingsPageScreen(
 
         AppDestination.IslamicOverride -> {
             IslamicOverrideRoute(modifier)
+        }
+
+        AppDestination.Widgets -> {
+            WidgetListRoute(modifier)
         }
 
         else -> {

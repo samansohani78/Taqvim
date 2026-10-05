@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">মাস</string>
   <string name="widget_countdown_picker_day">দিন</string>
   <string name="widget_countdown_picker_confirm">সম্পন্ন</string>
+  <string name="widget_list_title">উইজেট</string>
+  <string name="widget_list_loading">উইজেট লোড হচ্ছে</string>
+  <string name="widget_list_empty_title">কোনো উইজেট যোগ করা হয়নি</string>
+  <string name="widget_list_empty_message">প্রথমে হোম স্ক্রিন থেকে একটি তাকভিম উইজেট যোগ করুন; এর সেটিংস তারপর এখানে দেখা যাবে।</string>
+  <string name="widget_list_note">প্রতিটি উইজেটের নিজস্ব চেহারা ও বিষয়বস্তুর সেটিংস আছে।</string>
 </resources>

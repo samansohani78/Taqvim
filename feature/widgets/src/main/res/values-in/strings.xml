@@ -125,4 +125,9 @@
   <string name="widget_countdown_picker_month">Bulan</string>
   <string name="widget_countdown_picker_day">Hari</string>
   <string name="widget_countdown_picker_confirm">Selesai</string>
+  <string name="widget_list_title">Widget</string>
+  <string name="widget_list_loading">Memuat widget</string>
+  <string name="widget_list_empty_title">Belum ada widget</string>
+  <string name="widget_list_empty_message">Tambahkan dulu widget Taqvim dari layar beranda; pengaturannya akan muncul di sini.</string>
+  <string name="widget_list_note">Setiap widget punya pengaturan tampilan dan kontennya sendiri.</string>
 </resources>

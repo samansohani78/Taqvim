@@ -143,7 +143,7 @@ class AppRouterTest {
                 AppDestination.LocationSettings,
                 AppDestination.AthanSettings,
                 AppDestination.Subscriptions,
-                AppDestination.Pending(PendingFeature.WIDGETS),
+                AppDestination.Widgets,
                 AppDestination.IslamicOverride,
             )
     }

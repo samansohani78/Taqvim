@@ -29,7 +29,6 @@
   <string name="shortcut_converter">Conversor de fechas</string>
   <string name="pending_shift_work">El trabajo por turnos aún no está disponible.</string>
   <string name="pending_settings">Este ajuste aún no está disponible.</string>
-  <string name="pending_widgets">Los ajustes de widgets aún no están disponibles.</string>
   <string name="message_no_upcoming_occurrence">Este evento no tiene fechas próximas.</string>
   <string name="message_setting_not_saved">No se pudo guardar el ajuste.</string>
   <string name="message_date_out_of_range">Esa fecha está fuera de los calendarios mostrados; se muestra la más cercana.</string>

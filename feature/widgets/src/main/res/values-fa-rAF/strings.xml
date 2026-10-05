@@ -140,4 +140,9 @@
   <string name="widget_countdown_picker_month">ماه</string>
   <string name="widget_countdown_picker_day">روز</string>
   <string name="widget_countdown_picker_confirm">تأیید</string>
+  <string name="widget_list_title">ابزارک‌ها</string>
+  <string name="widget_list_loading">در حال بارگذاری ابزارک‌ها</string>
+  <string name="widget_list_empty_title">هیچ ابزارکی افزوده نشده است</string>
+  <string name="widget_list_empty_message">نخست از صفحهٔ اصلی یک ابزارک تقویم را بیفزایید؛ تنظیمات آن سپس اینجا دیده می‌شود.</string>
+  <string name="widget_list_note">هر ابزارک تنظیمات ظاهر و محتوای خودش را دارد.</string>
 </resources>

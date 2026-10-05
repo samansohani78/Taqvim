@@ -29,7 +29,6 @@
   <string name="shortcut_converter">محوّل التاريخ</string>
   <string name="pending_shift_work">العمل بنظام المناوبات غير متاح بعد.</string>
   <string name="pending_settings">هذا الإعداد غير متاح بعد.</string>
-  <string name="pending_widgets">إعدادات الأدوات المصغّرة غير متاحة بعد.</string>
   <string name="message_no_upcoming_occurrence">ليس لهذا الحدث تاريخ قادم.</string>
   <string name="message_setting_not_saved">تعذّر حفظ الإعداد.</string>
   <string name="message_date_out_of_range">هذا التاريخ خارج التقويمات المعروضة؛ عُرض أقرب تاريخ ممكن.</string>

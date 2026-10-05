@@ -29,7 +29,6 @@
   <string name="shortcut_converter">日付変換</string>
   <string name="pending_shift_work">シフト勤務はまだ利用できません。</string>
   <string name="pending_settings">この設定はまだ利用できません。</string>
-  <string name="pending_widgets">ウィジェットの設定はまだ利用できません。</string>
   <string name="message_no_upcoming_occurrence">このイベントに今後の日付はありません。</string>
   <string name="message_setting_not_saved">設定を保存できませんでした。</string>
   <string name="message_date_out_of_range">その日付は表示中の暦の範囲外です。最も近い日付を表示しました。</string>

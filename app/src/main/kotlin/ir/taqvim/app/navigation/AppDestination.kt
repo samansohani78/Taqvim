@@ -60,6 +60,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object Subscriptions : AppDestination
 
+    /** Settings of the widgets the user has placed (T-1200). */
+    @Serializable
+    data object Widgets : AppDestination
+
     /** The optional official Islamic dates page (ADR-0037). */
     @Serializable
     data object IslamicOverride : AppDestination
@@ -143,9 +147,6 @@ enum class PendingFeature(
 
     /** A settings search entry without a screen of its own. */
     SETTINGS(R.string.pending_settings),
-
-    /** Widget settings (T-1200). */
-    WIDGETS(R.string.pending_widgets),
 }
 
 /** The destinations of the navigation bar or rail, in order. */

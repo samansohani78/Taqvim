@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">میاشت</string>
   <string name="widget_countdown_picker_day">ورځ</string>
   <string name="widget_countdown_picker_confirm">ترسره شو</string>
+  <string name="widget_list_title">وېجټونه</string>
+  <string name="widget_list_loading">د وېجټونو بارول</string>
+  <string name="widget_list_empty_title">هیڅ وېجټ نه دی ایښودل شوی</string>
+  <string name="widget_list_empty_message">لومړی د کور پردې څخه د تقویم وېجټ زیات کړئ؛ بیا یې تنظیمات دلته ښکاري.</string>
+  <string name="widget_list_note">هر وېجټ د خپل بڼې او منځپانګې تنظیمات لري.</string>
 </resources>

@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">Oy</string>
   <string name="widget_countdown_picker_day">Kun</string>
   <string name="widget_countdown_picker_confirm">Tayyor</string>
+  <string name="widget_list_title">Vidjetlar</string>
+  <string name="widget_list_loading">Vidjetlar yuklanmoqda</string>
+  <string name="widget_list_empty_title">Hech qanday vidjet qoʻyilmagan</string>
+  <string name="widget_list_empty_message">Avval bosh ekrandan Taqvim vidjetini qoʻshing; sozlamalari keyin shu yerda koʻrinadi.</string>
+  <string name="widget_list_note">Har bir vidjetning oʻz koʻrinish va mazmun sozlamalari bor.</string>
 </resources>

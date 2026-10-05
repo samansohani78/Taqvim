@@ -152,4 +152,9 @@
   <string name="widget_countdown_picker_month">Месяц</string>
   <string name="widget_countdown_picker_day">День</string>
   <string name="widget_countdown_picker_confirm">Готово</string>
+  <string name="widget_list_title">Виджеты</string>
+  <string name="widget_list_loading">Загрузка виджетов</string>
+  <string name="widget_list_empty_title">Виджеты не добавлены</string>
+  <string name="widget_list_empty_message">Сначала добавьте виджет Taqvim на главный экран; его настройки появятся здесь.</string>
+  <string name="widget_list_note">У каждого виджета свои настройки внешнего вида и содержимого.</string>
 </resources>

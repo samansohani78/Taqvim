@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">Meh</string>
   <string name="widget_countdown_picker_day">Roj</string>
   <string name="widget_countdown_picker_confirm">Qediya</string>
+  <string name="widget_list_title">Widget</string>
+  <string name="widget_list_loading">Barkirina widgetan</string>
+  <string name="widget_list_empty_title">Tu widget nehatiye danîn</string>
+  <string name="widget_list_empty_message">Pêşî ji ekrana malê widgetek Taqvim zêde bike; mîhengên wê paşê li vir xuya dibin.</string>
+  <string name="widget_list_note">Her widget mîhengên xwe yên xuyang û naverokê hene.</string>
 </resources>

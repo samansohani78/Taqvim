@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">महिना</string>
   <string name="widget_countdown_picker_day">दिन</string>
   <string name="widget_countdown_picker_confirm">सम्पन्न</string>
+  <string name="widget_list_title">विजेटहरू</string>
+  <string name="widget_list_loading">विजेटहरू लोड हुँदै</string>
+  <string name="widget_list_empty_title">कुनै विजेट राखिएको छैन</string>
+  <string name="widget_list_empty_message">पहिले होम स्क्रिनबाट ताक्विम विजेट थप्नुहोस्; त्यसपछि यसका सेटिङहरू यहाँ देखिन्छन्।</string>
+  <string name="widget_list_note">प्रत्येक विजेटको आफ्नै रूप र सामग्री सेटिङ हुन्छ।</string>
 </resources>

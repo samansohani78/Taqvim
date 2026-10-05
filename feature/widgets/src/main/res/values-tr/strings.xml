@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">Ay</string>
   <string name="widget_countdown_picker_day">Gün</string>
   <string name="widget_countdown_picker_confirm">Tamam</string>
+  <string name="widget_list_title">Widget\'lar</string>
+  <string name="widget_list_loading">Widget\'lar yükleniyor</string>
+  <string name="widget_list_empty_title">Hiç widget eklenmemiş</string>
+  <string name="widget_list_empty_message">Önce ana ekrandan bir Taqvim widget\'ı ekleyin; ayarları sonra burada görünür.</string>
+  <string name="widget_list_note">Her widget kendi görünüm ve içerik ayarlarını tutar.</string>
 </resources>

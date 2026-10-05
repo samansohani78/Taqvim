@@ -48,6 +48,7 @@ val widgetsFeatureModule: Module =
         viewModel { (appWidgetId: Int, kind: WidgetKind) ->
             WidgetConfigViewModel(appWidgetId, kind, get(), get(), get(), getOrNull())
         }
+        viewModel { WidgetListViewModel(get()) }
     }
 
 /**

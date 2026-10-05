@@ -29,7 +29,6 @@
   <string name="shortcut_converter">Penukar tarikh</string>
   <string name="pending_shift_work">Kerja syif belum tersedia.</string>
   <string name="pending_settings">Tetapan ini belum tersedia.</string>
-  <string name="pending_widgets">Tetapan widget belum tersedia.</string>
   <string name="message_no_upcoming_occurrence">Acara ini tiada tarikh akan datang.</string>
   <string name="message_setting_not_saved">Tetapan tidak dapat disimpan.</string>
   <string name="message_date_out_of_range">Tarikh itu di luar kalendar yang dipaparkan; tarikh terdekat dipaparkan.</string>

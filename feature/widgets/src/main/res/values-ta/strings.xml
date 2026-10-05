@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">மாதம்</string>
   <string name="widget_countdown_picker_day">நாள்</string>
   <string name="widget_countdown_picker_confirm">முடிந்தது</string>
+  <string name="widget_list_title">விட்ஜெட்டுகள்</string>
+  <string name="widget_list_loading">விட்ஜெட்டுகள் ஏற்றப்படுகின்றன</string>
+  <string name="widget_list_empty_title">விட்ஜெட் எதுவும் சேர்க்கப்படவில்லை</string>
+  <string name="widget_list_empty_message">முதலில் முகப்புத் திரையிலிருந்து ஒரு தக்வீம் விட்ஜெட்டைச் சேர்க்கவும்; அதன் அமைப்புகள் பிறகு இங்கே தோன்றும்.</string>
+  <string name="widget_list_note">ஒவ்வொரு விட்ஜெட்டுக்கும் தனி தோற்றம் மற்றும் உள்ளடக்க அமைப்புகள் உண்டு.</string>
 </resources>

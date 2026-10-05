@@ -170,4 +170,9 @@
   <string name="widget_countdown_picker_month">الشهر</string>
   <string name="widget_countdown_picker_day">اليوم</string>
   <string name="widget_countdown_picker_confirm">تم</string>
+  <string name="widget_list_title">الأدوات</string>
+  <string name="widget_list_loading">جارٍ تحميل الأدوات</string>
+  <string name="widget_list_empty_title">لم تُضَف أي أداة</string>
+  <string name="widget_list_empty_message">أضف أداة التقويم من الشاشة الرئيسية أولًا؛ ستظهر إعداداتها هنا بعد ذلك.</string>
+  <string name="widget_list_note">لكل أداة إعدادات مظهر ومحتوى خاصة بها.</string>
 </resources>

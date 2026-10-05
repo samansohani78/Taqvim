@@ -134,4 +134,9 @@
   <string name="widget_countdown_picker_month">Ay</string>
   <string name="widget_countdown_picker_day">Gün</string>
   <string name="widget_countdown_picker_confirm">Hazırdır</string>
+  <string name="widget_list_title">Vidjetlər</string>
+  <string name="widget_list_loading">Vidjetlər yüklənir</string>
+  <string name="widget_list_empty_title">Heç bir vidjet əlavə edilməyib</string>
+  <string name="widget_list_empty_message">Əvvəlcə ana ekrandan Taqvim vidjeti əlavə edin; parametrləri sonra burada görünəcək.</string>
+  <string name="widget_list_note">Hər vidjetin öz görünüş və məzmun parametrləri var.</string>
 </resources>

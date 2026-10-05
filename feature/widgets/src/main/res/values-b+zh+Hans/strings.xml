@@ -125,4 +125,9 @@
   <string name="widget_countdown_picker_month">月</string>
   <string name="widget_countdown_picker_day">日</string>
   <string name="widget_countdown_picker_confirm">完成</string>
+  <string name="widget_list_title">小部件</string>
+  <string name="widget_list_loading">正在加载小部件</string>
+  <string name="widget_list_empty_title">尚未添加小部件</string>
+  <string name="widget_list_empty_message">请先从主屏幕添加 Taqvim 小部件，其设置随后会显示在这里。</string>
+  <string name="widget_list_note">每个小部件都有各自的外观和内容设置。</string>
 </resources>

@@ -184,7 +184,7 @@ internal fun settingsPage(destination: SettingsDestination): AppDestination =
         SettingsDestination.ATHAN -> AppDestination.AthanSettings
         SettingsDestination.SUBSCRIPTIONS -> AppDestination.Subscriptions
         SettingsDestination.ISLAMIC_OVERRIDE -> AppDestination.IslamicOverride
-        SettingsDestination.WIDGETS -> AppDestination.Pending(PendingFeature.WIDGETS)
+        SettingsDestination.WIDGETS -> AppDestination.Widgets
     }
 
 /** The screen of a tool search result. */

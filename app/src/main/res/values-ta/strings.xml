@@ -29,7 +29,6 @@
   <string name="shortcut_converter">தேதி மாற்றி</string>
   <string name="pending_shift_work">ஷிப்ட் வேலை இன்னும் கிடைக்கவில்லை.</string>
   <string name="pending_settings">இந்த அமைப்பு இன்னும் கிடைக்கவில்லை.</string>
-  <string name="pending_widgets">விட்ஜெட் அமைப்புகள் இன்னும் கிடைக்கவில்லை.</string>
   <string name="message_no_upcoming_occurrence">இந்த நிகழ்வுக்கு வரவிருக்கும் தேதி இல்லை.</string>
   <string name="message_setting_not_saved">அமைப்பை சேமிக்க முடியவில்லை.</string>
   <string name="message_date_out_of_range">அந்தத் தேதி காட்டப்படும் நாட்காட்டிகளுக்கு வெளியே உள்ளது; அருகிலுள்ள தேதி காட்டப்பட்டது.</string>

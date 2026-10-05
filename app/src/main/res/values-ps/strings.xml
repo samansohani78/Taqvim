@@ -29,7 +29,6 @@
   <string name="shortcut_converter">د نېټې اړونکی</string>
   <string name="pending_shift_work">د شفټ کار لا شتون نه لري.</string>
   <string name="pending_settings">دا تنظیم لا شتون نه لري.</string>
-  <string name="pending_widgets">د ویجټ تنظیمات لا شتون نه لري.</string>
   <string name="message_no_upcoming_occurrence">دې پېښې راتلونکې نېټه نه لري.</string>
   <string name="message_setting_not_saved">تنظیم خوندي نه شو.</string>
   <string name="message_date_out_of_range">هغه نېټه د ښودل شويو کليزو څخه بهر ده؛ نږدې ممکنه نېټه وښودل شوه.</string>

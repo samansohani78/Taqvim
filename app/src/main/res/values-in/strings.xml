@@ -29,7 +29,6 @@
   <string name="shortcut_converter">Konverter tanggal</string>
   <string name="pending_shift_work">Kerja sif belum tersedia.</string>
   <string name="pending_settings">Setelan ini belum tersedia.</string>
-  <string name="pending_widgets">Setelan widget belum tersedia.</string>
   <string name="message_no_upcoming_occurrence">Acara ini tidak memiliki tanggal mendatang.</string>
   <string name="message_setting_not_saved">Setelan tidak dapat disimpan.</string>
   <string name="message_date_out_of_range">Tanggal itu di luar kalender yang ditampilkan; tanggal terdekat ditampilkan.</string>
