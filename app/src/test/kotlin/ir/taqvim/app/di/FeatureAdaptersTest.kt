@@ -105,17 +105,6 @@ class FeatureAdaptersTest {
         }
 
     @Test
-    fun `the session level calibration keeps the last saved offsets`(): Unit =
-        runTest {
-            val store = SessionLevelCalibrationStore()
-            val calibration = LevelCalibration(persistentMapOf(DeviceOrientation.FLAT to Tilt(1.5, -0.5)))
-
-            store.calibration().first() shouldBe LevelCalibration()
-            store.save(calibration)
-            store.calibration().first() shouldBe calibration
-        }
-
-    @Test
     fun `tools settings use the user's calendars, the device zone and the default workday profile`(): Unit =
         runTest {
             val profile = MutableStateFlow<WorkdayProfile?>(null)

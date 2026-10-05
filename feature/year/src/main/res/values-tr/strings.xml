@@ -23,4 +23,17 @@
   <string name="year_calendar_gregorian">Miladi</string>
   <string name="year_calendar_nepali">Nepal</string>
   <string name="year_calendar_hebrew">İbrani</string>
+  <string name="year_animal_year">%1$s yılı</string>
+  <string name="year_animal_mouse">fare</string>
+  <string name="year_animal_ox">öküz</string>
+  <string name="year_animal_leopard">leopar</string>
+  <string name="year_animal_rabbit">tavşan</string>
+  <string name="year_animal_whale">balina</string>
+  <string name="year_animal_snake">yılan</string>
+  <string name="year_animal_horse">at</string>
+  <string name="year_animal_sheep">koyun</string>
+  <string name="year_animal_monkey">maymun</string>
+  <string name="year_animal_hen">tavuk</string>
+  <string name="year_animal_dog">köpek</string>
+  <string name="year_animal_pig">domuz</string>
 </resources>

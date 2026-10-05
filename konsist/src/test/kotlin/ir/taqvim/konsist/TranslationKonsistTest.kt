@@ -42,6 +42,31 @@ class TranslationKonsistTest {
     }
 
     @Test
+    fun `a machine-translated language carries its review marker in every module`() {
+        // TRANSLATING.md §2a: the marker is removed language by language, when a reviewer has read that language end
+        // to end - so it is per language, never per module. A module whose files lack it is a module the reviewer
+        // never saw; `core/ui` shipped that way until 2026-10-06.
+        val missing =
+            MachineTranslations
+                .markersByLanguage(root)
+                .filterValues { files -> files.any { it.marked } && files.any { !it.marked } }
+                .mapValues { (_, files) -> files.filterNot { it.marked }.map { it.path }.sorted() }
+
+        missing.keys.shouldBeEmpty()
+    }
+
+    @Test
+    fun `every module with source strings is a Weblate component`() {
+        // A module missing from .weblate is invisible to translators: its strings never reach Weblate at all.
+        val components = MachineTranslations.weblateComponents(root)
+        val modules = MachineTranslations.modulesWithSourceStrings(root)
+
+        components.shouldNotBeEmpty()
+        (modules - components).shouldBeEmpty()
+        (components - modules).shouldBeEmpty()
+    }
+
+    @Test
     fun `debug builds include the pseudo-locales`() {
         File(root, "app/build.gradle.kts").readText() shouldContain "isPseudoLocalesEnabled = true"
     }

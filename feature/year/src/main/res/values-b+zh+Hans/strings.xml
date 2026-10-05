@@ -22,4 +22,17 @@
   <string name="year_calendar_gregorian">公历</string>
   <string name="year_calendar_nepali">尼泊尔历</string>
   <string name="year_calendar_hebrew">希伯来历</string>
+  <string name="year_animal_year">%1$s年</string>
+  <string name="year_animal_mouse">鼠</string>
+  <string name="year_animal_ox">牛</string>
+  <string name="year_animal_leopard">豹</string>
+  <string name="year_animal_rabbit">兔</string>
+  <string name="year_animal_whale">鲸</string>
+  <string name="year_animal_snake">蛇</string>
+  <string name="year_animal_horse">马</string>
+  <string name="year_animal_sheep">羊</string>
+  <string name="year_animal_monkey">猴</string>
+  <string name="year_animal_hen">鸡</string>
+  <string name="year_animal_dog">狗</string>
+  <string name="year_animal_pig">猪</string>
 </resources>

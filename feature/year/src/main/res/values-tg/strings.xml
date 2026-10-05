@@ -22,4 +22,17 @@
   <string name="year_calendar_gregorian">Мелодӣ</string>
   <string name="year_calendar_nepali">Непалӣ</string>
   <string name="year_calendar_hebrew">Ибрӣ</string>
+  <string name="year_animal_year">Соли %1$s</string>
+  <string name="year_animal_mouse">муш</string>
+  <string name="year_animal_ox">гов</string>
+  <string name="year_animal_leopard">паланг</string>
+  <string name="year_animal_rabbit">харгӯш</string>
+  <string name="year_animal_whale">наҳанг</string>
+  <string name="year_animal_snake">мор</string>
+  <string name="year_animal_horse">асп</string>
+  <string name="year_animal_sheep">гӯсфанд</string>
+  <string name="year_animal_monkey">маймун</string>
+  <string name="year_animal_hen">мурғ</string>
+  <string name="year_animal_dog">саг</string>
+  <string name="year_animal_pig">хук</string>
 </resources>

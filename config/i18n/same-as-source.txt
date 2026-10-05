@@ -102,7 +102,7 @@ feature/settings/src/main/res: settings_numerals_latin | Script name plus its di
 feature/settings/src/main/res: settings_numerals_tamil | Script name plus its digits (az tr uz de id ms)
 feature/settings/src/main/res: settings_subscriptions_details | Same word in these languages; no translation needed (de)
 feature/settings/src/main/res: settings_tab_widgets_notification | Same word in these languages; no translation needed (fr)
-feature/settings/src/main/res: settings_variant_umm_al_qura | Proper name of the Umm al-Qura calendar (de fr es id ms)
+core/ui/src/main/res: shared_islamic_variant_umm_al_qura | Proper name of the Umm al-Qura calendar (de fr es id ms)
 feature/timeline/src/main/res: timeline_prayer_asr | Prayer name transliterated the same way as in the source (uz de fr es)
 feature/timeline/src/main/res: timeline_prayer_dhuhr | Prayer name transliterated the same way as in the source (de es)
 feature/timeline/src/main/res: timeline_prayer_fajr | Prayer name transliterated the same way as in the source (fr)
@@ -142,3 +142,4 @@ wear/src/main/res: wear_prayer_dhuhr | Prayer name transliterated the same way a
 wear/src/main/res: wear_prayer_fajr | Prayer name transliterated the same way as in the source (fr)
 wear/src/main/res: wear_prayer_isha | Prayer name transliterated the same way as in the source (es)
 wear/src/main/res: wear_prayer_maghrib | Prayer name transliterated the same way as in the source (de ms)
+feature/year/src/main/res: year_animal_leopard | Leopard is the same word in German (de)

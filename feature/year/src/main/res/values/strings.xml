@@ -34,4 +34,20 @@
   <!-- Name of the Nepali (Bikram Sambat) calendar. -->
   <string name="year_calendar_nepali">Nepali</string>
   <string name="year_calendar_hebrew">Hebrew</string>
+  <!-- The animal of the shown Solar Hijri year (DT-015). %1$s is one of the twelve animal names below. -->
+  <string name="year_animal_year">Year of the %1$s</string>
+  <!-- The twelve animals of the Persian cycle (Dehkhoda); a leopard, a whale and a hen, not the
+       Chinese tiger, dragon and rooster. -->
+  <string name="year_animal_mouse">Mouse</string>
+  <string name="year_animal_ox">Ox</string>
+  <string name="year_animal_leopard">Leopard</string>
+  <string name="year_animal_rabbit">Rabbit</string>
+  <string name="year_animal_whale">Whale</string>
+  <string name="year_animal_snake">Snake</string>
+  <string name="year_animal_horse">Horse</string>
+  <string name="year_animal_sheep">Sheep</string>
+  <string name="year_animal_monkey">Monkey</string>
+  <string name="year_animal_hen">Hen</string>
+  <string name="year_animal_dog">Dog</string>
+  <string name="year_animal_pig">Pig</string>
 </resources>

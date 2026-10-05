@@ -23,4 +23,17 @@
   <string name="year_calendar_gregorian">عیسوی</string>
   <string name="year_calendar_nepali">نیپالی</string>
   <string name="year_calendar_hebrew">عبرانی</string>
+  <string name="year_animal_year">%1$s کا سال</string>
+  <string name="year_animal_mouse">چوہا</string>
+  <string name="year_animal_ox">بیل</string>
+  <string name="year_animal_leopard">چیتا</string>
+  <string name="year_animal_rabbit">خرگوش</string>
+  <string name="year_animal_whale">وہیل</string>
+  <string name="year_animal_snake">سانپ</string>
+  <string name="year_animal_horse">گھوڑا</string>
+  <string name="year_animal_sheep">بھیڑ</string>
+  <string name="year_animal_monkey">بندر</string>
+  <string name="year_animal_hen">مرغی</string>
+  <string name="year_animal_dog">کتا</string>
+  <string name="year_animal_pig">سور</string>
 </resources>

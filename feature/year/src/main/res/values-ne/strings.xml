@@ -23,4 +23,17 @@
   <string name="year_calendar_gregorian">ग्रेगोरियन</string>
   <string name="year_calendar_nepali">नेपाली</string>
   <string name="year_calendar_hebrew">हिब्रु</string>
+  <string name="year_animal_year">%1$s को वर्ष</string>
+  <string name="year_animal_mouse">मुसा</string>
+  <string name="year_animal_ox">गोरु</string>
+  <string name="year_animal_leopard">चितुवा</string>
+  <string name="year_animal_rabbit">खरायो</string>
+  <string name="year_animal_whale">ह्वेल</string>
+  <string name="year_animal_snake">सर्प</string>
+  <string name="year_animal_horse">घोडा</string>
+  <string name="year_animal_sheep">भेडा</string>
+  <string name="year_animal_monkey">बाँदर</string>
+  <string name="year_animal_hen">कुखुरा</string>
+  <string name="year_animal_dog">कुकुर</string>
+  <string name="year_animal_pig">सुँगुर</string>
 </resources>

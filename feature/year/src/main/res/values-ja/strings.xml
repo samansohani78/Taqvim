@@ -22,4 +22,17 @@
   <string name="year_calendar_gregorian">グレゴリオ暦</string>
   <string name="year_calendar_nepali">ネパール暦</string>
   <string name="year_calendar_hebrew">ヘブライ暦</string>
+  <string name="year_animal_year">%1$s年</string>
+  <string name="year_animal_mouse">ネズミ</string>
+  <string name="year_animal_ox">ウシ</string>
+  <string name="year_animal_leopard">ヒョウ</string>
+  <string name="year_animal_rabbit">ウサギ</string>
+  <string name="year_animal_whale">クジラ</string>
+  <string name="year_animal_snake">ヘビ</string>
+  <string name="year_animal_horse">ウマ</string>
+  <string name="year_animal_sheep">ヒツジ</string>
+  <string name="year_animal_monkey">サル</string>
+  <string name="year_animal_hen">ニワトリ</string>
+  <string name="year_animal_dog">イヌ</string>
+  <string name="year_animal_pig">ブタ</string>
 </resources>

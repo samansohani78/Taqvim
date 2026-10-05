@@ -28,6 +28,7 @@ check_flags = java-printf-format, icu-flags:strict-xml
 [components]
 app = app
 wear = wear
+core/ui = core-ui
 feature/about = feature-about
 feature/agenda = feature-agenda
 feature/astronomy = feature-astronomy

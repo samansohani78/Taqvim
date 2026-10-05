@@ -25,4 +25,17 @@
   <string name="year_calendar_gregorian">Григорианский</string>
   <string name="year_calendar_nepali">Непальский</string>
   <string name="year_calendar_hebrew">Еврейский</string>
+  <string name="year_animal_year">Год: %1$s</string>
+  <string name="year_animal_mouse">мышь</string>
+  <string name="year_animal_ox">бык</string>
+  <string name="year_animal_leopard">леопард</string>
+  <string name="year_animal_rabbit">кролик</string>
+  <string name="year_animal_whale">кит</string>
+  <string name="year_animal_snake">змея</string>
+  <string name="year_animal_horse">лошадь</string>
+  <string name="year_animal_sheep">овца</string>
+  <string name="year_animal_monkey">обезьяна</string>
+  <string name="year_animal_hen">курица</string>
+  <string name="year_animal_dog">собака</string>
+  <string name="year_animal_pig">свинья</string>
 </resources>

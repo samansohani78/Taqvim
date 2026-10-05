@@ -63,6 +63,48 @@ class GoldenFilesTest {
     }
 
     @Test
+    fun `an indented line continues the value above it`() {
+        // A book, its scan and the library's rights statement do not fit on one line each.
+        val provenance =
+            Provenance
+                .parse(
+                    listOf(
+                        "# source: Joseph Grinnell Dalton, \"The Spherical Basis of Astrology\", Boston,",
+                        "#   F. Spenceley, 1908 — the page headed SID. T. 13h 47m 49s.",
+                        "# url: https://www.loc.gov/item/08023915/",
+                        "# retrieved: 2026-10-05",
+                        "# reviewer: pending",
+                        "# rights: public domain, digitised by the Library of Congress",
+                        "#   (\"free to use and reuse\", item record).",
+                    ),
+                ).getOrThrow()
+
+        provenance.source shouldBe
+            "Joseph Grinnell Dalton, \"The Spherical Basis of Astrology\", Boston, F. Spenceley, 1908 — " +
+            "the page headed SID. T. 13h 47m 49s."
+        provenance.rights shouldBe
+            "public domain, digitised by the Library of Congress (\"free to use and reuse\", item record)."
+    }
+
+    @Test
+    fun `prose that is not indented is still a malformed line`() {
+        // Continuation is the two-space indent, not "anything after a key", so a stray sentence is still caught.
+        failureOf(*minimalHeader.toTypedArray(), "# Dalton states the construction on page 0008.") shouldContain
+            "malformed header line"
+    }
+
+    @Test
+    fun `a continuation before any key is malformed, not silently dropped`() {
+        failureOf(
+            "#   orphaned continuation",
+            "# source: S",
+            "# url: http://x.org/y",
+            "# retrieved: 2026-01-02",
+        ) shouldContain
+            "malformed header line"
+    }
+
+    @Test
     fun `reports every provenance problem`() {
         failureOf() shouldBe "missing 'source'; missing 'url'; missing 'retrieved'; missing 'reviewer'"
         failureOf("# source: S", "# url: ftp://x", "# retrieved: 13/09/2026", "# reviewer: R") shouldContain

@@ -23,4 +23,17 @@
   <string name="year_calendar_gregorian">Grigorian</string>
   <string name="year_calendar_nepali">Nepal</string>
   <string name="year_calendar_hebrew">Yahudiy</string>
+  <string name="year_animal_year">%1$s yili</string>
+  <string name="year_animal_mouse">sichqon</string>
+  <string name="year_animal_ox">hoʻkiz</string>
+  <string name="year_animal_leopard">qoplon</string>
+  <string name="year_animal_rabbit">quyon</string>
+  <string name="year_animal_whale">kit</string>
+  <string name="year_animal_snake">ilon</string>
+  <string name="year_animal_horse">ot</string>
+  <string name="year_animal_sheep">qoʻy</string>
+  <string name="year_animal_monkey">maymun</string>
+  <string name="year_animal_hen">tovuq</string>
+  <string name="year_animal_dog">it</string>
+  <string name="year_animal_pig">choʻchqa</string>
 </resources>

@@ -22,4 +22,17 @@
   <string name="year_calendar_gregorian">میلادی</string>
   <string name="year_calendar_nepali">نپالی</string>
   <string name="year_calendar_hebrew">عبری</string>
+  <string name="year_animal_year">سال %1$s</string>
+  <string name="year_animal_mouse">موش</string>
+  <string name="year_animal_ox">گاو</string>
+  <string name="year_animal_leopard">پلنگ</string>
+  <string name="year_animal_rabbit">خرگوش</string>
+  <string name="year_animal_whale">نهنگ</string>
+  <string name="year_animal_snake">مار</string>
+  <string name="year_animal_horse">اسب</string>
+  <string name="year_animal_sheep">گوسفند</string>
+  <string name="year_animal_monkey">میمون</string>
+  <string name="year_animal_hen">مرغ</string>
+  <string name="year_animal_dog">سگ</string>
+  <string name="year_animal_pig">خوک</string>
 </resources>

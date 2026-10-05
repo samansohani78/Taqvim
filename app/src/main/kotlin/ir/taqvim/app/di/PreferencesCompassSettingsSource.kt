@@ -9,11 +9,8 @@ import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.compass.CompassPlace
 import ir.taqvim.feature.compass.CompassSettings
 import ir.taqvim.feature.compass.CompassSettingsSource
-import ir.taqvim.feature.compass.LevelCalibration
-import ir.taqvim.feature.compass.LevelCalibrationStore
 import ir.taqvim.feature.times.TimesSettingsSource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 
@@ -33,18 +30,4 @@ internal class PreferencesCompassSettingsSource(
                 calendar = times?.calendar ?: GregorianCalendarSystem,
             )
         }.distinctUntilChanged()
-}
-
-/**
- * [LevelCalibrationStore] (T-1303) kept in memory for the life of the process. Pending T-1500/T-1502: the offsets move
- * to a `UserPrefs` field once the preferences schema work of those tasks has landed, so calibration survives restarts.
- */
-internal class SessionLevelCalibrationStore : LevelCalibrationStore {
-    private val calibration = MutableStateFlow(LevelCalibration())
-
-    override fun calibration(): Flow<LevelCalibration> = calibration
-
-    override suspend fun save(calibration: LevelCalibration) {
-        this.calibration.value = calibration
-    }
 }

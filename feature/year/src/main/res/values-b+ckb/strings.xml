@@ -23,4 +23,17 @@
   <string name="year_calendar_gregorian">زایینی</string>
   <string name="year_calendar_nepali">نیپاڵی</string>
   <string name="year_calendar_hebrew">عیبری</string>
+  <string name="year_animal_year">ساڵی %1$s</string>
+  <string name="year_animal_mouse">مشک</string>
+  <string name="year_animal_ox">گا</string>
+  <string name="year_animal_leopard">پڵنگ</string>
+  <string name="year_animal_rabbit">کەروێشک</string>
+  <string name="year_animal_whale">نەهەنگ</string>
+  <string name="year_animal_snake">مار</string>
+  <string name="year_animal_horse">ئەسپ</string>
+  <string name="year_animal_sheep">مەڕ</string>
+  <string name="year_animal_monkey">مەیموون</string>
+  <string name="year_animal_hen">مریشک</string>
+  <string name="year_animal_dog">سەگ</string>
+  <string name="year_animal_pig">بەراز</string>
 </resources>

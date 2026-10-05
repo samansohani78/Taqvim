@@ -27,4 +27,17 @@
   <string name="year_calendar_gregorian">الميلادي</string>
   <string name="year_calendar_nepali">النيبالي</string>
   <string name="year_calendar_hebrew">العبري</string>
+  <string name="year_animal_year">سنة %1$s</string>
+  <string name="year_animal_mouse">فأر</string>
+  <string name="year_animal_ox">ثور</string>
+  <string name="year_animal_leopard">فهد</string>
+  <string name="year_animal_rabbit">أرنب</string>
+  <string name="year_animal_whale">حوت</string>
+  <string name="year_animal_snake">أفعى</string>
+  <string name="year_animal_horse">حصان</string>
+  <string name="year_animal_sheep">خروف</string>
+  <string name="year_animal_monkey">قرد</string>
+  <string name="year_animal_hen">دجاجة</string>
+  <string name="year_animal_dog">كلب</string>
+  <string name="year_animal_pig">خنزير</string>
 </resources>

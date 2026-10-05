@@ -23,4 +23,17 @@
   <string name="year_calendar_gregorian">Zayînî</string>
   <string name="year_calendar_nepali">Nepalî</string>
   <string name="year_calendar_hebrew">Îbranî</string>
+  <string name="year_animal_year">Sala %1$s</string>
+  <string name="year_animal_mouse">mişk</string>
+  <string name="year_animal_ox">ga</string>
+  <string name="year_animal_leopard">piling</string>
+  <string name="year_animal_rabbit">kerguh</string>
+  <string name="year_animal_whale">balena</string>
+  <string name="year_animal_snake">mar</string>
+  <string name="year_animal_horse">hesp</string>
+  <string name="year_animal_sheep">mih</string>
+  <string name="year_animal_monkey">meymûn</string>
+  <string name="year_animal_hen">mirîşk</string>
+  <string name="year_animal_dog">se</string>
+  <string name="year_animal_pig">beraz</string>
 </resources>

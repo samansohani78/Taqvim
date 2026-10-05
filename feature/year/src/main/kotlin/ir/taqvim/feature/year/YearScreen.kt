@@ -7,6 +7,7 @@ package ir.taqvim.feature.year
 import android.content.res.Resources
 import android.icu.text.DateFormatSymbols
 import android.icu.util.ULocale
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,8 +32,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ir.taqvim.core.calendar.PersianZodiacAnimal
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarSystem
@@ -105,6 +108,7 @@ internal fun YearFrame(
                     modifier = Modifier.padding(horizontal = CONTROLS_PADDING),
                 )
             }
+            AnimalYearLine(builder.animalYear(content.calendarIndex, content.year))
             YearControls(content.isPickingYear, onAction)
             body(Modifier.weight(1f).fillMaxWidth())
         }
@@ -130,6 +134,43 @@ private fun YearControls(
         ControlButton(stringResource(R.string.year_next), YEAR_NEXT_TAG) { onAction(YearAction.ShowNextYear) }
     }
 }
+
+/**
+ * The animal of the shown year (DT-015), or nothing when the shown calendar is not the Solar Hijri one.
+ *
+ * The naming was official only in 1329–1344 SH and is a custom in almanacs otherwise, so the line names the animal
+ * and claims nothing further.
+ */
+@Composable
+private fun AnimalYearLine(animal: PersianZodiacAnimal?) {
+    if (animal == null) return
+    Text(
+        stringResource(R.string.year_animal_year, stringResource(animalName(animal))),
+        style = MaterialTheme.typography.bodySmall,
+        modifier = Modifier.fillMaxWidth().padding(horizontal = CONTROLS_PADDING),
+        textAlign = TextAlign.Center,
+    )
+}
+
+@StringRes
+private fun animalName(animal: PersianZodiacAnimal): Int = ANIMAL_NAMES.getValue(animal)
+
+/** The twelve animals of the Persian cycle and the strings that name them (DT-015). */
+private val ANIMAL_NAMES: Map<PersianZodiacAnimal, Int> =
+    mapOf(
+        PersianZodiacAnimal.MOUSE to R.string.year_animal_mouse,
+        PersianZodiacAnimal.OX to R.string.year_animal_ox,
+        PersianZodiacAnimal.LEOPARD to R.string.year_animal_leopard,
+        PersianZodiacAnimal.RABBIT to R.string.year_animal_rabbit,
+        PersianZodiacAnimal.WHALE to R.string.year_animal_whale,
+        PersianZodiacAnimal.SNAKE to R.string.year_animal_snake,
+        PersianZodiacAnimal.HORSE to R.string.year_animal_horse,
+        PersianZodiacAnimal.SHEEP to R.string.year_animal_sheep,
+        PersianZodiacAnimal.MONKEY to R.string.year_animal_monkey,
+        PersianZodiacAnimal.HEN to R.string.year_animal_hen,
+        PersianZodiacAnimal.DOG to R.string.year_animal_dog,
+        PersianZodiacAnimal.PIG to R.string.year_animal_pig,
+    )
 
 @Composable
 private fun RowScope.ControlButton(

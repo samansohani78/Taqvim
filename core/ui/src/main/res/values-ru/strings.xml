@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- MT: needs review — machine translation (ru) generated 2026-10-05, T-1702; see docs/i18n/TRANSLATING.md. -->
 <resources>
   <string name="shared_islamic_variant_iran_official">Официальный иранский</string>
   <string name="shared_islamic_variant_umm_al_qura">Умм аль-Кура</string>

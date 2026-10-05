@@ -24,4 +24,17 @@
   <string name="year_calendar_gregorian">Grégorien</string>
   <string name="year_calendar_nepali">Népalais</string>
   <string name="year_calendar_hebrew">Hébraïque</string>
+  <string name="year_animal_year">Année : %1$s</string>
+  <string name="year_animal_mouse">souris</string>
+  <string name="year_animal_ox">bœuf</string>
+  <string name="year_animal_leopard">léopard</string>
+  <string name="year_animal_rabbit">lapin</string>
+  <string name="year_animal_whale">baleine</string>
+  <string name="year_animal_snake">serpent</string>
+  <string name="year_animal_horse">cheval</string>
+  <string name="year_animal_sheep">mouton</string>
+  <string name="year_animal_monkey">singe</string>
+  <string name="year_animal_hen">poule</string>
+  <string name="year_animal_dog">chien</string>
+  <string name="year_animal_pig">cochon</string>
 </resources>

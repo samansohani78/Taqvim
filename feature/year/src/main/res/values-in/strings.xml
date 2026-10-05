@@ -22,4 +22,17 @@
   <string name="year_calendar_gregorian">Masehi</string>
   <string name="year_calendar_nepali">Nepal</string>
   <string name="year_calendar_hebrew">Ibrani</string>
+  <string name="year_animal_year">Tahun %1$s</string>
+  <string name="year_animal_mouse">tikus</string>
+  <string name="year_animal_ox">sapi</string>
+  <string name="year_animal_leopard">macan tutul</string>
+  <string name="year_animal_rabbit">kelinci</string>
+  <string name="year_animal_whale">paus</string>
+  <string name="year_animal_snake">ular</string>
+  <string name="year_animal_horse">kuda</string>
+  <string name="year_animal_sheep">domba</string>
+  <string name="year_animal_monkey">monyet</string>
+  <string name="year_animal_hen">ayam</string>
+  <string name="year_animal_dog">anjing</string>
+  <string name="year_animal_pig">babi</string>
 </resources>

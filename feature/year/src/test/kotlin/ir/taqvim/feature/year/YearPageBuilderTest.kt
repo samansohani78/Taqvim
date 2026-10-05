@@ -12,6 +12,7 @@ import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import ir.taqvim.core.calendar.PersianZodiacAnimal
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.Numerals
@@ -135,6 +136,26 @@ class YearPageBuilderTest {
             .heading(0, 2026)
             .subtitle
             .shouldBeNull()
+    }
+
+    @Test
+    fun `the animal year names Solar Hijri years only`() {
+        // DT-015: the cycle names Solar Hijri years. A Gregorian year straddles two of them, so it gets no animal
+        // rather than the wrong one for half its length.
+        builder().animalYear(0, 1405) shouldBe PersianZodiacAnimal.HORSE
+        builder().animalYear(0, 1404) shouldBe PersianZodiacAnimal.SNAKE
+
+        val gregorianFirst =
+            YearSettings(
+                listOf(CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN),
+                Weekday.SUNDAY,
+                IslamicVariant.UMM_AL_QURA,
+                "en",
+            )
+        builder(gregorianFirst, english).animalYear(0, 2026).shouldBeNull()
+        // The Persian page of the same settings still has one: it is the calendar shown that decides, not the user's
+        // primary calendar.
+        builder(gregorianFirst, english).animalYear(1, 1405) shouldBe PersianZodiacAnimal.HORSE
     }
 
     @Test

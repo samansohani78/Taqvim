@@ -6,10 +6,13 @@ package ir.taqvim.feature.year
 
 import androidx.compose.runtime.Immutable
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.PersianAnimalYear
+import ir.taqvim.core.calendar.PersianZodiacAnimal
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.Numerals
 import ir.taqvim.core.i18n.monthName
 import ir.taqvim.core.model.CalendarDate
+import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -149,6 +152,22 @@ class YearPageBuilder(
                 if (first == last) number(first) else texts.range(number(first), number(last))
             }
         return others.takeIf { it.isNotEmpty() }?.joinToString(texts.separator)
+    }
+
+    /**
+     * The animal of the shown year, or `null` when the shown calendar is not the Persian one (DT-015).
+     *
+     * The cycle names **Solar Hijri** years, so a year of any other calendar has no animal of its own: a Gregorian
+     * year straddles two of them. Rather than pick one and be wrong for part of the year, the line is simply absent
+     * unless the user is looking at the Persian calendar, where the year number is exactly what the rule takes.
+     */
+    fun animalYear(
+        index: Int,
+        year: Int,
+    ): PersianZodiacAnimal? {
+        val calendar = calendars.arithmetic[index]
+        if (calendar.system != CalendarSystem.PERSIAN) return null
+        return PersianAnimalYear.of(calendar.fromJdn(calendars.yearDays(index, year).start).year)
     }
 
     /** [value] in the language's digits. */

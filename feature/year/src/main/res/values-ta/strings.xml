@@ -23,4 +23,17 @@
   <string name="year_calendar_gregorian">கிரிகோரியன்</string>
   <string name="year_calendar_nepali">நேபாளி</string>
   <string name="year_calendar_hebrew">ஹீப்ரு</string>
+  <string name="year_animal_year">%1$s ஆண்டு</string>
+  <string name="year_animal_mouse">எலி</string>
+  <string name="year_animal_ox">காளை</string>
+  <string name="year_animal_leopard">சிறுத்தை</string>
+  <string name="year_animal_rabbit">முயல்</string>
+  <string name="year_animal_whale">திமிங்கிலம்</string>
+  <string name="year_animal_snake">பாம்பு</string>
+  <string name="year_animal_horse">குதிரை</string>
+  <string name="year_animal_sheep">ஆடு</string>
+  <string name="year_animal_monkey">குரங்கு</string>
+  <string name="year_animal_hen">கோழி</string>
+  <string name="year_animal_dog">நாய்</string>
+  <string name="year_animal_pig">பன்றி</string>
 </resources>
