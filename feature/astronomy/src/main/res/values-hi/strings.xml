@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">स्रोत: चंद्रमा की स्थिति से गणना (कोई प्रकाशित पंचांग नहीं)</string>
   <string name="astronomy_no_periods">इस वर्ष कोई अवधि नहीं।</string>
   <string name="astronomy_period">%1$s से %2$s</string>
+  <string name="astronomy_animal_year">चीनी वर्ष</string>
+  <string name="astronomy_animal_rat">चूहा</string>
+  <string name="astronomy_animal_ox">बैल</string>
+  <string name="astronomy_animal_tiger">बाघ</string>
+  <string name="astronomy_animal_rabbit">खरगोश</string>
+  <string name="astronomy_animal_dragon">ड्रैगन</string>
+  <string name="astronomy_animal_snake">साँप</string>
+  <string name="astronomy_animal_horse">घोड़ा</string>
+  <string name="astronomy_animal_goat">बकरी</string>
+  <string name="astronomy_animal_monkey">बंदर</string>
+  <string name="astronomy_animal_rooster">मुर्गा</string>
+  <string name="astronomy_animal_dog">कुत्ता</string>
+  <string name="astronomy_animal_pig">सूअर</string>
 </resources>

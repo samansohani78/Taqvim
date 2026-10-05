@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Манбаъ: аз мавқеи моҳ ҳисоб шудааст (алманахи нашршуда нест)</string>
   <string name="astronomy_no_periods">Дар ин сол давраҳо нестанд.</string>
   <string name="astronomy_period">%1$s то %2$s</string>
+  <string name="astronomy_animal_year">Соли чинӣ</string>
+  <string name="astronomy_animal_rat">муш</string>
+  <string name="astronomy_animal_ox">гов</string>
+  <string name="astronomy_animal_tiger">паланг</string>
+  <string name="astronomy_animal_rabbit">харгӯш</string>
+  <string name="astronomy_animal_dragon">аждаҳо</string>
+  <string name="astronomy_animal_snake">мор</string>
+  <string name="astronomy_animal_horse">асп</string>
+  <string name="astronomy_animal_goat">буз</string>
+  <string name="astronomy_animal_monkey">маймун</string>
+  <string name="astronomy_animal_rooster">хурӯс</string>
+  <string name="astronomy_animal_dog">саг</string>
+  <string name="astronomy_animal_pig">хук</string>
 </resources>

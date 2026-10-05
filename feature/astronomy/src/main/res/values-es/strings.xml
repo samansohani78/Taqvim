@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Fuente: calculado a partir de la posición de la Luna (sin almanaque publicado)</string>
   <string name="astronomy_no_periods">No hay periodos este año.</string>
   <string name="astronomy_period">De %1$s a %2$s</string>
+  <string name="astronomy_animal_year">Año chino</string>
+  <string name="astronomy_animal_rat">rata</string>
+  <string name="astronomy_animal_ox">buey</string>
+  <string name="astronomy_animal_tiger">tigre</string>
+  <string name="astronomy_animal_rabbit">conejo</string>
+  <string name="astronomy_animal_dragon">dragón</string>
+  <string name="astronomy_animal_snake">serpiente</string>
+  <string name="astronomy_animal_horse">caballo</string>
+  <string name="astronomy_animal_goat">cabra</string>
+  <string name="astronomy_animal_monkey">mono</string>
+  <string name="astronomy_animal_rooster">gallo</string>
+  <string name="astronomy_animal_dog">perro</string>
+  <string name="astronomy_animal_pig">cerdo</string>
 </resources>

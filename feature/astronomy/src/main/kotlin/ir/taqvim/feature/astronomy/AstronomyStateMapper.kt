@@ -5,6 +5,7 @@
 package ir.taqvim.feature.astronomy
 
 import ir.taqvim.core.astronomy.CelestialBody
+import ir.taqvim.core.astronomy.ChineseZodiacAnimal
 import ir.taqvim.core.astronomy.PhotographyPanel
 import ir.taqvim.core.astronomy.RiseSetTransit
 import ir.taqvim.core.astronomy.Sky as SkyEngine
@@ -45,7 +46,7 @@ internal object AstronomyStateMapper {
             timeText = text.time(instant),
             minuteOfDay = local.hour * MINUTES_PER_HOUR + local.minute,
             isNow = isNow,
-            header = header(header, text),
+            header = header(header, cache.animalYear(day), text),
             earth = earth(header, sunDay, instant, text),
             moon = moon(header, settings, instant, day, text),
             sun = sun(settings, instant, day, sunDay, text),
@@ -62,6 +63,7 @@ internal object AstronomyStateMapper {
 
     private fun header(
         header: AstronomyHeader,
+        animalYear: ChineseZodiacAnimal,
         text: AstronomyText,
     ) = HeaderText(
         sunSign = header.sunSign,
@@ -70,6 +72,7 @@ internal object AstronomyStateMapper {
         // library reports, and no per-language translation is sourced yet (DT-026).
         moonConstellation =
             IauConstellationNames.name(header.moonConstellation) ?: header.moonConstellation,
+        animalYear = animalYear,
         phase = phaseName(header.moonPhaseDegrees),
         illumination = text.decimal(header.moonIlluminatedFraction * PERCENT, 0),
         moonDistance = text.integer(Math.round(header.moonDistanceKm)),

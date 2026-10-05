@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">سەرچاوە: لە شوێنی مانگەوە ژمێردراوە (هیچ ساڵنامەیەکی بڵاوکراو نییە)</string>
   <string name="astronomy_no_periods">لەم ساڵەدا هیچ ماوەیەک نییە.</string>
   <string name="astronomy_period">%1$s تا %2$s</string>
+  <string name="astronomy_animal_year">ساڵی چینی</string>
+  <string name="astronomy_animal_rat">مشک</string>
+  <string name="astronomy_animal_ox">گا</string>
+  <string name="astronomy_animal_tiger">بەبر</string>
+  <string name="astronomy_animal_rabbit">کەروێشک</string>
+  <string name="astronomy_animal_dragon">ئەژدیها</string>
+  <string name="astronomy_animal_snake">مار</string>
+  <string name="astronomy_animal_horse">ئەسپ</string>
+  <string name="astronomy_animal_goat">بزن</string>
+  <string name="astronomy_animal_monkey">مەیموون</string>
+  <string name="astronomy_animal_rooster">کەڵەشێر</string>
+  <string name="astronomy_animal_dog">سەگ</string>
+  <string name="astronomy_animal_pig">بەراز</string>
 </resources>

@@ -5,6 +5,7 @@
 package ir.taqvim.feature.astronomy
 
 import androidx.annotation.StringRes
+import ir.taqvim.core.astronomy.ChineseZodiacAnimal
 import ir.taqvim.core.astronomy.ClassicalPlanet
 import ir.taqvim.core.astronomy.EclipseKind
 import ir.taqvim.core.astronomy.Season
@@ -37,6 +38,9 @@ internal object AstronomyLabels {
 
     @StringRes
     fun planet(planet: ClassicalPlanet): Int = PLANETS.getValue(planet)
+
+    @StringRes
+    fun animal(animal: ChineseZodiacAnimal): Int = ANIMALS.getValue(animal)
 
     @StringRes
     fun season(season: Season): Int =
@@ -93,5 +97,22 @@ internal object AstronomyLabels {
             ClassicalPlanet.VENUS to R.string.astronomy_planet_venus,
             ClassicalPlanet.MERCURY to R.string.astronomy_planet_mercury,
             ClassicalPlanet.MOON to R.string.astronomy_planet_moon,
+        )
+
+    /** The twelve animals of the Chinese year cycle (T-406). */
+    private val ANIMALS =
+        mapOf(
+            ChineseZodiacAnimal.RAT to R.string.astronomy_animal_rat,
+            ChineseZodiacAnimal.OX to R.string.astronomy_animal_ox,
+            ChineseZodiacAnimal.TIGER to R.string.astronomy_animal_tiger,
+            ChineseZodiacAnimal.RABBIT to R.string.astronomy_animal_rabbit,
+            ChineseZodiacAnimal.DRAGON to R.string.astronomy_animal_dragon,
+            ChineseZodiacAnimal.SNAKE to R.string.astronomy_animal_snake,
+            ChineseZodiacAnimal.HORSE to R.string.astronomy_animal_horse,
+            ChineseZodiacAnimal.GOAT to R.string.astronomy_animal_goat,
+            ChineseZodiacAnimal.MONKEY to R.string.astronomy_animal_monkey,
+            ChineseZodiacAnimal.ROOSTER to R.string.astronomy_animal_rooster,
+            ChineseZodiacAnimal.DOG to R.string.astronomy_animal_dog,
+            ChineseZodiacAnimal.PIG to R.string.astronomy_animal_pig,
         )
 }

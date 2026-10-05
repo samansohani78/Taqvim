@@ -12,6 +12,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldEndWith
 import io.kotest.matchers.string.shouldMatch
+import ir.taqvim.core.astronomy.ChineseZodiacAnimal
 import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.calendar.PersianCalendarSystem
@@ -53,6 +54,18 @@ class AstronomyStateMapperTest {
         sky.picker.initial.day shouldBe 31
         sky.picker.monthNames.size shouldBe 12
         sky.picker.daysInMonth(1405, 12) shouldBe PersianCalendarSystem.monthLength(1405, 12)
+    }
+
+    @Test
+    fun `the Chinese year turns at the lunar new year, not on 1 January`() {
+        // T-406 was computed and shown nowhere until 2026-10-06. The year it names turns at the Chinese new year,
+        // which in 2026 is 17 February: January is still the snake of the year that began in 2025.
+        AstronomyFixtures
+            .sky(tehran, AstronomyFixtures.at("2026-01-10T12:00", tehran))
+            .header.animalYear shouldBe ChineseZodiacAnimal.SNAKE
+        AstronomyFixtures
+            .sky(tehran, AstronomyFixtures.at("2026-03-10T12:00", tehran))
+            .header.animalYear shouldBe ChineseZodiacAnimal.HORSE
     }
 
     @Test

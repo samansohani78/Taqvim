@@ -4,7 +4,10 @@
  */
 package ir.taqvim.feature.astronomy
 
+import ir.taqvim.core.astronomy.AnimalYear
 import ir.taqvim.core.astronomy.CelestialBody
+import ir.taqvim.core.astronomy.ChineseNewYear
+import ir.taqvim.core.astronomy.ChineseZodiacAnimal
 import ir.taqvim.core.astronomy.Eclipses
 import ir.taqvim.core.astronomy.GlobalSolarEclipse
 import ir.taqvim.core.astronomy.LunarEclipse
@@ -12,7 +15,9 @@ import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.Sky
 import ir.taqvim.core.astronomy.Zodiac
 import ir.taqvim.core.astronomy.ZodiacSign
+import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.model.Coordinates
+import ir.taqvim.core.model.Jdn
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
@@ -46,6 +51,7 @@ class AstronomyHeaderCache(
 ) {
     private val hourly = LruCache<Pair<Long, Coordinates>, InstantValues>(capacity)
     private val daily = LruCache<Long, DayValues>(capacity)
+    private val chineseNewYears = LruCache<Int, Jdn>(capacity)
 
     /** Values changing within a day, computed at the start of their hour. */
     data class InstantValues(
@@ -67,6 +73,17 @@ class AstronomyHeaderCache(
         val solarEclipses: List<GlobalSolarEclipse>,
         val lunarEclipses: List<LunarEclipse>,
     )
+
+    /**
+     * The animal of the Chinese year that civil day [day] belongs to (T-406).
+     *
+     * The year it turns on costs thirteen new-moon searches, so it is kept per Gregorian year: the time slider moves
+     * within one year for most of a session.
+     */
+    fun animalYear(day: Jdn): ChineseZodiacAnimal =
+        AnimalYear.forDate(GregorianCalendarSystem.fromJdn(day)) { year ->
+            chineseNewYears.getOrPut(year) { ChineseNewYear.day(year) }
+        }
 
     /** The header at [instant] for [place]. */
     fun header(

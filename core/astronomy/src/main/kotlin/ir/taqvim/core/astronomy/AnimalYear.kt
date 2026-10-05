@@ -6,6 +6,7 @@ package ir.taqvim.core.astronomy
 
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.model.CalendarDate
+import ir.taqvim.core.model.Jdn
 
 /** The twelve animals of the Chinese year cycle, in cycle order. */
 public enum class ChineseZodiacAnimal {
@@ -39,10 +40,18 @@ public object AnimalYear {
     public fun ofChineseYearStartingIn(gregorianYear: Int): ChineseZodiacAnimal =
         ChineseZodiacAnimal.entries[Math.floorMod(gregorianYear - ANCHOR_GREGORIAN_YEAR, CYCLE_YEARS)]
 
-    /** Animal of the Chinese year that [date] (Gregorian) belongs to, switching on [ChineseNewYear]. */
-    public fun forDate(date: CalendarDate): ChineseZodiacAnimal {
+    /**
+     * Animal of the Chinese year that [date] (Gregorian) belongs to, switching on [ChineseNewYear].
+     *
+     * [newYearDay] is the day of the Chinese new year falling in a Gregorian year; a caller that asks about many
+     * instants of the same year passes a memoizing one, because computing it searches thirteen new moons.
+     */
+    public fun forDate(
+        date: CalendarDate,
+        newYearDay: (Int) -> Jdn = ChineseNewYear::day,
+    ): ChineseZodiacAnimal {
         val day = GregorianCalendarSystem.toJdn(date)
-        val startYear = if (day < ChineseNewYear.day(date.year)) date.year - 1 else date.year
+        val startYear = if (day < newYearDay(date.year)) date.year - 1 else date.year
         return ofChineseYearStartingIn(startYear)
     }
 }

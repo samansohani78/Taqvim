@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Manba: Oy holatidan hisoblangan (nashr etilgan almanax yoʻq)</string>
   <string name="astronomy_no_periods">Bu yilda davrlar yoʻq.</string>
   <string name="astronomy_period">%1$s – %2$s</string>
+  <string name="astronomy_animal_year">Xitoy yili</string>
+  <string name="astronomy_animal_rat">sichqon</string>
+  <string name="astronomy_animal_ox">hoʻkiz</string>
+  <string name="astronomy_animal_tiger">yoʻlbars</string>
+  <string name="astronomy_animal_rabbit">quyon</string>
+  <string name="astronomy_animal_dragon">ajdaho</string>
+  <string name="astronomy_animal_snake">ilon</string>
+  <string name="astronomy_animal_horse">ot</string>
+  <string name="astronomy_animal_goat">echki</string>
+  <string name="astronomy_animal_monkey">maymun</string>
+  <string name="astronomy_animal_rooster">xoʻroz</string>
+  <string name="astronomy_animal_dog">it</string>
+  <string name="astronomy_animal_pig">choʻchqa</string>
 </resources>

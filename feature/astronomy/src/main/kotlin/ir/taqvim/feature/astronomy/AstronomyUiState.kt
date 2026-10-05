@@ -5,6 +5,7 @@
 package ir.taqvim.feature.astronomy
 
 import androidx.compose.runtime.Immutable
+import ir.taqvim.core.astronomy.ChineseZodiacAnimal
 import ir.taqvim.core.astronomy.ClassicalPlanet
 import ir.taqvim.core.astronomy.EclipseKind
 import ir.taqvim.core.astronomy.Season
@@ -69,6 +70,8 @@ data class HeaderText(
     val sunSign: ZodiacSign,
     val moonSign: ZodiacSign,
     val moonConstellation: String,
+    /** Animal of the Chinese year the shown date belongs to (T-406). */
+    val animalYear: ChineseZodiacAnimal,
     val phase: MoonPhaseName,
     val illumination: String,
     val moonDistance: String,

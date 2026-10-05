@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">ماخذ: چاند کی پوزیشن سے حساب شدہ (کوئی شائع شدہ جنتری نہیں)</string>
   <string name="astronomy_no_periods">اس سال کوئی دورانیہ نہیں۔</string>
   <string name="astronomy_period">%1$s سے %2$s تک</string>
+  <string name="astronomy_animal_year">چینی سال</string>
+  <string name="astronomy_animal_rat">چوہا</string>
+  <string name="astronomy_animal_ox">بیل</string>
+  <string name="astronomy_animal_tiger">شیر</string>
+  <string name="astronomy_animal_rabbit">خرگوش</string>
+  <string name="astronomy_animal_dragon">اژدہا</string>
+  <string name="astronomy_animal_snake">سانپ</string>
+  <string name="astronomy_animal_horse">گھوڑا</string>
+  <string name="astronomy_animal_goat">بکری</string>
+  <string name="astronomy_animal_monkey">بندر</string>
+  <string name="astronomy_animal_rooster">مرغا</string>
+  <string name="astronomy_animal_dog">کتا</string>
+  <string name="astronomy_animal_pig">سور</string>
 </resources>

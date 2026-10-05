@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Источник: рассчитано по положению Луны (нет опубликованного альманаха)</string>
   <string name="astronomy_no_periods">В этом году периодов нет.</string>
   <string name="astronomy_period">С %1$s по %2$s</string>
+  <string name="astronomy_animal_year">Китайский год</string>
+  <string name="astronomy_animal_rat">крыса</string>
+  <string name="astronomy_animal_ox">бык</string>
+  <string name="astronomy_animal_tiger">тигр</string>
+  <string name="astronomy_animal_rabbit">кролик</string>
+  <string name="astronomy_animal_dragon">дракон</string>
+  <string name="astronomy_animal_snake">змея</string>
+  <string name="astronomy_animal_horse">лошадь</string>
+  <string name="astronomy_animal_goat">коза</string>
+  <string name="astronomy_animal_monkey">обезьяна</string>
+  <string name="astronomy_animal_rooster">петух</string>
+  <string name="astronomy_animal_dog">собака</string>
+  <string name="astronomy_animal_pig">свинья</string>
 </resources>

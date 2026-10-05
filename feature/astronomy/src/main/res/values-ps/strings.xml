@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">سرچینه: د سپوږمۍ له موقعیت محاسبه شوې (خپره شوې جنتري نشته)</string>
   <string name="astronomy_no_periods">پدې کال کې هېڅ موده نشته.</string>
   <string name="astronomy_period">له %1$s تر %2$s</string>
+  <string name="astronomy_animal_year">چینايي کال</string>
+  <string name="astronomy_animal_rat">موږک</string>
+  <string name="astronomy_animal_ox">غوا</string>
+  <string name="astronomy_animal_tiger">پړانګ</string>
+  <string name="astronomy_animal_rabbit">سوی</string>
+  <string name="astronomy_animal_dragon">اژدها</string>
+  <string name="astronomy_animal_snake">مار</string>
+  <string name="astronomy_animal_horse">آس</string>
+  <string name="astronomy_animal_goat">وزه</string>
+  <string name="astronomy_animal_monkey">بیزو</string>
+  <string name="astronomy_animal_rooster">چرګ</string>
+  <string name="astronomy_animal_dog">سپی</string>
+  <string name="astronomy_animal_pig">خوګ</string>
 </resources>

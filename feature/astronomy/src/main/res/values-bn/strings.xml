@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">উৎস: চাঁদের অবস্থান থেকে গণনাকৃত (কোনো প্রকাশিত পঞ্জিকা নেই)</string>
   <string name="astronomy_no_periods">এই বছরে কোনো সময়কাল নেই।</string>
   <string name="astronomy_period">%1$s থেকে %2$s</string>
+  <string name="astronomy_animal_year">চীনা বছর</string>
+  <string name="astronomy_animal_rat">ইঁদুর</string>
+  <string name="astronomy_animal_ox">ষাঁড়</string>
+  <string name="astronomy_animal_tiger">বাঘ</string>
+  <string name="astronomy_animal_rabbit">খরগোশ</string>
+  <string name="astronomy_animal_dragon">ড্রাগন</string>
+  <string name="astronomy_animal_snake">সাপ</string>
+  <string name="astronomy_animal_horse">ঘোড়া</string>
+  <string name="astronomy_animal_goat">ছাগল</string>
+  <string name="astronomy_animal_monkey">বানর</string>
+  <string name="astronomy_animal_rooster">মোরগ</string>
+  <string name="astronomy_animal_dog">কুকুর</string>
+  <string name="astronomy_animal_pig">শূকর</string>
 </resources>

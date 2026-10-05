@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Çavkanî: ji cihê heyvê hatiye hesabkirin (salnameya stêrnasî ya weşandî tune)</string>
   <string name="astronomy_no_periods">Di vê salê de dem tune.</string>
   <string name="astronomy_period">%1$s heta %2$s</string>
+  <string name="astronomy_animal_year">Sala çînî</string>
+  <string name="astronomy_animal_rat">mişk</string>
+  <string name="astronomy_animal_ox">ga</string>
+  <string name="astronomy_animal_tiger">piling</string>
+  <string name="astronomy_animal_rabbit">kerguh</string>
+  <string name="astronomy_animal_dragon">ejder</string>
+  <string name="astronomy_animal_snake">mar</string>
+  <string name="astronomy_animal_horse">hesp</string>
+  <string name="astronomy_animal_goat">bizin</string>
+  <string name="astronomy_animal_monkey">meymûn</string>
+  <string name="astronomy_animal_rooster">dîk</string>
+  <string name="astronomy_animal_dog">se</string>
+  <string name="astronomy_animal_pig">beraz</string>
 </resources>

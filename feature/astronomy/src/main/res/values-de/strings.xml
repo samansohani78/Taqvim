@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Quelle: aus der Mondposition berechnet (kein veröffentlichtes Jahrbuch)</string>
   <string name="astronomy_no_periods">Keine Zeiträume in diesem Jahr.</string>
   <string name="astronomy_period">%1$s bis %2$s</string>
+  <string name="astronomy_animal_year">Chinesisches Jahr</string>
+  <string name="astronomy_animal_rat">Ratte</string>
+  <string name="astronomy_animal_ox">Ochse</string>
+  <string name="astronomy_animal_tiger">Tiger</string>
+  <string name="astronomy_animal_rabbit">Hase</string>
+  <string name="astronomy_animal_dragon">Drache</string>
+  <string name="astronomy_animal_snake">Schlange</string>
+  <string name="astronomy_animal_horse">Pferd</string>
+  <string name="astronomy_animal_goat">Ziege</string>
+  <string name="astronomy_animal_monkey">Affe</string>
+  <string name="astronomy_animal_rooster">Hahn</string>
+  <string name="astronomy_animal_dog">Hund</string>
+  <string name="astronomy_animal_pig">Schwein</string>
 </resources>

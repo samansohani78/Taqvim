@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Mənbə: Ayın mövqeyindən hesablanıb (dərc olunmuş almanax yoxdur)</string>
   <string name="astronomy_no_periods">Bu ildə dövr yoxdur.</string>
   <string name="astronomy_period">%1$s – %2$s</string>
+  <string name="astronomy_animal_year">Çin ili</string>
+  <string name="astronomy_animal_rat">siçan</string>
+  <string name="astronomy_animal_ox">öküz</string>
+  <string name="astronomy_animal_tiger">pələng</string>
+  <string name="astronomy_animal_rabbit">dovşan</string>
+  <string name="astronomy_animal_dragon">əjdaha</string>
+  <string name="astronomy_animal_snake">ilan</string>
+  <string name="astronomy_animal_horse">at</string>
+  <string name="astronomy_animal_goat">keçi</string>
+  <string name="astronomy_animal_monkey">meymun</string>
+  <string name="astronomy_animal_rooster">xoruz</string>
+  <string name="astronomy_animal_dog">it</string>
+  <string name="astronomy_animal_pig">donuz</string>
 </resources>

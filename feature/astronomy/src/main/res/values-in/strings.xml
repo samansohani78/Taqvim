@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Sumber: dihitung dari posisi bulan (tidak ada almanak terbitan)</string>
   <string name="astronomy_no_periods">Tidak ada periode pada tahun ini.</string>
   <string name="astronomy_period">%1$s sampai %2$s</string>
+  <string name="astronomy_animal_year">Tahun Tionghoa</string>
+  <string name="astronomy_animal_rat">tikus</string>
+  <string name="astronomy_animal_ox">kerbau</string>
+  <string name="astronomy_animal_tiger">harimau</string>
+  <string name="astronomy_animal_rabbit">kelinci</string>
+  <string name="astronomy_animal_dragon">naga</string>
+  <string name="astronomy_animal_snake">ular</string>
+  <string name="astronomy_animal_horse">kuda</string>
+  <string name="astronomy_animal_goat">kambing</string>
+  <string name="astronomy_animal_monkey">monyet</string>
+  <string name="astronomy_animal_rooster">ayam jago</string>
+  <string name="astronomy_animal_dog">anjing</string>
+  <string name="astronomy_animal_pig">babi</string>
 </resources>

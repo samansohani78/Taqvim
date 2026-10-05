@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">स्रोत: चन्द्रमाको स्थितिबाट गणना गरिएको (प्रकाशित पञ्चाङ्ग छैन)</string>
   <string name="astronomy_no_periods">यो वर्ष कुनै अवधि छैन।</string>
   <string name="astronomy_period">%1$s देखि %2$s</string>
+  <string name="astronomy_animal_year">चिनियाँ वर्ष</string>
+  <string name="astronomy_animal_rat">मुसा</string>
+  <string name="astronomy_animal_ox">गोरु</string>
+  <string name="astronomy_animal_tiger">बाघ</string>
+  <string name="astronomy_animal_rabbit">खरायो</string>
+  <string name="astronomy_animal_dragon">ड्र्यागन</string>
+  <string name="astronomy_animal_snake">सर्प</string>
+  <string name="astronomy_animal_horse">घोडा</string>
+  <string name="astronomy_animal_goat">बाख्रा</string>
+  <string name="astronomy_animal_monkey">बाँदर</string>
+  <string name="astronomy_animal_rooster">भाले</string>
+  <string name="astronomy_animal_dog">कुकुर</string>
+  <string name="astronomy_animal_pig">सुँगुर</string>
 </resources>

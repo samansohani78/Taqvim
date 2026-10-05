@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">Kaynak: Ay\'ın konumundan hesaplandı (yayımlanmış almanak yok)</string>
   <string name="astronomy_no_periods">Bu yılda dönem yok.</string>
   <string name="astronomy_period">%1$s – %2$s</string>
+  <string name="astronomy_animal_year">Çin yılı</string>
+  <string name="astronomy_animal_rat">fare</string>
+  <string name="astronomy_animal_ox">öküz</string>
+  <string name="astronomy_animal_tiger">kaplan</string>
+  <string name="astronomy_animal_rabbit">tavşan</string>
+  <string name="astronomy_animal_dragon">ejderha</string>
+  <string name="astronomy_animal_snake">yılan</string>
+  <string name="astronomy_animal_horse">at</string>
+  <string name="astronomy_animal_goat">keçi</string>
+  <string name="astronomy_animal_monkey">maymun</string>
+  <string name="astronomy_animal_rooster">horoz</string>
+  <string name="astronomy_animal_dog">köpek</string>
+  <string name="astronomy_animal_pig">domuz</string>
 </resources>

@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">المصدر: محسوب من موقع القمر (لا يوجد تقويم فلكي منشور)</string>
   <string name="astronomy_no_periods">لا فترات في هذه السنة.</string>
   <string name="astronomy_period">من %1$s إلى %2$s</string>
+  <string name="astronomy_animal_year">السنة الصينية</string>
+  <string name="astronomy_animal_rat">فأر</string>
+  <string name="astronomy_animal_ox">ثور</string>
+  <string name="astronomy_animal_tiger">نمر</string>
+  <string name="astronomy_animal_rabbit">أرنب</string>
+  <string name="astronomy_animal_dragon">تنين</string>
+  <string name="astronomy_animal_snake">أفعى</string>
+  <string name="astronomy_animal_horse">حصان</string>
+  <string name="astronomy_animal_goat">ماعز</string>
+  <string name="astronomy_animal_monkey">قرد</string>
+  <string name="astronomy_animal_rooster">ديك</string>
+  <string name="astronomy_animal_dog">كلب</string>
+  <string name="astronomy_animal_pig">خنزير</string>
 </resources>

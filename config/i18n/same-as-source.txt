@@ -144,3 +144,4 @@ wear/src/main/res: wear_prayer_isha | Prayer name transliterated the same way as
 wear/src/main/res: wear_prayer_maghrib | Prayer name transliterated the same way as in the source (de ms)
 feature/year/src/main/res: year_animal_leopard | Leopard is the same word in German (de)
 feature/widgets/src/main/res: widget_list_title | "Widgets" is the same word in these languages (de es ms id)
+feature/astronomy/src/main/res: astronomy_animal_tiger | Tiger is the same word in German (de)

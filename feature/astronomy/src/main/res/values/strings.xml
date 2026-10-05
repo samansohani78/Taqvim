@@ -168,4 +168,18 @@
   <string name="astronomy_scorpio_computed">Source: computed from the Moon\'s position (no published almanac)</string>
   <string name="astronomy_no_periods">No periods in this year.</string>
   <string name="astronomy_period">%1$s to %2$s</string>
+  <!-- T-406: the animal of the Chinese year the shown date belongs to; the year turns at the lunar new year. -->
+  <string name="astronomy_animal_year">Chinese year</string>
+  <string name="astronomy_animal_rat">Rat</string>
+  <string name="astronomy_animal_ox">Ox</string>
+  <string name="astronomy_animal_tiger">Tiger</string>
+  <string name="astronomy_animal_rabbit">Rabbit</string>
+  <string name="astronomy_animal_dragon">Dragon</string>
+  <string name="astronomy_animal_snake">Snake</string>
+  <string name="astronomy_animal_horse">Horse</string>
+  <string name="astronomy_animal_goat">Goat</string>
+  <string name="astronomy_animal_monkey">Monkey</string>
+  <string name="astronomy_animal_rooster">Rooster</string>
+  <string name="astronomy_animal_dog">Dog</string>
+  <string name="astronomy_animal_pig">Pig</string>
 </resources>

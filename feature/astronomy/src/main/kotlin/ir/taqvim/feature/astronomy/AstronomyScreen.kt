@@ -254,6 +254,10 @@ private fun HeaderCard(header: HeaderText) {
             InfoRow(stringResource(R.string.astronomy_moon_constellation), header.moonConstellation)
             InfoRow(stringResource(R.string.astronomy_moon_phase), stringResource(AstronomyLabels.phase(header.phase)))
             InfoRow(
+                stringResource(R.string.astronomy_animal_year),
+                stringResource(AstronomyLabels.animal(header.animalYear)),
+            )
+            InfoRow(
                 stringResource(R.string.astronomy_moon_distance),
                 stringResource(R.string.astronomy_kilometers, header.moonDistance),
             )
@@ -297,18 +301,23 @@ internal fun InfoRow(
 ) {
     Row(
         Modifier.fillMaxWidth().semantics(mergeDescendants = true) {}.padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        // The label takes the slack and wraps; the value keeps its intrinsic width. The other way round, a long
-        // label at a large font size squeezed the value until it broke mid-number — "05:14–06" over ":06" for a
-        // golden hour at 200% font. Values here are short (a time, a range, an angle); labels are prose and wrap
-        // cleanly.
+        // Neither side may take the whole row. Giving the label the slack broke it one letter per line whenever the
+        // value was prose rather than a number — "N / e / x / t / s / e / a / s / o / n" beside a full season date,
+        // at plain 100% font. Giving the value the slack instead broke a time mid-number at 200% font. So both are
+        // capped at half and wrap inside it, and a short one still keeps its own width.
         Text(
             label,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.weight(1f),
+            modifier = Modifier.weight(1f, fill = false).padding(end = 12.dp),
         )
-        Text(value, style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.End)
+        Text(
+            value,
+            style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.End,
+            modifier = Modifier.weight(1f, fill = false),
+        )
     }
 }

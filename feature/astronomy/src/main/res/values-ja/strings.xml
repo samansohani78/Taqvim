@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">出典：月の位置から計算（公表された暦表はありません）</string>
   <string name="astronomy_no_periods">この年に該当する期間はありません。</string>
   <string name="astronomy_period">%1$s 〜 %2$s</string>
+  <string name="astronomy_animal_year">干支</string>
+  <string name="astronomy_animal_rat">ネズミ</string>
+  <string name="astronomy_animal_ox">ウシ</string>
+  <string name="astronomy_animal_tiger">トラ</string>
+  <string name="astronomy_animal_rabbit">ウサギ</string>
+  <string name="astronomy_animal_dragon">タツ</string>
+  <string name="astronomy_animal_snake">ヘビ</string>
+  <string name="astronomy_animal_horse">ウマ</string>
+  <string name="astronomy_animal_goat">ヒツジ</string>
+  <string name="astronomy_animal_monkey">サル</string>
+  <string name="astronomy_animal_rooster">トリ</string>
+  <string name="astronomy_animal_dog">イヌ</string>
+  <string name="astronomy_animal_pig">イノシシ</string>
 </resources>

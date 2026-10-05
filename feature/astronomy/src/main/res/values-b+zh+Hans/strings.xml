@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">来源：根据月亮位置计算（无已出版的天文年历）</string>
   <string name="astronomy_no_periods">本年度没有相关时段。</string>
   <string name="astronomy_period">%1$s 至 %2$s</string>
+  <string name="astronomy_animal_year">生肖年</string>
+  <string name="astronomy_animal_rat">鼠</string>
+  <string name="astronomy_animal_ox">牛</string>
+  <string name="astronomy_animal_tiger">虎</string>
+  <string name="astronomy_animal_rabbit">兔</string>
+  <string name="astronomy_animal_dragon">龙</string>
+  <string name="astronomy_animal_snake">蛇</string>
+  <string name="astronomy_animal_horse">马</string>
+  <string name="astronomy_animal_goat">羊</string>
+  <string name="astronomy_animal_monkey">猴</string>
+  <string name="astronomy_animal_rooster">鸡</string>
+  <string name="astronomy_animal_dog">狗</string>
+  <string name="astronomy_animal_pig">猪</string>
 </resources>

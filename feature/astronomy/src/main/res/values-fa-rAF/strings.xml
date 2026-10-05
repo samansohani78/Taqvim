@@ -112,4 +112,17 @@
   <string name="astronomy_scorpio_computed">منبع: محاسبه از موقعیت ماه (بدون تقویم نجومی منتشرشده)</string>
   <string name="astronomy_no_periods">در این سال دوره‌ای نیست.</string>
   <string name="astronomy_period">%1$s تا %2$s</string>
+  <string name="astronomy_animal_year">سال چینی</string>
+  <string name="astronomy_animal_rat">موش</string>
+  <string name="astronomy_animal_ox">گاو</string>
+  <string name="astronomy_animal_tiger">ببر</string>
+  <string name="astronomy_animal_rabbit">خرگوش</string>
+  <string name="astronomy_animal_dragon">اژدها</string>
+  <string name="astronomy_animal_snake">مار</string>
+  <string name="astronomy_animal_horse">اسب</string>
+  <string name="astronomy_animal_goat">بز</string>
+  <string name="astronomy_animal_monkey">میمون</string>
+  <string name="astronomy_animal_rooster">خروس</string>
+  <string name="astronomy_animal_dog">سگ</string>
+  <string name="astronomy_animal_pig">خوک</string>
 </resources>
