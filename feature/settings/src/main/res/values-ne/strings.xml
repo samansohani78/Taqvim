@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">बुधबार</string>
   <string name="settings_weekday_thursday">बिहीबार</string>
   <string name="settings_weekday_friday">शुक्रबार</string>
-  <string name="settings_variant_iran_official">इरान आधिकारिक</string>
-  <string name="settings_variant_umm_al_qura">उम्म अल-कुरा</string>
-  <string name="settings_variant_tabular_16">तालिकाबद्ध (प्रकार II)</string>
-  <string name="settings_variant_tabular_15">तालिकाबद्ध (प्रकार I)</string>
-  <string name="settings_variant_observational">गणना गरिएको नयाँ चन्द्र दृश्यता</string>
   <string name="settings_item_event_categories">देखाइने दिनका प्रकार</string>
   <string name="settings_item_holidays_only">बिदाका दिन मात्र देखाउनुहोस्</string>
   <string name="settings_category_national">राष्ट्रिय दिवस</string>

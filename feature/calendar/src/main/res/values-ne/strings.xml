@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">छापिएको पात्रो</string>
   <string name="calendar_event_date_origin">मिति: %1$s</string>
   <string name="calendar_details_loading">दिन लोड हुँदैछ</string>
+  <string name="calendar_variants_differ">यो मितिमा विधिहरू फरक छन्</string>
+  <string name="calendar_variants_hide">अन्य विधिहरू लुकाउनुहोस्</string>
   <string name="calendar_share_day">यो दिन साझा गर्नुहोस्</string>
   <string name="calendar_share_sources">स्रोतहरू:</string>
   <string name="calendar_system_persian">सौर हिजरी</string>

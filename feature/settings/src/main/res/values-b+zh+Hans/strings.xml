@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">星期三</string>
   <string name="settings_weekday_thursday">星期四</string>
   <string name="settings_weekday_friday">星期五</string>
-  <string name="settings_variant_iran_official">伊朗官方</string>
-  <string name="settings_variant_umm_al_qura">乌姆古拉历</string>
-  <string name="settings_variant_tabular_16">表格式（第二型）</string>
-  <string name="settings_variant_tabular_15">表格式（第一型）</string>
-  <string name="settings_variant_observational">计算的新月可见性</string>
   <string name="settings_item_event_categories">显示的日子类型</string>
   <string name="settings_item_holidays_only">仅显示休息日</string>
   <string name="settings_category_national">国家纪念日</string>

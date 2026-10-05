@@ -29,7 +29,10 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.i18n.DateFormatter
 import ir.taqvim.core.i18n.DateStyle
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.IslamicVariant
+import ir.taqvim.core.ui.R as SharedR
 import kotlinx.collections.immutable.toImmutableList
 import org.junit.Rule
 import org.junit.Test
@@ -106,6 +109,43 @@ class DayDetailsScreenTest {
         show(content.copy(selectedOrigins = origins.toImmutableList()))
         composeRule.onNode(hasText(resources.getString(label))).assertExists()
         composeRule.onAllNodes(hasText(resources.getString(R.string.calendar_origin_computed))).assertCountEquals(0)
+    }
+
+    private fun variantRows(step: Int) =
+        IslamicVariant.entries
+            .mapIndexed { index, variant ->
+                IslamicVariantDate(
+                    variant = variant,
+                    date = CalendarDate(CalendarSystem.ISLAMIC, 1447, 4, 1 + index * step),
+                    origin = DateOrigin.COMPUTED,
+                    isPreferred = index == 0,
+                )
+            }.toImmutableList()
+
+    @Test
+    fun `a date every Islamic method agrees on offers nothing to expand`() {
+        // Five identical rows would be noise, so the row exists only where there is a question to answer.
+        show(DayDetailsSamples.content().copy(islamicVariantDates = variantRows(step = 0)))
+
+        composeRule
+            .onAllNodes(hasText(resources.getString(R.string.calendar_variants_differ)))
+            .assertCountEquals(0)
+    }
+
+    @Test
+    fun `disagreeing Islamic methods are offered, and revealed only when asked for`() {
+        show(DayDetailsSamples.content().copy(islamicVariantDates = variantRows(step = 1)))
+        val differ = resources.getString(R.string.calendar_variants_differ)
+        val ummAlQura = resources.getString(SharedR.string.shared_islamic_variant_umm_al_qura)
+
+        // Offered, but collapsed: progressive disclosure, not a denser screen.
+        composeRule.onNode(hasText(differ)).assertExists()
+        composeRule.onAllNodes(hasText(ummAlQura)).assertCountEquals(0)
+
+        composeRule.onNode(hasText(differ)).performClick()
+
+        composeRule.onNode(hasText(ummAlQura)).assertExists()
+        composeRule.onNode(hasText(resources.getString(R.string.calendar_variants_hide))).assertExists()
     }
 
     @Test

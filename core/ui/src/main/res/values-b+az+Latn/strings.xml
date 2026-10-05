@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">İranın rəsmi</string>
+  <string name="shared_islamic_variant_umm_al_qura">Ümmül-Qura</string>
+  <string name="shared_islamic_variant_tabular_16">Cədvəl (II tip)</string>
+  <string name="shared_islamic_variant_tabular_15">Cədvəl (I tip)</string>
+  <string name="shared_islamic_variant_observational">Hesablanmış hilal görünməsi</string>
+</resources>

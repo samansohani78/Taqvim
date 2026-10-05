@@ -21,6 +21,8 @@
   <string name="calendar_origin_published">Kalender cetak</string>
   <string name="calendar_event_date_origin">Tanggal: %1$s</string>
   <string name="calendar_details_loading">Memuat hari</string>
+  <string name="calendar_variants_differ">Metode berbeda pada tanggal ini</string>
+  <string name="calendar_variants_hide">Sembunyikan metode lain</string>
   <string name="calendar_share_day">Bagikan hari ini</string>
   <string name="calendar_share_sources">Sumber:</string>
   <string name="calendar_system_persian">Hijriah Syamsiah</string>

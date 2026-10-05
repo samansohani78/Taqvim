@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">Çap təqvimi</string>
   <string name="calendar_event_date_origin">Tarix: %1$s</string>
   <string name="calendar_details_loading">Gün yüklənir</string>
+  <string name="calendar_variants_differ">Metodlar bu tarixdə fərqlənir</string>
+  <string name="calendar_variants_hide">Digər metodları gizlət</string>
   <string name="calendar_share_day">Bu günü paylaş</string>
   <string name="calendar_share_sources">Mənbələr:</string>
   <string name="calendar_system_persian">Hicri-şəmsi</string>

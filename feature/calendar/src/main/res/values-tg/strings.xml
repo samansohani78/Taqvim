@@ -21,6 +21,8 @@
   <string name="calendar_origin_published">Тақвими чопӣ</string>
   <string name="calendar_event_date_origin">Сана: %1$s</string>
   <string name="calendar_details_loading">Рӯз бор шуда истодааст</string>
+  <string name="calendar_variants_differ">Усулҳо дар ин сана фарқ мекунанд</string>
+  <string name="calendar_variants_hide">Усулҳои дигарро пинҳон кун</string>
   <string name="calendar_share_day">Ин рӯзро мубодила кунед</string>
   <string name="calendar_share_sources">Сарчашмаҳо:</string>
   <string name="calendar_system_persian">Ҳиҷрии шамсӣ</string>

@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">Rabu</string>
   <string name="settings_weekday_thursday">Kamis</string>
   <string name="settings_weekday_friday">Jumat</string>
-  <string name="settings_variant_iran_official">Resmi Iran</string>
-  <string name="settings_variant_umm_al_qura">Umm al-Qura</string>
-  <string name="settings_variant_tabular_16">Tabular (tipe II)</string>
-  <string name="settings_variant_tabular_15">Tabular (tipe I)</string>
-  <string name="settings_variant_observational">Visibilitas hilal terhitung</string>
   <string name="settings_item_event_categories">Jenis hari yang ditampilkan</string>
   <string name="settings_item_holidays_only">Hanya tampilkan hari libur</string>
   <string name="settings_category_national">Hari nasional</string>

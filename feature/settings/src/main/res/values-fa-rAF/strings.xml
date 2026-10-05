@@ -154,11 +154,6 @@
   <string name="settings_weekday_wednesday">چهارشنبه</string>
   <string name="settings_weekday_thursday">پنجشنبه</string>
   <string name="settings_weekday_friday">جمعه</string>
-  <string name="settings_variant_iran_official">رسمی ایران</string>
-  <string name="settings_variant_umm_al_qura">ام‌القری</string>
-  <string name="settings_variant_tabular_16">جدولی (نوع ۲)</string>
-  <string name="settings_variant_tabular_15">جدولی (نوع ۱)</string>
-  <string name="settings_variant_observational">محاسبهٔ رؤیت هلال</string>
   <string name="settings_item_event_categories">گونه‌های روز نمایش‌داده‌شده</string>
   <string name="settings_item_holidays_only">فقط روزهای رخصتی</string>
   <string name="settings_category_national">روزهای ملی</string>

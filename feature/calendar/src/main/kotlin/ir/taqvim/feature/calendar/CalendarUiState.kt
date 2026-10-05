@@ -50,6 +50,11 @@ data class CalendarContent(
     val islamicOverrides: IslamicMonthTable? = null,
     /** Where each of [selectedDates] comes from, in the same order (ADR-0037); empty while unknown. */
     val selectedOrigins: ImmutableList<DateOrigin> = persistentListOf(),
+    /**
+     * [selectedDay] read by every Islamic variant, the user's own first (F-06). Shown only where they disagree, so
+     * the answer to "why is this date different?" is on the screen that raises the question.
+     */
+    val islamicVariantDates: ImmutableList<IslamicVariantDate> = persistentListOf(),
     /** App language code for month names, digits and spoken dates. */
     val languageCode: String,
     val showWeekNumbers: Boolean,

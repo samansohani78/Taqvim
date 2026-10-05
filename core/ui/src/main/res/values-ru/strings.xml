@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">Официальный иранский</string>
+  <string name="shared_islamic_variant_umm_al_qura">Умм аль-Кура</string>
+  <string name="shared_islamic_variant_tabular_16">Табличный (тип II)</string>
+  <string name="shared_islamic_variant_tabular_15">Табличный (тип I)</string>
+  <string name="shared_islamic_variant_observational">Расчётная видимость полумесяца</string>
+</resources>

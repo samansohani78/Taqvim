@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">چوارشەممە</string>
   <string name="settings_weekday_thursday">پێنجشەممە</string>
   <string name="settings_weekday_friday">هەینی</string>
-  <string name="settings_variant_iran_official">فەرمیی ئێران</string>
-  <string name="settings_variant_umm_al_qura">ئوم ئەلقورا</string>
-  <string name="settings_variant_tabular_16">خشتەیی (جۆری II)</string>
-  <string name="settings_variant_tabular_15">خشتەیی (جۆری I)</string>
-  <string name="settings_variant_observational">بینینی ژمێردراوی مانگی نوێ</string>
   <string name="settings_item_event_categories">جۆرەکانی ڕۆژ کە پیشان دەدرێن</string>
   <string name="settings_item_holidays_only">تەنها ڕۆژانی پشوو</string>
   <string name="settings_category_national">ڕۆژە نەتەوەییەکان</string>

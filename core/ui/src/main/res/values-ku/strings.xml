@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">Fermî ya Îranê</string>
+  <string name="shared_islamic_variant_umm_al_qura">Umm el-Qura</string>
+  <string name="shared_islamic_variant_tabular_16">Tabloyî (cure II)</string>
+  <string name="shared_islamic_variant_tabular_15">Tabloyî (cure I)</string>
+  <string name="shared_islamic_variant_observational">Dîtina hesabkirî ya heyva nû</string>
+</resources>

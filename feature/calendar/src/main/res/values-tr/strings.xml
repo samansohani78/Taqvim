@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">Basılı takvim</string>
   <string name="calendar_event_date_origin">Tarih: %1$s</string>
   <string name="calendar_details_loading">Gün yükleniyor</string>
+  <string name="calendar_variants_differ">Yöntemler bu tarihte ayrışıyor</string>
+  <string name="calendar_variants_hide">Diğer yöntemleri gizle</string>
   <string name="calendar_share_day">Bu günü paylaş</string>
   <string name="calendar_share_sources">Kaynaklar:</string>
   <string name="calendar_system_persian">Hicri Şemsi</string>

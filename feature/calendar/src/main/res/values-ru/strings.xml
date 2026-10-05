@@ -24,6 +24,8 @@
   <string name="calendar_origin_published">Печатный календарь</string>
   <string name="calendar_event_date_origin">Дата: %1$s</string>
   <string name="calendar_details_loading">Загрузка дня</string>
+  <string name="calendar_variants_differ">Методы расходятся в этой дате</string>
+  <string name="calendar_variants_hide">Скрыть другие методы</string>
   <string name="calendar_share_day">Поделиться этим днём</string>
   <string name="calendar_share_sources">Источники:</string>
   <string name="calendar_system_persian">Солнечная хиджра</string>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">Iran offiziell</string>
+  <string name="shared_islamic_variant_umm_al_qura">Umm al-Qura</string>
+  <string name="shared_islamic_variant_tabular_16">Tabellarisch (Typ II)</string>
+  <string name="shared_islamic_variant_tabular_15">Tabellarisch (Typ I)</string>
+  <string name="shared_islamic_variant_observational">Berechnete Sichelsichtbarkeit</string>
+</resources>

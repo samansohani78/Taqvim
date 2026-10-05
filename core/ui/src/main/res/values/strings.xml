@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Domain labels shared by more than one feature. `:core:ui` is where they belong: every Compose module already
+  depends on it (ComposeConventionPlugins), so a name defined once here is reachable everywhere without any module
+  depending on another feature, and without the same text being translated twice.
+
+  Keep this file small. It is for names of domain concepts that several screens must call the same thing — not a
+  general dumping ground for strings. Anything used by one feature stays in that feature, prefixed with its name.
+  These are prefixed `shared_` so a merged resource table shows at a glance where a name comes from.
+-->
+<resources>
+  <!-- Rules for deciding when an Islamic (lunar Hijri) month begins. Shown wherever a date's method is named. -->
+  <string name="shared_islamic_variant_iran_official">Iran official</string>
+  <string name="shared_islamic_variant_umm_al_qura">Umm al-Qura</string>
+  <string name="shared_islamic_variant_tabular_16">Tabular (type II)</string>
+  <string name="shared_islamic_variant_tabular_15">Tabular (type I)</string>
+  <string name="shared_islamic_variant_observational">Calculated crescent visibility</string>
+</resources>

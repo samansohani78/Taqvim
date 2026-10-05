@@ -33,6 +33,10 @@
   <!-- Where the date of an official Islamic event comes from; %1$s is "Computed", "Official announced date" or "Printed calendar". -->
   <string name="calendar_event_date_origin">Date: %1$s</string>
   <!-- Button that shares the selected day as text, with the primary source of every official event. -->
+  <!-- Expandable row under the lunar Hijri date, shown only when the methods disagree. -->
+  <string name="calendar_variants_differ">Methods disagree on this date</string>
+  <!-- Same row once expanded; collapses the list of methods again. -->
+  <string name="calendar_variants_hide">Hide the other methods</string>
   <string name="calendar_share_day">Share this day</string>
   <!-- Heading above the citations of one event in the shared text; a list of sources follows. -->
   <string name="calendar_share_sources">Sources:</string>

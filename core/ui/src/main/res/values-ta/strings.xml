@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">ஈரான் அதிகாரப்பூர்வ</string>
+  <string name="shared_islamic_variant_umm_al_qura">உம் அல்-குரா</string>
+  <string name="shared_islamic_variant_tabular_16">அட்டவணை (வகை II)</string>
+  <string name="shared_islamic_variant_tabular_15">அட்டவணை (வகை I)</string>
+  <string name="shared_islamic_variant_observational">கணக்கிடப்பட்ட பிறைத் தெரிவு</string>
+</resources>

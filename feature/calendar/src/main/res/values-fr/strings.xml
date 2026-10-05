@@ -23,6 +23,8 @@
   <string name="calendar_origin_published">Calendrier imprimé</string>
   <string name="calendar_event_date_origin">Date : %1$s</string>
   <string name="calendar_details_loading">Chargement du jour</string>
+  <string name="calendar_variants_differ">Les méthodes divergent sur cette date</string>
+  <string name="calendar_variants_hide">Masquer les autres méthodes</string>
   <string name="calendar_share_day">Partager ce jour</string>
   <string name="calendar_share_sources">Sources :</string>
   <string name="calendar_system_persian">Hégirien solaire</string>

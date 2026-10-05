@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">イラン公式</string>
+  <string name="shared_islamic_variant_umm_al_qura">ウンム・アルクラー暦</string>
+  <string name="shared_islamic_variant_tabular_16">表形式（タイプ II）</string>
+  <string name="shared_islamic_variant_tabular_15">表形式（タイプ I）</string>
+  <string name="shared_islamic_variant_observational">計算による新月の可視性</string>
+</resources>

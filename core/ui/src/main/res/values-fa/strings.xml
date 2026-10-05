@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">رسمی ایران</string>
+  <string name="shared_islamic_variant_umm_al_qura">ام‌القری</string>
+  <string name="shared_islamic_variant_tabular_16">جدولی (نوع ۲)</string>
+  <string name="shared_islamic_variant_tabular_15">جدولی (نوع ۱)</string>
+  <string name="shared_islamic_variant_observational">محاسبهٔ رؤیت هلال</string>
+</resources>

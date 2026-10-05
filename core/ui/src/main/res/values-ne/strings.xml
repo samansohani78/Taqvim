@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">इरान आधिकारिक</string>
+  <string name="shared_islamic_variant_umm_al_qura">उम्म अल-कुरा</string>
+  <string name="shared_islamic_variant_tabular_16">तालिकाबद्ध (प्रकार II)</string>
+  <string name="shared_islamic_variant_tabular_15">तालिकाबद्ध (प्रकार I)</string>
+  <string name="shared_islamic_variant_observational">गणना गरिएको नयाँ चन्द्र दृश्यता</string>
+</resources>

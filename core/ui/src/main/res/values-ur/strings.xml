@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">ایران کا سرکاری</string>
+  <string name="shared_islamic_variant_umm_al_qura">ام القریٰ</string>
+  <string name="shared_islamic_variant_tabular_16">جدولی (قسم II)</string>
+  <string name="shared_islamic_variant_tabular_15">جدولی (قسم I)</string>
+  <string name="shared_islamic_variant_observational">حساب شدہ رویتِ ہلال</string>
+</resources>

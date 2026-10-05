@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">Mittwoch</string>
   <string name="settings_weekday_thursday">Donnerstag</string>
   <string name="settings_weekday_friday">Freitag</string>
-  <string name="settings_variant_iran_official">Iran offiziell</string>
-  <string name="settings_variant_umm_al_qura">Umm al-Qura</string>
-  <string name="settings_variant_tabular_16">Tabellarisch (Typ II)</string>
-  <string name="settings_variant_tabular_15">Tabellarisch (Typ I)</string>
-  <string name="settings_variant_observational">Berechnete Sichelsichtbarkeit</string>
   <string name="settings_item_event_categories">Angezeigte Arten von Tagen</string>
   <string name="settings_item_holidays_only">Nur freie Tage anzeigen</string>
   <string name="settings_category_national">Nationale Tage</string>

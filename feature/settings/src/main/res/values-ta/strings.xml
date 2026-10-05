@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">புதன்கிழமை</string>
   <string name="settings_weekday_thursday">வியாழக்கிழமை</string>
   <string name="settings_weekday_friday">வெள்ளிக்கிழமை</string>
-  <string name="settings_variant_iran_official">ஈரான் அதிகாரப்பூர்வ</string>
-  <string name="settings_variant_umm_al_qura">உம் அல்-குரா</string>
-  <string name="settings_variant_tabular_16">அட்டவணை (வகை II)</string>
-  <string name="settings_variant_tabular_15">அட்டவணை (வகை I)</string>
-  <string name="settings_variant_observational">கணக்கிடப்பட்ட பிறைத் தெரிவு</string>
   <string name="settings_item_event_categories">காட்டப்படும் நாள் வகைகள்</string>
   <string name="settings_item_holidays_only">விடுமுறை நாட்களை மட்டும் காட்டு</string>
   <string name="settings_category_national">தேசிய நாட்கள்</string>

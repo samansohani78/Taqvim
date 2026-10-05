@@ -9,8 +9,10 @@ import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.calendar.DateOrigin
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.praytimes.PrayerTimesResult
+import ir.taqvim.core.ui.R as SharedR
 
 /** String resources of the day-details values, one per enum constant in declaration order (T-802). */
 internal object DayDetailsLabels {
@@ -163,4 +165,15 @@ internal object DayDetailsLabels {
 
     @StringRes
     fun of(reason: PrayerTimesResult.Reason): Int = UNAVAILABLE[reason.ordinal]
+
+    /** The name of an Islamic month-start method, from the shared domain labels (core/ui). */
+    @StringRes
+    fun of(variant: IslamicVariant): Int =
+        when (variant) {
+            IslamicVariant.IRAN_OFFICIAL -> SharedR.string.shared_islamic_variant_iran_official
+            IslamicVariant.UMM_AL_QURA -> SharedR.string.shared_islamic_variant_umm_al_qura
+            IslamicVariant.TABULAR_16 -> SharedR.string.shared_islamic_variant_tabular_16
+            IslamicVariant.TABULAR_15 -> SharedR.string.shared_islamic_variant_tabular_15
+            IslamicVariant.CALCULATED_OBSERVATIONAL -> SharedR.string.shared_islamic_variant_observational
+        }
 }

@@ -48,6 +48,7 @@ internal fun calendarContent(
         calendars = calendars.systems.toImmutableList(),
         selectedDates = calendars.datesOf(selected).toImmutableList(),
         selectedOrigins = calendars.originsOf(selected).toImmutableList(),
+        islamicVariantDates = calendars.islamicVariantDates(selected).toImmutableList(),
         monthOffset = calendars.monthOffset(today, shown),
         visibleMonth = calendars.monthStart(shown),
         weekStart = calendars.settings.weekStart,

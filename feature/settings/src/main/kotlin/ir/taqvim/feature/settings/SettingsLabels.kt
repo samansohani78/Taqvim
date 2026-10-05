@@ -13,6 +13,7 @@ import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.PrayerMethod
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.praytimes.HighLatitudeRule
+import ir.taqvim.core.ui.R as SharedR
 
 /** String resources naming the values offered by the settings choices, in the order they are offered. */
 internal object SettingsLabels {
@@ -55,11 +56,11 @@ internal object SettingsLabels {
 
     val islamicVariants: Map<IslamicVariant, Int> =
         mapOf(
-            IslamicVariant.IRAN_OFFICIAL to R.string.settings_variant_iran_official,
-            IslamicVariant.UMM_AL_QURA to R.string.settings_variant_umm_al_qura,
-            IslamicVariant.TABULAR_16 to R.string.settings_variant_tabular_16,
-            IslamicVariant.TABULAR_15 to R.string.settings_variant_tabular_15,
-            IslamicVariant.CALCULATED_OBSERVATIONAL to R.string.settings_variant_observational,
+            IslamicVariant.IRAN_OFFICIAL to SharedR.string.shared_islamic_variant_iran_official,
+            IslamicVariant.UMM_AL_QURA to SharedR.string.shared_islamic_variant_umm_al_qura,
+            IslamicVariant.TABULAR_16 to SharedR.string.shared_islamic_variant_tabular_16,
+            IslamicVariant.TABULAR_15 to SharedR.string.shared_islamic_variant_tabular_15,
+            IslamicVariant.CALCULATED_OBSERVATIONAL to SharedR.string.shared_islamic_variant_observational,
         )
 
     val eventSources: Map<EventSource, Int> =

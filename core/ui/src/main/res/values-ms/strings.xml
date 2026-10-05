@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">Rasmi Iran</string>
+  <string name="shared_islamic_variant_umm_al_qura">Umm al-Qura</string>
+  <string name="shared_islamic_variant_tabular_16">Jadual (jenis II)</string>
+  <string name="shared_islamic_variant_tabular_15">Jadual (jenis I)</string>
+  <string name="shared_islamic_variant_observational">Kebolehlihatan anak bulan yang dikira</string>
+</resources>

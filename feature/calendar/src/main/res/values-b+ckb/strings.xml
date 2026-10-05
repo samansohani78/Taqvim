@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">ڕۆژژمێری چاپکراو</string>
   <string name="calendar_event_date_origin">بەروار: %1$s</string>
   <string name="calendar_details_loading">ڕۆژ بار دەکرێت</string>
+  <string name="calendar_variants_differ">ڕێبازەکان لەم ڕێکەوتەدا جیاوازن</string>
+  <string name="calendar_variants_hide">ڕێبازەکانی تر بشارەوە</string>
   <string name="calendar_share_day">ئەم ڕۆژە هاوبەش بکە</string>
   <string name="calendar_share_sources">سەرچاوەکان:</string>
   <string name="calendar_system_persian">کۆچیی هەتاوی</string>

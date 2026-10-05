@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">Officiel iranien</string>
+  <string name="shared_islamic_variant_umm_al_qura">Umm al-Qura</string>
+  <string name="shared_islamic_variant_tabular_16">Tabulaire (type II)</string>
+  <string name="shared_islamic_variant_tabular_15">Tabulaire (type I)</string>
+  <string name="shared_islamic_variant_observational">Visibilité calculée du croissant</string>
+</resources>

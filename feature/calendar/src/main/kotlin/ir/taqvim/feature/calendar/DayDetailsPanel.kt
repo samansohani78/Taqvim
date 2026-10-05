@@ -18,8 +18,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -126,6 +131,39 @@ private fun shareEntry(event: DayEventItem): DayShareText.Entry =
         sources = event.citations.map { DayShareText.Source(it.title, it.page, it.url) },
     )
 
+/**
+ * The other Islamic methods, revealed only when they disagree (F-06).
+ *
+ * A date that every method agrees on raises no question, so showing five identical rows would be noise; the row
+ * appears exactly when a user has something to ask about, and stays collapsed until they do. Each row names the
+ * method, its reading of the day, and where that reading came from — an official override reads differently from a
+ * computed one, and that difference is usually the answer.
+ */
+@Composable
+private fun IslamicVariantsDisclosure(
+    content: CalendarContent,
+    language: LanguageSpec,
+) {
+    val rows = content.islamicVariantDates
+    val weekday = content.selectedDay.weekday()
+    val disagree = rows.map { it.date }.distinct().size > 1
+    if (!disagree) return
+    var expanded by rememberSaveable(content.selectedDay.value) { mutableStateOf(false) }
+    val label =
+        stringResource(if (expanded) R.string.calendar_variants_hide else R.string.calendar_variants_differ)
+    TextButton(onClick = { expanded = !expanded }) { Text(label, style = MaterialTheme.typography.labelLarge) }
+    if (!expanded) return
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        rows.forEach { row ->
+            DetailRow(
+                stringResource(DayDetailsLabels.of(row.variant)),
+                DateFormatter.format(row.date, weekday, language, DateStyle.LONG),
+                note = stringResource(DayDetailsLabels.of(row.origin)),
+            )
+        }
+    }
+}
+
 /** The Calendars tab: the day in every calendar, its distance from today, week, season, Sun and Moon. */
 @Composable
 internal fun DayCalendarsTab(
@@ -148,6 +186,7 @@ internal fun DayCalendarsTab(
                 DateFormatter.format(date, weekday, language, DateStyle.LONG),
                 note = origin?.let { stringResource(DayDetailsLabels.of(it)) },
             )
+            if (date.system == CalendarSystem.ISLAMIC) IslamicVariantsDisclosure(content, language)
         }
         DetailRow(stringResource(R.string.calendar_distance_label), distanceText(resources, overview, language))
         IndicatorRow(stringResource(R.string.calendar_week_label), weekText(resources, overview, language)) { text ->

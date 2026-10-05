@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">الأربعاء</string>
   <string name="settings_weekday_thursday">الخميس</string>
   <string name="settings_weekday_friday">الجمعة</string>
-  <string name="settings_variant_iran_official">الرسمي الإيراني</string>
-  <string name="settings_variant_umm_al_qura">أم القرى</string>
-  <string name="settings_variant_tabular_16">الجدولي (النوع الثاني)</string>
-  <string name="settings_variant_tabular_15">الجدولي (النوع الأول)</string>
-  <string name="settings_variant_observational">رؤية الهلال المحسوبة</string>
   <string name="settings_item_event_categories">أنواع الأيام المعروضة</string>
   <string name="settings_item_holidays_only">إظهار أيام العطل فقط</string>
   <string name="settings_category_national">الأيام الوطنية</string>

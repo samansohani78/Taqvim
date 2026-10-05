@@ -201,11 +201,6 @@
   <string name="settings_weekday_thursday">Thursday</string>
   <!-- Weekday name Friday, used to choose the week start and weekend. -->
   <string name="settings_weekday_friday">Friday</string>
-  <string name="settings_variant_iran_official">Iran official</string>
-  <string name="settings_variant_umm_al_qura">Umm al-Qura</string>
-  <string name="settings_variant_tabular_16">Tabular (type II)</string>
-  <string name="settings_variant_tabular_15">Tabular (type I)</string>
-  <string name="settings_variant_observational">Calculated crescent visibility</string>
   <!-- Settings item: which kinds of day are shown, independent of which sources publish them. -->
   <string name="settings_item_event_categories">Kinds of day shown</string>
   <!-- Settings item: show only days off, hiding observances that are not holidays. -->

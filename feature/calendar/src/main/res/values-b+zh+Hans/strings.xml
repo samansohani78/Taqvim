@@ -21,6 +21,8 @@
   <string name="calendar_origin_published">印刷日历</string>
   <string name="calendar_event_date_origin">日期：%1$s</string>
   <string name="calendar_details_loading">正在加载该日</string>
+  <string name="calendar_variants_differ">各推算方法对此日期不一致</string>
+  <string name="calendar_variants_hide">隐藏其他方法</string>
   <string name="calendar_share_day">分享这一天</string>
   <string name="calendar_share_sources">来源：</string>
   <string name="calendar_system_persian">伊斯兰太阳历</string>

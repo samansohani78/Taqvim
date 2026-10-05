@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">Çarşamba</string>
   <string name="settings_weekday_thursday">Perşembe</string>
   <string name="settings_weekday_friday">Cuma</string>
-  <string name="settings_variant_iran_official">İran resmî</string>
-  <string name="settings_variant_umm_al_qura">Ümmü\'l-Kura</string>
-  <string name="settings_variant_tabular_16">Tablolu (tip II)</string>
-  <string name="settings_variant_tabular_15">Tablolu (tip I)</string>
-  <string name="settings_variant_observational">Hesaplanmış hilal görünürlüğü</string>
   <string name="settings_item_event_categories">Gösterilen gün türleri</string>
   <string name="settings_item_holidays_only">Yalnızca tatil günlerini göster</string>
   <string name="settings_category_national">Ulusal günler</string>

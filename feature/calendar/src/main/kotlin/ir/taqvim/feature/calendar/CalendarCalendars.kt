@@ -62,6 +62,28 @@ class CalendarCalendars(
     /** Where each of [datesOf] comes from: computed, an official override or a printed calendar (ADR-0037). */
     fun originsOf(day: Jdn): List<DateOrigin> = arithmetic.map { it.originOf(day) }
 
+    /**
+     * [day] in every Islamic variant, so a user who asks "why is this date different?" can see the answer rather
+     * than be told one method's result (T-802, F-06).
+     *
+     * Each variant is read through the same [arithmeticFor] the rest of the screen uses, with the user's official
+     * overrides applied, so nothing here is a second implementation of the calendar — only the same engines asked
+     * the same question five times. The user's own variant comes first; the rest keep their declaration order.
+     */
+    fun islamicVariantDates(day: Jdn): List<IslamicVariantDate> {
+        val preferred = settings.islamicVariant
+        val order = listOf(preferred) + (IslamicVariant.entries - preferred)
+        return order.map { variant ->
+            val calendar = arithmeticFor(CalendarSystem.ISLAMIC, variant, settings.islamicOverrides)
+            IslamicVariantDate(
+                variant = variant,
+                date = calendar.fromJdn(day),
+                origin = calendar.originOf(day),
+                isPreferred = variant == preferred,
+            )
+        }
+    }
+
     /** The first day, in the primary calendar, of the month containing [day]. */
     fun monthStart(day: Jdn): CalendarDate {
         val date = primary.fromJdn(day)
@@ -92,3 +114,14 @@ class CalendarCalendars(
         ): CalendarArithmetic = IslamicCalendarSelection.arithmeticFor(system, variant, overrides)
     }
 }
+
+/**
+ * One Islamic variant's reading of a day: the [date] it gives, where that date came from ([origin]) and whether it
+ * is the variant the user has chosen.
+ */
+data class IslamicVariantDate(
+    val variant: IslamicVariant,
+    val date: CalendarDate,
+    val origin: DateOrigin,
+    val isPreferred: Boolean,
+)

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">Расмии Эрон</string>
+  <string name="shared_islamic_variant_umm_al_qura">Уммулқуро</string>
+  <string name="shared_islamic_variant_tabular_16">Ҷадвалӣ (навъи II)</string>
+  <string name="shared_islamic_variant_tabular_15">Ҷадвалӣ (навъи I)</string>
+  <string name="shared_islamic_variant_observational">Намоёнии ҳисобшудаи ҳилол</string>
+</resources>

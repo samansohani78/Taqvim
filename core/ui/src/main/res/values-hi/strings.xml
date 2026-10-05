@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">ईरान आधिकारिक</string>
+  <string name="shared_islamic_variant_umm_al_qura">उम्म अल-क़ुरा</string>
+  <string name="shared_islamic_variant_tabular_16">सारणीबद्ध (प्रकार II)</string>
+  <string name="shared_islamic_variant_tabular_15">सारणीबद्ध (प्रकार I)</string>
+  <string name="shared_islamic_variant_observational">गणना की गई हिलाल दृश्यता</string>
+</resources>

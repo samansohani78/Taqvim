@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">ইরানের আনুষ্ঠানিক</string>
+  <string name="shared_islamic_variant_umm_al_qura">উম্মুল কুরা</string>
+  <string name="shared_islamic_variant_tabular_16">সারণিভিত্তিক (ধরন II)</string>
+  <string name="shared_islamic_variant_tabular_15">সারণিভিত্তিক (ধরন I)</string>
+  <string name="shared_islamic_variant_observational">গণনাকৃত নতুন চাঁদের দৃশ্যমানতা</string>
+</resources>

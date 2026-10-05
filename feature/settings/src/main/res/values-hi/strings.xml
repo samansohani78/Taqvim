@@ -153,11 +153,6 @@
   <string name="settings_weekday_wednesday">बुधवार</string>
   <string name="settings_weekday_thursday">गुरुवार</string>
   <string name="settings_weekday_friday">शुक्रवार</string>
-  <string name="settings_variant_iran_official">ईरान आधिकारिक</string>
-  <string name="settings_variant_umm_al_qura">उम्म अल-क़ुरा</string>
-  <string name="settings_variant_tabular_16">सारणीबद्ध (प्रकार II)</string>
-  <string name="settings_variant_tabular_15">सारणीबद्ध (प्रकार I)</string>
-  <string name="settings_variant_observational">गणना की गई हिलाल दृश्यता</string>
   <string name="settings_item_event_categories">दिखाए जाने वाले दिनों के प्रकार</string>
   <string name="settings_item_holidays_only">केवल छुट्टी के दिन दिखाएँ</string>
   <string name="settings_category_national">राष्ट्रीय दिवस</string>

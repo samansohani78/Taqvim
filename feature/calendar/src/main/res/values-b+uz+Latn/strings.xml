@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">Bosma taqvim</string>
   <string name="calendar_event_date_origin">Sana: %1$s</string>
   <string name="calendar_details_loading">Kun yuklanmoqda</string>
+  <string name="calendar_variants_differ">Usullar bu sanada farq qiladi</string>
+  <string name="calendar_variants_hide">Boshqa usullarni yashirish</string>
   <string name="calendar_share_day">Shu kunni ulashish</string>
   <string name="calendar_share_sources">Manbalar:</string>
   <string name="calendar_system_persian">Hijriy-shamsiy</string>

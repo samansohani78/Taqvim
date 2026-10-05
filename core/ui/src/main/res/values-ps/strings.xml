@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shared_islamic_variant_iran_official">د ایران رسمي</string>
+  <string name="shared_islamic_variant_umm_al_qura">ام القری</string>
+  <string name="shared_islamic_variant_tabular_16">جدولي (دوهم ډول)</string>
+  <string name="shared_islamic_variant_tabular_15">جدولي (لومړی ډول)</string>
+  <string name="shared_islamic_variant_observational">د نوې میاشتې محاسبه شوی لیدل</string>
+</resources>

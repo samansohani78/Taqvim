@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">அச்சிடப்பட்ட நாட்காட்டி</string>
   <string name="calendar_event_date_origin">தேதி: %1$s</string>
   <string name="calendar_details_loading">நாள் ஏற்றப்படுகிறது</string>
+  <string name="calendar_variants_differ">இந்த தேதியில் முறைகள் வேறுபடுகின்றன</string>
+  <string name="calendar_variants_hide">மற்ற முறைகளை மறை</string>
   <string name="calendar_share_day">இந்த நாளைப் பகிரவும்</string>
   <string name="calendar_share_sources">ஆதாரங்கள்:</string>
   <string name="calendar_system_persian">சூரிய ஹிஜ்ரி</string>

@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">Gedruckter Kalender</string>
   <string name="calendar_event_date_origin">Datum: %1$s</string>
   <string name="calendar_details_loading">Tag wird geladen</string>
+  <string name="calendar_variants_differ">Die Methoden sind sich bei diesem Datum uneinig</string>
+  <string name="calendar_variants_hide">Andere Methoden ausblenden</string>
   <string name="calendar_share_day">Diesen Tag teilen</string>
   <string name="calendar_share_sources">Quellen:</string>
   <string name="calendar_system_persian">Sonnen-Hidschri</string>
