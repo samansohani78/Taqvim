@@ -74,14 +74,21 @@ public object FormatTable {
      * these pairs the root fallback `[G ]y MMMM d, EEEE` — year first, weekday last, Latin comma — which none of
      * these languages writes. Their Gregorian pattern is real, reviewed CLDR data in the same language, so it is used
      * verbatim; the pattern is never written out here, which keeps this a rule rather than a copy of CLDR data.
-     * Every other pattern is CLDR data as generated.
+     *
+     * `ps` was in this set until 2026-10-05 and is now a pinned string in [SourcedDatePatterns] instead. The rule is
+     * only as stable as the value it reuses, and CLDR 49 changes `ps`'s Gregorian full pattern to `EEEE d, MMMM, y`
+     * — day first, Latin commas — which would have reintroduced on an ICU bump exactly the defect ADR-0050 removed.
+     * `fa` and `prs` stay a rule: their Gregorian patterns are long-standing and were re-measured as unchanged in
+     * CLDR 49. Every other pattern is CLDR data as generated.
      */
     internal val GREGORIAN_PATTERN_OVERRIDES: Set<Pair<String, CalendarSystem>> =
         setOf(
             "fa" to CalendarSystem.PERSIAN,
             "prs" to CalendarSystem.PERSIAN,
-            "ps" to CalendarSystem.PERSIAN,
         )
+
+    /** Full patterns pinned with their evidence, for pairs where reusing CLDR's current value is unsafe. */
+    internal val PRODUCT_DATE_PATTERNS: Map<Pair<String, CalendarSystem>, String> get() = SourcedDatePatterns.all
 
     /** Era abbreviations CLDR has none for, by language code and calendar; cited in [SourcedEras]. */
     internal val PRODUCT_ERAS: Map<Pair<String, CalendarSystem>, String> get() = SourcedEras.all
@@ -100,10 +107,11 @@ public object FormatTable {
         formats: LanguageFormats,
     ): LanguageFormats {
         val gregorian = formats.datePatterns[CalendarSystem.GREGORIAN] ?: return formats
+        val pinned = SourcedDatePatterns.of(code)
         return formats.copy(
             datePatterns =
                 formats.datePatterns.mapValues { (calendar, cldr) ->
-                    if (code to calendar in GREGORIAN_PATTERN_OVERRIDES) gregorian else cldr
+                    pinned[calendar] ?: if (code to calendar in GREGORIAN_PATTERN_OVERRIDES) gregorian else cldr
                 },
         )
     }

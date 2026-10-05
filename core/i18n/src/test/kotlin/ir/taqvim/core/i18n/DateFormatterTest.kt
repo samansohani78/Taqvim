@@ -106,13 +106,14 @@ class DateFormatterTest {
     }
 
     @Test
-    fun `Persian long dates in fa, prs and ps use the language's CLDR Gregorian pattern (ADR-0014, ADR-0050)`() {
+    fun `fa and prs reuse their CLDR Gregorian pattern, ps pins its own (ADR-0014, ADR-0050)`() {
         FormatTable.GREGORIAN_PATTERN_OVERRIDES shouldBe
             setOf(
                 "fa" to CalendarSystem.PERSIAN,
                 "prs" to CalendarSystem.PERSIAN,
-                "ps" to CalendarSystem.PERSIAN,
             )
+        FormatTable.PRODUCT_DATE_PATTERNS shouldBe
+            mapOf(("ps" to CalendarSystem.PERSIAN) to "EEEE د y د MMMM d")
         val codes = FormatTable.GREGORIAN_PATTERN_OVERRIDES.map { it.first }
         val generated = FormatTableParser.parse(loadGeneratedFormats(), codes)
         FormatTable.GREGORIAN_PATTERN_OVERRIDES.forEach { (code, calendar) ->
@@ -135,6 +136,17 @@ class DateFormatterTest {
         // solar Hijri calendar is Afghanistan's default civil calendar. The Islamic calendar keeps its era (DT-025).
         DateFormatter.format(date, sunday, language("ps"), DateStyle.LONG) shouldBe
             Numerals.localizeDigits("يونۍ د 1405 د وږی 22", NumeralSystem.PERSIAN)
+
+        // Tripwire, not redundancy. `ps`'s pattern is pinned with CLDR 48.2 cited as the source of the string, so
+        // while the bundled ICU still carries that data the two must agree. CLDR 49 changes this value to
+        // `EEEE d, MMMM, y` — day first, Latin commas — so on an ICU bump this assertion fails and someone has to
+        // re-read sourced-date-patterns.properties and decide, instead of the shipped pattern changing in silence.
+        FormatTable.PRODUCT_DATE_PATTERNS.getValue("ps" to CalendarSystem.PERSIAN) shouldBe
+            FormatTableParser
+                .parse(loadGeneratedFormats(), listOf("ps"))
+                .getValue("ps")
+                .datePatterns
+                .getValue(CalendarSystem.GREGORIAN)
     }
 
     @Test

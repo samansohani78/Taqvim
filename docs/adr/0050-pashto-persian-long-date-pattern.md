@@ -58,3 +58,28 @@ and orders the fields year → month → day exactly as the gazette does.
   a written date in either language was found (DT-025).
 - The gazette corroborates **field order**, not a pattern. Its Pashto line is a labelled genitive formula, and the
   Pashto and Dari lines on the same cover disagree on field order, so nothing here renders the gazette's own wording.
+
+## Addendum, 2026-10-05: the rule became a pinned value
+
+Decision 2 above made the override a rule — reuse the language's own CLDR Gregorian full pattern, never write a
+pattern down — so that it stayed a rule rather than a copy of CLDR data. That reasoning was sound about *copying* and
+wrong about *stability*: a rule is only as stable as the value it reuses.
+
+Measured against ICU 79.1rc, which carries CLDR 49: `ps-AF`'s Gregorian FULL pattern changes from
+`EEEE د y د MMMM d` to **`EEEE d, MMMM, y`** — day first, with Latin commas. That is the exact shape ADR-0014 and
+this ADR exist to remove, so an ICU bump would have silently reintroduced the defect in the one language this ADR was
+written for.
+
+So `ps` is no longer in `FormatTable.GREGORIAN_PATTERN_OVERRIDES`. Its pattern is pinned in
+`core/i18n/src/main/resources/ir/taqvim/core/i18n/sourced-date-patterns.properties`, whose header carries the
+evidence: the string is CLDR 48.2 `common/main/ps.xml` gregorian `dateFormatLength type="full"`, and its field order
+is independently corroborated by the seven Official Gazette covers already cited in `sourced-eras.properties`. The
+gazette still cannot source the pattern itself, for the reasons DT-025 records — no cover prints a weekday, the cover
+line is a masthead label rather than a date string, and the Pashto and Dari lines disagree in order on the same page.
+
+`fa` and `prs` remain a rule. Their Gregorian patterns are long-standing and were re-measured as unchanged in
+CLDR 49, and ADR-0014's reasoning for them is about the language's own writing habits rather than one release's data.
+
+`DateFormatterTest` gained a tripwire: while the bundled ICU still carries CLDR 48.2, the pinned `ps` pattern must
+equal what the generated table holds. On an ICU bump that assertion fails, so a person re-reads the evidence and
+decides, rather than the shipped pattern changing in silence.
