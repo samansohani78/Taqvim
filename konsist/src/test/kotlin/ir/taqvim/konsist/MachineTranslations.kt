@@ -23,10 +23,15 @@ object MachineTranslations {
     private const val MARKER = "MT: needs review"
     private const val SOURCE_FOLDER = "values"
 
-    /** Languages that are not machine-translated: the reviewed source pair (docs/i18n/TRANSLATING.md §1). */
-    private val REVIEWED = setOf("", "fa")
+    /**
+     * Folders that are not machine-translated: the reviewed source pair (docs/i18n/TRANSLATING.md §1).
+     *
+     * By folder, not by language subtag: Dari is `values-fa-rAF`, whose subtag is `fa`, and keying on the subtag
+     * silently exempted it — which is how `core/ui`'s Dari file shipped unmarked past the first version of this check.
+     */
+    private val REVIEWED = setOf("values", "values-fa")
 
-    /** Every machine-translated file, by language subtag. */
+    /** Every machine-translated file, by resource folder. */
     fun markersByLanguage(root: File): Map<String, List<MachineTranslationFile>> =
         StringResources
             .resourceDirectories(root)
@@ -35,10 +40,10 @@ object MachineTranslations {
                     .listFiles { file -> file.isDirectory && file.name.startsWith(SOURCE_FOLDER) }
                     .orEmpty()
                     .mapNotNull { folder ->
-                        val language = TranslationCatalog.languageOf(folder.name) ?: return@mapNotNull null
+                        TranslationCatalog.languageOf(folder.name) ?: return@mapNotNull null
                         val file = File(folder, "strings.xml")
-                        if (language in REVIEWED || !file.isFile) return@mapNotNull null
-                        language to
+                        if (folder.name in REVIEWED || !file.isFile) return@mapNotNull null
+                        folder.name to
                             MachineTranslationFile(
                                 path = file.relativeTo(root).invariantSeparatorsPath,
                                 marked = MARKER in file.readText(),
