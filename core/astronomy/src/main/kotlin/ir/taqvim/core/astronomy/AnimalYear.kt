@@ -46,3 +46,28 @@ public object AnimalYear {
         return ofChineseYearStartingIn(startYear)
     }
 }
+
+/**
+ * The same twelve-animal cycle as it was used in Iran (DT-015), which is **not** aligned with [AnimalYear]'s.
+ *
+ * R. Abdollahy, "CALENDARS ii. In the Islamic period", *Encyclopaedia Iranica* IV/6-7, pp. 658–677, states the rule
+ * outright: "add 6 to the year in question and divide by 12; the remainder … 1 = mouse, 2 = ox, 3 = tiger, and so on
+ * up to 12 = pig". The year it applies to is the **Solar Hijri** year, so the animal changes at Nowruz rather than at
+ * the Chinese new year, and a Gregorian year spans two of them. Checked against the years in force: 1403 is the
+ * dragon, 1404 the snake, 1405 the horse. The twelve names are Melville's (1994).
+ *
+ * Abdollahy also dates the modern usage: the Majles adopted it in 1329/1911 and dropped it in 1344/1925, "the naming
+ * of years for animals is still customary in certain Persian almanacs". [IN_FORCE_YEARS] records that, so a caller
+ * can say when the naming was official rather than implying it always was.
+ */
+public object PersianAnimalYear {
+    private const val OFFSET = 6
+    private const val CYCLE_YEARS = 12
+
+    /** Solar Hijri years in which the animal naming was official (Majles 1329 SH to its abrogation in 1344 SH). */
+    public val IN_FORCE_YEARS: IntRange = 1329..1344
+
+    /** The animal of Solar Hijri [persianYear], by Abdollahy's rule. */
+    public fun of(persianYear: Int): ChineseZodiacAnimal =
+        ChineseZodiacAnimal.entries[Math.floorMod(persianYear + OFFSET - 1, CYCLE_YEARS)]
+}
