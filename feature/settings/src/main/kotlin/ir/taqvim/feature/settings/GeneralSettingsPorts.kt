@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.settings
 
+import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.i18n.NumeralSystem
@@ -40,6 +41,12 @@ data class GeneralSettings(
     val showWeekNumbers: Boolean,
     /** Dataset sources shown in the calendar; personal events are always shown. */
     val enabledEventSources: Set<EventSource>,
+    /** Event categories shown, independent of [enabledEventSources]; personal events are never filtered by them. */
+    val enabledEventCategories: Set<EventCategory> = AppSettingsCategories.ALL,
+    /** Whether the user chose [enabledEventCategories]; until then every category is shown. */
+    val eventCategoriesChosen: Boolean = false,
+    /** Show only days off. */
+    val holidaysOnly: Boolean = false,
     val prayerMethod: PrayerMethod,
     val asrJuristic: AsrJuristic,
     val highLatitudeRule: HighLatitudeRule,
@@ -148,4 +155,9 @@ interface SubscriptionsStore {
 
     /** Downloads the feed now. */
     suspend fun refresh(id: Long): SubscriptionOutcome
+}
+
+/** The categories a user can choose, so the settings model does not depend on the preferences module. */
+internal object AppSettingsCategories {
+    val ALL: Set<EventCategory> = EventCategory.entries.toSet() - EventCategory.PERSONAL
 }

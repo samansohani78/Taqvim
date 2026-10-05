@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Ҷадвалӣ (навъи II)</string>
   <string name="settings_variant_tabular_15">Ҷадвалӣ (навъи I)</string>
   <string name="settings_variant_observational">Намоёнии ҳисобшудаи ҳилол</string>
+  <string name="settings_item_event_categories">Намудҳои рӯзҳои нишондодашуда</string>
+  <string name="settings_item_holidays_only">Танҳо рӯзҳои истироҳат</string>
+  <string name="settings_category_national">Рӯзҳои миллӣ</string>
+  <string name="settings_category_religious">Маросимҳои динӣ</string>
+  <string name="settings_category_international">Рӯзҳои байналмилалӣ</string>
+  <string name="settings_category_cultural">Чорабиниҳои фарҳангӣ</string>
+  <string name="settings_category_astronomical">Ҳодисаҳои астрономӣ</string>
   <string name="settings_source_iran">Ҷашнҳо ва муносибатҳои расмии Эрон</string>
   <string name="settings_source_afghanistan">Муносибатҳои расмии Афғонистон</string>
   <string name="settings_source_nepal">Муносибатҳои расмии Непал</string>

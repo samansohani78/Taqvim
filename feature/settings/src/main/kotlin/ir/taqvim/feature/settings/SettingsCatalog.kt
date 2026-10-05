@@ -84,6 +84,16 @@ enum class SettingsItemId(
         R.string.settings_item_event_sources,
         R.string.settings_keywords_events,
     ),
+    EVENT_CATEGORIES(
+        SettingsTab.INTERFACE_CALENDAR,
+        R.string.settings_item_event_categories,
+        R.string.settings_keywords_events,
+    ),
+    HOLIDAYS_ONLY(
+        SettingsTab.INTERFACE_CALENDAR,
+        R.string.settings_item_holidays_only,
+        R.string.settings_keywords_events,
+    ),
     SUBSCRIPTIONS(SettingsTab.INTERFACE_CALENDAR, R.string.settings_item_subscriptions, R.string.settings_keywords_ics),
     SUBSCRIPTIONS_NETWORK(
         SettingsTab.INTERFACE_CALENDAR,
@@ -243,6 +253,20 @@ internal object SettingsCatalog {
                 enumMultiChoice(SettingsLabels.eventSources, allowEmpty = true, { it.enabledEventSources }) { s, v ->
                     s.copy(enabledEventSources = v)
                 }
+            }
+
+            // Categories are a second, independent axis: a source says who publishes an event, a category what kind
+            // of day it is. Empty is allowed, as it is for sources — "show no category" is a real choice.
+            SettingsItemId.EVENT_CATEGORIES -> {
+                enumMultiChoice(
+                    SettingsLabels.eventCategories,
+                    allowEmpty = true,
+                    { it.enabledEventCategories },
+                ) { s, v -> s.copy(enabledEventCategories = v, eventCategoriesChosen = true) }
+            }
+
+            SettingsItemId.HOLIDAYS_ONLY -> {
+                toggle({ it.holidaysOnly }) { s, v -> s.copy(holidaysOnly = v) }
             }
 
             SettingsItemId.SUBSCRIPTIONS -> {

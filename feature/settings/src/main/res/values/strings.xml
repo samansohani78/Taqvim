@@ -206,6 +206,20 @@
   <string name="settings_variant_tabular_16">Tabular (type II)</string>
   <string name="settings_variant_tabular_15">Tabular (type I)</string>
   <string name="settings_variant_observational">Calculated crescent visibility</string>
+  <!-- Settings item: which kinds of day are shown, independent of which sources publish them. -->
+  <string name="settings_item_event_categories">Kinds of day shown</string>
+  <!-- Settings item: show only days off, hiding observances that are not holidays. -->
+  <string name="settings_item_holidays_only">Show only days off</string>
+  <!-- Kind of day: national days and anniversaries. -->
+  <string name="settings_category_national">National days</string>
+  <!-- Kind of day: religious observances. -->
+  <string name="settings_category_religious">Religious observances</string>
+  <!-- Kind of day: United Nations and other international days. -->
+  <string name="settings_category_international">International days</string>
+  <!-- Kind of day: cultural and traditional occasions. -->
+  <string name="settings_category_cultural">Cultural occasions</string>
+  <!-- Kind of day: astronomical events such as equinoxes and eclipses. -->
+  <string name="settings_category_astronomical">Astronomical events</string>
   <string name="settings_source_iran">Iran official holidays and occasions</string>
   <string name="settings_source_afghanistan">Afghanistan official occasions</string>
   <string name="settings_source_nepal">Nepal official occasions</string>

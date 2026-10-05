@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Jadvalli (II tur)</string>
   <string name="settings_variant_tabular_15">Jadvalli (I tur)</string>
   <string name="settings_variant_observational">Hisoblangan hilol koʻrinishi</string>
+  <string name="settings_item_event_categories">Koʻrsatiladigan kun turlari</string>
+  <string name="settings_item_holidays_only">Faqat dam olish kunlari</string>
+  <string name="settings_category_national">Milliy kunlar</string>
+  <string name="settings_category_religious">Diniy marosimlar</string>
+  <string name="settings_category_international">Xalqaro kunlar</string>
+  <string name="settings_category_cultural">Madaniy tadbirlar</string>
+  <string name="settings_category_astronomical">Astronomik hodisalar</string>
   <string name="settings_source_iran">Eronning rasmiy bayramlari va sanalari</string>
   <string name="settings_source_afghanistan">Afgʻonistonning rasmiy sanalari</string>
   <string name="settings_source_nepal">Nepalning rasmiy sanalari</string>

@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">সারণিভিত্তিক (ধরন II)</string>
   <string name="settings_variant_tabular_15">সারণিভিত্তিক (ধরন I)</string>
   <string name="settings_variant_observational">গণনাকৃত নতুন চাঁদের দৃশ্যমানতা</string>
+  <string name="settings_item_event_categories">যে ধরনের দিন দেখানো হবে</string>
+  <string name="settings_item_holidays_only">শুধু ছুটির দিন দেখান</string>
+  <string name="settings_category_national">জাতীয় দিবস</string>
+  <string name="settings_category_religious">ধর্মীয় অনুষ্ঠান</string>
+  <string name="settings_category_international">আন্তর্জাতিক দিবস</string>
+  <string name="settings_category_cultural">সাংস্কৃতিক অনুষ্ঠান</string>
+  <string name="settings_category_astronomical">জ্যোতির্বৈজ্ঞানিক ঘটনা</string>
   <string name="settings_source_iran">ইরানের আনুষ্ঠানিক ছুটি ও উপলক্ষ</string>
   <string name="settings_source_afghanistan">আফগানিস্তানের আনুষ্ঠানিক উপলক্ষ</string>
   <string name="settings_source_nepal">নেপালের আনুষ্ঠানিক উপলক্ষ</string>

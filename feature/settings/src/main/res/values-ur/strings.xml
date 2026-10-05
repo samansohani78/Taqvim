@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">جدولی (قسم II)</string>
   <string name="settings_variant_tabular_15">جدولی (قسم I)</string>
   <string name="settings_variant_observational">حساب شدہ رویتِ ہلال</string>
+  <string name="settings_item_event_categories">دکھائے جانے والے دنوں کی اقسام</string>
+  <string name="settings_item_holidays_only">صرف تعطیل کے دن دکھائیں</string>
+  <string name="settings_category_national">قومی دن</string>
+  <string name="settings_category_religious">مذہبی مواقع</string>
+  <string name="settings_category_international">بین الاقوامی دن</string>
+  <string name="settings_category_cultural">ثقافتی مواقع</string>
+  <string name="settings_category_astronomical">فلکیاتی واقعات</string>
   <string name="settings_source_iran">ایران کی سرکاری تعطیلات اور مواقع</string>
   <string name="settings_source_afghanistan">افغانستان کے سرکاری مواقع</string>
   <string name="settings_source_nepal">نیپال کے سرکاری مواقع</string>

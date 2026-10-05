@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">அட்டவணை (வகை II)</string>
   <string name="settings_variant_tabular_15">அட்டவணை (வகை I)</string>
   <string name="settings_variant_observational">கணக்கிடப்பட்ட பிறைத் தெரிவு</string>
+  <string name="settings_item_event_categories">காட்டப்படும் நாள் வகைகள்</string>
+  <string name="settings_item_holidays_only">விடுமுறை நாட்களை மட்டும் காட்டு</string>
+  <string name="settings_category_national">தேசிய நாட்கள்</string>
+  <string name="settings_category_religious">மத நிகழ்வுகள்</string>
+  <string name="settings_category_international">சர்வதேச நாட்கள்</string>
+  <string name="settings_category_cultural">பண்பாட்டு நிகழ்வுகள்</string>
+  <string name="settings_category_astronomical">வானியல் நிகழ்வுகள்</string>
   <string name="settings_source_iran">ஈரானின் அதிகாரப்பூர்வ விடுமுறைகளும் சிறப்பு நாட்களும்</string>
   <string name="settings_source_afghanistan">ஆப்கானிஸ்தானின் அதிகாரப்பூர்வ சிறப்பு நாட்கள்</string>
   <string name="settings_source_nepal">நேபாளத்தின் அதிகாரப்பூர்வ சிறப்பு நாட்கள்</string>

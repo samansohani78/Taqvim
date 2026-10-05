@@ -127,6 +127,9 @@ private fun AppSettings.toRecord() =
         eventSourcesChosen = eventSourcesChosen,
         persistentNotificationLargeNumber = persistentNotificationLargeNumber,
         dynamicLauncherIcon = dynamicLauncherIcon,
+        enabledEventCategories = enabledEventCategories,
+        eventCategoriesChosen = eventCategoriesChosen,
+        holidaysOnly = holidaysOnly,
     )
 
 /** The backed-up settings; values this version cannot use (e.g. personal events as a source) fall back to defaults. */
@@ -150,6 +153,9 @@ private fun AppSettingsRecord.toAppSettings(): AppSettings =
             eventSourcesChosen = eventSourcesChosen,
             persistentNotificationLargeNumber = persistentNotificationLargeNumber,
             dynamicLauncherIcon = dynamicLauncherIcon,
+            enabledEventCategories = enabledEventCategories,
+            eventCategoriesChosen = eventCategoriesChosen,
+            holidaysOnly = holidaysOnly,
         )
     }.getOrDefault(AppSettings.DEFAULT)
 

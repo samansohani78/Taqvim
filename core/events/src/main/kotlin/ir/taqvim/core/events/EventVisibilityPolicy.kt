@@ -114,12 +114,25 @@ public data class EventPreferences(
     public val islamicVariant: IslamicVariant = IslamicVariant.IRAN_OFFICIAL,
     /** Optional official Iranian month starts (ADR-0037); `null` means every Islamic date is computed. */
     public val islamicOverrides: IslamicMonthTable? = null,
+    /**
+     * Categories whose events are shown, independent of [enabledSources]: a source says who publishes an event, a
+     * category what kind of day it is, and an event must pass both.
+     *
+     * Last, and defaulted to every category, so existing positional callers keep compiling and keep their behaviour.
+     * [EventCategory.PERSONAL] is never consulted — a user's own events are not filtered by category — so leaving it
+     * out of the set does not hide them.
+     */
+    public val enabledCategories: Set<EventCategory> = EventCategory.entries.toSet(),
 )
 
 /**
  * Data-driven visibility of occurrences (T-302), in this order: outside the event's validity → hidden (also when the
- * validity's calendar is unavailable); [EventFlag.ALWAYS_DISPLAYED] → shown; disabled source → hidden; holidays-only
- * and not a holiday → hidden; non-holiday religious observance while away from home (if enabled) → hidden.
+ * validity's calendar is unavailable); [EventFlag.ALWAYS_DISPLAYED] → shown; personal event → shown; disabled source
+ * → hidden; disabled category → hidden; holidays-only and not a holiday → hidden; non-holiday religious observance
+ * while away from home (if enabled) → hidden.
+ *
+ * Source and category are separate tests and an event must pass both. A personal event is exempt from both: it is
+ * the user's own, so no dataset filter may remove it.
  */
 public class EventVisibilityPolicy(
     private val preferences: EventPreferences,
@@ -134,8 +147,9 @@ public class EventVisibilityPolicy(
     ): Boolean {
         val definition = occurrence.definition
         if (!withinValidity(occurrence)) return false
-        if (EventFlag.ALWAYS_DISPLAYED in definition.flags) return true
+        if (exemptFromPreferences(definition)) return true
         return definition.source in preferences.enabledSources &&
+            definition.category in preferences.enabledCategories &&
             (!preferences.holidaysOnly || occurrence.isHoliday) &&
             !hiddenAwayFromHome(occurrence, currentTimeZone)
     }
@@ -145,6 +159,14 @@ public class EventVisibilityPolicy(
         occurrences: List<Occurrence>,
         currentTimeZone: TimeZone,
     ): List<Occurrence> = occurrences.filter { isVisible(it, currentTimeZone) }
+
+    /**
+     * Whether no user preference may hide [definition]: an [EventFlag.ALWAYS_DISPLAYED] record, and every personal
+     * event. A personal event is the user's own, so losing one because a category or a holidays-only switch changed
+     * would be a defect rather than a setting.
+     */
+    private fun exemptFromPreferences(definition: EventDefinition): Boolean =
+        EventFlag.ALWAYS_DISPLAYED in definition.flags || definition.category == EventCategory.PERSONAL
 
     private fun hiddenAwayFromHome(
         occurrence: Occurrence,

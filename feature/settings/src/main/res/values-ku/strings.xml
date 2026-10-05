@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Tabloyî (cure II)</string>
   <string name="settings_variant_tabular_15">Tabloyî (cure I)</string>
   <string name="settings_variant_observational">Dîtina hesabkirî ya heyva nû</string>
+  <string name="settings_item_event_categories">Cureyên rojên nîşandayî</string>
+  <string name="settings_item_holidays_only">Tenê rojên betlaneyê</string>
+  <string name="settings_category_national">Rojên neteweyî</string>
+  <string name="settings_category_religious">Boneyên olî</string>
+  <string name="settings_category_international">Rojên navneteweyî</string>
+  <string name="settings_category_cultural">Boneyên çandî</string>
+  <string name="settings_category_astronomical">Bûyerên stêrnasî</string>
   <string name="settings_source_iran">Betlane û bûyerên fermî yên Îranê</string>
   <string name="settings_source_afghanistan">Bûyerên fermî yên Afganistanê</string>
   <string name="settings_source_nepal">Bûyerên fermî yên Nepalê</string>

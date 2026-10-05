@@ -127,6 +127,49 @@ class EventVisibilityPolicyTest {
     }
 
     @Test
+    fun `a disabled category hides an event whose source is still on`() {
+        // The two axes are independent: turning off "religious" must not require turning off Iran official, and
+        // turning off a category must not be reachable by disabling a source instead.
+        val religious =
+            event("test.religious", CalendarSystem.GREGORIAN, EventRule.Fixed(5, 1))
+                .copy(source = EventSource.IRAN_OFFICIAL, category = EventCategory.RELIGIOUS)
+        val national =
+            event("test.national", CalendarSystem.GREGORIAN, EventRule.Fixed(5, 2))
+                .copy(source = EventSource.IRAN_OFFICIAL, category = EventCategory.NATIONAL)
+        val calculator = OccurrenceCalculator(listOf(religious, national))
+        val occurrences =
+            calculator.occurrences(religious, 2026) + calculator.occurrences(national, 2026)
+        val sources = setOf(EventSource.IRAN_OFFICIAL)
+
+        val withoutReligious =
+            EventPreferences(sources, home, enabledCategories = setOf(EventCategory.NATIONAL))
+        EventVisibilityPolicy(withoutReligious).visible(occurrences, home).map { it.definition.id } shouldBe
+            listOf(national.id)
+
+        // And the default keeps both, which is what every caller that does not set categories must still see.
+        EventVisibilityPolicy(EventPreferences(sources, home)).visible(occurrences, home) shouldBe occurrences
+    }
+
+    @Test
+    fun `a personal event survives every dataset filter`() {
+        // Personal events are the user's own. No category choice, no disabled source and no holidays-only switch may
+        // remove one: losing a reminder that way would be a defect, not a setting.
+        val personal =
+            event("test.personal", CalendarSystem.GREGORIAN, EventRule.Fixed(5, 3))
+                .copy(source = EventSource.USER, category = EventCategory.PERSONAL)
+        val occurrence = OccurrenceCalculator(listOf(personal)).occurrences(personal, 2026).single()
+        val hostile =
+            EventPreferences(
+                enabledSources = emptySet(),
+                homeTimeZone = home,
+                holidaysOnly = true,
+                enabledCategories = emptySet(),
+            )
+
+        EventVisibilityPolicy(hostile).visible(listOf(occurrence), abroad) shouldBe listOf(occurrence)
+    }
+
+    @Test
     fun `a validity in an unavailable calendar hides the occurrence`() {
         val nepaliValidity = Validity(CalendarSystem.NEPALI, 2080, null, citation)
         val definition =

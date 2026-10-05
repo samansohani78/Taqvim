@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">خشتەیی (جۆری II)</string>
   <string name="settings_variant_tabular_15">خشتەیی (جۆری I)</string>
   <string name="settings_variant_observational">بینینی ژمێردراوی مانگی نوێ</string>
+  <string name="settings_item_event_categories">جۆرەکانی ڕۆژ کە پیشان دەدرێن</string>
+  <string name="settings_item_holidays_only">تەنها ڕۆژانی پشوو</string>
+  <string name="settings_category_national">ڕۆژە نەتەوەییەکان</string>
+  <string name="settings_category_religious">بۆنە ئایینییەکان</string>
+  <string name="settings_category_international">ڕۆژە نێودەوڵەتییەکان</string>
+  <string name="settings_category_cultural">بۆنە کولتوورییەکان</string>
+  <string name="settings_category_astronomical">ڕووداوە ئەستێرەناسییەکان</string>
   <string name="settings_source_iran">پشوو و بۆنە فەرمییەکانی ئێران</string>
   <string name="settings_source_afghanistan">بۆنە فەرمییەکانی ئەفغانستان</string>
   <string name="settings_source_nepal">بۆنە فەرمییەکانی نیپاڵ</string>

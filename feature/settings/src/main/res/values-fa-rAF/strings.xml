@@ -159,6 +159,13 @@
   <string name="settings_variant_tabular_16">جدولی (نوع ۲)</string>
   <string name="settings_variant_tabular_15">جدولی (نوع ۱)</string>
   <string name="settings_variant_observational">محاسبهٔ رؤیت هلال</string>
+  <string name="settings_item_event_categories">گونه‌های روز نمایش‌داده‌شده</string>
+  <string name="settings_item_holidays_only">فقط روزهای رخصتی</string>
+  <string name="settings_category_national">روزهای ملی</string>
+  <string name="settings_category_religious">مناسبت‌های مذهبی</string>
+  <string name="settings_category_international">روزهای جهانی</string>
+  <string name="settings_category_cultural">مناسبت‌های فرهنگی</string>
+  <string name="settings_category_astronomical">رویدادهای نجومی</string>
   <string name="settings_source_iran">تعطیلات و مناسبت‌های رسمی ایران</string>
   <string name="settings_source_afghanistan">مناسبت‌های رسمی افغانستان</string>
   <string name="settings_source_nepal">مناسبت‌های رسمی نپال</string>

@@ -4,6 +4,7 @@
  */
 package ir.taqvim.data.database.backup
 
+import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.ics.Frequency
@@ -121,6 +122,16 @@ internal data class AppSettingsRecord(
     val persistentNotificationLargeNumber: Boolean = false,
     /** Day-number launcher icon (T-1214); absent in older backups. */
     val dynamicLauncherIcon: Boolean = false,
+    /**
+     * Event categories shown (T-302). Absent in backups made before the setting existed, where the default below
+     * plus [eventCategoriesChosen] being false means every category — restoring such a backup therefore shows the
+     * same events it did when it was made.
+     */
+    val enabledEventCategories: Set<EventCategory> = AppSettings.SELECTABLE_CATEGORIES.toSet(),
+    /** Whether the categories were chosen by the user; absent in older backups, where every category is shown. */
+    val eventCategoriesChosen: Boolean = false,
+    /** Show only days off (T-302); absent in older backups, which did not have the setting and showed everything. */
+    val holidaysOnly: Boolean = false,
 )
 
 @Serializable

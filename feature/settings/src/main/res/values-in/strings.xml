@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Tabular (tipe II)</string>
   <string name="settings_variant_tabular_15">Tabular (tipe I)</string>
   <string name="settings_variant_observational">Visibilitas hilal terhitung</string>
+  <string name="settings_item_event_categories">Jenis hari yang ditampilkan</string>
+  <string name="settings_item_holidays_only">Hanya tampilkan hari libur</string>
+  <string name="settings_category_national">Hari nasional</string>
+  <string name="settings_category_religious">Peringatan keagamaan</string>
+  <string name="settings_category_international">Hari internasional</string>
+  <string name="settings_category_cultural">Peringatan budaya</string>
+  <string name="settings_category_astronomical">Peristiwa astronomi</string>
   <string name="settings_source_iran">Hari libur dan peringatan resmi Iran</string>
   <string name="settings_source_afghanistan">Peringatan resmi Afganistan</string>
   <string name="settings_source_nepal">Peringatan resmi Nepal</string>

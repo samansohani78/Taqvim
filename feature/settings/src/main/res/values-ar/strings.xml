@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">الجدولي (النوع الثاني)</string>
   <string name="settings_variant_tabular_15">الجدولي (النوع الأول)</string>
   <string name="settings_variant_observational">رؤية الهلال المحسوبة</string>
+  <string name="settings_item_event_categories">أنواع الأيام المعروضة</string>
+  <string name="settings_item_holidays_only">إظهار أيام العطل فقط</string>
+  <string name="settings_category_national">الأيام الوطنية</string>
+  <string name="settings_category_religious">المناسبات الدينية</string>
+  <string name="settings_category_international">الأيام العالمية</string>
+  <string name="settings_category_cultural">المناسبات الثقافية</string>
+  <string name="settings_category_astronomical">الأحداث الفلكية</string>
   <string name="settings_source_iran">العطل والمناسبات الرسمية في إيران</string>
   <string name="settings_source_afghanistan">المناسبات الرسمية في أفغانستان</string>
   <string name="settings_source_nepal">المناسبات الرسمية في نيبال</string>

@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Cədvəl (II tip)</string>
   <string name="settings_variant_tabular_15">Cədvəl (I tip)</string>
   <string name="settings_variant_observational">Hesablanmış hilal görünməsi</string>
+  <string name="settings_item_event_categories">Göstərilən gün növləri</string>
+  <string name="settings_item_holidays_only">Yalnız istirahət günləri</string>
+  <string name="settings_category_national">Milli günlər</string>
+  <string name="settings_category_religious">Dini mərasimlər</string>
+  <string name="settings_category_international">Beynəlxalq günlər</string>
+  <string name="settings_category_cultural">Mədəni münasibətlər</string>
+  <string name="settings_category_astronomical">Astronomik hadisələr</string>
   <string name="settings_source_iran">İranın rəsmi bayramları və əlamətdar günləri</string>
   <string name="settings_source_afghanistan">Əfqanıstanın rəsmi əlamətdar günləri</string>
   <string name="settings_source_nepal">Nepalın rəsmi əlamətdar günləri</string>

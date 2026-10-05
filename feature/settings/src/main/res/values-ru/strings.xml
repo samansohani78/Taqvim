@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Табличный (тип II)</string>
   <string name="settings_variant_tabular_15">Табличный (тип I)</string>
   <string name="settings_variant_observational">Расчётная видимость полумесяца</string>
+  <string name="settings_item_event_categories">Показываемые виды дней</string>
+  <string name="settings_item_holidays_only">Показывать только выходные</string>
+  <string name="settings_category_national">Национальные дни</string>
+  <string name="settings_category_religious">Религиозные события</string>
+  <string name="settings_category_international">Международные дни</string>
+  <string name="settings_category_cultural">Культурные события</string>
+  <string name="settings_category_astronomical">Астрономические события</string>
   <string name="settings_source_iran">Официальные праздники и памятные даты Ирана</string>
   <string name="settings_source_afghanistan">Официальные памятные даты Афганистана</string>
   <string name="settings_source_nepal">Официальные памятные даты Непала</string>

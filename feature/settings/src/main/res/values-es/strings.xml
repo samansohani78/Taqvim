@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Tabular (tipo II)</string>
   <string name="settings_variant_tabular_15">Tabular (tipo I)</string>
   <string name="settings_variant_observational">Visibilidad calculada del creciente</string>
+  <string name="settings_item_event_categories">Tipos de día mostrados</string>
+  <string name="settings_item_holidays_only">Mostrar solo días festivos</string>
+  <string name="settings_category_national">Días nacionales</string>
+  <string name="settings_category_religious">Celebraciones religiosas</string>
+  <string name="settings_category_international">Días internacionales</string>
+  <string name="settings_category_cultural">Celebraciones culturales</string>
+  <string name="settings_category_astronomical">Eventos astronómicos</string>
   <string name="settings_source_iran">Festivos y celebraciones oficiales de Irán</string>
   <string name="settings_source_afghanistan">Celebraciones oficiales de Afganistán</string>
   <string name="settings_source_nepal">Celebraciones oficiales de Nepal</string>

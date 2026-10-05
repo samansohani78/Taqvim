@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.settings
 
+import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.model.AsrJuristic
@@ -68,6 +69,16 @@ internal object SettingsLabels {
             EventSource.NEPAL_OFFICIAL to R.string.settings_source_nepal,
             EventSource.INTERNATIONAL to R.string.settings_source_international,
             EventSource.ANCIENT_IRAN to R.string.settings_source_ancient_iran,
+        )
+
+    /** Category names, in the order they are offered. Personal events are absent: they are never filtered here. */
+    val eventCategories: Map<EventCategory, Int> =
+        mapOf(
+            EventCategory.NATIONAL to R.string.settings_category_national,
+            EventCategory.RELIGIOUS to R.string.settings_category_religious,
+            EventCategory.INTERNATIONAL to R.string.settings_category_international,
+            EventCategory.CULTURAL to R.string.settings_category_cultural,
+            EventCategory.ASTRONOMICAL to R.string.settings_category_astronomical,
         )
 
     val prayerMethods: Map<PrayerMethod, Int> =

@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Jadual (jenis II)</string>
   <string name="settings_variant_tabular_15">Jadual (jenis I)</string>
   <string name="settings_variant_observational">Kebolehlihatan anak bulan yang dikira</string>
+  <string name="settings_item_event_categories">Jenis hari yang dipaparkan</string>
+  <string name="settings_item_holidays_only">Tunjukkan hari cuti sahaja</string>
+  <string name="settings_category_national">Hari kebangsaan</string>
+  <string name="settings_category_religious">Sambutan keagamaan</string>
+  <string name="settings_category_international">Hari antarabangsa</string>
+  <string name="settings_category_cultural">Sambutan budaya</string>
+  <string name="settings_category_astronomical">Peristiwa astronomi</string>
   <string name="settings_source_iran">Cuti dan sambutan rasmi Iran</string>
   <string name="settings_source_afghanistan">Sambutan rasmi Afghanistan</string>
   <string name="settings_source_nepal">Sambutan rasmi Nepal</string>

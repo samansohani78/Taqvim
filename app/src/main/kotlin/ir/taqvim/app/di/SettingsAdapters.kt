@@ -89,6 +89,9 @@ internal fun UserPreferences.toGeneralSettings(): GeneralSettings =
         islamicVariant = islamicVariant,
         showWeekNumbers = app.showWeekNumbers,
         enabledEventSources = app.enabledEventSources,
+        enabledEventCategories = app.enabledEventCategories,
+        eventCategoriesChosen = app.eventCategoriesChosen,
+        holidaysOnly = app.holidaysOnly,
         prayerMethod = prayerMethod,
         asrJuristic = asrJuristic,
         highLatitudeRule = app.highLatitudeRule,
@@ -107,6 +110,7 @@ internal fun UserPreferences.toGeneralSettings(): GeneralSettings =
  */
 internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): UserPreferences {
     val sources = settings.enabledEventSources.intersect(AppSettings.SELECTABLE_SOURCES.toSet())
+    val categories = settings.enabledEventCategories.intersect(AppSettings.SELECTABLE_CATEGORIES.toSet())
     return copy(
         languageCode = settings.languageCode,
         themeMode = ThemeMode.valueOf(settings.theme.name),
@@ -126,6 +130,11 @@ internal fun UserPreferences.withGeneralSettings(settings: GeneralSettings): Use
                 showWeekNumbers = settings.showWeekNumbers,
                 enabledEventSources = sources,
                 eventSourcesChosen = app.eventSourcesChosen || sources != app.enabledEventSources,
+                enabledEventCategories = categories,
+                // Same rule as the sources above: a write counts as choosing only once it differs from what is
+                // stored, so merely opening the settings screen never flips the flag and never changes what is shown.
+                eventCategoriesChosen = app.eventCategoriesChosen || categories != app.enabledEventCategories,
+                holidaysOnly = settings.holidaysOnly,
                 highLatitudeRule = settings.highLatitudeRule,
                 subscriptionsNetworkAllowed = settings.subscriptionsNetworkAllowed,
                 persistentNotification = settings.persistentNotification,

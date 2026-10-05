@@ -23,6 +23,8 @@ data class EventsSettings(
 /**
  * These preferences as [EventsSettings]; an out-of-range stored Hijri offset is ignored. The sources default to the
  * stored ones, which follow the language until the user chooses them (`AppSettings.defaultEventSources`, ADR-0007 §3).
+ * Categories and the holidays-only switch come straight from the stored settings, where "not chosen" already reads
+ * as every category (`AppSettingsProto.toDomain`), so nothing is hidden for anyone who has not changed them.
  */
 fun UserPreferences.toEventsSettings(
     enabledSources: Set<EventSource> = app.enabledEventSources,
@@ -33,8 +35,10 @@ fun UserPreferences.toEventsSettings(
             EventPreferences(
                 enabledSources = enabledSources,
                 homeTimeZone = homeTimeZone,
+                holidaysOnly = app.holidaysOnly,
                 islamicVariant = islamicVariant,
                 islamicOverrides = islamicOverride.table,
+                enabledCategories = app.enabledEventCategories,
             ),
         weekend = weekend,
         hijriOffset = storedHijriOffset(),

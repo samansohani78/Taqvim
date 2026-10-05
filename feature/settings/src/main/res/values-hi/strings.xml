@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">सारणीबद्ध (प्रकार II)</string>
   <string name="settings_variant_tabular_15">सारणीबद्ध (प्रकार I)</string>
   <string name="settings_variant_observational">गणना की गई हिलाल दृश्यता</string>
+  <string name="settings_item_event_categories">दिखाए जाने वाले दिनों के प्रकार</string>
+  <string name="settings_item_holidays_only">केवल छुट्टी के दिन दिखाएँ</string>
+  <string name="settings_category_national">राष्ट्रीय दिवस</string>
+  <string name="settings_category_religious">धार्मिक अवसर</string>
+  <string name="settings_category_international">अंतर्राष्ट्रीय दिवस</string>
+  <string name="settings_category_cultural">सांस्कृतिक अवसर</string>
+  <string name="settings_category_astronomical">खगोलीय घटनाएँ</string>
   <string name="settings_source_iran">ईरान की आधिकारिक छुट्टियां और अवसर</string>
   <string name="settings_source_afghanistan">अफ़ग़ानिस्तान के आधिकारिक अवसर</string>
   <string name="settings_source_nepal">नेपाल के आधिकारिक अवसर</string>

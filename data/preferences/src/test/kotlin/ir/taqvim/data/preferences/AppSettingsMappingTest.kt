@@ -276,4 +276,34 @@ class AppSettingsMappingTest {
                     "ja",
                 ).associateWith { null }
     }
+
+    @Test
+    fun `a store written before categories existed still shows every category`() {
+        // The migration guarantee, stated as a test: an old store has no category list and no chosen flag, and must
+        // read as every category rather than as none. Reading the list only when the flag is set is what makes an
+        // empty list a real choice ("show nothing") instead of an absent field misread as one.
+        val old = AppSettingsProto.newBuilder().setEventSourcesChosen(true).build()
+
+        val migrated = old.toDomain()
+
+        migrated.eventCategoriesChosen shouldBe false
+        migrated.enabledEventCategories shouldBe AppSettings.SELECTABLE_CATEGORIES.toSet()
+        migrated.holidaysOnly shouldBe false
+    }
+
+    @Test
+    fun `an explicit empty category choice survives a round trip`() {
+        val chosen =
+            AppSettings.DEFAULT.copy(
+                enabledEventCategories = emptySet(),
+                eventCategoriesChosen = true,
+                holidaysOnly = true,
+            )
+
+        val restored = chosen.toProto().toDomain()
+
+        restored.enabledEventCategories shouldBe emptySet()
+        restored.eventCategoriesChosen shouldBe true
+        restored.holidaysOnly shouldBe true
+    }
 }

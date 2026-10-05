@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">Tabellarisch (Typ II)</string>
   <string name="settings_variant_tabular_15">Tabellarisch (Typ I)</string>
   <string name="settings_variant_observational">Berechnete Sichelsichtbarkeit</string>
+  <string name="settings_item_event_categories">Angezeigte Arten von Tagen</string>
+  <string name="settings_item_holidays_only">Nur freie Tage anzeigen</string>
+  <string name="settings_category_national">Nationale Tage</string>
+  <string name="settings_category_religious">Religiöse Anlässe</string>
+  <string name="settings_category_international">Internationale Tage</string>
+  <string name="settings_category_cultural">Kulturelle Anlässe</string>
+  <string name="settings_category_astronomical">Astronomische Ereignisse</string>
   <string name="settings_source_iran">Offizielle Feiertage und Anlässe Irans</string>
   <string name="settings_source_afghanistan">Offizielle Anlässe Afghanistans</string>
   <string name="settings_source_nepal">Offizielle Anlässe Nepals</string>

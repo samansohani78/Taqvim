@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">表格式（第二型）</string>
   <string name="settings_variant_tabular_15">表格式（第一型）</string>
   <string name="settings_variant_observational">计算的新月可见性</string>
+  <string name="settings_item_event_categories">显示的日子类型</string>
+  <string name="settings_item_holidays_only">仅显示休息日</string>
+  <string name="settings_category_national">国家纪念日</string>
+  <string name="settings_category_religious">宗教节日</string>
+  <string name="settings_category_international">国际日</string>
+  <string name="settings_category_cultural">文化节庆</string>
+  <string name="settings_category_astronomical">天文事件</string>
   <string name="settings_source_iran">伊朗官方假日与纪念日</string>
   <string name="settings_source_afghanistan">阿富汗官方纪念日</string>
   <string name="settings_source_nepal">尼泊尔官方纪念日</string>

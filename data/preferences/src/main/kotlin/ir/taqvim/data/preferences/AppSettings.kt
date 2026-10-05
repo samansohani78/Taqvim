@@ -4,9 +4,11 @@
  */
 package ir.taqvim.data.preferences
 
+import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.data.preferences.proto.AppSettingsProto
+import ir.taqvim.data.preferences.proto.EventCategoryProto
 import ir.taqvim.data.preferences.proto.EventSourceProto
 import ir.taqvim.data.preferences.proto.HighLatitudeRuleProto
 import ir.taqvim.data.preferences.proto.LevelOffsetProto
@@ -62,10 +64,26 @@ data class AppSettings(
     val persistentNotificationLargeNumber: Boolean = false,
     /** Whether the launcher icon shows today's day number (T-1214, ADR-0022); off by default. */
     val dynamicLauncherIcon: Boolean = false,
+    /**
+     * Event categories shown in the calendar (T-302), independent of [enabledEventSources]: a source says who
+     * publishes an event, a category what kind of day it is. [EventCategory.PERSONAL] is never a member — a user's
+     * own events are not filtered by category — which [SELECTABLE_CATEGORIES] enforces.
+     */
+    val enabledEventCategories: Set<EventCategory> = SELECTABLE_CATEGORIES.toSet(),
+    /**
+     * Whether the user chose [enabledEventCategories]. Until then every category is shown, which is exactly the
+     * behaviour before this setting existed, so no event disappears for anyone on upgrade.
+     */
+    val eventCategoriesChosen: Boolean = false,
+    /** Show only days off (T-302); off by default, as every store written before this setting already behaves. */
+    val holidaysOnly: Boolean = false,
 ) {
     init {
         require(allDayReminderMinute in ALL_DAY_REMINDER_MINUTES) { "all-day reminder time must be within 0..1439" }
         require(EventSource.USER !in enabledEventSources) { "personal events are not a selectable source" }
+        require(EventCategory.PERSONAL !in enabledEventCategories) {
+            "personal events are not filtered by category"
+        }
         require(recentSearches.size <= MAX_RECENT_SEARCHES) { "at most $MAX_RECENT_SEARCHES recent searches" }
         require(timeZoneBoard.size <= MAX_BOARD_ZONES) { "at most $MAX_BOARD_ZONES board zones" }
     }
@@ -82,6 +100,12 @@ data class AppSettings(
 
         /** Dataset sources a user can turn on or off. */
         val SELECTABLE_SOURCES: List<EventSource> = EventSource.entries - EventSource.USER
+
+        /**
+         * Event categories a user can turn on or off. [EventCategory.PERSONAL] is excluded on purpose: personal
+         * events follow their own rules and must never vanish because of a category filter.
+         */
+        val SELECTABLE_CATEGORIES: List<EventCategory> = EventCategory.entries - EventCategory.PERSONAL
 
         /** The national official source shown by default to each language's users (ADR-0007 §3 addendum). */
         private val NATIONAL_SOURCES: Map<String, EventSource> =
@@ -134,6 +158,7 @@ fun AppSettings.withEventSourcesFor(languageCode: String): AppSettings =
     if (eventSourcesChosen) this else copy(enabledEventSources = AppSettings.defaultEventSources(languageCode))
 
 private const val SOURCE = "EVENT_SOURCE_"
+private const val CATEGORY = "EVENT_CATEGORY_"
 private const val RULE = "HIGH_LATITUDE_RULE_"
 
 /** Trimmed, non-blank, distinct values in order, at most [limit]. */
@@ -179,6 +204,20 @@ internal fun AppSettingsProto.toDomain(): AppSettings =
         eventSourcesChosen = eventSourcesChosen,
         persistentNotificationLargeNumber = persistentNotificationLargeNumber,
         dynamicLauncherIcon = dynamicLauncherIcon,
+        // Until the user chooses, every category is shown — the behaviour of every store written before this field,
+        // so upgrading hides nothing. Reading the stored list only once it was chosen also means an empty list is a
+        // real choice ("show no category") rather than an absent field misread as one.
+        enabledEventCategories =
+            if (eventCategoriesChosen) {
+                enabledEventCategoriesList
+                    .mapNotNull { stored ->
+                        AppSettings.SELECTABLE_CATEGORIES.firstOrNull { CATEGORY + it.name == stored.name }
+                    }.toSet()
+            } else {
+                AppSettings.SELECTABLE_CATEGORIES.toSet()
+            },
+        eventCategoriesChosen = eventCategoriesChosen,
+        holidaysOnly = holidaysOnly,
     )
 
 internal fun AppSettings.toProto(): AppSettingsProto =
@@ -212,4 +251,10 @@ internal fun AppSettings.toProto(): AppSettingsProto =
         .setEventSourcesChosen(eventSourcesChosen)
         .setPersistentNotificationLargeNumber(persistentNotificationLargeNumber)
         .setDynamicLauncherIcon(dynamicLauncherIcon)
+        .addAllEnabledEventCategories(
+            AppSettings.SELECTABLE_CATEGORIES.filter { it in enabledEventCategories }.map {
+                EventCategoryProto.valueOf(CATEGORY + it.name)
+            },
+        ).setEventCategoriesChosen(eventCategoriesChosen)
+        .setHolidaysOnly(holidaysOnly)
         .build()

@@ -158,6 +158,13 @@
   <string name="settings_variant_tabular_16">表形式（タイプ II）</string>
   <string name="settings_variant_tabular_15">表形式（タイプ I）</string>
   <string name="settings_variant_observational">計算による新月の可視性</string>
+  <string name="settings_item_event_categories">表示する日の種類</string>
+  <string name="settings_item_holidays_only">休日のみ表示</string>
+  <string name="settings_category_national">祝日・記念日</string>
+  <string name="settings_category_religious">宗教行事</string>
+  <string name="settings_category_international">国際デー</string>
+  <string name="settings_category_cultural">文化行事</string>
+  <string name="settings_category_astronomical">天文現象</string>
   <string name="settings_source_iran">イランの公式な祝日と記念日</string>
   <string name="settings_source_afghanistan">アフガニスタンの公式な記念日</string>
   <string name="settings_source_nepal">ネパールの公式な記念日</string>

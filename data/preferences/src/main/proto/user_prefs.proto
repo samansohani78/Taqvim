@@ -178,6 +178,17 @@ enum EventSourceProto {
   EVENT_SOURCE_ANCIENT_IRAN = 5;
 }
 
+// Event categories (T-302). Kept separate from EventSourceProto: a source says who publishes an event, a category
+// what kind of day it is, and the two are filtered independently.
+enum EventCategoryProto {
+  EVENT_CATEGORY_UNSPECIFIED = 0;
+  EVENT_CATEGORY_NATIONAL = 1;
+  EVENT_CATEGORY_RELIGIOUS = 2;
+  EVENT_CATEGORY_INTERNATIONAL = 3;
+  EVENT_CATEGORY_CULTURAL = 4;
+  EVENT_CATEGORY_ASTRONOMICAL = 5;
+}
+
 enum HighLatitudeRuleProto {
   HIGH_LATITUDE_RULE_UNSPECIFIED = 0;
   HIGH_LATITUDE_RULE_NONE = 1;
@@ -225,4 +236,13 @@ message AppSettingsProto {
   bool persistent_notification_large_number = 16;
   // The launcher icon shows today's day number (T-1214, ADR-0022); off by default.
   bool dynamic_launcher_icon = 17;
+  // Event categories shown in the calendar. PERSONAL is absent deliberately: a user's own events are never filtered
+  // by category, so there is nothing here to switch them off with.
+  repeated EventCategoryProto enabled_event_categories = 18;
+  // Whether the user chose enabled_event_categories; while false every category is shown, exactly as before this
+  // field existed. Stores written before it therefore change nothing for the user (same pattern as field 15).
+  bool event_categories_chosen = 19;
+  // Show only days off (T-302). Long implemented in EventVisibilityPolicy and unreachable until now; off by default,
+  // which is the behaviour every existing store already has.
+  bool holidays_only = 20;
 }
