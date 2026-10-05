@@ -21,6 +21,8 @@
   <string name="calendar_origin_published">Kalender cetak</string>
   <string name="calendar_event_date_origin">Tanggal: %1$s</string>
   <string name="calendar_details_loading">Memuat hari</string>
+  <string name="calendar_share_day">Bagikan hari ini</string>
+  <string name="calendar_share_sources">Sumber:</string>
   <string name="calendar_system_persian">Hijriah Syamsiah</string>
   <string name="calendar_system_islamic">Hijriah Kamariah</string>
   <string name="calendar_system_gregorian">Masehi</string>

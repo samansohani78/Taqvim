@@ -21,6 +21,8 @@
   <string name="calendar_origin_published">Kalendar bercetak</string>
   <string name="calendar_event_date_origin">Tarikh: %1$s</string>
   <string name="calendar_details_loading">Memuatkan hari</string>
+  <string name="calendar_share_day">Kongsi hari ini</string>
+  <string name="calendar_share_sources">Sumber:</string>
   <string name="calendar_system_persian">Hijrah Syamsiah</string>
   <string name="calendar_system_islamic">Hijrah Qamariah</string>
   <string name="calendar_system_gregorian">Masihi</string>

@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">Salnameya çapkirî</string>
   <string name="calendar_event_date_origin">Dîrok: %1$s</string>
   <string name="calendar_details_loading">Roj tê barkirin</string>
+  <string name="calendar_share_day">Vê rojê parve bike</string>
+  <string name="calendar_share_sources">Çavkanî:</string>
   <string name="calendar_system_persian">Koçî ya rojî</string>
   <string name="calendar_system_islamic">Koçî ya heyvî</string>
   <string name="calendar_system_gregorian">Zayînî</string>

@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">مطبوعہ کیلنڈر</string>
   <string name="calendar_event_date_origin">تاریخ: %1$s</string>
   <string name="calendar_details_loading">دن لوڈ ہو رہا ہے</string>
+  <string name="calendar_share_day">یہ دن شیئر کریں</string>
+  <string name="calendar_share_sources">ماخذ:</string>
   <string name="calendar_system_persian">ہجری شمسی</string>
   <string name="calendar_system_islamic">ہجری قمری</string>
   <string name="calendar_system_gregorian">عیسوی</string>

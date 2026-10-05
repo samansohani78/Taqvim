@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">छपा हुआ कैलेंडर</string>
   <string name="calendar_event_date_origin">तारीख: %1$s</string>
   <string name="calendar_details_loading">दिन लोड हो रहा है</string>
+  <string name="calendar_share_day">यह दिन साझा करें</string>
+  <string name="calendar_share_sources">स्रोत:</string>
   <string name="calendar_system_persian">सौर हिजरी</string>
   <string name="calendar_system_islamic">चंद्र हिजरी</string>
   <string name="calendar_system_gregorian">ग्रेगोरियन</string>

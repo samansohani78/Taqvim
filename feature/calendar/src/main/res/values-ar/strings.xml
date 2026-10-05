@@ -26,6 +26,8 @@
   <string name="calendar_origin_published">التقويم المطبوع</string>
   <string name="calendar_event_date_origin">التاريخ: %1$s</string>
   <string name="calendar_details_loading">جارٍ تحميل اليوم</string>
+  <string name="calendar_share_day">مشاركة هذا اليوم</string>
+  <string name="calendar_share_sources">المصادر:</string>
   <string name="calendar_system_persian">الهجري الشمسي</string>
   <string name="calendar_system_islamic">الهجري القمري</string>
   <string name="calendar_system_gregorian">الميلادي</string>

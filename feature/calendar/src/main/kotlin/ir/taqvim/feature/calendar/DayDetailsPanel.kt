@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.calendar
 
+import android.content.Intent
 import android.content.res.Resources
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,14 +14,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -50,11 +56,15 @@ internal fun DayDetailsPanel(
     val language = remember(content.languageCode) { languageOf(content.languageCode) }
     val labels = DayDetailsTab.entries.map { stringResource(DayDetailsLabels.of(it)) }
     Column(modifier, verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        SegmentedTabs(
-            tabs = labels,
-            selectedIndex = content.selectedTab.ordinal,
-            onSelect = { onAction(CalendarAction.SelectTab(DayDetailsTab.entries[it])) },
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            SegmentedTabs(
+                tabs = labels,
+                selectedIndex = content.selectedTab.ordinal,
+                onSelect = { onAction(CalendarAction.SelectTab(DayDetailsTab.entries[it])) },
+                modifier = Modifier.weight(1f),
+            )
+            ShareDayButton(content, language)
+        }
         when (content.selectedTab) {
             DayDetailsTab.CALENDARS -> DayCalendarsTab(content, language)
             DayDetailsTab.EVENTS -> DayEventsTab(content, language, onAction)
@@ -71,6 +81,50 @@ internal fun number(
     value: Long,
     language: LanguageSpec,
 ): String = Numerals.format(value, language.numerals)
+
+/**
+ * Shares the day as text, with the primary source of every official event (T-802).
+ *
+ * This is the one thing the app can hand someone that another calendar cannot: not "Nowruz is on 21 March" but the
+ * gazette, page and URL it comes from. The citations are already on screen; this lets them leave with the reader.
+ * Nothing is uploaded — the text goes to whichever app the user picks from the system chooser.
+ */
+@Composable
+private fun ShareDayButton(
+    content: CalendarContent,
+    language: LanguageSpec,
+) {
+    val context = LocalContext.current
+    val label = stringResource(R.string.calendar_share_day)
+    val heading = stringResource(R.string.calendar_share_sources)
+    val weekday = content.selectedDay.weekday()
+    val details = content.dayDetails
+    IconButton(
+        enabled = details != null,
+        onClick = {
+            val text =
+                DayShareText.build(
+                    dateLines =
+                        content.selectedDates.map { DateFormatter.format(it, weekday, language, DateStyle.LONG) },
+                    entries = details?.events.orEmpty().map(::shareEntry),
+                    sourcesHeading = heading,
+                )
+            val send =
+                Intent(Intent.ACTION_SEND)
+                    .setType("text/plain")
+                    .putExtra(Intent.EXTRA_TEXT, text)
+            runCatching { context.startActivity(Intent.createChooser(send, label)) }
+        },
+    ) {
+        Icon(ImageVector.vectorResource(R.drawable.calendar_ic_share), contentDescription = label)
+    }
+}
+
+private fun shareEntry(event: DayEventItem): DayShareText.Entry =
+    DayShareText.Entry(
+        title = event.title,
+        sources = event.citations.map { DayShareText.Source(it.title, it.page, it.url) },
+    )
 
 /** The Calendars tab: the day in every calendar, its distance from today, week, season, Sun and Moon. */
 @Composable

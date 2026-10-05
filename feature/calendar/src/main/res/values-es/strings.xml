@@ -23,6 +23,8 @@
   <string name="calendar_origin_published">Calendario impreso</string>
   <string name="calendar_event_date_origin">Fecha: %1$s</string>
   <string name="calendar_details_loading">Cargando el día</string>
+  <string name="calendar_share_day">Compartir este día</string>
+  <string name="calendar_share_sources">Fuentes:</string>
   <string name="calendar_system_persian">Hégira solar</string>
   <string name="calendar_system_islamic">Hégira lunar</string>
   <string name="calendar_system_gregorian">Gregoriano</string>

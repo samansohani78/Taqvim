@@ -117,9 +117,15 @@ class DayDetailsScreenTest {
                 .onNode(hasContentDescription(chipDescription(resources, event)) and hasClickAction())
                 .assertExists()
         }
+        // The chips plus the panel's one share button (T-802). Counting them keeps the original guarantee — that no
+        // chip is missing a description and nothing else in the tab is silently clickable — rather than loosening it
+        // to "at least"; a new interactive element has to be accounted for here deliberately.
         composeRule
             .onAllNodes(hasClickAction() and SemanticsMatcher.keyIsDefined(SemanticsProperties.ContentDescription))
-            .assertCountEquals(DayDetailsSamples.events.size)
+            .assertCountEquals(DayDetailsSamples.events.size + 1)
+        composeRule
+            .onNode(hasContentDescription(resources.getString(R.string.calendar_share_day)) and hasClickAction())
+            .assertExists()
         chipDescription(resources, DayDetailsSamples.official) shouldBe "Nowruz, Official calendar of Iran, Holiday"
         chipDescription(resources, DayDetailsSamples.device) shouldBe "Meeting, Device calendar"
         chipDescription(resources, DayDetailsSamples.subscription) shouldBe "Talk, Subscribed calendar"

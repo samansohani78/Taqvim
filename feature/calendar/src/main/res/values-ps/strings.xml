@@ -22,6 +22,8 @@
   <string name="calendar_origin_published">چاپي جنتري</string>
   <string name="calendar_event_date_origin">نېټه: %1$s</string>
   <string name="calendar_details_loading">ورځ پورته کېږي</string>
+  <string name="calendar_share_day">دا ورځ شریکه کړئ</string>
+  <string name="calendar_share_sources">سرچینې:</string>
   <string name="calendar_system_persian">لمریز هجري</string>
   <string name="calendar_system_islamic">سپوږمیز هجري</string>
   <string name="calendar_system_gregorian">میلادي</string>
