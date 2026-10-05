@@ -123,18 +123,25 @@ private fun TimeControls(
         }
         TextButton(onClick = { actions.onStepDay(1) }) { Text(stringResource(R.string.map_next_day)) }
     }
+    // The slider's touch area reaches a thumb's radius past its track, which put it under the "Now" button beside
+    // it: two targets, neither a full 48 dp tall, overlapping where a finger lands (T-1700 SMALL_TOUCH_TARGET). The
+    // gap keeps them apart and the button carries the 48 dp minimum.
     Row(verticalAlignment = Alignment.CenterVertically) {
         Slider(
             value = time.minuteOfDay.toFloat(),
             onValueChange = { actions.onSelectMinute(it.roundToInt()) },
             valueRange = 0f..LAST_MINUTE,
             modifier =
-                Modifier.weight(1f).semantics {
+                Modifier.weight(1f).padding(end = TOUCH_GAP).semantics {
                     contentDescription = sliderLabel
                     stateDescription = time.timeText
                 },
         )
-        TextButton(onClick = actions.onNow, enabled = !time.live) { Text(stringResource(R.string.map_now)) }
+        TextButton(
+            onClick = actions.onNow,
+            enabled = !time.live,
+            modifier = Modifier.heightIn(min = MIN_TOUCH_TARGET),
+        ) { Text(stringResource(R.string.map_now)) }
     }
 }
 
@@ -200,4 +207,11 @@ internal val MapLayer.label: Int
 
 private const val CONTROLS_MAX_HEIGHT = 320
 private const val ATTRIBUTION_BACKGROUND_ALPHA = 0.8f
+
+/** Android and Material minimum touch target (T-1700). */
+private val MIN_TOUCH_TARGET = 48.dp
+
+/** Keeps the time slider's touch area clear of the button beside it. */
+private val TOUCH_GAP = 16.dp
+
 private const val LAST_MINUTE = 1_439f
