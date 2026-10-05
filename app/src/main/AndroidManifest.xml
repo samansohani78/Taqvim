@@ -453,6 +453,24 @@
       </intent-filter>
     </activity-alias>
 
+    <!--
+      T-1103: the same reader from the share sheet. PROCESS_TEXT is offered only where text can be selected, and the
+      apps dates arrive in - messengers, mail - usually offer Share on a whole message instead, so this is the path
+      that reaches "Eid is on 2 Farvardin" in a chat. It reads the shared text and opens a screen; it stores nothing
+      and sends nothing (ADR-0016, ADR-0017).
+    -->
+    <activity-alias
+      android:name=".ShareTextActivity"
+      android:exported="true"
+      android:label="@string/process_text_label"
+      android:targetActivity=".MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="text/plain" />
+      </intent-filter>
+    </activity-alias>
+
     <!-- T-1103: announces the new day at local midnight and keeps its alarm across reboots and clock changes. -->
     <receiver
       android:name=".automation.DayChangeReceiver"

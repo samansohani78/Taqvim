@@ -4,6 +4,7 @@
 # component | permission | builds | reason
 ir.taqvim.app.MainActivity | - | all | taqvim:// links and launcher shortcuts that only open screens (ADR-0016)
 ir.taqvim.app.ProcessTextActivity | - | all | "Open in Taqvim" for selected text; reads the text only (ADR-0016)
+ir.taqvim.app.ShareTextActivity | - | all | "Open in Taqvim" for text shared from another app; reads the text only (ADR-0016)
 ir.taqvim.app.LauncherDefault | - | all | launcher entry (MAIN/LAUNCHER alias of MainActivity) with the default icon (T-1214, ADR-0022)
 ir.taqvim.app.LauncherDay01 | - | all | launcher entry with day-number icon 1, disabled unless chosen (T-1214, ADR-0022)
 ir.taqvim.app.LauncherDay02 | - | all | launcher entry with day-number icon 2, disabled unless chosen (T-1214, ADR-0022)

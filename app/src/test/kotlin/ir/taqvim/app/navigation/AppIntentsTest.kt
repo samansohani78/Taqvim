@@ -50,6 +50,17 @@ class AppIntentsTest {
         assertEquals(day, destination(selected))
         assertNull(destination(Intent(Intent.ACTION_PROCESS_TEXT)))
 
+        // Shared text reads the same as selected text. PROCESS_TEXT is offered only where text can be selected, so
+        // without this a date in a chat message — where Share is the only handle — could not reach the app at all.
+        val shared = Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, "Due 21 March 2026")
+        assertEquals(day, destination(shared))
+        assertNull(destination(Intent(Intent.ACTION_SEND)))
+        // Sharing something that is not a date opens the converter with it rather than guessing a day.
+        assertEquals(
+            AppDestination.Converter("lunch with Ali"),
+            destination(Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, "lunch with Ali")),
+        )
+
         assertNull(destination(Intent(Intent.ACTION_MAIN)))
         assertNull(destination(null))
     }

@@ -12,7 +12,10 @@ import ir.taqvim.core.nlp.ParseContext
 import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 
-/** The screen an intent that starts or reaches the app asks for (T-1103): `taqvim://` links and selected text. */
+/**
+ * The screen an intent that starts or reaches the app asks for (T-1103): `taqvim://` links, selected text
+ * (`ACTION_PROCESS_TEXT`) and shared text (`ACTION_SEND`). The last two are read the same way; see [ProcessText].
+ */
 internal object AppIntents {
     private const val FALLBACK_LANGUAGE = "en"
 
@@ -34,6 +37,15 @@ internal object AppIntents {
             Intent.ACTION_PROCESS_TEXT -> {
                 intent
                     .getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
+                    ?.let { ProcessText.destination(it.toString(), parseContext()) }
+            }
+
+            // Shared text reaches the same reader. PROCESS_TEXT only appears where text can be *selected*, and the
+            // apps dates actually arrive in — messengers, mail — usually offer Share on a whole message instead, so
+            // without this the feature worked on a web page but not on the message someone sent you.
+            Intent.ACTION_SEND -> {
+                intent
+                    .getCharSequenceExtra(Intent.EXTRA_TEXT)
                     ?.let { ProcessText.destination(it.toString(), parseContext()) }
             }
 
