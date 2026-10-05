@@ -163,29 +163,32 @@ Record each sign-off (name, date, build) in the GitHub release notes draft befor
 
 ## Distribution
 
-### Google Play
+### GitHub Releases — the channel Taqvim actually ships through
 
-Tracks, in order: **internal** → **closed** (the beta, [BETA.md](BETA.md)) → **open** → **production** with a staged
-rollout, e.g. 1% → 5% → 20% → 50% → 100%, advancing only while crash-free sessions stay ≥ 99.9% (§9) and no P0 is open
-([SUPPORT.md](../SUPPORT.md)). Play Console app `ir.taqvim`; rollout 1% → 5% → 20% → 50% → 100% with at least 24 hours
-per step.
+Each `vX.Y.Z` tag produces a **draft** release carrying the signed universal APK, `SHA256SUMS`, the SBOM
+(`bom.json`) and the licence report, on
+[github.com/samansohani78/Taqvim/releases](https://github.com/samansohani78/Taqvim/releases). A person reviews the
+draft and publishes it; nothing becomes public automatically. A `vX.Y.Z-beta.N` tag lands as a **pre-release**
+instead ([BETA.md](BETA.md)).
 
-Store listing text and graphics live in the repository so they are reviewed like code:
+No `.aab` is attached: it is a Play *upload* format that nobody can install, and offering it on a release page only
+invites people to download the file that does not work. `release-dry-run.yml` still builds one, so the path stays
+exercised against the day a Play Console exists.
 
-```
-store/metadata/android/
-├── en-US/  title.txt · short_description.txt · full_description.txt · changelogs/<versionCode>.txt · images/
-└── fa-IR/  (same files)
-```
+There is no staged rollout and no percentage gating, because there is no store to gate. Everyone who downloads gets
+the same APK the moment the draft is published, which is why the draft step is the real control: it is the only
+review before distribution. Users are not notified of updates — see BETA.md on telling testers a build exists.
 
-The layout follows the widely used fastlane `supply` convention. The directory is not created yet, because the listing
-text in `fa` and `en` is still to be drafted from the README before the first upload;
-uploading stays manual (no Play service account).
+### Google Play (not used)
 
-### GitHub Releases
+Taqvim has no Play Console (owner decision, 2026-09-26), so none of the following is in force; it is kept because it
+is what would apply if one were opened. Tracks, in order: **internal** → **closed** (the beta) → **open** →
+**production**, with a staged rollout such as 1% → 5% → 20% → 50% → 100%, at least 24 hours per step, advancing only
+while crash-free sessions stay ≥ 99.9% (§9) and no P0 is open ([SUPPORT.md](../SUPPORT.md)).
 
-Each tag produces a draft release with the signed APK and AAB, `SHA256SUMS`, the SBOM (`bom.json`) and the license
-report, on [github.com/samansohani78/Taqvim/releases](https://github.com/samansohani78/Taqvim/releases).
+Store listing text and graphics would live in the repository so they are reviewed like code, following the fastlane
+`supply` convention (`store/metadata/android/<locale>/`). The directory does not exist: the listing text has never
+been drafted, and there is nothing to upload it to.
 
 ### F-Droid
 
@@ -194,7 +197,8 @@ plan makes F-Droid metadata conditional on the license allowing it.
 
 ## Rollback
 
-- **Play staged rollout:** halt the rollout in Play Console; users who already updated keep the version.
+- **There is no staged rollout to halt.** Distribution is a published GitHub release, so withdrawing means editing
+  that release, below — anyone who already downloaded the APK keeps it, and nothing recalls it from their device.
 - Android does not allow installing a lower `versionCode` over a higher one, so a bad release is replaced by a new
   PATCH release with a higher `versionCode`, built from the last good tag on a `release/X.Y` branch if needed.
 - **GitHub:** mark the previous release as latest and edit the bad release's notes to say it was withdrawn; do not

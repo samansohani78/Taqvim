@@ -321,10 +321,10 @@ engineering is expected.
 - **Review of the machine-translated strings in 22 languages** — *optional human review* → through Weblate (`docs/i18n/TRANSLATING.md`). Without it those languages ship with strings marked "MT: needs review".
 - **Ancient festival sources (DT-029), Persian place names and Iran divisions (DT-020, DT-021), a reusable real-world snippet corpus (DT-022), a redistributable athan recording (DT-028)** → drop the source files into `docs/sources/`. Without them those records stay out, place names fall back to Persian/English, and the default alarm sound is used.
 - **Official prayer timetables for Kabul, Istanbul, Berlin, Sydney under reusable terms, or Diyanet's written permission (DT-011)** → drop into `docs/sources/`. Without them prayer times are validated against the 31 official Iranian city tables only.
-- **Play Console account and app `ir.taqvim`** → create it. Without it nothing can be distributed through Play (GitHub releases still work).
-- **Upload keystore and GitHub secrets** (`TAQVIM_KEYSTORE_BASE64`, `TAQVIM_KEYSTORE_PASSWORD`, `TAQVIM_KEY_ALIAS`, `TAQVIM_KEY_PASSWORD`, as named in `docs/RELEASE.md`) → add them in the repository settings. Without them the release workflow builds unsigned artifacts only.
+- ~~**Play Console account and app `ir.taqvim`**~~ — **no longer needed** (owner decision 2026-09-26). Taqvim ships as a sideloadable APK from GitHub Releases, and v1.0.0 was published that way on 2026-09-26. Open a Play Console only if store distribution is wanted later; `release-dry-run.yml` keeps the bundle path working for that day.
+- ~~**Upload keystore and GitHub secrets**~~ — **done 2026-09-26.** All four are set in the `release` environment and have signed and published v1.0.0 (RSA 4096, APK Signature Scheme v2 and v3). What remains is the owner's alone and is urgent: **keep an offline backup of the keystore and its passwords.** There is no Play App Signing to fall back on, so losing them means no future build can update an existing install.
 - **Physical devices, including a Wear OS watch** → run the TalkBack pass (T-1700), the Wear tile and complication checks (T-1600, §7) and the OEM alarm matrix in `docs/MANUAL_TEST_CHECKLIST.md` (Samsung, Xiaomi, Huawei/Honor, Oppo/OnePlus/Realme, Pixel, Motorola, a low-end API 26 phone). Without them those checks stay unsigned and the beta exit criteria (T-1902) are not met.
-- **Beta testers and a Google Group `taqvim-beta`** → create them. Without them the closed beta cannot start.
+- **Beta testers** → recruit them, and decide how they are told a new build exists. The Google Group and Play closed-testing track no longer apply: a `vX.Y.Z-beta.N` tag lands as a GitHub pre-release (docs/BETA.md, rewritten 2026-10-05). Without testers the beta cannot start, and without a way to notify them it cannot continue past the first build.
 - **Weblate instance confirmation** (default `https://hosted.weblate.org/projects/taqvim/`) → confirm or replace. Without it translations stay file-based.
 - **Support defaults — confirmed by the owner on 2026-09-18** (the `TODO(owner)` markers are removed, main@b70b58f; the list stays in `docs/MANUAL_TEST_CHECKLIST.md`, "Owner defaults confirmed on 2026-09-18"):
   - `SUPPORT.md` — Repository URL for the issue forms: `https://github.com/samansohani78/Taqvim/issues/new/choose`
@@ -678,8 +678,20 @@ task list while the feature table promised a panel the app did not have. That ga
 to watch for elsewhere: a feature is delivered when a user can reach it, not when its engine passes tests.
 
 Closed by main@e4cf654: the Sun panel now shows morning and evening golden and blue hours. Moonrise and moonset were
-already on the Moon panel. What F-10 still does not have is the **sun & moon azimuth chart**; that remains unbuilt and
-unplanned, and is named here rather than left to be discovered again.
+already on the Moon panel.
+
+**Correction, 2026-10-05: F-10 is complete, and the entry above overstated what was missing.** It said the
+**sun & moon azimuth chart** was "unbuilt and unplanned". It is built, and has been: `CompassDial.kt` draws
+`dial.sun` and `dial.moon` as bearing markers on the dial and, when enabled, "the Sun's path over the next 24 hours
+in a polar projection (zenith at the centre)" — `BodyMarker` carries each body's azimuth and altitude with its
+above-horizon flag. It is reachable at `AppDestination.Compass`, and covered by `CompassScreenTest`,
+`CompassStateMapperTest` and a `compass_dial` screenshot.
+
+It was missed because it is delivered under **T-1302 (Compass)** rather than T-407, so searching the photography
+panel for it found nothing. That is the same failure mode this section is about, inverted: the first time, a feature
+table promised something the task list never built; this time, the task list built something under a different task
+than the feature table implied, and reading one list told me the wrong thing again. **Check the code, not the
+index** — a grep for `azimuth` across `feature/` would have answered it in seconds.
 
 ### v1.0.0-rc3 (2026-09-25, main@2aac153) — tagged without a benchmarked commit
 

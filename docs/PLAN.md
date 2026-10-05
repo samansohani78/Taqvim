@@ -799,7 +799,7 @@ Install fresh (fa/en/ne/ckb/ar) → defaults; onboarding skip/complete; month sw
 5. Zero forbidden licenses in SBOM; PROVENANCE complete for every `core` algorithm.
 6. `fa` and `en` 100% translated; RTL/TalkBack sign-off.
 7. Docs: ARCHITECTURE.md, ADRs, DATASET.md (schema + contribution), ALGORITHMS.md (specs §6), AUTOMATION.md (intents/deep links), SUPPORT.md (SLA), RELEASE.md.
-8. Beta exit criteria met; staged rollout to 100%.
+8. Beta exit criteria met; staged rollout to 100%. *(Superseded 2026-09-26: there is no Play Console, so there is no staged rollout. Distribution is a published GitHub release — see docs/RELEASE.md, *Distribution* — and the beta exit criteria are docs/BETA.md's, revised for a channel with no Android vitals.)*
 
 ---
 

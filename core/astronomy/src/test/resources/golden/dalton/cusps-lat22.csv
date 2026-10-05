@@ -1,0 +1,26 @@
+# source: Joseph Grinnell Dalton, "The Spherical Basis of Astrology; being a comprehensive table of houses for
+#   latitudes 22° to 56°", Boston, F. Spenceley, 1908 — digitised page 0050 of 82, the first three blocks.
+# url: https://www.loc.gov/item/08023915/
+# page: image
+#   https://tile.loc.gov/image-services/iiif/public:gdcmassbookdig:sphericalbasiso00dalt:sphericalbasiso00dalt_0050/full/pct:100.0/0/default.jpg
+# rights: public domain, digitised by the Library of Congress.
+# retrieved: 2026-10-05
+# reviewer: pending
+#
+# Why latitude 22 only. Dalton compresses his columns: a value prints only the digits that changed from the row
+# above, so cusps 11, 12, 2 and 3 cannot be read in isolation further down a block. Latitude 22 is the first row of
+# every block and is therefore printed in full, which makes these five cusps transcribable without having to decode
+# the convention — the reason the sibling fixture ascendant-sid13h47m49s.csv carries only the ascendant.
+#
+# Cusps 11, 2 and 3 are printed to a tenth of a degree and cusp 1 to the arcminute; the midheaven is the block
+# header's whole degree. Signs are the row of glyphs under the column headers: 11 Scorpio (210°), 12 Sagittarius
+# (240°), 1 Capricorn (270°), 2 Aquarius (300°), 3 Pisces (330°). Longitudes below are those offsets plus the
+# printed value; ramcDegrees is Dalton's ARC.
+#
+# block 1: SID. T. 13h 47m 49s, ARC 206° 57'.2, MC 29° Libra; 22: 26.5 | 21.1 | 15 58 | 20.5 | 26.5
+# block 2: SID. T. 13h 51m 38s, ARC 207° 54'.5, MC  0° Scorpio; 22: 27.4 | 22.0 | 16 54 | 21.6 | 27.6
+# block 3: SID. T. 13h 55m 27s, ARC 208° 51'.9, MC  1° Scorpio; 22: 28.3 | 22.8 | 17 51 | 22.7 | 28.7
+latitudeDegrees,ramcDegrees,midheavenDegrees,cusp11Degrees,cusp12Degrees,ascendantDegrees,cusp2Degrees,cusp3Degrees
+22,206.9533,209.0000,236.5000,261.1000,285.9667,320.5000,356.5000
+22,207.9083,210.0000,237.4000,262.0000,286.9000,321.6000,357.6000
+22,208.8650,211.0000,238.3000,262.8000,287.8500,322.7000,358.7000

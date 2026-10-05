@@ -4,21 +4,28 @@ The plan's beta program (docs/PLAN.md T-1902): a **two-week closed beta** with a
 crash-free sessions are **≥ 99.9%**. Release mechanics are in [RELEASE.md](RELEASE.md); how testers report problems is
 in [SUPPORT.md](../SUPPORT.md).
 
-> **Not started.** No build has been distributed and no store account is configured. The owner confirmed the track,
+> **Not started.** No beta build has been distributed. The release mechanism itself is proven — v1.0.0 went from tag
+> to published, signed, checksum-verified GitHub release on 2026-09-26 — so what a beta now needs is testers, not
+> infrastructure. The owner confirmed the track,
 > tester group and tester counts below on 2026-09-18. Nothing is uploaded without the owner's approval.
 
 ## Tracks and builds
 
-- **Google Play closed testing** is the beta track (RELEASE.md, *Distribution*). Testers join through an opt-in link.
-  Track: Play *Closed testing – Beta*; testers join through the Google Group `taqvim-beta`.
+- **A GitHub pre-release** is the beta track (RELEASE.md, *Distribution: GitHub Releases, not Google Play*). There is
+  no Play Console, so there is no closed-testing track and no opt-in link. A `vX.Y.Z-beta.N` tag runs the same
+  qualified, signed pipeline as a release and lands as a GitHub **pre-release** carrying the universal APK, its
+  `SHA256SUMS`, the SBOM and the licence report.
 - Beta builds are tagged `vX.Y.Z-beta.N` and carry that `versionName`, so every report names its build. The GitHub
   release for a beta tag is a draft pre-release (`release.yml`).
 - A new beta build is uploaded when a P0 or holiday data error is fixed, or at the end of the first week.
 
 ## Joining (tester instructions)
 
-1. Open the opt-in link that Play Console creates for the beta track with the Google account you use on your phone and accept.
-2. Install or update Taqvim from Google Play. It may take a few hours before the beta version appears.
+1. Open the pre-release on the repository's Releases page and download `app-release.apk`.
+2. Open the file on your phone and allow your browser or file manager to install unknown apps. There is no store, so
+   **updates are not automatic**: to move to the next beta build, download the newer APK and install it over this one.
+   Android accepts it because every build is signed with the same key; it never asks you to uninstall.
+3. Optional but useful: check the download against the `SHA256SUMS` line in the release notes before installing.
 3. Use Taqvim as your everyday calendar for two weeks, in your usual language (Persian and English are fully supported).
 4. To leave, open the same link and choose to leave the program, then reinstall from the public listing when it exists.
 
@@ -30,7 +37,8 @@ in [SUPPORT.md](../SUPPORT.md).
 - Severity and response times are the ones in SUPPORT.md: P0 fix within 48 hours, holiday data error within 72 hours.
 
 Taqvim does not upload crash reports itself (no analytics, [SECURITY.md](SECURITY.md)). Crash-free sessions are
-measured with Google Play's Android vitals for the beta track.
+reported by testers. **There are no Android vitals outside Play and this app ships no crash reporting of its own**,
+so stability is measured by what testers send in, not by a dashboard — see *Exit criteria*.
 
 ## Beta checklist
 
@@ -62,17 +70,25 @@ During the two weeks, testers and the team confirm:
 The beta ends, and the release moves to the open track and staged rollout (RELEASE.md), only when all of these hold:
 
 1. At least **14 days** have passed since the first beta build reached testers.
-2. **Crash-free sessions ≥ 99.9%** over the last 7 days of the beta, from Android vitals (§9).
+2. **No crash reported by any tester in the last 7 days**, and every tester has confirmed at least one session on
+   the current build. This replaces the former "crash-free sessions ≥ 99.9% from Android vitals": vitals do not exist
+   outside Play and the app has no crash reporter, so the former criterion was unmeasurable. It is a weaker
+   guarantee, and deliberately so — it states what a small hand-recruited group can actually evidence rather than
+   implying a fleet statistic. Recruit enough testers that silence is informative; a handful of devices cannot
+   substantiate a rate.
 3. **No open P0** and no holiday data error older than 72 hours (SUPPORT.md).
 4. §9 budgets met on the reference devices, with the benchmark results stored (§12.4).
 5. The manual sign-offs of RELEASE.md are recorded, including TalkBack and RTL (§12.6).
 6. `fa` and `en` are 100% translated.
 
-If crash-free sessions fall below 99.9%, the beta continues with a fixed build; the 7-day window restarts with it.
+If a tester reports a crash, the beta continues with a fixed build and the 7-day window restarts with it.
 
 ## Owner defaults (confirmed 2026-09-18)
 
 Confirmed by the owner on 2026-09-18 (record: [MANUAL_TEST_CHECKLIST.md](MANUAL_TEST_CHECKLIST.md), *Owner defaults
-confirmed on 2026-09-18*): the closed-testing track and tester group, the opt-in URL (created by Play Console), the
-tester list, and the beta start date, which is the day the first beta build reaches testers. The device-level checks
+confirmed on 2026-09-18*) and revised 2026-10-05 when the distribution channel changed: the tester list and the beta
+start date, which is the day the first beta build reaches testers. The closed-testing track, tester Google Group and
+Play opt-in URL no longer apply. **Two things are now the owner's to supply and cannot be automated:** how testers
+are recruited and told that a new build exists — there is no store to notify them — and how their reports are
+collected (SUPPORT.md's in-app report produces text the tester must send). The device-level checks
 for the beta are in MANUAL_TEST_CHECKLIST.md.
