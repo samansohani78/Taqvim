@@ -8,6 +8,7 @@ import com.android.build.api.dsl.CommonExtension
 import io.github.takahirom.roborazzi.RoborazziExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.register
@@ -49,11 +50,22 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
  * `composeStabilityCheck` (T-1802, ADR-0021): reads this module's debug Compose compiler reports and fails on unstable
  * composable parameters or UI models. Report destinations are not compile-task inputs, so the reports flag is added
  * as one; otherwise an up-to-date compile would leave no reports behind.
+ *
+ * `stability.conf` is added for the same reason, and it is the sharper one: the Compose plugin passes the file to the
+ * compiler without declaring it as an input, so a compile cached before an entry was added is restored unchanged and
+ * the reports still call the type unstable. That is not a stale report — it is the build cache answering a question
+ * nobody asked it again. CI hit exactly this on 2026-10-06: the fix was committed, the compile came FROM-CACHE, and
+ * the check failed on types the configuration already listed.
  */
 private fun Project.registerComposeStabilityCheck(reportsEnabled: Boolean) {
     val reports = layout.buildDirectory.dir("compose/reports")
+    val stabilityConfiguration = rootDirectory.file("config/compose/stability.conf")
     tasks.withType<KotlinJvmCompile>().configureEach {
         inputs.property("taqvimComposeReports", reportsEnabled)
+        inputs
+            .file(stabilityConfiguration)
+            .withPropertyName("composeStabilityConfiguration")
+            .withPathSensitivity(PathSensitivity.RELATIVE)
         if (reportsEnabled && name == "compileDebugKotlin") outputs.dir(reports)
     }
     tasks.register<ComposeStabilityCheckTask>("composeStabilityCheck") {
