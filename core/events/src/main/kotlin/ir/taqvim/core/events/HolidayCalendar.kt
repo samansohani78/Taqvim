@@ -21,10 +21,19 @@ public class HolidayCalendar(
     public val weekend: Set<Weekday>,
 ) {
     /** The holiday occurrences of enabled sources on [jdn], in [EventLookup.DAY_ORDER]; empty on other days. */
-    public fun holidayReasons(jdn: Jdn): List<Occurrence> =
-        lookup
-            .eventsOn(jdn, enabledSources)
-            .filter { it.isHoliday && it.definition.source in enabledSources && withinValidity(it) }
+    public fun holidayReasons(jdn: Jdn): List<Occurrence> = holidayReasonsIn(occurrencesOn(jdn))
+
+    /**
+     * The holiday occurrences among [occurrences], which must be the occurrences of one day from [occurrencesOn].
+     *
+     * A caller that already has a day's occurrences passes them rather than asking for them again: the assembler
+     * reads the same list to decide what to show and whether the day is off, and looking it up twice per day was
+     * the second most expensive thing it did.
+     */
+    public fun holidayReasonsIn(occurrences: List<Occurrence>): List<Occurrence> = occurrences.filter(::isHolidayReason)
+
+    /** The occurrences of [jdn] from enabled sources, in [EventLookup.DAY_ORDER]. */
+    public fun occurrencesOn(jdn: Jdn): List<Occurrence> = lookup.eventsOn(jdn, enabledSources)
 
     /**
      * Whether [occurrence] falls inside its definition's validity, read in the calendar the validity is written in.
@@ -42,7 +51,14 @@ public class HolidayCalendar(
     }
 
     /** Whether [jdn] is a holiday of an enabled source. */
-    public fun isHoliday(jdn: Jdn): Boolean = holidayReasons(jdn).isNotEmpty()
+    public fun isHoliday(jdn: Jdn): Boolean = occurrencesOn(jdn).any(::isHolidayReason)
+
+    /** Whether a day with these [occurrences] (from [occurrencesOn]) is a holiday. */
+    public fun isHolidayIn(occurrences: List<Occurrence>): Boolean = occurrences.any(::isHolidayReason)
+
+    /** Whether [occurrence] makes its day a holiday: a holiday of an enabled source, inside its validity. */
+    private fun isHolidayReason(occurrence: Occurrence): Boolean =
+        occurrence.isHoliday && occurrence.definition.source in enabledSources && withinValidity(occurrence)
 
     /** Whether [jdn] falls on a [weekend] day. */
     public fun isWeekend(jdn: Jdn): Boolean = jdn.weekday() in weekend

@@ -11,10 +11,14 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.workdays.ShiftRotation
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceTimeBy
@@ -53,7 +57,7 @@ class CalendarViewModelTest {
         Dispatchers.resetMain()
     }
 
-    private fun TestScope.viewModel(): CalendarViewModel {
+    private fun TestScope.viewModel(shifts: ShiftScheduleSource = ShiftScheduleSource.NONE): CalendarViewModel {
         val search = SearchEventsUseCase(searchSource, UnconfinedTestDispatcher(testScheduler))
         return CalendarViewModel(
             settings,
@@ -65,8 +69,35 @@ class CalendarViewModelTest {
             FakeNowSource(TEST_NOW),
             FakeDisplayStore(),
             UnconfinedTestDispatcher(testScheduler),
+            shifts = shifts,
         )
     }
+
+    /** A shift store that has not answered yet, as Room has not on the first frame after launch. */
+    private fun silentShifts(): ShiftScheduleSource =
+        object : ShiftScheduleSource {
+            override fun rotations(): Flow<List<ShiftRotation>> = MutableSharedFlow()
+
+            override suspend fun setException(
+                rotationId: Long,
+                day: Jdn,
+                shift: String?,
+            ) = Unit
+        }
+
+    @Test
+    fun `the month pager does not wait for the shift store to answer`(): Unit =
+        runTest {
+            // F-08: the rotations join the state's combine, and a combine waits for all of its sources. Reading them
+            // straight from the database held the whole calendar back until Room answered — behind a migration on the
+            // launch after an update.
+            viewModel(silentShifts()).uiState.test {
+                val content = awaitContent { it.dayDetails != null }
+
+                content.shiftRotations.shouldBeEmpty()
+                content.today shouldBe today
+            }
+        }
 
     private suspend fun ReceiveTurbine<CalendarUiState>.awaitContent(
         predicate: (CalendarContent) -> Boolean = { true },

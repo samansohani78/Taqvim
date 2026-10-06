@@ -64,11 +64,22 @@ internal class OfficialView(
     /** The Iranian calendar with the user's optional official override (ADR-0037). */
     val iranCalendar: IranIslamicCalendar = IranIslamicCalendar(settings.preferences.islamicOverrides)
 
-    fun visibleOn(
-        jdn: Jdn,
-        zone: TimeZone,
-    ): List<Occurrence> = policy.visible(lookup.eventsOn(jdn, settings.preferences.enabledSources), zone)
+    /**
+     * Every occurrence of [jdn] from the enabled sources, before visibility is applied.
+     *
+     * What is shown and whether the day is off are two readings of this one list, so it is looked up once and
+     * handed to both ([visibleIn], [isHolidayIn]) rather than fetched again per reading.
+     */
+    fun occurrencesOn(jdn: Jdn): List<Occurrence> = holidays.occurrencesOn(jdn)
 
+    fun visibleIn(
+        occurrences: List<Occurrence>,
+        zone: TimeZone,
+    ): List<Occurrence> = policy.visible(occurrences, zone)
+
+    fun isHolidayIn(occurrences: List<Occurrence>): Boolean = holidays.isHolidayIn(occurrences)
+
+    /** Whether [jdn] is a holiday, for a caller that has no occurrence list of its own. */
     fun isHoliday(jdn: Jdn): Boolean = holidays.isHoliday(jdn)
 
     /** The [DateOrigin] of each occurrence in [official] that follows the Islamic calendar, by event id. */
@@ -132,22 +143,51 @@ internal class DayEventsAssembler(
                 .sortedWith(PERSONAL_ORDER)
         val ics = snapshot.ics.map { it.toOccurrence(zone) }
         val resolver = HijriDateResolver(clock, official.iranCalendar)
+        val personalByDay = personal.perDay(days) { it.days }
+        val deviceByDay = snapshot.device.perDay(days) { it.days }
+        val icsByDay = ics.perDay(days) { it.days }
         return days.map { jdn ->
+            val index = (jdn - days.start).toInt()
             val hijri = resolveIranian(official, resolver, jdn)
-            val visible = official.visibleOn(jdn, zone)
+            val occurrences = official.occurrencesOn(jdn)
+            val visible = official.visibleIn(occurrences, zone)
             DayEvents(
                 jdn = jdn,
                 islamicDate = hijri?.date ?: official.islamicCalendar.fromJdn(jdn),
                 hijri = hijri,
                 official = visible,
-                isHoliday = official.isHoliday(jdn),
+                isHoliday = official.isHolidayIn(occurrences),
                 isWeekend = official.isWeekend(jdn),
-                personal = personal.filter { jdn in it.days }.map { it.occurrence },
-                device = snapshot.device.filter { jdn in it.days },
-                ics = ics.filter { jdn in it.days },
+                personal = personalByDay[index].map { it.occurrence },
+                device = deviceByDay[index],
+                ics = icsByDay[index],
                 officialOrigins = official.originsOf(jdn, visible),
             )
         }
+    }
+
+    /**
+     * These items grouped by the day of [days] they cover, each day keeping this list's order.
+     *
+     * A month page asks for 42 days at once and a busy personal calendar expands to hundreds of occurrences, so
+     * filtering the whole list once per day walked it 42 times; walking each item once and writing it into the days
+     * it spans is the same answer in one pass.
+     */
+    private fun <T> List<T>.perDay(
+        days: JdnRange,
+        daysOf: (T) -> JdnRange,
+    ): List<List<T>> {
+        val buckets = arrayOfNulls<MutableList<T>>(days.dayCount.toInt())
+        forEach { item ->
+            val span = daysOf(item)
+            val from = maxOf(span.start, days.start)
+            val to = minOf(span.endInclusive, days.endInclusive)
+            for (jdn in from..to) {
+                val index = (jdn - days.start).toInt()
+                (buckets[index] ?: mutableListOf<T>().also { buckets[index] = it }) += item
+            }
+        }
+        return buckets.map { it ?: emptyList() }
     }
 
     private fun resolveIranian(

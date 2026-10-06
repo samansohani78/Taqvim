@@ -56,6 +56,20 @@ class HolidayCalendarTest {
     }
 
     @Test
+    fun `a day's occurrences answer the same holiday question as the day itself`() {
+        // The assembler reads a day once and asks both what to show and whether the day is off, so the answer from a
+        // list it already holds must be the answer the day would have given.
+        val calendar = HolidayCalendar(lookup, setOf(EventSource.IRAN_OFFICIAL), weekend = setOf(Weekday.FRIDAY))
+
+        listOf(persian(1, 1), persian(1, 2), persian(1, 3), gregorian(2026, 1, 1)).forEach { day ->
+            val occurrences = calendar.occurrencesOn(day)
+
+            calendar.isHolidayIn(occurrences) shouldBe calendar.isHoliday(day)
+            calendar.holidayReasonsIn(occurrences) shouldBe calendar.holidayReasons(day)
+        }
+    }
+
+    @Test
     fun `weekends and workdays follow the configured weekend`() {
         val calendar = HolidayCalendar(lookup, setOf(EventSource.IRAN_OFFICIAL), weekend = setOf(Weekday.FRIDAY))
         val friday = gregorian(2026, 3, 20)

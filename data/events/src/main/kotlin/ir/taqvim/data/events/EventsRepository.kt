@@ -33,10 +33,20 @@ class EventsRepository(
     private val inputs: EventInputs,
     private val clock: Clock,
     private val zones: Flow<TimeZone> = DeviceTimeZone.current,
-    private val catalog: OfficialCatalog = OfficialCatalog(),
+    catalog: () -> OfficialCatalog = ::OfficialCatalog,
     private val computeDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
     private val shared = AtomicReference<OfficialView?>(null)
+
+    /**
+     * The dataset, read on the thread that first needs it.
+     *
+     * Reading it loads the ~330 generated definitions with their titles in every language, which took 148 ms on a
+     * desktop JVM. The repository is built where a screen's view model is built — on the main thread — while the
+     * dataset is only ever needed by [viewFor], which runs on [computeDispatcher]. Holding it lazily keeps that work
+     * off the thread that is drawing the first frame.
+     */
+    private val catalog: OfficialCatalog by lazy(catalog)
 
     /**
      * One [DayEvents] per day of [days], in order. Timed events are dated in the current device zone (the [EventDays]

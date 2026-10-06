@@ -18,7 +18,9 @@ import ir.taqvim.core.praytimes.PrayerSettings
 import ir.taqvim.core.workdays.ShiftRotation
 import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.onStart
 import kotlinx.datetime.TimeZone
 
 /** The preferences the calendar screen reacts to (T-800, T-801). */
@@ -200,3 +202,15 @@ interface ShiftScheduleSource {
             }
     }
 }
+
+/**
+ * The rotations, beginning with none (F-08).
+ *
+ * The calendar's state combines this with its other sources, and a combine waits for every one of them, so reading
+ * the rotations straight from the store held the first month page back until the database had answered — behind a
+ * schema migration on the launch after an update. Every other source in that combine starts with an empty value for
+ * the same reason; this one did not. Repeating the empty list (the answer for almost every user) is dropped, so a
+ * user without rotations never pays for a second build of all three pages.
+ */
+internal fun ShiftScheduleSource.rotationsFromEmpty(): Flow<List<ShiftRotation>> =
+    rotations().onStart { emit(emptyList()) }.distinctUntilChanged()

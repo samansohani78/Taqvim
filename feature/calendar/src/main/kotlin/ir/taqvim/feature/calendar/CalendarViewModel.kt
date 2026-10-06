@@ -156,7 +156,7 @@ class CalendarViewModel(
             calendars.filterNotNull(),
             navigation,
             combine(search, menu, reminders, ::Triple),
-            combine(dayDetails, months, overview, times, shifts.rotations(), ::Loaded),
+            combine(dayDetails, months, overview, times, shifts.rotationsFromEmpty(), ::Loaded),
         ) { today, calendars, state, (search, menu, reminders), loaded ->
             CalendarUiState(
                 calendarContent(today, calendars, state, search, loaded, menu).copy(officialReminders = reminders),

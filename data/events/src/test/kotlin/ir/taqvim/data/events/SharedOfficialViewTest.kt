@@ -6,6 +6,7 @@ package ir.taqvim.data.events
 
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.events.AstroKind
 import ir.taqvim.core.events.AstronomicalEventSource
@@ -18,6 +19,7 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.time.Clock
 import kotlin.time.Instant
 import kotlinx.coroutines.Dispatchers
@@ -62,9 +64,43 @@ class SharedOfficialViewTest {
                 ),
             clock = clock,
             zones = flowOf(tehran),
-            catalog = OfficialCatalog(astronomy = countingAstronomy),
+            catalog = { OfficialCatalog(astronomy = countingAstronomy) },
             computeDispatcher = Dispatchers.Unconfined,
         )
+
+    @Test
+    fun `the dataset is read where the events are computed, not where the repository is built`(): Unit =
+        runTest {
+            // The generated definitions with their titles in every language took 148 ms to load on a desktop JVM, and
+            // a repository is built where a screen's view model is — on the main thread.
+            val loads = AtomicInteger()
+            val loadedOn = AtomicReference<String>()
+            val repository =
+                EventsRepository(
+                    settings = settings,
+                    inputs =
+                        EventInputs(
+                            personal = PersonalEventsSource { MutableStateFlow(emptyList()) },
+                            device = DeviceEventsSource { MutableStateFlow(emptyList()) },
+                            ics = IcsEventsSource { MutableStateFlow(emptyList()) },
+                        ),
+                    clock = clock,
+                    zones = flowOf(tehran),
+                    catalog = {
+                        loads.incrementAndGet()
+                        loadedOn.set(Thread.currentThread().name)
+                        OfficialCatalog(astronomy = countingAstronomy)
+                    },
+                    computeDispatcher = Dispatchers.Default,
+                )
+
+            loads.get() shouldBe 0
+
+            repository.days(monthGrid(0)).first()
+
+            loads.get() shouldBe 1
+            loadedOn.get() shouldNotBe Thread.currentThread().name
+        }
 
     @Test
     fun `a swipe reuses the lookups the open built`(): Unit =

@@ -776,6 +776,63 @@ host, where identical code moved P99 by 10 ms between runs. On the phone, from a
 (Developer options → System tracing) showing whether `FullSuspendCheck` appears inside `MonthPage:build` on a 16 GB
 phone with a real GPU. If it does not, the GC pauses were an artifact of this machine and the calendar work is done.
 
+### Regression and performance pass on main@edcdcee (2026-10-06)
+
+A full pass over the work of the previous weeks: every gate re-run on the commit CI had already passed, then the
+recently changed paths measured before anything was touched. Three changes were kept, one was measured and thrown
+away, and the device budgets are still unmeasured.
+
+**What was measured, and with what.** The repository has had no wall-clock budget on its busiest path — the event
+load behind a month page — so two timing tests were added (`MonthWindowTimingTest`, `MonthPageTimingTest`,
+`timingTests`). Baselines were taken on main@edcdcee in a separate worktree running the same two tests, three runs
+each; every figure is the best of the measured runs inside one JVM, and the end-to-end rows are the median of three
+such runs.
+
+*Read the two kinds of row differently.* This desktop machine moves an unchanged measurement by about ±15 % between
+runs — the month-page **build**, which nothing in this pass touches, moved from 272 to 218 µs — so an end-to-end
+median is a sanity check, not a proof. The component rows are same-run comparisons of the two strategies on
+identical data, which is where the evidence is.
+
+| Measurement | main@edcdcee | After | Change |
+|---|---|---|---|
+| *End-to-end:* month page event load (42 days, whole dataset, 200 personal events) | 3 079 µs | 2 736 µs | −11 %, near the noise floor |
+| *End-to-end:* month page build (3 calendars, week numbers, a shift rotation) | 272 µs | 218 µs | unchanged code; the spread of this machine |
+| *Component:* `DayEventsAssembler.assemble`, dataset only | 258 µs | 165 µs | **−36 %** |
+| *Component:* grouping 631 expanded occurrences over 42 days | 1 778 µs | 168 µs | **−91 %** |
+| *Component:* grouping 2 518 expanded occurrences over 42 days | 6 780 µs | 152 µs | **−98 %** |
+| *Component:* first read of `OfficialEvents.ALL` (329 definitions, 24 languages) | 148 ms, on the thread that builds the view model | 148 ms, on the compute dispatcher | off the main thread |
+
+**Kept.**
+
+1. *The assembler grouped each source once instead of per day.* `assemble` filtered the whole personal, device and
+   iCalendar lists once for each of its 42 days; it now walks each item once and writes it into the days it spans.
+   The month page is the small case: the year view asks for 365 days at a time.
+2. *A day's occurrences are looked up once.* What to show and whether the day is off were two readings of the same
+   `EventLookup.eventsOn(jdn, enabledSources)` call, issued twice per day. `HolidayCalendar` gained
+   `occurrencesOn`/`isHolidayIn`/`holidayReasonsIn` so a caller that has the list passes it. No rule changed: the
+   holiday test still ignores `ALWAYS_DISPLAYED` and still applies validity, which is why it is not the same test as
+   visibility.
+3. *The dataset is read where it is used.* `EventsRepository` took `OfficialCatalog()` as an eagerly evaluated
+   default, so loading the generated definitions happened wherever Koin first resolved the repository — on the main
+   thread, building a screen's view model. It is now a `Lazy`, first touched by `viewFor` on the compute dispatcher.
+   `SharedOfficialViewTest` asserts both that nothing is loaded by construction and that the load happens on another
+   thread.
+
+**A regression from F-08, found and fixed.** The calendar's state combines five sources and a combine waits for all
+of them. Four of them start with an empty value on purpose; the shift rotations, added with F-08, read Room directly,
+so the first month page waited for the database — behind the 7→8 migration on the first launch after an update.
+`rotationsFromEmpty()` starts the stream empty and drops the repeat. `CalendarViewModelTest` holds a shift store that
+never answers and fails without the fix.
+
+**Measured and discarded.** Memoising `IslamicCalendarSelection.providerFor` per source removed an allocation per
+occurrence tested, and moved the page load by about 1 % — inside this machine's run-to-run spread. It was reverted
+rather than kept on the strength of a plausible argument.
+
+**Still unmeasured.** Everything in plan §9 that needs a phone: cold start, jank, memory, widget render and map mask.
+A hosted emulator has no frame timeline, and this machine has no attached device, so those numbers are **pending**,
+not estimated. `docs/MANUAL_TEST_CHECKLIST.md` §8a now carries the exact OnePlus 15 command sequence and an empty
+results table; nothing may be written into it from an emulator run.
+
 ### Independent review of main@98260a4 (2026-09-19)
 
 An independent adversarial review (archived verbatim at `docs/reviews/2026-09-19-adversarial-review.md`) raised 18

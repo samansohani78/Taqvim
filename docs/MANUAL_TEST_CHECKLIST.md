@@ -341,6 +341,63 @@ release-type build. The macrobenchmark and microbenchmark modules (`:benchmark`,
    `:app:generateBaselineProfile` once the Baseline Profile plugin is applied) and commit the generated profile
    (T-1800; see STATUS_REPORT for its current state).
 
+### 8a. The OnePlus 15 run, step by step (T-1803)
+
+The §9 jank, start and memory budgets are `physicalDeviceOnly` (ADR-0018 addendum): a hosted emulator has no
+SurfaceFlinger frame timeline, so `frameDurationCpuMs` and `frameOverrunMs` only exist on a real phone. Nothing in
+this section has been run yet — leave the table empty until it has, and do not copy emulator numbers into it.
+
+```bash
+# 1. One device, developer options on, USB debugging authorised, screen unlocked and staying on.
+adb devices -l                      # exactly one line; note the model and build
+adb shell getprop ro.build.version.release ro.build.version.sdk ro.product.model
+
+# 2. Quiet the phone so the numbers are the app's: no sync, no animations, charging off the measurement.
+adb shell settings put global window_animation_scale 0
+adb shell settings put global transition_animation_scale 0
+adb shell settings put global animator_duration_scale 0
+adb shell cmd battery unplug          # undo afterwards with `adb shell cmd battery reset`
+
+# 3. Macrobenchmarks: startup, month scroll, timeline, search, year view, map, memory.
+~/.cache/taqvim-agents/gl.sh :benchmark:connectedBenchmarkAndroidTest
+
+# 4. In-process microbenchmarks: widget rendering and map masks.
+~/.cache/taqvim-agents/gl.sh :benchmark:micro:connectedReleaseAndroidTest
+
+# 5. Collect both result sets where the comparison tool expects them.
+mkdir -p build/benchmark-results
+find benchmark -name '*benchmarkData.json' -newermt '-2 hours' -exec cp {} build/benchmark-results/ \;
+
+# 6. Compare with the committed baselines AND the plan §9 device budgets.
+python3 tools/benchmark/compare_benchmarks.py \
+  --baseline benchmark/baselines \
+  --results build/benchmark-results \
+  --threshold 0.10 \
+  --budgets benchmark/budgets.json \
+  --required benchmark/required.json \
+  --physical-device
+```
+
+`--physical-device` is what makes step 6 check the §9 budgets rather than the emulator ceilings; without it the run
+proves nothing about jank or cold start. Exit 0 means every required benchmark was reported, stayed inside 10 % of
+its baseline and inside its budget; exit 1 names what failed; exit 4 means the control benchmarks drifted and the
+numbers cannot be read (re-run on a cooled, idle phone).
+
+| Metric (PLAN §9) | Budget | OnePlus 15 result | Date | Run by |
+|---|---|---|---|---|
+| Cold start to first month frame (`StartupBenchmark.startupCold`) | ≤ 350 ms | | | |
+| Warm start (`startupWarm`) | ≤ 350 ms | | | |
+| Month scroll jank, 24 months (`MonthPagerScrollBenchmark`, `frameDurationCpuMs` P99) | ≤ 16 ms | | | |
+| Timeline and search scroll (`ScreenScrollBenchmarks`) | ≤ 16 ms P99 | | | |
+| Year view (`YearViewBenchmark`) | ≤ 16 ms P99 | | | |
+| Map pan and zoom (`MapScreenBenchmark`) | ≤ 16 ms P99 | | | |
+| Month screen memory (`MonthScreenMemoryBenchmark`) | ≤ 80 MB RSS | | | |
+| Widget render, each (`WidgetRenderBenchmark`, `GlanceWidgetBenchmark`) | < 30 ms | | | |
+| Map mask, each (`MapMaskBenchmark`) | < 150 ms | | | |
+
+A result worth keeping is committed with `--record-baseline` **only** after it is read and the phone was healthy;
+a recording run exits 3 by design and never qualifies a commit for release.
+
 Sign-off: ______
 
 ---
