@@ -819,6 +819,10 @@
         "reviewedBy": {
           "type": "string",
           "minLength": 1
+        },
+        "reviewedOn": {
+          "description": "The date a human reviewer attested this record (docs/REVIEWING.md). Optional, and meaningless while `reviewedBy` is \"pending\": machine validation says a record is well formed, a reviewer says it is right.",
+          "$ref": "#/$defs/date"
         }
       },
       "allOf": [

@@ -1,0 +1,487 @@
+priority	state	id	language	current_title	proposed_title	source	citation_url	reviewed_by	reviewed_on
+0	title-machine-translated	christian.ascension-day	fa	روز عروج		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	christian.ash-wednesday	fa	چهارشنبهٔ خاکستر		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	christian.easter	fa	عید پاک		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	christian.first-sunday-of-advent	fa	نخستین یکشنبهٔ ظهور		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	christian.good-friday	fa	جمعهٔ نیک		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	christian.palm-sunday	fa	یکشنبهٔ نخل		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	christian.pentecost	fa	پنطیکاست		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	christian.trinity-sunday	fa	یکشنبهٔ تثلیث		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	jewish.hanukkah	fa	حنوکا		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	jewish.pesach	fa	پسح		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	jewish.rosh-hashanah	fa	روش هَشانا		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	jewish.shavuot	fa	شاووعوت		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	jewish.succoth	fa	سوکوت		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	jewish.yom-kippur	fa	یوم کیپور		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+0	title-machine-translated	un.african-descent-day	fa	روز بین‌المللی افراد تبار آفریقایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.albinism-day	fa	روز بین‌المللی آگاهی از آلبینیسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.amr-awareness-week	fa	هفته جهانی آگاهی از مقاومت ضدمیکروبی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.anti-colonialism-day	fa	روز بین‌المللی مبارزه با استعمار در همه اشکال و مظاهر آن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.anti-cybercrime-day	fa	روز بین‌المللی مبارزه با جرایم سایبری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.anti-islamophobia-day	fa	روز بین‌المللی مبارزه با اسلام‌هراسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.arabian-leopard-day	fa	روز بین‌المللی پلنگ عربی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.arabic-language-day	fa	روز زبان عربی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.argania-day	fa	روز بین‌المللی درخت آرگان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.asteroid-day	fa	روز بین‌المللی سیارک		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.audiovisual-heritage	fa	روز جهانی میراث سمعی و بصری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.bicycle-day	fa	روز جهانی دوچرخه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.braille-day	fa	روز جهانی خط بریل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.breastfeeding-week	fa	هفته جهانی شیردهی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.care-and-support-day	fa	روز بین‌المللی مراقبت و حمایت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.charity-day	fa	روز بین‌المللی نیکوکاری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.chernobyl-remembrance-day	fa	روز بین‌المللی یادبود فاجعه چرنوبیل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.child-early-forced-marriage-day	fa	روز بین‌المللی ریشه‌کنی ازدواج کودکان، ازدواج زودهنگام و اجباری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.child-sexual-exploitation-prevention-and-healing-day	fa	روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.chinese-language-day	fa	روز زبان چینی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.cities-day	fa	روز جهانی شهرها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.cleanup-day	fa	روز جهانی پاکسازی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.conjoined-twins-day	fa	روز جهانی دوقلوهای به‌هم‌چسبیده		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.conscience-day	fa	روز بین‌المللی وجدان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.cotton-day	fa	روز جهانی پنبه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.countering-hate-speech	fa	روز بین‌المللی مقابله با نفرت‌پراکنی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.creativity-and-innovation-day	fa	روز جهانی خلاقیت و نوآوری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.day-against-unilateral-coercive-measures	fa	روز بین‌المللی مخالفت با اقدامات قهری یکجانبه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.day-of-combating-sand-and-dust-storms	fa	روز بین‌المللی مبارزه با طوفان‌های شن و گرد و غبار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.deafblindness-day	fa	روز بین‌المللی ناشنوایی-نابینایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.delegates-day	fa	روز بین‌المللی نمایندگان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.detained-staff-day	fa	روز بین‌المللی همبستگی با کارکنان بازداشت‌شده و مفقود		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.disarmament-non-proliferation-awareness-day	fa	روز بین‌المللی آگاهی از خلع سلاح و منع اشاعه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.disarmament-week	fa	هفته خلع سلاح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.down-syndrome-day	fa	روز جهانی سندرم داون		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.drowning-prevention-day	fa	روز جهانی پیشگیری از غرق‌شدگی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.duchenne-awareness-day	fa	روز جهانی آگاهی از دیستروفی عضلانی دوشن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.earthquake-victims-day	fa	روز بین‌المللی یادبود قربانیان زلزله		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.elder-abuse-awareness-day	fa	روز جهانی آگاهی از آزار سالمندان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.end-fistula-day	fa	روز بین‌المللی پایان دادن به فیستول مامایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.end-food-waste-day	fa	روز بین‌المللی آگاهی از تلفات و ضایعات غذایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.end-illegal-fishing-day	fa	روز بین‌المللی مبارزه با صید غیرقانونی، گزارش‌نشده و بی‌ضابطه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.end-impunity-crimes-against-journalists	fa	روز بین‌المللی پایان دادن به معافیت از مجازات جرایم علیه روزنامه‌نگاران		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.end-sexual-violence-in-conflict-day	fa	روز بین‌المللی ریشه‌کنی خشونت جنسی در منازعات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.english-language-day	fa	روز زبان انگلیسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.epidemic-preparedness-day	fa	روز بین‌المللی آمادگی در برابر بیماری‌های همه‌گیر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.equal-pay-day	fa	روز بین‌المللی برابری دستمزد		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.fair-play-day	fa	روز جهانی بازی منصفانه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.female-genital-mutilation-day	fa	روز بین‌المللی عدم تحمل ختنه زنان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.fight-against-transnational-crime-day	fa	روز بین‌المللی پیشگیری و مبارزه با همه اشکال جرایم سازمان‌یافته فراملی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.food-safety-day	fa	روز جهانی ایمنی غذا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.football-day	fa	روز جهانی فوتبال		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.french-language-day	fa	روز زبان فرانسوی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.friendship-day	fa	روز بین‌المللی دوستی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.genocide-prevention-day	fa	روز بین‌المللی یادبود و کرامت قربانیان جنایت نسل‌کشی و پیشگیری از این جنایت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.girl-child-day	fa	روز بین‌المللی دختران		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.girls-in-ict-day	fa	روز بین‌المللی دختران در فناوری اطلاعات و ارتباطات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.happiness-day	fa	روز جهانی شادی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.hope-day	fa	روز بین‌المللی امید		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.horse-day	fa	روز جهانی اسب		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.human-fraternity	fa	روز بین‌المللی برادری انسانی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.human-spaceflight-day	fa	روز بین‌المللی پرواز فضایی انسان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.immunization-week	fa	هفته جهانی ایمن‌سازی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.indigenous-women-day	fa	روز بین‌المللی زنان و دختران بومی جهان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.information-access-day	fa	روز بین‌المللی دسترسی همگانی به اطلاعات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.interfaith-harmony-week	fa	هفته جهانی هماهنگی بین ادیان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-coffee-day	fa	روز بین‌المللی قهوه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-day-of-banks	fa	روز بین‌المللی بانک‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-day-of-forests	fa	روز بین‌المللی جنگل‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-day-of-light	fa	روز بین‌المللی نور		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-day-of-plant-health	fa	روز بین‌المللی سلامت گیاهان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-day-of-play	fa	روز بین‌المللی بازی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-day-of-potato	fa	روز بین‌المللی سیب‌زمینی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-tea-day	fa	روز بین‌المللی چای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.international-translation-day	fa	روز بین‌المللی ترجمه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.interventional-cardiology-day	fa	روز بین‌المللی قلب و عروق مداخله‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.jazz-day	fa	روز جهانی جاز		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.judicial-well-being-day	fa	روز بین‌المللی رفاه قضایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.kiswahili-day	fa	روز جهانی زبان سواحیلی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.landlocked-developing-countries-day	fa	روز بین‌المللی آگاهی از نیازها و چالش‌های ویژه توسعه‌ای کشورهای درحال‌توسعه محصور در خشکی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.living-in-peace-day	fa	روز بین‌المللی زندگی مسالمت‌آمیز در کنار هم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.markhor-day	fa	روز بین‌المللی مارخور		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.media-information-literacy-week	fa	هفته جهانی سواد رسانه‌ای و اطلاعاتی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.meditation-day	fa	روز جهانی مراقبه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.mediterranean-diet-day	fa	روز بین‌المللی رژیم غذایی مدیترانه‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.micro-small-medium-businesses-day	fa	روز کسب‌وکارهای خرد، کوچک و متوسط		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.moon-day	fa	روز بین‌المللی ماه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.multilateralism-for-peace-day	fa	روز بین‌المللی چندجانبه‌گرایی و دیپلماسی برای صلح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.neutrality-day	fa	روز بین‌المللی بی‌طرفی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.non-self-governing-week	fa	هفته همبستگی با مردمان سرزمین‌های غیرخودمختار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.nuclear-weapons-elimination-day	fa	روز بین‌المللی ریشه‌کنی کامل سلاح‌های هسته‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.parents-day	fa	روز جهانی والدین		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.parliamentarism-day	fa	روز بین‌المللی پارلمانتاریسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.peaceful-coexistence-day	fa	روز بین‌المللی همزیستی مسالمت‌آمیز		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.police-cooperation-day	fa	روز بین‌المللی همکاری پلیسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.prevention-extremism-when-conducive-terrorism-day	fa	روز بین‌المللی پیشگیری از افراط‌گرایی خشونت‌آمیز در صورت منتهی‌شدن به تروریسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.racism-solidarity-week	fa	هفته همبستگی با مردمان مبارز علیه نژادپرستی و تبعیض نژادی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.religious-based-violence-victims-day	fa	روز بین‌المللی یادبود قربانیان اعمال خشونت بر اساس دین یا باور		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.remittances-day	fa	روز بین‌المللی حواله‌های خانوادگی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.rural-development-day	fa	روز جهانی توسعه روستایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.russian-language-day	fa	روز زبان روسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.science-and-peace-week	fa	هفته بین‌المللی علم و صلح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.science-technology-and-innovation-for-south-day	fa	روز بین‌المللی علم، فناوری و نوآوری برای کشورهای جنوب		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.seagrass-day	fa	روز جهانی علف‌های دریایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.sign-languages-day	fa	روز بین‌المللی زبان‌های اشاره		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.snow-leopard-day	fa	روز بین‌المللی پلنگ برفی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.solstice-day	fa	روز بین‌المللی گرامیداشت انقلاب تابستانی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.space-week	fa	هفته جهانی فضا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.spanish-language-day	fa	روز زبان اسپانیایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.srebrenica-genocide-commemoration-day	fa	روز بین‌المللی تأمل و یادبود نسل‌کشی سال ۱۹۹۵ سربرنیتسا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.steelpan-day	fa	روز جهانی استیل‌پن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.sustainable-gastronomy-day	fa	روز جهانی گاسترونومی پایدار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.sustainable-transport-day	fa	روز جهانی حمل‌ونقل پایدار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.tourism-resilience-day	fa	روز جهانی تاب‌آوری گردشگری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.tropics-day	fa	روز بین‌المللی مناطق حاره‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.tsunami-awareness-day	fa	روز جهانی آگاهی از سونامی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.tuna-day	fa	روز جهانی ماهی تن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.universal-health-coverage-day	fa	روز بین‌المللی پوشش همگانی سلامت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.vesak-day	fa	ویساک، روز ماه کامل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.victims-enforced-disappearance	fa	روز بین‌المللی قربانیان ناپدیدشدگان اجباری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.wellness-day	fa	روز بین‌المللی تندرستی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.women-and-girls-in-science-day	fa	روز بین‌المللی زنان و دختران در علم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.women-girls-african-descent	fa	روز بین‌المللی زنان و دختران تبار آفریقایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.women-in-diplomacy-day	fa	روز بین‌المللی زنان در دیپلماسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.women-judges-day	fa	روز بین‌المللی قضات زن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.women-searchers-missing-persons-day	fa	روز بین‌المللی ارج‌گذاری به زنان جوینده مفقودان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-basketball-day	fa	روز جهانی بسکتبال		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-bee-day	fa	روز جهانی زنبور عسل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-chagas-disease-day	fa	روز جهانی بیماری شاگاس		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-chess-day	fa	روز جهانی شطرنج		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-glaciers-day	fa	روز جهانی یخچال‌های طبیعی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-hepatitis-day	fa	روز جهانی هپاتیت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-lake-day	fa	روز جهانی دریاچه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-patient-safety-day	fa	روز جهانی ایمنی بیمار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-portuguese-language-day	fa	روز جهانی زبان پرتغالی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-pulses-day	fa	روز جهانی حبوبات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-turkic-language-family-day	fa	روز جهانی خانواده زبان‌های ترکی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-wetlands-day	fa	روز جهانی تالاب‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-wildlife-day	fa	روز جهانی حیات وحش		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.world-youth-skills-day	fa	روز جهانی مهارت‌های جوانان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.yoga-day	fa	روز جهانی یوگا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.zero-discrimination-day	fa	روز عدم تبعیض		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+0	title-machine-translated	un.zero-waste-day	fa	روز بین‌المللی پسماند صفر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	af.holiday.arafa		روز عرفه		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.eid-al-adha.1		عید سعید اضحی		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.eid-al-adha.2		عید سعید اضحی		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.eid-al-adha.3		عید سعید اضحی		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.eid-al-fitr.1		عید سعید فطر		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.eid-al-fitr.2		عید سعید فطر		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.eid-al-fitr.3		عید سعید فطر		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.independence		سالروز استرداد استقلال کشور		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	af.holiday.kabul-victory		روز فتح کابل		AFGHANISTAN_OFFICIAL	https://www.bakhtarnews.af/dr/%D8%B1%D9%88%D8%B2-%D8%B4%D9%86%D8%A8%D9%87-%D8%A2%DB%8C%D9%86%D8%AF%D9%87-%D8%AF%D8%B1-%D8%B3%D8%B1%D8%A7%D8%B3%D8%B1-%DA%A9%D8%B4%D9%88%D8%B1-%D8%B1%D8%AE%D8%B5%D8%AA%DB%8C-%D8%B9%D9%85%D9%88%D9%85%DB%8C-%D8%A7%D8%B3%D8%AA	pending	
+1	record-unreviewed	af.holiday.soviet-withdrawal		سالروز شکست و اخراج قشون سرخ اتحاد شوروی از افغانستان		AFGHANISTAN_OFFICIAL	https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/78309/AFG78309.pdf	pending	
+1	record-unreviewed	christian.ascension-day		روز عروج		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	christian.ash-wednesday		چهارشنبهٔ خاکستر		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	christian.easter		عید پاک		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	christian.first-sunday-of-advent		نخستین یکشنبهٔ ظهور		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	christian.good-friday		جمعهٔ نیک		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	christian.palm-sunday		یکشنبهٔ نخل		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	christian.pentecost		پنطیکاست		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	christian.trinity-sunday		یکشنبهٔ تثلیث		CHRISTIAN	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	ir.ancient.yalda		شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان		ANCIENT_IRAN	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.ancient.zoroaster-birthday		زادروز زرتشت پیامبر		ANCIENT_IRAN	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.arbaeen		اربعین حسینی		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.ashura		عاشورای حسینی		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.eid-al-adha		عید سعید قربان		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.eid-al-fitr		عید سعید فطر		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.eid-al-fitr-holiday		تعطیل به مناسبت عید سعید فطر		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.eid-al-ghadir		عید سعید غدیر خم		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.fatima-martyrdom		شهادت حضرت فاطمه زهرا سلام الله علیها		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.imam-ali-birth		ولادت حضرت امام علی علیه السلام		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.imam-ali-martyrdom		شهادت حضرت امام علی علیه السلام		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.imam-hasan-askari-martyrdom		شهادت حضرت امام حسن عسکری علیه السلام و آغاز امامت حضرت ولی عصر (عجل الله تعالی فرجه)		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.imam-mahdi-birth		ولادت حضرت قائم عجل الله تعالی فرجه		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.imam-reza-martyrdom		شهادت حضرت امام رضا علیه السلام		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.imam-sadiq-martyrdom		شهادت حضرت امام جعفر صادق علیه السلام		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.islamic-republic-day		روز جمهوری اسلامی ایران		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.khomeini-demise		رحلت حضرت امام خمینی رهبر کبیر انقلاب و بنیان‌گذار جمهوری اسلامی ایران		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.khordad-15-uprising		قیام خونین ۱۵ خرداد		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.mabath		مبعث حضرت رسول اکرم صلی الله علیه و آله		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.nature-day		روز طبیعت		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.nowruz-1		آغاز نوروز		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.nowruz-2		عید نوروز		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.nowruz-3		عید نوروز		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.nowruz-4		عید نوروز		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.oil-nationalization		روز ملی شدن صنعت نفت ایران		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.prophet-demise-imam-hasan-martyrdom		رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.prophet-imam-sadiq-birth		ولادت حضرت رسول اکرم صلی الله علیه و آله و ولادت حضرت امام جعفر صادق علیه السلام		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.revolution-victory		پیروزی انقلاب اسلامی ایران و سقوط نظام شاهنشاهی		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	ir.holiday.tasua		تاسوعای حسینی		IRAN_OFFICIAL	https://calendar.ut.ac.ir/Fa/	pending	
+1	record-unreviewed	jewish.hanukkah		حنوکا		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	jewish.pesach		پسح		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	jewish.rosh-hashanah		روش هَشانا		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	jewish.shavuot		شاووعوت		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	jewish.succoth		سوکوت		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	jewish.yom-kippur		یوم کیپور		JEWISH	https://aa.usno.navy.mil/data/api.html	pending	
+1	record-unreviewed	np.holiday.buddha-jayanti		बुद्ध जयन्ती		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.chhath		छठ पर्व		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.christmas		क्रिसमस डे		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.constitution-day		संविधान दिवस (राष्ट्रिय दिवस)		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.dashain		दशैं बिदा		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.democracy-day		राष्ट्रिय प्रजातन्त्र दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.dhanya-purnima		धान्य पूर्णिमा		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.eid-al-adha		बकर ईद (ईद उल अजहा)		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.eid-al-fitr		ईद (ईद उल फित्र)		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.fagu-purnima-hill		फागु पूर्णिमा (हिमाली र पहाडी जिल्ला)		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.fagu-purnima-terai		फागु पूर्णिमा (तराईका जिल्ला)		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.gai-jatra		गाईजात्रा		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.ghatasthapana		घटस्थापना		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.krishna-janmashtami		श्रीकृष्ण जन्माष्टमी		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.labour-day		विश्व मजदुर दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.maghe-sankranti		माघी पर्व/माघे सङ्क्रान्ति		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.maha-shivaratri		महाशिवरात्री		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.martyrs-day		सहिद दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.new-year		नव वर्ष		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.prithvi-jayanti		पृथ्वी जयन्ती (राष्ट्रिय एकता दिवस)		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.raksha-bandhan		रक्षाबन्धन		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.ram-navami		रामनवमी		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.republic-day		गणतन्त्र दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.sonam-lhochhar		सोनम ल्होछार		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.tamu-lhochhar		तमू ल्होछार		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.tihar		तिहार बिदा		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.holiday.womens-day		अन्तर्राष्ट्रिय महिला दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.observance.anti-untouchability-day		जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.observance.civil-service-day		निजामती सेवा दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf	pending	
+1	record-unreviewed	np.observance.genz-martyrs-day		जेनजी सहिद दिवस		NEPAL_OFFICIAL	https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf	pending	
+1	record-unreviewed	un.africa-industrialization-day		روز صنعت گستری آفریقا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.african-descent-day		روز بین‌المللی افراد تبار آفریقایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.albinism-day		روز بین‌المللی آگاهی از آلبینیسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.amr-awareness-week		هفته جهانی آگاهی از مقاومت ضدمیکروبی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.anti-colonialism-day		روز بین‌المللی مبارزه با استعمار در همه اشکال و مظاهر آن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.anti-corruption-day		روز بین المللی مبارزه با فساد		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.anti-cybercrime-day		روز بین‌المللی مبارزه با جرایم سایبری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.anti-islamophobia-day		روز بین‌المللی مبارزه با اسلام‌هراسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.arabian-leopard-day		روز بین‌المللی پلنگ عربی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.arabic-language-day		روز زبان عربی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.argania-day		روز بین‌المللی درخت آرگان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.asteroid-day		روز بین‌المللی سیارک		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.audiovisual-heritage		روز جهانی میراث سمعی و بصری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.autism-day		روز جهانی آگاهی درباره اوتیسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.bicycle-day		روز جهانی دوچرخه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.biological-diversity-day		روز جهانی تنوع زیستی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.braille-day		روز جهانی خط بریل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.breastfeeding-week		هفته جهانی شیردهی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.care-and-support-day		روز بین‌المللی مراقبت و حمایت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.charity-day		روز بین‌المللی نیکوکاری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.chemical-warfare-victims-day		روز جهانی یادبود قربانیان سلاح های شیمیایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.chernobyl-remembrance-day		روز بین‌المللی یادبود فاجعه چرنوبیل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.child-early-forced-marriage-day		روز بین‌المللی ریشه‌کنی ازدواج کودکان، ازدواج زودهنگام و اجباری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.child-sexual-exploitation-prevention-and-healing-day		روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.child-victim-day		روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.chinese-language-day		روز زبان چینی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.cities-day		روز جهانی شهرها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.civil-aviation-day		روز بین المللی هواپیمایی غیر نظامی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.clean-energy-day		روز جهانی انرژی پاک		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.cleanup-day		روز جهانی پاکسازی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.commemoration-holocaust-victims-day		روز بین المللی بزرگداشت خاطره قربانیان هولوکاست		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.conjoined-twins-day		روز جهانی دوقلوهای به‌هم‌چسبیده		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.conscience-day		روز بین‌المللی وجدان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.cooperatives-day		روز بین‌المللی تعاونیها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.cotton-day		روز جهانی پنبه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.countering-hate-speech		روز بین‌المللی مقابله با نفرت‌پراکنی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.creativity-and-innovation-day		روز جهانی خلاقیت و نوآوری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.cultural-diversity-day		روز جهانی تنوع فرهنگی برای گفت و گو و توسعه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.day-against-unilateral-coercive-measures		روز بین‌المللی مخالفت با اقدامات قهری یکجانبه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.day-for-eradicating-poverty		روز بین‌المللی ریشه کنی فقر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.day-of-combating-sand-and-dust-storms		روز بین‌المللی مبارزه با طوفان‌های شن و گرد و غبار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.day-of-persons-with-disabilities		روز بین‌المللی معلولان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.day-of-the-seafarer		روز دریانوردان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.deafblindness-day		روز بین‌المللی ناشنوایی-نابینایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.delegates-day		روز بین‌المللی نمایندگان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.democracy-day		روز بین المللی دموکراسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.desertification-day		روز جهانی مبارزه با گسترش کویر و خشکسالی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.detained-staff-day		روز بین‌المللی همبستگی با کارکنان بازداشت‌شده و مفقود		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.development-information-day		روز جهانی اطلاعات توسعه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.diabetes-day		روز جهانی دیابت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.disarmament-non-proliferation-awareness-day		روز بین‌المللی آگاهی از خلع سلاح و منع اشاعه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.disarmament-week		هفته خلع سلاح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.disaster-reduction-day		روز جهانی کاهش مصایب طبیعی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.down-syndrome-day		روز جهانی سندرم داون		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.drowning-prevention-day		روز جهانی پیشگیری از غرق‌شدگی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.duchenne-awareness-day		روز جهانی آگاهی از دیستروفی عضلانی دوشن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.earth-day		روز بین المللی مادر زمین		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.earthquake-victims-day		روز بین‌المللی یادبود قربانیان زلزله		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.education-day		روز بین‌المللی آموزش		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.elder-abuse-awareness-day		روز جهانی آگاهی از آزار سالمندان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-drug-abuse-day		روز بین المللی مبارزه با سوء استفاده و قاچاق مواد مخدر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-fistula-day		روز بین‌المللی پایان دادن به فیستول مامایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-food-waste-day		روز بین‌المللی آگاهی از تلفات و ضایعات غذایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-human-trafficking-day		روز جهانی مبارزه با قاچاق انسان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-illegal-fishing-day		روز بین‌المللی مبارزه با صید غیرقانونی، گزارش‌نشده و بی‌ضابطه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-impunity-crimes-against-journalists		روز بین‌المللی پایان دادن به معافیت از مجازات جرایم علیه روزنامه‌نگاران		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-nuclear-tests-day		روز بین المللی علیه آزمایش های هسته ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-racism-day		روز بین‌المللی رفع تبعیض نژادی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.end-sexual-violence-in-conflict-day		روز بین‌المللی ریشه‌کنی خشونت جنسی در منازعات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.ending-violence-against-women-day		روز بین المللی حذف خشونت علیه زنان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.english-language-day		روز زبان انگلیسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.environment-day		روز جهانی محیط زیست		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.environment-in-war-protection-day		روز بین المللی پیشگیری از سوء استفاده از محیط زیست در جنگ و مناقشه مسلحانه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.epidemic-preparedness-day		روز بین‌المللی آمادگی در برابر بیماری‌های همه‌گیر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.equal-pay-day		روز بین‌المللی برابری دستمزد		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.fair-play-day		روز جهانی بازی منصفانه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.female-genital-mutilation-day		روز بین‌المللی عدم تحمل ختنه زنان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.fight-against-transnational-crime-day		روز بین‌المللی پیشگیری و مبارزه با همه اشکال جرایم سازمان‌یافته فراملی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.food-safety-day		روز جهانی ایمنی غذا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.football-day		روز جهانی فوتبال		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.french-language-day		روز زبان فرانسوی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.friendship-day		روز بین‌المللی دوستی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.genocide-prevention-day		روز بین‌المللی یادبود و کرامت قربانیان جنایت نسل‌کشی و پیشگیری از این جنایت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.girl-child-day		روز بین‌المللی دختران		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.girls-in-ict-day		روز بین‌المللی دختران در فناوری اطلاعات و ارتباطات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.habitat-day		روز جهانی اسکان بشری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.happiness-day		روز جهانی شادی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.hope-day		روز بین‌المللی امید		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.horse-day		روز جهانی اسب		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.human-fraternity		روز بین‌المللی برادری انسانی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.human-rights-day		روز جهانی حقوق بشر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.human-solidarity-day		روز بین المللی همبستگی بشر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.human-spaceflight-day		روز بین‌المللی پرواز فضایی انسان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.humanitarian-day		روز جهانی انساندوستی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.immunization-week		هفته جهانی ایمن‌سازی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.indigenous-day		روز بین‌المللی مردم بومی جهان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.indigenous-women-day		روز بین‌المللی زنان و دختران بومی جهان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.information-access-day		روز بین‌المللی دسترسی همگانی به اطلاعات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.interfaith-harmony-week		هفته جهانی هماهنگی بین ادیان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-coffee-day		روز بین‌المللی قهوه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-for-dialogue-among-civilizations		روز بین‌المللی گفت‌وگوی تمدن‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-for-the-remembrance-of-the-slave-trade		روز بین المللی یادبود و الغاء تجارت برده		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-for-tolerance		روز بین المللی بردباری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-banks		روز بین‌المللی بانک‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-clean-air-for-blue-skies		روز جهانی هوای پاک برای آسمان آبی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-families		روز بین‌المللی خانواده‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-forests		روز بین‌المللی جنگل‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-light		روز بین‌المللی نور		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-plant-health		روز بین‌المللی سلامت گیاهان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-play		روز بین‌المللی بازی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-potato		روز بین‌المللی سیب‌زمینی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-reflection-on-the-1994-genocide		روز یادبود قربانیان نسل کشی رواندا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-of-solidarity-with-the-palestinian-people		روز بین‌المللی همبستگی با مردم فلسطین		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-day-peace		روز بین‌المللی صلح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-literacy-day		روز بین المللی سواد آموزی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-nowruz-day		روز بین المللی نوروز		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-tea-day		روز بین‌المللی چای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.international-translation-day		روز بین‌المللی ترجمه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.interventional-cardiology-day		روز بین‌المللی قلب و عروق مداخله‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.jazz-day		روز جهانی جاز		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.judicial-well-being-day		روز بین‌المللی رفاه قضایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.kiswahili-day		روز جهانی زبان سواحیلی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.landlocked-developing-countries-day		روز بین‌المللی آگاهی از نیازها و چالش‌های ویژه توسعه‌ای کشورهای درحال‌توسعه محصور در خشکی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.living-in-peace-day		روز بین‌المللی زندگی مسالمت‌آمیز در کنار هم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.maritime-day		روز جهانی دریانوردی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.markhor-day		روز بین‌المللی مارخور		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.media-information-literacy-week		هفته جهانی سواد رسانه‌ای و اطلاعاتی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.meditation-day		روز جهانی مراقبه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.mediterranean-diet-day		روز بین‌المللی رژیم غذایی مدیترانه‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.micro-small-medium-businesses-day		روز کسب‌وکارهای خرد، کوچک و متوسط		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.migrants-day		روز بین المللی مهاجران		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.migratory-bird-day		روز بین‌المللی پرندگان مهاجر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.migratory-bird-day-october		روز بین‌المللی پرندگان مهاجر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.mine-awareness-day		روز بین المللی آگاهی از مین و کمک به اقدام علیه مین		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.moon-day		روز بین‌المللی ماه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.mother-language-day		روز بین المللی زبان مادری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.mountain-day		روز بین المللی کوهستان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.multilateralism-for-peace-day		روز بین‌المللی چندجانبه‌گرایی و دیپلماسی برای صلح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.nelson-mandela-international-day		روز بین المللی نلسون ماندلا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.neutrality-day		روز بین‌المللی بی‌طرفی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.non-self-governing-week		هفته همبستگی با مردمان سرزمین‌های غیرخودمختار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.non-violence-day		روز بین المللی عدم خشونت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.nuclear-weapons-elimination-day		روز بین‌المللی ریشه‌کنی کامل سلاح‌های هسته‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.oceans-day		روز جهانی اقیانوس ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.older-persons-day		روز بین‌المللی سالمندان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.ozone-day		روز بین‌المللی حفظ لایه اوزون		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.parents-day		روز جهانی والدین		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.parliamentarism-day		روز بین‌المللی پارلمانتاریسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.peaceful-coexistence-day		روز بین‌المللی همزیستی مسالمت‌آمیز		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.peacekeepers-day		روز بین المللی حافظان صلح ملل متحد		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.police-cooperation-day		روز بین‌المللی همکاری پلیسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.press-freedom-day		روز جهانی آزادی مطبوعاتی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.prevention-extremism-when-conducive-terrorism-day		روز بین‌المللی پیشگیری از افراط‌گرایی خشونت‌آمیز در صورت منتهی‌شدن به تروریسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.protect-education-day		روز بین‌المللی حفاظت از آموزش در برابر حملات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.public-service-day		روز خدمات عمومی ملل متحد		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.racism-solidarity-week		هفته همبستگی با مردمان مبارز علیه نژادپرستی و تبعیض نژادی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.radio-day		روز جهانی رادیو		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.refugee-day		روز جهانی پناهندگان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.religious-based-violence-victims-day		روز بین‌المللی یادبود قربانیان اعمال خشونت بر اساس دین یا باور		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.remittances-day		روز بین‌المللی حواله‌های خانوادگی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.right-to-truth-day		روز بین المللی حق بر صحت و درستی درباره نقض فاحش حقوق بشر و منزلت قربانیان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.road-traffic-victims-day		روز جهانی یادآوری قربانیان ترافیک جاده ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.rural-development-day		روز جهانی توسعه روستایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.rural-women-day		روز بین المللی زنان روستایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.russian-language-day		روز زبان روسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.science-and-peace-week		هفته بین‌المللی علم و صلح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.science-technology-and-innovation-for-south-day		روز بین‌المللی علم، فناوری و نوآوری برای کشورهای جنوب		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.seagrass-day		روز جهانی علف‌های دریایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.second-world-war-remembrance-days		زمان بزرگداشت و آشتی برای کسانی که زندگی خود را در جریان جنگ جهانی دوم از دست دادند		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.sign-languages-day		روز بین‌المللی زبان‌های اشاره		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.slavery-abolition-day		روز بین المللی لغو برده داری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.snow-leopard-day		روز بین‌المللی پلنگ برفی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.social-justice-day		روز جهانی عدالت اجتماعی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.soil-day		روز جهانی خاک		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.solstice-day		روز بین‌المللی گرامیداشت انقلاب تابستانی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.south-south-cooperation-day		روز ملل متحد برای همکاری جنوب - جنوب		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.space-week		هفته جهانی فضا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.spanish-language-day		روز زبان اسپانیایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.sport-day		روز جهانی ورزش برای توسعه و صلح		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.srebrenica-genocide-commemoration-day		روز بین‌المللی تأمل و یادبود نسل‌کشی سال ۱۹۹۵ سربرنیتسا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.steelpan-day		روز جهانی استیل‌پن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.sustainable-gastronomy-day		روز جهانی گاسترونومی پایدار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.sustainable-transport-day		روز جهانی حمل‌ونقل پایدار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.telecommunication-day		روز جهانی ارتباطات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.terrorism-victims-day		روز بین‌المللی یاد بود و احترام به قربانیان تروریسم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.toilet-day		روز جهانی سرویس بهداشتی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.torture-victims-day		روز بین المللی حمایت از قربانیان شکنجه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.tourism-day		روز جهانی گردشگری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.tourism-resilience-day		روز جهانی تاب‌آوری گردشگری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.transatlantic-slave-trade		روز بین المللی یاد بود قربانیان بردگی و تجارت برده از آن سوی اقیانوس اطلس		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.tropics-day		روز بین‌المللی مناطق حاره‌ای		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.tsunami-awareness-day		روز جهانی آگاهی از سونامی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.tuna-day		روز جهانی ماهی تن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.un-day		روز ملل متحد		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.universal-health-coverage-day		روز بین‌المللی پوشش همگانی سلامت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.vesak-day		ویساک، روز ماه کامل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.victims-enforced-disappearance		روز بین‌المللی قربانیان ناپدیدشدگان اجباری		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.volunteer-day		روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.water-day		روز جهانی آب		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.wellness-day		روز بین‌المللی تندرستی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.widows-day		روز بین المللی بیوه ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.women-and-girls-in-science-day		روز بین‌المللی زنان و دختران در علم		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.women-girls-african-descent		روز بین‌المللی زنان و دختران تبار آفریقایی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.women-in-diplomacy-day		روز بین‌المللی زنان در دیپلماسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.women-judges-day		روز بین‌المللی قضات زن		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.women-searchers-missing-persons-day		روز بین‌المللی ارج‌گذاری به زنان جوینده مفقودان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.womens-day		روز بین‌المللی زنان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.work-safety-day		روز جهانی ایمنی و سلامت در محیط کار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-aids-day		روز جهانی ایدز		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-basketball-day		روز جهانی بسکتبال		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-bee-day		روز جهانی زنبور عسل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-blood-donor-day		روز جهانی اهداکنندگان خون		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-book-and-copyright-day		روز جهانی کتاب و حق پدید آورنده		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-chagas-disease-day		روز جهانی بیماری شاگاس		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-chess-day		روز جهانی شطرنج		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-childrens-day		روز جهانی کودکان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-day-against-child-labour		روز جهانی علیه کار کودک		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-food-day		روز جهانی غذا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-glaciers-day		روز جهانی یخچال‌های طبیعی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-health-day		روز جهانی بهداشت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-hepatitis-day		روز جهانی هپاتیت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-intellectual-property-day		روز جهانی مالکیت معنوی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-lake-day		روز جهانی دریاچه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-malaria-day		روز جهانی مالاریا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-mental-health-day		روز جهانی بهداشت روان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-meteorological-day		روز جهانی هواشناسی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-no-tobacco-day		روز جهانی خودداری از مصرف دخانیات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-patient-safety-day		روز جهانی ایمنی بیمار		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-philosophy-day		روز جهانی فلسفه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-poetry-day		روز جهانی شعر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-population-day		روز جهانی جمعیت		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-portuguese-language-day		روز جهانی زبان پرتغالی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-post-day		روز جهانی پست		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-pulses-day		روز جهانی حبوبات		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-science-day		روز جهانی علم در خدمت صلح و توسعه		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-teachers-day		روز جهانی آموزگاران		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-television-day		روز جهانی تلویزیون		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-tuberculosis-day		روز جهانی بیماری سل		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-turkic-language-family-day		روز جهانی خانواده زبان‌های ترکی		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-wetlands-day		روز جهانی تالاب‌ها		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-wildlife-day		روز جهانی حیات وحش		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.world-youth-skills-day		روز جهانی مهارت‌های جوانان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.yoga-day		روز جهانی یوگا		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.youth-day		روز بین المللی جوانان		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.zero-discrimination-day		روز عدم تبعیض		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	
+1	record-unreviewed	un.zero-waste-day		روز بین‌المللی پسماند صفر		INTERNATIONAL	https://www.un.org/en/observances/list-days-weeks	pending	

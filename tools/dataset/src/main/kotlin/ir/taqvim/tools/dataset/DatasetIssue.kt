@@ -35,6 +35,9 @@ enum class IssueKind {
 
     /** A `scope` whose area ids do not belong to the record's own country, or whose level and areas disagree. */
     SCOPE_MISMATCH,
+
+    /** A `reviewedOn` date on a record no reviewer has attested, which would read as a review that never happened. */
+    REVIEW_ATTESTATION,
 }
 
 /** One problem found in [file] at [location] (a JSON path). */

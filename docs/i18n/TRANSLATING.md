@@ -38,6 +38,9 @@ off in the table above.
    approves it.
 4. After the first complete review of a language, record the sign-off in the table above (date and reviewer).
 
+The order languages are reviewed in, and how that fits the dataset's own review queue, is in
+[../REVIEWING.md](../REVIEWING.md).
+
 ### 2a. Reviewing a machine-translated language
 
 1. Open the language in Weblate (or edit `res/values-<qualifier>/strings.xml` directly) and read every string

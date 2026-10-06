@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "test.attested",
+      "calendar": "GREGORIAN",
+      "source": "INTERNATIONAL",
+      "category": "INTERNATIONAL",
+      "isHoliday": false,
+      "title": {
+        "fa": "رویداد نمونه",
+        "en": "Sample event"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 1
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending",
+      "reviewedOn": "2026-10-06"
+    }
+  ]
+}

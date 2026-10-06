@@ -31,6 +31,7 @@ private fun JsonObject.child(key: String): JsonObject? = this[key] as? JsonObjec
  * with 29 February, Nepali 32; Islamic years at most 355 days), validity years, and one-off records (ADR-0036).
  */
 internal object SemanticChecks {
+    private const val PENDING_REVIEWER = "pending"
     private const val PERSIAN_LONG_MONTHS = 6
     private const val PERSIAN_LONG_MONTH_DAYS = 31
     private const val PERSIAN_SHORT_MONTH_DAYS = 30
@@ -44,9 +45,33 @@ internal object SemanticChecks {
         return duplicateIds(records) +
             records.flatMap {
                 ruleIssues(it, ids) + validityIssues(it) + OneOffChecks.reasonIssues(it) +
-                    titleReviewIssues(it) + scopeIssues(it)
+                    titleReviewIssues(it) + scopeIssues(it) + attestationIssues(it)
             } +
             OneOffChecks.repeatedDays(records)
+    }
+
+    /**
+     * A review date without a reviewer is not a review (docs/REVIEWING.md).
+     *
+     * The two fields are an attestation: who checked the record and when. A date beside `reviewedBy: pending` would
+     * claim a review that nobody did, which is the one thing the review workflow must not allow.
+     */
+    private fun attestationIssues(record: EventRecord): List<DatasetIssue> {
+        val reviewer = record.event.string("reviewedBy")
+        val reviewedOn = record.event.string("reviewedOn") ?: return emptyList()
+        return if (reviewer.isNullOrBlank() || reviewer == PENDING_REVIEWER) {
+            listOf(
+                issue(
+                    record,
+                    ".reviewedOn",
+                    IssueKind.REVIEW_ATTESTATION,
+                    "reviewedOn is '$reviewedOn' but reviewedBy is '$reviewer': " +
+                        "a date without a reviewer is not a review",
+                ),
+            )
+        } else {
+            emptyList()
+        }
     }
 
     /**
