@@ -21,6 +21,8 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.workdays.ShiftRotation
+import ir.taqvim.core.workdays.ShiftType
 import org.junit.jupiter.api.Test
 
 /** T-801: month pages built from the calendars, the language and the day events. */
@@ -49,6 +51,33 @@ class MonthPageBuilderTest {
         settings: CalendarSettings = PERSIAN_FIRST,
         language: LanguageSpec = persian,
     ): MonthPageBuilder = MonthPageBuilder(CalendarCalendars(settings), language, texts, palette, isoWeekdays)
+
+    private fun builderWithShifts(rotations: List<ShiftRotation>): MonthPageBuilder =
+        MonthPageBuilder(CalendarCalendars(PERSIAN_FIRST), persian, texts, palette, isoWeekdays, rotations)
+
+    @Test
+    fun `a cell carries the shift of its day, and nothing when the rotation is switched off`() {
+        // F-08: the month grid is where a shift worker actually reads their pattern.
+        val today = gregorian(2026, 4, 10)
+        val day = ShiftType("D")
+        val night = ShiftType("N")
+        val rotation = ShiftRotation(1, "Nights", today, listOf(day, day, night, night))
+
+        val labels =
+            builderWithShifts(listOf(rotation))
+                .build(0, today, today, null)
+                .grid.cells
+                .map { it.shiftLabel }
+        labels.none { it == null } shouldBe true
+        labels.distinct().toSet() shouldBe setOf("D", "N")
+
+        val hidden = builderWithShifts(listOf(rotation.copy(isActive = false)))
+        hidden
+            .build(0, today, today, null)
+            .grid.cells
+            .map { it.shiftLabel }
+            .distinct() shouldBe listOf(null)
+    }
 
     private fun digits(value: Int): String = Numerals.format(value.toLong(), persian.numerals)
 

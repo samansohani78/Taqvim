@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Christliche Feste</string>
   <string name="tools_source_personal">Meine Termine</string>
   <string name="tools_profiles_open">Arbeitstagsprofile</string>
+  <string name="tools_shifts_title">Schichtarbeit</string>
+  <string name="tools_shifts_loading">Zyklen werden geladen</string>
+  <string name="tools_shifts_empty_title">Keine Schichtzyklen</string>
+  <string name="tools_shifts_empty_message">Lege einen an, um deine Schichten im Kalender zu sehen: benenne zuerst die Schichtarten, dann tippe sie der Reihe nach an.</string>
+  <string name="tools_shifts_new">Neuer Zyklus</string>
+  <string name="tools_shifts_edit">Bearbeiten</string>
+  <string name="tools_shifts_delete">Löschen</string>
+  <string name="tools_shifts_inactive">Wird nicht im Kalender gezeigt</string>
+  <string name="tools_shifts_name">Name</string>
+  <string name="tools_shifts_types">Schichtarten</string>
+  <string name="tools_shifts_type_label">Schichtname</string>
+  <string name="tools_shifts_type_add">Hinzufügen</string>
+  <string name="tools_shifts_type_remove">Entfernen</string>
+  <string name="tools_shifts_pattern">Muster</string>
+  <string name="tools_shifts_pattern_empty">Tippe Schichten an, um den Zyklus zu bauen</string>
+  <string name="tools_shifts_pattern_undo">Letztes zurück</string>
+  <string name="tools_shifts_anchor">Erster Tag des Musters</string>
+  <string name="tools_shifts_active">Im Kalender zeigen</string>
+  <string name="tools_shifts_save">Speichern</string>
+  <string name="tools_shifts_cancel">Abbrechen</string>
+  <string name="tools_shifts_open">Schichtarbeit</string>
+  <string name="tools_shifts_type_color">Farbe %1$s für %2$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s entfernen</string>
 </resources>

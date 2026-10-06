@@ -148,4 +148,7 @@
   <string name="calendar_event_scope">対象：%1$s</string>
   <string name="calendar_source_jewish">ユダヤ教の記念日</string>
   <string name="calendar_source_christian">キリスト教の祝日</string>
+  <string name="calendar_shift_exception">この日の勤務</string>
+  <string name="calendar_shift_clear">パターンに戻す</string>
+  <string name="calendar_shift_none">勤務なし</string>
 </resources>

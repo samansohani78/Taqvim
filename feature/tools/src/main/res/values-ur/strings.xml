@@ -97,4 +97,27 @@
   <string name="tools_source_christian">مسیحی تہوار</string>
   <string name="tools_source_personal">میرے واقعات</string>
   <string name="tools_profiles_open">کام کے دنوں کے پروفائل</string>
+  <string name="tools_shifts_title">شفٹ کا کام</string>
+  <string name="tools_shifts_loading">دورانیے لوڈ ہو رہے ہیں</string>
+  <string name="tools_shifts_empty_title">کوئی شفٹ دورانیہ نہیں</string>
+  <string name="tools_shifts_empty_message">اپنی شفٹیں کیلنڈر پر دیکھنے کے لیے ایک بنائیں: پہلے شفٹ کی اقسام کا نام دیں، پھر ترتیب سے دبائیں۔</string>
+  <string name="tools_shifts_new">نیا دورانیہ</string>
+  <string name="tools_shifts_edit">ترمیم</string>
+  <string name="tools_shifts_delete">حذف</string>
+  <string name="tools_shifts_inactive">کیلنڈر پر نہیں دکھایا جاتا</string>
+  <string name="tools_shifts_name">نام</string>
+  <string name="tools_shifts_types">شفٹ کی اقسام</string>
+  <string name="tools_shifts_type_label">شفٹ کا نام</string>
+  <string name="tools_shifts_type_add">شامل کریں</string>
+  <string name="tools_shifts_type_remove">ہٹائیں</string>
+  <string name="tools_shifts_pattern">ترتیب</string>
+  <string name="tools_shifts_pattern_empty">دورانیہ بنانے کے لیے شفٹ دبائیں</string>
+  <string name="tools_shifts_pattern_undo">آخری واپس</string>
+  <string name="tools_shifts_anchor">ترتیب کا پہلا دن</string>
+  <string name="tools_shifts_active">کیلنڈر پر دکھائیں</string>
+  <string name="tools_shifts_save">محفوظ کریں</string>
+  <string name="tools_shifts_cancel">منسوخ</string>
+  <string name="tools_shifts_open">شفٹ کا کام</string>
+  <string name="tools_shifts_type_color">%2$s کے لیے رنگ %1$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s ہٹائیں</string>
 </resources>

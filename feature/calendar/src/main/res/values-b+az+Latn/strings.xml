@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">Aiddir: %1$s</string>
   <string name="calendar_source_jewish">Yəhudi mərasimləri</string>
   <string name="calendar_source_christian">Xristian bayramları</string>
+  <string name="calendar_shift_exception">Bu günün növbəsi</string>
+  <string name="calendar_shift_clear">Şablona qayıt</string>
+  <string name="calendar_shift_none">Növbə yoxdur</string>
 </resources>

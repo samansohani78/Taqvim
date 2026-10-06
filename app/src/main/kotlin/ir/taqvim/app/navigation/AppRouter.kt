@@ -83,7 +83,7 @@ internal class AppRouter(
             onMessage = showMessage,
             onOpenUrl = external::openUrl,
             onOpenSearch = { navigate(AppDestination.Search) },
-            onOpenShiftWork = { navigate(AppDestination.Pending(PendingFeature.SHIFT_WORK)) },
+            onOpenShiftWork = { navigate(AppDestination.ShiftWork) },
             onOpenPlanetaryHours = { navigate(AppDestination.PlanetaryHours(it.value)) },
         )
 

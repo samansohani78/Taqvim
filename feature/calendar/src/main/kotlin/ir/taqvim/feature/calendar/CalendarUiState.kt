@@ -11,6 +11,7 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.Weekday
+import ir.taqvim.core.workdays.ShiftRotation
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
@@ -72,6 +73,8 @@ data class CalendarContent(
     val secondaryChoices: ImmutableList<CalendarSystem> = persistentListOf(),
     /** Reminder choices of the official event whose source is shown, if any (T-1002). */
     val officialReminders: OfficialReminderChoices? = null,
+    /** The user's shift rotations (F-08); empty when they keep none, which is every user before the editor existed. */
+    val shiftRotations: ImmutableList<ShiftRotation> = persistentListOf(),
 )
 
 /** Dialogs opened from the toolbar menu (T-803). */

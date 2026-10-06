@@ -97,4 +97,27 @@
   <string name="tools_source_christian">基督教节日</string>
   <string name="tools_source_personal">我的事件</string>
   <string name="tools_profiles_open">工作日配置</string>
+  <string name="tools_shifts_title">轮班工作</string>
+  <string name="tools_shifts_loading">正在加载班次循环</string>
+  <string name="tools_shifts_empty_title">暂无班次循环</string>
+  <string name="tools_shifts_empty_message">添加一个即可在日历上看到你的班次：先为班次类型命名，再按顺序点选组成循环。</string>
+  <string name="tools_shifts_new">新建循环</string>
+  <string name="tools_shifts_edit">编辑</string>
+  <string name="tools_shifts_delete">删除</string>
+  <string name="tools_shifts_inactive">不在日历上显示</string>
+  <string name="tools_shifts_name">名称</string>
+  <string name="tools_shifts_types">班次类型</string>
+  <string name="tools_shifts_type_label">班次名称</string>
+  <string name="tools_shifts_type_add">添加</string>
+  <string name="tools_shifts_type_remove">移除</string>
+  <string name="tools_shifts_pattern">循环</string>
+  <string name="tools_shifts_pattern_empty">点选班次以组成循环</string>
+  <string name="tools_shifts_pattern_undo">撤销上一个</string>
+  <string name="tools_shifts_anchor">循环的首日</string>
+  <string name="tools_shifts_active">在日历上显示</string>
+  <string name="tools_shifts_save">保存</string>
+  <string name="tools_shifts_cancel">取消</string>
+  <string name="tools_shifts_open">轮班工作</string>
+  <string name="tools_shifts_type_color">%2$s 的颜色 %1$s</string>
+  <string name="tools_shifts_type_remove_named">移除%1$s</string>
 </resources>

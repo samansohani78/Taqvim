@@ -15,6 +15,7 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.praytimes.PrayerSettings
+import ir.taqvim.core.workdays.ShiftRotation
 import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -167,4 +168,35 @@ interface OfficialReminderStore {
 /** The current civil day; emits again when the day changes. */
 fun interface TodaySource {
     fun today(): Flow<Jdn>
+}
+
+/**
+ * The user's shift rotations (F-08), bound in `:app`; an empty list means the calendar shows no shifts.
+ *
+ * The calendar takes the rotations rather than a day-to-label map so it can answer for any day it draws — a month
+ * pager reaches years either way — without asking again for every page.
+ */
+interface ShiftScheduleSource {
+    fun rotations(): Flow<List<ShiftRotation>>
+
+    /** Sets the shift worked on [day] of [rotationId]; a `null` [shift] removes the exception. */
+    suspend fun setException(
+        rotationId: Long,
+        day: Jdn,
+        shift: String?,
+    )
+
+    companion object {
+        /** No rotations: what a build without the shift feature, or a user without one, sees. */
+        val NONE: ShiftScheduleSource =
+            object : ShiftScheduleSource {
+                override fun rotations(): Flow<List<ShiftRotation>> = flowOf(emptyList())
+
+                override suspend fun setException(
+                    rotationId: Long,
+                    day: Jdn,
+                    shift: String?,
+                ) = Unit
+            }
+    }
 }

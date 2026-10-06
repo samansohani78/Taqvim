@@ -97,4 +97,27 @@
   <string name="tools_source_christian">مسیحي اختران</string>
   <string name="tools_source_personal">زما پیښې</string>
   <string name="tools_profiles_open">د کاري ورځو پروفایلونه</string>
+  <string name="tools_shifts_title">نوبتي کار</string>
+  <string name="tools_shifts_loading">د چرخو بارول</string>
+  <string name="tools_shifts_empty_title">د نوبت چرخه نشته</string>
+  <string name="tools_shifts_empty_message">یوه جوړه کړئ چې خپل نوبتونه په تقویم کې وګورئ: لومړی د نوبتونو ډولونه ونوموئ، بیا یې په ترتیب سره ووهئ.</string>
+  <string name="tools_shifts_new">نوې چرخه</string>
+  <string name="tools_shifts_edit">سمون</string>
+  <string name="tools_shifts_delete">ړنګول</string>
+  <string name="tools_shifts_inactive">په تقویم کې نه ښکاري</string>
+  <string name="tools_shifts_name">نوم</string>
+  <string name="tools_shifts_types">د نوبت ډولونه</string>
+  <string name="tools_shifts_type_label">د نوبت نوم</string>
+  <string name="tools_shifts_type_add">زیاتول</string>
+  <string name="tools_shifts_type_remove">ړنګول</string>
+  <string name="tools_shifts_pattern">بېلګه</string>
+  <string name="tools_shifts_pattern_empty">د چرخې جوړولو لپاره نوبت ووهئ</string>
+  <string name="tools_shifts_pattern_undo">وروستی بیرته</string>
+  <string name="tools_shifts_anchor">د بېلګې لومړۍ ورځ</string>
+  <string name="tools_shifts_active">په تقویم کې ښکاره کړه</string>
+  <string name="tools_shifts_save">ساتل</string>
+  <string name="tools_shifts_cancel">لغوه</string>
+  <string name="tools_shifts_open">نوبتي کار</string>
+  <string name="tools_shifts_type_color">د %2$s لپاره رنګ %1$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s ړنګ کړئ</string>
 </resources>

@@ -242,6 +242,8 @@ internal data class ShiftRotationRecord(
     val anchorJdn: Long,
     val pattern: List<String>,
     val isActive: Boolean = true,
+    /** Colour per shift label (F-08); defaulted, so a backup written before colours existed still reads. */
+    val shiftColors: Map<String, Int> = emptyMap(),
 )
 
 @Serializable

@@ -37,6 +37,26 @@ class TaqvimDatabaseMigrationTest {
         }
 
     @Test
+    fun shiftRotationsSurviveMigrationToEightWithoutColors() {
+        // F-08 added a colour per shift label. A rotation stored before it must keep its pattern and read as having
+        // no colours, not as having lost its days.
+        val name = "migration-7-8.db"
+        helper.createDatabase(name, 7).use { db ->
+            db.execSQL(
+                "INSERT INTO shift_rotations (id, name, anchor_jdn, pattern, is_active) " +
+                    "VALUES (1, 'Nights', 2461000, 'Day\u001FNight\u001F', 1)",
+            )
+        }
+        helper.runMigrationsAndValidate(name, 8, true, *TaqvimMigrations.ALL.toTypedArray()).use { db ->
+            db.query("SELECT pattern, shift_colors FROM shift_rotations WHERE id = 1").use { row ->
+                row.moveToFirst() shouldBe true
+                row.getString(0) shouldBe "Day\u001FNight\u001F"
+                row.getString(1) shouldBe ""
+            }
+        }
+    }
+
+    @Test
     fun eventsSurviveMigrationFromFourAndGainExceptionsAndOverrides() {
         val name = "migration-4-5.db"
         helper.createDatabase(name, 4).use { db ->

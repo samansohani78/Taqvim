@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">Gilt für: %1$s</string>
   <string name="calendar_source_jewish">Jüdische Gedenktage</string>
   <string name="calendar_source_christian">Christliche Feste</string>
+  <string name="calendar_shift_exception">Schicht an diesem Tag</string>
+  <string name="calendar_shift_clear">Zurück zum Muster</string>
+  <string name="calendar_shift_none">Keine Schicht</string>
 </resources>

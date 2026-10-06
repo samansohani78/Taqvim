@@ -17,6 +17,7 @@ import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.ui.component.DayCellModel
 import ir.taqvim.core.ui.component.MonthGridModel
 import ir.taqvim.core.ui.component.WeekNumberModel
+import ir.taqvim.core.workdays.ShiftRotation
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -106,6 +107,8 @@ class MonthPageBuilder(
     private val palette: IndicatorPalette,
     /** Short standalone weekday names in ISO order (Monday first). */
     private val weekdayNames: List<String>,
+    /** The user's shift rotations (F-08); only the active ones put a label on a day. */
+    private val rotations: List<ShiftRotation> = emptyList(),
 ) {
     private val primary = calendars.arithmetic.first()
     private val weekStart = calendars.settings.weekStart
@@ -174,9 +177,23 @@ class MonthPageBuilder(
             isToday = day == today,
             isSelected = day == selected,
             isHoliday = officialHoliday || weekend,
+            shiftLabel = shiftLabel(day),
             inCurrentMonth = date.year == month.year && date.month == month.month,
         )
     }
+
+    /**
+     * The shift of [day] (F-08), or `null` when no active rotation covers it.
+     *
+     * A cell has room for one label, so the first active rotation that answers wins; a user who keeps two rotations
+     * sees the one they listed first rather than a cell trying to show both.
+     */
+    private fun shiftLabel(day: Jdn): String? =
+        rotations
+            .asSequence()
+            .filter { it.isActive }
+            .mapNotNull { it.shiftOn(day)?.label }
+            .firstOrNull()
 
     private fun description(
         date: CalendarDate,

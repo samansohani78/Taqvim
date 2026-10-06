@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">نوې پېښه</string>
   <string name="shortcut_prayer_times">د لمانځه وختونه</string>
   <string name="shortcut_converter">د نېټې اړونکی</string>
-  <string name="pending_shift_work">د شفټ کار لا شتون نه لري.</string>
   <string name="pending_settings">دا تنظیم لا شتون نه لري.</string>
   <string name="message_no_upcoming_occurrence">دې پېښې راتلونکې نېټه نه لري.</string>
   <string name="message_setting_not_saved">تنظیم خوندي نه شو.</string>

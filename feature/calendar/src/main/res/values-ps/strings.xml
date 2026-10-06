@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">لپاره: %1$s</string>
   <string name="calendar_source_jewish">یهودي مناسبتونه</string>
   <string name="calendar_source_christian">مسیحي اختران</string>
+  <string name="calendar_shift_exception">د دې ورځې نوبت</string>
+  <string name="calendar_shift_clear">بېلګې ته بیرته</string>
+  <string name="calendar_shift_none">نوبت نشته</string>
 </resources>

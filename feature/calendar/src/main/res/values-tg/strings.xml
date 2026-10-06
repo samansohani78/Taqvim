@@ -148,4 +148,7 @@
   <string name="calendar_event_scope">Барои: %1$s</string>
   <string name="calendar_source_jewish">Маросимҳои яҳудӣ</string>
   <string name="calendar_source_christian">Ҷашнҳои масеҳӣ</string>
+  <string name="calendar_shift_exception">Навбати ин рӯз</string>
+  <string name="calendar_shift_clear">Бозгашт ба намуна</string>
+  <string name="calendar_shift_none">Бе навбат</string>
 </resources>

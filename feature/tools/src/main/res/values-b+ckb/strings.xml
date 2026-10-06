@@ -97,4 +97,27 @@
   <string name="tools_source_christian">جەژنە مەسیحییەکان</string>
   <string name="tools_source_personal">ڕووداوەکانم</string>
   <string name="tools_profiles_open">پرۆفایلی ڕۆژانی کار</string>
+  <string name="tools_shifts_title">کاری نۆرە</string>
+  <string name="tools_shifts_loading">بارکردنی خولەکان</string>
+  <string name="tools_shifts_empty_title">خولی نۆرە نییە</string>
+  <string name="tools_shifts_empty_message">یەکێک دروست بکە بۆ بینینی نۆرەکانت لە ڕۆژژمێر: سەرەتا جۆرەکانی نۆرە ناو بنێ، پاشان بە ڕیز لێیان بدە.</string>
+  <string name="tools_shifts_new">خولی نوێ</string>
+  <string name="tools_shifts_edit">دەستکاری</string>
+  <string name="tools_shifts_delete">سڕینەوە</string>
+  <string name="tools_shifts_inactive">لە ڕۆژژمێردا نیشان نادرێت</string>
+  <string name="tools_shifts_name">ناو</string>
+  <string name="tools_shifts_types">جۆرەکانی نۆرە</string>
+  <string name="tools_shifts_type_label">ناوی نۆرە</string>
+  <string name="tools_shifts_type_add">زیادکردن</string>
+  <string name="tools_shifts_type_remove">لابردن</string>
+  <string name="tools_shifts_pattern">نەخشە</string>
+  <string name="tools_shifts_pattern_empty">بۆ دروستکردنی خول لە نۆرەیەک بدە</string>
+  <string name="tools_shifts_pattern_undo">پاشگەزبوونەوە</string>
+  <string name="tools_shifts_anchor">یەکەم ڕۆژی نەخشە</string>
+  <string name="tools_shifts_active">لە ڕۆژژمێردا پیشان بدە</string>
+  <string name="tools_shifts_save">پاشەکەوت</string>
+  <string name="tools_shifts_cancel">هەڵوەشاندنەوە</string>
+  <string name="tools_shifts_open">کاری نۆرە</string>
+  <string name="tools_shifts_type_color">ڕەنگی %1$s بۆ %2$s</string>
+  <string name="tools_shifts_type_remove_named">لابردنی %1$s</string>
 </resources>

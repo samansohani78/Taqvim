@@ -31,6 +31,7 @@ val calendarFeatureModule =
                 get(),
                 initialDay = parameters.getOrNull<Jdn>(),
                 officialReminders = getOrNull() ?: OfficialReminderStore.NONE,
+                shifts = getOrNull() ?: ShiftScheduleSource.NONE,
             )
         }
     }

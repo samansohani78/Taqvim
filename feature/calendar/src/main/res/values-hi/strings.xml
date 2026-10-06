@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">किनके लिए: %1$s</string>
   <string name="calendar_source_jewish">यहूदी पर्व</string>
   <string name="calendar_source_christian">ईसाई पर्व</string>
+  <string name="calendar_shift_exception">इस दिन की शिफ़्ट</string>
+  <string name="calendar_shift_clear">पैटर्न पर लौटें</string>
+  <string name="calendar_shift_none">कोई शिफ़्ट नहीं</string>
 </resources>

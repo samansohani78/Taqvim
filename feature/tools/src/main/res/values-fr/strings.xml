@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Fêtes chrétiennes</string>
   <string name="tools_source_personal">Mes évènements</string>
   <string name="tools_profiles_open">Profils de jours ouvrés</string>
+  <string name="tools_shifts_title">Travail posté</string>
+  <string name="tools_shifts_loading">Chargement des cycles</string>
+  <string name="tools_shifts_empty_title">Aucun cycle de postes</string>
+  <string name="tools_shifts_empty_message">Ajoutez-en un pour voir vos postes dans le calendrier : nommez d\'abord les types de poste, puis touchez-les dans l\'ordre.</string>
+  <string name="tools_shifts_new">Nouveau cycle</string>
+  <string name="tools_shifts_edit">Modifier</string>
+  <string name="tools_shifts_delete">Supprimer</string>
+  <string name="tools_shifts_inactive">Non affiché dans le calendrier</string>
+  <string name="tools_shifts_name">Nom</string>
+  <string name="tools_shifts_types">Types de poste</string>
+  <string name="tools_shifts_type_label">Nom du poste</string>
+  <string name="tools_shifts_type_add">Ajouter</string>
+  <string name="tools_shifts_type_remove">Retirer</string>
+  <string name="tools_shifts_pattern">Motif</string>
+  <string name="tools_shifts_pattern_empty">Touchez un poste pour construire le cycle</string>
+  <string name="tools_shifts_pattern_undo">Annuler le dernier</string>
+  <string name="tools_shifts_anchor">Premier jour du motif</string>
+  <string name="tools_shifts_active">Afficher dans le calendrier</string>
+  <string name="tools_shifts_save">Enregistrer</string>
+  <string name="tools_shifts_cancel">Annuler</string>
+  <string name="tools_shifts_open">Travail posté</string>
+  <string name="tools_shifts_type_color">Couleur %1$s pour %2$s</string>
+  <string name="tools_shifts_type_remove_named">Retirer %1$s</string>
 </resources>

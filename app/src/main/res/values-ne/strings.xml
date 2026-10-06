@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">नयाँ कार्यक्रम</string>
   <string name="shortcut_prayer_times">नमाज समय</string>
   <string name="shortcut_converter">मिति रूपान्तरक</string>
-  <string name="pending_shift_work">सिफ्ट काम अहिलेसम्म उपलब्ध छैन।</string>
   <string name="pending_settings">यो सेटिङ अहिलेसम्म उपलब्ध छैन।</string>
   <string name="message_no_upcoming_occurrence">यो कार्यक्रमको कुनै आगामी मिति छैन।</string>
   <string name="message_setting_not_saved">सेटिङ सुरक्षित गर्न सकिएन।</string>

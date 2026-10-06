@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">کے لیے: %1$s</string>
   <string name="calendar_source_jewish">یہودی تہوار</string>
   <string name="calendar_source_christian">مسیحی تہوار</string>
+  <string name="calendar_shift_exception">اس دن کی شفٹ</string>
+  <string name="calendar_shift_clear">ترتیب پر واپس</string>
+  <string name="calendar_shift_none">کوئی شفٹ نہیں</string>
 </resources>

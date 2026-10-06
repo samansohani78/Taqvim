@@ -153,3 +153,5 @@ feature/tools/src/main/res: tools_source_afghanistan | Country name spelled the 
 feature/tools/src/main/res: tools_source_nepal | Country name spelled the same way in these languages (az uz de es id kmr ms tr)
 feature/tools/src/main/res: tools_profiles_name | "Name" is the same word in German (de)
 feature/tools/src/main/res: tools_profiles_edit | "Edit" is the same word in Indonesian (id)
+feature/tools/src/main/res: tools_shifts_name | "Name" is the same word in German (de)
+feature/tools/src/main/res: tools_shifts_edit | "Edit" is the same word in Indonesian (id)

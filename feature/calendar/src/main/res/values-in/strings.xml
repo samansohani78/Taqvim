@@ -148,4 +148,7 @@
   <string name="calendar_event_scope">Berlaku untuk: %1$s</string>
   <string name="calendar_source_jewish">Hari raya Yahudi</string>
   <string name="calendar_source_christian">Hari raya Kristen</string>
+  <string name="calendar_shift_exception">Sif hari ini</string>
+  <string name="calendar_shift_clear">Kembali ke pola</string>
+  <string name="calendar_shift_none">Tanpa sif</string>
 </resources>

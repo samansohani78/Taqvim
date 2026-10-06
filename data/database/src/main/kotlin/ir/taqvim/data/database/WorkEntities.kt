@@ -14,7 +14,12 @@ import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.core.workdays.WorkdayProfile
 
-/** A repeating shift cycle (`shift_rotations`): [pattern] holds one shift label per day, starting on [anchorJdn]. */
+/**
+ * A repeating shift cycle (`shift_rotations`): [pattern] holds one shift label per day, starting on [anchorJdn].
+ *
+ * [shiftColors] is the colour of each label as an ARGB int. A label with no colour draws in the theme's own, so a
+ * rotation stored before colours existed keeps working.
+ */
 @Entity(tableName = "shift_rotations")
 data class ShiftRotationEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
@@ -22,6 +27,7 @@ data class ShiftRotationEntity(
     @ColumnInfo(name = "anchor_jdn") val anchorJdn: Long,
     val pattern: List<String>,
     @ColumnInfo(name = "is_active") val isActive: Boolean = true,
+    @ColumnInfo(name = "shift_colors", defaultValue = "") val shiftColors: Map<String, Int> = emptyMap(),
 )
 
 /** The shift actually worked on day [jdn] of a rotation (`shift_rotation_records`), overriding the pattern. */

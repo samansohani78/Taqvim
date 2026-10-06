@@ -207,6 +207,15 @@ interface ShiftRotationDao {
         fromJdn: Long,
         toJdn: Long,
     ): Flow<List<ShiftRotationRecordEntity>>
+
+    /**
+     * Every day exception of every rotation (F-08).
+     *
+     * They are a user's own corrections to a pattern — a swapped shift, a covered night — so there are few of them
+     * and the calendar needs all of them at once to colour a month.
+     */
+    @Query("SELECT * FROM shift_rotation_records ORDER BY rotation_id, jdn")
+    fun observeAllRecords(): Flow<List<ShiftRotationRecordEntity>>
 }
 
 /** Named workday profiles. */

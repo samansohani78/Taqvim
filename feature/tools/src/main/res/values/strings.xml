@@ -123,4 +123,27 @@
   <string name="tools_source_christian">Christian feasts</string>
   <string name="tools_source_personal">My events</string>
   <string name="tools_profiles_open">Workday profiles</string>
+  <string name="tools_shifts_title">Shift work</string>
+  <string name="tools_shifts_loading">Loading rotations</string>
+  <string name="tools_shifts_empty_title">No shift rotations</string>
+  <string name="tools_shifts_empty_message">Add one to see your shifts on the calendar: name the kinds of shift you work, then tap them in order to build the cycle.</string>
+  <string name="tools_shifts_new">New rotation</string>
+  <string name="tools_shifts_edit">Edit</string>
+  <string name="tools_shifts_delete">Delete</string>
+  <string name="tools_shifts_inactive">Not shown on the calendar</string>
+  <string name="tools_shifts_name">Name</string>
+  <string name="tools_shifts_types">Shift types</string>
+  <string name="tools_shifts_type_label">Shift name</string>
+  <string name="tools_shifts_type_add">Add</string>
+  <string name="tools_shifts_type_remove">Remove</string>
+  <string name="tools_shifts_pattern">Pattern</string>
+  <string name="tools_shifts_pattern_empty">Tap a shift to build the cycle</string>
+  <string name="tools_shifts_pattern_undo">Undo last</string>
+  <string name="tools_shifts_anchor">First day of the pattern</string>
+  <string name="tools_shifts_active">Show on the calendar</string>
+  <string name="tools_shifts_save">Save</string>
+  <string name="tools_shifts_cancel">Cancel</string>
+  <string name="tools_shifts_open">Shift work</string>
+  <string name="tools_shifts_type_color">Colour %1$s for %2$s</string>
+  <string name="tools_shifts_type_remove_named">Remove %1$s</string>
 </resources>

@@ -169,4 +169,7 @@
   <string name="calendar_event_scope">Относится к: %1$s</string>
   <string name="calendar_source_jewish">Еврейские памятные дни</string>
   <string name="calendar_source_christian">Христианские праздники</string>
+  <string name="calendar_shift_exception">Смена в этот день</string>
+  <string name="calendar_shift_clear">Вернуть к схеме</string>
+  <string name="calendar_shift_none">Без смены</string>
 </resources>

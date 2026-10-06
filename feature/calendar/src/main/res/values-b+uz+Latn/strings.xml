@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">Kimlar uchun: %1$s</string>
   <string name="calendar_source_jewish">Yahudiy marosimlari</string>
   <string name="calendar_source_christian">Nasroniy bayramlari</string>
+  <string name="calendar_shift_exception">Shu kungi smena</string>
+  <string name="calendar_shift_clear">Naqshga qaytish</string>
+  <string name="calendar_shift_none">Smena yoʻq</string>
 </resources>

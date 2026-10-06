@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">Acara baharu</string>
   <string name="shortcut_prayer_times">Waktu solat</string>
   <string name="shortcut_converter">Penukar tarikh</string>
-  <string name="pending_shift_work">Kerja syif belum tersedia.</string>
   <string name="pending_settings">Tetapan ini belum tersedia.</string>
   <string name="message_no_upcoming_occurrence">Acara ini tiada tarikh akan datang.</string>
   <string name="message_setting_not_saved">Tetapan tidak dapat disimpan.</string>

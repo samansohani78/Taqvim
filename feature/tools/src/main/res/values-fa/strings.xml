@@ -102,4 +102,27 @@
   <string name="tools_source_christian">اعیاد مسیحی</string>
   <string name="tools_source_personal">رویدادهای من</string>
   <string name="tools_profiles_open">نمایه‌های روز کاری</string>
+  <string name="tools_shifts_title">کار شیفتی</string>
+  <string name="tools_shifts_loading">در حال بارگذاری چرخه‌ها</string>
+  <string name="tools_shifts_empty_title">چرخهٔ شیفتی ندارید</string>
+  <string name="tools_shifts_empty_message">یکی بسازید تا شیفت‌هایتان روی تقویم دیده شود: نخست نوع شیفت‌ها را نام ببرید، سپس به ترتیب بزنید تا چرخه ساخته شود.</string>
+  <string name="tools_shifts_new">چرخهٔ تازه</string>
+  <string name="tools_shifts_edit">ویرایش</string>
+  <string name="tools_shifts_delete">حذف</string>
+  <string name="tools_shifts_inactive">روی تقویم نمایش داده نمی‌شود</string>
+  <string name="tools_shifts_name">نام</string>
+  <string name="tools_shifts_types">نوع شیفت‌ها</string>
+  <string name="tools_shifts_type_label">نام شیفت</string>
+  <string name="tools_shifts_type_add">افزودن</string>
+  <string name="tools_shifts_type_remove">حذف</string>
+  <string name="tools_shifts_pattern">الگو</string>
+  <string name="tools_shifts_pattern_empty">برای ساختن چرخه روی شیفت‌ها بزنید</string>
+  <string name="tools_shifts_pattern_undo">واگرد آخرین</string>
+  <string name="tools_shifts_anchor">نخستین روز الگو</string>
+  <string name="tools_shifts_active">نمایش روی تقویم</string>
+  <string name="tools_shifts_save">ذخیره</string>
+  <string name="tools_shifts_cancel">انصراف</string>
+  <string name="tools_shifts_open">کار شیفتی</string>
+  <string name="tools_shifts_type_color">رنگ %1$s برای %2$s</string>
+  <string name="tools_shifts_type_remove_named">حذف %1$s</string>
 </resources>

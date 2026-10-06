@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Cejnên mesîhiyan</string>
   <string name="tools_source_personal">Bûyerên min</string>
   <string name="tools_profiles_open">Profîlên rojên kar</string>
+  <string name="tools_shifts_title">Karê nobetê</string>
+  <string name="tools_shifts_loading">Barkirina dewran</string>
+  <string name="tools_shifts_empty_title">Dewrana nobetê tune</string>
+  <string name="tools_shifts_empty_message">Yekê zêde bike da ku nobetên xwe li ser salnameyê bibînî: pêşî cureyên nobetê bi nav bike, paşê bi rêz li wan bixe.</string>
+  <string name="tools_shifts_new">Dewraneke nû</string>
+  <string name="tools_shifts_edit">Sererastkirin</string>
+  <string name="tools_shifts_delete">Jêbirin</string>
+  <string name="tools_shifts_inactive">Li ser salnameyê nayê xuyan</string>
+  <string name="tools_shifts_name">Nav</string>
+  <string name="tools_shifts_types">Cureyên nobetê</string>
+  <string name="tools_shifts_type_label">Navê nobetê</string>
+  <string name="tools_shifts_type_add">Zêde bike</string>
+  <string name="tools_shifts_type_remove">Rake</string>
+  <string name="tools_shifts_pattern">Şêwe</string>
+  <string name="tools_shifts_pattern_empty">Ji bo çêkirina dewranê li nobetekê bixe</string>
+  <string name="tools_shifts_pattern_undo">Ya dawî vegerîne</string>
+  <string name="tools_shifts_anchor">Roja yekem a şêweyê</string>
+  <string name="tools_shifts_active">Li ser salnameyê nîşan bide</string>
+  <string name="tools_shifts_save">Tomar bike</string>
+  <string name="tools_shifts_cancel">Betal</string>
+  <string name="tools_shifts_open">Karê nobetê</string>
+  <string name="tools_shifts_type_color">Rengê %1$s ji bo %2$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s rake</string>
 </resources>

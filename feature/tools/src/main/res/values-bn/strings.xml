@@ -97,4 +97,27 @@
   <string name="tools_source_christian">খ্রিষ্টীয় পার্বণ</string>
   <string name="tools_source_personal">আমার ইভেন্ট</string>
   <string name="tools_profiles_open">কর্মদিবস প্রোফাইল</string>
+  <string name="tools_shifts_title">শিফট কাজ</string>
+  <string name="tools_shifts_loading">চক্র লোড হচ্ছে</string>
+  <string name="tools_shifts_empty_title">কোনো শিফট চক্র নেই</string>
+  <string name="tools_shifts_empty_message">ক্যালেন্ডারে শিফট দেখতে একটি যোগ করুন: আগে শিফটের ধরন নাম দিন, তারপর ক্রমে ট্যাপ করুন।</string>
+  <string name="tools_shifts_new">নতুন চক্র</string>
+  <string name="tools_shifts_edit">সম্পাদনা</string>
+  <string name="tools_shifts_delete">মুছুন</string>
+  <string name="tools_shifts_inactive">ক্যালেন্ডারে দেখানো হয় না</string>
+  <string name="tools_shifts_name">নাম</string>
+  <string name="tools_shifts_types">শিফটের ধরন</string>
+  <string name="tools_shifts_type_label">শিফটের নাম</string>
+  <string name="tools_shifts_type_add">যোগ করুন</string>
+  <string name="tools_shifts_type_remove">সরান</string>
+  <string name="tools_shifts_pattern">প্যাটার্ন</string>
+  <string name="tools_shifts_pattern_empty">চক্র গড়তে শিফটে ট্যাপ করুন</string>
+  <string name="tools_shifts_pattern_undo">শেষটি ফেরান</string>
+  <string name="tools_shifts_anchor">প্যাটার্নের প্রথম দিন</string>
+  <string name="tools_shifts_active">ক্যালেন্ডারে দেখান</string>
+  <string name="tools_shifts_save">সংরক্ষণ</string>
+  <string name="tools_shifts_cancel">বাতিল</string>
+  <string name="tools_shifts_open">শিফট কাজ</string>
+  <string name="tools_shifts_type_color">%2$s এর জন্য রং %1$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s সরান</string>
 </resources>

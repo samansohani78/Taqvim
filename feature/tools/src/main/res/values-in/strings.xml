@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Hari raya Kristen</string>
   <string name="tools_source_personal">Acara saya</string>
   <string name="tools_profiles_open">Profil hari kerja</string>
+  <string name="tools_shifts_title">Kerja sif</string>
+  <string name="tools_shifts_loading">Memuat siklus</string>
+  <string name="tools_shifts_empty_title">Belum ada siklus sif</string>
+  <string name="tools_shifts_empty_message">Tambahkan satu untuk melihat sif Anda di kalender: beri nama jenis sifnya dulu, lalu ketuk berurutan.</string>
+  <string name="tools_shifts_new">Siklus baru</string>
+  <string name="tools_shifts_edit">Edit</string>
+  <string name="tools_shifts_delete">Hapus</string>
+  <string name="tools_shifts_inactive">Tidak ditampilkan di kalender</string>
+  <string name="tools_shifts_name">Nama</string>
+  <string name="tools_shifts_types">Jenis sif</string>
+  <string name="tools_shifts_type_label">Nama sif</string>
+  <string name="tools_shifts_type_add">Tambah</string>
+  <string name="tools_shifts_type_remove">Hapus</string>
+  <string name="tools_shifts_pattern">Pola</string>
+  <string name="tools_shifts_pattern_empty">Ketuk sif untuk menyusun siklus</string>
+  <string name="tools_shifts_pattern_undo">Urungkan terakhir</string>
+  <string name="tools_shifts_anchor">Hari pertama pola</string>
+  <string name="tools_shifts_active">Tampilkan di kalender</string>
+  <string name="tools_shifts_save">Simpan</string>
+  <string name="tools_shifts_cancel">Batal</string>
+  <string name="tools_shifts_open">Kerja sif</string>
+  <string name="tools_shifts_type_color">Warna %1$s untuk %2$s</string>
+  <string name="tools_shifts_type_remove_named">Hapus %1$s</string>
 </resources>

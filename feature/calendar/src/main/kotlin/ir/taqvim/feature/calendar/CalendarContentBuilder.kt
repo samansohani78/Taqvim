@@ -5,6 +5,7 @@
 package ir.taqvim.feature.calendar
 
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.workdays.ShiftRotation
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -18,6 +19,8 @@ internal data class Loaded(
     val months: ImmutableList<MonthEvents>,
     val overview: DayOverview?,
     val times: DayTimesState,
+    /** The user's shift rotations (F-08); empty when they keep none. */
+    val rotations: List<ShiftRotation> = emptyList(),
 )
 
 /** `null` days follow today: no explicit selection, or the shown month is the selected day's month. */
@@ -43,6 +46,7 @@ internal fun calendarContent(
     val selected = CalendarRangeGuard.nearestValid(calendars, state.selectedDay ?: today, today)
     val shown = CalendarRangeGuard.nearestValid(calendars, state.shownDay ?: selected, today)
     return CalendarContent(
+        shiftRotations = loaded.rotations.toImmutableList(),
         today = today,
         selectedDay = selected,
         calendars = calendars.systems.toImmutableList(),

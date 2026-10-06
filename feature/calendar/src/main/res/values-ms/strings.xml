@@ -148,4 +148,7 @@
   <string name="calendar_event_scope">Terpakai kepada: %1$s</string>
   <string name="calendar_source_jewish">Perayaan Yahudi</string>
   <string name="calendar_source_christian">Perayaan Kristian</string>
+  <string name="calendar_shift_exception">Syif hari ini</string>
+  <string name="calendar_shift_clear">Kembali ke corak</string>
+  <string name="calendar_shift_none">Tiada syif</string>
 </resources>

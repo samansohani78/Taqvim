@@ -156,4 +156,7 @@
   <string name="calendar_event_scope">برای: %1$s</string>
   <string name="calendar_source_jewish">مناسبت‌های یهودی</string>
   <string name="calendar_source_christian">اعیاد مسیحی</string>
+  <string name="calendar_shift_exception">شیفت این روز</string>
+  <string name="calendar_shift_clear">بازگشت به الگو</string>
+  <string name="calendar_shift_none">بدون شیفت</string>
 </resources>

@@ -52,6 +52,15 @@ sealed interface CalendarAction {
 
     data object OpenShiftWork : Event
 
+    /**
+     * Sets the shift worked on the selected day (F-08), overriding the rotation's pattern for that day only; a
+     * `null` [shift] drops the exception and the pattern applies again.
+     */
+    data class SetShiftException(
+        val rotationId: Long,
+        val shift: String?,
+    ) : CalendarAction
+
     /** The planetary hours of the selected day. */
     data object OpenPlanetaryHours : Event
 

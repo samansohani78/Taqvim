@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">Ji bo: %1$s</string>
   <string name="calendar_source_jewish">Bûyerên cihûyan</string>
   <string name="calendar_source_christian">Cejnên mesîhiyan</string>
+  <string name="calendar_shift_exception">Nobeta vê rojê</string>
+  <string name="calendar_shift_clear">Vegere şêweyê</string>
+  <string name="calendar_shift_none">Bê nobet</string>
 </resources>

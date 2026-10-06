@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Христианские праздники</string>
   <string name="tools_source_personal">Мои события</string>
   <string name="tools_profiles_open">Профили рабочих дней</string>
+  <string name="tools_shifts_title">Сменная работа</string>
+  <string name="tools_shifts_loading">Загрузка циклов</string>
+  <string name="tools_shifts_empty_title">Циклов смен нет</string>
+  <string name="tools_shifts_empty_message">Добавьте цикл, чтобы видеть смены в календаре: сначала назовите виды смен, затем нажимайте их по порядку.</string>
+  <string name="tools_shifts_new">Новый цикл</string>
+  <string name="tools_shifts_edit">Изменить</string>
+  <string name="tools_shifts_delete">Удалить</string>
+  <string name="tools_shifts_inactive">Не показывается в календаре</string>
+  <string name="tools_shifts_name">Название</string>
+  <string name="tools_shifts_types">Виды смен</string>
+  <string name="tools_shifts_type_label">Название смены</string>
+  <string name="tools_shifts_type_add">Добавить</string>
+  <string name="tools_shifts_type_remove">Убрать</string>
+  <string name="tools_shifts_pattern">Схема</string>
+  <string name="tools_shifts_pattern_empty">Нажимайте смены, чтобы собрать цикл</string>
+  <string name="tools_shifts_pattern_undo">Отменить последнее</string>
+  <string name="tools_shifts_anchor">Первый день схемы</string>
+  <string name="tools_shifts_active">Показывать в календаре</string>
+  <string name="tools_shifts_save">Сохранить</string>
+  <string name="tools_shifts_cancel">Отмена</string>
+  <string name="tools_shifts_open">Сменная работа</string>
+  <string name="tools_shifts_type_color">Цвет %1$s для %2$s</string>
+  <string name="tools_shifts_type_remove_named">Убрать %1$s</string>
 </resources>

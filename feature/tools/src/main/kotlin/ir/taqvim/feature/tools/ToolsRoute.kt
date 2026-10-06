@@ -33,6 +33,7 @@ val toolsFeatureModule: Module =
             ToolsViewModel(get(), get(), getOrNull() ?: ToolsBoardStore.NONE, parameters.getOrNull<String>())
         }
         viewModel { WorkdayProfileViewModel(get(), get(), get()) }
+        viewModel { ShiftRotationViewModel(get(), get(), get()) }
     }
 
 /**

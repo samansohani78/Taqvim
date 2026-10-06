@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -71,7 +72,7 @@ internal fun DayDetailsPanel(
             ShareDayButton(content, language)
         }
         when (content.selectedTab) {
-            DayDetailsTab.CALENDARS -> DayCalendarsTab(content, language)
+            DayDetailsTab.CALENDARS -> DayCalendarsTab(content, language, onAction = onAction)
             DayDetailsTab.EVENTS -> DayEventsTab(content, language, onAction)
             DayDetailsTab.TIMES -> DayTimesTab(content.times, language)
         }
@@ -188,6 +189,7 @@ internal fun DayCalendarsTab(
     content: CalendarContent,
     language: LanguageSpec,
     modifier: Modifier = Modifier,
+    onAction: (CalendarAction) -> Unit = {},
 ) {
     val overview = content.overview
     if (overview == null) {
@@ -199,6 +201,7 @@ internal fun DayCalendarsTab(
     val primaryYear = content.selectedDates.firstOrNull()?.year
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         DayInEveryCalendar(content, language)
+        ShiftOnThisDay(content, onAction)
         DetailRow(stringResource(R.string.calendar_distance_label), distanceText(resources, overview, language))
         IndicatorRow(
             stringResource(R.string.calendar_week_label),

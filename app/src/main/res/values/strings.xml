@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">New event</string>
   <string name="shortcut_prayer_times">Prayer times</string>
   <string name="shortcut_converter">Date converter</string>
-  <string name="pending_shift_work">Shift work is not available yet.</string>
   <string name="pending_settings">This setting is not available yet.</string>
   <string name="message_no_upcoming_occurrence">This event has no upcoming date.</string>
   <string name="message_setting_not_saved">The setting could not be saved.</string>

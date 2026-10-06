@@ -98,7 +98,7 @@ class AppBackStackTest {
                 AppDestination.Timeline(),
                 AppDestination.EventEditor(42),
                 AppDestination.EventEditor(),
-                AppDestination.Pending(PendingFeature.SHIFT_WORK),
+                AppDestination.ShiftWork,
                 AppDestination.Pending(PendingFeature.SETTINGS),
                 AppDestination.Widgets,
                 AppDestination.Subscriptions,

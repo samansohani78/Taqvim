@@ -49,6 +49,30 @@ class CollectionConverters {
 
     @TypeConverter
     fun columnToLabels(column: String): List<String> = column.split(LABEL_TERMINATOR).dropLast(1)
+
+    /**
+     * A colour per shift label (F-08), encoded with the same terminator as [labelsToColumn] so a label may hold any
+     * character the pattern may: `<label>\u001F<argb>\u001F` per entry.
+     */
+    @TypeConverter
+    fun shiftColorsToColumn(colors: Map<String, Int>): String {
+        require(colors.keys.none { LABEL_TERMINATOR in it }) { "shift labels must not contain U+001F" }
+        return colors.entries
+            .sortedBy {
+                it.key
+            }.joinToString("") { "${'$'}{it.key}${'$'}LABEL_TERMINATOR${'$'}{it.value}${'$'}LABEL_TERMINATOR" }
+    }
+
+    @TypeConverter
+    fun columnToShiftColors(column: String): Map<String, Int> =
+        column
+            .split(LABEL_TERMINATOR)
+            .dropLast(1)
+            .chunked(2)
+            .mapNotNull { pair ->
+                val value = pair.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
+                pair[0] to value
+            }.toMap()
 }
 
 /**

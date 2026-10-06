@@ -97,4 +97,27 @@
   <string name="tools_source_christian">ईसाई पर्व</string>
   <string name="tools_source_personal">मेरे कार्यक्रम</string>
   <string name="tools_profiles_open">कार्यदिवस प्रोफ़ाइल</string>
+  <string name="tools_shifts_title">शिफ्ट कार्य</string>
+  <string name="tools_shifts_loading">चक्र लोड हो रहे हैं</string>
+  <string name="tools_shifts_empty_title">कोई शिफ्ट चक्र नहीं</string>
+  <string name="tools_shifts_empty_message">अपनी शिफ़्टें कैलेंडर पर देखने के लिए एक जोड़ें: पहले शिफ़्ट के प्रकार नाम दें, फिर क्रम से टैप करें।</string>
+  <string name="tools_shifts_new">नया चक्र</string>
+  <string name="tools_shifts_edit">संपादित करें</string>
+  <string name="tools_shifts_delete">हटाएँ</string>
+  <string name="tools_shifts_inactive">कैलेंडर पर नहीं दिखाया जाता</string>
+  <string name="tools_shifts_name">नाम</string>
+  <string name="tools_shifts_types">शिफ़्ट प्रकार</string>
+  <string name="tools_shifts_type_label">शिफ़्ट का नाम</string>
+  <string name="tools_shifts_type_add">जोड़ें</string>
+  <string name="tools_shifts_type_remove">हटाएँ</string>
+  <string name="tools_shifts_pattern">पैटर्न</string>
+  <string name="tools_shifts_pattern_empty">चक्र बनाने के लिए शिफ़्ट पर टैप करें</string>
+  <string name="tools_shifts_pattern_undo">अंतिम वापस</string>
+  <string name="tools_shifts_anchor">पैटर्न का पहला दिन</string>
+  <string name="tools_shifts_active">कैलेंडर पर दिखाएँ</string>
+  <string name="tools_shifts_save">सहेजें</string>
+  <string name="tools_shifts_cancel">रद्द करें</string>
+  <string name="tools_shifts_open">शिफ्ट कार्य</string>
+  <string name="tools_shifts_type_color">%2$s के लिए रंग %1$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s हटाएँ</string>
 </resources>

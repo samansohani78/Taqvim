@@ -162,4 +162,7 @@
   <string name="calendar_event_scope">Concerne : %1$s</string>
   <string name="calendar_source_jewish">Fêtes juives</string>
   <string name="calendar_source_christian">Fêtes chrétiennes</string>
+  <string name="calendar_shift_exception">Poste de ce jour</string>
+  <string name="calendar_shift_clear">Revenir au motif</string>
+  <string name="calendar_shift_none">Aucun poste</string>
 </resources>

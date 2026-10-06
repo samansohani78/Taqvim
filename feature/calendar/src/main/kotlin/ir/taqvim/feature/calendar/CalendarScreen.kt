@@ -28,6 +28,7 @@ import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.TopBar
+import ir.taqvim.core.workdays.ShiftRotation
 
 /**
  * The calendar (home) screen, stateless: the toolbar with the shown month's title (T-803) over the month pager (T-801)
@@ -44,7 +45,7 @@ fun CalendarScreen(
         LoadingCalendar(modifier)
         return
     }
-    val builder = rememberMonthPageBuilder(content.settings())
+    val builder = rememberMonthPageBuilder(content.settings(), content.shiftRotations)
     CalendarScaffold(content, builder, onAction, modifier) { paneModifier ->
         MonthPager(content, builder, onAction, paneModifier)
     }
@@ -92,12 +93,15 @@ internal fun CalendarContent.settings(): CalendarSettings =
 
 /** A [MonthPageBuilder] for [settings] with texts from the current resources and dots in the theme's colors. */
 @Composable
-internal fun rememberMonthPageBuilder(settings: CalendarSettings): MonthPageBuilder {
+internal fun rememberMonthPageBuilder(
+    settings: CalendarSettings,
+    rotations: List<ShiftRotation> = emptyList(),
+): MonthPageBuilder {
     val resources = LocalResources.current
     // The same Resources object can change its configuration (locale), so the configuration is a key as well.
     val configuration = LocalConfiguration.current
     val colors = MaterialTheme.colorScheme
-    return remember(settings, resources, configuration, colors) {
+    return remember(settings, resources, configuration, colors, rotations) {
         val language = LanguageTable.forCode(settings.languageCode) ?: LanguageTable.languages.first()
         MonthPageBuilder(
             calendars = CalendarCalendars(settings),
@@ -105,6 +109,7 @@ internal fun rememberMonthPageBuilder(settings: CalendarSettings): MonthPageBuil
             texts = monthTexts(resources),
             palette = colors.indicatorPalette(),
             weekdayNames = shortWeekdayNames(language),
+            rotations = rotations,
         )
     }
 }

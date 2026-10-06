@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Fiestas cristianas</string>
   <string name="tools_source_personal">Mis eventos</string>
   <string name="tools_profiles_open">Perfiles de días laborables</string>
+  <string name="tools_shifts_title">Trabajo por turnos</string>
+  <string name="tools_shifts_loading">Cargando ciclos</string>
+  <string name="tools_shifts_empty_title">No hay ciclos de turnos</string>
+  <string name="tools_shifts_empty_message">Añade uno para ver tus turnos en el calendario: nombra primero los tipos de turno y luego tócalos en orden.</string>
+  <string name="tools_shifts_new">Nuevo ciclo</string>
+  <string name="tools_shifts_edit">Editar</string>
+  <string name="tools_shifts_delete">Eliminar</string>
+  <string name="tools_shifts_inactive">No se muestra en el calendario</string>
+  <string name="tools_shifts_name">Nombre</string>
+  <string name="tools_shifts_types">Tipos de turno</string>
+  <string name="tools_shifts_type_label">Nombre del turno</string>
+  <string name="tools_shifts_type_add">Añadir</string>
+  <string name="tools_shifts_type_remove">Quitar</string>
+  <string name="tools_shifts_pattern">Patrón</string>
+  <string name="tools_shifts_pattern_empty">Toca un turno para construir el ciclo</string>
+  <string name="tools_shifts_pattern_undo">Deshacer último</string>
+  <string name="tools_shifts_anchor">Primer día del patrón</string>
+  <string name="tools_shifts_active">Mostrar en el calendario</string>
+  <string name="tools_shifts_save">Guardar</string>
+  <string name="tools_shifts_cancel">Cancelar</string>
+  <string name="tools_shifts_open">Trabajo por turnos</string>
+  <string name="tools_shifts_type_color">Color %1$s para %2$s</string>
+  <string name="tools_shifts_type_remove_named">Quitar %1$s</string>
 </resources>

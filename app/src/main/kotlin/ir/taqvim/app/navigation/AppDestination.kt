@@ -60,6 +60,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object Subscriptions : AppDestination
 
+    /** The user's shift rotations, reached from the calendar menu (F-08). */
+    @Serializable
+    data object ShiftWork : AppDestination
+
     /** The user's workday profiles, reached from the date distance tool (F-07). */
     @Serializable
     data object WorkdayProfiles : AppDestination
@@ -146,9 +150,6 @@ sealed interface AppDestination : NavKey {
 enum class PendingFeature(
     @param:StringRes val notice: Int,
 ) {
-    /** Shift work (T-803 menu). */
-    SHIFT_WORK(R.string.pending_shift_work),
-
     /** A settings search entry without a screen of its own. */
     SETTINGS(R.string.pending_settings),
 }

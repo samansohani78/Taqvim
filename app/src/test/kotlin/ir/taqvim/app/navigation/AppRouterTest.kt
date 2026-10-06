@@ -82,7 +82,7 @@ class AppRouterTest {
                 AppDestination.Calendar,
                 AppDestination.Timeline(day.value),
                 AppDestination.Search,
-                AppDestination.Pending(PendingFeature.SHIFT_WORK),
+                AppDestination.ShiftWork,
                 AppDestination.PlanetaryHours(day.value),
             )
         deviceEvents shouldBe listOf(5L)

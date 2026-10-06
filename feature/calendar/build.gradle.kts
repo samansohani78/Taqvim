@@ -9,6 +9,8 @@ dependencies {
     // T-802: prayer times of the Times tab; Sun and Moon of the Calendars tab.
     implementation(projects.core.praytimes)
     implementation(projects.core.astronomy)
+    // F-08: the shift of a day, from the user's rotations.
+    implementation(projects.core.workdays)
     implementation(libs.kotlinx.coroutines.core)
     // T-806: foldable posture (tabletop) of the adaptive layout.
     implementation(libs.androidx.compose.material3.adaptive)

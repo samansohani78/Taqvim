@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">Nuevo evento</string>
   <string name="shortcut_prayer_times">Horarios de oración</string>
   <string name="shortcut_converter">Conversor de fechas</string>
-  <string name="pending_shift_work">El trabajo por turnos aún no está disponible.</string>
   <string name="pending_settings">Este ajuste aún no está disponible.</string>
   <string name="message_no_upcoming_occurrence">Este evento no tiene fechas próximas.</string>
   <string name="message_setting_not_saved">No se pudo guardar el ajuste.</string>

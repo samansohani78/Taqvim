@@ -60,6 +60,8 @@ class CalendarViewModel(
     initialDay: Jdn? = null,
     /** Reminders before official events (T-1002). */
     private val officialReminders: OfficialReminderStore = OfficialReminderStore.NONE,
+    /** The user's shift rotations (F-08); none by default, which is what a user without the feature has. */
+    private val shifts: ShiftScheduleSource = ShiftScheduleSource.NONE,
 ) : ViewModel() {
     /** Month arithmetic runs one action at a time, so the actions keep the order they arrived in. */
     private val monthLock = Mutex()
@@ -143,6 +145,8 @@ class CalendarViewModel(
                 }
             }
 
+    private fun shiftException(a: CalendarAction.SetShiftException) = applyShiftException(this, shifts, a)
+
     /** One-shot navigation and snackbar effects. */
     val effects: Flow<CalendarEffect> = effectChannel.receiveAsFlow()
 
@@ -152,7 +156,7 @@ class CalendarViewModel(
             calendars.filterNotNull(),
             navigation,
             combine(search, menu, reminders, ::Triple),
-            combine(dayDetails, months, overview, times, ::Loaded),
+            combine(dayDetails, months, overview, times, shifts.rotations(), ::Loaded),
         ) { today, calendars, state, (search, menu, reminders), loaded ->
             CalendarUiState(
                 calendarContent(today, calendars, state, search, loaded, menu).copy(officialReminders = reminders),
@@ -165,6 +169,7 @@ class CalendarViewModel(
 
     fun onAction(action: CalendarAction) {
         when (action) {
+            is CalendarAction.SetShiftException -> shiftException(action)
             is CalendarAction.Navigation -> navigate(action)
             is CalendarAction.Search -> onSearch(action)
             is CalendarAction.Menu -> onMenu(action)

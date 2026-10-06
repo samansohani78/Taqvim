@@ -162,4 +162,7 @@
   <string name="calendar_event_scope">Se aplica a: %1$s</string>
   <string name="calendar_source_jewish">Festividades judías</string>
   <string name="calendar_source_christian">Fiestas cristianas</string>
+  <string name="calendar_shift_exception">Turno de este día</string>
+  <string name="calendar_shift_clear">Volver al patrón</string>
+  <string name="calendar_shift_none">Sin turno</string>
 </resources>

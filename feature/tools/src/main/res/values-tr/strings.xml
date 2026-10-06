@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Hristiyan bayramları</string>
   <string name="tools_source_personal">Etkinliklerim</string>
   <string name="tools_profiles_open">Çalışma günü profilleri</string>
+  <string name="tools_shifts_title">Vardiyalı çalışma</string>
+  <string name="tools_shifts_loading">Döngüler yükleniyor</string>
+  <string name="tools_shifts_empty_title">Vardiya döngüsü yok</string>
+  <string name="tools_shifts_empty_message">Vardiyalarınızı takvimde görmek için bir tane ekleyin: önce vardiya türlerini adlandırın, sonra sırayla dokunarak döngüyü kurun.</string>
+  <string name="tools_shifts_new">Yeni döngü</string>
+  <string name="tools_shifts_edit">Düzenle</string>
+  <string name="tools_shifts_delete">Sil</string>
+  <string name="tools_shifts_inactive">Takvimde gösterilmiyor</string>
+  <string name="tools_shifts_name">Ad</string>
+  <string name="tools_shifts_types">Vardiya türleri</string>
+  <string name="tools_shifts_type_label">Vardiya adı</string>
+  <string name="tools_shifts_type_add">Ekle</string>
+  <string name="tools_shifts_type_remove">Kaldır</string>
+  <string name="tools_shifts_pattern">Desen</string>
+  <string name="tools_shifts_pattern_empty">Döngüyü kurmak için bir vardiyaya dokunun</string>
+  <string name="tools_shifts_pattern_undo">Sonuncuyu geri al</string>
+  <string name="tools_shifts_anchor">Desenin ilk günü</string>
+  <string name="tools_shifts_active">Takvimde göster</string>
+  <string name="tools_shifts_save">Kaydet</string>
+  <string name="tools_shifts_cancel">İptal</string>
+  <string name="tools_shifts_open">Vardiyalı çalışma</string>
+  <string name="tools_shifts_type_color">%2$s için %1$s rengi</string>
+  <string name="tools_shifts_type_remove_named">%1$s kaldır</string>
 </resources>

@@ -97,4 +97,27 @@
   <string name="tools_source_christian">क्रिस्चियन पर्वहरू</string>
   <string name="tools_source_personal">मेरा घटनाहरू</string>
   <string name="tools_profiles_open">कार्यदिन प्रोफाइल</string>
+  <string name="tools_shifts_title">पालो काम</string>
+  <string name="tools_shifts_loading">चक्रहरू लोड हुँदै</string>
+  <string name="tools_shifts_empty_title">पालोको चक्र छैन</string>
+  <string name="tools_shifts_empty_message">आफ्ना पालोहरू पात्रोमा हेर्न एउटा थप्नुहोस्: पहिले पालोका प्रकार नाम दिनुहोस्, त्यसपछि क्रमैसँग थिच्नुहोस्।</string>
+  <string name="tools_shifts_new">नयाँ चक्र</string>
+  <string name="tools_shifts_edit">सम्पादन</string>
+  <string name="tools_shifts_delete">मेटाउनुहोस्</string>
+  <string name="tools_shifts_inactive">पात्रोमा देखाइँदैन</string>
+  <string name="tools_shifts_name">नाम</string>
+  <string name="tools_shifts_types">पालोका प्रकार</string>
+  <string name="tools_shifts_type_label">पालोको नाम</string>
+  <string name="tools_shifts_type_add">थप्नुहोस्</string>
+  <string name="tools_shifts_type_remove">हटाउनुहोस्</string>
+  <string name="tools_shifts_pattern">ढाँचा</string>
+  <string name="tools_shifts_pattern_empty">चक्र बनाउन पालोमा थिच्नुहोस्</string>
+  <string name="tools_shifts_pattern_undo">अन्तिम फिर्ता</string>
+  <string name="tools_shifts_anchor">ढाँचाको पहिलो दिन</string>
+  <string name="tools_shifts_active">पात्रोमा देखाउनुहोस्</string>
+  <string name="tools_shifts_save">सुरक्षित गर्नुहोस्</string>
+  <string name="tools_shifts_cancel">रद्द</string>
+  <string name="tools_shifts_open">पालो काम</string>
+  <string name="tools_shifts_type_color">%2$s को लागि रङ %1$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s हटाउनुहोस्</string>
 </resources>

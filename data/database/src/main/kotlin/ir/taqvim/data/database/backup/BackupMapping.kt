@@ -179,6 +179,7 @@ internal fun PersonalData.toRecord(): DataRecord =
                     it.anchorJdn,
                     it.pattern,
                     it.isActive,
+                    it.shiftColors,
                 )
             },
         shiftRotationRecords = shiftRecords.map { ShiftDayRecord(it.rotationId, it.jdn, it.shift, it.note) },
@@ -218,6 +219,7 @@ internal fun DataRecord.toPersonalData(): PersonalData {
                     it.anchorJdn,
                     it.pattern,
                     it.isActive,
+                    it.shiftColors,
                 )
             },
         shiftRecords =

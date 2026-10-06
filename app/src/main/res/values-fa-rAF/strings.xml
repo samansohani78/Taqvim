@@ -28,7 +28,6 @@
   <string name="shortcut_new_event">رویداد تازه</string>
   <string name="shortcut_prayer_times">اوقات شرعی</string>
   <string name="shortcut_converter">تبدیل تاریخ</string>
-  <string name="pending_shift_work">شیفت کاری هنوز در دسترس نیست.</string>
   <string name="pending_settings">این تنظیم هنوز در دسترس نیست.</string>
   <string name="message_no_upcoming_occurrence">این رویداد تاریخ آینده‌ای ندارد.</string>
   <string name="message_setting_not_saved">تنظیم ذخیره نشد.</string>

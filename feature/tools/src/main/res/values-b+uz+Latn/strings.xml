@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Nasroniy bayramlari</string>
   <string name="tools_source_personal">Mening tadbirlarim</string>
   <string name="tools_profiles_open">Ish kuni profillari</string>
+  <string name="tools_shifts_title">Smenali ish</string>
+  <string name="tools_shifts_loading">Davrlar yuklanmoqda</string>
+  <string name="tools_shifts_empty_title">Smena davri yoʻq</string>
+  <string name="tools_shifts_empty_message">Smenalaringizni taqvimda koʻrish uchun bittasini qoʻshing: avval smena turlarini nomlang, soʻng tartib bilan bosing.</string>
+  <string name="tools_shifts_new">Yangi davr</string>
+  <string name="tools_shifts_edit">Tahrirlash</string>
+  <string name="tools_shifts_delete">Oʻchirish</string>
+  <string name="tools_shifts_inactive">Taqvimda koʻrsatilmaydi</string>
+  <string name="tools_shifts_name">Nom</string>
+  <string name="tools_shifts_types">Smena turlari</string>
+  <string name="tools_shifts_type_label">Smena nomi</string>
+  <string name="tools_shifts_type_add">Qoʻshish</string>
+  <string name="tools_shifts_type_remove">Olib tashlash</string>
+  <string name="tools_shifts_pattern">Naqsh</string>
+  <string name="tools_shifts_pattern_empty">Davrni tuzish uchun smenani bosing</string>
+  <string name="tools_shifts_pattern_undo">Oxirgisini qaytar</string>
+  <string name="tools_shifts_anchor">Naqshning birinchi kuni</string>
+  <string name="tools_shifts_active">Taqvimda koʻrsat</string>
+  <string name="tools_shifts_save">Saqlash</string>
+  <string name="tools_shifts_cancel">Bekor qilish</string>
+  <string name="tools_shifts_open">Smenali ish</string>
+  <string name="tools_shifts_type_color">%2$s uchun %1$s rang</string>
+  <string name="tools_shifts_type_remove_named">%1$s ni olib tashlash</string>
 </resources>

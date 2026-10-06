@@ -183,4 +183,7 @@
   <string name="calendar_event_scope">يخص: %1$s</string>
   <string name="calendar_source_jewish">المناسبات اليهودية</string>
   <string name="calendar_source_christian">الأعياد المسيحية</string>
+  <string name="calendar_shift_exception">نوبة هذا اليوم</string>
+  <string name="calendar_shift_clear">العودة إلى النمط</string>
+  <string name="calendar_shift_none">لا نوبة</string>
 </resources>

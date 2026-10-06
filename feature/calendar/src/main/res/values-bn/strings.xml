@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">প্রযোজ্য: %1$s</string>
   <string name="calendar_source_jewish">ইহুদি পার্বণ</string>
   <string name="calendar_source_christian">খ্রিষ্টীয় পার্বণ</string>
+  <string name="calendar_shift_exception">এই দিনের শিফট</string>
+  <string name="calendar_shift_clear">প্যাটার্নে ফিরুন</string>
+  <string name="calendar_shift_none">শিফট নেই</string>
 </resources>

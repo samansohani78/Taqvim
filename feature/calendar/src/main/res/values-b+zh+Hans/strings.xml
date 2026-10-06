@@ -148,4 +148,7 @@
   <string name="calendar_event_scope">适用于：%1$s</string>
   <string name="calendar_source_jewish">犹太节日</string>
   <string name="calendar_source_christian">基督教节日</string>
+  <string name="calendar_shift_exception">这一天的班次</string>
+  <string name="calendar_shift_clear">回到循环</string>
+  <string name="calendar_shift_none">无班次</string>
 </resources>

@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">Şunlar için: %1$s</string>
   <string name="calendar_source_jewish">Yahudi anma günleri</string>
   <string name="calendar_source_christian">Hristiyan bayramları</string>
+  <string name="calendar_shift_exception">Bu günün vardiyası</string>
+  <string name="calendar_shift_clear">Desene dön</string>
+  <string name="calendar_shift_none">Vardiya yok</string>
 </resources>

@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Perayaan Kristian</string>
   <string name="tools_source_personal">Acara saya</string>
   <string name="tools_profiles_open">Profil hari bekerja</string>
+  <string name="tools_shifts_title">Kerja syif</string>
+  <string name="tools_shifts_loading">Memuatkan kitaran</string>
+  <string name="tools_shifts_empty_title">Tiada kitaran syif</string>
+  <string name="tools_shifts_empty_message">Tambah satu untuk melihat syif anda pada kalendar: namakan jenis syif dahulu, kemudian ketik mengikut urutan.</string>
+  <string name="tools_shifts_new">Kitaran baharu</string>
+  <string name="tools_shifts_edit">Sunting</string>
+  <string name="tools_shifts_delete">Padam</string>
+  <string name="tools_shifts_inactive">Tidak dipaparkan pada kalendar</string>
+  <string name="tools_shifts_name">Nama</string>
+  <string name="tools_shifts_types">Jenis syif</string>
+  <string name="tools_shifts_type_label">Nama syif</string>
+  <string name="tools_shifts_type_add">Tambah</string>
+  <string name="tools_shifts_type_remove">Buang</string>
+  <string name="tools_shifts_pattern">Corak</string>
+  <string name="tools_shifts_pattern_empty">Ketik syif untuk membina kitaran</string>
+  <string name="tools_shifts_pattern_undo">Buat asal yang akhir</string>
+  <string name="tools_shifts_anchor">Hari pertama corak</string>
+  <string name="tools_shifts_active">Papar pada kalendar</string>
+  <string name="tools_shifts_save">Simpan</string>
+  <string name="tools_shifts_cancel">Batal</string>
+  <string name="tools_shifts_open">Kerja syif</string>
+  <string name="tools_shifts_type_color">Warna %1$s untuk %2$s</string>
+  <string name="tools_shifts_type_remove_named">Buang %1$s</string>
 </resources>

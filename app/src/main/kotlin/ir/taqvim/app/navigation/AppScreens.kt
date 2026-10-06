@@ -54,6 +54,7 @@ import ir.taqvim.feature.settings.SettingsItemId
 import ir.taqvim.feature.settings.SubscriptionsRoute
 import ir.taqvim.feature.timeline.TimelineRoute
 import ir.taqvim.feature.times.TimesRoute
+import ir.taqvim.feature.tools.ShiftRotationRoute
 import ir.taqvim.feature.tools.ToolsRoute
 import ir.taqvim.feature.tools.WorkdayProfileRoute
 import ir.taqvim.feature.widgets.WidgetListRoute
@@ -300,6 +301,10 @@ private fun SettingsPageScreen(
 
         AppDestination.WorkdayProfiles -> {
             WorkdayProfileRoute(modifier)
+        }
+
+        AppDestination.ShiftWork -> {
+            ShiftRotationRoute(modifier)
         }
 
         else -> {

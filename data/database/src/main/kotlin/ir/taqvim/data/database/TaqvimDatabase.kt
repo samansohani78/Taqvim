@@ -75,7 +75,7 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 7
+    const val LATEST_VERSION: Int = 8
 
     /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
     private val MIGRATION_1_2: Migration =
@@ -155,7 +155,23 @@ object TaqvimMigrations {
             }
         }
 
+    /** 7 → 8 (F-08): a colour per shift label, empty for every rotation stored before the editor existed. */
+    private val MIGRATION_7_8: Migration =
+        object : Migration(7, 8) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE `shift_rotations` ADD COLUMN `shift_colors` TEXT NOT NULL DEFAULT ''")
+            }
+        }
+
     /** Migrations between consecutive versions, oldest first. */
     val ALL: List<Migration> =
-        listOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
+        listOf(
+            MIGRATION_1_2,
+            MIGRATION_2_3,
+            MIGRATION_3_4,
+            MIGRATION_4_5,
+            MIGRATION_5_6,
+            MIGRATION_6_7,
+            MIGRATION_7_8,
+        )
 }

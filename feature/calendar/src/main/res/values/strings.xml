@@ -218,4 +218,7 @@
   <!-- T-108/T-109: the source of a Jewish observance or a Christian movable feast. -->
   <string name="calendar_source_jewish">Jewish observances</string>
   <string name="calendar_source_christian">Christian feasts</string>
+  <string name="calendar_shift_exception">Shift on this day</string>
+  <string name="calendar_shift_clear">Back to the pattern</string>
+  <string name="calendar_shift_none">No shift</string>
 </resources>

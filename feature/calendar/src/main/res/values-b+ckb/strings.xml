@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">بۆ: %1$s</string>
   <string name="calendar_source_jewish">بۆنە جولەکەکان</string>
   <string name="calendar_source_christian">جەژنە مەسیحییەکان</string>
+  <string name="calendar_shift_exception">نۆرەی ئەم ڕۆژە</string>
+  <string name="calendar_shift_clear">گەڕانەوە بۆ نەخشە</string>
+  <string name="calendar_shift_none">بێ نۆرە</string>
 </resources>

@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">Новое событие</string>
   <string name="shortcut_prayer_times">Время намаза</string>
   <string name="shortcut_converter">Конвертер дат</string>
-  <string name="pending_shift_work">Сменная работа пока недоступна.</string>
   <string name="pending_settings">Эта настройка пока недоступна.</string>
   <string name="message_no_upcoming_occurrence">У этого события нет предстоящей даты.</string>
   <string name="message_setting_not_saved">Не удалось сохранить настройку.</string>

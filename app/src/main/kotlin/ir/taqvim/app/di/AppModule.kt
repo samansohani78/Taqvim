@@ -51,6 +51,7 @@ import ir.taqvim.feature.calendar.CalendarPlaceSource
 import ir.taqvim.feature.calendar.CalendarSettingsSource
 import ir.taqvim.feature.calendar.EventSearchSource
 import ir.taqvim.feature.calendar.OfficialReminderStore
+import ir.taqvim.feature.calendar.ShiftScheduleSource
 import ir.taqvim.feature.calendar.calendarFeatureModule
 import ir.taqvim.feature.compass.CompassSettingsSource
 import ir.taqvim.feature.compass.LevelCalibrationStore
@@ -89,6 +90,7 @@ import ir.taqvim.feature.timeline.TimelineSettingsSource
 import ir.taqvim.feature.timeline.timelineFeatureModule
 import ir.taqvim.feature.times.TimesSettingsSource
 import ir.taqvim.feature.times.timesFeatureModule
+import ir.taqvim.feature.tools.ShiftRotationStore
 import ir.taqvim.feature.tools.ToolsSettingsSource
 import ir.taqvim.feature.tools.WorkdayProfileStore
 import ir.taqvim.feature.tools.toolsFeatureModule
@@ -194,6 +196,9 @@ val appFeaturePortsModule =
         single<CompassSettingsSource> { PreferencesCompassSettingsSource(get(), get()) }
         single<LevelCalibrationStore> { PreferencesLevelCalibrationStore(get()) }
         single<WorkdayProfileStore> { RoomWorkdayProfileStore(get()) }
+        single { get<TaqvimDatabase>().shiftRotationDao() }
+        single<ShiftRotationStore> { RoomShiftRotationStore(get()) }
+        single<ShiftScheduleSource> { StoreShiftScheduleSource(get()) }
         single<ToolsSettingsSource> {
             val profiles = get<WorkdayProfileDao>().observeAll()
             PreferencesToolsSettingsSource(

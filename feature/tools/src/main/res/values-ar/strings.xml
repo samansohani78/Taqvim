@@ -97,4 +97,27 @@
   <string name="tools_source_christian">الأعياد المسيحية</string>
   <string name="tools_source_personal">أحداثي</string>
   <string name="tools_profiles_open">ملفات أيام العمل</string>
+  <string name="tools_shifts_title">العمل بالنوبات</string>
+  <string name="tools_shifts_loading">جارٍ تحميل الدورات</string>
+  <string name="tools_shifts_empty_title">لا توجد دورات نوبات</string>
+  <string name="tools_shifts_empty_message">أضف واحدة لترى نوباتك في التقويم: سمِّ أنواع النوبات ثم اضغط عليها بالترتيب لبناء الدورة.</string>
+  <string name="tools_shifts_new">دورة جديدة</string>
+  <string name="tools_shifts_edit">تعديل</string>
+  <string name="tools_shifts_delete">حذف</string>
+  <string name="tools_shifts_inactive">لا تظهر في التقويم</string>
+  <string name="tools_shifts_name">الاسم</string>
+  <string name="tools_shifts_types">أنواع النوبات</string>
+  <string name="tools_shifts_type_label">اسم النوبة</string>
+  <string name="tools_shifts_type_add">إضافة</string>
+  <string name="tools_shifts_type_remove">إزالة</string>
+  <string name="tools_shifts_pattern">النمط</string>
+  <string name="tools_shifts_pattern_empty">اضغط على نوبة لبناء الدورة</string>
+  <string name="tools_shifts_pattern_undo">تراجع عن الأخير</string>
+  <string name="tools_shifts_anchor">أول يوم في النمط</string>
+  <string name="tools_shifts_active">إظهار في التقويم</string>
+  <string name="tools_shifts_save">حفظ</string>
+  <string name="tools_shifts_cancel">إلغاء</string>
+  <string name="tools_shifts_open">العمل بالنوبات</string>
+  <string name="tools_shifts_type_color">اللون %1$s لـ %2$s</string>
+  <string name="tools_shifts_type_remove_named">إزالة %1$s</string>
 </resources>

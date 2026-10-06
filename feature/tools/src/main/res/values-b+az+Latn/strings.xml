@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Xristian bayramları</string>
   <string name="tools_source_personal">Mənim tədbirlərim</string>
   <string name="tools_profiles_open">İş günü profilləri</string>
+  <string name="tools_shifts_title">Növbəli iş</string>
+  <string name="tools_shifts_loading">Dövrlər yüklənir</string>
+  <string name="tools_shifts_empty_title">Növbə dövrü yoxdur</string>
+  <string name="tools_shifts_empty_message">Növbələrinizi təqvimdə görmək üçün biri əlavə edin: əvvəlcə növbə növlərini adlandırın, sonra ardıcıllıqla toxunun.</string>
+  <string name="tools_shifts_new">Yeni dövr</string>
+  <string name="tools_shifts_edit">Redaktə</string>
+  <string name="tools_shifts_delete">Sil</string>
+  <string name="tools_shifts_inactive">Təqvimdə göstərilmir</string>
+  <string name="tools_shifts_name">Ad</string>
+  <string name="tools_shifts_types">Növbə növləri</string>
+  <string name="tools_shifts_type_label">Növbə adı</string>
+  <string name="tools_shifts_type_add">Əlavə et</string>
+  <string name="tools_shifts_type_remove">Sil</string>
+  <string name="tools_shifts_pattern">Şablon</string>
+  <string name="tools_shifts_pattern_empty">Dövrü qurmaq üçün növbəyə toxunun</string>
+  <string name="tools_shifts_pattern_undo">Sonuncunu geri al</string>
+  <string name="tools_shifts_anchor">Şablonun ilk günü</string>
+  <string name="tools_shifts_active">Təqvimdə göstər</string>
+  <string name="tools_shifts_save">Yadda saxla</string>
+  <string name="tools_shifts_cancel">Ləğv et</string>
+  <string name="tools_shifts_open">Növbəli iş</string>
+  <string name="tools_shifts_type_color">%2$s üçün %1$s rəngi</string>
+  <string name="tools_shifts_type_remove_named">%1$s sil</string>
 </resources>

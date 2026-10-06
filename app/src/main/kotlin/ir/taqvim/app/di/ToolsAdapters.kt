@@ -7,9 +7,15 @@
 package ir.taqvim.app.di
 
 import ir.taqvim.core.events.EventLookup
+import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.nlp.AnchorLookup
+import ir.taqvim.core.workdays.ShiftRotation
+import ir.taqvim.core.workdays.ShiftType
 import ir.taqvim.core.workdays.WorkdayCalculator
 import ir.taqvim.core.workdays.WorkdayProfile
+import ir.taqvim.data.database.ShiftRotationDao
+import ir.taqvim.data.database.ShiftRotationEntity
+import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileDao
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.database.toProfile
@@ -17,14 +23,19 @@ import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
+import ir.taqvim.feature.calendar.ShiftScheduleSource
 import ir.taqvim.feature.tools.NamedWorkdayProfile
+import ir.taqvim.feature.tools.ShiftRotationStore
 import ir.taqvim.feature.tools.ToolsSettings
 import ir.taqvim.feature.tools.ToolsSettingsSource
 import ir.taqvim.feature.tools.WorkdayProfileStore
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.TimeZone
 
@@ -119,3 +130,84 @@ private fun WorkdayProfile.toEntity(
         personalLeave = personalLeave,
         isDefault = isDefault,
     )
+
+/**
+ * [ShiftRotationStore] (F-08) over `shift_rotations` and `shift_rotation_records`.
+ *
+ * Both tables and their DAO shipped with T-504 and nothing wrote to them; the calendar menu's "shift work" item
+ * opened a notice saying the screen did not exist. This is the writer.
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
+internal class RoomShiftRotationStore(
+    private val dao: ShiftRotationDao,
+) : ShiftRotationStore {
+    override fun rotations(): Flow<List<ShiftRotation>> =
+        dao.observeRotations().flatMapLatest { stored ->
+            if (stored.isEmpty()) {
+                flowOf(emptyList())
+            } else {
+                dao.observeAllRecords().map { records ->
+                    val byRotation = records.groupBy { it.rotationId }
+                    stored.map { rotation ->
+                        rotation.toRotation(byRotation[rotation.id].orEmpty())
+                    }
+                }
+            }
+        }
+
+    override suspend fun save(rotation: ShiftRotation): Long {
+        val entity = rotation.toEntity()
+        if (rotation.id == 0L) return dao.insertRotation(entity)
+        dao.updateRotation(entity)
+        return rotation.id
+    }
+
+    override suspend fun delete(id: Long) = dao.deleteRotation(id)
+
+    override suspend fun setException(
+        rotationId: Long,
+        day: Jdn,
+        shift: String?,
+    ) {
+        if (shift == null) {
+            dao.deleteRecord(rotationId, day.value)
+        } else {
+            dao.upsertRecord(ShiftRotationRecordEntity(rotationId, day.value, shift))
+        }
+    }
+}
+
+/** The stored rotation with its day exceptions, as the engine's [ShiftRotation]. */
+internal fun ShiftRotationEntity.toRotation(records: List<ShiftRotationRecordEntity>): ShiftRotation =
+    ShiftRotation(
+        id = id,
+        name = name,
+        anchor = Jdn(anchorJdn),
+        pattern = pattern.map { ShiftType(it, shiftColors[it]) },
+        isActive = isActive,
+        exceptions = records.associate { it.jdn to it.shift },
+    )
+
+/** The rotation as a row of `shift_rotations`; the colours are keyed by label, so each type keeps its own. */
+private fun ShiftRotation.toEntity(): ShiftRotationEntity =
+    ShiftRotationEntity(
+        id = id,
+        name = name,
+        anchorJdn = anchor.value,
+        pattern = pattern.map { it.label },
+        isActive = isActive,
+        shiftColors = types.mapNotNull { type -> type.color?.let { type.label to it } }.toMap(),
+    )
+
+/** [ShiftScheduleSource] for the calendar (F-08): the same rotations the editor writes. */
+internal class StoreShiftScheduleSource(
+    private val store: ShiftRotationStore,
+) : ShiftScheduleSource {
+    override fun rotations(): Flow<List<ShiftRotation>> = store.rotations()
+
+    override suspend fun setException(
+        rotationId: Long,
+        day: Jdn,
+        shift: String?,
+    ) = store.setException(rotationId, day, shift)
+}

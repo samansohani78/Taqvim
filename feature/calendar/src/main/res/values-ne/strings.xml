@@ -155,4 +155,7 @@
   <string name="calendar_event_scope">लागू हुने: %1$s</string>
   <string name="calendar_source_jewish">यहूदी पर्वहरू</string>
   <string name="calendar_source_christian">क्रिस्चियन पर्वहरू</string>
+  <string name="calendar_shift_exception">यो दिनको पालो</string>
+  <string name="calendar_shift_clear">ढाँचामा फर्कनुहोस्</string>
+  <string name="calendar_shift_none">पालो छैन</string>
 </resources>

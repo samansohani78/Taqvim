@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">নতুন ইভেন্ট</string>
   <string name="shortcut_prayer_times">নামাজের সময়</string>
   <string name="shortcut_converter">তারিখ রূপান্তরকারী</string>
-  <string name="pending_shift_work">শিফট কাজ এখনো উপলব্ধ নয়।</string>
   <string name="pending_settings">এই সেটিং এখনো উপলব্ধ নয়।</string>
   <string name="message_no_upcoming_occurrence">এই ইভেন্টের কোনো আসন্ন তারিখ নেই।</string>
   <string name="message_setting_not_saved">সেটিং সংরক্ষণ করা যায়নি।</string>

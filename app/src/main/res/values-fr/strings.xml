@@ -27,7 +27,6 @@
   <string name="shortcut_new_event">Nouvel événement</string>
   <string name="shortcut_prayer_times">Heures de prière</string>
   <string name="shortcut_converter">Convertisseur de dates</string>
-  <string name="pending_shift_work">Le travail posté n\'est pas encore disponible.</string>
   <string name="pending_settings">Ce paramètre n\'est pas encore disponible.</string>
   <string name="message_no_upcoming_occurrence">Cet événement n\'a pas de date à venir.</string>
   <string name="message_setting_not_saved">Le paramètre n\'a pas pu être enregistré.</string>

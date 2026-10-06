@@ -97,4 +97,27 @@
   <string name="tools_source_christian">Ҷашнҳои масеҳӣ</string>
   <string name="tools_source_personal">Рӯйдодҳои ман</string>
   <string name="tools_profiles_open">Профилҳои рӯзи корӣ</string>
+  <string name="tools_shifts_title">Кори навбатӣ</string>
+  <string name="tools_shifts_loading">Боркунии давраҳо</string>
+  <string name="tools_shifts_empty_title">Давраи навбат нест</string>
+  <string name="tools_shifts_empty_message">Якеро илова кунед, то навбатҳоятонро дар тақвим бинед: аввал навъҳои навбатро ном баред, сипас бо навбат зер кунед.</string>
+  <string name="tools_shifts_new">Давраи нав</string>
+  <string name="tools_shifts_edit">Таҳрир</string>
+  <string name="tools_shifts_delete">Нест кардан</string>
+  <string name="tools_shifts_inactive">Дар тақвим нишон дода намешавад</string>
+  <string name="tools_shifts_name">Ном</string>
+  <string name="tools_shifts_types">Навъҳои навбат</string>
+  <string name="tools_shifts_type_label">Номи навбат</string>
+  <string name="tools_shifts_type_add">Илова</string>
+  <string name="tools_shifts_type_remove">Хориҷ</string>
+  <string name="tools_shifts_pattern">Намуна</string>
+  <string name="tools_shifts_pattern_empty">Барои сохтани давра ба навбат зер кунед</string>
+  <string name="tools_shifts_pattern_undo">Охиринро баргардон</string>
+  <string name="tools_shifts_anchor">Рӯзи аввали намуна</string>
+  <string name="tools_shifts_active">Дар тақвим нишон деҳ</string>
+  <string name="tools_shifts_save">Нигоҳ доштан</string>
+  <string name="tools_shifts_cancel">Бекор</string>
+  <string name="tools_shifts_open">Кори навбатӣ</string>
+  <string name="tools_shifts_type_color">Ранги %1$s барои %2$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s-ро хориҷ кунед</string>
 </resources>

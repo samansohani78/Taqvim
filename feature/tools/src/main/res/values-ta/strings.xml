@@ -97,4 +97,27 @@
   <string name="tools_source_christian">கிறிஸ்தவ பண்டிகைகள்</string>
   <string name="tools_source_personal">என் நிகழ்வுகள்</string>
   <string name="tools_profiles_open">வேலை நாள் சுயவிவரங்கள்</string>
+  <string name="tools_shifts_title">பணி மாற்றம்</string>
+  <string name="tools_shifts_loading">சுழற்சிகள் ஏற்றப்படுகின்றன</string>
+  <string name="tools_shifts_empty_title">பணி மாற்றச் சுழற்சி இல்லை</string>
+  <string name="tools_shifts_empty_message">உங்கள் பணி மாற்றங்களை நாட்காட்டியில் காண ஒன்றைச் சேர்க்கவும்: முதலில் வகைகளுக்குப் பெயரிடுங்கள், பிறகு வரிசையாகத் தட்டுங்கள்.</string>
+  <string name="tools_shifts_new">புதிய சுழற்சி</string>
+  <string name="tools_shifts_edit">திருத்து</string>
+  <string name="tools_shifts_delete">நீக்கு</string>
+  <string name="tools_shifts_inactive">நாட்காட்டியில் காட்டப்படவில்லை</string>
+  <string name="tools_shifts_name">பெயர்</string>
+  <string name="tools_shifts_types">பணி மாற்ற வகைகள்</string>
+  <string name="tools_shifts_type_label">பணி மாற்றப் பெயர்</string>
+  <string name="tools_shifts_type_add">சேர்</string>
+  <string name="tools_shifts_type_remove">அகற்று</string>
+  <string name="tools_shifts_pattern">வடிவம்</string>
+  <string name="tools_shifts_pattern_empty">சுழற்சியை உருவாக்கத் தட்டவும்</string>
+  <string name="tools_shifts_pattern_undo">கடைசியை மீள்</string>
+  <string name="tools_shifts_anchor">வடிவத்தின் முதல் நாள்</string>
+  <string name="tools_shifts_active">நாட்காட்டியில் காட்டு</string>
+  <string name="tools_shifts_save">சேமி</string>
+  <string name="tools_shifts_cancel">ரத்து</string>
+  <string name="tools_shifts_open">பணி மாற்றம்</string>
+  <string name="tools_shifts_type_color">%2$s க்கான நிறம் %1$s</string>
+  <string name="tools_shifts_type_remove_named">%1$s அகற்று</string>
 </resources>
