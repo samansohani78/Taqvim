@@ -12,6 +12,7 @@ import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.astronomy.ZodiacSystem
 import ir.taqvim.core.calendar.TithiPosition
+import ir.taqvim.core.ui.component.CalendarPickerData
 import ir.taqvim.core.ui.component.DateSelection
 import kotlinx.collections.immutable.ImmutableList
 
@@ -62,7 +63,7 @@ sealed interface AstronomyContent {
         val earth: EarthText,
         val moon: MoonText,
         val sun: SunText,
-        val picker: PickerData,
+        val picker: CalendarPickerData,
     ) : AstronomyContent
 }
 
@@ -155,16 +156,6 @@ data class LightWindowText(
 
 /** The half of the day a window falls in, decided by the solar transit. */
 enum class DayPart { MORNING, EVENING }
-
-/** What the date picker offers for the settings' calendar; [daysInMonth] is a bound calendar function. */
-data class PickerData(
-    val initial: DateSelection,
-    val years: IntRange,
-    val monthNames: ImmutableList<String>,
-    val daysInMonth: (year: Int, month: Int) -> Int,
-    val digits: (Int) -> String,
-    val monthNamesIn: (year: Int) -> List<String> = { monthNames },
-)
 
 /** Content of an open dialog. */
 sealed interface AstronomyDialog {

@@ -55,6 +55,7 @@ import ir.taqvim.feature.settings.SubscriptionsRoute
 import ir.taqvim.feature.timeline.TimelineRoute
 import ir.taqvim.feature.times.TimesRoute
 import ir.taqvim.feature.tools.ToolsRoute
+import ir.taqvim.feature.tools.WorkdayProfileRoute
 import ir.taqvim.feature.widgets.WidgetListRoute
 import ir.taqvim.feature.year.YearRoute
 
@@ -187,16 +188,47 @@ private fun SimpleScreen(
     modifier: Modifier,
 ) {
     when (destination) {
-        AppDestination.Calendar -> CalendarRoute(modifier, router.calendar())
-        AppDestination.Times -> TimesRoute(modifier)
-        AppDestination.Tools -> ToolsRoute(modifier)
-        AppDestination.More -> MoreScreen(navigator::navigate, modifier)
-        AppDestination.Year -> YearRoute(modifier, router.year())
-        AppDestination.Agenda -> AgendaRoute(modifier, router.agenda())
-        AppDestination.About -> AboutRoute(modifier, onExit = { navigator.back() })
-        AppDestination.WorldMap -> MapPickScreen(modifier)
-        AppDestination.MapPick -> MapPickScreen(modifier, onPlaceSaved = { navigator.back() })
-        else -> SettingsAndInstrumentScreen(destination, navigator, router, modifier)
+        AppDestination.Calendar -> {
+            CalendarRoute(modifier, router.calendar())
+        }
+
+        AppDestination.Times -> {
+            TimesRoute(modifier)
+        }
+
+        AppDestination.Tools -> {
+            ToolsRoute(modifier, onOpenWorkdayProfiles = {
+                navigator.navigate(AppDestination.WorkdayProfiles)
+            })
+        }
+
+        AppDestination.More -> {
+            MoreScreen(navigator::navigate, modifier)
+        }
+
+        AppDestination.Year -> {
+            YearRoute(modifier, router.year())
+        }
+
+        AppDestination.Agenda -> {
+            AgendaRoute(modifier, router.agenda())
+        }
+
+        AppDestination.About -> {
+            AboutRoute(modifier, onExit = { navigator.back() })
+        }
+
+        AppDestination.WorldMap -> {
+            MapPickScreen(modifier)
+        }
+
+        AppDestination.MapPick -> {
+            MapPickScreen(modifier, onPlaceSaved = { navigator.back() })
+        }
+
+        else -> {
+            SettingsAndInstrumentScreen(destination, navigator, router, modifier)
+        }
     }
 }
 
@@ -264,6 +296,10 @@ private fun SettingsPageScreen(
 
         AppDestination.Widgets -> {
             WidgetListRoute(modifier)
+        }
+
+        AppDestination.WorkdayProfiles -> {
+            WorkdayProfileRoute(modifier)
         }
 
         else -> {

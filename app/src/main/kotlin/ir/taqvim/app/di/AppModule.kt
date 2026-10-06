@@ -90,6 +90,7 @@ import ir.taqvim.feature.timeline.timelineFeatureModule
 import ir.taqvim.feature.times.TimesSettingsSource
 import ir.taqvim.feature.times.timesFeatureModule
 import ir.taqvim.feature.tools.ToolsSettingsSource
+import ir.taqvim.feature.tools.WorkdayProfileStore
 import ir.taqvim.feature.tools.toolsFeatureModule
 import ir.taqvim.feature.widgets.widgetsFeatureModule
 import ir.taqvim.feature.year.YearDaysSource
@@ -192,6 +193,7 @@ val appFeaturePortsModule =
         single<AstronomySettingsSource> { TimesAstronomySettingsSource(get()) }
         single<CompassSettingsSource> { PreferencesCompassSettingsSource(get(), get()) }
         single<LevelCalibrationStore> { PreferencesLevelCalibrationStore(get()) }
+        single<WorkdayProfileStore> { RoomWorkdayProfileStore(get()) }
         single<ToolsSettingsSource> {
             val profiles = get<WorkdayProfileDao>().observeAll()
             PreferencesToolsSettingsSource(

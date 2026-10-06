@@ -60,6 +60,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object Subscriptions : AppDestination
 
+    /** The user's workday profiles, reached from the date distance tool (F-07). */
+    @Serializable
+    data object WorkdayProfiles : AppDestination
+
     /** Settings of the widgets the user has placed (T-1200). */
     @Serializable
     data object Widgets : AppDestination

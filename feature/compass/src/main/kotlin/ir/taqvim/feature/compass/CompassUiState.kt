@@ -7,6 +7,7 @@ package ir.taqvim.feature.compass
 import androidx.compose.runtime.Immutable
 import ir.taqvim.core.i18n.LanguageSpec
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.ui.component.CalendarPickerData
 import ir.taqvim.core.ui.component.DateSelection
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -32,7 +33,7 @@ data class CompassUiState(
 data class PlannerState(
     val planned: PlannedMoment? = null,
     /** The date picker's model, or `null` before a place and calendar are known. */
-    val picker: PickerData? = null,
+    val picker: CalendarPickerData? = null,
     val pickerOpen: Boolean = false,
 )
 
@@ -41,15 +42,6 @@ data class PlannedMoment(
     val dateText: String,
     val timeText: String,
     val minuteOfDay: Int,
-)
-
-/** What the date picker needs to speak the user's calendar; mirrors the astronomy screen's picker (T-1300). */
-data class PickerData(
-    val initial: DateSelection,
-    val years: IntRange,
-    val monthNames: ImmutableList<String>,
-    val daysInMonth: (year: Int, month: Int) -> Int,
-    val digits: (Int) -> String,
 )
 
 /** What the compass screen shows. */

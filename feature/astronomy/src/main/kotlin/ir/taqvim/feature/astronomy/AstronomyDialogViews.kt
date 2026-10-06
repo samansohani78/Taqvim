@@ -30,6 +30,7 @@ import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import ir.taqvim.core.astronomy.ZodiacSystem
+import ir.taqvim.core.ui.component.CalendarPickerData
 import ir.taqvim.core.ui.component.DatePickerLabels
 import ir.taqvim.core.ui.component.DatePickerModel
 import ir.taqvim.core.ui.component.DatePickerSheet
@@ -179,7 +180,7 @@ internal fun DrawScope.drawChartWheel(
 /** The date picker for the settings' calendar. */
 @Composable
 internal fun AstronomyDatePicker(
-    picker: PickerData,
+    picker: CalendarPickerData,
     actions: AstronomyActions,
 ) {
     val labels =

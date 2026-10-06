@@ -32,6 +32,7 @@ val toolsFeatureModule: Module =
         viewModel { parameters ->
             ToolsViewModel(get(), get(), getOrNull() ?: ToolsBoardStore.NONE, parameters.getOrNull<String>())
         }
+        viewModel { WorkdayProfileViewModel(get(), get(), get()) }
     }
 
 /**
@@ -42,14 +43,16 @@ val toolsFeatureModule: Module =
 fun ToolsRoute(
     modifier: Modifier = Modifier,
     converterText: String? = null,
+    onOpenWorkdayProfiles: () -> Unit = {},
     viewModel: ToolsViewModel = koinViewModel(parameters = { parametersOf(converterText) }),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val resources = LocalResources.current
     val actions =
-        remember(viewModel, context, resources) {
+        remember(viewModel, context, resources, onOpenWorkdayProfiles) {
             ToolsActions(
+                onOpenWorkdayProfiles = onOpenWorkdayProfiles,
                 onSelectTab = viewModel::onSelectTab,
                 onInputsChange = viewModel::onInputsChange,
                 onAddZone = viewModel::onAddZone,

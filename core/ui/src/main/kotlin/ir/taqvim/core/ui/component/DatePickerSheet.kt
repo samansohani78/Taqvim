@@ -66,6 +66,27 @@ public data class DatePickerLabels(
 )
 
 /**
+ * What a feature's state needs to offer a [DatePickerSheet] in the user's calendar: everything [DatePickerModel] takes
+ * except the labels, which only a composable can resolve.
+ *
+ * Kept here rather than copied per feature. Astronomy, the compass and the workday profiles each had their own
+ * identical copy; a fourth would have been three too many.
+ */
+@Immutable
+public data class CalendarPickerData(
+    public val initial: DateSelection,
+    public val years: IntRange,
+    public val monthNames: List<String>,
+    public val daysInMonth: (year: Int, month: Int) -> Int,
+    public val digits: (Int) -> String,
+    public val monthNamesIn: (year: Int) -> List<String> = { monthNames },
+) {
+    /** This data with [labels], as the sheet takes it. */
+    public fun model(labels: DatePickerLabels): DatePickerModel =
+        DatePickerModel(initial, years, monthNames, daysInMonth, digits, labels, monthNamesIn)
+}
+
+/**
  * What a [DatePickerSheet] offers: the [initial] date, selectable [years], the calendar's [monthNames] (month 1 first)
  * and [daysInMonth], and [formatNumber] for localized digits. The picker is calendar-agnostic; calendars whose month
  * count changes by year (Hebrew, F07) pass [monthNamesIn], which defaults to the same [monthNames] every year.

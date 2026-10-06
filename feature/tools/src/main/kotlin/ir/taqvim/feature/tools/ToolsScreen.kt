@@ -84,7 +84,7 @@ private fun ToolContent(
             }
 
             ToolsTab.DISTANCE -> {
-                DistanceTool(inputs, content.distance, change)
+                DistanceTool(inputs, content.distance, change, actions.onOpenWorkdayProfiles)
             }
 
             ToolsTab.DURATION -> {

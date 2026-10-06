@@ -18,6 +18,7 @@ import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.i18n.monthNamesOf
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
+import ir.taqvim.core.ui.component.CalendarPickerData
 import ir.taqvim.core.ui.component.DateSelection
 import kotlin.time.Instant
 import kotlinx.collections.immutable.toImmutableList
@@ -177,12 +178,12 @@ internal object AstronomyStateMapper {
     private fun picker(
         settings: AstronomySettings,
         day: Jdn,
-    ): PickerData {
+    ): CalendarPickerData {
         val calendar = settings.calendar
         val date = calendar.fromJdn(day)
         val text = AstronomyText(settings)
         val namesIn = { year: Int -> monthNames(settings, year, text) }
-        return PickerData(
+        return CalendarPickerData(
             initial = DateSelection(date.year, date.month, date.day),
             years = AstronomyDays.years(calendar),
             monthNames = namesIn(date.year).toImmutableList(),

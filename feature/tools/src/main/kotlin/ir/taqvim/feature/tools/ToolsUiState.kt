@@ -179,4 +179,6 @@ data class ToolsActions(
     val onAddZone: (String) -> Unit = {},
     val onRemoveZone: (String) -> Unit = {},
     val onShareQr: () -> Unit = {},
+    /** Opens the workday profile editor (F-07); the distance card offers it where the workdays are shown. */
+    val onOpenWorkdayProfiles: () -> Unit = {},
 )

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -82,6 +83,7 @@ internal fun DistanceTool(
     inputs: ToolsInputs,
     state: DistanceState,
     onInputsChange: (ToolsInputs) -> Unit,
+    onOpenWorkdayProfiles: () -> Unit,
 ) {
     DistanceField(inputs.distanceFrom, R.string.tools_distance_from, state.from) {
         onInputsChange(inputs.copy(distanceFrom = it))
@@ -89,7 +91,7 @@ internal fun DistanceTool(
     DistanceField(inputs.distanceTo, R.string.tools_distance_to, state.to) {
         onInputsChange(inputs.copy(distanceTo = it))
     }
-    state.result?.let { DistanceResultView(it) }
+    state.result?.let { DistanceResultView(it, onOpenWorkdayProfiles) }
 }
 
 @Composable
@@ -109,7 +111,10 @@ private fun DistanceField(
 }
 
 @Composable
-private fun DistanceResultView(result: DistanceResult) {
+private fun DistanceResultView(
+    result: DistanceResult,
+    onOpenWorkdayProfiles: () -> Unit,
+) {
     val calendarName = stringResource(result.calendar.label)
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -131,6 +136,11 @@ private fun DistanceResultView(result: DistanceResult) {
                 WorkdaysText.NotConfigured -> ToolMessage(stringResource(R.string.tools_workdays_not_configured))
                 WorkdaysText.TooLong -> ToolMessage(stringResource(R.string.tools_workdays_too_long))
                 is WorkdaysText.Count -> LabeledValue(stringResource(R.string.tools_distance_workdays), workdays.value)
+            }
+            // The workday count means nothing until a profile says which days are working days, so the way to make
+            // one sits beside it rather than in the global settings (F-07).
+            TextButton(onClick = onOpenWorkdayProfiles) {
+                Text(stringResource(R.string.tools_profiles_open))
             }
         }
     }
