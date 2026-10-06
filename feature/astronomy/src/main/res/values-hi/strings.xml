@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">मुर्गा</string>
   <string name="astronomy_animal_dog">कुत्ता</string>
   <string name="astronomy_animal_pig">सूअर</string>
+  <string name="astronomy_tithi">तिथि — सूर्य सिद्धांत</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">शुक्ल</string>
+  <string name="astronomy_paksha_krishna">कृष्ण</string>
+  <string name="astronomy_tithi_why">इस तिथि के बारे में</string>
+  <string name="astronomy_tithi_hide">छिपाएँ</string>
+  <string name="astronomy_tithi_explained">तिथि चंद्रमा की सूर्य से दूरी है, एक चक्र के बारहवें भाग में। तक्वीम इसे सूर्य सिद्धांत से पढ़ता है, वही विधि जिसे नेपाल का पंचांग मानता है, इसलिए यह इस ऐप के नेपाली त्योहारों से सदा मेल खाता है। आधुनिक खगोलीय गणना वही सीमा कुछ घंटे आगे रखती है और दूसरा दिन बता सकती है।</string>
 </resources>

@@ -53,7 +53,7 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
 | A-12 | Magnetic declination | T-1301 (magnetic layers), T-1302 (compass) | platform `android.hardware.GeomagneticField`, used in `feature/map/…/MapRoute.kt` and `feature/compass/…/MotionSensors.kt`; no own algorithm |
 | A-13 | Astronomy façade | A-13 (four entries) | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/` (cosinekitty/astronomy behind the façade) |
 | A-14 | Houses (Placidus) and lots | A-14 | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Houses.kt` |
-| A-15 | Tithi | T-406 / T-407 | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Tithi.kt`; the Nepali lunar days in `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/NepaliLunarDays.kt`, `SuryaSiddhantaMoon.kt` |
+| A-15 | Tithi | T-406 / T-407 | `core/astronomy/src/main/kotlin/ir/taqvim/core/astronomy/Tithi.kt` (modern ephemeris, not displayed); `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/Tithi.kt` (`SuryaSiddhantaTithi`, the displayed one, DT-043), `NepaliLunarDays.kt`, `SuryaSiddhantaMoon.kt` |
 | A-16 | Persian date grammar | T-500, T-501 | `core/nlp/src/main/kotlin/ir/taqvim/core/nlp/` (`DateParser.kt`, `AbsoluteRules.kt`, `RelativeRules.kt`, `Lexicon.kt`) |
 | A-17 | Hebrew calendar (PLAN T-108 "A-15") | A-17 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/HebrewCalendar.kt`, `JewishObservances.kt` |
 | A-18 | Easter and movable feasts (PLAN T-109 "A-16") | A-18 | `core/calendar/src/main/kotlin/ir/taqvim/core/calendar/GregorianComputus.kt`, `JulianComputus.kt`, `ChristianMovableFeasts.kt` |

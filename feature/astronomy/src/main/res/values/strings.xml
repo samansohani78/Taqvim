@@ -182,4 +182,12 @@
   <string name="astronomy_animal_rooster">Rooster</string>
   <string name="astronomy_animal_dog">Dog</string>
   <string name="astronomy_animal_pig">Pig</string>
+  <!-- T-406/DT-043: the lunar day, named with the convention it is read with. -->
+  <string name="astronomy_tithi">Tithi — Surya Siddhanta</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Shukla</string>
+  <string name="astronomy_paksha_krishna">Krishna</string>
+  <string name="astronomy_tithi_why">About this tithi</string>
+  <string name="astronomy_tithi_hide">Hide</string>
+  <string name="astronomy_tithi_explained">The tithi is the Moon’s distance from the Sun, in twelfths of a lap. Taqvim reads it with the Surya Siddhanta, the method Nepal’s panchang follows, so it always agrees with the Nepali festivals in this app. A modern ephemeris puts the same boundary a few hours away and can name a different day.</string>
 </resources>

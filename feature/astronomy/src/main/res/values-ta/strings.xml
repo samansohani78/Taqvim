@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">சேவல்</string>
   <string name="astronomy_animal_dog">நாய்</string>
   <string name="astronomy_animal_pig">பன்றி</string>
+  <string name="astronomy_tithi">திதி — சூர்ய சித்தாந்தம்</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">சுக்ல</string>
+  <string name="astronomy_paksha_krishna">கிருஷ்ண</string>
+  <string name="astronomy_tithi_why">இந்தத் திதி பற்றி</string>
+  <string name="astronomy_tithi_hide">மறை</string>
+  <string name="astronomy_tithi_explained">திதி என்பது சூரியனிடமிருந்து சந்திரனின் தொலைவு, ஒரு சுற்றின் பன்னிரண்டில் ஒரு பங்கு. நேபாளத்தின் பஞ்சாங்கம் பின்பற்றும் சூர்ய சித்தாந்தத்தின்படி தக்வீம் இதைப் படிக்கிறது, எனவே இந்த செயலியின் நேபாளத் திருவிழாக்களுடன் எப்போதும் ஒத்துப்போகிறது. நவீன வானியல் கணிப்பு அதே எல்லையைச் சில மணி நேரம் தள்ளி வைத்து வேறு நாளைக் குறிக்கலாம்.</string>
 </resources>

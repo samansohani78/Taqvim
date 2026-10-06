@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">хурӯс</string>
   <string name="astronomy_animal_dog">саг</string>
   <string name="astronomy_animal_pig">хук</string>
+  <string name="astronomy_tithi">Титҳӣ — Сурия Сиддҳанта</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Шукла</string>
+  <string name="astronomy_paksha_krishna">Кришна</string>
+  <string name="astronomy_tithi_why">Дар бораи ин титҳӣ</string>
+  <string name="astronomy_tithi_hide">Пинҳон кардан</string>
+  <string name="astronomy_tithi_explained">Титҳӣ дурии Моҳ аз Офтоб аст, ба як дувоздаҳуми давр. Тақвим онро бо Сурия Сиддҳанта мехонад, ҳамон равише ки панчанги Непал пайравӣ мекунад, пас ҳамеша бо ҷашнҳои непалии ҳамин барнома мувофиқ аст. Ҳисоби нуҷумии муосир ҳамон марзро чанд соат дуртар мегузорад ва метавонад рӯзи дигарро ном барад.</string>
 </resources>

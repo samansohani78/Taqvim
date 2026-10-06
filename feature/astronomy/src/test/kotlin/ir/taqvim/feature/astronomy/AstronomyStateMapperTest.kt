@@ -16,6 +16,7 @@ import ir.taqvim.core.astronomy.ChineseZodiacAnimal
 import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.calendar.PersianCalendarSystem
+import ir.taqvim.core.calendar.SuryaSiddhantaTithi
 import ir.taqvim.core.i18n.IauConstellationNames
 import org.junit.jupiter.api.Test
 
@@ -66,6 +67,17 @@ class AstronomyStateMapperTest {
         AstronomyFixtures
             .sky(tehran, AstronomyFixtures.at("2026-03-10T12:00", tehran))
             .header.animalYear shouldBe ChineseZodiacAnimal.HORSE
+    }
+
+    @Test
+    fun `the tithi shown is the one the Nepali festivals are computed with`() {
+        // DT-043: the screen must never contradict the app's own Nepali festival dates, so it reads the same engine
+        // they do rather than the modern-ephemeris Tithi of T-406, which can put the boundary on another day.
+        val instant = AstronomyFixtures.at("2026-08-28T12:00", tehran)
+        val sky = AstronomyFixtures.sky(tehran, instant)
+
+        sky.header.tithi shouldBe SuryaSiddhantaTithi.at(instant)
+        (sky.header.tithi.numberInPaksha in 1..15) shouldBe true
     }
 
     @Test

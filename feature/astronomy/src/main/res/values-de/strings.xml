@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">Hahn</string>
   <string name="astronomy_animal_dog">Hund</string>
   <string name="astronomy_animal_pig">Schwein</string>
+  <string name="astronomy_tithi">Tithi — Surya Siddhanta</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Shukla</string>
+  <string name="astronomy_paksha_krishna">Krishna</string>
+  <string name="astronomy_tithi_why">Über dieses Tithi</string>
+  <string name="astronomy_tithi_hide">Ausblenden</string>
+  <string name="astronomy_tithi_explained">Das Tithi ist der Abstand des Mondes von der Sonne, in Zwölfteln eines Umlaufs. Taqvim liest es mit dem Surya Siddhanta, der Methode des nepalesischen Panchang, und stimmt damit stets mit den nepalesischen Festen in dieser App überein. Eine moderne Ephemeride setzt dieselbe Grenze einige Stunden später und kann einen anderen Tag nennen.</string>
 </resources>

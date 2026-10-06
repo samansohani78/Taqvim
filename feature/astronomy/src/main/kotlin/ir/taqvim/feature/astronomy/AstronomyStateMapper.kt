@@ -10,6 +10,8 @@ import ir.taqvim.core.astronomy.PhotographyPanel
 import ir.taqvim.core.astronomy.RiseSetTransit
 import ir.taqvim.core.astronomy.Sky as SkyEngine
 import ir.taqvim.core.astronomy.TimeInterval
+import ir.taqvim.core.calendar.SuryaSiddhantaTithi
+import ir.taqvim.core.calendar.TithiPosition
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.i18n.IauConstellationNames
 import ir.taqvim.core.i18n.LanguageTable
@@ -46,7 +48,7 @@ internal object AstronomyStateMapper {
             timeText = text.time(instant),
             minuteOfDay = local.hour * MINUTES_PER_HOUR + local.minute,
             isNow = isNow,
-            header = header(header, cache.animalYear(day), text),
+            header = header(header, cache.animalYear(day), SuryaSiddhantaTithi.at(instant), text),
             earth = earth(header, sunDay, instant, text),
             moon = moon(header, settings, instant, day, text),
             sun = sun(settings, instant, day, sunDay, text),
@@ -64,6 +66,7 @@ internal object AstronomyStateMapper {
     private fun header(
         header: AstronomyHeader,
         animalYear: ChineseZodiacAnimal,
+        tithi: TithiPosition,
         text: AstronomyText,
     ) = HeaderText(
         sunSign = header.sunSign,
@@ -73,6 +76,7 @@ internal object AstronomyStateMapper {
         moonConstellation =
             IauConstellationNames.name(header.moonConstellation) ?: header.moonConstellation,
         animalYear = animalYear,
+        tithi = tithi,
         phase = phaseName(header.moonPhaseDegrees),
         illumination = text.decimal(header.moonIlluminatedFraction * PERCENT, 0),
         moonDistance = text.integer(Math.round(header.moonDistanceKm)),

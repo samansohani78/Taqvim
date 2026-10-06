@@ -10,6 +10,7 @@ import ir.taqvim.core.astronomy.ClassicalPlanet
 import ir.taqvim.core.astronomy.EclipseKind
 import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.ZodiacSign
+import ir.taqvim.core.calendar.Paksha
 
 /** String resources naming the Astronomy screen's enumerations. */
 internal object AstronomyLabels {
@@ -41,6 +42,13 @@ internal object AstronomyLabels {
 
     @StringRes
     fun animal(animal: ChineseZodiacAnimal): Int = ANIMALS.getValue(animal)
+
+    @StringRes
+    fun paksha(paksha: Paksha): Int =
+        when (paksha) {
+            Paksha.SHUKLA -> R.string.astronomy_paksha_shukla
+            Paksha.KRISHNA -> R.string.astronomy_paksha_krishna
+        }
 
     @StringRes
     fun season(season: Season): Int =

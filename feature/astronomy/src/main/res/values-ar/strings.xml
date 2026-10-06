@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">ديك</string>
   <string name="astronomy_animal_dog">كلب</string>
   <string name="astronomy_animal_pig">خنزير</string>
+  <string name="astronomy_tithi">تيثي — سوريا سيدهانتا</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">شوكلا</string>
+  <string name="astronomy_paksha_krishna">كريشنا</string>
+  <string name="astronomy_tithi_why">عن هذا التيثي</string>
+  <string name="astronomy_tithi_hide">إخفاء</string>
+  <string name="astronomy_tithi_explained">التيثي هو بُعد القمر عن الشمس بمقدار جزء من اثني عشر من الدورة. يقرؤه تقويم بطريقة سوريا سيدهانتا، وهي الطريقة التي يتبعها بانشانغ نيبال، فيتوافق دائمًا مع الأعياد النيبالية في هذا التطبيق. أما الحساب الفلكي الحديث فيضع الحد نفسه بعد ساعات وقد يسمي يومًا آخر.</string>
 </resources>

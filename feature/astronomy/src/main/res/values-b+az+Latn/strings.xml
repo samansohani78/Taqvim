@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">xoruz</string>
   <string name="astronomy_animal_dog">it</string>
   <string name="astronomy_animal_pig">donuz</string>
+  <string name="astronomy_tithi">Tithi — Surya Siddhanta</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Şukla</string>
+  <string name="astronomy_paksha_krishna">Krişna</string>
+  <string name="astronomy_tithi_why">Bu tithi haqqında</string>
+  <string name="astronomy_tithi_hide">Gizlət</string>
+  <string name="astronomy_tithi_explained">Tithi Ayın Günəşdən uzaqlığıdır, dövrün on ikidə biri ilə. Taqvim onu Nepal pançanqının izlədiyi Surya Siddhanta ilə oxuyur, buna görə bu tətbiqdəki Nepal bayramları ilə həmişə uyğun gəlir. Müasir astronomik hesablama eyni sərhədi bir neçə saat kənara qoyur və başqa günü adlandıra bilər.</string>
 </resources>

@@ -124,4 +124,11 @@
   <string name="astronomy_animal_rooster">خروس</string>
   <string name="astronomy_animal_dog">سگ</string>
   <string name="astronomy_animal_pig">خوک</string>
+  <string name="astronomy_tithi">تیتهی — سوریا سیدهانتا</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">شوکلا</string>
+  <string name="astronomy_paksha_krishna">کریشنا</string>
+  <string name="astronomy_tithi_why">دربارهٔ این تیتهی</string>
+  <string name="astronomy_tithi_hide">پنهان کردن</string>
+  <string name="astronomy_tithi_explained">تیتهی فاصلهٔ ماه از خورشید است، به یک‌دوازدهم دور. تقویم آن را با سوریا سیدهانتا می‌خواند، همان روشی که پنچانگ نپال دنبال می‌کند، پس همیشه با جشن‌های نپالی همین برنامه هم‌خوان است. یک رصد نجومی نوین همان مرز را چند ساعت آن‌سوتر می‌گذارد و می‌تواند روز دیگری را نام ببرد.</string>
 </resources>

@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">dîk</string>
   <string name="astronomy_animal_dog">se</string>
   <string name="astronomy_animal_pig">beraz</string>
+  <string name="astronomy_tithi">Tithî — Surya Siddhanta</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Şukla</string>
+  <string name="astronomy_paksha_krishna">Krişna</string>
+  <string name="astronomy_tithi_why">Derbarê vê tithîyê</string>
+  <string name="astronomy_tithi_hide">Veşêre</string>
+  <string name="astronomy_tithi_explained">Tithî dûrbûna Heyvê ji Rojê ye, bi diwanzdehyeka gerê. Taqvim wê bi Surya Siddhanta dixwîne, rêbaza ku pançanga Nepalê dişopîne, loma her tim bi cejnên nepalî yên vê sepanê re li hev dike. Hesabeke stêrnasî ya nûjen heman sînorî çend saetan dûrtir datîne û dikare rojeke din bi nav bike.</string>
 </resources>

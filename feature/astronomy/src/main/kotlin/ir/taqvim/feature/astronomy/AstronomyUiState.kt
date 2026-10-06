@@ -11,6 +11,7 @@ import ir.taqvim.core.astronomy.EclipseKind
 import ir.taqvim.core.astronomy.Season
 import ir.taqvim.core.astronomy.ZodiacSign
 import ir.taqvim.core.astronomy.ZodiacSystem
+import ir.taqvim.core.calendar.TithiPosition
 import ir.taqvim.core.ui.component.DateSelection
 import kotlinx.collections.immutable.ImmutableList
 
@@ -72,6 +73,8 @@ data class HeaderText(
     val moonConstellation: String,
     /** Animal of the Chinese year the shown date belongs to (T-406). */
     val animalYear: ChineseZodiacAnimal,
+    /** The tithi at the shown instant, by the Surya Siddhanta (T-406, DT-043). */
+    val tithi: TithiPosition,
     val phase: MoonPhaseName,
     val illumination: String,
     val moonDistance: String,

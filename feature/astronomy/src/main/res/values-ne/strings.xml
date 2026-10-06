@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">भाले</string>
   <string name="astronomy_animal_dog">कुकुर</string>
   <string name="astronomy_animal_pig">सुँगुर</string>
+  <string name="astronomy_tithi">तिथि — सूर्य सिद्धान्त</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">शुक्ल</string>
+  <string name="astronomy_paksha_krishna">कृष्ण</string>
+  <string name="astronomy_tithi_why">यो तिथिबारे</string>
+  <string name="astronomy_tithi_hide">लुकाउनुहोस्</string>
+  <string name="astronomy_tithi_explained">तिथि भनेको चन्द्रमा सूर्यबाट कति टाढा छ भन्ने हो, एक फेराको बाह्रौं भागमा। तक्विमले यसलाई सूर्य सिद्धान्तबाट पढ्छ, जुन नेपालको पञ्चाङ्गले पछ्याउँछ, त्यसैले यो सधैं यही एपका नेपाली चाडहरूसँग मिल्छ। आधुनिक खगोलीय गणनाले त्यही सीमा केही घण्टा पर राख्छ र अर्कै दिन देखाउन सक्छ।</string>
 </resources>

@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">چرګ</string>
   <string name="astronomy_animal_dog">سپی</string>
   <string name="astronomy_animal_pig">خوګ</string>
+  <string name="astronomy_tithi">تیتهي — سوریا سیدهانتا</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">شوکلا</string>
+  <string name="astronomy_paksha_krishna">کرشنا</string>
+  <string name="astronomy_tithi_why">د دې تیتهي په اړه</string>
+  <string name="astronomy_tithi_hide">پټول</string>
+  <string name="astronomy_tithi_explained">تیتهي د سپوږمۍ له لمر څخه واټن دی، د یوې دورې په دوولسمه برخه. تقویم یې د سوریا سیدهانتا له مخې لولي، هماغه لاره چې د نیپال پنچانګ یې تعقیبوي، نو تل د همدې کړنلارې له نیپالي جشنونو سره سمون لري. یوه نوې نجومي محاسبه هماغه پوله څو ساعته لرې ږدي او کولی شي بله ورځ ونوموي.</string>
 </resources>

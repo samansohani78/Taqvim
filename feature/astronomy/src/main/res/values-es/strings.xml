@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">gallo</string>
   <string name="astronomy_animal_dog">perro</string>
   <string name="astronomy_animal_pig">cerdo</string>
+  <string name="astronomy_tithi">Tithi — Surya Siddhanta</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Shukla</string>
+  <string name="astronomy_paksha_krishna">Krishna</string>
+  <string name="astronomy_tithi_why">Sobre este tithi</string>
+  <string name="astronomy_tithi_hide">Ocultar</string>
+  <string name="astronomy_tithi_explained">El tithi es la distancia de la Luna al Sol, en doceavos de vuelta. Taqvim lo lee con el Surya Siddhanta, el método que sigue el panchang de Nepal, por lo que siempre coincide con las fiestas nepalíes de esta aplicación. Una efeméride moderna sitúa el mismo límite unas horas más allá y puede nombrar otro día.</string>
 </resources>

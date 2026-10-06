@@ -145,3 +145,6 @@ wear/src/main/res: wear_prayer_maghrib | Prayer name transliterated the same way
 feature/year/src/main/res: year_animal_leopard | Leopard is the same word in German (de)
 feature/widgets/src/main/res: widget_list_title | "Widgets" is the same word in these languages (de es ms id)
 feature/astronomy/src/main/res: astronomy_animal_tiger | Tiger is the same word in German (de)
+feature/astronomy/src/main/res: astronomy_tithi | Tithi and Surya Siddhanta are Sanskrit proper names, transliterated the same way (az uz de es fr id ms tr)
+feature/astronomy/src/main/res: astronomy_paksha_shukla | Shukla is a Sanskrit proper name, transliterated the same way (uz de es fr id ms)
+feature/astronomy/src/main/res: astronomy_paksha_krishna | Krishna is a Sanskrit proper name, transliterated the same way (uz de es fr id ms)

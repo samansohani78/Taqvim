@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">xoʻroz</string>
   <string name="astronomy_animal_dog">it</string>
   <string name="astronomy_animal_pig">choʻchqa</string>
+  <string name="astronomy_tithi">Tithi — Surya Siddhanta</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Shukla</string>
+  <string name="astronomy_paksha_krishna">Krishna</string>
+  <string name="astronomy_tithi_why">Bu tithi haqida</string>
+  <string name="astronomy_tithi_hide">Yashirish</string>
+  <string name="astronomy_tithi_explained">Tithi — Oyning Quyoshdan uzoqligi, aylananing oʻn ikkidan bir qismida. Taqvim uni Nepal panchangi amal qiladigan Surya Siddhanta boʻyicha oʻqiydi, shuning uchun u har doim shu ilovadagi Nepal bayramlariga mos keladi. Zamonaviy astronomik hisob xuddi shu chegarani bir necha soat narida qoʻyadi va boshqa kunni atashi mumkin.</string>
 </resources>

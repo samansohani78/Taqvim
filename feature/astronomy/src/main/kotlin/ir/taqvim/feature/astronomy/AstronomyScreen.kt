@@ -27,6 +27,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -35,6 +38,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import ir.taqvim.core.calendar.TithiPosition
 import ir.taqvim.core.ui.component.EmptyState
 import ir.taqvim.core.ui.component.MoonDisc
 import ir.taqvim.core.ui.component.ScreenSurface
@@ -239,6 +243,36 @@ private fun LightWindowRows(
     }
 }
 
+/**
+ * The tithi, naming the convention it is read with (DT-043).
+ *
+ * The app carries two: the Surya Siddhanta, which Nepal's panchang and this app's own Nepali festivals follow, and a
+ * modern ephemeris. They disagree by hours, which can move a tithi to the neighbouring day, so the value says which
+ * one it is rather than presenting a lunar day as if only one reading existed. The explanation is behind a button
+ * because almost nobody needs it twice.
+ */
+@Composable
+private fun TithiRow(tithi: TithiPosition) {
+    var explained by rememberSaveable { mutableStateOf(false) }
+    InfoRow(
+        stringResource(R.string.astronomy_tithi),
+        stringResource(
+            R.string.astronomy_tithi_value,
+            stringResource(AstronomyLabels.paksha(tithi.paksha)),
+            tithi.numberInPaksha.toString(),
+        ),
+    )
+    TextButton(onClick = { explained = !explained }) {
+        Text(
+            stringResource(if (explained) R.string.astronomy_tithi_hide else R.string.astronomy_tithi_why),
+            style = MaterialTheme.typography.labelLarge,
+        )
+    }
+    if (explained) {
+        Text(stringResource(R.string.astronomy_tithi_explained), style = MaterialTheme.typography.bodySmall)
+    }
+}
+
 @Composable
 private fun HeaderCard(header: HeaderText) {
     val none = stringResource(R.string.astronomy_no_eclipse)
@@ -257,6 +291,7 @@ private fun HeaderCard(header: HeaderText) {
                 stringResource(R.string.astronomy_animal_year),
                 stringResource(AstronomyLabels.animal(header.animalYear)),
             )
+            TithiRow(header.tithi)
             InfoRow(
                 stringResource(R.string.astronomy_moon_distance),
                 stringResource(R.string.astronomy_kilometers, header.moonDistance),

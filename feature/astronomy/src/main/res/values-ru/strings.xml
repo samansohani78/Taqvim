@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">петух</string>
   <string name="astronomy_animal_dog">собака</string>
   <string name="astronomy_animal_pig">свинья</string>
+  <string name="astronomy_tithi">Титхи — Сурья-сиддханта</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Шукла</string>
+  <string name="astronomy_paksha_krishna">Кришна</string>
+  <string name="astronomy_tithi_why">Об этом титхи</string>
+  <string name="astronomy_tithi_hide">Скрыть</string>
+  <string name="astronomy_tithi_explained">Титхи — это расстояние Луны от Солнца, в двенадцатых долях оборота. Taqvim читает его по Сурья-сиддханте, методу непальского панчанга, поэтому он всегда совпадает с непальскими праздниками в этом приложении. Современный астрономический расчёт ставит ту же границу на несколько часов дальше и может назвать другой день.</string>
 </resources>

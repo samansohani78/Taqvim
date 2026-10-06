@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">کەڵەشێر</string>
   <string name="astronomy_animal_dog">سەگ</string>
   <string name="astronomy_animal_pig">بەراز</string>
+  <string name="astronomy_tithi">تیتهی — سوریا سیدهانتا</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">شوکلا</string>
+  <string name="astronomy_paksha_krishna">کریشنا</string>
+  <string name="astronomy_tithi_why">دەربارەی ئەم تیتهییە</string>
+  <string name="astronomy_tithi_hide">شاردنەوە</string>
+  <string name="astronomy_tithi_explained">تیتهی دووری مانگە لە خۆر، بە یەک لە دوازدەی خولێک. تەقویم بە سوریا سیدهانتا دەیخوێنێتەوە، هەمان ڕێگای پانچانگی نیپال، بۆیە هەمیشە لەگەڵ جەژنە نیپالییەکانی ئەم ئەپە دەگونجێت. ژمێریارییەکی ئەستێرەناسی نوێ هەمان سنوور چەند کاتژمێرێک دوورتر دادەنێت و دەتوانێت ڕۆژێکی تر ناو ببات.</string>
 </resources>

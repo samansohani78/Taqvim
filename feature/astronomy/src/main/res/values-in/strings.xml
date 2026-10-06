@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">ayam jago</string>
   <string name="astronomy_animal_dog">anjing</string>
   <string name="astronomy_animal_pig">babi</string>
+  <string name="astronomy_tithi">Tithi — Surya Siddhanta</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">Shukla</string>
+  <string name="astronomy_paksha_krishna">Krishna</string>
+  <string name="astronomy_tithi_why">Tentang tithi ini</string>
+  <string name="astronomy_tithi_hide">Sembunyikan</string>
+  <string name="astronomy_tithi_explained">Tithi adalah jarak Bulan dari Matahari, dalam perduabelas putaran. Taqvim membacanya dengan Surya Siddhanta, metode yang diikuti panchang Nepal, sehingga selalu sesuai dengan hari raya Nepal di aplikasi ini. Efemeris modern menempatkan batas yang sama beberapa jam kemudian dan bisa menyebut hari yang berbeda.</string>
 </resources>

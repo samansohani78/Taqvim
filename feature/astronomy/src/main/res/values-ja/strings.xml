@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">トリ</string>
   <string name="astronomy_animal_dog">イヌ</string>
   <string name="astronomy_animal_pig">イノシシ</string>
+  <string name="astronomy_tithi">ティティ — スーリヤ・シッダーンタ</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">シュクラ</string>
+  <string name="astronomy_paksha_krishna">クリシュナ</string>
+  <string name="astronomy_tithi_why">このティティについて</string>
+  <string name="astronomy_tithi_hide">隠す</string>
+  <string name="astronomy_tithi_explained">ティティは月と太陽の離角を一周の十二分の一で数えたものです。Taqvim はネパールのパンチャーンガが用いるスーリヤ・シッダーンタで読み取るため、本アプリのネパールの祭日と常に一致します。現代の天文暦では同じ境界が数時間ずれ、別の日を指すことがあります。</string>
 </resources>

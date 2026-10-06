@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">鸡</string>
   <string name="astronomy_animal_dog">狗</string>
   <string name="astronomy_animal_pig">猪</string>
+  <string name="astronomy_tithi">提提 — 苏利耶历</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">白分</string>
+  <string name="astronomy_paksha_krishna">黑分</string>
+  <string name="astronomy_tithi_why">关于此提提</string>
+  <string name="astronomy_tithi_hide">隐藏</string>
+  <string name="astronomy_tithi_explained">提提是月亮与太阳的距离，以一圈的十二分之一计。Taqvim 以尼泊尔历书所依据的苏利耶历读取它，因此始终与本应用中的尼泊尔节日一致。现代星历会把同一分界放在数小时之外，可能指向另一天。</string>
 </resources>

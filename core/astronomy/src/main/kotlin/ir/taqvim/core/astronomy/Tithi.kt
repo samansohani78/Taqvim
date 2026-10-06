@@ -4,38 +4,22 @@
  */
 package ir.taqvim.core.astronomy
 
+import ir.taqvim.core.calendar.Paksha
+import ir.taqvim.core.calendar.TithiPosition
 import kotlin.math.floor
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
 
-/** Half of the lunar month a tithi belongs to. */
-public enum class Paksha {
-    /** Waxing: tithis 1‥15. */
-    SHUKLA,
-
-    /** Waning: tithis 16‥30. */
-    KRISHNA,
-}
-
-/** Tithi [number] (1‥30) and its [paksha]; tithi 15 is Purnima (full moon) and 30 Amavasya (new moon). */
-public data class TithiPosition(
-    public val number: Int,
-    public val paksha: Paksha,
-) {
-    /** Number within its paksha, 1‥15. */
-    public val numberInPaksha: Int
-        get() = (number - 1) % TITHIS_PER_PAKSHA + 1
-
-    private companion object {
-        const val TITHIS_PER_PAKSHA = 15
-    }
-}
-
 /**
  * Tithi (A-15, T-406): the Moon's elongation from the Sun in ecliptic longitude, in 12° steps. This is a modern
  * ephemeris approximation from true geocentric longitudes (cosinekitty via [Sky.moonPhaseDegrees]); it is not the
  * traditional Surya Siddhanta mean/true computation, whose tithi boundaries can differ by hours.
+ *
+ * **Not the value the app displays.** DT-043: the screen shows
+ * [ir.taqvim.core.calendar.SuryaSiddhantaTithi], the convention Nepal's panchang and this app's own Nepali festivals
+ * follow, so a tithi on screen never contradicts a festival the app places elsewhere. This one stays as the modern
+ * reading of the same quantity, and as what the two conventions are compared with.
  */
 public object Tithi {
     private const val DEGREES_PER_TITHI = 12.0

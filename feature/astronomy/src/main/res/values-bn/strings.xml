@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">মোরগ</string>
   <string name="astronomy_animal_dog">কুকুর</string>
   <string name="astronomy_animal_pig">শূকর</string>
+  <string name="astronomy_tithi">তিথি — সূর্য সিদ্ধান্ত</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">শুক্ল</string>
+  <string name="astronomy_paksha_krishna">কৃষ্ণ</string>
+  <string name="astronomy_tithi_why">এই তিথি সম্পর্কে</string>
+  <string name="astronomy_tithi_hide">লুকান</string>
+  <string name="astronomy_tithi_explained">তিথি হলো সূর্য থেকে চাঁদের দূরত্ব, এক পাকের বারো ভাগের এক ভাগে। তাকভিম এটি সূর্য সিদ্ধান্ত দিয়ে পড়ে, যে পদ্ধতি নেপালের পঞ্জিকা অনুসরণ করে, তাই এটি সবসময় এই অ্যাপের নেপালি উৎসবের সঙ্গে মেলে। আধুনিক জ্যোতির্বৈজ্ঞানিক হিসাব একই সীমা কয়েক ঘণ্টা দূরে রাখে এবং অন্য দিন বলতে পারে।</string>
 </resources>

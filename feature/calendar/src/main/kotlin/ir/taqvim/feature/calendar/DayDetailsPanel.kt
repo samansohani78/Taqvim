@@ -164,6 +164,24 @@ private fun IslamicVariantsDisclosure(
     }
 }
 
+/** The day in each of the user's calendars, with where an Islamic date came from and the variants that disagree. */
+@Composable
+private fun DayInEveryCalendar(
+    content: CalendarContent,
+    language: LanguageSpec,
+) {
+    val weekday = content.selectedDay.weekday()
+    content.selectedDates.forEachIndexed { index, date ->
+        val origin = content.selectedOrigins.getOrNull(index)?.takeIf { date.system == CalendarSystem.ISLAMIC }
+        DetailRow(
+            stringResource(DayDetailsLabels.of(date.system)),
+            DateFormatter.format(date, weekday, language, DateStyle.LONG),
+            note = origin?.let { stringResource(DayDetailsLabels.of(it)) },
+        )
+        if (date.system == CalendarSystem.ISLAMIC) IslamicVariantsDisclosure(content, language)
+    }
+}
+
 /** The Calendars tab: the day in every calendar, its distance from today, week, season, Sun and Moon. */
 @Composable
 internal fun DayCalendarsTab(
@@ -177,19 +195,10 @@ internal fun DayCalendarsTab(
         return
     }
     val resources = LocalResources.current
-    val weekday = content.selectedDay.weekday()
     // The primary calendar is the first of the shown dates, and its year is what the week number is compared with.
     val primaryYear = content.selectedDates.firstOrNull()?.year
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        content.selectedDates.forEachIndexed { index, date ->
-            val origin = content.selectedOrigins.getOrNull(index)?.takeIf { date.system == CalendarSystem.ISLAMIC }
-            DetailRow(
-                stringResource(DayDetailsLabels.of(date.system)),
-                DateFormatter.format(date, weekday, language, DateStyle.LONG),
-                note = origin?.let { stringResource(DayDetailsLabels.of(it)) },
-            )
-            if (date.system == CalendarSystem.ISLAMIC) IslamicVariantsDisclosure(content, language)
-        }
+        DayInEveryCalendar(content, language)
         DetailRow(stringResource(R.string.calendar_distance_label), distanceText(resources, overview, language))
         IndicatorRow(
             stringResource(R.string.calendar_week_label),

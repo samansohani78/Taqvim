@@ -125,4 +125,11 @@
   <string name="astronomy_animal_rooster">مرغا</string>
   <string name="astronomy_animal_dog">کتا</string>
   <string name="astronomy_animal_pig">سور</string>
+  <string name="astronomy_tithi">تِتھی — سوریہ سدھانت</string>
+  <string name="astronomy_tithi_value">%1$s %2$s</string>
+  <string name="astronomy_paksha_shukla">شُکل</string>
+  <string name="astronomy_paksha_krishna">کرشن</string>
+  <string name="astronomy_tithi_why">اس تتھی کے بارے میں</string>
+  <string name="astronomy_tithi_hide">چھپائیں</string>
+  <string name="astronomy_tithi_explained">تتھی چاند کا سورج سے فاصلہ ہے، ایک چکر کے بارہویں حصے میں۔ تقویم اسے سوریہ سدھانت سے پڑھتا ہے، وہی طریقہ جو نیپال کا پنچانگ اپناتا ہے، اس لیے یہ ہمیشہ اس ایپ کے نیپالی تہواروں سے مطابقت رکھتا ہے۔ جدید فلکیاتی حساب وہی حد چند گھنٹے آگے رکھتا ہے اور کوئی اور دن بتا سکتا ہے۔</string>
 </resources>

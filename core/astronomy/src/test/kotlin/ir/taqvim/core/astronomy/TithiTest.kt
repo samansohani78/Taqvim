@@ -8,6 +8,8 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import ir.taqvim.core.calendar.Paksha
+import ir.taqvim.core.calendar.TithiPosition
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Instant
 import org.junit.jupiter.api.Test
