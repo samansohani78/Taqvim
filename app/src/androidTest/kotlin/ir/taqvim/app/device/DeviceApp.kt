@@ -139,7 +139,22 @@ internal fun awaitTag(tag: String): UiObject2 {
         device.waitForIdle(IDLE_MILLIS)
         device.findObject(By.res(tag))?.let { return it }
     }
-    error("$tag is not shown; ${crashed()}. ${onScreen(tag)}")
+    val where = onScreen(tag)
+    error("$tag is not shown; ${notResponding(where) ?: crashed()}. $where")
+}
+
+/**
+ * Names the window that is not responding when the failure is an ANR, so a reader is not left doubting the app.
+ *
+ * Observed twice: API 36 on 2026-10-05 and API 33 on 2026-10-06, where twelve unrelated device tests failed with
+ * `mCurrentFocus=Window{… Application Not Responding: com.android.systemui}` — the emulator's own system UI had the
+ * focus, so the app was never on screen to be found. Without this line each failure reads as "the screen did not
+ * open", which points at the app.
+ */
+private fun notResponding(focus: String): String? {
+    val marker = "Application Not Responding: "
+    val window = focus.substringAfter(marker, missingDelimiterValue = "").substringBefore('}').trim()
+    return window.takeIf { it.isNotEmpty() }?.let { "'$it' is not responding, so nothing of the app was on screen" }
 }
 
 /**

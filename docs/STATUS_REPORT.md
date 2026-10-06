@@ -190,17 +190,21 @@ computes or states its fallback; the seventh (DT-043) waits on an owner decision
 
 ### CI reliability
 
-**API 36 instrumented flake, observed once on 2026-10-05 (`eb7ea36`).** Four unrelated device tests —
-`DeviceHolidayTest`, `DeviceEventLifecycleTest`, `DeviceBackupRestoreTest` and `DeviceAccessibilityTest[fa]` — all
-timed out waiting 60 s for content, on both of the job's internal attempts, while API 26, 30, 33 and Wear OS 34
-passed on the same commit and `DeviceAccessibilityTest[en]` walked every screen successfully. Re-running the API 36
-job alone on the identical commit passed.
+**Emulator ANRs on the instrumented runners, twice (2026-10-05 API 36, 2026-10-06 API 33).** On 2026-10-06 twelve
+unrelated device tests failed on API 36's sibling runner, and every one of them reported the same thing:
 
-No change was made for it. The `/dev/kvm` line in the log is the guard script being echoed, not a firing error, so
-the emulator had hardware acceleration; beyond that there is no reproducible cause, and raising a timeout on one
-observation hides the next real failure rather than fixing anything. API 36 had been green on the five preceding
-commits. If it recurs, the pattern — several unrelated tests timing out together on one API level — is the thing to
-chase, not the individual tests.
+```
+mCurrentFocus=Window{bea59ba u0 Application Not Responding: com.android.systemui}
+```
+
+The emulator's **own system UI** was not responding, so the app was never on screen to be found. The failures read as
+"the screen did not open", which points at the app; the focus line says otherwise. The day before, on API 36, four
+tests had failed the same way and a re-run of the identical commit passed.
+
+No timeout was raised and no product code changed. What did change is the message: `awaitTag` now names the window
+that is not responding, so the next reader of such a failure is not left doubting the app. The underlying cause —
+why a GitHub runner's system UI stalls — is outside this repository; if it becomes frequent rather than occasional,
+the thing to chase is the runner, not the tests.
 
 ## 2. Test inventory
 
