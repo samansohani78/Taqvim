@@ -5,6 +5,9 @@
 package ir.taqvim.feature.calendar
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.WeekOfYear
+import ir.taqvim.core.calendar.WeekRule
+import ir.taqvim.core.calendar.weekOfYear
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
@@ -32,15 +35,17 @@ object MonthLayout {
 
     /**
      * Week of the year of [day] in [calendar]: week 1 contains the first day of the year, and every following week
-     * begins on [weekStart].
+     * begins on [weekStart] (A-08).
+     *
+     * This is `:core:calendar`'s rule engine, not a second implementation. Until 2026-10-06 the grid counted weeks
+     * from the first day of the day's **own** calendar year, which disagrees with the rule at a year edge: when the
+     * week holding 1 Farvardin starts before Nowruz, the last days of the old year belong to week 1 of the new one,
+     * and the grid called them week 53 while the documented rule (and PROVENANCE A-08) calls them week 1.
+     * [WeekOfYear.weekBasedYear] is what names the year those days belong to.
      */
     fun weekOfYear(
         day: Jdn,
         calendar: CalendarArithmetic,
         weekStart: Weekday,
-    ): Int {
-        val yearStart = calendar.toJdn(calendar.date(calendar.fromJdn(day).year, 1, 1))
-        val leadingDays = yearStart.weekday().daysAfter(weekStart)
-        return ((day - yearStart).toInt() + leadingDays) / DAYS_PER_WEEK + 1
-    }
+    ): WeekOfYear = calendar.weekOfYear(calendar.fromJdn(day), WeekRule.containingFirstDay(weekStart))
 }

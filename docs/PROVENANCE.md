@@ -78,6 +78,9 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
   the next year belongs to week 1 of that year; the week number is ⌊(JDN − start) / 7⌋ + 1 within the week-based
   year. Years may therefore have 52 or 53 weeks (and a 13-month Hebrew or Nepali-length year more), and
   `WeekOfYear.weekBasedYear` can differ from the calendar year.
+- **Used by:** the month grid's week column and Day Details, through `MonthLayout.weekOfYear` with
+  `WeekRule.containingFirstDay(weekStart)` (2026-10-06: before that the grid had its own simpler rule and the
+  two disagreed at year edges). `minimalDaysInFirstWeek` is 1 for the app and is not a user setting.
 - **Validation:** `CalendarMathTest` — ISO weeks across the 2020/2021, 2024/2025 and 2026/2027 edges (2021-01-01 is
   2020-W53, 2024-12-30 is 2025-W01, 2026-12-31 is 2026-W53), Saturday-start first-day weeks, rejected minimal days
   0 and 8; `PersianCalendarMathTest` — Saturday-start weeks across the 1403/1404/1405/1406 edges (29 Esfand 1405

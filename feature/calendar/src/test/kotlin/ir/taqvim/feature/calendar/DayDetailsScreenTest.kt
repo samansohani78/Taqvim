@@ -81,11 +81,12 @@ class DayDetailsScreenTest {
                 .assertExists()
         }
         composeRule.onNode(hasText(resources.getString(R.string.calendar_today))).assertExists()
-        composeRule.onNode(hasText(weekText(resources, overview, english))).assertExists()
+        val shownYear = content.selectedDates.first().year
+        composeRule.onNode(hasText(weekText(resources, overview, shownYear, english))).assertExists()
         composeRule.onNode(hasText(seasonText(resources, overview, english))).assertExists()
         composeRule.onNode(hasContentDescription(skyText(resources, overview, english))).assertExists()
         seasonText(resources, overview, english) shouldBe "Spring: day 1 of 93"
-        weekText(resources, overview, english) shouldBe "Day 1 of the week, week 1 of the year"
+        weekText(resources, overview, shownYear, english) shouldBe "Day 1 of the week, week 1 of the year"
         composeRule.onNode(hasText(resources.getString(R.string.calendar_origin_computed))).assertExists()
     }
 

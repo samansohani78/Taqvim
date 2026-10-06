@@ -48,6 +48,7 @@ object DayDetailsCalculator {
         val primary = calendars.arithmetic.first()
         val weekStart = calendars.settings.weekStart
         val noon = noon(day, place?.timeZone ?: TimeZone.UTC)
+        val week = MonthLayout.weekOfYear(day, primary, weekStart)
         // Persian seasons coincide with the astronomical ones (Farvardin–Khordad is the northern spring).
         val season = PersianCalendarSystem.positionInSeason(PersianCalendarSystem.fromJdn(day))
         val southern = place != null && place.coordinates.latitude < 0
@@ -57,7 +58,8 @@ object DayDetailsCalculator {
             daysFromToday = day - today,
             period = primary.periodBetween(primary.fromJdn(today), primary.fromJdn(day)),
             dayOfWeek = day.weekday().daysAfter(weekStart) + 1,
-            weekOfYear = MonthLayout.weekOfYear(day, primary, weekStart),
+            weekOfYear = week.week,
+            weekBasedYear = week.weekBasedYear,
             season = SeasonName.entries[seasonIndex],
             dayOfSeason = season.dayOfSeason,
             seasonLength = season.seasonLength,

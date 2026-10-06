@@ -51,6 +51,11 @@ data class DayOverview(
     val dayOfWeek: Int,
     /** Week of the primary calendar's year (week 1 contains the first day of the year, as in the month pager). */
     val weekOfYear: Int,
+    /**
+     * The year that week belongs to (A-08). It differs from the shown date's year on the last days of a year whose
+     * successor's week 1 has already begun, which is why it is carried rather than assumed.
+     */
+    val weekBasedYear: Int,
     val season: SeasonName,
     val dayOfSeason: Int,
     val seasonLength: Int,

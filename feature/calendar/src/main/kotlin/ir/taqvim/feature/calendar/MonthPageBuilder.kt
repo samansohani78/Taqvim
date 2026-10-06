@@ -199,7 +199,7 @@ class MonthPageBuilder(
     ): List<WeekNumberModel> =
         days.chunked(MonthLayout.DAYS_PER_WEEK).map { week ->
             val anchor = week.firstOrNull { inMonth(it, month) } ?: week.first()
-            val label = number(MonthLayout.weekOfYear(anchor, primary, weekStart))
+            val label = number(MonthLayout.weekOfYear(anchor, primary, weekStart).week)
             WeekNumberModel(label, texts.week(label))
         }
 

@@ -158,4 +158,5 @@
   <string name="calendar_print_job">Mois du calendrier</string>
   <string name="calendar_print_events">Événements du mois</string>
   <string name="calendar_print_no_events">Aucun événement ce mois-ci</string>
+  <string name="calendar_week_progress_other_year">Jour %1$s de la semaine, semaine %2$s de %3$s</string>
 </resources>

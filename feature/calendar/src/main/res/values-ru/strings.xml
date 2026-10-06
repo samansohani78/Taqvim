@@ -165,4 +165,5 @@
   <string name="calendar_print_job">Месяц календаря</string>
   <string name="calendar_print_events">События месяца</string>
   <string name="calendar_print_no_events">В этом месяце нет событий</string>
+  <string name="calendar_week_progress_other_year">День %1$s недели, неделя %2$s %3$s года</string>
 </resources>

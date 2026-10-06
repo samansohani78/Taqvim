@@ -178,6 +178,8 @@ internal fun DayCalendarsTab(
     }
     val resources = LocalResources.current
     val weekday = content.selectedDay.weekday()
+    // The primary calendar is the first of the shown dates, and its year is what the week number is compared with.
+    val primaryYear = content.selectedDates.firstOrNull()?.year
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         content.selectedDates.forEachIndexed { index, date ->
             val origin = content.selectedOrigins.getOrNull(index)?.takeIf { date.system == CalendarSystem.ISLAMIC }
@@ -189,7 +191,15 @@ internal fun DayCalendarsTab(
             if (date.system == CalendarSystem.ISLAMIC) IslamicVariantsDisclosure(content, language)
         }
         DetailRow(stringResource(R.string.calendar_distance_label), distanceText(resources, overview, language))
-        IndicatorRow(stringResource(R.string.calendar_week_label), weekText(resources, overview, language)) { text ->
+        IndicatorRow(
+            stringResource(R.string.calendar_week_label),
+            weekText(
+                resources,
+                overview,
+                primaryYear ?: overview.weekBasedYear,
+                language,
+            ),
+        ) { text ->
             ProgressRing(overview.dayOfWeek / MonthLayout.DAYS_PER_WEEK.toFloat(), text, Modifier.size(INDICATOR_SIZE))
         }
         IndicatorRow(
@@ -289,16 +299,32 @@ private fun periodText(
             resources.getQuantityString(plural, abs(value), number(abs(value).toLong(), language))
         }
 
+/**
+ * "Day 3 of the week, week 12 of the year" — and the year itself when the week belongs to another one (A-08).
+ *
+ * On the last days of a year whose successor's week 1 has already begun, "week 1 of the year" beside a date in the
+ * old year reads like a mistake. [shownYear] is the year of the date on screen, so the two can be compared.
+ */
 internal fun weekText(
     resources: Resources,
     overview: DayOverview,
+    shownYear: Int,
     language: LanguageSpec,
 ): String =
-    resources.getString(
-        R.string.calendar_week_progress,
-        number(overview.dayOfWeek.toLong(), language),
-        number(overview.weekOfYear.toLong(), language),
-    )
+    if (overview.weekBasedYear == shownYear) {
+        resources.getString(
+            R.string.calendar_week_progress,
+            number(overview.dayOfWeek.toLong(), language),
+            number(overview.weekOfYear.toLong(), language),
+        )
+    } else {
+        resources.getString(
+            R.string.calendar_week_progress_other_year,
+            number(overview.dayOfWeek.toLong(), language),
+            number(overview.weekOfYear.toLong(), language),
+            number(overview.weekBasedYear.toLong(), language),
+        )
+    }
 
 internal fun seasonText(
     resources: Resources,
