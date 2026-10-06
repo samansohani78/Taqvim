@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_36: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.world-blood-donor-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی اهداکنندگان خون",
+                        "ar" to "اليوم العالمي للمتبرّعين بالدم",
+                        "en" to "World Blood Donor Day",
+                        "es" to "Día Mundial del Donante de Sangre",
+                        "fr" to "Journée mondiale du donneur de sang",
+                        "ru" to "Всемирный день донора крови",
+                        "zh" to "世界献血者日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 14),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-blood-donor-day",
+                        title = "World Blood Donor Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://apps.who.int/gb/ebwha/pdf_files/WHA58/WHA58_13-en.pdf",
+                    "un" to "https://www.who.int/campaigns/world-blood-donor-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-book-and-copyright-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی کتاب و حق پدید آورنده",
+                        "ar" to "اليوم العالمي للكتاب وحقوق المؤلف",
+                        "en" to "World Book and Copyright Day",
+                        "es" to "Día Mundial del Libro y del Derecho de Autor",
+                        "fr" to "Journée mondiale du livre et du droit d'auteur",
+                        "ru" to "Всемирный день книги и авторского права",
+                        "zh" to "世界图书与版权日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 23),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.unesco.org/en/days/world-book-and-copyright",
+                        title = "World Book and Copyright Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000101803#page=56",
+                    "un" to "https://www.unesco.org/en/days/world-book-and-copyright",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-chagas-disease-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بیماری شاگاس",
+                        "en" to "World Chagas Disease Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 14),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_019,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.who.int/campaigns/world-chagas-disease-day",
+                            title = "World Chagas Disease Day (72nd World Health Assembly decision WHA72.20, May 2019)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-chagas-disease-day",
+                        title = "World Chagas Disease Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.who.int/campaigns/world-chagas-disease-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.world-chess-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -225,125 +348,6 @@ internal val OFFICIAL_EVENTS_PART_36: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/world-glaciers-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-health-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی بهداشت",
-                        "en" to "World Health Day",
-                        "fr" to "Journée mondiale de la santé",
-                        "ru" to "Всемирный день здоровья",
-                        "zh" to "世界卫生日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 7),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.who.int/campaigns/world-health-day",
-                        title = "World Health Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://apps.who.int/iris/bitstream/handle/10665/86099/WHA2.35_eng.pdf",
-                    "un" to "https://www.who.int/campaigns/world-health-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-hepatitis-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی هپاتیت",
-                        "en" to "World Hepatitis Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 28),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.who.int/campaigns/world-hepatitis-day",
-                            title = "World Hepatitis Day — 63rd World Health Assembly resolution WHA63.18 (19 May 2010)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.who.int/campaigns/world-hepatitis-day",
-                        title = "World Hepatitis Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.who.int/campaigns/world-hepatitis-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.world-intellectual-property-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی مالکیت معنوی",
-                        "en" to "World Intellectual Property Day",
-                        "es" to "Día Mundial de la Propiedad Intelectual",
-                        "fr" to "Journée mondiale de la propriété intellectuelle",
-                        "ru" to "Международный день интеллектуальной собственности",
-                        "zh" to "世界知识产权日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 26),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "http://www.wipo.int/ip-outreach/en/ipday/",
-                        title = "World Intellectual Property Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "http://www.wipo.int/ip-outreach/en/ipday/",
                 ),
         ),
     )

@@ -24,6 +24,128 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_22: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.international-coffee-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی قهوه",
+                        "en" to "International Coffee Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 1),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_026,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/80/248",
+                            title = "International Coffee Day (A/RES/80/248, adopted 10 March 2026)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://docs.un.org/en/A/RES/80/248",
+                        title = "International Coffee Day (UN General Assembly resolution A/RES/80/248)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://docs.un.org/en/A/RES/80/248",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.international-day-for-dialogue-among-civilizations"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی گفت‌وگوی تمدن‌ها",
+                        "ar" to "اليوم الدولي للحوار بين الحضارات",
+                        "en" to "International Day for Dialogue among Civilizations",
+                        "es" to "Día Internacional para el Diálogo entre Civilizaciones",
+                        "fr" to "Journée internationale pour le dialogue entre les civilisations",
+                        "ru" to "Международный день диалога между цивилизациями",
+                        "zh" to "文明对话国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 10),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations",
+                        title = "International Day for Dialogue among Civilizations (observance page)",
+                    ),
+                    Citation(
+                        url = "https://iran.un.org/fa/296020-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%DA%AF%D9%81%D8%AA%E2%80%8C%D9%88%DA%AF%D9%88%DB%8C-%D8%AA%D9%85%D8%AF%D9%86%E2%80%8C%D9%87%D8%A7",
+                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی گفت‌وگوی تمدن‌ها",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://www.undocs.org/EN/A/RES/78/286",
+                    "un" to "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.international-day-for-the-remembrance-of-the-slave-trade"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی یادبود و الغاء تجارت برده",
+                        "ar" to "اليوم الدولي لاحياء ذكرى تجارة الرقيق وذكرى إلغائها",
+                        "en" to "International Day for the Remembrance of the Slave Trade and Its Abolition",
+                        "es" to "Día Internacional del Recuerdo de la Trata de Esclavos y de su Abolición",
+                        "fr" to "Journée internationale du souvenir de la traite négrière et de son abolition",
+                        "ru" to "Международный день памяти о работорговле и ее ликвидации",
+                        "zh" to "贩卖奴隶及其废除奴隶制国际纪念日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 23),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.unesco.org/en/days/slave-trade-remembrance",
+                        title = "International Day for the Remembrance of the Slave Trade and Its Abolition (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000110220#page=72",
+                    "un" to "https://www.unesco.org/en/days/slave-trade-remembrance",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.international-day-for-tolerance"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -225,129 +347,6 @@ internal val OFFICIAL_EVENTS_PART_22: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.fao.org/international-day-of-forests/en",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-of-light"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی نور",
-                        "en" to "International Day of Light",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 16),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.unesco.org/en/days/light",
-                            title = "International Day of Light (UNESCO General Conference, 39th session, Resolution 39 C/Resolution 16, Nov 2017)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/light",
-                        title = "International Day of Light (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.unesco.org/en/days/light",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-of-plant-health"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی سلامت گیاهان",
-                        "en" to "International Day of Plant Health",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 12),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_022,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/international-day-plant-health",
-                            title = "International Day of Plant Health (UN General Assembly A/RES/76/256, adopted Mar 2022)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.fao.org/plant-health-day/en",
-                        title = "International Day of Plant Health (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.fao.org/plant-health-day/en",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-of-play"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی بازی",
-                        "en" to "International Day of Play",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 11),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/international-day-of-play",
-                            title = "International Day of Play — A/RES/78/268 (2024)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/international-day-of-play",
-                        title = "International Day of Play (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/international-day-of-play",
                 ),
         ),
     )

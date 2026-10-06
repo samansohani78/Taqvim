@@ -213,4 +213,6 @@
   <string name="calendar_print_no_events">No events this month</string>
   <!-- A-08: the week belongs to another year than the date shown; %3$s is that year. -->
   <string name="calendar_week_progress_other_year">Day %1$s of the week, week %2$s of %3$s</string>
+  <!-- DT-038: who or where an observance applies to, when it is not the whole country. -->
+  <string name="calendar_event_scope">Applies to: %1$s</string>
 </resources>

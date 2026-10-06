@@ -145,4 +145,5 @@
   <string name="calendar_print_events">Acara bulan ini</string>
   <string name="calendar_print_no_events">Tidak ada acara bulan ini</string>
   <string name="calendar_week_progress_other_year">Hari ke-%1$s dalam minggu, minggu ke-%2$s tahun %3$s</string>
+  <string name="calendar_event_scope">Berlaku untuk: %1$s</string>
 </resources>

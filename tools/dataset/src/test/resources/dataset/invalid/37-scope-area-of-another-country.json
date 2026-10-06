@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "np.test.scoped",
+      "calendar": "NEPALI",
+      "source": "NEPAL_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "ne": "परीक्षण पर्व"
+      },
+      "rule": {
+        "type": "Fixed",
+        "month": 1,
+        "day": 1
+      },
+      "scope": {
+        "level": "REGION",
+        "areas": [
+          "ir.region.terai"
+        ],
+        "label": {
+          "ne": "तराईका जिल्ला",
+          "en": "The Terai districts"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://example.org/source.pdf",
+          "title": "Synthetic test source",
+          "page": "1"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "test-fixture"
+    }
+  ]
+}

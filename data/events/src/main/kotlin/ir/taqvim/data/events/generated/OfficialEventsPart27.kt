@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_27: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.neutrality-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی بی‌طرفی",
+                        "en" to "International Day of Neutrality",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 12),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_017,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/neutrality-day",
+                            title = "International Day of Neutrality — resolution 71/275 (2 February 2017)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/neutrality-day",
+                        title = "International Day of Neutrality (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/neutrality-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.non-self-governing-week"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "هفته همبستگی با مردمان سرزمین‌های غیرخودمختار",
+                        "en" to "Week of Solidarity with the Peoples of Non-Self-Governing Territories",
+                    ),
+                ),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 5, day = 25), lengthDays = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 1_999,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/non-self-governing-week",
+                            title = "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/non-self-governing-week",
+                        title = "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/non-self-governing-week",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.non-violence-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی عدم خشونت",
+                        "ar" to "اليوم الدولي للاعنف",
+                        "en" to "International Day of Non-Violence",
+                        "es" to "Día Internacional de la No Violencia",
+                        "fr" to "Journée internationale de la non-violence",
+                        "ru" to "Международный день ненасилия",
+                        "zh" to "国际非暴力日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/non-violence-day",
+                        title = "International Day of Non-Violence (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/61/271",
+                    "un" to "https://www.un.org/en/observances/non-violence-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.nuclear-weapons-elimination-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -226,129 +349,6 @@ internal val OFFICIAL_EVENTS_PART_27: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/parents-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.parliamentarism-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پارلمانتاریسم",
-                        "en" to "International Day of Parliamentarism",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 30),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_018,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/parliamentarism-day",
-                            title = "International Day of Parliamentarism — A/RES/72/278 (2018)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/parliamentarism-day",
-                        title = "International Day of Parliamentarism (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/parliamentarism-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.peaceful-coexistence-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی همزیستی مسالمت‌آمیز",
-                        "en" to "International Day of Peaceful Coexistence",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 1, day = 28),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_025,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/peaceful-coexistence-day",
-                            title = "International Day of Peaceful Coexistence — A/RES/79/269 (4 March 2025)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/peaceful-coexistence-day",
-                        title = "International Day of Peaceful Coexistence (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/peaceful-coexistence-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.peacekeepers-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی حافظان صلح ملل متحد",
-                        "ar" to "اليوم الدولي لحفظة السلام",
-                        "en" to "International Day of UN Peacekeepers",
-                        "es" to "Día Internacional del Personal de Paz de las Naciones Unidas",
-                        "fr" to "Journée internationale des Casques bleus des Nations Unies",
-                        "ru" to "Международный день миротворцев ООН",
-                        "zh" to "联合国维持和平人员国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 29),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/peacekeepers-day",
-                        title = "International Day of UN Peacekeepers (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/129",
-                    "un" to "https://www.un.org/en/observances/peacekeepers-day",
                 ),
         ),
     )

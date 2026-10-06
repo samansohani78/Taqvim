@@ -152,4 +152,5 @@
   <string name="calendar_print_events">Ayın tədbirləri</string>
   <string name="calendar_print_no_events">Bu ay tədbir yoxdur</string>
   <string name="calendar_week_progress_other_year">Həftənin %1$s-ci günü, %3$s ilinin %2$s-ci həftəsi</string>
+  <string name="calendar_event_scope">Aiddir: %1$s</string>
 </resources>

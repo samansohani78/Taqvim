@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.asteroid-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی سیارک",
+                        "en" to "International Asteroid Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 30),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_016,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/asteroid-day",
+                            title = "International Asteroid Day — A/RES/71/90 (December 2016)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/asteroid-day",
+                        title = "International Asteroid Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/asteroid-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.audiovisual-heritage"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی میراث سمعی و بصری",
+                        "en" to "World Day for Audiovisual Heritage",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 27),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 1_980,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.unesco.org/en/days/audiovisual-heritage",
+                            title = "World Day for Audiovisual Heritage: UNESCO's 21st General Conference adopted the Recommendation for the Safeguarding and Preservation of Moving Images (1980)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.unesco.org/en/days/audiovisual-heritage",
+                        title = "World Day for Audiovisual Heritage (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.unesco.org/en/days/audiovisual-heritage",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.autism-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی آگاهی درباره اوتیسم",
+                        "ar" to "اليوم العالمي للتوعية بمرض التوحد",
+                        "en" to "World Autism Awareness Day",
+                        "es" to "Día Mundial de Concienciación sobre el Autismo",
+                        "fr" to "Journée mondiale de sensibilisation à l'autisme",
+                        "ru" to "Всемирный день распространения информации о проблеме аутизма",
+                        "zh" to "世界提高自闭症意识日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/autism-day",
+                        title = "World Autism Awareness Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/62/139",
+                    "un" to "https://www.un.org/en/observances/autism-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.bicycle-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -226,128 +349,6 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/care-and-support-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.charity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی نیکوکاری",
-                        "en" to "International Day of Charity",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 5),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_012,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/charity-day",
-                            title = "International Day of Charity: GA resolution A/RES/67/105 designated 5 September as the day (67th session, 2012)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/charity-day",
-                        title = "International Day of Charity (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/charity-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.chemical-warfare-victims-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی یادبود قربانیان سلاح های شیمیایی",
-                        "ar" to "يوم إحياء ذكرى جميع ضحايا الحرب الكيميائية",
-                        "en" to "Day of Remembrance for all Victims of Chemical Warfare",
-                        "es" to "Día de Conmemoración de todas las víctimas de la guerra química",
-                        "fr" to "Journée du souvenir dédiée à toutes les victimes de la guerre chimique",
-                        "ru" to "День памяти всех жертв применения химического оружия",
-                        "zh" to "化学战受害者纪念日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 30),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/chemical-warfare-victims-day",
-                        title = "Day of Remembrance for all Victims of Chemical Warfare (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20140927025001/http://www.unic-ir.org/index.php?option=com_content&view=article&id=392:%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%DB%8C%D8%A7%D8%AF%D8%A8%D9%88%D8%AF-%D9%82%D8%B1%D8%A8%D8%A7%D9%86%DB%8C%D8%A7%D9%86-%D8%B3%D9%84%D8%A7%D8%AD-%D9%87%D8%A7%DB%8C-%D8%B4%DB%8C%D9%85%DB%8C%D8%A7%DB%8C%DB%8C&catid=8:eventpersian&Itemid=231&lang=fa",
-                        title = "United Nations Information Centre Tehran — روز جهانی یادبود قربانیان سلاح های شیمیایی",
-                        page = "Wayback Machine snapshot of 2014-09-27 (original site unreachable 2026-09-18)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/chemical-warfare-victims-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.chernobyl-remembrance-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی یادبود فاجعه چرنوبیل",
-                        "en" to "International Chernobyl Disaster Remembrance Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 26),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_016,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/chernobyl-remembrance-day",
-                            title = "International Chernobyl Disaster Remembrance Day — resolution 71/125 (8 December 2016)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/chernobyl-remembrance-day",
-                        title = "International Chernobyl Disaster Remembrance Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/chernobyl-remembrance-day",
                 ),
         ),
     )

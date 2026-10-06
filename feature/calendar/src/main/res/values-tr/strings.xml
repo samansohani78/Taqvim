@@ -152,4 +152,5 @@
   <string name="calendar_print_events">Ayın etkinlikleri</string>
   <string name="calendar_print_no_events">Bu ay etkinlik yok</string>
   <string name="calendar_week_progress_other_year">Haftanın %1$s. günü, %3$s yılının %2$s. haftası</string>
+  <string name="calendar_event_scope">Şunlar için: %1$s</string>
 </resources>

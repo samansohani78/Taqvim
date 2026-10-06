@@ -55,6 +55,13 @@ data class DayEventItem(
     val citations: List<Citation> = emptyList(),
     /** Where the date of an official event in the Islamic calendar comes from; `null` for other events. */
     val dateOrigin: DateOrigin? = null,
+    /**
+     * Who or where the observance applies to, already localized, or `null` for a nationwide one (DT-038).
+     *
+     * Shown beside the title and never used to hide the event: the app does not know which district a user is in,
+     * so it names the scope rather than deciding for them.
+     */
+    val scope: String? = null,
 )
 
 /** The chosen place for the Times tab and the Moon of the day details (T-802). */

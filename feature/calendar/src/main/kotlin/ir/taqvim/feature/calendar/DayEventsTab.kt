@@ -141,16 +141,21 @@ internal fun chipDescription(
     listOfNotNull(
         event.title,
         sourceLabel(resources, event),
+        event.scope?.let { resources.getString(R.string.calendar_event_scope, it) },
         resources.getString(R.string.calendar_holiday).takeIf { event.isHoliday },
     ).joinToString(resources.getString(R.string.calendar_separator))
 
-/** The event's title and, for an official event in the Islamic calendar, where its date comes from (DT-033). */
+/**
+ * The event's title, who it applies to when it is not everyone (DT-038), and, for an official event in the Islamic
+ * calendar, where its date comes from (DT-033).
+ */
 internal fun sourceBody(
     resources: Resources,
     event: DayEventItem,
 ): String =
     listOfNotNull(
         event.title,
+        event.scope?.let { resources.getString(R.string.calendar_event_scope, it) },
         event.dateOrigin?.let {
             resources.getString(R.string.calendar_event_date_origin, resources.getString(DayDetailsLabels.of(it)))
         },

@@ -32,6 +32,9 @@ enum class IssueKind {
 
     /** A `titleReview` language tag that is not a key of the record's `title` (ADR-0042). */
     TITLE_REVIEW_UNKNOWN_LANGUAGE,
+
+    /** A `scope` whose area ids do not belong to the record's own country, or whose level and areas disagree. */
+    SCOPE_MISMATCH,
 }
 
 /** One problem found in [file] at [location] (a JSON path). */

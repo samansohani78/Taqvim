@@ -44,8 +44,8 @@ class DatasetValidatorTest {
         }
 
     @Test
-    fun `there are 36 invalid fixtures and they cover every issue kind`() {
-        INVALID_FIXTURES.keys shouldHaveSize 36
+    fun `there are 37 invalid fixtures and they cover every issue kind`() {
+        INVALID_FIXTURES.keys shouldHaveSize 37
         INVALID_FIXTURES.values.toSet() shouldBe IssueKind.entries.toSet()
     }
 
@@ -148,6 +148,7 @@ class DatasetValidatorTest {
                 "34-title-review-unknown-language" to IssueKind.TITLE_REVIEW_UNKNOWN_LANGUAGE,
                 "35-week-length-too-short" to IssueKind.SCHEMA,
                 "36-week-start-day-out-of-range" to IssueKind.DAY_OUT_OF_RANGE,
+                "37-scope-area-of-another-country" to IssueKind.SCOPE_MISMATCH,
             ).toMap()
     }
 }

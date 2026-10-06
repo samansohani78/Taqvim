@@ -152,4 +152,5 @@
   <string name="calendar_print_events">مہینے کے واقعات</string>
   <string name="calendar_print_no_events">اس مہینے کوئی واقعہ نہیں</string>
   <string name="calendar_week_progress_other_year">ہفتے کا %1$s دن، %3$s کا %2$s ہفتہ</string>
+  <string name="calendar_event_scope">کے لیے: %1$s</string>
 </resources>

@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_32: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.srebrenica-genocide-commemoration-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی تأمل و یادبود نسل‌کشی سال ۱۹۹۵ سربرنیتسا",
+                        "en" to "International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 11),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day",
+                            title = "International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica — A/RES/78/282 (23 May 2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day",
+                        title = "International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/srebrenica-genocide-commemoration-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.steelpan-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی استیل‌پن",
+                        "en" to "World Steelpan Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 11),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_023,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/steelpan-day",
+                            title = "World Steelpan Day — A/RES/77/316 (24 July 2023)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/steelpan-day",
+                        title = "World Steelpan Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/steelpan-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.sustainable-gastronomy-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی گاسترونومی پایدار",
+                        "en" to "Sustainable Gastronomy Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 18),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_016,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://research.un.org/en/docs/ga/quick/regular/71",
+                            title = "Sustainable Gastronomy Day (A/RES/71/246, adopted 21 December 2016)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.fao.org/sustainable-gastronomy-day/en",
+                        title = "Sustainable Gastronomy Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.fao.org/sustainable-gastronomy-day/en",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.sustainable-transport-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -229,128 +352,6 @@ internal val OFFICIAL_EVENTS_PART_32: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/52/149",
                     "un" to "https://www.un.org/en/observances/torture-victims-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.tourism-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی گردشگری",
-                        "ar" to "يوم السياحة العالمي",
-                        "en" to "World Tourism Day",
-                        "es" to "Día Mundial del Turismo",
-                        "fr" to "Journée mondiale du tourisme",
-                        "ru" to "Всемирный день туризма",
-                        "zh" to "世界旅游日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 27),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/tourism-day",
-                        title = "World Tourism Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/tourism-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.tourism-resilience-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی تاب‌آوری گردشگری",
-                        "en" to "Global Tourism Resilience Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 17),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_023,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/tourism-resilience-day",
-                            title = "Global Tourism Resilience Day — A/RES/77/269 (2023)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/tourism-resilience-day",
-                        title = "Global Tourism Resilience Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/tourism-resilience-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.transatlantic-slave-trade"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی یاد بود قربانیان بردگی و تجارت برده از آن سوی اقیانوس اطلس",
-                        "ar" to "اليوم الدولي لإحياء ذكرى ضحايا الرق وتجارة الرقيق عبر المحيط الأطلسي",
-                        "en" to "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade",
-                        "es" to "Día Internacional de Recuerdo de las Víctimas de la Esclavitud y la Trata Transatlántica de Esclavos",
-                        "fr" to "Journée internationale de commémoration des victimes de l’esclavage et de la traite transatlantique des esclaves",
-                        "ru" to "Международный день памяти жертв рабства и трансатлантической работорговли",
-                        "zh" to "奴隶制和跨大西洋贩卖奴隶行为受害者国际纪念日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 25),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/transatlantic-slave-trade",
-                        title = "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/62/122",
-                    "un" to "https://www.un.org/en/observances/transatlantic-slave-trade",
                 ),
         ),
     )

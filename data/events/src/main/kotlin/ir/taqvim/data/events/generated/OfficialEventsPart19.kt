@@ -15,7 +15,6 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
-import ir.taqvim.core.model.Weekday
 
 /**
  * Part 19 of the dataset events.
@@ -24,6 +23,129 @@ import ir.taqvim.core.model.Weekday
  */
 internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.fair-play-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بازی منصفانه",
+                        "en" to "World Fair Play Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 19),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/fair-play-day",
+                            title = "World Fair Play Day — A/RES/78/310 (1 July 2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/fair-play-day",
+                        title = "World Fair Play Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/fair-play-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.female-genital-mutilation-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی عدم تحمل ختنه زنان",
+                        "en" to "International Day of Zero Tolerance to Female Genital Mutilation",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 2, day = 6),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_012,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/female-genital-mutilation-day",
+                            title = "Zero Tolerance to FGM Day — A/RES/67/146 (2012)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/female-genital-mutilation-day",
+                        title = "International Day of Zero Tolerance to Female Genital Mutilation (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/female-genital-mutilation-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.fight-against-transnational-crime-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پیشگیری و مبارزه با همه اشکال جرایم سازمان‌یافته فراملی",
+                        "en" to "International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 15),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/fight-against-transnational-crime-day",
+                            title = "International Day for the Prevention of and Fight against Transnational Organized Crime — A/RES/78/267 (March 2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/fight-against-transnational-crime-day",
+                        title = "International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/fight-against-transnational-crime-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.food-safety-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -227,129 +349,6 @@ internal val OFFICIAL_EVENTS_PART_19: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/genocide-prevention-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.girl-child-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی دختران",
-                        "en" to "International Day of the Girl Child",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 11),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_011,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/girl-child-day",
-                            title = "International Day of the Girl Child — resolution 66/170 (19 December 2011)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/girl-child-day",
-                        title = "International Day of the Girl Child (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/girl-child-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.girls-in-ict-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی دختران در فناوری اطلاعات و ارتباطات",
-                        "en" to "International Girls in ICT Day",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 4, weekday = Weekday.THURSDAY, n = 4),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
-                            title = "International Girls in ICT Day (ITU Plenipotentiary Conference Resolution 70, 2010)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.itu.int/women-and-girls/girls-in-ict/",
-                        title = "International Girls in ICT Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
-                        title = "ITU — About International Girls in ICT Day: \"Since 8 April 2011, the ITU has celebrated Girls in ICT Day annually on the fourth Thursday in April\" — D-05 re-validation (2026-09-25) found this record was shipped as a Fixed April 23 date, which is only the fourth Thursday in 3 of 25 years (2015, 2020, 2026); ITU's own page states a floating weekday-ordinal rule, so the rule type was corrected from Fixed to NthWeekdayOfMonth.",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.itu.int/women-and-girls/girls-in-ict/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.habitat-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی اسکان بشری",
-                        "en" to "World Habitat Day",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 10, weekday = Weekday.MONDAY, n = 1),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/habitat-day",
-                        title = "World Habitat Day (observance page)",
-                        page = "Background: \"the first Monday of October of every year\"",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/40/202",
-                    "un" to "https://www.un.org/en/observances/habitat-day",
                 ),
         ),
     )

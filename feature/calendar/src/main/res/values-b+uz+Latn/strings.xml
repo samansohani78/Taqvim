@@ -152,4 +152,5 @@
   <string name="calendar_print_events">Oy tadbirlari</string>
   <string name="calendar_print_no_events">Bu oyda tadbir yoʻq</string>
   <string name="calendar_week_progress_other_year">Haftaning %1$s-kuni, %3$s yilning %2$s-haftasi</string>
+  <string name="calendar_event_scope">Kimlar uchun: %1$s</string>
 </resources>

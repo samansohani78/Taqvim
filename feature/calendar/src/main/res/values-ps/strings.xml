@@ -152,4 +152,5 @@
   <string name="calendar_print_events">د میاشتې پېښې</string>
   <string name="calendar_print_no_events">پدې میاشت کې هېڅ پېښه نشته</string>
   <string name="calendar_week_progress_other_year">د اونۍ %1$s ورځ، د %3$s کال %2$s اونۍ</string>
+  <string name="calendar_event_scope">لپاره: %1$s</string>
 </resources>

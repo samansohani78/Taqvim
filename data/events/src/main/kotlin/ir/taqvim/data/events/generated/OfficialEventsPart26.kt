@@ -15,6 +15,7 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Weekday
 
 /**
  * Part 26 of the dataset events.
@@ -23,6 +24,140 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_26: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.migratory-bird-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پرندگان مهاجر",
+                        "ar" to "اليوم العالمي للطيور المهاجرة",
+                        "en" to "World Migratory Bird Day",
+                        "fr" to "Journée mondiale des oiseaux migrateurs",
+                        "ru" to "Всемирный день мигрирующих птиц",
+                        "zh" to "世界候鸟日",
+                    ),
+                ),
+            rule = EventRule.NthWeekdayOfMonth(month = 5, weekday = Weekday.SATURDAY, n = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.worldmigratorybirdday.org/",
+                        title = "World Migratory Bird Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز بین الملل یپرندگان مهاجر — 9 و 10 مه\"",
+                    ),
+                    Citation(
+                        url = "https://www.worldmigratorybirdday.org/",
+                        title = "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.worldmigratorybirdday.org/",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.migratory-bird-day-october"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پرندگان مهاجر",
+                        "ar" to "اليوم العالمي للطيور المهاجرة",
+                        "en" to "World Migratory Bird Day",
+                        "fr" to "Journée mondiale des oiseaux migrateurs",
+                        "ru" to "Всемирный день мигрирующих птиц",
+                        "zh" to "世界候鸟日",
+                    ),
+                ),
+            rule = EventRule.NthWeekdayOfMonth(month = 10, weekday = Weekday.SATURDAY, n = 2),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_018,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.cms.int/campaign/world-migratory-bird-day-wmbd",
+                            title = "World Migratory Bird Day (CMS campaign page) — the October peak day dates from the CMS/AEWA/Environment for the Americas partnership announced \"On 26 October 2017 in the margins of the CMS COP12 in Manila\": \"From 2018 onwards, the new joint campaign adopted the single name of “World Migratory Bird Day” and is celebrated twice a year, on the second Saturday in May and in October\". First October observance: 13 October 2018.",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.worldmigratorybirdday.org/",
+                        title = "World Migratory Bird Day (CMS, AEWA, EAAFP and Environment for the Americas) — campaign dates: \"World Migratory Bird Day 2026 will take place on 9 May and 10 October, recognizing that migration occurs at different times in the northern and southern hemispheres\"",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; same Persian title as un.migratory-bird-day, the May occurrence of this twice-yearly observance",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.worldmigratorybirdday.org/",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.mine-awareness-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی آگاهی از مین و کمک به اقدام علیه مین",
+                        "ar" to "اليوم الدولي للتوعية بخطر الألغام",
+                        "en" to "International Day for Mine Awareness and Assistance in Mine Action",
+                        "es" to "Día Internacional de información sobre el peligro de las minas y de asistencia para las actividades relativas a las minas",
+                        "fr" to "Journée internationale pour la sensibilisation aux mines et l'assistance à la lutte antimines",
+                        "ru" to "Международный день просвещения по вопросам минной опасности и помощи в деятельности, связанной с разминированием",
+                        "zh" to "国际提高地雷意识和协助地雷行动日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 4),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/mine-awareness-day",
+                        title = "International Day for Mine Awareness and Assistance in Mine Action (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/60/97",
+                    "un" to "https://www.un.org/en/observances/mine-awareness-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.moon-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -226,129 +361,6 @@ internal val OFFICIAL_EVENTS_PART_26: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/64/13",
                     "un" to "http://www.un.org/en/events/mandeladay/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.neutrality-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی بی‌طرفی",
-                        "en" to "International Day of Neutrality",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 12),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/neutrality-day",
-                            title = "International Day of Neutrality — resolution 71/275 (2 February 2017)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/neutrality-day",
-                        title = "International Day of Neutrality (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/neutrality-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.non-self-governing-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "هفته همبستگی با مردمان سرزمین‌های غیرخودمختار",
-                        "en" to "Week of Solidarity with the Peoples of Non-Self-Governing Territories",
-                    ),
-                ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 5, day = 25), lengthDays = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_999,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/non-self-governing-week",
-                            title = "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/non-self-governing-week",
-                        title = "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/non-self-governing-week",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.non-violence-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی عدم خشونت",
-                        "ar" to "اليوم الدولي للاعنف",
-                        "en" to "International Day of Non-Violence",
-                        "es" to "Día Internacional de la No Violencia",
-                        "fr" to "Journée internationale de la non-violence",
-                        "ru" to "Международный день ненасилия",
-                        "zh" to "国际非暴力日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/non-violence-day",
-                        title = "International Day of Non-Violence (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/61/271",
-                    "un" to "https://www.un.org/en/observances/non-violence-day",
                 ),
         ),
     )

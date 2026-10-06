@@ -152,4 +152,5 @@
   <string name="calendar_print_events">মাসের ইভেন্ট</string>
   <string name="calendar_print_no_events">এই মাসে কোনো ইভেন্ট নেই</string>
   <string name="calendar_week_progress_other_year">সপ্তাহের %1$s দিন, %3$s সালের %2$s সপ্তাহ</string>
+  <string name="calendar_event_scope">প্রযোজ্য: %1$s</string>
 </resources>

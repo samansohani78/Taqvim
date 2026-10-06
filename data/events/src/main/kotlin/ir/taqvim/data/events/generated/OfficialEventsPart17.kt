@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_17: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.elder-abuse-awareness-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی آگاهی از آزار سالمندان",
+                        "en" to "World Elder Abuse Awareness Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 15),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_011,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/elder-abuse-awareness-day/background",
+                            title = "World Elder Abuse Awareness Day (A/RES/66/127, adopted 2011)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/elder-abuse-awareness-day",
+                        title = "World Elder Abuse Awareness Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/elder-abuse-awareness-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.end-drug-abuse-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی مبارزه با سوء استفاده و قاچاق مواد مخدر",
+                        "ar" to "اليوم الدولي لمكافحة إساءة استعمال المخدرات والاتجار غير المشروع بها",
+                        "en" to "International Day against Drug Abuse and Illicit Trafficking",
+                        "es" to "Día Internacional de la Lucha contra el Uso Indebido y el Tráfico Ilícito de Drogas",
+                        "fr" to "Journée internationale contre l'abus et le trafic de drogues",
+                        "ru" to "Международный день борьбы со злоупотреблением наркотическими средствами и их незаконным оборотом",
+                        "zh" to "禁止药物滥用和非法贩运国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 26),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/end-drug-abuse-day",
+                        title = "International Day against Drug Abuse and Illicit Trafficking (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/42/112",
+                    "un" to "https://www.un.org/en/observances/end-drug-abuse-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.end-fistula-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پایان دادن به فیستول مامایی",
+                        "en" to "International Day to End Obstetric Fistula",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 23),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_012,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/end-fistula-day",
+                            title = "International Day to End Obstetric Fistula — resolution 67/147 (2012)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/end-fistula-day",
+                        title = "International Day to End Obstetric Fistula (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/end-fistula-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.end-food-waste-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -225,128 +348,6 @@ internal val OFFICIAL_EVENTS_PART_17: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/64/35",
                     "un" to "https://www.un.org/en/observances/end-nuclear-tests-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-racism-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی رفع تبعیض نژادی",
-                        "ar" to "اليوم الدولي للقضاء على التمييز العنصري",
-                        "en" to "International Day for the Elimination of Racial Discrimination",
-                        "es" to "Día Internacional de la Eliminación de la Discriminación Racial",
-                        "fr" to "Journée internationale pour l'élimination de la discrimination raciale",
-                        "ru" to "Международный день борьбы за ликвидацию расовой дискриминации",
-                        "zh" to "消除种族歧视国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-racism-day",
-                        title = "International Day for the Elimination of Racial Discrimination (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/end-racism-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-sexual-violence-in-conflict-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی ریشه‌کنی خشونت جنسی در منازعات",
-                        "en" to "International Day for the Elimination of Sexual Violence in Conflict",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 19),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_015,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day",
-                            title = "International Day for the Elimination of Sexual Violence in Conflict — A/RES/69/293 (19 June 2015)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day",
-                        title = "International Day for the Elimination of Sexual Violence in Conflict (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/end-sexual-violence-in-conflict-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.ending-violence-against-women-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی حذف خشونت علیه زنان",
-                        "ar" to "اليوم الدولي للقضاء على العنف ضد المرأة",
-                        "en" to "International Day for the Elimination of Violence against Women",
-                        "es" to "Día Internacional de la Eliminación de la Violencia contra la Mujer",
-                        "fr" to "Journée internationale pour l'élimination de la violence à l'égard des femmes",
-                        "ru" to "Международный день борьбы за ликвидацию насилия в отношении женщин",
-                        "zh" to "制止暴力侵害妇女行为国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 25),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/ending-violence-against-women-day",
-                        title = "International Day for the Elimination of Violence against Women (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/32/40",
-                    "un" to "https://www.un.org/en/observances/ending-violence-against-women-day",
                 ),
         ),
     )

@@ -43,9 +43,39 @@ internal object SemanticChecks {
         val ids = records.mapNotNull { it.id }.toSet()
         return duplicateIds(records) +
             records.flatMap {
-                ruleIssues(it, ids) + validityIssues(it) + OneOffChecks.reasonIssues(it) + titleReviewIssues(it)
+                ruleIssues(it, ids) + validityIssues(it) + OneOffChecks.reasonIssues(it) +
+                    titleReviewIssues(it) + scopeIssues(it)
             } +
             OneOffChecks.repeatedDays(records)
+    }
+
+    /**
+     * DT-038: a scope's area ids belong to the record's own country, and its level matches the kind of area it names.
+     *
+     * The ids are namespaced (`np.region.hill`), so a Nepali holiday scoped to an Iranian province is a typo the
+     * schema cannot see — the pattern only says the shape is right, not that the country is the record's own.
+     */
+    private fun scopeIssues(record: EventRecord): List<DatasetIssue> {
+        val scope = record.event.child("scope") ?: return emptyList()
+        val level = scope.string("level") ?: return emptyList()
+        val areas = (scope["areas"] as? JsonArray)?.mapNotNull { (it as? JsonPrimitive)?.content }.orEmpty()
+        val country = record.id?.substringBefore('.')
+        return areas.mapNotNull { area ->
+            val parts = area.split('.')
+            when {
+                country != null && parts.first() != country -> {
+                    issue(record, ".scope.areas", IssueKind.SCOPE_MISMATCH, "area '$area' is not in country '$country'")
+                }
+
+                parts.getOrNull(1)?.uppercase() != level -> {
+                    issue(record, ".scope.areas", IssueKind.SCOPE_MISMATCH, "area '$area' is not a $level area")
+                }
+
+                else -> {
+                    null
+                }
+            }
+        }
     }
 
     /** ADR-0042: every `titleReview` language tag must name a language the record's `title` actually carries. */

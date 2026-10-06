@@ -742,6 +742,9 @@
         "validity": {
           "$ref": "#/$defs/validity"
         },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
         "oneOffReason": {
           "description": "Required for a Single rule and forbidden for every other rule: why the record is a one-off decision that no recurring rule can express (ADR-0036).",
           "type": "string",
@@ -781,6 +784,64 @@
         "reviewedBy": {
           "type": "string",
           "minLength": 1
+        }
+      }
+    },
+    "scopeLevel": {
+      "description": "How wide an observance is (DT-038). NATIONWIDE is the default a record without a scope already has.",
+      "enum": [
+        "NATIONWIDE",
+        "PROVINCE",
+        "DISTRICT",
+        "REGION",
+        "COMMUNITY"
+      ]
+    },
+    "scopeArea": {
+      "description": "A machine-readable area or audience id, namespaced by country, e.g. np.region.hill or np.community.newar. Ids are not resolved to coordinates: they exist so two records can say they mean the same group.",
+      "type": "string",
+      "pattern": "^[a-z]{2}\\.(province|district|region|community)\\.[a-z0-9-]+$"
+    },
+    "scope": {
+      "description": "Who or where an observance applies to, when it is not the whole country (DT-038). Optional and additive: a record without it is nationwide, which is what every record meant before this field existed. The app shows `label` beside the event and does not filter by it, because it does not know the user's district.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "label"
+      ],
+      "properties": {
+        "level": {
+          "$ref": "#/$defs/scopeLevel"
+        },
+        "areas": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/scopeArea"
+          }
+        },
+        "label": {
+          "$ref": "#/$defs/localizedText"
+        }
+      },
+      "if": {
+        "properties": {
+          "level": {
+            "const": "NATIONWIDE"
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "then": {
+        "description": "A nationwide record names no areas; leaving the scope out says the same thing.",
+        "not": {
+          "required": [
+            "areas"
+          ]
         }
       }
     }

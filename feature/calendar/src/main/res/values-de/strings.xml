@@ -152,4 +152,5 @@
   <string name="calendar_print_events">Termine des Monats</string>
   <string name="calendar_print_no_events">Keine Termine in diesem Monat</string>
   <string name="calendar_week_progress_other_year">Tag %1$s der Woche, Woche %2$s von %3$s</string>
+  <string name="calendar_event_scope">Gilt für: %1$s</string>
 </resources>

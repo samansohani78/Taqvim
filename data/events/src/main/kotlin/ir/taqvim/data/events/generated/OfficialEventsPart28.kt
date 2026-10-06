@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.parliamentarism-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی پارلمانتاریسم",
+                        "en" to "International Day of Parliamentarism",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 30),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_018,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/parliamentarism-day",
+                            title = "International Day of Parliamentarism — A/RES/72/278 (2018)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/parliamentarism-day",
+                        title = "International Day of Parliamentarism (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/parliamentarism-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.peaceful-coexistence-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی همزیستی مسالمت‌آمیز",
+                        "en" to "International Day of Peaceful Coexistence",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 1, day = 28),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/peaceful-coexistence-day",
+                            title = "International Day of Peaceful Coexistence — A/RES/79/269 (4 March 2025)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/peaceful-coexistence-day",
+                        title = "International Day of Peaceful Coexistence (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/peaceful-coexistence-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.peacekeepers-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی حافظان صلح ملل متحد",
+                        "ar" to "اليوم الدولي لحفظة السلام",
+                        "en" to "International Day of UN Peacekeepers",
+                        "es" to "Día Internacional del Personal de Paz de las Naciones Unidas",
+                        "fr" to "Journée internationale des Casques bleus des Nations Unies",
+                        "ru" to "Международный день миротворцев ООН",
+                        "zh" to "联合国维持和平人员国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 29),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/peacekeepers-day",
+                        title = "International Day of UN Peacekeepers (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/57/129",
+                    "un" to "https://www.un.org/en/observances/peacekeepers-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.police-cooperation-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -225,129 +348,6 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                 mapOf(
                     "resolution" to "https://undocs.org/en/A/RES/57/277",
                     "un" to "https://www.un.org/en/observances/public-service-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.racism-solidarity-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "هفته همبستگی با مردمان مبارز علیه نژادپرستی و تبعیض نژادی",
-                        "en" to "Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination",
-                    ),
-                ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 3, day = 21), lengthDays = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_979,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/week-solidarity-peoples-struggling-against-racism-and-racial-discrimination",
-                            title = "General Assembly resolution A/RES/34/24 (1979): Programme for the Decade for Action to Combat Racism and Racial Discrimination",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/week-solidarity-peoples-struggling-against-racism-and-racial-discrimination",
-                        title = "General Assembly resolution A/RES/34/24 (1979): Programme for the Decade for Action to Combat Racism and Racial Discrimination",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/week-solidarity-peoples-struggling-against-racism-and-racial-discrimination",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.radio-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی رادیو",
-                        "ar" to "اليوم العالمي للإذاعة",
-                        "en" to "World Radio Day",
-                        "es" to "Día Mundial de la Radio",
-                        "fr" to "Journée mondiale de la radio",
-                        "ru" to "Всемирный день радио",
-                        "zh" to "世界无线电日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 13),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/radio-day",
-                        title = "World Radio Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20150403105303/http://www.unic-ir.org:80/index.php?option=com_content&view=article&id=984:%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%B1%D8%A7%D8%AF%DB%8C%D9%88-%D8%AF%D8%A8%DB%8C%D8%B1-%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%D8%A7%D8%B1-%D8%B4%D9%86%DB%8C%D8%AF%D9%86-%D9%86%D8%AF%D8%A7%DB%8C-%D8%AC%D9%88%D8%A7%D9%86%D8%A7%D9%86-%D8%B4%D8%AF&catid=8:%D8%B1%D9%88%DB%8C%D8%AF%D8%A7%D8%AF-%D9%87%D8%A7&Itemid=231&lang=fa",
-                        title = "United Nations Information Centre Tehran — به مناسبت روز جهانی رادیو دبیر کل سازمان ملل خواستار شنیدن ندای جوانان شد",
-                        page = "Wayback Machine snapshot of 2015-04-03 (original site unreachable 2026-09-18)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/67/124",
-                    "un" to "https://www.un.org/en/observances/radio-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.refugee-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی پناهندگان",
-                        "ar" to "اليوم العالمي للاجئين",
-                        "en" to "World Refugee Day",
-                        "es" to "Día Mundial de los Refugiados",
-                        "fr" to "Journée mondiale des réfugiés",
-                        "ru" to "Всемирный день беженцев",
-                        "zh" to "世界难民日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 20),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/refugee-day",
-                        title = "World Refugee Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/55/76",
-                    "un" to "https://www.un.org/en/observances/refugee-day",
                 ),
         ),
     )

@@ -22956,6 +22956,9 @@ SPLir/taqvim/data/events/generated/OfficialEventsPart38Kt;->getOFFICIAL_EVENTS_P
 Lir/taqvim/data/events/generated/OfficialEventsPart39Kt;
 SPLir/taqvim/data/events/generated/OfficialEventsPart39Kt;-><clinit>()V
 SPLir/taqvim/data/events/generated/OfficialEventsPart39Kt;->getOFFICIAL_EVENTS_PART_39()Ljava/util/List;
+Lir/taqvim/data/events/generated/OfficialEventsPart40Kt;
+SPLir/taqvim/data/events/generated/OfficialEventsPart40Kt;-><clinit>()V
+SPLir/taqvim/data/events/generated/OfficialEventsPart40Kt;->getOFFICIAL_EVENTS_PART_40()Ljava/util/List;
 Lir/taqvim/data/events/generated/OfficialEventsPart3Kt;
 SPLir/taqvim/data/events/generated/OfficialEventsPart3Kt;-><clinit>()V
 SPLir/taqvim/data/events/generated/OfficialEventsPart3Kt;->getOFFICIAL_EVENTS_PART_3()Ljava/util/List;

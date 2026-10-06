@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_16: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.disarmament-week"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "هفته خلع سلاح",
+                        "en" to "Disarmament Week",
+                    ),
+                ),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 10, day = 24), lengthDays = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 1_978,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/disarmament-week",
+                            title = "General Assembly special session on disarmament, Final Document (resolution S-10/2, 1978): Disarmament Week, 24-30 October",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/disarmament-week",
+                        title = "General Assembly special session on disarmament, Final Document (resolution S-10/2, 1978): Disarmament Week, 24-30 October",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/disarmament-week",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.disaster-reduction-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی کاهش مصایب طبیعی",
+                        "ar" to "اليوم الدولي للحد من الكوارث",
+                        "en" to "International Day for Disaster Risk Reduction",
+                        "es" to "Día Internacional para la Reducción de los Desastres",
+                        "fr" to "Journée internationale pour la réduction des risques de catastrophes",
+                        "ru" to "Международный день по снижению риска бедствий",
+                        "zh" to "国际减少灾害风险日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 13),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/disaster-reduction-day",
+                        title = "International Day for Disaster Risk Reduction (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/64/200",
+                    "un" to "https://www.un.org/en/observances/disaster-reduction-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.down-syndrome-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی سندرم داون",
+                        "en" to "World Down Syndrome Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 21),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_011,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/down-syndrome-day",
+                            title = "World Down Syndrome Day (A/RES/66/149, adopted 19 December 2011; adoption-year convention, consistent with un.vesak-day/ADR-0044)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/down-syndrome-day",
+                        title = "World Down Syndrome Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/down-syndrome-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.drowning-prevention-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -224,129 +347,6 @@ internal val OFFICIAL_EVENTS_PART_16: List<EventDefinition> =
                 mapOf(
                     "resolution" to "http://undocs.org/en/A/RES/73/25",
                     "un" to "https://www.un.org/en/observances/education-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.elder-abuse-awareness-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی آگاهی از آزار سالمندان",
-                        "en" to "World Elder Abuse Awareness Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 15),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_011,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/elder-abuse-awareness-day/background",
-                            title = "World Elder Abuse Awareness Day (A/RES/66/127, adopted 2011)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/elder-abuse-awareness-day",
-                        title = "World Elder Abuse Awareness Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/elder-abuse-awareness-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-drug-abuse-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی مبارزه با سوء استفاده و قاچاق مواد مخدر",
-                        "ar" to "اليوم الدولي لمكافحة إساءة استعمال المخدرات والاتجار غير المشروع بها",
-                        "en" to "International Day against Drug Abuse and Illicit Trafficking",
-                        "es" to "Día Internacional de la Lucha contra el Uso Indebido y el Tráfico Ilícito de Drogas",
-                        "fr" to "Journée internationale contre l'abus et le trafic de drogues",
-                        "ru" to "Международный день борьбы со злоупотреблением наркотическими средствами и их незаконным оборотом",
-                        "zh" to "禁止药物滥用和非法贩运国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 26),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-drug-abuse-day",
-                        title = "International Day against Drug Abuse and Illicit Trafficking (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/42/112",
-                    "un" to "https://www.un.org/en/observances/end-drug-abuse-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.end-fistula-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پایان دادن به فیستول مامایی",
-                        "en" to "International Day to End Obstetric Fistula",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 23),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_012,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/end-fistula-day",
-                            title = "International Day to End Obstetric Fistula — resolution 67/147 (2012)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/end-fistula-day",
-                        title = "International Day to End Obstetric Fistula (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/end-fistula-day",
                 ),
         ),
     )

@@ -15,6 +15,7 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
+import ir.taqvim.core.model.Weekday
 
 /**
  * Part 20 of the dataset events.
@@ -23,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
  */
 internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.girl-child-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی دختران",
+                        "en" to "International Day of the Girl Child",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 11),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_011,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/girl-child-day",
+                            title = "International Day of the Girl Child — resolution 66/170 (19 December 2011)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/girl-child-day",
+                        title = "International Day of the Girl Child (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/girl-child-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.girls-in-ict-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی دختران در فناوری اطلاعات و ارتباطات",
+                        "en" to "International Girls in ICT Day",
+                    ),
+                ),
+            rule = EventRule.NthWeekdayOfMonth(month = 4, weekday = Weekday.THURSDAY, n = 4),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_010,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
+                            title = "International Girls in ICT Day (ITU Plenipotentiary Conference Resolution 70, 2010)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.itu.int/women-and-girls/girls-in-ict/",
+                        title = "International Girls in ICT Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
+                        title = "ITU — About International Girls in ICT Day: \"Since 8 April 2011, the ITU has celebrated Girls in ICT Day annually on the fourth Thursday in April\" — D-05 re-validation (2026-09-25) found this record was shipped as a Fixed April 23 date, which is only the fourth Thursday in 3 of 25 years (2015, 2020, 2026); ITU's own page states a floating weekday-ordinal rule, so the rule type was corrected from Fixed to NthWeekdayOfMonth.",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.itu.int/women-and-girls/girls-in-ict/",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.habitat-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی اسکان بشری",
+                        "en" to "World Habitat Day",
+                    ),
+                ),
+            rule = EventRule.NthWeekdayOfMonth(month = 10, weekday = Weekday.MONDAY, n = 1),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/habitat-day",
+                        title = "World Habitat Day (observance page)",
+                        page = "Background: \"the first Monday of October of every year\"",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/40/202",
+                    "un" to "https://www.un.org/en/observances/habitat-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.happiness-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -225,129 +349,6 @@ internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/human-rights-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.human-solidarity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی همبستگی بشر",
-                        "ar" to "اليوم الدولي للتضامن الإنساني",
-                        "en" to "International Human Solidarity Day",
-                        "es" to "Día Internacional de la Solidaridad Humana",
-                        "fr" to "Journée internationale de la solidarité humaine",
-                        "ru" to "Международный день солидарности людей",
-                        "zh" to "国际人类团结日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 20),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/human-solidarity-day",
-                        title = "International Human Solidarity Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/60/209",
-                    "un" to "https://www.un.org/en/observances/human-solidarity-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.human-spaceflight-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پرواز فضایی انسان",
-                        "en" to "International Day of Human Space Flight",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 12),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_011,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/human-spaceflight-day",
-                            title = "International Day of Human Space Flight — A/RES/65/271 (7 April 2011)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/human-spaceflight-day",
-                        title = "International Day of Human Space Flight (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/human-spaceflight-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.humanitarian-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی انساندوستی",
-                        "ar" to "اليوم العالمي للعمل الإنساني",
-                        "en" to "World Humanitarian Day",
-                        "es" to "Día Mundial de la Asistencia Humanitaria",
-                        "fr" to "Journée mondiale de l'aide humanitaire",
-                        "ru" to "Всемирный день гуманитарной помощи",
-                        "zh" to "世界人道主义日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 8, day = 19),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/humanitarian-day",
-                        title = "World Humanitarian Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/63/139",
-                    "un" to "https://www.un.org/en/observances/humanitarian-day",
                 ),
         ),
     )

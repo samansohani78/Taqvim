@@ -1139,6 +1139,171 @@
       ],
       "updated": "2026-09-17",
       "reviewedBy": "pending"
+    },
+    {
+      "id": "np.holiday.fagu-purnima-hill",
+      "calendar": "NEPALI",
+      "source": "NEPAL_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "ne": "फागु पूर्णिमा (हिमाली र पहाडी जिल्ला)"
+      },
+      "rule": {
+        "type": "LunarTithi",
+        "month": 11,
+        "tithi": 15,
+        "observance": "SUNSET"
+      },
+      "validity": {
+        "calendar": "NEPALI",
+        "fromYear": 2082,
+        "citation": {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+          "page": "PDF p. 3, clause 2.1(द) — the rule reproduces both notices (2082 फागुन १८, 2083 चैत ७), so the record is valid from the first notice checked.",
+          "retrieved": "2026-10-06"
+        }
+      },
+      "aliases": [
+        "होली",
+        "फागु"
+      ],
+      "scope": {
+        "level": "REGION",
+        "areas": [
+          "np.region.hill",
+          "np.region.mountain"
+        ],
+        "label": {
+          "ne": "हिमाली र पहाडी ५६ जिल्ला",
+          "en": "The 56 hill and mountain districts"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+          "page": "PDF p. 4 (Rajpatra p. 2), clause 2.1(द): फागुपूर्णिमा - हिमाली र पहाडी जिल्ला लगायतका ५६ जिल्लामा फागुन १८ गते सोमबार The record is not marked a day off: the notice makes each day a public holiday in its own districts only, and the app does not know which district a user is in, so marking either one nationwide would add a day off that most of the country does not have (DT-038).",
+          "retrieved": "2026-10-06"
+        },
+        {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+          "page": "PDF p. 3, clause 2.1(द): फागुपूर्णिमा - हिमाली र पहाडी ५६ जिल्लाहरूमा चैत ७ गते आइतबार",
+          "retrieved": "2026-10-06"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "np.holiday.fagu-purnima-terai",
+      "calendar": "NEPALI",
+      "source": "NEPAL_OFFICIAL",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "ne": "फागु पूर्णिमा (तराईका जिल्ला)"
+      },
+      "rule": {
+        "type": "LunarTithi",
+        "month": 11,
+        "tithi": 15,
+        "observance": "SUNRISE"
+      },
+      "validity": {
+        "calendar": "NEPALI",
+        "fromYear": 2082,
+        "citation": {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+          "page": "PDF p. 3–4, clause 2.1(द) — the rule reproduces both notices (2082 फागुन १९, 2083 चैत ८), so the record is valid from the first notice checked.",
+          "retrieved": "2026-10-06"
+        }
+      },
+      "aliases": [
+        "होली",
+        "फागु"
+      ],
+      "scope": {
+        "level": "REGION",
+        "areas": [
+          "np.region.terai"
+        ],
+        "label": {
+          "ne": "तराईका २१ जिल्ला",
+          "en": "The 21 named Terai districts"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+          "page": "PDF p. 4–5 (Rajpatra p. 2–3), clause 2.1(द): … र तराईका देहायका जिल्लामा फागुन १९ गते मङ्गलबार:- झापा, मोरङ, सुनसरी, सप्तरी, सिराहा, उदयपुर, धनुषा, महोत्तरी, सर्लाही, रौतहट, बारा, पर्सा, नवलपरासी (बर्दघाट सुस्ता पूर्व), नवलपरासी (बर्दघाट सुस्ता पश्चिम), रुपन्देही, कपिलवस्तु, दाङ, बाँके, बर्दिया, कैलाली र कञ्चनपुर The record is not marked a day off: the notice makes each day a public holiday in its own districts only, and the app does not know which district a user is in, so marking either one nationwide would add a day off that most of the country does not have (DT-038).",
+          "retrieved": "2026-10-06"
+        },
+        {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+          "page": "PDF p. 3–4, clause 2.1(द): … र तराईका जिल्ला झापा, मोरङ, सुनसरी, सप्तरी, सिराहा, उदयपुर, धनुषा, महोत्तरी, सर्लाही, रौतहट, बारा, पर्सा, नवलपरासी (बर्दघाट सुस्ता पूर्व), नवलपरासी (बर्दघाट सुस्ता पश्चिम), रुपन्देही, कपिलवस्तु, दाङ, बाँके, बर्दिया, कैलाली र कञ्चनपुरमा चैत ८ गते सोमबार",
+          "retrieved": "2026-10-06"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "np.holiday.gai-jatra",
+      "calendar": "NEPALI",
+      "source": "NEPAL_OFFICIAL",
+      "category": "CULTURAL",
+      "isHoliday": false,
+      "title": {
+        "ne": "गाईजात्रा"
+      },
+      "rule": {
+        "type": "LunarTithi",
+        "month": 4,
+        "tithi": 16,
+        "observance": "SUNRISE"
+      },
+      "validity": {
+        "calendar": "NEPALI",
+        "fromYear": 2082,
+        "citation": {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+          "page": "PDF p. 4, clause 2.2(क) — the rule reproduces both notices (2082 साउन २५, 2083 भदौ १३), so the record is valid from the first notice checked.",
+          "retrieved": "2026-10-06"
+        }
+      },
+      "scope": {
+        "level": "COMMUNITY",
+        "areas": [
+          "np.community.newar"
+        ],
+        "label": {
+          "ne": "देशभरका नेवार समुदायका लागि मात्र",
+          "en": "The Newar community, nationwide"
+        }
+      },
+      "citations": [
+        {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+          "page": "PDF p. 5 (Rajpatra p. 3), clause 2.2(क): गाईजात्रा- साउन २५ गते आइतबार (देशभरका नेवार समुदायका लागि मात्र). The record is not marked a day off: the notice makes each day a public holiday in its own districts only, and the app does not know which district a user is in, so marking either one nationwide would add a day off that most of the country does not have (DT-038).",
+          "retrieved": "2026-10-06"
+        },
+        {
+          "url": "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+          "title": "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+          "page": "PDF p. 4, clause 2.2(क): गाईजात्रा - भदौ १३ गते शनिबार (देशभरका नेवार समुदायका लागि मात्र).",
+          "retrieved": "2026-10-06"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
     }
   ]
 }

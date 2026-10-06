@@ -108,6 +108,7 @@ internal fun DayEvents.toCalendarDay(language: String): CalendarDay =
                     source = definition.source,
                     citations = definition.citations,
                     dateOrigin = officialOrigins[definition.id],
+                    scope = definition.scope?.label?.forLanguage(language),
                 )
             } +
                 personal.map { item(it.itemId, DayEventKind.PERSONAL, it.title) } +

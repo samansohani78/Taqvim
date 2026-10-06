@@ -24,6 +24,129 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.amr-awareness-week"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "هفته جهانی آگاهی از مقاومت ضدمیکروبی",
+                        "en" to "World Antimicrobial Resistance Awareness Week",
+                    ),
+                ),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 11, day = 18), lengthDays = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_018,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.who.int/campaigns/world-amr-awareness-week",
+                            title = "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-amr-awareness-week",
+                        title = "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.who.int/campaigns/world-amr-awareness-week",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.anti-colonialism-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی مبارزه با استعمار در همه اشکال و مظاهر آن",
+                        "en" to "International Day against Colonialism in All its Forms and Manifestations",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 14),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_025,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/anti-colonialism-day",
+                            title = "International Day against Colonialism in All its Forms and Manifestations — A/RES/80/106 (2025)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/anti-colonialism-day",
+                        title = "International Day against Colonialism in All its Forms and Manifestations (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/anti-colonialism-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.anti-corruption-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی مبارزه با فساد",
+                        "ar" to "اليوم الدولي لمكافحة الفساد",
+                        "en" to "International Anti-Corruption Day",
+                        "es" to "Día Internacional contra la Corrupción",
+                        "fr" to "Journée internationale contre la corruption",
+                        "ru" to "Международный день борьбы с коррупцией",
+                        "zh" to "国际反腐败日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 9),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/anti-corruption-day",
+                        title = "International Anti-Corruption Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/58/4",
+                    "un" to "https://www.un.org/en/observances/anti-corruption-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.anti-cybercrime-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -226,129 +349,6 @@ internal val OFFICIAL_EVENTS_PART_10: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/argania-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.asteroid-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی سیارک",
-                        "en" to "International Asteroid Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 30),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_016,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/asteroid-day",
-                            title = "International Asteroid Day — A/RES/71/90 (December 2016)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/asteroid-day",
-                        title = "International Asteroid Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/asteroid-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.audiovisual-heritage"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی میراث سمعی و بصری",
-                        "en" to "World Day for Audiovisual Heritage",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 27),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_980,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.unesco.org/en/days/audiovisual-heritage",
-                            title = "World Day for Audiovisual Heritage: UNESCO's 21st General Conference adopted the Recommendation for the Safeguarding and Preservation of Moving Images (1980)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/audiovisual-heritage",
-                        title = "World Day for Audiovisual Heritage (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.unesco.org/en/days/audiovisual-heritage",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.autism-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی آگاهی درباره اوتیسم",
-                        "ar" to "اليوم العالمي للتوعية بمرض التوحد",
-                        "en" to "World Autism Awareness Day",
-                        "es" to "Día Mundial de Concienciación sobre el Autismo",
-                        "fr" to "Journée mondiale de sensibilisation à l'autisme",
-                        "ru" to "Всемирный день распространения информации о проблеме аутизма",
-                        "zh" to "世界提高自闭症意识日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/autism-day",
-                        title = "World Autism Awareness Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/62/139",
-                    "un" to "https://www.un.org/en/observances/autism-day",
                 ),
         ),
     )

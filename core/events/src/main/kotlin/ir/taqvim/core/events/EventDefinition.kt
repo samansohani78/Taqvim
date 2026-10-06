@@ -116,6 +116,40 @@ public data class EventDefinition(
     public val aliases: List<String> = emptyList(),
     public val citations: List<Citation> = emptyList(),
     public val links: Map<String, String> = emptyMap(),
+    /**
+     * Who or where the observance applies to, or `null` for the whole country (DT-038).
+     *
+     * `null` is what every record meant before this existed, so nothing changes for one that does not carry it. The
+     * app shows [EventScope.label] beside the event and never filters on it: it does not know which district a user
+     * is in, and quietly hiding a holiday from someone who did not ask would be worse than naming its scope.
+     */
+    public val scope: EventScope? = null,
+)
+
+/** How wide an observance is (DT-038). */
+public enum class EventScopeLevel {
+    /** The whole country, which is also what no scope at all means. */
+    NATIONWIDE,
+    PROVINCE,
+    DISTRICT,
+
+    /** A geographic group that is not an administrative division, such as Nepal's hill and Terai districts. */
+    REGION,
+
+    /** A community or audience rather than a place: a people, a profession, an institution. */
+    COMMUNITY,
+}
+
+/**
+ * The scope of an observance (DT-038): how wide it is, which areas or audiences it names, and the text shown for it.
+ *
+ * [areas] are namespaced ids (`np.region.hill`, `np.community.newar`). They are not resolved to coordinates; they
+ * exist so two records can say they mean the same group. [label] is what a reader sees.
+ */
+public data class EventScope(
+    public val level: EventScopeLevel,
+    public val label: LocalizedText,
+    public val areas: List<String> = emptyList(),
 )
 
 /** One day on which [definition] occurs: [jdn], its [date] in the definition's calendar, and the rule [year]. */

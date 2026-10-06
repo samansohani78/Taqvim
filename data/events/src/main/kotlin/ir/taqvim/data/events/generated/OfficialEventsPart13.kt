@@ -25,6 +25,128 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
     listOf(
         EventDefinition(
+            id = EventId("un.civil-aviation-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی هواپیمایی غیر نظامی",
+                        "ar" to "يوم الطيران المدني الدولي",
+                        "en" to "International Civil Aviation Day",
+                        "es" to "Día de la Aviación Civil Internacional",
+                        "fr" to "Journée de l'aviation civile internationale",
+                        "ru" to "Международный день гражданской авиации",
+                        "zh" to "国际民航日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 7),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/civil-aviation-day",
+                        title = "International Civil Aviation Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/51/33",
+                    "un" to "https://www.un.org/en/observances/civil-aviation-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.clean-energy-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی انرژی پاک",
+                        "ar" to "اليوم الدولي للطاقة النظيفة",
+                        "en" to "International Day of Clean Energy",
+                        "es" to "Día Internacional de la Energía Limpia",
+                        "fr" to "Journée internationale des énergies propres",
+                        "ru" to "Международный день чистой энергии",
+                        "zh" to "国际清洁能源日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 1, day = 26),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/clean-energy-day",
+                        title = "International Day of Clean Energy (observance page)",
+                    ),
+                    Citation(
+                        url = "https://iran.un.org/fa/259765-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%A7%D9%86%D8%B1%DA%98%DB%8C-%D9%BE%D8%A7%DA%A9",
+                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز جهانی انرژی پاک",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/78/265",
+                    "un" to "https://www.un.org/en/observances/clean-energy-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.cleanup-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی پاکسازی",
+                        "en" to "World Cleanup Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 20),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_023,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/cleanup-day",
+                            title = "World Cleanup Day — resolution 78/122 (8 December 2023)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/cleanup-day",
+                        title = "World Cleanup Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/cleanup-day",
+                ),
+        ),
+        EventDefinition(
             id = EventId("un.commemoration-holocaust-victims-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
@@ -222,129 +344,6 @@ internal val OFFICIAL_EVENTS_PART_13: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/cotton-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.countering-hate-speech"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی مقابله با نفرت‌پراکنی",
-                        "en" to "International Day for Countering Hate Speech",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 18),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_021,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/countering-hate-speech",
-                            title = "International Day for Countering Hate Speech — A/RES/75/309 (July 2021)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/countering-hate-speech",
-                        title = "International Day for Countering Hate Speech (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/countering-hate-speech",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.creativity-and-innovation-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی خلاقیت و نوآوری",
-                        "en" to "World Creativity and Innovation Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 21),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/creativity-and-innovation-day",
-                            title = "World Creativity and Innovation Day (UN General Assembly A/RES/71/284, adopted 27 Apr 2017)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/creativity-and-innovation-day",
-                        title = "World Creativity and Innovation Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/creativity-and-innovation-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cultural-diversity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی تنوع فرهنگی برای گفت و گو و توسعه",
-                        "ar" to "اليوم العالمي للتنوع الثقافي من أجل الحوار والتنمية",
-                        "en" to "World Day for Cultural Diversity for Dialogue and Development",
-                        "es" to "Día Mundial de la Diversidad Cultural para el Diálogo y el Desarrollo",
-                        "fr" to "Journée mondiale de la diversité culturelle pour le dialogue et le développement",
-                        "ru" to "Всемирный день культурного разнообразия во имя диалога и развития",
-                        "zh" to "世界文化多样性促进对话和发展日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/cultural-diversity-day",
-                        title = "World Day for Cultural Diversity for Dialogue and Development (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/249",
-                    "un" to "https://www.un.org/en/observances/cultural-diversity-day",
                 ),
         ),
     )

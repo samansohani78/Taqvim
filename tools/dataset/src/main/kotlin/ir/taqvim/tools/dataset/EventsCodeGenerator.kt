@@ -51,6 +51,8 @@ object EventsCodeGenerator {
     private val EVENT_SOURCE = ClassName(EVENTS, "EventSource")
     private val EVENT_CATEGORY = ClassName(EVENTS, "EventCategory")
     private val EVENT_FLAG = ClassName(EVENTS, "EventFlag")
+    private val EVENT_SCOPE = ClassName(EVENTS, "EventScope")
+    private val EVENT_SCOPE_LEVEL = ClassName(EVENTS, "EventScopeLevel")
     private val LOCALIZED_TEXT = ClassName(EVENTS, "LocalizedText")
     private val CITATION = ClassName(EVENTS, "Citation")
     private val VALIDITY = ClassName(EVENTS, "Validity")
@@ -171,6 +173,18 @@ object EventsCodeGenerator {
         code.add("citations = %L,\n", multiline("listOf", citations))
         (event["links"] as? JsonObject)?.takeIf { it.isNotEmpty() }?.let { links ->
             code.add("links = %L,\n", multiline("mapOf", pairs(links.entries.sortedBy { it.key })))
+        }
+        (event["scope"] as? JsonObject)?.let { code.add("scope = %L,\n", scopeCode(it)) }
+        return code.add("⇤)").build()
+    }
+
+    /** The optional scope of an observance (DT-038). */
+    private fun scopeCode(scope: JsonObject): CodeBlock {
+        val code = CodeBlock.builder().add("%T(\n⇥", EVENT_SCOPE)
+        code.add("level = %T.%L,\n", EVENT_SCOPE_LEVEL, scope.text("level"))
+        code.add("label = %L,\n", localizedText(scope.child("label")))
+        scope.strings("areas").takeIf { it.isNotEmpty() }?.let { areas ->
+            code.add("areas = %L,\n", multiline("listOf", areas.map { CodeBlock.of("%S", it) }))
         }
         return code.add("⇤)").build()
     }

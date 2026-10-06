@@ -15,7 +15,6 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
-import ir.taqvim.core.model.Weekday
 
 /**
  * Part 24 of the dataset events.
@@ -24,6 +23,133 @@ import ir.taqvim.core.model.Weekday
  */
 internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
     listOf(
+        EventDefinition(
+            id = EventId("un.international-nowruz-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی نوروز",
+                        "ar" to "يوم نوروز الدولي",
+                        "en" to "International Day of Nowruz",
+                        "es" to "Día Internacional del Novruz",
+                        "fr" to "Journée internationale du Novruz",
+                        "ru" to "Международный день Навруз",
+                        "zh" to "国际诺鲁孜节",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 21),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/international-nowruz-day",
+                        title = "International Day of Nowruz (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/64/253",
+                    "un" to "https://www.un.org/en/observances/international-nowruz-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.international-tea-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی چای",
+                        "en" to "International Tea Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 21),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_019,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/74/241",
+                            title = "International Tea Day (A/RES/74/241, adopted 19 December 2019)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.fao.org/international-tea-day/en",
+                        title = "International Tea Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://docs.un.org/en/A/RES/74/241",
+                        title = "General Assembly resolution A/RES/74/241 (19 December 2019): \"Decides to designate 21 May as International Tea Day\" — D-05 re-validation (2026-09-25) found the record's validity citation misidentified this resolution as A/RES/74/151 (an unrelated human-rights resolution of 18 December 2019); the 21 May date itself was already correct, only the cited resolution symbol was wrong.",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.fao.org/international-tea-day/en",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.international-translation-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی ترجمه",
+                        "en" to "International Translation Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 30),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_017,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/international-translation-day",
+                            title = "International Translation Day — resolution 71/288 (24 May 2017)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/international-translation-day",
+                        title = "International Translation Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/international-translation-day",
+                ),
+        ),
         EventDefinition(
             id = EventId("un.interventional-cardiology-day"),
             calendar = CalendarSystem.GREGORIAN,
@@ -227,131 +353,6 @@ internal val OFFICIAL_EVENTS_PART_24: List<EventDefinition> =
             links =
                 mapOf(
                     "un" to "https://www.un.org/en/observances/landlocked-developing-countries-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.living-in-peace-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی زندگی مسالمت‌آمیز در کنار هم",
-                        "en" to "International Day of Living Together in Peace",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 16),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/living-in-peace-day",
-                            title = "International Day of Living Together in Peace (UN General Assembly A/RES/72/130, adopted 8 Dec 2017)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/living-in-peace-day",
-                        title = "International Day of Living Together in Peace (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/living-in-peace-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.maritime-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی دریانوردی",
-                        "ar" to "يوم الملاحة البحرية العالمي",
-                        "en" to "World Maritime Day",
-                        "es" to "Día Marítimo Mundial",
-                        "fr" to "Journée mondiale de la mer",
-                        "zh" to "世界海事日",
-                    ),
-                ),
-            rule = EventRule.LastWeekdayOfMonth(month = 9, weekday = Weekday.THURSDAY),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/maritime-day",
-                        title = "World Maritime Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-18); copy in docs/sources/unic-tehran-f-event-20121005.html; row \"روز جهانی دریانوردی — 29 سپتامبر (هفته آخر سپتامبر)\"",
-                    ),
-                    Citation(
-                        url = "https://www.imo.org/en/about/events/worldmaritimeday",
-                        title = "IMO's own World Maritime Day page (DT-024): \"culminating in the annual celebration on the final Thursday of September\" — the same rule as this record's, in the International Maritime Organization's own words (imo.org returned HTTP 500 on 2026-09-17; reachable again on 2026-09-25)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/maritime-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.markhor-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی مارخور",
-                        "en" to "International Day of the Markhor",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 24),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/markhor-day",
-                            title = "International Day of the Markhor — A/RES/78/278 (2024)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/markhor-day",
-                        title = "International Day of the Markhor (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/markhor-day",
                 ),
         ),
     )
