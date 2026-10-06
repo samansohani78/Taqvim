@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.calendar
 
+import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.TouchInjectionScope
 import androidx.compose.ui.test.hasContentDescription
@@ -87,7 +88,27 @@ class CalendarScreenTest {
         matcher: SemanticsMatcher,
         timeoutMillis: Long = TIMEOUT_MILLIS,
     ) {
-        composeRule.waitUntil(timeoutMillis) { composeRule.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        try {
+            composeRule.waitUntil(timeoutMillis) { composeRule.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        } catch (timeout: ComposeTimeoutException) {
+            error("${matcher.description} never appeared in $timeoutMillis ms; ${monthsOnScreen()}" + "\n$timeout")
+        }
+    }
+
+    /**
+     * Which of the nearby months the pager actually has on screen, named for a timeout message.
+     *
+     * The swipe case has timed out on CI three times (main@7b12385 at 10 s, main@2aac153 and main@3106484 at 60 s)
+     * and has never been reproduced on a developer machine, so each occurrence has so far produced the same stack
+     * trace and nothing else. The two explanations need different fixes and this tells them apart: the month before
+     * the swipe still showing means the fling snapped back, and no month at all means the runner rendered nothing.
+     */
+    private fun monthsOnScreen(): String {
+        val shown =
+            (-NEARBY_MONTHS..NEARBY_MONTHS)
+                .map(::title)
+                .filter { composeRule.onAllNodes(hasText(it)).fetchSemanticsNodes().isNotEmpty() }
+        return if (shown.isEmpty()) "no month title was on screen at all" else "the screen showed $shown"
     }
 
     /**
@@ -213,5 +234,8 @@ class CalendarScreenTest {
 
         /** Frames of test time given to a fling to settle; a pager snap needs far less. */
         const val SETTLE_MILLIS = 2_000L
+
+        /** Months either side of today named in a timeout message. */
+        const val NEARBY_MONTHS = 2
     }
 }
