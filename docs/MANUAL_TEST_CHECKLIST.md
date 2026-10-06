@@ -367,6 +367,29 @@ Sign-off: ______
 
 ---
 
+## 9a. Shift work and workday profiles on a device (F-07, F-08)
+
+Both write tables that shipped empty until 2026-10-06, so a device pass has never covered them.
+
+1. Tools → date distance → **Workday profiles** → add one: name it, pick the weekend days, pick the holiday sources
+   you take off, choose a half-day policy, add a leave range with the two-day picker.
+2. The first profile becomes the default without being asked; add a second and use **Make default** to switch.
+3. Go back to the date distance tool: the workday count changes with the default profile, and the leave days are
+   not counted.
+4. Calendar menu → **Shift work** → add a rotation: name it, add the shift types (Day, Night, Off), give each a
+   colour, tap them in order to build the cycle, pick the first day of the pattern.
+5. The month grid shows the shift label in each cell, repeating in both directions from the day you picked.
+6. Open a day → Calendars tab → tap a different shift: that one day changes and the next cycle does not. **Back to
+   the pattern** removes the exception.
+7. Switch the rotation off: the labels disappear from the grid and the rotation stays in the list.
+8. Backup → wipe → restore: both rotations and profiles come back, with their colours and their day exceptions.
+9. Install over a build from before 2026-10-06 (database 7): existing rotations keep their patterns and show no
+   colours, rather than being lost.
+
+Sign-off: ______
+
+---
+
 ## 10. Core UI scenarios on a device (PLAN §8.3)
 
 The 40 scenarios are covered by Robolectric/Compose tests on the JVM, and the screen walk of every scenario runs on the

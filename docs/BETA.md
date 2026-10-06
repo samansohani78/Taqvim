@@ -1,10 +1,13 @@
 # Taqvim closed beta
 
-The plan's beta program (docs/PLAN.md T-1902): a **two-week closed beta** with a checklist, exited only when
-crash-free sessions are **≥ 99.9%**. Release mechanics are in [RELEASE.md](RELEASE.md); how testers report problems is
+The plan's beta program (docs/PLAN.md T-1902): a **two-week closed beta** with a checklist and practical exit
+criteria. The plan's original "crash-free sessions ≥ 99.9%" is not used and cannot be: it is an Android vitals
+number, there is no Play Console here, and the app collects no telemetry of its own (F-15). Nothing in this file
+reports a fleet statistic the app does not measure. Release mechanics are in [RELEASE.md](RELEASE.md); how testers report problems is
 in [SUPPORT.md](../SUPPORT.md).
 
-> **Not started.** No beta build has been distributed. The release mechanism itself is proven — v1.0.0 went from tag
+> **Not started.** No beta build has been distributed, and no tester has run anything. Everything in this file is
+> preparation; the tester recruitment and the fourteen days are the owner's to perform. The release mechanism itself is proven — v1.0.0 went from tag
 > to published, signed, checksum-verified GitHub release on 2026-09-26 — so what a beta now needs is testers, not
 > infrastructure. The owner confirmed the track,
 > tester group and tester counts below on 2026-09-18. Nothing is uploaded without the owner's approval.
@@ -65,21 +68,44 @@ During the two weeks, testers and the team confirm:
 - [ ] Holidays shown for Iran (and Afghanistan for Dari/Pashto users) match the official announcements for the beta
       period.
 
+## Testers
+
+**10 to 20 people**, recruited by the owner, covering the devices Taqvim's users actually hold:
+
+| Make | Why it is on the list | Testers wanted |
+|---|---|---|
+| Samsung | One UI changes alarm and notification behaviour more than any other skin; the largest share in Iran. | 3–6 |
+| Xiaomi | MIUI's aggressive background limits are the most common cause of a missed athan. | 3–6 |
+| Pixel | Stock Android: the behaviour every other device is a deviation from. | 2–4 |
+| OnePlus | OxygenOS doze handling, and the owner's own reference device for benchmarks (§12.4). | 2–4 |
+
+Spread across at least three Android versions, including the oldest supported (API 26) and the newest. At least
+two testers must use the app in Persian with RTL and a large font scale, and at least one with TalkBack.
+
+Each tester is asked to confirm, once per build: that it installed, that they used it for a day, and what broke.
+Silence from a tester is not evidence of anything — it is recorded as "no report", not as a pass.
+
 ## Exit criteria
 
-The beta ends, and the release moves to the open track and staged rollout (RELEASE.md), only when all of these hold:
+The beta ends, and the release moves to a public tag (RELEASE.md), only when all of these hold. They are stated as
+things a named person can attest, because that is all this project can actually observe:
 
 1. At least **14 days** have passed since the first beta build reached testers.
-2. **No crash reported by any tester in the last 7 days**, and every tester has confirmed at least one session on
-   the current build. This replaces the former "crash-free sessions ≥ 99.9% from Android vitals": vitals do not exist
-   outside Play and the app has no crash reporter, so the former criterion was unmeasurable. It is a weaker
-   guarantee, and deliberately so — it states what a small hand-recruited group can actually evidence rather than
-   implying a fleet statistic. Recruit enough testers that silence is informative; a handful of devices cannot
-   substantiate a rate.
-3. **No open P0** and no holiday data error older than 72 hours (SUPPORT.md).
-4. §9 budgets met on the reference devices, with the benchmark results stored (§12.4).
-5. The manual sign-offs of RELEASE.md are recorded, including TalkBack and RTL (§12.6).
-6. `fa` and `en` are 100% translated.
+2. **No blocker open**: nothing that stops the app being used for its purpose.
+3. **No reproducible crash** reported by any tester on the current build, with "reproducible" meaning a second
+   person or a second attempt produced it.
+4. **No data loss** of any kind: no personal event, reminder, profile, rotation or backup lost or corrupted.
+5. **No serious alarm or notification failure**: an athan or reminder that did not fire, fired at the wrong time, or
+   could not be dismissed, on any tester's device.
+6. **No major RTL or accessibility failure**: unreadable layout at font scale 2.0, a screen TalkBack cannot
+   navigate, or text that reads in the wrong direction.
+7. **No open P0** and no holiday data error older than 72 hours (SUPPORT.md).
+8. §9 budgets met on the reference devices, with the benchmark results stored (§12.4).
+9. The manual sign-offs of RELEASE.md are recorded, including TalkBack and RTL (§12.6).
+10. `fa` and `en` are 100% translated.
+
+Every criterion above is judged from tester reports and the owner's own device testing. **No fleet percentage is
+computed, claimed or implied anywhere**, because the app measures none.
 
 If a tester reports a crash, the beta continues with a fixed build and the 7-day window restarts with it.
 

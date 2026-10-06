@@ -88,8 +88,25 @@ signing key is, and the change is one way:
 - Android refuses to install an update signed by a different key. So **if this keystore or its passwords are lost,
   no future build can update an existing installation** — every user would have to uninstall (losing their data) and
   install afresh. There is no support channel and no reset.
-- Therefore: keep an offline backup of the keystore *and* its passwords, in more than one place, before the first
-  release tag. The project owner (Saman Sohani) holds them.
+### Keystore backup (owner, manual, highest operational priority)
+
+Losing this keystore is the one failure this project cannot recover from — not a bug, an ending. The requirement is
+therefore specific, and it is the owner's to perform; nothing in this repository can do it or verify it.
+
+1. **At least two encrypted backups**, each holding the keystore file *and* its passwords. Encrypted means a
+   passphrase or key that is not stored with the backup.
+2. **In separate locations**, with separate failure modes: not two folders on one disk, and not two copies in one
+   account. One offline (an encrypted drive or printed passphrase in a safe) and one elsewhere is the shape.
+3. **Restore-verified**: at least once, restore a backup on a different machine, decrypt it, and confirm it signs a
+   build that `apksigner verify --print-certs` reports with the expected SHA-256. A backup nobody has restored is a
+   hope, not a backup.
+4. **Never committed.** The keystore, its passwords and any file holding them stay out of git — no exceptions for
+   "temporary" or "encrypted" copies. The repository's own secret scanning assumes this.
+5. **Re-verified after any change** to the key, the passwords or where the backups live, and the date of the last
+   verified restore recorded in the owner's own notes (not here).
+
+Status: **pending**. The keys exist and are in CI; the off-machine backups and the restore check are not something
+this repository can confirm, so they stay open until the owner has done them.
 - A leaked key is worse than with Play, because anyone holding it can sign an APK that Android will happily install
   over Taqvim. Rotating it means the same forced uninstall for every user, so treat the backup as a secret, not just
   as a file you must not lose.

@@ -188,6 +188,20 @@ computes or states its fallback; the seventh (DT-043) waits on an owner decision
 | DT-042 | `validity.fromYear` for the 132 UN days added by R07/D-05 (2026-09-23): only 2 of the 132 carried it | DONE | D-05 accuracy (an observance should not show in years before it existed) | Resolved 2026-09-26 for all 131 in-scope records; 9 out-of-scope records remain. The 125 done on 2026-09-24 are unchanged: each carries `validity.fromYear` set to the year its proclaiming resolution or decision was **ado |
 | DT-043 | Which tithi the app should *display* (T-406 `Tithi`, from a modern ephemeris, or the Surya Siddhanta tithi the Nepali festival rules already use) | BLOCKED | T-406 tithi on the Astronomy screen (PLAN §2.1 “Astronomy … Tithi”) | Open 2026-10-06 — one owner decision, deliberately not guessed. |
 
+### CI reliability
+
+**API 36 instrumented flake, observed once on 2026-10-05 (`eb7ea36`).** Four unrelated device tests —
+`DeviceHolidayTest`, `DeviceEventLifecycleTest`, `DeviceBackupRestoreTest` and `DeviceAccessibilityTest[fa]` — all
+timed out waiting 60 s for content, on both of the job's internal attempts, while API 26, 30, 33 and Wear OS 34
+passed on the same commit and `DeviceAccessibilityTest[en]` walked every screen successfully. Re-running the API 36
+job alone on the identical commit passed.
+
+No change was made for it. The `/dev/kvm` line in the log is the guard script being echoed, not a firing error, so
+the emulator had hardware acceleration; beyond that there is no reproducible cause, and raising a timeout on one
+observation hides the next real failure rather than fixing anything. API 36 had been green on the five preceding
+commits. If it recurs, the pattern — several unrelated tests timing out together on one API level — is the thing to
+chase, not the individual tests.
+
 ## 2. Test inventory
 
 Counted from the source at main@41a6b04 (`@Test` methods per kind; property tests by `checkAll`/`forAll` call sites;
