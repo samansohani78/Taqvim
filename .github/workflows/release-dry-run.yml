@@ -1,7 +1,7 @@
 name: Release dry run
 
 # T-1900 "release dry-run in CI": runs the release pipeline without signing secrets and publishes nothing.
-# Checks the release gates, that an unsigned AAB/APK and the SBOM are produced, previews the changelog and fails if
+# Checks the release gates, that an unsigned APK and the SBOM are produced, previews the changelog and fails if
 # a clean rebuild of the release APK is not byte-identical (reproducible builds).
 on:
   workflow_dispatch:
@@ -38,22 +38,23 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Release gates and unsigned build
         # Without -Ptaqvim.version the build uses version.properties; verifyReleaseVersion prints and checks it.
+        # No :app:bundleRelease, for the reason release.yml gives: Taqvim ships a sideloadable APK from GitHub
+        # Releases, not a Play bundle (owner decision 2026-09-26). A dry run that built an .aab was checking an
+        # artifact the release never produces. Add it back the day a Play Console exists.
         run: >-
-          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:checkReleasePageAlignment :app:bundleRelease
-          :app:assembleRelease :app:cyclonedxDirectBom
+          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents
+          :app:checkReleasePageAlignment :app:assembleRelease :app:cyclonedxDirectBom
       - name: Check release outputs
         run: |
           shopt -s nullglob
           apks=(app/build/outputs/apk/release/*.apk)
-          aabs=(app/build/outputs/bundle/release/*.aab)
           test "${#apks[@]}" -gt 0 || { echo "::error::No release APK was built"; exit 1; }
-          test "${#aabs[@]}" -gt 0 || { echo "::error::No release AAB was built"; exit 1; }
           test -s app/build/reports/cyclonedx-direct/bom.json || { echo "::error::No SBOM was produced"; exit 1; }
           (cd app/build/outputs/apk/release && sha256sum -- *.apk) > "$RUNNER_TEMP/first-build.sha256"
           {
             echo "### Release dry run outputs"
             echo '```'
-            ls -l "${apks[@]}" "${aabs[@]}"
+            ls -l "${apks[@]}"
             cat "$RUNNER_TEMP/first-build.sha256"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
@@ -68,7 +69,6 @@ jobs:
         with:
           name: release-dry-run
           path: |
-            app/build/outputs/bundle/release/
             app/build/outputs/apk/release/
             app/build/reports/cyclonedx-direct/bom.json
             build/reports/licenses/license-report.json

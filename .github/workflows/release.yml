@@ -58,6 +58,23 @@ jobs:
         # The build rejects tags that are not vX.Y.Z or vX.Y.Z-beta.N and derives versionName/versionCode from them.
         shell: bash
         run: ./gradlew :app:verifyReleaseVersion -Ptaqvim.version="$GITHUB_REF_NAME" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Tag and version.properties agree
+        # The tag wins at build time (TaqvimVersion.resolve prefers -Ptaqvim.version), so a stale version.properties
+        # cannot produce a wrongly versioned APK — but it leaves every local and PR build of main claiming the
+        # previous release, which is exactly what happened to v1.0.0 and had to be corrected afterwards in
+        # main@eb7ea36. Releasing is the one moment the disagreement is visible, so fail here rather than discover it
+        # later: the release commit is meant to carry the bump (docs/RELEASE.md, "Versioning").
+        shell: bash
+        run: |
+          tagged="${GITHUB_REF_NAME#v}"
+          declared="$(sed -n 's/^version=//p' version.properties | tr -d '[:space:]')"
+          if [ "$tagged" != "$declared" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME says $tagged but version.properties says '$declared'." \
+              "Bump version.properties in the release commit, then move the tag (docs/RELEASE.md, 'Versioning')."
+            exit 1
+          fi
+          echo "version.properties and $GITHUB_REF_NAME both say $tagged." >> "$GITHUB_STEP_SUMMARY"
+
       - name: Decode signing keystore
         env:
           KEYSTORE_BASE64: ${{ secrets.TAQVIM_KEYSTORE_BASE64 }}
@@ -123,17 +140,17 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Release gates on an unsigned build
         # No -Ptaqvim.version: an rc tag is not a Taqvim version, so the build uses version.properties.
+        # No :app:bundleRelease either: a candidate has to check what the release actually builds, and the release
+        # builds an APK (owner decision 2026-09-26). Add it back the day a Play Console exists.
         run: >-
-          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents :app:checkReleasePageAlignment :app:bundleRelease
-          :app:assembleRelease :app:cyclonedxDirectBom
+          ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents
+          :app:checkReleasePageAlignment :app:assembleRelease :app:cyclonedxDirectBom
       - name: Candidate summary
         shell: bash
         run: |
           shopt -s nullglob
           apks=(app/build/outputs/apk/release/*.apk)
-          aabs=(app/build/outputs/bundle/release/*.aab)
           test "${#apks[@]}" -gt 0 || { echo "::error::No release APK was built"; exit 1; }
-          test "${#aabs[@]}" -gt 0 || { echo "::error::No release AAB was built"; exit 1; }
           test -s app/build/reports/cyclonedx-direct/bom.json || { echo "::error::No SBOM was produced"; exit 1; }
           {
             echo "### Release candidate $GITHUB_REF_NAME"
@@ -143,6 +160,6 @@ jobs:
             echo "signed release (docs/RELEASE.md)."
             echo
             echo '```'
-            ls -l "${apks[@]}" "${aabs[@]}"
+            ls -l "${apks[@]}"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"

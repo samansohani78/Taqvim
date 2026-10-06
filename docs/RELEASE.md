@@ -24,10 +24,12 @@ closed beta that precedes the first public release is described in [BETA.md](BET
   `:app` takes it from, in order:
   1. the Gradle property `-Ptaqvim.version=vX.Y.Z[-beta.N]` — `release.yml` passes the pushed tag, so the tag *is*
      the version and a malformed tag fails the build;
-  2. otherwise `version.properties` at the repository root (`version=1.0.0`, the last released version), the default for local and PR builds.
+  2. otherwise `version.properties` at the repository root (`version=1.1.0`, the last released version), the default for local and PR builds.
 
   `./gradlew :app:verifyReleaseVersion -Ptaqvim.version=v1.2.3-beta.4` prints and checks the resulting name and code.
-  Bump `version.properties` in the release commit so local builds match the latest release.
+  Bump `version.properties` in the release commit so local builds match the latest release: `release.yml` compares the
+  two and fails the release when the tag and the file disagree, because the tag wins at build time and a forgotten
+  bump is otherwise invisible until someone reads the About screen of a `main` build (it was missed for v1.0.0).
 
 ## Branches and tags
 
@@ -47,8 +49,8 @@ closed beta that precedes the first public release is described in [BETA.md](BET
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `pr.yml` | every PR and push to `main` | All gates of PLAN §8.1 that run on a JVM; see its job list |
-| `release-dry-run.yml` | manually, or a PR that changes release configuration | License gate and release manifest audit (ADR-0017), unsigned `bundleRelease`/`assembleRelease`, SBOM, changelog preview, **reproducibility check** (a clean rebuild must produce a byte-identical APK). Publishes nothing |
-| `release.yml` | tag `v*` | **First, fail closed:** the tagged commit must be on `main` and every check in `.github/required-checks.txt` (all PR jobs, the four phone legs and the Wear leg, the release dry run, the macrobenchmark) must have concluded `success` on that exact commit — a missing, running, skipped or cancelled check stops the release before anything is built (REVIEW R06, `tools/ci/verify_required_checks.py`). Then: tag/version check, license gate and manifest audit, signed **APK** (no AAB — see *Distribution* below), SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags). A `vX.Y.Z-rcN` tag instead runs the gates on an unsigned build and publishes nothing |
+| `release-dry-run.yml` | manually, or a PR that changes release configuration | License gate and release manifest audit (ADR-0017), unsigned `assembleRelease` (no `bundleRelease`: the release builds an APK, so the dry run checks an APK), SBOM, changelog preview, **reproducibility check** (a clean rebuild must produce a byte-identical APK). Publishes nothing |
+| `release.yml` | tag `v*` | **First, fail closed:** the tagged commit must be on `main` and every check in `.github/required-checks.txt` (all PR jobs, the four phone legs and the Wear leg, the release dry run, the macrobenchmark) must have concluded `success` on that exact commit — a missing, running, skipped or cancelled check stops the release before anything is built (REVIEW R06, `tools/ci/verify_required_checks.py`). Then: tag/version check — including that `version.properties` names the version the tag does, so a release commit that forgot the bump fails here — license gate and manifest audit, signed **APK** (no AAB — see *Distribution* below), SBOM, changelog, SHA-256 checksums, **draft** GitHub release (pre-release for `-beta` tags). A `vX.Y.Z-rcN` tag instead runs the gates on an unsigned build and publishes nothing |
 | `benchmark.yml` | nightly / manual | Macrobenchmarks against §9 budgets (T-1801). Fails on a **measured** regression; an inconclusive run (degraded runner, exit 4) reports success and says the commit is unbenchmarked — see below |
 | `instrumented.yml` | see workflow | Instrumented UI tests on the API matrix |
 
