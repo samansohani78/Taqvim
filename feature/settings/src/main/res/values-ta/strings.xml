@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">இது Taqvim தேதிக் கோப்பு (பதிப்பு 1) அல்ல.</string>
   <string name="settings_islamic_override_error_months">கோப்பில் விடுபட்ட, வரிசையற்ற அல்லது இயலாத மாதங்கள் உள்ளன.</string>
   <string name="settings_islamic_override_error_citation">கோப்பில் உள்ள ஒவ்வொரு மாதத்திற்கும் அதன் மூலம் தேவை.</string>
+  <string name="settings_source_jewish">யூத நினைவு நாட்கள்</string>
+  <string name="settings_source_christian">கிறிஸ்தவ பண்டிகைகள்</string>
 </resources>

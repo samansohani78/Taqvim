@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">这不是 Taqvim 日期文件（版本 1）。</string>
   <string name="settings_islamic_override_error_months">文件中存在缺失、顺序错误或不可能的月份。</string>
   <string name="settings_islamic_override_error_citation">文件中的每个月都需要注明来源。</string>
+  <string name="settings_source_jewish">犹太节日</string>
+  <string name="settings_source_christian">基督教节日</string>
 </resources>

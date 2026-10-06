@@ -263,4 +263,6 @@
   <string name="settings_islamic_override_error_format">این پرونده، پروندهٔ تاریخ‌های تقویم (نسخهٔ ۱) نیست.</string>
   <string name="settings_islamic_override_error_months">ماه‌های این پرونده ناقص، نابه‌ترتیب یا نادرست‌اند.</string>
   <string name="settings_islamic_override_error_citation">هر ماه در پرونده باید منبع داشته باشد.</string>
+  <string name="settings_source_jewish">مناسبت‌های یهودی</string>
+  <string name="settings_source_christian">اعیاد مسیحی</string>
 </resources>

@@ -167,4 +167,6 @@
   <string name="calendar_print_no_events">В этом месяце нет событий</string>
   <string name="calendar_week_progress_other_year">День %1$s недели, неделя %2$s %3$s года</string>
   <string name="calendar_event_scope">Относится к: %1$s</string>
+  <string name="calendar_source_jewish">Еврейские памятные дни</string>
+  <string name="calendar_source_christian">Христианские праздники</string>
 </resources>

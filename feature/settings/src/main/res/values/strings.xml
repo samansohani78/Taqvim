@@ -339,4 +339,7 @@
   <string name="settings_islamic_override_error_format">This is not a Taqvim dates file (version 1).</string>
   <string name="settings_islamic_override_error_months">The file has missing, out-of-order or impossible months.</string>
   <string name="settings_islamic_override_error_citation">Every month in the file needs its source.</string>
+  <!-- T-108/T-109: dataset sources a user can switch on; both are off by default. -->
+  <string name="settings_source_jewish">Jewish observances</string>
+  <string name="settings_source_christian">Christian feasts</string>
 </resources>

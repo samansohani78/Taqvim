@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">यह Taqvim तारीख फ़ाइल (संस्करण 1) नहीं है।</string>
   <string name="settings_islamic_override_error_months">फ़ाइल में गायब, क्रम से बाहर या असंभव महीने हैं।</string>
   <string name="settings_islamic_override_error_citation">फ़ाइल के हर महीने का स्रोत होना चाहिए।</string>
+  <string name="settings_source_jewish">यहूदी पर्व</string>
+  <string name="settings_source_christian">ईसाई पर्व</string>
 </resources>

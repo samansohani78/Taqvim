@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">هذا ليس ملف تواريخ Taqvim (الإصدار 1).</string>
   <string name="settings_islamic_override_error_months">في الملف أشهر مفقودة أو غير مرتبة أو مستحيلة.</string>
   <string name="settings_islamic_override_error_citation">يحتاج كل شهر في الملف إلى مصدره.</string>
+  <string name="settings_source_jewish">المناسبات اليهودية</string>
+  <string name="settings_source_christian">الأعياد المسيحية</string>
 </resources>

@@ -146,4 +146,6 @@
   <string name="calendar_print_no_events">Дар ин моҳ рӯйдод нест</string>
   <string name="calendar_week_progress_other_year">Рӯзи %1$s-и ҳафта, ҳафтаи %2$s-и соли %3$s</string>
   <string name="calendar_event_scope">Барои: %1$s</string>
+  <string name="calendar_source_jewish">Маросимҳои яҳудӣ</string>
+  <string name="calendar_source_christian">Ҷашнҳои масеҳӣ</string>
 </resources>

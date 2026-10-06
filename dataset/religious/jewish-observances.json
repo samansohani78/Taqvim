@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "jewish.rosh-hashanah",
+      "calendar": "HEBREW",
+      "source": "JEWISH",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "روش هَشانا",
+        "en": "Rosh Hashanah"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "JewishObservanceDate",
+        "observance": "ROSH_HASHANAH"
+      },
+      "aliases": [
+        "ראש השנה"
+      ],
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "jewish.yom-kippur",
+      "calendar": "HEBREW",
+      "source": "JEWISH",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "یوم کیپور",
+        "en": "Yom Kippur"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "JewishObservanceDate",
+        "observance": "YOM_KIPPUR"
+      },
+      "aliases": [
+        "יום כיפור"
+      ],
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "jewish.succoth",
+      "calendar": "HEBREW",
+      "source": "JEWISH",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "سوکوت",
+        "en": "Succoth"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "JewishObservanceDate",
+        "observance": "SUCCOTH"
+      },
+      "aliases": [
+        "סוכות"
+      ],
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "jewish.hanukkah",
+      "calendar": "HEBREW",
+      "source": "JEWISH",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "حنوکا",
+        "en": "Hanukkah"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "JewishObservanceDate",
+        "observance": "HANUKKAH"
+      },
+      "aliases": [
+        "חנוכה"
+      ],
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "jewish.pesach",
+      "calendar": "HEBREW",
+      "source": "JEWISH",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "پسح",
+        "en": "Pesach"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "JewishObservanceDate",
+        "observance": "PESACH"
+      },
+      "aliases": [
+        "פסח"
+      ],
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "jewish.shavuot",
+      "calendar": "HEBREW",
+      "source": "JEWISH",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "شاووعوت",
+        "en": "Shavuot"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "JewishObservanceDate",
+        "observance": "SHAVUOT"
+      },
+      "aliases": [
+        "שבועות"
+      ],
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    }
+  ]
+}

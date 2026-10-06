@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {
+      "id": "christian.ash-wednesday",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "چهارشنبهٔ خاکستر",
+        "en": "Ash Wednesday"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "ASH_WEDNESDAY",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "christian.palm-sunday",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "یکشنبهٔ نخل",
+        "en": "Palm Sunday"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "PALM_SUNDAY",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "christian.good-friday",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "جمعهٔ نیک",
+        "en": "Good Friday"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "GOOD_FRIDAY",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "christian.easter",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "عید پاک",
+        "en": "Easter"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "EASTER",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "christian.ascension-day",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "روز عروج",
+        "en": "Ascension Day"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "ASCENSION_DAY",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "christian.pentecost",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "پنطیکاست",
+        "en": "Pentecost"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "PENTECOST",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "christian.trinity-sunday",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "یکشنبهٔ تثلیث",
+        "en": "Trinity Sunday"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "TRINITY_SUNDAY",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    },
+    {
+      "id": "christian.first-sunday-of-advent",
+      "calendar": "GREGORIAN",
+      "source": "CHRISTIAN",
+      "category": "RELIGIOUS",
+      "isHoliday": false,
+      "title": {
+        "fa": "نخستین یکشنبهٔ ظهور",
+        "en": "First Sunday of Advent"
+      },
+      "titleReview": [
+        "fa"
+      ],
+      "rule": {
+        "type": "ChristianFeastDate",
+        "feast": "FIRST_SUNDAY_OF_ADVENT",
+        "rite": "WESTERN"
+      },
+      "citations": [
+        {
+          "url": "https://aa.usno.navy.mil/data/api.html",
+          "title": "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+          "page": "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+          "retrieved": "2026-09-15"
+        }
+      ],
+      "updated": "2026-10-06",
+      "reviewedBy": "pending"
+    }
+  ]
+}

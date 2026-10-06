@@ -6,6 +6,8 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.MovableFeast
+import ir.taqvim.core.events.ChristianRite
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -13,7 +15,6 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
-import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -24,50 +25,152 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("ir.holiday.eid-al-fitr-holiday"),
+            id = EventId("christian.pentecost"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.CHRISTIAN,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "پنطیکاست",
+                        "en" to "Pentecost",
+                    ),
+                ),
+            rule = EventRule.ChristianFeastDate(feast = MovableFeast.PENTECOST, rite = ChristianRite.WESTERN),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://aa.usno.navy.mil/data/api.html",
+                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("christian.trinity-sunday"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.CHRISTIAN,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "یکشنبهٔ تثلیث",
+                        "en" to "Trinity Sunday",
+                    ),
+                ),
+            rule = EventRule.ChristianFeastDate(feast = MovableFeast.TRINITY_SUNDAY, rite = ChristianRite.WESTERN),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://aa.usno.navy.mil/data/api.html",
+                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.ancient.yalda"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.ANCIENT_IRAN,
+            category = EventCategory.CULTURAL,
+            isHoliday = false,
+            title = LocalizedText(mapOf("fa" to "شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان")),
+            rule = EventRule.Fixed(month = 9, day = 30),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf) — 30 Azar",
+                        page = "12",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf) — 30 Azar",
+                        page = "11",
+                    ),
+                    Citation(
+                        url = "https://iranicaonline.org/articles/cella",
+                        title = "Encyclopaedia Iranica — ČELLA (Vol. V, Fasc. 2): the great čella begins on 1 Dey; its night is called šab-e čella or šab-e yaldā",
+                        page = "123-125",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.ancient.zoroaster-birthday"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.ANCIENT_IRAN,
+            category = EventCategory.CULTURAL,
+            isHoliday = false,
+            title = LocalizedText(mapOf("fa" to "زادروز زرتشت پیامبر")),
+            rule = EventRule.Fixed(month = 1, day = 6),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf) — 6 Farvardin",
+                        page = "4",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf) — 6 Farvardin",
+                        page = "3",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.arbaeen"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "تعطیل به مناسبت عید سعید فطر")),
-            rule = EventRule.Fixed(month = 10, day = 2),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_432,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://rc.majlis.ir/fa/law/show/796840",
-                            title = "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
-                        ),
-                ),
+            title = LocalizedText(mapOf("fa" to "اربعین حسینی")),
+            rule = EventRule.Fixed(month = 2, day = 20),
             citations =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "4",
+                        page = "8",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "3, 14",
-                    ),
-                    Citation(
-                        url = "https://rc.majlis.ir/fa/law/show/796840",
-                        title = "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
+                        page = "7",
                     ),
                 ),
         ),
         EventDefinition(
-            id = EventId("ir.holiday.eid-al-ghadir"),
+            id = EventId("ir.holiday.ashura"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "عید سعید غدیر خم")),
-            rule = EventRule.Fixed(month = 12, day = 18),
+            title = LocalizedText(mapOf("fa" to "عاشورای حسینی")),
+            rule = EventRule.Fixed(month = 1, day = 10),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "7",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "6",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.eid-al-adha"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "عید سعید قربان")),
+            rule = EventRule.Fixed(month = 12, day = 10),
             citations =
                 listOf(
                     Citation(
@@ -83,150 +186,24 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
                 ),
         ),
         EventDefinition(
-            id = EventId("ir.holiday.fatima-martyrdom"),
+            id = EventId("ir.holiday.eid-al-fitr"),
             calendar = CalendarSystem.ISLAMIC,
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت فاطمه زهرا سلام الله علیها")),
-            rule = EventRule.Fixed(month = 6, day = 3),
+            title = LocalizedText(mapOf("fa" to "عید سعید فطر")),
+            rule = EventRule.Fixed(month = 10, day = 1),
             citations =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "12",
+                        page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
                         title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "10",
-                    ),
-                    Citation(
-                        url = "https://rc.majlis.ir/fa/law/show/93217",
-                        title = "قانون اصلاح لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1378/05/25: «روز سوم جمادی‌الثانی به عنوان روز شهادت حضرت فاطمه زهرا (سلام الله علیها) تعطیل رسمی (عمومی) اعلام می‌شود» — the law that made this day a holiday.",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-ali-birth"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "ولادت حضرت امام علی علیه السلام")),
-            rule = EventRule.Fixed(month = 7, day = 13),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "13",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "12",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-ali-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام علی علیه السلام")),
-            rule = EventRule.Fixed(month = 9, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "4, 15",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "14",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-hasan-askari-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام حسن عسکری علیه السلام و آغاز امامت حضرت ولی عصر (عجل الله تعالی فرجه)")),
-            rule = EventRule.Fixed(month = 3, day = 8),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.ISLAMIC,
-                    fromYear = 1_440,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://calendar.ut.ac.ir/Fa/",
-                            title = "Official calendar of Iran 1397 SH (docs/sources/iran/Calendar-1397.pdf)",
-                            page = "13: 8 Rabi al-Awwal 1440 (1397-08-25), martyrdom of Imam Hasan Askari and the beginning of the Imamate of the Twelfth Imam, marked (تعطیل) — the first year it is a holiday. The official calendars of 1381–1396 print 8 Rabi al-Awwal without (تعطیل), the last three at Calendar-1394.pdf page 12 (1437), Calendar-1395.pdf page 10 (1438) and Calendar-1396.pdf page 14 (1439); the 1395 and 1396 editions were read from their occasion text only, since their digits do not extract.",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "9",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "7",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-mahdi-birth"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "ولادت حضرت قائم عجل الله تعالی فرجه")),
-            rule = EventRule.Fixed(month = 8, day = 15),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "14",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "13",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.imam-reza-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام رضا علیه السلام")),
-            rule = EventRule.LastDayOfMonth(month = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "9",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "7",
+                        page = "3, 14",
                     ),
                 ),
         ),

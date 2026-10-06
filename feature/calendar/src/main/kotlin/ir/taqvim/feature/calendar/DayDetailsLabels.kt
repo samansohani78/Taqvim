@@ -78,6 +78,8 @@ internal object DayDetailsLabels {
             R.string.calendar_source_nepal_official,
             R.string.calendar_source_international,
             R.string.calendar_source_ancient_iran,
+            R.string.calendar_source_jewish,
+            R.string.calendar_source_christian,
             R.string.calendar_source_personal,
         )
 

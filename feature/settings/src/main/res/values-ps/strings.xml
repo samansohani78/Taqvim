@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">دا د Taqvim د نېټو فایل (نسخه 1) نه دی.</string>
   <string name="settings_islamic_override_error_months">فایل ورک، بې ترتیبه یا ناشونې میاشتې لري.</string>
   <string name="settings_islamic_override_error_citation">په فایل کې هره میاشت خپلې سرچینې ته اړتیا لري.</string>
+  <string name="settings_source_jewish">یهودي مناسبتونه</string>
+  <string name="settings_source_christian">مسیحي اختران</string>
 </resources>

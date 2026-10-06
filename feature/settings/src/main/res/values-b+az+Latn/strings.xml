@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Bu Taqvim tarix faylı (versiya 1) deyil.</string>
   <string name="settings_islamic_override_error_months">Faylda çatışmayan, ardıcıllığı pozulmuş və ya mümkünsüz aylar var.</string>
   <string name="settings_islamic_override_error_citation">Fayldakı hər ayın mənbəyi olmalıdır.</string>
+  <string name="settings_source_jewish">Yəhudi mərasimləri</string>
+  <string name="settings_source_christian">Xristian bayramları</string>
 </resources>

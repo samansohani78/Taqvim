@@ -25,6 +25,12 @@ public enum class EventSource {
     NEPAL_OFFICIAL,
     INTERNATIONAL,
     ANCIENT_IRAN,
+
+    /** The six Jewish observances of T-108, computed from the Hebrew calendar; off unless the user asks for them. */
+    JEWISH,
+
+    /** The Christian movable feasts of T-109, computed from the computus; off unless the user asks for them. */
+    CHRISTIAN,
     USER,
 }
 

@@ -153,4 +153,6 @@
   <string name="calendar_print_no_events">இந்த மாதம் நிகழ்வுகள் இல்லை</string>
   <string name="calendar_week_progress_other_year">வாரத்தின் %1$s ஆம் நாள், %3$s ஆம் ஆண்டின் %2$s ஆம் வாரம்</string>
   <string name="calendar_event_scope">யாருக்கு: %1$s</string>
+  <string name="calendar_source_jewish">யூத நினைவு நாட்கள்</string>
+  <string name="calendar_source_christian">கிறிஸ்தவ பண்டிகைகள்</string>
 </resources>

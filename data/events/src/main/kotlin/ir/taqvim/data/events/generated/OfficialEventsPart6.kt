@@ -6,7 +6,7 @@
 
 package ir.taqvim.data.events.generated
 
-import ir.taqvim.core.calendar.TithiObservance
+import ir.taqvim.core.calendar.JewishObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -14,7 +14,6 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
-import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -25,286 +24,195 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_6: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("np.holiday.chhath"),
-            calendar = CalendarSystem.NEPALI,
-            source = EventSource.NEPAL_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "छठ पर्व")),
-            rule = EventRule.LunarTithi(month = 7, tithi = 6, observance = TithiObservance.SUNRISE),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ज): छठ पर्व - कात्तिक १० गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ज): छठ पर्व - कात्तिक १० गते",
-                    ),
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 3, clause 2.1(ज): छठ पर्व - कात्तिक २९ गते",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("np.holiday.christmas"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.NEPAL_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "क्रिसमस डे")),
-            rule = EventRule.Fixed(month = 12, day = 25),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे (डिसेम्बर २५)- पुस १० गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे (डिसेम्बर २५)- पुस १० गते",
-                    ),
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 3, clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे, (डिसेम्बर २५) - पुस १० गते",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("np.holiday.constitution-day"),
-            calendar = CalendarSystem.NEPALI,
-            source = EventSource.NEPAL_OFFICIAL,
+            id = EventId("ir.holiday.nowruz-3"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.NATIONAL,
             isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "संविधान दिवस (राष्ट्रिय दिवस)")),
-            rule = EventRule.Fixed(month = 6, day = 3),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ग): संविधान दिवस (राष्ट्रिय दिवस) - असोज ३ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
+            title = LocalizedText(mapOf("fa" to "عید نوروز")),
+            rule = EventRule.Fixed(month = 1, day = 3),
             citations =
                 listOf(
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ग): संविधान दिवस (राष्ट्रिय दिवस) - असोज ३ गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "4",
                     ),
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 5, clause 6.1(ग): संविधान दिवस (राष्ट्रिय दिवस) - असोज ३ गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "3",
                     ),
                 ),
         ),
         EventDefinition(
-            id = EventId("np.holiday.dashain"),
-            calendar = CalendarSystem.NEPALI,
-            source = EventSource.NEPAL_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "दशैं बिदा")),
-            rule = EventRule.LunarTithi(month = 6, tithi = 7, observance = TithiObservance.SUNRISE, endTithi = 12),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(च): दशैं बिदा - असोज १३ गतेदेखि असोज १८ गतेसम्म (फूलपातीदेखि द्वादशीसम्म) — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
-            aliases =
-                listOf(
-                    "दशैं",
-                    "फूलपाती",
-                    "विजया दशमी",
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(च): दशैं बिदा - असोज १३ गतेदेखि असोज १८ गतेसम्म (फूलपातीदेखि द्वादशीसम्म)",
-                    ),
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 2, clause 2.1(च): दशैं बिदा - असोज ३१ गतेदेखि कार्तिक ६ गतेसम्म (फूलपातीदेखि द्वादशीसम्म)",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("np.holiday.democracy-day"),
-            calendar = CalendarSystem.NEPALI,
-            source = EventSource.NEPAL_OFFICIAL,
+            id = EventId("ir.holiday.nowruz-4"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.NATIONAL,
             isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "राष्ट्रिय प्रजातन्त्र दिवस")),
-            rule = EventRule.Fixed(month = 11, day = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ङ): राष्ट्रिय प्रजातन्त्र दिवस - फागुन ७ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
+            title = LocalizedText(mapOf("fa" to "عید نوروز")),
+            rule = EventRule.Fixed(month = 1, day = 4),
             citations =
                 listOf(
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ङ): राष्ट्रिय प्रजातन्त्र दिवस - फागुन ७ गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "4",
                     ),
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 5, clause 6.1(ङ): राष्ट्रिय प्रजातन्त्र दिवस - फागुन ७ गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "3",
                     ),
                 ),
         ),
         EventDefinition(
-            id = EventId("np.holiday.dhanya-purnima"),
-            calendar = CalendarSystem.NEPALI,
-            source = EventSource.NEPAL_OFFICIAL,
+            id = EventId("ir.holiday.oil-nationalization"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "روز ملی شدن صنعت نفت ایران")),
+            rule = EventRule.Fixed(month = 12, day = 29),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "15",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "14",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/99002",
+                        title = "لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1359/04/08: the base list of official holidays, which includes «29 اسفند تا 4 فروردین».",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/93217",
+                        title = "قانون اصلاح لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1378/05/25: «…و تعطیلی روز بیست و نهم اسفند ماه لغو می‌گردد» — the 29 Esfand holiday was abolished.",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/93237",
+                        title = "قانون راجع به تعطیل روز ملی شدن صنعت نفت, approved 1378/08/18, Guardian Council 1378/08/19: «روز ملی شدن صنعت نفت که مصادف با 29 اسفند ماه هر سال می‌باشد کماکان جزء تعطیلات رسمی کشور محسوب می‌شود» — restored three months after the abolition, which is why every official calendar from 1381 SH prints it as (تعطیل).",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.prophet-demise-imam-hasan-martyrdom"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "धान्य पूर्णिमा")),
-            rule = EventRule.LunarTithi(month = 8, tithi = 15, observance = TithiObservance.SUNRISE),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(झ): धान्य पूर्णिमा - किराँत समुदायको उधौली पर्व, योमरी पुन्हि, ज्यापु दिवस – मङ्सिर १८ गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
+            title = LocalizedText(mapOf("fa" to "رحلت حضرت رسول اکرم صلی الله علیه و آله و شهادت حضرت امام حسن مجتبی علیه السلام")),
+            rule = EventRule.Fixed(month = 2, day = 28),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "8",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "7",
+                    ),
                 ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.prophet-imam-sadiq-birth"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "ولادت حضرت رسول اکرم صلی الله علیه و آله و ولادت حضرت امام جعفر صادق علیه السلام")),
+            rule = EventRule.Fixed(month = 3, day = 17),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "9",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "8",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.revolution-victory"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "پیروزی انقلاب اسلامی ایران و سقوط نظام شاهنشاهی")),
+            rule = EventRule.Fixed(month = 11, day = 22),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "14",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "13",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.tasua"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title = LocalizedText(mapOf("fa" to "تاسوعای حسینی")),
+            rule = EventRule.Fixed(month = 1, day = 9),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "7",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "6",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("jewish.hanukkah"),
+            calendar = CalendarSystem.HEBREW,
+            source = EventSource.JEWISH,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "حنوکا",
+                        "en" to "Hanukkah",
+                    ),
+                ),
+            rule = EventRule.JewishObservanceDate(observance = JewishObservance.HANUKKAH),
             aliases =
                 listOf(
-                    "उधौली पर्व",
-                    "योमरी पुन्हि",
-                    "ज्यापु दिवस",
+                    "חנוכה",
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(झ): धान्य पूर्णिमा - किराँत समुदायको उधौली पर्व, योमरी पुन्हि, ज्यापु दिवस – मङ्सिर १८ गते",
-                    ),
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 3, clause 2.1(झ): धान्य पूर्णिमा - किराँत समुदायको उधौली पर्व, योमरी पुन्हि, ज्यापू दिवस - पुस ९ गते",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("np.holiday.eid-al-adha"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.NEPAL_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "बकर ईद (ईद उल अजहा)")),
-            rule = EventRule.Fixed(month = 12, day = 10),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(थ): इस्लाम धर्मावलम्बीको पर्व बकर ईद (ईद उल अजहा) का दिन (undated: the day of the festival) — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(थ): इस्लाम धर्मावलम्बीको पर्व बकर ईद (ईद उल अजहा) का दिन (undated: the day of the festival)",
-                    ),
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 3, clause 2.1(थ): इस्लाम धर्मावलम्बीको पर्व बकर ईद (ईद उल अजहा) का दिन (undated: the day of the festival)",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("np.holiday.eid-al-fitr"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.NEPAL_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "ईद (ईद उल फित्र)")),
-            rule = EventRule.Fixed(month = 10, day = 1),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(त): इस्लाम धर्मावलम्बीको पर्व ईद (ईद उल फित्र) का दिन (undated: the day of the festival) — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(त): इस्लाम धर्मावलम्बीको पर्व ईद (ईद उल फित्र) का दिन (undated: the day of the festival)",
-                    ),
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 3, clause 2.1(त): इस्लाम धर्मावलम्बीको पर्व ईद (ईद उल फित्र) का दिन (undated: the day of the festival)",
+                        url = "https://aa.usno.navy.mil/data/api.html",
+                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
                     ),
                 ),
         ),

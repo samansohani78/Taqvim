@@ -215,4 +215,7 @@
   <string name="calendar_week_progress_other_year">Day %1$s of the week, week %2$s of %3$s</string>
   <!-- DT-038: who or where an observance applies to, when it is not the whole country. -->
   <string name="calendar_event_scope">Applies to: %1$s</string>
+  <!-- T-108/T-109: the source of a Jewish observance or a Christian movable feast. -->
+  <string name="calendar_source_jewish">Jewish observances</string>
+  <string name="calendar_source_christian">Christian feasts</string>
 </resources>

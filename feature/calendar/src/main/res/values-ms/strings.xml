@@ -146,4 +146,6 @@
   <string name="calendar_print_no_events">Tiada acara bulan ini</string>
   <string name="calendar_week_progress_other_year">Hari ke-%1$s minggu, minggu ke-%2$s tahun %3$s</string>
   <string name="calendar_event_scope">Terpakai kepada: %1$s</string>
+  <string name="calendar_source_jewish">Perayaan Yahudi</string>
+  <string name="calendar_source_christian">Perayaan Kristian</string>
 </resources>

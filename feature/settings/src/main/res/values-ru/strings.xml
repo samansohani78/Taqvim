@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Это не файл дат Taqvim (версия 1).</string>
   <string name="settings_islamic_override_error_months">В файле есть пропущенные, неупорядоченные или невозможные месяцы.</string>
   <string name="settings_islamic_override_error_citation">Для каждого месяца в файле нужен источник.</string>
+  <string name="settings_source_jewish">Еврейские памятные дни</string>
+  <string name="settings_source_christian">Христианские праздники</string>
 </resources>

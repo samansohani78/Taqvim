@@ -176,6 +176,10 @@ enum EventSourceProto {
   EVENT_SOURCE_NEPAL_OFFICIAL = 3;
   EVENT_SOURCE_INTERNATIONAL = 4;
   EVENT_SOURCE_ANCIENT_IRAN = 5;
+  // T-108/T-109, added 2026-10-06. New numbers, so a store written before this reads them as absent, which is
+  // exactly what they should be: both are off until a user asks for them.
+  EVENT_SOURCE_JEWISH = 6;
+  EVENT_SOURCE_CHRISTIAN = 7;
 }
 
 // Event categories (T-302). Kept separate from EventSourceProto: a source says who publishes an event, a category

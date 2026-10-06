@@ -24,188 +24,121 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.asteroid-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("np.observance.anti-untouchability-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
             isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی سیارک",
-                        "en" to "International Asteroid Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 30),
+            title = LocalizedText(mapOf("ne" to "जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस")),
+            rule = EventRule.Fixed(month = 2, day = 21),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_016,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/asteroid-day",
-                            title = "International Asteroid Day — A/RES/71/90 (December 2016)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 5 (Rajpatra p. 7), clause 8(क): national day, offices open: जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस - जेठ २१ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 5 (Rajpatra p. 7), clause 8(क): national day, offices open: जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस - जेठ २१ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/asteroid-day",
-                        title = "International Asteroid Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 6, clause 8(क): national day, offices open: जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस - जेठ २१ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/asteroid-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.audiovisual-heritage"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("np.observance.civil-service-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
             isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی میراث سمعی و بصری",
-                        "en" to "World Day for Audiovisual Heritage",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 27),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_980,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.unesco.org/en/days/audiovisual-heritage",
-                            title = "World Day for Audiovisual Heritage: UNESCO's 21st General Conference adopted the Recommendation for the Safeguarding and Preservation of Moving Images (1980)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/audiovisual-heritage",
-                        title = "World Day for Audiovisual Heritage (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.unesco.org/en/days/audiovisual-heritage",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.autism-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی آگاهی درباره اوتیسم",
-                        "ar" to "اليوم العالمي للتوعية بمرض التوحد",
-                        "en" to "World Autism Awareness Day",
-                        "es" to "Día Mundial de Concienciación sobre el Autismo",
-                        "fr" to "Journée mondiale de sensibilisation à l'autisme",
-                        "ru" to "Всемирный день распространения информации о проблеме аутизма",
-                        "zh" to "世界提高自闭症意识日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/autism-day",
-                        title = "World Autism Awareness Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/62/139",
-                    "un" to "https://www.un.org/en/observances/autism-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.bicycle-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی دوچرخه",
-                        "en" to "World Bicycle Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 3),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_018,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/bicycle-day",
-                            title = "World Bicycle Day (A/RES/72/272, adopted 12 April 2018)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/bicycle-day",
-                        title = "World Bicycle Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/bicycle-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.biological-diversity-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی تنوع زیستی",
-                        "ar" to "اليوم الدولي للتنوع البيولوجي",
-                        "en" to "International Day for Biological Diversity",
-                        "es" to "Día Internacional de la Diversidad Biológica",
-                        "fr" to "Journée internationale de la diversité biologique",
-                        "ru" to "Международный день биологического разнообразия",
-                        "zh" to "生物多样性国际日",
-                    ),
-                ),
+            title = LocalizedText(mapOf("ne" to "निजामती सेवा दिवस")),
             rule = EventRule.Fixed(month = 5, day = 22),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 5 (Rajpatra p. 7), clause 8(ख): national day, offices open: निजामती सेवा दिवस- भदौ २२ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 5 (Rajpatra p. 7), clause 8(ख): national day, offices open: निजामती सेवा दिवस- भदौ २२ गते",
+                    ),
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 6, clause 8(ख): national day, offices open: निजामती सेवा दिवस - भदौ २२ गते",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("np.observance.genz-martyrs-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = false,
+            title = LocalizedText(mapOf("ne" to "जेनजी सहिद दिवस")),
+            rule = EventRule.Fixed(month = 5, day = 23),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_083,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                            page = "PDF p. 6, clause 8(ग): national day, offices open: जेनजी सहिद दिवस - भदौ २३ गते (first listed in the notice for 2083) — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 6, clause 8(ग): national day, offices open: जेनजी सहिद दिवस - भदौ २३ गते (first listed in the notice for 2083)",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.africa-industrialization-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز صنعت گستری آفریقا",
+                        "ar" to "يوم التصنيع في أفريقيا",
+                        "en" to "Africa Industrialization Day",
+                        "es" to "Día de la Industrialización de África",
+                        "fr" to "Journée de l'industrialisation de l'Afrique",
+                        "ru" to "День индустриализации Африки",
+                        "zh" to "非洲工业化日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 20),
             citations =
                 listOf(
                     Citation(
@@ -213,8 +146,8 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/biological-diversity-day",
-                        title = "International Day for Biological Diversity (observance page)",
+                        url = "https://www.un.org/en/observances/africa-industrialization-day",
+                        title = "Africa Industrialization Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -224,12 +157,12 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/55/201",
-                    "un" to "https://www.un.org/en/observances/biological-diversity-day",
+                    "resolution" to "http://undocs.org/en/A/RES/44/237",
+                    "un" to "https://www.un.org/en/observances/africa-industrialization-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.braille-day"),
+            id = EventId("un.african-descent-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -237,11 +170,93 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی خط بریل",
-                        "en" to "World Braille Day",
+                        "fa" to "روز بین‌المللی افراد تبار آفریقایی",
+                        "en" to "International Day for People of African Descent",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 1, day = 4),
+            rule = EventRule.Fixed(month = 8, day = 31),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_020,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://research.un.org/en/docs/ga/quick/regular/75",
+                            title = "UN Dag Hammarskjold Library: A/RES/75/170, adopted 16 December 2020 (corroborated by un.org/en/observances/african-descent-day)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/african-descent-day",
+                        title = "International Day for People of African Descent (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/african-descent-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.albinism-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی آگاهی از آلبینیسم",
+                        "en" to "International Albinism Awareness Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 13),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_014,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://research.un.org/en/docs/ga/quick/regular/69",
+                            title = "International Albinism Awareness Day (A/RES/69/170, adopted 18 December 2014)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/albinism-day",
+                        title = "International Albinism Awareness Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/albinism-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.amr-awareness-week"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "هفته جهانی آگاهی از مقاومت ضدمیکروبی",
+                        "en" to "World Antimicrobial Resistance Awareness Week",
+                    ),
+                ),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 11, day = 18), lengthDays = 7),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
@@ -249,8 +264,8 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/braille-day/background",
-                            title = "World Braille Day — General Assembly resolution A/RES/73/161 (November 2018)",
+                            url = "https://www.who.int/campaigns/world-amr-awareness-week",
+                            title = "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
                         ),
                 ),
             citations =
@@ -260,17 +275,17 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/braille-day",
-                        title = "World Braille Day (observance page)",
+                        url = "https://www.who.int/campaigns/world-amr-awareness-week",
+                        title = "WHO — World AMR Awareness Week (campaign page: dates standardized to 18-24 November by 2018, after 2015's 16-22 November launch as World Antibiotic Awareness Week)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/braille-day",
+                    "un" to "https://www.who.int/campaigns/world-amr-awareness-week",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.breastfeeding-week"),
+            id = EventId("un.anti-colonialism-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -278,20 +293,20 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "هفته جهانی شیردهی",
-                        "en" to "World Breastfeeding Week",
+                        "fa" to "روز بین‌المللی مبارزه با استعمار در همه اشکال و مظاهر آن",
+                        "en" to "International Day against Colonialism in All its Forms and Manifestations",
                     ),
                 ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 8, day = 1), lengthDays = 7),
+            rule = EventRule.Fixed(month = 12, day = 14),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_018,
+                    fromYear = 2_025,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.who.int/campaigns/world-breastfeeding-week",
-                            title = "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
+                            url = "https://www.un.org/en/observances/anti-colonialism-day",
+                            title = "International Day against Colonialism in All its Forms and Manifestations — A/RES/80/106 (2025)",
                         ),
                 ),
             citations =
@@ -301,54 +316,13 @@ internal val OFFICIAL_EVENTS_PART_11: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.who.int/campaigns/world-breastfeeding-week",
-                        title = "WHO — World Breastfeeding Week (campaign page: a 2018 World Health Assembly resolution endorsed it as a WHO health-promotion observance)",
+                        url = "https://www.un.org/en/observances/anti-colonialism-day",
+                        title = "International Day against Colonialism in All its Forms and Manifestations (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.who.int/campaigns/world-breastfeeding-week",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.care-and-support-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی مراقبت و حمایت",
-                        "en" to "International Day of Care and Support",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 29),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_023,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://docs.un.org/en/A/RES/77/317",
-                            title = "International Day of Care and Support — General Assembly resolution A/RES/77/317, \"Resolution adopted by the General Assembly on 24 July 2023\", para. 1: \"Decides to proclaim 29 October as the International Day of Care and Support\".",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/care-and-support-day",
-                        title = "International Day of Care and Support (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/care-and-support-day",
+                    "un" to "https://www.un.org/en/observances/anti-colonialism-day",
                 ),
         ),
     )

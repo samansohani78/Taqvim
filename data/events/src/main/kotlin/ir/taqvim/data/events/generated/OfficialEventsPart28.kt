@@ -24,7 +24,7 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.parliamentarism-day"),
+            id = EventId("un.mine-awareness-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -32,11 +32,175 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی پارلمانتاریسم",
-                        "en" to "International Day of Parliamentarism",
+                        "fa" to "روز بین المللی آگاهی از مین و کمک به اقدام علیه مین",
+                        "ar" to "اليوم الدولي للتوعية بخطر الألغام",
+                        "en" to "International Day for Mine Awareness and Assistance in Mine Action",
+                        "es" to "Día Internacional de información sobre el peligro de las minas y de asistencia para las actividades relativas a las minas",
+                        "fr" to "Journée internationale pour la sensibilisation aux mines et l'assistance à la lutte antimines",
+                        "ru" to "Международный день просвещения по вопросам минной опасности и помощи в деятельности, связанной с разминированием",
+                        "zh" to "国际提高地雷意识和协助地雷行动日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 6, day = 30),
+            rule = EventRule.Fixed(month = 4, day = 4),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/mine-awareness-day",
+                        title = "International Day for Mine Awareness and Assistance in Mine Action (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/60/97",
+                    "un" to "https://www.un.org/en/observances/mine-awareness-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.moon-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی ماه",
+                        "en" to "International Moon Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 20),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_021,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/moon-day",
+                            title = "International Moon Day — A/RES/76/76 (9 December 2021)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/moon-day",
+                        title = "International Moon Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/moon-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.mother-language-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی زبان مادری",
+                        "ar" to "اليوم الدولي للغة الأم",
+                        "en" to "International Mother Language Day",
+                        "es" to "Día Internacional de la Lengua Materna",
+                        "fr" to "Journée internationale de la langue maternelle",
+                        "ru" to "Международный день родного языка",
+                        "zh" to "国际母语日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 2, day = 21),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/mother-language-day",
+                        title = "International Mother Language Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/56/262",
+                    "un" to "https://www.un.org/en/observances/mother-language-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.mountain-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی کوهستان",
+                        "ar" to "اليوم الدولي للجبال",
+                        "en" to "International Mountain Day",
+                        "es" to "Día Internacional de las Montañas",
+                        "fr" to "Journée internationale de la montagne",
+                        "ru" to "Международный день гор",
+                        "zh" to "国际山岳日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 11),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/mountain-day",
+                        title = "International Mountain Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/57/245",
+                    "un" to "https://www.un.org/en/observances/mountain-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.multilateralism-for-peace-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی چندجانبه‌گرایی و دیپلماسی برای صلح",
+                        "en" to "International Day of Multilateralism and Diplomacy for Peace",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 24),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
@@ -44,8 +208,8 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/parliamentarism-day",
-                            title = "International Day of Parliamentarism — A/RES/72/278 (2018)",
+                            url = "https://www.un.org/en/observances/multilateralism-for-peace-day",
+                            title = "International Day of Multilateralism and Diplomacy for Peace — A/RES/73/127 (12 December 2018)",
                         ),
                 ),
             citations =
@@ -55,17 +219,17 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/parliamentarism-day",
-                        title = "International Day of Parliamentarism (observance page)",
+                        url = "https://www.un.org/en/observances/Multilateralism-for-Peace-day",
+                        title = "International Day of Multilateralism and Diplomacy for Peace (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/parliamentarism-day",
+                    "un" to "https://www.un.org/en/observances/Multilateralism-for-Peace-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.peaceful-coexistence-day"),
+            id = EventId("un.nelson-mandela-international-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -73,57 +237,16 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی همزیستی مسالمت‌آمیز",
-                        "en" to "International Day of Peaceful Coexistence",
+                        "fa" to "روز بین المللی نلسون ماندلا",
+                        "ar" to "اليوم الدولي لنيلسون مانديلا",
+                        "en" to "Nelson Mandela International Day",
+                        "es" to "Día Internacional de Nelson Mandela",
+                        "fr" to "Journée internationale Nelson Mandela",
+                        "ru" to "Международный день Нельсона Манделы",
+                        "zh" to "纳尔逊·曼德拉国际日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 1, day = 28),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_025,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/peaceful-coexistence-day",
-                            title = "International Day of Peaceful Coexistence — A/RES/79/269 (4 March 2025)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/peaceful-coexistence-day",
-                        title = "International Day of Peaceful Coexistence (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/peaceful-coexistence-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.peacekeepers-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی حافظان صلح ملل متحد",
-                        "ar" to "اليوم الدولي لحفظة السلام",
-                        "en" to "International Day of UN Peacekeepers",
-                        "es" to "Día Internacional del Personal de Paz de las Naciones Unidas",
-                        "fr" to "Journée internationale des Casques bleus des Nations Unies",
-                        "ru" to "Международный день миротворцев ООН",
-                        "zh" to "联合国维持和平人员国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 29),
+            rule = EventRule.Fixed(month = 7, day = 18),
             citations =
                 listOf(
                     Citation(
@@ -131,8 +254,8 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/peacekeepers-day",
-                        title = "International Day of UN Peacekeepers (observance page)",
+                        url = "http://www.un.org/en/events/mandeladay/",
+                        title = "Nelson Mandela International Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -142,12 +265,12 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/129",
-                    "un" to "https://www.un.org/en/observances/peacekeepers-day",
+                    "resolution" to "https://undocs.org/en/A/RES/64/13",
+                    "un" to "http://www.un.org/en/events/mandeladay/",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.police-cooperation-day"),
+            id = EventId("un.neutrality-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -155,20 +278,20 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی همکاری پلیسی",
-                        "en" to "International Day of Police Cooperation",
+                        "fa" to "روز بین‌المللی بی‌طرفی",
+                        "en" to "International Day of Neutrality",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 9, day = 7),
+            rule = EventRule.Fixed(month = 12, day = 12),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_022,
+                    fromYear = 2_017,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/police-cooperation-day",
-                            title = "International Day of Police Cooperation — resolution 77/241 (2022)",
+                            url = "https://www.un.org/en/observances/neutrality-day",
+                            title = "International Day of Neutrality — resolution 71/275 (2 February 2017)",
                         ),
                 ),
             citations =
@@ -178,17 +301,17 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/police-cooperation-day",
-                        title = "International Day of Police Cooperation (observance page)",
+                        url = "https://www.un.org/en/observances/neutrality-day",
+                        title = "International Day of Neutrality (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/police-cooperation-day",
+                    "un" to "https://www.un.org/en/observances/neutrality-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.press-freedom-day"),
+            id = EventId("un.non-self-governing-week"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -196,61 +319,20 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی آزادی مطبوعاتی",
-                        "ar" to "اليوم العالمي لحرية الصحافة",
-                        "en" to "World Press Freedom Day",
-                        "es" to "Día Mundial de la Libertad de Prensa",
-                        "fr" to "Journée mondiale de la liberté de la presse",
-                        "ru" to "Всемирный день свободы печати",
-                        "zh" to "世界新闻自由日",
+                        "fa" to "هفته همبستگی با مردمان سرزمین‌های غیرخودمختار",
+                        "en" to "Week of Solidarity with the Peoples of Non-Self-Governing Territories",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 5, day = 3),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/press-freedom-day",
-                        title = "World Press Freedom Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000090448#page=76",
-                    "un" to "https://www.un.org/en/observances/press-freedom-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.prevention-extremism-when-conducive-terrorism-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی پیشگیری از افراط‌گرایی خشونت‌آمیز در صورت منتهی‌شدن به تروریسم",
-                        "en" to "International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 12),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 5, day = 25), lengthDays = 7),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_022,
+                    fromYear = 1_999,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day",
-                            title = "International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism — A/RES/77/243 (2022)",
+                            url = "https://www.un.org/en/observances/non-self-governing-week",
+                            title = "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
                         ),
                 ),
             citations =
@@ -260,94 +342,13 @@ internal val OFFICIAL_EVENTS_PART_28: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day",
-                        title = "International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism (observance page)",
+                        url = "https://www.un.org/en/observances/non-self-governing-week",
+                        title = "General Assembly resolution A/RES/54/91 (1999): Week of Solidarity with the Peoples of Non-Self-Governing Territories",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/prevention-extremism-when-conducive-terrorism-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.protect-education-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی حفاظت از آموزش در برابر حملات",
-                        "ar" to "اليوم الدولي لحماية التعليم من الهجمات",
-                        "en" to "International Day to Protect Education from Attack",
-                        "es" to "Día Internacional para Proteger la Educación de Ataques",
-                        "fr" to "Journée internationale pour la protection de l’éducation contre les attaques",
-                        "ru" to "Международный день защиты образования от нападений",
-                        "zh" to "保护教育免受攻击国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 9),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/protect-education-day",
-                        title = "International Day to Protect Education from Attack (observance page)",
-                    ),
-                    Citation(
-                        url = "https://iran.un.org/fa/322427-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D8%AD%D9%81%D8%A7%D8%B8%D8%AA-%D8%A7%D8%B2-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AF%D8%B1-%D8%A8%D8%B1%D8%A7%D8%A8%D8%B1-%D8%AD%D9%85%D9%84%D8%A7%D8%AA-%DB%B2%DB%B0%DB%B2%DB%B6",
-                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی حفاظت از آموزش در برابر حملات ۲۰۲۶",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/74/275",
-                    "un" to "https://www.un.org/en/observances/protect-education-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.public-service-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز خدمات عمومی ملل متحد",
-                        "ar" to "يوم الأمم المتحدة للخدمة العامة",
-                        "en" to "United Nations Public Service Day",
-                        "es" to "Día de las Naciones Unidas para la Administración Pública",
-                        "fr" to "Journée des Nations Unies pour la fonction publique",
-                        "ru" to "День государственной службы ООН",
-                        "zh" to "联合国公务员日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 23),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/public-service-day",
-                        title = "United Nations Public Service Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/57/277",
-                    "un" to "https://www.un.org/en/observances/public-service-day",
+                    "un" to "https://www.un.org/en/observances/non-self-governing-week",
                 ),
         ),
     )

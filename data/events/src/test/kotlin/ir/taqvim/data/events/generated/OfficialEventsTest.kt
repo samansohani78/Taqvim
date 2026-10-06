@@ -34,6 +34,7 @@ class OfficialEventsTest {
     }
 
     private companion object {
-        val YEAR_BY_CALENDAR = mapOf("PERSIAN" to 1405, "ISLAMIC" to 1447, "GREGORIAN" to 2026, "NEPALI" to 2083)
+        val YEAR_BY_CALENDAR =
+            mapOf("PERSIAN" to 1405, "ISLAMIC" to 1447, "GREGORIAN" to 2026, "NEPALI" to 2083, "HEBREW" to 5787)
     }
 }

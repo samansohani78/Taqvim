@@ -9,6 +9,8 @@ import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.longs.shouldBeInRange
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.ChristianMovableFeasts
+import ir.taqvim.core.calendar.JewishObservances
 import ir.taqvim.core.calendar.NepaliLunarDays
 import ir.taqvim.core.calendar.PersianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
@@ -239,6 +241,17 @@ class CalendarCompletenessTest {
 
             is EventRule.Week -> {
                 expectedWeekDates(rule, calendar, year)
+            }
+
+            is EventRule.JewishObservanceDate -> {
+                // T-108: the engine, asked independently of the rule — the same engine either way, but the test
+                // states the date it expects rather than letting the production path define its own answer.
+                listOf(calendar.fromJdn(JewishObservances.day(rule.observance, year).jdn))
+            }
+
+            is EventRule.ChristianFeastDate -> {
+                // T-109: the Easter the civil calendar in force gives, which is what USNO publishes.
+                listOfNotNull(ChristianMovableFeasts.civilForYear(year.toLong())[rule.feast]?.let(calendar::fromJdn))
             }
 
             else -> {

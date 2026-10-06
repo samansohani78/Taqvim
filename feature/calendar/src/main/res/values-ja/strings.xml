@@ -146,4 +146,6 @@
   <string name="calendar_print_no_events">今月はイベントがありません</string>
   <string name="calendar_week_progress_other_year">週の%1$s日目、%3$s年の第%2$s週</string>
   <string name="calendar_event_scope">対象：%1$s</string>
+  <string name="calendar_source_jewish">ユダヤ教の記念日</string>
+  <string name="calendar_source_christian">キリスト教の祝日</string>
 </resources>

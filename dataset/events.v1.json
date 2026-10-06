@@ -35,7 +35,8 @@
         "PERSIAN",
         "ISLAMIC",
         "GREGORIAN",
-        "NEPALI"
+        "NEPALI",
+        "HEBREW"
       ]
     },
     "source": {
@@ -44,7 +45,9 @@
         "AFGHANISTAN_OFFICIAL",
         "NEPAL_OFFICIAL",
         "INTERNATIONAL",
-        "ANCIENT_IRAN"
+        "ANCIENT_IRAN",
+        "JEWISH",
+        "CHRISTIAN"
       ]
     },
     "category": {
@@ -212,7 +215,9 @@
             "RelativeToEvent",
             "Astronomical",
             "LunarTithi",
-            "Week"
+            "Week",
+            "JewishObservanceDate",
+            "ChristianFeastDate"
           ]
         }
       },
@@ -365,6 +370,36 @@
           },
           "then": {
             "$ref": "#/$defs/ruleWeek"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "JewishObservanceDate"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleJewishObservanceDate"
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "ChristianFeastDate"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/ruleChristianFeastDate"
           }
         }
       ]
@@ -785,7 +820,63 @@
           "type": "string",
           "minLength": 1
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "rule"
+            ],
+            "properties": {
+              "rule": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "JewishObservanceDate"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "description": "Jewish observances are dated in the Hebrew calendar (T-108).",
+            "properties": {
+              "calendar": {
+                "const": "HEBREW"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "rule"
+            ],
+            "properties": {
+              "rule": {
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "ChristianFeastDate"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "description": "Christian movable feasts are given as Gregorian days (T-109).",
+            "properties": {
+              "calendar": {
+                "const": "GREGORIAN"
+              }
+            }
+          }
+        }
+      ]
     },
     "scopeLevel": {
       "description": "How wide an observance is (DT-038). NATIONWIDE is the default a record without a scope already has.",
@@ -842,6 +933,75 @@
           "required": [
             "areas"
           ]
+        }
+      }
+    },
+    "jewishObservance": {
+      "description": "One of the six Jewish observances with a fixed Hebrew date (T-108).",
+      "enum": [
+        "ROSH_HASHANAH",
+        "YOM_KIPPUR",
+        "SUCCOTH",
+        "HANUKKAH",
+        "PESACH",
+        "SHAVUOT"
+      ]
+    },
+    "movableFeast": {
+      "description": "A Christian feast whose date moves with Easter, or the first Sunday of Advent (T-109).",
+      "enum": [
+        "ASH_WEDNESDAY",
+        "PALM_SUNDAY",
+        "GOOD_FRIDAY",
+        "EASTER",
+        "ASCENSION_DAY",
+        "PENTECOST",
+        "TRINITY_SUNDAY",
+        "FIRST_SUNDAY_OF_ADVENT"
+      ]
+    },
+    "christianRite": {
+      "description": "WESTERN is the computus of the calendar in force (Julian before the 1582 reform, Gregorian after). ORTHODOX is the Julian computus throughout, shown on the Gregorian calendar; it has no FIRST_SUNDAY_OF_ADVENT.",
+      "enum": [
+        "WESTERN",
+        "ORTHODOX"
+      ]
+    },
+    "ruleJewishObservanceDate": {
+      "description": "A Jewish observance on its Hebrew date, from `JewishObservances` (T-108). Not a Fixed rule: Hebrew month numbers shift in a leap year, so the engine is asked. HEBREW calendar only.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "observance"
+      ],
+      "properties": {
+        "type": {
+          "const": "JewishObservanceDate"
+        },
+        "observance": {
+          "$ref": "#/$defs/jewishObservance"
+        }
+      }
+    },
+    "ruleChristianFeastDate": {
+      "description": "A Christian movable feast, from `ChristianMovableFeasts` (T-109). GREGORIAN calendar only.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "feast",
+        "rite"
+      ],
+      "properties": {
+        "type": {
+          "const": "ChristianFeastDate"
+        },
+        "feast": {
+          "$ref": "#/$defs/movableFeast"
+        },
+        "rite": {
+          "$ref": "#/$defs/christianRite"
         }
       }
     }

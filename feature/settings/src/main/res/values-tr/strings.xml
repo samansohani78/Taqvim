@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Bu bir Taqvim tarih dosyası (sürüm 1) değil.</string>
   <string name="settings_islamic_override_error_months">Dosyada eksik, sırasız veya imkânsız aylar var.</string>
   <string name="settings_islamic_override_error_citation">Dosyadaki her ayın kaynağı olmalı.</string>
+  <string name="settings_source_jewish">Yahudi anma günleri</string>
+  <string name="settings_source_christian">Hristiyan bayramları</string>
 </resources>

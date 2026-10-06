@@ -155,4 +155,6 @@
   <string name="calendar_print_no_events">رویدادی در این ماه نیست</string>
   <string name="calendar_week_progress_other_year">روز %1$s هفته، هفتهٔ %2$s سال %3$s</string>
   <string name="calendar_event_scope">برای: %1$s</string>
+  <string name="calendar_source_jewish">مناسبت‌های یهودی</string>
+  <string name="calendar_source_christian">اعیاد مسیحی</string>
 </resources>

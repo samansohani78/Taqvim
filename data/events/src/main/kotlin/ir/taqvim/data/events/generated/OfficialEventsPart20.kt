@@ -15,7 +15,6 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
-import ir.taqvim.core.model.Weekday
 
 /**
  * Part 20 of the dataset events.
@@ -25,7 +24,7 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.girl-child-day"),
+            id = EventId("un.ending-violence-against-women-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -33,303 +32,16 @@ internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی دختران",
-                        "en" to "International Day of the Girl Child",
+                        "fa" to "روز بین المللی حذف خشونت علیه زنان",
+                        "ar" to "اليوم الدولي للقضاء على العنف ضد المرأة",
+                        "en" to "International Day for the Elimination of Violence against Women",
+                        "es" to "Día Internacional de la Eliminación de la Violencia contra la Mujer",
+                        "fr" to "Journée internationale pour l'élimination de la violence à l'égard des femmes",
+                        "ru" to "Международный день борьбы за ликвидацию насилия в отношении женщин",
+                        "zh" to "制止暴力侵害妇女行为国际日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 10, day = 11),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_011,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/girl-child-day",
-                            title = "International Day of the Girl Child — resolution 66/170 (19 December 2011)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/girl-child-day",
-                        title = "International Day of the Girl Child (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/girl-child-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.girls-in-ict-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی دختران در فناوری اطلاعات و ارتباطات",
-                        "en" to "International Girls in ICT Day",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 4, weekday = Weekday.THURSDAY, n = 4),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
-                            title = "International Girls in ICT Day (ITU Plenipotentiary Conference Resolution 70, 2010)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.itu.int/women-and-girls/girls-in-ict/",
-                        title = "International Girls in ICT Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
-                        title = "ITU — About International Girls in ICT Day: \"Since 8 April 2011, the ITU has celebrated Girls in ICT Day annually on the fourth Thursday in April\" — D-05 re-validation (2026-09-25) found this record was shipped as a Fixed April 23 date, which is only the fourth Thursday in 3 of 25 years (2015, 2020, 2026); ITU's own page states a floating weekday-ordinal rule, so the rule type was corrected from Fixed to NthWeekdayOfMonth.",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.itu.int/women-and-girls/girls-in-ict/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.habitat-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی اسکان بشری",
-                        "en" to "World Habitat Day",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 10, weekday = Weekday.MONDAY, n = 1),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/habitat-day",
-                        title = "World Habitat Day (observance page)",
-                        page = "Background: \"the first Monday of October of every year\"",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/40/202",
-                    "un" to "https://www.un.org/en/observances/habitat-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.happiness-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی شادی",
-                        "en" to "International Day of Happiness",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 20),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_012,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/happiness-day",
-                            title = "International Day of Happiness — resolution 66/281 (12 July 2012)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/happiness-day",
-                        title = "International Day of Happiness (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/happiness-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.hope-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی امید",
-                        "en" to "International Day of Hope",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 12),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_025,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/hope-day",
-                            title = "International Day of Hope — A/RES/79/270 (4 March 2025)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/hope-day",
-                        title = "International Day of Hope (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/hope-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.horse-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی اسب",
-                        "en" to "World Horse Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 11),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_025,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/horse-day",
-                            title = "World Horse Day — A/RES/79/291 (3 June 2025)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/horse-day",
-                        title = "World Horse Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/horse-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.human-fraternity"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی برادری انسانی",
-                        "en" to "International Day of Human Fraternity",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 4),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_020,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/human-fraternity",
-                            title = "International Day of Human Fraternity — resolution 75/200",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/human-fraternity",
-                        title = "International Day of Human Fraternity (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/human-fraternity",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.human-rights-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی حقوق بشر",
-                        "ar" to "يوم حقوق الإنسان",
-                        "en" to "Human Rights Day",
-                        "es" to "Día de los Derechos Humanos",
-                        "fr" to "Journée des droits de l'homme",
-                        "ru" to "День прав человека",
-                        "zh" to "人权日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 10),
+            rule = EventRule.Fixed(month = 11, day = 25),
             citations =
                 listOf(
                     Citation(
@@ -337,8 +49,8 @@ internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/human-rights-day",
-                        title = "Human Rights Day (observance page)",
+                        url = "https://www.un.org/en/observances/ending-violence-against-women-day",
+                        title = "International Day for the Elimination of Violence against Women (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -348,7 +60,294 @@ internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/human-rights-day",
+                    "resolution" to "http://undocs.org/en/A/RES/32/40",
+                    "un" to "https://www.un.org/en/observances/ending-violence-against-women-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.english-language-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز زبان انگلیسی",
+                        "en" to "English Language Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 23),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_010,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/russian-language-day",
+                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/english-language-day",
+                        title = "English Language Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/english-language-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.environment-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی محیط زیست",
+                        "ar" to "اليوم العالمي للبيئة",
+                        "en" to "World Environment Day",
+                        "es" to "Día Mundial del Medio Ambiente",
+                        "fr" to "Journée mondiale de l'environnement",
+                        "ru" to "Всемирный день окружающей среды",
+                        "zh" to "世界环境日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 5),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/environment-day",
+                        title = "World Environment Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/environment-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.environment-in-war-protection-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی پیشگیری از سوء استفاده از محیط زیست در جنگ و مناقشه مسلحانه",
+                        "ar" to "اليوم الدولي لمنع استخدام البيئة في الحروب والصراعات العسكرية",
+                        "en" to "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict",
+                        "es" to "Día Internacional para la Prevención de la Explotación del Medio Ambiente en la Guerra y los Conflictos Armados",
+                        "fr" to "Journée internationale pour la prévention de l'exploitation de l'environnement en temps de guerre et de conflit armé",
+                        "ru" to "Международный день предотвращения эксплуатации окружающей среды во время войны и вооруженных конфликтов",
+                        "zh" to "防止战争和武装冲突糟蹋环境国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 6),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/environment-in-war-protection-day",
+                        title = "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/56/4",
+                    "un" to "https://www.un.org/en/observances/environment-in-war-protection-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.epidemic-preparedness-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی آمادگی در برابر بیماری‌های همه‌گیر",
+                        "en" to "International Day of Epidemic Preparedness",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 12, day = 27),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_020,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://docs.un.org/en/A/RES/75/27",
+                            title = "International Day of Epidemic Preparedness — General Assembly resolution A/RES/75/27, \"Resolution adopted by the General Assembly on 7 December 2020\", para. 1: \"Decides to proclaim 27 December as the International Day of Epidemic Preparedness\".",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/epidemic-preparedness-day",
+                        title = "International Day of Epidemic Preparedness (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/epidemic-preparedness-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.equal-pay-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی برابری دستمزد",
+                        "en" to "International Equal Pay Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 18),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_019,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/equal-pay-day",
+                            title = "International Equal Pay Day (A/RES/74/142, 2019)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/equal-pay-day",
+                        title = "International Equal Pay Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/equal-pay-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.fair-play-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بازی منصفانه",
+                        "en" to "World Fair Play Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 19),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/fair-play-day",
+                            title = "World Fair Play Day — A/RES/78/310 (1 July 2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/fair-play-day",
+                        title = "World Fair Play Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/fair-play-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.female-genital-mutilation-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی عدم تحمل ختنه زنان",
+                        "en" to "International Day of Zero Tolerance to Female Genital Mutilation",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 2, day = 6),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_012,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/female-genital-mutilation-day",
+                            title = "Zero Tolerance to FGM Day — A/RES/67/146 (2012)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/female-genital-mutilation-day",
+                        title = "International Day of Zero Tolerance to Female Genital Mutilation (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/female-genital-mutilation-day",
                 ),
         ),
     )

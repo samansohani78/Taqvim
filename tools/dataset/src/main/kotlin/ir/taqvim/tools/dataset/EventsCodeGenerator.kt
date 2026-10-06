@@ -51,6 +51,11 @@ object EventsCodeGenerator {
     private val EVENT_SOURCE = ClassName(EVENTS, "EventSource")
     private val EVENT_CATEGORY = ClassName(EVENTS, "EventCategory")
     private val EVENT_FLAG = ClassName(EVENTS, "EventFlag")
+    private val MOVABLE_FEAST = ClassName("ir.taqvim.core.calendar", "MovableFeast")
+    private val CHRISTIAN_RITE = ClassName(EVENTS, "ChristianRite")
+    private val JEWISH_OBSERVANCE = ClassName("ir.taqvim.core.calendar", "JewishObservance")
+    private val JEWISH_OBSERVANCES =
+        setOf("ROSH_HASHANAH", "YOM_KIPPUR", "SUCCOTH", "HANUKKAH", "PESACH", "SHAVUOT")
     private val EVENT_SCOPE = ClassName(EVENTS, "EventScope")
     private val EVENT_SCOPE_LEVEL = ClassName(EVENTS, "EventScopeLevel")
     private val LOCALIZED_TEXT = ClassName(EVENTS, "LocalizedText")
@@ -74,6 +79,8 @@ object EventsCodeGenerator {
             "RelativeToEvent" to listOf("eventId", "offsetDays"),
             "Astronomical" to listOf("kind", "offsetDays", "timeZone", "month"),
             "LunarTithi" to listOf("month", "tithi", "observance", "endTithi", "endOffsetDays"),
+            "JewishObservanceDate" to listOf("observance"),
+            "ChristianFeastDate" to listOf("feast", "rite"),
         )
 
     /** `Week`'s `start` is a nested rule object, not a flat parameter (ADR-0046); handled separately in [ruleCode]. */
@@ -231,11 +238,19 @@ object EventsCodeGenerator {
         when (name) {
             "weekday" -> CodeBlock.of("%L = %T.%L", name, WEEKDAY, value.content)
             "kind" -> CodeBlock.of("%L = %T.%L", name, ASTRO_KIND, value.content)
-            "observance" -> CodeBlock.of("%L = %T.%L", name, TITHI_OBSERVANCE, value.content)
+            "observance" -> observanceArgument(value)
+            "feast" -> CodeBlock.of("%L = %T.%L", name, MOVABLE_FEAST, value.content)
+            "rite" -> CodeBlock.of("%L = %T.%L", name, CHRISTIAN_RITE, value.content)
             "eventId" -> CodeBlock.of("%L = %T(%S)", name, EVENT_ID, value.content)
             "timeZone" -> CodeBlock.of("%L = %S", name, value.content)
             else -> CodeBlock.of("%L = %L", name, value.int)
         }
+
+    /** `observance` names a tithi reading moment on a Nepali rule and a Jewish observance on a Hebrew one. */
+    private fun observanceArgument(value: JsonPrimitive): CodeBlock {
+        val type = if (value.content in JEWISH_OBSERVANCES) JEWISH_OBSERVANCE else TITHI_OBSERVANCE
+        return CodeBlock.of("observance = %T.%L", type, value.content)
+    }
 
     private fun validityCode(validity: JsonObject): CodeBlock =
         CodeBlock.of(

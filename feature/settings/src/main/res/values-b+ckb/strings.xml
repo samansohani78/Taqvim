@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">ئەمە فایلی بەرواری Taqvim (وەشانی 1) نییە.</string>
   <string name="settings_islamic_override_error_months">فایلەکە مانگی ونبوو، ناڕێک یان نەگونجاوی تێدایە.</string>
   <string name="settings_islamic_override_error_citation">هەر مانگێک لە فایلەکەدا پێویستی بە سەرچاوەکەی هەیە.</string>
+  <string name="settings_source_jewish">بۆنە جولەکەکان</string>
+  <string name="settings_source_christian">جەژنە مەسیحییەکان</string>
 </resources>

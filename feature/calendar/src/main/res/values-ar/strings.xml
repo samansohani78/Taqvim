@@ -181,4 +181,6 @@
   <string name="calendar_print_no_events">لا أحداث هذا الشهر</string>
   <string name="calendar_week_progress_other_year">اليوم %1$s من الأسبوع، الأسبوع %2$s من سنة %3$s</string>
   <string name="calendar_event_scope">يخص: %1$s</string>
+  <string name="calendar_source_jewish">المناسبات اليهودية</string>
+  <string name="calendar_source_christian">الأعياد المسيحية</string>
 </resources>

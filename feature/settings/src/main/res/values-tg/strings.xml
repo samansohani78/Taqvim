@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Ин файли санаҳои Taqvim (версияи 1) нест.</string>
   <string name="settings_islamic_override_error_months">Файл моҳҳои намерасида, бетартиб ё ғайриимкон дорад.</string>
   <string name="settings_islamic_override_error_citation">Ҳар моҳ дар файл бояд манбаъ дошта бошад.</string>
+  <string name="settings_source_jewish">Маросимҳои яҳудӣ</string>
+  <string name="settings_source_christian">Ҷашнҳои масеҳӣ</string>
 </resources>

@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Ce n\'est pas un fichier de dates Taqvim (version 1).</string>
   <string name="settings_islamic_override_error_months">Le fichier contient des mois manquants, désordonnés ou impossibles.</string>
   <string name="settings_islamic_override_error_citation">Chaque mois du fichier doit indiquer sa source.</string>
+  <string name="settings_source_jewish">Fêtes juives</string>
+  <string name="settings_source_christian">Fêtes chrétiennes</string>
 </resources>

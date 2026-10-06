@@ -6,7 +6,6 @@
 
 package ir.taqvim.data.events.generated
 
-import ir.taqvim.core.events.AstroKind
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -18,14 +17,14 @@ import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
- * Part 35 of the dataset events.
+ * Part 41 of the dataset events.
  *
  * Generated from `dataset/` by `:tools:dataset:generateEvents` — do not edit.
  */
-internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
+internal val OFFICIAL_EVENTS_PART_41: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.transatlantic-slave-trade"),
+            id = EventId("un.world-tuberculosis-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -33,16 +32,16 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین المللی یاد بود قربانیان بردگی و تجارت برده از آن سوی اقیانوس اطلس",
-                        "ar" to "اليوم الدولي لإحياء ذكرى ضحايا الرق وتجارة الرقيق عبر المحيط الأطلسي",
-                        "en" to "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade",
-                        "es" to "Día Internacional de Recuerdo de las Víctimas de la Esclavitud y la Trata Transatlántica de Esclavos",
-                        "fr" to "Journée internationale de commémoration des victimes de l’esclavage et de la traite transatlantique des esclaves",
-                        "ru" to "Международный день памяти жертв рабства и трансатлантической работорговли",
-                        "zh" to "奴隶制和跨大西洋贩卖奴隶行为受害者国际纪念日",
+                        "fa" to "روز جهانی بیماری سل",
+                        "ar" to "اليوم العالمي للسل",
+                        "en" to "World Tuberculosis Day",
+                        "es" to "Día Mundial de la Tuberculosis",
+                        "fr" to "Journée mondiale de la lutte contre la tuberculose",
+                        "ru" to "Всемирный день борьбы против туберкулеза",
+                        "zh" to "世界防治结核病日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 3, day = 25),
+            rule = EventRule.Fixed(month = 3, day = 24),
             citations =
                 listOf(
                     Citation(
@@ -50,8 +49,8 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/transatlantic-slave-trade",
-                        title = "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade (observance page)",
+                        url = "https://www.who.int/campaigns/world-tb-day/",
+                        title = "World Tuberculosis Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -61,12 +60,11 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/62/122",
-                    "un" to "https://www.un.org/en/observances/transatlantic-slave-trade",
+                    "un" to "https://www.who.int/campaigns/world-tb-day/",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.tropics-day"),
+            id = EventId("un.world-turkic-language-family-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -74,20 +72,20 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی مناطق حاره‌ای",
-                        "en" to "International Day of the Tropics",
+                        "fa" to "روز جهانی خانواده زبان‌های ترکی",
+                        "en" to "World Turkic Language Family Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 6, day = 29),
+            rule = EventRule.Fixed(month = 12, day = 15),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_016,
+                    fromYear = 2_025,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/tropics-day",
-                            title = "International Day of the Tropics — A/RES/70/267 (2016)",
+                            url = "https://unesdoc.unesco.org/ark:/48223/pf0000396088",
+                            title = "World Turkic Language Family Day (UNESCO General Conference, 43rd session, resolution 43 C/57, Samarkand, 2025)",
                         ),
                 ),
             citations =
@@ -97,17 +95,17 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/tropics-day",
-                        title = "International Day of the Tropics (observance page)",
+                        url = "https://unesdoc.unesco.org/ark:/48223/pf0000396088",
+                        title = "World Turkic Language Family Day (UNESCO General Conference, 43rd session, resolution 43 C/57, Samarkand, 2025)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/tropics-day",
+                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000396088",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.tsunami-awareness-day"),
+            id = EventId("un.world-wetlands-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -115,20 +113,20 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی آگاهی از سونامی",
-                        "en" to "World Tsunami Awareness Day",
+                        "fa" to "روز جهانی تالاب‌ها",
+                        "en" to "World Wetlands Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 11, day = 5),
+            rule = EventRule.Fixed(month = 2, day = 2),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_015,
+                    fromYear = 2_021,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/tsunami-awareness-day",
-                            title = "World Tsunami Awareness Day — resolution 70/203 (December 2015)",
+                            url = "https://www.un.org/en/observances/world-wetlands-day/background",
+                            title = "World Wetlands Day — General Assembly proclamation, 30 August 2021",
                         ),
                 ),
             citations =
@@ -138,17 +136,17 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/tsunami-awareness-day",
-                        title = "World Tsunami Awareness Day (observance page)",
+                        url = "https://www.un.org/en/observances/world-wetlands-day",
+                        title = "World Wetlands Day (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/tsunami-awareness-day",
+                    "un" to "https://www.un.org/en/observances/world-wetlands-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.tuna-day"),
+            id = EventId("un.world-wildlife-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -156,20 +154,20 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی ماهی تن",
-                        "en" to "World Tuna Day",
+                        "fa" to "روز جهانی حیات وحش",
+                        "en" to "World Wildlife Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 5, day = 2),
+            rule = EventRule.Fixed(month = 3, day = 3),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_016,
+                    fromYear = 2_013,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/tuna-day",
-                            title = "World Tuna Day (UN General Assembly A/RES/71/124, adopted 7 Dec 2016)",
+                            url = "https://www.un.org/en/observances/world-wildlife-day/background",
+                            title = "World Wildlife Day — General Assembly decision, 20 December 2013",
                         ),
                 ),
             citations =
@@ -179,17 +177,17 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/tuna-day",
-                        title = "World Tuna Day (observance page)",
+                        url = "https://www.un.org/en/observances/world-wildlife-day",
+                        title = "World Wildlife Day (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/tuna-day",
+                    "un" to "https://www.un.org/en/observances/world-wildlife-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.un-day"),
+            id = EventId("un.world-youth-skills-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -197,16 +195,98 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز ملل متحد",
-                        "ar" to "يوم الأمم المتحدة",
-                        "en" to "United Nations Day",
-                        "es" to "Día de las Naciones Unidas",
-                        "fr" to "Journée des Nations Unies",
-                        "ru" to "День Организации Объединенных Наций",
-                        "zh" to "联合国日",
+                        "fa" to "روز جهانی مهارت‌های جوانان",
+                        "en" to "World Youth Skills Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 10, day = 24),
+            rule = EventRule.Fixed(month = 7, day = 15),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_014,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/world-youth-skills-day",
+                            title = "World Youth Skills Day — General Assembly resolution, 18 December 2014",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-youth-skills-day",
+                        title = "World Youth Skills Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/world-youth-skills-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.yoga-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی یوگا",
+                        "en" to "International Day of Yoga",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 21),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_014,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/yoga-day",
+                            title = "International Day of Yoga — resolution 69/131 (11 December 2014)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/yoga-day",
+                        title = "International Day of Yoga (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/yoga-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.youth-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین المللی جوانان",
+                        "ar" to "يوم الشباب الدولي",
+                        "en" to "International Youth Day",
+                        "es" to "Día Internacional de la Juventud",
+                        "fr" to "Journée internationale de la jeunesse",
+                        "ru" to "Международный день молодежи",
+                        "zh" to "国际青年日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 8, day = 12),
             citations =
                 listOf(
                     Citation(
@@ -214,8 +294,8 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/un-day",
-                        title = "United Nations Day (observance page)",
+                        url = "https://www.un.org/en/observances/youth-day",
+                        title = "International Youth Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -225,11 +305,12 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/un-day",
+                    "resolution" to "https://undocs.org/en/A/RES/54/120",
+                    "un" to "https://www.un.org/en/observances/youth-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.universal-health-coverage-day"),
+            id = EventId("un.zero-discrimination-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -237,20 +318,20 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی پوشش همگانی سلامت",
-                        "en" to "International Universal Health Coverage Day",
+                        "fa" to "روز عدم تبعیض",
+                        "en" to "Zero Discrimination Day",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 12, day = 12),
+            rule = EventRule.Fixed(month = 3, day = 1),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
+                    fromYear = 2_014,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/universal-health-coverage-day",
-                            title = "International Universal Health Coverage Day — resolution 72/138 (2017)",
+                            url = "https://www.unaids.org/en/resources/presscentre/pressreleaseandstatementarchive/2014/february/20140227zerodiscrimination",
+                            title = "Zero Discrimination Day launched by UNAIDS, first observed 1 March 2014",
                         ),
                 ),
             citations =
@@ -260,96 +341,13 @@ internal val OFFICIAL_EVENTS_PART_35: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/universal-health-coverage-day",
-                        title = "International Universal Health Coverage Day (observance page)",
+                        url = "https://www.unaids.org/en/zero-discrimination-day",
+                        title = "Zero Discrimination Day (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/universal-health-coverage-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.vesak-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "ویساک، روز ماه کامل",
-                        "en" to "Vesak, the Day of the Full Moon",
-                    ),
-                ),
-            rule = EventRule.Astronomical(kind = AstroKind.FULL_MOON, offsetDays = 0, timeZone = "UTC", month = 5),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_999,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://undocs.org/en/A/RES/54/115",
-                            title = "General Assembly resolution 54/115: International recognition of the Day of Vesak at United Nations Headquarters and other United Nations offices (1999)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/vesak-day",
-                        title = "Vesak Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/54/115",
-                    "un" to "https://www.un.org/en/observances/vesak-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.victims-enforced-disappearance"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی قربانیان ناپدیدشدگان اجباری",
-                        "en" to "International Day of the Victims of Enforced Disappearances",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 8, day = 30),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/victims-enforced-disappearance",
-                            title = "International Day of the Victims of Enforced Disappearances (A/RES/65/209, adopted 21 December 2010; adoption-year convention, consistent with un.vesak-day/ADR-0044)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/victims-enforced-disappearance",
-                        title = "International Day of the Victims of Enforced Disappearances (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/victims-enforced-disappearance",
+                    "un" to "https://www.unaids.org/en/zero-discrimination-day",
                 ),
         ),
     )

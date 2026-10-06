@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Ini bukan berkas tanggal Taqvim (versi 1).</string>
   <string name="settings_islamic_override_error_months">Berkas memuat bulan yang hilang, tidak berurutan, atau mustahil.</string>
   <string name="settings_islamic_override_error_citation">Setiap bulan dalam berkas memerlukan sumbernya.</string>
+  <string name="settings_source_jewish">Hari raya Yahudi</string>
+  <string name="settings_source_christian">Hari raya Kristen</string>
 </resources>

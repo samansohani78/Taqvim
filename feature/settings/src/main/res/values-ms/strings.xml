@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Ini bukan fail tarikh Taqvim (versi 1).</string>
   <string name="settings_islamic_override_error_months">Fail mempunyai bulan yang hilang, tidak berurutan atau mustahil.</string>
   <string name="settings_islamic_override_error_citation">Setiap bulan dalam fail memerlukan sumbernya.</string>
+  <string name="settings_source_jewish">Perayaan Yahudi</string>
+  <string name="settings_source_christian">Perayaan Kristian</string>
 </resources>

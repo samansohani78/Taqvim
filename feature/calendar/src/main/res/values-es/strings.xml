@@ -160,4 +160,6 @@
   <string name="calendar_print_no_events">No hay eventos este mes</string>
   <string name="calendar_week_progress_other_year">Día %1$s de la semana, semana %2$s de %3$s</string>
   <string name="calendar_event_scope">Se aplica a: %1$s</string>
+  <string name="calendar_source_jewish">Festividades judías</string>
+  <string name="calendar_source_christian">Fiestas cristianas</string>
 </resources>

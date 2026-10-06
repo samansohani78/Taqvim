@@ -4,6 +4,10 @@
  */
 package ir.taqvim.core.events
 
+import ir.taqvim.core.calendar.ChristianMovableFeasts
+import ir.taqvim.core.calendar.JewishObservance
+import ir.taqvim.core.calendar.JewishObservances
+import ir.taqvim.core.calendar.MovableFeast
 import ir.taqvim.core.calendar.NepaliLunarDays
 import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.model.Weekday
@@ -25,6 +29,15 @@ public enum class AstroKind {
     DECEMBER_SOLSTICE,
     NEW_MOON,
     FULL_MOON,
+}
+
+/** Which computus a [EventRule.ChristianFeastDate] follows (T-109). */
+public enum class ChristianRite {
+    /** The calendar in force: Julian before the 1582 reform, Gregorian after it. */
+    WESTERN,
+
+    /** The Julian computus throughout, shown on the Gregorian calendar. */
+    ORTHODOX,
 }
 
 /** How an event's days are found in a year of its calendar (docs/PLAN.md §4.2). */
@@ -140,6 +153,31 @@ public sealed interface EventRule {
             require(endOffsetDays >= 0) { "endOffsetDays must be ≥ 0 (was $endOffsetDays)" }
         }
     }
+
+    /**
+     * A Jewish observance on its Hebrew date (T-108), computed by [JewishObservances].
+     *
+     * Not a [Fixed] rule, because Hebrew month numbers are positional: a leap year inserts Adar I, so Nisan and Sivan
+     * move from month 7 and 9 to 8 and 10 while Tishri and Kislev do not. The engine already knows that and is
+     * checked against all 57 839 USNO Jewish observances from year 360 to 9999, so the rule asks it rather than
+     * restating a date that is only right in a common year. NEPALI-style restriction: HEBREW calendar only.
+     */
+    public data class JewishObservanceDate(
+        public val observance: JewishObservance,
+    ) : EventRule
+
+    /**
+     * A Christian movable feast (T-109), computed by [ChristianMovableFeasts] from the computus of [rite].
+     *
+     * [ChristianRite.WESTERN] is the civil reckoning: the Julian computus before the 1582 reform and the Gregorian
+     * one after it, which is what `civilForYear` gives. [ChristianRite.ORTHODOX] is the Julian computus throughout,
+     * expressed on the Gregorian calendar. Both are checked against all 67 336 USNO Christian observances from 1583
+     * to 9999. GREGORIAN calendar only.
+     */
+    public data class ChristianFeastDate(
+        public val feast: MovableFeast,
+        public val rite: ChristianRite,
+    ) : EventRule
 
     /**
      * [lengthDays] consecutive days starting the day [start] resolves to that year (ADR-0046): every one of those

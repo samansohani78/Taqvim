@@ -97,6 +97,21 @@ public object ChristianMovableFeasts {
         }
     }
 
+    /**
+     * Day numbers of the Easter-dated feasts of Gregorian [year] by the **Julian** computus, the Orthodox reckoning,
+     * expressed on the Gregorian calendar ([JulianComputus.orthodoxEaster]).
+     *
+     * [MovableFeast.FIRST_SUNDAY_OF_ADVENT] is absent on purpose: the Orthodox churches keep a forty-day Nativity
+     * Fast rather than a four-Sunday Advent, so there is no Orthodox date for it to give and inventing one would be
+     * worse than leaving it out.
+     */
+    public fun orthodoxForYear(year: Int): Map<MovableFeast, Jdn> {
+        val easter = GregorianCalendarSystem.toJdn(JulianComputus.orthodoxEaster(year))
+        return MovableFeast.entries
+            .mapNotNull { feast -> feast.daysFromEaster?.let { feast to easter + it } }
+            .toMap()
+    }
+
     private fun julianDays(year: Long): Map<MovableFeast, Jdn> {
         val easter = JulianComputus.easterJdn(year)
         val advent = nextSunday(JulianCalendar.toJdn(JulianDate(year, NOVEMBER, EARLIEST_ADVENT_DAY)))

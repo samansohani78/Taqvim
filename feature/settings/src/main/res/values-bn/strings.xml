@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">এটি Taqvim তারিখ ফাইল (সংস্করণ 1) নয়।</string>
   <string name="settings_islamic_override_error_months">ফাইলে অনুপস্থিত, অক্রমিক বা অসম্ভব মাস আছে।</string>
   <string name="settings_islamic_override_error_citation">ফাইলের প্রতিটি মাসের উৎস থাকতে হবে।</string>
+  <string name="settings_source_jewish">ইহুদি পার্বণ</string>
+  <string name="settings_source_christian">খ্রিষ্টীয় পার্বণ</string>
 </resources>

@@ -70,6 +70,8 @@ internal object SettingsLabels {
             EventSource.NEPAL_OFFICIAL to R.string.settings_source_nepal,
             EventSource.INTERNATIONAL to R.string.settings_source_international,
             EventSource.ANCIENT_IRAN to R.string.settings_source_ancient_iran,
+            EventSource.JEWISH to R.string.settings_source_jewish,
+            EventSource.CHRISTIAN to R.string.settings_source_christian,
         )
 
     /** Category names, in the order they are offered. Personal events are absent: they are never filtered here. */

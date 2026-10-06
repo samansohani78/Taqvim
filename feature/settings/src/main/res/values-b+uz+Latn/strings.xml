@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Bu Taqvim sanalar fayli (1-versiya) emas.</string>
   <string name="settings_islamic_override_error_months">Faylda yetishmaydigan, tartibsiz yoki imkonsiz oylar bor.</string>
   <string name="settings_islamic_override_error_citation">Fayldagi har bir oyning manbasi boʻlishi kerak.</string>
+  <string name="settings_source_jewish">Yahudiy marosimlari</string>
+  <string name="settings_source_christian">Nasroniy bayramlari</string>
 </resources>

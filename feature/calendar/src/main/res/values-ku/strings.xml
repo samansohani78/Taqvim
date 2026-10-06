@@ -153,4 +153,6 @@
   <string name="calendar_print_no_events">Vê mehê bûyer tune</string>
   <string name="calendar_week_progress_other_year">Roja %1$s a hefteyê, hefteya %2$s a sala %3$s</string>
   <string name="calendar_event_scope">Ji bo: %1$s</string>
+  <string name="calendar_source_jewish">Bûyerên cihûyan</string>
+  <string name="calendar_source_christian">Cejnên mesîhiyan</string>
 </resources>

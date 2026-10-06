@@ -262,4 +262,6 @@
   <string name="settings_islamic_override_error_format">Ev ne pela dîrokan a Taqvim (guherto 1) ye.</string>
   <string name="settings_islamic_override_error_months">Di pelê de mehên winda, bêrêz an ne gengaz hene.</string>
   <string name="settings_islamic_override_error_citation">Her mehek di pelê de çavkaniya xwe hewce dike.</string>
+  <string name="settings_source_jewish">Bûyerên cihûyan</string>
+  <string name="settings_source_christian">Cejnên mesîhiyan</string>
 </resources>

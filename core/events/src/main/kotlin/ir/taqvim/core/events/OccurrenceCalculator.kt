@@ -5,9 +5,11 @@
 package ir.taqvim.core.events
 
 import ir.taqvim.core.calendar.CalendarArithmetic
+import ir.taqvim.core.calendar.ChristianMovableFeasts
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.HebrewCalendarSystem
 import ir.taqvim.core.calendar.IranIslamicCalendar
+import ir.taqvim.core.calendar.JewishObservances
 import ir.taqvim.core.calendar.NepaliCalendarSystem
 import ir.taqvim.core.calendar.NepaliLunarDays
 import ir.taqvim.core.calendar.PersianCalendarSystem
@@ -201,9 +203,25 @@ private fun directDays(
             weekDays(rule, calendar, year)
         }
 
-        is EventRule.RelativeToEvent, is EventRule.Astronomical -> {
-            emptyList()
+        else -> {
+            engineDays(rule, year)
         }
+    }
+
+/**
+ * Days of the rules that hand the question to a calendar engine, and of the two that need more than this year.
+ *
+ * Split out of [directDays] only to keep each branch list short enough for the complexity limit; the division is
+ * "answered by an engine" against "answered by the calendar's own arithmetic".
+ */
+private fun engineDays(
+    rule: EventRule,
+    year: Int,
+): List<Jdn> =
+    when (rule) {
+        is EventRule.JewishObservanceDate -> listOf(JewishObservances.day(rule.observance, year).jdn)
+        is EventRule.ChristianFeastDate -> christianFeastDays(rule, year)
+        else -> emptyList()
     }
 
 /** The one day a [EventRule.Single] falls on, and only in its own year. */
@@ -253,3 +271,18 @@ private fun validDay(
     month: Int,
     day: Int,
 ): Jdn? = if (calendar.isValid(year, month, day)) calendar.toJdn(calendar.date(year, month, day)) else null
+
+/**
+ * The day of a Christian movable feast in Gregorian [year] (T-109).
+ *
+ * `civilForYear` and `julianForYear` both answer in the calendar in force, so the day number is taken through the
+ * calendar each one names rather than assumed to be Gregorian.
+ */
+private fun christianFeastDays(
+    rule: EventRule.ChristianFeastDate,
+    year: Int,
+): List<Jdn> =
+    when (rule.rite) {
+        ChristianRite.WESTERN -> listOfNotNull(ChristianMovableFeasts.civilForYear(year.toLong())[rule.feast])
+        ChristianRite.ORTHODOX -> listOfNotNull(ChristianMovableFeasts.orthodoxForYear(year)[rule.feast])
+    }
