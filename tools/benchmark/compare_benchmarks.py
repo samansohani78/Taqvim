@@ -79,6 +79,51 @@ def load_with_duplicates(directory: Path) -> tuple[Results, list[str]]:
     return results, duplicates
 
 
+def device_models(directory: Path) -> set[str]:
+    """Every ``context.build.model`` the result files below ``directory`` were produced on."""
+    models = set()
+    for path in sorted(directory.rglob("*benchmarkData.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        model = data.get("context", {}).get("build", {}).get("model")
+        if model:
+            models.add(str(model))
+    return models
+
+
+def baseline_directory(root: Path, models: set[str]) -> Path:
+    """
+    The baseline set to compare a run from ``models`` against: a per-model subdirectory when one exists.
+
+    Benchmarks are only comparable between machines of the same class, so a baseline recorded on one device belongs
+    beside that device's name. ``benchmark/baselines/<model>/`` holds it; the flat directory stays the default so the
+    hosted nightly keeps working unchanged.
+    """
+    if len(models) == 1:
+        named = root / next(iter(models))
+        if named.is_dir():
+            return named
+    return root
+
+
+def mismatched_device(baseline_models: set[str], current_models: set[str], baseline: Path) -> list[str]:
+    """
+    Lines when the results and their baseline come from different machines.
+
+    A comparison across device classes is not a measurement of the app. Recorded on 2026-10-07: the first physical
+    run (OnePlus 15, CPH2745) was compared against the hosted emulator baseline (sdk_gphone64_x86_64) and the
+    compute-bound controls "moved" by -27 % to -56 % (monthBitmap4x4 4.362 → 1.907 ms) while the four Glance controls,
+    which wait on IPC rather than the CPU, sat within 2 %. Hardware is simply faster at drawing than an x86 emulator;
+    nothing drifted. The control band cannot tell that apart from a degraded runner, so the device is checked first.
+    """
+    if not baseline_models or not current_models or baseline_models == current_models:
+        return []
+    return [
+        f"results from {sorted(current_models)} compared against a baseline recorded on {sorted(baseline_models)} "
+        f"({baseline}). Record a baseline for this device under benchmark/baselines/<model>/ "
+        f"(--record-baseline) and compare against that; timings from different machines are not comparable."
+    ]
+
+
 def load(directory: Path) -> Results:
     """Every benchmark in the JSON files below ``directory`` as (class, name) → metric → typical value."""
     return load_with_duplicates(directory)[0]
@@ -243,7 +288,13 @@ def failures(
     """
     required = read_json(args.required)
     budgets = read_json(args.budgets)
-    baseline = load(args.baseline) if args.baseline.is_dir() else {}
+    current_models = device_models(args.results)
+    root = args.baseline
+    baseline_dir = baseline_directory(root, current_models) if root.is_dir() else root
+    baseline = load(baseline_dir) if baseline_dir.is_dir() else {}
+    if baseline_dir != root:
+        print(f"Baseline for {sorted(current_models)[0]}: {baseline_dir}")
+    device = mismatched_device(device_models(baseline_dir) if baseline_dir.is_dir() else set(), current_models, baseline_dir)
     established = missing_baselines(required, baseline, current) if args.required else []
     for key in sorted(set(current) - set(baseline)):
         if f"{key[0]}.{key[1]}" not in required.get("required", {}) or not args.required:
@@ -258,7 +309,8 @@ def failures(
             print(f"Budget of {name} needs a physical device; {state} on this run")
     optional = set(required.get("optional", {}))
     structural = (
-        [f"Duplicate result: {name}" for name in duplicates]
+        [f"Different device: {line}" for line in ([] if args.record_baseline else device)]
+        + [f"Duplicate result: {name}" for name in duplicates]
         + ([] if args.record_baseline else [f"Missing baseline: {line}" for line in established])
         + [f"Missing: {line}" for line in (missing_required(required, current) if args.required else [])]
         + [f"Missing: {line}" for line in lost_since_baseline(baseline, current, optional)]

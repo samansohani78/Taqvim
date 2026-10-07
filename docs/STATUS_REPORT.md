@@ -833,6 +833,104 @@ A hosted emulator has no frame timeline, and this machine has no attached device
 not estimated. `docs/MANUAL_TEST_CHECKLIST.md` §8a now carries the exact OnePlus 15 command sequence and an empty
 results table; nothing may be written into it from an emulator run.
 
+### The first physical-device benchmark run (OnePlus 15, 2026-10-07)
+
+The owner ran the full macro and micro suite on an OnePlus 15 (CPH2745, Android 16) — the first time plan §9's
+device budgets have been measured at all. Three things came out of it: the memory budget was measuring the wrong
+thing, the year view had real jank with a single cause, and the comparison was being made against an emulator.
+
+**What was already good, and is not touched by any of this:** cold start 131.9 ms median (budget 350), cold start
+without the baseline profile 155.6 ms, warm start 45.4 ms, 24-month scroll frame CPU P99 13.3 ms, timeline 5.5 ms,
+map pan/zoom 6.2 ms, search typing 12.6 ms.
+
+#### 1. Memory: the metric was wrong, the app was not
+
+`MonthScreenMemoryBenchmark` reported `memoryRssAnon` 222 MB + `memoryRssFile` 143 MB against an 80 MB budget. None
+of that 356 MB is app-owned memory.
+
+| Source | Reading |
+|---|---|
+| `dumpsys meminfo` App Summary, month screen after 12 months | **TOTAL PSS 67 065 KB**, Private Dirty 55 516 KB |
+| of which Code | RSS 140 772 KB but **PSS 8 308 KB** — `.so` 62 MB, `.jar` 49 MB, `.art` 34 MB, `.oat` 16 MB, shared with every app |
+| `/proc/<pid>/status` sampled across the same journey | RssAnon peak **79 848 KB**, flat from the 4th second onwards |
+| Java objects actually alive | Dalvik Heap Alloc 5 600 KB |
+
+So the month screen costs about 67 MB proportional, 55 MB private — **inside** the 80 MB plan §9 allows — and paging
+twelve months retains nothing.
+
+Two defects in the measurement, not one. The budget summed file-backed RSS, which is mapped code the app neither
+owns nor can free; and the anonymous term cannot be gated either, because `mem.rss.anon` in these traces ratchets
+rather than tracking residency — in `monthScreenMemory_iter003` it climbed across 49 351 increases against 318
+decreases to 221 128 KB while the same trace's polled `mem.rss` read 68 548 KB. Anonymous memory cannot exceed total
+RSS. The budget was never satisfiable anywhere: the hosted baseline sums to 245 MB.
+
+The metrics stay reported, so the 10 % regression gate still watches them against a same-device baseline. The §9
+budget is now checked with `dumpsys meminfo` TOTAL PSS, with the command sequence and the measured breakdown in
+`docs/MANUAL_TEST_CHECKLIST.md` §8a. **No product change was made for memory, because the measurement never showed
+a problem to fix.**
+
+#### 2. Year view: 989 text layouts per page change
+
+Trace evidence, not inference. In `YearViewBenchmark.pageThroughYears`, every frame of 54–63 ms constructed
+**988–989** `StaticLayout`s and every frame under 5 ms constructed 0–7; in the worst 63 ms frame, `TextLayout:initLayout`
+(21.9 ms) plus `Constructing StaticLayout` (10.9 ms) were 32.8 ms, against 5 ms of recomposition.
+
+The cause was one line: `MiniMonthGrid` called `rememberTextMeasurer` itself, so each of the twelve mini months on a
+page had its own layout cache and each cache died with its page. Paging to another year therefore laid out every day
+number of every month again — twice over during a swipe, as the outgoing and incoming pages both draw. The day
+numbers are the same strings in every month of every year, so one cache remembered **above** the pager serves all of
+them; Compose keys it on the full `TextLayoutInput`, so a different size, colour or direction is a different entry and
+invalidation needs no rule of ours.
+
+| Benchmark (frame CPU ms) | P50 | P90 | P95 | P99 | overrun P99 |
+|---|---|---|---|---|---|
+| `openYearView` before | 3.00 | 5.98 | 9.97 | **57.03** | 46.98 |
+| `openYearView` after | 2.57 | 5.67 | 8.38 | **16.50** | 9.54 |
+| `pageThroughYears` before | 3.75 | 52.17 | 57.03 | **62.24** | 56.69 |
+| `pageThroughYears` after | 4.50 | 23.57 | 24.59 | **26.93** | 15.82 |
+| `swipeCalendarsAndScrollMonths` before | 3.96 | 5.79 | 8.21 | **37.53** | 25.94 |
+| `swipeCalendarsAndScrollMonths` after | 3.65 | 7.36 | 9.66 | **17.87** | 7.28 |
+
+The trace after the change shows the mechanism rather than only the result: the worst frame now constructs 185 text
+layouts and takes 19 ms, and the frames after it construct none. What is left is the cold cache filling on first
+display, which is bounded and unavoidable. `pageThroughYears` P90 23.6 ms is still over this 120 Hz phone's 8.3 ms
+frame, so the year view is much better but not yet smooth; that is the honest state.
+
+#### An aside the new diagnostic settled: the swipe test's flake is a snap-back, not a starved runner
+
+`CalendarScreenTest`'s swipe case has timed out three times on CI and had never been reproduced locally, so
+main@628d603 made its timeout name the months on screen instead of only the matcher. It failed once during this
+pass's gate run and the message was decisive:
+
+```
+'Ordibehesht 1405' never appeared in 60000 ms; the screen showed [Farvardin 1405]
+```
+
+The pager sat on the month it started from for the whole minute. Nothing was starved and nothing failed to render:
+the fling did not move the pager, so the page snapped back. That rules out the explanation every previous round
+assumed — a CPU-starved runner that never got to draw — and with it the remedy that was tried twice, raising the
+timeout, which could never have worked on a gesture that does not move.
+
+The fix therefore belongs in the gesture: a drag that passes the pager's positional settle threshold on distance
+alone, rather than one that depends on the fling velocity a loaded machine fails to reproduce. That is not done here
+— this pass changes only what its own measurements justify, and the case passed on re-run — but the mechanism is no
+longer a guess.
+
+#### 3. The control benchmarks did not drift — the baseline was from another machine
+
+`monthBitmap4x4` "moved" −56.3 % (4.362 → 1.907 ms) and made the comparison inconclusive. It was recorded on
+`sdk_gphone64_x86_64`; the run is `CPH2745`. Across the thirteen controls the pattern is unmistakable: the
+compute-bound ones moved −27 % to −56 % (`mapWidgetContent` −49.8 %, `moonVisibilityMask` −41.4 %), the four Glance
+controls that wait on IPC rather than the CPU moved 0–2 %, and the three sub-millisecond ones were *slower* on the
+phone (`moonBitmap` +23.1 %). A degraded runner makes everything slower; it cannot make bitmap drawing 56 % faster.
+Hardware is simply faster than an x86 emulator at the compute-bound work.
+
+So physical-device comparisons do need a device-specific baseline. `compare_benchmarks.py` now reads
+`context.build.model`, prefers a per-model baseline directory (`benchmark/baselines/<model>/`), and when the baseline
+and the results come from different machines it fails as a structural finding naming both models, instead of leaving
+the control band to report a drift that did not happen. The band itself is unchanged: loosening it would have hidden
+the real finding.
+
 ### Independent review of main@98260a4 (2026-09-19)
 
 An independent adversarial review (archived verbatim at `docs/reviews/2026-09-19-adversarial-review.md`) raised 18

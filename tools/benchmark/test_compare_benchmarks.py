@@ -37,12 +37,80 @@ def write(directory: Path, cold_median: float, frame_p50: float) -> None:
     (directory / "ir.taqvim.benchmark-benchmarkData.json").write_text(json.dumps(data), encoding="utf-8")
 
 
+def write_on(directory: Path, model: str, cold_median: float = 100.0, frame_p50: float = 5.0) -> None:
+    """A result set carrying the device model the benchmark library records in ``context.build``."""
+    data = {
+        "context": {"build": {"model": model, "sdk": 36}},
+        "benchmarks": [
+            {
+                "className": "ir.taqvim.benchmark.StartupBenchmark",
+                "name": "startupCold",
+                "metrics": {"timeToInitialFrameMs": {"minimum": 1.0, "median": cold_median}},
+                "sampledMetrics": {"frameDurationCpuMs": {"P50": frame_p50, "P90": frame_p50 * 2}},
+            }
+        ],
+    }
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "ir.taqvim.benchmark-benchmarkData.json").write_text(json.dumps(data), encoding="utf-8")
+
+
 def gate(arguments: list[str]) -> tuple[int, str]:
     """Runs the gate with its stdout captured, so test fixtures never reach the CI log. Returns (exit code, output)."""
     captured = io.StringIO()
     with contextlib.redirect_stdout(captured), contextlib.redirect_stderr(captured):
         code = compare_benchmarks.main(arguments)
     return code, captured.getvalue()
+
+
+class DeviceBaselineTest(unittest.TestCase):
+    """A baseline is only a baseline for the machine it was recorded on (2026-10-07, OnePlus 15 vs hosted emulator)."""
+
+    def test_a_baseline_from_another_device_fails_before_the_controls_are_blamed(self) -> None:
+        with tempfile.TemporaryDirectory() as root:
+            base, results = Path(root, "baselines"), Path(root, "results")
+            write_on(base, "sdk_gphone64_x86_64")
+            write_on(results, "CPH2745")
+
+            code, output = gate(["--baseline", str(base), "--results", str(results)])
+
+            self.assertEqual(code, 1)
+            self.assertIn("Different device", output)
+            self.assertIn("CPH2745", output)
+            self.assertIn("sdk_gphone64_x86_64", output)
+
+    def test_the_same_device_compares_normally(self) -> None:
+        with tempfile.TemporaryDirectory() as root:
+            base, results = Path(root, "baselines"), Path(root, "results")
+            write_on(base, "CPH2745")
+            write_on(results, "CPH2745")
+
+            code, output = gate(["--baseline", str(base), "--results", str(results)])
+
+            self.assertEqual(code, 0, output)
+            self.assertNotIn("Different device", output)
+
+    def test_a_per_device_baseline_directory_is_preferred(self) -> None:
+        with tempfile.TemporaryDirectory() as root:
+            base, results = Path(root, "baselines"), Path(root, "results")
+            write_on(base, "sdk_gphone64_x86_64")
+            write_on(base / "CPH2745", "CPH2745", cold_median=100.0)
+            write_on(results, "CPH2745", cold_median=105.0)
+
+            code, output = gate(["--baseline", str(base), "--results", str(results)])
+
+            self.assertEqual(code, 0, output)
+            self.assertIn("CPH2745", output)
+
+    def test_recording_a_first_baseline_for_a_new_device_is_allowed(self) -> None:
+        with tempfile.TemporaryDirectory() as root:
+            base, results = Path(root, "baselines"), Path(root, "results")
+            write_on(base, "sdk_gphone64_x86_64")
+            write_on(results, "CPH2745")
+
+            code, output = gate(["--baseline", str(base), "--results", str(results), "--record-baseline"])
+
+            self.assertNotIn("Different device", output)
+            self.assertEqual(code, compare_benchmarks.RECORDED_EXIT, output)
 
 
 class CompareBenchmarksTest(unittest.TestCase):
