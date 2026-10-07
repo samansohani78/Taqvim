@@ -41,6 +41,8 @@ import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextMeasurer
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -90,6 +92,9 @@ internal fun CalendarPages(
             pagerState.animateScrollToPage(content.calendarIndex)
         }
     }
+    // Above the pager on purpose: the day numbers of every mini month on every page come out of this one cache, so
+    // paging to another year re-lays out nothing (see MINI_MONTH_TEXT_CACHE).
+    val measurer = rememberTextMeasurer(MINI_MONTH_TEXT_CACHE)
     HorizontalPager(
         state = pagerState,
         modifier = modifier.testTag(YEAR_PAGER_TAG),
@@ -99,7 +104,7 @@ internal fun CalendarPages(
         if (content.isPickingYear && page == content.calendarIndex) {
             YearPicker(content.year, builder.years(page), builder::number, onAction, Modifier.fillMaxSize())
         } else {
-            YearPageSlot(page, content, builder, onAction)
+            YearPageSlot(page, content, builder, measurer, onAction)
         }
     }
 }
@@ -110,6 +115,7 @@ private fun YearPageSlot(
     index: Int,
     content: YearContent,
     builder: YearPageBuilder,
+    measurer: TextMeasurer,
     onAction: (YearAction) -> Unit,
 ) {
     val year = remember(builder, index, content.anchorDay) { builder.yearOf(index, content.anchorDay) }
@@ -122,7 +128,7 @@ private fun YearPageSlot(
     if (built == null) {
         Box(Modifier.fillMaxSize())
     } else {
-        YearPageView(built, content.columns, onAction, Modifier.fillMaxSize())
+        YearPageView(built, content.columns, measurer, onAction, Modifier.fillMaxSize())
     }
 }
 
@@ -134,6 +140,8 @@ private fun YearPageSlot(
 internal fun YearPageView(
     page: YearPage,
     columns: Int,
+    /** Shared by every page, so it must be remembered above the pager; required, so `modifier` stays optional-first. */
+    measurer: TextMeasurer,
     onAction: (YearAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -160,7 +168,12 @@ internal fun YearPageView(
         verticalArrangement = Arrangement.spacedBy(GRID_SPACING),
     ) {
         items(page.months, key = { it.firstDay.value }) { month ->
-            MiniMonthView(month, page.weekdayLabels, onOpen = { onAction(YearAction.OpenMonth(month.firstDay)) })
+            MiniMonthView(
+                month,
+                page.weekdayLabels,
+                onOpen = { onAction(YearAction.OpenMonth(month.firstDay)) },
+                measurer = measurer,
+            )
         }
     }
 }

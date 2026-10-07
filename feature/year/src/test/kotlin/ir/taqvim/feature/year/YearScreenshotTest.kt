@@ -6,6 +6,7 @@ package ir.taqvim.feature.year
 
 import androidx.compose.runtime.remember
 import androidx.compose.ui.test.junit4.v2.createComposeRule
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.LayoutDirection
 import ir.taqvim.core.i18n.LanguageTable
 import ir.taqvim.core.model.CalendarSystem
@@ -58,7 +59,13 @@ class YearScreenshotTest(
                     if (picking) {
                         YearPicker(content.year, builder.years(0), builder::number, onAction = {}, modifier = modifier)
                     } else {
-                        YearPageView(page, content.columns, onAction = {}, modifier = modifier)
+                        YearPageView(
+                            page,
+                            content.columns,
+                            rememberTextMeasurer(MINI_MONTH_TEXT_CACHE),
+                            onAction = {},
+                            modifier = modifier,
+                        )
                     }
                 }
             }

@@ -29,7 +29,6 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
-import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,8 +42,19 @@ private const val TEXT_FRACTION = 0.55f
 /** Share of the smaller cell side used by the radius of today's disc. */
 private const val TODAY_RADIUS_FRACTION = 0.48f
 
-/** Cached text layouts: the day numbers and weekday names of one page in each color. */
-private const val TEXT_CACHE_SIZE = 96
+/**
+ * Cached text layouts shared by every mini month on every year page.
+ *
+ * One page lays out 12 months x (31 day numbers + 7 weekday names); the day numbers of one month are the same
+ * strings as the next month's and the next year's, so the whole year view needs only 31 numbers in the three day
+ * colors (normal, day off, today) plus 7 weekday names = 100 entries. 128 leaves room for a font size still being
+ * evicted after a pinch zoom, which changes the size and so the key.
+ *
+ * It must be remembered **above** the pager: a cache created per mini month died with its page, so every page
+ * change laid out all 989 texts again, which is what made a year swipe take 54-63 ms (T-805, trace evidence in
+ * docs/STATUS_REPORT.md).
+ */
+internal const val MINI_MONTH_TEXT_CACHE: Int = 128
 
 /**
  * One month of the year grid: its name over a drawn six-week grid (T-805). The whole month is one button announced
@@ -55,6 +65,8 @@ internal fun MiniMonthView(
     month: MiniMonth,
     weekdayLabels: List<String>,
     onOpen: () -> Unit,
+    /** Shared with every other mini month so a day number is laid out once per year view, not once per page. */
+    measurer: TextMeasurer,
     modifier: Modifier = Modifier,
 ) {
     val openLabel = stringResource(R.string.year_open_month)
@@ -82,6 +94,7 @@ internal fun MiniMonthView(
         MiniMonthGrid(
             month,
             weekdayLabels,
+            measurer,
             Modifier
                 .fillMaxWidth()
                 .aspectRatio(YearPageBuilder.DAYS_PER_WEEK / (YearPageBuilder.WEEKS + 1f)),
@@ -103,9 +116,9 @@ private class MiniMonthColors(
 private fun MiniMonthGrid(
     month: MiniMonth,
     weekdayLabels: List<String>,
+    measurer: TextMeasurer,
     modifier: Modifier,
 ) {
-    val measurer = rememberTextMeasurer(TEXT_CACHE_SIZE)
     val scheme = MaterialTheme.colorScheme
     val colors =
         MiniMonthColors(scheme.onSurfaceVariant, scheme.onSurface, scheme.error, scheme.primary, scheme.onPrimary)
