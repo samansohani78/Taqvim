@@ -24,7 +24,7 @@ closed beta that precedes the first public release is described in [BETA.md](BET
   `:app` takes it from, in order:
   1. the Gradle property `-Ptaqvim.version=vX.Y.Z[-beta.N]` — `release.yml` passes the pushed tag, so the tag *is*
      the version and a malformed tag fails the build;
-  2. otherwise `version.properties` at the repository root (`version=1.1.0`, the last released version), the default for local and PR builds.
+  2. otherwise `version.properties` at the repository root (`version=1.1.1`, the last released version), the default for local and PR builds.
 
   `./gradlew :app:verifyReleaseVersion -Ptaqvim.version=v1.2.3-beta.4` prints and checks the resulting name and code.
   Bump `version.properties` in the release commit so local builds match the latest release: `release.yml` compares the
