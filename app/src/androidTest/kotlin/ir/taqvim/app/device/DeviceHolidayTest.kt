@@ -65,7 +65,7 @@ class DeviceHolidayTest {
         check(dayEvents.isHoliday) { "Nowruz $year is not marked as a holiday by the dataset" }
         check(dayEvents.official.isNotEmpty()) { "Nowruz $year has no official occurrence in the dataset" }
         val titles = dayEvents.official.map { it.definition.title.forLanguage("fa") }
-        val holidayWord = appContext.getString(CalendarR.string.calendar_holiday)
+        val holidayWord = localizedString(CalendarR.string.calendar_holiday, "fa")
 
         openLink("taqvim://day/$year-1-1", "destination:Day")
         awaitTag(segmentTag(DayDetailsTab.EVENTS.ordinal)).click()

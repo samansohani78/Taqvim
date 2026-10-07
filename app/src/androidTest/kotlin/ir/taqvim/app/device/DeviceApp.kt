@@ -7,7 +7,9 @@ package ir.taqvim.app.device
 import android.app.LocaleManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
+import android.os.LocaleList
 import android.os.ParcelFileDescriptor
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
@@ -54,6 +56,22 @@ internal fun updatePreferences(change: (UserPreferences) -> UserPreferences): Us
         preferences.update(change)
         preferences.preferences.first()
     }
+
+/**
+ * [id] in [language], whatever language the device is set to.
+ *
+ * `appContext.getString` answers in the **context's** configuration, which follows the device, not the per-app
+ * locale a test chose: on an `en-IR` phone (the OnePlus 15, 2026-10-07) `DeviceHolidayTest` asked for the holiday
+ * word after `useLanguage("fa")`, got the English "Holiday", and then looked for it on a Persian screen.
+ */
+internal fun localizedString(
+    id: Int,
+    language: String,
+): String {
+    val configuration = Configuration(appContext.resources.configuration)
+    configuration.setLocales(LocaleList.forLanguageTags(language))
+    return appContext.createConfigurationContext(configuration).getString(id)
+}
 
 /**
  * Makes [language] the app language with the first-run onboarding done, as a returning user's device has it, and waits
