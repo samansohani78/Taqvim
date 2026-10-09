@@ -69,9 +69,40 @@ internal class PreferencesWidgetDataSource(
     private val rangeEvents: (JdnRange) -> Flow<List<DayEvents>>,
     private val names: WidgetPrayerNames,
     private val skyParts: WidgetSkyParts = WidgetSkyParts { WorldOutline(emptyList(), emptyList()) },
+    /** Whether a day is off, without assembling it; `null` falls back to the assembled day. */
+    private val holidayOnly: (suspend (Jdn) -> Boolean)? = null,
     private val deviceZone: () -> TimeZone,
 ) : WidgetDataSource {
     private val calendarParts = WidgetCalendarParts(rangeEvents)
+
+    /**
+     * What [kind] needs of the day, and no more.
+     *
+     * Assembling a day subscribes to the personal, device-calendar and subscription sources and waits for all three,
+     * so a widget that lists events must pay for it — but one that only colours a holiday can read that from the
+     * dataset, and one that shows neither needs nothing. A date widget was waiting on Room and the calendar provider
+     * to draw a date its own calendar engine already knew, which is what made widgets show the host's placeholder.
+     */
+    private suspend fun dayFor(
+        kind: WidgetKind,
+        config: WidgetConfig,
+        jdn: Jdn,
+    ): DayEvents? =
+        if (WidgetDependency.EVENTS in kind.dependencies || config.shows(WidgetContent.EVENTS)) {
+            rangeEvents(jdn..jdn).first().single()
+        } else {
+            null
+        }
+
+    /** Whether [jdn] is a day off for a widget that only colours it, read without assembling the day. */
+    private suspend fun holidayFor(
+        config: WidgetConfig,
+        jdn: Jdn,
+    ): Boolean {
+        if (!config.shows(WidgetContent.HOLIDAYS)) return false
+        val cheap = holidayOnly ?: return rangeEvents(jdn..jdn).first().single().isHoliday
+        return cheap(jdn)
+    }
 
     override suspend fun load(
         kind: WidgetKind,
@@ -83,8 +114,10 @@ internal class PreferencesWidgetDataSource(
         val place = prefs.widgetPlace()
         val zone = place?.timeZone ?: deviceZone()
         val jdn = now.toJdn(zone)
-        val day = rangeEvents(jdn..jdn).first().single()
-        val inputs = widgetInputs(prefs, config, jdn, day, place)
+        val day = dayFor(kind, config, jdn)
+        val inputs =
+            widgetInputs(prefs, config, jdn, day, place)
+                .let { if (day == null) it.copy(isHoliday = holidayFor(config, jdn)) else it }
         val content = WidgetContentBuilder.build(inputs, now, names)
         return when (kind) {
             WidgetKind.SUN_ARC, WidgetKind.MOON, WidgetKind.MAP -> {
@@ -107,7 +140,7 @@ internal fun widgetInputs(
     prefs: UserPreferences,
     config: WidgetConfig,
     jdn: Jdn,
-    day: DayEvents,
+    day: DayEvents?,
     place: WidgetPlace?,
 ): WidgetDayInputs {
     val calendars = prefs.availableCalendars()
@@ -120,8 +153,9 @@ internal fun widgetInputs(
         language = prefs.languageSpec(),
         primary = primary,
         secondary = secondary,
-        isHoliday = day.isHoliday,
-        events = day.widgetEventLines(prefs.languageCode),
+        calendars = calendars,
+        isHoliday = day?.isHoliday == true,
+        events = day?.widgetEventLines(prefs.languageCode).orEmpty(),
         place = place,
     )
 }
@@ -286,9 +320,14 @@ val widgetPortsModule =
         single<WidgetConfigStore> { DataStoreWidgetConfigStore(get()) }
         single<WidgetDataSource> {
             val events = get<EventsRepository>()
-            PreferencesWidgetDataSource(get(), events::days, get(), WidgetSkyParts(get())) {
-                TimeZone.currentSystemDefault()
-            }
+            PreferencesWidgetDataSource(
+                preferences = get(),
+                rangeEvents = events::days,
+                names = get(),
+                skyParts = WidgetSkyParts(get()),
+                deviceZone = { TimeZone.currentSystemDefault() },
+                holidayOnly = events::isHoliday,
+            )
         }
         single<WidgetCountdownSource> {
             val events = get<EventsRepository>()

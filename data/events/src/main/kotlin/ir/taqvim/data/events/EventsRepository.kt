@@ -18,9 +18,11 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import kotlinx.datetime.TimeZone
 
 /**
@@ -63,6 +65,18 @@ class EventsRepository(
         }.distinctUntilChanged()
             .flowOn(computeDispatcher)
     }
+
+    /**
+     * Whether [jdn] is a day off, from the dataset and the weekend alone.
+     *
+     * A widget that only colours a holiday does not need the day assembled: [days] subscribes to the personal,
+     * device-calendar and subscription sources and waits for all three before it can answer, which on a cold widget
+     * update means opening Room and querying the calendar provider for a flag that comes out of the dataset. This
+     * answers the same question from the same [HolidayCalendar] the assembler uses, so the two cannot disagree, and
+     * touches no database.
+     */
+    suspend fun isHoliday(jdn: Jdn): Boolean =
+        withContext(computeDispatcher) { viewFor(settings.first()).isHoliday(jdn) }
 
     /**
      * The lookups for [settings], shared by every collector rather than built per flow.
