@@ -240,10 +240,28 @@ internal fun widgetDependenciesChanged(
         if (old.appearanceKey() != new.appearanceKey()) add(WidgetDependency.APPEARANCE)
         if (old.place != new.place) add(WidgetDependency.LOCATION)
         if (old.place != new.place || old.prayerSettings() != new.prayerSettings()) add(WidgetDependency.PRAYER_TIMES)
-        val events = old.app.enabledEventSources != new.app.enabledEventSources || old.weekend != new.weekend
-        val islamic = old.islamicVariant != new.islamicVariant || old.islamicOverride != new.islamicOverride
-        if (events || islamic) add(WidgetDependency.EVENTS)
+        // A chosen place carries its own time zone, and the widgets date themselves in it: moving from Tehran to
+        // Auckland can change what day a widget says it is, not only which prayer times it shows.
+        if (old.place?.zoneId != new.place?.zoneId) add(WidgetDependency.DATE)
+        if (old.shownEventsKey() != new.shownEventsKey()) add(WidgetDependency.EVENTS)
     }
+
+/**
+ * What decides which events a widget shows.
+ *
+ * Only the sources and the weekend were watched, so switching a kind of day off or turning holidays-only on left
+ * every widget showing what it had (2026-10-10). The Islamic variant and the official month overrides are here too
+ * because they move the days the events fall on.
+ */
+private fun UserPreferences.shownEventsKey(): List<Any?> =
+    listOf(
+        app.enabledEventSources,
+        app.enabledEventCategories,
+        app.holidaysOnly,
+        weekend,
+        islamicVariant,
+        islamicOverride,
+    )
 
 /** What the widgets' texts and colors depend on. */
 private fun UserPreferences.appearanceKey(): List<Any?> =
@@ -256,6 +274,8 @@ private fun UserPreferences.appearanceKey(): List<Any?> =
         islamicOverride,
         hijriOffsetDays,
         app.dynamicColor,
+        // The first column of every month and week widget; a change redraws the grid, not just its colours.
+        weekStart,
     )
 
 /**
@@ -305,6 +325,11 @@ internal fun widgetEventChanges(database: TaqvimDatabase): Flow<Set<String>> =
     database.invalidationTracker.createFlow(
         "personal_events",
         "event_recurrences",
+        // A single occurrence of a recurring event is renamed or moved in event_overrides and cancelled in
+        // event_exceptions; neither touches personal_events, so without these a widget kept showing the old
+        // occurrence until something else happened to redraw it (T-1003).
+        "event_overrides",
+        "event_exceptions",
         "device_events_cache",
         "ics_events_cache",
         emitInitialState = false,

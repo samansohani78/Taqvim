@@ -10,12 +10,14 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.GregorianCalendarSystem
 import ir.taqvim.core.calendar.toJdn
+import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.PrayerMethod
+import ir.taqvim.core.model.Weekday
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.data.preferences.ChosenPlace
@@ -151,11 +153,41 @@ class WidgetAdaptersTest {
         widgetDependenciesChanged(persian, persian.copy(languageCode = "en")) shouldBe
             setOf(WidgetDependency.APPEARANCE)
         widgetDependenciesChanged(persian, persian.copy(place = tehran)) shouldBe
-            setOf(WidgetDependency.LOCATION, WidgetDependency.PRAYER_TIMES)
+            setOf(WidgetDependency.LOCATION, WidgetDependency.PRAYER_TIMES, WidgetDependency.DATE)
         widgetDependenciesChanged(persian, persian.copy(prayerMethod = PrayerMethod.MWL)) shouldBe
             setOf(WidgetDependency.PRAYER_TIMES)
         val noSources = persian.copy(app = persian.app.copy(enabledEventSources = emptySet()))
         widgetDependenciesChanged(persian, noSources) shouldBe setOf(WidgetDependency.EVENTS)
+    }
+
+    @Test
+    fun `switching a kind of day off redraws the widgets that show days`() {
+        // A widget kept showing religious occasions after they were switched off, because only the sources and the
+        // weekend were watched (2026-10-10).
+        val withoutReligious =
+            persian.copy(
+                app =
+                    persian.app.copy(
+                        enabledEventCategories =
+                            persian.app.enabledEventCategories - EventCategory.RELIGIOUS,
+                    ),
+            )
+
+        widgetDependenciesChanged(persian, withoutReligious) shouldBe setOf(WidgetDependency.EVENTS)
+    }
+
+    @Test
+    fun `holidays-only redraws the widgets that show days`() {
+        val holidaysOnly = persian.copy(app = persian.app.copy(holidaysOnly = true))
+
+        widgetDependenciesChanged(persian, holidaysOnly) shouldBe setOf(WidgetDependency.EVENTS)
+    }
+
+    @Test
+    fun `a different first day of the week redraws every widget`() {
+        val mondayFirst = persian.copy(weekStart = Weekday.MONDAY)
+
+        widgetDependenciesChanged(persian, mondayFirst) shouldBe setOf(WidgetDependency.APPEARANCE)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -182,7 +214,10 @@ class WidgetAdaptersTest {
             updates.shouldBeEmpty()
             preferences.emit(persian.copy(place = tehran))
             advanceUntilIdle()
-            updates shouldBe listOf(mapOf(WidgetKind.DAY_SUMMARY_2X2 to setOf(2)))
+            // The date widget is redrawn too: a chosen place brings its own time zone, so the day it shows can
+            // change with it, not only the prayer times of the summary.
+            updates shouldBe
+                listOf(mapOf(WidgetKind.DATE_1X1 to setOf(1), WidgetKind.DAY_SUMMARY_2X2 to setOf(2)))
             changes.emit(setOf("personal_events"))
             advanceUntilIdle()
             updates.last() shouldBe mapOf(WidgetKind.DAY_SUMMARY_2X2 to setOf(2))
