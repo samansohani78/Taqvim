@@ -833,6 +833,58 @@ A hosted emulator has no frame timeline, and this machine has no attached device
 not estimated. `docs/MANUAL_TEST_CHECKLIST.md` §8a now carries the exact OnePlus 15 command sequence and an empty
 results table; nothing may be written into it from an emulator run.
 
+### Widgets, the religious switch and a new three-date widget (2026-10-08)
+
+**Why widgets showed the host's placeholder.** `PreferencesWidgetDataSource.load` asked the events repository for
+the day on every widget kind. That one call subscribes to the personal, device-calendar and subscription sources and
+waits for all three, so a 1×1 date widget opened Room and queried the calendar provider before it could draw a date
+its own calendar engine already knew — and seven of the twelve kinds declare no dependency on events at all. A widget
+now asks for what it needs: the day is assembled only when the kind or the configuration actually lists events; a
+widget that merely colours a holiday reads that from `EventsRepository.isHoliday`, which answers from the same
+`HolidayCalendar` the assembler uses and touches no database; and a widget showing neither asks for nothing.
+`WidgetDayDependencyTest` holds a `rangeEvents` that records every call and fails if a date widget reaches it.
+
+**The 407 ms Glance figure is the harness, not the widget.** `GlanceWidgetBenchmark` composes with fixed data, so it
+never included the loader above. Its four widgets read 407.0, 410.1, 416.8 and 417.0 ms on the OnePlus 15 — a 2.5 %
+spread across widgets whose content differs roughly tenfold — and 412.2, 418.6, 421.1 and 416.8 ms on a hosted x86
+emulator, a machine the bitmap benchmarks beside them show to be about half the speed. A cost that moves neither with
+content nor with the CPU is not composition. The bitmap benchmarks, which have no Glance harness, span 0.6 to 13.1 ms
+on the same runs and do scale. So `GlanceAppWidget.compose` carries a fixed per-call cost of roughly 405 ms, and the
+widgets' own composition is the ~10 ms spread between the simplest and the most complex. plan §9's 30 ms rule was
+never measured by this benchmark. `emptyBaseline` now composes a widget that draws nothing, so a widget's own cost is
+its figure minus that one; no budget is committed for the raw numbers, because one that passed them would be
+measuring the harness and one set to §9 would fail on a cost the app does not own.
+
+**The religious switch.** The categories were one row called "Kinds of day shown" that opened a dialog of
+checkboxes — a user who wants religious occasions gone had to guess that phrase meant them. Each kind of day is now
+its own switch in the settings list, in the user's words: مناسبت‌های ملی، مذهبی، فرهنگی، بین‌المللی، نجومی.
+`ReligiousToggleTest` proves the row is displayed without opening anything and that switching it off removes only
+`RELIGIOUS` and records the choice; `ReligiousCategoryFilterTest` proves against the real dataset that religious
+observances then disappear for a whole Persian year, that Iranian national days are untouched, and that a personal
+event survives every dataset category being switched off.
+
+**The three-date widget (T-1216).** Today in each of the user's calendars, one line each, largest first. It declares
+the date as its only dependency and offers no optional content, so the loader fetches nothing for it: it is drawn
+from the calendar engines and the stored preferences alone. The Islamic line follows the user's chosen method and any
+official override because it comes from the same arithmetic as the rest of the app.
+
+**Lock screen.** `widget_info_three_dates.xml` declares `android:widgetCategory="home_screen|keyguard"`, which is the
+only officially supported way to say a widget may be hosted on a lock screen, and the widget has no configuration
+activity so it is placed in one step. It is read-only and shows three dates, so nothing personal can reach a locked
+screen. Whether the placement is *offered* is the host's decision: the keyguard category has been inert on most
+Android builds since lock-screen widgets were removed in Android 5, and recent versions restore them only on some
+form factors. **Whether ColorOS on the OnePlus 15 offers third-party lock-screen placement is unverified** — it needs
+the device, and if it does not, that is a platform limitation rather than anything Taqvim can fix. No OEM-specific
+code was added and none should be.
+
+**What the lag audit could and could not see.** The traced journeys are clean: month scrolling, timeline and search
+have no main-thread slice over 16 ms at all, and cold start spends 32 ms in `bindApplication` against a 350 ms
+budget. `MonthGrid` was checked for the per-page text cache that made the year view jank and is not affected — its
+worst frame builds 7 text layouts, not the year view's 989 — so it was left alone. The screens the report named as
+occasionally laggy — settings, widget configuration, shift work, workday profiles, astronomy, the compass planner —
+have **no benchmark or trace coverage at all**, so nothing about them can honestly be claimed from the evidence that
+exists. Measuring them needs either new journeys or a trace captured while the lag happens.
+
 ### The first physical-device benchmark run (OnePlus 15, 2026-10-07)
 
 The owner ran the full macro and micro suite on an OnePlus 15 (CPH2745, Android 16) — the first time plan §9's
