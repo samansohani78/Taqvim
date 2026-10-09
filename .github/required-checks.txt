@@ -20,4 +20,9 @@ Wear OS 34
 # release-dry-run.yml (dispatch it on the commit before tagging)
 Unsigned release build, SBOM, changelog preview, reproducibility
 # benchmark.yml (dispatch it on the commit before tagging)
+# Two checks, because "the job ran" and "the run measured something" are different facts. The gate exits 0 on an
+# inconclusive comparison so a runner that cannot measure does not block a release, which made the first of these
+# conclude success on commits nothing had measured — v1.0.0, v1.1.0 and v1.1.1 all qualified that way. The second
+# fails unless the run measured the commit or benchmark/UNBENCHMARKED.md names it.
 Macrobenchmark (nightly)
+Performance qualified

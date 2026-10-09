@@ -27,6 +27,8 @@ env:
 jobs:
   macrobenchmark:
     name: Macrobenchmark (nightly)
+    outputs:
+      inconclusive: ${{ steps.gate.outputs.inconclusive }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -94,6 +96,7 @@ jobs:
         # was taken for a real one and chased for a day. The tests also capture the gate's output themselves.
         run: python3 -m unittest discover -s tools/benchmark
       - name: Regression gate (> 10 % fails, T-1801) and §9 budgets (T-1801, T-1803)
+        id: gate
         # A required benchmark without a committed baseline fails (REVIEW R08); a recording run exits 3 and never
         # qualifies a commit for release (.github/required-checks.txt).
         #
@@ -128,9 +131,43 @@ jobs:
               echo "This step passes so that a runner which cannot measure does not block a release, but **no"
               echo "performance claim may be made for this commit**. Only a physical-device run can make one."
             } >> "$GITHUB_STEP_SUMMARY"
+            echo "inconclusive=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          echo "inconclusive=false" >> "$GITHUB_OUTPUT"
           exit "$status"
+
+  performance-qualified:
+    # Three states, not two. `Macrobenchmark (nightly)` says the job ran; this says the run measured something.
+    #
+    # The gate exits 0 on an inconclusive comparison so a runner that cannot measure does not block a release, which
+    # is right — but the check then concludes `success`, and `.github/required-checks.txt` reads check conclusions,
+    # so a release tag qualified on a commit nothing had measured. v1.0.0, v1.1.0 and v1.1.1 all shipped that way.
+    #
+    # To release an unbenchmarked commit on purpose, name it in benchmark/UNBENCHMARKED.md. That is the auditable
+    # waiver: reviewed, in the history, naming one commit rather than switching the gate off.
+    name: Performance qualified
+    needs: macrobenchmark
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: A measured run, or a waiver that names this commit
+        shell: bash
+        env:
+          INCONCLUSIVE: ${{ needs.macrobenchmark.outputs.inconclusive }}
+        run: |
+          if [ "$INCONCLUSIVE" != "true" ]; then
+            echo "The benchmarks measured this commit and stayed inside their budgets." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if [ -f benchmark/UNBENCHMARKED.md ] && grep -q "$GITHUB_SHA" benchmark/UNBENCHMARKED.md; then
+            echo "## Released unbenchmarked, on purpose" >> "$GITHUB_STEP_SUMMARY"
+            grep -A 3 "$GITHUB_SHA" benchmark/UNBENCHMARKED.md >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          echo "::error title=Performance not qualified::The benchmark run was inconclusive, so nothing measured this commit. Re-run on a healthy runner, or accept it in writing by adding $GITHUB_SHA to benchmark/UNBENCHMARKED.md with a reason."
+          exit 1
 
   baseline-profile:
     name: Baseline and startup profiles (on demand)
