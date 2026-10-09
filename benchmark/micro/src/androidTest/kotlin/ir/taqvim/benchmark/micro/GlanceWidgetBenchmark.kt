@@ -79,7 +79,7 @@ class GlanceWidgetBenchmark {
         val host = EmptyWidget()
         val size = WidgetSize.SMALL
         val dpSize = DpSize(size.widthDp.dp, size.heightDp.dp)
-        val timing = Timing.measure { runBlocking { host.compose(context, size = dpSize) } }
+        val timing = Timing.measure(WARMUP, RUNS) { runBlocking { host.compose(context, size = dpSize) } }
         TimingReport.record(CLASS_NAME, "emptyBaseline", timing)
     }
 
@@ -90,12 +90,21 @@ class GlanceWidgetBenchmark {
     ) {
         val host = FixedContentWidget(widget, DATA, size)
         val dpSize = DpSize(size.widthDp.dp, size.heightDp.dp)
-        val timing = Timing.measure { runBlocking { host.compose(context, size = dpSize) } }
+        val timing = Timing.measure(WARMUP, RUNS) { runBlocking { host.compose(context, size = dpSize) } }
         TimingReport.record(CLASS_NAME, name, timing)
     }
 
     private companion object {
         val CLASS_NAME: String = GlanceWidgetBenchmark::class.java.name
+
+        /**
+         * Fewer compositions than the default, because `GlanceAppWidget.compose` does not come free of its sessions.
+         * Six cases at the default 10 + 30 made the fifth fail with an empty failure and the sixth never run, while
+         * each passes alone; 5 + 15 keeps all six in one process. That the harness cannot be asked for 240 sessions
+         * is itself part of why its fixed cost is 405 ms.
+         */
+        const val WARMUP: Int = 5
+        const val RUNS: Int = 15
 
         /** A full day: three events (one a holiday) and six prayer times with the next one marked. */
         val DATA: WidgetData =
