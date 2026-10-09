@@ -20,6 +20,7 @@ import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.core.workdays.WorkdayProfile
 import kotlin.time.Instant
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -83,6 +84,34 @@ class WorkdayProfileViewModelTest {
                 saved.third.weekend shouldContainExactly setOf(Weekday.FRIDAY)
                 saved.third.holidaySources shouldContainExactly setOf(EventSource.IRAN_OFFICIAL)
                 saved.third.halfDays shouldBe HalfDayPolicy.FULL_WORKDAY
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
+    fun `tapping save twice while the first write is in flight stores one profile`(): Unit =
+        runTest {
+            // The draft is cleared only after the store returns, so a second tap inside that window used to see the
+            // same draft with no id and save it again — two taps, two profiles.
+            val viewModel = viewModel(testScheduler)
+            viewModel.uiState.test {
+                awaitItem()
+                runCurrent()
+                viewModel.onNew()
+                viewModel.onName("My company")
+                viewModel.onWeekend(Weekday.FRIDAY, true)
+                runCurrent()
+
+                store.hold = CompletableDeferred()
+                viewModel.onSave()
+                runCurrent()
+                viewModel.onSave()
+                runCurrent()
+                store.hold?.complete(Unit)
+                awaitDraft { it == null && store.saved.isNotEmpty() }
+
+                store.saved.size shouldBe 1
+                store.stored.value.size shouldBe 1
                 cancelAndIgnoreRemainingEvents()
             }
         }
@@ -181,6 +210,9 @@ private class FakeWorkdayProfileStore : WorkdayProfileStore {
     val saved = mutableListOf<Triple<Long?, String, WorkdayProfile>>()
     val defaults = mutableListOf<Long>()
 
+    /** Held open to keep a save in flight, as a real database write is while the user taps again. */
+    var hold: CompletableDeferred<Unit>? = null
+
     override fun profiles(): Flow<List<NamedWorkdayProfile>> = stored
 
     override suspend fun save(
@@ -188,6 +220,7 @@ private class FakeWorkdayProfileStore : WorkdayProfileStore {
         name: String,
         profile: WorkdayProfile,
     ): Long {
+        hold?.await()
         saved += Triple(id, name, profile)
         val newId = id ?: (stored.value.size + 1).toLong()
         stored.value = stored.value.filterNot { it.id == newId } + NamedWorkdayProfile(newId, name, profile, false)

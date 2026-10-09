@@ -151,12 +151,24 @@ class WorkdayProfileViewModel(
         }
     }
 
+    /**
+     * Whether a save is in flight.
+     *
+     * [onSave] clears the draft only after the store returns, so until this guard existed a second tap inside that
+     * window saw the same draft with no id and saved it again — two taps, two rows. It is released however the save
+     * ends: completed, failed or cancelled with the screen.
+     */
+    private var saving = false
+
     fun onSave() {
+        if (saving) return
         val editing = draft.value?.takeIf { it.canSave } ?: return
-        viewModelScope.launch {
-            store.save(editing.id, editing.name.trim(), editing.toProfile())
-            draft.value = null
-        }
+        saving = true
+        viewModelScope
+            .launch {
+                store.save(editing.id, editing.name.trim(), editing.toProfile())
+                draft.value = null
+            }.invokeOnCompletion { saving = false }
     }
 
     fun onDelete(stored: NamedWorkdayProfile) {

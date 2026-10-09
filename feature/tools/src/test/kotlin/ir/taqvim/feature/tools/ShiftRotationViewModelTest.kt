@@ -17,6 +17,7 @@ import ir.taqvim.core.testing.FakeClock
 import ir.taqvim.core.ui.component.DateSelection
 import ir.taqvim.core.workdays.ShiftRotation
 import kotlin.time.Instant
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -83,6 +84,35 @@ class ShiftRotationViewModelTest {
                     .single()
                     .pattern
                     .map { it.label } shouldContainExactly listOf("Day", "Day", "Night", "Night", "Off", "Off")
+                cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
+    fun `tapping save twice while the first write is in flight stores one rotation`(): Unit =
+        runTest {
+            // The draft is cleared only after the store returns, so a second tap inside that window used to see the
+            // same draft with no id and save it again — two taps, two rotations.
+            val viewModel = viewModel(testScheduler)
+            viewModel.uiState.test {
+                awaitItem()
+                runCurrent()
+                viewModel.onNew()
+                viewModel.onName("Nights")
+                addType(viewModel, "Night")
+                viewModel.onAppendToPattern(0)
+                awaitDraft { it?.canSave == true }
+
+                store.hold = CompletableDeferred()
+                viewModel.onSave()
+                runCurrent()
+                viewModel.onSave()
+                runCurrent()
+                store.hold?.complete(Unit)
+                awaitDraft { it == null && store.saved.isNotEmpty() }
+
+                store.saved.size shouldBe 1
+                store.stored.value.size shouldBe 1
                 cancelAndIgnoreRemainingEvents()
             }
         }
@@ -194,9 +224,13 @@ private class FakeShiftRotationStore : ShiftRotationStore {
     val saved = mutableListOf<ShiftRotation>()
     val exceptions = mutableListOf<Triple<Long, Long, String?>>()
 
+    /** Held open to keep a save in flight, as a real database write is while the user taps again. */
+    var hold: CompletableDeferred<Unit>? = null
+
     override fun rotations(): Flow<List<ShiftRotation>> = stored
 
     override suspend fun save(rotation: ShiftRotation): Long {
+        hold?.await()
         saved += rotation
         val id = rotation.id.takeIf { it != 0L } ?: (stored.value.size + 1).toLong()
         stored.value = stored.value.filterNot { it.id == id } + rotation.copy(id = id)

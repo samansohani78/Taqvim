@@ -167,20 +167,32 @@ class ShiftRotationViewModel(
 
     fun onActive(active: Boolean) = edit { it.copy(isActive = active) }
 
+    /**
+     * Whether a save is in flight.
+     *
+     * [onSave] clears the draft only after the store returns, so until this guard existed a second tap inside that
+     * window saw the same draft with no id and saved it again — two taps, two rows. It is released however the save
+     * ends: completed, failed or cancelled with the screen.
+     */
+    private var saving = false
+
     fun onSave() {
+        if (saving) return
         val editing = draft.value?.takeIf { it.canSave } ?: return
-        viewModelScope.launch {
-            store.save(
-                ShiftRotation(
-                    id = editing.id ?: 0L,
-                    name = editing.name.trim(),
-                    anchor = Jdn(editing.anchorJdn),
-                    pattern = editing.patternTypes,
-                    isActive = editing.isActive,
-                ),
-            )
-            draft.value = null
-        }
+        saving = true
+        viewModelScope
+            .launch {
+                store.save(
+                    ShiftRotation(
+                        id = editing.id ?: 0L,
+                        name = editing.name.trim(),
+                        anchor = Jdn(editing.anchorJdn),
+                        pattern = editing.patternTypes,
+                        isActive = editing.isActive,
+                    ),
+                )
+                draft.value = null
+            }.invokeOnCompletion { saving = false }
     }
 
     fun onDelete(rotation: ShiftRotation) {
