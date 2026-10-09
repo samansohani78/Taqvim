@@ -148,7 +148,7 @@
   <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
   <string name="settings_keywords_hijri">lunar|Hijri|crescent|month</string>
   <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
-  <string name="settings_keywords_events">events|holidays|occasions|official</string>
+  <string name="settings_keywords_events">events|holidays|occasions|official|religious|national|cultural|international|astronomical|types</string>
   <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
   <string name="settings_keywords_ics">subscription|ics|webcal|sync|internet</string>
   <!-- Search keywords, not shown as text: synonyms separated by | that users may type to find this entry. Translate each word; keep the | separators; the number of words may change. -->
@@ -202,7 +202,7 @@
   <!-- Weekday name Friday, used to choose the week start and weekend. -->
   <string name="settings_weekday_friday">Friday</string>
   <!-- Settings item: which kinds of day are shown, independent of which sources publish them. -->
-  <string name="settings_item_event_categories">Kinds of day shown</string>
+  <string name="settings_item_event_categories">Event types</string>
   <!-- Settings item: show only days off, hiding observances that are not holidays. -->
   <string name="settings_item_holidays_only">Show only days off</string>
   <!-- Kind of day: national days and anniversaries. -->

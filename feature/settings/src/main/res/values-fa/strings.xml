@@ -121,7 +121,7 @@
   <string name="settings_keywords_calendar">تقویم|شمسی|هجری|قمری|میلادی</string>
   <string name="settings_keywords_week">هفته|آخر هفته|جمعه|تعطیل</string>
   <string name="settings_keywords_hijri">قمری|هجری|هلال|ماه</string>
-  <string name="settings_keywords_events">مناسبت|تعطیلات|رویداد|رسمی</string>
+  <string name="settings_keywords_events">مناسبت|تعطیلات|رویداد|رسمی|مذهبی|ملی|فرهنگی|بین‌المللی|نجومی</string>
   <string name="settings_keywords_ics">اشتراک|ics|webcal|همگام‌سازی|اینترنت</string>
   <string name="settings_keywords_search">جست‌وجو|تاریخچه|اخیر</string>
   <string name="settings_keywords_widgets">صفحهٔ اصلی|لانچر|ابزارک</string>
@@ -153,7 +153,7 @@
   <string name="settings_weekday_wednesday">چهارشنبه</string>
   <string name="settings_weekday_thursday">پنجشنبه</string>
   <string name="settings_weekday_friday">جمعه</string>
-  <string name="settings_item_event_categories">گونه‌های روز نمایش‌داده‌شده</string>
+  <string name="settings_item_event_categories">مناسبت‌ها</string>
   <string name="settings_item_holidays_only">فقط روزهای تعطیل</string>
   <string name="settings_category_national">روزهای ملی</string>
   <string name="settings_category_religious">مناسبت‌های مذهبی</string>

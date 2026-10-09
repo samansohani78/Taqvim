@@ -84,9 +84,32 @@ enum class SettingsItemId(
         R.string.settings_item_event_sources,
         R.string.settings_keywords_events,
     ),
-    EVENT_CATEGORIES(
+
+    // One switch per kind of day, in the list rather than behind a dialog: a user looking for "do not show me
+    // religious occasions" has to see the words, not a parent item they must open first and guess at.
+    EVENT_CATEGORY_NATIONAL(
         SettingsTab.INTERFACE_CALENDAR,
-        R.string.settings_item_event_categories,
+        R.string.settings_category_national,
+        R.string.settings_keywords_events,
+    ),
+    EVENT_CATEGORY_RELIGIOUS(
+        SettingsTab.INTERFACE_CALENDAR,
+        R.string.settings_category_religious,
+        R.string.settings_keywords_events,
+    ),
+    EVENT_CATEGORY_CULTURAL(
+        SettingsTab.INTERFACE_CALENDAR,
+        R.string.settings_category_cultural,
+        R.string.settings_keywords_events,
+    ),
+    EVENT_CATEGORY_INTERNATIONAL(
+        SettingsTab.INTERFACE_CALENDAR,
+        R.string.settings_category_international,
+        R.string.settings_keywords_events,
+    ),
+    EVENT_CATEGORY_ASTRONOMICAL(
+        SettingsTab.INTERFACE_CALENDAR,
+        R.string.settings_category_astronomical,
         R.string.settings_keywords_events,
     ),
     HOLIDAYS_ONLY(
@@ -159,7 +182,7 @@ internal object SettingsCatalog {
     private fun interfaceControl(id: SettingsItemId): SettingsControl =
         appearanceControl(id)
             ?: calendarControl(id)
-            ?: requireNotNull(eventAndSearchControl(id)) { "no control for $id" }
+            ?: requireNotNull(EventCategoryControls.eventAndSearchControl(id)) { "no control for $id" }
 
     private fun appearanceControl(id: SettingsItemId): SettingsControl? =
         when (id) {
@@ -247,49 +270,6 @@ internal object SettingsCatalog {
             }
         }
 
-    private fun eventAndSearchControl(id: SettingsItemId): SettingsControl? =
-        when (id) {
-            SettingsItemId.EVENT_SOURCES -> {
-                enumMultiChoice(SettingsLabels.eventSources, allowEmpty = true, { it.enabledEventSources }) { s, v ->
-                    s.copy(enabledEventSources = v)
-                }
-            }
-
-            // Categories are a second, independent axis: a source says who publishes an event, a category what kind
-            // of day it is. Empty is allowed, as it is for sources — "show no category" is a real choice.
-            SettingsItemId.EVENT_CATEGORIES -> {
-                enumMultiChoice(
-                    SettingsLabels.eventCategories,
-                    allowEmpty = true,
-                    { it.enabledEventCategories },
-                ) { s, v -> s.copy(enabledEventCategories = v, eventCategoriesChosen = true) }
-            }
-
-            SettingsItemId.HOLIDAYS_ONLY -> {
-                toggle({ it.holidaysOnly }) { s, v -> s.copy(holidaysOnly = v) }
-            }
-
-            SettingsItemId.SUBSCRIPTIONS -> {
-                SettingsControl.Link(SettingsDestination.SUBSCRIPTIONS)
-            }
-
-            SettingsItemId.SUBSCRIPTIONS_NETWORK -> {
-                toggle({ it.subscriptionsNetworkAllowed }) { s, v -> s.copy(subscriptionsNetworkAllowed = v) }
-            }
-
-            SettingsItemId.REMEMBER_SEARCHES -> {
-                toggle({ it.rememberRecentSearches }) { s, v -> s.copy(rememberRecentSearches = v) }
-            }
-
-            SettingsItemId.CLEAR_SEARCHES -> {
-                SettingsControl.ClearRecentSearches
-            }
-
-            else -> {
-                null
-            }
-        }
-
     private fun notificationControl(id: SettingsItemId): SettingsControl =
         when (id) {
             SettingsItemId.WIDGETS -> {
@@ -354,7 +334,7 @@ internal object SettingsCatalog {
             }
         }
 
-    private fun toggle(
+    internal fun toggle(
         read: (GeneralSettings) -> Boolean,
         write: (GeneralSettings, Boolean) -> GeneralSettings,
     ) = SettingsControl.Toggle(read, write)
@@ -369,7 +349,7 @@ internal object SettingsCatalog {
         write = { settings, key -> write(settings, enumValueOf(key)) },
     )
 
-    private inline fun <reified E : Enum<E>> enumMultiChoice(
+    internal inline fun <reified E : Enum<E>> enumMultiChoice(
         labels: Map<E, Int>,
         allowEmpty: Boolean,
         crossinline read: (GeneralSettings) -> Set<E>,
