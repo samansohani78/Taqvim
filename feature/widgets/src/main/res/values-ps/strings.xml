@@ -31,6 +31,8 @@
   <string name="widget_load_failed">دا ویجټ پورته نه شو. د Taqvim پرانیستلو لپاره ټک کړئ.</string>
   <string name="widget_date_1x1_name">نېټه</string>
   <string name="widget_date_1x1_description">ستاسو په جنتري کې د نن نېټه</string>
+  <string name="widget_three_dates_name">درې نېټې</string>
+  <string name="widget_three_dates_description">نن په درېیو کلیزو کې</string>
   <string name="widget_date_clock_4x1_name">نېټه او ساعت</string>
   <string name="widget_date_clock_4x1_description">د وخت سره د نن نېټه</string>
   <string name="widget_day_summary_2x2_name">نن</string>

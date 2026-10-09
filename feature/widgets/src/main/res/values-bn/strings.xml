@@ -31,6 +31,8 @@
   <string name="widget_load_failed">এই উইজেট লোড করা যায়নি। Taqvim খুলতে ট্যাপ করুন।</string>
   <string name="widget_date_1x1_name">তারিখ</string>
   <string name="widget_date_1x1_description">আপনার ক্যালেন্ডারে আজকের তারিখ</string>
+  <string name="widget_three_dates_name">তিনটি তারিখ</string>
+  <string name="widget_three_dates_description">আজ তিনটি ক্যালেন্ডারে</string>
   <string name="widget_date_clock_4x1_name">তারিখ ও ঘড়ি</string>
   <string name="widget_date_clock_4x1_description">সময়সহ আজকের তারিখ</string>
   <string name="widget_day_summary_2x2_name">আজ</string>

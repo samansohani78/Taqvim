@@ -31,6 +31,8 @@
   <string name="widget_load_failed">تعذّر تحميل هذه الأداة. اضغط لفتح Taqvim.</string>
   <string name="widget_date_1x1_name">التاريخ</string>
   <string name="widget_date_1x1_description">تاريخ اليوم في تقويمك</string>
+  <string name="widget_three_dates_name">ثلاثة تواريخ</string>
+  <string name="widget_three_dates_description">اليوم في ثلاثة تقاويم</string>
   <string name="widget_date_clock_4x1_name">التاريخ والساعة</string>
   <string name="widget_date_clock_4x1_description">تاريخ اليوم مع الوقت</string>
   <string name="widget_day_summary_2x2_name">اليوم</string>

@@ -31,6 +31,8 @@
   <string name="widget_load_failed">Dieses Widget konnte nicht geladen werden. Tippen Sie, um Taqvim zu öffnen.</string>
   <string name="widget_date_1x1_name">Datum</string>
   <string name="widget_date_1x1_description">Das heutige Datum in Ihrem Kalender</string>
+  <string name="widget_three_dates_name">Drei Daten</string>
+  <string name="widget_three_dates_description">Heute in drei Kalendern</string>
   <string name="widget_date_clock_4x1_name">Datum und Uhr</string>
   <string name="widget_date_clock_4x1_description">Das heutige Datum mit der Uhrzeit</string>
   <string name="widget_day_summary_2x2_name">Heute</string>

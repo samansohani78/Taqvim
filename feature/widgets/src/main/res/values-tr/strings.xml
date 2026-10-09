@@ -31,6 +31,8 @@
   <string name="widget_load_failed">Bu widget yüklenemedi. Taqvim\'i açmak için dokunun.</string>
   <string name="widget_date_1x1_name">Tarih</string>
   <string name="widget_date_1x1_description">Takviminizde bugünün tarihi</string>
+  <string name="widget_three_dates_name">Üç tarih</string>
+  <string name="widget_three_dates_description">Bugün üç takvimde</string>
   <string name="widget_date_clock_4x1_name">Tarih ve saat</string>
   <string name="widget_date_clock_4x1_description">Saatle birlikte bugünün tarihi</string>
   <string name="widget_day_summary_2x2_name">Bugün</string>

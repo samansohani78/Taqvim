@@ -30,6 +30,8 @@
   <string name="widget_load_failed">این ابزارک بارگذاری نشد. برای باز کردن تقویم لمس کنید.</string>
   <string name="widget_date_1x1_name">تاریخ</string>
   <string name="widget_date_1x1_description">تاریخ امروز در تقویم شما</string>
+  <string name="widget_three_dates_name">سه تاریخ</string>
+  <string name="widget_three_dates_description">امروز در سه تقویم</string>
   <string name="widget_date_clock_4x1_name">تاریخ و ساعت</string>
   <string name="widget_date_clock_4x1_description">تاریخ امروز همراه با ساعت</string>
   <string name="widget_day_summary_2x2_name">امروز</string>

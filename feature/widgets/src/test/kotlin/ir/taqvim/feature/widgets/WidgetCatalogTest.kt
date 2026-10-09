@@ -30,6 +30,7 @@ class WidgetCatalogTest {
         registrations.map { it.kind } shouldContainExactlyInAnyOrder
             listOf(
                 WidgetKind.DATE_1X1,
+                WidgetKind.THREE_DATES,
                 WidgetKind.DATE_CLOCK_4X1,
                 WidgetKind.DAY_SUMMARY_2X2,
                 WidgetKind.PRAYER_STRIP_4X2,

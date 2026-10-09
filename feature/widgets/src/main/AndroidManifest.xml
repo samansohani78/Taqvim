@@ -41,6 +41,17 @@
         android:resource="@xml/widget_info_date_1x1" />
     </receiver>
     <receiver
+      android:name="ir.taqvim.feature.widgets.ThreeDatesWidgetReceiver"
+      android:exported="true"
+      android:label="@string/widget_three_dates_name">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info_three_dates" />
+    </receiver>
+    <receiver
       android:name="ir.taqvim.feature.widgets.DateClockWidget4x1Receiver"
       android:exported="true"
       android:label="@string/widget_date_clock_4x1_name">

@@ -31,6 +31,8 @@
   <string name="widget_load_failed">Widget ini tidak dapat dimuatkan. Ketik untuk membuka Taqvim.</string>
   <string name="widget_date_1x1_name">Tarikh</string>
   <string name="widget_date_1x1_description">Tarikh hari ini dalam kalendar anda</string>
+  <string name="widget_three_dates_name">Tiga tarikh</string>
+  <string name="widget_three_dates_description">Hari ini dalam tiga kalendar</string>
   <string name="widget_date_clock_4x1_name">Tarikh dan jam</string>
   <string name="widget_date_clock_4x1_description">Tarikh hari ini dengan waktunya</string>
   <string name="widget_day_summary_2x2_name">Hari ini</string>

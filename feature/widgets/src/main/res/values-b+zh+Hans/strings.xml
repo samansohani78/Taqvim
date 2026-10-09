@@ -31,6 +31,8 @@
   <string name="widget_load_failed">无法加载此小组件。点按以打开 Taqvim。</string>
   <string name="widget_date_1x1_name">日期</string>
   <string name="widget_date_1x1_description">你的日历中的今日日期</string>
+  <string name="widget_three_dates_name">三种日期</string>
+  <string name="widget_three_dates_description">今天在三种历法中</string>
   <string name="widget_date_clock_4x1_name">日期与时钟</string>
   <string name="widget_date_clock_4x1_description">今日日期与时间</string>
   <string name="widget_day_summary_2x2_name">今天</string>

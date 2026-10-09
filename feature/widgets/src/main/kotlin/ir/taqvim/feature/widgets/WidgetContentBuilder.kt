@@ -57,6 +57,8 @@ data class WidgetDayInputs(
     val language: LanguageSpec,
     val primary: CalendarArithmetic,
     val secondary: CalendarArithmetic?,
+    /** Every calendar the user keeps, primary first; empty falls back to [primary] alone. */
+    val calendars: List<CalendarArithmetic> = emptyList(),
     val isHoliday: Boolean,
     val events: List<WidgetEventLine>,
     val place: WidgetPlace?,
@@ -84,6 +86,11 @@ object WidgetContentBuilder {
             title = dayTitle(inputs.primary, inputs.jdn, language),
             weekday = weekdays?.getOrNull(inputs.jdn.weekday().ordinal).orEmpty(),
             secondaryDate = inputs.secondary?.let { dayTitle(it, inputs.jdn, language) },
+            calendarDates =
+                inputs.calendars
+                    .ifEmpty { listOf(inputs.primary) }
+                    .map { dayTitle(it, inputs.jdn, language) }
+                    .toImmutableList(),
             isHoliday = inputs.isHoliday,
             events = inputs.events.toImmutableList(),
             nextPrayer =

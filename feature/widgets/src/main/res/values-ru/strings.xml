@@ -31,6 +31,8 @@
   <string name="widget_load_failed">Не удалось загрузить этот виджет. Нажмите, чтобы открыть Taqvim.</string>
   <string name="widget_date_1x1_name">Дата</string>
   <string name="widget_date_1x1_description">Сегодняшняя дата в вашем календаре</string>
+  <string name="widget_three_dates_name">Три даты</string>
+  <string name="widget_three_dates_description">Сегодня в трёх календарях</string>
   <string name="widget_date_clock_4x1_name">Дата и часы</string>
   <string name="widget_date_clock_4x1_description">Сегодняшняя дата и время</string>
   <string name="widget_day_summary_2x2_name">Сегодня</string>

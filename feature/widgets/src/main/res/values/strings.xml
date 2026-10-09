@@ -47,6 +47,8 @@
   <!-- Name of the small date widget in the launcher's widget list. -->
   <string name="widget_date_1x1_name">Date</string>
   <string name="widget_date_1x1_description">Today’s date in your calendar</string>
+  <string name="widget_three_dates_name">Three dates</string>
+  <string name="widget_three_dates_description">Today in three calendars</string>
   <string name="widget_date_clock_4x1_name">Date and clock</string>
   <string name="widget_date_clock_4x1_description">Today’s date with the time</string>
   <!-- Name of the widget summarizing today in the launcher's widget list. -->

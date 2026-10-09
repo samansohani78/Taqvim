@@ -31,6 +31,8 @@
   <string name="widget_load_failed">このウィジェットを読み込めませんでした。タップして Taqvim を開いてください。</string>
   <string name="widget_date_1x1_name">日付</string>
   <string name="widget_date_1x1_description">あなたのカレンダーでの今日の日付</string>
+  <string name="widget_three_dates_name">3つの日付</string>
+  <string name="widget_three_dates_description">3つの暦での今日</string>
   <string name="widget_date_clock_4x1_name">日付と時計</string>
   <string name="widget_date_clock_4x1_description">今日の日付と時刻</string>
   <string name="widget_day_summary_2x2_name">今日</string>

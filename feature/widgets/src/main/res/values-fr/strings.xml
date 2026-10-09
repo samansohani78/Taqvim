@@ -31,6 +31,8 @@
   <string name="widget_load_failed">Ce widget n\'a pas pu être chargé. Touchez pour ouvrir Taqvim.</string>
   <string name="widget_date_1x1_name">Date</string>
   <string name="widget_date_1x1_description">La date du jour dans votre calendrier</string>
+  <string name="widget_three_dates_name">Trois dates</string>
+  <string name="widget_three_dates_description">Aujourd’hui dans trois calendriers</string>
   <string name="widget_date_clock_4x1_name">Date et horloge</string>
   <string name="widget_date_clock_4x1_description">La date du jour avec l\'heure</string>
   <string name="widget_day_summary_2x2_name">Aujourd\'hui</string>

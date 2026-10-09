@@ -32,7 +32,7 @@ Taqvim has no accounts, analytics, advertising or server of its own.
 
 | Threat | Mitigation |
 |---|---|
-| Another app starts Taqvim components or sends spoofed broadcasts | The release manifest exports the 55 components listed under [Exported components](#exported-components-release) below — entry points, launcher aliases, widget receivers and system-bound services — each with the protection stated there. Links only open screens and are size-limited (ADR-0016). Every other receiver and service is unexported and ignores unknown actions or extras. An allowlist test covers the merged debug and release manifests. |
+| Another app starts Taqvim components or sends spoofed broadcasts | The release manifest exports the 56 components listed under [Exported components](#exported-components-release) below — entry points, launcher aliases, widget receivers and system-bound services — each with the protection stated there. Links only open screens and are size-limited (ADR-0016). Every other receiver and service is unexported and ignores unknown actions or extras. An allowlist test covers the merged debug and release manifests. |
 | Pending intents hijacked or modified | Every `PendingIntent` is immutable (Konsist rule). |
 | Files exposed through a content provider | The only `FileProvider` shares `cache/shared/` for QR images, granted per share (T-1400). |
 | Network interception | HTTPS only, system CAs only, cleartext refused (network security config). Subscriptions reject non-HTTPS URLs and scheme-changing redirects. The network is off until the user allows subscription refresh. |
@@ -44,7 +44,7 @@ Taqvim has no accounts, analytics, advertising or server of its own.
 
 ## Exported components (release)
 
-The release manifest exports **55** components (REVIEW R18). They are listed with their reasons, line by line, in
+The release manifest exports **56** components (REVIEW R18). They are listed with their reasons, line by line, in
 `app/src/test/resources/security/exported-components.txt`, which `ExportedComponentsTest` checks against the merged
 manifest and `SecurityDocumentTest` checks against this section. Grouped:
 
@@ -52,7 +52,7 @@ manifest and `SecurityDocumentTest` checks against this section. Grouped:
 |---|---|---|---|
 | App entry points | 2 | `ir.taqvim.app.MainActivity`, `ir.taqvim.feature.widgets.WidgetConfigActivity` | `MainActivity` accepts `taqvim://` links and launcher shortcuts, which only open screens and are size-limited (ADR-0016). `WidgetConfigActivity` answers `APPWIDGET_CONFIGURE` for a Taqvim widget the user is placing; it only changes that widget's appearance and saves nothing without the user. |
 | Activity aliases | 34 | `ir.taqvim.app.ProcessTextActivity`; `ir.taqvim.app.ShareTextActivity`; `ir.taqvim.app.LauncherDefault` and `ir.taqvim.app.LauncherDay01` … `LauncherDay31` | All target `MainActivity`. `ProcessTextActivity` is "Open in Taqvim" for selected text and `ShareTextActivity` the same for text shared from another app (`ACTION_SEND`, `text/plain`); both only read that text — it is parsed for a date and then discarded, never stored and never sent anywhere, and the app holds no `INTERNET` permission to send it with. Both are size-limited like links (ADR-0016). The 32 launcher aliases are one `MAIN`/`LAUNCHER` entry per icon; all but the chosen one are disabled (T-1214, ADR-0022). |
-| Widget receivers | 12 | `ir.taqvim.feature.widgets.DateWidget1x1Receiver`, `DateClockWidget4x1Receiver`, `DaySummaryWidget2x2Receiver`, `PrayerStripWidget4x2Receiver`, `MonthInteractiveWidgetReceiver`, `MonthBitmapWidgetReceiver`, `WeekStripWidgetReceiver`, `ScheduleWidgetReceiver`, `SunArcWidgetReceiver`, `MoonWidgetReceiver`, `MapWidgetReceiver`, `CountdownWidgetReceiver` | Must be exported for the launcher to deliver `APPWIDGET_UPDATE`; each receiver only redraws Taqvim's own widgets. |
+| Widget receivers | 13 | `ir.taqvim.feature.widgets.DateWidget1x1Receiver`, `ThreeDatesWidgetReceiver`, `DateClockWidget4x1Receiver`, `DaySummaryWidget2x2Receiver`, `PrayerStripWidget4x2Receiver`, `MonthInteractiveWidgetReceiver`, `MonthBitmapWidgetReceiver`, `WeekStripWidgetReceiver`, `ScheduleWidgetReceiver`, `SunArcWidgetReceiver`, `MoonWidgetReceiver`, `MapWidgetReceiver`, `CountdownWidgetReceiver` | Must be exported for the launcher to deliver `APPWIDGET_UPDATE`; each receiver only redraws Taqvim's own widgets. `ThreeDatesWidgetReceiver` also declares the `keyguard` widget category, so a host that offers lock-screen widgets may place it: it draws three calendar dates and reads nothing personal, so nothing private can reach a locked screen. |
 | Library receivers | 2 | `androidx.work.impl.diagnostics.DiagnosticsReceiver`, `androidx.profileinstaller.ProfileInstallReceiver` | Guarded by `android.permission.DUMP`, a signature/privileged permission. |
 | System-bound services | 5 | `ir.taqvim.feature.notification.TodayTileService`, `ir.taqvim.feature.wallpaper.TaqvimWallpaperService`, `ir.taqvim.feature.wallpaper.TaqvimDreamService`, `androidx.work.impl.background.systemjob.SystemJobService`, `androidx.glance.appwidget.GlanceRemoteViewsService` | Only the system can bind: `BIND_QUICK_SETTINGS_TILE`, `BIND_WALLPAPER`, `BIND_DREAM_SERVICE`, `BIND_JOB_SERVICE` and `BIND_REMOTEVIEWS` respectively. |
 

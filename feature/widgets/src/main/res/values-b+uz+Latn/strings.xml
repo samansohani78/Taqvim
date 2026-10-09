@@ -31,6 +31,8 @@
   <string name="widget_load_failed">Bu vidjet yuklanmadi. Taqvimni ochish uchun bosing.</string>
   <string name="widget_date_1x1_name">Sana</string>
   <string name="widget_date_1x1_description">Taqvimingizdagi bugungi sana</string>
+  <string name="widget_three_dates_name">Uchta sana</string>
+  <string name="widget_three_dates_description">Bugun uchta taqvimda</string>
   <string name="widget_date_clock_4x1_name">Sana va soat</string>
   <string name="widget_date_clock_4x1_description">Vaqt bilan bugungi sana</string>
   <string name="widget_day_summary_2x2_name">Bugun</string>

@@ -31,6 +31,8 @@
   <string name="widget_load_failed">Ин виҷет бор нашуд. Барои кушодани Taqvim пахш кунед.</string>
   <string name="widget_date_1x1_name">Сана</string>
   <string name="widget_date_1x1_description">Санаи имрӯза дар тақвими шумо</string>
+  <string name="widget_three_dates_name">Се сана</string>
+  <string name="widget_three_dates_description">Имрӯз дар се тақвим</string>
   <string name="widget_date_clock_4x1_name">Сана ва соат</string>
   <string name="widget_date_clock_4x1_description">Санаи имрӯза бо вақт</string>
   <string name="widget_day_summary_2x2_name">Имрӯз</string>

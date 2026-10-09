@@ -31,6 +31,8 @@
   <string name="widget_load_failed">यो विजेट लोड गर्न सकिएन। Taqvim खोल्न थिच्नुहोस्।</string>
   <string name="widget_date_1x1_name">मिति</string>
   <string name="widget_date_1x1_description">तपाईंको पात्रोमा आजको मिति</string>
+  <string name="widget_three_dates_name">तीन मितिहरू</string>
+  <string name="widget_three_dates_description">आज तीन पात्रोमा</string>
   <string name="widget_date_clock_4x1_name">मिति र घडी</string>
   <string name="widget_date_clock_4x1_description">समयसहित आजको मिति</string>
   <string name="widget_day_summary_2x2_name">आज</string>

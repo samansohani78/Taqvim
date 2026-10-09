@@ -12,6 +12,11 @@ class DateWidget1x1Receiver : TaqvimWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = DateWidget1x1()
 }
 
+/** Launcher (and, where a host supports it, lock-screen) receiver of [ThreeDatesWidget] (T-1216). */
+class ThreeDatesWidgetReceiver : TaqvimWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = ThreeDatesWidget()
+}
+
 /** Launcher receiver of [DateClockWidget4x1] (T-1202). */
 class DateClockWidget4x1Receiver : TaqvimWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = DateClockWidget4x1()
@@ -76,6 +81,11 @@ object WidgetCatalog {
                 DateWidget1x1Receiver::class.java,
                 DateWidget1x1::class.java,
             ) { DateWidget1x1() },
+            WidgetRegistration(
+                WidgetKind.THREE_DATES,
+                ThreeDatesWidgetReceiver::class.java,
+                ThreeDatesWidget::class.java,
+            ) { ThreeDatesWidget() },
             WidgetRegistration(
                 WidgetKind.DATE_CLOCK_4X1,
                 DateClockWidget4x1Receiver::class.java,

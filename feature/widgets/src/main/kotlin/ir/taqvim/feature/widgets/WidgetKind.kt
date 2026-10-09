@@ -66,6 +66,21 @@ enum class WidgetKind(
 ) {
     DATE_1X1("date_1x1", WidgetCells(1, 1), setOf(D.DATE), DAY_PARTS, listOf(WidgetSize.SMALL)),
 
+    /**
+     * T-1216: today in each of the user's calendars and nothing else.
+     *
+     * It offers no optional parts on purpose — no holiday colour, no events — so it depends on the date alone and
+     * draws from the calendar engines without reading a database. That is what lets it appear filled the moment the
+     * host asks for it, and what makes it safe on a lock screen: it can show nothing personal because it has none.
+     */
+    THREE_DATES(
+        "three_dates",
+        WidgetCells(2, 1),
+        setOf(D.DATE),
+        emptySet(),
+        listOf(WidgetSize.SMALL, WidgetSize.WIDE, WidgetSize.MEDIUM),
+    ),
+
     // The clock is a launcher-ticked TextClock (T-1202), so the widget does not need a wake-up every minute.
     DATE_CLOCK_4X1(
         "date_clock_4x1",

@@ -31,6 +31,8 @@
   <string name="widget_load_failed">இந்த விட்ஜெட்டை ஏற்ற முடியவில்லை. Taqvim ஐத் திறக்கத் தட்டவும்.</string>
   <string name="widget_date_1x1_name">தேதி</string>
   <string name="widget_date_1x1_description">உங்கள் நாட்காட்டியில் இன்றைய தேதி</string>
+  <string name="widget_three_dates_name">மூன்று தேதிகள்</string>
+  <string name="widget_three_dates_description">இன்று மூன்று நாட்காட்டிகளில்</string>
   <string name="widget_date_clock_4x1_name">தேதியும் கடிகாரமும்</string>
   <string name="widget_date_clock_4x1_description">நேரத்துடன் இன்றைய தேதி</string>
   <string name="widget_day_summary_2x2_name">இன்று</string>

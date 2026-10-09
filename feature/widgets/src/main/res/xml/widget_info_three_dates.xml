@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Launcher metadata of the three_dates widget (T-1216); Glance draws the content, so no update period is needed.
+
+  No android:configure: the widget has nothing to configure, so it is placed and useful in one step.
+
+  widgetCategory lists keyguard as well as home_screen. That is the only officially supported way to say a widget
+  may be hosted on a lock screen; whether a host offers the placement is the host's decision, and most do not. It is
+  safe to offer here because the widget shows three dates and nothing personal.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:description="@string/widget_three_dates_description"
+  android:initialLayout="@layout/glance_default_loading_layout"
+  android:minWidth="110dp"
+  android:minHeight="40dp"
+  android:minResizeWidth="110dp"
+  android:minResizeHeight="40dp"
+  android:resizeMode="horizontal|vertical"
+  android:targetCellWidth="2"
+  android:targetCellHeight="1"
+  android:updatePeriodMillis="0"
+  android:widgetCategory="home_screen|keyguard"
+  android:widgetFeatures="reconfigurable|configuration_optional"
+  tools:targetApi="31" />

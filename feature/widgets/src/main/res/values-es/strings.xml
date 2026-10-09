@@ -31,6 +31,8 @@
   <string name="widget_load_failed">No se pudo cargar este widget. Toca para abrir Taqvim.</string>
   <string name="widget_date_1x1_name">Fecha</string>
   <string name="widget_date_1x1_description">La fecha de hoy en tu calendario</string>
+  <string name="widget_three_dates_name">Tres fechas</string>
+  <string name="widget_three_dates_description">Hoy en tres calendarios</string>
   <string name="widget_date_clock_4x1_name">Fecha y reloj</string>
   <string name="widget_date_clock_4x1_description">La fecha de hoy con la hora</string>
   <string name="widget_day_summary_2x2_name">Hoy</string>

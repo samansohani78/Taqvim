@@ -31,6 +31,8 @@
   <string name="widget_load_failed">यह विजेट लोड नहीं हो सका। Taqvim खोलने के लिए टैप करें।</string>
   <string name="widget_date_1x1_name">तारीख</string>
   <string name="widget_date_1x1_description">आपके कैलेंडर में आज की तारीख</string>
+  <string name="widget_three_dates_name">तीन तिथियाँ</string>
+  <string name="widget_three_dates_description">आज तीन कैलेंडर में</string>
   <string name="widget_date_clock_4x1_name">तारीख और घड़ी</string>
   <string name="widget_date_clock_4x1_description">समय के साथ आज की तारीख</string>
   <string name="widget_day_summary_2x2_name">आज</string>

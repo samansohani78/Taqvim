@@ -49,6 +49,8 @@ data class WidgetData(
     val title: String,
     val weekday: String,
     val secondaryDate: String?,
+    /** Today in each of the user's calendars, primary first; the three-date widget (T-1216) shows them all. */
+    val calendarDates: ImmutableList<String> = persistentListOf(),
     val isHoliday: Boolean,
     val events: ImmutableList<WidgetEventLine> = persistentListOf(),
     val nextPrayer: WidgetPrayerLine? = null,
