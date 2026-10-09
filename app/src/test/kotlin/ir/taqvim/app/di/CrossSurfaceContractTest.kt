@@ -240,7 +240,12 @@ class CrossSurfaceContractTest {
         personal: List<PersonalEventRecord> = emptyList(),
         subscriptions: List<IcsEventCacheEntity> = emptyList(),
     ) = CompositeSearchEventSource(
-        official = OfficialEventSearchSource(language = { "en" }, today = { today }),
+        official =
+            OfficialEventSearchSource(
+                language = { "en" },
+                today = { today },
+                settings = { everythingShown() },
+            ),
         stores = SearchEventStores({ personal }, { _, _ -> emptyList() }, { _, _ -> subscriptions }),
         today = { today },
         zone = { zone },

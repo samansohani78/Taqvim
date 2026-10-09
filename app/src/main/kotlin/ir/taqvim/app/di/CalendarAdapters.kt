@@ -9,12 +9,15 @@ import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventLookup
 import ir.taqvim.core.events.EventSearchIndex
+import ir.taqvim.core.events.Occurrence
 import ir.taqvim.core.events.SearchQuery
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.EventsRepository
+import ir.taqvim.data.events.EventsSettings
+import ir.taqvim.data.events.OfficialEventView
 import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferencesRepository
@@ -31,10 +34,12 @@ import ir.taqvim.feature.calendar.DayEventKind
 import ir.taqvim.feature.calendar.EventSearchResult
 import ir.taqvim.feature.calendar.EventSearchSource
 import ir.taqvim.feature.times.TimesSettingsSource
+import java.util.concurrent.atomic.AtomicReference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import kotlinx.datetime.TimeZone
 
 /** The calendar screen's preferences (T-800) from the stored user preferences (T-600). */
 internal class PreferencesCalendarSettingsSource(
@@ -141,44 +146,77 @@ private fun item(
 internal class OfficialEventSearchSource(
     private val language: suspend () -> String,
     private val today: TodayProvider,
-    definitions: List<EventDefinition> = OfficialEvents.ALL,
+    /** The same settings the calendar assembles its days from; search must answer under the same rules. */
+    private val settings: suspend () -> EventsSettings,
+    private val zone: () -> TimeZone = { TimeZone.currentSystemDefault() },
+    private val definitions: List<EventDefinition> = OfficialEvents.ALL,
 ) : EventSearchSource {
     private val index by lazy { EventSearchIndex(definitions) }
-    private val lookup by lazy { EventLookup(definitions, astronomy = SkyAstronomicalEventSource) }
+    private val shared = AtomicReference<OfficialEventView?>(null)
 
     override suspend fun search(
         text: String,
         limit: Int,
     ): List<EventSearchResult> = search(text, limit, today.today())
 
-    /** Results for [text] with their next occurrence on or after [from]. */
+    /** Results for [text] with their next occurrence on or after [from], under the user's visibility rules. */
     suspend fun search(
         text: String,
         limit: Int,
         from: Jdn,
     ): List<EventSearchResult> {
+        val settings = settings()
+        val preferences = settings.preferences
+        // An empty set is an explicit "none" for the visibility policy, while SearchQuery reads an empty filter as
+        // "no filter"; without this, switching every source or category off would show everything.
+        if (preferences.enabledSources.isEmpty() || preferences.enabledCategories.isEmpty()) return emptyList()
+        val view = viewFor(settings)
         val language = language()
-        return index.search(SearchQuery(text, limit = limit)).map { hit ->
+        val here = zone()
+        val query =
+            SearchQuery(
+                text = text,
+                sources = preferences.enabledSources,
+                categories = preferences.enabledCategories,
+                holidaysOnly = preferences.holidaysOnly,
+                limit = limit,
+            )
+        return index.search(query).mapNotNull { hit ->
             val definition = hit.definition
+            val occurrences = occurrences(view, definition, from)
+            // A definition every one of whose occurrences is hidden is not a result; one with no occurrence at all
+            // in reach stays, undated, as it always has.
+            val next = occurrences.firstOrNull { view.isVisible(it, here) }
+            if (occurrences.isNotEmpty() && next == null) return@mapNotNull null
             EventSearchResult(
                 eventId = definition.id.value,
                 title = definition.title.forLanguage(language),
                 isHoliday = definition.isHoliday,
-                nextDay = nextDay(definition, from),
+                nextDay = next?.jdn,
             )
         }
     }
 
-    private fun nextDay(
+    /** The view for [settings], shared between queries rather than rebuilt per keystroke. */
+    private fun viewFor(settings: EventsSettings): OfficialEventView {
+        shared.get()?.takeIf { it.settings == settings }?.let { return it }
+        return OfficialEventView(settings, definitions).also { shared.set(it) }
+    }
+
+    /** Occurrences of [definition] on or after [from], this year and next, in the user's own calendars. */
+    private fun occurrences(
+        view: OfficialEventView,
         definition: EventDefinition,
         from: Jdn,
-    ): Jdn? {
-        val calendar = CalendarProvider.DEFAULT.calendarFor(definition.calendar) ?: return null
+    ): List<Occurrence> {
+        val calendar =
+            view.calendars.providerFor(definition.source).calendarFor(definition.calendar)
+                ?: return emptyList()
         val year = calendar.fromJdn(from).year
         return (year..year + 1)
             .asSequence()
-            .flatMap { lookup.occurrencesIn(definition.calendar, it, setOf(definition.source)) }
-            .firstOrNull { it.definition.id == definition.id && it.jdn >= from }
-            ?.jdn
+            .flatMap { view.lookup.occurrencesIn(definition.calendar, it, setOf(definition.source)) }
+            .filter { it.definition.id == definition.id && it.jdn >= from }
+            .toList()
     }
 }

@@ -26,6 +26,7 @@ import ir.taqvim.data.events.eventsDataModule
 import ir.taqvim.data.events.ics.SubscriptionRefreshScheduler
 import ir.taqvim.data.events.ics.SubscriptionRefresher
 import ir.taqvim.data.events.ics.icsDataModule
+import ir.taqvim.data.events.toEventsSettings
 import ir.taqvim.data.events.toRecord
 import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
@@ -179,7 +180,11 @@ val appFeaturePortsModule =
         single<CalendarMonthSource> { get<RepositoryCalendarDaySource>() }
         single<EventSearchSource> {
             val preferences = get<UserPreferencesRepository>()
-            OfficialEventSearchSource(language = { preferences.preferences.first().languageCode }, today = get())
+            OfficialEventSearchSource(
+                language = { preferences.preferences.first().languageCode },
+                today = get(),
+                settings = { preferences.preferences.first().toEventsSettings() },
+            )
         }
         single<TimesSettingsSource> { PreferencesTimesSettingsSource(get(), get()) }
         single<CalendarPlaceSource> { TimesCalendarPlaceSource(get()) }
@@ -250,7 +255,12 @@ val searchTimelineAthanPortsModule =
             val devices = get<DeviceEventDao>()
             val feeds = get<IcsSubscriptionDao>()
             CompositeSearchEventSource(
-                official = OfficialEventSearchSource(language = { preferences.currentLanguage() }, today = get()),
+                official =
+                    OfficialEventSearchSource(
+                        language = { preferences.currentLanguage() },
+                        today = get(),
+                        settings = { preferences.preferences.first().toEventsSettings() },
+                    ),
                 stores =
                     SearchEventStores(
                         personal = { personal.allDetails().map { it.toRecord() } },

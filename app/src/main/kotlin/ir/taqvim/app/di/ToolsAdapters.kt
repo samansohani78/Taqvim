@@ -20,8 +20,11 @@ import ir.taqvim.data.database.WorkdayProfileDao
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.database.toProfile
 import ir.taqvim.data.devicecalendar.DeviceTimeZone
+import ir.taqvim.data.events.EventsSettings
+import ir.taqvim.data.events.OfficialEventView
 import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
+import ir.taqvim.data.events.toEventsSettings
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.ShiftScheduleSource
 import ir.taqvim.feature.tools.NamedWorkdayProfile
@@ -29,6 +32,7 @@ import ir.taqvim.feature.tools.ShiftRotationStore
 import ir.taqvim.feature.tools.ToolsSettings
 import ir.taqvim.feature.tools.ToolsSettingsSource
 import ir.taqvim.feature.tools.WorkdayProfileStore
+import java.util.concurrent.atomic.AtomicReference
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
@@ -48,10 +52,24 @@ internal class PreferencesToolsSettingsSource(
     private val preferences: UserPreferencesRepository,
     private val workdayProfile: Flow<WorkdayProfile?>,
     private val zones: Flow<TimeZone> = DeviceTimeZone.current,
-    loadLookup: () -> EventLookup = { EventLookup(OfficialEvents.ALL, astronomy = SkyAstronomicalEventSource) },
     private val anchors: AnchorLookup? = null,
+    /** The dataset view for one settings value; the workday calculator must date events as the calendar does. */
+    private val viewFor: (EventsSettings) -> OfficialEventView = ::OfficialEventView,
 ) : ToolsSettingsSource {
-    private val lookup by lazy(loadLookup)
+    private val shared = AtomicReference<OfficialEventView?>(null)
+
+    /**
+     * The lookup for [settings], with the user's Islamic variant and official month overrides.
+     *
+     * It used to be one `EventLookup` built from the default calendars and kept for the life of the process, so the
+     * workday calculator dated Afghan official events in the computed Iranian calendar rather than the tabular one
+     * they are announced in (ADR-0010), ignored the user's official Iranian months (ADR-0037), and never noticed
+     * either setting changing.
+     */
+    private fun lookup(settings: EventsSettings): EventLookup {
+        shared.get()?.takeIf { it.settings == settings }?.let { return it.lookup }
+        return viewFor(settings).also { shared.set(it) }.lookup
+    }
 
     override fun settings(): Flow<ToolsSettings> =
         combine(
@@ -64,7 +82,12 @@ internal class PreferencesToolsSettingsSource(
                 homeZone = zone,
                 calendars = preferences.availableCalendars().ifEmpty { ToolsSettings.DEFAULT_CALENDARS },
                 boardZones = preferences.app.timeZoneBoard,
-                workdays = profile?.let { WorkdayCalculator(lookup, it) },
+                // Built only when a profile exists: loading the dataset for a user who keeps no workday profile
+                // would be the same waste the widgets were making.
+                workdays =
+                    profile?.let {
+                        WorkdayCalculator(lookup(preferences.toEventsSettings(homeTimeZone = zone)), it)
+                    },
                 anchors = anchors,
             )
         }

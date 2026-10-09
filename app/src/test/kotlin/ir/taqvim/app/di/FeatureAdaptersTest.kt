@@ -27,6 +27,7 @@ import ir.taqvim.core.workdays.HalfDayPolicy
 import ir.taqvim.core.workdays.WorkdayProfile
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.events.DayEvents
+import ir.taqvim.data.events.OfficialEventView
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.astronomy.AstronomySettings
 import ir.taqvim.feature.compass.CompassPlace
@@ -114,9 +115,9 @@ class FeatureAdaptersTest {
                     preferences = repositoryOf(persian.copy(calendars = listOf(CalendarSystem.NEPALI))),
                     workdayProfile = profile,
                     zones = flowOf(TimeZone.of("Asia/Kabul")),
-                    loadLookup = {
+                    viewFor = { settings ->
                         lookups++
-                        EventLookup(emptyList())
+                        OfficialEventView(settings, definitions = emptyList())
                     },
                 )
 

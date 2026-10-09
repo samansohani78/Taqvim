@@ -233,7 +233,12 @@ class SearchAdaptersTest {
         from: Jdn = today,
     ): Jdn? =
         CompositeSearchEventSource(
-            official = OfficialEventSearchSource(language = { "en" }, today = { from }),
+            official =
+                OfficialEventSearchSource(
+                    language = { "en" },
+                    today = { from },
+                    settings = { everythingShown() },
+                ),
             stores = SearchEventStores({ listOf(record) }, { _, _ -> emptyList() }, { _, _ -> emptyList() }),
             today = { from },
             zone = { zone },
@@ -252,7 +257,12 @@ class SearchAdaptersTest {
         zone: TimeZone = tehran,
     ): CompositeSearchEventSource =
         CompositeSearchEventSource(
-            official = OfficialEventSearchSource(language = { "fa" }, today = { today }),
+            official =
+                OfficialEventSearchSource(
+                    language = { "fa" },
+                    today = { today },
+                    settings = { everythingShown() },
+                ),
             stores = stores,
             today = { today },
             zone = { zone },

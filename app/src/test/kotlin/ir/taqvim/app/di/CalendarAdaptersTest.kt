@@ -88,7 +88,11 @@ class CalendarAdaptersTest {
         runTest {
             val title = nowruz.title.forLanguage("fa")
             val beforeNowruz =
-                OfficialEventSearchSource(language = { "fa" }, today = { LocalDate(2026, 3, 18).toJdn() })
+                OfficialEventSearchSource(
+                    language = { "fa" },
+                    today = { LocalDate(2026, 3, 18).toJdn() },
+                    settings = { everythingShown() },
+                )
             val result = beforeNowruz.search(title, limit = 5).first { it.eventId == NOWRUZ }
 
             result.title shouldBe title
@@ -96,7 +100,11 @@ class CalendarAdaptersTest {
             result.nextDay shouldBe nowruz1405
 
             val afterNowruz =
-                OfficialEventSearchSource(language = { "fa" }, today = { LocalDate(2026, 3, 22).toJdn() })
+                OfficialEventSearchSource(
+                    language = { "fa" },
+                    today = { LocalDate(2026, 3, 22).toJdn() },
+                    settings = { everythingShown() },
+                )
             afterNowruz.search(title, limit = 5).first { it.eventId == NOWRUZ }.nextDay shouldBe
                 PersianCalendarSystem.toJdn(PersianCalendarSystem.date(1406, 1, 1))
         }
