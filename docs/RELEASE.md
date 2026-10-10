@@ -113,21 +113,41 @@ this repository can confirm, so they stay open until the owner has done them.
   over Taqvim. Rotating it means the same forced uninstall for every user, so treat the backup as a secret, not just
   as a file you must not lose.
 
-## What a green benchmark check does and does not mean (owner decision 2026-09-26)
+## What a green benchmark check does and does not mean (owner decision 2026-09-26, revised 2026-10-10)
 
-`Macrobenchmark (nightly)` is a required check, but hosted GitHub runners cannot measure this app: its control
-benchmarks time fixed synthetic work the app cannot influence, and on these runners they moved by hundreds of percent
-in both directions inside a single run. Seven consecutive dispatches came back inconclusive, which meant **no release
-tag could ever qualify** — `v1.0.0-rc3` produced no artifacts for exactly this reason.
+Hosted GitHub runners cannot measure this app. Its control benchmarks time fixed synthetic work the app cannot
+influence, and on these runners they moved by hundreds of percent in both directions inside a single run. Seven
+consecutive dispatches came back inconclusive, which meant **no release tag could ever qualify** — `v1.0.0-rc3`
+produced no artifacts for exactly this reason.
 
-So an inconclusive run (exit 4) now reports **success** and writes "this commit is unbenchmarked" into the job
-summary. The gate keeps failing on exit 1, a regression it actually measured, and on exit 3, a recording run.
+So an inconclusive run (exit 4) reports **success** and writes "this commit is unbenchmarked" into the job summary.
+The gate keeps failing on exit 1, a regression it actually measured, and on exit 3, a recording run. That part
+stands.
 
-Read the tick accordingly. **A green benchmark check means "no regression was measured", not "no regression
-exists".** Where the run was inconclusive, nothing about the commit's performance is known, and no performance claim
-may be made for it in release notes or anywhere else. The only way to obtain a real number is to run the
-macrobenchmarks on a physical device (see the device section below); until that happens, releases ship without
-performance verification, and the release notes should say so.
+What was wrong is that `.github/required-checks.txt` read that success as a pass, so **v1.0.0, v1.1.0 and v1.1.1
+each qualified on a commit nothing had measured**. "The job ran" and "the run measured something" are different
+facts, and one tick cannot carry both. `benchmark.yml` therefore publishes two checks:
+
+| Check | Means |
+|---|---|
+| `Macrobenchmark (nightly)` | the job ran to completion |
+| `Performance qualified` | the run actually measured this commit and it stayed inside its budgets — **or** a waiver names it |
+
+Both are required. `Performance qualified` fails on an inconclusive run unless `benchmark/UNBENCHMARKED.md` names
+the commit's SHA or the tag being released, with who accepted it and why. That is the deliberate way through: a
+reviewed sentence in the history saying "we shipped this one without measuring it", rather than a gate switched off.
+
+A waiver may name a tag as well as a commit because one written for a release **changes the very SHA it is trying
+to name** — the waiver must be committed, and committing it moves the commit. A tag is decided before it is pushed,
+so it can be written down in advance. The consequence for sequencing: a tag waiver is only read when the benchmark
+workflow runs **on the tag ref**, since the job matches `$GITHUB_REF_NAME`. Dispatch `benchmark.yml` on `main`
+before tagging as usual, and if that run is inconclusive, push the tag and dispatch `benchmark.yml` again on the tag
+before re-running `release.yml`.
+
+Read the ticks accordingly. **A green `Macrobenchmark (nightly)` means "no regression was measured", not "no
+regression exists".** Where a run was inconclusive, nothing about that commit's performance is known from CI, and no
+performance claim may be made for it from CI alone. Real numbers come from running the macrobenchmarks on a physical
+device (see the device section below); where a release rests on those instead, the waiver says so and names them.
 
 ## Changelog
 
