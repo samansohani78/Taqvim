@@ -1059,3 +1059,66 @@ arrives.
 
 **What I do next, without asking:** confirm the last Benchmarks workflow run and keep
 `docs/PROGRESS.md`, `docs/DATA_TODO.md` and this report current.
+
+## 7. Independent review follow-up, 2026-10-10 (L1–L7)
+
+A second independent review, pinned to the v1.2.0 line, raised seven items. Each was verified against HEAD before
+anything was changed; five were real, one was a test that could not have caught the bug it was named after, and one
+was a claim I had made myself that the measurement does not support.
+
+| # | Finding | Verdict | Fixed in |
+|---|---|---|---|
+| L1 | Date widgets colour holidays but declare no event dependency, so changing event sources does not refresh them | CONFIRMED | main@d3f78a05 |
+| L2 | Search applies the result limit before occurrence-level visibility | CONFIRMED | main@b454a49a |
+| L3 | Widgets still load data they do not draw | CONFIRMED | main@d3f78a05 |
+| L4 | "Populated minus empty" presented as a proven composition cost | CONFIRMED (mine) | main@732370d9 |
+| L5 | A tag-named benchmark waiver is not matched on a branch dispatch, and the match is loose | CONFIRMED | main@84c493e5 |
+| L6 | Cross-surface tests build the shared object themselves, so they prove nothing about the adapters | CONFIRMED | main@2c8f49b1 |
+| L7 | Localization: wording accuracy, locale validation, dataset title debt | PARTLY CONFIRMED | main@36f9fd39, main@eb48df6f |
+
+### What L4 cost in accuracy, and what replaced it
+
+I had written, in the v1.2.0 release notes, the waiver, four PROGRESS rows and a commit message, that every Glance
+widget composes in 1.45–10.57 ms "against 30 ms". Two separate errors:
+
+- The figures were differences between **separately measured** runs. `GlanceAppWidget.compose` carries a fixed
+  per-call cost near 406 ms; a 1-to-11 ms difference on that base is under this harness's own run-to-run spread.
+  Nothing established that the fixed cost is constant and additive, which is what the subtraction assumes. Such a
+  difference is an **incremental wall-clock estimate**, and that is what every one of those places now calls it.
+- **The 30 ms budget was never on that benchmark.** Plan §9's widget render budget is enforced in `budgets.json`
+  against `WidgetRenderBenchmark`, which times the bitmap painters with no Glance harness around them.
+  `GlanceWidgetBenchmark` has no budget and never had one. The painters still meet the budget that is theirs.
+
+`GlanceWidgetBenchmark.pairedAgainstEmpty` now composes the empty and the populated widget alternately, swapping
+which goes first in each pair, and reports the per-pair signed difference with both sides as metrics. The spread of
+that difference is the answer: tight means the fixed cost is additive and the subtraction is a quantity, wide means
+it is noise. It has not run on hardware yet.
+
+### Localization, measured
+
+- **Structural, all 460 locale files in 20 modules:** 0 duplicate keys, 0 keys without a source string, 0 parse
+  errors. Placeholder, plural, punctuation, same-as-source and bidi rules already passed. The orphan-key rule is
+  new.
+- **`settings_islamic_override_intro` was factually wrong in all 24 languages.** It said Hijri dates are computed
+  from the crescent visibility rule; only `CALCULATED_OBSERVATIONAL` works that way and it is not the default.
+  English and Persian are corrected; **22 languages still carry the wrong sentence** and need a translation
+  refresh.
+- **Persian event-settings wording reviewed in full and left as it is** — it already reads as occasions rather
+  than as the names of internal categories.
+- **Azerbaijani `settings_category_cultural` flagged, not changed.** `mədəni münasibətlər` is the ordinary
+  collocation for *cultural relations*. Azerbaijani usage cannot be settled from here, and the whole file is
+  already marked `MT: needs review`; the specific doubt is now in `docs/i18n/NATIVE_REVIEW_QUEUE.md`.
+- **Dataset titles: English 262 → 280 of 329**, all eighteen transliterated proper nouns, all marked
+  `titleReview: ["en"]`. The Shia commemorations, the political days, Yalda and the 30 Nepali records were left
+  alone, and `docs/i18n/DATASET_TITLE_DEBT.md` now says why for each group rather than only counting.
+
+### Still needing a device or a person
+
+- `pairedAgainstEmpty` on the OnePlus 15: whether the per-pair difference is tight enough to be a quantity, whether
+  the session budget takes a case that composes twice, the ~210/~410 ms clustering, and the separation of
+  `RemoteViews` translation from launcher inflation and from end-to-end time to first useful render.
+- Whether ColorOS 16 offers third-party lock-screen widgets at all, which decides whether T-1216's keyguard
+  declaration does anything on that phone.
+- The occasional-lag reproduction on the unbenchmarked screens, with a trace captured while the stutter happens.
+- A native Azerbaijani speaker for the two flagged strings, and translators for the 22 languages carrying the
+  corrected-in-English sentence.
