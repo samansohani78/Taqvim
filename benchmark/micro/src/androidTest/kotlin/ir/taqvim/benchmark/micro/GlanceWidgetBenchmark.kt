@@ -35,20 +35,28 @@ import org.junit.runner.RunWith
 /**
  * T-1801 Glance composition timings of the text widgets T-1201 to T-1204 and T-1216. Each run composes the widget's
  * frame and content with fixed data and translates the result to `RemoteViews` through Glance's own
- * `GlanceAppWidget.compose`. Loading the state and the launcher's inflation of the `RemoteViews` are not included.
+ * `GlanceAppWidget.compose`.
  *
- * **Read these against [emptyBaseline], not against plan §9's 30 ms.** `GlanceAppWidget.compose` carries a large
- * fixed cost per call that has nothing to do with the widget: on the OnePlus 15 (2026-10-07) the four widgets came
- * out at 407.0, 410.1, 416.8 and 417.0 ms — a 2.5 % spread across widgets whose content differs roughly tenfold —
- * and the same four on a hosted x86 emulator read 412.2, 418.6, 421.1 and 416.8 ms, though that machine is half the
- * speed of the phone on compute-bound work (the bitmap benchmarks beside them moved −27 % to −56 % between the two).
- * A cost that moves neither with content nor with the CPU is not composition. The bitmap benchmarks, which have no
- * Glance harness, range 0.6 to 13.1 ms on the same runs and do scale with content.
+ * **What these numbers are not.** They are not a widget's render time, and they must not be read against plan §9's
+ * 30 ms. That budget belongs to `WidgetRenderBenchmark`, which times the bitmap painters with no Glance harness
+ * around them, and it is enforced in `benchmark/budgets.json`. Nothing here has a budget, and none of these
+ * figures has ever been compared against one.
  *
- * So [emptyBaseline] composes a widget that draws nothing, and a widget's own composition cost is its time minus
- * that baseline. That difference is what plan §9's budget is about, and it is roughly 10 ms between the simplest and
- * the most complex of these widgets. No budget is committed for the raw figures: one set to pass them would be
- * measuring the harness, and one set to the §9 rule would fail on a cost the app does not own.
+ * **What is measured.** `GlanceAppWidget.compose` carries a large fixed cost per call: on the OnePlus 15
+ * (2026-10-07) four widgets came out at 407.0, 410.1, 416.8 and 417.0 ms, a 2.5 % spread across widgets whose
+ * content differs roughly tenfold, and the same four on a hosted x86 emulator read 412.2, 418.6, 421.1 and
+ * 416.8 ms, on a machine half the phone's speed on compute-bound work (the bitmap benchmarks beside them moved
+ * −27 % to −56 % between the two). A cost that moves neither with content nor with the CPU is not composition.
+ *
+ * **What is not established.** That the fixed cost is constant and additive, so that subtracting an empty widget's
+ * time leaves the widget's own. Two separately measured benchmarks ran at different moments in different thermal
+ * states, and the differences in question — roughly 1 to 11 ms on a ~406 ms base, under 3 % — are smaller than this
+ * harness's own run-to-run spread. Call such a difference an **incremental wall-clock estimate**, not a composition
+ * cost, until [pairedAgainstEmpty] has run on a device and shown the per-pair difference to be stable.
+ *
+ * **Still unseparated.** One number here covers data loading (excluded: the data is fixed), Glance session and
+ * composition overhead, and `RemoteViews` translation. The launcher's inflation of those `RemoteViews`, and
+ * end-to-end time to a first useful render, are not measured anywhere and cannot be from inside this process.
  */
 @RunWith(AndroidJUnit4::class)
 class GlanceWidgetBenchmark {
@@ -70,17 +78,43 @@ class GlanceWidgetBenchmark {
     fun threeDates(): Unit = compose("threeDates", ThreeDatesWidget(), WidgetSize.SMALL)
 
     /**
-     * A widget that draws nothing, so its time is the fixed cost of `GlanceAppWidget.compose` itself.
+     * Empty and populated widgets measured alternately, to find out whether subtracting one from the other means
+     * anything (L4).
      *
-     * Subtract it from the others to get what each widget's own content costs to compose.
+     * The reported `timeNs` is the per-pair signed difference; the two sides it was computed from ride along as
+     * the `emptyNs` and `populatedNs` metrics. The difference's own spread is the answer. If it is tight,
+     * the fixed cost is additive and the subtraction is a real quantity. If it is as wide as the figures it is
+     * drawn from, the subtraction is noise and no composition cost has been measured.
+     *
+     * The order within each pair alternates, so whichever side runs first does not keep paying to wake something
+     * up.
+     *
+     * Not yet run on hardware: the session budget below was fitted to six single-composition cases, and this one
+     * composes twice per iteration.
      */
     @Test
-    fun emptyBaseline() {
-        val host = EmptyWidget()
+    fun pairedAgainstEmpty() {
         val size = WidgetSize.SMALL
         val dpSize = DpSize(size.widthDp.dp, size.heightDp.dp)
-        val timing = Timing.measure(WARMUP, RUNS) { runBlocking { host.compose(context, size = dpSize) } }
-        TimingReport.record(CLASS_NAME, "emptyBaseline", timing)
+        val empty = EmptyWidget()
+        val populated = FixedContentWidget(DateWidget1x1(), DATA, size)
+
+        val paired =
+            Timing.measurePaired(
+                warmup = PAIRED_WARMUP,
+                runs = PAIRED_RUNS,
+                a = { runBlocking { empty.compose(context, size = dpSize) } },
+                b = { runBlocking { populated.compose(context, size = dpSize) } },
+            )
+
+        // The difference is the headline; the two sides ride along as their own metrics so the raw samples are
+        // there to check it against, without inventing benchmark names no `@Test` declares.
+        TimingReport.record(
+            CLASS_NAME,
+            "pairedAgainstEmpty",
+            paired.difference,
+            extra = mapOf("emptyNs" to paired.a, "populatedNs" to paired.b),
+        )
     }
 
     private fun compose(
@@ -105,6 +139,10 @@ class GlanceWidgetBenchmark {
          */
         const val WARMUP: Int = 5
         const val RUNS: Int = 15
+
+        /** Half the iterations of a single case, because each one composes twice. */
+        const val PAIRED_WARMUP: Int = 3
+        const val PAIRED_RUNS: Int = 8
 
         /** A full day: three events (one a holiday) and six prayer times with the next one marked. */
         val DATA: WidgetData =

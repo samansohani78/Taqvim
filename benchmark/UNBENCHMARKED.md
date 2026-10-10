@@ -52,7 +52,15 @@ Why: the hosted runner cannot measure this app — its control benchmarks, which
 cannot affect, move by hundreds of percent within a single run, so the comparison says nothing either way. What this
 release does rest on is a physical-device run on the owner's OnePlus 15 (CPH2745, Android 16) on 2026-10-07 and
 2026-10-10: cold start 134 ms against a 350 ms budget, month scroll frame CPU P99 13.05 ms, timeline 5.33 ms,
-search 11.64 ms, map 5.88 ms, the year view down from 62.2 ms to 26.9 ms, month-screen memory 67 MB PSS against an
-80 MB budget, and every Glance widget composing in 1.45-10.57 ms against 30 ms. Those numbers are in
-docs/STATUS_REPORT.md with the traces they came from. The waiver covers the hosted gate's silence, not an absence
-of measurement.
+search 11.64 ms, map 5.88 ms, the year view down from 62.2 ms to 26.9 ms, and month-screen memory 67 MB PSS
+against an 80 MB budget. Those numbers are in docs/STATUS_REPORT.md with the traces they came from. The waiver
+covers the hosted gate's silence, not an absence of measurement.
+
+Corrected 2026-10-10, after an independent review: this entry first also claimed "every Glance widget composing in
+1.45-10.57 ms against 30 ms". Both halves of that were wrong. The figures were differences between separately
+measured runs of GlanceWidgetBenchmark, which times `GlanceAppWidget.compose` end to end and is dominated by a
+fixed per-call cost of roughly 405 ms; a 1-to-11 ms difference on that base is smaller than the harness's own
+run-to-run spread, so it is an incremental wall-clock estimate and not a measured composition cost. And the 30 ms
+budget it was compared against belongs to WidgetRenderBenchmark, which times the painters with no Glance harness,
+not to GlanceWidgetBenchmark, which has no budget at all. The widget render budget was and remains met by the
+benchmarks it actually applies to. Nothing else in this entry changes.
