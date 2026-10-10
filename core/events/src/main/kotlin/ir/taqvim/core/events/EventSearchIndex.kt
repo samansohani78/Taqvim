@@ -46,8 +46,23 @@ public class EventSearchIndex(
             .flatMapIndexed { termIndex, term -> deletionVariants(term.key).map { it to termIndex } }
             .groupBy({ it.first }, { it.second })
 
-    /** Hits for [query], best first. Blank queries (after normalization) have no hits. */
-    public fun search(query: SearchQuery): List<SearchHit> {
+    /** Hits for [query], best first, at most [SearchQuery.limit] of them. */
+    public fun search(query: SearchQuery): List<SearchHit> = ranked(query).take(query.limit)
+
+    /**
+     * Every hit for [query], best first, *not* cut to [SearchQuery.limit]. Blank queries have no hits.
+     *
+     * A caller that can still reject a hit must rank first and cut last. Search rejects an event whose every
+     * occurrence the user cannot see — a validity range that has not begun, a date the source's own Islamic
+     * calendar puts elsewhere — and it could only do that after this returned, so asking for one result and
+     * having the best match turn out to be hidden produced no results at all while a visible second-best sat
+     * right behind it. The caller walks this list lazily and stops once it has the number it wants, so the cost
+     * of the rejected hits is paid only up to the first few that survive.
+     *
+     * [SearchQuery.limit] still decides whether typo-tolerant matching runs at all: that is a cost control for
+     * this index, not the caller's page size.
+     */
+    public fun ranked(query: SearchQuery): List<SearchHit> {
         val key = PersianText.searchKey(query.text)
         if (key.isEmpty()) return emptyList()
         val best = HashMap<Int, SearchHit>()
@@ -55,7 +70,7 @@ public class EventSearchIndex(
         if (key.length >= MIN_FUZZY_LENGTH && best.size < query.limit) {
             fuzzyCandidates(key).forEach { offer(best, it, query) }
         }
-        return best.values.sortedWith(RANKING).take(query.limit)
+        return best.values.sortedWith(RANKING)
     }
 
     private fun literalCandidates(key: String): List<Candidate> {

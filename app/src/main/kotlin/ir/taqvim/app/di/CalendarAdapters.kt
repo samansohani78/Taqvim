@@ -181,20 +181,37 @@ internal class OfficialEventSearchSource(
                 holidaysOnly = preferences.holidaysOnly,
                 limit = limit,
             )
-        return index.search(query).mapNotNull { hit ->
-            val definition = hit.definition
-            val occurrences = occurrences(view, definition, from)
-            // A definition every one of whose occurrences is hidden is not a result; one with no occurrence at all
-            // in reach stays, undated, as it always has.
-            val next = occurrences.firstOrNull { view.isVisible(it, here) }
-            if (occurrences.isNotEmpty() && next == null) return@mapNotNull null
-            EventSearchResult(
-                eventId = definition.id.value,
-                title = definition.title.forLanguage(language),
-                isHoliday = definition.isHoliday,
-                nextDay = next?.jdn,
-            )
-        }
+        // Ranked, then filtered, then cut — in that order. Cutting first (`index.search`) threw away visible
+        // results to make room for hidden ones: asking for one result whose best match is an observance the user
+        // cannot see returned nothing at all, with the visible second-best still sitting behind it. The sequence
+        // is lazy, so the occurrence work is paid only for hits examined before [limit] survivors are found.
+        return index
+            .ranked(query)
+            .asSequence()
+            .mapNotNull { hit -> visibleResult(hit.definition, view, from, here, language) }
+            .take(limit)
+            .toList()
+    }
+
+    /** [definition] as a result dated at its next visible occurrence, or `null` when the user can see none of them. */
+    private fun visibleResult(
+        definition: EventDefinition,
+        view: OfficialEventView,
+        from: Jdn,
+        here: TimeZone,
+        language: String,
+    ): EventSearchResult? {
+        val occurrences = occurrences(view, definition, from)
+        // A definition every one of whose occurrences is hidden is not a result; one with no occurrence at all
+        // in reach stays, undated, as it always has.
+        val next = occurrences.firstOrNull { view.isVisible(it, here) }
+        if (occurrences.isNotEmpty() && next == null) return null
+        return EventSearchResult(
+            eventId = definition.id.value,
+            title = definition.title.forLanguage(language),
+            isHoliday = definition.isHoliday,
+            nextDay = next?.jdn,
+        )
     }
 
     /** The view for [settings], shared between queries rather than rebuilt per keystroke. */
