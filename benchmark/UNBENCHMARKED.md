@@ -14,15 +14,27 @@ nothing had measured. v1.0.0, v1.1.0 and v1.1.1 all shipped that way, each sayin
 ## Waiving a commit
 
 A hosted runner is often unable to measure this app at all, so there has to be a way through that is not "switch the
-gate off". Add the commit's full SHA below, or the tag being released, with who accepted it and why. The job then
-passes and says in its summary that the commit was released unbenchmarked on purpose.
+gate off". A waiver is that way: a reviewed sentence in the history saying "we shipped this one without measuring
+it", rather than a gate quietly reporting success.
+
+`tools/ci/check_benchmark_waiver.py` decides, and it is tested rather than inlined in the workflow. The rules:
+
+- **`### <full 40-character SHA>`** waives exactly that commit, on any run.
+- **`### <tag>`** waives a release, and is read **only** on a run whose ref is that very tag and whose resolved
+  commit is the one being judged. A run on `main` never consumes a tag waiver, and a tag that has been moved cannot
+  speak for a commit it no longer points at.
+- A waiver must carry **`Accepted by:`** and **`Why:`**. One that does not is not a waiver.
+- Only headings inside **## Waived commits** count. A SHA mentioned anywhere else in this file authorizes nothing —
+  the first version of this check was `grep` over the whole file, so writing a commit into a sentence was enough.
 
 Naming the commit is exact. Naming the tag exists because a waiver written for a release changes the very SHA it is
 trying to name: the waiver has to be committed, and committing it moves the commit. A tag is decided before it is
 pushed, so it can be written down in advance, and it reads better afterwards besides.
 
-A waiver names one commit or one release. It is reviewed like any other change, and it stays in the history, so "we
-shipped this one without measuring it" is a sentence someone wrote rather than a silence.
+The consequence for sequencing: dispatch `benchmark.yml` on `main` before tagging as usual, and if that run comes
+back inconclusive, push the tag and dispatch `benchmark.yml` again **on the tag** before re-running `release.yml`.
+The second run is what reads the waiver. `release.yml` takes the most recent run of each check, so it supersedes
+the first.
 
 ## Waived commits
 

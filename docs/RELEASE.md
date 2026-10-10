@@ -133,16 +133,26 @@ facts, and one tick cannot carry both. `benchmark.yml` therefore publishes two c
 | `Macrobenchmark (nightly)` | the job ran to completion |
 | `Performance qualified` | the run actually measured this commit and it stayed inside its budgets — **or** a waiver names it |
 
-Both are required. `Performance qualified` fails on an inconclusive run unless `benchmark/UNBENCHMARKED.md` names
-the commit's SHA or the tag being released, with who accepted it and why. That is the deliberate way through: a
-reviewed sentence in the history saying "we shipped this one without measuring it", rather than a gate switched off.
+Both are required. `Performance qualified` fails on an inconclusive run unless `benchmark/UNBENCHMARKED.md` waives
+the commit. That is the deliberate way through: a reviewed sentence in the history saying "we shipped this one
+without measuring it", rather than a gate switched off.
 
-A waiver may name a tag as well as a commit because one written for a release **changes the very SHA it is trying
-to name** — the waiver must be committed, and committing it moves the commit. A tag is decided before it is pushed,
-so it can be written down in advance. The consequence for sequencing: a tag waiver is only read when the benchmark
-workflow runs **on the tag ref**, since the job matches `$GITHUB_REF_NAME`. Dispatch `benchmark.yml` on `main`
-before tagging as usual, and if that run is inconclusive, push the tag and dispatch `benchmark.yml` again on the tag
-before re-running `release.yml`.
+`tools/ci/check_benchmark_waiver.py` decides, and is tested rather than inlined in the workflow:
+
+- `### <full 40-character SHA>` waives exactly that commit, on any run.
+- `### <tag>` waives a release, and is read **only** on a run of that very tag whose resolved commit is the one
+  being judged. A run on `main` never consumes a tag waiver, and a moved tag cannot speak for a commit it no longer
+  points at.
+- A waiver must carry `Accepted by:` and `Why:`, and must be a heading inside `## Waived commits`. A SHA mentioned
+  anywhere else authorizes nothing; the first version of this check was a `grep` over the whole file.
+
+A waiver may name a tag because one written for a release **changes the very SHA it is trying to name** — the
+waiver must be committed, and committing it moves the commit. A tag is decided before it is pushed.
+
+The consequence for sequencing: dispatch `benchmark.yml` on `main` before tagging as usual, and if that run is
+inconclusive, push the tag and dispatch `benchmark.yml` again **on the tag** before re-running `release.yml`. The
+second run is what reads the waiver; `release.yml` takes the most recent run of each check, so it supersedes the
+first.
 
 Read the ticks accordingly. **A green `Macrobenchmark (nightly)` means "no regression was measured", not "no
 regression exists".** Where a run was inconclusive, nothing about that commit's performance is known from CI, and no

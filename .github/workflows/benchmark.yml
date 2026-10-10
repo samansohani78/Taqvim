@@ -152,25 +152,39 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
+        with:
+          # The tag has to be resolvable, so a waiver that names a release can be checked against the commit the
+          # tag actually points at rather than taken on trust.
+          fetch-depth: 0
       - name: A measured run, or a waiver that names this commit
         shell: bash
         env:
           INCONCLUSIVE: ${{ needs.macrobenchmark.outputs.inconclusive }}
         run: |
-          if [ "$INCONCLUSIVE" != "true" ]; then
-            echo "The benchmarks measured this commit and stayed inside their budgets." >> "$GITHUB_STEP_SUMMARY"
+          tag_sha=""
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            tag_sha="$(git rev-list -n 1 "$GITHUB_REF_NAME" 2> /dev/null || true)"
+          fi
+          set +e
+          reason="$(python3 tools/ci/check_benchmark_waiver.py \
+            --waiver benchmark/UNBENCHMARKED.md \
+            --sha "$GITHUB_SHA" \
+            --ref-name "$GITHUB_REF_NAME" \
+            --ref-type "$GITHUB_REF_TYPE" \
+            --tag-sha "$tag_sha" \
+            --inconclusive "$INCONCLUSIVE")"
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "## Performance qualified" >> "$GITHUB_STEP_SUMMARY"
+            echo >> "$GITHUB_STEP_SUMMARY"
+            echo "$reason" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          # A waiver names the commit, or the release it is for. Naming the commit is exact, but a waiver committed
-          # for a release changes the very SHA it is trying to name, so a tag may be named instead: it is decided and
-          # written before the tag is pushed, and reads better in the history besides.
-          waiver=benchmark/UNBENCHMARKED.md
-          if [ -f "$waiver" ] && { grep -q "$GITHUB_SHA" "$waiver" || grep -q "^### $GITHUB_REF_NAME\$" "$waiver"; }; then
-            echo "## Released unbenchmarked, on purpose" >> "$GITHUB_STEP_SUMMARY"
-            grep -A 3 -e "$GITHUB_SHA" -e "^### $GITHUB_REF_NAME\$" "$waiver" >> "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
-          echo "::error title=Performance not qualified::The benchmark run was inconclusive, so nothing measured this commit. Re-run on a healthy runner, or accept it in writing by adding $GITHUB_SHA, or the tag being released, to benchmark/UNBENCHMARKED.md with a reason."
+          echo "## Performance not qualified" >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          echo "$reason" >> "$GITHUB_STEP_SUMMARY"
+          echo "::error title=Performance not qualified::$reason"
           exit 1
 
   baseline-profile:
