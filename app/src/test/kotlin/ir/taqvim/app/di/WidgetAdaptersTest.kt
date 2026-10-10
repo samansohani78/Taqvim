@@ -157,7 +157,10 @@ class WidgetAdaptersTest {
         widgetDependenciesChanged(persian, persian.copy(prayerMethod = PrayerMethod.MWL)) shouldBe
             setOf(WidgetDependency.PRAYER_TIMES)
         val noSources = persian.copy(app = persian.app.copy(enabledEventSources = emptySet()))
-        widgetDependenciesChanged(persian, noSources) shouldBe setOf(WidgetDependency.EVENTS)
+        // Both: the sources decide which events are listed and whether the day is off, and the widgets that colour
+        // a holiday are not the ones that list events (L1).
+        widgetDependenciesChanged(persian, noSources) shouldBe
+            setOf(WidgetDependency.EVENTS, WidgetDependency.HOLIDAYS)
     }
 
     @Test
@@ -173,14 +176,16 @@ class WidgetAdaptersTest {
                     ),
             )
 
-        widgetDependenciesChanged(persian, withoutReligious) shouldBe setOf(WidgetDependency.EVENTS)
+        widgetDependenciesChanged(persian, withoutReligious) shouldBe
+            setOf(WidgetDependency.EVENTS, WidgetDependency.HOLIDAYS)
     }
 
     @Test
     fun `holidays-only redraws the widgets that show days`() {
         val holidaysOnly = persian.copy(app = persian.app.copy(holidaysOnly = true))
 
-        widgetDependenciesChanged(persian, holidaysOnly) shouldBe setOf(WidgetDependency.EVENTS)
+        widgetDependenciesChanged(persian, holidaysOnly) shouldBe
+            setOf(WidgetDependency.EVENTS, WidgetDependency.HOLIDAYS)
     }
 
     @Test

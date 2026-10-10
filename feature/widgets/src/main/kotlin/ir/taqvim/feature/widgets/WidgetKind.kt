@@ -12,6 +12,18 @@ enum class WidgetDependency {
     /** Official, personal, device or subscribed events. */
     EVENTS,
 
+    /**
+     * Whether the shown day is a day off.
+     *
+     * Its own axis, not a weaker [EVENTS]. A date widget colours a holiday without listing anything, so it must be
+     * redrawn when the user switches an official source, a kind of day, holidays-only, the weekend or the Islamic
+     * calculation — but a holiday comes from the dataset alone, so a personal event being added or a calendar
+     * feed syncing cannot change it, and waking every date widget for those would be work with nothing to show for
+     * it. Before this existed, date widgets declared only [DATE] and kept colouring a day red after its source was
+     * switched off (2026-10-10).
+     */
+    HOLIDAYS,
+
     /** Prayer times: the next time changes when one is reached. */
     PRAYER_TIMES,
 
@@ -127,8 +139,16 @@ enum class WidgetKind(
     COUNTDOWN("countdown", WidgetCells(2, 2), setOf(D.DATE), emptySet(), listOf(WidgetSize.SMALL, WidgetSize.MEDIUM)),
     ;
 
-    /** Everything this widget depends on, [WidgetDependency.APPEARANCE] included. */
-    val dependencies: Set<WidgetDependency> = own + WidgetDependency.APPEARANCE
+    /**
+     * Everything this widget depends on: what it declares, [WidgetDependency.APPEARANCE], and
+     * [WidgetDependency.HOLIDAYS] whenever it offers holiday colouring.
+     *
+     * The holiday part is derived rather than declared so the two cannot drift apart: a kind that offers
+     * [WidgetContent.HOLIDAYS] depends on what decides a holiday, by construction.
+     */
+    val dependencies: Set<WidgetDependency> =
+        own + WidgetDependency.APPEARANCE +
+            if (WidgetContent.HOLIDAYS in contents) setOf(WidgetDependency.HOLIDAYS) else emptySet()
 
     companion object {
         /** The kind with [id], or `null` for an unknown or retired id. */

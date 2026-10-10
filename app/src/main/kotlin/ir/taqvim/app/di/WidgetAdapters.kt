@@ -30,6 +30,7 @@ import ir.taqvim.feature.widgets.WidgetDayInputs
 import ir.taqvim.feature.widgets.WidgetDependency
 import ir.taqvim.feature.widgets.WidgetEventLine
 import ir.taqvim.feature.widgets.WidgetKind
+import ir.taqvim.feature.widgets.WidgetNeeds
 import ir.taqvim.feature.widgets.WidgetPlace
 import ir.taqvim.feature.widgets.WidgetPrayerNames
 import ir.taqvim.feature.widgets.WidgetPrayers
@@ -76,30 +77,28 @@ internal class PreferencesWidgetDataSource(
     private val calendarParts = WidgetCalendarParts(rangeEvents)
 
     /**
-     * What [kind] needs of the day, and no more.
+     * The day assembled, but only for a widget that reads its event lines.
      *
      * Assembling a day subscribes to the personal, device-calendar and subscription sources and waits for all three,
      * so a widget that lists events must pay for it — but one that only colours a holiday can read that from the
      * dataset, and one that shows neither needs nothing. A date widget was waiting on Room and the calendar provider
      * to draw a date its own calendar engine already knew, which is what made widgets show the host's placeholder.
+     *
+     * The test is what the widget *reads*, not what its kind *declares*: a month widget declares events and gets
+     * them per day from its own grid, so assembling today as well was the same query run twice, and a day summary
+     * with its event list switched off was paying for a list it does not draw.
      */
     private suspend fun dayFor(
-        kind: WidgetKind,
-        config: WidgetConfig,
+        needs: WidgetNeeds,
         jdn: Jdn,
-    ): DayEvents? =
-        if (WidgetDependency.EVENTS in kind.dependencies || config.shows(WidgetContent.EVENTS)) {
-            rangeEvents(jdn..jdn).first().single()
-        } else {
-            null
-        }
+    ): DayEvents? = if (needs.assemblesToday) rangeEvents(jdn..jdn).first().single() else null
 
     /** Whether [jdn] is a day off for a widget that only colours it, read without assembling the day. */
     private suspend fun holidayFor(
-        config: WidgetConfig,
+        needs: WidgetNeeds,
         jdn: Jdn,
     ): Boolean {
-        if (!config.shows(WidgetContent.HOLIDAYS)) return false
+        if (!needs.holiday) return false
         val cheap = holidayOnly ?: return rangeEvents(jdn..jdn).first().single().isHoliday
         return cheap(jdn)
     }
@@ -111,14 +110,17 @@ internal class PreferencesWidgetDataSource(
         view: WidgetView,
     ): WidgetData {
         val prefs = preferences.preferences.first()
+        val needs = WidgetNeeds.of(kind, config)
+        // The place is only looked up for a widget that reads something derived from it. Keeping it otherwise meant
+        // every widget with a place chosen paid for prayer times it never drew.
         val place = prefs.widgetPlace()
         val zone = place?.timeZone ?: deviceZone()
         val jdn = now.toJdn(zone)
-        val day = dayFor(kind, config, jdn)
+        val day = dayFor(needs, jdn)
         val inputs =
             widgetInputs(prefs, config, jdn, day, place)
-                .let { if (day == null) it.copy(isHoliday = holidayFor(config, jdn)) else it }
-        val content = WidgetContentBuilder.build(inputs, now, names)
+                .let { if (day == null) it.copy(isHoliday = holidayFor(needs, jdn)) else it }
+        val content = WidgetContentBuilder.build(inputs, now, needs, names)
         return when (kind) {
             WidgetKind.SUN_ARC, WidgetKind.MOON, WidgetKind.MAP -> {
                 skyParts.addTo(content, kind, inputs, now, zone)
@@ -243,7 +245,13 @@ internal fun widgetDependenciesChanged(
         // A chosen place carries its own time zone, and the widgets date themselves in it: moving from Tehran to
         // Auckland can change what day a widget says it is, not only which prayer times it shows.
         if (old.place?.zoneId != new.place?.zoneId) add(WidgetDependency.DATE)
-        if (old.shownEventsKey() != new.shownEventsKey()) add(WidgetDependency.EVENTS)
+        // Both axes, because the same settings decide both: which events a widget lists, and whether the day it
+        // colours is a day off. A date widget declares no EVENTS — it lists nothing — so without HOLIDAYS it kept
+        // its colour after the source that made the day a holiday was switched off.
+        if (old.shownEventsKey() != new.shownEventsKey()) {
+            add(WidgetDependency.EVENTS)
+            add(WidgetDependency.HOLIDAYS)
+        }
     }
 
 /**

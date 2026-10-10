@@ -5,6 +5,7 @@
 package ir.taqvim.app.di
 
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.model.CalendarDate
@@ -109,7 +110,7 @@ class WidgetDayDependencyTest {
         }
 
     @Test
-    fun `the month widgets assemble, because they mark every day of the month`(): Unit =
+    fun `the month widgets assemble their month once, and today is part of it`(): Unit =
         runTest {
             source().load(
                 WidgetKind.MONTH_BITMAP,
@@ -118,7 +119,10 @@ class WidgetDayDependencyTest {
                 WidgetView(),
             )
 
-            assembled.isNotEmpty() shouldBe true
+            // One range, not two: today was loaded on its own first, for a holiday flag and an event list the grid
+            // never reads, and then the whole month was loaded over the top of it.
+            assembled shouldHaveSize 1
+            assembled.single().contains(today) shouldBe true
             holidayAsked.shouldBeEmpty()
         }
 }

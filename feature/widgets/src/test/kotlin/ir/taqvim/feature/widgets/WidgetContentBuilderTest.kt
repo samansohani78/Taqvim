@@ -50,7 +50,7 @@ class WidgetContentBuilderTest {
 
     @Test
     fun `dates are written in the language with its digits`() {
-        val persian = WidgetContentBuilder.build(inputs(fa), Instant.parse("2026-09-13T06:00:00Z"), names)
+        val persian = WidgetContentBuilder.build(inputs(fa), Instant.parse("2026-09-13T06:00:00Z"), names = names)
         persian.dayNumber shouldBe "۲۲"
         persian.title shouldBe "۲۲ شهریور ۱۴۰۵"
         persian.weekday shouldBe "یکشنبه"
@@ -59,7 +59,7 @@ class WidgetContentBuilderTest {
         persian.isHoliday shouldBe true
         persian.events.single().eventId shouldBe 7
 
-        val english = WidgetContentBuilder.build(inputs(en), Instant.parse("2026-09-13T06:00:00Z"), names)
+        val english = WidgetContentBuilder.build(inputs(en), Instant.parse("2026-09-13T06:00:00Z"), names = names)
         english.dayNumber shouldBe "22"
         english.title shouldBe "22 Shahrivar 1405"
         english.weekday shouldBe "Sunday"
@@ -69,7 +69,7 @@ class WidgetContentBuilderTest {
     @Test
     fun `the day's prayer times are listed in order and the next one is marked`() {
         // 13:30 in Tehran: Dhuhr has passed, Asr is next.
-        val data = WidgetContentBuilder.build(inputs(fa), Instant.parse("2026-09-13T10:00:00Z"), names)
+        val data = WidgetContentBuilder.build(inputs(fa), Instant.parse("2026-09-13T10:00:00Z"), names = names)
 
         data.prayers.map { it.name } shouldBe WidgetPrayer.entries.map { it.name }
         data.prayers.filter { it.isNext }.map { it.name } shouldBe listOf("ASR")
@@ -80,7 +80,7 @@ class WidgetContentBuilderTest {
 
     @Test
     fun `after the last time of the day the next prayer is tomorrow's Fajr`() {
-        val data = WidgetContentBuilder.build(inputs(en), Instant.parse("2026-09-13T19:30:00Z"), names)
+        val data = WidgetContentBuilder.build(inputs(en), Instant.parse("2026-09-13T19:30:00Z"), names = names)
 
         data.prayers shouldHaveSize WidgetPrayer.entries.size
         data.prayers.none { it.isNext } shouldBe true
@@ -89,7 +89,12 @@ class WidgetContentBuilderTest {
 
     @Test
     fun `without a place there are no prayer times`() {
-        val data = WidgetContentBuilder.build(inputs(en, place = null), Instant.parse("2026-09-13T10:00:00Z"), names)
+        val data =
+            WidgetContentBuilder.build(
+                inputs(en, place = null),
+                Instant.parse("2026-09-13T10:00:00Z"),
+                names = names,
+            )
 
         data.prayers.shouldBeEmpty()
         data.nextPrayer.shouldBeNull()
@@ -104,7 +109,12 @@ class WidgetContentBuilderTest {
                 val now = Instant.fromEpochSeconds(seconds)
                 val next = WidgetPrayers.next(now, tehran).shouldNotBeNull()
                 (next.second > now) shouldBe true
-                val data = WidgetContentBuilder.build(inputs(en).copy(jdn = now.toJdn(tehran.timeZone)), now, names)
+                val data =
+                    WidgetContentBuilder.build(
+                        inputs(en).copy(jdn = now.toJdn(tehran.timeZone)),
+                        now,
+                        names = names,
+                    )
                 (data.prayers.count { it.isNext } <= 1) shouldBe true
             }
         }

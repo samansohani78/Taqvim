@@ -19,6 +19,7 @@ import ir.taqvim.core.praytimes.PrayerTimes
 import ir.taqvim.core.praytimes.PrayerTimesCalculator
 import ir.taqvim.core.praytimes.PrayerTimesResult
 import kotlin.time.Instant
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atTime
@@ -68,18 +69,30 @@ data class WidgetDayInputs(
 object WidgetContentBuilder {
     private const val TWO_DIGITS = 2
 
-    /** The content of [inputs] at [now]; prayer names come from [names]. */
+    /**
+     * The content of [inputs] at [now], computing only what [needs] says the widget reads; prayer names come from
+     * [names].
+     *
+     * [needs] defaults to everything so that a caller which genuinely wants the whole picture — the configuration
+     * preview — does not have to describe it.
+     */
     fun build(
         inputs: WidgetDayInputs,
         now: Instant,
+        needs: WidgetNeeds = EVERYTHING,
         names: WidgetPrayerNames,
     ): WidgetData {
         val language = inputs.language
         val date = inputs.primary.fromJdn(inputs.jdn)
         val weekdays = FormatTable.of(language).weekdays[date.system]
         val place = inputs.place
-        val next = place?.let { WidgetPrayers.next(now, it) }
-        val prayers = place?.let { prayerLines(inputs.jdn, it, next?.second, language, names) }.orEmpty()
+        // One calculation feeds both: the strip marks its next time, so asking for the day's times needs this too.
+        val next = place?.takeIf { needs.anyPrayerTimes }?.let { WidgetPrayers.next(now, it) }
+        val prayers =
+            place
+                ?.takeIf { needs.prayerTimes }
+                ?.let { prayerLines(inputs.jdn, it, next?.second, language, names) }
+                .orEmpty()
         return WidgetData(
             date = inputs.jdn.toLocalDate(),
             dayNumber = digits(date.day.toString(), language),
@@ -87,20 +100,37 @@ object WidgetContentBuilder {
             weekday = weekdays?.getOrNull(inputs.jdn.weekday().ordinal).orEmpty(),
             secondaryDate = inputs.secondary?.let { dayTitle(it, inputs.jdn, language) },
             calendarDates =
-                inputs.calendars
-                    .ifEmpty { listOf(inputs.primary) }
-                    .map { dayTitle(it, inputs.jdn, language) }
-                    .toImmutableList(),
+                if (!needs.calendarDates) {
+                    persistentListOf()
+                } else {
+                    inputs.calendars
+                        .ifEmpty { listOf(inputs.primary) }
+                        .map { dayTitle(it, inputs.jdn, language) }
+                        .toImmutableList()
+                },
             isHoliday = inputs.isHoliday,
             events = inputs.events.toImmutableList(),
             nextPrayer =
-                next?.let { (prayer, at) ->
-                    val local = WidgetPrayers.minuteOfDay(at, place.timeZone)
-                    WidgetPrayerLine(names.name(prayer), clock(local, language), isNext = true)
-                },
+                next
+                    ?.takeIf { needs.nextPrayer }
+                    ?.let { (prayer, at) ->
+                        val local = WidgetPrayers.minuteOfDay(at, place.timeZone)
+                        WidgetPrayerLine(names.name(prayer), clock(local, language), isNext = true)
+                    },
             prayers = prayers.toImmutableList(),
         )
     }
+
+    /** Every optional part, for callers that want the whole picture (the configuration preview). */
+    private val EVERYTHING =
+        WidgetNeeds(
+            dayEvents = true,
+            holiday = true,
+            calendarDates = true,
+            nextPrayer = true,
+            prayerTimes = true,
+            dayRange = true,
+        )
 
     /** "22 Shahrivar 1405": the day, the month name (or number where the language has none) and the year. */
     fun dayTitle(
