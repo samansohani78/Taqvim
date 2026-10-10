@@ -161,12 +161,16 @@ jobs:
             echo "The benchmarks measured this commit and stayed inside their budgets." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          if [ -f benchmark/UNBENCHMARKED.md ] && grep -q "$GITHUB_SHA" benchmark/UNBENCHMARKED.md; then
+          # A waiver names the commit, or the release it is for. Naming the commit is exact, but a waiver committed
+          # for a release changes the very SHA it is trying to name, so a tag may be named instead: it is decided and
+          # written before the tag is pushed, and reads better in the history besides.
+          waiver=benchmark/UNBENCHMARKED.md
+          if [ -f "$waiver" ] && { grep -q "$GITHUB_SHA" "$waiver" || grep -q "^### $GITHUB_REF_NAME\$" "$waiver"; }; then
             echo "## Released unbenchmarked, on purpose" >> "$GITHUB_STEP_SUMMARY"
-            grep -A 3 "$GITHUB_SHA" benchmark/UNBENCHMARKED.md >> "$GITHUB_STEP_SUMMARY"
+            grep -A 3 -e "$GITHUB_SHA" -e "^### $GITHUB_REF_NAME\$" "$waiver" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          echo "::error title=Performance not qualified::The benchmark run was inconclusive, so nothing measured this commit. Re-run on a healthy runner, or accept it in writing by adding $GITHUB_SHA to benchmark/UNBENCHMARKED.md with a reason."
+          echo "::error title=Performance not qualified::The benchmark run was inconclusive, so nothing measured this commit. Re-run on a healthy runner, or accept it in writing by adding $GITHUB_SHA, or the tag being released, to benchmark/UNBENCHMARKED.md with a reason."
           exit 1
 
   baseline-profile:
