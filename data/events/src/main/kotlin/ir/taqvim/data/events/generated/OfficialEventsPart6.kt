@@ -29,7 +29,13 @@ internal val OFFICIAL_EVENTS_PART_6: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.NATIONAL,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "عید نوروز")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "عید نوروز",
+                        "en" to "Nowruz",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 1, day = 3),
             citations =
                 listOf(
@@ -51,7 +57,13 @@ internal val OFFICIAL_EVENTS_PART_6: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.NATIONAL,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "عید نوروز")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "عید نوروز",
+                        "en" to "Nowruz",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 1, day = 4),
             citations =
                 listOf(
@@ -173,7 +185,13 @@ internal val OFFICIAL_EVENTS_PART_6: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "تاسوعای حسینی")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "تاسوعای حسینی",
+                        "en" to "Tasua",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 1, day = 9),
             citations =
                 listOf(

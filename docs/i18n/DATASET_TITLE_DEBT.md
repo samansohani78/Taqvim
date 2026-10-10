@@ -1,4 +1,4 @@
-# Localization debt: dataset event titles (2026-10-10)
+# Localization debt: dataset event titles (2026-10-10, re-measured after the English exonym pass)
 
 The app ships in 24 languages. Its **interface** is translated into all of them. Its **dataset event titles** — the
 names of the 329 official observances — are not, and this is the measured state of that, not a plan to fix it by
@@ -12,7 +12,7 @@ machine.
 | Language | Titles | Missing of 329 | What the missing ones show |
 |---|---|---|---|
 | fa Persian | 299 | 30 | Nepali (records with no Persian title) |
-| en English | 262 | 67 | Persian |
+| en English | 280 | 49 | Persian |
 | zh Chinese | 99 | 230 | Persian |
 | fr French | 99 | 230 | Persian |
 | ru Russian | 98 | 231 | Persian |
@@ -37,6 +37,27 @@ machine.
 | ur Urdu | **0** | 329 | Persian |
 
 **Fifteen of the twenty-four launch languages have no dataset titles at all.**
+
+## What the English pass of 2026-10-10 did and did not do
+
+Eighteen records gained an English title, taking English from 262 to 280 of 329. Every one of them is a
+transliterated proper noun with a single dominant English form: Nowruz (4 days), Eid al-Fitr and its following
+holiday, Eid al-Adha, Eid al-Ghadir, Tasua, Ashura, Arbaeen, and Afghanistan's Day of Arafah and its three days
+each of Eid al-Fitr and Eid al-Adha. All eighteen carry `titleReview: ["en"]`, so none is claimed as reviewed.
+
+What was deliberately left alone, and why — these are the records whose wording is the thing being recorded, so
+rendering them is editorial work and not transliteration:
+
+- **The Shia commemorations** (`شهادت حضرت امام رضا علیه السلام` and eleven others). "Martyrdom of Imam Reza" is
+  the usual English, but the honorifics are part of the official wording, and deciding whether an English title
+  drops them is not a translator's call to make quietly.
+- **The political and civic days** (`پیروزی انقلاب اسلامی ایران و سقوط نظام شاهنشاهی`, `قیام خونین ۱۵ خرداد`,
+  `روز ملی شدن صنعت نفت ایران`, the Soviet withdrawal). Each is a sentence, not a name, and the phrasing carries
+  the claim.
+- **`شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان`**, whose title is "Yalda Night" plus a clause about
+  hospitality that the official listing includes on purpose.
+- **All 30 Nepali records**, which have no Persian title either and are cited to Nepali sources: the inverse
+  problem, and one only those sources can close.
 
 ## Why this is not fixed by translating it
 

@@ -8,7 +8,8 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "fa": "آغاز نوروز"
+        "fa": "آغاز نوروز",
+        "en": "Nowruz"
       },
       "rule": {
         "type": "Fixed",
@@ -30,7 +31,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.nowruz-2",
@@ -39,7 +43,8 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "fa": "عید نوروز"
+        "fa": "عید نوروز",
+        "en": "Nowruz"
       },
       "rule": {
         "type": "Fixed",
@@ -61,7 +66,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.nowruz-3",
@@ -70,7 +78,8 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "fa": "عید نوروز"
+        "fa": "عید نوروز",
+        "en": "Nowruz"
       },
       "rule": {
         "type": "Fixed",
@@ -92,7 +101,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.nowruz-4",
@@ -101,7 +113,8 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "fa": "عید نوروز"
+        "fa": "عید نوروز",
+        "en": "Nowruz"
       },
       "rule": {
         "type": "Fixed",
@@ -123,7 +136,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.islamic-republic-day",
@@ -333,7 +349,8 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "fa": "تاسوعای حسینی"
+        "fa": "تاسوعای حسینی",
+        "en": "Tasua"
       },
       "rule": {
         "type": "Fixed",
@@ -355,7 +372,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.ashura",
@@ -364,7 +384,8 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "fa": "عاشورای حسینی"
+        "fa": "عاشورای حسینی",
+        "en": "Ashura"
       },
       "rule": {
         "type": "Fixed",
@@ -386,7 +407,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.arbaeen",
@@ -395,7 +419,8 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "fa": "اربعین حسینی"
+        "fa": "اربعین حسینی",
+        "en": "Arbaeen"
       },
       "rule": {
         "type": "Fixed",
@@ -417,7 +442,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.prophet-demise-imam-hasan-martyrdom",
@@ -719,7 +747,8 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "fa": "عید سعید فطر"
+        "fa": "عید سعید فطر",
+        "en": "Eid al-Fitr"
       },
       "rule": {
         "type": "Fixed",
@@ -741,7 +770,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.eid-al-fitr-holiday",
@@ -750,7 +782,8 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "fa": "تعطیل به مناسبت عید سعید فطر"
+        "fa": "تعطیل به مناسبت عید سعید فطر",
+        "en": "Eid al-Fitr holiday"
       },
       "rule": {
         "type": "Fixed",
@@ -786,7 +819,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.imam-sadiq-martyrdom",
@@ -826,7 +862,8 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "fa": "عید سعید قربان"
+        "fa": "عید سعید قربان",
+        "en": "Eid al-Adha"
       },
       "rule": {
         "type": "Fixed",
@@ -848,7 +885,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.holiday.eid-al-ghadir",
@@ -857,7 +897,8 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "fa": "عید سعید غدیر خم"
+        "fa": "عید سعید غدیر خم",
+        "en": "Eid al-Ghadir"
       },
       "rule": {
         "type": "Fixed",
@@ -879,7 +920,10 @@
         }
       ],
       "updated": "2026-09-13",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     }
   ]
 }

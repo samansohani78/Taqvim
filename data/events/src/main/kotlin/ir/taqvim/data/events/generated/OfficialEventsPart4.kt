@@ -29,7 +29,13 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "تعطیل به مناسبت عید سعید فطر")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "تعطیل به مناسبت عید سعید فطر",
+                        "en" to "Eid al-Fitr holiday",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 10, day = 2),
             validity =
                 Validity(
@@ -66,7 +72,13 @@ internal val OFFICIAL_EVENTS_PART_4: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "عید سعید غدیر خم")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "عید سعید غدیر خم",
+                        "en" to "Eid al-Ghadir",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 12, day = 18),
             citations =
                 listOf(

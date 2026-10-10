@@ -57,7 +57,8 @@
       "isHoliday": true,
       "title": {
         "fa": "روز عرفه",
-        "prs": "روز عرفه"
+        "prs": "روز عرفه",
+        "en": "Day of Arafah"
       },
       "rule": {
         "type": "Fixed",
@@ -95,7 +96,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "af.holiday.eid-al-adha.1",
@@ -105,7 +109,8 @@
       "isHoliday": true,
       "title": {
         "fa": "عید سعید اضحی",
-        "prs": "عید سعید اضحی"
+        "prs": "عید سعید اضحی",
+        "en": "Eid al-Adha"
       },
       "rule": {
         "type": "Fixed",
@@ -143,7 +148,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "af.holiday.eid-al-adha.2",
@@ -153,7 +161,8 @@
       "isHoliday": true,
       "title": {
         "fa": "عید سعید اضحی",
-        "prs": "عید سعید اضحی"
+        "prs": "عید سعید اضحی",
+        "en": "Eid al-Adha"
       },
       "rule": {
         "type": "Fixed",
@@ -191,7 +200,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "af.holiday.eid-al-adha.3",
@@ -201,7 +213,8 @@
       "isHoliday": true,
       "title": {
         "fa": "عید سعید اضحی",
-        "prs": "عید سعید اضحی"
+        "prs": "عید سعید اضحی",
+        "en": "Eid al-Adha"
       },
       "rule": {
         "type": "Fixed",
@@ -239,7 +252,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "af.holiday.kabul-victory",
@@ -347,7 +363,8 @@
       "isHoliday": true,
       "title": {
         "fa": "عید سعید فطر",
-        "prs": "عید سعید فطر"
+        "prs": "عید سعید فطر",
+        "en": "Eid al-Fitr"
       },
       "rule": {
         "type": "Fixed",
@@ -385,7 +402,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "af.holiday.eid-al-fitr.2",
@@ -395,7 +415,8 @@
       "isHoliday": true,
       "title": {
         "fa": "عید سعید فطر",
-        "prs": "عید سعید فطر"
+        "prs": "عید سعید فطر",
+        "en": "Eid al-Fitr"
       },
       "rule": {
         "type": "Fixed",
@@ -433,7 +454,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "af.holiday.eid-al-fitr.3",
@@ -443,7 +467,8 @@
       "isHoliday": true,
       "title": {
         "fa": "عید سعید فطر",
-        "prs": "عید سعید فطر"
+        "prs": "عید سعید فطر",
+        "en": "Eid al-Fitr"
       },
       "rule": {
         "type": "Fixed",
@@ -481,7 +506,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     }
   ]
 }

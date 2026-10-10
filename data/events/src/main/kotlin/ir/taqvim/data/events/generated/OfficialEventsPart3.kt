@@ -125,7 +125,13 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "اربعین حسینی")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "اربعین حسینی",
+                        "en" to "Arbaeen",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 2, day = 20),
             citations =
                 listOf(
@@ -147,7 +153,13 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "عاشورای حسینی")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "عاشورای حسینی",
+                        "en" to "Ashura",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 1, day = 10),
             citations =
                 listOf(
@@ -169,7 +181,13 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "عید سعید قربان")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "عید سعید قربان",
+                        "en" to "Eid al-Adha",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 12, day = 10),
             citations =
                 listOf(
@@ -191,7 +209,13 @@ internal val OFFICIAL_EVENTS_PART_3: List<EventDefinition> =
             source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "عید سعید فطر")),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "عید سعید فطر",
+                        "en" to "Eid al-Fitr",
+                    ),
+                ),
             rule = EventRule.Fixed(month = 10, day = 1),
             citations =
                 listOf(

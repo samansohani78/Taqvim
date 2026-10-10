@@ -33,6 +33,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 LocalizedText(
                     mapOf(
                         "fa" to "روز عرفه",
+                        "en" to "Day of Arafah",
                         "prs" to "روز عرفه",
                     ),
                 ),
@@ -78,6 +79,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 LocalizedText(
                     mapOf(
                         "fa" to "عید سعید اضحی",
+                        "en" to "Eid al-Adha",
                         "prs" to "عید سعید اضحی",
                     ),
                 ),
@@ -123,6 +125,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 LocalizedText(
                     mapOf(
                         "fa" to "عید سعید اضحی",
+                        "en" to "Eid al-Adha",
                         "prs" to "عید سعید اضحی",
                     ),
                 ),
@@ -168,6 +171,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 LocalizedText(
                     mapOf(
                         "fa" to "عید سعید اضحی",
+                        "en" to "Eid al-Adha",
                         "prs" to "عید سعید اضحی",
                     ),
                 ),
@@ -213,6 +217,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 LocalizedText(
                     mapOf(
                         "fa" to "عید سعید فطر",
+                        "en" to "Eid al-Fitr",
                         "prs" to "عید سعید فطر",
                     ),
                 ),
@@ -258,6 +263,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 LocalizedText(
                     mapOf(
                         "fa" to "عید سعید فطر",
+                        "en" to "Eid al-Fitr",
                         "prs" to "عید سعید فطر",
                     ),
                 ),
@@ -303,6 +309,7 @@ internal val OFFICIAL_EVENTS_PART_1: List<EventDefinition> =
                 LocalizedText(
                     mapOf(
                         "fa" to "عید سعید فطر",
+                        "en" to "Eid al-Fitr",
                         "prs" to "عید سعید فطر",
                     ),
                 ),
