@@ -246,7 +246,7 @@
   <string name="settings_item_islamic_override">تاریخ‌های رسمی قمری</string>
   <string name="settings_islamic_override_title">تاریخ‌های رسمی قمری</string>
   <string name="settings_islamic_override_loading">در حال بارگذاری تنظیمات تاریخ قمری</string>
-  <string name="settings_islamic_override_intro">تاریخ‌های هجری قمری با قاعدهٔ رؤیت هلال محاسبه می‌شوند تا برنامه برای همهٔ سال‌ها کار کند. می‌توانید به‌جای آن تاریخ‌هایی را که رسماً اعلام شده‌اند به کار ببرید؛ ماه‌های بعد همچنان محاسبه می‌شوند.</string>
+  <string name="settings_islamic_override_intro">تاریخ‌های هجری قمری با روشی که انتخاب می‌کنید محاسبه می‌شوند تا برنامه برای همهٔ سال‌ها کار کند. می‌توانید به‌جای آن تاریخ‌هایی را که رسماً اعلام شده‌اند به کار ببرید؛ ماه‌های بعد همچنان محاسبه می‌شوند.</string>
   <string name="settings_islamic_override_status_computed">در حال استفاده: تاریخ‌های محاسبه‌شده</string>
   <string name="settings_islamic_override_status_official">در حال استفاده: تاریخ‌های رسمی ایران، از %1$s تا %2$s</string>
   <string name="settings_islamic_override_status_imported">در حال استفاده: تاریخ‌های واردشده، از %1$s تا %2$s</string>

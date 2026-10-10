@@ -322,7 +322,7 @@
   <string name="settings_item_islamic_override">Official Hijri dates</string>
   <string name="settings_islamic_override_title">Official Hijri dates</string>
   <string name="settings_islamic_override_loading">Loading the Hijri date settings</string>
-  <string name="settings_islamic_override_intro">Hijri (lunar) dates are computed from the crescent visibility rule, so the app works for every year. You can apply dates that were officially announced instead; later months stay computed.</string>
+  <string name="settings_islamic_override_intro">Hijri (lunar) dates are calculated with the method you choose, so the app works for every year. You can apply dates that were officially announced instead; later months stay calculated.</string>
   <string name="settings_islamic_override_status_computed">In use: computed dates</string>
   <string name="settings_islamic_override_status_official">In use: official dates of Iran, %1$s to %2$s</string>
   <string name="settings_islamic_override_status_imported">In use: imported dates, %1$s to %2$s</string>

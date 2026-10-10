@@ -29,6 +29,7 @@ class TranslationKonsistTest {
         TranslationChecks.sameAsSource(folders, exceptions).shouldBeEmpty()
         TranslationChecks.rtlPunctuation(folders, LaunchLanguages.rightToLeft).shouldBeEmpty()
         TranslationChecks.bidiControls(folders).shouldBeEmpty()
+        TranslationChecks.orphanTranslations(folders).shouldBeEmpty()
     }
 
     @Test

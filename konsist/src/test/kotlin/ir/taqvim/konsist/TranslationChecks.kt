@@ -51,6 +51,24 @@ object TranslationChecks {
             }
     }
 
+    /**
+     * Translated keys with no source string in the same `res` directory.
+     *
+     * Android has no opinion about these: a `values-fa` string whose name nothing in `values` declares is simply
+     * never looked up, so it costs nothing and shows nothing, and no build step mentions it. That is why it is
+     * worth a rule — it is either a key renamed on one side only, or a translation of a string that was deleted,
+     * and both are invisible until someone goes looking for why a screen is in English.
+     */
+    fun orphanTranslations(folders: List<ResourceFolder>): List<String> {
+        val sources = folders.filter { it.language == null }.associateBy { it.resDir }
+        return folders
+            .filter { it.language != null }
+            .flatMap { folder ->
+                val source = sources[folder.resDir]?.entries.orEmpty()
+                (folder.entries.keys - source.keys).map { "${folder.resDir} [${folder.language}] $it" }
+            }.sorted()
+    }
+
     /** Positional placeholders of [text] such as `%1$s`, sorted; `%%` is not a placeholder. */
     fun placeholders(text: String): List<String> =
         PLACEHOLDER
