@@ -9,10 +9,28 @@
       "isHoliday": false,
       "title": {
         "fa": "چهارشنبهٔ خاکستر",
-        "en": "Ash Wednesday"
+        "en": "Ash Wednesday",
+        "de": "Aschermittwoch",
+        "fr": "Mercredi des Cendres",
+        "es": "Miércoles de Ceniza",
+        "ar": "أربعاء الرماد",
+        "ru": "Пепельная среда",
+        "zh": "圣灰星期三",
+        "ja": "灰の水曜日",
+        "id": "Rabu Abu",
+        "ms": "Rabu Abu"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",
@@ -38,10 +56,28 @@
       "isHoliday": false,
       "title": {
         "fa": "یکشنبهٔ نخل",
-        "en": "Palm Sunday"
+        "en": "Palm Sunday",
+        "de": "Palmsonntag",
+        "fr": "Dimanche des Rameaux",
+        "es": "Domingo de Ramos",
+        "ar": "أحد الشعانين",
+        "ru": "Вербное воскресенье",
+        "zh": "圣枝主日",
+        "ja": "枝の主日",
+        "id": "Minggu Palma",
+        "ms": "Ahad Palma"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",
@@ -67,10 +103,28 @@
       "isHoliday": false,
       "title": {
         "fa": "جمعهٔ نیک",
-        "en": "Good Friday"
+        "en": "Good Friday",
+        "de": "Karfreitag",
+        "fr": "Vendredi saint",
+        "es": "Viernes Santo",
+        "ar": "الجمعة العظيمة",
+        "ru": "Страстная пятница",
+        "zh": "耶稣受难日",
+        "ja": "聖金曜日",
+        "id": "Jumat Agung",
+        "ms": "Jumaat Agung"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",
@@ -96,10 +150,28 @@
       "isHoliday": false,
       "title": {
         "fa": "عید پاک",
-        "en": "Easter"
+        "en": "Easter",
+        "de": "Ostern",
+        "fr": "Pâques",
+        "es": "Pascua de Resurrección",
+        "ar": "عيد القيامة",
+        "ru": "Пасха",
+        "zh": "复活节",
+        "ja": "復活祭",
+        "id": "Paskah",
+        "ms": "Paskah"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",
@@ -125,10 +197,28 @@
       "isHoliday": false,
       "title": {
         "fa": "روز عروج",
-        "en": "Ascension Day"
+        "en": "Ascension Day",
+        "de": "Christi Himmelfahrt",
+        "fr": "Ascension",
+        "es": "Ascensión del Señor",
+        "ar": "عيد الصعود",
+        "ru": "Вознесение Господне",
+        "zh": "耶稣升天节",
+        "ja": "主の昇天",
+        "id": "Kenaikan Yesus Kristus",
+        "ms": "Kenaikan Yesus Kristus"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",
@@ -154,10 +244,28 @@
       "isHoliday": false,
       "title": {
         "fa": "پنطیکاست",
-        "en": "Pentecost"
+        "en": "Pentecost",
+        "de": "Pfingsten",
+        "fr": "Pentecôte",
+        "es": "Pentecostés",
+        "ar": "عيد العنصرة",
+        "ru": "Пятидесятница",
+        "zh": "圣灵降临节",
+        "ja": "聖霊降臨祭",
+        "id": "Pentakosta",
+        "ms": "Pentakosta"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",
@@ -183,10 +291,28 @@
       "isHoliday": false,
       "title": {
         "fa": "یکشنبهٔ تثلیث",
-        "en": "Trinity Sunday"
+        "en": "Trinity Sunday",
+        "de": "Dreifaltigkeitssonntag",
+        "fr": "Dimanche de la Trinité",
+        "es": "Domingo de la Santísima Trinidad",
+        "ar": "أحد الثالوث",
+        "ru": "День Святой Троицы",
+        "zh": "天主圣三节",
+        "ja": "三位一体の主日",
+        "id": "Minggu Tritunggal",
+        "ms": "Ahad Tritunggal"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",
@@ -212,10 +338,28 @@
       "isHoliday": false,
       "title": {
         "fa": "نخستین یکشنبهٔ ظهور",
-        "en": "First Sunday of Advent"
+        "en": "First Sunday of Advent",
+        "de": "Erster Adventssonntag",
+        "fr": "Premier dimanche de l’Avent",
+        "es": "Primer domingo de Adviento",
+        "ar": "الأحد الأول من زمن المجيء",
+        "ru": "Первое воскресенье Адвента",
+        "zh": "将临期第一主日",
+        "ja": "待降節第1主日",
+        "id": "Minggu Adven Pertama",
+        "ms": "Ahad Adven Pertama"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "ChristianFeastDate",

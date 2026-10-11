@@ -99,13 +99,13 @@
   <string name="about_faq_main_calendar_q">¿Cómo cambio el calendario principal o secundario?</string>
   <string name="about_faq_main_calendar_a">En los ajustes, elige el calendario principal y el secundario. La vista del mes y su título siguen el calendario principal, y cada día muestra también sus fechas en los demás calendarios.</string>
   <string name="about_faq_nepali_q">¿Está disponible el calendario nepalí (Bikram Sambat)?</string>
-  <string name="about_faq_nepali_a">Todavía no. Se añadirá cuando estén disponibles las tablas oficiales de los meses. Hasta entonces se usa el calendario gregoriano.</string>
+  <string name="about_faq_nepali_a">Sí. Elige Bikram Sambat en los ajustes de calendarios. Sus fechas se calculan en tu dispositivo.</string>
   <string name="about_faq_widgets_q">¿Hay widgets para la pantalla de inicio?</string>
-  <string name="about_faq_widgets_a">Todavía no. Los widgets para la pantalla de inicio están previstos para una versión posterior.</string>
+  <string name="about_faq_widgets_a">Sí. Añade un widget de Taqvim desde el menú de widgets de la pantalla de inicio.</string>
   <string name="about_faq_holiday_sources_q">¿De dónde proceden los festivos y las celebraciones?</string>
   <string name="about_faq_holiday_sources_a">Los festivos oficiales de Irán proceden de los calendarios oficiales publicados por el Centro del Calendario de la Universidad de Teherán, y los días internacionales, de la lista de las Naciones Unidas. Cada registro cita la página de la que se tomó, y las fuentes figuran en Fuentes de datos, en la página Acerca de.</string>
   <string name="about_faq_missing_days_q">¿Por qué faltan algunos días internacionales?</string>
-  <string name="about_faq_missing_days_a">Un día internacional solo se añade cuando su título persa aparece en una publicación de las Naciones Unidas u otra publicación oficial en persa. Taqvim no traduce los títulos por su cuenta, así que un día sin esa fuente queda fuera hasta que se encuentre una.</string>
+  <string name="about_faq_missing_days_a">Las fechas y el significado de las celebraciones requieren fuentes fiables. Si no hay traducción oficial, los títulos pueden traducirse con IA. La procedencia y el estado de revisión se registran por separado.</string>
   <string name="about_faq_event_sources_q">¿Cómo muestro u oculto un grupo de celebraciones?</string>
   <string name="about_faq_event_sources_a">En los ajustes, activa o desactiva cada grupo de fuentes de eventos. Las fiestas del antiguo Irán están desactivadas de forma predeterminada.</string>
   <string name="about_faq_wrong_date_q">Un festivo o una fecha parece incorrecto. ¿Cómo lo notifico?</string>

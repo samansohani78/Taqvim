@@ -34,7 +34,7 @@ public data class TithiPosition(
  * The tithi of the Surya Siddhanta (ADR-0038, DT-043): the convention the app's own Nepali festivals are computed
  * with, and therefore the one it displays.
  *
- * A tithi is a twelfth of a lap of the Moon's elongation from the Sun, and the two conventions the app carries
+ * A tithi is a 12-degree interval of the Moon's elongation from the Sun, and the two conventions the app carries
  * disagree about where that lap is. [ir.taqvim.core.astronomy.Tithi] reads a modern ephemeris; this one reads
  * [SuryaSiddhantaMoon] and [SuryaSiddhantaSun]. ADR-0038 measured the difference: the modern ephemeris misses two of
  * the twenty-one dated lunar holidays of the BS 2082 and 2083 Rajpatra notices, where the Surya Siddhanta reproduces

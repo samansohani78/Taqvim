@@ -30,7 +30,14 @@ class GenerateEventsCliTest {
 
         run(schema.path, dataset.path, output.path).first shouldBe 0
         output.list().orEmpty().sorted() shouldBe
-            listOf("OfficialEvents.kt", "OfficialEventsPart1.kt", "OfficialEventsPart2.kt")
+            // Three parts, not two: a record carrying titles in all 24 languages is large enough that
+            // EVENTS_PER_FILE had to drop from 8 to 4 to stay under the 400-line source limit.
+            listOf(
+                "OfficialEvents.kt",
+                "OfficialEventsPart1.kt",
+                "OfficialEventsPart2.kt",
+                "OfficialEventsPart3.kt",
+            )
 
         File(dataset, "broken.json").writeText(resource("invalid/11-missing-fa.json"))
         File(output, "OfficialEvents.kt").writeText("untouched")

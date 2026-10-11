@@ -87,10 +87,10 @@ enum class WidgetKind(
      */
     THREE_DATES(
         "three_dates",
-        WidgetCells(2, 1),
+        WidgetCells(3, 3),
         setOf(D.DATE),
         emptySet(),
-        listOf(WidgetSize.SMALL, WidgetSize.WIDE, WidgetSize.MEDIUM),
+        listOf(WidgetSize.MEDIUM, WidgetSize.EXTRA_LARGE),
     ),
 
     // The clock is a launcher-ticked TextClock (T-1202), so the widget does not need a wake-up every minute.

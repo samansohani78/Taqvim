@@ -6,6 +6,7 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -15,7 +16,6 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
-import ir.taqvim.core.model.Weekday
 
 /**
  * Part 15 of the dataset events.
@@ -25,326 +25,179 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_15: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.cleanup-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.constitution-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی پاکسازی",
-                        "en" to "World Cleanup Day",
+                        "fa" to "روز قانون اساسی (روز ملی)",
+                        "en" to "Constitution Day (National Day)",
+                        "ne" to "संविधान दिवस (राष्ट्रिय दिवस)",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 9, day = 20),
+            rule = EventRule.Fixed(month = 6, day = 3),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_023,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/cleanup-day",
-                            title = "World Cleanup Day — resolution 78/122 (8 December 2023)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ग): संविधान दिवस (राष्ट्रिय दिवस) - असोज ३ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ग): संविधान दिवस (राष्ट्रिय दिवस) - असोज ३ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/cleanup-day",
-                        title = "World Cleanup Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 5, clause 6.1(ग): संविधान दिवस (राष्ट्रिय दिवस) - असोज ३ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/cleanup-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.commemoration-holocaust-victims-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.dashain"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین المللی بزرگداشت خاطره قربانیان هولوکاست",
-                        "ar" to "اليوم الدولي لإحياء ذكرى ضحايا محرقة اليهود",
-                        "en" to "International Day of Commemoration in Memory of the Victims of the Holocaust",
-                        "es" to "Día Internacional de Conmemoración anual en memoria de las víctimas del Holocausto",
-                        "fr" to "Journée internationale dédiée à la mémoire des victimes de l'Holocauste",
-                        "ru" to "Международный день памяти жертв Холокоста",
-                        "zh" to "缅怀大屠杀受难者国际纪念日",
+                        "fa" to "تعطیلات دشاین",
+                        "en" to "Dashain holidays",
+                        "ne" to "दशैं बिदा",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 1, day = 27),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
-                        title = "International Day of Commemoration in Memory of the Victims of the Holocaust (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/60/7",
-                    "un" to "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.conjoined-twins-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی دوقلوهای به‌هم‌چسبیده",
-                        "en" to "World Conjoined Twins Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 24),
+            rule = EventRule.LunarTithi(month = 6, tithi = 7, observance = TithiObservance.SUNRISE, endTithi = 12),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/conjoined-twins-day",
-                            title = "World Conjoined Twins Day — A/RES/78/313 (2024)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(च): दशैं बिदा - असोज १३ गतेदेखि असोज १८ गतेसम्म (फूलपातीदेखि द्वादशीसम्म) — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
+                        ),
+                ),
+            aliases =
+                listOf(
+                    "दशैं",
+                    "फूलपाती",
+                    "विजया दशमी",
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(च): दशैं बिदा - असोज १३ गतेदेखि असोज १८ गतेसम्म (फूलपातीदेखि द्वादशीसम्म)",
+                    ),
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 2, clause 2.1(च): दशैं बिदा - असोज ३१ गतेदेखि कार्तिक ६ गतेसम्म (फूलपातीदेखि द्वादशीसम्म)",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("np.holiday.democracy-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز ملی دموکراسی",
+                        "en" to "National Democracy Day",
+                        "ne" to "राष्ट्रिय प्रजातन्त्र दिवस",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ङ): राष्ट्रिय प्रजातन्त्र दिवस - फागुन ७ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(ङ): राष्ट्रिय प्रजातन्त्र दिवस - फागुन ७ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/conjoined-twins-day",
-                        title = "World Conjoined Twins Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 5, clause 6.1(ङ): राष्ट्रिय प्रजातन्त्र दिवस - फागुन ७ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/conjoined-twins-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.conscience-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.dhanya-purnima"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی وجدان",
-                        "en" to "International Day of Conscience",
+                        "fa" to "دهانیا پورنیما",
+                        "en" to "Dhanya Purnima",
+                        "ne" to "धान्य पूर्णिमा",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 4, day = 5),
+            rule = EventRule.LunarTithi(month = 8, tithi = 15, observance = TithiObservance.SUNRISE),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/conscience-day",
-                            title = "International Day of Conscience (UN General Assembly A/RES/73/329, adopted 25 Jul 2019)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(झ): धान्य पूर्णिमा - किराँत समुदायको उधौली पर्व, योमरी पुन्हि, ज्यापु दिवस – मङ्सिर १८ गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
-            citations =
+            aliases =
                 listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/conscience-day",
-                        title = "International Day of Conscience (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/conscience-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cooperatives-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی تعاونیها",
-                        "en" to "International Day of Cooperatives",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 7, weekday = Weekday.SATURDAY, n = 1),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/cooperatives-day",
-                        title = "International Day of Cooperatives (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html; rule: اولين شنبه ژوئيه",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/47/90",
-                    "un" to "https://www.un.org/en/observances/cooperatives-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cotton-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی پنبه",
-                        "en" to "World Cotton Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_021,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/cotton-day",
-                            title = "World Cotton Day — General Assembly proclamation, August 2021",
-                        ),
+                    "उधौली पर्व",
+                    "योमरी पुन्हि",
+                    "ज्यापु दिवस",
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(झ): धान्य पूर्णिमा - किराँत समुदायको उधौली पर्व, योमरी पुन्हि, ज्यापु दिवस – मङ्सिर १८ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/cotton-day",
-                        title = "World Cotton Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 3, clause 2.1(झ): धान्य पूर्णिमा - किराँत समुदायको उधौली पर्व, योमरी पुन्हि, ज्यापू दिवस - पुस ९ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/cotton-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.countering-hate-speech"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی مقابله با نفرت‌پراکنی",
-                        "en" to "International Day for Countering Hate Speech",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 18),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_021,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/countering-hate-speech",
-                            title = "International Day for Countering Hate Speech — A/RES/75/309 (July 2021)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/countering-hate-speech",
-                        title = "International Day for Countering Hate Speech (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/countering-hate-speech",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.creativity-and-innovation-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی خلاقیت و نوآوری",
-                        "en" to "World Creativity and Innovation Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 21),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_017,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/creativity-and-innovation-day",
-                            title = "World Creativity and Innovation Day (UN General Assembly A/RES/71/284, adopted 27 Apr 2017)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/creativity-and-innovation-day",
-                        title = "World Creativity and Innovation Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/creativity-and-innovation-day",
                 ),
         ),
     )

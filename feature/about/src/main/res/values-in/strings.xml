@@ -93,13 +93,13 @@
   <string name="about_faq_main_calendar_q">Bagaimana cara mengubah kalender utama atau kedua?</string>
   <string name="about_faq_main_calendar_a">Di setelan, pilih kalender utama dan kalender kedua. Tampilan bulan dan judulnya mengikuti kalender utama, dan setiap hari juga menampilkan tanggalnya pada kalender lain.</string>
   <string name="about_faq_nepali_q">Apakah kalender Nepal (Bikram Sambat) tersedia?</string>
-  <string name="about_faq_nepali_a">Belum. Kalender ini akan ditambahkan bila tabel bulan resmi tersedia. Sampai saat itu, kalender Masehi dipakai sebagai gantinya.</string>
+  <string name="about_faq_nepali_a">Ya. Pilih Bikram Sambat di pengaturan kalender. Tanggalnya dihitung di perangkat Anda.</string>
   <string name="about_faq_widgets_q">Apakah ada widget layar utama?</string>
-  <string name="about_faq_widgets_a">Belum. Widget layar utama direncanakan untuk versi berikutnya.</string>
+  <string name="about_faq_widgets_a">Ya. Tambahkan widget Taqvim dari menu widget layar utama.</string>
   <string name="about_faq_holiday_sources_q">Dari mana hari libur dan peringatan berasal?</string>
   <string name="about_faq_holiday_sources_a">Hari libur resmi Iran berasal dari kalender resmi yang diterbitkan Pusat Kalender Universitas Teheran, dan hari internasional dari daftar Perserikatan Bangsa-Bangsa. Setiap catatan mencantumkan halaman asalnya, dan sumbernya tercantum pada Sumber data di halaman Tentang.</string>
   <string name="about_faq_missing_days_q">Mengapa beberapa hari internasional tidak ada?</string>
-  <string name="about_faq_missing_days_a">Sebuah hari internasional hanya ditambahkan bila judul Persianya ditemukan dalam publikasi PBB atau publikasi resmi Persia lainnya. Taqvim tidak menerjemahkan judul sendiri, sehingga hari tanpa sumber seperti itu tidak dimasukkan sampai sumbernya ditemukan.</string>
+  <string name="about_faq_missing_days_a">Tanggal dan makna peringatan memerlukan sumber tepercaya. Jika terjemahan resmi tidak tersedia, judul dapat diterjemahkan dengan AI. Asal terjemahan dan status peninjauan dicatat secara terpisah.</string>
   <string name="about_faq_event_sources_q">Bagaimana menampilkan atau menyembunyikan sekelompok peringatan?</string>
   <string name="about_faq_event_sources_a">Di setelan, hidupkan atau matikan tiap kelompok sumber acara. Perayaan Iran kuno mati secara bawaan.</string>
   <string name="about_faq_wrong_date_q">Ada hari libur atau tanggal yang tampak salah. Bagaimana melaporkannya?</string>

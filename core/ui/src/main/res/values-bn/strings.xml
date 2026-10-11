@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- MT: needs review — machine translation (bn) generated 2026-10-05, T-1702; see docs/i18n/TRANSLATING.md. -->
 <resources>
-  <string name="shared_islamic_variant_iran_official">ইরানের আনুষ্ঠানিক</string>
+  <string name="shared_islamic_variant_iran_official">ইরান</string>
   <string name="shared_islamic_variant_umm_al_qura">উম্মুল কুরা</string>
   <string name="shared_islamic_variant_tabular_16">সারণিভিত্তিক (ধরন II)</string>
   <string name="shared_islamic_variant_tabular_15">সারণিভিত্তিক (ধরন I)</string>

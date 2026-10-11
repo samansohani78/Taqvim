@@ -24,7 +24,7 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.international-day-of-play"),
+            id = EventId("un.autism-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -32,20 +32,65 @@ internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی بازی",
-                        "en" to "International Day of Play",
+                        "fa" to "روز جهانی آگاهی درباره اوتیسم",
+                        "ar" to "اليوم العالمي للتوعية بمرض التوحد",
+                        "en" to "World Autism Awareness Day",
+                        "es" to "Día Mundial de Concienciación sobre el Autismo",
+                        "fr" to "Journée mondiale de sensibilisation à l'autisme",
+                        "ru" to "Всемирный день распространения информации о проблеме аутизма",
+                        "zh" to "世界提高自闭症意识日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 6, day = 11),
+            rule = EventRule.Fixed(month = 4, day = 2),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/autism-day",
+                        title = "World Autism Awareness Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/62/139",
+                    "un" to "https://www.un.org/en/observances/autism-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.bicycle-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی دوچرخه",
+                        "ar" to "اليوم العالمي للدراجة الهوائية",
+                        "en" to "World Bicycle Day",
+                        "es" to "Día Mundial de la Bicicleta",
+                        "fr" to "Journée mondiale de la bicyclette",
+                        "ru" to "Всемирный день велосипеда",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 3),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
+                    fromYear = 2_018,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/international-day-of-play",
-                            title = "International Day of Play — A/RES/78/268 (2024)",
+                            url = "https://www.un.org/en/observances/bicycle-day",
+                            title = "World Bicycle Day (A/RES/72/272, adopted 12 April 2018)",
                         ),
                 ),
             citations =
@@ -55,17 +100,17 @@ internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/international-day-of-play",
-                        title = "International Day of Play (observance page)",
+                        url = "https://www.un.org/en/observances/bicycle-day",
+                        title = "World Bicycle Day (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/international-day-of-play",
+                    "un" to "https://www.un.org/en/observances/bicycle-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.international-day-of-potato"),
+            id = EventId("un.biological-diversity-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -73,20 +118,66 @@ internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی سیب‌زمینی",
-                        "en" to "International Day of Potato",
+                        "fa" to "روز جهانی تنوع زیستی",
+                        "ar" to "اليوم الدولي للتنوع البيولوجي",
+                        "en" to "International Day for Biological Diversity",
+                        "es" to "Día Internacional de la Diversidad Biológica",
+                        "fr" to "Journée internationale de la diversité biologique",
+                        "ru" to "Международный день биологического разнообразия",
+                        "zh" to "生物多样性国际日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 5, day = 30),
+            rule = EventRule.Fixed(month = 5, day = 22),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/biological-diversity-day",
+                        title = "International Day for Biological Diversity (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://undocs.org/en/A/RES/55/201",
+                    "un" to "https://www.un.org/en/observances/biological-diversity-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.braille-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی خط بریل",
+                        "ar" to "اليوم العالمي للغة بريل",
+                        "en" to "World Braille Day",
+                        "es" to "Día Mundial del Braille",
+                        "fr" to "Journée mondiale du braille",
+                        "ru" to "Всемирный день азбуки Брайля",
+                        "zh" to "世界盲文日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 1, day = 4),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_023,
+                    fromYear = 2_018,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://digitallibrary.un.org/record/4030832",
-                            title = "International Day of Potato (A/RES/78/123, adopted early December 2023)",
+                            url = "https://www.un.org/en/observances/braille-day/background",
+                            title = "World Braille Day — General Assembly resolution A/RES/73/161 (November 2018)",
                         ),
                 ),
             citations =
@@ -96,263 +187,13 @@ internal val OFFICIAL_EVENTS_PART_25: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.fao.org/international-potato-day/en",
-                        title = "International Day of Potato (observance page)",
+                        url = "https://www.un.org/en/observances/braille-day",
+                        title = "World Braille Day (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.fao.org/international-potato-day/en",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-of-reflection-on-the-1994-genocide"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز یادبود قربانیان نسل کشی رواندا",
-                        "ar" to "اليوم الدولي للتفكر في الإبادة الجماعية التي وقعت في عام 1994 ضد التوتسي في رواندا",
-                        "en" to "International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda",
-                        "es" to "Día Mundial de la Salud",
-                        "fr" to "Journée internationale de réflexion sur le génocide des Tutsis au Rwanda en 1994",
-                        "ru" to "Международный день памяти о геноциде тутси в Руанде в 1994 году",
-                        "zh" to "1994年卢旺达境内针对图西人实施的灭绝种族罪国际反思日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 7),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml",
-                        title = "International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/58/234",
-                    "un" to "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-of-solidarity-with-the-palestinian-people"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی همبستگی با مردم فلسطین",
-                        "ar" to "اليوم الدولي للتضامن مع الشعب الفلسطيني",
-                        "en" to "International Day of Solidarity with the Palestinian People",
-                        "es" to "Día Internacional de Solidaridad con el Pueblo Palestino",
-                        "fr" to "Journée internationale de solidarité avec le peuple palestinien",
-                        "ru" to "Международный день солидарности с палестинским народом",
-                        "zh" to "声援巴勒斯坦人民国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 29),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people",
-                        title = "International Day of Solidarity with the Palestinian People (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/32/40",
-                    "un" to "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-peace"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی صلح",
-                        "ar" to "اليوم الدولي للسلام",
-                        "en" to "International Day of Peace",
-                        "es" to "Día Internacional de la Paz",
-                        "fr" to "Journée internationale de la paix",
-                        "ru" to "Международный день мира",
-                        "zh" to "国际和平日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/international-day-peace",
-                        title = "International Day of Peace (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/36/67",
-                    "un" to "https://www.un.org/en/observances/international-day-peace",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-literacy-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی سواد آموزی",
-                        "ar" to "اليوم الدولي لمحو الأمية",
-                        "en" to "International Literacy Day",
-                        "es" to "Día Internacional de la Alfabetización",
-                        "fr" to "Journée internationale de l'alphabétisation",
-                        "ru" to "Международный день грамотности",
-                        "zh" to "国际扫盲日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 8),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/literacy",
-                        title = "International Literacy Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://unesdoc.unesco.org/ark:/48223/pf0000114048",
-                    "un" to "https://www.unesco.org/en/days/literacy",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-nowruz-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی نوروز",
-                        "ar" to "يوم نوروز الدولي",
-                        "en" to "International Day of Nowruz",
-                        "es" to "Día Internacional del Novruz",
-                        "fr" to "Journée internationale du Novruz",
-                        "ru" to "Международный день Навруз",
-                        "zh" to "国际诺鲁孜节",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 21),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/international-nowruz-day",
-                        title = "International Day of Nowruz (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/64/253",
-                    "un" to "https://www.un.org/en/observances/international-nowruz-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-tea-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی چای",
-                        "en" to "International Tea Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 21),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://docs.un.org/en/A/RES/74/241",
-                            title = "International Tea Day (A/RES/74/241, adopted 19 December 2019)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.fao.org/international-tea-day/en",
-                        title = "International Tea Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://docs.un.org/en/A/RES/74/241",
-                        title = "General Assembly resolution A/RES/74/241 (19 December 2019): \"Decides to designate 21 May as International Tea Day\" — D-05 re-validation (2026-09-25) found the record's validity citation misidentified this resolution as A/RES/74/151 (an unrelated human-rights resolution of 18 December 2019); the 21 May date itself was already correct, only the cited resolution symbol was wrong.",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.fao.org/international-tea-day/en",
+                    "un" to "https://www.un.org/en/observances/braille-day",
                 ),
         ),
     )

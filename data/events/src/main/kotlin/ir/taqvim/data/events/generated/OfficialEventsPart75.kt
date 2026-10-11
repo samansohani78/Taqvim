@@ -1,0 +1,194 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+@file:Suppress("NoHardcodedNonLatinText", "MaxLineLength")
+
+package ir.taqvim.data.events.generated
+
+import ir.taqvim.core.events.Citation
+import ir.taqvim.core.events.EventCategory
+import ir.taqvim.core.events.EventDefinition
+import ir.taqvim.core.events.EventId
+import ir.taqvim.core.events.EventRule
+import ir.taqvim.core.events.EventSource
+import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
+import ir.taqvim.core.model.CalendarSystem
+
+/**
+ * Part 75 of the dataset events.
+ *
+ * Generated from `dataset/` by `:tools:dataset:generateEvents` — do not edit.
+ */
+internal val OFFICIAL_EVENTS_PART_75: List<EventDefinition> =
+    listOf(
+        EventDefinition(
+            id = EventId("un.world-chagas-disease-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بیماری شاگاس",
+                        "en" to "World Chagas Disease Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 14),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_019,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.who.int/campaigns/world-chagas-disease-day",
+                            title = "World Chagas Disease Day (72nd World Health Assembly decision WHA72.20, May 2019)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-chagas-disease-day",
+                        title = "World Chagas Disease Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.who.int/campaigns/world-chagas-disease-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-chess-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی شطرنج",
+                        "ar" to "اليوم العالمي للشطرنج",
+                        "en" to "World Chess Day",
+                        "es" to "Día Mundial del Ajedrez",
+                        "fr" to "Journée mondiale du jeu d'échecs",
+                        "ru" to "Всемирный день шахмат",
+                        "zh" to "世界国际象棋日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 20),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_019,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/world-chess-day",
+                            title = "World Chess Day — A/RES/74/22 (12 December 2019)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-chess-day",
+                        title = "World Chess Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/world-chess-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-childrens-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی کودکان",
+                        "ar" to "اليوم العالمي للطفل",
+                        "en" to "World Children's Day",
+                        "es" to "Día Mundial de la Infancia",
+                        "fr" to "Journée mondiale de l'enfance",
+                        "ru" to "Всемирный день ребенка",
+                        "zh" to "世界儿童日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 11, day = 20),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-childrens-day",
+                        title = "World Children's Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/836(IX)",
+                    "un" to "https://www.un.org/en/observances/world-childrens-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-day-against-child-labour"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی علیه کار کودک",
+                        "ar" to "اليوم العالمي لمكافحة عمل الأطفال",
+                        "en" to "World Day Against Child Labour",
+                        "es" to "Día Mundial contra el Trabajo Infantil",
+                        "fr" to "Journée mondiale contre le travail des enfants",
+                        "ru" to "Всемирный день борьбы с детским трудом",
+                        "zh" to "世界无童工日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 12),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-day-against-child-labour",
+                        title = "World Day Against Child Labour (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/world-day-against-child-labour",
+                ),
+        ),
+    )

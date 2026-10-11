@@ -13,6 +13,7 @@ import androidx.glance.appwidget.testing.unit.runGlanceAppWidgetUnitTest
 import androidx.glance.testing.unit.hasTextEqualTo
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.i18n.BidiText
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Test
@@ -63,6 +64,18 @@ class DayWidgetsGlanceTest {
     }
 
     private fun link(target: WidgetClickTarget) = hasStartActivityClickAction(WidgetLinks.intent(context, target))
+
+    @Test
+    @Config(qualifiers = "fa")
+    fun threeDatesKeepMixedDirectionLinesIsolatedInTheCompactWidget() {
+        val dates = persistentListOf("۱۸ مهر ۱۴۰۵", "10 October 2026", "٢٨ ربيع الآخر ١٤٤٨")
+        render(ThreeDatesWidget(), sample.copy(calendarDates = dates), WidgetSize.MEDIUM) {
+            dates.forEach { line ->
+                onNode(hasTextEqualTo(BidiText.isolate(line))).assertExists()
+                onNode(hasTextEqualTo(line)).assertDoesNotExist()
+            }
+        }
+    }
 
     @Test
     fun theOneByOneWidgetShowsTheDayNumber() {

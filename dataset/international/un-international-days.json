@@ -9,7 +9,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Braille Day",
-        "fa": "روز جهانی خط بریل"
+        "fa": "روز جهانی خط بریل",
+        "ar": "اليوم العالمي للغة بريل",
+        "zh": "世界盲文日",
+        "fr": "Journée mondiale du braille",
+        "ru": "Всемирный день азбуки Брайля",
+        "es": "Día Mundial del Braille"
       },
       "titleReview": [
         "fa"
@@ -140,7 +145,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی بزرگداشت خاطره قربانیان هولوکاست",
+        "fa": "روز بین‌المللی بزرگداشت خاطره قربانیان هولوکاست",
         "en": "International Day of Commemoration in Memory of the Victims of the Holocaust",
         "ar": "اليوم الدولي لإحياء ذكرى ضحايا محرقة اليهود",
         "zh": "缅怀大屠杀受难者国际纪念日",
@@ -176,7 +181,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/commemoration-holocaust-victims-day",
         "resolution": "http://undocs.org/en/A/RES/60/7"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.peaceful-coexistence-day",
@@ -186,7 +194,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Peaceful Coexistence",
-        "fa": "روز بین‌المللی همزیستی مسالمت‌آمیز"
+        "fa": "روز بین‌المللی همزیستی مسالمت‌آمیز",
+        "ar": "اليوم الدولي للتعايش السلمي",
+        "zh": "和平共处国际日",
+        "fr": "Journée internationale de la coexistence pacifique",
+        "ru": "Международный день мирного сосуществования",
+        "es": "Día Internacional de la Coexistencia Pacífica"
       },
       "titleReview": [
         "fa"
@@ -230,7 +243,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Wetlands Day",
-        "fa": "روز جهانی تالاب‌ها"
+        "fa": "روز جهانی تالاب‌ها",
+        "ar": "اليوم العالمي للأراضي الرطبة",
+        "zh": "世界湿地日",
+        "fr": "Journée mondiale des zones humides",
+        "ru": "Всемирный день водно-болотных угодий",
+        "es": "Día Mundial de los Humedales"
       },
       "titleReview": [
         "fa"
@@ -274,7 +292,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Human Fraternity",
-        "fa": "روز بین‌المللی برادری انسانی"
+        "fa": "روز بین‌المللی برادری انسانی",
+        "ar": "اليوم الدولي للأخوة الإنسانية",
+        "zh": "人类博爱国际日",
+        "fr": "Journée internationale de la fraternité humaine",
+        "ru": "Международный день человеческого братства",
+        "es": "Día Internacional de la Fraternidad Humana"
       },
       "titleReview": [
         "fa"
@@ -318,7 +341,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Zero Tolerance to Female Genital Mutilation",
-        "fa": "روز بین‌المللی عدم تحمل ختنه زنان"
+        "fa": "روز بین‌المللی عدم تحمل ختنه زنان",
+        "ar": "اليوم الدولي لعدم التسامح مطلقا إزاء تشويه الأعضاء التناسلية الأنثوية",
+        "fr": "Journée internationale de tolérance zéro à l'égard des mutilations génitales féminines",
+        "ru": "Международный день нетерпимого отношения к калечащим операциям на женских половых органах",
+        "es": "Día Internacional de Tolerancia Cero con la Mutilación Genital Femenina"
       },
       "titleReview": [
         "fa"
@@ -362,7 +389,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the Arabian Leopard",
-        "fa": "روز بین‌المللی پلنگ عربی"
+        "fa": "روز بین‌المللی پلنگ عربی",
+        "ar": "اليوم الدولي للنمر العربي",
+        "zh": "国际阿拉伯豹日",
+        "fr": "Journée internationale du léopard d’Arabie",
+        "ru": "Международный день арабского леопарда",
+        "es": "Día Internacional del Leopardo Árabe"
       },
       "titleReview": [
         "fa"
@@ -450,7 +482,10 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Women and Girls in Science",
-        "fa": "روز بین‌المللی زنان و دختران در علم"
+        "fa": "روز بین‌المللی زنان و دختران در علم",
+        "ar": "اليوم الدولي للمرأة والفتاة في ميدان العلوم",
+        "fr": "Journée internationale des femmes et des filles de science",
+        "ru": "Международный день женщин и девочек в науке"
       },
       "titleReview": [
         "fa"
@@ -494,7 +529,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism",
-        "fa": "روز بین‌المللی پیشگیری از افراط‌گرایی خشونت‌آمیز در صورت منتهی‌شدن به تروریسم"
+        "fa": "روز بین‌المللی پیشگیری از افراط‌گرایی خشونت‌آمیز در صورت منتهی‌شدن به تروریسم",
+        "ar": "اليوم الدولي لمنع التطرف العنيف عندما يفضي إلى الإرهاب",
+        "zh": "防止助长恐怖主义的暴力极端主义国际日",
+        "fr": "Journée internationale pour la prévention de l’extrémisme violent pouvant conduire au terrorisme",
+        "ru": "Международный день предупреждения насильственного экстремизма, создающего питательную среду для терроризма",
+        "es": "Día Internacional para la Prevención del Extremismo Violento cuando Conduzca al Terrorismo"
       },
       "titleReview": [
         "fa"
@@ -583,7 +623,11 @@
       "isHoliday": false,
       "title": {
         "en": "Global Tourism Resilience Day",
-        "fa": "روز جهانی تاب‌آوری گردشگری"
+        "fa": "روز جهانی تاب‌آوری گردشگری",
+        "ar": "اليوم العالمي للسياحة القادرة على الصمود",
+        "zh": "旅游业复原力全球日",
+        "ru": "Всемирный день устойчивого туризма",
+        "es": "Día Mundial de la Resiliencia del Turismo"
       },
       "titleReview": [
         "fa"
@@ -671,7 +715,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی زبان مادری",
+        "fa": "روز بین‌المللی زبان مادری",
         "en": "International Mother Language Day",
         "ar": "اليوم الدولي للغة الأم",
         "zh": "国际母语日",
@@ -707,7 +751,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/mother-language-day",
         "resolution": "http://undocs.org/en/A/RES/56/262"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.seagrass-day",
@@ -717,7 +764,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Seagrass Day",
-        "fa": "روز جهانی علف‌های دریایی"
+        "fa": "روز جهانی علف‌های دریایی",
+        "ar": "اليوم العالمي للأعشاب البحرية",
+        "zh": "世界海草日",
+        "fr": "Journée mondiale des herbiers marins",
+        "ru": "Всемирный день морских трав",
+        "es": "Día Mundial de los Pastos Marinos"
       },
       "titleReview": [
         "fa"
@@ -805,7 +857,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Wildlife Day",
-        "fa": "روز جهانی حیات وحش"
+        "fa": "روز جهانی حیات وحش",
+        "ar": "اليوم العالمي للأحياء البرية",
+        "fr": "Journée mondiale de la vie sauvage",
+        "ru": "Всемирный день дикой природы",
+        "es": "Día Mundial de la Vida Silvestre"
       },
       "titleReview": [
         "fa"
@@ -849,7 +905,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for Disarmament and Non-Proliferation Awareness",
-        "fa": "روز بین‌المللی آگاهی از خلع سلاح و منع اشاعه"
+        "fa": "روز بین‌المللی آگاهی از خلع سلاح و منع اشاعه",
+        "zh": "裁军和不扩散宣传国际日",
+        "fr": "Journée internationale de sensibilisation au désarmement et à la non-prolifération",
+        "ru": "Международный день просвещения по вопросам разоружения и нераспространения",
+        "es": "Día Internacional para Concienciar sobre el Desarme y la No Proliferación"
       },
       "titleReview": [
         "fa"
@@ -937,7 +997,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Women Judges",
-        "fa": "روز بین‌المللی قضات زن"
+        "fa": "روز بین‌المللی قضات زن",
+        "ar": "اليوم الدولي للقاضيات",
+        "zh": "女法官国际日",
+        "fr": "Journée internationale des femmes juges",
+        "ru": "Международный день женщин-судей",
+        "es": "Día Internacional de las Juezas"
       },
       "titleReview": [
         "fa"
@@ -981,7 +1046,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day to Combat Islamophobia",
-        "fa": "روز بین‌المللی مبارزه با اسلام‌هراسی"
+        "fa": "روز بین‌المللی مبارزه با اسلام‌هراسی",
+        "ar": "اليوم الدولي لمكافحة كراهية الإسلام",
+        "zh": "打击伊斯兰恐惧症国际日",
+        "fr": "Journée internationale de lutte contre l’islamophobie",
+        "ru": "Международный день борьбы с исламофобией",
+        "es": "Día Internacional para Combatir la Islamofobia"
       },
       "titleReview": [
         "fa"
@@ -1025,7 +1095,11 @@
       "isHoliday": false,
       "title": {
         "en": "French Language Day",
-        "fa": "روز زبان فرانسوی"
+        "fa": "روز زبان فرانسوی",
+        "zh": "联合国法文日",
+        "fr": "Journée de la langue française",
+        "ru": "День французского языка в ООН",
+        "es": "Día de la lengua francesa"
       },
       "titleReview": [
         "fa"
@@ -1069,7 +1143,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Happiness",
-        "fa": "روز جهانی شادی"
+        "fa": "روز جهانی شادی",
+        "ar": "اليوم الدولي للسعادة",
+        "fr": "Journée internationale du bonheur",
+        "ru": "Международный день счастья",
+        "es": "Día Internacional de la Felicidad"
       },
       "titleReview": [
         "fa"
@@ -1156,7 +1234,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی نوروز",
+        "fa": "روز بین‌المللی نوروز",
         "en": "International Day of Nowruz",
         "ar": "يوم نوروز الدولي",
         "zh": "国际诺鲁孜节",
@@ -1192,7 +1270,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/international-nowruz-day",
         "resolution": "https://undocs.org/en/A/RES/64/253"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-poetry-day",
@@ -1291,7 +1372,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Day for Glaciers",
-        "fa": "روز جهانی یخچال‌های طبیعی"
+        "fa": "روز جهانی یخچال‌های طبیعی",
+        "ar": "اليوم العالمي للأنهار الجليدية",
+        "zh": "世界冰川日",
+        "fr": "Journée mondiale des glaciers",
+        "ru": "Всемирный день ледников"
       },
       "titleReview": [
         "fa"
@@ -1335,7 +1420,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Down Syndrome Day",
-        "fa": "روز جهانی سندرم داون"
+        "fa": "روز جهانی سندرم داون",
+        "ar": "اليوم العالمي لمتلازمة داون",
+        "fr": "Journée mondiale de la trisomie 21",
+        "ru": "Всемирный день людей с синдромом Дауна",
+        "es": "Día Mundial del Síndrome de Down"
       },
       "titleReview": [
         "fa"
@@ -1469,7 +1558,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی حق بر صحت و درستی درباره نقض فاحش حقوق بشر و منزلت قربانیان",
+        "fa": "روز بین‌المللی حق دانستن حقیقت دربارهٔ نقض‌های فاحش حقوق بشر و کرامت قربانیان",
         "en": "International Day for the Right to the Truth concerning Gross Human Rights Violations and for the Dignity of Victims",
         "ar": "اليوم العالمي للحق في معرفة الحقيقة فيما يتعلق بالانتهاكات الجسيمة لحقوق الإنسان ولاحترام كرامة الضحايا",
         "zh": "了解严重侵犯人权行为真相权利和维护受害者尊严国际日",
@@ -1505,7 +1594,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/right-to-truth-day",
         "resolution": "http://undocs.org/en/A/RES/67/200"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-tuberculosis-day",
@@ -1558,7 +1650,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی یاد بود قربانیان بردگی و تجارت برده از آن سوی اقیانوس اطلس",
+        "fa": "روز بین‌المللی یادبود قربانیان بردگی و تجارت برده از آن سوی اقیانوس اطلس",
         "en": "International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade",
         "ar": "اليوم الدولي لإحياء ذكرى ضحايا الرق وتجارة الرقيق عبر المحيط الأطلسي",
         "zh": "奴隶制和跨大西洋贩卖奴隶行为受害者国际纪念日",
@@ -1594,7 +1686,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/transatlantic-slave-trade",
         "resolution": "http://undocs.org/en/A/RES/62/122"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.detained-staff-day",
@@ -1604,7 +1699,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Solidarity with Detained and Missing Staff Members",
-        "fa": "روز بین‌المللی همبستگی با کارکنان بازداشت‌شده و مفقود"
+        "fa": "روز بین‌المللی همبستگی با کارکنان بازداشت‌شده و مفقود",
+        "ar": "اليوم العالمي للتضامن مع الموظفين المحتجزين والمفقودين",
+        "fr": "Journée de solidarité avec les fonctionnaires détenus ou portés disparus",
+        "ru": "Международный день солидарности с сотрудниками, содержащимися под стражей и пропавшими без вести",
+        "es": "Día internacional de Solidaridad con los miembros del personal detenidos o desaparecidos"
       },
       "titleReview": [
         "fa"
@@ -1648,7 +1747,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Zero Waste",
-        "fa": "روز بین‌المللی پسماند صفر"
+        "fa": "روز بین‌المللی پسماند صفر",
+        "ar": "اليوم الدولي للقضاء على الهدر",
+        "zh": "国际零废物日",
+        "fr": "Journée internationale du zéro déchet",
+        "ru": "Международный день за мир без отходов",
+        "es": "Día Internacional de Cero Desechos"
       },
       "titleReview": [
         "fa"
@@ -1736,7 +1840,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی آگاهی از مین و کمک به اقدام علیه مین",
+        "fa": "روز بین‌المللی آگاهی از مین و کمک به اقدام علیه مین",
         "en": "International Day for Mine Awareness and Assistance in Mine Action",
         "ar": "اليوم الدولي للتوعية بخطر الألغام",
         "zh": "国际提高地雷意识和协助地雷行动日",
@@ -1772,7 +1876,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/mine-awareness-day",
         "resolution": "http://undocs.org/en/A/RES/60/97"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.conscience-day",
@@ -1782,7 +1889,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Conscience",
-        "fa": "روز بین‌المللی وجدان"
+        "fa": "روز بین‌المللی وجدان",
+        "ar": "اليوم الدولي للضمير",
+        "zh": "国际良心日",
+        "fr": "Journée internationale de la conscience",
+        "ru": "Международный день нравственности",
+        "es": "Día Internacional de la Conciencia"
       },
       "titleReview": [
         "fa"
@@ -1871,7 +1983,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز یادبود قربانیان نسل کشی رواندا",
+        "fa": "روز بین‌المللی تأمل دربارهٔ نسل‌کشی سال ۱۹۹۴ علیه توتسی‌ها در رواندا",
         "en": "International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda",
         "ar": "اليوم الدولي للتفكر في الإبادة الجماعية التي وقعت في عام 1994 ضد التوتسي في رواندا",
         "zh": "1994年卢旺达境内针对图西人实施的灭绝种族罪国际反思日",
@@ -1907,7 +2019,10 @@
       "links": {
         "un": "http://www.un.org/en/preventgenocide/rwanda/commemoration/annualcommemoration.shtml",
         "resolution": "https://undocs.org/en/A/RES/58/234"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-health-day",
@@ -1960,7 +2075,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Human Space Flight",
-        "fa": "روز بین‌المللی پرواز فضایی انسان"
+        "fa": "روز بین‌المللی پرواز فضایی انسان",
+        "ar": "اليوم الدولي للرحلة البشرية إلى الفضاء",
+        "fr": "Journée internationale du vol spatial habité",
+        "ru": "Международный день полета человека в космос",
+        "es": "Día Internacional de los Vuelos Espaciales Tripulados"
       },
       "titleReview": [
         "fa"
@@ -2049,7 +2168,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Wellness Day",
-        "fa": "روز بین‌المللی تندرستی"
+        "fa": "روز بین‌المللی تندرستی",
+        "ar": "اليوم الدولي للحفاظ على العافية",
+        "zh": "国际健康日",
+        "fr": "Journée internationale du mieux-être",
+        "ru": "Международный день оздоровления"
       },
       "titleReview": [
         "fa"
@@ -2094,7 +2217,9 @@
       "isHoliday": false,
       "title": {
         "en": "Chinese Language Day",
-        "fa": "روز زبان چینی"
+        "fa": "روز زبان چینی",
+        "zh": "联合国中文日",
+        "ru": "День китайского языка в ООН"
       },
       "titleReview": [
         "fa"
@@ -2138,7 +2263,10 @@
       "isHoliday": false,
       "title": {
         "en": "World Creativity and Innovation Day",
-        "fa": "روز جهانی خلاقیت و نوآوری"
+        "fa": "روز جهانی خلاقیت و نوآوری",
+        "fr": "Journée mondiale de la créativité et de l’innovation",
+        "ru": "Всемирный день творчества и инновационной деятельности",
+        "es": "Día Mundial de la Creatividad y la Innovación"
       },
       "titleReview": [
         "fa"
@@ -2182,7 +2310,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی مادر زمین",
+        "fa": "روز بین‌المللی مادر زمین",
         "en": "International Mother Earth Day",
         "ar": "اليوم الدولي لأمنا الأرض",
         "zh": "国际地球母亲日",
@@ -2217,7 +2345,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/earth-day",
         "resolution": "http://undocs.org/en/A/RES/63/278"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-book-and-copyright-day",
@@ -2226,7 +2357,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی کتاب و حق پدید آورنده",
+        "fa": "روز جهانی کتاب و حق نشر",
         "en": "World Book and Copyright Day",
         "ar": "اليوم العالمي للكتاب وحقوق المؤلف",
         "zh": "世界图书与版权日",
@@ -2262,7 +2393,10 @@
       "links": {
         "un": "https://www.unesco.org/en/days/world-book-and-copyright",
         "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000101803#page=56"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.english-language-day",
@@ -2272,7 +2406,8 @@
       "isHoliday": false,
       "title": {
         "en": "English Language Day",
-        "fa": "روز زبان انگلیسی"
+        "fa": "روز زبان انگلیسی",
+        "ru": "День английского языка в ООН"
       },
       "titleReview": [
         "fa"
@@ -2367,7 +2502,10 @@
       "isHoliday": false,
       "title": {
         "en": "Spanish Language Day",
-        "fa": "روز زبان اسپانیایی"
+        "fa": "روز زبان اسپانیایی",
+        "zh": "联合国西班牙文日",
+        "ru": "День испанского языка в ООН",
+        "es": "Día del Idioma Español en las Naciones Unidas"
       },
       "titleReview": [
         "fa"
@@ -2411,7 +2549,10 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Multilateralism and Diplomacy for Peace",
-        "fa": "روز بین‌المللی چندجانبه‌گرایی و دیپلماسی برای صلح"
+        "fa": "روز بین‌المللی چندجانبه‌گرایی و دیپلماسی برای صلح",
+        "ar": "اليوم الدولي لتعددية الأطراف والدبلوماسية من أجل السلام",
+        "fr": "Journée internationale du multilatéralisme et de la diplomatie au service de la paix",
+        "es": "Día Internacional del Multilateralismo y la Diplomacia para la Paz"
       },
       "titleReview": [
         "fa"
@@ -2495,7 +2636,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Delegate's Day",
-        "fa": "روز بین‌المللی نمایندگان"
+        "fa": "روز بین‌المللی نمایندگان",
+        "ar": "اليوم الدولي للمندوبين",
+        "zh": "国际代表日",
+        "fr": "Journée internationale des délégués",
+        "ru": "Международный день делегата",
+        "es": "Día Internacional del Delegado"
       },
       "titleReview": [
         "fa"
@@ -2582,7 +2728,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Chernobyl Disaster Remembrance Day",
-        "fa": "روز بین‌المللی یادبود فاجعه چرنوبیل"
+        "fa": "روز بین‌المللی یادبود فاجعه چرنوبیل",
+        "ar": "اليوم الدولي لإحياء ذكرى كارثة تشيرنوبيل",
+        "fr": "Journée internationale du souvenir de la catastrophe de Chornobyl",
+        "ru": "Международный день памяти о чернобыльской катастрофе",
+        "es": "Día Internacional de Recordación del Desastre de Chernóbyl"
       },
       "titleReview": [
         "fa"
@@ -2670,7 +2820,10 @@
       "isHoliday": false,
       "title": {
         "en": "International Day in Memory of the Victims of Earthquakes",
-        "fa": "روز بین‌المللی یادبود قربانیان زلزله"
+        "fa": "روز بین‌المللی یادبود قربانیان زلزله",
+        "ar": "اليوم الدولي لإحياء ذكرى ضحايا الزلازل",
+        "zh": "缅怀地震遇难者国际日",
+        "es": "Día Internacional en Memoria de las Víctimas de Terremotos"
       },
       "titleReview": [
         "fa"
@@ -2714,7 +2867,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Jazz Day",
-        "fa": "روز جهانی جاز"
+        "fa": "روز جهانی جاز",
+        "ar": "اليوم الدولي لموسيقى الجاز",
+        "fr": "Journée internationale du jazz",
+        "ru": "Международный день джаза",
+        "es": "Día Internacional del Jazz"
       },
       "titleReview": [
         "fa"
@@ -2758,7 +2915,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Tuna Day",
-        "fa": "روز جهانی ماهی تن"
+        "fa": "روز جهانی ماهی تن",
+        "ar": "اليوم العالمي لسمك التونة",
+        "fr": "Journée mondiale du thon",
+        "ru": "Всемирный день тунца",
+        "es": "Día Mundial del Atún"
       },
       "titleReview": [
         "fa"
@@ -2896,7 +3057,8 @@
         "en": "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War",
         "zh": "缅怀第二次世界大战的所有死难者的悼念与和解的时刻",
         "fr": "Journées du souvenir et de la réconciliation en l'honneur des morts de la Seconde Guerre mondiale",
-        "ru": "Дни памяти и примирения, посвященные погибшим во Второй мировой войне"
+        "ru": "Дни памяти и примирения, посвященные погибшим во Второй мировой войне",
+        "ar": "مناسبة للتذكر والمصالحة إجلالا لذكرى جميع ضحايا الحرب العالمية الثانية"
       },
       "rule": {
         "type": "Fixed",
@@ -2936,7 +3098,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Argania",
-        "fa": "روز بین‌المللی درخت آرگان"
+        "fa": "روز بین‌المللی درخت آرگان",
+        "ar": "اليوم الدولي لشجرة الأرگان",
+        "zh": "国际阿甘树日",
+        "ru": "Международный день аргании",
+        "es": "Día Internacional de los Arganes"
       },
       "titleReview": [
         "fa"
@@ -3217,7 +3383,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Living Together in Peace",
-        "fa": "روز بین‌المللی زندگی مسالمت‌آمیز در کنار هم"
+        "fa": "روز بین‌المللی زندگی مسالمت‌آمیز در کنار هم",
+        "ar": "اليوم الدولي للعيش معاً في سلام",
+        "fr": "Journée internationale du vivre-ensemble en paix",
+        "ru": "Международный день жизни вместе в мире друг с другом",
+        "es": "Día Internacional de la Convivencia en Paz"
       },
       "titleReview": [
         "fa"
@@ -3261,12 +3431,13 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی ارتباطات",
+        "fa": "روز جهانی ارتباطات و جامعهٔ اطلاعاتی",
         "en": "World Telecommunication and Information Society Day",
         "ar": "اليوم العالمي للاتصالات ومجتمع المعلومات",
         "zh": "世界电信和信息社会日",
         "fr": "Journée mondiale des télécommunications et de la société de l'information",
-        "es": "Día Mundial de las Telecomunicaciones y la Sociedad de la Información"
+        "es": "Día Mundial de las Telecomunicaciones y la Sociedad de la Información",
+        "ru": "Всемирный день электросвязи и информационного общества"
       },
       "rule": {
         "type": "Fixed",
@@ -3302,7 +3473,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/telecommunication-day",
         "resolution": "https://undocs.org/en/A/RES/60/252"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.fair-play-day",
@@ -3312,7 +3486,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Fair Play Day",
-        "fa": "روز جهانی بازی منصفانه"
+        "fa": "روز جهانی بازی منصفانه",
+        "ar": "اليوم العالمي للعب النظيف",
+        "zh": "世界公平比赛日",
+        "fr": "Journée mondiale du fair-play",
+        "ru": "Всемирный день честной игры",
+        "es": "Día Mundial del Juego Limpio"
       },
       "titleReview": [
         "fa"
@@ -3399,7 +3578,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی تنوع فرهنگی برای گفت و گو و توسعه",
+        "fa": "روز جهانی تنوع فرهنگی برای گفت‌وگو و توسعه",
         "en": "World Day for Cultural Diversity for Dialogue and Development",
         "ar": "اليوم العالمي للتنوع الثقافي من أجل الحوار والتنمية",
         "zh": "世界文化多样性促进对话和发展日",
@@ -3435,7 +3614,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/cultural-diversity-day",
         "resolution": "https://undocs.org/en/A/RES/57/249"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.international-tea-day",
@@ -3540,7 +3722,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day to End Obstetric Fistula",
-        "fa": "روز بین‌المللی پایان دادن به فیستول مامایی"
+        "fa": "روز بین‌المللی پایان دادن به فیستول مامایی",
+        "ar": "اليوم الدولي للقضاء على ناسور الولادة",
+        "fr": "Journée internationale pour l’élimination de la fistule obstétricale",
+        "ru": "Международный день по искоренению акушерских свищей",
+        "es": "Día Internacional para la Erradicación de la Fístula Obstétrica"
       },
       "titleReview": [
         "fa"
@@ -3584,7 +3770,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the Markhor",
-        "fa": "روز بین‌المللی مارخور"
+        "fa": "روز بین‌المللی مارخور",
+        "ar": "اليوم الدولي لوعل المارخور",
+        "zh": "国际捻角山羊日",
+        "fr": "Journée internationale du markhor",
+        "ru": "Международный день мархура"
       },
       "titleReview": [
         "fa"
@@ -3628,7 +3818,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Football Day",
-        "fa": "روز جهانی فوتبال"
+        "fa": "روز جهانی فوتبال",
+        "ar": "اليوم العالمي لكرة القدم",
+        "zh": "世界足球日",
+        "fr": "Journée mondiale du football",
+        "ru": "Всемирный день футбола"
       },
       "titleReview": [
         "fa"
@@ -3671,7 +3865,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی حافظان صلح ملل متحد",
+        "fa": "روز بین‌المللی حافظان صلح ملل متحد",
         "en": "International Day of UN Peacekeepers",
         "ar": "اليوم الدولي لحفظة السلام",
         "zh": "联合国维持和平人员国际日",
@@ -3707,7 +3901,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/peacekeepers-day",
         "resolution": "https://undocs.org/en/A/RES/57/129"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.international-day-of-potato",
@@ -3807,7 +4004,11 @@
       "isHoliday": false,
       "title": {
         "en": "Global Day of Parents",
-        "fa": "روز جهانی والدین"
+        "fa": "روز جهانی والدین",
+        "ar": "اليوم العالمي للوالدين",
+        "fr": "Journée mondiale des parents",
+        "ru": "Всемирный день родителей",
+        "es": "Día Mundial de las Madres y los Padres"
       },
       "titleReview": [
         "fa"
@@ -3851,7 +4052,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Bicycle Day",
-        "fa": "روز جهانی دوچرخه"
+        "fa": "روز جهانی دوچرخه",
+        "ar": "اليوم العالمي للدراجة الهوائية",
+        "fr": "Journée mondiale de la bicyclette",
+        "ru": "Всемирный день велосипеда",
+        "es": "Día Mundial de la Bicicleta"
       },
       "titleReview": [
         "fa"
@@ -3895,7 +4100,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض",
+        "fa": "روز بین‌المللی کودکان بی گناه قربانی تجاوز و تعرض",
         "en": "International Day of Innocent Children Victims of Aggression",
         "ar": "اليوم الدولي لضحايا العدوان من الأطفال الأبرياء",
         "zh": "受侵略戕害的无辜儿童国际日",
@@ -3931,7 +4136,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/child-victim-day",
         "resolution": "http://undocs.org/en/A/RES/ES-7/8"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.environment-day",
@@ -3985,7 +4193,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for the Fight against Illegal, Unreported and Unregulated Fishing",
-        "fa": "روز بین‌المللی مبارزه با صید غیرقانونی، گزارش‌نشده و بی‌ضابطه"
+        "fa": "روز بین‌المللی مبارزه با صید غیرقانونی، گزارش‌نشده و بی‌ضابطه",
+        "ar": "اليوم العالمي لمكافحة الصيد غير القانوني دون إبلاغ ودون تنظيم",
+        "fr": "Journée internationale de la lutte contre la pêche illicite, non déclarée et non réglementée",
+        "ru": "Международный день борьбы с незаконным, несообщаемым и нерегулируемым промыслом",
+        "es": "Día Internacional de la Lucha contra la Pesca Ilegal, No Declarada y No Reglamentada"
       },
       "titleReview": [
         "fa"
@@ -4029,7 +4241,10 @@
       "isHoliday": false,
       "title": {
         "en": "Russian Language Day",
-        "fa": "روز زبان روسی"
+        "fa": "روز زبان روسی",
+        "fr": "Journée de la langue russe",
+        "ru": "День русского языка в ООН",
+        "es": "Día de la lengua rusa"
       },
       "titleReview": [
         "fa"
@@ -4073,7 +4288,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Food Safety Day",
-        "fa": "روز جهانی ایمنی غذا"
+        "fa": "روز جهانی ایمنی غذا",
+        "ar": "اليوم العالمي لسلامة الأغذية<",
+        "fr": "Journée internationale de la sécurité sanitaire des aliments",
+        "ru": "Всемирный день безопасности пищевых продуктов",
+        "es": "Día Mundial de la Inocuidad de los Alimentos"
       },
       "titleReview": [
         "fa"
@@ -4116,7 +4335,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی اقیانوس ها",
+        "fa": "روز جهانی اقیانوس‌ها",
         "en": "World Oceans Day",
         "ar": "اليوم العالمي للمحيطات",
         "zh": "世界海洋日",
@@ -4152,7 +4371,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/oceans-day",
         "resolution": "https://undocs.org/en/A/RES/63/111"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.international-day-for-dialogue-among-civilizations",
@@ -4206,7 +4428,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Play",
-        "fa": "روز بین‌المللی بازی"
+        "fa": "روز بین‌المللی بازی",
+        "zh": "国际游玩日",
+        "fr": "Journée internationale du jeu",
+        "ru": "Международный день игры",
+        "es": "Día Internacional del Juego"
       },
       "titleReview": [
         "fa"
@@ -4294,7 +4520,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Albinism Awareness Day",
-        "fa": "روز بین‌المللی آگاهی از آلبینیسم"
+        "fa": "روز بین‌المللی آگاهی از آلبینیسم",
+        "ar": "اليوم الدولي للتوعية بالمهق",
+        "fr": "Journée internationale de sensibilisation à l'albinisme",
+        "ru": "Международный день распространения информации об альбинизме",
+        "es": "Día Internacional de Sensibilización sobre el Albinismo"
       },
       "titleReview": [
         "fa"
@@ -4384,7 +4614,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Elder Abuse Awareness Day",
-        "fa": "روز جهانی آگاهی از آزار سالمندان"
+        "fa": "روز جهانی آگاهی از آزار سالمندان",
+        "ar": "اليوم العالمي للتوعية بشأن إساءة معاملة المسنين",
+        "fr": "Journée mondiale de sensibilisation à la maltraitance des personnes âgées",
+        "ru": "Всемирный день распространения информации о злоупотреблениях в отношении пожилых людей",
+        "es": "Día Mundial de Toma de Conciencia de Abuso y Maltrato en la Vejez"
       },
       "titleReview": [
         "fa"
@@ -4429,7 +4663,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Family Remittances",
-        "fa": "روز بین‌المللی حواله‌های خانوادگی"
+        "fa": "روز بین‌المللی حواله‌های خانوادگی",
+        "ar": "اليوم الدولي للتحويلات المالية العائلية",
+        "fr": "Journée internationale des envois de fonds familiaux",
+        "ru": "Международный день семейных денежных переводов",
+        "es": "Día Internacional de las Remesas Familiares"
       },
       "titleReview": [
         "fa"
@@ -4519,7 +4757,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for Countering Hate Speech",
-        "fa": "روز بین‌المللی مقابله با نفرت‌پراکنی"
+        "fa": "روز بین‌المللی مقابله با نفرت‌پراکنی",
+        "ar": "اليوم الدولي لمكافحة خطاب الكراهية",
+        "zh": "打击仇恨言论国际日",
+        "fr": "Journée internationale de la lutte contre les discours de haine",
+        "ru": "Международный день борьбы с языком ненависти",
+        "es": "Día Internacional para Contrarrestar el Discurso de Odio"
       },
       "titleReview": [
         "fa"
@@ -4608,7 +4851,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for the Elimination of Sexual Violence in Conflict",
-        "fa": "روز بین‌المللی ریشه‌کنی خشونت جنسی در منازعات"
+        "fa": "روز بین‌المللی ریشه‌کنی خشونت جنسی در منازعات",
+        "ar": "اليوم الدولي للقضاء على العنف الجنسي في حالات النزاع",
+        "zh": "消除冲突中性暴力行为国际日",
+        "fr": "Journée internationale pour l'élimination de la violence sexuelle en temps de conflit",
+        "ru": "Международный день борьбы с сексуальным насилием в условиях конфликта",
+        "es": "Día Internacional para la Eliminación de la Violencia Sexual en los Conflictos"
       },
       "titleReview": [
         "fa"
@@ -4697,7 +4945,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Yoga",
-        "fa": "روز جهانی یوگا"
+        "fa": "روز جهانی یوگا",
+        "ar": "اليوم الدولي لليوغا",
+        "fr": "Journée internationale du Yoga",
+        "ru": "Международный день йоги",
+        "es": "Día Internacional del Yoga"
       },
       "titleReview": [
         "fa"
@@ -4741,7 +4993,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the Celebration of the Solstice",
-        "fa": "روز بین‌المللی گرامیداشت انقلاب تابستانی"
+        "fa": "روز بین‌المللی گرامیداشت انقلاب خورشیدی",
+        "ar": "اليوم الدولي للاحتفال بالانقلاب الشمسي",
+        "fr": "Journée internationale de la célébration du solstice",
+        "ru": "Международный день празднования солнцестояния",
+        "es": "Día Internacional de la Celebración del Solsticio"
       },
       "titleReview": [
         "fa"
@@ -4830,7 +5086,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی بیوه ها",
+        "fa": "روز بین‌المللی بیوه‌ها",
         "en": "International Widows' Day",
         "ar": "اليوم الدولي للأرامل",
         "zh": "国际丧偶妇女日",
@@ -4866,7 +5122,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/widows-day",
         "resolution": "https://undocs.org/en/A/RES/65/189"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.women-in-diplomacy-day",
@@ -4876,7 +5135,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Women in Diplomacy",
-        "fa": "روز بین‌المللی زنان در دیپلماسی"
+        "fa": "روز بین‌المللی زنان در دیپلماسی",
+        "ar": "اليوم الدولي للمرأة في العمل الدبلوماسي",
+        "zh": "女外交官国际日",
+        "fr": "Journée internationale des femmes dans la diplomatie",
+        "ru": "Международный день женщин в дипломатии",
+        "es": "Día Internacional de las Mujeres en la Diplomacia"
       },
       "titleReview": [
         "fa"
@@ -4965,7 +5229,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی مبارزه با سوء استفاده و قاچاق مواد مخدر",
+        "fa": "روز بین‌المللی مبارزه با مصرف و قاچاق غیرقانونی مواد مخدر",
         "en": "International Day against Drug Abuse and Illicit Trafficking",
         "ar": "اليوم الدولي لمكافحة إساءة استعمال المخدرات والاتجار غير المشروع بها",
         "zh": "禁止药物滥用和非法贩运国际日",
@@ -5001,7 +5265,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/end-drug-abuse-day",
         "resolution": "https://undocs.org/en/A/RES/42/112"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.torture-victims-day",
@@ -5010,7 +5277,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی حمایت از قربانیان شکنجه",
+        "fa": "روز بین‌المللی حمایت از قربانیان شکنجه",
         "en": "United Nations International Day in Support of Victims of Torture",
         "ar": "اليوم الدولي للأمم المتحدة لمساندة ضحايا التعذيب",
         "zh": "支援酷刑受害者国际日",
@@ -5046,7 +5313,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/torture-victims-day",
         "resolution": "https://undocs.org/en/A/RES/52/149"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.deafblindness-day",
@@ -5056,7 +5326,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Deafblindness",
-        "fa": "روز بین‌المللی ناشنوایی-نابینایی"
+        "fa": "روز بین‌المللی ناشنوایی-نابینایی",
+        "ar": "اليوم الدولي للإعاقة السمعية البصرية",
+        "zh": "国际聋盲症日",
+        "fr": "Journée internationale des personnes sourdaveugles",
+        "ru": "Международный день слепоглухоты",
+        "es": "Día Internacional de la Sordoceguera"
       },
       "titleReview": [
         "fa"
@@ -5100,7 +5375,11 @@
       "isHoliday": false,
       "title": {
         "en": "Micro-, Small and Medium-sized Enterprises Day",
-        "fa": "روز کسب‌وکارهای خرد، کوچک و متوسط"
+        "fa": "روز کسب‌وکارهای خرد، کوچک و متوسط",
+        "ar": "يوم المؤسسات المتناهية الصغر والصغيرة والمتوسطة",
+        "fr": "Journée des micro-, petites et moyennes entreprises",
+        "ru": "День микро-, малых и средних предприятий",
+        "es": "Día de las Microempresas y las Pequeñas y Medianas Empresa"
       },
       "titleReview": [
         "fa"
@@ -5144,7 +5423,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the Tropics",
-        "fa": "روز بین‌المللی مناطق حاره‌ای"
+        "fa": "روز بین‌المللی مناطق حاره‌ای",
+        "ar": "اليوم الدولي للمناطق المدارية",
+        "fr": "Journée internationale des tropiques",
+        "ru": "Международный день тропиков",
+        "es": "Día Internacional de los Trópicos"
       },
       "titleReview": [
         "fa"
@@ -5188,7 +5471,10 @@
       "isHoliday": false,
       "title": {
         "en": "International Asteroid Day",
-        "fa": "روز بین‌المللی سیارک"
+        "fa": "روز بین‌المللی سیارک",
+        "ar": "اليوم الدولي للكويكبات",
+        "fr": "Journée internationale des astéroïdes",
+        "ru": "Международный день астероида"
       },
       "titleReview": [
         "fa"
@@ -5232,7 +5518,10 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Parliamentarism",
-        "fa": "روز بین‌المللی پارلمانتاریسم"
+        "fa": "روز بین‌المللی پارلمانتاریسم",
+        "ar": "اليوم الدولي للعمل البرلماني",
+        "fr": "Journée internationale du parlementarisme",
+        "ru": "Международный день парламентаризма"
       },
       "titleReview": [
         "fa"
@@ -5276,7 +5565,10 @@
       "isHoliday": false,
       "title": {
         "en": "World Rural Development Day",
-        "fa": "روز جهانی توسعه روستایی"
+        "fa": "روز جهانی توسعه روستایی",
+        "zh": "世界农村发展日",
+        "ru": "Всемирный день развития сельских районов",
+        "es": "Día Mundial del Desarrollo Rural"
       },
       "titleReview": [
         "fa"
@@ -5320,7 +5612,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Kiswahili Language Day",
-        "fa": "روز جهانی زبان سواحیلی"
+        "fa": "روز جهانی زبان سواحیلی",
+        "ar": "اليوم العالمي للغة السواحلية",
+        "zh": "世界斯瓦希里语日",
+        "ru": "Всемирный день языка суахили",
+        "es": "Día Mundial de la Lengua Kiswahili"
       },
       "titleReview": [
         "fa"
@@ -5409,7 +5705,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica",
-        "fa": "روز بین‌المللی تأمل و یادبود نسل‌کشی سال ۱۹۹۵ سربرنیتسا"
+        "fa": "روز بین‌المللی تأمل و یادبود نسل‌کشی سال ۱۹۹۵ سربرنیتسا",
+        "zh": "1995年斯雷布雷尼察灭绝种族罪国际反思和纪念日",
+        "fr": "Journée internationale de réflexion et de commémoration du génocide commis à Srebrenica en 1995",
+        "ru": "Международный день размышления и памяти о геноциде 1995 года в Сребренице",
+        "es": "Día Internacional de Reflexión y Conmemoración del Genocidio de Srebrenica de 1995"
       },
       "titleReview": [
         "fa"
@@ -5453,7 +5753,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Horse Day",
-        "fa": "روز جهانی اسب"
+        "fa": "روز جهانی اسب",
+        "ar": "اليوم العالمي للحصان",
+        "zh": "世界马匹日",
+        "fr": "Journée mondiale du cheval",
+        "ru": "Всемирный день лошади",
+        "es": "Día Mundial del Caballo"
       },
       "titleReview": [
         "fa"
@@ -5497,7 +5802,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Combating Sand and Dust Storms",
-        "fa": "روز بین‌المللی مبارزه با طوفان‌های شن و گرد و غبار"
+        "fa": "روز بین‌المللی مبارزه با طوفان‌های شن و گرد و غبار",
+        "ar": "اليوم الدولي لمكافحة العواصف الرملية والترابية",
+        "zh": "国际防治沙尘暴日",
+        "fr": "Journée internationale de la lutte contre les tempêtes de sable et de poussière",
+        "ru": "Международный день борьбы с песчаными и пыльными бурями",
+        "es": "Día Internacional de la Lucha contra las Tormentas de Arena y Polvo"
       },
       "titleReview": [
         "fa"
@@ -5541,7 +5851,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Hope",
-        "fa": "روز بین‌المللی امید"
+        "fa": "روز بین‌المللی امید",
+        "ar": "اليوم الدولي للأمل",
+        "zh": "国际希望日",
+        "ru": "Международный день надежды",
+        "es": "Día Internacional de la Esperanza"
       },
       "titleReview": [
         "fa"
@@ -5585,7 +5899,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Youth Skills Day",
-        "fa": "روز جهانی مهارت‌های جوانان"
+        "fa": "روز جهانی مهارت‌های جوانان",
+        "ar": "اليوم العالمي لمهارات الشباب",
+        "fr": "Journée mondiale des compétences des jeunes",
+        "ru": "Всемирный день навыков молодежи",
+        "es": "Día Mundial de las Habilidades de la Juventud"
       },
       "titleReview": [
         "fa"
@@ -5628,8 +5946,13 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین‌المللی تعاونیها",
-        "en": "International Day of Cooperatives"
+        "fa": "روز بین‌المللی تعاونی‌ها",
+        "en": "International Day of Cooperatives",
+        "ar": "اليوم الدولي للتعاونيات",
+        "zh": "国际合作社日",
+        "fr": "Journée internationale des coopératives",
+        "ru": "Международный день кооперативов",
+        "es": "Día Internacional de las Cooperativas"
       },
       "rule": {
         "type": "NthWeekdayOfMonth",
@@ -5660,7 +5983,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/cooperatives-day",
         "resolution": "https://undocs.org/en/A/RES/47/90"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.nelson-mandela-international-day",
@@ -5669,7 +5995,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی نلسون ماندلا",
+        "fa": "روز بین‌المللی نلسون ماندلا",
         "en": "Nelson Mandela International Day",
         "ar": "اليوم الدولي لنيلسون مانديلا",
         "zh": "纳尔逊·曼德拉国际日",
@@ -5705,7 +6031,10 @@
       "links": {
         "un": "http://www.un.org/en/events/mandeladay/",
         "resolution": "https://undocs.org/en/A/RES/64/13"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.moon-day",
@@ -5715,7 +6044,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Moon Day",
-        "fa": "روز بین‌المللی ماه"
+        "fa": "روز بین‌المللی ماه",
+        "ar": "اليوم الدولي للقمر",
+        "zh": "国际月球日",
+        "fr": "Journée internationale de la Lune",
+        "ru": "Международный день Луны"
       },
       "titleReview": [
         "fa"
@@ -5759,7 +6092,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Chess Day",
-        "fa": "روز جهانی شطرنج"
+        "fa": "روز جهانی شطرنج",
+        "ar": "اليوم العالمي للشطرنج",
+        "zh": "世界国际象棋日",
+        "fr": "Journée mondiale du jeu d'échecs",
+        "ru": "Всемирный день шахмат",
+        "es": "Día Mundial del Ajedrez"
       },
       "titleReview": [
         "fa"
@@ -5803,7 +6141,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for Judicial Well-being",
-        "fa": "روز بین‌المللی رفاه قضایی"
+        "fa": "روز بین‌المللی رفاه قضایی",
+        "ar": "اليوم الدولي لرفاه القضاء",
+        "zh": "司法福祉国际日",
+        "fr": "Journée internationale pour le bien-être des juges",
+        "ru": "Международный день благополучия судей и судебных работников"
       },
       "titleReview": [
         "fa"
@@ -5847,7 +6189,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Women and Girls of African Descent",
-        "fa": "روز بین‌المللی زنان و دختران تبار آفریقایی"
+        "fa": "روز بین‌المللی زنان و دختران تبار آفریقایی",
+        "ar": "اليوم الدولي للنساء والفتيات المنحدرات من أصل أفريقي",
+        "zh": "非洲裔妇女和女童国际日",
+        "fr": "Journée internationale des femmes et des filles d’ascendance africaine",
+        "ru": "Международный день женщин и девочек африканского происхождения",
+        "es": "Día Internacional de las Mujeres y Niñas Afrodescendientes"
       },
       "titleReview": [
         "fa"
@@ -5891,7 +6238,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Drowning Prevention Day",
-        "fa": "روز جهانی پیشگیری از غرق‌شدگی"
+        "fa": "روز جهانی پیشگیری از غرق‌شدگی",
+        "ar": "اليوم العالمي للوقاية من الغرق",
+        "zh": "世界预防溺水日",
+        "fr": "Journée mondiale de prévention de la noyade",
+        "ru": "Всемирный день предотвращения утоплений",
+        "es": "Día Mundial para la Prevención de los Ahogamientos"
       },
       "titleReview": [
         "fa"
@@ -6023,7 +6375,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Friendship",
-        "fa": "روز بین‌المللی دوستی"
+        "fa": "روز بین‌المللی دوستی",
+        "ar": "اليوم الدولي للصداقة",
+        "fr": "Journée internationale de l'amitié",
+        "ru": "Международный день дружбы",
+        "es": "Día Internacional de la Amistad"
       },
       "titleReview": [
         "fa"
@@ -6067,7 +6423,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Awareness of the Special Development Needs and Challenges of Landlocked Developing Countries",
-        "fa": "روز بین‌المللی آگاهی از نیازها و چالش‌های ویژه توسعه‌ای کشورهای درحال‌توسعه محصور در خشکی"
+        "fa": "روز بین‌المللی آگاهی از نیازها و چالش‌های ویژه توسعه‌ای کشورهای درحال‌توسعه محصور در خشکی",
+        "zh": "内陆发展中国家特殊发展需要和挑战国际宣传日",
+        "fr": "Journée internationale de sensibilisation aux besoins et enjeux de développement propres aux pays en développement sans littoral",
+        "ru": "Международный день распространения информации об особых потребностях развивающихся стран, не имеющих выхода к морю, и стоящих перед ними особых проблемах в области развития",
+        "es": "Día Internacional de Concienciación sobre las Necesidades y los Desafíos Especiales de Desarrollo de los Países en Desarrollo sin Litoral"
       },
       "titleReview": [
         "fa"
@@ -6156,7 +6516,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Steelpan Day",
-        "fa": "روز جهانی استیل‌پن"
+        "fa": "روز جهانی استیل‌پن",
+        "ar": "اليوم العالمي لطبول ’’ستيل بان‘‘",
+        "zh": "世界钢鼓日",
+        "fr": "Journée mondiale du steel pan",
+        "ru": "Всемирный день стального барабана",
+        "es": "Día Mundial de los Tambores Metálicos"
       },
       "titleReview": [
         "fa"
@@ -6199,7 +6564,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی جوانان",
+        "fa": "روز بین‌المللی جوانان",
         "en": "International Youth Day",
         "ar": "يوم الشباب الدولي",
         "zh": "国际青年日",
@@ -6235,7 +6600,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/youth-day",
         "resolution": "https://undocs.org/en/A/RES/54/120"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.humanitarian-day",
@@ -6244,7 +6612,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی انساندوستی",
+        "fa": "روز جهانی انسان‌دوستی",
         "en": "World Humanitarian Day",
         "ar": "اليوم العالمي للعمل الإنساني",
         "zh": "世界人道主义日",
@@ -6280,7 +6648,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/humanitarian-day",
         "resolution": "https://undocs.org/en/A/RES/63/139"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.terrorism-victims-day",
@@ -6289,7 +6660,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین‌المللی یاد بود و احترام به قربانیان تروریسم",
+        "fa": "روز بین‌المللی یادبود و احترام به قربانیان تروریسم",
         "en": "International Day of Remembrance and Tribute to the Victims of Terrorism",
         "ar": "اليوم الدولي لإحياء ذكرى ضحايا الإرهاب وإجلالهم",
         "zh": "纪念和悼念恐怖主义受害者国际日",
@@ -6324,7 +6695,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/terrorism-victims-day",
         "resolution": "https://undocs.org/en/A/RES/72/165"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.religious-based-violence-victims-day",
@@ -6334,7 +6708,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day Commemorating the Victims of Acts of Violence Based on Religion or Belief",
-        "fa": "روز بین‌المللی یادبود قربانیان اعمال خشونت بر اساس دین یا باور"
+        "fa": "روز بین‌المللی یادبود قربانیان اعمال خشونت بر اساس دین یا باور",
+        "ar": "اليوم الدولي لإحياء ذكرى ضحايا أعمال العنف القائمة على أساس الدين أو المعتقد",
+        "fr": "Journée internationale de commémoration des personnes victimes de violences en raison de leur religion ou de leurs convictions",
+        "ru": "Международный день памяти жертв актов насилия на основе религии или убеждений",
+        "es": "Día de Conmemoración de las Víctimas de Actos de Violencia basados en la Religión o las Creencias"
       },
       "titleReview": [
         "fa"
@@ -6377,7 +6755,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی یادبود و الغاء تجارت برده",
+        "fa": "روز بین‌المللی یادبود تجارت برده و لغو آن",
         "en": "International Day for the Remembrance of the Slave Trade and Its Abolition",
         "ar": "اليوم الدولي لاحياء ذكرى تجارة الرقيق وذكرى إلغائها",
         "zh": "贩卖奴隶及其废除奴隶制国际纪念日",
@@ -6413,7 +6791,10 @@
       "links": {
         "un": "https://www.unesco.org/en/days/slave-trade-remembrance",
         "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000110220#page=72"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-lake-day",
@@ -6423,7 +6804,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Lake Day",
-        "fa": "روز جهانی دریاچه"
+        "fa": "روز جهانی دریاچه",
+        "ar": "اليوم العالمي للبحيرات",
+        "zh": "世界湖泊日",
+        "fr": "Journée mondiale des lacs",
+        "ru": "Всемирный день озер",
+        "es": "Día Mundial de los Lagos"
       },
       "titleReview": [
         "fa"
@@ -6467,7 +6853,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی علیه آزمایش های هسته ای",
+        "fa": "روز بین‌المللی علیه آزمایش‌های هسته‌ای",
         "en": "International Day against Nuclear Tests",
         "ar": "اليوم الدولي لمناهضة التجارب النووية",
         "zh": "禁止核试验国际日",
@@ -6503,7 +6889,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/end-nuclear-tests-day",
         "resolution": "http://undocs.org/en/A/RES/64/35"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.victims-enforced-disappearance",
@@ -6513,7 +6902,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the Victims of Enforced Disappearances",
-        "fa": "روز بین‌المللی قربانیان ناپدیدشدگان اجباری"
+        "fa": "روز بین‌المللی قربانیان ناپدیدسازی قهری",
+        "ar": "اليوم الدولي لضحايا الاختفاء القسري",
+        "fr": "Journée internationale des victimes de disparition forcée",
+        "ru": "Международный день жертв насильственных исчезновений",
+        "es": "Día Internacional de las Víctimas de Desapariciones Forzadas"
       },
       "titleReview": [
         "fa"
@@ -6558,7 +6951,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for People of African Descent",
-        "fa": "روز بین‌المللی افراد تبار آفریقایی"
+        "fa": "روز بین‌المللی افراد تبار آفریقایی",
+        "ar": "اليوم الدولي للمنحدرين من أصل أفريقي",
+        "zh": "非洲人后裔国际日",
+        "fr": "Journée internationale des personnes d’ascendance africaine",
+        "ru": "Международный день лиц африканского происхождения",
+        "es": "Día Internacional de los Afrodescendientes"
       },
       "titleReview": [
         "fa"
@@ -6602,7 +7000,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Charity",
-        "fa": "روز بین‌المللی نیکوکاری"
+        "fa": "روز بین‌المللی نیکوکاری",
+        "ar": "اليوم الدولي للعمل الخيري",
+        "fr": "Journée internationale de la charité",
+        "ru": "Международный день благотворительности",
+        "es": "Día Internacional de la Beneficencia"
       },
       "titleReview": [
         "fa"
@@ -6646,7 +7048,10 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the World's Indigenous Women and Girls",
-        "fa": "روز بین‌المللی زنان و دختران بومی جهان"
+        "fa": "روز بین‌المللی زنان و دختران بومی جهان",
+        "zh": "世界土著妇女和女童国际日",
+        "fr": "Journée internationale des femmes et des filles autochtones",
+        "es": "Día Internacional de las Mujeres y las Niñas Indígenas del Mundo"
       },
       "titleReview": [
         "fa"
@@ -6734,7 +7139,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Police Cooperation",
-        "fa": "روز بین‌المللی همکاری پلیسی"
+        "fa": "روز بین‌المللی همکاری پلیسی",
+        "ar": "اليوم الدولي للتعاون بين أجهزة الشرطة",
+        "zh": "警务合作国际日",
+        "fr": "Journée internationale de la coopération policière",
+        "ru": "Международный день полицейского сотрудничества",
+        "es": "Día Internacional de la Cooperación Policial"
       },
       "titleReview": [
         "fa"
@@ -6778,7 +7188,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Duchenne Awareness Day",
-        "fa": "روز جهانی آگاهی از دیستروفی عضلانی دوشن"
+        "fa": "روز جهانی آگاهی از دیستروفی عضلانی دوشن",
+        "ar": "اليوم العالمي للتوعية بمرض الحثل العضلي الدوشيني",
+        "zh": "世界杜氏肌营养不良知晓日",
+        "ru": "Всемирный день распространения информации о мышечной дистрофии Дюшенна",
+        "es": "Día Mundial de Concienciación sobre la Distrofia de Duchenne"
       },
       "titleReview": [
         "fa"
@@ -6821,7 +7235,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی سواد آموزی",
+        "fa": "روز بین‌المللی سوادآموزی",
         "en": "International Literacy Day",
         "ar": "اليوم الدولي لمحو الأمية",
         "zh": "国际扫盲日",
@@ -6857,7 +7271,10 @@
       "links": {
         "un": "https://www.unesco.org/en/days/literacy",
         "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000114048"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.protect-education-day",
@@ -6955,7 +7372,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی دموکراسی",
+        "fa": "روز بین‌المللی دموکراسی",
         "en": "International Day of Democracy",
         "ar": "اليوم الدولي للديمقراطية",
         "zh": "国际民主日",
@@ -6991,7 +7408,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/democracy-day",
         "resolution": "https://undocs.org/en/A/RES/62/7"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.ozone-day",
@@ -7046,7 +7466,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for Interventional Cardiology",
-        "fa": "روز بین‌المللی قلب و عروق مداخله‌ای"
+        "fa": "روز بین‌المللی قلب و عروق مداخله‌ای",
+        "ar": "اليوم الدولي لطب القلب التدخلي",
+        "zh": "国际介入心脏病学日",
+        "ru": "Международный день интервенционной кардиологии",
+        "es": "Día International de la Cardiología Intervencionista"
       },
       "titleReview": [
         "fa"
@@ -7090,7 +7514,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Science, Technology and Innovation for the South",
-        "fa": "روز بین‌المللی علم، فناوری و نوآوری برای کشورهای جنوب"
+        "fa": "روز بین‌المللی علم، فناوری و نوآوری برای کشورهای جنوب",
+        "ar": "اليوم الدولي للعلم والتكنولوجيا والابتكار لبلدان الجنوب",
+        "zh": "南方科学、技术和创新国际日",
+        "ru": "Международный день науки, техники и инноваций в интересах Юга",
+        "es": "Día Internacional de la Ciencia, la Tecnología y la Innovación para el Sur"
       },
       "titleReview": [
         "fa"
@@ -7178,7 +7606,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Equal Pay Day",
-        "fa": "روز بین‌المللی برابری دستمزد"
+        "fa": "روز بین‌المللی برابری دستمزد",
+        "ar": "اليوم الدولي للمساواة في الأجر",
+        "zh": "国际同工同酬日",
+        "fr": "Journée internationale de l’égalité de rémunération",
+        "ru": "Международный день равной оплаты труда",
+        "es": "Día Internacional de la Igualdad Salarial"
       },
       "titleReview": [
         "fa"
@@ -7223,7 +7656,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Cleanup Day",
-        "fa": "روز جهانی پاکسازی"
+        "fa": "روز جهانی پاکسازی",
+        "ar": "اليوم العالمي لتنظيف البيئة",
+        "zh": "世界清洁日",
+        "ru": "Всемирный день чистоты",
+        "es": "Día Mundial de la Limpieza"
       },
       "titleReview": [
         "fa"
@@ -7312,7 +7749,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Sign Languages",
-        "fa": "روز بین‌المللی زبان‌های اشاره"
+        "fa": "روز بین‌المللی زبان‌های اشاره",
+        "ar": "اليوم الدولي للغات الإشارة",
+        "fr": "Journée internationale des langues des signes",
+        "ru": "Международный день жестовых языков",
+        "es": "Día Internacional de las Lenguas de Señas"
       },
       "titleReview": [
         "fa"
@@ -7356,7 +7797,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for the Total Elimination of Nuclear Weapons",
-        "fa": "روز بین‌المللی ریشه‌کنی کامل سلاح‌های هسته‌ای"
+        "fa": "روز بین‌المللی ریشه‌کنی کامل سلاح‌های هسته‌ای",
+        "ar": "اليوم الدولي للإزالة الكاملة للأسلحة النووية",
+        "fr": "Journée internationale pour l'élimination totale des armes nucléaires",
+        "ru": "Международный день борьбы за полную ликвидацию ядерного оружия",
+        "es": "Día Internacional para la Eliminación Total de las Armas Nucleares"
       },
       "titleReview": [
         "fa"
@@ -7444,7 +7889,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for Universal Access to Information",
-        "fa": "روز بین‌المللی دسترسی همگانی به اطلاعات"
+        "fa": "روز بین‌المللی دسترسی همگانی به اطلاعات",
+        "ar": "اليوم الدولي لتعميم الإنتفاع بالمعلومات",
+        "zh": "促进普遍获取信息国际日",
+        "fr": "Journée internationale de l'accès universel à l'information",
+        "ru": "Международный день всеобщего доступа к информации",
+        "es": "Día Internacional del Derecho de Acceso Universal a la Información"
       },
       "titleReview": [
         "fa"
@@ -7536,7 +7986,8 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Awareness of Food Loss and Waste",
-        "fa": "روز بین‌المللی آگاهی از تلفات و ضایعات غذایی"
+        "fa": "روز بین‌المللی آگاهی از تلفات و ضایعات غذایی",
+        "fr": "Journée internationale de sensibilisation aux pertes et gaspillages de nourriture"
       },
       "titleReview": [
         "fa"
@@ -7581,7 +8032,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Translation Day",
-        "fa": "روز بین‌المللی ترجمه"
+        "fa": "روز بین‌المللی ترجمه",
+        "ar": "اليوم الدولي للترجمة",
+        "fr": "Journée internationale de la traduction",
+        "ru": "Международный день перевода",
+        "es": "Día Internacional de la Traducción"
       },
       "titleReview": [
         "fa"
@@ -7714,7 +8169,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی عدم خشونت",
+        "fa": "روز بین‌المللی عدم خشونت",
         "en": "International Day of Non-Violence",
         "ar": "اليوم الدولي للاعنف",
         "zh": "国际非暴力日",
@@ -7750,7 +8205,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/non-violence-day",
         "resolution": "http://undocs.org/en/A/RES/61/271"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-teachers-day",
@@ -7805,7 +8263,8 @@
       "isHoliday": false,
       "title": {
         "en": "World Cotton Day",
-        "fa": "روز جهانی پنبه"
+        "fa": "روز جهانی پنبه",
+        "fr": "Journée mondiale du coton"
       },
       "titleReview": [
         "fa"
@@ -7935,7 +8394,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the Girl Child",
-        "fa": "روز بین‌المللی دختران"
+        "fa": "روز بین‌المللی دختران",
+        "ar": "اليوم الدولي للطفلة",
+        "fr": "Journée internationale de la fille",
+        "ru": "Международный день девочек",
+        "es": "Día Internacional de la Niña"
       },
       "titleReview": [
         "fa"
@@ -7978,7 +8441,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی کاهش مصایب طبیعی",
+        "fa": "روز بین‌المللی کاهش خطر بلایا",
         "en": "International Day for Disaster Risk Reduction",
         "ar": "اليوم الدولي للحد من الكوارث",
         "zh": "国际减少灾害风险日",
@@ -8014,7 +8477,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/disaster-reduction-day",
         "resolution": "http://undocs.org/en/A/RES/64/200"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.rural-women-day",
@@ -8023,7 +8489,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی زنان روستایی",
+        "fa": "روز بین‌المللی زنان روستایی",
         "en": "International Day of Rural Women",
         "ar": "اليوم الدولي للمرأة الريفية",
         "zh": "国际农村妇女日",
@@ -8059,7 +8525,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/rural-women-day",
         "resolution": "http://undocs.org/en/A/RES/62/136"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.habitat-day",
@@ -8069,7 +8538,11 @@
       "isHoliday": false,
       "title": {
         "fa": "روز جهانی اسکان بشری",
-        "en": "World Habitat Day"
+        "en": "World Habitat Day",
+        "ar": "اليوم العالمي للموئل",
+        "fr": "Journée mondiale de l'habitat",
+        "ru": "Всемирный день Хабитат",
+        "es": "Día Mundial del Hábitat"
       },
       "rule": {
         "type": "NthWeekdayOfMonth",
@@ -8155,7 +8628,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین‌المللی ریشه کنی فقر",
+        "fa": "روز بین‌المللی ریشه‌کنی فقر",
         "en": "International Day for the Eradication of Poverty",
         "ar": "اليوم الدولي للقضاء على الفقر",
         "zh": "消除贫穷国际日",
@@ -8191,7 +8664,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/day-for-eradicating-poverty",
         "resolution": "http://undocs.org/en/A/RES/62/136"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.snow-leopard-day",
@@ -8201,7 +8677,10 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of the Snow Leopard",
-        "fa": "روز بین‌المللی پلنگ برفی"
+        "fa": "روز بین‌المللی پلنگ برفی",
+        "zh": "国际雪豹日",
+        "ru": "Международный день снежного барса",
+        "es": "Día Internacional del Leopardo de las Nieves"
       },
       "titleReview": [
         "fa"
@@ -8377,7 +8856,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Care and Support",
-        "fa": "روز بین‌المللی مراقبت و حمایت"
+        "fa": "روز بین‌المللی مراقبت و حمایت",
+        "ar": "اليوم الدولي للرعاية والدعم",
+        "zh": "照护与扶助国际日",
+        "ru": "Международный день ухода и поддержки",
+        "es": "Día Internacional de los Cuidados y el Apoyo"
       },
       "titleReview": [
         "fa"
@@ -8422,7 +8905,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Cities Day",
-        "fa": "روز جهانی شهرها"
+        "fa": "روز جهانی شهرها",
+        "ar": "اليوم العالمي للمدن",
+        "fr": "Journée mondiale des villes",
+        "ru": "Всемирный день городов",
+        "es": "Día Mundial de las Ciudades"
       },
       "titleReview": [
         "fa"
@@ -8466,7 +8953,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day to End Impunity for Crimes against Journalists",
-        "fa": "روز بین‌المللی پایان دادن به معافیت از مجازات جرایم علیه روزنامه‌نگاران"
+        "fa": "روز بین‌المللی پایان دادن به معافیت از مجازات جرایم علیه روزنامه‌نگاران",
+        "ar": "اليوم الدولي لإنهاء الإفلات من العقاب على الجرائم المرتكبة ضد الصحافيين",
+        "fr": "Journée internationale de la fin de l’impunité pour les crimes commis contre des journalistes",
+        "ru": "Международный день прекращения безнаказанности за преступления против журналистов",
+        "es": "Día Internacional para Poner Fin a la Impunidad de los Crímenes contra Periodistas"
       },
       "titleReview": [
         "fa"
@@ -8510,7 +9001,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Tsunami Awareness Day",
-        "fa": "روز جهانی آگاهی از سونامی"
+        "fa": "روز جهانی آگاهی از سونامی",
+        "ar": "اليوم العالمي للتوعية بأمواج تسونامي",
+        "fr": "Journée mondiale de sensibilisation aux tsunamis",
+        "ru": "Всемирный день распространения информации о проблеме цунами",
+        "es": "Día Mundial de Concienciación sobre los Sunamis"
       },
       "titleReview": [
         "fa"
@@ -8553,7 +9048,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی پیشگیری از سوء استفاده از محیط زیست در جنگ و مناقشه مسلحانه",
+        "fa": "روز بین‌المللی پیشگیری از سوءاستفاده از محیط زیست در جنگ و مناقشه مسلحانه",
         "en": "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict",
         "ar": "اليوم الدولي لمنع استخدام البيئة في الحروب والصراعات العسكرية",
         "zh": "防止战争和武装冲突糟蹋环境国际日",
@@ -8589,7 +9084,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/environment-in-war-protection-day",
         "resolution": "https://undocs.org/en/A/RES/56/4"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-science-day",
@@ -8689,7 +9187,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime",
-        "fa": "روز بین‌المللی پیشگیری و مبارزه با همه اشکال جرایم سازمان‌یافته فراملی"
+        "fa": "روز بین‌المللی پیشگیری و مبارزه با همه اشکال جرایم سازمان‌یافته فراملی",
+        "ar": "اليوم الدولي لمنع ومكافحة جميع أشكال الجريمة المنظمة عبر الوطنية",
+        "zh": "预防和打击一切形式跨国有组织犯罪国际日",
+        "fr": "Journée internationale de la prévention de toutes les formes de criminalité transnationale organisée et de la lutte contre ce fléau",
+        "ru": "Международный день предупреждения всех форм транснациональной организованной преступности и борьбы с ними"
       },
       "titleReview": [
         "fa"
@@ -8732,12 +9234,13 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی یادآوری قربانیان ترافیک جاده ها",
+        "fa": "روز جهانی یادبود قربانیان حوادث رانندگی",
         "en": "World Day of Remembrance for Road Traffic Victims",
         "ar": "اليوم العالمي لإحياء ذكرى ضحايا حوادث الطرق",
         "zh": "世界道路交通事故受害者纪念日",
         "ru": "Всемирный день памяти жертв дорожно-транспортных происшествий",
-        "es": "Día mundial en recuerdo de las víctimas de los accidentes de tráfico"
+        "es": "Día mundial en recuerdo de las víctimas de los accidentes de tráfico",
+        "fr": "Journée mondiale du souvenir des victimes de la circulation routière"
       },
       "rule": {
         "type": "NthWeekdayOfMonth",
@@ -8768,7 +9271,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/road-traffic-victims-day",
         "resolution": "http://undocs.org/en/A/RES/60/5"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-philosophy-day",
@@ -8823,7 +9329,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی بردباری",
+        "fa": "روز بین‌المللی بردباری",
         "en": "International Day for Tolerance",
         "ar": "اليوم الدولي للتسامح",
         "zh": "国际宽容日",
@@ -8859,7 +9365,10 @@
       "links": {
         "un": "https://www.unesco.org/en/days/tolerance",
         "resolution": "https://unesdoc.unesco.org/ark:/48223/pf0000101803_eng#page=75"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.mediterranean-diet-day",
@@ -8914,7 +9423,12 @@
       "isHoliday": false,
       "title": {
         "en": "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence",
-        "fa": "روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان"
+        "fa": "روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان",
+        "ar": "اليوم العالمي لمنع ممارسات الاستغلال والانتهاك والعنف الجنسي ضد الأطفال والتشافي منها",
+        "zh": "防止儿童性剥削、性虐待和性暴力及促进受害者疗愈世界日",
+        "fr": "Journée mondiale pour la prévention et la guérison de l’exploitation, des atteintes et des violences sexuelles visant les enfants",
+        "ru": "Всемирный день предотвращения актов сексуальной эксплуатации детей, жестокого обращения с ними и насилия в их отношении и исцеления детей, пострадавших от таких актов",
+        "es": "Día Mundial para Prevenir la Explotación, los Abusos y la Violencia Sexuales contra los Niños y Promover la Sanación"
       },
       "titleReview": [
         "fa"
@@ -9002,7 +9516,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز صنعت گستری آفریقا",
+        "fa": "روز صنعتی‌شدن آفریقا",
         "en": "Africa Industrialization Day",
         "ar": "يوم التصنيع في أفريقيا",
         "zh": "非洲工业化日",
@@ -9038,7 +9552,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/africa-industrialization-day",
         "resolution": "http://undocs.org/en/A/RES/44/237"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-childrens-day",
@@ -9138,7 +9655,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Conjoined Twins Day",
-        "fa": "روز جهانی دوقلوهای به‌هم‌چسبیده"
+        "fa": "روز جهانی دوقلوهای به‌هم‌چسبیده",
+        "ar": "اليوم العالمي للتوائم الملتصقة",
+        "zh": "世界连体双胞胎日",
+        "ru": "Всемирный день сросшихся близнецов",
+        "es": "Día Mundial de los Gemelos Unidos"
       },
       "titleReview": [
         "fa"
@@ -9181,7 +9702,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی حذف خشونت علیه زنان",
+        "fa": "روز بین‌المللی حذف خشونت علیه زنان",
         "en": "International Day for the Elimination of Violence against Women",
         "ar": "اليوم الدولي للقضاء على العنف ضد المرأة",
         "zh": "制止暴力侵害妇女行为国际日",
@@ -9217,7 +9738,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/ending-violence-against-women-day",
         "resolution": "http://undocs.org/en/A/RES/32/40"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.sustainable-transport-day",
@@ -9227,7 +9751,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Sustainable Transport Day",
-        "fa": "روز جهانی حمل‌ونقل پایدار"
+        "fa": "روز جهانی حمل‌ونقل پایدار",
+        "zh": "世界可持续交通运输日",
+        "fr": "Journée mondiale des transports durables",
+        "ru": "Всемирный день устойчивого транспорта",
+        "es": "Día Mundial del Transporte Sostenible"
       },
       "titleReview": [
         "fa"
@@ -9360,7 +9888,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز جهانی یادبود قربانیان سلاح های شیمیایی",
+        "fa": "روز جهانی یادبود قربانیان سلاح‌های شیمیایی",
         "en": "Day of Remembrance for all Victims of Chemical Warfare",
         "ar": "يوم إحياء ذكرى جميع ضحايا الحرب الكيميائية",
         "zh": "化学战受害者纪念日",
@@ -9395,7 +9923,10 @@
       "reviewedBy": "pending",
       "links": {
         "un": "https://www.un.org/en/observances/chemical-warfare-victims-day"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-aids-day",
@@ -9448,7 +9979,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی لغو برده داری",
+        "fa": "روز بین‌المللی لغو برده‌داری",
         "en": "International Day for the Abolition of Slavery",
         "ar": "اليوم الدولي لإلغاء الرق",
         "zh": "废除奴隶制国际日",
@@ -9484,7 +10015,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/slavery-abolition-day",
         "resolution": "https://undocs.org/en/A/RES/317(IV)"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.day-of-persons-with-disabilities",
@@ -9493,7 +10027,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین‌المللی معلولان",
+        "fa": "روز بین‌المللی افراد دارای معلولیت",
         "en": "International Day of Persons with Disabilities",
         "ar": "اليوم الدولي للأشخاص ذوي الإعاقة",
         "zh": "国际残疾人日",
@@ -9529,7 +10063,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/day-of-persons-with-disabilities",
         "resolution": "https://undocs.org/en/A/RES/47/3"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.day-against-unilateral-coercive-measures",
@@ -9539,7 +10076,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day Against Unilateral Coercive Measures",
-        "fa": "روز بین‌المللی مخالفت با اقدامات قهری یکجانبه"
+        "fa": "روز بین‌المللی مخالفت با اقدامات قهری یکجانبه",
+        "ar": "اليوم الدولي لمناهضة التدابير القسرية الانفرادية",
+        "zh": "反对单方面强制性措施国际日",
+        "ru": "Международный день борьбы с односторонними принудительными мерами",
+        "es": "Día Internacional contra las Medidas Coercitivas Unilaterales"
       },
       "titleReview": [
         "fa"
@@ -9583,7 +10124,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Banks",
-        "fa": "روز بین‌المللی بانک‌ها"
+        "fa": "روز بین‌المللی بانک‌ها",
+        "ar": "اليوم الدولي للمصارف",
+        "zh": "国际银行日",
+        "fr": "Journée internationale des banques",
+        "ru": "Международный день банков",
+        "es": "Día Internacional de los Bancos"
       },
       "titleReview": [
         "fa"
@@ -9670,7 +10216,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
+        "fa": "روز بین‌المللی داوطلبان برای توسعه اقتصادی و اجتماعی",
         "en": "International Volunteer Day for Economic and Social Development",
         "ar": "اليوم الدولي للمتطوعين من أجل التنمية الاقتصادية والاجتماعية",
         "zh": "国际志愿人员日",
@@ -9706,7 +10252,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/volunteer-day",
         "resolution": "https://undocs.org/en/A/RES/40/212"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.civil-aviation-day",
@@ -9715,7 +10264,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی هواپیمایی غیر نظامی",
+        "fa": "روز بین‌المللی هواپیمایی غیرنظامی",
         "en": "International Civil Aviation Day",
         "ar": "يوم الطيران المدني الدولي",
         "zh": "国际民航日",
@@ -9751,7 +10300,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/civil-aviation-day",
         "resolution": "https://undocs.org/en/A/RES/51/33"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.anti-corruption-day",
@@ -9760,7 +10312,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی مبارزه با فساد",
+        "fa": "روز بین‌المللی مبارزه با فساد",
         "en": "International Anti-Corruption Day",
         "ar": "اليوم الدولي لمكافحة الفساد",
         "zh": "国际反腐败日",
@@ -9796,7 +10348,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/anti-corruption-day",
         "resolution": "https://undocs.org/en/A/RES/58/4"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.genocide-prevention-day",
@@ -9806,7 +10361,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime",
-        "fa": "روز بین‌المللی یادبود و کرامت قربانیان جنایت نسل‌کشی و پیشگیری از این جنایت"
+        "fa": "روز بین‌المللی یادبود و کرامت قربانیان جنایت نسل‌کشی و پیشگیری از این جنایت",
+        "ar": "اليوم الدولي لإحياء ذكرى ضحايا جريمة الإبادة الجماعية وتكريمهم ومنع هذه الجريمة",
+        "zh": "缅怀灭绝种族罪受害者、受害者尊严和防止此种罪行国际日",
+        "fr": "Journée internationale de commémoration des victimes du crimede génocide, d’affirmation de leur dignité et de prévention de ce crime",
+        "es": "Día Internacional para la Conmemoración y Dignificación de las Víctimas del Crimen de Genocidio y para la Prevención de ese Crimen"
       },
       "titleReview": [
         "fa"
@@ -9893,7 +10452,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی کوهستان",
+        "fa": "روز بین‌المللی کوهستان",
         "en": "International Mountain Day",
         "ar": "اليوم الدولي للجبال",
         "zh": "国际山岳日",
@@ -9929,7 +10488,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/mountain-day",
         "resolution": "https://undocs.org/en/A/RES/57/245"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.neutrality-day",
@@ -9939,7 +10501,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Neutrality",
-        "fa": "روز بین‌المللی بی‌طرفی"
+        "fa": "روز بین‌المللی بی‌طرفی",
+        "ar": "اليوم الدولي للحياد",
+        "zh": "国际中立日",
+        "fr": "Journée internationale de la neutralité",
+        "ru": "Международный день нейтралитета",
+        "es": "Día Internacional de la Neutralidad"
       },
       "titleReview": [
         "fa"
@@ -9983,7 +10550,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Universal Health Coverage Day",
-        "fa": "روز بین‌المللی پوشش همگانی سلامت"
+        "fa": "روز بین‌المللی پوشش همگانی سلامت",
+        "ar": "اليوم الدولي للتغطية الصحية الشاملة",
+        "zh": "国际全民健康覆盖日",
+        "fr": "Journée internationale de la couverture sanitaire universelle",
+        "ru": "Международный день всеобщего охвата услугами здравоохранения",
+        "es": "Día Internacional de la Cobertura Sanitaria Universal"
       },
       "titleReview": [
         "fa"
@@ -10027,7 +10599,11 @@
       "isHoliday": false,
       "title": {
         "en": "International Day against Colonialism in All its Forms and Manifestations",
-        "fa": "روز بین‌المللی مبارزه با استعمار در همه اشکال و مظاهر آن"
+        "fa": "روز بین‌المللی مبارزه با استعمار در همه اشکال و مظاهر آن",
+        "ar": "اليوم الدولي لمناهضة الاستعمار بجميع أشكاله ومظاهره",
+        "zh": "反对一切形式和表现的殖民主义国际日",
+        "ru": "Международный день борьбы с колониализмом во всех его формах и проявлениях",
+        "es": "Día Internacional contra el Colonialismo en Todas sus Formas y Manifestaciones"
       },
       "titleReview": [
         "fa"
@@ -10115,7 +10691,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی مهاجران",
+        "fa": "روز بین‌المللی مهاجران",
         "en": "International Migrants Day",
         "ar": "اليوم الدولي للمهاجرين",
         "zh": "国际移民日",
@@ -10151,7 +10727,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/migrants-day",
         "resolution": "https://undocs.org/en/A/RES/55/93"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.arabic-language-day",
@@ -10161,7 +10740,9 @@
       "isHoliday": false,
       "title": {
         "en": "Arabic Language Day",
-        "fa": "روز زبان عربی"
+        "fa": "روز زبان عربی",
+        "ar": "اليوم العالمي للغة العربية",
+        "zh": "联合国阿拉伯文日"
       },
       "titleReview": [
         "fa"
@@ -10259,7 +10840,7 @@
       "category": "INTERNATIONAL",
       "isHoliday": false,
       "title": {
-        "fa": "روز بین المللی همبستگی بشر",
+        "fa": "روز بین‌المللی همبستگی بشر",
         "en": "International Human Solidarity Day",
         "ar": "اليوم الدولي للتضامن الإنساني",
         "zh": "国际人类团结日",
@@ -10295,7 +10876,10 @@
       "links": {
         "un": "https://www.un.org/en/observances/human-solidarity-day",
         "resolution": "https://undocs.org/en/A/RES/60/209"
-      }
+      },
+      "titleReview": [
+        "fa"
+      ]
     },
     {
       "id": "un.world-basketball-day",
@@ -10305,7 +10889,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Basketball Day",
-        "fa": "روز جهانی بسکتبال"
+        "fa": "روز جهانی بسکتبال",
+        "zh": "世界篮球日",
+        "fr": "Journée mondiale du basket-ball",
+        "ru": "Всемирный день баскетбола",
+        "es": "Día Mundial del Baloncesto"
       },
       "titleReview": [
         "fa"
@@ -10349,7 +10937,10 @@
       "isHoliday": false,
       "title": {
         "en": "World Meditation Day",
-        "fa": "روز جهانی مراقبه"
+        "fa": "روز جهانی مراقبه",
+        "ar": "اليوم العالمي للتأمل",
+        "zh": "世界冥想日",
+        "ru": "Всемирный день медитации"
       },
       "titleReview": [
         "fa"
@@ -10438,7 +11029,12 @@
       "isHoliday": false,
       "title": {
         "en": "International Day of Epidemic Preparedness",
-        "fa": "روز بین‌المللی آمادگی در برابر بیماری‌های همه‌گیر"
+        "fa": "روز بین‌المللی آمادگی در برابر بیماری‌های همه‌گیر",
+        "ar": "اليوم الدولي للتأهب للأوبئة",
+        "zh": "防范流行病国际日",
+        "fr": "Journée internationale de la préparation aux épidémies",
+        "ru": "Международный день противоэпидемической готовности",
+        "es": "Día Internacional de la Preparación ante las Epidemias"
       },
       "titleReview": [
         "fa"
@@ -10483,7 +11079,12 @@
       "isHoliday": false,
       "title": {
         "en": "Vesak, the Day of the Full Moon",
-        "fa": "ویساک، روز ماه کامل"
+        "fa": "ویساک، روز ماه کامل",
+        "ar": "فيساك: يوم اكتمال القمر",
+        "zh": "卫塞节",
+        "fr": "​Journée du Vesak",
+        "ru": "День Весак",
+        "es": "Día de Vesak"
       },
       "titleReview": [
         "fa"
@@ -10531,7 +11132,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Interfaith Harmony Week",
-        "fa": "هفته جهانی هماهنگی بین ادیان"
+        "fa": "هفته جهانی هماهنگی بین ادیان",
+        "zh": "世界不同信仰间和谐周",
+        "fr": "Semaine mondiale de l’harmonie interconfessionnelle (première semaine de février)",
+        "ru": "Всемирная неделя гармоничных межконфессиональных отношений",
+        "es": "Semana Mundial de la Armonía Interconfesional"
       },
       "titleReview": [
         "fa"
@@ -10679,7 +11284,12 @@
       "isHoliday": false,
       "title": {
         "en": "Week of Solidarity with the Peoples of Non-Self-Governing Territories",
-        "fa": "هفته همبستگی با مردمان سرزمین‌های غیرخودمختار"
+        "fa": "هفته همبستگی با مردمان سرزمین‌های غیرخودمختار",
+        "ar": "أسبوع التضامن مع شعوب الأقاليم غير المتمتعة بالحكم الذاتي",
+        "zh": "声援非自治领土人民团结周",
+        "fr": "Semaine de la solidarité avec les peuples des territoires non autonomes",
+        "ru": "Неделя солидарности с народами несамоуправляющихся территорий",
+        "es": "Semana de Solidaridad con los pueblos de los territorios no autónomos"
       },
       "titleReview": [
         "fa"
@@ -10875,7 +11485,11 @@
       "isHoliday": false,
       "title": {
         "en": "Global Media and Information Literacy Week",
-        "fa": "هفته جهانی سواد رسانه‌ای و اطلاعاتی"
+        "fa": "هفته جهانی سواد رسانه‌ای و اطلاعاتی",
+        "ar": "الأسبوع العالمي للدراية الإعلامية والمعلوماتية",
+        "fr": "Semaine mondiale de l’éducation aux médias et à l’information",
+        "ru": "Глобальная неделя медийной и информационной грамотности",
+        "es": "Semana Mundial de la Alfabetización Mediática e Informacional"
       },
       "titleReview": [
         "fa"
@@ -10924,7 +11538,11 @@
       "isHoliday": false,
       "title": {
         "en": "World Space Week",
-        "fa": "هفته جهانی فضا"
+        "fa": "هفته جهانی فضا",
+        "ar": "الأسبوع العالمي للفضاء",
+        "fr": "Semaine mondiale de l'espace",
+        "ru": "Всемирная неделя космоса",
+        "es": "Semana Mundial del Espacio"
       },
       "titleReview": [
         "fa"
@@ -10973,7 +11591,12 @@
       "isHoliday": false,
       "title": {
         "en": "Disarmament Week",
-        "fa": "هفته خلع سلاح"
+        "fa": "هفته خلع سلاح",
+        "ar": "أسبوع نزع السلاح",
+        "zh": "裁军周",
+        "fr": "Semaine du désarmement",
+        "ru": "Неделя разоружения",
+        "es": "Semana del Desarme"
       },
       "titleReview": [
         "fa"

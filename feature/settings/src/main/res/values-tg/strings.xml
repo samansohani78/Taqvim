@@ -121,7 +121,7 @@
   <string name="settings_keywords_calendar">тақвим|ҳиҷрии шамсӣ|ҳиҷрӣ|мелодӣ|дуюм</string>
   <string name="settings_keywords_week">ҳафта|истироҳат|ҷумъа|ҷашн</string>
   <string name="settings_keywords_hijri">қамарӣ|ҳиҷрӣ|ҳилол|моҳ</string>
-  <string name="settings_keywords_events">рӯйдодҳо|ҷашнҳо|муносибатҳо|расмӣ</string>
+  <string name="settings_keywords_events">рӯйдодҳо|ҷашнҳо|санаҳои муҳим|расмӣ</string>
   <string name="settings_keywords_ics">обуна|ics|webcal|ҳамоҳангсозӣ|интернет</string>
   <string name="settings_keywords_search">ҷустуҷӯ|таърих|охирин</string>
   <string name="settings_keywords_widgets">экрани асосӣ|лаунчер|виҷет</string>
@@ -160,9 +160,9 @@
   <string name="settings_category_international">Рӯзҳои байналмилалӣ</string>
   <string name="settings_category_cultural">Чорабиниҳои фарҳангӣ</string>
   <string name="settings_category_astronomical">Ҳодисаҳои астрономӣ</string>
-  <string name="settings_source_iran">Ҷашнҳо ва муносибатҳои расмии Эрон</string>
-  <string name="settings_source_afghanistan">Муносибатҳои расмии Афғонистон</string>
-  <string name="settings_source_nepal">Муносибатҳои расмии Непал</string>
+  <string name="settings_source_iran">Ҷашнҳо ва санаҳои расмии Эрон</string>
+  <string name="settings_source_afghanistan">Санаҳои расмии Афғонистон</string>
+  <string name="settings_source_nepal">Санаҳои расмии Непал</string>
   <string name="settings_source_international">Рӯзҳои байналмилалии СММ</string>
   <string name="settings_source_ancient_iran">Ҷашнҳои қадимаи эронӣ</string>
   <string name="settings_method_tehran">Пажӯҳишгоҳи геофизикаи Донишгоҳи Теҳрон</string>
@@ -234,8 +234,8 @@
   <string name="onboarding_language_intro">Ба Taqvim хуш омадед. Забони шумо тақвимҳо, рақамҳо, ҳафта ва қоидаҳои намози ибтидоиро муайян мекунад; ҳар кадашро баъдтар дар танзимот иваз карда метавонед.</string>
   <string name="onboarding_location_title">Макони худро интихоб кунед</string>
   <string name="onboarding_location_intro">Вақтҳои намоз, қибла ва тулӯи офтоб ҷойро талаб мекунанд. Метавонед ин саҳифаро гузаред ва ҷойро баъдтар интихоб кунед.</string>
-  <string name="onboarding_sources_title">Муносибатҳои намоишдодаро интихоб кунед</string>
-  <string name="onboarding_sources_intro">Ҷашнҳо ва муносибатҳои расмӣ аз манбаъҳои зер меоянд. Рӯйдодҳои худи шумо ҳамеша нишон дода мешаванд.</string>
+  <string name="onboarding_sources_title">Санаҳоеро, ки мехоҳед бинед, интихоб кунед</string>
+  <string name="onboarding_sources_intro">Ҷашнҳо ва санаҳои расмӣ аз манбаъҳои зер гирифта мешаванд. Рӯйдодҳои шахсии шумо ҳамеша нишон дода мешаванд.</string>
   <string name="onboarding_step">Қадами %1$s аз %2$s</string>
   <string name="onboarding_skip">Гузаштан</string>
   <string name="onboarding_back">Бозгашт</string>

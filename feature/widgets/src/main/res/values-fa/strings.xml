@@ -78,10 +78,10 @@
   <string name="widget_moon_next_full">ماه کامل %1$s</string>
   <string name="widget_moon_next_new">ماه نو %1$s</string>
   <!-- T-1211 map widget. -->
-  <string name="widget_map_name">نقشه جهان</string>
-  <string name="widget_map_description">روز و شب روی نقشه جهان با مکان شما</string>
-  <string name="widget_map_content">نقشه جهان با روز و شب</string>
-  <string name="widget_map_content_place">نقشه جهان با روز و شب و مکان شما</string>
+  <string name="widget_map_name">نقشهٔ جهان</string>
+  <string name="widget_map_description">روز و شب روی نقشهٔ جهان با مکان شما</string>
+  <string name="widget_map_content">نقشهٔ جهان با روز و شب</string>
+  <string name="widget_map_content_place">نقشهٔ جهان با روز و شب و مکان شما</string>
   <!--
     T-1212 countdown widget. The unit labels stand beside the large number, so their Persian "one" item needs no
     count of its own (ImpliedQuantity does not apply).

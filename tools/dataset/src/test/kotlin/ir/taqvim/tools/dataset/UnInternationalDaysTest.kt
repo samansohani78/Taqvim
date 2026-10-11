@@ -128,8 +128,11 @@ class UnInternationalDaysTest {
          * Vesak (DT-040, ADR-0044), whose full-moon rule was the only remaining gap once ADR-0042 removed the
          * Persian-source requirement, plus the 10 UN international weeks (DT-041, ADR-0046), none of which has an
          * official Persian source either.
+         *
+         * 143 until the localization pass of 2026-10-10 corrected or added 44 more Persian titles, each of which
+         * is marked for review like the rest.
          */
-        const val TITLE_REVIEW_COUNT = 143
+        const val TITLE_REVIEW_COUNT = 187
 
         /** Persian titles come from UN Information Centre Tehran (live or Internet Archive) or United Nations in Iran. */
         val PERSIAN_SOURCES = listOf("unic-ir.org", "https://iran.un.org/fa/")

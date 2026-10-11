@@ -99,13 +99,13 @@
   <string name="about_faq_main_calendar_q">Comment changer le calendrier principal ou secondaire ?</string>
   <string name="about_faq_main_calendar_a">Dans les paramètres, choisissez le calendrier principal et le calendrier secondaire. La vue du mois et son titre suivent le calendrier principal, et chaque jour affiche aussi ses dates dans les autres calendriers.</string>
   <string name="about_faq_nepali_q">Le calendrier népalais (Bikram Sambat) est-il disponible ?</string>
-  <string name="about_faq_nepali_a">Pas encore. Il sera ajouté lorsque les tables officielles des mois seront disponibles. D\'ici là, le calendrier grégorien est utilisé à la place.</string>
+  <string name="about_faq_nepali_a">Oui. Choisissez Bikram Sambat dans les paramètres des calendriers. Ses dates sont calculées sur votre appareil.</string>
   <string name="about_faq_widgets_q">Existe-t-il des widgets pour l\'écran d\'accueil ?</string>
-  <string name="about_faq_widgets_a">Pas encore. Les widgets pour l\'écran d\'accueil sont prévus pour une version ultérieure.</string>
+  <string name="about_faq_widgets_a">Oui. Ajoutez un widget Taqvim depuis le menu des widgets de votre écran d’accueil.</string>
   <string name="about_faq_holiday_sources_q">D\'où viennent les jours fériés et les fêtes ?</string>
   <string name="about_faq_holiday_sources_a">Les jours fériés officiels de l\'Iran proviennent des calendriers officiels publiés par le Centre du calendrier de l\'Université de Téhéran, et les journées internationales de la liste des Nations unies. Chaque entrée cite la page d\'où elle provient, et les sources sont listées sous Sources des données dans la page À propos.</string>
   <string name="about_faq_missing_days_q">Pourquoi certaines journées internationales manquent-elles ?</string>
-  <string name="about_faq_missing_days_a">Une journée internationale n\'est ajoutée que si son titre persan figure dans une publication des Nations unies ou une autre publication officielle en persan. Taqvim ne traduit pas lui-même les titres ; une journée sans une telle source reste absente jusqu\'à ce qu\'on en trouve une.</string>
+  <string name="about_faq_missing_days_a">Les dates et la signification des célébrations doivent reposer sur des sources fiables. En l’absence de traduction officielle, les titres peuvent être traduits par IA. Leur provenance et leur état de révision sont consignés séparément.</string>
   <string name="about_faq_event_sources_q">Comment afficher ou masquer un groupe de fêtes ?</string>
   <string name="about_faq_event_sources_a">Dans les paramètres, activez ou désactivez chaque groupe de sources d\'événements. Les fêtes de l\'Iran ancien sont désactivées par défaut.</string>
   <string name="about_faq_wrong_date_q">Un jour férié ou une date semble erroné. Comment le signaler ?</string>

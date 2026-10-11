@@ -96,13 +96,13 @@
   <string name="about_faq_main_calendar_q">Ez çawa salnameya sereke an duyem biguherînim?</string>
   <string name="about_faq_main_calendar_a">Di mîhengan de salnameya sereke û salnameya duyem hilbijêre. Dîmena mehê û sernavê wê li gorî salnameya sereke ne, û her roj dîrokên xwe di salnameyên din de jî nîşan dide.</string>
   <string name="about_faq_nepali_q">Salnameya Nepalî (Bikram Sambat) heye?</string>
-  <string name="about_faq_nepali_a">Hîn na. Dema tabloyên fermî yên mehan hebin dê were zêdekirin. Heta wê demê li şûna wê salnameya zayînî tê bikaranîn.</string>
+  <string name="about_faq_nepali_a">Erê. Di mîhengên salnameyê de Bikram Sambat hilbijêre. Dîrokên wê li ser cîhaza te tên hesabkirin.</string>
   <string name="about_faq_widgets_q">Wîdcetên ekrana sereke hene?</string>
-  <string name="about_faq_widgets_a">Hîn na. Wîdcetên ekrana sereke ji bo guhertoyeke paşê hatine plankirin.</string>
+  <string name="about_faq_widgets_a">Erê. Ji menûya widgetên ekrana sereke widgeteke Taqvim zêde bike.</string>
   <string name="about_faq_holiday_sources_q">Betlane û bûyerên taybet ji ku tên?</string>
   <string name="about_faq_holiday_sources_a">Betlaneyên fermî yên Îranê ji salnameyên fermî yên Navenda Salnameyê ya Zanîngeha Tehranê tên, û rojên navneteweyî ji lîsteya Neteweyên Yekbûyî. Her tomar rûpela ku jê hatiye girtin destnîşan dike, û çavkanî di beşa Çavkaniyên daneyan a rûpela Derbarê de hatine rêzkirin.</string>
   <string name="about_faq_missing_days_q">Çima hin rojên navneteweyî tune ne?</string>
-  <string name="about_faq_missing_days_a">Rojeke navneteweyî tenê dema sernavê wê yê farisî di weşaneke Neteweyên Yekbûyî an weşaneke din a fermî ya farisî de were dîtin tê zêdekirin. Taqvim bi xwe sernavan wernagerîne, ji ber vê yekê rojeke bê çavkaniyeke wiha heta çavkaniyek were dîtin nayê zêdekirin.</string>
+  <string name="about_faq_missing_days_a">Dîrok û wateya bîranînan çavkaniyên pêbawer dixwazin. Dema wergera fermî tune be, nav dikarin bi hişmendiya çêkirî bên wergerandin. Çavkaniya wergerê û rewşa kontrolê cuda tên tomarkirin.</string>
   <string name="about_faq_event_sources_q">Ez çawa komeke bûyerên taybet nîşan bidim an veşêrim?</string>
   <string name="about_faq_event_sources_a">Di mîhengan de her koma çavkaniyên bûyeran vekin an bigirin. Cejnên kevn ên Îranî ji destpêkê ve girtî ne.</string>
   <string name="about_faq_wrong_date_q">Betlaneyek an dîrokek şaş xuya dike. Ez çawa ragihînim?</string>
@@ -121,9 +121,9 @@
   <string name="about_faq_passphrase_a">Paşkopiyeke parastî tenê bi şîfreya xwe vedibe. Taqvim kopiyekê wê nahêle, ji ber vê yekê nayê vegerandin. Paşkopiyeke nû bi şîfreyeke ku tu dikarî bi bîr bînî çêke.</string>
   <string name="about_faq_privacy_q">Taqvim daneyên min dişîne derekê?</string>
   <string name="about_faq_privacy_a">Na. Taqvim ne hesab û ne jî pêşkêşker heye: bûyer, cih û mîhengên te li ser vê amûrê dimînin. Ew înternetê ji bo nûkirina abonetiyên salnameyê yên ku tu zêde dikî bi kar tîne, û dibe ku navê cihê amûra te ji xizmeta cihê ya Android were. Rapora pirsgirêkê tenê dema tu biryar bidî ku bişînî tê çêkirin, bi rakirina sernavên bûyeran, cih, navnîşan û girêdanan.</string>
-  <string name="about_crash">دوایین تێکچوون</string>
-  <string name="about_crash_summary">لەم ئامێرەدا دەمێنێتەوە و بۆ ڕاپۆرتی کێشە زیاد دەکرێت</string>
-  <string name="about_crash_clear">سڕینەوە</string>
-  <string name="about_crash_none">هیچ تێکچوونێک تۆمار نەکراوە</string>
-  <string name="about_report_crash">تێکچوون (%1$s):</string>
+  <string name="about_crash">Xirabûna dawî</string>
+  <string name="about_crash_summary">Li ser vê cîhazê tê parastin û li rapora pirsgirêkê tê zêdekirin</string>
+  <string name="about_crash_clear">Paqij bike</string>
+  <string name="about_crash_none">Tu xirabûn nehat tomarkirin</string>
+  <string name="about_report_crash">Xirabûn (%1$s):</string>
 </resources>

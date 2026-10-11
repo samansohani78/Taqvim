@@ -96,13 +96,13 @@
   <string name="about_faq_main_calendar_q">Asosiy yoki ikkinchi taqvimni qanday oʻzgartiraman?</string>
   <string name="about_faq_main_calendar_a">Sozlamalarda asosiy va ikkinchi taqvimni tanlang. Oy koʻrinishi va sarlavhasi asosiy taqvimga mos keladi, har bir kun esa boshqa taqvimlardagi sanalarini ham koʻrsatadi.</string>
   <string name="about_faq_nepali_q">Nepal (Bikram Sambat) taqvimi bormi?</string>
-  <string name="about_faq_nepali_a">Hozircha yoʻq. Rasmiy oy jadvallari olinganda qoʻshiladi. Ungacha uning oʻrniga Grigorian taqvimi ishlatiladi.</string>
+  <string name="about_faq_nepali_a">Ha. Taqvim sozlamalarida Bikram Sambatni tanlang. Sanalar qurilmangizda hisoblanadi.</string>
   <string name="about_faq_widgets_q">Bosh ekran vidjetlari bormi?</string>
-  <string name="about_faq_widgets_a">Hozircha yoʻq. Bosh ekran vidjetlari keyingi versiyalardan biriga rejalashtirilgan.</string>
+  <string name="about_faq_widgets_a">Ha. Bosh ekrandagi vidjetlar menyusidan Taqvim vidjetini qo‘shing.</string>
   <string name="about_faq_holiday_sources_q">Bayramlar va sanalar qayerdan olinadi?</string>
   <string name="about_faq_holiday_sources_a">Eronning rasmiy bayramlari Tehron universiteti Taqvim markazi nashr etgan rasmiy taqvimlardan, xalqaro kunlar esa BMT roʻyxatidan olinadi. Har bir yozuv olingan sahifaga havola qiladi, manbalar esa Ilova haqida sahifasidagi Maʼlumot manbalari boʻlimida keltirilgan.</string>
   <string name="about_faq_missing_days_q">Nega baʼzi xalqaro kunlar yoʻq?</string>
-  <string name="about_faq_missing_days_a">Xalqaro kun faqat uning forscha nomi BMT yoki boshqa rasmiy forscha nashrda topilgandagina qoʻshiladi. Taqvim nomlarni oʻzi tarjima qilmaydi, shuning uchun bunday manbasi boʻlmagan kun manba topilguncha qoʻshilmaydi.</string>
+  <string name="about_faq_missing_days_a">Sanalarning ma’nosi va belgilanishi ishonchli manbalarga tayanishi kerak. Rasmiy tarjima bo‘lmasa, nomlar sun’iy intellekt bilan tarjima qilinishi mumkin. Tarjima manbasi va tekshiruv holati alohida qayd etiladi.</string>
   <string name="about_faq_event_sources_q">Sanalar guruhini qanday koʻrsataman yoki yashiraman?</string>
   <string name="about_faq_event_sources_a">Sozlamalarda har bir tadbir manbalari guruhini yoqing yoki oʻchiring. Qadimgi Eron bayramlari standart holatda oʻchirilgan.</string>
   <string name="about_faq_wrong_date_q">Bayram yoki sana notoʻgʻri koʻrinadi. Qanday xabar beraman?</string>

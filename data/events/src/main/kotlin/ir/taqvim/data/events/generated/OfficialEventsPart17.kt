@@ -6,11 +6,14 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
+import ir.taqvim.core.events.EventScope
+import ir.taqvim.core.events.EventScopeLevel
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
@@ -24,330 +27,203 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_17: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.democracy-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("np.holiday.gai-jatra"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.CULTURAL,
             isHoliday = false,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین المللی دموکراسی",
-                        "ar" to "اليوم الدولي للديمقراطية",
-                        "en" to "International Day of Democracy",
-                        "es" to "Día Internacional de la Democracia",
-                        "fr" to "Journée internationale de la démocratie",
-                        "ru" to "Международный день демократии",
-                        "zh" to "国际民主日",
+                        "fa" to "گای جاترا",
+                        "en" to "Gai Jatra",
+                        "ne" to "गाईजात्रा",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 9, day = 15),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/democracy-day",
-                        title = "International Day of Democracy (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/62/7",
-                    "un" to "https://www.un.org/en/observances/democracy-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.desertification-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی مبارزه با گسترش کویر و خشکسالی",
-                        "ar" to "اليوم العالمي لمكافحة التصحر والجفاف",
-                        "en" to "World Day to Combat Desertification and Drought",
-                        "es" to "Día Mundial de Lucha contra la Desertificación",
-                        "fr" to "Journée mondiale de la lutte contre la désertification et la sécheresse",
-                        "ru" to "Всемирный день борьбы с опустыниванием и засухой",
-                        "zh" to "防治荒漠化和干旱世界日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 17),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/desertification-day",
-                        title = "World Day to Combat Desertification and Drought (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/49/115",
-                    "un" to "https://www.un.org/en/observances/desertification-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.detained-staff-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی همبستگی با کارکنان بازداشت‌شده و مفقود",
-                        "en" to "International Day of Solidarity with Detained and Missing Staff Members",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 25),
+            rule = EventRule.LunarTithi(month = 4, tithi = 16, observance = TithiObservance.SUNRISE),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_994,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/detained-staff-day",
-                            title = "International Day of Solidarity with Detained and Missing Staff Members -- linked to GA resolution A/RES/49/59 (1994)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                            page = "PDF p. 4, clause 2.2(क) — the rule reproduces both notices (2082 साउन २५, 2083 भदौ १३), so the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 5 (Rajpatra p. 3), clause 2.2(क): गाईजात्रा- साउन २५ गते आइतबार (देशभरका नेवार समुदायका लागि मात्र). The record is not marked a day off: the notice makes each day a public holiday in its own districts only, and the app does not know which district a user is in, so marking either one nationwide would add a day off that most of the country does not have (DT-038).",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/detained-staff-day",
-                        title = "International Day of Solidarity with Detained and Missing Staff Members (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 4, clause 2.2(क): गाईजात्रा - भदौ १३ गते शनिबार (देशभरका नेवार समुदायका लागि मात्र).",
                     ),
                 ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/detained-staff-day",
+            scope =
+                EventScope(
+                    level = EventScopeLevel.COMMUNITY,
+                    label =
+                        LocalizedText(
+                            mapOf(
+                                "en" to "The Newar community, nationwide",
+                                "ne" to "देशभरका नेवार समुदायका लागि मात्र",
+                            ),
+                        ),
+                    areas =
+                        listOf(
+                            "np.community.newar",
+                        ),
                 ),
         ),
         EventDefinition(
-            id = EventId("un.development-information-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.ghatasthapana"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی اطلاعات توسعه",
-                        "ar" to "اليوم العالمي للإعلام الإنمائي",
-                        "en" to "World Development Information Day",
-                        "es" to "Día Mundial de Información sobre el Desarrollo",
-                        "fr" to "Journée mondiale d'information sur le développement",
-                        "ru" to "Всемирный день информации о развитии",
-                        "zh" to "世界发展宣传日",
+                        "fa" to "گهاتاستاپانا",
+                        "en" to "Ghatasthapana",
+                        "ne" to "घटस्थापना",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 10, day = 24),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/development-information-day",
-                        title = "World Development Information Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/development-information-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.diabetes-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی دیابت",
-                        "ar" to "اليوم العالمي لمرضى السكري",
-                        "en" to "World Diabetes Day",
-                        "es" to "Día Mundial de la Diabetes",
-                        "fr" to "Journée mondiale du diabète",
-                        "ru" to "Всемирный день борьбы с диабетом",
-                        "zh" to "世界糖尿病日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 14),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/diabetes-day",
-                        title = "World Diabetes Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/61/225",
-                    "un" to "https://www.un.org/en/observances/diabetes-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.disarmament-non-proliferation-awareness-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی آگاهی از خلع سلاح و منع اشاعه",
-                        "en" to "International Day for Disarmament and Non-Proliferation Awareness",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 3, day = 5),
+            rule = EventRule.LunarTithi(month = 6, tithi = 1, observance = TithiObservance.SUNRISE),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_022,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day",
-                            title = "International Day for Disarmament and Non-Proliferation Awareness -- GA resolution A/RES/77/51 (7 Dec 2022)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ङ): घटस्थापना - असोज ६ गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ङ): घटस्थापना - असोज ६ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day",
-                        title = "International Day for Disarmament and Non-Proliferation Awareness (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 2, clause 2.1(ङ): घटस्थापना - असोज २५ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/disarmament-non-proliferation-awareness-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.disarmament-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.krishna-janmashtami"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "هفته خلع سلاح",
-                        "en" to "Disarmament Week",
+                        "fa" to "جشن زادروز کریشنا",
+                        "en" to "Krishna Janmashtami",
+                        "ne" to "श्रीकृष्ण जन्माष्टमी",
                     ),
                 ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 10, day = 24), lengthDays = 7),
+            rule = EventRule.LunarTithi(month = 4, tithi = 23, observance = TithiObservance.SUNRISE),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_978,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/disarmament-week",
-                            title = "General Assembly special session on disarmament, Final Document (resolution S-10/2, 1978): Disarmament Week, 24-30 October",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 1 (Rajpatra p. 3), clause 2.1(घ): श्रीकृष्ण जन्माष्टमी - साउन ३१ गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 1 (Rajpatra p. 3), clause 2.1(घ): श्रीकृष्ण जन्माष्टमी - साउन ३१ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/disarmament-week",
-                        title = "General Assembly special session on disarmament, Final Document (resolution S-10/2, 1978): Disarmament Week, 24-30 October",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 2, clause 2.1(घ): श्रीकृष्ण जन्माष्टमी - भदौ १९ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/disarmament-week",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.disaster-reduction-day"),
+            id = EventId("np.holiday.labour-day"),
             calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
+            source = EventSource.NEPAL_OFFICIAL,
             category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی کاهش مصایب طبیعی",
-                        "ar" to "اليوم الدولي للحد من الكوارث",
-                        "en" to "International Day for Disaster Risk Reduction",
-                        "es" to "Día Internacional para la Reducción de los Desastres",
-                        "fr" to "Journée internationale pour la réduction des risques de catastrophes",
-                        "ru" to "Международный день по снижению риска бедствий",
-                        "zh" to "国际减少灾害风险日",
+                        "fa" to "روز جهانی کارگر",
+                        "ar" to "عيد العمال",
+                        "az" to "Əmək Günü",
+                        "bn" to "আন্তর্জাতিক শ্রমিক দিবস",
+                        "ckb" to "ڕۆژی جیهانیی کرێکاران",
+                        "de" to "Tag der Arbeit",
+                        "en" to "International Workers’ Day",
+                        "es" to "Día Internacional de los Trabajadores",
+                        "fr" to "Fête du Travail",
+                        "hi" to "अंतरराष्ट्रीय मज़दूर दिवस",
+                        "id" to "Hari Buruh Internasional",
+                        "ja" to "メーデー",
+                        "kmr" to "Roja Karkeran a Cîhanî",
+                        "ms" to "Hari Pekerja",
+                        "ne" to "विश्व मजदुर दिवस",
+                        "prs" to "روز جهانی کارگر",
+                        "ps" to "د کارګرانو نړیواله ورځ",
+                        "ru" to "Международный день трудящихся",
+                        "ta" to "சர்வதேச தொழிலாளர் தினம்",
+                        "tg" to "Рӯзи байналмилалии меҳнаткашон",
+                        "tr" to "Emek ve Dayanışma Günü",
+                        "ur" to "مزدوروں کا عالمی دن",
+                        "uz" to "Xalqaro mehnatkashlar kuni",
+                        "zh" to "国际劳动节",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 10, day = 13),
+            rule = EventRule.Fixed(month = 5, day = 1),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(क): विश्व मजदुर दिवस - (मे १) वैशाख १८ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
+                        ),
+                ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(क): विश्व मजदुर दिवस - (मे १) वैशाख १८ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/disaster-reduction-day",
-                        title = "International Day for Disaster Risk Reduction (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 5, clause 6.1(क): विश्व मजदुर दिवस - (मे १) वैशाख १८ गते",
                     ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/64/200",
-                    "un" to "https://www.un.org/en/observances/disaster-reduction-day",
                 ),
         ),
     )

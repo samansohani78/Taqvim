@@ -6,6 +6,7 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -24,330 +25,194 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_20: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.ending-violence-against-women-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.sonam-lhochhar"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.CULTURAL,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین المللی حذف خشونت علیه زنان",
-                        "ar" to "اليوم الدولي للقضاء على العنف ضد المرأة",
-                        "en" to "International Day for the Elimination of Violence against Women",
-                        "es" to "Día Internacional de la Eliminación de la Violencia contra la Mujer",
-                        "fr" to "Journée internationale pour l'élimination de la violence à l'égard des femmes",
-                        "ru" to "Международный день борьбы за ликвидацию насилия в отношении женщин",
-                        "zh" to "制止暴力侵害妇女行为国际日",
+                        "fa" to "سونام لوسار",
+                        "en" to "Sonam Lhosar",
+                        "ne" to "सोनम ल्होछार",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 11, day = 25),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/ending-violence-against-women-day",
-                        title = "International Day for the Elimination of Violence against Women (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/32/40",
-                    "un" to "https://www.un.org/en/observances/ending-violence-against-women-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.english-language-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز زبان انگلیسی",
-                        "en" to "English Language Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 23),
+            rule = EventRule.LunarTithi(month = 10, tithi = 1, observance = TithiObservance.SUNRISE),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/russian-language-day",
-                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ड): सोनम ल्होछार - माघ ५ गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ड): सोनम ल्होछार - माघ ५ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/english-language-day",
-                        title = "English Language Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 3, clause 2.1(ड): सोनम ल्होछार - माघ २४ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/english-language-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.environment-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.tamu-lhochhar"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.CULTURAL,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی محیط زیست",
-                        "ar" to "اليوم العالمي للبيئة",
-                        "en" to "World Environment Day",
-                        "es" to "Día Mundial del Medio Ambiente",
-                        "fr" to "Journée mondiale de l'environnement",
-                        "ru" to "Всемирный день окружающей среды",
-                        "zh" to "世界环境日",
+                        "fa" to "تامو لوسار",
+                        "en" to "Tamu Lhosar",
+                        "ne" to "तमू ल्होछार",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 6, day = 5),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/environment-day",
-                        title = "World Environment Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/environment-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.environment-in-war-protection-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی پیشگیری از سوء استفاده از محیط زیست در جنگ و مناقشه مسلحانه",
-                        "ar" to "اليوم الدولي لمنع استخدام البيئة في الحروب والصراعات العسكرية",
-                        "en" to "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict",
-                        "es" to "Día Internacional para la Prevención de la Explotación del Medio Ambiente en la Guerra y los Conflictos Armados",
-                        "fr" to "Journée internationale pour la prévention de l'exploitation de l'environnement en temps de guerre et de conflit armé",
-                        "ru" to "Международный день предотвращения эксплуатации окружающей среды во время войны и вооруженных конфликтов",
-                        "zh" to "防止战争和武装冲突糟蹋环境国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 6),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/environment-in-war-protection-day",
-                        title = "International Day for Preventing the Exploitation of the Environment in War and Armed Conflict (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/56/4",
-                    "un" to "https://www.un.org/en/observances/environment-in-war-protection-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.epidemic-preparedness-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی آمادگی در برابر بیماری‌های همه‌گیر",
-                        "en" to "International Day of Epidemic Preparedness",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 27),
+            rule = EventRule.Fixed(month = 9, day = 15),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_020,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://docs.un.org/en/A/RES/75/27",
-                            title = "International Day of Epidemic Preparedness — General Assembly resolution A/RES/75/27, \"Resolution adopted by the General Assembly on 7 December 2020\", para. 1: \"Decides to proclaim 27 December as the International Day of Epidemic Preparedness\".",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ट): तमू ल्होछार - पुस १५ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ट): तमू ल्होछार - पुस १५ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/epidemic-preparedness-day",
-                        title = "International Day of Epidemic Preparedness (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 3, clause 2.1(ट): तमू ल्होछार - पुस १५ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/epidemic-preparedness-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.equal-pay-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("np.holiday.tihar"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی برابری دستمزد",
-                        "en" to "International Equal Pay Day",
+                        "fa" to "تعطیلات تیهار",
+                        "en" to "Tihar holidays",
+                        "ne" to "तिहार बिदा",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 9, day = 18),
+            rule = EventRule.LunarTithi(month = 6, tithi = 30, observance = TithiObservance.SUNSET, endTithi = 2, endOffsetDays = 1),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/equal-pay-day",
-                            title = "International Equal Pay Day (A/RES/74/142, 2019)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(छ): तिहार बिदा - कात्तिक ३ गतेदेखि कात्तिक ७ गतेसम्म (लक्ष्मीपूजा देखि भाइटिकाको भोलिपल्टसम्म) — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
+                        ),
+                ),
+            aliases =
+                listOf(
+                    "तिहार",
+                    "लक्ष्मीपूजा",
+                    "भाइटिका",
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(छ): तिहार बिदा - कात्तिक ३ गतेदेखि कात्तिक ७ गतेसम्म (लक्ष्मीपूजा देखि भाइटिकाको भोलिपल्टसम्म)",
+                    ),
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 2, clause 2.1(छ): तिहार बिदा - कात्तिक २२ गतेदेखि कात्तिक २६ गतेसम्म (लक्ष्मीपूजा देखि भाइटिकाको भोलिपल्टसम्म), continued on PDF p. 3",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("np.holiday.womens-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = true,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی زن",
+                        "ar" to "اليوم الدولي للمرأة",
+                        "az" to "Beynəlxalq Qadınlar Günü",
+                        "bn" to "আন্তর্জাতিক নারী দিবস",
+                        "ckb" to "ڕۆژی جیهانیی ژنان",
+                        "de" to "Internationaler Frauentag",
+                        "en" to "International Women’s Day",
+                        "es" to "Día Internacional de la Mujer",
+                        "fr" to "Journée internationale des femmes",
+                        "hi" to "अंतरराष्ट्रीय महिला दिवस",
+                        "id" to "Hari Perempuan Internasional",
+                        "ja" to "国際女性デー",
+                        "kmr" to "Roja Jinê ya Cîhanî",
+                        "ms" to "Hari Wanita Antarabangsa",
+                        "ne" to "अन्तर्राष्ट्रिय महिला दिवस",
+                        "prs" to "روز جهانی زن",
+                        "ps" to "د ښځو نړیواله ورځ",
+                        "ru" to "Международный женский день",
+                        "ta" to "சர்வதேச மகளிர் தினம்",
+                        "tg" to "Рӯзи байналмилалии занон",
+                        "tr" to "Dünya Kadınlar Günü",
+                        "ur" to "خواتین کا عالمی دن",
+                        "uz" to "Xalqaro xotin-qizlar kuni",
+                        "zh" to "国际妇女节",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 8),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(च): अन्तर्राष्ट्रिय महिला दिवस (मार्च ८) - फागुन २४ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 4 (Rajpatra p. 6), clause 6.1(च): अन्तर्राष्ट्रिय महिला दिवस (मार्च ८) - फागुन २४ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/equal-pay-day",
-                        title = "International Equal Pay Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 5, clause 6.1(च): अन्तर्राष्ट्रिय महिला दिवस (मार्च ८) - फागुन २४ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/equal-pay-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.fair-play-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی بازی منصفانه",
-                        "en" to "World Fair Play Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 19),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/fair-play-day",
-                            title = "World Fair Play Day — A/RES/78/310 (1 July 2024)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/fair-play-day",
-                        title = "World Fair Play Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/fair-play-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.female-genital-mutilation-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی عدم تحمل ختنه زنان",
-                        "en" to "International Day of Zero Tolerance to Female Genital Mutilation",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 2, day = 6),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_012,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/female-genital-mutilation-day",
-                            title = "Zero Tolerance to FGM Day — A/RES/67/146 (2012)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/female-genital-mutilation-day",
-                        title = "International Day of Zero Tolerance to Female Genital Mutilation (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/female-genital-mutilation-day",
                 ),
         ),
     )

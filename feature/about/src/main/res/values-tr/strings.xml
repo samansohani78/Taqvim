@@ -96,13 +96,13 @@
   <string name="about_faq_main_calendar_q">Ana veya ikincil takvimi nasıl değiştiririm?</string>
   <string name="about_faq_main_calendar_a">Ayarlarda ana takvimi ve ikincil takvimi seçin. Ay görünümü ve başlığı ana takvimi izler; her gün diğer takvimlerdeki tarihlerini de gösterir.</string>
   <string name="about_faq_nepali_q">Nepal (Bikram Sambat) takvimi var mı?</string>
-  <string name="about_faq_nepali_a">Henüz yok. Resmî ay tabloları elde edildiğinde eklenecek. O zamana kadar yerine Miladi takvim kullanılır.</string>
+  <string name="about_faq_nepali_a">Evet. Takvim ayarlarından Bikram Sambat’ı seçin. Tarihleri cihazınızda hesaplanır.</string>
   <string name="about_faq_widgets_q">Ana ekran widget\'ları var mı?</string>
-  <string name="about_faq_widgets_a">Henüz yok. Ana ekran widget\'ları sonraki bir sürüm için planlanıyor.</string>
+  <string name="about_faq_widgets_a">Evet. Ana ekranınızın widget menüsünden bir Taqvim widget’ı ekleyin.</string>
   <string name="about_faq_holiday_sources_q">Tatiller ve özel günler nereden geliyor?</string>
   <string name="about_faq_holiday_sources_a">İran resmî tatilleri Tahran Üniversitesi Takvim Merkezi\'nin yayımladığı resmî takvimlerden, uluslararası günler ise Birleşmiş Milletler listesinden gelir. Her kayıt alındığı sayfayı belirtir ve kaynaklar Hakkında sayfasındaki Veri kaynakları bölümünde listelenir.</string>
   <string name="about_faq_missing_days_q">Bazı uluslararası günler neden eksik?</string>
-  <string name="about_faq_missing_days_a">Bir uluslararası gün yalnızca Farsça adı Birleşmiş Milletler\'in veya başka bir resmî Farsça yayında bulunduğunda eklenir. Taqvim adları kendisi çevirmez; bu yüzden böyle bir kaynağı olmayan gün, kaynak bulunana kadar eklenmez.</string>
+  <string name="about_faq_missing_days_a">Özel günlerin tarihleri ve anlamları güvenilir kaynaklara dayanmalıdır. Resmî çeviri yoksa başlıklar yapay zekâyla çevrilebilir. Çevirinin kaynağı ve inceleme durumu ayrı kaydedilir.</string>
   <string name="about_faq_event_sources_q">Bir özel gün grubunu nasıl gösterir veya gizlerim?</string>
   <string name="about_faq_event_sources_a">Ayarlarda her etkinlik kaynağı grubunu açın veya kapatın. Eski İran bayramları varsayılan olarak kapalıdır.</string>
   <string name="about_faq_wrong_date_q">Bir tatil veya tarih yanlış görünüyor. Nasıl bildiririm?</string>

@@ -15,7 +15,6 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
-import ir.taqvim.core.model.Weekday
 
 /**
  * Part 21 of the dataset events.
@@ -25,130 +24,125 @@ import ir.taqvim.core.model.Weekday
 internal val OFFICIAL_EVENTS_PART_21: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.fight-against-transnational-crime-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("np.observance.anti-untouchability-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
             isHoliday = false,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی پیشگیری و مبارزه با همه اشکال جرایم سازمان‌یافته فراملی",
-                        "en" to "International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime",
+                        "fa" to "روز ملی رفع تبعیض کاستی و نجس‌انگاری",
+                        "en" to "National Day for the Elimination of Caste Discrimination and Untouchability",
+                        "ne" to "जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 11, day = 15),
+            rule = EventRule.Fixed(month = 2, day = 21),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/fight-against-transnational-crime-day",
-                            title = "International Day for the Prevention of and Fight against Transnational Organized Crime — A/RES/78/267 (March 2024)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 5 (Rajpatra p. 7), clause 8(क): national day, offices open: जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस - जेठ २१ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 5 (Rajpatra p. 7), clause 8(क): national day, offices open: जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस - जेठ २१ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/fight-against-transnational-crime-day",
-                        title = "International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 6, clause 8(क): national day, offices open: जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस - जेठ २१ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/fight-against-transnational-crime-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.food-safety-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("np.observance.civil-service-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
             isHoliday = false,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی ایمنی غذا",
-                        "en" to "World Food Safety Day",
+                        "fa" to "روز کارکنان دولت",
+                        "en" to "Civil Service Day",
+                        "ne" to "निजामती सेवा दिवस",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 6, day = 7),
+            rule = EventRule.Fixed(month = 5, day = 22),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_018,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/food-safety-day",
-                            title = "World Food Safety Day -- GA resolution 73/250 (20 December 2018)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 5 (Rajpatra p. 7), clause 8(ख): national day, offices open: निजामती सेवा दिवस- भदौ २२ गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 5 (Rajpatra p. 7), clause 8(ख): national day, offices open: निजामती सेवा दिवस- भदौ २२ गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/food-safety-day",
-                        title = "World Food Safety Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 6, clause 8(ख): national day, offices open: निजामती सेवा दिवस - भदौ २२ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/food-safety-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.football-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("np.observance.genz-martyrs-day"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.NATIONAL,
             isHoliday = false,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی فوتبال",
-                        "en" to "World Football Day",
+                        "fa" to "روز شهدای نسل زد",
+                        "en" to "Gen Z Martyrs’ Day",
+                        "ne" to "जेनजी सहिद दिवस",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 5, day = 25),
+            rule = EventRule.Fixed(month = 5, day = 23),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_083,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/football-day",
-                            title = "World Football Day — A/RES/78/281 (7 May 2024)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                            page = "PDF p. 6, clause 8(ग): national day, offices open: जेनजी सहिद दिवस - भदौ २३ गते (first listed in the notice for 2083) — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 6, clause 8(ग): national day, offices open: जेनजी सहिद दिवस - भदौ २३ गते (first listed in the notice for 2083)",
                     ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/football-day",
-                        title = "World Football Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/football-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.french-language-day"),
+            id = EventId("un.africa-industrialization-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -156,204 +150,36 @@ internal val OFFICIAL_EVENTS_PART_21: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز زبان فرانسوی",
-                        "en" to "French Language Day",
+                        "fa" to "روز صنعتی‌شدن آفریقا",
+                        "ar" to "يوم التصنيع في أفريقيا",
+                        "en" to "Africa Industrialization Day",
+                        "es" to "Día de la Industrialización de África",
+                        "fr" to "Journée de l'industrialisation de l'Afrique",
+                        "ru" to "День индустриализации Африки",
+                        "zh" to "非洲工业化日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 3, day = 20),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/russian-language-day",
-                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
-                        ),
-                ),
+            rule = EventRule.Fixed(month = 11, day = 20),
             citations =
                 listOf(
                     Citation(
                         url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/fr/observances/french-language-day/",
-                        title = "French Language Day (observance page)",
+                        url = "https://www.un.org/en/observances/africa-industrialization-day",
+                        title = "Africa Industrialization Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/fr/observances/french-language-day/",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.friendship-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی دوستی",
-                        "en" to "International Day of Friendship",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 7, day = 30),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_011,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/friendship-day",
-                            title = "International Day of Friendship — A/RES/65/275 (2011)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/friendship-day",
-                        title = "International Day of Friendship (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/friendship-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.genocide-prevention-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی یادبود و کرامت قربانیان جنایت نسل‌کشی و پیشگیری از این جنایت",
-                        "en" to "International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 9),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_015,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/genocide-prevention-day",
-                            title = "International Day of Commemoration and Dignity of the Victims of the Crime of Genocide — A/RES/69/323 (29 September 2015)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/genocide-prevention-day",
-                        title = "International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/genocide-prevention-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.girl-child-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی دختران",
-                        "en" to "International Day of the Girl Child",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 11),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_011,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/girl-child-day",
-                            title = "International Day of the Girl Child — resolution 66/170 (19 December 2011)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/girl-child-day",
-                        title = "International Day of the Girl Child (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/girl-child-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.girls-in-ict-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی دختران در فناوری اطلاعات و ارتباطات",
-                        "en" to "International Girls in ICT Day",
-                    ),
-                ),
-            rule = EventRule.NthWeekdayOfMonth(month = 4, weekday = Weekday.THURSDAY, n = 4),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
-                            title = "International Girls in ICT Day (ITU Plenipotentiary Conference Resolution 70, 2010)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.itu.int/women-and-girls/girls-in-ict/",
-                        title = "International Girls in ICT Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://www.itu.int/women-and-girls/girls-in-ict/about-international-girls-in-ict-day/",
-                        title = "ITU — About International Girls in ICT Day: \"Since 8 April 2011, the ITU has celebrated Girls in ICT Day annually on the fourth Thursday in April\" — D-05 re-validation (2026-09-25) found this record was shipped as a Fixed April 23 date, which is only the fourth Thursday in 3 of 25 years (2015, 2020, 2026); ITU's own page states a floating weekday-ordinal rule, so the rule type was corrected from Fixed to NthWeekdayOfMonth.",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.itu.int/women-and-girls/girls-in-ict/",
+                    "resolution" to "http://undocs.org/en/A/RES/44/237",
+                    "un" to "https://www.un.org/en/observances/africa-industrialization-day",
                 ),
         ),
     )

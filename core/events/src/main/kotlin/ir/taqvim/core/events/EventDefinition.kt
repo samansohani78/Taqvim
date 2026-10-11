@@ -67,8 +67,33 @@ public data class LocalizedText(
         require(texts.values.all { it.isNotBlank() }) { "localized texts must not be blank" }
     }
 
-    /** The text for [languageTag], falling back to Persian, then Nepali. */
-    public fun forLanguage(languageTag: String): String = texts[languageTag] ?: texts[PERSIAN] ?: texts.getValue(NEPALI)
+    /**
+     * Exact tag, base language, Persian/Dari sibling, English reference, then the original Persian/Nepali text.
+     * Region variants share a language; unrelated scripts do not. Original titles are never discarded.
+     * See docs/i18n/TRANSLATING.md for translation provenance and the fallback contract.
+     */
+    public fun forLanguage(languageTag: String): String {
+        val language = baseLanguage(languageTag)
+        val sibling =
+            when (language) {
+                "prs" -> PERSIAN
+                PERSIAN -> "prs"
+                else -> language
+            }
+        return texts[languageTag] ?: texts[language] ?: texts[sibling] ?: texts["en"] ?: texts[PERSIAN]
+            ?: texts.getValue(NEPALI)
+    }
+
+    private fun baseLanguage(languageTag: String): String {
+        val normalized = languageTag.replace('_', '-').lowercase()
+        val base = normalized.substringBefore('-')
+        return when (base) {
+            "fa" -> if (normalized == "fa-af") "prs" else base
+            "in" -> "id"
+            "ku" -> "kmr"
+            else -> base
+        }
+    }
 
     public companion object {
         /** The mandatory language. */

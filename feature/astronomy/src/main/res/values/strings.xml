@@ -189,5 +189,5 @@
   <string name="astronomy_paksha_krishna">Krishna</string>
   <string name="astronomy_tithi_why">About this tithi</string>
   <string name="astronomy_tithi_hide">Hide</string>
-  <string name="astronomy_tithi_explained">The tithi is the Moon’s distance from the Sun, in twelfths of a lap. Taqvim reads it with the Surya Siddhanta, the method Nepal’s panchang follows, so it always agrees with the Nepali festivals in this app. A modern ephemeris puts the same boundary a few hours away and can name a different day.</string>
+  <string name="astronomy_tithi_explained">A tithi is a lunar day defined by each 12° increase in the Moon’s angular separation from the Sun. Taqvim calculates it using the Surya Siddhanta, also used for Nepali festivals in this app. Modern astronomical calculations can give different boundaries.</string>
 </resources>

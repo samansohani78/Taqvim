@@ -13,8 +13,8 @@
   <string name="notification_athan_snooze">Мавқуф гузоштан</string>
   <string name="notification_reminder_channel_personal_name">Ёдраскуниҳои рӯйдод</string>
   <string name="notification_reminder_channel_personal_description">Ёдраскуниҳои рӯйдодҳое, ки шумо сохтаед</string>
-  <string name="notification_reminder_channel_official_name">Ёдраскуниҳои муносибатҳо</string>
-  <string name="notification_reminder_channel_official_description">Ёдраскуниҳои муносибатҳои расмие, ки шумо пайгирӣ мекунед</string>
+  <string name="notification_reminder_channel_official_name">Ёдраскуниҳои санаҳои муҳим</string>
+  <string name="notification_reminder_channel_official_description">Ёдраскуниҳо барои санаҳои расмие, ки шумо пайгирӣ мекунед</string>
   <string name="notification_reminder_text_personal">Рӯйдоди наздик</string>
   <string name="notification_reminder_text_official_today">Имрӯз</string>
   <plurals name="notification_reminder_text_official_days">

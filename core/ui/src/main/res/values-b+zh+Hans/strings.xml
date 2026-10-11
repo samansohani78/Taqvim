@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- MT: needs review — machine translation (zh-Hans) generated 2026-10-05, T-1702; see docs/i18n/TRANSLATING.md. -->
 <resources>
-  <string name="shared_islamic_variant_iran_official">伊朗官方</string>
+  <string name="shared_islamic_variant_iran_official">伊朗</string>
   <string name="shared_islamic_variant_umm_al_qura">乌姆古拉历</string>
   <string name="shared_islamic_variant_tabular_16">表格式（第二型）</string>
   <string name="shared_islamic_variant_tabular_15">表格式（第一型）</string>

@@ -10,7 +10,8 @@
 -->
 <resources>
   <!-- Rules for deciding when an Islamic (lunar Hijri) month begins. Shown wherever a date's method is named. -->
-  <string name="shared_islamic_variant_iran_official">Iran official</string>
+  <!-- The resource key is historical: this method computes dates unless the user enables an official override. -->
+  <string name="shared_islamic_variant_iran_official">Iran</string>
   <string name="shared_islamic_variant_umm_al_qura">Umm al-Qura</string>
   <string name="shared_islamic_variant_tabular_16">Tabular (type II)</string>
   <string name="shared_islamic_variant_tabular_15">Tabular (type I)</string>

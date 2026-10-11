@@ -11,6 +11,7 @@ import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.text.Text
+import ir.taqvim.core.i18n.BidiText
 
 /**
  * T-1216: today's date in each of the user's calendars, one per line, and nothing else.
@@ -20,8 +21,8 @@ import androidx.glance.text.Text
  * content, which means the loader fetches nothing for it and the host never has to draw a placeholder.
  *
  * The first line is the user's primary calendar and is the largest; the rest follow in their chosen order, smaller.
- * Glance lays the column out in the host's layout direction, so a Persian user sees right-to-left text correctly
- * without the widget doing anything itself. The Islamic line follows the user's chosen method and any official
+ * Each date is directionally isolated so a Latin Gregorian month in an RTL host retains its own reading order.
+ * The Islamic line follows the user's chosen method and any official
  * override, because it comes from the same arithmetic the rest of the app uses.
  */
 class ThreeDatesWidget : TaqvimGlanceWidget(WidgetKind.THREE_DATES) {
@@ -41,18 +42,25 @@ class ThreeDatesWidget : TaqvimGlanceWidget(WidgetKind.THREE_DATES) {
         ) {
             lines.forEachIndexed { index, line ->
                 Text(
-                    text = line,
+                    text = BidiText.isolate(line),
                     style = style.text(if (index == 0) primarySp(size) else secondarySp(size), bold = index == 0),
-                    maxLines = 1,
+                    maxLines = 2,
                 )
             }
         }
     }
 
-    private fun primarySp(size: WidgetSize): Float = if (size == WidgetSize.SMALL) SMALL_PRIMARY_SP else PRIMARY_SP
+    private fun primarySp(size: WidgetSize): Float =
+        if (size ==
+            WidgetSize.EXTRA_LARGE
+        ) {
+            PRIMARY_SP
+        } else {
+            SMALL_PRIMARY_SP
+        }
 
     private fun secondarySp(size: WidgetSize): Float =
-        if (size == WidgetSize.SMALL) SMALL_SECONDARY_SP else SECONDARY_SP
+        if (size == WidgetSize.EXTRA_LARGE) SECONDARY_SP else SMALL_SECONDARY_SP
 
     private companion object {
         /** Three calendars is the concept; a user who keeps more sees the three they put first. */

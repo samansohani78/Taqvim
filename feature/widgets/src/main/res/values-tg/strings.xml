@@ -117,7 +117,7 @@
   <string name="widget_countdown_mode_until">Рӯзҳо то</string>
   <string name="widget_countdown_mode_since">Вақт аз</string>
   <string name="widget_countdown_config_label">Унвон (ихтиёрӣ)</string>
-  <string name="widget_countdown_config_occasions">Муносибатҳо</string>
+  <string name="widget_countdown_config_occasions">Санаҳои муҳим</string>
   <string name="widget_countdown_occasion">%1$s · %2$s</string>
   <string name="widget_countdown_config_calendar">Тақвим</string>
   <string name="widget_countdown_config_change_date">Иваз кардани сана</string>

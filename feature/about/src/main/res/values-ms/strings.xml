@@ -93,13 +93,13 @@
   <string name="about_faq_main_calendar_q">Bagaimana saya menukar kalendar utama atau kedua?</string>
   <string name="about_faq_main_calendar_a">Dalam tetapan, pilih kalendar utama dan kalendar kedua. Paparan bulan dan tajuknya mengikut kalendar utama, dan setiap hari turut menunjukkan tarikhnya dalam kalendar lain.</string>
   <string name="about_faq_nepali_q">Adakah kalendar Nepal (Bikram Sambat) tersedia?</string>
-  <string name="about_faq_nepali_a">Belum lagi. Ia akan ditambah apabila jadual bulan rasmi tersedia. Sehingga itu, kalendar Masihi digunakan sebagai gantinya.</string>
+  <string name="about_faq_nepali_a">Ya. Pilih Bikram Sambat dalam tetapan kalendar. Tarikhnya dikira pada peranti anda.</string>
   <string name="about_faq_widgets_q">Adakah terdapat widget skrin utama?</string>
-  <string name="about_faq_widgets_a">Belum lagi. Widget skrin utama dirancang untuk versi kemudian.</string>
+  <string name="about_faq_widgets_a">Ya. Tambahkan widget Taqvim daripada menu widget skrin utama.</string>
   <string name="about_faq_holiday_sources_q">Dari mana cuti dan sambutan datang?</string>
   <string name="about_faq_holiday_sources_a">Cuti rasmi Iran datang daripada kalendar rasmi yang diterbitkan oleh Pusat Kalendar Universiti Tehran, dan hari antarabangsa daripada senarai Pertubuhan Bangsa-Bangsa Bersatu. Setiap rekod memetik halaman asalnya, dan sumber disenaraikan di bawah Sumber data pada halaman Perihal.</string>
   <string name="about_faq_missing_days_q">Mengapa sesetengah hari antarabangsa tiada?</string>
-  <string name="about_faq_missing_days_a">Hari antarabangsa hanya ditambah apabila tajuk Parsinya ditemui dalam penerbitan PBB atau penerbitan rasmi Parsi yang lain. Taqvim tidak menterjemah tajuk sendiri, jadi hari tanpa sumber sebegitu ditinggalkan sehingga sumber ditemui.</string>
+  <string name="about_faq_missing_days_a">Tarikh dan makna peringatan memerlukan sumber yang boleh dipercayai. Jika tiada terjemahan rasmi, tajuk boleh diterjemahkan dengan AI. Asal terjemahan dan status semakan direkodkan secara berasingan.</string>
   <string name="about_faq_event_sources_q">Bagaimana saya menunjukkan atau menyembunyikan sekumpulan sambutan?</string>
   <string name="about_faq_event_sources_a">Dalam tetapan, hidupkan atau matikan setiap kumpulan sumber acara. Perayaan Iran purba dimatikan secara lalai.</string>
   <string name="about_faq_wrong_date_q">Sesuatu cuti atau tarikh kelihatan salah. Bagaimana saya melaporkannya?</string>

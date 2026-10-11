@@ -111,13 +111,13 @@
   <string name="about_faq_main_calendar_q">How do I change the main or secondary calendar?</string>
   <string name="about_faq_main_calendar_a">In settings, choose the main calendar and the secondary calendar. The month view and its title follow the main calendar, and each day also shows its dates in the other calendars.</string>
   <string name="about_faq_nepali_q">Is the Nepali (Bikram Sambat) calendar available?</string>
-  <string name="about_faq_nepali_a">Not yet. It will be added when the official month tables are available. Until then, the Gregorian calendar is used instead.</string>
+  <string name="about_faq_nepali_a">Yes. Choose Bikram Sambat in calendar settings. Its dates are calculated on your device.</string>
   <string name="about_faq_widgets_q">Are there home screen widgets?</string>
-  <string name="about_faq_widgets_a">Not yet. Home screen widgets are planned for a later version.</string>
+  <string name="about_faq_widgets_a">Yes. Add a Taqvim widget from your home screen’s widget menu.</string>
   <string name="about_faq_holiday_sources_q">Where do the holidays and occasions come from?</string>
   <string name="about_faq_holiday_sources_a">Iran official holidays come from the official calendars published by the Calendar Center of the University of Tehran, and international days from the United Nations list. Each record cites the page it was taken from, and the sources are listed under Data sources on the About page.</string>
   <string name="about_faq_missing_days_q">Why are some international days missing?</string>
-  <string name="about_faq_missing_days_a">An international day is added only when its Persian title is found in a United Nations or other official Persian publication. Taqvim does not translate titles itself, so a day without such a source is left out until one is found.</string>
+  <string name="about_faq_missing_days_a">Events need reliable sources for their dates and meaning. Titles may be translated by AI when an official translation is unavailable; translation and review status are recorded separately.</string>
   <string name="about_faq_event_sources_q">How do I show or hide a group of occasions?</string>
   <string name="about_faq_event_sources_a">In settings, turn each group of event sources on or off. Ancient Iranian festivals are off by default.</string>
   <string name="about_faq_wrong_date_q">A holiday or date looks wrong. How do I report it?</string>

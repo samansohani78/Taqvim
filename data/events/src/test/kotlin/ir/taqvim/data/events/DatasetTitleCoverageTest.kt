@@ -11,18 +11,7 @@ import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.data.events.generated.OfficialEvents
 import org.junit.jupiter.api.Test
 
-/**
- * What a reader actually sees for an observance's name, and how much of the dataset is still Persian for them.
- *
- * `LocalizedText.forLanguage` falls back `requested → fa → ne`, so a language with no title for a record shows
- * Persian text inside an otherwise translated screen. That fallback is deliberate — an observance with no name is
- * worse than one named in the wrong language, and inventing names is not on the table (docs/i18n/DATASET_TITLE_DEBT.md
- * says why) — but it is debt, and debt that nothing measures is debt that grows.
- *
- * So the counts below are a ratchet, not an approval. They may only improve, and improving them means editing the
- * number here and the table in the debt document together, which is the point: the document cannot drift away from
- * what the dataset really holds.
- */
+/** Dataset title coverage and representative display, independently of translation review status. */
 class DatasetTitleCoverageTest {
     private val all: List<EventDefinition> = OfficialEvents.ALL
 
@@ -37,8 +26,7 @@ class DatasetTitleCoverageTest {
 
     @Test
     fun `English coverage only improves`() {
-        // 280 of 329 on 2026-10-10. A lower number than this means titles were removed; a higher one means the
-        // debt shrank, and docs/i18n/DATASET_TITLE_DEBT.md has to say so.
+        // Every shipped event has an English reference; a new record must supply one too.
         val present = withTitleIn("en").size
 
         (present >= ENGLISH_TITLES) shouldBe true
@@ -79,31 +67,25 @@ class DatasetTitleCoverageTest {
     }
 
     @Test
-    fun `a language with no title of its own falls back to Persian, and that is visible here`() {
-        // German has no dataset titles at all, so this is what a German reader sees. Asserted so that the day it
-        // stops being true, somebody has to come here and say so.
-        titleOf("ir.holiday.ashura", "de") shouldBe titleOf("ir.holiday.ashura", "fa")
-        withTitleIn("de").shouldBeEmpty()
+    fun `German has translated names and otherwise uses the English reference`() {
+        titleOf("ir.holiday.ashura", "de") shouldBe "Aschura"
+        titleOf("ir.holiday.imam-reza-martyrdom", "de") shouldBe titleOf("ir.holiday.imam-reza-martyrdom", "en")
     }
 
     @Test
-    fun `the Nepali records are the ones with no Persian title, and they fall back to Nepali`() {
-        val withoutPersian = fallingBackIn("fa")
-
-        withoutPersian.size shouldBe RECORDS - PERSIAN_TITLES
-        withoutPersian.forEach { definition ->
-            // Not an accident of the data: LocalizedText requires a Persian or a Nepali text, so these must have
-            // Nepali, and a reader of any language sees Nepali for them.
-            ("ne" in definition.title.texts) shouldBe true
-            definition.title.forLanguage("en") shouldBe definition.title.texts.getValue("ne")
-        }
+    fun `every event has both primary language titles`() {
+        fallingBackIn("fa").shouldBeEmpty()
+        fallingBackIn("en").shouldBeEmpty()
+        titleOf("np.holiday.dashain", "en") shouldBe "Dashain holidays"
+        titleOf("np.holiday.dashain", "fa") shouldBe "تعطیلات دشاین"
+        titleOf("np.holiday.dashain", "ne") shouldBe "दशैं बिदा"
     }
 
     @Test
-    fun `every English title added without a cited English source is marked for review`() {
+    fun `the earlier English exonym additions remain available`() {
         // The 18 exonyms of 2026-10-10 are transliterations, not quotations from the sources the records cite.
-        // They carry titleReview so nothing in the dataset claims they were reviewed. The dataset validator owns
-        // the marker itself; this checks the records it was added for still have an English title to review.
+        // Review markers are checked against source JSON by tools/i18n; generated EventDefinition deliberately
+        // does not carry editorial metadata. This assertion only checks the runtime titles.
         val exonyms =
             listOf(
                 "ir.holiday.nowruz-1",
@@ -126,7 +108,7 @@ class DatasetTitleCoverageTest {
 
     private companion object {
         const val RECORDS = 329
-        const val ENGLISH_TITLES = 280
-        const val PERSIAN_TITLES = 299
+        const val ENGLISH_TITLES = 329
+        const val PERSIAN_TITLES = 329
     }
 }

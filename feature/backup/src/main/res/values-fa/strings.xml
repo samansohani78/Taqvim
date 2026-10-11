@@ -3,7 +3,7 @@
   <string name="backup_title">پشتیبان‌گیری و بازیابی</string>
   <string name="backup_loading">در حال بارگذاری پشتیبان‌گیری و بازیابی</string>
   <string name="backup_export_title">پشتیبان‌گیری</string>
-  <string name="backup_export_explanation">رویدادها، یادآورها، اشتراک‌های تقویم، نوبت‌های کاری، نمایه‌های روز کاری و تنظیمات را در یک پرونده ذخیره کنید.</string>
+  <string name="backup_export_explanation">رویدادها، یادآورها، اشتراک‌های تقویم، چرخه‌های شیفت، برنامه‌های روز کاری و تنظیمات را در یک فایل ذخیره کنید.</string>
   <string name="backup_export_encrypt">رمزگذاری با گذرواژه</string>
   <string name="backup_export_encrypt_on">فقط کسی که گذرواژه را بداند می‌تواند این پشتیبان را باز کند.</string>
   <string name="backup_export_encrypt_off">پرونده به صورت JSON ساده است: هر کسی که آن را داشته باشد می‌تواند داده‌های شما را بخواند.</string>
@@ -42,13 +42,13 @@
   <string name="backup_table_events">رویدادها</string>
   <string name="backup_table_recurrences">قاعده‌های تکرار</string>
   <string name="backup_table_reminders">یادآورها</string>
-  <string name="backup_table_shift_rotations">نوبت‌های کاری</string>
-  <string name="backup_table_shift_records">سابقه نوبت‌ها</string>
+  <string name="backup_table_shift_rotations">چرخه‌های شیفت</string>
+  <string name="backup_table_shift_records">سابقهٔ شیفت‌ها</string>
   <string name="backup_table_subscriptions">اشتراک‌های تقویم</string>
-  <string name="backup_table_workdays">نمایه‌های روز کاری</string>
+  <string name="backup_table_workdays">برنامه‌های روز کاری</string>
   <string name="backup_table_official_reminders">یادآورهای پیش از مناسبت‌های رسمی</string>
   <string name="backup_restore">بازیابی این پشتیبان</string>
-  <string name="backup_restore_warning">بازیابی، همه رویدادها، یادآورها، اشتراک‌های تقویم، نوبت‌های کاری، نمایه‌های روز کاری و تنظیمات این دستگاه را با پشتیبان جایگزین می‌کند. این کار برگشت‌پذیر نیست.</string>
+  <string name="backup_restore_warning">بازیابی، همهٔ رویدادها، یادآورها، اشتراک‌های تقویم، چرخه‌های شیفت، برنامه‌های روز کاری و تنظیمات این دستگاه را با پشتیبان جایگزین می‌کند. این کار برگشت‌پذیر نیست.</string>
   <string name="backup_restore_confirm_title">داده‌های شما جایگزین شود؟</string>
   <string name="backup_restore_confirm">جایگزین کن</string>
   <string name="backup_error_not_a_backup">این پرونده پشتیبان تقویم نیست.</string>

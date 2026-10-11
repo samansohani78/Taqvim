@@ -1,0 +1,192 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+@file:Suppress("NoHardcodedNonLatinText", "MaxLineLength")
+
+package ir.taqvim.data.events.generated
+
+import ir.taqvim.core.events.Citation
+import ir.taqvim.core.events.EventCategory
+import ir.taqvim.core.events.EventDefinition
+import ir.taqvim.core.events.EventId
+import ir.taqvim.core.events.EventRule
+import ir.taqvim.core.events.EventSource
+import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
+import ir.taqvim.core.model.CalendarSystem
+
+/**
+ * Part 76 of the dataset events.
+ *
+ * Generated from `dataset/` by `:tools:dataset:generateEvents` — do not edit.
+ */
+internal val OFFICIAL_EVENTS_PART_76: List<EventDefinition> =
+    listOf(
+        EventDefinition(
+            id = EventId("un.world-food-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی غذا",
+                        "ar" to "يوم الأغذية العالمي",
+                        "en" to "World Food Day",
+                        "es" to "Día Mundial de la Alimentación",
+                        "fr" to "Journée mondiale de l'alimentation",
+                        "ru" to "Всемирный день продовольствия",
+                        "zh" to "世界粮食日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 16),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "http://www.fao.org/world-food-day",
+                        title = "World Food Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/35/70",
+                    "un" to "http://www.fao.org/world-food-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-glaciers-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی یخچال‌های طبیعی",
+                        "ar" to "اليوم العالمي للأنهار الجليدية",
+                        "en" to "World Day for Glaciers",
+                        "fr" to "Journée mondiale des glaciers",
+                        "ru" to "Всемирный день ледников",
+                        "zh" to "世界冰川日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 21),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/world-glaciers-day",
+                            title = "World Day for Glaciers -- GA resolution A/RES/77/158 (2022)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/world-glaciers-day",
+                        title = "World Day for Glaciers (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/world-glaciers-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-health-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی بهداشت",
+                        "en" to "World Health Day",
+                        "fr" to "Journée mondiale de la santé",
+                        "ru" to "Всемирный день здоровья",
+                        "zh" to "世界卫生日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 4, day = 7),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-health-day",
+                        title = "World Health Day (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "https://apps.who.int/iris/bitstream/handle/10665/86099/WHA2.35_eng.pdf",
+                    "un" to "https://www.who.int/campaigns/world-health-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.world-hepatitis-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی هپاتیت",
+                        "en" to "World Hepatitis Day",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 28),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_010,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.who.int/campaigns/world-hepatitis-day",
+                            title = "World Hepatitis Day — 63rd World Health Assembly resolution WHA63.18 (19 May 2010)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.who.int/campaigns/world-hepatitis-day",
+                        title = "World Hepatitis Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.who.int/campaigns/world-hepatitis-day",
+                ),
+        ),
+    )

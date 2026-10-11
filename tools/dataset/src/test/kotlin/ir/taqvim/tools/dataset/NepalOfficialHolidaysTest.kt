@@ -75,7 +75,9 @@ class NepalOfficialHolidaysTest {
             .filterNot { event ->
                 val citations = (event["citations"] as? JsonArray).orEmpty().mapNotNull { it as? JsonObject }
                 event.text("source") == "NEPAL_OFFICIAL" &&
-                    (event["title"] as? JsonObject)?.keys == setOf("ne") &&
+                    // The official Nepali title must be there and must stay the wording MoHA published. Added
+                    // translations sit beside it; before them, a reader of any other language saw Devanagari.
+                    (event["title"] as? JsonObject)?.keys.orEmpty().contains("ne") &&
                     citations.isNotEmpty() &&
                     citations.all { it.text("url")?.startsWith(MOHA) == true && !it.text("page").isNullOrBlank() }
             }.map { it.text("id") }

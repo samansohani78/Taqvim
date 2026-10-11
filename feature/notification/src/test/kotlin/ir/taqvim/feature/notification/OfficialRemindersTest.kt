@@ -13,6 +13,7 @@ import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
+import ir.taqvim.core.events.LocalizedText
 import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
@@ -39,7 +40,11 @@ class OfficialRemindersTest {
         schedule.days(nowruz.id, nowruz1405 + 1, nowruz1405 - 1).shouldBeEmpty()
         schedule.days(EventId("ir.holiday.unknown-1"), lateEsfand, lateEsfand + 10).shouldBeEmpty()
         schedule.title(nowruz.id) shouldBe "Nowruz"
-        CalculatorOfficialEventSchedule(listOf(nowruz), "de").title(nowruz.id) shouldBe "Nowruz (fa)"
+        // A language with no title of its own reaches the English reference, not the Persian original: a German
+        // reminder saying "Nowruz (fa)" was the old fallback, and it is the case LocalizedText was changed for.
+        CalculatorOfficialEventSchedule(listOf(nowruz), "de").title(nowruz.id) shouldBe "Nowruz"
+        val persianOnly = nowruz.copy(title = LocalizedText(mapOf("fa" to "Nowruz (fa)")))
+        CalculatorOfficialEventSchedule(listOf(persianOnly), "de").title(nowruz.id) shouldBe "Nowruz (fa)"
         schedule.title(EventId("ir.holiday.unknown-1")).shouldBeNull()
     }
 

@@ -33,7 +33,7 @@
   <string name="settings_location_latitude">Latitude</string>
   <string name="settings_location_longitude">Longitude</string>
   <string name="settings_location_time_zone">Time zone</string>
-  <string name="settings_location_time_zone_hint">IANA name, for example Asia/Tehran</string>
+  <string name="settings_location_time_zone_hint">Time-zone name, for example Asia/Tehran</string>
   <string name="settings_location_latitude_error">Enter a latitude between -90 and 90</string>
   <string name="settings_location_longitude_error">Enter a longitude between -180 and 180</string>
   <string name="settings_location_time_zone_error">Unknown time zone</string>
@@ -242,7 +242,7 @@
   <string name="settings_high_latitude_middle">Middle of the night</string>
   <string name="settings_high_latitude_seventh">One seventh of the night</string>
   <string name="settings_high_latitude_white_nights">Institute of Geophysics rule for white nights</string>
-  <string name="settings_high_latitude_nearest">Nearest latitude with a twilight</string>
+  <string name="settings_high_latitude_nearest">Nearest latitude with twilight</string>
   <string name="settings_high_latitude_none">No adjustment</string>
   <string name="settings_subscriptions_title">Calendar subscriptions</string>
   <string name="settings_subscriptions_loading">Loading subscriptions</string>

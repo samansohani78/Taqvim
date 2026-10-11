@@ -39,8 +39,8 @@ object EventsCodeGenerator {
     /** Package of the generated sources. */
     const val PACKAGE = "ir.taqvim.data.events.generated"
 
-    /** Events per part file, keeping generated files well below the 400-line limit. */
-    const val EVENTS_PER_FILE = 8
+    /** Four events leave room for all 24 title languages under the 400-line source limit. */
+    const val EVENTS_PER_FILE = 4
 
     private const val EVENTS = "ir.taqvim.core.events"
     private const val MODEL = "ir.taqvim.core.model"

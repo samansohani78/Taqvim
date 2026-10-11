@@ -93,13 +93,13 @@
   <string name="about_faq_main_calendar_q">如何更改主日历或次要日历？</string>
   <string name="about_faq_main_calendar_a">在设置中选择主日历和次要日历。月视图及其标题遵循主日历，每一天也会显示它在其他日历中的日期。</string>
   <string name="about_faq_nepali_q">是否提供尼泊尔（比克拉姆历）日历？</string>
-  <string name="about_faq_nepali_a">尚未提供。待官方月份表可用后会加入。在此之前将改用公历。</string>
+  <string name="about_faq_nepali_a">支持。请在日历设置中选择比克拉姆历，日期会在设备上计算。</string>
   <string name="about_faq_widgets_q">有主屏幕小组件吗？</string>
-  <string name="about_faq_widgets_a">尚未提供。主屏幕小组件计划在后续版本中加入。</string>
+  <string name="about_faq_widgets_a">有。请从主屏幕的小组件菜单添加 Taqvim 小组件。</string>
   <string name="about_faq_holiday_sources_q">假日和纪念日来自哪里？</string>
   <string name="about_faq_holiday_sources_a">伊朗官方假日来自德黑兰大学日历中心公布的官方日历，国际日来自联合国名录。每条记录都注明了取材页面，来源列在“关于”页面的“数据来源”中。</string>
   <string name="about_faq_missing_days_q">为什么缺少某些国际日？</string>
-  <string name="about_faq_missing_days_a">只有当某个国际日的波斯语名称出现在联合国或其他官方波斯语出版物中时才会加入。Taqvim 不会自行翻译名称，因此在找到这样的来源之前，缺少来源的日子不会收录。</string>
+  <string name="about_faq_missing_days_a">纪念日的日期和含义需要可靠来源。没有官方译名时，标题可能由人工智能翻译；翻译来源和审核状态会分别记录。</string>
   <string name="about_faq_event_sources_q">如何显示或隐藏某一组纪念日？</string>
   <string name="about_faq_event_sources_a">在设置中逐组开启或关闭事件来源。古代伊朗节日默认关闭。</string>
   <string name="about_faq_wrong_date_q">某个假日或日期看起来有误。如何报告？</string>

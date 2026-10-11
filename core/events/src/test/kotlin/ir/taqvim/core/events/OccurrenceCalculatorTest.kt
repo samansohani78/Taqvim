@@ -108,7 +108,7 @@ class OccurrenceCalculatorTest {
         validity.contains(1399) shouldBe false
         validity.contains(1500) shouldBe true
         Validity(CalendarSystem.PERSIAN, null, 1400, citation).contains(1401) shouldBe false
-        LocalizedText(mapOf("fa" to "x", "en" to "y")).forLanguage("de") shouldBe "x"
+        LocalizedText(mapOf("fa" to "x", "en" to "y")).forLanguage("de") shouldBe "y"
         LocalizedText(mapOf("fa" to "x", "en" to "y")).forLanguage("en") shouldBe "y"
     }
 

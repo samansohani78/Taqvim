@@ -6,6 +6,8 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.JewishObservance
+import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -24,330 +26,189 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_14: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.chernobyl-remembrance-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("jewish.yom-kippur"),
+            calendar = CalendarSystem.HEBREW,
+            source = EventSource.JEWISH,
+            category = EventCategory.RELIGIOUS,
             isHoliday = false,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی یادبود فاجعه چرنوبیل",
-                        "en" to "International Chernobyl Disaster Remembrance Day",
+                        "fa" to "یوم کیپور",
+                        "ar" to "يوم الغفران",
+                        "de" to "Jom Kippur",
+                        "en" to "Yom Kippur",
+                        "es" to "Yom Kipur",
+                        "fr" to "Yom Kippour",
+                        "id" to "Yom Kippur",
+                        "ja" to "ヨム・キプル",
+                        "ms" to "Yom Kippur",
+                        "ru" to "Йом-Кипур",
+                        "zh" to "赎罪日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 4, day = 26),
+            rule = EventRule.JewishObservanceDate(observance = JewishObservance.YOM_KIPPUR),
+            aliases =
+                listOf(
+                    "יום כיפור",
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://aa.usno.navy.mil/data/api.html",
+                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("np.holiday.buddha-jayanti"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "زادروز بودا",
+                        "en" to "Buddha Jayanti",
+                        "ne" to "बुद्ध जयन्ती",
+                    ),
+                ),
+            rule = EventRule.LunarTithi(month = 1, tithi = 15, observance = TithiObservance.SUNRISE),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_016,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/chernobyl-remembrance-day",
-                            title = "International Chernobyl Disaster Remembrance Day — resolution 71/125 (8 December 2016)",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 1 (Rajpatra p. 3), clause 2.1(ख), 7.1(क): चण्डी पूर्णिमा (वैशाख पूर्णिमा) - बुद्ध जयन्ति ... वैशाख २९ गते; PDF p. 4: बुद्ध जयन्ती - वैशाख २९ गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
+                        ),
+                ),
+            aliases =
+                listOf(
+                    "चण्डी पूर्णिमा",
+                    "वैशाख पूर्णिमा",
+                    "उभौली पर्व",
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 1 (Rajpatra p. 3), clause 2.1(ख), 7.1(क): चण्डी पूर्णिमा (वैशाख पूर्णिमा) - बुद्ध जयन्ति ... वैशाख २९ गते; PDF p. 4: बुद्ध जयन्ती - वैशाख २९ गते",
+                    ),
+                    Citation(
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 2, clause 2.1(ख), 7.1(क): चण्डी पूर्णिमा (वैशाख पूर्णिमा) - बुद्ध जयन्ती ... वैशाख १८ गते; PDF p. 6: बुद्ध जयन्ती - वैशाख १८ गते",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("np.holiday.chhath"),
+            calendar = CalendarSystem.NEPALI,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "جشن چهات",
+                        "en" to "Chhath festival",
+                        "ne" to "छठ पर्व",
+                    ),
+                ),
+            rule = EventRule.LunarTithi(month = 7, tithi = 6, observance = TithiObservance.SUNRISE),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ज): छठ पर्व - कात्तिक १० गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ज): छठ पर्व - कात्तिक १० गते",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/chernobyl-remembrance-day",
-                        title = "International Chernobyl Disaster Remembrance Day (observance page)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 3, clause 2.1(ज): छठ पर्व - कात्तिक २९ गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/chernobyl-remembrance-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.child-early-forced-marriage-day"),
+            id = EventId("np.holiday.christmas"),
             calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            source = EventSource.NEPAL_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی ریشه‌کنی ازدواج کودکان، ازدواج زودهنگام و اجباری",
-                        "en" to "International Day for the Elimination of Child, Early and Forced Marriage",
+                        "fa" to "کریسمس",
+                        "ar" to "عيد الميلاد",
+                        "az" to "Milad",
+                        "bn" to "বড়দিন",
+                        "ckb" to "کریسمس",
+                        "de" to "Weihnachten",
+                        "en" to "Christmas Day",
+                        "es" to "Navidad",
+                        "fr" to "Noël",
+                        "hi" to "क्रिसमस",
+                        "id" to "Natal",
+                        "ja" to "クリスマス",
+                        "kmr" to "Noel",
+                        "ms" to "Krismas",
+                        "ne" to "क्रिसमस डे",
+                        "prs" to "کریسمس",
+                        "ps" to "کرسمس",
+                        "ru" to "Рождество",
+                        "ta" to "கிறிஸ்துமஸ்",
+                        "tg" to "Мавлуди Исо",
+                        "tr" to "Noel",
+                        "ur" to "کرسمس",
+                        "uz" to "Rojdestvo",
+                        "zh" to "圣诞节",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 11, day = 27),
+            rule = EventRule.Fixed(month = 12, day = 25),
             validity =
                 Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_026,
+                    calendar = CalendarSystem.NEPALI,
+                    fromYear = 2_082,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://docs.un.org/en/A/RES/80/309",
-                            title = "International Day for the Elimination of Child, Early and Forced Marriage — General Assembly resolution A/RES/80/309, \"Resolution adopted by the General Assembly on 4 September 2026 [without reference to a Main Committee (A/80/L.99)]\", para. 1: \"Decides to proclaim 27 November of each year as the International Day for the Elimination of Child, Early and Forced Marriage\".",
+                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे (डिसेम्बर २५)- पुस १० गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
+                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे (डिसेम्बर २५)- पुस १० गते",
                     ),
                     Citation(
-                        url = "https://docs.un.org/en/A/RES/80/309",
-                        title = "International Day for the Elimination of Child, Early and Forced Marriage (UN General Assembly resolution A/RES/80/309, adopted 4 September 2026; draft A/80/L.99)",
+                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
+                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
+                        page = "PDF p. 3, clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे, (डिसेम्बर २५) - पुस १० गते",
                     ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://docs.un.org/en/A/RES/80/309",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.child-sexual-exploitation-prevention-and-healing-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی پیشگیری و بهبود از بهره‌کشی جنسی، آزار و خشونت علیه کودکان",
-                        "en" to "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 11, day = 18),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_022,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
-                            title = "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence — A/RES/77/8 (7 November 2022)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
-                        title = "World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/child-sexual-exploitation-prevention-and-healing-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.child-victim-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی کودکان بی گناه قربانی تجاوز و تعرض",
-                        "ar" to "اليوم الدولي لضحايا العدوان من الأطفال الأبرياء",
-                        "en" to "International Day of Innocent Children Victims of Aggression",
-                        "es" to "Día Internacional de los Niños Víctimas Inocentes de Agresión",
-                        "fr" to "Journée internationale des enfants victimes innocentes de l'agression",
-                        "ru" to "Международный день невинных детей — жертв агрессии",
-                        "zh" to "受侵略戕害的无辜儿童国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 4),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/child-victim-day",
-                        title = "International Day of Innocent Children Victims of Aggression (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "http://undocs.org/en/A/RES/ES-7/8",
-                    "un" to "https://www.un.org/en/observances/child-victim-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.chinese-language-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز زبان چینی",
-                        "en" to "Chinese Language Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 4, day = 20),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/russian-language-day",
-                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/zh/observances/chinese-language-day",
-                        title = "Chinese Language Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/zh/observances/chinese-language-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.cities-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی شهرها",
-                        "en" to "World Cities Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 31),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_014,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/cities-day",
-                            title = "World Cities Day -- GA resolution 68/239, first celebrated in 2014",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/cities-day",
-                        title = "World Cities Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/cities-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.civil-aviation-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین المللی هواپیمایی غیر نظامی",
-                        "ar" to "يوم الطيران المدني الدولي",
-                        "en" to "International Civil Aviation Day",
-                        "es" to "Día de la Aviación Civil Internacional",
-                        "fr" to "Journée de l'aviation civile internationale",
-                        "ru" to "Международный день гражданской авиации",
-                        "zh" to "国际民航日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 7),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/civil-aviation-day",
-                        title = "International Civil Aviation Day (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/51/33",
-                    "un" to "https://www.un.org/en/observances/civil-aviation-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.clean-energy-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی انرژی پاک",
-                        "ar" to "اليوم الدولي للطاقة النظيفة",
-                        "en" to "International Day of Clean Energy",
-                        "es" to "Día Internacional de la Energía Limpia",
-                        "fr" to "Journée internationale des énergies propres",
-                        "ru" to "Международный день чистой энергии",
-                        "zh" to "国际清洁能源日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 1, day = 26),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/clean-energy-day",
-                        title = "International Day of Clean Energy (observance page)",
-                    ),
-                    Citation(
-                        url = "https://iran.un.org/fa/259765-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%AC%D9%87%D8%A7%D9%86%DB%8C-%D8%A7%D9%86%D8%B1%DA%98%DB%8C-%D9%BE%D8%A7%DA%A9",
-                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز جهانی انرژی پاک",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/78/265",
-                    "un" to "https://www.un.org/en/observances/clean-energy-day",
                 ),
         ),
     )

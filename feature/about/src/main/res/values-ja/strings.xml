@@ -93,13 +93,13 @@
   <string name="about_faq_main_calendar_q">メインまたは第2のカレンダーを変更するには？</string>
   <string name="about_faq_main_calendar_a">設定でメインのカレンダーと第2のカレンダーを選びます。月表示とその見出しはメインのカレンダーに従い、各日は他の暦での日付も表示します。</string>
   <string name="about_faq_nepali_q">ネパール暦（ビクラム暦）は使えますか？</string>
-  <string name="about_faq_nepali_a">まだ使えません。公式の月表が入手できたら追加します。それまではグレゴリオ暦を使用します。</string>
+  <string name="about_faq_nepali_a">はい。カレンダー設定でビクラム暦を選択してください。日付は端末上で計算されます。</string>
   <string name="about_faq_widgets_q">ホーム画面のウィジェットはありますか？</string>
-  <string name="about_faq_widgets_a">まだありません。ホーム画面のウィジェットは今後のバージョンで予定しています。</string>
+  <string name="about_faq_widgets_a">はい。ホーム画面のウィジェットメニューから Taqvim のウィジェットを追加できます。</string>
   <string name="about_faq_holiday_sources_q">祝日や記念日はどこから来ていますか？</string>
   <string name="about_faq_holiday_sources_a">イランの公式祝日はテヘラン大学暦センターが公表した公式暦から、国際デーは国際連合の一覧から取得しています。各レコードには出典ページが記載され、出典は「このアプリについて」ページの「データ出典」に列挙されています。</string>
   <string name="about_faq_missing_days_q">一部の国際デーがないのはなぜですか？</string>
-  <string name="about_faq_missing_days_a">国際デーは、そのペルシア語名称が国連または他の公式なペルシア語刊行物で確認できた場合にのみ追加します。Taqvim は名称を自ら翻訳しないため、出典が見つかるまでその日は収録されません。</string>
+  <string name="about_faq_missing_days_a">記念日の日付と意味には信頼できる出典が必要です。公式訳がない場合、名称にAI翻訳を使用することがあります。翻訳の出所と確認状況は別々に記録されます。</string>
   <string name="about_faq_event_sources_q">記念日のグループを表示・非表示にするには？</string>
   <string name="about_faq_event_sources_a">設定でイベント出典のグループごとにオンまたはオフにします。古代イランの祭りは既定でオフです。</string>
   <string name="about_faq_wrong_date_q">祝日や日付が間違っているようです。どう報告しますか？</string>

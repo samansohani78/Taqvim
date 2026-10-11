@@ -7,10 +7,10 @@ strings are in [STRINGS.md](STRINGS.md).
 
 | Language | Translated by | Status |
 |---|---|---|
-| English (`en`) | Source language, written with the code | Complete |
-| Persian (`fa`) | Added in the same change as each English string (STRINGS.md §1) | Complete; native reviewer sign-off pending |
-| Dari (`prs`) | Machine translation derived from the reviewed Persian text with Dari vocabulary | Complete, needs review |
-| The other 21 languages | Machine translation committed 2026-09-17 (T-1702), then human review through Weblate | Complete, needs review |
+| English (`en`) | Reference language, written with the code; AI corrections in October 2026 | Structurally complete; no human sign-off claimed by the AI pass |
+| Persian (`fa`) | Added with English; AI corrections in October 2026 | Structurally complete; native reviewer sign-off pending |
+| Dari (`prs`) | Machine translation from Persian, with Dari vocabulary; AI corrections | Structurally complete, needs native review |
+| The other 21 languages | Machine translation from T-1702, with later AI corrections; Weblate is the human review workflow | Structurally complete, needs native review |
 
 Machine translations are committed so that every launch language is usable and the checks in §4 run on real text.
 Each machine-translated file starts with
@@ -19,8 +19,8 @@ Each machine-translated file starts with
 <!-- MT: needs review — machine translation (<language>) generated 2026-09-17, T-1702; see docs/i18n/TRANSLATING.md. -->
 ```
 
-A reviewer removes that comment for the file once the language has been read end to end (§2a). Human review of the
-machine-translated languages is optional for the release: `fa` and `en` remain the reviewed pair. Language data
+A named human reviewer may remove that comment after reading the file end to end (§2a). An AI review must retain
+it and record its own provenance. `fa` and `en` are the reference pair, not automatically human-reviewed. Language data
 derived from Unicode CLDR (month and weekday names, date patterns, plural rules in `:core:i18n`) is generated from
 ICU and never edited by translators.
 
@@ -45,11 +45,12 @@ The order languages are reviewed in, and how that fits the dataset's own review 
 
 1. Open the language in Weblate (or edit `res/values-<qualifier>/strings.xml` directly) and read every string
    against the English source and its translator comment.
-2. Fix wording, then delete the `<!-- MT: needs review … -->` comment from the top of each file of that language.
-3. Record the reviewer and date in the table in §1 and keep the checks in §4 green.
+2. Fix wording. Only a human signing off the whole file may delete its `<!-- MT: needs review … -->` comment.
+3. Record the human reviewer and date in the table in §1, or explicitly record AI review in the change ledger;
+   keep the checks in §4 green. AI review is useful but does not replace a human sign-off.
 
-Until a language is reviewed its strings are machine output: they are structurally correct (placeholders, plural
-categories, punctuation) but the wording is unverified.
+Until a language is signed off its strings remain marked for review. Structural checks cover placeholders, plural
+categories and punctuation; they cannot certify natural wording or cultural accuracy.
 
 Translators read the XML comment above each English string (STRINGS.md §2): where it appears, whether it is a noun
 or a verb, and what is inserted into placeholders.
@@ -91,3 +92,40 @@ The checks look at structure only. Whether a translation is correct and natural 
 writes `konsist/build/reports/translations/translations.md` and `translations.json`: translated strings per language
 and per module, how many English strings have a translator comment, and how many short strings still lack one. CI
 uploads the report from the static analysis job.
+
+The broader inventory includes dataset titles and honest review counts:
+
+```sh
+python3 tools/i18n/localization_audit.py --output docs/i18n/localization-after.json
+python3 -m unittest discover -s tools/i18n
+```
+
+See [LOCALIZATION_REPORT.md](LOCALIZATION_REPORT.md) and [DATASET_TITLE_DEBT.md](DATASET_TITLE_DEBT.md) for the
+2026-10-10 before/after inventory. English/Persian UI completeness does not imply dataset completeness in every
+language, nor does either imply translation quality.
+
+## 6. Dataset title provenance and fallback
+
+`config/i18n/title-provenance.json` is an editorial companion keyed by event ID and language. It does not alter the
+runtime dataset schema or replace existing `reviewedBy`, `titleReview` or citations. Each entry stores the exact
+`text` so a later title edit cannot silently inherit a stale review. Corrections may retain `previousText`.
+
+- `origin`: `source-original` (inherited canonical wording), `source-verified` (matched target-language source),
+  `ai-generated` (including AI corrections), or `human-translated` (requires a real credited contributor).
+- `sourceLanguage`, `sources` and optional `terminologyReferences`: the translation's basis. A terminology
+  reference does **not** prove that the complete target title appears there.
+- `aiReviewed`: AI semantic/back-translation review, not human sign-off. This pass used one AI reviewer.
+- `needsNativeReview`: explicit outstanding language/editorial review, independent of structural validity.
+- Optional `humanReviewedBy`: only a real human's recorded sign-off; never set by AI on its own behalf.
+- Optional `verification`: source retrieval date, matching method and source index SHA-256. Fetched source pages
+  are not bundled into the application.
+
+Absent entries are `legacy-unclassified`, not implicitly source verified or human reviewed. Source-original
+classification identifies which wording was inherited; it does not claim this pass independently verified that
+wording. Existing record-level review markers remain meaningful and are never cleared merely by filling titles.
+
+`LocalizedText.forLanguage` resolves exact requested tag → base language / Android alias (`in` → `id`, `ku` → `kmr`,
+`fa-AF` → `prs`) → Persian/Dari sibling → English → Persian → Nepali. The schema guarantees Persian or Nepali for
+the last resort. Related Persian/Dari wording is preferred to English; unrelated languages use the shared English
+reference. Sorani and Kurmanji are separate. This replaces the old requested → Persian → Nepali fallback, which
+could show Persian in English UI. Proper names may remain untranslated intentionally; their origin still matters.

@@ -29,7 +29,7 @@
   <string name="calendar_system_persian">هجری شمسی</string>
   <string name="calendar_system_islamic">هجری قمری</string>
   <string name="calendar_system_gregorian">میلادی</string>
-  <string name="calendar_system_nepali">بیکرم سَمبَت</string>
+  <string name="calendar_system_nepali">بیکرم سمبت</string>
   <string name="calendar_system_hebrew">عبری</string>
   <string name="calendar_distance_label">فاصله از امروز</string>
   <plurals name="calendar_days_later">
@@ -111,7 +111,7 @@
   <string name="calendar_no_place_message">برای دیدن اوقات این روز، شهری انتخاب کنید.</string>
   <string name="calendar_times_place_label">مکان و روش</string>
   <string name="calendar_times_place">%1$s · %2$s</string>
-  <string name="calendar_method_mwl">اتحادیهٔ جهان اسلام</string>
+  <string name="calendar_method_mwl">رابطة العالم الاسلامی</string>
   <string name="calendar_method_isna">انجمن اسلامی آمریکای شمالی</string>
   <string name="calendar_method_egypt">سازمان عمومی مساحی مصر</string>
   <string name="calendar_method_makkah">ام‌القری، مکه</string>
@@ -139,7 +139,7 @@
   <string name="calendar_action_search">جست‌وجو</string>
   <string name="calendar_action_more">گزینه‌های بیشتر</string>
   <string name="calendar_menu_pick_date">رفتن به تاریخ</string>
-  <string name="calendar_menu_shift_work">شیفت کاری</string>
+  <string name="calendar_menu_shift_work">کار شیفتی</string>
   <string name="calendar_menu_print_month">چاپ ماه</string>
   <string name="calendar_menu_planetary_hours">ساعات سیاره‌ای</string>
   <string name="calendar_menu_week_numbers">شمارهٔ هفته‌ها</string>
@@ -147,7 +147,7 @@
   <string name="calendar_picker_year">سال</string>
   <string name="calendar_picker_month">ماه</string>
   <string name="calendar_picker_day">روز</string>
-  <string name="calendar_picker_confirm">برو</string>
+  <string name="calendar_picker_confirm">رفتن</string>
   <string name="calendar_picker_cancel">لغو</string>
   <string name="calendar_print_job">ماه تقویم</string>
   <string name="calendar_print_events">رویدادهای ماه</string>

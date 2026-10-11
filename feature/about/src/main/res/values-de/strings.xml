@@ -96,13 +96,13 @@
   <string name="about_faq_main_calendar_q">Wie ändere ich den Haupt- oder Zweitkalender?</string>
   <string name="about_faq_main_calendar_a">Wählen Sie in den Einstellungen den Hauptkalender und den Zweitkalender. Die Monatsansicht und ihr Titel folgen dem Hauptkalender, und jeder Tag zeigt auch seine Daten in den anderen Kalendern.</string>
   <string name="about_faq_nepali_q">Ist der nepalesische Kalender (Bikram Sambat) verfügbar?</string>
-  <string name="about_faq_nepali_a">Noch nicht. Er wird hinzugefügt, sobald die offiziellen Monatstabellen verfügbar sind. Bis dahin wird stattdessen der gregorianische Kalender verwendet.</string>
+  <string name="about_faq_nepali_a">Ja. Wähle Bikram Sambat in den Kalendereinstellungen. Die Daten werden auf deinem Gerät berechnet.</string>
   <string name="about_faq_widgets_q">Gibt es Widgets für den Startbildschirm?</string>
-  <string name="about_faq_widgets_a">Noch nicht. Widgets für den Startbildschirm sind für eine spätere Version geplant.</string>
+  <string name="about_faq_widgets_a">Ja. Füge ein Taqvim-Widget über das Widget-Menü deines Startbildschirms hinzu.</string>
   <string name="about_faq_holiday_sources_q">Woher stammen die Feiertage und Anlässe?</string>
   <string name="about_faq_holiday_sources_a">Die offiziellen Feiertage Irans stammen aus den offiziellen Kalendern des Kalenderzentrums der Universität Teheran, die internationalen Tage aus der Liste der Vereinten Nationen. Jeder Eintrag nennt die Seite, von der er übernommen wurde, und die Quellen sind unter „Datenquellen“ auf der Info-Seite aufgeführt.</string>
   <string name="about_faq_missing_days_q">Warum fehlen einige internationale Tage?</string>
-  <string name="about_faq_missing_days_a">Ein internationaler Tag wird nur aufgenommen, wenn sein persischer Titel in einer Veröffentlichung der Vereinten Nationen oder einer anderen offiziellen persischen Veröffentlichung gefunden wird. Taqvim übersetzt Titel nicht selbst, daher fehlt ein Tag ohne solche Quelle, bis eine gefunden wird.</string>
+  <string name="about_faq_missing_days_a">Datum und Bedeutung eines Gedenk- oder Feiertags benötigen verlässliche Quellen. Fehlt eine offizielle Übersetzung, können Titel mit KI übersetzt werden. Herkunft und Prüfstatus der Übersetzung werden separat dokumentiert.</string>
   <string name="about_faq_event_sources_q">Wie blende ich eine Gruppe von Anlässen ein oder aus?</string>
   <string name="about_faq_event_sources_a">Schalten Sie in den Einstellungen jede Gruppe von Terminquellen ein oder aus. Altiranische Feste sind standardmäßig ausgeschaltet.</string>
   <string name="about_faq_wrong_date_q">Ein Feiertag oder Datum scheint falsch. Wie melde ich das?</string>

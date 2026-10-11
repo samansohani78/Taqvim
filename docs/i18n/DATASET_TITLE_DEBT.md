@@ -1,98 +1,68 @@
-# Localization debt: dataset event titles (2026-10-10, re-measured after the English exonym pass)
+# Dataset translation debt — 2026-10-10
 
-The app ships in 24 languages. Its **interface** is translated into all of them. Its **dataset event titles** — the
-names of the 329 official observances — are not, and this is the measured state of that, not a plan to fix it by
-machine.
+Baseline: clean commit `a57ad1e20357b67534b26735018d690d1affb869`. All counts concern the same 329 events. Coverage is presence of a target-language title, **not** a quality score or human sign-off.
 
-`EventTitle.forLanguage` falls back `requested → fa → ne`. So a reader whose language has no title for a record sees
-**Persian text inside an otherwise translated screen**. That is the user-visible shape of this debt.
+English and Persian reference coverage increased to 329/329. Missing target titles now fall back to English, except Dari/Persian which prefer one another. Original titles, citations, event IDs, dates, holiday flags and existing review markers are preserved. Forty-six Persian UN translations were corrected; their previous text is retained in the provenance ledger.
 
-## Titles present, by language
+## Before / after by language
 
-| Language | Titles | Missing of 329 | What the missing ones show |
-|---|---|---|---|
-| fa Persian | 299 | 30 | Nepali (records with no Persian title) |
-| en English | 280 | 49 | Persian |
-| zh Chinese | 99 | 230 | Persian |
-| fr French | 99 | 230 | Persian |
-| ru Russian | 98 | 231 | Persian |
-| ar Arabic | 97 | 232 | Persian |
-| es Spanish | 95 | 234 | Persian |
-| ne Nepali | 30 | 299 | Persian |
-| prs Dari | 10 | 319 | Persian |
-| az Azerbaijani | **0** | 329 | Persian |
-| ckb Kurdish (Sorani) | **0** | 329 | Persian |
-| ku Kurdish (Kurmanji) | **0** | 329 | Persian |
-| uz Uzbek | **0** | 329 | Persian |
-| bn Bengali | **0** | 329 | Persian |
-| de German | **0** | 329 | Persian |
-| hi Hindi | **0** | 329 | Persian |
-| id Indonesian | **0** | 329 | Persian |
-| ja Japanese | **0** | 329 | Persian |
-| ms Malay | **0** | 329 | Persian |
-| ps Pashto | **0** | 329 | Persian |
-| ta Tamil | **0** | 329 | Persian |
-| tg Tajik | **0** | 329 | Persian |
-| tr Turkish | **0** | 329 | Persian |
-| ur Urdu | **0** | 329 | Persian |
+Each locale has 1,509/1,509 translatable UI keys (100% structural coverage). Ten non-translatable Android keys are excluded. No missing/fallback-only UI keys were found. UI wording is not thereby certified.
 
-**Fifteen of the twenty-four launch languages have no dataset titles at all.**
+| Locale | Dataset before | Dataset after | Coverage | Missing / fallback | Source verified | AI generated | Native review marked | Legacy unclassified |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| en | 280 | 329 | 100.0% | 0 | 0 | 49 | 327 | 20 |
+| fa | 299 | 329 | 100.0% | 0 | 0 | 76 | 260 | 224 |
+| prs | 10 | 22 | 6.69% | 307 | 0 | 12 | 22 | 0 |
+| ps | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| ar | 97 | 231 | 70.21% | 98 | 176 | 32 | 32 | 23 |
+| ckb | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| kmr | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| az | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| tr | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| ur | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| ne | 30 | 43 | 13.07% | 286 | 0 | 13 | 43 | 0 |
+| hi | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| ta | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| bn | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| tg | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| uz | 0 | 18 | 5.47% | 311 | 0 | 18 | 18 | 0 |
+| ru | 98 | 243 | 73.86% | 86 | 181 | 32 | 32 | 30 |
+| de | 0 | 32 | 9.73% | 297 | 0 | 32 | 32 | 0 |
+| fr | 99 | 231 | 70.21% | 98 | 174 | 32 | 32 | 25 |
+| es | 95 | 230 | 69.91% | 99 | 171 | 32 | 32 | 27 |
+| id | 0 | 32 | 9.73% | 297 | 0 | 32 | 32 | 0 |
+| ms | 0 | 32 | 9.73% | 297 | 0 | 32 | 32 | 0 |
+| zh | 99 | 204 | 62.01% | 125 | 97 | 32 | 32 | 75 |
+| ja | 0 | 32 | 9.73% | 297 | 0 | 32 | 32 | 0 |
 
-## What the English pass of 2026-10-10 did and did not do
+Native-review counts include existing `titleReview` and explicit companion metadata. Legacy titles — those already in the dataset before this pass — now carry an explicit `legacy-unclassified` entry in the provenance ledger rather than being inferred from a missing one, so the audit checks their recorded text like any other entry and every one of the 2,188 title-language pairs is described. Unclassified means exactly that: this pass did not assess them, and they are not assumed human reviewed. Source verification is an AI match against an authoritative target-language source, not human review. Source-original means inherited canonical wording, not a newly verified quotation. All record-level `reviewedBy` values remain unchanged.
 
-Eighteen records gained an English title, taking English from 262 to 280 of 329. Every one of them is a
-transliterated proper noun with a single dominant English form: Nowruz (4 days), Eid al-Fitr and its following
-holiday, Eid al-Adha, Eid al-Ghadir, Tasua, Ashura, Arbaeen, and Afghanistan's Day of Arafah and its three days
-each of Eid al-Fitr and Eid al-Adha. All eighteen carry `titleReview: ["en"]`, so none is claimed as reviewed.
+## By dataset
 
-What was deliberately left alone, and why — these are the records whose wording is the thing being recorded, so
-rendering them is editorial work and not transliteration:
+| Dataset | Events | English before → after | Persian before → after | All target titles before → after |
+|---|---:|---:|---:|---:|
+| dataset/afghanistan/afghanistan-official-holidays.json | 10 | 9 → 10 | 10 → 10 | 29 → 156 |
+| dataset/ancient-iran/ancient-iranian-festivals.json | 2 | 0 → 2 | 2 → 2 | 2 → 4 |
+| dataset/international/un-international-days.json | 246 | 246 → 246 | 246 → 246 | 980 → 1471 |
+| dataset/iran/iran-official-holidays.json | 27 | 11 → 27 | 27 → 27 | 38 → 208 |
+| dataset/nepal/nepal-official-holidays.json | 30 | 0 → 30 | 0 → 30 | 30 → 195 |
+| dataset/religious/christian-movable-feasts.json | 8 | 8 → 8 | 8 → 8 | 16 → 88 |
+| dataset/religious/jewish-observances.json | 6 | 6 → 6 | 6 → 6 | 12 → 66 |
 
-- **The Shia commemorations** (`شهادت حضرت امام رضا علیه السلام` and eleven others). "Martyrdom of Imam Reza" is
-  the usual English, but the honorifics are part of the official wording, and deciding whether an English title
-  drops them is not a translator's call to make quietly.
-- **The political and civic days** (`پیروزی انقلاب اسلامی ایران و سقوط نظام شاهنشاهی`, `قیام خونین ۱۵ خرداد`,
-  `روز ملی شدن صنعت نفت ایران`, the Soviet withdrawal). Each is a sentence, not a name, and the phrasing carries
-  the claim.
-- **`شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان`**, whose title is "Yalda Night" plus a clause about
-  hospitality that the official listing includes on purpose.
-- **All 30 Nepali records**, which have no Persian title either and are cited to Nepali sources: the inverse
-  problem, and one only those sources can close.
+## Explicit fallback
 
-## Why this is not fixed by translating it
+`LocalizedText.forLanguage`: exact requested tag → normalized base language (Android `in` → `id`, `ku` → `kmr`, `fa-AF` → `prs`) → Persian/Dari sibling → English → Persian → Nepali. The final two are the schema’s guaranteed original-language candidates. Sorani and Kurmanji do not fall back to each other. English is the shared reference for unrelated languages, not an assertion that it is an official title.
 
-These are not interface strings. They are the names of official observances, each carrying a citation to the
-primary source it was taken from, and several are legal or religious terms whose wording is the point:
+The former fallback was requested language → Persian → Nepali. It could show Persian in English and Nepali in Persian. All shipped events now have English and Persian; the final original-language branches remain for imported/constructed texts without those references.
 
-- **Dari (prs) and Pashto (ps)** are the languages of the Afghan announcements the records cite. A title invented in
-  English and rendered back into Pashto is not what the gazette said.
-- **Azerbaijani, Kurdish (both scripts), Uzbek, Tajik** name observances that exist in those communities with
-  established local wording. A machine rendering of a Persian title is a guess wearing the right alphabet.
-- **Nepali** records are cited to Nepali sources and 299 of them have no Nepali title, which is the inverse problem.
+## Reproduction and provenance
 
-Machine-translating 329 × 15 titles would fill the table and destroy the thing the dataset is for: every title would
-read as sourced when none of it was. `reviewedBy`, `titleReview` and the `MT: needs review` markers exist precisely
-to keep that distinction, and nothing here changes them.
+```sh
+python3 tools/i18n/localization_audit.py --output docs/i18n/localization-after.json
+python3 -m unittest discover -s tools/i18n
+./gradlew :konsist:translationReport :tools:dataset:validate :core:events:test :data:events:test
+```
 
-## What is safe to do, and what is not
+[`localization-before.json`](localization-before.json) freezes the pre-edit inventory. [`localization-after.json`](localization-after.json) includes every event/title, missing target language, per-language fallback counts, UI leakage candidates and review counts. [`ui-review-changes.json`](ui-review-changes.json) records exact UI changes. [`title-provenance.json`](../../config/i18n/title-provenance.json) records title origin, previous text when corrected, sources, AI review and outstanding native review.
 
-Safe, record by record:
-
-- a title that the cited source itself prints in that language — copy it, cite it, set `reviewedBy`;
-- a proper name with an established exonym in the target language (a country, a month, a well-known festival);
-- a correction a native speaker reviews and signs.
-
-Not safe, and deliberately not done here:
-
-- translating a title automatically and marking it reviewed;
-- translating from the English title, which is itself often a rendering of the Persian;
-- guessing Azerbaijani, Kurdish, Uzbek, Tajik, Pashto or Dari wording. **Flagged for native review.**
-
-## Order of work, if it is picked up
-
-1. **prs (Dari)** and **ps (Pashto)** — the Afghan records cite sources already written in them; this is
-   transcription from the citation, not translation.
-2. **ne (Nepali)** — same argument for the Nepali records.
-3. **ar** — many Islamic observances have an Arabic name that the sources print.
-4. **en** — the 67 missing are reachable without a native reviewer for most proper nouns.
-5. Everything else — needs a speaker, and should wait for one.
+AI translations are permitted. Missing target titles remain visible debt, not a requirement to invent an official translation. The reference fallback makes them readable while culturally sensitive/local spellings receive further editorial review. Filling a title does not close its review debt.

@@ -8,7 +8,9 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "नव वर्ष"
+        "ne": "नव वर्ष",
+        "en": "Nepali New Year",
+        "fa": "سال نوی نپالی"
       },
       "rule": {
         "type": "Fixed",
@@ -40,7 +42,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.buddha-jayanti",
@@ -49,7 +55,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "बुद्ध जयन्ती"
+        "ne": "बुद्ध जयन्ती",
+        "en": "Buddha Jayanti",
+        "fa": "زادروز بودا"
       },
       "rule": {
         "type": "LunarTithi",
@@ -87,7 +95,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.raksha-bandhan",
@@ -96,7 +108,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "रक्षाबन्धन"
+        "ne": "रक्षाबन्धन",
+        "en": "Raksha Bandhan",
+        "fa": "جشن راکشا بندهن"
       },
       "rule": {
         "type": "LunarTithi",
@@ -129,7 +143,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.krishna-janmashtami",
@@ -138,7 +156,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "श्रीकृष्ण जन्माष्टमी"
+        "ne": "श्रीकृष्ण जन्माष्टमी",
+        "en": "Krishna Janmashtami",
+        "fa": "جشن زادروز کریشنا"
       },
       "rule": {
         "type": "LunarTithi",
@@ -171,7 +191,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.ghatasthapana",
@@ -180,7 +204,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "घटस्थापना"
+        "ne": "घटस्थापना",
+        "en": "Ghatasthapana",
+        "fa": "گهاتاستاپانا"
       },
       "rule": {
         "type": "LunarTithi",
@@ -213,7 +239,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.dashain",
@@ -222,7 +252,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "दशैं बिदा"
+        "ne": "दशैं बिदा",
+        "en": "Dashain holidays",
+        "fa": "تعطیلات دشاین"
       },
       "rule": {
         "type": "LunarTithi",
@@ -261,7 +293,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.tihar",
@@ -270,7 +306,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "तिहार बिदा"
+        "ne": "तिहार बिदा",
+        "en": "Tihar holidays",
+        "fa": "تعطیلات تیهار"
       },
       "rule": {
         "type": "LunarTithi",
@@ -310,7 +348,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.chhath",
@@ -319,7 +361,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "छठ पर्व"
+        "ne": "छठ पर्व",
+        "en": "Chhath festival",
+        "fa": "جشن چهات"
       },
       "rule": {
         "type": "LunarTithi",
@@ -352,7 +396,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.dhanya-purnima",
@@ -361,7 +409,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "धान्य पूर्णिमा"
+        "ne": "धान्य पूर्णिमा",
+        "en": "Dhanya Purnima",
+        "fa": "دهانیا پورنیما"
       },
       "rule": {
         "type": "LunarTithi",
@@ -399,7 +449,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.christmas",
@@ -408,7 +462,30 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "क्रिसमस डे"
+        "ne": "क्रिसमस डे",
+        "en": "Christmas Day",
+        "fa": "کریسمس",
+        "de": "Weihnachten",
+        "fr": "Noël",
+        "es": "Navidad",
+        "ru": "Рождество",
+        "ar": "عيد الميلاد",
+        "az": "Milad",
+        "uz": "Rojdestvo",
+        "tg": "Мавлуди Исо",
+        "tr": "Noel",
+        "prs": "کریسمس",
+        "ps": "کرسمس",
+        "ckb": "کریسمس",
+        "kmr": "Noel",
+        "ur": "کرسمس",
+        "hi": "क्रिसमस",
+        "bn": "বড়দিন",
+        "ta": "கிறிஸ்துமஸ்",
+        "id": "Natal",
+        "ms": "Krismas",
+        "zh": "圣诞节",
+        "ja": "クリスマス"
       },
       "rule": {
         "type": "Fixed",
@@ -440,7 +517,32 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "prs",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
+      ]
     },
     {
       "id": "np.holiday.tamu-lhochhar",
@@ -449,7 +551,9 @@
       "category": "CULTURAL",
       "isHoliday": true,
       "title": {
-        "ne": "तमू ल्होछार"
+        "ne": "तमू ल्होछार",
+        "en": "Tamu Lhosar",
+        "fa": "تامو لوسار"
       },
       "rule": {
         "type": "Fixed",
@@ -481,7 +585,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.maghe-sankranti",
@@ -490,7 +598,9 @@
       "category": "CULTURAL",
       "isHoliday": true,
       "title": {
-        "ne": "माघी पर्व/माघे सङ्क्रान्ति"
+        "ne": "माघी पर्व/माघे सङ्क्रान्ति",
+        "en": "Maghi festival / Maghe Sankranti",
+        "fa": "جشن ماگهی / ماگه سانکرانتی"
       },
       "rule": {
         "type": "Fixed",
@@ -526,7 +636,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.sonam-lhochhar",
@@ -535,7 +649,9 @@
       "category": "CULTURAL",
       "isHoliday": true,
       "title": {
-        "ne": "सोनम ल्होछार"
+        "ne": "सोनम ल्होछार",
+        "en": "Sonam Lhosar",
+        "fa": "سونام لوسار"
       },
       "rule": {
         "type": "LunarTithi",
@@ -568,7 +684,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.maha-shivaratri",
@@ -577,7 +697,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "महाशिवरात्री"
+        "ne": "महाशिवरात्री",
+        "en": "Maha Shivaratri",
+        "fa": "مها شیوراتری"
       },
       "rule": {
         "type": "LunarTithi",
@@ -610,7 +732,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.eid-al-fitr",
@@ -619,7 +745,30 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "ईद (ईद उल फित्र)"
+        "ne": "ईद (ईद उल फित्र)",
+        "en": "Eid al-Fitr",
+        "fa": "عید فطر",
+        "de": "Fest des Fastenbrechens",
+        "fr": "Aïd el-Fitr",
+        "es": "Eid al-Fitr",
+        "ru": "Ураза-байрам",
+        "ar": "عيد الفطر",
+        "az": "Ramazan bayramı",
+        "uz": "Ramazon hayiti",
+        "tg": "Иди Фитр",
+        "tr": "Ramazan Bayramı",
+        "prs": "عید فطر",
+        "ps": "کوچنی اختر",
+        "ckb": "جەژنی ڕەمەزان",
+        "kmr": "Cejna Remezanê",
+        "ur": "عید الفطر",
+        "hi": "ईद-उल-फ़ित्र",
+        "bn": "ঈদুল ফিতর",
+        "ta": "ஈதுல் ஃபித்ர்",
+        "id": "Idulfitri",
+        "ms": "Hari Raya Aidilfitri",
+        "zh": "开斋节",
+        "ja": "イード・アル＝フィトル"
       },
       "rule": {
         "type": "Fixed",
@@ -651,7 +800,32 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "prs",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
+      ]
     },
     {
       "id": "np.holiday.eid-al-adha",
@@ -660,7 +834,30 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "बकर ईद (ईद उल अजहा)"
+        "ne": "बकर ईद (ईद उल अजहा)",
+        "en": "Eid al-Adha",
+        "fa": "عید قربان",
+        "de": "Opferfest",
+        "fr": "Aïd el-Adha",
+        "es": "Eid al-Adha",
+        "ru": "Курбан-байрам",
+        "ar": "عيد الأضحى",
+        "az": "Qurban bayramı",
+        "uz": "Qurbon hayiti",
+        "tg": "Иди Қурбон",
+        "tr": "Kurban Bayramı",
+        "prs": "عید قربان",
+        "ps": "لوی اختر",
+        "ckb": "جەژنی قوربان",
+        "kmr": "Cejna Qurbanê",
+        "ur": "عید الاضحیٰ",
+        "hi": "ईद-उल-अज़हा",
+        "bn": "ঈদুল আজহা",
+        "ta": "ஈதுல் அத்ஹா",
+        "id": "Iduladha",
+        "ms": "Hari Raya Aidiladha",
+        "zh": "宰牲节",
+        "ja": "イード・アル＝アドハー"
       },
       "rule": {
         "type": "Fixed",
@@ -692,7 +889,32 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "prs",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
+      ]
     },
     {
       "id": "np.holiday.ram-navami",
@@ -701,7 +923,9 @@
       "category": "RELIGIOUS",
       "isHoliday": true,
       "title": {
-        "ne": "रामनवमी"
+        "ne": "रामनवमी",
+        "en": "Ram Navami",
+        "fa": "رام ناوامی"
       },
       "rule": {
         "type": "LunarTithi",
@@ -734,7 +958,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.labour-day",
@@ -743,7 +971,30 @@
       "category": "INTERNATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "विश्व मजदुर दिवस"
+        "ne": "विश्व मजदुर दिवस",
+        "en": "International Workers’ Day",
+        "fa": "روز جهانی کارگر",
+        "de": "Tag der Arbeit",
+        "fr": "Fête du Travail",
+        "es": "Día Internacional de los Trabajadores",
+        "ru": "Международный день трудящихся",
+        "ar": "عيد العمال",
+        "az": "Əmək Günü",
+        "uz": "Xalqaro mehnatkashlar kuni",
+        "tg": "Рӯзи байналмилалии меҳнаткашон",
+        "tr": "Emek ve Dayanışma Günü",
+        "prs": "روز جهانی کارگر",
+        "ps": "د کارګرانو نړیواله ورځ",
+        "ckb": "ڕۆژی جیهانیی کرێکاران",
+        "kmr": "Roja Karkeran a Cîhanî",
+        "ur": "مزدوروں کا عالمی دن",
+        "hi": "अंतरराष्ट्रीय मज़दूर दिवस",
+        "bn": "আন্তর্জাতিক শ্রমিক দিবস",
+        "ta": "சர்வதேச தொழிலாளர் தினம்",
+        "id": "Hari Buruh Internasional",
+        "ms": "Hari Pekerja",
+        "zh": "国际劳动节",
+        "ja": "メーデー"
       },
       "rule": {
         "type": "Fixed",
@@ -775,7 +1026,32 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "prs",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
+      ]
     },
     {
       "id": "np.holiday.republic-day",
@@ -784,7 +1060,9 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "गणतन्त्र दिवस"
+        "ne": "गणतन्त्र दिवस",
+        "en": "Republic Day",
+        "fa": "روز جمهوری"
       },
       "rule": {
         "type": "Fixed",
@@ -816,7 +1094,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.constitution-day",
@@ -825,7 +1107,9 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "संविधान दिवस (राष्ट्रिय दिवस)"
+        "ne": "संविधान दिवस (राष्ट्रिय दिवस)",
+        "en": "Constitution Day (National Day)",
+        "fa": "روز قانون اساسی (روز ملی)"
       },
       "rule": {
         "type": "Fixed",
@@ -857,7 +1141,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.martyrs-day",
@@ -866,7 +1154,9 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "सहिद दिवस"
+        "ne": "सहिद दिवस",
+        "en": "Martyrs’ Day",
+        "fa": "روز شهدا"
       },
       "rule": {
         "type": "Fixed",
@@ -898,7 +1188,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.democracy-day",
@@ -907,7 +1201,9 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "राष्ट्रिय प्रजातन्त्र दिवस"
+        "ne": "राष्ट्रिय प्रजातन्त्र दिवस",
+        "en": "National Democracy Day",
+        "fa": "روز ملی دموکراسی"
       },
       "rule": {
         "type": "Fixed",
@@ -939,7 +1235,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.womens-day",
@@ -948,7 +1248,30 @@
       "category": "INTERNATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "अन्तर्राष्ट्रिय महिला दिवस"
+        "ne": "अन्तर्राष्ट्रिय महिला दिवस",
+        "en": "International Women’s Day",
+        "fa": "روز جهانی زن",
+        "de": "Internationaler Frauentag",
+        "fr": "Journée internationale des femmes",
+        "es": "Día Internacional de la Mujer",
+        "ru": "Международный женский день",
+        "ar": "اليوم الدولي للمرأة",
+        "az": "Beynəlxalq Qadınlar Günü",
+        "uz": "Xalqaro xotin-qizlar kuni",
+        "tg": "Рӯзи байналмилалии занон",
+        "tr": "Dünya Kadınlar Günü",
+        "prs": "روز جهانی زن",
+        "ps": "د ښځو نړیواله ورځ",
+        "ckb": "ڕۆژی جیهانیی ژنان",
+        "kmr": "Roja Jinê ya Cîhanî",
+        "ur": "خواتین کا عالمی دن",
+        "hi": "अंतरराष्ट्रीय महिला दिवस",
+        "bn": "আন্তর্জাতিক নারী দিবস",
+        "ta": "சர்வதேச மகளிர் தினம்",
+        "id": "Hari Perempuan Internasional",
+        "ms": "Hari Wanita Antarabangsa",
+        "zh": "国际妇女节",
+        "ja": "国際女性デー"
       },
       "rule": {
         "type": "Fixed",
@@ -980,7 +1303,32 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "prs",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
+      ]
     },
     {
       "id": "np.holiday.prithvi-jayanti",
@@ -989,7 +1337,9 @@
       "category": "NATIONAL",
       "isHoliday": true,
       "title": {
-        "ne": "पृथ्वी जयन्ती (राष्ट्रिय एकता दिवस)"
+        "ne": "पृथ्वी जयन्ती (राष्ट्रिय एकता दिवस)",
+        "en": "Prithvi Jayanti (National Unity Day)",
+        "fa": "زادروز پریتوی (روز وحدت ملی)"
       },
       "rule": {
         "type": "Fixed",
@@ -1021,7 +1371,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.observance.anti-untouchability-day",
@@ -1030,7 +1384,9 @@
       "category": "NATIONAL",
       "isHoliday": false,
       "title": {
-        "ne": "जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस"
+        "ne": "जातीय भेदभाव तथा छुवाछुत उन्मूलन राष्ट्रिय दिवस",
+        "en": "National Day for the Elimination of Caste Discrimination and Untouchability",
+        "fa": "روز ملی رفع تبعیض کاستی و نجس‌انگاری"
       },
       "rule": {
         "type": "Fixed",
@@ -1062,7 +1418,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.observance.civil-service-day",
@@ -1071,7 +1431,9 @@
       "category": "NATIONAL",
       "isHoliday": false,
       "title": {
-        "ne": "निजामती सेवा दिवस"
+        "ne": "निजामती सेवा दिवस",
+        "en": "Civil Service Day",
+        "fa": "روز کارکنان دولت"
       },
       "rule": {
         "type": "Fixed",
@@ -1103,7 +1465,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.observance.genz-martyrs-day",
@@ -1112,7 +1478,9 @@
       "category": "NATIONAL",
       "isHoliday": false,
       "title": {
-        "ne": "जेनजी सहिद दिवस"
+        "ne": "जेनजी सहिद दिवस",
+        "en": "Gen Z Martyrs’ Day",
+        "fa": "روز شهدای نسل زد"
       },
       "rule": {
         "type": "Fixed",
@@ -1138,7 +1506,11 @@
         }
       ],
       "updated": "2026-09-17",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.fagu-purnima-hill",
@@ -1147,7 +1519,9 @@
       "category": "RELIGIOUS",
       "isHoliday": false,
       "title": {
-        "ne": "फागु पूर्णिमा (हिमाली र पहाडी जिल्ला)"
+        "ne": "फागु पूर्णिमा (हिमाली र पहाडी जिल्ला)",
+        "en": "Fagu Purnima (mountain and hill districts)",
+        "fa": "فاگو پورنیما (ناحیه‌های کوهستانی و تپه‌ای)"
       },
       "rule": {
         "type": "LunarTithi",
@@ -1195,7 +1569,11 @@
         }
       ],
       "updated": "2026-10-06",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.fagu-purnima-terai",
@@ -1204,7 +1582,9 @@
       "category": "RELIGIOUS",
       "isHoliday": false,
       "title": {
-        "ne": "फागु पूर्णिमा (तराईका जिल्ला)"
+        "ne": "फागु पूर्णिमा (तराईका जिल्ला)",
+        "en": "Fagu Purnima (Terai districts)",
+        "fa": "فاگو پورنیما (ناحیه‌های ترای)"
       },
       "rule": {
         "type": "LunarTithi",
@@ -1251,7 +1631,11 @@
         }
       ],
       "updated": "2026-10-06",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     },
     {
       "id": "np.holiday.gai-jatra",
@@ -1260,7 +1644,9 @@
       "category": "CULTURAL",
       "isHoliday": false,
       "title": {
-        "ne": "गाईजात्रा"
+        "ne": "गाईजात्रा",
+        "en": "Gai Jatra",
+        "fa": "گای جاترا"
       },
       "rule": {
         "type": "LunarTithi",
@@ -1303,7 +1689,11 @@
         }
       ],
       "updated": "2026-10-06",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en",
+        "fa"
+      ]
     }
   ]
 }

@@ -8,7 +8,8 @@
       "category": "CULTURAL",
       "isHoliday": false,
       "title": {
-        "fa": "زادروز زرتشت پیامبر"
+        "fa": "زادروز زرتشت پیامبر",
+        "en": "Birth of the prophet Zoroaster"
       },
       "rule": {
         "type": "Fixed",
@@ -30,7 +31,10 @@
         }
       ],
       "updated": "2026-09-14",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "ir.ancient.yalda",
@@ -39,7 +43,8 @@
       "category": "CULTURAL",
       "isHoliday": false,
       "title": {
-        "fa": "شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان"
+        "fa": "شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان",
+        "en": "Yalda Night and the promotion of hospitality and family ties"
       },
       "rule": {
         "type": "Fixed",
@@ -67,7 +72,10 @@
         }
       ],
       "updated": "2026-09-14",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     }
   ]
 }

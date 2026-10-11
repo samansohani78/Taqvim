@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- T-804 search screen -->
-    <string name="search_title">جستجو</string>
+    <string name="search_title">جست‌وجو</string>
     <string name="search_hint">رویدادها، ابزارها و تنظیمات</string>
     <string name="search_clear">پاک کردن</string>
     <string name="search_filter_all">همه</string>
     <string name="search_filter_events">رویدادها</string>
     <string name="search_filter_tools">ابزارها</string>
     <string name="search_filter_settings">تنظیمات</string>
-    <string name="search_searching">در حال جستجو</string>
+    <string name="search_searching">در حال جست‌وجو</string>
     <string name="search_no_results">نتیجه‌ای پیدا نشد</string>
     <string name="search_no_results_message">املای دیگری یا کلمه‌ای کوتاه‌تر را امتحان کنید.</string>
-    <string name="search_idle">در رویدادها، ابزارها و تنظیمات جستجو کنید</string>
-    <string name="search_recent">جستجوهای اخیر</string>
+    <string name="search_idle">در رویدادها، ابزارها و تنظیمات جست‌وجو کنید</string>
+    <string name="search_recent">جست‌وجوهای اخیر</string>
     <string name="search_clear_recent">پاک کردن سابقه</string>
     <string name="search_go_to_date">رفتن به %1$s</string>
     <string name="search_holiday">تعطیل</string>

@@ -100,7 +100,7 @@ class FaqScreenTest {
         composeRule.onNodeWithText("Open in Taqvim").performClick()
         scrollTo("Is the Nepali (Bikram Sambat) calendar available?")
         composeRule
-            .onNodeWithText("Not yet. It will be added when the official month tables are available.", substring = true)
+            .onNodeWithText("Yes. Choose Bikram Sambat in calendar settings.", substring = true)
             .assertIsDisplayed()
         scrollTo("Are there home screen widgets?")
         composeRule.onNode(hasText("Are there home screen widgets?") and stateIs("Collapsed")).performClick()

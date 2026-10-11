@@ -9,7 +9,8 @@
       "isHoliday": true,
       "title": {
         "fa": "سالروز شکست و اخراج قشون سرخ اتحاد شوروی از افغانستان",
-        "prs": "سالروز شکست و اخراج قشون سرخ اتحاد شوروی از افغانستان"
+        "prs": "سالروز شکست و اخراج قشون سرخ اتحاد شوروی از افغانستان",
+        "en": "Anniversary of the defeat and expulsion of the Soviet Red Army from Afghanistan"
       },
       "rule": {
         "type": "Fixed",
@@ -47,7 +48,10 @@
         }
       ],
       "updated": "2026-09-25",
-      "reviewedBy": "pending"
+      "reviewedBy": "pending",
+      "titleReview": [
+        "en"
+      ]
     },
     {
       "id": "af.holiday.arafa",
@@ -110,7 +114,28 @@
       "title": {
         "fa": "عید سعید اضحی",
         "prs": "عید سعید اضحی",
-        "en": "Eid al-Adha"
+        "en": "Eid al-Adha",
+        "de": "Opferfest",
+        "fr": "Aïd el-Adha",
+        "es": "Eid al-Adha",
+        "ru": "Курбан-байрам",
+        "ar": "عيد الأضحى",
+        "az": "Qurban bayramı",
+        "uz": "Qurbon hayiti",
+        "tg": "Иди Қурбон",
+        "tr": "Kurban Bayramı",
+        "ps": "لوی اختر",
+        "ckb": "جەژنی قوربان",
+        "kmr": "Cejna Qurbanê",
+        "ur": "عید الاضحیٰ",
+        "hi": "ईद-उल-अज़हा",
+        "ne": "ईद उल अजहा",
+        "bn": "ঈদুল আজহা",
+        "ta": "ஈதுல் அத்ஹா",
+        "id": "Iduladha",
+        "ms": "Hari Raya Aidiladha",
+        "zh": "宰牲节",
+        "ja": "イード・アル＝アドハー"
       },
       "rule": {
         "type": "Fixed",
@@ -150,7 +175,28 @@
       "updated": "2026-09-25",
       "reviewedBy": "pending",
       "titleReview": [
-        "en"
+        "en",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "ne",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
       ]
     },
     {
@@ -162,7 +208,28 @@
       "title": {
         "fa": "عید سعید اضحی",
         "prs": "عید سعید اضحی",
-        "en": "Eid al-Adha"
+        "en": "Eid al-Adha",
+        "de": "Opferfest",
+        "fr": "Aïd el-Adha",
+        "es": "Eid al-Adha",
+        "ru": "Курбан-байрам",
+        "ar": "عيد الأضحى",
+        "az": "Qurban bayramı",
+        "uz": "Qurbon hayiti",
+        "tg": "Иди Қурбон",
+        "tr": "Kurban Bayramı",
+        "ps": "لوی اختر",
+        "ckb": "جەژنی قوربان",
+        "kmr": "Cejna Qurbanê",
+        "ur": "عید الاضحیٰ",
+        "hi": "ईद-उल-अज़हा",
+        "ne": "ईद उल अजहा",
+        "bn": "ঈদুল আজহা",
+        "ta": "ஈதுல் அத்ஹா",
+        "id": "Iduladha",
+        "ms": "Hari Raya Aidiladha",
+        "zh": "宰牲节",
+        "ja": "イード・アル＝アドハー"
       },
       "rule": {
         "type": "Fixed",
@@ -202,7 +269,28 @@
       "updated": "2026-09-25",
       "reviewedBy": "pending",
       "titleReview": [
-        "en"
+        "en",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "ne",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
       ]
     },
     {
@@ -214,7 +302,28 @@
       "title": {
         "fa": "عید سعید اضحی",
         "prs": "عید سعید اضحی",
-        "en": "Eid al-Adha"
+        "en": "Eid al-Adha",
+        "de": "Opferfest",
+        "fr": "Aïd el-Adha",
+        "es": "Eid al-Adha",
+        "ru": "Курбан-байрам",
+        "ar": "عيد الأضحى",
+        "az": "Qurban bayramı",
+        "uz": "Qurbon hayiti",
+        "tg": "Иди Қурбон",
+        "tr": "Kurban Bayramı",
+        "ps": "لوی اختر",
+        "ckb": "جەژنی قوربان",
+        "kmr": "Cejna Qurbanê",
+        "ur": "عید الاضحیٰ",
+        "hi": "ईद-उल-अज़हा",
+        "ne": "ईद उल अजहा",
+        "bn": "ঈদুল আজহা",
+        "ta": "ஈதுல் அத்ஹா",
+        "id": "Iduladha",
+        "ms": "Hari Raya Aidiladha",
+        "zh": "宰牲节",
+        "ja": "イード・アル＝アドハー"
       },
       "rule": {
         "type": "Fixed",
@@ -254,7 +363,28 @@
       "updated": "2026-09-25",
       "reviewedBy": "pending",
       "titleReview": [
-        "en"
+        "en",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "ne",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
       ]
     },
     {
@@ -364,7 +494,28 @@
       "title": {
         "fa": "عید سعید فطر",
         "prs": "عید سعید فطر",
-        "en": "Eid al-Fitr"
+        "en": "Eid al-Fitr",
+        "de": "Fest des Fastenbrechens",
+        "fr": "Aïd el-Fitr",
+        "es": "Eid al-Fitr",
+        "ru": "Ураза-байрам",
+        "ar": "عيد الفطر",
+        "az": "Ramazan bayramı",
+        "uz": "Ramazon hayiti",
+        "tg": "Иди Фитр",
+        "tr": "Ramazan Bayramı",
+        "ps": "کوچنی اختر",
+        "ckb": "جەژنی ڕەمەزان",
+        "kmr": "Cejna Remezanê",
+        "ur": "عید الفطر",
+        "hi": "ईद-उल-फ़ित्र",
+        "ne": "ईद उल फित्र",
+        "bn": "ঈদুল ফিতর",
+        "ta": "ஈதுல் ஃபித்ர்",
+        "id": "Idulfitri",
+        "ms": "Hari Raya Aidilfitri",
+        "zh": "开斋节",
+        "ja": "イード・アル＝フィトル"
       },
       "rule": {
         "type": "Fixed",
@@ -404,7 +555,28 @@
       "updated": "2026-09-25",
       "reviewedBy": "pending",
       "titleReview": [
-        "en"
+        "en",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "ne",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
       ]
     },
     {
@@ -416,7 +588,28 @@
       "title": {
         "fa": "عید سعید فطر",
         "prs": "عید سعید فطر",
-        "en": "Eid al-Fitr"
+        "en": "Eid al-Fitr",
+        "de": "Fest des Fastenbrechens",
+        "fr": "Aïd el-Fitr",
+        "es": "Eid al-Fitr",
+        "ru": "Ураза-байрам",
+        "ar": "عيد الفطر",
+        "az": "Ramazan bayramı",
+        "uz": "Ramazon hayiti",
+        "tg": "Иди Фитр",
+        "tr": "Ramazan Bayramı",
+        "ps": "کوچنی اختر",
+        "ckb": "جەژنی ڕەمەزان",
+        "kmr": "Cejna Remezanê",
+        "ur": "عید الفطر",
+        "hi": "ईद-उल-फ़ित्र",
+        "ne": "ईद उल फित्र",
+        "bn": "ঈদুল ফিতর",
+        "ta": "ஈதுல் ஃபித்ர்",
+        "id": "Idulfitri",
+        "ms": "Hari Raya Aidilfitri",
+        "zh": "开斋节",
+        "ja": "イード・アル＝フィトル"
       },
       "rule": {
         "type": "Fixed",
@@ -456,7 +649,28 @@
       "updated": "2026-09-25",
       "reviewedBy": "pending",
       "titleReview": [
-        "en"
+        "en",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "ne",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
       ]
     },
     {
@@ -468,7 +682,28 @@
       "title": {
         "fa": "عید سعید فطر",
         "prs": "عید سعید فطر",
-        "en": "Eid al-Fitr"
+        "en": "Eid al-Fitr",
+        "de": "Fest des Fastenbrechens",
+        "fr": "Aïd el-Fitr",
+        "es": "Eid al-Fitr",
+        "ru": "Ураза-байрам",
+        "ar": "عيد الفطر",
+        "az": "Ramazan bayramı",
+        "uz": "Ramazon hayiti",
+        "tg": "Иди Фитр",
+        "tr": "Ramazan Bayramı",
+        "ps": "کوچنی اختر",
+        "ckb": "جەژنی ڕەمەزان",
+        "kmr": "Cejna Remezanê",
+        "ur": "عید الفطر",
+        "hi": "ईद-उल-फ़ित्र",
+        "ne": "ईद उल फित्र",
+        "bn": "ঈদুল ফিতর",
+        "ta": "ஈதுல் ஃபித்ர்",
+        "id": "Idulfitri",
+        "ms": "Hari Raya Aidilfitri",
+        "zh": "开斋节",
+        "ja": "イード・アル＝フィトル"
       },
       "rule": {
         "type": "Fixed",
@@ -508,7 +743,28 @@
       "updated": "2026-09-25",
       "reviewedBy": "pending",
       "titleReview": [
-        "en"
+        "en",
+        "de",
+        "fr",
+        "es",
+        "ru",
+        "ar",
+        "az",
+        "uz",
+        "tg",
+        "tr",
+        "ps",
+        "ckb",
+        "kmr",
+        "ur",
+        "hi",
+        "ne",
+        "bn",
+        "ta",
+        "id",
+        "ms",
+        "zh",
+        "ja"
       ]
     }
   ]

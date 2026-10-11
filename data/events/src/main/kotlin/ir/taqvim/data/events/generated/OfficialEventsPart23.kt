@@ -24,7 +24,7 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.humanitarian-day"),
+            id = EventId("un.anti-corruption-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -32,16 +32,16 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز جهانی انساندوستی",
-                        "ar" to "اليوم العالمي للعمل الإنساني",
-                        "en" to "World Humanitarian Day",
-                        "es" to "Día Mundial de la Asistencia Humanitaria",
-                        "fr" to "Journée mondiale de l'aide humanitaire",
-                        "ru" to "Всемирный день гуманитарной помощи",
-                        "zh" to "世界人道主义日",
+                        "fa" to "روز بین‌المللی مبارزه با فساد",
+                        "ar" to "اليوم الدولي لمكافحة الفساد",
+                        "en" to "International Anti-Corruption Day",
+                        "es" to "Día Internacional contra la Corrupción",
+                        "fr" to "Journée internationale contre la corruption",
+                        "ru" to "Международный день борьбы с коррупцией",
+                        "zh" to "国际反腐败日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 8, day = 19),
+            rule = EventRule.Fixed(month = 12, day = 9),
             citations =
                 listOf(
                     Citation(
@@ -49,8 +49,8 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/humanitarian-day",
-                        title = "World Humanitarian Day (observance page)",
+                        url = "https://www.un.org/en/observances/anti-corruption-day",
+                        title = "International Anti-Corruption Day (observance page)",
                     ),
                     Citation(
                         url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
@@ -60,12 +60,12 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
                 ),
             links =
                 mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/63/139",
-                    "un" to "https://www.un.org/en/observances/humanitarian-day",
+                    "resolution" to "https://undocs.org/en/A/RES/58/4",
+                    "un" to "https://www.un.org/en/observances/anti-corruption-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.immunization-week"),
+            id = EventId("un.anti-cybercrime-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -73,20 +73,20 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "هفته جهانی ایمن‌سازی",
-                        "en" to "World Immunization Week",
+                        "fa" to "روز بین‌المللی مبارزه با جرایم سایبری",
+                        "en" to "International Anti-Cybercrime Day",
                     ),
                 ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 4, day = 24), lengthDays = 7),
+            rule = EventRule.Fixed(month = 12, day = 24),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_012,
+                    fromYear = 2_024,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.who.int/campaigns/world-immunization-week",
-                            title = "WHO — World Immunization Week (campaign page; WHO's own event archive for this week begins in 2012)",
+                            url = "https://docs.un.org/en/A/RES/79/243",
+                            title = "International Anti-Cybercrime Day — General Assembly resolution A/RES/79/243, \"Resolution adopted by the General Assembly on 24 December 2024\", para. 12: \"Decides that, in order to raise awareness of cybercrime and of the role of the Convention in combating and preventing it, 24 December should be designated International Anti-Cybercrime Day.\"",
                         ),
                 ),
             citations =
@@ -96,17 +96,17 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.who.int/campaigns/world-immunization-week",
-                        title = "WHO — World Immunization Week (campaign page; WHO's own event archive for this week begins in 2012)",
+                        url = "https://www.unodc.org/unodc/en/cybercrime/day.html",
+                        title = "International Anti-Cybercrime Day (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.who.int/campaigns/world-immunization-week",
+                    "un" to "https://www.unodc.org/unodc/en/cybercrime/day.html",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.indigenous-day"),
+            id = EventId("un.anti-islamophobia-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -114,61 +114,25 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی مردم بومی جهان",
-                        "ar" to "اليوم الدولي للسكان الأصليين في العالم",
-                        "en" to "International Day of the World's Indigenous Peoples",
-                        "es" to "Día Internacional de los Pueblos Indígenas",
-                        "fr" to "Journée internationale des peuples autochtones",
-                        "ru" to "Международный день коренных народов мира",
-                        "zh" to "世界土著人民国际日",
+                        "fa" to "روز بین‌المللی مبارزه با اسلام‌هراسی",
+                        "ar" to "اليوم الدولي لمكافحة كراهية الإسلام",
+                        "en" to "International Day to Combat Islamophobia",
+                        "es" to "Día Internacional para Combatir la Islamofobia",
+                        "fr" to "Journée internationale de lutte contre l’islamophobie",
+                        "ru" to "Международный день борьбы с исламофобией",
+                        "zh" to "打击伊斯兰恐惧症国际日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 8, day = 9),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/indigenous-day",
-                        title = "International Day of the World's Indigenous Peoples (observance page)",
-                    ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/49/214",
-                    "un" to "https://www.un.org/en/observances/indigenous-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.indigenous-women-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی زنان و دختران بومی جهان",
-                        "en" to "International Day of the World's Indigenous Women and Girls",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 9, day = 5),
+            rule = EventRule.Fixed(month = 3, day = 15),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_025,
+                    fromYear = 2_022,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/indigenous-women-day",
-                            title = "International Day of the World's Indigenous Women and Girls — A/RES/80/10 (26 November 2025)",
+                            url = "https://www.un.org/en/observances/anti-islamophobia-day",
+                            title = "International Day to Combat Islamophobia — A/RES/76/254 (2022)",
                         ),
                 ),
             citations =
@@ -178,17 +142,17 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/indigenous-women-day",
-                        title = "International Day of the World's Indigenous Women and Girls (observance page)",
+                        url = "https://www.un.org/en/observances/anti-islamophobia-day",
+                        title = "International Day to Combat Islamophobia (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/indigenous-women-day",
+                    "un" to "https://www.un.org/en/observances/anti-islamophobia-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.information-access-day"),
+            id = EventId("un.arabian-leopard-day"),
             calendar = CalendarSystem.GREGORIAN,
             source = EventSource.INTERNATIONAL,
             category = EventCategory.INTERNATIONAL,
@@ -196,20 +160,25 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی دسترسی همگانی به اطلاعات",
-                        "en" to "International Day for Universal Access to Information",
+                        "fa" to "روز بین‌المللی پلنگ عربی",
+                        "ar" to "اليوم الدولي للنمر العربي",
+                        "en" to "International Day of the Arabian Leopard",
+                        "es" to "Día Internacional del Leopardo Árabe",
+                        "fr" to "Journée internationale du léopard d’Arabie",
+                        "ru" to "Международный день арабского леопарда",
+                        "zh" to "国际阿拉伯豹日",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 9, day = 28),
+            rule = EventRule.Fixed(month = 2, day = 10),
             validity =
                 Validity(
                     calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_019,
+                    fromYear = 2_023,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://www.un.org/en/observances/information-access-day",
-                            title = "International Day for Universal Access to Information — General Assembly, 28 September 2019 (following UNESCO's 2015 declaration)",
+                            url = "https://www.un.org/en/observances/arabian-leopard-day",
+                            title = "International Day of the Arabian Leopard — resolution 77/295 (June 2023)",
                         ),
                 ),
             citations =
@@ -219,136 +188,13 @@ internal val OFFICIAL_EVENTS_PART_23: List<EventDefinition> =
                         title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/information-access-day",
-                        title = "International Day for Universal Access to Information (observance page)",
+                        url = "https://www.un.org/en/observances/arabian-leopard-day",
+                        title = "International Day of the Arabian Leopard (observance page)",
                     ),
                 ),
             links =
                 mapOf(
-                    "un" to "https://www.un.org/en/observances/information-access-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.interfaith-harmony-week"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "هفته جهانی هماهنگی بین ادیان",
-                        "en" to "World Interfaith Harmony Week",
-                    ),
-                ),
-            rule = EventRule.Week(start = EventRule.Fixed(month = 2, day = 1), lengthDays = 7),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://undocs.org/en/A/RES/65/5",
-                            title = "General Assembly resolution A/RES/65/5 (2010): World Interfaith Harmony Week",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/interfaith-harmony-week",
-                        title = "General Assembly resolution A/RES/65/5 (2010): World Interfaith Harmony Week",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/65/5",
-                    "un" to "https://www.un.org/en/observances/interfaith-harmony-week",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-coffee-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی قهوه",
-                        "en" to "International Coffee Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 1),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_026,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://docs.un.org/en/A/RES/80/248",
-                            title = "International Coffee Day (A/RES/80/248, adopted 10 March 2026)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://docs.un.org/en/A/RES/80/248",
-                        title = "International Coffee Day (UN General Assembly resolution A/RES/80/248)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://docs.un.org/en/A/RES/80/248",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.international-day-for-dialogue-among-civilizations"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی گفت‌وگوی تمدن‌ها",
-                        "ar" to "اليوم الدولي للحوار بين الحضارات",
-                        "en" to "International Day for Dialogue among Civilizations",
-                        "es" to "Día Internacional para el Diálogo entre Civilizaciones",
-                        "fr" to "Journée internationale pour le dialogue entre les civilisations",
-                        "ru" to "Международный день диалога между цивилизациями",
-                        "zh" to "文明对话国际日",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 10),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations",
-                        title = "International Day for Dialogue among Civilizations (observance page)",
-                    ),
-                    Citation(
-                        url = "https://iran.un.org/fa/296020-%D9%BE%DB%8C%D8%A7%D9%85-%D8%AF%D8%A8%DB%8C%D8%B1%DA%A9%D9%84-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86-%D9%85%D9%84%D9%84-%D9%85%D8%AA%D8%AD%D8%AF-%D8%A8%D9%87-%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%AA-%D8%B1%D9%88%D8%B2-%D8%A8%DB%8C%D9%86%E2%80%8C%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%DA%AF%D9%81%D8%AA%E2%80%8C%D9%88%DA%AF%D9%88%DB%8C-%D8%AA%D9%85%D8%AF%D9%86%E2%80%8C%D9%87%D8%A7",
-                        title = "United Nations in the Islamic Republic of Iran — پیام دبیرکل سازمان ملل متحد به مناسبت روز بین‌المللی گفت‌وگوی تمدن‌ها",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://www.undocs.org/EN/A/RES/78/286",
-                    "un" to "https://www.un.org/en/observances/international-day-for-dialogue-among-civilizations",
+                    "un" to "https://www.un.org/en/observances/arabian-leopard-day",
                 ),
         ),
     )

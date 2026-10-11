@@ -1,5 +1,6 @@
 # Translations that may be identical to the English source (T-1702, docs/i18n/TRANSLATING.md).
 # One entry per line: `<res dir>: <resource name> | <reason>`. The reason is required.
+core/ui/src/main/res: shared_islamic_variant_iran_official | Country name Iran is identical in English, German, French, Indonesian and Malay; method label does not claim official observations
 feature/about/src/main/res: about_source_cldr | Proper name of the Unicode CLDR project, not translated in Persian
 feature/about/src/main/res: about_source_natural_earth | Proper name of the Natural Earth dataset, not translated in Persian
 feature/about/src/main/res: about_source_geonames | Proper name of the GeoNames gazetteer, not translated in any language

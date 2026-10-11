@@ -22,7 +22,7 @@
     <string name="map_picked">نقطهٔ انتخاب‌شده: %1$s</string>
     <string name="map_no_place">برای دیدن قبله و مسیر مستقیم، در تنظیمات مکانی انتخاب کنید</string>
     <string name="map_crescent_a">الف: به‌آسانی دیده می‌شود</string>
-    <string name="map_crescent_b">ب: در شرایط کامل دیده می‌شود</string>
+    <string name="map_crescent_b">ب: در شرایط ایدئال دیده می‌شود</string>
     <string name="map_crescent_c">ج: شاید به ابزار نوری نیاز باشد</string>
     <string name="map_crescent_d">د: به ابزار نوری نیاز است</string>
     <string name="map_crescent_e">هـ: با تلسکوپ هم دیده نمی‌شود</string>

@@ -6,6 +6,7 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.JewishObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -13,7 +14,6 @@ import ir.taqvim.core.events.EventId
 import ir.taqvim.core.events.EventRule
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.LocalizedText
-import ir.taqvim.core.events.Validity
 import ir.taqvim.core.model.CalendarSystem
 
 /**
@@ -24,331 +24,123 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_12: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("un.anti-corruption-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("ir.holiday.prophet-imam-sadiq-birth"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین المللی مبارزه با فساد",
-                        "ar" to "اليوم الدولي لمكافحة الفساد",
-                        "en" to "International Anti-Corruption Day",
-                        "es" to "Día Internacional contra la Corrupción",
-                        "fr" to "Journée internationale contre la corruption",
-                        "ru" to "Международный день борьбы с коррупцией",
-                        "zh" to "国际反腐败日",
+                        "fa" to "ولادت حضرت رسول اکرم صلی الله علیه و آله و ولادت حضرت امام جعفر صادق علیه السلام",
+                        "en" to "Birth of Prophet Muhammad (peace be upon him and his family) and Imam Jafar al-Sadiq (peace be upon him)",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 12, day = 9),
+            rule = EventRule.Fixed(month = 3, day = 17),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "9",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/anti-corruption-day",
-                        title = "International Anti-Corruption Day (observance page)",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "8",
                     ),
-                    Citation(
-                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
-                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
-                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "resolution" to "https://undocs.org/en/A/RES/58/4",
-                    "un" to "https://www.un.org/en/observances/anti-corruption-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.anti-cybercrime-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("ir.holiday.revolution-victory"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.NATIONAL,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی مبارزه با جرایم سایبری",
-                        "en" to "International Anti-Cybercrime Day",
+                        "fa" to "پیروزی انقلاب اسلامی ایران و سقوط نظام شاهنشاهی",
+                        "en" to "Victory of the Islamic Revolution of Iran and fall of the monarchy",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 12, day = 24),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_024,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://docs.un.org/en/A/RES/79/243",
-                            title = "International Anti-Cybercrime Day — General Assembly resolution A/RES/79/243, \"Resolution adopted by the General Assembly on 24 December 2024\", para. 12: \"Decides that, in order to raise awareness of cybercrime and of the role of the Convention in combating and preventing it, 24 December should be designated International Anti-Cybercrime Day.\"",
-                        ),
-                ),
+            rule = EventRule.Fixed(month = 11, day = 22),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "14",
                     ),
                     Citation(
-                        url = "https://www.unodc.org/unodc/en/cybercrime/day.html",
-                        title = "International Anti-Cybercrime Day (observance page)",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "13",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.unodc.org/unodc/en/cybercrime/day.html",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.anti-islamophobia-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
+            id = EventId("ir.holiday.tasua"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی مبارزه با اسلام‌هراسی",
-                        "en" to "International Day to Combat Islamophobia",
+                        "fa" to "تاسوعای حسینی",
+                        "en" to "Tasua",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 3, day = 15),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_022,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/anti-islamophobia-day",
-                            title = "International Day to Combat Islamophobia — A/RES/76/254 (2022)",
-                        ),
-                ),
+            rule = EventRule.Fixed(month = 1, day = 9),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "7",
                     ),
                     Citation(
-                        url = "https://www.un.org/en/observances/anti-islamophobia-day",
-                        title = "International Day to Combat Islamophobia (observance page)",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "6",
                     ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/anti-islamophobia-day",
                 ),
         ),
         EventDefinition(
-            id = EventId("un.arabian-leopard-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
+            id = EventId("jewish.hanukkah"),
+            calendar = CalendarSystem.HEBREW,
+            source = EventSource.JEWISH,
+            category = EventCategory.RELIGIOUS,
             isHoliday = false,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "روز بین‌المللی پلنگ عربی",
-                        "en" to "International Day of the Arabian Leopard",
+                        "fa" to "حنوکا",
+                        "ar" to "حانوكا",
+                        "de" to "Chanukka",
+                        "en" to "Hanukkah",
+                        "es" to "Janucá",
+                        "fr" to "Hanoucca",
+                        "id" to "Hanukkah",
+                        "ja" to "ハヌカー",
+                        "ms" to "Hanukkah",
+                        "ru" to "Ханука",
+                        "zh" to "光明节",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 2, day = 10),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_023,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/arabian-leopard-day",
-                            title = "International Day of the Arabian Leopard — resolution 77/295 (June 2023)",
-                        ),
+            rule = EventRule.JewishObservanceDate(observance = JewishObservance.HANUKKAH),
+            aliases =
+                listOf(
+                    "חנוכה",
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                        url = "https://aa.usno.navy.mil/data/api.html",
+                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
+                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
                     ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/arabian-leopard-day",
-                        title = "International Day of the Arabian Leopard (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/arabian-leopard-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.arabic-language-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز زبان عربی",
-                        "en" to "Arabic Language Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 12, day = 18),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_010,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/russian-language-day",
-                            title = "UN Language Days established 2010 by the Department of Global Communications for each of the six official languages",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/arabiclanguageday",
-                        title = "Arabic Language Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/arabiclanguageday",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.argania-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی درخت آرگان",
-                        "en" to "International Day of Argania",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 5, day = 10),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_021,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/argania-day",
-                            title = "International Day of Argania — A/RES/75/262 (2021)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/argania-day",
-                        title = "International Day of Argania (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/argania-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.asteroid-day"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز بین‌المللی سیارک",
-                        "en" to "International Asteroid Day",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 6, day = 30),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 2_016,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.un.org/en/observances/asteroid-day",
-                            title = "International Asteroid Day — A/RES/71/90 (December 2016)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.un.org/en/observances/asteroid-day",
-                        title = "International Asteroid Day (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.un.org/en/observances/asteroid-day",
-                ),
-        ),
-        EventDefinition(
-            id = EventId("un.audiovisual-heritage"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.INTERNATIONAL,
-            category = EventCategory.INTERNATIONAL,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روز جهانی میراث سمعی و بصری",
-                        "en" to "World Day for Audiovisual Heritage",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 10, day = 27),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.GREGORIAN,
-                    fromYear = 1_980,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://www.unesco.org/en/days/audiovisual-heritage",
-                            title = "World Day for Audiovisual Heritage: UNESCO's 21st General Conference adopted the Recommendation for the Safeguarding and Preservation of Moving Images (1980)",
-                        ),
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://www.un.org/en/observances/list-days-weeks",
-                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
-                    ),
-                    Citation(
-                        url = "https://www.unesco.org/en/days/audiovisual-heritage",
-                        title = "World Day for Audiovisual Heritage (observance page)",
-                    ),
-                ),
-            links =
-                mapOf(
-                    "un" to "https://www.unesco.org/en/days/audiovisual-heritage",
                 ),
         ),
     )

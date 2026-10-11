@@ -9,10 +9,28 @@
       "isHoliday": false,
       "title": {
         "fa": "روش هَشانا",
-        "en": "Rosh Hashanah"
+        "en": "Rosh Hashanah",
+        "de": "Rosch Haschana",
+        "fr": "Roch Hachana",
+        "es": "Rosh Hashaná",
+        "ar": "رأس السنة العبرية",
+        "ru": "Рош ха-Шана",
+        "zh": "犹太新年",
+        "ja": "ロシュ・ハシャナ",
+        "id": "Rosh Hashanah",
+        "ms": "Rosh Hashanah"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "JewishObservanceDate",
@@ -40,10 +58,28 @@
       "isHoliday": false,
       "title": {
         "fa": "یوم کیپور",
-        "en": "Yom Kippur"
+        "en": "Yom Kippur",
+        "de": "Jom Kippur",
+        "fr": "Yom Kippour",
+        "es": "Yom Kipur",
+        "ar": "يوم الغفران",
+        "ru": "Йом-Кипур",
+        "zh": "赎罪日",
+        "ja": "ヨム・キプル",
+        "id": "Yom Kippur",
+        "ms": "Yom Kippur"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "JewishObservanceDate",
@@ -71,10 +107,28 @@
       "isHoliday": false,
       "title": {
         "fa": "سوکوت",
-        "en": "Succoth"
+        "en": "Succoth",
+        "de": "Sukkot",
+        "fr": "Souccot",
+        "es": "Sucot",
+        "ar": "عيد المظال",
+        "ru": "Суккот",
+        "zh": "住棚节",
+        "ja": "仮庵の祭り",
+        "id": "Sukkot",
+        "ms": "Sukkot"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "JewishObservanceDate",
@@ -102,10 +156,28 @@
       "isHoliday": false,
       "title": {
         "fa": "حنوکا",
-        "en": "Hanukkah"
+        "en": "Hanukkah",
+        "de": "Chanukka",
+        "fr": "Hanoucca",
+        "es": "Janucá",
+        "ar": "حانوكا",
+        "ru": "Ханука",
+        "zh": "光明节",
+        "ja": "ハヌカー",
+        "id": "Hanukkah",
+        "ms": "Hanukkah"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "JewishObservanceDate",
@@ -133,10 +205,28 @@
       "isHoliday": false,
       "title": {
         "fa": "پسح",
-        "en": "Pesach"
+        "en": "Pesach",
+        "de": "Pessach",
+        "fr": "Pessa’h",
+        "es": "Pésaj",
+        "ar": "عيد الفصح اليهودي",
+        "ru": "Песах",
+        "zh": "逾越节",
+        "ja": "過越祭",
+        "id": "Pesakh",
+        "ms": "Pesakh"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "JewishObservanceDate",
@@ -164,10 +254,28 @@
       "isHoliday": false,
       "title": {
         "fa": "شاووعوت",
-        "en": "Shavuot"
+        "en": "Shavuot",
+        "de": "Schawuot",
+        "fr": "Chavouot",
+        "es": "Shavuot",
+        "ar": "عيد الأسابيع",
+        "ru": "Шавуот",
+        "zh": "七七节",
+        "ja": "シャブオット",
+        "id": "Shavuot",
+        "ms": "Shavuot"
       },
       "titleReview": [
-        "fa"
+        "fa",
+        "de",
+        "fr",
+        "es",
+        "ar",
+        "ru",
+        "zh",
+        "ja",
+        "id",
+        "ms"
       ],
       "rule": {
         "type": "JewishObservanceDate",

@@ -96,13 +96,13 @@
   <string name="about_faq_main_calendar_q">Əsas və ya ikinci təqvimi necə dəyişim?</string>
   <string name="about_faq_main_calendar_a">Ayarlarda əsas və ikinci təqvimi seçin. Ay görünüşü və başlığı əsas təqvimə uyğundur, hər gün isə digər təqvimlərdəki tarixlərini də göstərir.</string>
   <string name="about_faq_nepali_q">Nepal (Bikram Sambat) təqvimi varmı?</string>
-  <string name="about_faq_nepali_a">Hələ yox. Rəsmi ay cədvəlləri əldə ediləndə əlavə olunacaq. O vaxta qədər onun yerinə Qriqorian təqvimi istifadə olunur.</string>
+  <string name="about_faq_nepali_a">Bəli. Təqvim ayarlarında Bikram Sambatı seçin. Tarixlər cihazınızda hesablanır.</string>
   <string name="about_faq_widgets_q">Əsas ekran vidcetləri varmı?</string>
-  <string name="about_faq_widgets_a">Hələ yox. Əsas ekran vidcetləri sonrakı versiya üçün planlaşdırılıb.</string>
+  <string name="about_faq_widgets_a">Bəli. Əsas ekranın vidcet menyusundan Taqvim vidceti əlavə edin.</string>
   <string name="about_faq_holiday_sources_q">Bayramlar və əlamətdar günlər haradan gəlir?</string>
   <string name="about_faq_holiday_sources_a">İranın rəsmi bayramları Tehran Universitetinin Təqvim Mərkəzinin dərc etdiyi rəsmi təqvimlərdən, beynəlxalq günlər isə BMT siyahısından gəlir. Hər qeyd götürüldüyü səhifəyə istinad edir, mənbələr isə Haqqında səhifəsinin Məlumat mənbələri bölməsində sadalanır.</string>
   <string name="about_faq_missing_days_q">Niyə bəzi beynəlxalq günlər yoxdur?</string>
-  <string name="about_faq_missing_days_a">Beynəlxalq gün yalnız onun fars dilində adı BMT-nin və ya başqa rəsmi fars nəşrində tapıldıqda əlavə olunur. Taqvim adları özü tərcümə etmir, buna görə belə mənbəyi olmayan gün mənbə tapılana qədər əlavə edilmir.</string>
+  <string name="about_faq_missing_days_a">Əlamətdar günlərin tarixləri və mənaları etibarlı mənbələrə əsaslanmalıdır. Rəsmi tərcümə yoxdursa, adlar süni intellektlə tərcümə edilə bilər. Tərcümənin mənbəyi və yoxlanış vəziyyəti ayrıca qeyd olunur.</string>
   <string name="about_faq_event_sources_q">Əlamətdar günlər qrupunu necə göstərim və ya gizlədim?</string>
   <string name="about_faq_event_sources_a">Ayarlarda tədbir mənbələrinin hər qrupunu yandırın və ya söndürün. Qədim İran bayramları defolt olaraq söndürülüb.</string>
   <string name="about_faq_wrong_date_q">Bayram və ya tarix səhv görünür. Necə bildirim?</string>

@@ -6,6 +6,8 @@
 
 package ir.taqvim.data.events.generated
 
+import ir.taqvim.core.calendar.MovableFeast
+import ir.taqvim.core.events.ChristianRite
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -23,189 +25,126 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_5: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("ir.holiday.imam-sadiq-martyrdom"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
+            id = EventId("christian.pentecost"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.CHRISTIAN,
             category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "شهادت حضرت امام جعفر صادق علیه السلام")),
-            rule = EventRule.Fixed(month = 10, day = 25),
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "پنطیکاست",
+                        "ar" to "عيد العنصرة",
+                        "de" to "Pfingsten",
+                        "en" to "Pentecost",
+                        "es" to "Pentecostés",
+                        "fr" to "Pentecôte",
+                        "id" to "Pentakosta",
+                        "ja" to "聖霊降臨祭",
+                        "ms" to "Pentakosta",
+                        "ru" to "Пятидесятница",
+                        "zh" to "圣灵降临节",
+                    ),
+                ),
+            rule = EventRule.ChristianFeastDate(feast = MovableFeast.PENTECOST, rite = ChristianRite.WESTERN),
             citations =
                 listOf(
                     Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "5",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "3",
+                        url = "https://aa.usno.navy.mil/data/api.html",
+                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
                     ),
                 ),
         ),
         EventDefinition(
-            id = EventId("ir.holiday.islamic-republic-day"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "روز جمهوری اسلامی ایران")),
-            rule = EventRule.Fixed(month = 1, day = 12),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "4",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "3",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.khomeini-demise"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "رحلت حضرت امام خمینی رهبر کبیر انقلاب و بنیان‌گذار جمهوری اسلامی ایران")),
-            rule = EventRule.Fixed(month = 3, day = 14),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "6",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "5",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.khordad-15-uprising"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "قیام خونین ۱۵ خرداد")),
-            rule = EventRule.Fixed(month = 3, day = 15),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "6",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "5",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.mabath"),
-            calendar = CalendarSystem.ISLAMIC,
-            source = EventSource.IRAN_OFFICIAL,
+            id = EventId("christian.trinity-sunday"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.CHRISTIAN,
             category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "مبعث حضرت رسول اکرم صلی الله علیه و آله")),
-            rule = EventRule.Fixed(month = 7, day = 27),
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "یکشنبهٔ تثلیث",
+                        "ar" to "أحد الثالوث",
+                        "de" to "Dreifaltigkeitssonntag",
+                        "en" to "Trinity Sunday",
+                        "es" to "Domingo de la Santísima Trinidad",
+                        "fr" to "Dimanche de la Trinité",
+                        "id" to "Minggu Tritunggal",
+                        "ja" to "三位一体の主日",
+                        "ms" to "Ahad Tritunggal",
+                        "ru" to "День Святой Троицы",
+                        "zh" to "天主圣三节",
+                    ),
+                ),
+            rule = EventRule.ChristianFeastDate(feast = MovableFeast.TRINITY_SUNDAY, rite = ChristianRite.WESTERN),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://aa.usno.navy.mil/data/api.html",
+                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Christian observances, Gregorian years 1583–9999",
+                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/christian-observances-raw.json; all 67 336 records are the golden of core/calendar's ChristianMovableFeastsTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.ancient.yalda"),
+            calendar = CalendarSystem.PERSIAN,
+            source = EventSource.ANCIENT_IRAN,
+            category = EventCategory.CULTURAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "شب یلدا و ترویج فرهنگ میهمانی و پیوند با خویشان",
+                        "en" to "Yalda Night and the promotion of hospitality and family ties",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 30),
             citations =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "13",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf) — 30 Azar",
                         page = "12",
                     ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.nature-day"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title = LocalizedText(mapOf("fa" to "روز طبیعت")),
-            rule = EventRule.Fixed(month = 1, day = 13),
-            citations =
-                listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "4",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf) — 30 Azar",
+                        page = "11",
                     ),
                     Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "3",
+                        url = "https://iranicaonline.org/articles/cella",
+                        title = "Encyclopaedia Iranica — ČELLA (Vol. V, Fasc. 2): the great čella begins on 1 Dey; its night is called šab-e čella or šab-e yaldā",
+                        page = "123-125",
                     ),
                 ),
         ),
         EventDefinition(
-            id = EventId("ir.holiday.nowruz-1"),
+            id = EventId("ir.ancient.zoroaster-birthday"),
             calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
+            source = EventSource.ANCIENT_IRAN,
+            category = EventCategory.CULTURAL,
+            isHoliday = false,
             title =
                 LocalizedText(
                     mapOf(
-                        "fa" to "آغاز نوروز",
-                        "en" to "Nowruz",
+                        "fa" to "زادروز زرتشت پیامبر",
+                        "en" to "Birth of the prophet Zoroaster",
                     ),
                 ),
-            rule = EventRule.Fixed(month = 1, day = 1),
+            rule = EventRule.Fixed(month = 1, day = 6),
             citations =
                 listOf(
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf) — 6 Farvardin",
                         page = "4",
                     ),
                     Citation(
                         url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
-                        page = "3",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("ir.holiday.nowruz-2"),
-            calendar = CalendarSystem.PERSIAN,
-            source = EventSource.IRAN_OFFICIAL,
-            category = EventCategory.NATIONAL,
-            isHoliday = true,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "عید نوروز",
-                        "en" to "Nowruz",
-                    ),
-                ),
-            rule = EventRule.Fixed(month = 1, day = 2),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
-                        page = "4",
-                    ),
-                    Citation(
-                        url = "https://calendar.ut.ac.ir/Fa/",
-                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf) — 6 Farvardin",
                         page = "3",
                     ),
                 ),

@@ -6,8 +6,6 @@
 
 package ir.taqvim.data.events.generated
 
-import ir.taqvim.core.calendar.JewishObservance
-import ir.taqvim.core.calendar.TithiObservance
 import ir.taqvim.core.events.Citation
 import ir.taqvim.core.events.EventCategory
 import ir.taqvim.core.events.EventDefinition
@@ -26,245 +24,133 @@ import ir.taqvim.core.model.CalendarSystem
 internal val OFFICIAL_EVENTS_PART_7: List<EventDefinition> =
     listOf(
         EventDefinition(
-            id = EventId("jewish.pesach"),
-            calendar = CalendarSystem.HEBREW,
-            source = EventSource.JEWISH,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "پسح",
-                        "en" to "Pesach",
-                    ),
-                ),
-            rule = EventRule.JewishObservanceDate(observance = JewishObservance.PESACH),
-            aliases =
-                listOf(
-                    "פסח",
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://aa.usno.navy.mil/data/api.html",
-                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
-                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("jewish.rosh-hashanah"),
-            calendar = CalendarSystem.HEBREW,
-            source = EventSource.JEWISH,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "روش هَشانا",
-                        "en" to "Rosh Hashanah",
-                    ),
-                ),
-            rule = EventRule.JewishObservanceDate(observance = JewishObservance.ROSH_HASHANAH),
-            aliases =
-                listOf(
-                    "ראש השנה",
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://aa.usno.navy.mil/data/api.html",
-                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
-                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("jewish.shavuot"),
-            calendar = CalendarSystem.HEBREW,
-            source = EventSource.JEWISH,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "شاووعوت",
-                        "en" to "Shavuot",
-                    ),
-                ),
-            rule = EventRule.JewishObservanceDate(observance = JewishObservance.SHAVUOT),
-            aliases =
-                listOf(
-                    "שבועות",
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://aa.usno.navy.mil/data/api.html",
-                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
-                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("jewish.succoth"),
-            calendar = CalendarSystem.HEBREW,
-            source = EventSource.JEWISH,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "سوکوت",
-                        "en" to "Succoth",
-                    ),
-                ),
-            rule = EventRule.JewishObservanceDate(observance = JewishObservance.SUCCOTH),
-            aliases =
-                listOf(
-                    "סוכות",
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://aa.usno.navy.mil/data/api.html",
-                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
-                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("jewish.yom-kippur"),
-            calendar = CalendarSystem.HEBREW,
-            source = EventSource.JEWISH,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = false,
-            title =
-                LocalizedText(
-                    mapOf(
-                        "fa" to "یوم کیپور",
-                        "en" to "Yom Kippur",
-                    ),
-                ),
-            rule = EventRule.JewishObservanceDate(observance = JewishObservance.YOM_KIPPUR),
-            aliases =
-                listOf(
-                    "יום כיפור",
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://aa.usno.navy.mil/data/api.html",
-                        title = "U.S. Naval Observatory, Astronomical Applications Department — API v4.0.1, Jewish observances (religious holidays), Hebrew years 360–9999",
-                        page = "Column of the archived responses, byte-for-byte in docs/sources/usno/jewish-observances-raw.json; all 57 839 records are the golden of core/calendar's UsnoJewishObservancesTest, which the engine this record's rule calls reproduces exactly. US government work, public domain (17 U.S.C. 105).",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("np.holiday.buddha-jayanti"),
-            calendar = CalendarSystem.NEPALI,
-            source = EventSource.NEPAL_OFFICIAL,
+            id = EventId("ir.holiday.eid-al-fitr-holiday"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "बुद्ध जयन्ती")),
-            rule = EventRule.LunarTithi(month = 1, tithi = 15, observance = TithiObservance.SUNRISE),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "تعطیل به مناسبت عید سعید فطر",
+                        "en" to "Eid al-Fitr holiday",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 10, day = 2),
             validity =
                 Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
+                    calendar = CalendarSystem.ISLAMIC,
+                    fromYear = 1_432,
                     toYear = null,
                     citation =
                         Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 1 (Rajpatra p. 3), clause 2.1(ख), 7.1(क): चण्डी पूर्णिमा (वैशाख पूर्णिमा) - बुद्ध जयन्ति ... वैशाख २९ गते; PDF p. 4: बुद्ध जयन्ती - वैशाख २९ गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
-                ),
-            aliases =
-                listOf(
-                    "चण्डी पूर्णिमा",
-                    "वैशाख पूर्णिमा",
-                    "उभौली पर्व",
-                ),
-            citations =
-                listOf(
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 1 (Rajpatra p. 3), clause 2.1(ख), 7.1(क): चण्डी पूर्णिमा (वैशाख पूर्णिमा) - बुद्ध जयन्ति ... वैशाख २९ गते; PDF p. 4: बुद्ध जयन्ती - वैशाख २९ गते",
-                    ),
-                    Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 2, clause 2.1(ख), 7.1(क): चण्डी पूर्णिमा (वैशाख पूर्णिमा) - बुद्ध जयन्ती ... वैशाख १८ गते; PDF p. 6: बुद्ध जयन्ती - वैशाख १८ गते",
-                    ),
-                ),
-        ),
-        EventDefinition(
-            id = EventId("np.holiday.chhath"),
-            calendar = CalendarSystem.NEPALI,
-            source = EventSource.NEPAL_OFFICIAL,
-            category = EventCategory.RELIGIOUS,
-            isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "छठ पर्व")),
-            rule = EventRule.LunarTithi(month = 7, tithi = 6, observance = TithiObservance.SUNRISE),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ज): छठ पर्व - कात्तिक १० गते — Owner decision 2026-09-17 (ADR-0036, ADR-0038): the LunarTithi rule reproduces the dates of both notices; the record is valid from the first notice checked.",
+                            url = "https://rc.majlis.ir/fa/law/show/796840",
+                            title = "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
                         ),
                 ),
             citations =
                 listOf(
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ज): छठ पर्व - कात्तिक १० गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "4",
                     ),
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 3, clause 2.1(ज): छठ पर्व - कात्तिक २९ गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "3, 14",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/796840",
+                        title = "قانون افزایش تعطیلی عید سعید فطر (Law increasing the Eid al-Fitr holiday), approved 1390/06/06, Guardian Council 1390/06/07: «عبارت «عید فطر» … به عبارت «عید سعید فطر دو روز (اول و دوم شوال)» اصلاح می‌شود. این قانون از تاریخ تصویب لازم‌الاجراء است». In force from 1390/06/06, and 2 Shawwal 1432 fell on 1390/06/10, so that day was already a holiday. The official calendar of 1390 SH prints it without (تعطیل) because it was printed before the law passed; the first calendar to print it is 1391 SH (Calendar-1391.pdf page 8, 2 Shawwal 1433).",
                     ),
                 ),
         ),
         EventDefinition(
-            id = EventId("np.holiday.christmas"),
-            calendar = CalendarSystem.GREGORIAN,
-            source = EventSource.NEPAL_OFFICIAL,
+            id = EventId("ir.holiday.eid-al-ghadir"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
             category = EventCategory.RELIGIOUS,
             isHoliday = true,
-            title = LocalizedText(mapOf("ne" to "क्रिसमस डे")),
-            rule = EventRule.Fixed(month = 12, day = 25),
-            validity =
-                Validity(
-                    calendar = CalendarSystem.NEPALI,
-                    fromYear = 2_082,
-                    toYear = null,
-                    citation =
-                        Citation(
-                            url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                            title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                            page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे (डिसेम्बर २५)- पुस १० गते — Owner decision 2026-09-17 (\"computed, not typed\", ADR-0036): the rule reproduces the dates of both notices; the record is valid from the first notice checked.",
-                        ),
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "عید سعید غدیر خم",
+                        "en" to "Eid al-Ghadir",
+                    ),
                 ),
+            rule = EventRule.Fixed(month = 12, day = 18),
             citations =
                 listOf(
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A8_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%AC%E0%A4%BF%E0%A4%A6%E0%A4%BE_%E0%A4%B8%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8%E0%A5%8D%E0%A4%A7%E0%A5%80.pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2082, Nepal Rajpatra Part 5, Vol. 74, No. 59, 2081-11-15",
-                        page = "PDF p. 2 (Rajpatra p. 4), clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे (डिसेम्बर २५)- पुस १० गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "6",
                     ),
                     Citation(
-                        url = "https://moha.gov.np/upload/e66443e81e8cc9c4fa5c099a1fb1bb87/files/%E0%A5%A8%E0%A5%A6%E0%A5%AE%E0%A5%A9_%E0%A4%B8%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A5%8B_%E0%A4%B8%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A4%9C%E0%A4%A8%E0%A4%BF%E0%A4%95_%E0%A4%B5%E0%A4%BF%E0%A4%A6%E0%A4%BE_(67_11_18).pdf",
-                        title = "Government of Nepal, Ministry of Home Affairs — «सूचना» on public holidays of BS 2083, Nepal Rajpatra Part 5, Vol. 75, No. 67, 2082-11-18",
-                        page = "PDF p. 3, clause 2.1(ञ): इसाई धर्मावलम्बीको पर्व क्रिसमस डे, (डिसेम्बर २५) - पुस १० गते",
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "5",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.fatima-martyrdom"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "شهادت حضرت فاطمه زهرا سلام الله علیها",
+                        "en" to "Martyrdom of Fatima al-Zahra (peace be upon her)",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 6, day = 3),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "12",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "10",
+                    ),
+                    Citation(
+                        url = "https://rc.majlis.ir/fa/law/show/93217",
+                        title = "قانون اصلاح لایحه قانونی تعیین تعطیلات رسمی کشور, approved 1378/05/25: «روز سوم جمادی‌الثانی به عنوان روز شهادت حضرت فاطمه زهرا (سلام الله علیها) تعطیل رسمی (عمومی) اعلام می‌شود» — the law that made this day a holiday.",
+                    ),
+                ),
+        ),
+        EventDefinition(
+            id = EventId("ir.holiday.imam-ali-birth"),
+            calendar = CalendarSystem.ISLAMIC,
+            source = EventSource.IRAN_OFFICIAL,
+            category = EventCategory.RELIGIOUS,
+            isHoliday = true,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "ولادت حضرت امام علی علیه السلام",
+                        "en" to "Birth of Imam Ali (peace be upon him)",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 7, day = 13),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1404 SH (docs/sources/iran/Calendar-1404.pdf)",
+                        page = "13",
+                    ),
+                    Citation(
+                        url = "https://calendar.ut.ac.ir/Fa/",
+                        title = "Official calendar of Iran 1405 SH (docs/sources/iran/Calendar-1405.pdf)",
+                        page = "12",
                     ),
                 ),
         ),

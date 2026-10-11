@@ -1,0 +1,198 @@
+/*
+ * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
+ * Proprietary and confidential. See the LICENSE file in the repository root.
+ */
+@file:Suppress("NoHardcodedNonLatinText", "MaxLineLength")
+
+package ir.taqvim.data.events.generated
+
+import ir.taqvim.core.events.Citation
+import ir.taqvim.core.events.EventCategory
+import ir.taqvim.core.events.EventDefinition
+import ir.taqvim.core.events.EventId
+import ir.taqvim.core.events.EventRule
+import ir.taqvim.core.events.EventSource
+import ir.taqvim.core.events.LocalizedText
+import ir.taqvim.core.events.Validity
+import ir.taqvim.core.model.CalendarSystem
+
+/**
+ * Part 63 of the dataset events.
+ *
+ * Generated from `dataset/` by `:tools:dataset:generateEvents` — do not edit.
+ */
+internal val OFFICIAL_EVENTS_PART_63: List<EventDefinition> =
+    listOf(
+        EventDefinition(
+            id = EventId("un.science-and-peace-week"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "هفته بین‌المللی علم و صلح",
+                        "en" to "International Week of Science and Peace",
+                    ),
+                ),
+            rule = EventRule.Week(start = EventRule.Fixed(month = 11, day = 9), lengthDays = 7),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 1_988,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/international-week-science-and-peace",
+                            title = "General Assembly resolution 43/61 (1988): International Week of Science and Peace",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/international-week-science-and-peace",
+                        title = "General Assembly resolution 43/61 (1988): International Week of Science and Peace",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/international-week-science-and-peace",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.science-technology-and-innovation-for-south-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز بین‌المللی علم، فناوری و نوآوری برای کشورهای جنوب",
+                        "ar" to "اليوم الدولي للعلم والتكنولوجيا والابتكار لبلدان الجنوب",
+                        "en" to "International Day of Science, Technology and Innovation for the South",
+                        "es" to "Día Internacional de la Ciencia, la Tecnología y la Innovación para el Sur",
+                        "ru" to "Международный день науки, техники и инноваций в интересах Юга",
+                        "zh" to "南方科学、技术和创新国际日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 9, day = 16),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_024,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+                            title = "International Day of Science, Technology and Innovation for the South — A/RES/78/259 (9 January 2024)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+                        title = "International Day of Science, Technology and Innovation for the South (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.seagrass-day"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "روز جهانی علف‌های دریایی",
+                        "ar" to "اليوم العالمي للأعشاب البحرية",
+                        "en" to "World Seagrass Day",
+                        "es" to "Día Mundial de los Pastos Marinos",
+                        "fr" to "Journée mondiale des herbiers marins",
+                        "ru" to "Всемирный день морских трав",
+                        "zh" to "世界海草日",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 3, day = 1),
+            validity =
+                Validity(
+                    calendar = CalendarSystem.GREGORIAN,
+                    fromYear = 2_022,
+                    toYear = null,
+                    citation =
+                        Citation(
+                            url = "https://www.un.org/en/observances/seagrass-day",
+                            title = "World Seagrass Day — A/RES/76/265 (May 2022)",
+                        ),
+                ),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the ar, zh, fr, ru, es editions of the same page for the titles in those languages",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/seagrass-day",
+                        title = "World Seagrass Day (observance page)",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "un" to "https://www.un.org/en/observances/seagrass-day",
+                ),
+        ),
+        EventDefinition(
+            id = EventId("un.second-world-war-remembrance-days"),
+            calendar = CalendarSystem.GREGORIAN,
+            source = EventSource.INTERNATIONAL,
+            category = EventCategory.INTERNATIONAL,
+            isHoliday = false,
+            title =
+                LocalizedText(
+                    mapOf(
+                        "fa" to "زمان بزرگداشت و آشتی برای کسانی که زندگی خود را در جریان جنگ جهانی دوم از دست دادند",
+                        "ar" to "مناسبة للتذكر والمصالحة إجلالا لذكرى جميع ضحايا الحرب العالمية الثانية",
+                        "en" to "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War",
+                        "fr" to "Journées du souvenir et de la réconciliation en l'honneur des morts de la Seconde Guerre mondiale",
+                        "ru" to "Дни памяти и примирения, посвященные погибшим во Второй мировой войне",
+                        "zh" to "缅怀第二次世界大战的所有死难者的悼念与和解的时刻",
+                    ),
+                ),
+            rule = EventRule.Fixed(month = 5, day = 8),
+            citations =
+                listOf(
+                    Citation(
+                        url = "https://www.un.org/en/observances/list-days-weeks",
+                        title = "United Nations — List of International Days and Weeks — also the zh, fr, ru editions (https://www.un.org/<language>/observances/list-days-weeks)",
+                    ),
+                    Citation(
+                        url = "https://www.un.org/en/observances/second-world-war-remembrance-days",
+                        title = "Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War (observance page)",
+                    ),
+                    Citation(
+                        url = "https://web.archive.org/web/20121005003400/https://www.unic-ir.org/event/f-event.htm",
+                        title = "United Nations Information Centre Tehran — مناسبت های ویژه سازمان ملل متحد (Internet Archive copy of https://www.unic-ir.org/event/f-event.htm)",
+                        page = "Wayback Machine snapshot of 2012-10-05 (original site unreachable 2026-09-13); copy in docs/sources/unic-tehran-f-event-20121005.html",
+                    ),
+                ),
+            links =
+                mapOf(
+                    "resolution" to "http://undocs.org/en/A/RES/59/26",
+                    "un" to "https://www.un.org/en/observances/second-world-war-remembrance-days",
+                ),
+        ),
+    )
