@@ -39,6 +39,17 @@ can reach the network, however it is written. What remains are things the user s
 cited source in their browser, or picking a file through the Storage Access Framework, possibly from a cloud
 provider. Taqvim hands over a URL or reads a document; the fetching is done by an app the user chose.
 
+### Taqvim does not ask where your device is
+
+Taqvim requests neither `ACCESS_FINE_LOCATION` nor `ACCESS_COARSE_LOCATION`, and no code in it reads the platform
+location service or the geocoder. Prayer times, Qibla and the sky need coordinates, not a permission: you give them
+by choosing a city from the bundled list of 7 342, tapping a point on the map, or typing them. A place you had
+already saved from your device position keeps working — its coordinates and time zone were stored with it. The
+decision and its reasoning are in [ADR-0055](adr/0055-taqvim-does-not-ask-where-the-device-is.md).
+
+The platform geocoder went with it. It needs no permission and usually resolves over the network, so it was the one
+way coordinates could still leave the device; the nearest bundled city names them instead.
+
 ### Taqvim does not read your device calendar
 
 Taqvim requests neither `READ_CALENDAR` nor `WRITE_CALENDAR`, and no code in it reaches Android's calendar
@@ -58,6 +69,7 @@ permission, and a Konsist rule fails if any source manifest requests one or any 
 
 | Threat | Mitigation |
 |---|---|
+| The app learns the user's whereabouts | It holds no location permission and reads no position or geocoder (ADR-0055). The place is whatever the user chose, stored in the app's own settings. |
 | Another app starts Taqvim components or sends spoofed broadcasts | The release manifest exports the 56 components listed under [Exported components](#exported-components-release) below — entry points, launcher aliases, widget receivers and system-bound services — each with the protection stated there. Links only open screens and are size-limited (ADR-0016). Every other receiver and service is unexported and ignores unknown actions or extras. An allowlist test covers the merged debug and release manifests. |
 | Pending intents hijacked or modified | Every `PendingIntent` is immutable (Konsist rule). |
 | Files exposed through a content provider | The only `FileProvider` shares `cache/shared/` for QR images, granted per share (T-1400). |

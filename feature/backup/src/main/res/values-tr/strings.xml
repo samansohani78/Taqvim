@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Temizle</string>
   <string name="privacy_clear_failed">Veriler temizlenemedi. Tekrar deneyin.</string>
   <string name="privacy_permissions_title">İzinler</string>
-  <string name="privacy_permission_location">Konum</string>
   <string name="privacy_permission_notifications">Bildirimler</string>
   <string name="privacy_permission_exact_alarms">Tam zamanlı alarmlar</string>
   <string name="privacy_permission_dnd">Rahatsız Etmeyin erişimi</string>
-  <string name="privacy_why_location">Bulunduğunuz yerde namaz vakitlerini ve kıbleyi bulmak için. Bunun yerine bir şehir seçebilirsiniz.</string>
   <string name="privacy_why_notifications">Hatırlatıcıları ve ezanı göstermek için.</string>
   <string name="privacy_why_exact_alarms">Hatırlatıcıları ve ezanı zamanında çalmak için.</string>
   <string name="privacy_why_dnd">Yalnızca, açarsanız İmsak ezanının Rahatsız Etmeyin sırasında çalabilmesi için.</string>

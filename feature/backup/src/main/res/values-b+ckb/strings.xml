@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">سڕینەوە</string>
   <string name="privacy_clear_failed">داتاکە نەسڕایەوە. دووبارە هەوڵ بدەرەوە.</string>
   <string name="privacy_permissions_title">مۆڵەتەکان</string>
-  <string name="privacy_permission_location">شوێن</string>
   <string name="privacy_permission_notifications">ئاگادارکردنەوەکان</string>
   <string name="privacy_permission_exact_alarms">ئاگاداریی ورد</string>
   <string name="privacy_permission_dnd">دەستگەیشتن بە «مەمشێوێنە»</string>
-  <string name="privacy_why_location">بۆ دۆزینەوەی کاتەکانی نوێژ و قیبلە لەو شوێنەی تێیدایت. دەتوانیت لە جیاتی ئەوە شارێک هەڵبژێریت.</string>
   <string name="privacy_why_notifications">بۆ پیشاندانی بیرخەرەوەکان و بانگ.</string>
   <string name="privacy_why_exact_alarms">بۆ لێدانی بیرخەرەوەکان و بانگ لە کاتی خۆیدا.</string>
   <string name="privacy_why_dnd">تەنها بۆ ئەوەی بانگی بەیانی لە کاتی «مەمشێوێنە»دا لێبدرێت، ئەگەر هەڵیبکەیت.</string>

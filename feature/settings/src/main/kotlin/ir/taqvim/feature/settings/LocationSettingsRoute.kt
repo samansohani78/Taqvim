@@ -4,16 +4,10 @@
  */
 package ir.taqvim.feature.settings
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
@@ -21,7 +15,7 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 /**
- * Koin bindings of the location settings; `:app` provides [LocationSettingsStore], [CitySearch], [DeviceLocation] and
+ * Koin bindings of the location settings; `:app` provides [LocationSettingsStore], [CitySearch] and
  * [PlaceDescriber].
  */
 val locationSettingsFeatureModule: Module =
@@ -31,7 +25,8 @@ val locationSettingsFeatureModule: Module =
     }
 
 /**
- * The location settings bound to their [LocationSettingsViewModel]; asks for location permission when needed.
+ * The location settings bound to their [LocationSettingsViewModel]. Taqvim holds no location permission and never
+ * asks for one (ADR-0055): a place is a city from the bundled catalog, a point on the map or typed coordinates.
  * [embedded] leaves out the title bar, for a page of another screen (the T-1501 onboarding). [onPickOnMap] opens the
  * world map to pick the place; without it the coordinates page offers no map.
  */
@@ -43,25 +38,13 @@ fun LocationSettingsRoute(
     viewModel: LocationSettingsViewModel = koinViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val context = LocalContext.current
-    val permissionLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { grants ->
-            if (grants.values.any { it }) viewModel.onLocate() else viewModel.onPermissionDenied()
-        }
     val actions =
-        remember(viewModel, context, permissionLauncher, onPickOnMap) {
+        remember(viewModel, onPickOnMap) {
             LocationSettingsActions(
                 onModeSelected = viewModel::onModeSelected,
                 onQueryChanged = viewModel::onQueryChanged,
                 onCitySelected = viewModel::onCitySelected,
                 onRetrySearch = viewModel::onRetrySearch,
-                onUseDeviceLocation = {
-                    if (hasLocationPermission(context)) {
-                        viewModel.onLocate()
-                    } else {
-                        permissionLauncher.launch(locationPermissions())
-                    }
-                },
                 onLatitudeChanged = viewModel::onLatitudeChanged,
                 onLongitudeChanged = viewModel::onLongitudeChanged,
                 onTimeZoneChanged = viewModel::onTimeZoneChanged,
@@ -71,10 +54,3 @@ fun LocationSettingsRoute(
         }
     LocationSettingsScreen(state, actions, modifier, embedded)
 }
-
-/** The permissions asked for: fine, or coarse if the user grants only that. */
-internal fun locationPermissions(): Array<String> =
-    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-
-internal fun hasLocationPermission(context: Context): Boolean =
-    locationPermissions().any { context.checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED }

@@ -6,10 +6,8 @@
   <string name="settings_location_current">বর্তমান স্থান</string>
   <string name="settings_location_none">এখনো কোনো স্থান বেছে নেওয়া হয়নি</string>
   <string name="settings_location_kind_city">শহরের তালিকা থেকে বেছে নেওয়া</string>
-  <string name="settings_location_kind_device">আপনার ডিভাইসের অবস্থান থেকে</string>
   <string name="settings_location_kind_coordinates">লেখা স্থানাঙ্ক থেকে</string>
   <string name="settings_location_tab_city">শহর</string>
-  <string name="settings_location_tab_device">আমার অবস্থান</string>
   <string name="settings_location_tab_coordinates">স্থানাঙ্ক</string>
   <string name="settings_location_search_label">শহর খুঁজুন</string>
   <string name="settings_location_searching">শহর খোঁজা হচ্ছে</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">এই শহর বেছে নিন</string>
   <string name="settings_location_chosen_city">বেছে নেওয়া</string>
   <string name="settings_location_city_no_zone">এই শহরের জন্য কোনো সময় অঞ্চল তালিকাভুক্ত নেই, তাই এটি বেছে নেওয়া যায় না।</string>
-  <string name="settings_location_device_explanation">এই ডিভাইসের অবস্থান ব্যবহার করুন। আপনি বোতাম ট্যাপ করলেই শুধু Taqvim অবস্থানের অনুমতি চায়।</string>
-  <string name="settings_location_use_device">আমার অবস্থান ব্যবহার করুন</string>
-  <string name="settings_location_locating">আপনার অবস্থান খোঁজা হচ্ছে…</string>
-  <string name="settings_location_denied">অবস্থানের অনুমতি প্রত্যাখ্যাত হয়েছে। সিস্টেম সেটিংসে অনুমতি দিন, বা এর বদলে শহর বেছে নিন।</string>
-  <string name="settings_location_disabled">এই ডিভাইসে অবস্থান বন্ধ আছে।</string>
-  <string name="settings_location_timed_out">আপনার অবস্থান সময়মতো পাওয়া যায়নি। আবার চেষ্টা করুন, বা শহর বেছে নিন।</string>
-  <string name="settings_location_unavailable">আপনার অবস্থান এখন পাওয়া যাচ্ছে না।</string>
-  <string name="settings_location_device_saved">সংরক্ষিত: %1$s</string>
   <string name="settings_location_latitude">অক্ষাংশ</string>
   <string name="settings_location_longitude">দ্রাঘিমাংশ</string>
   <string name="settings_location_time_zone">সময় অঞ্চল</string>

@@ -6,10 +6,8 @@
   <string name="settings_location_current">Текущее место</string>
   <string name="settings_location_none">Место ещё не выбрано</string>
   <string name="settings_location_kind_city">Выбрано из списка городов</string>
-  <string name="settings_location_kind_device">По местоположению устройства</string>
   <string name="settings_location_kind_coordinates">По введённым координатам</string>
   <string name="settings_location_tab_city">Город</string>
-  <string name="settings_location_tab_device">Моё местоположение</string>
   <string name="settings_location_tab_coordinates">Координаты</string>
   <string name="settings_location_search_label">Поиск городов</string>
   <string name="settings_location_searching">Поиск городов</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Выбрать этот город</string>
   <string name="settings_location_chosen_city">Выбран</string>
   <string name="settings_location_city_no_zone">Для этого города не указан часовой пояс, поэтому его нельзя выбрать.</string>
-  <string name="settings_location_device_explanation">Использовать положение этого устройства. Taqvim запрашивает доступ к местоположению, только когда вы нажмёте кнопку.</string>
-  <string name="settings_location_use_device">Использовать моё местоположение</string>
-  <string name="settings_location_locating">Определение местоположения…</string>
-  <string name="settings_location_denied">Доступ к местоположению запрещён. Разрешите его в системных настройках или выберите город.</string>
-  <string name="settings_location_disabled">Определение местоположения на этом устройстве выключено.</string>
-  <string name="settings_location_timed_out">Не удалось вовремя определить ваше местоположение. Попробуйте ещё раз или выберите город.</string>
-  <string name="settings_location_unavailable">Ваше местоположение сейчас недоступно.</string>
-  <string name="settings_location_device_saved">Сохранено: %1$s</string>
   <string name="settings_location_latitude">Широта</string>
   <string name="settings_location_longitude">Долгота</string>
   <string name="settings_location_time_zone">Часовой пояс</string>

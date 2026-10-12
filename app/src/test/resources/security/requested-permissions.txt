@@ -1,4 +1,4 @@
-# T-1804 (ADR-0017, ADR-0051, ADR-0054): every permission the merged app manifest requests, and why. A permission
+# T-1804 (ADR-0017, ADR-0051, ADR-0054, ADR-0055): every permission the merged app manifest requests, and why. A permission
 # that appears in the merged manifest and not here fails the build, and one listed here that no longer appears
 # fails too, so a dependency cannot quietly add or drop one.
 #
@@ -16,9 +16,11 @@
 # only feature that opened a socket and they were removed with the permission (ADR-0054), so Taqvim's own code
 # cannot reach the network. A citation the user taps is handed to their browser, which is another app.
 #
+# Location: ACCESS_FINE_LOCATION and ACCESS_COARSE_LOCATION must NEVER appear here either (ADR-0055). Prayer times,
+# Qibla and sky positions need coordinates, not a permission: they come from the bundled city catalog, a point on
+# the map or coordinates the user types. Nothing in Taqvim asks the device where it is.
+#
 # permission | why
-android.permission.ACCESS_COARSE_LOCATION | T-603 prayer times and Qibla at the user's position; requested at runtime, and choosing a city instead works without it
-android.permission.ACCESS_FINE_LOCATION | T-603 as above, for a more exact position
 android.permission.RECEIVE_BOOT_COMPLETED | T-604 re-plans alarms after a restart, which Android otherwise drops
 android.permission.SCHEDULE_EXACT_ALARM | T-1102 athan and T-1001 reminders have to sound at a time, not eventually
 android.permission.FOREGROUND_SERVICE | T-1102 plays the athan while the screen is off

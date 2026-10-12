@@ -65,7 +65,7 @@ Non-goals: cloud sync servers, accounts, ads, analytics SDKs.
 | Tools | Date converter; day-distance with workdays; duration calculator; time zones; QR generator; compass with Qibla & true north; bubble level; world map (day/night, moon visibility, magnetic field, time zones, tectonic plates, crescent visibility) with 3D globe |
 | Widgets | 1×1, 4×1, 2×2, 4×2, month (interactive), month-view, week, schedule list, sun, moon, map, age/countdown; per-widget color, transparency, scale; dynamic colors |
 | Notification | Persistent date notification with day icon, other calendars, holidays, prayer times, lock-screen visibility |
-| Settings | 24 languages; numerals; themes (system/light/dark/black/custom colors) with dynamic color; gradient; bold/custom font; background image; calendars priority; week start/weekends; holiday sources; hijri offset; location (city list, districts, GPS, coordinates); wallpaper/screensaver |
+| Settings | 24 languages; numerals; themes (system/light/dark/black/custom colors) with dynamic color; gradient; bold/custom font; background image; calendars priority; week start/weekends; holiday sources; hijri offset; location (city list, districts, map, coordinates); wallpaper/screensaver |
 | Wear | Date app, month tile, complications (date, month progress) |
 | Platform | Dynamic launcher icon (day number); Quick Settings tile; app shortcuts; live wallpaper; daydream; backup rules |
 
@@ -127,7 +127,7 @@ app  → wires everything via DI
 | `:data:database` | Room: personal events, reminders, alarms, shift-work, workday profiles, diagnostics |
 | `:data:events` | Repository impl over generated dataset + overrides |
 | ~~`:data:device-calendar`~~ | `CalendarContract` adapter, observer, cache — **withdrawn 2026-10-12, ADR-0051** |
-| `:data:location` | Cities DB, districts, GPS, geocoder |
+| `:data:location` | Cities DB, districts (bundled; ~~GPS, geocoder~~ withdrawn 2026-10-13, ADR-0055) |
 | `:data:scheduler` | Alarm/Work scheduling single source of truth |
 | `:feature:calendar` `:feature:timeline` `:feature:month` `:feature:year` `:feature:agenda` `:feature:events` `:feature:times` `:feature:astronomy` `:feature:map` `:feature:compass` `:feature:tools` `:feature:settings` `:feature:about` `:feature:widgets` `:feature:notification` `:feature:wallpaper` `:feature:search` `:feature:backup` | One feature each |
 | `:wear` | Wear OS app |
@@ -463,7 +463,7 @@ Core only; showing these calendars and observances to users needs a later decisi
 - Tests: R with `ShadowContentResolver` fixtures (all-day, multi-day, deleted, invisible calendars); U all-day event dated correctly in UTC+3:30 and UTC−8.
 
 ### T-603 Location data
-- Cities dataset (own compilation from public geodata, permissive: GeoNames CC-BY or Natural Earth public domain), Iran districts; GPS via `FusedLocation`-free `LocationManager` with timeout; Geocoder wrapper.
+- Cities dataset (own compilation from public geodata, permissive: GeoNames CC-BY or Natural Earth public domain), Iran districts. ~~GPS via `FusedLocation`-free `LocationManager` with timeout; Geocoder wrapper~~ — **withdrawn 2026-10-13, ADR-0055**: coordinates come from the catalog, the map or the user, so no location permission is requested and no coordinates are sent to a geocoder.
 - Tests: U sorting per language collation; R timeout path.
 
 ### T-604 Scheduler (single source of truth)
@@ -643,7 +643,7 @@ Core only; showing these calendars and observances to users needs a later decisi
 - Tests: UI first-run matrix fa/en/ne/ckb → defaults asserted.
 
 ### T-1502 Location settings
-- City picker (searchable), districts, GPS, coordinates with live geocode, map pick.
+- City picker (searchable), districts, coordinates with a live name from the nearest bundled city, map pick. ~~GPS~~ withdrawn (ADR-0055).
 - Tests: UI each path persists coordinates.
 
 ### T-1503 Backup/restore UI (F-11) & privacy dashboard (F-15)
@@ -694,7 +694,7 @@ Core only; showing these calendars and observances to users needs a later decisi
 - LeakCanary debug; heap budget test on month screen < 80 MB.
 
 ### T-1804 Security
-- No network permission at all (ADR-0054); `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug.
+- No network permission at all (ADR-0054) and no location permission (ADR-0055); `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug.
 - Tests: L manifest audit test (no unexpected `exported=true`).
 
 ---
@@ -737,7 +737,7 @@ Core only; showing these calendars and observances to users needs a later decisi
 - Fixtures are immutable; updates require a PR with justification.
 
 ## 8.3 Core UI scenarios (40)
-Install fresh (fa/en/ne/ckb/ar) → defaults; onboarding skip/complete; month swipe & titles; select day → tabs; today button; long-press → editor; create personal event + reminder → notification fires (Robolectric clock); edit/delete event; official-event reminder; search jump; year view select; timeline drag-create; agenda scroll; converter (each calendar); NLP input 10 phrases; distance & workdays; enable athan → alarm scheduled → fires → stop; change location by city/GPS/coords; add each widget → tap → deep link; notification content; theme changes (6); font scale 2.0; RTL switch; backup → wipe → restore equals; ICS import/export; compass orientation lock; map layers; astronomy slider; settings table-driven; deep links (10); PROCESS_TEXT detection; wear smoke.
+Install fresh (fa/en/ne/ckb/ar) → defaults; onboarding skip/complete; month swipe & titles; select day → tabs; today button; long-press → editor; create personal event + reminder → notification fires (Robolectric clock); edit/delete event; official-event reminder; search jump; year view select; timeline drag-create; agenda scroll; converter (each calendar); NLP input 10 phrases; distance & workdays; enable athan → alarm scheduled → fires → stop; change location by city, map or coordinates; add each widget → tap → deep link; notification content; theme changes (6); font scale 2.0; RTL switch; backup → wipe → restore equals; ICS import/export; compass orientation lock; map layers; astronomy slider; settings table-driven; deep links (10); PROCESS_TEXT detection; wear smoke.
 
 ---
 

@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Tozalash</string>
   <string name="privacy_clear_failed">Maʼlumotlar tozalanmadi. Qayta urinib koʻring.</string>
   <string name="privacy_permissions_title">Ruxsatlar</string>
-  <string name="privacy_permission_location">Joylashuv</string>
   <string name="privacy_permission_notifications">Bildirishnomalar</string>
   <string name="privacy_permission_exact_alarms">Aniq signallar</string>
   <string name="privacy_permission_dnd">«Bezovta qilinmasin»ga kirish</string>
-  <string name="privacy_why_location">Turgan joyingizda namoz vaqtlari va qiblani topish uchun. Buning oʻrniga shahar tanlashingiz mumkin.</string>
   <string name="privacy_why_notifications">Eslatmalar va azonni koʻrsatish uchun.</string>
   <string name="privacy_why_exact_alarms">Eslatmalar va azonni oʻz vaqtida chalish uchun.</string>
   <string name="privacy_why_dnd">Faqat, agar yoqsangiz, Bomdod azoni «Bezovta qilinmasin» vaqtida chalinishi uchun.</string>

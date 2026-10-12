@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">مسح</string>
   <string name="privacy_clear_failed">تعذّر مسح البيانات. حاول مرة أخرى.</string>
   <string name="privacy_permissions_title">الأذونات</string>
-  <string name="privacy_permission_location">الموقع</string>
   <string name="privacy_permission_notifications">الإشعارات</string>
   <string name="privacy_permission_exact_alarms">المنبّهات الدقيقة</string>
   <string name="privacy_permission_dnd">الوصول إلى عدم الإزعاج</string>
-  <string name="privacy_why_location">لتحديد مواقيت الصلاة والقبلة حيث أنت. يمكنك اختيار مدينة بدلًا من ذلك.</string>
   <string name="privacy_why_notifications">لعرض التذكيرات والأذان.</string>
   <string name="privacy_why_exact_alarms">لتشغيل التذكيرات والأذان في وقتها.</string>
   <string name="privacy_why_dnd">فقط للسماح برفع أذان الفجر أثناء عدم الإزعاج، إذا فعّلت ذلك.</string>

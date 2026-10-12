@@ -6,10 +6,8 @@
   <string name="settings_location_current">Lieu actuel</string>
   <string name="settings_location_none">Aucun lieu choisi pour l\'instant</string>
   <string name="settings_location_kind_city">Choisi dans la liste des villes</string>
-  <string name="settings_location_kind_device">D\'après la position de l\'appareil</string>
   <string name="settings_location_kind_coordinates">D\'après les coordonnées saisies</string>
   <string name="settings_location_tab_city">Ville</string>
-  <string name="settings_location_tab_device">Ma position</string>
   <string name="settings_location_tab_coordinates">Coordonnées</string>
   <string name="settings_location_search_label">Rechercher des villes</string>
   <string name="settings_location_searching">Recherche de villes</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Choisir cette ville</string>
   <string name="settings_location_chosen_city">Choisie</string>
   <string name="settings_location_city_no_zone">Aucun fuseau horaire n\'est indiqué pour cette ville ; elle ne peut pas être choisie.</string>
-  <string name="settings_location_device_explanation">Utiliser la position de cet appareil. Taqvim ne demande l\'autorisation de localisation que lorsque vous touchez le bouton.</string>
-  <string name="settings_location_use_device">Utiliser ma position</string>
-  <string name="settings_location_locating">Recherche de votre position…</string>
-  <string name="settings_location_denied">L\'autorisation de localisation a été refusée. Autorisez-la dans les paramètres système, ou choisissez plutôt une ville.</string>
-  <string name="settings_location_disabled">La localisation est désactivée sur cet appareil.</string>
-  <string name="settings_location_timed_out">Votre position n\'a pas pu être trouvée à temps. Réessayez ou choisissez une ville.</string>
-  <string name="settings_location_unavailable">Votre position n\'est pas disponible pour le moment.</string>
-  <string name="settings_location_device_saved">Enregistré : %1$s</string>
   <string name="settings_location_latitude">Latitude</string>
   <string name="settings_location_longitude">Longitude</string>
   <string name="settings_location_time_zone">Fuseau horaire</string>

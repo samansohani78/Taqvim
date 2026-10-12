@@ -45,7 +45,7 @@ class PrivacyViewModelTest {
                 loaded.data.first { it.kind == StoredDataKind.PERSONAL_EVENTS }.canClear shouldBe false
                 loaded.data.first { it.kind == StoredDataKind.DIAGNOSTICS }.canClear shouldBe true
                 loaded.permissions.filter { it.granted }.map { it.kind } shouldBe
-                    listOf(PermissionKind.LOCATION, PermissionKind.NOTIFICATIONS)
+                    listOf(PermissionKind.NOTIFICATIONS)
             }
         }
 

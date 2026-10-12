@@ -6,10 +6,8 @@
   <string name="settings_location_current">現在の場所</string>
   <string name="settings_location_none">まだ場所が選ばれていません</string>
   <string name="settings_location_kind_city">都市一覧から選択</string>
-  <string name="settings_location_kind_device">端末の位置情報から</string>
   <string name="settings_location_kind_coordinates">入力した座標から</string>
   <string name="settings_location_tab_city">都市</string>
-  <string name="settings_location_tab_device">現在地</string>
   <string name="settings_location_tab_coordinates">座標</string>
   <string name="settings_location_search_label">都市を検索</string>
   <string name="settings_location_searching">都市を検索中</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">この都市を選ぶ</string>
   <string name="settings_location_chosen_city">選択中</string>
   <string name="settings_location_city_no_zone">この都市にはタイムゾーンの記載がないため選べません。</string>
-  <string name="settings_location_device_explanation">この端末の位置を使います。ボタンをタップしたときにのみ Taqvim は位置情報の権限を求めます。</string>
-  <string name="settings_location_use_device">現在地を使う</string>
-  <string name="settings_location_locating">現在地を取得中…</string>
-  <string name="settings_location_denied">位置情報の権限が拒否されました。システム設定で許可するか、都市を選んでください。</string>
-  <string name="settings_location_disabled">この端末では位置情報がオフです。</string>
-  <string name="settings_location_timed_out">現在地を時間内に取得できませんでした。もう一度試すか、都市を選んでください。</string>
-  <string name="settings_location_unavailable">現在地を取得できません。</string>
-  <string name="settings_location_device_saved">保存しました：%1$s</string>
   <string name="settings_location_latitude">緯度</string>
   <string name="settings_location_longitude">経度</string>
   <string name="settings_location_time_zone">タイムゾーン</string>

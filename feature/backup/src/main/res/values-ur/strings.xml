@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">صاف کریں</string>
   <string name="privacy_clear_failed">ڈیٹا صاف نہیں ہو سکا۔ دوبارہ کوشش کریں۔</string>
   <string name="privacy_permissions_title">اجازتیں</string>
-  <string name="privacy_permission_location">مقام</string>
   <string name="privacy_permission_notifications">اطلاعات</string>
   <string name="privacy_permission_exact_alarms">درست الارم</string>
   <string name="privacy_permission_dnd">ڈسٹرب نہ کریں تک رسائی</string>
-  <string name="privacy_why_location">آپ جہاں ہیں وہاں اوقاتِ نماز اور قبلہ معلوم کرنے کے لیے۔ اس کی جگہ آپ شہر منتخب کر سکتے ہیں۔</string>
   <string name="privacy_why_notifications">یاد دہانیاں اور اذان دکھانے کے لیے۔</string>
   <string name="privacy_why_exact_alarms">یاد دہانیاں اور اذان وقت پر بجانے کے لیے۔</string>
   <string name="privacy_why_dnd">صرف اس لیے کہ اگر آپ آن کریں تو فجر کی اذان ڈسٹرب نہ کریں کے دوران بج سکے۔</string>

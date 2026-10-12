@@ -6,10 +6,8 @@
   <string name="settings_location_current">वर्तमान जगह</string>
   <string name="settings_location_none">अभी कोई जगह नहीं चुनी गई</string>
   <string name="settings_location_kind_city">शहर सूची से चुना गया</string>
-  <string name="settings_location_kind_device">आपके डिवाइस स्थान से</string>
   <string name="settings_location_kind_coordinates">दर्ज किए निर्देशांकों से</string>
   <string name="settings_location_tab_city">शहर</string>
-  <string name="settings_location_tab_device">मेरा स्थान</string>
   <string name="settings_location_tab_coordinates">निर्देशांक</string>
   <string name="settings_location_search_label">शहर खोजें</string>
   <string name="settings_location_searching">शहर खोजे जा रहे हैं</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">यह शहर चुनें</string>
   <string name="settings_location_chosen_city">चुना गया</string>
   <string name="settings_location_city_no_zone">इस शहर के लिए कोई समय क्षेत्र सूचीबद्ध नहीं है, इसलिए इसे चुना नहीं जा सकता।</string>
-  <string name="settings_location_device_explanation">इस डिवाइस की स्थिति इस्तेमाल करें। Taqvim स्थान अनुमति तभी मांगता है जब आप बटन पर टैप करें।</string>
-  <string name="settings_location_use_device">मेरा स्थान इस्तेमाल करें</string>
-  <string name="settings_location_locating">आपका स्थान ढूंढा जा रहा है…</string>
-  <string name="settings_location_denied">स्थान अनुमति अस्वीकार की गई। सिस्टम सेटिंग में इसकी अनुमति दें, या इसकी जगह कोई शहर चुनें।</string>
-  <string name="settings_location_disabled">इस डिवाइस पर स्थान बंद है।</string>
-  <string name="settings_location_timed_out">आपका स्थान समय पर नहीं मिल सका। फिर से कोशिश करें, या कोई शहर चुनें।</string>
-  <string name="settings_location_unavailable">आपका स्थान अभी उपलब्ध नहीं है।</string>
-  <string name="settings_location_device_saved">सहेजा गया: %1$s</string>
   <string name="settings_location_latitude">अक्षांश</string>
   <string name="settings_location_longitude">देशांतर</string>
   <string name="settings_location_time_zone">समय क्षेत्र</string>

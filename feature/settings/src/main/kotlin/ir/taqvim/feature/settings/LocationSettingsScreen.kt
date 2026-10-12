@@ -86,7 +86,6 @@ private fun LocationContent(
         )
         when (state.mode) {
             LocationMode.CITY -> CitySearchSection(state.search, actions)
-            LocationMode.DEVICE -> DeviceSection(state.device, actions)
             LocationMode.COORDINATES -> ManualSection(state.manual, actions)
         }
     }
@@ -137,7 +136,6 @@ private val LocationMode.label: Int
     get() =
         when (this) {
             LocationMode.CITY -> R.string.settings_location_tab_city
-            LocationMode.DEVICE -> R.string.settings_location_tab_device
             LocationMode.COORDINATES -> R.string.settings_location_tab_coordinates
         }
 
@@ -146,6 +144,5 @@ private val PlaceKind.label: Int
     get() =
         when (this) {
             PlaceKind.CITY -> R.string.settings_location_kind_city
-            PlaceKind.DEVICE -> R.string.settings_location_kind_device
             PlaceKind.COORDINATES -> R.string.settings_location_kind_coordinates
         }

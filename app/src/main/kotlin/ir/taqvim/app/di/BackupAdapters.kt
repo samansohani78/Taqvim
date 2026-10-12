@@ -293,10 +293,6 @@ internal class PlatformPermissionStatusSource(
 
     private fun granted(kind: PermissionKind): Boolean =
         when (kind) {
-            PermissionKind.LOCATION -> {
-                has(Manifest.permission.ACCESS_FINE_LOCATION) || has(Manifest.permission.ACCESS_COARSE_LOCATION)
-            }
-
             PermissionKind.NOTIFICATIONS -> {
                 notificationsAllowed()
             }

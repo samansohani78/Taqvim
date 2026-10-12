@@ -6,10 +6,8 @@
   <string name="settings_location_current">اوسنی ځای</string>
   <string name="settings_location_none">لا هېڅ ځای نه دی ټاکل شوی</string>
   <string name="settings_location_kind_city">د ښارونو له لېست ټاکل شوی</string>
-  <string name="settings_location_kind_device">ستاسو د وسیلې له ځای</string>
   <string name="settings_location_kind_coordinates">له لیکل شویو همغږیو</string>
   <string name="settings_location_tab_city">ښار</string>
-  <string name="settings_location_tab_device">زما ځای</string>
   <string name="settings_location_tab_coordinates">همغږي</string>
   <string name="settings_location_search_label">ښارونه لټول</string>
   <string name="settings_location_searching">ښارونه لټول کېږي</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">دا ښار ټاکل</string>
   <string name="settings_location_chosen_city">ټاکل شوی</string>
   <string name="settings_location_city_no_zone">د دې ښار لپاره د وخت سیمه نه ده لیکل شوې، نو نه شي ټاکل کېدای.</string>
-  <string name="settings_location_device_explanation">د دې وسیلې موقعیت وکاروئ. Taqvim د ځای اجازه یوازې هغه وخت غواړي چې تاسو تڼۍ ټک کړئ.</string>
-  <string name="settings_location_use_device">زما ځای کارول</string>
-  <string name="settings_location_locating">ستاسو ځای موندل کېږي…</string>
-  <string name="settings_location_denied">د ځای اجازه رد شوه. د سیسټم په تنظیماتو کې یې اجازه ورکړئ، یا پر ځای یې ښار وټاکئ.</string>
-  <string name="settings_location_disabled">پدې وسیله کې ځای بند دی.</string>
-  <string name="settings_location_timed_out">ستاسو ځای په وخت ونه موندل شو. بیا هڅه وکړئ، یا ښار وټاکئ.</string>
-  <string name="settings_location_unavailable">ستاسو ځای اوس شتون نه لري.</string>
-  <string name="settings_location_device_saved">خوندي شو: %1$s</string>
   <string name="settings_location_latitude">عرض البلد</string>
   <string name="settings_location_longitude">طول البلد</string>
   <string name="settings_location_time_zone">د وخت سیمه</string>

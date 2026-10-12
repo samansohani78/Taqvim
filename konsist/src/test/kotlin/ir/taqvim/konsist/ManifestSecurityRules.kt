@@ -38,6 +38,20 @@ object ManifestSecurityRules {
             "javax.net.ssl.HttpsURLConnection",
         )
 
+    /** Device location permissions. ADR-0055: Taqvim requests neither, and no manifest may bring one back. */
+    private val LOCATION_PERMISSIONS =
+        setOf("android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION")
+
+    /**
+     * Ways production code could ask the device where it is, or send coordinates to a geocoding service.
+     *
+     * The permission is the enforcement for the first; the platform `Geocoder` needs none, which is exactly why it
+     * is listed — on most devices it resolves over the network, so it would be a hole in the claim that a place is
+     * only ever something the user chose.
+     */
+    private val LOCATION_READER_REFERENCES =
+        listOf("LocationManager", "FusedLocationProvider", "android.location.Geocoder", "Geocoder(")
+
     /** Calendar provider permissions. ADR-0051: Taqvim requests neither, and no manifest may bring one back. */
     private val CALENDAR_PERMISSIONS =
         setOf("android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR")
@@ -82,6 +96,21 @@ object ManifestSecurityRules {
         mainKotlinFiles(root).flatMap { file ->
             val text = file.readText()
             NETWORK_CLIENT_REFERENCES
+                .filter { text.contains(it) }
+                .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
+        }
+
+    /** Source manifests (relative paths) that request a device location permission (ADR-0055). */
+    fun manifestsRequestingLocation(root: File): List<String> =
+        sourceManifests(root)
+            .filter { manifest -> permissions(manifest).any { it in LOCATION_PERMISSIONS } }
+            .map { it.relativeTo(root).invariantSeparatorsPath }
+
+    /** `file: reference` for every main Kotlin source that reads the device position or geocodes (ADR-0055). */
+    fun locationReaders(root: File): List<String> =
+        mainKotlinFiles(root).flatMap { file ->
+            val text = file.readText()
+            LOCATION_READER_REFERENCES
                 .filter { text.contains(it) }
                 .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
         }

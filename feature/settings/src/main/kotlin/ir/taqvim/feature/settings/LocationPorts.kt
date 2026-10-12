@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.Flow
 /** How a place was chosen. */
 enum class PlaceKind {
     CITY,
-    DEVICE,
     COORDINATES,
 }
 
@@ -56,35 +55,20 @@ fun interface CitySearch {
     suspend fun search(query: String): List<CityOption>
 }
 
-/** The outcome of asking the device for its position. */
-sealed interface DeviceFix {
-    data class Found(
-        val coordinates: Coordinates,
-    ) : DeviceFix
-
-    data object PermissionDenied : DeviceFix
-
-    data object LocationDisabled : DeviceFix
-
-    data object TimedOut : DeviceFix
-
-    data object Unavailable : DeviceFix
-}
-
-/** One position of the device; the permission is requested by the screen before calling it. */
-fun interface DeviceLocation {
-    suspend fun locate(): DeviceFix
-}
-
 /** A name and time zone for coordinates. */
 data class PlaceDescription(
-    /** Locality from the geocoder or the nearest catalog city, or `null`. */
+    /** Name of the nearest city in the bundled catalog, or `null` when none is near enough to name. */
     val name: String?,
     /** IANA time zone id suggested for the coordinates. */
     val timeZoneId: String,
 )
 
-/** Describes coordinates (reverse geocoding with a catalog fallback). */
+/**
+ * Describes coordinates from the bundled city catalog (ADR-0055).
+ *
+ * This used to ask the platform geocoder first, which on most devices means sending the coordinates to a network
+ * service. Naming a point the user typed or tapped is not worth that, so the nearest bundled city names it.
+ */
 fun interface PlaceDescriber {
     suspend fun describe(coordinates: Coordinates): PlaceDescription
 }

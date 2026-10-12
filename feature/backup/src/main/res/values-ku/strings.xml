@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Paqij bike</string>
   <string name="privacy_clear_failed">Dane nehatin paqijkirin. Dîsa biceribîne.</string>
   <string name="privacy_permissions_title">Destûr</string>
-  <string name="privacy_permission_location">Cih</string>
   <string name="privacy_permission_notifications">Agahdarî</string>
   <string name="privacy_permission_exact_alarms">Alarmên rast</string>
   <string name="privacy_permission_dnd">Gihîştina «Aciz neke»</string>
-  <string name="privacy_why_location">Ji bo dîtina demên nimêjê û qibleyê li cihê ku tu lê yî. Tu dikarî li şûna wê bajarekî hilbijêrî.</string>
   <string name="privacy_why_notifications">Ji bo nîşandana bîranîn û bangê.</string>
   <string name="privacy_why_exact_alarms">Ji bo lêdana bîranîn û bangê di wextê xwe de.</string>
   <string name="privacy_why_dnd">Tenê ji bo ku banga sibê di dema «Aciz neke» de lê bide, heke tu wê vekî.</string>

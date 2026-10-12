@@ -4,16 +4,11 @@
 
   <uses-feature android:name="android.hardware.type.watch" />
 
-  <!-- T-1600 (ADR-0019): the watch uses the bundled dataset and city list only. The one library permission it never
-       uses is device location, removed from the merged manifest below. READ_CALENDAR is not listed because no module
-       declares it any more (ADR-0051), and INTERNET is not listed because none does since ADR-0054; a removal of a
-       permission nothing declares would be a claim this manifest cannot keep. -->
-  <uses-permission
-    android:name="android.permission.ACCESS_COARSE_LOCATION"
-    tools:node="remove" />
-  <uses-permission
-    android:name="android.permission.ACCESS_FINE_LOCATION"
-    tools:node="remove" />
+  <!-- T-1600 (ADR-0019): the watch uses the bundled dataset and city list only, and no longer removes anything from
+       the merged manifest. READ_CALENDAR is not listed because no module declares it (ADR-0051), and INTERNET and
+       the location permissions are not listed because none does since ADR-0054 and ADR-0055; a removal of a permission nothing
+       declares would be a claim this manifest cannot keep. `WearManifestTest` still asserts that none of the four
+       reaches the merged manifest, which is the part that matters. -->
 
   <application
     android:name=".TaqvimWearApplication"

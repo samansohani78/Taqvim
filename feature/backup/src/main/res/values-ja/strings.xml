@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">消去</string>
   <string name="privacy_clear_failed">データを消去できませんでした。もう一度お試しください。</string>
   <string name="privacy_permissions_title">権限</string>
-  <string name="privacy_permission_location">場所</string>
   <string name="privacy_permission_notifications">通知</string>
   <string name="privacy_permission_exact_alarms">正確なアラーム</string>
   <string name="privacy_permission_dnd">サイレントへのアクセス</string>
-  <string name="privacy_why_location">現在いる場所の礼拝時刻とキブラを求めるため。代わりに都市を選ぶこともできます。</string>
   <string name="privacy_why_notifications">リマインダーとアザーンを表示するため。</string>
   <string name="privacy_why_exact_alarms">リマインダーとアザーンを時刻どおりに鳴らすため。</string>
   <string name="privacy_why_dnd">オンにした場合に、ファジュルのアザーンをサイレント中に鳴らすためだけに使います。</string>

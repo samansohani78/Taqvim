@@ -6,10 +6,8 @@
   <string name="settings_location_current">Ҷои ҷорӣ</string>
   <string name="settings_location_none">Ҳанӯз ҷой интихоб нашудааст</string>
   <string name="settings_location_kind_city">Аз рӯйхати шаҳрҳо интихоб шудааст</string>
-  <string name="settings_location_kind_device">Аз макони дастгоҳи шумо</string>
   <string name="settings_location_kind_coordinates">Аз координатаҳои воридшуда</string>
   <string name="settings_location_tab_city">Шаҳр</string>
-  <string name="settings_location_tab_device">Макони ман</string>
   <string name="settings_location_tab_coordinates">Координатаҳо</string>
   <string name="settings_location_search_label">Ҷустуҷӯи шаҳрҳо</string>
   <string name="settings_location_searching">Шаҳрҳо ҷустуҷӯ мешаванд</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Интихоби ин шаҳр</string>
   <string name="settings_location_chosen_city">Интихобшуда</string>
   <string name="settings_location_city_no_zone">Барои ин шаҳр минтақаи вақт нишон дода нашудааст, бинобар ин интихоб карда намешавад.</string>
-  <string name="settings_location_device_explanation">Мавқеи ин дастгоҳро истифода баред. Taqvim иҷозати маконро танҳо вақте мепурсад, ки тугмаро пахш кунед.</string>
-  <string name="settings_location_use_device">Истифодаи макони ман</string>
-  <string name="settings_location_locating">Макони шумо муайян мешавад…</string>
-  <string name="settings_location_denied">Иҷозати макон рад шуд. Дар танзимоти система иҷозат диҳед ё ба ҷояш шаҳр интихоб кунед.</string>
-  <string name="settings_location_disabled">Макон дар ин дастгоҳ хомӯш аст.</string>
-  <string name="settings_location_timed_out">Макони шумо сари вақт ёфт нашуд. Боз кӯшиш кунед ё шаҳр интихоб кунед.</string>
-  <string name="settings_location_unavailable">Макони шумо ҳоло дастрас нест.</string>
-  <string name="settings_location_device_saved">Захира шуд: %1$s</string>
   <string name="settings_location_latitude">Арз</string>
   <string name="settings_location_longitude">Тӯл</string>
   <string name="settings_location_time_zone">Минтақаи вақт</string>

@@ -6,10 +6,8 @@
   <string name="settings_location_current">Tempat saat ini</string>
   <string name="settings_location_none">Belum ada tempat dipilih</string>
   <string name="settings_location_kind_city">Dipilih dari daftar kota</string>
-  <string name="settings_location_kind_device">Dari lokasi perangkat Anda</string>
   <string name="settings_location_kind_coordinates">Dari koordinat yang diketik</string>
   <string name="settings_location_tab_city">Kota</string>
-  <string name="settings_location_tab_device">Lokasi saya</string>
   <string name="settings_location_tab_coordinates">Koordinat</string>
   <string name="settings_location_search_label">Cari kota</string>
   <string name="settings_location_searching">Mencari kota</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Pilih kota ini</string>
   <string name="settings_location_chosen_city">Terpilih</string>
   <string name="settings_location_city_no_zone">Tidak ada zona waktu untuk kota ini, sehingga tidak dapat dipilih.</string>
-  <string name="settings_location_device_explanation">Gunakan posisi perangkat ini. Taqvim meminta izin lokasi hanya saat Anda mengetuk tombolnya.</string>
-  <string name="settings_location_use_device">Gunakan lokasi saya</string>
-  <string name="settings_location_locating">Mencari lokasi Anda…</string>
-  <string name="settings_location_denied">Izin lokasi ditolak. Izinkan di setelan sistem, atau pilih kota sebagai gantinya.</string>
-  <string name="settings_location_disabled">Lokasi dimatikan di perangkat ini.</string>
-  <string name="settings_location_timed_out">Lokasi Anda tidak ditemukan tepat waktu. Coba lagi, atau pilih kota.</string>
-  <string name="settings_location_unavailable">Lokasi Anda tidak tersedia saat ini.</string>
-  <string name="settings_location_device_saved">Tersimpan: %1$s</string>
   <string name="settings_location_latitude">Lintang</string>
   <string name="settings_location_longitude">Bujur</string>
   <string name="settings_location_time_zone">Zona waktu</string>

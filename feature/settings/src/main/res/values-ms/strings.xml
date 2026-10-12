@@ -6,10 +6,8 @@
   <string name="settings_location_current">Tempat semasa</string>
   <string name="settings_location_none">Belum ada tempat dipilih</string>
   <string name="settings_location_kind_city">Dipilih daripada senarai bandar</string>
-  <string name="settings_location_kind_device">Daripada lokasi peranti anda</string>
   <string name="settings_location_kind_coordinates">Daripada koordinat yang ditaip</string>
   <string name="settings_location_tab_city">Bandar</string>
-  <string name="settings_location_tab_device">Lokasi saya</string>
   <string name="settings_location_tab_coordinates">Koordinat</string>
   <string name="settings_location_search_label">Cari bandar</string>
   <string name="settings_location_searching">Mencari bandar</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Pilih bandar ini</string>
   <string name="settings_location_chosen_city">Dipilih</string>
   <string name="settings_location_city_no_zone">Tiada zon waktu disenaraikan bagi bandar ini, jadi ia tidak boleh dipilih.</string>
-  <string name="settings_location_device_explanation">Guna kedudukan peranti ini. Taqvim meminta kebenaran lokasi hanya apabila anda mengetik butang.</string>
-  <string name="settings_location_use_device">Guna lokasi saya</string>
-  <string name="settings_location_locating">Mencari lokasi anda…</string>
-  <string name="settings_location_denied">Kebenaran lokasi ditolak. Benarkan dalam tetapan sistem, atau pilih bandar sebagai gantinya.</string>
-  <string name="settings_location_disabled">Lokasi dimatikan pada peranti ini.</string>
-  <string name="settings_location_timed_out">Lokasi anda tidak ditemui tepat pada masanya. Cuba lagi, atau pilih bandar.</string>
-  <string name="settings_location_unavailable">Lokasi anda tidak tersedia sekarang.</string>
-  <string name="settings_location_device_saved">Disimpan: %1$s</string>
   <string name="settings_location_latitude">Latitud</string>
   <string name="settings_location_longitude">Longitud</string>
   <string name="settings_location_time_zone">Zon waktu</string>

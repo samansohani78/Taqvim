@@ -23,14 +23,16 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * Location settings (T-1502): choose the place by searching the city catalog, from the device position, or by typing
- * coordinates and a time zone (with a live suggestion of name and zone). Every choice is stored immediately.
+ * Location settings (T-1502): choose the place by searching the bundled city catalog, or by typing coordinates and
+ * a time zone (with a live suggestion of name and zone from the nearest catalog city). Every choice is stored
+ * immediately.
+ *
+ * There is no "use my current position": Taqvim holds no location permission (ADR-0055).
  */
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class LocationSettingsViewModel(
     private val store: LocationSettingsStore,
     private val citySearch: CitySearch,
-    private val deviceLocation: DeviceLocation,
     private val describer: PlaceDescriber,
     private val timeZoneIds: TimeZoneIds,
 ) : ViewModel() {
@@ -82,33 +84,6 @@ class LocationSettingsViewModel(
         val option = options.value.firstOrNull { it.id == id } ?: return
         val zone = option.timeZoneId ?: return
         choose(PlaceChoice(PlaceKind.CITY, option.id, option.name, option.coordinates, zone))
-    }
-
-    /** Looks up the device position; call it once the location permission is granted. */
-    fun onLocate() {
-        state.update { it.copy(device = DeviceState.Locating) }
-        viewModelScope
-            .launch {
-                val device = attempt { locate() }.getOrDefault(DeviceState.Unavailable)
-                state.update { it.copy(device = device) }
-            }.invokeOnCompletion {
-                // A cancelled lookup leaves nothing in progress; the button can be pressed again.
-                state.update { if (it.device == DeviceState.Locating) it.copy(device = DeviceState.Idle) else it }
-            }
-    }
-
-    private suspend fun locate(): DeviceState =
-        when (val fix = deviceLocation.locate()) {
-            is DeviceFix.Found -> saveDevicePlace(fix.coordinates)
-            DeviceFix.PermissionDenied -> DeviceState.PermissionDenied
-            DeviceFix.LocationDisabled -> DeviceState.LocationDisabled
-            DeviceFix.TimedOut -> DeviceState.TimedOut
-            DeviceFix.Unavailable -> DeviceState.Unavailable
-        }
-
-    /** The user refused the location permission. */
-    fun onPermissionDenied() {
-        state.update { it.copy(device = DeviceState.PermissionDenied) }
     }
 
     fun onLatitudeChanged(text: String) {
@@ -183,13 +158,6 @@ class LocationSettingsViewModel(
                     it.search.copy(searching = false, results = rows, noResults = noResults, failed = found.isFailure),
             )
         }
-    }
-
-    private suspend fun saveDevicePlace(coordinates: Coordinates): DeviceState {
-        val description = describer.describe(coordinates)
-        val place = PlaceChoice(PlaceKind.DEVICE, null, description.name, coordinates, description.timeZoneId)
-        store.choose(place)
-        return LocationStateMapper.saved(place, numerals)
     }
 
     private fun onDescribed(description: PlaceDescription) {

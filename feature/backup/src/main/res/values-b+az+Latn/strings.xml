@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Təmizlə</string>
   <string name="privacy_clear_failed">Məlumatlar təmizlənmədi. Yenidən cəhd edin.</string>
   <string name="privacy_permissions_title">İcazələr</string>
-  <string name="privacy_permission_location">Məkan</string>
   <string name="privacy_permission_notifications">Bildirişlər</string>
   <string name="privacy_permission_exact_alarms">Dəqiq zəngli saatlar</string>
   <string name="privacy_permission_dnd">«Narahat etməyin»ə giriş</string>
-  <string name="privacy_why_location">Olduğunuz yerdə namaz vaxtlarını və qibləni tapmaq üçün. Bunun əvəzinə şəhər seçə bilərsiniz.</string>
   <string name="privacy_why_notifications">Xatırlatmaları və azanı göstərmək üçün.</string>
   <string name="privacy_why_exact_alarms">Xatırlatmaları və azanı vaxtında səsləndirmək üçün.</string>
   <string name="privacy_why_dnd">Yalnız, yandırsanız, Sübh azanının «Narahat etməyin» zamanı oxunması üçün.</string>

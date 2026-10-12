@@ -6,10 +6,8 @@
   <string name="settings_location_current">当前地点</string>
   <string name="settings_location_none">尚未选择地点</string>
   <string name="settings_location_kind_city">从城市列表中选择</string>
-  <string name="settings_location_kind_device">来自设备定位</string>
   <string name="settings_location_kind_coordinates">来自输入的坐标</string>
   <string name="settings_location_tab_city">城市</string>
-  <string name="settings_location_tab_device">我的位置</string>
   <string name="settings_location_tab_coordinates">坐标</string>
   <string name="settings_location_search_label">搜索城市</string>
   <string name="settings_location_searching">正在搜索城市</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">选择此城市</string>
   <string name="settings_location_chosen_city">已选择</string>
   <string name="settings_location_city_no_zone">此城市未列出时区，因此无法选择。</string>
-  <string name="settings_location_device_explanation">使用本设备的位置。只有当你点按该按钮时，Taqvim 才会请求位置权限。</string>
-  <string name="settings_location_use_device">使用我的位置</string>
-  <string name="settings_location_locating">正在查找你的位置…</string>
-  <string name="settings_location_denied">位置权限被拒绝。请在系统设置中允许，或改为选择城市。</string>
-  <string name="settings_location_disabled">本设备已关闭定位。</string>
-  <string name="settings_location_timed_out">未能及时获取你的位置。请重试或选择城市。</string>
-  <string name="settings_location_unavailable">当前无法获取你的位置。</string>
-  <string name="settings_location_device_saved">已保存：%1$s</string>
   <string name="settings_location_latitude">纬度</string>
   <string name="settings_location_longitude">经度</string>
   <string name="settings_location_time_zone">时区</string>

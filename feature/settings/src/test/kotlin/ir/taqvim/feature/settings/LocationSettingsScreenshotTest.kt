@@ -17,7 +17,7 @@ import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.GraphicsMode
 
 /**
- * T-1502 screenshots: city search with the chosen city (light LTR English, dark RTL Persian), the denied permission
+ * T-1502 screenshots: city search with the chosen city (light LTR English, dark RTL Persian), a failed city search
  * (light RTL) and typed coordinates with errors and a suggestion (dark LTR). Recorded to
  * `src/test/screenshots/location_<sample>/`.
  */
@@ -48,8 +48,8 @@ class LocationSettingsScreenshotTest(
                     )
                 }
 
-                "denied" -> {
-                    base.copy(mode = LocationMode.DEVICE, device = DeviceState.PermissionDenied)
+                "search_failed" -> {
+                    base.copy(search = CitySearchState(query = "ت", failed = true))
                 }
 
                 else -> {
@@ -85,11 +85,11 @@ class LocationSettingsScreenshotTest(
             listOf(
                 arrayOf<Any>("city", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
                 arrayOf<Any>("city", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
-                arrayOf<Any>("denied", environment(ScreenshotTheme.LIGHT, LayoutDirection.Rtl)),
+                arrayOf<Any>("search_failed", environment(ScreenshotTheme.LIGHT, LayoutDirection.Rtl)),
                 arrayOf<Any>("coordinates", environment(ScreenshotTheme.DARK, LayoutDirection.Ltr)),
             ) +
                 // T-1701: every screen again in Persian RTL and English LTR at font scale 2.0.
-                listOf("city", "denied", "coordinates").flatMap { sample ->
+                listOf("city", "search_failed", "coordinates").flatMap { sample ->
                     ScreenshotMatrix.largeText().map { arrayOf<Any>(sample, it) }
                 }
     }

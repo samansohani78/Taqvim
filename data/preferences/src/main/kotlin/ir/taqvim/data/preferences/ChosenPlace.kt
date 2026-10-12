@@ -14,10 +14,7 @@ enum class PlaceSource {
     /** A city of the bundled catalog (T-603). */
     CITY,
 
-    /** The device's position. */
-    DEVICE,
-
-    /** Coordinates typed by the user. */
+    /** Coordinates the user typed or picked on the map. */
     COORDINATES,
 }
 
@@ -46,9 +43,19 @@ data class ChosenPlace(
 private const val PLACE_SOURCE = "PLACE_SOURCE_"
 private const val NO_CITY = 0L
 
-/** The stored place, or `null` when none is stored or the stored value is unusable (e.g. an unknown zone). */
+/**
+ * The stored place, or `null` when none is stored or the stored value is unusable (e.g. an unknown zone).
+ *
+ * A place stored by an older version as `PLACE_SOURCE_DEVICE` reads back as [PlaceSource.COORDINATES]. The user
+ * keeps the exact place they had — the coordinates, name and zone were all stored with it — and only the label for
+ * how it was first obtained is dropped, because the app can no longer obtain one that way (ADR-0055).
+ */
 internal fun ChosenPlaceProto.toDomainOrNull(): ChosenPlace? {
-    val source = PlaceSource.entries.firstOrNull { PLACE_SOURCE + it.name == this.source.name } ?: return null
+    val source =
+        when (this.source) {
+            PlaceSourceProto.PLACE_SOURCE_DEVICE -> PlaceSource.COORDINATES
+            else -> PlaceSource.entries.firstOrNull { PLACE_SOURCE + it.name == this.source.name } ?: return null
+        }
     return runCatching {
         ChosenPlace(
             source = source,

@@ -10,7 +10,7 @@ import org.junit.Test
 
 /**
  * T-1804 manifest audit (ADR-0017): the merged manifest exports exactly the allowlisted components, nothing is
- * exported implicitly, and only the documented permissions are requested — no network, no calendar.
+ * exported implicitly, and only the documented permissions are requested — no network, calendar or location.
  */
 class ExportedComponentsTest {
     private val manifest = MergedManifest.unitTestManifest()
@@ -78,6 +78,22 @@ class ExportedComponentsTest {
     }
 
     @Test
+    fun noLocationPermissionIsRequested() {
+        // ADR-0055. Named like the two above: a calendar that quietly learns where you are is the thing a user
+        // cannot check for themselves, and the absence of the permission is the only proof they can.
+        val permissions = MergedManifest.requestedPermissions(manifest)
+        val allowed = MergedManifest.permissionAllowlist(resource("security/requested-permissions.txt"))
+
+        LOCATION_PERMISSIONS.forEach { permission ->
+            assertTrue(
+                "$permission is in the merged manifest; Taqvim does not ask where the device is",
+                permission !in permissions,
+            )
+            assertTrue("$permission is on the allowlist; it must never be", permission !in allowed)
+        }
+    }
+
+    @Test
     fun permissionAllowlistLinesAreValidated() {
         assertEquals(listOf("a.B"), MergedManifest.permissionAllowlist("# comment\n\na.B | why\n"))
         assertTrue(runCatching { MergedManifest.permissionAllowlist("a.B") }.isFailure)
@@ -106,8 +122,12 @@ class ExportedComponentsTest {
         val CALENDAR_PERMISSIONS: Set<String> =
             setOf("android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR")
 
-        /** ADR-0054: neither may ever appear either. */
+        /** ADR-0054: none of these may ever appear either. */
         val NETWORK_PERMISSIONS: Set<String> =
             setOf("android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE")
+
+        /** ADR-0055: Taqvim never asks a device where it is. */
+        val LOCATION_PERMISSIONS: Set<String> =
+            setOf("android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION")
     }
 }

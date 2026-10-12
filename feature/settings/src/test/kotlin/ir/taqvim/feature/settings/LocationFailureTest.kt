@@ -46,11 +46,10 @@ class LocationFailureTest {
     private fun TestScope.viewModel(
         store: LocationSettingsStore,
         search: CitySearch = FakeCitySearch(),
-        device: DeviceLocation = DeviceLocation { DeviceFix.Found(LocationFixtures.tehran.coordinates) },
         describer: PlaceDescriber = LocationFixtures.describer,
     ): LocationSettingsViewModel {
         Dispatchers.setMain(StandardTestDispatcher(testScheduler))
-        return LocationSettingsViewModel(store, search, device, describer, PlatformTimeZoneIds)
+        return LocationSettingsViewModel(store, search, describer, PlatformTimeZoneIds)
     }
 
     @Test
@@ -107,24 +106,6 @@ class LocationFailureTest {
             model.uiState.value.saveFailed shouldBe false
             model.uiState.value.current
                 ?.name shouldBe "Tehran"
-        }
-
-    @Test
-    fun `a failing device lookup is unavailable, a cancelled one is not busy`(): Unit =
-        runTest {
-            val failing = viewModel(FlakyStore())
-            failing.onLocate()
-            advanceUntilIdle()
-            failing.uiState.value.device shouldBe DeviceState.Unavailable
-
-            val gate = CompletableDeferred<DeviceFix>()
-            val waiting = viewModel(FakeLocationStore(LocationFixtures.english), device = { gate.await() })
-            waiting.onLocate()
-            advanceUntilIdle()
-            waiting.uiState.value.device shouldBe DeviceState.Locating
-            waiting.viewModelScope.cancel()
-            advanceUntilIdle()
-            waiting.uiState.value.device shouldBe DeviceState.Idle
         }
 
     @Test

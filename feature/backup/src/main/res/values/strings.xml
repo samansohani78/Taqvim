@@ -105,12 +105,10 @@
   <!-- Heading of the list of Android permissions and whether they are granted. -->
   <string name="privacy_permissions_title">Permissions</string>
   <!-- Name of the Android location permission. -->
-  <string name="privacy_permission_location">Location</string>
   <!-- Name of the Android notifications permission. -->
   <string name="privacy_permission_notifications">Notifications</string>
   <string name="privacy_permission_exact_alarms">Exact alarms</string>
   <string name="privacy_permission_dnd">Do Not Disturb access</string>
-  <string name="privacy_why_location">To find prayer times and the Qibla where you are. You can choose a city instead.</string>
   <string name="privacy_why_notifications">To show reminders and the athan.</string>
   <string name="privacy_why_exact_alarms">To sound reminders and the athan on time.</string>
   <string name="privacy_why_dnd">Only to let the Fajr athan sound during Do Not Disturb, if you turn that on.</string>

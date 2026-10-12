@@ -34,10 +34,4 @@ internal object LocationStateMapper {
                     selected = chosen?.kind == PlaceKind.CITY && chosen.cityId == option.id,
                 )
             }.toImmutableList()
-
-    fun saved(
-        place: PlaceChoice,
-        numerals: NumeralSystem,
-    ): DeviceState.Saved =
-        DeviceState.Saved(place.name, CoordinateInput.format(place.coordinates, numerals), place.timeZoneId)
 }

@@ -37,9 +37,9 @@ class LocationSettingsScreenTest {
 
     private val store = FakeLocationStore(LocationFixtures.english)
 
-    private fun showRoute(device: DeviceLocation = DeviceLocation { DeviceFix.TimedOut }) {
+    private fun showRoute() {
         val viewModel =
-            LocationSettingsViewModel(store, FakeCitySearch(), device, LocationFixtures.describer, PlatformTimeZoneIds)
+            LocationSettingsViewModel(store, FakeCitySearch(), LocationFixtures.describer, PlatformTimeZoneIds)
         composeRule.setContent { LocationTestTheme { LocationSettingsRoute(viewModel = viewModel) } }
         settle()
     }
@@ -80,20 +80,6 @@ class LocationSettingsScreenTest {
     }
 
     @Test
-    fun usingTheDeviceLocationStoresItsCoordinates() {
-        shadowOf(ApplicationProvider.getApplicationContext<Application>())
-            .grantPermissions(Manifest.permission.ACCESS_FINE_LOCATION)
-        val position = Coordinates(29.61, 52.53)
-        showRoute(device = { DeviceFix.Found(position) })
-        composeRule.onNodeWithText("My location").performClick()
-        composeRule.onNodeWithText("Use my location").performClick()
-        settle()
-
-        assertEquals(listOf(PlaceChoice(PlaceKind.DEVICE, null, "Shiraz", position, "Asia/Tehran")), store.chosen)
-        composeRule.onNodeWithText("Saved: Shiraz").assertIsDisplayed()
-    }
-
-    @Test
     fun typedCoordinatesAreStoredWithTheSuggestedZone() {
         showRoute()
         composeRule.onNodeWithText("Coordinates").performClick()
@@ -109,39 +95,6 @@ class LocationSettingsScreenTest {
             store.chosen,
         )
         composeRule.onNodeWithText("Coordinates saved").performScrollTo().assertIsDisplayed()
-    }
-
-    @Test
-    fun deniedPermissionExplainsWhatToDo() {
-        val calls = mutableListOf<String>()
-        composeRule.setContent {
-            LocationTestTheme {
-                LocationSettingsScreen(
-                    LocationSettingsUiState(
-                        loading = false,
-                        mode = LocationMode.DEVICE,
-                        device = DeviceState.PermissionDenied,
-                    ),
-                    LocationSettingsActions(onUseDeviceLocation = { calls += "locate" }),
-                )
-            }
-        }
-        composeRule.onNodeWithText("Location permission was denied", substring = true).assertIsDisplayed()
-        composeRule.onNodeWithText("Use my location").performClick()
-        assertEquals(listOf("locate"), calls)
-    }
-
-    @Test
-    fun otherDeviceProblemsAndLocating() {
-        mapOf(
-            DeviceState.LocationDisabled to "Location is switched off",
-            DeviceState.TimedOut to "could not be found in time",
-            DeviceState.Unavailable to "not available right now",
-            DeviceState.Locating to "Finding your location",
-        ).forEach { (device, text) ->
-            show(LocationSettingsUiState(loading = false, mode = LocationMode.DEVICE, device = device))
-            composeRule.onNodeWithText(text, substring = true).assertIsDisplayed()
-        }
     }
 
     @Test

@@ -11,7 +11,6 @@ import kotlinx.collections.immutable.persistentListOf
 /** The ways of choosing a place, one tab each. */
 enum class LocationMode {
     CITY,
-    DEVICE,
     COORDINATES,
 }
 
@@ -22,7 +21,6 @@ data class LocationSettingsUiState(
     val current: CurrentPlace? = null,
     val mode: LocationMode = LocationMode.CITY,
     val search: CitySearchState = CitySearchState(),
-    val device: DeviceState = DeviceState.Idle,
     val manual: ManualState = ManualState(),
     /** Whether the last chosen place could not be stored; choosing it again retries. */
     val saveFailed: Boolean = false,
@@ -60,28 +58,6 @@ data class CityRow(
     val selected: Boolean,
 )
 
-/** The device location tab. */
-sealed interface DeviceState {
-    data object Idle : DeviceState
-
-    data object Locating : DeviceState
-
-    data object PermissionDenied : DeviceState
-
-    data object LocationDisabled : DeviceState
-
-    data object TimedOut : DeviceState
-
-    data object Unavailable : DeviceState
-
-    /** The device position was found and stored. */
-    data class Saved(
-        val name: String?,
-        val coordinates: String,
-        val timeZoneId: String,
-    ) : DeviceState
-}
-
 /** The typed coordinates tab; the error flags refer to the current field texts. */
 data class ManualState(
     val latitude: String = "",
@@ -102,7 +78,6 @@ data class LocationSettingsActions(
     val onQueryChanged: (String) -> Unit = {},
     val onCitySelected: (Long) -> Unit = {},
     val onRetrySearch: () -> Unit = {},
-    val onUseDeviceLocation: () -> Unit = {},
     val onLatitudeChanged: (String) -> Unit = {},
     val onLongitudeChanged: (String) -> Unit = {},
     val onTimeZoneChanged: (String) -> Unit = {},

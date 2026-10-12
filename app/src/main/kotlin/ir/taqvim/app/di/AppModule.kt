@@ -19,8 +19,6 @@ import ir.taqvim.data.events.eventsDataModule
 import ir.taqvim.data.events.ics.icsDataModule
 import ir.taqvim.data.events.toEventsSettings
 import ir.taqvim.data.events.toRecord
-import ir.taqvim.data.location.DeviceLocator
-import ir.taqvim.data.location.PlatformGeocoder
 import ir.taqvim.data.preferences.DeviceLanguages
 import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
@@ -65,7 +63,6 @@ import ir.taqvim.feature.settings.AthanPreview
 import ir.taqvim.feature.settings.AthanSettingsStore
 import ir.taqvim.feature.settings.AthanSoundLibrary
 import ir.taqvim.feature.settings.CitySearch
-import ir.taqvim.feature.settings.DeviceLocation
 import ir.taqvim.feature.settings.ExactAlarmAccess
 import ir.taqvim.feature.settings.GeneralSettingsStore
 import ir.taqvim.feature.settings.IslamicOverrideStore
@@ -218,14 +215,9 @@ val appFeaturePortsModule =
             val preferences = get<UserPreferencesRepository>()
             CatalogCitySearch(get()) { preferences.currentLanguage() }
         }
-        single<DeviceLocation> {
-            val locator = DeviceLocator(androidContext())
-            LocatorDeviceLocation { locator.currentLocation() }
-        }
         single<PlaceDescriber> {
             val preferences = get<UserPreferencesRepository>()
-            val geocoder = PlatformGeocoder(androidContext(), Locale.getDefault())
-            GeocoderPlaceDescriber({ geocoder.placesAt(it) }, get(), { preferences.currentLanguage() })
+            CatalogPlaceDescriber(get(), language = { preferences.currentLanguage() })
         }
     }
 

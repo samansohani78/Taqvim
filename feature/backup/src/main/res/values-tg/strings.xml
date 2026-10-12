@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Пок кардан</string>
   <string name="privacy_clear_failed">Маълумот пок нашуд. Боз кӯшиш кунед.</string>
   <string name="privacy_permissions_title">Иҷозатҳо</string>
-  <string name="privacy_permission_location">Макон</string>
   <string name="privacy_permission_notifications">Огоҳиномаҳо</string>
   <string name="privacy_permission_exact_alarms">Ҳушдорҳои дақиқ</string>
   <string name="privacy_permission_dnd">Дастрасӣ ба «Халал нарасонед»</string>
-  <string name="privacy_why_location">Барои ёфтани вақтҳои намоз ва қибла дар ҷое, ки ҳастед. Ба ҷояш метавонед шаҳр интихоб кунед.</string>
   <string name="privacy_why_notifications">Барои нишон додани ёдраскуниҳо ва азон.</string>
   <string name="privacy_why_exact_alarms">Барои сари вақт садо додани ёдраскуниҳо ва азон.</string>
   <string name="privacy_why_dnd">Танҳо барои он ки азони бомдод ҳангоми «Халал нарасонед» садо диҳад, агар шумо инро фаъол кунед.</string>

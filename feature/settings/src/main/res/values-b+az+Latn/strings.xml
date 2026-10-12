@@ -6,10 +6,8 @@
   <string name="settings_location_current">Cari yer</string>
   <string name="settings_location_none">Hələ yer seçilməyib</string>
   <string name="settings_location_kind_city">Şəhər siyahısından seçilib</string>
-  <string name="settings_location_kind_device">Cihazınızın məkanından</string>
   <string name="settings_location_kind_coordinates">Daxil edilmiş koordinatlardan</string>
   <string name="settings_location_tab_city">Şəhər</string>
-  <string name="settings_location_tab_device">Məkanım</string>
   <string name="settings_location_tab_coordinates">Koordinatlar</string>
   <string name="settings_location_search_label">Şəhər axtar</string>
   <string name="settings_location_searching">Şəhərlər axtarılır</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Bu şəhəri seç</string>
   <string name="settings_location_chosen_city">Seçilib</string>
   <string name="settings_location_city_no_zone">Bu şəhər üçün saat qurşağı göstərilməyib, ona görə seçilə bilməz.</string>
-  <string name="settings_location_device_explanation">Bu cihazın mövqeyindən istifadə edin. Taqvim məkan icazəsini yalnız düyməyə toxunduqda istəyir.</string>
-  <string name="settings_location_use_device">Məkanımı istifadə et</string>
-  <string name="settings_location_locating">Məkanınız müəyyən edilir…</string>
-  <string name="settings_location_denied">Məkan icazəsi rədd edildi. Sistem ayarlarında icazə verin və ya əvəzinə şəhər seçin.</string>
-  <string name="settings_location_disabled">Bu cihazda məkan söndürülüb.</string>
-  <string name="settings_location_timed_out">Məkanınız vaxtında tapılmadı. Yenidən cəhd edin və ya şəhər seçin.</string>
-  <string name="settings_location_unavailable">Məkanınız hazırda əlçatan deyil.</string>
-  <string name="settings_location_device_saved">Yadda saxlanıldı: %1$s</string>
   <string name="settings_location_latitude">Enlik</string>
   <string name="settings_location_longitude">Uzunluq</string>
   <string name="settings_location_time_zone">Saat qurşağı</string>

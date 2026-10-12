@@ -122,10 +122,6 @@ internal fun permissionSettingsIntent(
     val appDetails = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageUri(context))
     val intent =
         when (kind) {
-            PermissionKind.LOCATION -> {
-                appDetails
-            }
-
             PermissionKind.NOTIFICATIONS -> {
                 Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
                     .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)

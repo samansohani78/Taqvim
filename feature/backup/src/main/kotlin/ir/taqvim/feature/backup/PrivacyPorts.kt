@@ -32,7 +32,6 @@ data class StoredData(
 
 /** Permissions Taqvim may use; every feature works without them until it is used. */
 enum class PermissionKind {
-    LOCATION,
     NOTIFICATIONS,
     EXACT_ALARMS,
     DO_NOT_DISTURB,

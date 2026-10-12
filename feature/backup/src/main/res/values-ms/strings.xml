@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Kosongkan</string>
   <string name="privacy_clear_failed">Data tidak dapat dikosongkan. Cuba lagi.</string>
   <string name="privacy_permissions_title">Kebenaran</string>
-  <string name="privacy_permission_location">Lokasi</string>
   <string name="privacy_permission_notifications">Pemberitahuan</string>
   <string name="privacy_permission_exact_alarms">Penggera tepat</string>
   <string name="privacy_permission_dnd">Akses Jangan Ganggu</string>
-  <string name="privacy_why_location">Untuk mencari waktu solat dan kiblat di tempat anda berada. Anda boleh memilih bandar sebagai gantinya.</string>
   <string name="privacy_why_notifications">Untuk menunjukkan peringatan dan azan.</string>
   <string name="privacy_why_exact_alarms">Supaya peringatan dan azan berbunyi tepat pada masanya.</string>
   <string name="privacy_why_dnd">Hanya supaya azan Subuh boleh berbunyi semasa Jangan Ganggu, jika anda menghidupkannya.</string>

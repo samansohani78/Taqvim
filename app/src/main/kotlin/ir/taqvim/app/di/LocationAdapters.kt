@@ -7,15 +7,11 @@ package ir.taqvim.app.di
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.data.location.City
 import ir.taqvim.data.location.CityCatalog
-import ir.taqvim.data.location.GeocodeResult
-import ir.taqvim.data.location.LocationFix
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.settings.CityOption
 import ir.taqvim.feature.settings.CitySearch
-import ir.taqvim.feature.settings.DeviceFix
-import ir.taqvim.feature.settings.DeviceLocation
 import ir.taqvim.feature.settings.LocationSettings
 import ir.taqvim.feature.settings.LocationSettingsStore
 import ir.taqvim.feature.settings.PlaceChoice
@@ -65,7 +61,6 @@ internal fun ChosenPlace.toChoice(): PlaceChoice =
         kind =
             when (source) {
                 PlaceSource.CITY -> PlaceKind.CITY
-                PlaceSource.DEVICE -> PlaceKind.DEVICE
                 PlaceSource.COORDINATES -> PlaceKind.COORDINATES
             },
         cityId = cityId,
@@ -80,7 +75,6 @@ internal fun PlaceChoice.toChosenPlace(): ChosenPlace =
         source =
             when (kind) {
                 PlaceKind.CITY -> PlaceSource.CITY
-                PlaceKind.DEVICE -> PlaceSource.DEVICE
                 PlaceKind.COORDINATES -> PlaceSource.COORDINATES
             },
         cityId = cityId,
@@ -113,39 +107,23 @@ internal fun City.toOption(language: String): CityOption =
 /** Separates region and country code; a neutral symbol that reads the same in every script and direction. */
 private const val DETAIL_SEPARATOR = " · "
 
-/** [DeviceLocation] (T-1502) over one fix of the platform location service (T-603). */
-internal class LocatorDeviceLocation(
-    private val currentLocation: suspend () -> LocationFix,
-) : DeviceLocation {
-    override suspend fun locate(): DeviceFix =
-        when (val fix = currentLocation()) {
-            is LocationFix.Found -> DeviceFix.Found(fix.coordinates)
-            LocationFix.PermissionDenied -> DeviceFix.PermissionDenied
-            LocationFix.LocationDisabled -> DeviceFix.LocationDisabled
-            LocationFix.TimedOut -> DeviceFix.TimedOut
-            LocationFix.Unavailable -> DeviceFix.Unavailable
-        }
-}
-
 /**
- * [PlaceDescriber] (T-1502): the geocoder's locality (or sub-administrative area) at the coordinates, else the name of
- * the nearest catalog city in the app [language]; the time zone of the nearest catalog city, else [defaultZone].
+ * [PlaceDescriber] (T-1502): the nearest bundled catalog city names the coordinates, in the app [language], and
+ * lends them its time zone; [defaultZone] when the catalog has none near enough.
+ *
+ * Until ADR-0055 this asked the platform `Geocoder` first and fell back to the catalog. On most devices that
+ * geocoder is a network service, so naming a point the user typed or tapped meant sending those coordinates off
+ * the device. The catalog answers the same question offline, and a point far from any city is simply unnamed.
  */
-internal class GeocoderPlaceDescriber(
-    private val placesAt: suspend (Coordinates) -> GeocodeResult,
+internal class CatalogPlaceDescriber(
     private val catalog: CityCatalogProvider,
     private val language: suspend () -> String,
     private val defaultZone: () -> String = { TimeZone.currentSystemDefault().id },
 ) : PlaceDescriber {
     override suspend fun describe(coordinates: Coordinates): PlaceDescription {
         val nearest = catalog.read { it.nearest(coordinates) }
-        val geocoded =
-            when (val result = placesAt(coordinates)) {
-                is GeocodeResult.Found -> result.places.firstNotNullOfOrNull { it.locality ?: it.subAdminArea }
-                else -> null
-            }
         return PlaceDescription(
-            name = geocoded ?: nearest?.name(language()),
+            name = nearest?.name(language()),
             timeZoneId = nearest?.timeZoneId ?: defaultZone(),
         )
     }

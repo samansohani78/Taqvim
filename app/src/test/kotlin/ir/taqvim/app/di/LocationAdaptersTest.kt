@@ -10,14 +10,10 @@ import io.kotest.matchers.shouldBe
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.data.location.City
 import ir.taqvim.data.location.CityCatalog
-import ir.taqvim.data.location.GeocodeResult
-import ir.taqvim.data.location.GeocodedPlace
-import ir.taqvim.data.location.LocationFix
 import ir.taqvim.data.preferences.ChosenPlace
 import ir.taqvim.data.preferences.PlaceSource
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.settings.CityOption
-import ir.taqvim.feature.settings.DeviceFix
 import ir.taqvim.feature.settings.PlaceChoice
 import ir.taqvim.feature.settings.PlaceDescription
 import ir.taqvim.feature.settings.PlaceKind
@@ -70,12 +66,6 @@ class LocationAdaptersTest {
 
             store.choose(typed)
             store.settings().first().place shouldBe typed
-            store.choose(typed.copy(kind = PlaceKind.DEVICE))
-            store
-                .settings()
-                .first()
-                .place
-                ?.kind shouldBe PlaceKind.DEVICE
             shouldThrow<IllegalArgumentException> { store.choose(typed.copy(timeZoneId = "Mars/Olympus_Mons")) }
         }
 
@@ -97,41 +87,16 @@ class LocationAdaptersTest {
         }
 
     @Test
-    fun `device fixes map to the settings outcomes`(): Unit =
-        runTest {
-            val fixes =
-                mapOf(
-                    LocationFix.Found(tehran.coordinates, 12f, null, "gps") to DeviceFix.Found(tehran.coordinates),
-                    LocationFix.PermissionDenied to DeviceFix.PermissionDenied,
-                    LocationFix.LocationDisabled to DeviceFix.LocationDisabled,
-                    LocationFix.TimedOut to DeviceFix.TimedOut,
-                    LocationFix.Unavailable to DeviceFix.Unavailable,
-                )
-
-            fixes.forEach { (fix, expected) -> LocatorDeviceLocation { fix }.locate() shouldBe expected }
-        }
-
-    @Test
-    fun `descriptions prefer the geocoder's name and take the zone of the nearest city`(): Unit =
+    fun `descriptions name coordinates from the nearest bundled city and take its zone`(): Unit =
         runTest {
             val here = Coordinates(35.7, 51.4)
 
-            fun describer(
-                result: GeocodeResult,
-                vararg cities: City,
-            ) = GeocoderPlaceDescriber({ result }, catalogOf(*cities), { "fa" }, { "UTC" })
+            fun describer(vararg cities: City) = CatalogPlaceDescriber(catalogOf(*cities), { "fa" }, { "UTC" })
 
-            describer(found(locality = "ونک", subAdminArea = "تهران"), tehran).describe(here) shouldBe
-                PlaceDescription("ونک", "Asia/Tehran")
-            describer(found(locality = null, subAdminArea = "شمیرانات"), tehran).describe(here) shouldBe
-                PlaceDescription("شمیرانات", "Asia/Tehran")
-            describer(GeocodeResult.NotFound, tehran).describe(here) shouldBe PlaceDescription("تهران", "Asia/Tehran")
-            describer(GeocodeResult.Failed, noZone).describe(here) shouldBe PlaceDescription("Nowhere", "UTC")
-            describer(GeocodeResult.Unavailable).describe(here) shouldBe PlaceDescription(null, "UTC")
+            describer(tehran).describe(here) shouldBe PlaceDescription("تهران", "Asia/Tehran")
+            // A nearest city the catalog has no zone for still names the place; the zone falls back.
+            describer(noZone).describe(here) shouldBe PlaceDescription("Nowhere", "UTC")
+            // Nothing in the catalog at all: the point stays unnamed rather than being sent anywhere to be named.
+            describer().describe(here) shouldBe PlaceDescription(null, "UTC")
         }
-
-    private fun found(
-        locality: String?,
-        subAdminArea: String?,
-    ) = GeocodeResult.Found(listOf(GeocodedPlace(locality, subAdminArea, null, "IR", null, null)))
 }

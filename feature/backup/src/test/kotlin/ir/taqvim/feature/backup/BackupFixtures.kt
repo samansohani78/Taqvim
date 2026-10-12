@@ -60,7 +60,6 @@ internal object BackupFixtures {
 
     val granted: List<PermissionStatus> =
         listOf(
-            PermissionStatus(PermissionKind.LOCATION, true),
             PermissionStatus(PermissionKind.NOTIFICATIONS, true),
         )
 

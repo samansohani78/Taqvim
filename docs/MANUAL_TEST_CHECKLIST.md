@@ -456,12 +456,16 @@ Sign-off: ______
    is shown until recovery completes; data is either fully restored or fully the previous state.
 8. ICS: import an `.ics` file exported from Google Calendar and one from Outlook → events appear; export Taqvim events
    and open the file in another calendar app.
-9. No network permission (ADR-0054): open Settings → Apps → Taqvim → Permissions on the device → there is no
+9. No location permission (ADR-0055): open Settings → Apps → Taqvim → Permissions on the device → **Location is
+   not listed at all**, and the location settings offer only City and Coordinates. Upgrade from a build that had it
+   (install 1.3.0, grant location, use "My location", then install this build over it) → the place is still the
+   same coordinates, name and time zone, shown as typed coordinates, and prayer times are unchanged.
+10. No network permission (ADR-0054): open Settings → Apps → Taqvim → Permissions on the device → there is no
    network entry, and turning the device's data and Wi-Fi off changes nothing anywhere in the app. Upgrade from a
    build that had subscriptions (install 1.3.0, add a feed, allow network use, let it download) → the app opens, no
    subscribed events are shown anywhere, Settings has no subscriptions page, and the privacy screen lists neither a
    network permission nor a subscription row.
-10. No calendar permission (ADR-0051): open Settings → Apps → Taqvim → Permissions on the device → **Calendar is not
+11. No calendar permission (ADR-0051): open Settings → Apps → Taqvim → Permissions on the device → **Calendar is not
     listed at all**, and nothing in the app ever prompts for it. Upgrade from a build that had it (install 1.2.0,
     grant calendar access, add a device event, then install this build over it) → the app opens, the calendar, day
     details, agenda, timeline, search and the event widgets show no device events and no empty placeholder where
@@ -523,7 +527,7 @@ behaves as described.
 | 21 | Distance and workdays | Counts exclude weekends and holidays | | |
 | 22 | Enable athan → alarm scheduled → fires → stop | As §6.2 | | |
 | 23 | Location by city | Prayer times change | | |
-| 24 | Location by GPS | Place found or a clear error | | |
+| 24 | Location by map pick | The tapped point becomes the place, named from the nearest bundled city | | |
 | 25 | Location by coordinates / map pick | Place saved after confirmation | | |
 | 26 | Add each widget → tap → deep link | As §1.2 | | |
 | 27 | Persistent notification content | As §7 | | |

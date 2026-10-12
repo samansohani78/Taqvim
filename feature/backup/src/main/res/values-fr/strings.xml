@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Effacer</string>
   <string name="privacy_clear_failed">Les données n\'ont pas pu être effacées. Réessayez.</string>
   <string name="privacy_permissions_title">Autorisations</string>
-  <string name="privacy_permission_location">Position</string>
   <string name="privacy_permission_notifications">Notifications</string>
   <string name="privacy_permission_exact_alarms">Alarmes exactes</string>
   <string name="privacy_permission_dnd">Accès à Ne pas déranger</string>
-  <string name="privacy_why_location">Pour trouver les heures de prière et la qibla là où vous êtes. Vous pouvez choisir une ville à la place.</string>
   <string name="privacy_why_notifications">Pour afficher les rappels et l\'adhan.</string>
   <string name="privacy_why_exact_alarms">Pour faire sonner les rappels et l\'adhan à l\'heure.</string>
   <string name="privacy_why_dnd">Uniquement pour laisser l\'adhan de Fajr sonner en mode Ne pas déranger, si vous l\'activez.</string>

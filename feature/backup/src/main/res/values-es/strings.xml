@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Borrar</string>
   <string name="privacy_clear_failed">No se pudieron borrar los datos. Inténtalo de nuevo.</string>
   <string name="privacy_permissions_title">Permisos</string>
-  <string name="privacy_permission_location">Ubicación</string>
   <string name="privacy_permission_notifications">Notificaciones</string>
   <string name="privacy_permission_exact_alarms">Alarmas exactas</string>
   <string name="privacy_permission_dnd">Acceso a No molestar</string>
-  <string name="privacy_why_location">Para calcular los horarios de oración y la alquibla donde estés. Puedes elegir una ciudad en su lugar.</string>
   <string name="privacy_why_notifications">Para mostrar recordatorios y el adhan.</string>
   <string name="privacy_why_exact_alarms">Para que los recordatorios y el adhan suenen a tiempo.</string>
   <string name="privacy_why_dnd">Solo para que el adhan de Fayr suene con No molestar, si lo activas.</string>

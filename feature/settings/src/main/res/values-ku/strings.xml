@@ -6,10 +6,8 @@
   <string name="settings_location_current">Cihê niha</string>
   <string name="settings_location_none">Hîn cih nehatiye hilbijartin</string>
   <string name="settings_location_kind_city">Ji lîsteya bajaran hatiye hilbijartin</string>
-  <string name="settings_location_kind_device">Ji cihê amûra te</string>
   <string name="settings_location_kind_coordinates">Ji koordînatên nivîsandî</string>
   <string name="settings_location_tab_city">Bajar</string>
-  <string name="settings_location_tab_device">Cihê min</string>
   <string name="settings_location_tab_coordinates">Koordînat</string>
   <string name="settings_location_search_label">Li bajaran bigere</string>
   <string name="settings_location_searching">Li bajaran tê gerandin</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Vî bajarî hilbijêre</string>
   <string name="settings_location_chosen_city">Hilbijartî</string>
   <string name="settings_location_city_no_zone">Ji bo vî bajarî herêma demê nehatiye nivîsandin, ji ber vê yekê nayê hilbijartin.</string>
-  <string name="settings_location_device_explanation">Cihê vê amûrê bi kar bîne. Taqvim tenê dema tu li bişkokê bitikînî destûra cih dixwaze.</string>
-  <string name="settings_location_use_device">Cihê min bi kar bîne</string>
-  <string name="settings_location_locating">Cihê te tê dîtin…</string>
-  <string name="settings_location_denied">Destûra cih hat redkirin. Di mîhengên pergalê de destûr bide, an li şûna wê bajarekî hilbijêre.</string>
-  <string name="settings_location_disabled">Cih li ser vê amûrê girtî ye.</string>
-  <string name="settings_location_timed_out">Cihê te di wextê xwe de nehat dîtin. Dîsa biceribîne, an bajarekî hilbijêre.</string>
-  <string name="settings_location_unavailable">Cihê te niha ne amade ye.</string>
-  <string name="settings_location_device_saved">Hat tomarkirin: %1$s</string>
   <string name="settings_location_latitude">Firehî</string>
   <string name="settings_location_longitude">Dirêjahî</string>
   <string name="settings_location_time_zone">Herêma demê</string>

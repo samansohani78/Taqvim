@@ -61,7 +61,7 @@ During the two weeks, testers and the team confirm:
 - [ ] Month swipe, day details, today button, search, year view, agenda and timeline.
 - [ ] Creating, editing and deleting personal events; reminders and official-day reminders notify on time.
 - [ ] Athan: enabling it schedules alarms that fire and stop correctly, including after a reboot.
-- [ ] Location by city, GPS and coordinates; prayer times match the official tables for Iranian cities.
+- [ ] Location by city, map and coordinates; prayer times match the official tables for Iranian cities.
 - [ ] Converter, distance and workdays, time zones, compass, level, astronomy and map.
 - [ ] Backup → wipe → restore returns the same data; ICS import and export.
 - [ ] Theme changes, RTL, font scale 2.0 and TalkBack on a real device.

@@ -33,7 +33,7 @@ class ChosenPlaceMappingTest {
             val places =
                 listOf(
                     tehran,
-                    ChosenPlace(PlaceSource.DEVICE, null, null, Coordinates(-33.86, 151.21), "Australia/Sydney"),
+                    ChosenPlace(PlaceSource.COORDINATES, null, null, Coordinates(-33.86, 151.21), "Australia/Sydney"),
                     ChosenPlace(PlaceSource.COORDINATES, null, "Kabul", Coordinates(34.53, 69.17), "Asia/Kabul"),
                 )
             places.forEach { place ->
@@ -107,7 +107,10 @@ class ChosenPlaceMappingTest {
     }
 
     @Test
-    fun `a device place ignores a stored city id and a blank name reads as unknown`() {
+    fun `a place stored by an older version as the device position keeps its coordinates and zone`() {
+        // ADR-0055: the app can no longer obtain a place this way, but one already stored is the user's setup and
+        // is kept exactly — only the label for how it was first obtained changes. A stored city id is ignored, as
+        // it was before, and a blank name reads as unknown.
         val stored =
             ChosenPlaceProto
                 .newBuilder()
@@ -119,13 +122,30 @@ class ChosenPlaceMappingTest {
                 .setZoneId("UTC")
                 .build()
 
-        stored.toDomainOrNull() shouldBe ChosenPlace(PlaceSource.DEVICE, null, null, Coordinates(1.0, 2.0), "UTC")
+        stored.toDomainOrNull() shouldBe
+            ChosenPlace(PlaceSource.COORDINATES, null, null, Coordinates(1.0, 2.0), "UTC")
+    }
+
+    @Test
+    fun `a device place with a name keeps the name it was saved with`() {
+        val stored =
+            ChosenPlaceProto
+                .newBuilder()
+                .setSource(PlaceSourceProto.PLACE_SOURCE_DEVICE)
+                .setName("خانه")
+                .setLatitude(36.3)
+                .setLongitude(59.6)
+                .setZoneId("Asia/Tehran")
+                .build()
+
+        stored.toDomainOrNull() shouldBe
+            ChosenPlace(PlaceSource.COORDINATES, null, "خانه", Coordinates(36.3, 59.6), "Asia/Tehran")
     }
 
     @Test
     fun `places are validated`() {
         shouldThrow<IllegalArgumentException> { tehran.copy(cityId = null) }
-        shouldThrow<IllegalArgumentException> { tehran.copy(source = PlaceSource.DEVICE) }
+        shouldThrow<IllegalArgumentException> { tehran.copy(source = PlaceSource.COORDINATES) }
         shouldThrow<IllegalArgumentException> { tehran.copy(zoneId = "Nowhere/Town") }
         ChosenPlace.isKnownZone("Asia/Tehran") shouldBe true
         ChosenPlace.isKnownZone(" ") shouldBe false

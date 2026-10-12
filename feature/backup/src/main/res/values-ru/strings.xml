@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Очистить</string>
   <string name="privacy_clear_failed">Не удалось очистить данные. Попробуйте ещё раз.</string>
   <string name="privacy_permissions_title">Разрешения</string>
-  <string name="privacy_permission_location">Местоположение</string>
   <string name="privacy_permission_notifications">Уведомления</string>
   <string name="privacy_permission_exact_alarms">Точные будильники</string>
   <string name="privacy_permission_dnd">Доступ к режиму «Не беспокоить»</string>
-  <string name="privacy_why_location">Чтобы определить время намаза и киблу там, где вы находитесь. Вместо этого можно выбрать город.</string>
   <string name="privacy_why_notifications">Чтобы показывать напоминания и азан.</string>
   <string name="privacy_why_exact_alarms">Чтобы напоминания и азан звучали вовремя.</string>
   <string name="privacy_why_dnd">Только чтобы азан Фаджра звучал в режиме «Не беспокоить», если вы это включите.</string>

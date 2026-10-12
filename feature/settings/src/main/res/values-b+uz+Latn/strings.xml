@@ -6,10 +6,8 @@
   <string name="settings_location_current">Joriy joy</string>
   <string name="settings_location_none">Hali joy tanlanmagan</string>
   <string name="settings_location_kind_city">Shaharlar roʻyxatidan tanlangan</string>
-  <string name="settings_location_kind_device">Qurilma joylashuvidan</string>
   <string name="settings_location_kind_coordinates">Kiritilgan koordinatalardan</string>
   <string name="settings_location_tab_city">Shahar</string>
-  <string name="settings_location_tab_device">Mening joylashuvim</string>
   <string name="settings_location_tab_coordinates">Koordinatalar</string>
   <string name="settings_location_search_label">Shaharlarni qidirish</string>
   <string name="settings_location_searching">Shaharlar qidirilmoqda</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Bu shaharni tanlash</string>
   <string name="settings_location_chosen_city">Tanlangan</string>
   <string name="settings_location_city_no_zone">Bu shahar uchun vaqt mintaqasi koʻrsatilmagan, shuning uchun uni tanlab boʻlmaydi.</string>
-  <string name="settings_location_device_explanation">Bu qurilma joylashuvidan foydalaning. Taqvim joylashuv ruxsatini faqat tugmani bosganingizda soʻraydi.</string>
-  <string name="settings_location_use_device">Joylashuvimdan foydalanish</string>
-  <string name="settings_location_locating">Joylashuvingiz aniqlanmoqda…</string>
-  <string name="settings_location_denied">Joylashuv ruxsati rad etildi. Tizim sozlamalarida ruxsat bering yoki buning oʻrniga shahar tanlang.</string>
-  <string name="settings_location_disabled">Bu qurilmada joylashuv oʻchirilgan.</string>
-  <string name="settings_location_timed_out">Joylashuvingiz oʻz vaqtida aniqlanmadi. Qayta urinib koʻring yoki shahar tanlang.</string>
-  <string name="settings_location_unavailable">Joylashuvingiz hozir mavjud emas.</string>
-  <string name="settings_location_device_saved">Saqlandi: %1$s</string>
   <string name="settings_location_latitude">Kenglik</string>
   <string name="settings_location_longitude">Uzunlik</string>
   <string name="settings_location_time_zone">Vaqt mintaqasi</string>

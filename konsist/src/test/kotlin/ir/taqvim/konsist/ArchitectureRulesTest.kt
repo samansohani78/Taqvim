@@ -79,7 +79,7 @@ class ArchitectureRulesTest {
         violation(":core:calendar", "androidx.annotation.Keep") shouldBe pureCore
         violation(":core:ui", "android.graphics.Paint") shouldBe null
         violation(":core:ui-testing", "androidx.compose.ui.test.junit4.v2.createComposeRule") shouldBe null
-        violation(":data:location", "android.location.LocationManager") shouldBe null
+        violation(":data:location", "android.content.res.AssetManager") shouldBe null
     }
 
     @Test

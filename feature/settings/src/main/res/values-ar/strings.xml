@@ -6,10 +6,8 @@
   <string name="settings_location_current">المكان الحالي</string>
   <string name="settings_location_none">لم يُختر مكان بعد</string>
   <string name="settings_location_kind_city">مختار من قائمة المدن</string>
-  <string name="settings_location_kind_device">من موقع جهازك</string>
   <string name="settings_location_kind_coordinates">من الإحداثيات المُدخلة</string>
   <string name="settings_location_tab_city">المدينة</string>
-  <string name="settings_location_tab_device">موقعي</string>
   <string name="settings_location_tab_coordinates">الإحداثيات</string>
   <string name="settings_location_search_label">البحث عن المدن</string>
   <string name="settings_location_searching">جارٍ البحث عن المدن</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">اختيار هذه المدينة</string>
   <string name="settings_location_chosen_city">مختارة</string>
   <string name="settings_location_city_no_zone">لا توجد منطقة زمنية مُدرجة لهذه المدينة، لذا لا يمكن اختيارها.</string>
-  <string name="settings_location_device_explanation">استخدم موقع هذا الجهاز. لا يطلب Taqvim إذن الموقع إلا عند الضغط على الزر.</string>
-  <string name="settings_location_use_device">استخدام موقعي</string>
-  <string name="settings_location_locating">جارٍ تحديد موقعك…</string>
-  <string name="settings_location_denied">رُفض إذن الموقع. اسمح به في إعدادات النظام، أو اختر مدينة بدلًا من ذلك.</string>
-  <string name="settings_location_disabled">الموقع متوقف على هذا الجهاز.</string>
-  <string name="settings_location_timed_out">تعذّر تحديد موقعك في الوقت المناسب. حاول مرة أخرى أو اختر مدينة.</string>
-  <string name="settings_location_unavailable">موقعك غير متاح الآن.</string>
-  <string name="settings_location_device_saved">تم الحفظ: %1$s</string>
   <string name="settings_location_latitude">خط العرض</string>
   <string name="settings_location_longitude">خط الطول</string>
   <string name="settings_location_time_zone">المنطقة الزمنية</string>

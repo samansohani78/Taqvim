@@ -42,7 +42,7 @@ class TimesAdaptersTest {
             population = null,
         )
     private val cityPlace = ChosenPlace(PlaceSource.CITY, tehran.id, "Tehran", tehran.coordinates, "Asia/Tehran")
-    private val devicePlace = ChosenPlace(PlaceSource.DEVICE, null, "خانه", Coordinates(36.3, 59.6), "Asia/Tehran")
+    private val typedPlace = ChosenPlace(PlaceSource.COORDINATES, null, "خانه", Coordinates(36.3, 59.6), "Asia/Tehran")
     private val persian = UserPreferences.defaultsFor("fa")
 
     @Test
@@ -66,12 +66,12 @@ class TimesAdaptersTest {
                 prayerMethod = PrayerMethod.MWL,
                 asrJuristic = AsrJuristic.HANAFI,
             )
-        val settings = timesSettings(custom, devicePlace, "Home").shouldNotBeNull()
+        val settings = timesSettings(custom, typedPlace, "Home").shouldNotBeNull()
 
         settings.language.code shouldBe UserPreferences.FALLBACK_LANGUAGE
         settings.prayer shouldBe PrayerSettings(method = PrayerMethod.MWL, asr = AsrJuristic.HANAFI)
         settings.calendar shouldBeSameInstanceAs NepaliCalendarSystem
-        timesSettings(custom.copy(calendars = emptyList()), devicePlace, "Home")
+        timesSettings(custom.copy(calendars = emptyList()), typedPlace, "Home")
             .shouldNotBeNull()
             .calendar shouldBeSameInstanceAs PersianCalendarSystem
     }
@@ -101,10 +101,10 @@ class TimesAdaptersTest {
 
             source.settings().first().shouldBeNull()
 
-            preferences.update { it.copy(place = devicePlace) }
+            preferences.update { it.copy(place = typedPlace) }
             source.settings().first()?.placeName shouldBe "خانه"
-            preferences.update { it.copy(place = devicePlace.copy(name = null)) }
-            source.settings().first()?.place shouldBe devicePlace.coordinates
+            preferences.update { it.copy(place = typedPlace.copy(name = null)) }
+            source.settings().first()?.place shouldBe typedPlace.coordinates
             catalogLoads shouldBe 0
 
             preferences.update { it.copy(place = cityPlace) }

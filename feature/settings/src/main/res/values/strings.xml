@@ -5,11 +5,9 @@
   <string name="settings_location_current">Current place</string>
   <string name="settings_location_none">No place chosen yet</string>
   <string name="settings_location_kind_city">Chosen from the city list</string>
-  <string name="settings_location_kind_device">From your device location</string>
   <string name="settings_location_kind_coordinates">From typed coordinates</string>
   <!-- Tab for choosing the location by searching for a city. -->
   <string name="settings_location_tab_city">City</string>
-  <string name="settings_location_tab_device">My location</string>
   <!-- Tab for entering the location as latitude and longitude. -->
   <string name="settings_location_tab_coordinates">Coordinates</string>
   <string name="settings_location_search_label">Search cities</string>
@@ -22,14 +20,6 @@
   <!-- Label marking the city that is currently chosen. -->
   <string name="settings_location_chosen_city">Chosen</string>
   <string name="settings_location_city_no_zone">No time zone is listed for this city, so it cannot be chosen.</string>
-  <string name="settings_location_device_explanation">Use the position of this device. Taqvim asks for location permission only when you tap the button.</string>
-  <string name="settings_location_use_device">Use my location</string>
-  <string name="settings_location_locating">Finding your location…</string>
-  <string name="settings_location_denied">Location permission was denied. Allow it in the system settings, or choose a city instead.</string>
-  <string name="settings_location_disabled">Location is switched off on this device.</string>
-  <string name="settings_location_timed_out">Your location could not be found in time. Try again, or choose a city.</string>
-  <string name="settings_location_unavailable">Your location is not available right now.</string>
-  <string name="settings_location_device_saved">Saved: %1$s</string>
   <string name="settings_location_latitude">Latitude</string>
   <string name="settings_location_longitude">Longitude</string>
   <string name="settings_location_time_zone">Time zone</string>

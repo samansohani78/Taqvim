@@ -6,10 +6,8 @@
   <string name="settings_location_current">தற்போதைய இடம்</string>
   <string name="settings_location_none">இன்னும் இடம் தேர்வு செய்யப்படவில்லை</string>
   <string name="settings_location_kind_city">நகரப் பட்டியலிலிருந்து தேர்ந்தெடுக்கப்பட்டது</string>
-  <string name="settings_location_kind_device">உங்கள் சாதன இடத்திலிருந்து</string>
   <string name="settings_location_kind_coordinates">உள்ளிட்ட ஆயத்தொலைவுகளிலிருந்து</string>
   <string name="settings_location_tab_city">நகரம்</string>
-  <string name="settings_location_tab_device">என் இடம்</string>
   <string name="settings_location_tab_coordinates">ஆயத்தொலைவுகள்</string>
   <string name="settings_location_search_label">நகரங்களைத் தேடு</string>
   <string name="settings_location_searching">நகரங்கள் தேடப்படுகின்றன</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">இந்த நகரத்தைத் தேர்வுசெய்</string>
   <string name="settings_location_chosen_city">தேர்ந்தெடுக்கப்பட்டது</string>
   <string name="settings_location_city_no_zone">இந்த நகரத்திற்கு நேர மண்டலம் பட்டியலிடப்படவில்லை, எனவே தேர்வு செய்ய முடியாது.</string>
-  <string name="settings_location_device_explanation">இந்தச் சாதனத்தின் நிலையைப் பயன்படுத்தவும். பொத்தானைத் தட்டும்போது மட்டுமே Taqvim இட அனுமதியைக் கேட்கும்.</string>
-  <string name="settings_location_use_device">என் இடத்தைப் பயன்படுத்து</string>
-  <string name="settings_location_locating">உங்கள் இடம் கண்டறியப்படுகிறது…</string>
-  <string name="settings_location_denied">இட அனுமதி மறுக்கப்பட்டது. கணினி அமைப்புகளில் அனுமதிக்கவும், அல்லது ஒரு நகரத்தைத் தேர்வு செய்யவும்.</string>
-  <string name="settings_location_disabled">இந்தச் சாதனத்தில் இடம் அணைக்கப்பட்டுள்ளது.</string>
-  <string name="settings_location_timed_out">உங்கள் இடத்தை சரியான நேரத்தில் கண்டறிய முடியவில்லை. மீண்டும் முயலவும், அல்லது ஒரு நகரத்தைத் தேர்வு செய்யவும்.</string>
-  <string name="settings_location_unavailable">உங்கள் இடம் இப்போது கிடைக்கவில்லை.</string>
-  <string name="settings_location_device_saved">சேமிக்கப்பட்டது: %1$s</string>
   <string name="settings_location_latitude">அட்சரேகை</string>
   <string name="settings_location_longitude">தீர்க்கரேகை</string>
   <string name="settings_location_time_zone">நேர மண்டலம்</string>

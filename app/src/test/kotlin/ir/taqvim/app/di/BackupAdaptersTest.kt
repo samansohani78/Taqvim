@@ -244,21 +244,22 @@ class BackupAdaptersTest {
         runBlocking {
             val source = PlatformPermissionStatusSource(context)
             val before = source.statuses().first().associate { it.kind to it.granted }
-            before[PermissionKind.LOCATION] shouldBe false
+            before[PermissionKind.NOTIFICATIONS] shouldBe false
             before.keys shouldBe PermissionKind.entries.toSet()
 
-            shadowOf(context as Application).grantPermissions(Manifest.permission.ACCESS_COARSE_LOCATION)
+            shadowOf(context as Application).grantPermissions(Manifest.permission.POST_NOTIFICATIONS)
+            // The source caches: the grant is invisible until something asks it to read again.
             source
                 .statuses()
                 .first()
-                .first { it.kind == PermissionKind.LOCATION }
+                .first { it.kind == PermissionKind.NOTIFICATIONS }
                 .granted shouldBe false
             source.refresh()
 
             source
                 .statuses()
                 .first()
-                .first { it.kind == PermissionKind.LOCATION }
+                .first { it.kind == PermissionKind.NOTIFICATIONS }
                 .granted shouldBe true
             context.appVersionName().isNotBlank() shouldBe true
         }

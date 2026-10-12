@@ -97,10 +97,6 @@ class PrivacyScreenTest {
             return shadowOf(application).nextStartedActivity
         }
 
-        open("Location").let {
-            assertEquals(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, it.action)
-            assertEquals("package:${application.packageName}", it.dataString)
-        }
         open("Notifications").let {
             assertEquals(Settings.ACTION_APP_NOTIFICATION_SETTINGS, it.action)
             assertEquals(application.packageName, it.getStringExtra(Settings.EXTRA_APP_PACKAGE))
@@ -109,8 +105,10 @@ class PrivacyScreenTest {
         open("Do Not Disturb access").let {
             assertEquals(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS, it.action)
         }
-        // ADR-0051: there is no calendar row, because there is no calendar permission to show the state of.
+        // ADR-0051 and ADR-0055: there is no calendar row and no location row, because Taqvim holds neither
+        // permission, so there is no state to show and nothing for the user to decide.
         composeRule.onAllNodesWithContentDescription("Open settings for Calendar").assertCountEquals(0)
+        composeRule.onAllNodesWithContentDescription("Open settings for Location").assertCountEquals(0)
     }
 
     @Test

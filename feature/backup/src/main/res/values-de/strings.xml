@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Löschen</string>
   <string name="privacy_clear_failed">Die Daten konnten nicht gelöscht werden. Versuchen Sie es erneut.</string>
   <string name="privacy_permissions_title">Berechtigungen</string>
-  <string name="privacy_permission_location">Standort</string>
   <string name="privacy_permission_notifications">Benachrichtigungen</string>
   <string name="privacy_permission_exact_alarms">Exakte Alarme</string>
   <string name="privacy_permission_dnd">Zugriff auf „Bitte nicht stören“</string>
-  <string name="privacy_why_location">Um Gebetszeiten und die Qibla an Ihrem Ort zu bestimmen. Sie können stattdessen eine Stadt wählen.</string>
   <string name="privacy_why_notifications">Um Erinnerungen und den Adhan anzuzeigen.</string>
   <string name="privacy_why_exact_alarms">Damit Erinnerungen und der Adhan pünktlich ertönen.</string>
   <string name="privacy_why_dnd">Nur damit der Fadschr-Adhan während „Bitte nicht stören“ ertönen kann, wenn Sie das einschalten.</string>

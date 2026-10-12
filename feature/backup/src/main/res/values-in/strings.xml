@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">Hapus</string>
   <string name="privacy_clear_failed">Data tidak dapat dihapus. Coba lagi.</string>
   <string name="privacy_permissions_title">Izin</string>
-  <string name="privacy_permission_location">Lokasi</string>
   <string name="privacy_permission_notifications">Notifikasi</string>
   <string name="privacy_permission_exact_alarms">Alarm tepat waktu</string>
   <string name="privacy_permission_dnd">Akses Jangan Ganggu</string>
-  <string name="privacy_why_location">Untuk menemukan waktu salat dan kiblat di tempat Anda berada. Anda dapat memilih kota sebagai gantinya.</string>
   <string name="privacy_why_notifications">Untuk menampilkan pengingat dan azan.</string>
   <string name="privacy_why_exact_alarms">Agar pengingat dan azan berbunyi tepat waktu.</string>
   <string name="privacy_why_dnd">Hanya agar azan Subuh dapat berbunyi saat Jangan Ganggu, jika Anda menghidupkannya.</string>

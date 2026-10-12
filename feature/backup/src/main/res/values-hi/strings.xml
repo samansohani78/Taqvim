@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">साफ़ करें</string>
   <string name="privacy_clear_failed">डेटा साफ़ नहीं हो सका। फिर से कोशिश करें।</string>
   <string name="privacy_permissions_title">अनुमतियां</string>
-  <string name="privacy_permission_location">स्थान</string>
   <string name="privacy_permission_notifications">सूचनाएं</string>
   <string name="privacy_permission_exact_alarms">सटीक अलार्म</string>
   <string name="privacy_permission_dnd">परेशान न करें की पहुंच</string>
-  <string name="privacy_why_location">आप जहां हैं वहां नमाज़ के समय और क़िबला जानने के लिए। इसकी जगह आप कोई शहर चुन सकते हैं।</string>
   <string name="privacy_why_notifications">रिमाइंडर और अज़ान दिखाने के लिए।</string>
   <string name="privacy_why_exact_alarms">रिमाइंडर और अज़ान समय पर बजाने के लिए।</string>
   <string name="privacy_why_dnd">सिर्फ़ इसलिए कि आप चालू करें तो फ़ज्र की अज़ान परेशान न करें के दौरान बज सके।</string>

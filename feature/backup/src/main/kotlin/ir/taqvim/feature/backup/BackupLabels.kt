@@ -89,7 +89,6 @@ internal object BackupLabels {
     @StringRes
     fun permissionTitle(kind: PermissionKind): Int =
         when (kind) {
-            PermissionKind.LOCATION -> R.string.privacy_permission_location
             PermissionKind.NOTIFICATIONS -> R.string.privacy_permission_notifications
             PermissionKind.EXACT_ALARMS -> R.string.privacy_permission_exact_alarms
             PermissionKind.DO_NOT_DISTURB -> R.string.privacy_permission_dnd
@@ -98,7 +97,6 @@ internal object BackupLabels {
     @StringRes
     fun permissionWhy(kind: PermissionKind): Int =
         when (kind) {
-            PermissionKind.LOCATION -> R.string.privacy_why_location
             PermissionKind.NOTIFICATIONS -> R.string.privacy_why_notifications
             PermissionKind.EXACT_ALARMS -> R.string.privacy_why_exact_alarms
             PermissionKind.DO_NOT_DISTURB -> R.string.privacy_why_dnd

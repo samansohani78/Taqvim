@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">মুছুন</string>
   <string name="privacy_clear_failed">ডেটা মোছা যায়নি। আবার চেষ্টা করুন।</string>
   <string name="privacy_permissions_title">অনুমতি</string>
-  <string name="privacy_permission_location">অবস্থান</string>
   <string name="privacy_permission_notifications">বিজ্ঞপ্তি</string>
   <string name="privacy_permission_exact_alarms">নির্ভুল অ্যালার্ম</string>
   <string name="privacy_permission_dnd">বিরক্ত করবেন না-এ প্রবেশাধিকার</string>
-  <string name="privacy_why_location">আপনি যেখানে আছেন সেখানে নামাজের সময় ও কিবলা খুঁজে পেতে। এর বদলে আপনি শহর বেছে নিতে পারেন।</string>
   <string name="privacy_why_notifications">রিমাইন্ডার ও আজান দেখাতে।</string>
   <string name="privacy_why_exact_alarms">রিমাইন্ডার ও আজান সময়মতো বাজাতে।</string>
   <string name="privacy_why_dnd">শুধু আপনি চালু করলে বিরক্ত করবেন না চালু থাকা অবস্থায় ফজরের আজান বাজাতে।</string>

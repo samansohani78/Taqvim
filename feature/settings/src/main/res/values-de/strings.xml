@@ -6,10 +6,8 @@
   <string name="settings_location_current">Aktueller Ort</string>
   <string name="settings_location_none">Noch kein Ort gewählt</string>
   <string name="settings_location_kind_city">Aus der Städteliste gewählt</string>
-  <string name="settings_location_kind_device">Vom Gerätestandort</string>
   <string name="settings_location_kind_coordinates">Aus eingegebenen Koordinaten</string>
   <string name="settings_location_tab_city">Stadt</string>
-  <string name="settings_location_tab_device">Mein Standort</string>
   <string name="settings_location_tab_coordinates">Koordinaten</string>
   <string name="settings_location_search_label">Städte suchen</string>
   <string name="settings_location_searching">Städte werden gesucht</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">Diese Stadt wählen</string>
   <string name="settings_location_chosen_city">Gewählt</string>
   <string name="settings_location_city_no_zone">Für diese Stadt ist keine Zeitzone angegeben, daher kann sie nicht gewählt werden.</string>
-  <string name="settings_location_device_explanation">Die Position dieses Geräts verwenden. Taqvim fragt erst nach der Standortberechtigung, wenn Sie auf die Schaltfläche tippen.</string>
-  <string name="settings_location_use_device">Meinen Standort verwenden</string>
-  <string name="settings_location_locating">Ihr Standort wird ermittelt…</string>
-  <string name="settings_location_denied">Die Standortberechtigung wurde verweigert. Erlauben Sie sie in den Systemeinstellungen oder wählen Sie stattdessen eine Stadt.</string>
-  <string name="settings_location_disabled">Die Standortermittlung ist auf diesem Gerät ausgeschaltet.</string>
-  <string name="settings_location_timed_out">Ihr Standort konnte nicht rechtzeitig ermittelt werden. Versuchen Sie es erneut oder wählen Sie eine Stadt.</string>
-  <string name="settings_location_unavailable">Ihr Standort ist gerade nicht verfügbar.</string>
-  <string name="settings_location_device_saved">Gespeichert: %1$s</string>
   <string name="settings_location_latitude">Breitengrad</string>
   <string name="settings_location_longitude">Längengrad</string>
   <string name="settings_location_time_zone">Zeitzone</string>

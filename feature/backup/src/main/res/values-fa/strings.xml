@@ -83,11 +83,9 @@
   <string name="privacy_clear_confirm">پاک کن</string>
   <string name="privacy_clear_failed">داده پاک نشد. دوباره تلاش کنید.</string>
   <string name="privacy_permissions_title">مجوزها</string>
-  <string name="privacy_permission_location">مکان</string>
   <string name="privacy_permission_notifications">اعلان‌ها</string>
   <string name="privacy_permission_exact_alarms">هشدارهای دقیق</string>
   <string name="privacy_permission_dnd">دسترسی به «مزاحم نشوید»</string>
-  <string name="privacy_why_location">برای یافتن اوقات شرعی و قبله در جایی که هستید. می‌توانید به جای آن شهری را انتخاب کنید.</string>
   <string name="privacy_why_notifications">برای نمایش یادآورها و اذان.</string>
   <string name="privacy_why_exact_alarms">برای پخش یادآورها و اذان سر وقت.</string>
   <string name="privacy_why_dnd">فقط برای پخش اذان صبح در حالت «مزاحم نشوید»، اگر آن را روشن کنید.</string>

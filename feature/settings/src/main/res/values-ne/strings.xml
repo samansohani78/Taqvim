@@ -6,10 +6,8 @@
   <string name="settings_location_current">हालको ठाउँ</string>
   <string name="settings_location_none">अहिलेसम्म कुनै ठाउँ छानिएको छैन</string>
   <string name="settings_location_kind_city">सहर सूचीबाट छानिएको</string>
-  <string name="settings_location_kind_device">तपाईंको यन्त्र स्थानबाट</string>
   <string name="settings_location_kind_coordinates">टाइप गरिएका निर्देशाङ्कबाट</string>
   <string name="settings_location_tab_city">सहर</string>
-  <string name="settings_location_tab_device">मेरो स्थान</string>
   <string name="settings_location_tab_coordinates">निर्देशाङ्क</string>
   <string name="settings_location_search_label">सहर खोज्नुहोस्</string>
   <string name="settings_location_searching">सहर खोजिँदैछ</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">यो सहर छान्नुहोस्</string>
   <string name="settings_location_chosen_city">छानिएको</string>
   <string name="settings_location_city_no_zone">यो सहरका लागि कुनै समय क्षेत्र सूचीकृत छैन, त्यसैले छान्न सकिँदैन।</string>
-  <string name="settings_location_device_explanation">यो यन्त्रको स्थिति प्रयोग गर्नुहोस्। Taqvim ले तपाईंले बटन थिचेपछि मात्र स्थान अनुमति माग्छ।</string>
-  <string name="settings_location_use_device">मेरो स्थान प्रयोग गर्नुहोस्</string>
-  <string name="settings_location_locating">तपाईंको स्थान पत्ता लगाइँदैछ…</string>
-  <string name="settings_location_denied">स्थान अनुमति अस्वीकार गरियो। प्रणाली सेटिङमा अनुमति दिनुहोस्, वा त्यसको सट्टा सहर छान्नुहोस्।</string>
-  <string name="settings_location_disabled">यो यन्त्रमा स्थान बन्द छ।</string>
-  <string name="settings_location_timed_out">तपाईंको स्थान समयमै भेटिएन। फेरि प्रयास गर्नुहोस्, वा सहर छान्नुहोस्।</string>
-  <string name="settings_location_unavailable">तपाईंको स्थान अहिले उपलब्ध छैन।</string>
-  <string name="settings_location_device_saved">सुरक्षित गरियो: %1$s</string>
   <string name="settings_location_latitude">अक्षांश</string>
   <string name="settings_location_longitude">देशान्तर</string>
   <string name="settings_location_time_zone">समय क्षेत्र</string>

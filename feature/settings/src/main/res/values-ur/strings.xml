@@ -6,10 +6,8 @@
   <string name="settings_location_current">موجودہ جگہ</string>
   <string name="settings_location_none">ابھی کوئی جگہ منتخب نہیں</string>
   <string name="settings_location_kind_city">شہروں کی فہرست سے منتخب</string>
-  <string name="settings_location_kind_device">آپ کے آلے کے مقام سے</string>
   <string name="settings_location_kind_coordinates">درج کردہ نقاط سے</string>
   <string name="settings_location_tab_city">شہر</string>
-  <string name="settings_location_tab_device">میرا مقام</string>
   <string name="settings_location_tab_coordinates">نقاط</string>
   <string name="settings_location_search_label">شہر تلاش کریں</string>
   <string name="settings_location_searching">شہر تلاش ہو رہے ہیں</string>
@@ -20,14 +18,6 @@
   <string name="settings_location_choose_city">یہ شہر منتخب کریں</string>
   <string name="settings_location_chosen_city">منتخب</string>
   <string name="settings_location_city_no_zone">اس شہر کا کوئی ٹائم زون درج نہیں، اس لیے اسے منتخب نہیں کیا جا سکتا۔</string>
-  <string name="settings_location_device_explanation">اس آلے کی پوزیشن استعمال کریں۔ Taqvim مقام کی اجازت صرف تب مانگتا ہے جب آپ بٹن پر ٹیپ کریں۔</string>
-  <string name="settings_location_use_device">میرا مقام استعمال کریں</string>
-  <string name="settings_location_locating">آپ کا مقام تلاش کیا جا رہا ہے…</string>
-  <string name="settings_location_denied">مقام کی اجازت نہیں دی گئی۔ سسٹم کی ترتیبات میں اجازت دیں، یا اس کی جگہ کوئی شہر منتخب کریں۔</string>
-  <string name="settings_location_disabled">اس آلے پر مقام بند ہے۔</string>
-  <string name="settings_location_timed_out">آپ کا مقام بروقت نہیں مل سکا۔ دوبارہ کوشش کریں، یا کوئی شہر منتخب کریں۔</string>
-  <string name="settings_location_unavailable">آپ کا مقام ابھی دستیاب نہیں۔</string>
-  <string name="settings_location_device_saved">محفوظ: %1$s</string>
   <string name="settings_location_latitude">عرض بلد</string>
   <string name="settings_location_longitude">طول بلد</string>
   <string name="settings_location_time_zone">ٹائم زون</string>

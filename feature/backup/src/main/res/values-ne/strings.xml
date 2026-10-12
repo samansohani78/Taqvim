@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">खाली गर्नुहोस्</string>
   <string name="privacy_clear_failed">डाटा खाली गर्न सकिएन। फेरि प्रयास गर्नुहोस्।</string>
   <string name="privacy_permissions_title">अनुमतिहरू</string>
-  <string name="privacy_permission_location">स्थान</string>
   <string name="privacy_permission_notifications">सूचनाहरू</string>
   <string name="privacy_permission_exact_alarms">सटीक अलार्म</string>
   <string name="privacy_permission_dnd">बाधा नपुर्‍याउनुहोस् पहुँच</string>
-  <string name="privacy_why_location">तपाईं भएको ठाउँमा नमाज समय र किबला पत्ता लगाउन। त्यसको सट्टा तपाईं सहर छान्न सक्नुहुन्छ।</string>
   <string name="privacy_why_notifications">रिमाइन्डर र अजान देखाउन।</string>
   <string name="privacy_why_exact_alarms">रिमाइन्डर र अजान समयमै बजाउन।</string>
   <string name="privacy_why_dnd">तपाईंले खोल्नुभयो भने बाधा नपुर्‍याउनुहोस् बेला फज्रको अजान बजाउन मात्र।</string>

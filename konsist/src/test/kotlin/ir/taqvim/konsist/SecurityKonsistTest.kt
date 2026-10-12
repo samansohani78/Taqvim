@@ -45,6 +45,20 @@ class SecurityKonsistTest {
     }
 
     @Test
+    fun `no manifest requests a device location permission`() {
+        // ADR-0055: a place is a bundled city, a point on the map or typed coordinates. Taqvim never asks a device
+        // where it is, so the question is never put to the user either.
+        ManifestSecurityRules.manifestsRequestingLocation(root).shouldBeEmpty()
+    }
+
+    @Test
+    fun `no production code reads the device position or geocodes`() {
+        // The platform Geocoder needs no permission and usually resolves over the network, so the manifest rule
+        // above would not catch it; this is the half that does.
+        ManifestSecurityRules.locationReaders(root).shouldBeEmpty()
+    }
+
+    @Test
     fun `no manifest requests a calendar permission`() {
         // ADR-0051: Taqvim does not read the device calendar. The watch used to take READ_CALENDAR back out of the
         // merged manifest; now nothing puts it in, so there is nothing to remove either.
@@ -85,10 +99,6 @@ class SecurityKonsistTest {
             "val p = PendingIntent.getBroadcast(c, 0, i, PendingIntent.FLAG_UPDATE_CURRENT)",
         )
         write(
-            File(fixture, "feature/x/src/main/kotlin/Net.kt"),
-            "import java.net.HttpURLConnection\nval c = url.openConnection() as HttpURLConnection",
-        )
-        write(
             File(fixture, "feature/x/src/main/kotlin/B.kt"),
             "val p = PendingIntent.getService(c, 0, i, FLAG_IMMUTABLE)",
         )
@@ -112,14 +122,53 @@ class SecurityKonsistTest {
             listOf("feature/x/src/main/AndroidManifest.xml: a.R")
         ManifestSecurityRules.manifestsRequestingInternet(fixture) shouldBe
             listOf("feature/x/src/main/AndroidManifest.xml")
-        ManifestSecurityRules.networkClientUsers(fixture) shouldBe
-            listOf("feature/x/src/main/kotlin/Net.kt: HttpURLConnection")
         ManifestSecurityRules.mutablePendingIntents(fixture) shouldBe listOf("feature/x/src/main/kotlin/A.kt")
         ManifestSecurityRules.broadFileProviderPaths(fixture) shouldBe
             listOf(
                 "feature/x/src/main/res/xml/paths.xml: root-path ''",
                 "feature/x/src/main/res/xml/paths.xml: files-path '.'",
             )
+    }
+
+    @Test
+    fun `planted network and location violations are detected`(
+        @TempDir fixture: File,
+    ) {
+        write(
+            File(fixture, "feature/net/src/main/kotlin/Fetch.kt"),
+            "import java.net.HttpURLConnection\nval c = url.openConnection() as HttpURLConnection",
+        )
+        write(
+            File(fixture, "feature/where/src/main/AndroidManifest.xml"),
+            """<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              |<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+              |<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+              |</manifest>
+            """.trimMargin(),
+        )
+        write(
+            File(fixture, "feature/where/src/main/kotlin/Here.kt"),
+            "import android.location.LocationManager\nval m: LocationManager? = null",
+        )
+        // A manifest that only takes a library's permission out is not requesting it (as :wear did, ADR-0019).
+        write(
+            File(fixture, "watch/src/main/AndroidManifest.xml"),
+            """<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              |  xmlns:tools="http://schemas.android.com/tools">
+              |<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove"/>
+              |</manifest>
+            """.trimMargin(),
+        )
+
+        // The permission and the code that would use it are found separately, so removing either alone still fails.
+        ManifestSecurityRules.networkClientUsers(fixture) shouldBe
+            listOf("feature/net/src/main/kotlin/Fetch.kt: HttpURLConnection")
+        ManifestSecurityRules.manifestsRequestingNetworkState(fixture) shouldBe
+            listOf("feature/where/src/main/AndroidManifest.xml")
+        ManifestSecurityRules.manifestsRequestingLocation(fixture) shouldBe
+            listOf("feature/where/src/main/AndroidManifest.xml")
+        ManifestSecurityRules.locationReaders(fixture) shouldBe
+            listOf("feature/where/src/main/kotlin/Here.kt: LocationManager")
     }
 
     @Test

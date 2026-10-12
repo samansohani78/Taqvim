@@ -84,11 +84,9 @@
   <string name="privacy_clear_confirm">پاکول</string>
   <string name="privacy_clear_failed">معلومات پاک نه شول. بیا هڅه وکړئ.</string>
   <string name="privacy_permissions_title">اجازې</string>
-  <string name="privacy_permission_location">ځای</string>
   <string name="privacy_permission_notifications">خبرتیاوې</string>
   <string name="privacy_permission_exact_alarms">دقیق الارمونه</string>
   <string name="privacy_permission_dnd">«مه ګډوډوئ» ته لاسرسی</string>
-  <string name="privacy_why_location">د دې لپاره چې چېرته یاست هلته د لمانځه وختونه او قبله ومومي. تاسو یې پر ځای ښار ټاکلی شئ.</string>
   <string name="privacy_why_notifications">د یادونو او اذان ښودلو لپاره.</string>
   <string name="privacy_why_exact_alarms">د یادونو او اذان په وخت غږولو لپاره.</string>
   <string name="privacy_why_dnd">یوازې د دې لپاره چې که تاسو یې روښانه کړئ د سهار اذان د «مه ګډوډوئ» پر مهال وغږېږي.</string>

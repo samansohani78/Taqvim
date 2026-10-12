@@ -37,11 +37,10 @@ class LocationSettingsViewModelTest {
     private fun TestScope.viewModel(
         store: FakeLocationStore,
         search: CitySearch = FakeCitySearch(),
-        device: DeviceLocation = DeviceLocation { DeviceFix.TimedOut },
         describer: PlaceDescriber = LocationFixtures.describer,
     ): LocationSettingsViewModel {
         Dispatchers.setMain(StandardTestDispatcher(testScheduler))
-        return LocationSettingsViewModel(store, search, device, describer, PlatformTimeZoneIds)
+        return LocationSettingsViewModel(store, search, describer, PlatformTimeZoneIds)
     }
 
     private fun persian(value: String): String = Numerals.format(BigDecimal(value), NumeralSystem.PERSIAN)
@@ -115,50 +114,6 @@ class LocationSettingsViewModelTest {
             viewModel.uiState.value.search.results
                 .single { it.selected }
                 .name shouldBe "Karaj"
-        }
-
-    @Test
-    fun `the device position is stored with the described name and zone`(): Unit =
-        runTest {
-            val store = FakeLocationStore(LocationFixtures.english)
-            val position = Coordinates(29.61, 52.53)
-            val viewModel = viewModel(store, device = { DeviceFix.Found(position) })
-            advanceUntilIdle()
-
-            viewModel.onLocate()
-            viewModel.uiState.value.device shouldBe DeviceState.Locating
-            advanceUntilIdle()
-
-            val expected = PlaceChoice(PlaceKind.DEVICE, null, "Shiraz", position, "Asia/Tehran")
-            store.chosen shouldBe listOf(expected)
-            viewModel.uiState.value.device shouldBe DeviceState.Saved("Shiraz", "29.6100, 52.5300", "Asia/Tehran")
-            viewModel.uiState.value.current
-                ?.kind shouldBe PlaceKind.DEVICE
-        }
-
-    @Test
-    fun `denied, disabled, timed-out and unavailable positions store nothing`(): Unit =
-        runTest {
-            val outcomes =
-                mapOf(
-                    DeviceFix.PermissionDenied to DeviceState.PermissionDenied,
-                    DeviceFix.LocationDisabled to DeviceState.LocationDisabled,
-                    DeviceFix.TimedOut to DeviceState.TimedOut,
-                    DeviceFix.Unavailable to DeviceState.Unavailable,
-                )
-            outcomes.forEach { (fix, state) ->
-                val store = FakeLocationStore(LocationFixtures.english)
-                val viewModel = viewModel(store, device = { fix })
-                viewModel.onLocate()
-                advanceUntilIdle()
-                viewModel.uiState.value.device shouldBe state
-                store.chosen.shouldBeEmpty()
-            }
-            val store = FakeLocationStore(LocationFixtures.english)
-            val viewModel = viewModel(store)
-            viewModel.onPermissionDenied()
-            viewModel.uiState.value.device shouldBe DeviceState.PermissionDenied
-            store.chosen.shouldBeEmpty()
         }
 
     @Test
