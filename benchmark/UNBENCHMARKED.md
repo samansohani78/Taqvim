@@ -46,6 +46,30 @@ Why: <reason the run could not measure, and what was done instead>
 
 -->
 
+### v1.3.0
+Accepted by: Saman Sohani, 2026-10-12
+Why: the hosted runner still cannot measure this app, for the reason this file was written for — its control
+benchmarks time fixed synthetic work the app cannot affect and move by hundreds of percent inside one run, so the
+comparison says nothing either way. The nightly runs of 2026-10-11 and 2026-10-12 both concluded `Macrobenchmark
+(nightly)` green and `Performance qualified` red on exactly that.
+
+What this waiver does **not** say is that 1.3.0 was measured somewhere else. It was not. The physical-device
+numbers quoted for v1.2.0 — OnePlus 15 (CPH2745, Android 16), 2026-10-07 and 2026-10-10 — were taken against the
+1.2.0 code and are not reused here as if they were fresh. One change since then plausibly moves one of them: the
+dataset's generated source went from 42 files to 83 and its title entries from roughly 1 760 to 2 188, and the
+first read of `OfficialEvents.ALL` was the slowest component measured on that device at 148 ms. Nothing has
+re-measured it. The widget change (main@d3f78a05) removes work rather than adding it, and the search change
+(main@b454a49a) walks a lazy sequence that stops at the caller's limit, so neither is expected to cost more; that
+is reasoning, not measurement, and it is written here as such.
+
+What was checked on this commit, on the host rather than on a phone: `timingTests` green at `-Ptaqvim.timingScale=2`
+including the dataset module's own cost bounds; release APK 6 830 544 bytes, 81.4 % of the 8 388 608 budget;
+`:app:checkReleaseBaselineProfile` and `:app:checkBenchmarkBaselineProfile` green, so the 41 generated classes the
+dataset gained are in the baseline profile rather than left to the interpreter.
+
+The right close for this entry is a device run against the tagged commit, compared against the v1.2.0 figures, and
+`OfficialEvents.ALL` is the number to look at first.
+
 ### v1.2.0
 Accepted by: Saman Sohani, 2026-10-10
 Why: the hosted runner cannot measure this app — its control benchmarks, which time fixed synthetic work the app
