@@ -70,6 +70,13 @@ dataset gained are in the baseline profile rather than left to the interpreter.
 The right close for this entry is a device run against the tagged commit, compared against the v1.2.0 figures, and
 `OfficialEvents.ALL` is the number to look at first.
 
+Re-checked on 2026-10-12 against the tree the tag will point at, which is several commits later than the one this
+entry was written on: the release APK is 6 800 904 bytes, 81.1 % of the budget — 29 640 bytes smaller than the
+figure above, because the device-calendar module was removed after this waiver was written. `timingTests` at
+`-Ptaqvim.timingScale=2`, `:app:checkReleaseBaselineProfile` and `:app:checkBenchmarkBaselineProfile` are green on
+it. This is a correction of the host figures, not a new acceptance and not a measurement: the reason for the waiver
+is unchanged, and so is what it does not claim.
+
 ### v1.2.0
 Accepted by: Saman Sohani, 2026-10-10
 Why: the hosted runner cannot measure this app — its control benchmarks, which time fixed synthetic work the app
