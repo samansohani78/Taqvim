@@ -76,7 +76,7 @@ class TimelineScreenshotTest(
         val timed =
             listOf(
                 timed("team", 600 + shift, 690 + shift, title = "Team meeting"),
-                timed("call", 630 + shift, 720 + shift, TimelineEventKind.DEVICE, "Call"),
+                timed("call", 630 + shift, 720 + shift, TimelineEventKind.SUBSCRIPTION, "Call"),
                 timed("note", 645 + shift, 675 + shift, TimelineEventKind.SUBSCRIPTION, "Class"),
                 timed("lunch", 780, 840, TimelineEventKind.PERSONAL, "Lunch"),
             ).filter { it.startMinute >= 0 && it.endMinute <= TimelineGeometry.MINUTES_PER_DAY }

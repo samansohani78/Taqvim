@@ -64,7 +64,6 @@ class ReligiousCategoryFilterTest {
             inputs =
                 EventInputs(
                     personal = PersonalEventsSource { personal },
-                    device = DeviceEventsSource { MutableStateFlow(emptyList()) },
                     ics = IcsEventsSource { MutableStateFlow(emptyList()) },
                 ),
             clock = clock,

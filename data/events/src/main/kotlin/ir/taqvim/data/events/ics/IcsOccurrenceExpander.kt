@@ -12,7 +12,7 @@ import ir.taqvim.core.ics.IcsEvent
 import ir.taqvim.core.ics.RecurrenceEngine
 import ir.taqvim.core.ics.toRecurrenceRule
 import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.devicecalendar.InstantWindow
+import ir.taqvim.data.events.InstantWindow
 import kotlin.time.Instant
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate

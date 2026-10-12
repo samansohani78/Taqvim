@@ -55,7 +55,6 @@ class WidgetDayDependencyTest {
             isHoliday = true,
             isWeekend = false,
             personal = emptyList(),
-            device = emptyList(),
             ics = emptyList(),
         )
 

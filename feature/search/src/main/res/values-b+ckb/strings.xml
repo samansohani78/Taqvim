@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">بۆنەی فەرمی</string>
   <string name="search_kind_personal">ڕووداوی من</string>
-  <string name="search_kind_device">ڕۆژژمێری ئامێر</string>
   <string name="search_kind_subscription">ڕۆژژمێری بەشداربوو</string>
   <string name="search_settings_language">زمان</string>
   <string name="search_settings_language_keywords">زمان|وەرگێڕان|فارسی|ئینگلیزی|locale</string>

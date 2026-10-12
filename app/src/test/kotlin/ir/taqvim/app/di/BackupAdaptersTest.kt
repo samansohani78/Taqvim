@@ -224,7 +224,7 @@ class BackupAdaptersTest {
             val privacy = RoomPrivacyDataSource(database, preferences)
 
             privacy.storedData().first() shouldBe
-                storedData(StoredRowCounts(1, 0, 0, 0, 1), hasPlace = true, recentSearches = 2)
+                storedData(StoredRowCounts(1, 0, 0, 1), hasPlace = true, recentSearches = 2)
 
             StoredDataKind.entries.forEach { kind -> privacy.clear(kind) shouldBe kind.clearable }
 
@@ -234,7 +234,6 @@ class BackupAdaptersTest {
                     StoredData(StoredDataKind.REMINDERS, 0),
                     StoredData(StoredDataKind.SUBSCRIPTIONS, 0),
                     StoredData(StoredDataKind.LOCATION, 0),
-                    StoredData(StoredDataKind.DEVICE_CALENDAR_CACHE, 0),
                     StoredData(StoredDataKind.DIAGNOSTICS, 0),
                     StoredData(StoredDataKind.RECENT_SEARCHES, 0),
                 )
@@ -247,7 +246,6 @@ class BackupAdaptersTest {
             val source = PlatformPermissionStatusSource(context)
             val before = source.statuses().first().associate { it.kind to it.granted }
             before[PermissionKind.LOCATION] shouldBe false
-            before[PermissionKind.CALENDAR] shouldBe false
             before.keys shouldBe PermissionKind.entries.toSet()
 
             shadowOf(context as Application).grantPermissions(Manifest.permission.ACCESS_COARSE_LOCATION)

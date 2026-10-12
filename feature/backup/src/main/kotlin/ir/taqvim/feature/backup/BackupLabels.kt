@@ -63,7 +63,6 @@ internal object BackupLabels {
             StoredDataKind.REMINDERS -> R.string.privacy_data_reminders
             StoredDataKind.SUBSCRIPTIONS -> R.string.privacy_data_subscriptions
             StoredDataKind.LOCATION -> R.string.privacy_data_location
-            StoredDataKind.DEVICE_CALENDAR_CACHE -> R.string.privacy_data_device_calendar
             StoredDataKind.DIAGNOSTICS -> R.string.privacy_data_diagnostics
             StoredDataKind.RECENT_SEARCHES -> R.string.privacy_data_searches
         }
@@ -79,8 +78,6 @@ internal object BackupLabels {
             StoredDataKind.SUBSCRIPTIONS -> R.string.privacy_where_subscriptions
 
             StoredDataKind.LOCATION, StoredDataKind.RECENT_SEARCHES -> R.string.privacy_where_settings
-
-            StoredDataKind.DEVICE_CALENDAR_CACHE -> R.string.privacy_where_device_calendar
         }
 
     /** The clear action of [kind], or `null` when the dashboard cannot clear it. */
@@ -88,7 +85,6 @@ internal object BackupLabels {
     fun clearAction(kind: StoredDataKind): Int? =
         when (kind) {
             StoredDataKind.LOCATION -> R.string.privacy_clear_location
-            StoredDataKind.DEVICE_CALENDAR_CACHE -> R.string.privacy_clear_device_calendar
             StoredDataKind.DIAGNOSTICS -> R.string.privacy_clear_diagnostics
             StoredDataKind.RECENT_SEARCHES -> R.string.privacy_clear_searches
             StoredDataKind.PERSONAL_EVENTS, StoredDataKind.REMINDERS, StoredDataKind.SUBSCRIPTIONS -> null
@@ -98,7 +94,6 @@ internal object BackupLabels {
     fun permissionTitle(kind: PermissionKind): Int =
         when (kind) {
             PermissionKind.LOCATION -> R.string.privacy_permission_location
-            PermissionKind.CALENDAR -> R.string.privacy_permission_calendar
             PermissionKind.NOTIFICATIONS -> R.string.privacy_permission_notifications
             PermissionKind.EXACT_ALARMS -> R.string.privacy_permission_exact_alarms
             PermissionKind.DO_NOT_DISTURB -> R.string.privacy_permission_dnd
@@ -108,7 +103,6 @@ internal object BackupLabels {
     fun permissionWhy(kind: PermissionKind): Int =
         when (kind) {
             PermissionKind.LOCATION -> R.string.privacy_why_location
-            PermissionKind.CALENDAR -> R.string.privacy_why_calendar
             PermissionKind.NOTIFICATIONS -> R.string.privacy_why_notifications
             PermissionKind.EXACT_ALARMS -> R.string.privacy_why_exact_alarms
             PermissionKind.DO_NOT_DISTURB -> R.string.privacy_why_dnd

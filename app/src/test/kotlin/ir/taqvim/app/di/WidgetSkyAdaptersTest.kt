@@ -70,7 +70,6 @@ class WidgetSkyAdaptersTest {
             isHoliday = false,
             isWeekend = false,
             personal = emptyList(),
-            device = emptyList(),
             ics = emptyList(),
         )
 

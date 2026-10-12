@@ -168,7 +168,7 @@ class DayDetailsScreenTest {
             .onNode(hasContentDescription(resources.getString(R.string.calendar_share_day)) and hasClickAction())
             .assertExists()
         chipDescription(resources, DayDetailsSamples.official) shouldBe "Nowruz, Official calendar of Iran, Holiday"
-        chipDescription(resources, DayDetailsSamples.device) shouldBe "Meeting, Device calendar"
+        chipDescription(resources, DayDetailsSamples.personal) shouldBe "Birthday, Personal event"
         chipDescription(resources, DayDetailsSamples.subscription) shouldBe "Talk, Subscribed calendar"
     }
 
@@ -208,10 +208,10 @@ class DayDetailsScreenTest {
     }
 
     @Test
-    fun `personal, device and subscribed events open instead of showing a source`() {
+    fun `personal and subscribed events open instead of showing a source`() {
         show(DayDetailsSamples.content(tab = DayDetailsTab.EVENTS))
 
-        listOf(DayDetailsSamples.personal, DayDetailsSamples.device, DayDetailsSamples.subscription).forEach { event ->
+        listOf(DayDetailsSamples.personal, DayDetailsSamples.subscription).forEach { event ->
             composeRule.onNode(hasContentDescription(chipDescription(resources, event))).performClick()
             actions shouldContain CalendarAction.OpenEvent(event)
         }

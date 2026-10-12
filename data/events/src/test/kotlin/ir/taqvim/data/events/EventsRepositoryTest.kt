@@ -31,9 +31,7 @@ import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.PersonalEventEntity
-import ir.taqvim.data.devicecalendar.DeviceEvent
-import ir.taqvim.data.devicecalendar.DeviceEventMapping
-import ir.taqvim.data.devicecalendar.InstantWindow
+import ir.taqvim.data.events.InstantWindow
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Instant
@@ -47,7 +45,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import org.junit.jupiter.api.Test
 
-/** T-305 (U): dataset, personal, device and iCalendar events per day, and re-emission on preference changes. */
+/** T-305 (U): dataset, personal and iCalendar events per day, and re-emission on preference changes. */
 class EventsRepositoryTest {
     private val tehran = TimeZone.of("Asia/Tehran")
     private val nowruz = PersianCalendarSystem.toJdn(CalendarDate(CalendarSystem.PERSIAN, 1405, 1, 1))
@@ -63,7 +61,6 @@ class EventsRepositoryTest {
 
     private val settings = MutableStateFlow(settings())
     private val personal = MutableStateFlow<List<PersonalEventRecord>>(emptyList())
-    private val device = MutableStateFlow<List<DeviceEvent>>(emptyList())
     private val ics = MutableStateFlow<List<IcsEventCacheEntity>>(emptyList())
     private val icsWindows = mutableListOf<InstantWindow>()
     private val repository =
@@ -72,7 +69,6 @@ class EventsRepositoryTest {
             inputs =
                 EventInputs(
                     personal = PersonalEventsSource { personal },
-                    device = DeviceEventsSource { device },
                     ics =
                         IcsEventsSource { window ->
                             icsWindows += window
@@ -158,7 +154,8 @@ class EventsRepositoryTest {
                 disabled.isHoliday shouldBe false
                 disabled.official.shouldBeEmpty()
 
-                device.value = listOf(deviceEvent(nowruz + 3))
+                // An input change on a day this flow does not show must not re-emit it.
+                ics.value = listOf(icsEvent("far-off", "2026-03-24T06:00:00Z", "2026-03-24T07:00:00Z", false))
                 expectNoEvents()
                 cancelAndIgnoreRemainingEvents()
             }
@@ -255,7 +252,6 @@ class EventsRepositoryTest {
                     inputs =
                         EventInputs(
                             personal = PersonalEventsSource { personal },
-                            device = DeviceEventsSource { device },
                             ics = IcsEventsSource { ics },
                         ),
                     clock = clock,
@@ -316,7 +312,6 @@ class EventsRepositoryTest {
                         personalRanges += days
                         personal
                     },
-                device = DeviceEventsSource { device },
                 ics = IcsEventsSource { ics },
             ),
         clock = clock,
@@ -330,10 +325,9 @@ class EventsRepositoryTest {
     ) = event(id, start, system = CalendarSystem.NEPALI)
 
     @Test
-    fun `device and iCalendar events are dated in the collection zone`(): Unit =
+    fun `iCalendar events are dated in the collection zone`(): Unit =
         runTest {
             val range = nowruz - 1..nowruz
-            device.value = listOf(deviceEvent(nowruz))
             ics.value =
                 listOf(
                     icsEvent("all-day", "2026-03-21T00:00:00Z", "2026-03-22T00:00:00Z", allDay = true),
@@ -343,29 +337,15 @@ class EventsRepositoryTest {
 
             val (eve, newYear) = repository.days(range).first()
 
-            newYear.device.map { it.eventId } shouldBe listOf(7L)
             newYear.ics.map { it.uid } shouldBe listOf("all-day", "late")
             eve.ics.map { it.uid } shouldBe listOf("eve")
-            eve.device.shouldBeEmpty()
-            icsWindows shouldBe listOf(DeviceEventMapping.window(range, tehran))
+            icsWindows shouldBe listOf(EventWindows.window(range, tehran))
         }
 
     @Test
     fun `an empty day range is rejected`() {
         shouldThrow<IllegalArgumentException> { repository.days(JdnRange(Jdn(10), Jdn(5))) }
     }
-
-    private fun deviceEvent(day: Jdn) =
-        DeviceEvent(
-            eventId = 7,
-            calendarId = 1,
-            title = "device",
-            begin = now,
-            end = now,
-            allDay = true,
-            colorArgb = null,
-            days = day..day,
-        )
 
     private fun icsEvent(
         uid: String,

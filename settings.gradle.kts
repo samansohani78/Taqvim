@@ -67,7 +67,6 @@ listOf(
     "preferences",
     "database",
     "events",
-    "device-calendar",
     "location",
     "scheduler",
 ).forEach { include(":data:$it") }

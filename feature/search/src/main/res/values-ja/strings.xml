@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">公式の記念日</string>
   <string name="search_kind_personal">自分のイベント</string>
-  <string name="search_kind_device">端末のカレンダー</string>
   <string name="search_kind_subscription">購読中のカレンダー</string>
   <string name="search_settings_language">言語</string>
   <string name="search_settings_language_keywords">ロケール|翻訳|ペルシア語|英語|言語</string>

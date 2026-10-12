@@ -8,13 +8,12 @@ import ir.taqvim.core.calendar.TodayProvider
 import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.model.Jdn
-import ir.taqvim.data.database.DeviceEventCacheEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.devicecalendar.DeviceEventMapping
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
+import ir.taqvim.data.events.EventWindows
 import ir.taqvim.data.events.PersonalEventDays
 import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.generated.OfficialEvents
+import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.search.SearchEvent
 import ir.taqvim.feature.search.SearchEventKind
@@ -42,20 +41,18 @@ internal class PreferencesSearchSettingsSource(
         }.distinctUntilChanged()
 }
 
-/** The stored and cached events the search reads, each loaded when a query runs (T-601, T-602, T-1003). */
+/** The stored and cached events the search reads, each loaded when a query runs (T-601, T-1003). */
 internal class SearchEventStores(
     /** Every personal event with its recurrence, exception days and overridden occurrences. */
     val personal: suspend () -> List<PersonalEventRecord>,
-    /** Cached device-calendar instances overlapping `[from, to)` epoch milliseconds. */
-    val device: suspend (from: Long, to: Long) -> List<DeviceEventCacheEntity>,
     /** Cached occurrences of enabled subscriptions overlapping `[from, to)` epoch milliseconds. */
     val subscriptions: suspend (from: Long, to: Long) -> List<IcsEventCacheEntity>,
 )
 
 /**
  * [SearchEventSource] (T-804) over every event source: official events through the T-304 index with their aliases,
- * titles in other languages and next occurrence, then personal, device and subscription events whose title contains
- * the query. Device and subscription events are searched from today on, over [window] days, in the device [zone]. A
+ * titles in other languages and next occurrence, then personal and subscription events whose title contains the
+ * query. Subscription events are searched from today on, over [window] days, in the device [zone]. A
  * personal event's day is its next occurrence as the calendar shows it (ADR-0031), with recurring events expanded
  * with the user's personal [calendars] over [window] days. At most `limit` events come from each source; the screen
  * ranks them all.
@@ -84,11 +81,9 @@ internal class CompositeSearchEventSource(
         val toMillis = (from + window).startMillis(zone)
         val matches: (String) -> Boolean = { SearchMatcher.key(it).contains(key) }
         val personal = stores.personal().filter { matches(it.event.title) }.take(limit)
-        val device = stores.device(fromMillis, toMillis).filter { matches(it.title) }.take(limit)
         val subscriptions = stores.subscriptions(fromMillis, toMillis).filter { matches(it.summary) }.take(limit)
         return officialEvents(query, languageCode, limit, from) +
             personal(personal, from, zone) +
-            device.map { it.toSearchEvent(from, zone) } +
             subscriptions.map { it.toSearchEvent(from, zone) }
     }
 
@@ -136,21 +131,10 @@ internal class CompositeSearchEventSource(
         }
 
     companion object {
-        /** Days ahead searched in the device and subscription caches. */
+        /** Days ahead searched in the subscription cache. */
         const val DEFAULT_WINDOW_DAYS: Int = 366
     }
 }
-
-private fun DeviceEventCacheEntity.toSearchEvent(
-    today: Jdn,
-    zone: TimeZone,
-): SearchEvent =
-    SearchEvent(
-        eventId.toString(),
-        SearchEventKind.DEVICE,
-        title,
-        nextDay = dayOf(beginEpochMillis, endEpochMillis, allDay, today, zone),
-    )
 
 private fun IcsEventCacheEntity.toSearchEvent(
     today: Jdn,
@@ -164,8 +148,8 @@ private fun IcsEventCacheEntity.toSearchEvent(
     )
 
 /**
- * The day a cached instance is shown on, dated like the calendar (`DeviceEventMapping.days`: all-day rows by their UTC
- * dates, timed rows in [zone]), never before [today] for an instance that started earlier and still overlaps.
+ * The day a cached occurrence is shown on, dated like the calendar ([EventWindows.days]: all-day rows by their UTC
+ * dates, timed rows in [zone]), never before [today] for one that started earlier and still overlaps.
  */
 private fun dayOf(
     beginEpochMillis: Long,
@@ -173,4 +157,4 @@ private fun dayOf(
     allDay: Boolean,
     today: Jdn,
     zone: TimeZone,
-): Jdn = maxOf(DeviceEventMapping.days(beginEpochMillis, endEpochMillis, allDay, zone).start, today)
+): Jdn = maxOf(EventWindows.days(beginEpochMillis, endEpochMillis, allDay, zone).start, today)

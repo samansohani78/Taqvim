@@ -22,10 +22,8 @@ import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.toEntity
-import ir.taqvim.data.devicecalendar.CalendarInstancesSource
-import ir.taqvim.data.devicecalendar.DeviceCalendarRepository
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
-import ir.taqvim.data.devicecalendar.InstantWindow
+import ir.taqvim.data.events.InstantWindow
+import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import kotlin.time.Clock
 import kotlin.time.Instant
@@ -136,9 +134,6 @@ class RoomEventInputsTest {
                             single { db.personalEventDao() }
                             single { db.icsSubscriptionDao() }
                             single {
-                                DeviceCalendarRepository(CalendarInstancesSource(application), db.deviceEventDao())
-                            }
-                            single {
                                 UserPreferencesRepository(
                                     UserPreferencesRepository.createDataStore(application, storeScope) { "fa" },
                                 )
@@ -153,7 +148,6 @@ class RoomEventInputsTest {
 
             day.isHoliday shouldBe true
             day.personal.map { it.title } shouldBe listOf("event")
-            day.device shouldBe emptyList()
         }
 
     private companion object {

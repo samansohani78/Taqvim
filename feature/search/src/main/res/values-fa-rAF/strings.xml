@@ -21,7 +21,6 @@
     <string name="search_separator">"، "</string>
     <string name="search_kind_official">مناسبت رسمی</string>
     <string name="search_kind_personal">رویداد من</string>
-    <string name="search_kind_device">تقویم دستگاه</string>
     <string name="search_kind_subscription">تقویم اشتراکی</string>
 
     <!-- Searchable settings: titles and |-separated synonyms -->

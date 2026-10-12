@@ -71,7 +71,7 @@ BLOCKED row is T-1902, whose deliverable is running a beta and cannot start with
 | T-504 | Workday engine (F-07) | DONE | d19884b | U: WorkdayCalculatorTest — 100 cases (50 addWorkdays, 50 workdaysBetween) against an independent java.time loop, next/previous/zero semantics, profile options (sources, … | — |
 | T-600 | Proto DataStore | DONE | 83f9182 | U: UserPreferencesMappingTest — defaults for all 24 languages, proto ↔ model mapping, table-driven migrations · R: UserPreferencesRepositoryTest — DataStore read/write … | — |
 | T-601 | Room schema & DAOs | DONE | c2e5b80, 6928708 | R: PersonalDaoTest, WorkAndCacheDaoTest — in-memory DAO CRUD with Turbine flows · R: TaqvimDatabaseMigrationTest — MigrationTestHelper validates every exported schema up … | — |
-| T-602 | Device calendar adapter | DONE | ca9a397, 5f1d9db | U: DeviceEventMappingTest (6) — all-day event keeps its date in UTC+3:30, UTC−8, Asia/Tehran, America/Los_Angeles; timed events in the device zone; property: every … | — |
+| T-602 | Device calendar adapter — **withdrawn** (ADR-0051) | REMOVED | ca9a397, 5f1d9db | U: DeviceEventMappingTest (6) — all-day event keeps its date in UTC+3:30, UTC−8, Asia/Tehran, America/Los_Angeles; timed events in the device zone; property: every … | Removed on 2026-10-12: Taqvim does not read the device calendar. `READ_CALENDAR` is gone from every manifest, the `:data:device-calendar` module and `device_events_cache` are deleted (schema 8 → 9 drops the table on upgrade), and the device-calendar event kind is gone from the calendar, day details, agenda, timeline, search, the widgets and the privacy dashboard. `DeviceTimeZone` moved to `:data:preferences` and the instant-to-day rules to `:data:events` as `EventWindows`, both still needed by the subscription path. Enforced by `SecurityKonsistTest` (no manifest requests a calendar permission; no production source names the provider) and `:app:auditReleasePermissions` (merged release manifest against `security/requested-permissions.txt`), each with planted-violation coverage. ICS import, export and subscribed feeds are unchanged. See ADR-0051. |
 | T-603 | Location data | DONE | c2e1528 | U: CityTableParserTest (3) — any column order, empty localized column = English spelling, prs→fa fallback, bad rows rejected with line number · U: CityCatalogTest (4) — … | districts pending |
 | T-604 | Scheduler | DONE | 4fbcf1e, 762c432 | U: AlarmPoliciesTest (5) — skip if fired > 15 min late (exactly 15 min is on time), dedup, reconcile, restore drops late alarms and duplicates · U: ReschedulePolicyTest … | — |
 | T-605 | Backup/restore (F-11) | DONE | d594bea, c6cdb01, d1f2863 | U: BackupCryptoTest (4) — PBKDF2-HMAC-SHA256 and SP 800-108 KDF against independently computed vectors (ASCII and UTF-8 passphrases), AES-GCM rejects wrong … | — |
@@ -1123,3 +1123,61 @@ it is noise. It has not run on hardware yet.
 - The occasional-lag reproduction on the unbenchmarked screens, with a trace captured while the stutter happens.
 - A native Azerbaijani speaker for the two flagged strings, and translators for the 22 languages carrying the
   corrected-in-English sentence.
+
+## Removing the device calendar (2026-10-12, ADR-0051)
+
+`READ_CALENDAR` is gone from the product, by decision rather than by refactor. The reasoning is in
+[ADR-0051](adr/0051-taqvim-does-not-read-the-device-calendar.md); what follows is what it cost and what now holds it.
+
+### Removed
+
+The `:data:device-calendar` module (provider query, content observer, repository, mapping), `device_events_cache`
+with its DAO and its row on the privacy dashboard, the `DeviceEventsSource` input of `EventsRepository`, the
+`device` field of `DayEvents` and `EventInputs`, the device event kind on the calendar, day details, agenda,
+timeline, search and the event widgets, its colour in the month grid and its indicator in the cell, the
+`PermissionKind.CALENDAR` row and the `StoredDataKind.DEVICE_CALENDAR_CACHE` row of the privacy screen, the
+`device_events_cache` entry in the widget invalidation set, `ACTION_VIEW` on `CalendarContract.Events`, and 192
+string elements across the launch languages.
+
+Two things in that module were never about the calendar and survived it: `DeviceTimeZone` moved to
+`:data:preferences`, and the instant-to-civil-day rules moved to `:data:events` as `EventWindows`. The subscription
+path still needs both.
+
+### Upgrades
+
+Schema migration 8 → 9 drops `device_events_cache`, so an installation that had the permission loses its copy of
+the user's calendar on upgrade rather than keeping an orphan table. There is no preference to migrate: the feature
+never had a setting, it was on whenever the permission was granted, so there is no stale value to repair and no
+removed enum constant that an old store could still hold.
+
+### What enforces it
+
+| Check | Reads | Fails when |
+|---|---|---|
+| `SecurityKonsistTest.no manifest requests a calendar permission` | every `src/main/AndroidManifest.xml` | any module declares `READ_CALENDAR` or `WRITE_CALENDAR` (a `tools:node="remove"` entry is not a request) |
+| `SecurityKonsistTest.no production code reaches the calendar provider` | every `src/main/**/*.kt` | any source names `CalendarContract`, the provider authority, or either permission constant |
+| `:app:auditReleasePermissions` | the merged **release** manifest | the requested set differs from `security/requested-permissions.txt` in either direction, or either file names a calendar permission |
+| `ExportedComponentsTest.noCalendarPermissionIsRequested` | the debug unit-test manifest and the same allowlist | as above, for the build the unit tests see |
+| `TaqvimDatabaseMigrationTest.migratingToNineDrops…` | a real v8 database | the copy survives the upgrade, or a personal event does not |
+
+Each has planted-violation coverage, so none can pass by reading nothing. That matters here more than usual: the
+first run of the manifest rule **passed against a tree with `READ_CALENDAR` planted in it**, because `:konsist:test`
+did not declare manifests as Gradle inputs and was served from cache. The input list now includes
+`**/src/main/AndroidManifest.xml`, `**/src/main/res/xml/*.xml` and the baseline profiles — which also means the
+T-1804 exported-component, network and FileProvider rules, and the T-1800 profile freshness check, were cache-blind
+until 2026-10-12 and are not any more.
+
+### What this does not claim
+
+Taqvim still handles calendar data: the user's own events, `.ics` files they import or export, and feeds they
+subscribe to. None of that touches the device's calendar database. "No calendar integration" would be false; "does
+not read your device calendar" is the claim, and it is what `docs/SECURITY.md` and ADR-0051 say.
+
+### Performance
+
+Nothing here was measured on a device, and the removal is not claimed as a speed-up. What can be said from the
+code: `EventsRepository` now combines two input flows instead of three, so every day assembly waits on one fewer
+source; the widget invalidation set lost a table; and `WidgetDataNeedsTest` counts the loads each widget kind makes.
+`benchmark/METHODOLOGY.md` states, per benchmark, where each timer starts and stops and which numbers are absolute,
+and it says plainly that time-to-first-useful-widget-render is not measured anywhere and cannot be from inside this
+process.

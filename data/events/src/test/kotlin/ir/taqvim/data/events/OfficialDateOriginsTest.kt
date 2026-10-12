@@ -66,7 +66,6 @@ class OfficialDateOriginsTest {
         inputs =
             EventInputs(
                 personal = PersonalEventsSource { flowOf(emptyList()) },
-                device = DeviceEventsSource { flowOf(emptyList()) },
                 ics = IcsEventsSource { flowOf(emptyList()) },
             ),
         clock = clock,

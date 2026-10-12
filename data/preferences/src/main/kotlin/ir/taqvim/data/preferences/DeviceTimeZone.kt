@@ -2,7 +2,7 @@
  * Copyright (c) 2026 Saman Sohani. All Rights Reserved.
  * Proprietary and confidential. See the LICENSE file in the repository root.
  */
-package ir.taqvim.data.devicecalendar
+package ir.taqvim.data.preferences
 
 import android.content.BroadcastReceiver
 import android.content.Context

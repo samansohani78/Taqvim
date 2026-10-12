@@ -281,7 +281,7 @@ class CalendarCompletenessTest {
     ): List<String> {
         val view = OfficialView(OfficialCatalog(), settings)
         val assembler = DayEventsAssembler(Clock.System, tehran)
-        val snapshot = Snapshot(view, emptyList(), emptyList(), emptyList())
+        val snapshot = Snapshot(view, emptyList(), emptyList())
         return (FIRST_YEAR..LAST_YEAR).flatMap { year ->
             val range = persianNewYear(year)..(persianNewYear(year + 1) - 1)
             val assembled = assembler.assemble(range, snapshot)

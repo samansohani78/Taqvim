@@ -53,8 +53,8 @@ internal object BackupFixtures {
         listOf(
             StoredData(StoredDataKind.PERSONAL_EVENTS, 12),
             StoredData(StoredDataKind.REMINDERS, 20),
+            StoredData(StoredDataKind.SUBSCRIPTIONS, 140),
             StoredData(StoredDataKind.LOCATION, 1),
-            StoredData(StoredDataKind.DEVICE_CALENDAR_CACHE, 140),
             StoredData(StoredDataKind.RECENT_SEARCHES, 4),
         )
 

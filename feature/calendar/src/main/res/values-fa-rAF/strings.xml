@@ -95,7 +95,6 @@
   <string name="calendar_source_international">روز جهانی</string>
   <string name="calendar_source_ancient_iran">جشن ایران باستان</string>
   <string name="calendar_source_personal">رویداد شخصی</string>
-  <string name="calendar_source_device">تقویم دستگاه</string>
   <string name="calendar_source_subscription">تقویم اشتراکی</string>
   <string name="calendar_citation_page">%1$s، صفحهٔ %2$s</string>
   <string name="calendar_no_citation">منبعی ثبت نشده است</string>

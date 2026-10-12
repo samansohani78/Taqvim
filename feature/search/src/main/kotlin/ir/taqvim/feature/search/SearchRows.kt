@@ -140,6 +140,5 @@ private fun SearchEventKind.label(): Int =
     when (this) {
         SearchEventKind.OFFICIAL -> R.string.search_kind_official
         SearchEventKind.PERSONAL -> R.string.search_kind_personal
-        SearchEventKind.DEVICE -> R.string.search_kind_device
         SearchEventKind.SUBSCRIPTION -> R.string.search_kind_subscription
     }

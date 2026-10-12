@@ -32,7 +32,7 @@ class MonthPrintDocumentTest {
             week = { "W$it" },
         )
     private val printTexts = MonthPrintTexts(events = "MONTH EVENTS", noEvents = "NO EVENTS", separator = " | ")
-    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Magenta)
+    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Magenta)
     private val isoWeekdays = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
 
     /** 21 Farvardin 1405. */

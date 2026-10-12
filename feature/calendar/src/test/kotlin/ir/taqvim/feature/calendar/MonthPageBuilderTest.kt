@@ -41,7 +41,7 @@ class MonthPageBuilderTest {
             newEvent = "NEW",
             week = { "W$it" },
         )
-    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Magenta)
+    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Magenta)
     private val isoWeekdays = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
 
     /** 21 Farvardin 1405. */
@@ -163,8 +163,10 @@ class MonthPageBuilderTest {
         val holidayEvents =
             listOf(
                 event(DayEventKind.OFFICIAL, holiday = true),
+                // Four distinct colours, because the cell shows distinct colours and then caps at three: a fourth
+                // event in a colour already present would not exercise the cap at all.
+                event(DayEventKind.OFFICIAL),
                 event(DayEventKind.PERSONAL),
-                event(DayEventKind.DEVICE),
                 event(DayEventKind.SUBSCRIPTION),
             )
         val events =
@@ -177,7 +179,7 @@ class MonthPageBuilderTest {
         val fridayCell = page.grid.cells[page.days.indexOf(friday)]
 
         holidayCell.isHoliday shouldBe true
-        holidayCell.indicators shouldContainExactly listOf(Color.Red, Color.Green, Color.Yellow)
+        holidayCell.indicators shouldContainExactly listOf(Color.Red, Color.Blue, Color.Green)
         holidayCell.contentDescription shouldBe "${longDate(holiday)} | HOLIDAY | EVENTS 4 ${digits(4)}"
         fridayCell.isHoliday shouldBe true
         fridayCell.contentDescription shouldBe longDate(friday)

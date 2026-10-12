@@ -6,9 +6,9 @@ package ir.taqvim.wear
 
 import android.app.Application
 import android.content.Context
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.location.CityCatalog
+import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import java.util.Locale
 import kotlin.time.Clock

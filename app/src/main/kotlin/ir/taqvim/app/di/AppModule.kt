@@ -11,16 +11,11 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.data.database.AlarmKind
-import ir.taqvim.data.database.DeviceEventDao
 import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.PersonalEventDao
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.WorkdayProfileDao
 import ir.taqvim.data.database.backup.BackupService
-import ir.taqvim.data.devicecalendar.CalendarInstancesSource
-import ir.taqvim.data.devicecalendar.DeviceCalendarRepository
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
-import ir.taqvim.data.devicecalendar.InstancesSource
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.eventsDataModule
 import ir.taqvim.data.events.ics.SubscriptionRefreshScheduler
@@ -31,6 +26,7 @@ import ir.taqvim.data.events.toRecord
 import ir.taqvim.data.location.DeviceLocator
 import ir.taqvim.data.location.PlatformGeocoder
 import ir.taqvim.data.preferences.DeviceLanguages
+import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.data.scheduler.AlarmDelivery
 import ir.taqvim.data.scheduler.AlarmInputWatcher
@@ -132,7 +128,6 @@ val appDataModule =
         single { get<TaqvimDatabase>().officialReminderDao() }
         single { get<TaqvimDatabase>().workdayProfileDao() }
         single { get<TaqvimDatabase>().icsSubscriptionDao() }
-        single { get<TaqvimDatabase>().deviceEventDao() }
         single {
             val dataStore =
                 UserPreferencesRepository.createDataStore(
@@ -143,7 +138,6 @@ val appDataModule =
                 )
             UserPreferencesRepository(dataStore)
         }
-        single<InstancesSource> { CalendarInstancesSource(androidContext()) }
         // Review I06: one device time-zone stream for the process; its replay is dropped when nobody listens, so a
         // new collector never starts from a zone that changed meanwhile.
         single(named(DEVICE_ZONE_SCOPE)) { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
@@ -155,7 +149,6 @@ val appDataModule =
                 replay = 1,
             )
         }
-        single { DeviceCalendarRepository(get(), get(), zones = get(named(DeviceTimeZone.QUALIFIER))) }
         // T-1003: iCalendar documents and periodic subscription refresh; the worker factory is installed by the
         // application's WorkManager configuration.
         single { androidContext().contentResolver }
@@ -252,7 +245,6 @@ val searchTimelineAthanPortsModule =
         single<SearchEventSource> {
             val preferences = get<UserPreferencesRepository>()
             val personal = get<PersonalEventDao>()
-            val devices = get<DeviceEventDao>()
             val feeds = get<IcsSubscriptionDao>()
             CompositeSearchEventSource(
                 official =
@@ -264,7 +256,6 @@ val searchTimelineAthanPortsModule =
                 stores =
                     SearchEventStores(
                         personal = { personal.allDetails().map { it.toRecord() } },
-                        device = { from, to -> devices.observeInRange(from, to).first() },
                         subscriptions = { from, to -> feeds.observeEvents(from, to).first() },
                     ),
                 today = get(),

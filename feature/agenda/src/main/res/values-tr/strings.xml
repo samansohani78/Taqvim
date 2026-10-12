@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">Bu ay etkinlik yok</string>
   <string name="agenda_kind_official">Resmî</string>
   <string name="agenda_kind_personal">Kişisel</string>
-  <string name="agenda_kind_device">Cihaz takvimi</string>
   <string name="agenda_kind_subscription">Abonelik</string>
   <string name="agenda_event_description">%1$s, %2$s</string>
   <string name="agenda_export_title">Ajanda: %1$s – %2$s</string>

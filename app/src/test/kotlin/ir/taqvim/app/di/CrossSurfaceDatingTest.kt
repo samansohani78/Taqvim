@@ -74,7 +74,6 @@ class CrossSurfaceDatingTest {
             inputs =
                 EventInputs(
                     personal = { flowOf(emptyList()) },
-                    device = { flowOf(emptyList()) },
                     ics = { flowOf(emptyList()) },
                 ),
             clock = Clock.System,

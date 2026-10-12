@@ -19,12 +19,12 @@ import ir.taqvim.data.database.ShiftRotationRecordEntity
 import ir.taqvim.data.database.WorkdayProfileDao
 import ir.taqvim.data.database.WorkdayProfileEntity
 import ir.taqvim.data.database.toProfile
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.EventsSettings
 import ir.taqvim.data.events.OfficialEventView
 import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.events.toEventsSettings
+import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.calendar.ShiftScheduleSource
 import ir.taqvim.feature.tools.NamedWorkdayProfile

@@ -31,7 +31,6 @@ data class TimelineSettings(
 enum class TimelineEventKind {
     OFFICIAL,
     PERSONAL,
-    DEVICE,
     SUBSCRIPTION,
 }
 

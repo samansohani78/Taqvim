@@ -19,6 +19,20 @@ object ManifestSecurityRules {
     private val BROAD_PATHS = setOf("", ".", "/")
     private const val INTERNET = "android.permission.INTERNET"
 
+    /** Calendar provider permissions. ADR-0051: Taqvim requests neither, and no manifest may bring one back. */
+    private val CALENDAR_PERMISSIONS =
+        setOf("android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR")
+
+    /**
+     * Ways production code could reach the calendar provider.
+     *
+     * The permission name alone is not enough: a `ContentResolver` query against the provider authority needs
+     * it, but the string that names the permission can be absent while the query is still written. These are
+     * the shapes that read it — the contract class, the authority, and the permission constant in any form.
+     */
+    private val CALENDAR_PROVIDER_REFERENCES =
+        listOf("CalendarContract", "com.android.calendar", "READ_CALENDAR", "WRITE_CALENDAR")
+
     /** `manifest: component` for every component in a source manifest that does not declare `android:exported`. */
     fun componentsWithoutExported(root: File): List<String> =
         sourceManifests(root).flatMap { manifest ->
@@ -32,6 +46,32 @@ object ManifestSecurityRules {
         sourceManifests(root)
             .filter { manifest -> permissions(manifest).contains(INTERNET) }
             .map { it.relativeTo(root).invariantSeparatorsPath }
+
+    /**
+     * Source manifests (relative paths) that request a calendar permission.
+     *
+     * A `tools:node="remove"` entry is not a request, so a manifest taking a library's permission out does not
+     * appear here — which is also why this cannot be satisfied by removal alone: nothing may declare one.
+     */
+    fun manifestsRequestingCalendarAccess(root: File): List<String> =
+        sourceManifests(root)
+            .filter { manifest -> permissions(manifest).any { it in CALENDAR_PERMISSIONS } }
+            .map { it.relativeTo(root).invariantSeparatorsPath }
+
+    /**
+     * `file: reference` for every main Kotlin source that names the calendar provider (ADR-0051).
+     *
+     * This is the check that a removal actually removed something. Deleting the permission from a manifest while
+     * the query code stays is a build that silently reads nothing on a device where another app holds the
+     * permission for a shared uid, and a single line re-adding the permission turns it back on.
+     */
+    fun calendarProviderReaders(root: File): List<String> =
+        mainKotlinFiles(root).flatMap { file ->
+            val text = file.readText()
+            CALENDAR_PROVIDER_REFERENCES
+                .filter { text.contains(it) }
+                .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
+        }
 
     /** Main Kotlin sources that create a `PendingIntent` without `FLAG_IMMUTABLE`, or with `FLAG_MUTABLE`. */
     fun mutablePendingIntents(root: File): List<String> =

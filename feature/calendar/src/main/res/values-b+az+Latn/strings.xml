@@ -94,7 +94,6 @@
   <string name="calendar_source_international">Beynəlxalq gün</string>
   <string name="calendar_source_ancient_iran">Qədim İran bayramı</string>
   <string name="calendar_source_personal">Şəxsi tədbir</string>
-  <string name="calendar_source_device">Cihaz təqvimi</string>
   <string name="calendar_source_subscription">Abunə olunmuş təqvim</string>
   <string name="calendar_citation_page">%1$s, səhifə %2$s</string>
   <string name="calendar_no_citation">Mənbə qeyd olunmayıb</string>

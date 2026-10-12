@@ -88,7 +88,6 @@
   <string name="calendar_source_international">Hari internasional</string>
   <string name="calendar_source_ancient_iran">Perayaan Iran kuno</string>
   <string name="calendar_source_personal">Acara pribadi</string>
-  <string name="calendar_source_device">Kalender perangkat</string>
   <string name="calendar_source_subscription">Kalender langganan</string>
   <string name="calendar_citation_page">%1$s, halaman %2$s</string>
   <string name="calendar_no_citation">Tidak ada sumber tercatat</string>

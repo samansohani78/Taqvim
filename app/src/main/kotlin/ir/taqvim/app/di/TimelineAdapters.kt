@@ -8,9 +8,9 @@ import ir.taqvim.core.calendar.toJdn
 import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.PersonalOccurrence
+import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.timeline.TimelineClockSource
 import ir.taqvim.feature.timeline.TimelineDay
@@ -80,7 +80,7 @@ internal class RepositoryTimelineDaysSource(
         }.distinctUntilChanged()
 }
 
-/** This day for the timeline: dataset events first, then personal, device and subscription events. */
+/** This day for the timeline: dataset events first, then personal and subscription events. */
 internal fun DayEvents.toTimelineDay(
     language: String,
     zone: TimeZone,
@@ -97,16 +97,12 @@ internal fun DayEvents.toTimelineDay(
             )
         }
     val personal = personal.mapNotNull { it.toTimelineEvent(jdn, zone) }
-    val device =
-        device.mapNotNull {
-            event(it.eventId.toString(), TimelineEventKind.DEVICE, it.title, it.allDay, jdn, it.begin, it.end, zone)
-        }
     val subscriptions =
         ics.mapNotNull {
             val id = "${it.subscriptionId}:${it.uid}"
             event(id, TimelineEventKind.SUBSCRIPTION, it.summary, it.allDay, jdn, it.begin, it.end, zone)
         }
-    return TimelineDay(jdn, isHoliday, isWeekend, official + personal + device + subscriptions)
+    return TimelineDay(jdn, isHoliday, isWeekend, official + personal + subscriptions)
 }
 
 /** A personal occurrence on [day]: all-day without times, otherwise its span from its own time zone to [zone]. */

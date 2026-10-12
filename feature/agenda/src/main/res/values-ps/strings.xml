@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">پدې میاشت کې هېڅ پېښه نشته</string>
   <string name="agenda_kind_official">رسمي</string>
   <string name="agenda_kind_personal">شخصي</string>
-  <string name="agenda_kind_device">د وسیلې جنتري</string>
   <string name="agenda_kind_subscription">ګډون</string>
   <string name="agenda_event_description">%1$s، %2$s</string>
   <string name="agenda_export_title">اجنډا: %1$s – %2$s</string>

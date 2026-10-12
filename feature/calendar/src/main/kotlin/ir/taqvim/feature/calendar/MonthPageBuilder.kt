@@ -44,7 +44,6 @@ data class IndicatorPalette(
     val holiday: Color,
     val official: Color,
     val personal: Color,
-    val device: Color,
     val subscription: Color,
 )
 
@@ -56,7 +55,6 @@ fun IndicatorPalette.colorOf(event: DayEventItem): Color =
         when (event.kind) {
             DayEventKind.OFFICIAL -> official
             DayEventKind.PERSONAL -> personal
-            DayEventKind.DEVICE -> device
             DayEventKind.SUBSCRIPTION -> subscription
         }
     }

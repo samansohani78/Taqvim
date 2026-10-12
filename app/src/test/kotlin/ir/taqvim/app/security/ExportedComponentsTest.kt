@@ -33,14 +33,39 @@ class ExportedComponentsTest {
     @Test
     fun onlyTheDocumentedPermissionsAreRequested() {
         val permissions = MergedManifest.requestedPermissions(manifest)
+        val allowed = MergedManifest.permissionAllowlist(resource("security/requested-permissions.txt"))
 
         val appPermissions =
             permissions.filterNot {
                 it.endsWith(DYNAMIC_RECEIVER_PERMISSION) ||
                     it in TEST_ONLY_PERMISSIONS
             }
-        assertEquals(EXPECTED_PERMISSIONS, appPermissions.toSet())
+        assertEquals(allowed.toSet(), appPermissions.toSet())
         assertTrue(permissions.any { it.endsWith(DYNAMIC_RECEIVER_PERMISSION) })
+    }
+
+    @Test
+    fun noCalendarPermissionIsRequested() {
+        // ADR-0051, named rather than left to the set comparison above: the set would also fail, but it would fail
+        // with "these two sets differ", and the one permission whose absence is a promise to users deserves to say
+        // so when it comes back. The allowlist itself must not name one either, or this would pass by being updated.
+        val permissions = MergedManifest.requestedPermissions(manifest)
+        val allowed = MergedManifest.permissionAllowlist(resource("security/requested-permissions.txt"))
+
+        CALENDAR_PERMISSIONS.forEach { permission ->
+            assertTrue(
+                "$permission is in the merged manifest; Taqvim does not read the device calendar",
+                permission !in permissions,
+            )
+            assertTrue("$permission is on the allowlist; it must never be", permission !in allowed)
+        }
+    }
+
+    @Test
+    fun permissionAllowlistLinesAreValidated() {
+        assertEquals(listOf("a.B"), MergedManifest.permissionAllowlist("# comment\n\na.B | why\n"))
+        assertTrue(runCatching { MergedManifest.permissionAllowlist("a.B") }.isFailure)
+        assertTrue(runCatching { MergedManifest.permissionAllowlist("a.B | ") }.isFailure)
     }
 
     @Test
@@ -61,24 +86,8 @@ class ExportedComponentsTest {
         /** Merged into the unit-test manifest by androidx.test core; not part of the app. */
         val TEST_ONLY_PERMISSIONS: Set<String> = setOf("android.permission.REORDER_TASKS")
 
-        val EXPECTED_PERMISSIONS: Set<String> =
-            setOf(
-                // T-1003 subscriptions only, off until the user allows them; ACCESS_NETWORK_STATE is WorkManager's.
-                "android.permission.INTERNET",
-                "android.permission.ACCESS_NETWORK_STATE",
-                // T-603 location, T-602 device calendar: requested at runtime.
-                "android.permission.ACCESS_COARSE_LOCATION",
-                "android.permission.ACCESS_FINE_LOCATION",
-                "android.permission.READ_CALENDAR",
-                // T-604 scheduler, T-1103 day change, T-1102 athan, T-1001 reminders.
-                "android.permission.RECEIVE_BOOT_COMPLETED",
-                "android.permission.SCHEDULE_EXACT_ALARM",
-                "android.permission.FOREGROUND_SERVICE",
-                "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
-                "android.permission.POST_NOTIFICATIONS",
-                "android.permission.VIBRATE",
-                "android.permission.WAKE_LOCK",
-                "android.permission.ACCESS_NOTIFICATION_POLICY",
-            )
+        /** ADR-0051: neither may ever appear, in the manifest or on the allowlist. */
+        val CALENDAR_PERMISSIONS: Set<String> =
+            setOf("android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR")
     }
 }

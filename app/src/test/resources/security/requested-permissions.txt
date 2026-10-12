@@ -1,0 +1,26 @@
+# T-1804 (ADR-0017, ADR-0053): every permission the merged app manifest requests, and why. A permission that
+# appears in the merged manifest and not here fails the build, and one listed here that no longer appears fails
+# too, so a dependency cannot quietly add or drop one.
+#
+# Two checks read this file, because they see different manifests:
+#   - ExportedComponentsTest reads the debug unit-test manifest;
+#   - auditReleasePermissions reads the merged RELEASE manifest, which is what users install.
+# Both must agree with this list. The release one is the proof that matters for a privacy claim: the debug
+# manifest can differ, and a test-only dependency could mask a permission the shipped APK still requests.
+#
+# Calendar: READ_CALENDAR and WRITE_CALENDAR must NEVER appear here. Taqvim does not read the user's calendar
+# (ADR-0053). Interoperability is file-based .ics import and export, which needs no permission at all.
+#
+# permission | why
+android.permission.INTERNET | T-1003 iCalendar subscriptions only, off until the user adds a feed and allows network use
+android.permission.ACCESS_NETWORK_STATE | WorkManager's, for the constraints on the subscription refresh worker
+android.permission.ACCESS_COARSE_LOCATION | T-603 prayer times and Qibla at the user's position; requested at runtime, and choosing a city instead works without it
+android.permission.ACCESS_FINE_LOCATION | T-603 as above, for a more exact position
+android.permission.RECEIVE_BOOT_COMPLETED | T-604 re-plans alarms after a restart, which Android otherwise drops
+android.permission.SCHEDULE_EXACT_ALARM | T-1102 athan and T-1001 reminders have to sound at a time, not eventually
+android.permission.FOREGROUND_SERVICE | T-1102 plays the athan while the screen is off
+android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK | T-1102 the typed foreground service Android 14+ requires for it
+android.permission.POST_NOTIFICATIONS | T-1001 reminders and the persistent date notification
+android.permission.VIBRATE | T-1101 optional vibration with an athan
+android.permission.WAKE_LOCK | T-604 finishes a scheduled alarm's work before the device sleeps again
+android.permission.ACCESS_NOTIFICATION_POLICY | T-1101 lets the Fajr athan sound during Do Not Disturb, only if the user turns that on

@@ -134,7 +134,6 @@
   <string name="calendar_source_international">International day</string>
   <string name="calendar_source_ancient_iran">Ancient Iranian festival</string>
   <string name="calendar_source_personal">Personal event</string>
-  <string name="calendar_source_device">Device calendar</string>
   <string name="calendar_source_subscription">Subscribed calendar</string>
   <!-- Citation title (%1$s) and page (%2$s). -->
   <string name="calendar_citation_page">%1$s, page %2$s</string>

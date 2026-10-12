@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">今月はイベントがありません</string>
   <string name="agenda_kind_official">公式</string>
   <string name="agenda_kind_personal">個人</string>
-  <string name="agenda_kind_device">端末のカレンダー</string>
   <string name="agenda_kind_subscription">購読</string>
   <string name="agenda_event_description">%1$s, %2$s</string>
   <string name="agenda_export_title">予定リスト：%1$s – %2$s</string>

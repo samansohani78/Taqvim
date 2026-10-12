@@ -10,7 +10,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 
 /**
- * The user's own rows that a backup carries (T-605). Caches (`ics_events_cache`, `device_events_cache`), the
+ * The user's own rows that a backup carries (T-605). Caches (`ics_events_cache`), the
  * diagnostics log and `scheduled_alarms` are derived or device-specific and are not part of it.
  */
 data class PersonalData(

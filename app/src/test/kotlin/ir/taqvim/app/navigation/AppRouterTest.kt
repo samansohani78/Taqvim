@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test
 class AppRouterTest {
     private val destinations = mutableListOf<AppDestination>()
     private val urls = mutableListOf<String>()
-    private val deviceEvents = mutableListOf<Long>()
     private val messages = mutableListOf<CalendarMessage>()
     private val router =
         AppRouter(
@@ -32,10 +31,6 @@ class AppRouterTest {
                 object : ExternalActions {
                     override fun openUrl(url: String) {
                         urls += url
-                    }
-
-                    override fun openDeviceEvent(id: Long) {
-                        deviceEvents += id
                     }
                 },
             showMessage = { messages += it },
@@ -67,7 +62,6 @@ class AppRouterTest {
         calendar.onOpenEventEditor(day)
         calendar.onOpenEvent(DayEventItem("12", DayEventKind.PERSONAL, "Birthday", isHoliday = false))
         calendar.onOpenEvent(DayEventItem("ir.holiday.nowruz-1", DayEventKind.OFFICIAL, "Nowruz", isHoliday = true))
-        calendar.onOpenEvent(DayEventItem("5", DayEventKind.DEVICE, "Meeting", isHoliday = false))
         calendar.onOpenTimeline(day)
         calendar.onOpenSearch()
         calendar.onOpenShiftWork()
@@ -85,19 +79,17 @@ class AppRouterTest {
                 AppDestination.ShiftWork,
                 AppDestination.PlanetaryHours(day.value),
             )
-        deviceEvents shouldBe listOf(5L)
         urls shouldBe listOf("https://calendar.ut.ac.ir/Fa/")
         messages shouldBe listOf(CalendarMessage.NO_UPCOMING_OCCURRENCE)
     }
 
     @Test
-    fun `year, agenda and timeline callbacks open the day, the editor or the device event`() {
+    fun `year, agenda and timeline callbacks open the day or the editor`() {
         router.year().onOpenMonth(day)
         router.agenda().onOpenDay(day)
         router.agenda().onOpenEvent(AgendaEvent("3", AgendaEventKind.PERSONAL, "Class", isHoliday = false))
         router.agenda().onOpenEvent(AgendaEvent("2:uid", AgendaEventKind.SUBSCRIPTION, "Talk", isHoliday = false))
         router.timeline().onCreateEvent(day, 600, 660)
-        router.timeline().onOpenEvent("9", TimelineEventKind.DEVICE)
         router.timeline().onOpenEvent("not-a-number", TimelineEventKind.PERSONAL)
 
         destinations shouldBe
@@ -109,7 +101,6 @@ class AppRouterTest {
                 AppDestination.EventEditor(day = day.value, startMinute = 600, endMinute = 660),
                 AppDestination.Calendar,
             )
-        deviceEvents shouldBe listOf(9L)
     }
 
     @Test

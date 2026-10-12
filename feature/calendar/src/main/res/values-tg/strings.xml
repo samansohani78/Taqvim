@@ -88,7 +88,6 @@
   <string name="calendar_source_international">Рӯзи байналмилалӣ</string>
   <string name="calendar_source_ancient_iran">Ҷашни қадимаи эронӣ</string>
   <string name="calendar_source_personal">Рӯйдоди шахсӣ</string>
-  <string name="calendar_source_device">Тақвими дастгоҳ</string>
   <string name="calendar_source_subscription">Тақвими обунашуда</string>
   <string name="calendar_citation_page">%1$s, саҳифаи %2$s</string>
   <string name="calendar_no_citation">Манбаъ сабт нашудааст</string>

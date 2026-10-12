@@ -94,7 +94,6 @@
   <string name="calendar_source_international">Uluslararası gün</string>
   <string name="calendar_source_ancient_iran">Eski İran bayramı</string>
   <string name="calendar_source_personal">Kişisel etkinlik</string>
-  <string name="calendar_source_device">Cihaz takvimi</string>
   <string name="calendar_source_subscription">Abone olunan takvim</string>
   <string name="calendar_citation_page">%1$s, sayfa %2$s</string>
   <string name="calendar_no_citation">Kaynak kaydedilmemiş</string>

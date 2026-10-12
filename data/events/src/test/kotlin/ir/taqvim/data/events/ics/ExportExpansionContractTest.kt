@@ -16,12 +16,11 @@ import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.PersonalEventEntity
-import ir.taqvim.data.devicecalendar.InstantWindow
-import ir.taqvim.data.events.DeviceEventsSource
 import ir.taqvim.data.events.EventInputs
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.EventsSettings
 import ir.taqvim.data.events.IcsEventsSource
+import ir.taqvim.data.events.InstantWindow
 import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.PersonalEventsSource
 import ir.taqvim.data.events.PersonalOccurrence
@@ -128,7 +127,6 @@ class ExportExpansionContractTest {
                 inputs =
                     EventInputs(
                         personal = PersonalEventsSource { flowOf(listOf(record)) },
-                        device = DeviceEventsSource { flowOf(emptyList()) },
                         ics = IcsEventsSource { flowOf(emptyList()) },
                     ),
                 clock = clock,

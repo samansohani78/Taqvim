@@ -23,10 +23,26 @@ personal data.
 |---|---|---|
 | Personal events, reminders, official-day reminder choices, work profiles | Room database | In Taqvim backup files the user creates (T-605), and in encrypted Auto Backup |
 | Preferences, chosen place, athan and app settings | DataStore | Same as above |
-| Device calendar copy, subscription caches, diagnostics | Room database | Diagnostics only inside a problem report the user shares, after redaction (T-1504) |
+| Subscription caches, diagnostics | Room database | Diagnostics only inside a problem report the user shares, after redaction (T-1504) |
 | Subscription URLs | Room database | Fetched over HTTPS only while the user allows network use (T-1003) |
 
 Taqvim has no accounts, analytics, advertising or server of its own.
+
+### Taqvim does not read your device calendar
+
+Taqvim requests neither `READ_CALENDAR` nor `WRITE_CALENDAR`, and no code in it reaches Android's calendar
+provider. It cannot see the events in your calendar app, and it keeps no copy of them: an earlier version did
+(T-602), and upgrading deletes that copy outright (schema migration 8 → 9). The decision and its reasoning are in
+[ADR-0051](adr/0051-taqvim-does-not-read-the-device-calendar.md).
+
+This is not a claim that Taqvim has no calendar interoperability. It still reads and writes **.ics files** you
+choose, and still refreshes **subscribed feeds** from URLs you add (T-1003). Both are files and addresses you hand
+it; neither touches the calendar database on your device.
+
+Two checks keep this true rather than merely stated: `auditReleasePermissions` compares the merged **release**
+manifest against `app/src/test/resources/security/requested-permissions.txt`, which may never list a calendar
+permission, and a Konsist rule fails if any source manifest requests one or any production source names
+`CalendarContract`, the provider authority or either permission constant.
 
 ## Threat model summary
 
@@ -39,6 +55,7 @@ Taqvim has no accounts, analytics, advertising or server of its own.
 | Backup file theft | Passphrase backups use AES-256-GCM with PBKDF2-HMAC-SHA256, 600 000 iterations (T-605). Passphrases stay in memory only and are wiped after use (T-1503). |
 | Auto Backup or device transfer copying data in the clear | Cloud backup only when end-to-end encrypted (Android 9+). Android 8.x is excluded. |
 | Personal data in logs or reports | One `android.util.Log` call in Taqvim code, documented under [Logging](#logging). Problem reports and diagnostics are redacted: event titles, precise coordinates, links with tokens, e-mail addresses and passwords are removed (T-1504). Nothing is uploaded. |
+| A dependency adds a permission nobody asked for | `auditReleasePermissions` compares the merged release manifest with the documented permission list and fails on any difference, in either direction. Calendar permissions are additionally refused by name (ADR-0051). |
 | Vulnerable or non-permissive dependencies | License gate with an LGPL canary (T-001), CycloneDX SBOM (T-003). |
 | Development regressions | StrictMode in debug builds. Manifest audit, Konsist security rules and the license gate run in CI. |
 

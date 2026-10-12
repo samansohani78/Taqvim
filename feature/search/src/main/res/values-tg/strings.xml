@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Санаи расмӣ</string>
   <string name="search_kind_personal">Рӯйдоди ман</string>
-  <string name="search_kind_device">Тақвими дастгоҳ</string>
   <string name="search_kind_subscription">Тақвими обунашуда</string>
   <string name="search_settings_language">Забон</string>
   <string name="search_settings_language_keywords">забон|тарҷума|форсӣ|англисӣ|locale</string>

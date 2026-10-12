@@ -14,7 +14,6 @@ import ir.taqvim.core.ics.Frequency
 import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
-import ir.taqvim.data.database.DeviceEventCacheEntity
 import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.PersonalEventEntity
@@ -88,7 +87,7 @@ class SearchAdaptersTest {
         }
 
     @Test
-    fun `personal, device and subscription events match by title from today on`(): Unit =
+    fun `personal and subscription events match by title from today on`(): Unit =
         runTest {
             val windows = mutableListOf<Pair<Long, Long>>()
             val tomorrowMorning = (today + 1).startMillis(tehran) + HOUR
@@ -101,11 +100,8 @@ class SearchAdaptersTest {
                             personal(3, "Dentist", today - 5),
                         )
                     },
-                    device = { from, to ->
+                    subscriptions = { from, to ->
                         windows += from to to
-                        listOf(DeviceEventCacheEntity(7, 1, tomorrowMorning, tomorrowMorning + HOUR, false, "Dentist"))
-                    },
-                    subscriptions = { _, _ ->
                         val end = tomorrowMorning + HOUR
                         listOf(IcsEventCacheEntity(4, "u1", tomorrowMorning, end, false, "Dentist talk"))
                     },
@@ -120,7 +116,6 @@ class SearchAdaptersTest {
                 listOf(
                     SearchEvent("1", SearchEventKind.PERSONAL, "Dentist visit", nextDay = today + 2),
                     SearchEvent("3", SearchEventKind.PERSONAL, "Dentist", nextDay = null),
-                    SearchEvent("7", SearchEventKind.DEVICE, "Dentist", nextDay = today + 1),
                     SearchEvent("4:u1", SearchEventKind.SUBSCRIPTION, "Dentist talk", nextDay = today + 1),
                 )
             windows.single() shouldBe (today.startMillis(tehran) to (today + WINDOW).startMillis(tehran))
@@ -135,16 +130,12 @@ class SearchAdaptersTest {
             val dayEnd = dayStart + DAY
             val started = today.toLocalDate().atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds() - 2 * DAY
             val feedDay = IcsEventCacheEntity(4, "u1", dayStart, dayEnd, true, "Dentist talk")
+            // An all-day feed row that began two days ago and still overlaps: its day must not be in the past.
+            val feedWeek = IcsEventCacheEntity(4, "u2", started, dayEnd, true, "Dentist week")
             val stores =
                 SearchEventStores(
                     personal = { emptyList() },
-                    device = { _, _ ->
-                        listOf(
-                            DeviceEventCacheEntity(7, 1, dayStart, dayEnd, true, "Dentist"),
-                            DeviceEventCacheEntity(8, 1, started, dayEnd, true, "Dentist week"),
-                        )
-                    },
-                    subscriptions = { _, _ -> listOf(feedDay) },
+                    subscriptions = { _, _ -> listOf(feedDay, feedWeek) },
                 )
 
             val inTehran = source(stores).external("Dentist")
@@ -152,9 +143,8 @@ class SearchAdaptersTest {
 
             inTehran shouldContainExactly
                 listOf(
-                    SearchEvent("7", SearchEventKind.DEVICE, "Dentist", nextDay = today + 1),
-                    SearchEvent("8", SearchEventKind.DEVICE, "Dentist week", nextDay = today),
                     SearchEvent("4:u1", SearchEventKind.SUBSCRIPTION, "Dentist talk", nextDay = today + 1),
+                    SearchEvent("4:u2", SearchEventKind.SUBSCRIPTION, "Dentist week", nextDay = today),
                 )
             inLosAngeles shouldBe inTehran
         }
@@ -163,7 +153,7 @@ class SearchAdaptersTest {
     fun `each source gives at most the limit and a blank query finds nothing`(): Unit =
         runTest {
             val many = (1L..10L).map { personal(it, "Meeting $it", today) }
-            val source = source(SearchEventStores({ many }, { _, _ -> emptyList() }, { _, _ -> emptyList() }))
+            val source = source(SearchEventStores({ many }, { _, _ -> emptyList() }))
 
             source.events("Meeting", "en", limit = 3).filter { it.kind == SearchEventKind.PERSONAL } shouldHaveSize 3
             source.events("  ", "en", limit = 3) shouldBe emptyList()
@@ -239,18 +229,17 @@ class SearchAdaptersTest {
                     today = { from },
                     settings = { everythingShown() },
                 ),
-            stores = SearchEventStores({ listOf(record) }, { _, _ -> emptyList() }, { _, _ -> emptyList() }),
+            stores = SearchEventStores({ listOf(record) }, { _, _ -> emptyList() }),
             today = { from },
             zone = { zone },
             window = WINDOW,
         ).external("Standup").single().nextDay
 
-    /** Personal, device and subscription results for [query]. */
+    /** Personal and subscription results for [query]. */
     private suspend fun CompositeSearchEventSource.external(query: String): List<SearchEvent> =
         events(query, "en", limit = 5).filter { it.kind != SearchEventKind.OFFICIAL }
 
-    private fun stores(): SearchEventStores =
-        SearchEventStores({ emptyList() }, { _, _ -> emptyList() }, { _, _ -> emptyList() })
+    private fun stores(): SearchEventStores = SearchEventStores({ emptyList() }, { _, _ -> emptyList() })
 
     private fun source(
         stores: SearchEventStores,

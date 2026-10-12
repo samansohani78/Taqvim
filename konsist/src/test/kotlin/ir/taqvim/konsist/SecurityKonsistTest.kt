@@ -30,6 +30,20 @@ class SecurityKonsistTest {
     }
 
     @Test
+    fun `no manifest requests a calendar permission`() {
+        // ADR-0051: Taqvim does not read the device calendar. The watch used to take READ_CALENDAR back out of the
+        // merged manifest; now nothing puts it in, so there is nothing to remove either.
+        ManifestSecurityRules.manifestsRequestingCalendarAccess(root).shouldBeEmpty()
+    }
+
+    @Test
+    fun `no production code reaches the calendar provider`() {
+        // The permission disappearing from a manifest is not the same as the read path being gone. This is the
+        // half that would still fail if the provider query survived the permission's removal.
+        ManifestSecurityRules.calendarProviderReaders(root).shouldBeEmpty()
+    }
+
+    @Test
     fun `pending intents are immutable`() {
         ManifestSecurityRules.mutablePendingIntents(root).shouldBeEmpty()
     }
@@ -85,6 +99,38 @@ class SecurityKonsistTest {
                 "feature/x/src/main/res/xml/paths.xml: root-path ''",
                 "feature/x/src/main/res/xml/paths.xml: files-path '.'",
             )
+    }
+
+    @Test
+    fun `planted calendar violations are detected`(
+        @TempDir fixture: File,
+    ) {
+        write(
+            File(fixture, "feature/cal/src/main/AndroidManifest.xml"),
+            """<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              |<uses-permission android:name="android.permission.READ_CALENDAR"/>
+              |</manifest>
+            """.trimMargin(),
+        )
+        write(
+            File(fixture, "feature/cal/src/main/kotlin/C.kt"),
+            "val uri = CalendarContract.Instances.CONTENT_URI",
+        )
+        // A manifest that only takes the permission out (as :wear did before ADR-0051) is not requesting it.
+        write(
+            File(fixture, "watch/src/main/AndroidManifest.xml"),
+            """<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              |  xmlns:tools="http://schemas.android.com/tools">
+              |<uses-permission android:name="android.permission.READ_CALENDAR" tools:node="remove"/>
+              |</manifest>
+            """.trimMargin(),
+        )
+
+        // The request and the read are found separately, so removing either one alone still fails.
+        ManifestSecurityRules.manifestsRequestingCalendarAccess(fixture) shouldBe
+            listOf("feature/cal/src/main/AndroidManifest.xml")
+        ManifestSecurityRules.calendarProviderReaders(fixture) shouldBe
+            listOf("feature/cal/src/main/kotlin/C.kt: CalendarContract")
     }
 
     private fun write(

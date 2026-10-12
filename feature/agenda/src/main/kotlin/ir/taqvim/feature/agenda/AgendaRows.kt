@@ -49,7 +49,6 @@ internal fun agendaTexts(): AgendaTexts {
             mapOf(
                 AgendaEventKind.OFFICIAL to stringResource(R.string.agenda_kind_official),
                 AgendaEventKind.PERSONAL to stringResource(R.string.agenda_kind_personal),
-                AgendaEventKind.DEVICE to stringResource(R.string.agenda_kind_device),
                 AgendaEventKind.SUBSCRIPTION to stringResource(R.string.agenda_kind_subscription),
             ),
         exportTitle = { from, to -> exportTitle.format(from, to) },
@@ -165,7 +164,6 @@ private fun DayEvents(
                 when (event.kind) {
                     AgendaEventKind.OFFICIAL -> colors.primary
                     AgendaEventKind.PERSONAL -> colors.tertiary
-                    AgendaEventKind.DEVICE -> colors.secondary
                     AgendaEventKind.SUBSCRIPTION -> colors.outline
                 }
             val spoken = description.format(event.title, texts.kind(event))

@@ -7,8 +7,10 @@ package ir.taqvim.feature.backup
 import android.app.Application
 import android.os.Looper
 import android.provider.Settings
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -99,7 +101,6 @@ class PrivacyScreenTest {
             assertEquals(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, it.action)
             assertEquals("package:${application.packageName}", it.dataString)
         }
-        open("Calendar").let { assertEquals(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, it.action) }
         open("Notifications").let {
             assertEquals(Settings.ACTION_APP_NOTIFICATION_SETTINGS, it.action)
             assertEquals(application.packageName, it.getStringExtra(Settings.EXTRA_APP_PACKAGE))
@@ -108,6 +109,8 @@ class PrivacyScreenTest {
         open("Do Not Disturb access").let {
             assertEquals(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS, it.action)
         }
+        // ADR-0051: there is no calendar row, because there is no calendar permission to show the state of.
+        composeRule.onAllNodesWithContentDescription("Open settings for Calendar").assertCountEquals(0)
     }
 
     @Test

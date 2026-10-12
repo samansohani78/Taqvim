@@ -10,7 +10,6 @@ import ir.taqvim.core.events.Occurrence
 import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
-import ir.taqvim.data.devicecalendar.DeviceEvent
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
@@ -59,7 +58,6 @@ class AgendaAdaptersTest {
                             listOf(
                                 AgendaEvent(NOWRUZ, AgendaEventKind.OFFICIAL, nowruz.title.forLanguage("en"), true),
                                 AgendaEvent("7", AgendaEventKind.PERSONAL, "Birthday", false),
-                                AgendaEvent("3", AgendaEventKind.DEVICE, "Meeting", false),
                                 AgendaEvent("2:uid-1", AgendaEventKind.SUBSCRIPTION, "Talk", false),
                             ),
                     ),
@@ -101,7 +99,6 @@ class AgendaAdaptersTest {
                         recurring = false,
                     ),
                 ),
-            device = listOf(DeviceEvent(3, 1, "Meeting", begin, end, allDay = false, colorArgb = null, days)),
             ics = listOf(IcsOccurrence(2, "uid-1", "Talk", "", begin, end, allDay = false, days = days)),
         )
     }

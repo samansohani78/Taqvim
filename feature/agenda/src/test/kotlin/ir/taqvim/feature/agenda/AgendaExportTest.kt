@@ -57,6 +57,7 @@ class AgendaExportTest {
         subtitle shouldContain " · "
         texts.subtitle(header.copy(otherCalendars = kotlinx.collections.immutable.persistentListOf())) shouldBe null
         texts.kind(event("x", "X")) shouldBe "Official"
-        texts.kind(event("y", "Y", AgendaEventKind.DEVICE)) shouldBe ""
+        // A kind the texts do not name falls back to no label rather than to the enum constant.
+        texts.kind(event("y", "Y", AgendaEventKind.SUBSCRIPTION)) shouldBe ""
     }
 }

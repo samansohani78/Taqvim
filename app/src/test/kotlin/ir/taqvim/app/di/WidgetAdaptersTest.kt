@@ -80,7 +80,6 @@ class WidgetAdaptersTest {
                         recurring = false,
                     ),
                 ),
-            device = emptyList(),
             ics = emptyList(),
         )
 

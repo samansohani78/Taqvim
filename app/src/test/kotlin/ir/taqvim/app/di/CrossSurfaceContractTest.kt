@@ -19,7 +19,6 @@ import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.ReminderEntity
-import ir.taqvim.data.events.DeviceEventsSource
 import ir.taqvim.data.events.EventInputs
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.EventsSettings
@@ -189,7 +188,6 @@ class CrossSurfaceContractTest {
                 inputs =
                     EventInputs(
                         personal = PersonalEventsSource { flowOf(listOfNotNull(record)) },
-                        device = DeviceEventsSource { flowOf(emptyList()) },
                         ics = IcsEventsSource { flowOf(feed) },
                     ),
                 clock = clock,
@@ -246,7 +244,7 @@ class CrossSurfaceContractTest {
                 today = { today },
                 settings = { everythingShown() },
             ),
-        stores = SearchEventStores({ personal }, { _, _ -> emptyList() }, { _, _ -> subscriptions }),
+        stores = SearchEventStores({ personal }, { _, _ -> subscriptions }),
         today = { today },
         zone = { zone },
         window = 30,

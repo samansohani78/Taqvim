@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">आधिकारिक अवसर</string>
   <string name="search_kind_personal">मेरा इवेंट</string>
-  <string name="search_kind_device">डिवाइस कैलेंडर</string>
   <string name="search_kind_subscription">सदस्यता वाला कैलेंडर</string>
   <string name="search_settings_language">भाषा</string>
   <string name="search_settings_language_keywords">भाषा|अनुवाद|फ़ारसी|अंग्रेज़ी|locale</string>

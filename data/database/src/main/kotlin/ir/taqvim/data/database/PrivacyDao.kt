@@ -14,7 +14,6 @@ data class StoredRowCounts(
     /** Event reminders and reminders before official events. */
     val reminders: Int,
     val subscriptions: Int,
-    val deviceEvents: Int,
     val diagnostics: Int,
 )
 
@@ -28,13 +27,8 @@ interface PrivacyDao {
             (SELECT COUNT(*) FROM personal_events) AS personalEvents,
             (SELECT COUNT(*) FROM reminders) + (SELECT COUNT(*) FROM official_reminders) AS reminders,
             (SELECT COUNT(*) FROM ics_subscriptions) AS subscriptions,
-            (SELECT COUNT(*) FROM device_events_cache) AS deviceEvents,
             (SELECT COUNT(*) FROM diagnostics_log) AS diagnostics
         """,
     )
     fun observeCounts(): Flow<StoredRowCounts>
-
-    /** Deletes the copy of device calendar events; it is read again from the calendar provider when needed. */
-    @Query("DELETE FROM device_events_cache")
-    suspend fun clearDeviceEvents()
 }

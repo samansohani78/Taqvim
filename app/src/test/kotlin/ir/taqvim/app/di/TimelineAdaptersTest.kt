@@ -13,7 +13,6 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.praytimes.PrayerSettings
-import ir.taqvim.data.devicecalendar.DeviceEvent
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
@@ -88,17 +87,6 @@ class TimelineAdaptersTest {
     @Test
     fun `day events keep their order with dataset events all day`() {
         val nowruz = OfficialEvents.ALL.first { it.id.value == "ir.holiday.nowruz-1" }
-        val trip =
-            DeviceEvent(
-                3,
-                1,
-                "Trip",
-                at("2026-03-20T00:00:00Z"),
-                at("2026-03-23T00:00:00Z"),
-                true,
-                null,
-                day..day,
-            )
         val talk =
             IcsOccurrence(
                 2,
@@ -117,7 +105,6 @@ class TimelineAdaptersTest {
                         Occurrence(nowruz, day, CalendarDate(CalendarSystem.PERSIAN, 1405, 1, 1), true, 1405),
                     ),
                 personal = listOf(personal(7, null, null), personal(8, 600, 690)),
-                device = listOf(trip),
                 ics = listOf(talk),
             )
 
@@ -126,7 +113,6 @@ class TimelineAdaptersTest {
                 TimelineEvent(nowruz.id.value, TimelineEventKind.OFFICIAL, nowruz.title.forLanguage("en"), true, true),
                 TimelineEvent("7", TimelineEventKind.PERSONAL, "Birthday", false, true),
                 TimelineEvent("8", TimelineEventKind.PERSONAL, "Birthday", false, false, 600, 690),
-                TimelineEvent("3", TimelineEventKind.DEVICE, "Trip", false, true),
                 TimelineEvent("2:u", TimelineEventKind.SUBSCRIPTION, "Talk", false, false, 570, 630),
             )
     }
@@ -201,7 +187,6 @@ class TimelineAdaptersTest {
         official: List<Occurrence> = emptyList(),
         isHoliday: Boolean = false,
         personal: List<PersonalOccurrence> = emptyList(),
-        device: List<DeviceEvent> = emptyList(),
         ics: List<IcsOccurrence> = emptyList(),
     ): DayEvents =
         DayEvents(
@@ -212,7 +197,6 @@ class TimelineAdaptersTest {
             isHoliday = isHoliday,
             isWeekend = false,
             personal = personal,
-            device = device,
             ics = ics,
         )
 

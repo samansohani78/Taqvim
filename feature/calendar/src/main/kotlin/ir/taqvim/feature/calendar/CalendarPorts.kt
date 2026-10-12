@@ -41,7 +41,6 @@ data class CalendarSettings(
 enum class DayEventKind {
     OFFICIAL,
     PERSONAL,
-    DEVICE,
     SUBSCRIPTION,
 }
 

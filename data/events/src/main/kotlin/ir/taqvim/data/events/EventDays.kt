@@ -7,7 +7,6 @@ package ir.taqvim.data.events
 import ir.taqvim.core.calendar.toLocalDate
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
-import ir.taqvim.data.devicecalendar.DeviceEventMapping
 import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
@@ -47,7 +46,7 @@ internal object EventDays {
         val eventZone = zoneOf(occurrence.timeZoneId, zone)
         val begin = occurrence.days.start.at(start, eventZone)
         val finish = maxOf(occurrence.days.endInclusive.at(end, eventZone), begin)
-        return DeviceEventMapping.days(
+        return EventWindows.days(
             beginEpochMillis = begin.toEpochMilliseconds(),
             endEpochMillis = finish.toEpochMilliseconds(),
             allDay = false,

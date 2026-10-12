@@ -4,10 +4,8 @@
  */
 package ir.taqvim.app.navigation
 
-import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
-import android.provider.CalendarContract
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import ir.taqvim.core.model.Jdn
@@ -28,7 +26,6 @@ import ir.taqvim.feature.year.YearNavigation
 internal enum class EventOrigin {
     OFFICIAL,
     PERSONAL,
-    DEVICE,
     SUBSCRIPTION,
 }
 
@@ -36,12 +33,9 @@ internal enum class EventOrigin {
 internal interface ExternalActions {
     /** Opens a web page, e.g. a cited primary source. */
     fun openUrl(url: String)
-
-    /** Opens the device calendar's event [id]. */
-    fun openDeviceEvent(id: Long)
 }
 
-/** [ExternalActions] through [context]: web pages in a Custom Tab (or any browser), events in the calendar app. */
+/** [ExternalActions] through [context]: web pages in a Custom Tab, or any browser. */
 internal class ContextExternalActions(
     private val context: Context,
 ) : ExternalActions {
@@ -50,10 +44,6 @@ internal class ContextExternalActions(
         if (uri.scheme !in WEB_SCHEMES) return
         val customTab = runCatching { CustomTabsIntent.Builder().build().launchUrl(context, uri) }
         if (customTab.isFailure) start(Intent(Intent.ACTION_VIEW, uri))
-    }
-
-    override fun openDeviceEvent(id: Long) {
-        start(Intent(Intent.ACTION_VIEW, ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, id)))
     }
 
     private fun start(intent: Intent) {
@@ -114,7 +104,7 @@ internal class AppRouter(
     fun settings(): SettingsNavigation = SettingsNavigation(onOpen = { navigate(settingsPage(it)) })
 
     /**
-     * Personal events open in the editor and device events in the calendar app; others show on the calendar, on their
+     * Personal events open in the editor; others show on the calendar, on their
      * [day] when it is known.
      */
     private fun openEvent(
@@ -127,7 +117,6 @@ internal class AppRouter(
         when {
             occurrence != null -> navigate(occurrence)
             origin == EventOrigin.PERSONAL && number != null -> navigate(AppDestination.EventEditor(number))
-            origin == EventOrigin.DEVICE && number != null -> external.openDeviceEvent(number)
             else -> navigate(day?.let { AppDestination.Day(it.value) } ?: AppDestination.Calendar)
         }
     }

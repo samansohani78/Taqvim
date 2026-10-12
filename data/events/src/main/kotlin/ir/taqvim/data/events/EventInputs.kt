@@ -14,8 +14,7 @@ import ir.taqvim.data.database.PersonalEventDao
 import ir.taqvim.data.database.PersonalEventDetails
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.toRule
-import ir.taqvim.data.devicecalendar.DeviceEvent
-import ir.taqvim.data.devicecalendar.InstantWindow
+import ir.taqvim.data.events.InstantWindow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -35,20 +34,14 @@ fun interface PersonalEventsSource {
     fun events(days: JdnRange): Flow<List<PersonalEventRecord>>
 }
 
-/** Device calendar instances touching some days (T-602). */
-fun interface DeviceEventsSource {
-    fun events(days: JdnRange): Flow<List<DeviceEvent>>
-}
-
 /** Cached occurrences of enabled iCalendar subscriptions overlapping a window. */
 fun interface IcsEventsSource {
     fun events(window: InstantWindow): Flow<List<IcsEventCacheEntity>>
 }
 
-/** The inputs of [EventsRepository] besides the dataset: personal, device and iCalendar events. */
+/** The inputs of [EventsRepository] besides the dataset: personal and iCalendar events. */
 data class EventInputs(
     val personal: PersonalEventsSource,
-    val device: DeviceEventsSource,
     val ics: IcsEventsSource,
 )
 

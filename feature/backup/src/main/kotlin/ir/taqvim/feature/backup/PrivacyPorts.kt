@@ -12,7 +12,6 @@ enum class StoredDataKind {
     REMINDERS,
     SUBSCRIPTIONS,
     LOCATION,
-    DEVICE_CALENDAR_CACHE,
     DIAGNOSTICS,
     RECENT_SEARCHES,
     ;
@@ -22,7 +21,7 @@ enum class StoredDataKind {
         get() = this in CLEARABLE
 
     private companion object {
-        val CLEARABLE = setOf(LOCATION, DEVICE_CALENDAR_CACHE, DIAGNOSTICS, RECENT_SEARCHES)
+        val CLEARABLE = setOf(LOCATION, DIAGNOSTICS, RECENT_SEARCHES)
     }
 }
 
@@ -35,7 +34,6 @@ data class StoredData(
 /** Permissions Taqvim may use; every feature works without them until it is used. */
 enum class PermissionKind {
     LOCATION,
-    CALENDAR,
     NOTIFICATIONS,
     EXACT_ALARMS,
     DO_NOT_DISTURB,

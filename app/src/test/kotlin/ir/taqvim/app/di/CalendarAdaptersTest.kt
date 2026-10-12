@@ -15,7 +15,6 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.praytimes.PrayerSettings
-import ir.taqvim.data.devicecalendar.DeviceEvent
 import ir.taqvim.data.events.DayEvents
 import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
@@ -52,7 +51,6 @@ class CalendarAdaptersTest {
                 isHoliday = true,
                 isWeekend = false,
                 personal = listOf(birthday(days)),
-                device = listOf(DeviceEvent(3, 1, "Meeting", begin, end, allDay = false, colorArgb = null, days)),
                 ics = listOf(IcsOccurrence(2, "uid-1", "Talk", "", begin, end, allDay = false, days = days)),
             )
 
@@ -78,7 +76,6 @@ class CalendarAdaptersTest {
                     citations = nowruz.citations,
                 ),
                 DayEventItem("7", DayEventKind.PERSONAL, "Birthday", isHoliday = false),
-                DayEventItem("3", DayEventKind.DEVICE, "Meeting", isHoliday = false),
                 DayEventItem("2:uid-1", DayEventKind.SUBSCRIPTION, "Talk", isHoliday = false),
             )
     }

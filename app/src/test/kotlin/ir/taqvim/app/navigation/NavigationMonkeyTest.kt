@@ -113,8 +113,6 @@ class NavigationMonkeyTest {
 
     private object NoExternalActions : ExternalActions {
         override fun openUrl(url: String) = Unit
-
-        override fun openDeviceEvent(id: Long) = Unit
     }
 
     private companion object {

@@ -12,7 +12,6 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
-import ir.taqvim.data.devicecalendar.DeviceEvent
 import kotlin.time.Instant
 
 /** One occurrence of a personal event covering [days]; `null` minutes mark an all-day event. */
@@ -74,7 +73,6 @@ data class DayEvents(
     val isWeekend: Boolean,
     /** Personal occurrences, all-day ones first, then by start time. */
     val personal: List<PersonalOccurrence>,
-    val device: List<DeviceEvent>,
     val ics: List<IcsOccurrence>,
     /** Where the date of each [official] occurrence in the Islamic calendar comes from (DT-002, DT-033); absent otherwise. */
     val officialOrigins: Map<EventId, DateOrigin> = emptyMap(),

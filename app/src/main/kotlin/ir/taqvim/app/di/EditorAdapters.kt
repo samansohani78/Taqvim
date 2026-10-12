@@ -22,10 +22,10 @@ import ir.taqvim.data.database.ReminderDao
 import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.database.toEntity
 import ir.taqvim.data.database.toRule
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
 import ir.taqvim.data.events.SkyAstronomicalEventSource
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.events.ics.TransactionRunner
+import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import ir.taqvim.feature.events.EditorSettings

@@ -87,7 +87,6 @@ internal object DayDetailsLabels {
         listOf(
             R.string.calendar_source_official,
             R.string.calendar_source_personal,
-            R.string.calendar_source_device,
             R.string.calendar_source_subscription,
         )
 

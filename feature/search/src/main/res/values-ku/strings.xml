@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Bûyera fermî</string>
   <string name="search_kind_personal">Bûyera min</string>
-  <string name="search_kind_device">Salnameya amûrê</string>
   <string name="search_kind_subscription">Salnameya abonekirî</string>
   <string name="search_settings_language">Ziman</string>
   <string name="search_settings_language_keywords">ziman|werger|farisî|îngilîzî|locale</string>

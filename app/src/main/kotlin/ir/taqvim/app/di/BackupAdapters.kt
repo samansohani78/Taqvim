@@ -251,10 +251,6 @@ internal class RoomPrivacyDataSource(
                     preferences.update { it.copy(place = null) }
                 }
 
-                StoredDataKind.DEVICE_CALENDAR_CACHE -> {
-                    database.privacyDao().clearDeviceEvents()
-                }
-
                 StoredDataKind.DIAGNOSTICS -> {
                     database.diagnosticsDao().clear()
                 }
@@ -278,7 +274,6 @@ internal fun storedData(
         StoredData(StoredDataKind.REMINDERS, rows.reminders),
         StoredData(StoredDataKind.SUBSCRIPTIONS, rows.subscriptions),
         StoredData(StoredDataKind.LOCATION, if (hasPlace) 1 else 0),
-        StoredData(StoredDataKind.DEVICE_CALENDAR_CACHE, rows.deviceEvents),
         StoredData(StoredDataKind.DIAGNOSTICS, rows.diagnostics),
         StoredData(StoredDataKind.RECENT_SEARCHES, recentSearches),
     )
@@ -301,10 +296,6 @@ internal class PlatformPermissionStatusSource(
         when (kind) {
             PermissionKind.LOCATION -> {
                 has(Manifest.permission.ACCESS_FINE_LOCATION) || has(Manifest.permission.ACCESS_COARSE_LOCATION)
-            }
-
-            PermissionKind.CALENDAR -> {
-                has(Manifest.permission.READ_CALENDAR)
             }
 
             PermissionKind.NOTIFICATIONS -> {

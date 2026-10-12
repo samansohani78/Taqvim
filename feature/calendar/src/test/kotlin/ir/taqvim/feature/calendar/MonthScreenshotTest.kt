@@ -98,7 +98,7 @@ class MonthScreenshotTest(
         companion object {
             const val PERSONAL_DAY = 10
             const val BUSY_DAY = 15
-            val BUSY_KINDS = listOf(DayEventKind.OFFICIAL, DayEventKind.DEVICE, DayEventKind.SUBSCRIPTION)
+            val BUSY_KINDS = listOf(DayEventKind.OFFICIAL, DayEventKind.PERSONAL, DayEventKind.SUBSCRIPTION)
 
             fun of(code: String): MonthSample {
                 val language = requireNotNull(LanguageTable.forCode(code.take(2)))

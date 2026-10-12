@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Официальная дата</string>
   <string name="search_kind_personal">Моё событие</string>
-  <string name="search_kind_device">Календарь устройства</string>
   <string name="search_kind_subscription">Календарь по подписке</string>
   <string name="search_settings_language">Язык</string>
   <string name="search_settings_language_keywords">локаль|перевод|персидский|английский|язык</string>

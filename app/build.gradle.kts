@@ -195,7 +195,6 @@ dependencies {
     implementation(projects.data.preferences)
     implementation(projects.data.database)
     implementation(projects.data.events)
-    implementation(projects.data.deviceCalendar)
     implementation(projects.data.location)
     implementation(projects.data.scheduler)
 
@@ -503,6 +502,64 @@ abstract class ExportedComponentsAudit : DefaultTask() {
     }
 }
 
+/**
+ * T-1804 / ADR-0051: the merged RELEASE manifest requests exactly the permissions of
+ * `src/test/resources/security/requested-permissions.txt`, and never a calendar permission.
+ *
+ * `ExportedComponentsTest` already checks this list against the debug unit-test manifest. That is not the same
+ * manifest: a test-only dependency can add a permission there, and — the direction that matters — a library
+ * reaching only the release variant can add one the debug build never shows. A claim that the shipped APK does
+ * not read the user's calendar has to be made against the manifest that ships.
+ */
+abstract class RequestedPermissionsAudit : DefaultTask() {
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val manifest: RegularFileProperty
+
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val allowlist: RegularFileProperty
+
+    @TaskAction
+    fun audit() {
+        val android = "http://schemas.android.com/apk/res/android"
+        val document =
+            DocumentBuilderFactory
+                .newInstance()
+                .apply { isNamespaceAware = true }
+                .newDocumentBuilder()
+                .parse(manifest.get().asFile)
+        val nodes = document.getElementsByTagName("uses-permission")
+        val requested =
+            (0 until nodes.length)
+                .map { (nodes.item(it) as org.w3c.dom.Element).getAttributeNS(android, "name") }
+                // AndroidX core adds a signature-level receiver permission named after the application id.
+                .filterNot { it.endsWith(".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION") }
+                .toSet()
+        val allowed =
+            allowlist
+                .get()
+                .asFile
+                .readLines()
+                .map(String::trim)
+                .filterNot { it.isEmpty() || it.startsWith("#") }
+                .map { it.substringBefore('|').trim() }
+                .toSet()
+        val calendar = setOf("android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR")
+        check(requested.none { it in calendar }) {
+            "The release manifest requests ${requested.filter { it in calendar }}. Taqvim does not read the " +
+                "device calendar (ADR-0051); find the module or dependency that declares it."
+        }
+        check(allowed.none { it in calendar }) {
+            "requested-permissions.txt names a calendar permission; it must never allow one (ADR-0051)."
+        }
+        check(requested == allowed) {
+            "Requested permissions differ from the allowlist (T-1804).\n" +
+                "Not allowed: ${requested - allowed}\nMissing: ${allowed - requested}"
+        }
+    }
+}
+
 androidComponents {
     // T-1800: the androidx.baselineprofile consumer plugin adds the committed profile
     // (src/main/generated/baselineProfiles) to the variants it manages, which does not include a hand-made build
@@ -539,6 +596,17 @@ androidComponents {
                 allowlist.set(layout.projectDirectory.file("src/test/resources/security/exported-components.txt"))
             }
         tasks.named("check") { dependsOn(audit) }
+
+        val permissions =
+            tasks.register<RequestedPermissionsAudit>(
+                "audit${variant.name.replaceFirstChar(Char::uppercase)}Permissions",
+            ) {
+                group = "verification"
+                description = "Checks the merged ${variant.name} manifest against the requested-permissions allowlist."
+                manifest.set(variant.artifacts.get(SingleArtifact.MERGED_MANIFEST))
+                allowlist.set(layout.projectDirectory.file("src/test/resources/security/requested-permissions.txt"))
+            }
+        tasks.named("check") { dependsOn(permissions) }
 
         val variantName = variant.name.replaceFirstChar(Char::uppercase)
         tasks.register<ReleaseShrinkingCheck>("verify${variantName}Shrinking") {

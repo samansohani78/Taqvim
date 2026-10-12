@@ -8,7 +8,7 @@ import ir.taqvim.core.ics.IcsParseResult
 import ir.taqvim.core.ics.IcsReader
 import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.IcsSubscriptionEntity
-import ir.taqvim.data.devicecalendar.InstantWindow
+import ir.taqvim.data.events.InstantWindow
 import java.net.HttpURLConnection
 import kotlin.time.Clock
 import kotlin.time.Duration

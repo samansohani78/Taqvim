@@ -79,10 +79,10 @@ internal class PreferencesWidgetDataSource(
     /**
      * The day assembled, but only for a widget that reads its event lines.
      *
-     * Assembling a day subscribes to the personal, device-calendar and subscription sources and waits for all three,
-     * so a widget that lists events must pay for it — but one that only colours a holiday can read that from the
-     * dataset, and one that shows neither needs nothing. A date widget was waiting on Room and the calendar provider
-     * to draw a date its own calendar engine already knew, which is what made widgets show the host's placeholder.
+     * Assembling a day subscribes to the personal and subscription sources and waits for both, so a widget that
+     * lists events must pay for it — but one that only colours a holiday can read that from the dataset, and one
+     * that shows neither needs nothing. A date widget was waiting on Room to draw a date its own calendar engine
+     * already knew, which is what made widgets show the host's placeholder.
      *
      * The test is what the widget *reads*, not what its kind *declares*: a month widget declares events and gets
      * them per day from its own grid, so assembling today as well was the same query run twice, and a day summary
@@ -162,11 +162,10 @@ internal fun widgetInputs(
     )
 }
 
-/** Dataset events (holidays first) in [language], then personal (opening the editor), device and feed events. */
+/** Dataset events (holidays first) in [language], then personal (opening the editor) and feed events. */
 internal fun DayEvents.widgetEventLines(language: String): List<WidgetEventLine> =
     official.map { WidgetEventLine(it.definition.title.forLanguage(language), it.isHoliday) } +
         personal.map { WidgetEventLine(it.title, isHoliday = false, eventId = it.eventId) } +
-        device.map { WidgetEventLine(it.title, isHoliday = false) } +
         ics.map { WidgetEventLine(it.summary, isHoliday = false) }
 
 /** The chosen place with its zone and prayer conventions, or `null` without a place or with an unknown zone. */
@@ -288,7 +287,7 @@ private fun UserPreferences.appearanceKey(): List<Any?> =
 
 /**
  * Keeps placed widgets current (T-1201…): preference changes redraw the widgets they affect, and changes to personal
- * events or the device and feed caches redraw event widgets (debounced). Day changes and prayer times are handled by
+ * events or the feed cache redraw event widgets (debounced). Day changes and prayer times are handled by
  * the widget framework's own wake-up; with no widget placed the refresher touches nothing.
  */
 internal class WidgetTriggerWatcher(
@@ -338,7 +337,6 @@ internal fun widgetEventChanges(database: TaqvimDatabase): Flow<Set<String>> =
         // occurrence until something else happened to redraw it (T-1003).
         "event_overrides",
         "event_exceptions",
-        "device_events_cache",
         "ics_events_cache",
         emitInitialState = false,
     )

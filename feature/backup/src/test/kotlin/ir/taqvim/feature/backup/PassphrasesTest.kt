@@ -62,6 +62,8 @@ class PassphrasesTest {
         labels.toSet() shouldHaveSize labels.size
         StoredDataKind.entries.filter { BackupLabels.clearAction(it) != null } shouldBe
             StoredDataKind.entries.filter { it.clearable }
-        StoredDataKind.entries.map(BackupLabels::dataWhere).toSet() shouldHaveSize 4
+        // Four kinds of place became three when the device-calendar copy went (ADR-0051): the database, the
+        // subscription addresses and the settings store.
+        StoredDataKind.entries.map(BackupLabels::dataWhere).toSet() shouldHaveSize 3
     }
 }

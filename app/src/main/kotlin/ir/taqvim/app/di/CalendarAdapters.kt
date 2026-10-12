@@ -96,7 +96,7 @@ internal class RepositoryCalendarDaySource(
         }
 }
 
-/** These events for the calendar screen: dataset events (holidays first), then personal, device and feed events. */
+/** These events for the calendar screen: dataset events (holidays first), then personal and feed events. */
 internal fun DayEvents.toCalendarDay(language: String): CalendarDay =
     CalendarDay(
         jdn = jdn,
@@ -117,7 +117,6 @@ internal fun DayEvents.toCalendarDay(language: String): CalendarDay =
                 )
             } +
                 personal.map { item(it.itemId, DayEventKind.PERSONAL, it.title) } +
-                device.map { item(it.eventId.toString(), DayEventKind.DEVICE, it.title) } +
                 ics.map { item("${it.subscriptionId}:${it.uid}", DayEventKind.SUBSCRIPTION, it.summary) },
     )
 

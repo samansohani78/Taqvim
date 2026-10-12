@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">Дар ин моҳ рӯйдод нест</string>
   <string name="agenda_kind_official">Расмӣ</string>
   <string name="agenda_kind_personal">Шахсӣ</string>
-  <string name="agenda_kind_device">Тақвими дастгоҳ</string>
   <string name="agenda_kind_subscription">Обуна</string>
   <string name="agenda_event_description">%1$s, %2$s</string>
   <string name="agenda_export_title">Рӯзнома: %1$s – %2$s</string>

@@ -958,7 +958,9 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
-### T-602 — Device calendar adapter
+### T-602 — Device calendar adapter (withdrawn 2026-10-12, ADR-0051)
+- **Status:** the code described below was deleted. Taqvim no longer reads the device calendar; the entry
+  stays because the work was done and the sources were consulted, and a provenance record is a history.
 - **Module / files:** `data/device-calendar/src/main/kotlin/ir/taqvim/data/devicecalendar/` — `DeviceEventMapping.kt`,
   `CalendarInstancesSource.kt`, `DeviceCalendarRepository.kt`
 - **Task:** T-602

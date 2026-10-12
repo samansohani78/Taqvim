@@ -11,7 +11,7 @@ import ir.taqvim.core.ics.Frequency
 import ir.taqvim.core.ics.IcsDateTime
 import ir.taqvim.core.ics.IcsEvent
 import ir.taqvim.core.ics.Recurrence
-import ir.taqvim.data.devicecalendar.InstantWindow
+import ir.taqvim.data.events.InstantWindow
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes

@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Sambutan rasmi</string>
   <string name="search_kind_personal">Acara saya</string>
-  <string name="search_kind_device">Kalendar peranti</string>
   <string name="search_kind_subscription">Kalendar langganan</string>
   <string name="search_settings_language">Bahasa</string>
   <string name="search_settings_language_keywords">tempatan|terjemahan|Parsi|Inggeris|bahasa</string>

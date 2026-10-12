@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Celebración oficial</string>
   <string name="search_kind_personal">Mi evento</string>
-  <string name="search_kind_device">Calendario del dispositivo</string>
   <string name="search_kind_subscription">Calendario suscrito</string>
   <string name="search_settings_language">Idioma</string>
   <string name="search_settings_language_keywords">configuración regional|traducción|persa|inglés</string>

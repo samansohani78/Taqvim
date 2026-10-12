@@ -31,10 +31,10 @@ class PrivacyDaoTest {
     }
 
     @Test
-    fun countsFollowTheTablesAndTheDeviceCopyIsCleared(): Unit =
+    fun countsFollowTheTables(): Unit =
         runTest {
             privacy.observeCounts().test {
-                awaitItem() shouldBe StoredRowCounts(0, 0, 0, 0, 0)
+                awaitItem() shouldBe StoredRowCounts(0, 0, 0, 0)
 
                 val eventId =
                     db.personalEventDao().insert(
@@ -48,7 +48,7 @@ class PrivacyDaoTest {
                             updatedAtEpochMillis = 1L,
                         ),
                     )
-                awaitItem() shouldBe StoredRowCounts(1, 0, 0, 0, 0)
+                awaitItem() shouldBe StoredRowCounts(1, 0, 0, 0)
                 db.reminderDao().insertReminder(ReminderEntity(eventId = eventId, minutesBefore = 10))
                 awaitItem().reminders shouldBe 1
                 db.officialReminderDao().insert(OfficialReminderEntity(eventId = "ir.holiday.nowruz-1", daysBefore = 3))
@@ -61,17 +61,10 @@ class PrivacyDaoTest {
                     ),
                 )
                 awaitItem().subscriptions shouldBe 1
-                db.deviceEventDao().insertAll(
-                    listOf(DeviceEventCacheEntity(1, 1, 0L, 3_600_000L, allDay = false, title = "b")),
-                )
-                awaitItem().deviceEvents shouldBe 1
                 db.diagnosticsDao().insert(
                     DiagnosticsLogEntity(atEpochMillis = 1L, level = DiagnosticsLevel.INFO, tag = "t", message = "m"),
                 )
-                awaitItem() shouldBe StoredRowCounts(1, 2, 1, 1, 1)
-
-                privacy.clearDeviceEvents()
-                awaitItem() shouldBe StoredRowCounts(1, 2, 1, 0, 1)
+                awaitItem() shouldBe StoredRowCounts(1, 2, 1, 1)
                 cancelAndIgnoreRemainingEvents()
             }
         }

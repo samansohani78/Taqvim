@@ -87,22 +87,6 @@ data class IcsEventCacheEntity(
     val description: String = "",
 )
 
-/** One instance read from the device calendar provider (`device_events_cache`). */
-@Entity(
-    tableName = "device_events_cache",
-    primaryKeys = ["event_id", "begin_epoch_millis"],
-    indices = [Index("begin_epoch_millis")],
-)
-data class DeviceEventCacheEntity(
-    @ColumnInfo(name = "event_id") val eventId: Long,
-    @ColumnInfo(name = "calendar_id") val calendarId: Long,
-    @ColumnInfo(name = "begin_epoch_millis") val beginEpochMillis: Long,
-    @ColumnInfo(name = "end_epoch_millis") val endEpochMillis: Long,
-    @ColumnInfo(name = "all_day") val allDay: Boolean,
-    val title: String,
-    @ColumnInfo(name = "color_argb") val colorArgb: Int? = null,
-)
-
 /** Severity of a diagnostics entry. */
 enum class DiagnosticsLevel {
     DEBUG,

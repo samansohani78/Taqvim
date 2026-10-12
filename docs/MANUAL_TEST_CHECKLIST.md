@@ -458,8 +458,12 @@ Sign-off: ______
    and open the file in another calendar app.
 9. Subscriptions: add a WebCal/HTTPS feed with network use allowed → events appear; the health page shows the last
    download; pause it and refresh; turn network use off → no fetch happens.
-10. Device calendar: grant calendar permission → device events appear with their colours; all-day events stay on their
-    date after changing the device zone; revoke the permission → no crash, device events disappear.
+10. No calendar permission (ADR-0051): open Settings → Apps → Taqvim → Permissions on the device → **Calendar is not
+    listed at all**, and nothing in the app ever prompts for it. Upgrade from a build that had it (install 1.2.0,
+    grant calendar access, add a device event, then install this build over it) → the app opens, the calendar, day
+    details, agenda, timeline, search and the event widgets show no device events and no empty placeholder where
+    they were, and the privacy screen lists neither a calendar permission nor a calendar copy. `.ics` import and
+    export and subscribed feeds still work, which is the interoperability that remains.
 
 Sign-off: ______
 

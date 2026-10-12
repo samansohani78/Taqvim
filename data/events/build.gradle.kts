@@ -11,7 +11,6 @@ dependencies {
     // T-305: personal and iCalendar tables, preferences and device instances are combined with the dataset.
     api(projects.data.database)
     api(projects.data.preferences)
-    api(projects.data.deviceCalendar)
     implementation(libs.kotlinx.coroutines.core)
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

@@ -37,6 +37,44 @@ class TaqvimDatabaseMigrationTest {
         }
 
     @Test
+    fun migratingToNineDropsTheDeviceCalendarCopyAndKeepsTheUsersOwnRows() {
+        // ADR-0051. An installation that had the calendar permission holds a copy of the user's calendar rows in
+        // `device_events_cache`. The upgrade has to delete that copy, not merely stop writing to it, and it has to
+        // do so without touching anything the user entered themselves.
+        val name = "migration-8-9.db"
+        helper.createDatabase(name, 8).use { db ->
+            db.execSQL(
+                "INSERT INTO device_events_cache (event_id, calendar_id, begin_epoch_millis, end_epoch_millis, " +
+                    "all_day, title, color_argb) VALUES (1, 9, 0, 3600000, 0, 'Dentist', NULL)",
+            )
+            db.execSQL(
+                "INSERT INTO personal_events (id, title, notes, calendar_system, start_jdn, end_jdn, time_zone_id, " +
+                    "created_at_epoch_millis, updated_at_epoch_millis) " +
+                    "VALUES (1, 'Birthday', '', 'PERSIAN', 10, 10, 'UTC', 0, 0)",
+            )
+            db.query("SELECT COUNT(*) FROM device_events_cache").use { row ->
+                row.moveToFirst() shouldBe true
+                row.getInt(0) shouldBe 1
+            }
+        }
+
+        helper.runMigrationsAndValidate(name, 9, true, *TaqvimMigrations.ALL.toTypedArray()).use { db ->
+            // The table is gone, so the copy cannot be read back by anything, including a downgraded build.
+            db
+                .query(
+                    "SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = 'device_events_cache'",
+                ).use { row ->
+                    row.moveToFirst() shouldBe true
+                    row.getInt(0) shouldBe 0
+                }
+            db.query("SELECT title FROM personal_events WHERE id = 1").use { row ->
+                row.moveToFirst() shouldBe true
+                row.getString(0) shouldBe "Birthday"
+            }
+        }
+    }
+
+    @Test
     fun shiftRotationsSurviveMigrationToEightWithoutColors() {
         // F-08 added a colour per shift label. A rotation stored before it must keep its pattern and read as having
         // no colours, not as having lost its days.

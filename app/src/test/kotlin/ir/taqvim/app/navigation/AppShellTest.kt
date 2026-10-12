@@ -7,7 +7,6 @@ package ir.taqvim.app.navigation
 import android.app.Application
 import android.content.Intent
 import android.net.Uri
-import android.provider.CalendarContract
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -71,7 +70,7 @@ class AppShellTest {
     }
 
     @Test
-    fun webLinksAndDeviceEventsOpenOutsideTheApp() {
+    fun webLinksOpenOutsideTheApp() {
         val application = ApplicationProvider.getApplicationContext<Application>()
         val actions = ContextExternalActions(application)
         val shadow = shadowOf(application)
@@ -84,11 +83,6 @@ class AppShellTest {
 
         actions.openUrl("javascript:alert(1)")
         assertNull(shadow.nextStartedActivity)
-
-        actions.openDeviceEvent(5)
-        val event = shadow.nextStartedActivity
-        assertEquals(Intent.ACTION_VIEW, event.action)
-        assertEquals(Uri.withAppendedPath(CalendarContract.Events.CONTENT_URI, "5"), event.data)
     }
 
     // Screens are containers for tests only; a parent that merges semantics must not hide them.

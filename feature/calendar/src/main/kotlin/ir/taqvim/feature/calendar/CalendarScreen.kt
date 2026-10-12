@@ -133,7 +133,6 @@ internal fun ColorScheme.indicatorPalette(): IndicatorPalette =
         holiday = error,
         official = primary,
         personal = tertiary,
-        device = secondary,
         subscription = outline,
     )
 

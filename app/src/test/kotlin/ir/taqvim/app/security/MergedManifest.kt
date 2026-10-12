@@ -27,6 +27,7 @@ object MergedManifest {
     private val COMPONENT_TAGS = listOf("activity", "activity-alias", "service", "receiver", "provider")
     private const val NO_PERMISSION = "-"
     private const val ALLOWLIST_COLUMNS = 4
+    private const val PERMISSION_COLUMNS = 2
     private const val TEST_CONFIG = "com/android/tools/test_config.properties"
 
     /** The AGP-generated merged manifest of the debug unit tests (`com/android/tools/test_config.properties`). */
@@ -54,6 +55,25 @@ object MergedManifest {
             .getElementsByTagName("uses-permission")
             .let { nodes -> (0 until nodes.length).map { (nodes.item(it) as Element).getAttributeNS(ANDROID, "name") } }
             .toSet()
+
+    /**
+     * Permission names from `security/requested-permissions.txt` (`permission | why`), comments and blanks skipped.
+     *
+     * One file, read by the unit test against the debug manifest and by `auditReleasePermissions` against the
+     * release one, so the two cannot drift apart and a permission cannot be allowed in only the build nobody ships.
+     */
+    fun permissionAllowlist(text: String): List<String> =
+        text
+            .lines()
+            .map(String::trim)
+            .filterNot { it.isEmpty() || it.startsWith("#") }
+            .map { line ->
+                val columns = line.split('|').map(String::trim)
+                require(columns.size == PERMISSION_COLUMNS && columns[1].isNotEmpty()) {
+                    "permission line needs 'permission | why': $line"
+                }
+                columns[0]
+            }
 
     fun allowlist(text: String): List<AllowedComponent> =
         text

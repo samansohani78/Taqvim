@@ -59,7 +59,6 @@ class SharedOfficialViewTest {
             inputs =
                 EventInputs(
                     personal = PersonalEventsSource { MutableStateFlow(emptyList()) },
-                    device = DeviceEventsSource { MutableStateFlow(emptyList()) },
                     ics = IcsEventsSource { MutableStateFlow(emptyList()) },
                 ),
             clock = clock,
@@ -81,7 +80,6 @@ class SharedOfficialViewTest {
                     inputs =
                         EventInputs(
                             personal = PersonalEventsSource { MutableStateFlow(emptyList()) },
-                            device = DeviceEventsSource { MutableStateFlow(emptyList()) },
                             ics = IcsEventsSource { MutableStateFlow(emptyList()) },
                         ),
                     clock = clock,

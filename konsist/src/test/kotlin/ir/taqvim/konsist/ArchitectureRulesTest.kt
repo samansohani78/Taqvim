@@ -54,7 +54,6 @@ class ArchitectureRulesTest {
     @Test
     fun `expected packages follow the namespace convention`() {
         ArchitectureRules.expectedPackage(":core:ui-testing") shouldBe "ir.taqvim.core.uitesting"
-        ArchitectureRules.expectedPackage(":data:device-calendar") shouldBe "ir.taqvim.data.devicecalendar"
         ArchitectureRules.expectedPackage(":build-logic:convention") shouldBe "ir.taqvim.buildlogic"
     }
 

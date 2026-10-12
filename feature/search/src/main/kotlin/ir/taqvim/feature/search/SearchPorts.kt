@@ -34,7 +34,6 @@ data class SearchSettings(
 enum class SearchEventKind {
     OFFICIAL,
     PERSONAL,
-    DEVICE,
     SUBSCRIPTION,
 }
 

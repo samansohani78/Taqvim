@@ -26,7 +26,6 @@ data class AgendaSettings(
 enum class AgendaEventKind {
     OFFICIAL,
     PERSONAL,
-    DEVICE,
     SUBSCRIPTION,
 }
 

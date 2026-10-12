@@ -55,6 +55,5 @@ private fun DayEventKind.toAgendaKind(): AgendaEventKind =
     when (this) {
         DayEventKind.OFFICIAL -> AgendaEventKind.OFFICIAL
         DayEventKind.PERSONAL -> AgendaEventKind.PERSONAL
-        DayEventKind.DEVICE -> AgendaEventKind.DEVICE
         DayEventKind.SUBSCRIPTION -> AgendaEventKind.SUBSCRIPTION
     }

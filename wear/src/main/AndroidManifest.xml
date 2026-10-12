@@ -5,12 +5,11 @@
   <uses-feature android:name="android.hardware.type.watch" />
 
   <!-- T-1600 (ADR-0019): the watch uses the bundled dataset and city list only. Library permissions it never uses are
-       removed from the merged manifest: subscriptions (network), device calendar and device location. -->
+       removed from the merged manifest: subscriptions (network) and device location. READ_CALENDAR is not listed
+       because no module declares it any more (ADR-0051); a removal of a permission nothing declares would be a
+       claim this manifest cannot keep. -->
   <uses-permission
     android:name="android.permission.INTERNET"
-    tools:node="remove" />
-  <uses-permission
-    android:name="android.permission.READ_CALENDAR"
     tools:node="remove" />
   <uses-permission
     android:name="android.permission.ACCESS_COARSE_LOCATION"

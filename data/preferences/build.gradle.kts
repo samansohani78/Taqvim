@@ -6,6 +6,8 @@ plugins {
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.i18n)
+    // Review I06: the device zone stream registers an ACTION_TIMEZONE_CHANGED receiver.
+    implementation(libs.androidx.core.ktx)
     // T-1500: enabled event sources and the high-latitude rule are stored as their core types.
     api(projects.core.events)
     api(projects.core.praytimes)

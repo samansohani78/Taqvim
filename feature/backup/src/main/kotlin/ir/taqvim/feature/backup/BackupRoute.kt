@@ -122,7 +122,7 @@ internal fun permissionSettingsIntent(
     val appDetails = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageUri(context))
     val intent =
         when (kind) {
-            PermissionKind.LOCATION, PermissionKind.CALENDAR -> {
+            PermissionKind.LOCATION -> {
                 appDetails
             }
 

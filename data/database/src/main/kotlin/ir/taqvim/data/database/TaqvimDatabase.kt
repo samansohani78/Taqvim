@@ -23,7 +23,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         ShiftRotationRecordEntity::class,
         IcsSubscriptionEntity::class,
         IcsEventCacheEntity::class,
-        DeviceEventCacheEntity::class,
         WorkdayProfileEntity::class,
         DiagnosticsLogEntity::class,
         OfficialReminderEntity::class,
@@ -46,8 +45,6 @@ abstract class TaqvimDatabase : RoomDatabase() {
     abstract fun workdayProfileDao(): WorkdayProfileDao
 
     abstract fun icsSubscriptionDao(): IcsSubscriptionDao
-
-    abstract fun deviceEventDao(): DeviceEventDao
 
     abstract fun diagnosticsDao(): DiagnosticsDao
 
@@ -75,7 +72,7 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 8
+    const val LATEST_VERSION: Int = 9
 
     /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
     private val MIGRATION_1_2: Migration =
@@ -163,6 +160,20 @@ object TaqvimMigrations {
             }
         }
 
+    /**
+     * 8 → 9 (ADR-0051): drops `device_events_cache`.
+     *
+     * Taqvim no longer reads the system calendar, so the copy it kept of the user's calendar rows is both unused and
+     * the most sensitive thing the database held. Dropping it in the migration rather than leaving it orphaned is the
+     * point: an upgrade deletes that copy, it is not merely stopped from growing.
+     */
+    private val MIGRATION_8_9: Migration =
+        object : Migration(8, 9) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("DROP TABLE IF EXISTS `device_events_cache`")
+            }
+        }
+
     /** Migrations between consecutive versions, oldest first. */
     val ALL: List<Migration> =
         listOf(
@@ -173,5 +184,6 @@ object TaqvimMigrations {
             MIGRATION_5_6,
             MIGRATION_6_7,
             MIGRATION_7_8,
+            MIGRATION_8_9,
         )
 }

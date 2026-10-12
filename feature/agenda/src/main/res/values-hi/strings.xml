@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">इस महीने कोई इवेंट नहीं</string>
   <string name="agenda_kind_official">आधिकारिक</string>
   <string name="agenda_kind_personal">व्यक्तिगत</string>
-  <string name="agenda_kind_device">डिवाइस कैलेंडर</string>
   <string name="agenda_kind_subscription">सदस्यता</string>
   <string name="agenda_event_description">%1$s, %2$s</string>
   <string name="agenda_export_title">कार्यसूची: %1$s – %2$s</string>

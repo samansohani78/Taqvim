@@ -7,9 +7,7 @@ package ir.taqvim.data.events
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.devicecalendar.DeviceEvent
-import ir.taqvim.data.devicecalendar.DeviceEventMapping
-import ir.taqvim.data.devicecalendar.DeviceTimeZone
+import ir.taqvim.data.preferences.DeviceTimeZone
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.time.Clock
 import kotlinx.coroutines.CoroutineDispatcher
@@ -27,7 +25,7 @@ import kotlinx.datetime.TimeZone
 
 /**
  * The events of days (T-305): the generated dataset (D-08) filtered by the visibility and holiday policies of
- * [settings], combined with personal, device and iCalendar events from [inputs]. Every flow re-emits when the settings,
+ * [settings], combined with personal and iCalendar events from [inputs]. Every flow re-emits when the settings,
  * any input or the device zone ([zones], review I06) change; dataset lookups are rebuilt only when the settings value changes.
  */
 class EventsRepository(
@@ -61,7 +59,7 @@ class EventsRepository(
         val official = settings.distinctUntilChanged().map { viewFor(it) }
         val sourced = zones.distinctUntilChanged().flatMapLatest { zone -> sourcesIn(days, zone) }
         return combine(official, sourced) { view, zoned ->
-            zoned.assembler.assemble(days, Snapshot(view, zoned.personal, zoned.device, zoned.ics))
+            zoned.assembler.assemble(days, Snapshot(view, zoned.personal, zoned.ics))
         }.distinctUntilChanged()
             .flowOn(computeDispatcher)
     }
@@ -69,11 +67,10 @@ class EventsRepository(
     /**
      * Whether [jdn] is a day off, from the dataset and the weekend alone.
      *
-     * A widget that only colours a holiday does not need the day assembled: [days] subscribes to the personal,
-     * device-calendar and subscription sources and waits for all three before it can answer, which on a cold widget
-     * update means opening Room and querying the calendar provider for a flag that comes out of the dataset. This
-     * answers the same question from the same [HolidayCalendar] the assembler uses, so the two cannot disagree, and
-     * touches no database.
+     * A widget that only colours a holiday does not need the day assembled: [days] subscribes to the personal and
+     * subscription sources and waits for both before it can answer, which on a cold widget update means opening Room
+     * for a flag that comes out of the dataset. This answers the same question from the same [HolidayCalendar] the
+     * assembler uses, so the two cannot disagree, and touches no database.
      */
     suspend fun isHoliday(jdn: Jdn): Boolean =
         withContext(computeDispatcher) { viewFor(settings.first()).isHoliday(jdn) }
@@ -106,9 +103,8 @@ class EventsRepository(
         val assembler = DayEventsAssembler(clock, zone)
         return combine(
             inputs.personal.events(EventDays.widened(days)),
-            inputs.device.events(days),
-            inputs.ics.events(DeviceEventMapping.window(days, zone)),
-        ) { personal, device, ics -> ZonedSources(assembler, personal, device, ics) }
+            inputs.ics.events(EventWindows.window(days, zone)),
+        ) { personal, ics -> ZonedSources(assembler, personal, ics) }
     }
 
     /** The events of the single day [jdn]. */
@@ -119,6 +115,5 @@ class EventsRepository(
 private class ZonedSources(
     val assembler: DayEventsAssembler,
     val personal: List<PersonalEventRecord>,
-    val device: List<DeviceEvent>,
     val ics: List<IcsEventCacheEntity>,
 )
