@@ -176,14 +176,18 @@ jobs:
           status=$?
           set -e
           if [ "$status" -eq 0 ]; then
-            echo "## Performance qualified" >> "$GITHUB_STEP_SUMMARY"
-            echo >> "$GITHUB_STEP_SUMMARY"
-            echo "$reason" >> "$GITHUB_STEP_SUMMARY"
+            {
+              echo "## Performance qualified"
+              echo
+              echo "$reason"
+            } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          echo "## Performance not qualified" >> "$GITHUB_STEP_SUMMARY"
-          echo >> "$GITHUB_STEP_SUMMARY"
-          echo "$reason" >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "## Performance not qualified"
+            echo
+            echo "$reason"
+          } >> "$GITHUB_STEP_SUMMARY"
           echo "::error title=Performance not qualified::$reason"
           exit 1
 
