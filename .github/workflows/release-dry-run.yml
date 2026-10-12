@@ -43,7 +43,8 @@ jobs:
         # artifact the release never produces. Add it back the day a Play Console exists.
         run: >-
           ./gradlew licenseCheck :app:verifyReleaseVersion :app:auditReleaseExportedComponents
-          :app:checkReleasePageAlignment :app:assembleRelease :app:cyclonedxDirectBom
+          :app:auditReleasePermissions :app:checkReleasePageAlignment :app:assembleRelease
+          :app:cyclonedxDirectBom
       - name: Check release outputs
         run: |
           shopt -s nullglob

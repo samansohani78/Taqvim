@@ -1160,6 +1160,12 @@ removed enum constant that an old store could still hold.
 | `ExportedComponentsTest.noCalendarPermissionIsRequested` | the debug unit-test manifest and the same allowlist | as above, for the build the unit tests see |
 | `TaqvimDatabaseMigrationTest.migratingToNineDrops…` | a real v8 database | the copy survives the upgrade, or a personal event does not |
 
+A check that nothing runs enforces nothing. `:app:auditReleasePermissions` was wired to the `check` lifecycle task
+and left there, and no workflow runs `check`: `pr.yml` runs `assemble` and the named verification tasks,
+`release.yml` and `release-dry-run.yml` ran `:app:auditReleaseExportedComponents` by name and not its sibling. So
+the one gate that reads the manifest that actually ships ran only when someone typed `./gradlew check` locally.
+It is named in all three workflows as of 2026-10-12, which is what makes the row above true of CI.
+
 Each has planted-violation coverage, so none can pass by reading nothing. That matters here more than usual: the
 first run of the manifest rule **passed against a tree with `READ_CALENDAR` planted in it**, because `:konsist:test`
 did not declare manifests as Gradle inputs and was served from cache. The input list now includes
