@@ -26,8 +26,8 @@ import org.robolectric.Shadows.shadowOf
 import org.w3c.dom.Element
 
 /**
- * T-1804 (ADR-0017): HTTPS only with system CAs, Auto Backup only when end-to-end encrypted, StrictMode in debug, and
- * receivers ignore broadcasts they do not handle.
+ * T-1804 (ADR-0017, ADR-0056): HTTPS only with system CAs, no automatic cloud backup of app data, StrictMode in
+ * debug, and receivers ignore broadcasts they do not handle.
  */
 @RunWith(AndroidJUnit4::class)
 class SecurityConfigurationTest {
@@ -54,18 +54,35 @@ class SecurityConfigurationTest {
     }
 
     @Test
-    fun autoBackupRequiresEndToEndEncryption() {
-        val legacy = xml("src/main/res/xml/backup_rules.xml")
-        assertEquals(0, legacy.getElementsByTagName("include").length)
-        assertEquals(DOMAINS, elements(legacy, "exclude").map { it.getAttribute("domain") }.toSet())
-
-        val pie = elements(xml("src/main/res/xml-v28/backup_rules.xml"), "include")
-        assertTrue(pie.isNotEmpty())
-        assertTrue(pie.all { it.getAttribute("requireFlags") == "clientSideEncryption" })
+    fun automaticCloudBackupCopiesNothing() {
+        // ADR-0056. Every version has its own file, and a rule left out of one of them is a silent upload on
+        // whichever Android versions read it, so all three are asserted rather than the newest.
+        listOf("src/main/res/xml/backup_rules.xml", "src/main/res/xml-v28/backup_rules.xml").forEach { path ->
+            val rules = xml(path)
+            assertEquals("$path backs something up", 0, rules.getElementsByTagName("include").length)
+            assertEquals(path, DOMAINS, elements(rules, "exclude").map { it.getAttribute("domain") }.toSet())
+        }
 
         val extraction = xml("src/main/res/xml/data_extraction_rules.xml")
         val cloud = extraction.getElementsByTagName("cloud-backup").item(0) as Element
-        assertEquals("true", cloud.getAttribute("disableIfNoEncryptionCapabilities"))
+        assertEquals(0, cloud.getElementsByTagName("include").length)
+        assertEquals(DOMAINS, children(cloud, "exclude").map { it.getAttribute("domain") }.toSet())
+    }
+
+    @Test
+    fun theDeviceTransferTheUserStartsStillCarriesTheirData() {
+        // ADR-0056: not an upload. It runs while the user sets up their next phone, between two devices they hold.
+        // Without it, moving phone would lose everything the app has, which is not a privacy win for anyone.
+        val transfer =
+            xml("src/main/res/xml/data_extraction_rules.xml")
+                .getElementsByTagName("device-transfer")
+                .item(0) as Element
+
+        assertEquals(0, transfer.getElementsByTagName("exclude").length)
+        assertEquals(
+            setOf("database", "file", "sharedpref"),
+            children(transfer, "include").map { it.getAttribute("domain") }.toSet(),
+        )
     }
 
     @Test
@@ -100,6 +117,14 @@ class SecurityConfigurationTest {
         tag: String,
     ): List<Element> {
         val nodes = document.getElementsByTagName(tag)
+        return (0 until nodes.length).map { nodes.item(it) as Element }
+    }
+
+    private fun children(
+        parent: Element,
+        tag: String,
+    ): List<Element> {
+        val nodes = parent.getElementsByTagName(tag)
         return (0 until nodes.length).map { nodes.item(it) as Element }
     }
 

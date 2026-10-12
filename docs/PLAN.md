@@ -696,7 +696,7 @@ Core only; showing these calendars and observances to users needs a later decisi
 - LeakCanary debug; heap budget test on month screen < 80 MB.
 
 ### T-1804 Security
-- No network permission at all (ADR-0054) and no location permission (ADR-0055); `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug.
+- No network permission at all (ADR-0054) and no location permission (ADR-0055); automatic cloud backup off (ADR-0056); `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug.
 - Tests: L manifest audit test (no unexpected `exported=true`).
 
 ---

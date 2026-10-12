@@ -21,11 +21,20 @@ personal data.
 
 | Data | Where | Leaves the device |
 |---|---|---|
-| Personal events, reminders, official-day reminder choices, work profiles | Room database | In Taqvim backup files the user creates (T-605), and in encrypted Auto Backup |
+| Personal events, reminders, official-day reminder choices, work profiles | Room database | Only in Taqvim backup files the user creates (T-605), and in a device-to-device transfer they start (ADR-0056) |
 | Preferences, chosen place, athan and app settings | DataStore | Same as above |
 | Diagnostics | Room database | Only inside a problem report the user shares, after redaction (T-1504) |
 
 Taqvim has no accounts, analytics, advertising or server of its own.
+
+### Nothing is backed up unless you back it up
+
+Android's Auto Backup copies an app's private files to your cloud account unless the app opts out. Taqvim opts
+out — on every version it supports, and for every kind of data it holds. If you want a copy of your events,
+reminders, shifts and settings, you make one in Settings → Backup: a single file, encrypted with a passphrase you
+choose, saved where you choose. Changing phone on Android 12 or later still carries everything, because the
+device-to-device transfer you start is kept; it moves data between two devices you hold and stores nothing on a
+server. [ADR-0056](adr/0056-no-automatic-cloud-backup.md) has the reasoning and what it costs.
 
 ### Taqvim has no network access
 
@@ -76,7 +85,7 @@ permission, and a Konsist rule fails if any source manifest requests one or any 
 | Files exposed through a content provider | The only `FileProvider` shares `cache/shared/` for QR images, granted per share (T-1400). |
 | Network interception | Taqvim requests no network permission, so it has no traffic to intercept (ADR-0054). The network security config stays as the standing answer if a dependency ever brings the permission back: cleartext refused, system CAs only, no user-installed CAs. |
 | Backup file theft | Passphrase backups use AES-256-GCM with PBKDF2-HMAC-SHA256, 600 000 iterations (T-605). Passphrases stay in memory only and are wiped after use (T-1503). |
-| Auto Backup or device transfer copying data in the clear | Cloud backup only when end-to-end encrypted (Android 9+). Android 8.x is excluded. |
+| Automatic cloud backup copying data the user did not ask to copy | Auto Backup copies nothing, on every supported Android version (ADR-0056). The device-to-device transfer the user starts when setting up a new phone is kept on Android 12+, where the platform separates the two. |
 | Personal data in logs or reports | One `android.util.Log` call in Taqvim code, documented under [Logging](#logging). Problem reports and diagnostics are redacted: event titles, precise coordinates, links with tokens, e-mail addresses and passwords are removed (T-1504). Nothing is uploaded. |
 | A dependency adds a permission nobody asked for | `auditReleasePermissions` compares the merged release manifest with the documented permission list and fails on any difference, in either direction. Calendar permissions (ADR-0051) and network permissions (ADR-0054) are additionally refused by name. |
 | Vulnerable or non-permissive dependencies | License gate with an LGPL canary (T-001), CycloneDX SBOM (T-003). |

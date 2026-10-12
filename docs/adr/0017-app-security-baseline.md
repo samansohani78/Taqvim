@@ -3,7 +3,9 @@
 - **Status:** Accepted. The network section is superseded by
   [ADR-0054](0054-taqvim-has-no-network-access.md) (2026-10-13): Taqvim now requests no network permission at
   all, so there is no opt-in to default and no traffic for the network security config to constrain. Everything
-  else here — exported components, backup rules, the manifest audit — still holds.
+  else here — exported components, the manifest audit — still holds, except the backup rules, which
+  [ADR-0056](0056-no-automatic-cloud-backup.md) (2026-10-13) replaced: automatic cloud backup now copies nothing
+  rather than copying when it can be end-to-end encrypted.
 - **Date:** 2026-09-14
 - **Plan reference:** docs/PLAN.md T-1804 (no network permission in v1 except optional ICS subscriptions, declared and
   off by default; `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug; manifest

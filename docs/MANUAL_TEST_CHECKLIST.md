@@ -467,7 +467,10 @@ Sign-off: ______
    build that had subscriptions (install 1.3.0, add a feed, allow network use, let it download) → the app opens, no
    subscribed events are shown anywhere, Settings has no subscriptions page, and the privacy screen lists neither a
    network permission nor a subscription row.
-11. No calendar permission (ADR-0051): open Settings → Apps → Taqvim → Permissions on the device → **Calendar is not
+11. No automatic cloud backup (ADR-0056): with Android's backup on and the device signed in, run
+    `adb shell bmgr backupnow ir.taqvim` → the result reports nothing transferred for Taqvim. Changing phone on
+    Android 12+ with a device-to-device transfer still brings events, reminders, shifts and settings across.
+12. No calendar permission (ADR-0051): open Settings → Apps → Taqvim → Permissions on the device → **Calendar is not
     listed at all**, and nothing in the app ever prompts for it. Upgrade from a build that had it (install 1.2.0,
     grant calendar access, add a device event, then install this build over it) → the app opens, the calendar, day
     details, agenda, timeline, search and the event widgets show no device events and no empty placeholder where

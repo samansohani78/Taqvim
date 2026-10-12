@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- T-1600 / T-1804 (ADR-0017, ADR-0019), Android 12+: the watch's preferences go to cloud backup only when it can be
-     end-to-end encrypted; a device transfer started by the user copies them too. -->
+<!-- T-1600 / T-1804 (ADR-0017, ADR-0019, ADR-0056), Android 12+: cloud backup is off, as on the phone. The watch
+     stores only preferences, and a device transfer the user starts while setting up a new watch carries them. -->
 <data-extraction-rules>
-  <cloud-backup disableIfNoEncryptionCapabilities="true">
-    <include domain="file" path="datastore/" />
+  <cloud-backup>
+    <exclude domain="root" path="." />
+    <exclude domain="file" path="." />
+    <exclude domain="database" path="." />
+    <exclude domain="sharedpref" path="." />
+    <exclude domain="external" path="." />
   </cloud-backup>
   <device-transfer>
     <include domain="file" path="datastore/" />

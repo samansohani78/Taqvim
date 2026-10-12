@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- T-1804 (ADR-0017), Android 12+: cloud backup only when it can be end-to-end encrypted; a device-to-device transfer
-     started by the user copies the same data. Room, DataStore preferences and delivery logs; WorkManager's database
-     lives in no_backup and is never copied. -->
+<!--
+  T-1804 (ADR-0017, ADR-0056), Android 12+.
+
+  Cloud backup is off. Taqvim's own data — personal events, reminders, shift rotations, workday profiles and every
+  preference — never leaves the device through the platform's automatic backup, encrypted or not. A user who wants
+  a copy makes one deliberately with Taqvim's encrypted backup file (T-605), which they hold and can read back.
+
+  Device-to-device transfer is kept, and is a different thing: the user starts it while setting up their next
+  phone, it moves the data between two devices they hold, and nothing is stored on a server along the way. Without
+  it, moving to a new phone would silently lose everything the app has.
+-->
 <data-extraction-rules>
-  <cloud-backup disableIfNoEncryptionCapabilities="true">
-    <include domain="database" path="." />
-    <include domain="file" path="datastore/" />
-    <include domain="sharedpref" path="." />
+  <cloud-backup>
+    <exclude domain="root" path="." />
+    <exclude domain="file" path="." />
+    <exclude domain="database" path="." />
+    <exclude domain="sharedpref" path="." />
+    <exclude domain="external" path="." />
   </cloud-backup>
   <device-transfer>
     <include domain="database" path="." />

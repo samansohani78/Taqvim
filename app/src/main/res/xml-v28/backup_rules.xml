@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- T-1804 (ADR-0017): Android 9–11 Auto Backup keeps personal data only when the backup is end-to-end encrypted with
-     the device lock (clientSideEncryption). Android 12+ uses data_extraction_rules.xml. -->
+<!--
+  T-1804 (ADR-0017, ADR-0056): Android 9–11 Auto Backup copies nothing.
+
+  These versions have one setting for both cloud backup and device transfer, so keeping the transfer would mean
+  keeping the cloud copy with it. Between the two, not putting the user's events on a server wins: a user moving
+  to a new phone can carry their data in Taqvim's own encrypted backup file (T-605), and a user who never thinks
+  about backups has nothing uploaded on their behalf. Android 12+ separates the two and keeps the transfer
+  (data_extraction_rules.xml).
+-->
 <full-backup-content>
-  <include
-    domain="database"
-    path="."
-    requireFlags="clientSideEncryption" />
-  <include
-    domain="file"
-    path="datastore/"
-    requireFlags="clientSideEncryption" />
-  <include
-    domain="sharedpref"
-    path="."
-    requireFlags="clientSideEncryption" />
+  <exclude domain="root" path="." />
+  <exclude domain="file" path="." />
+  <exclude domain="database" path="." />
+  <exclude domain="sharedpref" path="." />
+  <exclude domain="external" path="." />
 </full-backup-content>
