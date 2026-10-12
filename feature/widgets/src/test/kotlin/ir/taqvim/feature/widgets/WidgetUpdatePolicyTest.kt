@@ -17,6 +17,7 @@ import io.kotest.property.arbitrary.set
 import io.kotest.property.checkAll
 import ir.taqvim.core.testing.PropertyTesting
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.DateTimeUnit
@@ -105,10 +106,16 @@ class WidgetUpdatePolicyTest {
         // Berlin's 23-hour day: 2026-03-29 starts at 00:00 CET and ends at 00:00 CEST.
         next("2026-03-28T12:00:00Z", "Europe/Berlin") shouldBe Instant.parse("2026-03-28T23:00:00Z")
         next("2026-03-29T10:00:00Z", "Europe/Berlin") shouldBe Instant.parse("2026-03-29T22:00:00Z")
+        // Samoa skipped 30 December 2011 outright, moving west of the date line: the day after the 29th is the
+        // 31st, 12 hours later. A widget there must wake at the start of the 31st and not at a date that never
+        // happened. Pinned here because the property test only draws this day by luck (CI 38243236904).
+        next("2011-12-29T22:00:00Z", "Pacific/Apia") shouldBe Instant.parse("2011-12-30T10:00:00Z")
+        // Tehran's spring-forward skips midnight itself: 2016-03-21 begins at 01:00 local, not 00:00.
+        next("2016-03-20T12:00:00Z", "Asia/Tehran") shouldBe Instant.parse("2016-03-20T20:30:00Z")
     }
 
     @Test
-    fun `the next day always starts within 25 hours on the following local date`(): Unit =
+    fun `the next wake-up is the first instant of a later local day, within 25 hours`(): Unit =
         runBlocking {
             val zones = listOf("Asia/Tehran", "Europe/Berlin", "America/Sao_Paulo", "Asia/Kathmandu", "Pacific/Apia")
             val instants =
@@ -123,7 +130,20 @@ class WidgetUpdatePolicyTest {
                 val now = Instant.fromEpochSeconds(seconds)
                 val next = WidgetUpdatePolicy.nextMidnight(now, zone)
                 (next > now && next - now <= 25.hours).shouldBeTrue()
-                next.toLocalDateTime(zone).date shouldBe now.toLocalDateTime(zone).date.plus(1, DateTimeUnit.DAY)
+                // What must hold is that `next` is the *first instant of a later local day*. Two things that
+                // sound equivalent are not, and both were asserted here before and are false:
+                //
+                //  - "the local date is today + 1" — Samoa skipped 30 December 2011 crossing the date line, so in
+                //    Pacific/Apia the day after the 29th is the 31st. This is what failed CI 38243236904, after
+                //    passing for as long as no run happened to draw that one day in fifty years;
+                //  - "the local time is 00:00" — Tehran's spring-forward skips midnight, so 2016-03-21 begins at
+                //    01:00. A day does not always start at midnight.
+                //
+                // The invariant below says it without saying either: a later local date, and one second earlier
+                // is still today, so no day boundary was stepped over.
+                val today = now.toLocalDateTime(zone).date
+                (next.toLocalDateTime(zone).date > today).shouldBeTrue()
+                (next - 1.seconds).toLocalDateTime(zone).date shouldBe today
             }
         }
 
