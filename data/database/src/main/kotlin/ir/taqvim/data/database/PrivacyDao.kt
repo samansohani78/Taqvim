@@ -17,7 +17,7 @@ data class StoredRowCounts(
     val diagnostics: Int,
 )
 
-/** Row counts and cache clearing for the privacy dashboard (T-1503). */
+/** Row counts for the privacy dashboard (T-1503); each kind is cleared through the DAO that owns it. */
 @Dao
 interface PrivacyDao {
     /** The current counts; emits again whenever one of the counted tables changes. */

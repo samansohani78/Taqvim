@@ -16,7 +16,7 @@ package ir.taqvim.feature.widgets
  * purpose: a new widget cannot be added without saying what it reads.
  *
  * @property dayEvents today's event lines ([WidgetData.events]) — the only field that needs the day assembled, and
- *   so the only one that reaches Room, the device calendar provider and the subscription cache.
+ *   so the only one that reaches Room and the subscription cache.
  * @property holiday whether today is a day off ([WidgetData.isHoliday]), which comes from the dataset alone.
  * @property calendarDates today in every calendar the user keeps ([WidgetData.calendarDates]).
  * @property nextPrayer the next prayer time ([WidgetData.nextPrayer]).
@@ -31,7 +31,7 @@ data class WidgetNeeds(
     val prayerTimes: Boolean = false,
     val dayRange: Boolean = false,
 ) {
-    /** Whether anything here needs the day assembled from the personal, device and subscription sources. */
+    /** Whether anything here needs the day assembled from the personal and subscription sources. */
     val assemblesToday: Boolean get() = dayEvents
 
     /** Whether a prayer-time calculation is needed at all. The strip marks its next time, so it needs one too. */

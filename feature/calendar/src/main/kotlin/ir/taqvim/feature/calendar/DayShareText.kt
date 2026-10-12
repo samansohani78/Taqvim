@@ -24,7 +24,7 @@ internal object DayShareText {
         val url: String,
     )
 
-    /** One event as shared: its title and the sources behind it (empty for personal and device events). */
+    /** One event as shared: its title and the sources behind it (empty for personal events). */
     internal data class Entry(
         val title: String,
         val sources: List<Source>,

@@ -126,7 +126,7 @@ app  → wires everything via DI
 | `:data:preferences` | Proto DataStore schema + accessors |
 | `:data:database` | Room: personal events, reminders, alarms, shift-work, subscriptions, caches |
 | `:data:events` | Repository impl over generated dataset + overrides |
-| `:data:device-calendar` | `CalendarContract` adapter, observer, cache |
+| ~~`:data:device-calendar`~~ | `CalendarContract` adapter, observer, cache — **withdrawn 2026-10-12, ADR-0051** |
 | `:data:location` | Cities DB, districts, GPS, geocoder |
 | `:data:scheduler` | Alarm/Work scheduling single source of truth |
 | `:feature:calendar` `:feature:timeline` `:feature:month` `:feature:year` `:feature:agenda` `:feature:events` `:feature:times` `:feature:astronomy` `:feature:map` `:feature:compass` `:feature:tools` `:feature:settings` `:feature:about` `:feature:widgets` `:feature:notification` `:feature:wallpaper` `:feature:search` `:feature:backup` | One feature each |
@@ -187,7 +187,7 @@ sealed interface EventRule {
 Occurrences: `data class Occurrence(val definition: EventDefinition, val jdn: Jdn, val date: CalendarDate, val isHoliday: Boolean, val year: Int)`.
 
 ## 4.3 Personal data (Room)
-Tables: `personal_events`, `event_recurrences` (RRULE-lite: FREQ, INTERVAL, BYDAY, COUNT/UNTIL, calendar system), `reminders`, `scheduled_alarms`, `shift_rotations`, `shift_rotation_records`, `ics_subscriptions`, `ics_events_cache`, `device_events_cache`, `workday_profiles`, `diagnostics_log` (ring, max 2 000 rows).
+Tables: `personal_events`, `event_recurrences` (RRULE-lite: FREQ, INTERVAL, BYDAY, COUNT/UNTIL, calendar system), `reminders`, `scheduled_alarms`, `shift_rotations`, `shift_rotation_records`, `ics_subscriptions`, `ics_events_cache`, ~~`device_events_cache`~~ (dropped in schema 9, ADR-0051), `workday_profiles`, `diagnostics_log` (ring, max 2 000 rows).
 
 ## 4.4 Preferences (Proto DataStore)
 One `UserPrefs` message with typed enums; `schema_version`; migrations tested table-driven.
@@ -455,7 +455,10 @@ Core only; showing these calendars and observances to users needs a later decisi
 - Tables §4.3; migrations framework; exported schema JSON in VCS.
 - Tests: R DAO CRUD; migration tests from schema 1→N with `MigrationTestHelper`.
 
-### T-602 Device calendar adapter
+### T-602 Device calendar adapter — withdrawn
+- **Withdrawn on 2026-10-12 (ADR-0051).** Taqvim does not read the device calendar: `READ_CALENDAR` is gone
+  from every manifest, the module and `device_events_cache` are deleted, and schema 8 → 9 drops the cached copy
+  on upgrade. The task as planned is recorded below unchanged; docs/PROGRESS.md carries the removal.
 - Query instances in range; `ContentObserver` → Flow; cache table; permission-aware (no permission → empty, no crash); color parsing; all-day handling across time zones.
 - Tests: R with `ShadowContentResolver` fixtures (all-day, multi-day, deleted, invisible calendars); U all-day event dated correctly in UTC+3:30 and UTC−8.
 

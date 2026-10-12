@@ -62,7 +62,7 @@ internal class PreferencesTimelineSettingsSource(
 
 /**
  * Timeline days (T-900) from the events repository (T-305), titled in [language]. Dataset events are all-day; timed
- * personal, device and subscription events become minute spans of each civil day in the device zone from [zones], so a
+ * personal and subscription events become minute spans of each civil day in the device zone from [zones], so a
  * zone change redraws the spans (review I06).
  */
 internal class RepositoryTimelineDaysSource(

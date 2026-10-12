@@ -30,9 +30,9 @@ import org.junit.jupiter.api.Test
 /**
  * A widget asks for the day it needs and no more (T-1200).
  *
- * Assembling a day subscribes to the personal, device-calendar and subscription sources and waits for all three, so
- * until this was checked every widget paid for Room and the calendar provider — a date widget waited on a database
- * to draw a date its own calendar engine already knew, and the host drew its placeholder in the meantime.
+ * Assembling a day subscribes to the personal and subscription sources and waits for both, so until this was
+ * checked every widget paid for Room — a date widget waited on a database to draw a date its own calendar engine
+ * already knew, and the host drew its placeholder in the meantime.
  */
 class WidgetDayDependencyTest {
     private val berlin = TimeZone.of("Europe/Berlin")

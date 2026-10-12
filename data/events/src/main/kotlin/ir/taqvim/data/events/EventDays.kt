@@ -17,7 +17,7 @@ import kotlinx.datetime.toInstant
  * The one rule deciding which civil days an event is shown on, for every source (ADR-0031; B03, B12).
  *
  * - **All-day events keep their dates**, whatever the display zone: personal and dataset events by the dates the user
- *   or the dataset gives them, device and feed rows by their UTC dates (those sources store UTC-midnight bounds).
+ *   or the dataset gives them, feed rows by their UTC dates (that source stores UTC-midnight bounds).
  * - **Timed events are dated by their instants**: the wall-clock time is read in the event's own zone, and the
  *   occurrence covers the days that interval falls on in the display zone. A meeting at 00:30 in Tokyo therefore
  *   belongs to the previous day for someone reading the calendar in UTC.

@@ -15,7 +15,7 @@ import org.junit.After
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/** T-1503 (R): the privacy dashboard's row counts follow the tables, and the device calendar copy can be cleared. */
+/** T-1503 (R): the privacy dashboard's row counts follow the tables they count. */
 @RunWith(AndroidJUnit4::class)
 class PrivacyDaoTest {
     private val db =

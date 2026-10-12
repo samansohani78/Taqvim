@@ -29,7 +29,7 @@ internal val PERSIAN_FA =
 
 internal val GREGORIAN_EN = SearchSettings("en", listOf(CalendarSystem.GREGORIAN, CalendarSystem.PERSIAN))
 
-/** Synthetic events titled in the language of [settings]: two official, a personal and a device event. */
+/** Synthetic events titled in the language of [settings]: two official, a personal and a subscription event. */
 internal fun sampleEvents(settings: SearchSettings): List<SearchEvent> {
     val fa = settings.languageCode == "fa"
     return listOf(
