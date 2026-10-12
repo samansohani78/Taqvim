@@ -4,7 +4,7 @@
   <string name="backup_title">Copia de seguridad y restauración</string>
   <string name="backup_loading">Cargando copia de seguridad y restauración</string>
   <string name="backup_export_title">Crear copia</string>
-  <string name="backup_export_explanation">Guarda tus eventos, recordatorios, suscripciones de calendario, rotaciones de turnos, perfiles de días laborables y ajustes en un solo archivo.</string>
+  <string name="backup_export_explanation">Guarda tus eventos, recordatorios, rotaciones de turnos, perfiles de días laborables y ajustes en un solo archivo.</string>
   <string name="backup_export_encrypt">Cifrar con una frase de acceso</string>
   <string name="backup_export_encrypt_on">Solo quien conozca la frase de acceso podrá abrir esta copia.</string>
   <string name="backup_export_encrypt_off">El archivo es JSON sin cifrar: cualquiera que lo tenga puede leer tus datos.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Recordatorios</string>
   <string name="backup_table_shift_rotations">Rotaciones de turnos</string>
   <string name="backup_table_shift_records">Registros de turnos</string>
-  <string name="backup_table_subscriptions">Suscripciones de calendario</string>
   <string name="backup_table_workdays">Perfiles de días laborables</string>
   <string name="backup_table_official_reminders">Recordatorios antes de días oficiales</string>
   <string name="backup_restore">Restaurar esta copia</string>
-  <string name="backup_restore_warning">Al restaurar se reemplazan todos los eventos, recordatorios, suscripciones de calendario, rotaciones de turnos, perfiles de días laborables y ajustes de este dispositivo por los de la copia. No se puede deshacer.</string>
+  <string name="backup_restore_warning">Al restaurar se reemplazan todos los eventos, recordatorios, rotaciones de turnos, perfiles de días laborables y ajustes de este dispositivo por los de la copia. No se puede deshacer.</string>
   <string name="backup_restore_confirm_title">¿Reemplazar tus datos?</string>
   <string name="backup_restore_confirm">Reemplazar</string>
   <string name="backup_error_not_a_backup">Este archivo no es una copia de Taqvim.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Datos en este dispositivo</string>
   <string name="privacy_data_events">Eventos personales</string>
   <string name="privacy_data_reminders">Recordatorios</string>
-  <string name="privacy_data_subscriptions">Suscripciones de calendario</string>
   <string name="privacy_data_location">Ubicación elegida</string>
   <string name="privacy_data_diagnostics">Registro de diagnóstico</string>
   <string name="privacy_data_searches">Búsquedas recientes</string>
   <string name="privacy_where_database">Guardado en la base de datos privada de la aplicación.</string>
-  <string name="privacy_where_subscriptions">Direcciones en la base de datos privada de la aplicación; los eventos solo se descargan de las direcciones que añadas.</string>
   <string name="privacy_where_settings">Guardado en los ajustes privados de la aplicación.</string>
   <string name="privacy_entries">Entradas: %1$s</string>
   <string name="privacy_location_set">Hay una ubicación guardada.</string>

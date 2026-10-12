@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">আনুষ্ঠানিক উপলক্ষ</string>
   <string name="search_kind_personal">আমার ইভেন্ট</string>
-  <string name="search_kind_subscription">সাবস্ক্রাইব করা ক্যালেন্ডার</string>
   <string name="search_settings_language">ভাষা</string>
   <string name="search_settings_language_keywords">ভাষা|অনুবাদ|ফারসি|ইংরেজি|locale</string>
   <string name="search_settings_location">অবস্থান</string>

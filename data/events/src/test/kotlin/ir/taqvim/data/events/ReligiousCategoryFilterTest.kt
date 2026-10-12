@@ -64,7 +64,6 @@ class ReligiousCategoryFilterTest {
             inputs =
                 EventInputs(
                     personal = PersonalEventsSource { personal },
-                    ics = IcsEventsSource { MutableStateFlow(emptyList()) },
                 ),
             clock = clock,
             zones = flowOf(tehran),

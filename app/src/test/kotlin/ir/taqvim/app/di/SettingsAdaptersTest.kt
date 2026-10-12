@@ -9,21 +9,12 @@ import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.praytimes.HighLatitudeRule
 import ir.taqvim.core.ui.theme.ThemeMode as UiThemeMode
 import ir.taqvim.core.ui.theme.ThemeSettings
-import ir.taqvim.data.database.IcsCacheSummary
-import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.database.IcsSubscriptionDao
-import ir.taqvim.data.database.IcsSubscriptionEntity
-import ir.taqvim.data.events.ics.RefreshError
-import ir.taqvim.data.events.ics.RefreshOutcome
 import ir.taqvim.data.preferences.AppSettings
 import ir.taqvim.data.preferences.LevelOffset
 import ir.taqvim.data.preferences.UserPreferences
 import ir.taqvim.feature.compass.DeviceOrientation
 import ir.taqvim.feature.compass.LevelCalibration
 import ir.taqvim.feature.compass.Tilt
-import ir.taqvim.feature.settings.SubscriptionHealthData
-import ir.taqvim.feature.settings.SubscriptionItem
-import ir.taqvim.feature.settings.SubscriptionOutcome
 import ir.taqvim.feature.settings.ThemeChoice
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.coroutines.flow.Flow
@@ -33,7 +24,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 
-/** T-1500 wiring: the settings screens, subscriptions, search history, level calibration, theme and prayer rule. */
+/** T-1500 wiring: the settings screens, search history, level calibration, theme and prayer rule. */
 class SettingsAdaptersTest {
     private val persian = UserPreferences.defaultsFor("fa")
 
@@ -108,21 +99,19 @@ class SettingsAdaptersTest {
     }
 
     @Test
-    fun `the store saves settings, runs the follow-up and clears the search history`(): Unit =
+    fun `the store saves settings and clears the search history`(): Unit =
         runTest {
             val preferences = repositoryOf(persian.copy(app = persian.app.copy(recentSearches = listOf("a"))))
-            var followUps = 0
-            val store = PreferencesGeneralSettingsStore(preferences) { followUps++ }
+            val store = PreferencesGeneralSettingsStore(preferences)
 
             store
                 .settings()
                 .first()
                 .language.code shouldBe "fa"
-            store.update { it.copy(subscriptionsNetworkAllowed = false) }
+            store.update { it.copy(showWeekNumbers = true) }
             preferences.preferences
                 .first()
-                .app.subscriptionsNetworkAllowed shouldBe false
-            followUps shouldBe 1
+                .app.showWeekNumbers shouldBe true
 
             store.clearRecentSearches()
             preferences.preferences
@@ -176,132 +165,4 @@ class SettingsAdaptersTest {
                 )
             mapOf("SIDEWAYS" to LevelOffset(1.0, 1.0)).toCalibration() shouldBe LevelCalibration()
         }
-
-    @Test
-    fun `subscriptions are normalized, subscribed once, refreshed only when allowed and rescheduled`(): Unit =
-        runTest {
-            val dao = FakeSubscriptionDao()
-            val preferences = repositoryOf(persian)
-            var reschedules = 0
-            var outcome: (Long) -> RefreshOutcome = { RefreshOutcome.Unchanged(it) }
-            val store = RoomSubscriptionsStore(dao, { outcome(it) }, preferences) { reschedules++ }
-            // T-1804: the network is off by default; the user allows it before subscribing.
-            preferences.update { it.copy(app = it.app.copy(subscriptionsNetworkAllowed = true)) }
-
-            store.add("http://example.org/cal.ics") shouldBe SubscriptionOutcome.INVALID_ADDRESS
-            store.add("webcal://example.org/cal.ics") shouldBe SubscriptionOutcome.DONE
-            store.add("https://example.org/cal.ics") shouldBe SubscriptionOutcome.ALREADY_SUBSCRIBED
-            store.setEnabled(1, enabled = false)
-            store.subscriptions().first() shouldBe
-                listOf(
-                    SubscriptionItem(
-                        1,
-                        "example.org",
-                        "https://example.org/cal.ics",
-                        enabled = false,
-                        lastFetchedAtEpochMillis = null,
-                        health = SubscriptionHealthData(refreshIntervalMinutes = 1_440),
-                    ),
-                )
-            reschedules shouldBe 2
-
-            outcome = { RefreshOutcome.Failed(it, RefreshError.Unreadable) }
-            store.refresh(1) shouldBe SubscriptionOutcome.FAILED
-            outcome = { RefreshOutcome.Failed(it, RefreshError.InvalidUrl) }
-            store.refresh(1) shouldBe SubscriptionOutcome.INVALID_ADDRESS
-            preferences.update { it.copy(app = it.app.copy(subscriptionsNetworkAllowed = false)) }
-            store.refresh(1) shouldBe SubscriptionOutcome.NETWORK_NOT_ALLOWED
-
-            store.remove(1)
-            store.subscriptions().first() shouldBe emptyList()
-            reschedules shouldBe 3
-        }
-
-    @Test
-    fun `rescheduling passes the stored subscriptions and the network switch`(): Unit =
-        runTest {
-            val dao = FakeSubscriptionDao()
-            dao.insertSubscription(
-                IcsSubscriptionEntity(url = "https://a.org/c.ics", displayName = "a", refreshIntervalMinutes = 60),
-            )
-            val calls = mutableListOf<Pair<Int, Boolean>>()
-
-            subscriptionRescheduler(dao, repositoryOf(persian)) { list, allowed -> calls += list.size to allowed }()
-
-            calls shouldBe listOf(1 to AppSettings.DEFAULT.subscriptionsNetworkAllowed)
-        }
-
-    /** Subscriptions kept in memory. */
-    private class FakeSubscriptionDao : IcsSubscriptionDao {
-        private val rows = MutableStateFlow<List<IcsSubscriptionEntity>>(emptyList())
-
-        override suspend fun insertSubscription(subscription: IcsSubscriptionEntity): Long {
-            val id = (rows.value.maxOfOrNull { it.id } ?: 0L) + 1
-            rows.value += subscription.copy(id = id)
-            return id
-        }
-
-        override suspend fun updateSubscription(subscription: IcsSubscriptionEntity) {
-            rows.value = rows.value.map { if (it.id == subscription.id) subscription else it }
-        }
-
-        override suspend fun deleteSubscription(id: Long) {
-            rows.value = rows.value.filterNot { it.id == id }
-        }
-
-        override suspend fun getSubscription(id: Long): IcsSubscriptionEntity? = rows.value.firstOrNull { it.id == id }
-
-        override fun observeSubscriptions(): Flow<List<IcsSubscriptionEntity>> = rows
-
-        override suspend fun insertEvents(events: List<IcsEventCacheEntity>): Unit = Unit
-
-        override suspend fun deleteEvents(subscriptionId: Long): Unit = Unit
-
-        override fun observeEvents(
-            fromEpochMillis: Long,
-            toEpochMillis: Long,
-        ): Flow<List<IcsEventCacheEntity>> = flowOf(emptyList())
-
-        override suspend fun markChecked(
-            id: Long,
-            checkedAtEpochMillis: Long,
-        ): Int = update(id) { it.copy(lastCheckedAtEpochMillis = checkedAtEpochMillis) }
-
-        override suspend fun markFetched(
-            id: Long,
-            checkedAtEpochMillis: Long,
-            fetchedAtEpochMillis: Long,
-            etag: String?,
-            lastModified: String?,
-            problemCount: Int,
-        ): Int =
-            update(id) {
-                it.copy(
-                    lastCheckedAtEpochMillis = checkedAtEpochMillis,
-                    lastFetchedAtEpochMillis = fetchedAtEpochMillis,
-                    etag = etag,
-                    lastModified = lastModified,
-                    problemCount = problemCount,
-                    lastError = null,
-                    lastErrorAtEpochMillis = null,
-                )
-            }
-
-        override suspend fun markFailed(
-            id: Long,
-            error: String,
-            atEpochMillis: Long,
-        ): Int = update(id) { it.copy(lastError = error, lastErrorAtEpochMillis = atEpochMillis) }
-
-        override fun observeCacheSummaries(): Flow<List<IcsCacheSummary>> = flowOf(emptyList())
-
-        private fun update(
-            id: Long,
-            change: (IcsSubscriptionEntity) -> IcsSubscriptionEntity,
-        ): Int {
-            val found = rows.value.count { it.id == id }
-            rows.value = rows.value.map { if (it.id == id) change(it) else it }
-            return found
-        }
-    }
 }

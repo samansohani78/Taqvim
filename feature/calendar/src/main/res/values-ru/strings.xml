@@ -106,7 +106,6 @@
   <string name="calendar_source_international">Международный день</string>
   <string name="calendar_source_ancient_iran">Древнеиранский праздник</string>
   <string name="calendar_source_personal">Личное событие</string>
-  <string name="calendar_source_subscription">Календарь по подписке</string>
   <string name="calendar_citation_page">%1$s, стр. %2$s</string>
   <string name="calendar_no_citation">Источник не указан</string>
   <string name="calendar_open_source">Открыть источник</string>

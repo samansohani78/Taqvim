@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- T-1804 (ADR-0017): HTTPS only, trusting the system certificate authorities; no user-installed CAs, no debug
-     overrides. Subscriptions (T-1003) are the only network traffic. -->
+<!-- T-1804 (ADR-0017, ADR-0054): Taqvim requests no INTERNET permission, so it has no traffic to configure. This
+     stays as the standing answer if a dependency ever brings the permission back: cleartext refused, system
+     certificate authorities only, no user-installed CAs and no debug overrides. -->
 <network-security-config>
   <base-config cleartextTrafficPermitted="false">
     <trust-anchors>

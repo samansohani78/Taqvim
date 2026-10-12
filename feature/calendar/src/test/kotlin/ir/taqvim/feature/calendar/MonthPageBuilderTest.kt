@@ -41,7 +41,7 @@ class MonthPageBuilderTest {
             newEvent = "NEW",
             week = { "W$it" },
         )
-    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Magenta)
+    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green)
     private val isoWeekdays = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
 
     /** 21 Farvardin 1405. */
@@ -163,11 +163,12 @@ class MonthPageBuilderTest {
         val holidayEvents =
             listOf(
                 event(DayEventKind.OFFICIAL, holiday = true),
-                // Four distinct colours, because the cell shows distinct colours and then caps at three: a fourth
-                // event in a colour already present would not exercise the cap at all.
+                // Four events in three colours: the cell shows one dot per distinct colour, so the fourth adds
+                // none. Since ADR-0054 left three colours in the palette, distinct() alone keeps the list within
+                // MAX_EVENT_DOTS and the take() below it can no longer truncate.
                 event(DayEventKind.OFFICIAL),
                 event(DayEventKind.PERSONAL),
-                event(DayEventKind.SUBSCRIPTION),
+                event(DayEventKind.PERSONAL),
             )
         val events =
             listOf(

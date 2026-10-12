@@ -57,9 +57,6 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object AthanSettings : AppDestination
 
-    @Serializable
-    data object Subscriptions : AppDestination
-
     /** The user's shift rotations, reached from the calendar menu (F-08). */
     @Serializable
     data object ShiftWork : AppDestination

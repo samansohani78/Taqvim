@@ -4,7 +4,7 @@
   <string name="backup_title">بیک اپ اور بحالی</string>
   <string name="backup_loading">بیک اپ اور بحالی لوڈ ہو رہی ہے</string>
   <string name="backup_export_title">بیک اپ</string>
-  <string name="backup_export_explanation">اپنے واقعات، یاد دہانیاں، کیلنڈر سبسکرپشنز، شفٹ کی گردشیں، کام کے دنوں کی پروفائلیں اور ترتیبات ایک فائل میں محفوظ کریں۔</string>
+  <string name="backup_export_explanation">اپنے واقعات، یاد دہانیاں، شفٹ کی گردشیں، کام کے دنوں کی پروفائلیں اور ترتیبات ایک فائل میں محفوظ کریں۔</string>
   <string name="backup_export_encrypt">پاس فریز سے خفیہ کریں</string>
   <string name="backup_export_encrypt_on">یہ بیک اپ صرف وہی کھول سکتا ہے جو پاس فریز جانتا ہو۔</string>
   <string name="backup_export_encrypt_off">فائل سادہ JSON ہے: جس کے پاس بھی یہ ہو وہ آپ کا ڈیٹا پڑھ سکتا ہے۔</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">یاد دہانیاں</string>
   <string name="backup_table_shift_rotations">شفٹ کی گردشیں</string>
   <string name="backup_table_shift_records">شفٹ کے ریکارڈ</string>
-  <string name="backup_table_subscriptions">کیلنڈر سبسکرپشنز</string>
   <string name="backup_table_workdays">کام کے دنوں کی پروفائلیں</string>
   <string name="backup_table_official_reminders">سرکاری دنوں سے پہلے کی یاد دہانیاں</string>
   <string name="backup_restore">یہ بیک اپ بحال کریں</string>
-  <string name="backup_restore_warning">بحالی اس آلے پر تمام واقعات، یاد دہانیاں، کیلنڈر سبسکرپشنز، شفٹ کی گردشیں، کام کے دنوں کی پروفائلیں اور ترتیبات کو بیک اپ سے بدل دیتی ہے۔ اسے واپس نہیں کیا جا سکتا۔</string>
+  <string name="backup_restore_warning">بحالی اس آلے پر تمام واقعات، یاد دہانیاں، شفٹ کی گردشیں، کام کے دنوں کی پروفائلیں اور ترتیبات کو بیک اپ سے بدل دیتی ہے۔ اسے واپس نہیں کیا جا سکتا۔</string>
   <string name="backup_restore_confirm_title">اپنا ڈیٹا بدلیں؟</string>
   <string name="backup_restore_confirm">بدلیں</string>
   <string name="backup_error_not_a_backup">یہ فائل Taqvim بیک اپ نہیں ہے۔</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">اس آلے پر ڈیٹا</string>
   <string name="privacy_data_events">ذاتی واقعات</string>
   <string name="privacy_data_reminders">یاد دہانیاں</string>
-  <string name="privacy_data_subscriptions">کیلنڈر سبسکرپشنز</string>
   <string name="privacy_data_location">منتخب مقام</string>
   <string name="privacy_data_diagnostics">تشخیصی لاگ</string>
   <string name="privacy_data_searches">حالیہ تلاشیں</string>
   <string name="privacy_where_database">ایپ کے نجی ڈیٹا بیس میں محفوظ۔</string>
-  <string name="privacy_where_subscriptions">پتے ایپ کے نجی ڈیٹا بیس میں ہیں؛ واقعات صرف آپ کے شامل کردہ پتوں سے ڈاؤن لوڈ ہوتے ہیں۔</string>
   <string name="privacy_where_settings">ایپ کی نجی ترتیبات میں محفوظ۔</string>
   <string name="privacy_entries">اندراجات: %1$s</string>
   <string name="privacy_location_set">ایک مقام محفوظ ہے۔</string>

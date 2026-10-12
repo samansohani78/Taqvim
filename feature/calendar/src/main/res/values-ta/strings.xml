@@ -94,7 +94,6 @@
   <string name="calendar_source_international">சர்வதேச தினம்</string>
   <string name="calendar_source_ancient_iran">பண்டைய ஈரானியப் பண்டிகை</string>
   <string name="calendar_source_personal">தனிப்பட்ட நிகழ்வு</string>
-  <string name="calendar_source_subscription">சந்தா பெற்ற நாட்காட்டி</string>
   <string name="calendar_citation_page">%1$s, பக்கம் %2$s</string>
   <string name="calendar_no_citation">மூலம் பதிவு செய்யப்படவில்லை</string>
   <string name="calendar_open_source">மூலத்தைத் திற</string>

@@ -80,7 +80,6 @@ class WidgetAdaptersTest {
                         recurring = false,
                     ),
                 ),
-            ics = emptyList(),
         )
 
     @Test

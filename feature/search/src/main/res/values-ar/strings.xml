@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">مناسبة رسمية</string>
   <string name="search_kind_personal">حدثي</string>
-  <string name="search_kind_subscription">تقويم مشترك فيه</string>
   <string name="search_settings_language">اللغة</string>
   <string name="search_settings_language_keywords">لغة|ترجمة|الفارسية|الإنجليزية|locale</string>
   <string name="search_settings_location">الموقع</string>

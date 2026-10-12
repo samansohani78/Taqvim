@@ -34,7 +34,7 @@ class PrivacyDaoTest {
     fun countsFollowTheTables(): Unit =
         runTest {
             privacy.observeCounts().test {
-                awaitItem() shouldBe StoredRowCounts(0, 0, 0, 0)
+                awaitItem() shouldBe StoredRowCounts(0, 0, 0)
 
                 val eventId =
                     db.personalEventDao().insert(
@@ -48,23 +48,15 @@ class PrivacyDaoTest {
                             updatedAtEpochMillis = 1L,
                         ),
                     )
-                awaitItem() shouldBe StoredRowCounts(1, 0, 0, 0)
+                awaitItem() shouldBe StoredRowCounts(1, 0, 0)
                 db.reminderDao().insertReminder(ReminderEntity(eventId = eventId, minutesBefore = 10))
                 awaitItem().reminders shouldBe 1
                 db.officialReminderDao().insert(OfficialReminderEntity(eventId = "ir.holiday.nowruz-1", daysBefore = 3))
                 awaitItem().reminders shouldBe 2
-                db.icsSubscriptionDao().insertSubscription(
-                    IcsSubscriptionEntity(
-                        url = "https://example.org/a.ics",
-                        displayName = "A",
-                        refreshIntervalMinutes = 60,
-                    ),
-                )
-                awaitItem().subscriptions shouldBe 1
                 db.diagnosticsDao().insert(
                     DiagnosticsLogEntity(atEpochMillis = 1L, level = DiagnosticsLevel.INFO, tag = "t", message = "m"),
                 )
-                awaitItem() shouldBe StoredRowCounts(1, 2, 1, 1)
+                awaitItem() shouldBe StoredRowCounts(1, 2, 1)
                 cancelAndIgnoreRemainingEvents()
             }
         }

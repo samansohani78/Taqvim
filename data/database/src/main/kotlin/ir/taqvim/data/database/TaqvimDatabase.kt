@@ -21,8 +21,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         ScheduledAlarmEntity::class,
         ShiftRotationEntity::class,
         ShiftRotationRecordEntity::class,
-        IcsSubscriptionEntity::class,
-        IcsEventCacheEntity::class,
         WorkdayProfileEntity::class,
         DiagnosticsLogEntity::class,
         OfficialReminderEntity::class,
@@ -43,8 +41,6 @@ abstract class TaqvimDatabase : RoomDatabase() {
     abstract fun shiftRotationDao(): ShiftRotationDao
 
     abstract fun workdayProfileDao(): WorkdayProfileDao
-
-    abstract fun icsSubscriptionDao(): IcsSubscriptionDao
 
     abstract fun diagnosticsDao(): DiagnosticsDao
 
@@ -72,7 +68,7 @@ abstract class TaqvimDatabase : RoomDatabase() {
  */
 object TaqvimMigrations {
     /** Current schema version. */
-    const val LATEST_VERSION: Int = 9
+    const val LATEST_VERSION: Int = 10
 
     /** 1 → 2 (T-1003): iCalendar UIDs of personal events; HTTP validators and check time of subscriptions. */
     private val MIGRATION_1_2: Migration =
@@ -174,6 +170,26 @@ object TaqvimMigrations {
             }
         }
 
+    /**
+     * 9 → 10 (ADR-0054): drops `ics_subscriptions` and `ics_events_cache`.
+     *
+     * Remote iCalendar subscriptions were the only thing in Taqvim that opened a socket. With the feature gone the
+     * app requests no network permission at all, so the rows it downloaded can neither be refreshed nor shown. The
+     * migration deletes them rather than orphaning them: a feed the user subscribed to is somebody else's calendar,
+     * and a copy of it that nothing can ever update is only a liability. The subscription rows go with it — they
+     * hold the feed URLs, which say where the user's attention is.
+     *
+     * `ics_events_cache` is dropped first so its foreign key onto `ics_subscriptions` cannot refuse the second drop.
+     * Local file-based `.ics` import is untouched: it has always written `personal_events`, which this does not read.
+     */
+    private val MIGRATION_9_10: Migration =
+        object : Migration(9, 10) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("DROP TABLE IF EXISTS `ics_events_cache`")
+                db.execSQL("DROP TABLE IF EXISTS `ics_subscriptions`")
+            }
+        }
+
     /** Migrations between consecutive versions, oldest first. */
     val ALL: List<Migration> =
         listOf(
@@ -185,5 +201,6 @@ object TaqvimMigrations {
             MIGRATION_6_7,
             MIGRATION_7_8,
             MIGRATION_8_9,
+            MIGRATION_9_10,
         )
 }

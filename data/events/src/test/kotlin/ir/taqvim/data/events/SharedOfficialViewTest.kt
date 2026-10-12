@@ -59,7 +59,6 @@ class SharedOfficialViewTest {
             inputs =
                 EventInputs(
                     personal = PersonalEventsSource { MutableStateFlow(emptyList()) },
-                    ics = IcsEventsSource { MutableStateFlow(emptyList()) },
                 ),
             clock = clock,
             zones = flowOf(tehran),
@@ -80,7 +79,6 @@ class SharedOfficialViewTest {
                     inputs =
                         EventInputs(
                             personal = PersonalEventsSource { MutableStateFlow(emptyList()) },
-                            ics = IcsEventsSource { MutableStateFlow(emptyList()) },
                         ),
                     clock = clock,
                     zones = flowOf(tehran),

@@ -35,7 +35,6 @@ internal object BackupLabels {
             BackupTableKind.REMINDERS -> R.string.backup_table_reminders
             BackupTableKind.SHIFT_ROTATIONS -> R.string.backup_table_shift_rotations
             BackupTableKind.SHIFT_ROTATION_RECORDS -> R.string.backup_table_shift_records
-            BackupTableKind.ICS_SUBSCRIPTIONS -> R.string.backup_table_subscriptions
             BackupTableKind.WORKDAY_PROFILES -> R.string.backup_table_workdays
             BackupTableKind.OFFICIAL_REMINDERS -> R.string.backup_table_official_reminders
         }
@@ -61,7 +60,6 @@ internal object BackupLabels {
         when (kind) {
             StoredDataKind.PERSONAL_EVENTS -> R.string.privacy_data_events
             StoredDataKind.REMINDERS -> R.string.privacy_data_reminders
-            StoredDataKind.SUBSCRIPTIONS -> R.string.privacy_data_subscriptions
             StoredDataKind.LOCATION -> R.string.privacy_data_location
             StoredDataKind.DIAGNOSTICS -> R.string.privacy_data_diagnostics
             StoredDataKind.RECENT_SEARCHES -> R.string.privacy_data_searches
@@ -75,8 +73,6 @@ internal object BackupLabels {
             StoredDataKind.DIAGNOSTICS,
             -> R.string.privacy_where_database
 
-            StoredDataKind.SUBSCRIPTIONS -> R.string.privacy_where_subscriptions
-
             StoredDataKind.LOCATION, StoredDataKind.RECENT_SEARCHES -> R.string.privacy_where_settings
         }
 
@@ -87,7 +83,7 @@ internal object BackupLabels {
             StoredDataKind.LOCATION -> R.string.privacy_clear_location
             StoredDataKind.DIAGNOSTICS -> R.string.privacy_clear_diagnostics
             StoredDataKind.RECENT_SEARCHES -> R.string.privacy_clear_searches
-            StoredDataKind.PERSONAL_EVENTS, StoredDataKind.REMINDERS, StoredDataKind.SUBSCRIPTIONS -> null
+            StoredDataKind.PERSONAL_EVENTS, StoredDataKind.REMINDERS -> null
         }
 
     @StringRes

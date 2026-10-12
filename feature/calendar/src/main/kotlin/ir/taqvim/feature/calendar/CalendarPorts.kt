@@ -41,7 +41,6 @@ data class CalendarSettings(
 enum class DayEventKind {
     OFFICIAL,
     PERSONAL,
-    SUBSCRIPTION,
 }
 
 /** One event on a day, already titled in the app language. */

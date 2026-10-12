@@ -9,7 +9,7 @@ enum class WidgetDependency {
     /** The civil date in the widget's time zone. */
     DATE,
 
-    /** Official, personal, device or subscribed events. */
+    /** Official and personal events. */
     EVENTS,
 
     /**

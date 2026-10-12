@@ -50,17 +50,17 @@ internal fun event(
     holiday: Boolean = false,
 ): AgendaEvent = AgendaEvent(id, kind, title, holiday)
 
-/** Synthetic events around [TODAY]: an official holiday, a personal and two subscription events. */
+/** Synthetic events around [TODAY]: an official holiday and three personal events. */
 internal val SAMPLE_EVENTS: Map<Jdn, List<AgendaEvent>> =
     mapOf(
-        TODAY - 10 to listOf(event("sub-2:uid", "Dentist", AgendaEventKind.SUBSCRIPTION)),
+        TODAY - 10 to listOf(event("per-3", "Dentist", AgendaEventKind.PERSONAL)),
         TODAY + 2 to
             listOf(
                 event("off-1", "Holiday event", holiday = true),
                 event("per-1", "Birthday", AgendaEventKind.PERSONAL),
             ),
         TODAY + 5 to listOf(event("per-2", "Meeting", AgendaEventKind.PERSONAL)),
-        TODAY + 40 to listOf(event("sub-1", "Match", AgendaEventKind.SUBSCRIPTION)),
+        TODAY + 40 to listOf(event("per-4", "Match", AgendaEventKind.PERSONAL)),
     )
 
 /** Settings, today and events of a test, all changeable. */

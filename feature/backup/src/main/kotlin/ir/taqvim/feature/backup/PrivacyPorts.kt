@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.Flow
 enum class StoredDataKind {
     PERSONAL_EVENTS,
     REMINDERS,
-    SUBSCRIPTIONS,
     LOCATION,
     DIAGNOSTICS,
     RECENT_SEARCHES,

@@ -41,7 +41,7 @@ internal object BackupFixtures {
                     BackupTableKind.PERSONAL_EVENTS to 12,
                     BackupTableKind.EVENT_RECURRENCES to 3,
                     BackupTableKind.REMINDERS to 20,
-                    BackupTableKind.ICS_SUBSCRIPTIONS to 2,
+                    BackupTableKind.SHIFT_ROTATIONS to 2,
                 ),
             languageCode = "fa",
             placeName = "Tehran",
@@ -53,7 +53,7 @@ internal object BackupFixtures {
         listOf(
             StoredData(StoredDataKind.PERSONAL_EVENTS, 12),
             StoredData(StoredDataKind.REMINDERS, 20),
-            StoredData(StoredDataKind.SUBSCRIPTIONS, 140),
+            StoredData(StoredDataKind.DIAGNOSTICS, 140),
             StoredData(StoredDataKind.LOCATION, 1),
             StoredData(StoredDataKind.RECENT_SEARCHES, 4),
         )

@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Rəsmi əlamətdar gün</string>
   <string name="search_kind_personal">Mənim tədbirim</string>
-  <string name="search_kind_subscription">Abunə olunmuş təqvim</string>
   <string name="search_settings_language">Dil</string>
   <string name="search_settings_language_keywords">dil|tərcümə|fars|ingilis|locale</string>
   <string name="search_settings_location">Məkan</string>

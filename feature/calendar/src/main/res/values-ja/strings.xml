@@ -88,7 +88,6 @@
   <string name="calendar_source_international">国際デー</string>
   <string name="calendar_source_ancient_iran">古代イランの祭り</string>
   <string name="calendar_source_personal">個人のイベント</string>
-  <string name="calendar_source_subscription">購読中のカレンダー</string>
   <string name="calendar_citation_page">%1$s、%2$s ページ</string>
   <string name="calendar_no_citation">出典の記録はありません</string>
   <string name="calendar_open_source">出典を開く</string>

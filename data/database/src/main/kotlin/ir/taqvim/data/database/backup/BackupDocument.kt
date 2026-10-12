@@ -110,7 +110,6 @@ internal data class AppSettingsRecord(
     val showWeekNumbers: Boolean,
     val enabledEventSources: Set<EventSource>,
     val highLatitudeRule: HighLatitudeRule,
-    val subscriptionsNetworkAllowed: Boolean,
     val persistentNotification: Boolean,
     val rememberRecentSearches: Boolean,
     val timeZoneBoard: List<String> = emptyList(),
@@ -151,7 +150,6 @@ internal data class DataRecord(
     val reminders: List<ReminderRecord> = emptyList(),
     val shiftRotations: List<ShiftRotationRecord> = emptyList(),
     val shiftRotationRecords: List<ShiftDayRecord> = emptyList(),
-    val icsSubscriptions: List<IcsSubscriptionRecord> = emptyList(),
     val workdayProfiles: List<WorkdayProfileRecord> = emptyList(),
     /** Reminders before official events (T-1002); absent in backups made before them. */
     val officialReminders: List<OfficialReminderRecord> = emptyList(),
@@ -252,17 +250,6 @@ internal data class ShiftDayRecord(
     val jdn: Long,
     val shift: String,
     val note: String = "",
-)
-
-/** Fetch state (`lastFetched`, `etag`) is not backed up: restored subscriptions are fetched again. */
-@Serializable
-internal data class IcsSubscriptionRecord(
-    val id: Long,
-    val url: String,
-    val displayName: String,
-    val colorArgb: Int? = null,
-    val enabled: Boolean = true,
-    val refreshIntervalMinutes: Int,
 )
 
 @Serializable

@@ -94,7 +94,6 @@
   <string name="calendar_source_international">আন্তর্জাতিক দিবস</string>
   <string name="calendar_source_ancient_iran">প্রাচীন ইরানি উৎসব</string>
   <string name="calendar_source_personal">ব্যক্তিগত ইভেন্ট</string>
-  <string name="calendar_source_subscription">সাবস্ক্রাইব করা ক্যালেন্ডার</string>
   <string name="calendar_citation_page">%1$s, পৃষ্ঠা %2$s</string>
   <string name="calendar_no_citation">কোনো উৎস রেকর্ড নেই</string>
   <string name="calendar_open_source">উৎস খুলুন</string>

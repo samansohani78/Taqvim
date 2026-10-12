@@ -21,7 +21,6 @@ enum class SettingsTab(
 enum class SettingsDestination {
     LOCATION,
     ATHAN,
-    SUBSCRIPTIONS,
     WIDGETS,
 
     /** Optional official Islamic dates (ADR-0037). */
@@ -116,12 +115,6 @@ enum class SettingsItemId(
         SettingsTab.INTERFACE_CALENDAR,
         R.string.settings_item_holidays_only,
         R.string.settings_keywords_events,
-    ),
-    SUBSCRIPTIONS(SettingsTab.INTERFACE_CALENDAR, R.string.settings_item_subscriptions, R.string.settings_keywords_ics),
-    SUBSCRIPTIONS_NETWORK(
-        SettingsTab.INTERFACE_CALENDAR,
-        R.string.settings_item_subscriptions_network,
-        R.string.settings_keywords_ics,
     ),
     REMEMBER_SEARCHES(
         SettingsTab.INTERFACE_CALENDAR,

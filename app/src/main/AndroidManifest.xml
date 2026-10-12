@@ -5,6 +5,15 @@
   <!-- T-1103: the day-change alarm is set again after a reboot. -->
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+  <!-- ADR-0054: Taqvim schedules no background work of its own and requests no INTERNET permission, so it has no
+       use for connectivity state. The permission still arrives in the merged manifest because Glance depends on
+       WorkManager, which declares it for the network constraints Taqvim never sets; taking it out here keeps the
+       shipped manifest honest about what the app can see. WorkManager only reads connectivity when a work request
+       carries a network constraint, and Glance's session work carries none. -->
+  <uses-permission
+    android:name="android.permission.ACCESS_NETWORK_STATE"
+    tools:node="remove" />
+
   <application
     android:name=".TaqvimApplication"
     android:allowBackup="true"
@@ -24,19 +33,6 @@
     <profileable
       android:shell="true"
       tools:targetApi="29" />
-
-    <!-- T-1003: WorkManager is configured by TaqvimApplication (Configuration.Provider) with the subscription worker
-         factory, so its default start-up initializer is removed. -->
-    <provider
-      android:name="androidx.startup.InitializationProvider"
-      android:authorities="${applicationId}.androidx-startup"
-      android:exported="false"
-      tools:node="merge">
-      <meta-data
-        android:name="androidx.work.WorkManagerInitializer"
-        android:value="androidx.startup"
-        tools:node="remove" />
-    </provider>
 
     <!-- singleTop: links (T-1103) that arrive while the app is shown reach onNewIntent instead of a second copy.
          The launcher entries are the aliases below (T-1214), so shortcuts and links keep targeting this activity. -->

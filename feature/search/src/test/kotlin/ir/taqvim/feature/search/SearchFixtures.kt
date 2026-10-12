@@ -54,8 +54,8 @@ internal fun sampleEvents(settings: SearchSettings): List<SearchEvent> {
             nextDay = TODAY + 3,
         ),
         SearchEvent(
-            "4:uid-9",
-            SearchEventKind.SUBSCRIPTION,
+            "9",
+            SearchEventKind.PERSONAL,
             if (fa) "جلسه تیم" else "Team meeting",
             nextDay = TODAY + 1,
         ),

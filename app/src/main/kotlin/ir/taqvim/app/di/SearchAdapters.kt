@@ -8,8 +8,6 @@ import ir.taqvim.core.calendar.TodayProvider
 import ir.taqvim.core.events.CalendarProvider
 import ir.taqvim.core.events.EventDefinition
 import ir.taqvim.core.model.Jdn
-import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.events.EventWindows
 import ir.taqvim.data.events.PersonalEventDays
 import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.generated.OfficialEvents
@@ -41,21 +39,20 @@ internal class PreferencesSearchSettingsSource(
         }.distinctUntilChanged()
 }
 
-/** The stored and cached events the search reads, each loaded when a query runs (T-601, T-1003). */
+/** The stored events the search reads, loaded when a query runs (T-601). */
 internal class SearchEventStores(
     /** Every personal event with its recurrence, exception days and overridden occurrences. */
     val personal: suspend () -> List<PersonalEventRecord>,
-    /** Cached occurrences of enabled subscriptions overlapping `[from, to)` epoch milliseconds. */
-    val subscriptions: suspend (from: Long, to: Long) -> List<IcsEventCacheEntity>,
 )
 
 /**
  * [SearchEventSource] (T-804) over every event source: official events through the T-304 index with their aliases,
- * titles in other languages and next occurrence, then personal and subscription events whose title contains the
- * query. Subscription events are searched from today on, over [window] days, in the device [zone]. A
- * personal event's day is its next occurrence as the calendar shows it (ADR-0031), with recurring events expanded
- * with the user's personal [calendars] over [window] days. At most `limit` events come from each source; the screen
- * ranks them all.
+ * titles in other languages and next occurrence, then personal events whose title contains the query. A personal
+ * event's day is its next occurrence as the calendar shows it (ADR-0031), with recurring events expanded with the
+ * user's personal [calendars] over [window] days, dated in the device [zone]. At most `limit` events come from each
+ * source; the screen ranks them all.
+ *
+ * Every source here is local: the dataset compiled into the app and the user's own rows (ADR-0054).
  */
 internal class CompositeSearchEventSource(
     private val official: OfficialEventSearchSource,
@@ -77,14 +74,9 @@ internal class CompositeSearchEventSource(
         if (key.isEmpty() || limit <= 0) return emptyList()
         val from = today.today()
         val zone = zone()
-        val fromMillis = from.startMillis(zone)
-        val toMillis = (from + window).startMillis(zone)
         val matches: (String) -> Boolean = { SearchMatcher.key(it).contains(key) }
         val personal = stores.personal().filter { matches(it.event.title) }.take(limit)
-        val subscriptions = stores.subscriptions(fromMillis, toMillis).filter { matches(it.summary) }.take(limit)
-        return officialEvents(query, languageCode, limit, from) +
-            personal(personal, from, zone) +
-            subscriptions.map { it.toSearchEvent(from, zone) }
+        return officialEvents(query, languageCode, limit, from) + personal(personal, from, zone)
     }
 
     private suspend fun personal(
@@ -131,30 +123,7 @@ internal class CompositeSearchEventSource(
         }
 
     companion object {
-        /** Days ahead searched in the subscription cache. */
+        /** Days ahead a recurring personal event is expanded over to find its next occurrence. */
         const val DEFAULT_WINDOW_DAYS: Int = 366
     }
 }
-
-private fun IcsEventCacheEntity.toSearchEvent(
-    today: Jdn,
-    zone: TimeZone,
-): SearchEvent =
-    SearchEvent(
-        "$subscriptionId:$uid",
-        SearchEventKind.SUBSCRIPTION,
-        summary,
-        nextDay = dayOf(startEpochMillis, endEpochMillis, allDay, today, zone),
-    )
-
-/**
- * The day a cached occurrence is shown on, dated like the calendar ([EventWindows.days]: all-day rows by their UTC
- * dates, timed rows in [zone]), never before [today] for one that started earlier and still overlaps.
- */
-private fun dayOf(
-    beginEpochMillis: Long,
-    endEpochMillis: Long,
-    allDay: Boolean,
-    today: Jdn,
-    zone: TimeZone,
-): Jdn = maxOf(EventWindows.days(beginEpochMillis, endEpochMillis, allDay, zone).start, today)

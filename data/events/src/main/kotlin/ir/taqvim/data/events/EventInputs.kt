@@ -8,13 +8,10 @@ import ir.taqvim.core.ics.RecurrenceRule
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.database.EventOverrideEntity
-import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.PersonalEventDao
 import ir.taqvim.data.database.PersonalEventDetails
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.toRule
-import ir.taqvim.data.events.InstantWindow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -34,15 +31,9 @@ fun interface PersonalEventsSource {
     fun events(days: JdnRange): Flow<List<PersonalEventRecord>>
 }
 
-/** Cached occurrences of enabled iCalendar subscriptions overlapping a window. */
-fun interface IcsEventsSource {
-    fun events(window: InstantWindow): Flow<List<IcsEventCacheEntity>>
-}
-
-/** The inputs of [EventsRepository] besides the dataset: personal and iCalendar events. */
+/** The inputs of [EventsRepository] besides the dataset: the user's own events (T-601). */
 data class EventInputs(
     val personal: PersonalEventsSource,
-    val ics: IcsEventsSource,
 )
 
 /**
@@ -65,11 +56,3 @@ fun PersonalEventDetails.toRecord(): PersonalEventRecord =
         exceptions = exceptions.mapTo(HashSet()) { Jdn(it.dayJdn) },
         overrides = overrides.sortedBy { it.originalJdn },
     )
-
-/** [IcsEventsSource] over the `ics_events_cache` table (T-601). */
-class RoomIcsEventsSource(
-    private val dao: IcsSubscriptionDao,
-) : IcsEventsSource {
-    override fun events(window: InstantWindow): Flow<List<IcsEventCacheEntity>> =
-        dao.observeEvents(window.fromEpochMillis, window.toEpochMillis)
-}

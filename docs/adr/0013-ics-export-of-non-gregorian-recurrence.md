@@ -1,6 +1,8 @@
 # ADR-0013: iCalendar export of non-Gregorian recurrence, UIDs and subscriptions
 
-- **Status:** Accepted
+- **Status:** Accepted. The parts about remote iCalendar subscriptions and network access are superseded by
+  [ADR-0054](0054-taqvim-has-no-network-access.md) (2026-10-13), which removed the feature and the `INTERNET`
+  permission; what this record says about file-based `.ics` import and export still holds.
 - **Date:** 2026-09-13
 - **Plan reference:** docs/PLAN.md T-1003 (SAF import/export, WebCal subscriptions refreshed by WorkManager, ETag
   caching), F-05; follows ADR-0011, which left the export of non-Gregorian rules to T-1003

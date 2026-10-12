@@ -14,7 +14,6 @@ enum class BackupTable {
     REMINDERS,
     SHIFT_ROTATIONS,
     SHIFT_ROTATION_RECORDS,
-    ICS_SUBSCRIPTIONS,
     WORKDAY_PROFILES,
     OFFICIAL_REMINDERS,
 }
@@ -141,7 +140,6 @@ internal fun PersonalData.rowCounts(): Map<BackupTable, Int> =
         BackupTable.REMINDERS to reminders.size,
         BackupTable.SHIFT_ROTATIONS to shiftRotations.size,
         BackupTable.SHIFT_ROTATION_RECORDS to shiftRecords.size,
-        BackupTable.ICS_SUBSCRIPTIONS to icsSubscriptions.size,
         BackupTable.WORKDAY_PROFILES to workdayProfiles.size,
         BackupTable.OFFICIAL_REMINDERS to officialReminders.size,
     )

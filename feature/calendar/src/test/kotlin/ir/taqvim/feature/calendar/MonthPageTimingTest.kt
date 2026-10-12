@@ -35,7 +35,7 @@ class MonthPageTimingTest {
             newEvent = "NEW",
             week = { "W$it" },
         )
-    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Magenta)
+    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green)
     private val isoWeekdays = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
     private val today = gregorian(2026, 4, 10)
     private val rotation =

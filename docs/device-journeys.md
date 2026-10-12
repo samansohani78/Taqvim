@@ -83,7 +83,6 @@ fails.
 | J30 | Backup, wipe, restore: the event is back | **covered** | `DeviceBackupRestoreTest#backupWipeRestoreBringsTheEventBack` (new) |
 | J31 | ICS import | missing | — |
 | J32 | ICS export | missing | — |
-| J33 | Subscription refresh | missing | — |
 | J34 | Compass orientation lock | partial | `DeviceSmokeTest#everyTabAndMoreEntryOpens` (opens Compass; no lock assertion) |
 | J35 | Map layers | partial | `DeviceSmokeTest#everyTabAndMoreEntryOpens` (`visitToggles` toggles every layer control on/off; no visual-effect assertion) |
 | J36 | Astronomy slider | partial | `DeviceSmokeTest` (opens Astronomy; no slider interaction) |

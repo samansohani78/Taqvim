@@ -4,7 +4,7 @@
   <string name="backup_title">Zaxira va tiklash</string>
   <string name="backup_loading">Zaxira va tiklash yuklanmoqda</string>
   <string name="backup_export_title">Zaxiralash</string>
-  <string name="backup_export_explanation">Tadbirlar, eslatmalar, taqvim obunalari, smena aylanmalari, ish kuni profillari va sozlamalarni bitta faylga saqlang.</string>
+  <string name="backup_export_explanation">Tadbirlar, eslatmalar, smena aylanmalari, ish kuni profillari va sozlamalarni bitta faylga saqlang.</string>
   <string name="backup_export_encrypt">Parol iborasi bilan shifrlash</string>
   <string name="backup_export_encrypt_on">Bu zaxirani faqat parol iborasini biladigan kishi ocha oladi.</string>
   <string name="backup_export_encrypt_off">Fayl oddiy JSON: unga ega har kim maʼlumotlaringizni oʻqiy oladi.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Eslatmalar</string>
   <string name="backup_table_shift_rotations">Smena aylanmalari</string>
   <string name="backup_table_shift_records">Smena yozuvlari</string>
-  <string name="backup_table_subscriptions">Taqvim obunalari</string>
   <string name="backup_table_workdays">Ish kuni profillari</string>
   <string name="backup_table_official_reminders">Rasmiy kunlardan oldingi eslatmalar</string>
   <string name="backup_restore">Bu zaxirani tiklash</string>
-  <string name="backup_restore_warning">Tiklash ushbu qurilmadagi barcha tadbirlar, eslatmalar, taqvim obunalari, smena aylanmalari, ish kuni profillari va sozlamalarni zaxiradagisi bilan almashtiradi. Buni ortga qaytarib boʻlmaydi.</string>
+  <string name="backup_restore_warning">Tiklash ushbu qurilmadagi barcha tadbirlar, eslatmalar, smena aylanmalari, ish kuni profillari va sozlamalarni zaxiradagisi bilan almashtiradi. Buni ortga qaytarib boʻlmaydi.</string>
   <string name="backup_restore_confirm_title">Maʼlumotlaringiz almashtirilsinmi?</string>
   <string name="backup_restore_confirm">Almashtirish</string>
   <string name="backup_error_not_a_backup">Bu fayl Taqvim zaxirasi emas.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Shu qurilmadagi maʼlumotlar</string>
   <string name="privacy_data_events">Shaxsiy tadbirlar</string>
   <string name="privacy_data_reminders">Eslatmalar</string>
-  <string name="privacy_data_subscriptions">Taqvim obunalari</string>
   <string name="privacy_data_location">Tanlangan joylashuv</string>
   <string name="privacy_data_diagnostics">Diagnostika jurnali</string>
   <string name="privacy_data_searches">Soʻnggi qidiruvlar</string>
   <string name="privacy_where_database">Ilovaning shaxsiy maʼlumotlar bazasida saqlanadi.</string>
-  <string name="privacy_where_subscriptions">Manzillar ilovaning shaxsiy maʼlumotlar bazasida; tadbirlar faqat siz qoʻshgan manzillardan yuklab olinadi.</string>
   <string name="privacy_where_settings">Ilovaning shaxsiy sozlamalarida saqlanadi.</string>
   <string name="privacy_entries">Yozuvlar: %1$s</string>
   <string name="privacy_location_set">Joylashuv saqlangan.</string>

@@ -10,9 +10,6 @@ kept ir.taqvim.app.navigation.AppDestination$Timeline$$serializer
 # Backup file (T-605): the document serializer.
 kept ir.taqvim.data.database.backup.BackupDocument$$serializer
 
-# WorkManager stores the worker class name; WorkManager's consumer rules keep it (T-1003).
-named ir.taqvim.data.events.ics.SubscriptionRefreshWorker
-
 # Proto DataStore (T-600): protobuf-javalite reads the generated fields by name (app/proguard-rules.pro).
 fields ir.taqvim.data.preferences.proto.UserPrefs
 fields ir.taqvim.data.preferences.proto.AthanSettingsProto

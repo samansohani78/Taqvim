@@ -46,18 +46,6 @@ data class PersonalOccurrence(
     }
 }
 
-/** One cached occurrence of a subscribed iCalendar feed, covering [days] (all-day ones by their UTC dates). */
-data class IcsOccurrence(
-    val subscriptionId: Long,
-    val uid: String,
-    val summary: String,
-    val location: String,
-    val begin: Instant,
-    val end: Instant,
-    val allDay: Boolean,
-    val days: JdnRange,
-)
-
 /** Everything shown for one civil day [jdn] (T-305). */
 data class DayEvents(
     val jdn: Jdn,
@@ -73,7 +61,6 @@ data class DayEvents(
     val isWeekend: Boolean,
     /** Personal occurrences, all-day ones first, then by start time. */
     val personal: List<PersonalOccurrence>,
-    val ics: List<IcsOccurrence>,
     /** Where the date of each [official] occurrence in the Islamic calendar comes from (DT-002, DT-033); absent otherwise. */
     val officialOrigins: Map<EventId, DateOrigin> = emptyMap(),
 )

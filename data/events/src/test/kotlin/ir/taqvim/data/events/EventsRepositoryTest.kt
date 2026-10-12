@@ -29,9 +29,7 @@ import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.model.Weekday
-import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.PersonalEventEntity
-import ir.taqvim.data.events.InstantWindow
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Instant
@@ -61,20 +59,11 @@ class EventsRepositoryTest {
 
     private val settings = MutableStateFlow(settings())
     private val personal = MutableStateFlow<List<PersonalEventRecord>>(emptyList())
-    private val ics = MutableStateFlow<List<IcsEventCacheEntity>>(emptyList())
-    private val icsWindows = mutableListOf<InstantWindow>()
     private val repository =
         EventsRepository(
             settings = settings,
             inputs =
-                EventInputs(
-                    personal = PersonalEventsSource { personal },
-                    ics =
-                        IcsEventsSource { window ->
-                            icsWindows += window
-                            ics
-                        },
-                ),
+                EventInputs(personal = PersonalEventsSource { personal }),
             clock = clock,
             zones = flowOf(tehran),
             computeDispatcher = Dispatchers.Unconfined,
@@ -155,7 +144,7 @@ class EventsRepositoryTest {
                 disabled.official.shouldBeEmpty()
 
                 // An input change on a day this flow does not show must not re-emit it.
-                ics.value = listOf(icsEvent("far-off", "2026-03-24T06:00:00Z", "2026-03-24T07:00:00Z", false))
+                personal.value = listOf(PersonalEventRecord(event(9, nowruz + 7), recurrence = null))
                 expectNoEvents()
                 cancelAndIgnoreRemainingEvents()
             }
@@ -252,7 +241,6 @@ class EventsRepositoryTest {
                     inputs =
                         EventInputs(
                             personal = PersonalEventsSource { personal },
-                            ics = IcsEventsSource { ics },
                         ),
                     clock = clock,
                     zones = zones,
@@ -312,7 +300,6 @@ class EventsRepositoryTest {
                         personalRanges += days
                         personal
                     },
-                ics = IcsEventsSource { ics },
             ),
         clock = clock,
         zones = flowOf(zone),
@@ -325,39 +312,7 @@ class EventsRepositoryTest {
     ) = event(id, start, system = CalendarSystem.NEPALI)
 
     @Test
-    fun `iCalendar events are dated in the collection zone`(): Unit =
-        runTest {
-            val range = nowruz - 1..nowruz
-            ics.value =
-                listOf(
-                    icsEvent("all-day", "2026-03-21T00:00:00Z", "2026-03-22T00:00:00Z", allDay = true),
-                    icsEvent("late", "2026-03-20T21:00:00Z", "2026-03-20T21:30:00Z", allDay = false),
-                    icsEvent("eve", "2026-03-20T12:00:00Z", "2026-03-20T13:00:00Z", allDay = false),
-                )
-
-            val (eve, newYear) = repository.days(range).first()
-
-            newYear.ics.map { it.uid } shouldBe listOf("all-day", "late")
-            eve.ics.map { it.uid } shouldBe listOf("eve")
-            icsWindows shouldBe listOf(EventWindows.window(range, tehran))
-        }
-
-    @Test
     fun `an empty day range is rejected`() {
         shouldThrow<IllegalArgumentException> { repository.days(JdnRange(Jdn(10), Jdn(5))) }
     }
-
-    private fun icsEvent(
-        uid: String,
-        start: String,
-        end: String,
-        allDay: Boolean,
-    ) = IcsEventCacheEntity(
-        subscriptionId = 1,
-        uid = uid,
-        startEpochMillis = Instant.parse(start).toEpochMilliseconds(),
-        endEpochMillis = Instant.parse(end).toEpochMilliseconds(),
-        allDay = allDay,
-        summary = uid,
-    )
 }

@@ -63,7 +63,7 @@ During the two weeks, testers and the team confirm:
 - [ ] Athan: enabling it schedules alarms that fire and stop correctly, including after a reboot.
 - [ ] Location by city, GPS and coordinates; prayer times match the official tables for Iranian cities.
 - [ ] Converter, distance and workdays, time zones, compass, level, astronomy and map.
-- [ ] Backup → wipe → restore returns the same data; ICS import, export and subscription refresh.
+- [ ] Backup → wipe → restore returns the same data; ICS import and export.
 - [ ] Theme changes, RTL, font scale 2.0 and TalkBack on a real device.
 - [ ] Holidays shown for Iran (and Afghanistan for Dari/Pashto users) match the official announcements for the beta
       period.

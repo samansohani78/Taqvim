@@ -8,16 +8,12 @@ dependencies {
     api(projects.core.events)
     // SkyAstronomicalEventSource computes Astronomical rule instants (ADR-0042, T-403).
     implementation(projects.core.astronomy)
-    // T-305: personal and iCalendar tables, preferences and device instances are combined with the dataset.
+    // T-305: the personal-event tables and preferences are combined with the dataset.
     api(projects.data.database)
     api(projects.data.preferences)
     implementation(libs.kotlinx.coroutines.core)
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
-    // T-1003: WebCal subscriptions are refreshed by periodic WorkManager work (docs/PLAN.md §3.3, F-05).
-    api(libs.androidx.work.runtime.ktx)
-
-    testImplementation(libs.androidx.work.testing)
     // Nowruz-week golden test of the workday engine (T-504) on the generated official events.
     testImplementation(projects.core.workdays)
     testImplementation(projects.core.i18n)

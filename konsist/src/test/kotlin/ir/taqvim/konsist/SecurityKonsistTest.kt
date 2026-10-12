@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * T-1804 (ADR-0017): components declare whether they are exported, only `:data:events` requests network access,
+ * T-1804 (ADR-0017, ADR-0054): components declare whether they are exported, no module requests network access,
  * every `PendingIntent` is immutable and `FileProvider`s share dedicated directories only.
  */
 class SecurityKonsistTest {
@@ -24,9 +24,24 @@ class SecurityKonsistTest {
     }
 
     @Test
-    fun `only the subscriptions module requests network access`() {
-        ManifestSecurityRules.manifestsRequestingInternet(root) shouldBe
-            listOf("data/events/src/main/AndroidManifest.xml")
+    fun `no manifest requests network access`() {
+        // ADR-0054: remote calendar subscriptions were the only feature that opened a socket, and they are gone,
+        // so INTERNET is not requested anywhere. The watch used to take it back out of the merged manifest; now
+        // nothing puts it in, so there is nothing to remove either.
+        ManifestSecurityRules.manifestsRequestingInternet(root).shouldBeEmpty()
+    }
+
+    @Test
+    fun `no manifest requests the network state permission`() {
+        // ADR-0054: WorkManager brought this one in for the subscription refresh constraints. Both are gone.
+        ManifestSecurityRules.manifestsRequestingNetworkState(root).shouldBeEmpty()
+    }
+
+    @Test
+    fun `no production code uses an HTTP client`() {
+        // The permission disappearing from a manifest is not the same as the fetch path being gone. This is the
+        // half that would still fail if a client survived the permission's removal.
+        ManifestSecurityRules.networkClientUsers(root).shouldBeEmpty()
     }
 
     @Test
@@ -70,6 +85,10 @@ class SecurityKonsistTest {
             "val p = PendingIntent.getBroadcast(c, 0, i, PendingIntent.FLAG_UPDATE_CURRENT)",
         )
         write(
+            File(fixture, "feature/x/src/main/kotlin/Net.kt"),
+            "import java.net.HttpURLConnection\nval c = url.openConnection() as HttpURLConnection",
+        )
+        write(
             File(fixture, "feature/x/src/main/kotlin/B.kt"),
             "val p = PendingIntent.getService(c, 0, i, FLAG_IMMUTABLE)",
         )
@@ -93,6 +112,8 @@ class SecurityKonsistTest {
             listOf("feature/x/src/main/AndroidManifest.xml: a.R")
         ManifestSecurityRules.manifestsRequestingInternet(fixture) shouldBe
             listOf("feature/x/src/main/AndroidManifest.xml")
+        ManifestSecurityRules.networkClientUsers(fixture) shouldBe
+            listOf("feature/x/src/main/kotlin/Net.kt: HttpURLConnection")
         ManifestSecurityRules.mutablePendingIntents(fixture) shouldBe listOf("feature/x/src/main/kotlin/A.kt")
         ManifestSecurityRules.broadFileProviderPaths(fixture) shouldBe
             listOf(

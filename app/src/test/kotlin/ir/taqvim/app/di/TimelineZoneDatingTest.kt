@@ -17,7 +17,6 @@ import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.events.EventInputs
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.EventsSettings
-import ir.taqvim.data.events.IcsEventsSource
 import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.PersonalEventsSource
 import ir.taqvim.feature.timeline.TimelineEvent
@@ -78,7 +77,6 @@ class TimelineZoneDatingTest {
                 inputs =
                     EventInputs(
                         personal = PersonalEventsSource { flowOf(listOf(record)) },
-                        ics = IcsEventsSource { flowOf(emptyList()) },
                     ),
                 clock = clock,
                 zones = flowOf(zone),

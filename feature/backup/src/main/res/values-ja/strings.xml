@@ -4,7 +4,7 @@
   <string name="backup_title">バックアップと復元</string>
   <string name="backup_loading">バックアップと復元を読み込み中</string>
   <string name="backup_export_title">バックアップ</string>
-  <string name="backup_export_explanation">イベント、リマインダー、カレンダー購読、シフト周期、勤務日プロファイル、設定を1つのファイルに保存します。</string>
+  <string name="backup_export_explanation">イベント、リマインダー、シフト周期、勤務日プロファイル、設定を1つのファイルに保存します。</string>
   <string name="backup_export_encrypt">パスフレーズで暗号化</string>
   <string name="backup_export_encrypt_on">パスフレーズを知る人だけがこのバックアップを開けます。</string>
   <string name="backup_export_encrypt_off">ファイルはプレーンな JSON です。持っている人は誰でもデータを読めます。</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">リマインダー</string>
   <string name="backup_table_shift_rotations">シフト周期</string>
   <string name="backup_table_shift_records">シフト記録</string>
-  <string name="backup_table_subscriptions">カレンダー購読</string>
   <string name="backup_table_workdays">勤務日プロファイル</string>
   <string name="backup_table_official_reminders">公式の日の前のリマインダー</string>
   <string name="backup_restore">このバックアップを復元</string>
-  <string name="backup_restore_warning">復元すると、この端末のすべてのイベント、リマインダー、カレンダー購読、シフト周期、勤務日プロファイル、設定がバックアップの内容に置き換わります。元に戻せません。</string>
+  <string name="backup_restore_warning">復元すると、この端末のすべてのイベント、リマインダー、シフト周期、勤務日プロファイル、設定がバックアップの内容に置き換わります。元に戻せません。</string>
   <string name="backup_restore_confirm_title">データを置き換えますか？</string>
   <string name="backup_restore_confirm">置き換える</string>
   <string name="backup_error_not_a_backup">このファイルは Taqvim のバックアップではありません。</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">この端末のデータ</string>
   <string name="privacy_data_events">個人のイベント</string>
   <string name="privacy_data_reminders">リマインダー</string>
-  <string name="privacy_data_subscriptions">カレンダー購読</string>
   <string name="privacy_data_location">選択した場所</string>
   <string name="privacy_data_diagnostics">診断ログ</string>
   <string name="privacy_data_searches">最近の検索</string>
   <string name="privacy_where_database">アプリの非公開データベースに保存されます。</string>
-  <string name="privacy_where_subscriptions">アドレスはアプリの非公開データベースに保存され、イベントは追加したアドレスからのみダウンロードされます。</string>
   <string name="privacy_where_settings">アプリの非公開設定に保存されます。</string>
   <string name="privacy_entries">件数：%1$s</string>
   <string name="privacy_location_set">場所が保存されています。</string>

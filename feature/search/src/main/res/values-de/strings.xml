@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Offizieller Anlass</string>
   <string name="search_kind_personal">Mein Termin</string>
-  <string name="search_kind_subscription">Abonnierter Kalender</string>
   <string name="search_settings_language">Sprache</string>
   <string name="search_settings_language_keywords">Gebietsschema|Übersetzung|Persisch|Englisch</string>
   <string name="search_settings_location">Ort</string>

@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">В этом месяце нет событий</string>
   <string name="agenda_kind_official">Официальное</string>
   <string name="agenda_kind_personal">Личное</string>
-  <string name="agenda_kind_subscription">Подписка</string>
   <string name="agenda_event_description">%1$s, %2$s</string>
   <string name="agenda_export_title">Повестка: %1$s – %2$s</string>
   <string name="agenda_print_job">Повестка Taqvim</string>

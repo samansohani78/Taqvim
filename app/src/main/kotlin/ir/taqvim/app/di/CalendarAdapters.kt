@@ -116,8 +116,7 @@ internal fun DayEvents.toCalendarDay(language: String): CalendarDay =
                     scope = definition.scope?.label?.forLanguage(language),
                 )
             } +
-                personal.map { item(it.itemId, DayEventKind.PERSONAL, it.title) } +
-                ics.map { item("${it.subscriptionId}:${it.uid}", DayEventKind.SUBSCRIPTION, it.summary) },
+                personal.map { item(it.itemId, DayEventKind.PERSONAL, it.title) },
     )
 
 /** The calendar screen's place (T-802) from the Times tab's settings (T-1100): the same chosen city and method. */

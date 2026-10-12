@@ -11,19 +11,18 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
- * Koin bindings of the events repository (ADR-0002). It needs `PersonalEventDao`, `IcsSubscriptionDao`,
+ * Koin bindings of the events repository (ADR-0002). It needs `PersonalEventDao`,
  * `UserPreferencesRepository`, `kotlin.time.Clock` and the shared device time-zone stream
  * (qualified [DeviceTimeZone.QUALIFIER]) from other modules.
  */
 val eventsDataModule =
     module {
         single<PersonalEventsSource> { RoomPersonalEventsSource(get()) }
-        single<IcsEventsSource> { RoomIcsEventsSource(get()) }
         single {
             EventsRepository(
                 // Sources chosen in the settings (T-1500) or the language default (ADR-0007 §3).
                 settings = get<UserPreferencesRepository>().preferences.map { it.toEventsSettings() },
-                inputs = EventInputs(get(), get()),
+                inputs = EventInputs(get()),
                 clock = get(),
                 zones = get(named(DeviceTimeZone.QUALIFIER)),
             )

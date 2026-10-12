@@ -1,6 +1,6 @@
-# T-1804 (ADR-0017, ADR-0053): every permission the merged app manifest requests, and why. A permission that
-# appears in the merged manifest and not here fails the build, and one listed here that no longer appears fails
-# too, so a dependency cannot quietly add or drop one.
+# T-1804 (ADR-0017, ADR-0051, ADR-0054): every permission the merged app manifest requests, and why. A permission
+# that appears in the merged manifest and not here fails the build, and one listed here that no longer appears
+# fails too, so a dependency cannot quietly add or drop one.
 #
 # Two checks read this file, because they see different manifests:
 #   - ExportedComponentsTest reads the debug unit-test manifest;
@@ -9,11 +9,14 @@
 # manifest can differ, and a test-only dependency could mask a permission the shipped APK still requests.
 #
 # Calendar: READ_CALENDAR and WRITE_CALENDAR must NEVER appear here. Taqvim does not read the user's calendar
-# (ADR-0053). Interoperability is file-based .ics import and export, which needs no permission at all.
+# (ADR-0051). Interoperability is file-based .ics import and export, through the Storage Access Framework, which
+# needs no permission at all.
+#
+# Network: INTERNET and ACCESS_NETWORK_STATE must NEVER appear here either. Remote calendar subscriptions were the
+# only feature that opened a socket and they were removed with the permission (ADR-0054), so Taqvim's own code
+# cannot reach the network. A citation the user taps is handed to their browser, which is another app.
 #
 # permission | why
-android.permission.INTERNET | T-1003 iCalendar subscriptions only, off until the user adds a feed and allows network use
-android.permission.ACCESS_NETWORK_STATE | WorkManager's, for the constraints on the subscription refresh worker
 android.permission.ACCESS_COARSE_LOCATION | T-603 prayer times and Qibla at the user's position; requested at runtime, and choosing a city instead works without it
 android.permission.ACCESS_FINE_LOCATION | T-603 as above, for a more exact position
 android.permission.RECEIVE_BOOT_COMPLETED | T-604 re-plans alarms after a restart, which Android otherwise drops

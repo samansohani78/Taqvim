@@ -88,7 +88,7 @@ class AppRouterTest {
         router.year().onOpenMonth(day)
         router.agenda().onOpenDay(day)
         router.agenda().onOpenEvent(AgendaEvent("3", AgendaEventKind.PERSONAL, "Class", isHoliday = false))
-        router.agenda().onOpenEvent(AgendaEvent("2:uid", AgendaEventKind.SUBSCRIPTION, "Talk", isHoliday = false))
+        router.agenda().onOpenEvent(AgendaEvent("nowruz", AgendaEventKind.OFFICIAL, "Nowruz", isHoliday = true))
         router.timeline().onCreateEvent(day, 600, 660)
         router.timeline().onOpenEvent("not-a-number", TimelineEventKind.PERSONAL)
 
@@ -133,7 +133,6 @@ class AppRouterTest {
             listOf(
                 AppDestination.LocationSettings,
                 AppDestination.AthanSettings,
-                AppDestination.Subscriptions,
                 AppDestination.Widgets,
                 AppDestination.IslamicOverride,
             )

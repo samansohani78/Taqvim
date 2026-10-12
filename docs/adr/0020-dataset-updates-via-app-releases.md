@@ -1,6 +1,8 @@
 # ADR-0020: Dataset updates ship with app releases
 
-- **Status:** Accepted
+- **Status:** Accepted, and now stronger: since [ADR-0054](0054-taqvim-has-no-network-access.md) (2026-10-13)
+  Taqvim has no network permission at all, so shipping datasets with releases is the only option rather than
+  the chosen one.
 - **Date:** 2026-09-14
 - **Plan reference:** docs/PLAN.md T-1901 (data-only release path: bundled override + signed dataset update file loader),
   T-1900 (release engineering)

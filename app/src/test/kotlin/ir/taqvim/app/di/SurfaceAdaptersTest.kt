@@ -69,7 +69,6 @@ class SurfaceAdaptersTest {
                     isHoliday = false,
                     isWeekend = false,
                     personal = emptyList(),
-                    ics = emptyList(),
                 )
             },
         )

@@ -456,14 +456,17 @@ Sign-off: ______
    is shown until recovery completes; data is either fully restored or fully the previous state.
 8. ICS: import an `.ics` file exported from Google Calendar and one from Outlook → events appear; export Taqvim events
    and open the file in another calendar app.
-9. Subscriptions: add a WebCal/HTTPS feed with network use allowed → events appear; the health page shows the last
-   download; pause it and refresh; turn network use off → no fetch happens.
+9. No network permission (ADR-0054): open Settings → Apps → Taqvim → Permissions on the device → there is no
+   network entry, and turning the device's data and Wi-Fi off changes nothing anywhere in the app. Upgrade from a
+   build that had subscriptions (install 1.3.0, add a feed, allow network use, let it download) → the app opens, no
+   subscribed events are shown anywhere, Settings has no subscriptions page, and the privacy screen lists neither a
+   network permission nor a subscription row.
 10. No calendar permission (ADR-0051): open Settings → Apps → Taqvim → Permissions on the device → **Calendar is not
     listed at all**, and nothing in the app ever prompts for it. Upgrade from a build that had it (install 1.2.0,
     grant calendar access, add a device event, then install this build over it) → the app opens, the calendar, day
     details, agenda, timeline, search and the event widgets show no device events and no empty placeholder where
     they were, and the privacy screen lists neither a calendar permission nor a calendar copy. `.ics` import and
-    export and subscribed feeds still work, which is the interoperability that remains.
+    export still work, which is the interoperability that remains.
 
 Sign-off: ______
 
@@ -528,7 +531,7 @@ behaves as described.
 | 34 | Font scale 2.0 | As §3 | | |
 | 35 | RTL switch (change language fa ↔ en) | Layout mirrors without restart issues | | |
 | 36 | Backup → wipe → restore | As §9 | | |
-| 37 | ICS import / export; subscription refresh | As §9 | | |
+| 37 | ICS import / export | As §8 | | |
 | 38 | Compass orientation lock; map layers; astronomy slider | Compass stays usable; each map layer draws; slider moves time | | |
 | 39 | Deep links (10 from AUTOMATION.md) and PROCESS_TEXT ("Open in Taqvim") | Each opens the documented screen | | |
 | 40 | Wear smoke (watch face: tile tap, complications, time zone, midnight) | As §5 steps 3–6; steps 1–2 run on `wearApi34` | | |

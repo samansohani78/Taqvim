@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">এই মাসে কোনো ইভেন্ট নেই</string>
   <string name="agenda_kind_official">আনুষ্ঠানিক</string>
   <string name="agenda_kind_personal">ব্যক্তিগত</string>
-  <string name="agenda_kind_subscription">সাবস্ক্রিপশন</string>
   <string name="agenda_event_description">%1$s, %2$s</string>
   <string name="agenda_export_title">কার্যসূচি: %1$s – %2$s</string>
   <string name="agenda_print_job">Taqvim কার্যসূচি</string>

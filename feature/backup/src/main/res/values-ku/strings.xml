@@ -4,7 +4,7 @@
   <string name="backup_title">Paşkopî û vegerandin</string>
   <string name="backup_loading">Paşkopî û vegerandin tê barkirin</string>
   <string name="backup_export_title">Paşkopî</string>
-  <string name="backup_export_explanation">Bûyer, bîranîn, abonetiyên salnameyê, dewreyên nobetê, profîlên rojên kar û mîhengên xwe di yek pelê de tomar bike.</string>
+  <string name="backup_export_explanation">Bûyer, bîranîn, dewreyên nobetê, profîlên rojên kar û mîhengên xwe di yek pelê de tomar bike.</string>
   <string name="backup_export_encrypt">Bi şîfreyê şîfre bike</string>
   <string name="backup_export_encrypt_on">Tenê kesê ku şîfreyê dizane dikare vê paşkopiyê veke.</string>
   <string name="backup_export_encrypt_off">Pel JSON-a sade ye: her kesê ku wê hebe dikare daneyên te bixwîne.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Bîranîn</string>
   <string name="backup_table_shift_rotations">Dewreyên nobetê</string>
   <string name="backup_table_shift_records">Tomarên nobetê</string>
-  <string name="backup_table_subscriptions">Abonetiyên salnameyê</string>
   <string name="backup_table_workdays">Profîlên rojên kar</string>
   <string name="backup_table_official_reminders">Bîranînên berî rojên fermî</string>
   <string name="backup_restore">Vê paşkopiyê vegerîne</string>
-  <string name="backup_restore_warning">Vegerandin hemû bûyer, bîranîn, abonetiyên salnameyê, dewreyên nobetê, profîlên rojên kar û mîhengên li ser vê amûrê bi paşkopiyê diguherîne. Ev nayê paşvexistin.</string>
+  <string name="backup_restore_warning">Vegerandin hemû bûyer, bîranîn, dewreyên nobetê, profîlên rojên kar û mîhengên li ser vê amûrê bi paşkopiyê diguherîne. Ev nayê paşvexistin.</string>
   <string name="backup_restore_confirm_title">Daneyên te werin guhertin?</string>
   <string name="backup_restore_confirm">Biguherîne</string>
   <string name="backup_error_not_a_backup">Ev pel ne paşkopiyeke Taqvim e.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Daneyên li ser vê amûrê</string>
   <string name="privacy_data_events">Bûyerên kesane</string>
   <string name="privacy_data_reminders">Bîranîn</string>
-  <string name="privacy_data_subscriptions">Abonetiyên salnameyê</string>
   <string name="privacy_data_location">Cihê hilbijartî</string>
   <string name="privacy_data_diagnostics">Tomara teşhîsê</string>
   <string name="privacy_data_searches">Lêgerînên dawî</string>
   <string name="privacy_where_database">Di danegeha taybet a sepanê de tê hilanîn.</string>
-  <string name="privacy_where_subscriptions">Navnîşan di danegeha taybet a sepanê de ne; bûyer tenê ji navnîşanên ku tu zêde dikî tên daxistin.</string>
   <string name="privacy_where_settings">Di mîhengên taybet ên sepanê de tê hilanîn.</string>
   <string name="privacy_entries">Tomar: %1$s</string>
   <string name="privacy_location_set">Cihek hatiye tomarkirin.</string>

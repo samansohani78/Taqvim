@@ -4,7 +4,7 @@
   <string name="backup_title">بیک اپ او بیرته راګرځول</string>
   <string name="backup_loading">بیک اپ او بیرته راګرځول پورته کېږي</string>
   <string name="backup_export_title">بیک اپ</string>
-  <string name="backup_export_explanation">خپلې پېښې، یادونې، د جنتري ګډونونه، د شفټ دورې، د کاري ورځو پروفایلونه او تنظیمات په یوه فایل کې خوندي کړئ.</string>
+  <string name="backup_export_explanation">خپلې پېښې، یادونې، د شفټ دورې، د کاري ورځو پروفایلونه او تنظیمات په یوه فایل کې خوندي کړئ.</string>
   <string name="backup_export_encrypt">د پټې جملې سره کوډ کول</string>
   <string name="backup_export_encrypt_on">دا بیک اپ یوازې هغه څوک پرانیستلی شي چې پټه جمله پېژني.</string>
   <string name="backup_export_encrypt_off">فایل ساده JSON دی: هر څوک چې ولري ستاسو معلومات لوستلی شي.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">یادونې</string>
   <string name="backup_table_shift_rotations">د شفټ دورې</string>
   <string name="backup_table_shift_records">د شفټ ثبتونه</string>
-  <string name="backup_table_subscriptions">د جنتري ګډونونه</string>
   <string name="backup_table_workdays">د کاري ورځو پروفایلونه</string>
   <string name="backup_table_official_reminders">له رسمي ورځو مخکې یادونې</string>
   <string name="backup_restore">دا بیک اپ بیرته راوګرځوئ</string>
-  <string name="backup_restore_warning">بیرته راګرځول پدې وسیله کې ټولې پېښې، یادونې، د جنتري ګډونونه، د شفټ دورې، د کاري ورځو پروفایلونه او تنظیمات د بیک اپ سره بدلوي. دا بیرته نه شي ګرځول کېدای.</string>
+  <string name="backup_restore_warning">بیرته راګرځول پدې وسیله کې ټولې پېښې، یادونې، د شفټ دورې، د کاري ورځو پروفایلونه او تنظیمات د بیک اپ سره بدلوي. دا بیرته نه شي ګرځول کېدای.</string>
   <string name="backup_restore_confirm_title">خپل معلومات بدل کړئ؟</string>
   <string name="backup_restore_confirm">بدلول</string>
   <string name="backup_error_not_a_backup">دا فایل د Taqvim بیک اپ نه دی.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">پدې وسیله کې معلومات</string>
   <string name="privacy_data_events">شخصي پېښې</string>
   <string name="privacy_data_reminders">یادونې</string>
-  <string name="privacy_data_subscriptions">د جنتري ګډونونه</string>
   <string name="privacy_data_location">ټاکل شوی ځای</string>
   <string name="privacy_data_diagnostics">د تشخیص لاګ</string>
   <string name="privacy_data_searches">وروستي لټونونه</string>
   <string name="privacy_where_database">د اپ په خصوصي ډیټابیس کې ساتل کېږي.</string>
-  <string name="privacy_where_subscriptions">پتې د اپ په خصوصي ډیټابیس کې دي؛ پېښې یوازې له هغو پتو ښکته کېږي چې تاسو یې اضافه کوئ.</string>
   <string name="privacy_where_settings">د اپ په خصوصي تنظیماتو کې ساتل کېږي.</string>
   <string name="privacy_entries">ثبتونه: %1$s</string>
   <string name="privacy_location_set">یو ځای خوندي دی.</string>

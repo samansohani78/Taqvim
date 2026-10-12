@@ -5,7 +5,6 @@
 package ir.taqvim.app
 
 import android.app.Application
-import androidx.work.Configuration
 import ir.taqvim.app.automation.AppShortcuts
 import ir.taqvim.app.automation.LauncherIconSwitcher
 import ir.taqvim.app.di.AppBuild
@@ -16,7 +15,6 @@ import ir.taqvim.app.di.WidgetTriggerWatcher
 import ir.taqvim.app.diagnostics.CrashDiagnostics
 import ir.taqvim.app.diagnostics.CrashSettingsWatcher
 import ir.taqvim.app.diagnostics.startupModules
-import ir.taqvim.data.events.ics.SubscriptionRefreshWorkerFactory
 import ir.taqvim.data.scheduler.AlarmInputWatcher
 import ir.taqvim.data.scheduler.PreferenceChangeWatcher
 import kotlinx.coroutines.CoroutineScope
@@ -32,18 +30,15 @@ import org.koin.core.context.startKoin
  * Process entry point: builds the Koin DI graph (see docs/adr/0002-dependency-injection-koin.md), starts the
  * scheduler's preference watcher (T-604), reminder data watcher (T-1001, T-1002), widget update triggers
  * (T-1201…T-1204), the app language sync (T-1501) and the refresh of the persistent notification and launcher icon
- * (T-1213, T-1214), publishes the launcher shortcuts (T-1215), and provides WorkManager with the subscription worker
- * factory (T-1003). A restore left unfinished by the previous process is completed or undone first (B09, ADR-0032), so
- * the watchers, widgets, notification and language sync only ever read and schedule from consistent data.
+ * (T-1213, T-1214) and publishes the launcher shortcuts (T-1215). A restore left unfinished by the previous process
+ * is completed or undone first (B09, ADR-0032), so the watchers, widgets, notification and language sync only ever
+ * read and schedule from consistent data.
+ *
+ * Nothing started here reaches the network or the device's position: Taqvim has neither permission (ADR-0054).
  */
-class TaqvimApplication :
-    Application(),
-    Configuration.Provider {
+class TaqvimApplication : Application() {
     /** Work that lasts as long as the process. */
     private val processScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-
-    override val workManagerConfiguration: Configuration
-        get() = Configuration.Builder().setWorkerFactory(get<SubscriptionRefreshWorkerFactory>()).build()
 
     override fun onCreate() {
         super.onCreate()

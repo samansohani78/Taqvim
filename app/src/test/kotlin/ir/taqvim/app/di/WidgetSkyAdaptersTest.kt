@@ -70,7 +70,6 @@ class WidgetSkyAdaptersTest {
             isHoliday = false,
             isWeekend = false,
             personal = emptyList(),
-            ics = emptyList(),
         )
 
     /** Counts outline loads; a `null` outline cannot be read. */

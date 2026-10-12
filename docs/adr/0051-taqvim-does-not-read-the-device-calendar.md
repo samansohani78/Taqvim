@@ -1,6 +1,8 @@
 # ADR-0051: Taqvim does not read the device calendar
 
-- **Status:** Accepted
+- **Status:** Accepted. Where this record says interoperability is files *and subscribed feeds*, the feeds are
+  gone ([ADR-0054](0054-taqvim-has-no-network-access.md), 2026-10-13); file-based `.ics` import and export are
+  what remains, and the calendar decision itself is unchanged.
 - **Date:** 2026-10-12
 - **Plan reference:** docs/PLAN.md T-602 (withdrawn), T-1804, T-1503; ADR-0017 (manifest audit), ADR-0031 (event day
   assignment), ADR-0019 (the watch's manifest)

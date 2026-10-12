@@ -4,7 +4,7 @@
   <string name="backup_title">Sauvegarde et restauration</string>
   <string name="backup_loading">Chargement de la sauvegarde et de la restauration</string>
   <string name="backup_export_title">Sauvegarder</string>
-  <string name="backup_export_explanation">Enregistrez vos événements, rappels, abonnements de calendrier, rotations d\'équipes, profils de jours ouvrés et paramètres dans un seul fichier.</string>
+  <string name="backup_export_explanation">Enregistrez vos événements, rappels, rotations d\'équipes, profils de jours ouvrés et paramètres dans un seul fichier.</string>
   <string name="backup_export_encrypt">Chiffrer avec une phrase secrète</string>
   <string name="backup_export_encrypt_on">Seule une personne connaissant la phrase secrète peut ouvrir cette sauvegarde.</string>
   <string name="backup_export_encrypt_off">Le fichier est du JSON en clair : quiconque le possède peut lire vos données.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Rappels</string>
   <string name="backup_table_shift_rotations">Rotations d\'équipes</string>
   <string name="backup_table_shift_records">Relevés d\'équipes</string>
-  <string name="backup_table_subscriptions">Abonnements de calendrier</string>
   <string name="backup_table_workdays">Profils de jours ouvrés</string>
   <string name="backup_table_official_reminders">Rappels avant les jours officiels</string>
   <string name="backup_restore">Restaurer cette sauvegarde</string>
-  <string name="backup_restore_warning">La restauration remplace tous les événements, rappels, abonnements de calendrier, rotations d\'équipes, profils de jours ouvrés et paramètres de cet appareil par ceux de la sauvegarde. Cette opération est irréversible.</string>
+  <string name="backup_restore_warning">La restauration remplace tous les événements, rappels, rotations d\'équipes, profils de jours ouvrés et paramètres de cet appareil par ceux de la sauvegarde. Cette opération est irréversible.</string>
   <string name="backup_restore_confirm_title">Remplacer vos données ?</string>
   <string name="backup_restore_confirm">Remplacer</string>
   <string name="backup_error_not_a_backup">Ce fichier n\'est pas une sauvegarde Taqvim.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Données sur cet appareil</string>
   <string name="privacy_data_events">Événements personnels</string>
   <string name="privacy_data_reminders">Rappels</string>
-  <string name="privacy_data_subscriptions">Abonnements de calendrier</string>
   <string name="privacy_data_location">Lieu choisi</string>
   <string name="privacy_data_diagnostics">Journal de diagnostic</string>
   <string name="privacy_data_searches">Recherches récentes</string>
   <string name="privacy_where_database">Stocké dans la base de données privée de l\'application.</string>
-  <string name="privacy_where_subscriptions">Adresses dans la base de données privée de l\'application ; les événements ne sont téléchargés que depuis les adresses que vous ajoutez.</string>
   <string name="privacy_where_settings">Stocké dans les paramètres privés de l\'application.</string>
   <string name="privacy_entries">Entrées : %1$s</string>
   <string name="privacy_location_set">Un lieu est enregistré.</string>

@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">Keine Termine in diesem Monat</string>
   <string name="agenda_kind_official">Offiziell</string>
   <string name="agenda_kind_personal">Persönlich</string>
-  <string name="agenda_kind_subscription">Abonnement</string>
   <string name="agenda_event_description">%1$s, %2$s</string>
   <string name="agenda_export_title">Terminliste: %1$s – %2$s</string>
   <string name="agenda_print_job">Taqvim-Terminliste</string>

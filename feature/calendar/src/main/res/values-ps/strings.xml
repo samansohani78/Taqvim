@@ -94,7 +94,6 @@
   <string name="calendar_source_international">نړیواله ورځ</string>
   <string name="calendar_source_ancient_iran">لرغونی ایراني جشن</string>
   <string name="calendar_source_personal">شخصي پېښه</string>
-  <string name="calendar_source_subscription">ګډون شوې جنتري</string>
   <string name="calendar_citation_page">%1$s، پاڼه %2$s</string>
   <string name="calendar_no_citation">هېڅ سرچینه نه ده ثبت شوې</string>
   <string name="calendar_open_source">سرچینه پرانیستل</string>

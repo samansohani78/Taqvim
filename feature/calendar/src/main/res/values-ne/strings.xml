@@ -94,7 +94,6 @@
   <string name="calendar_source_international">अन्तर्राष्ट्रिय दिवस</string>
   <string name="calendar_source_ancient_iran">प्राचीन इरानी चाड</string>
   <string name="calendar_source_personal">व्यक्तिगत कार्यक्रम</string>
-  <string name="calendar_source_subscription">सदस्यता लिइएको पात्रो</string>
   <string name="calendar_citation_page">%1$s, पृष्ठ %2$s</string>
   <string name="calendar_no_citation">कुनै स्रोत रेकर्ड गरिएको छैन</string>
   <string name="calendar_open_source">स्रोत खोल्नुहोस्</string>

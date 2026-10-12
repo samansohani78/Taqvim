@@ -57,7 +57,6 @@ class WidgetCalendarAdaptersTest {
             isHoliday = jdn == eventDay,
             isWeekend = jdn.toLocalDate().dayOfWeek == DayOfWeek.FRIDAY,
             personal = if (jdn == eventDay) listOf(dentist(jdn)) else emptyList(),
-            ics = emptyList(),
         )
 
     private fun dentist(jdn: Jdn) =

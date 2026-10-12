@@ -17,12 +17,9 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.data.database.EventExceptionEntity
 import ir.taqvim.data.database.EventOverrideEntity
-import ir.taqvim.data.database.IcsEventCacheEntity
-import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.toEntity
-import ir.taqvim.data.events.InstantWindow
 import ir.taqvim.data.preferences.DeviceTimeZone
 import ir.taqvim.data.preferences.UserPreferencesRepository
 import kotlin.time.Clock
@@ -103,22 +100,6 @@ class RoomEventInputsTest {
         }
 
     @Test
-    fun icsEventsOfEnabledSubscriptionsInTheWindow(): Unit =
-        runTest {
-            val dao = db.icsSubscriptionDao()
-            val subscription =
-                IcsSubscriptionEntity(url = "https://example.org/a.ics", displayName = "a", refreshIntervalMinutes = 60)
-            val id = dao.insertSubscription(subscription)
-            val start = Instant.parse("2026-03-21T08:00:00Z").toEpochMilliseconds()
-            dao.insertEvents(listOf(IcsEventCacheEntity(id, "uid", start, start + HOUR_MILLIS, false, "meeting")))
-
-            val source = RoomIcsEventsSource(dao)
-
-            source.events(InstantWindow(start, start + 1)).first().map { it.uid } shouldBe listOf("uid")
-            source.events(InstantWindow(start - HOUR_MILLIS, start)).first() shouldBe emptyList()
-        }
-
-    @Test
     fun theKoinModuleCombinesTheDatasetWithStoredEvents(): Unit =
         runTest {
             db.personalEventDao().insert(event(nowruz))
@@ -132,7 +113,6 @@ class RoomEventInputsTest {
                         eventsDataModule,
                         module {
                             single { db.personalEventDao() }
-                            single { db.icsSubscriptionDao() }
                             single {
                                 UserPreferencesRepository(
                                     UserPreferencesRepository.createDataStore(application, storeScope) { "fa" },
@@ -149,8 +129,4 @@ class RoomEventInputsTest {
             day.isHoliday shouldBe true
             day.personal.map { it.title } shouldBe listOf("event")
         }
-
-    private companion object {
-        const val HOUR_MILLIS = 3_600_000L
-    }
 }

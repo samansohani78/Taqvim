@@ -826,12 +826,6 @@
       ]
     },
     {
-      "coordinate": "androidx.lifecycle:lifecycle-livedata-core:2.6.2",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.lifecycle:lifecycle-livedata-core:2.9.4",
       "licenses": [
         "Apache-2.0"
@@ -845,12 +839,6 @@
     },
     {
       "coordinate": "androidx.lifecycle:lifecycle-livedata:2.11.0",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.lifecycle:lifecycle-livedata:2.6.2",
       "licenses": [
         "Apache-2.0"
       ]
@@ -977,12 +965,6 @@
     },
     {
       "coordinate": "androidx.lifecycle:lifecycle-service:2.11.0",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.lifecycle:lifecycle-service:2.6.2",
       "licenses": [
         "Apache-2.0"
       ]
@@ -1420,12 +1402,6 @@
       ]
     },
     {
-      "coordinate": "androidx.tracing:tracing-ktx:1.2.0",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.tracing:tracing:1.2.0",
       "licenses": [
         "Apache-2.0"
@@ -1582,19 +1558,7 @@
       ]
     },
     {
-      "coordinate": "androidx.work:work-runtime-ktx:2.11.2",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
       "coordinate": "androidx.work:work-runtime-ktx:2.7.1",
-      "licenses": [
-        "Apache-2.0"
-      ]
-    },
-    {
-      "coordinate": "androidx.work:work-runtime:2.11.2",
       "licenses": [
         "Apache-2.0"
       ]

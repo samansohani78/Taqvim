@@ -14,7 +14,6 @@ enum class BackupTableKind {
     REMINDERS,
     SHIFT_ROTATIONS,
     SHIFT_ROTATION_RECORDS,
-    ICS_SUBSCRIPTIONS,
     WORKDAY_PROFILES,
 
     /** Reminders before official events (T-1002). */

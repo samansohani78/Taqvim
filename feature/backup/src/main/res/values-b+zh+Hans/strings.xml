@@ -4,7 +4,7 @@
   <string name="backup_title">备份与恢复</string>
   <string name="backup_loading">正在加载备份与恢复</string>
   <string name="backup_export_title">备份</string>
-  <string name="backup_export_explanation">将你的事件、提醒、日历订阅、轮班周期、工作日配置和设置保存到一个文件中。</string>
+  <string name="backup_export_explanation">将你的事件、提醒、轮班周期、工作日配置和设置保存到一个文件中。</string>
   <string name="backup_export_encrypt">使用口令加密</string>
   <string name="backup_export_encrypt_on">只有知道口令的人才能打开此备份。</string>
   <string name="backup_export_encrypt_off">该文件是纯 JSON：任何拥有它的人都能读取你的数据。</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">提醒</string>
   <string name="backup_table_shift_rotations">轮班周期</string>
   <string name="backup_table_shift_records">轮班记录</string>
-  <string name="backup_table_subscriptions">日历订阅</string>
   <string name="backup_table_workdays">工作日配置</string>
   <string name="backup_table_official_reminders">官方日期前的提醒</string>
   <string name="backup_restore">恢复此备份</string>
-  <string name="backup_restore_warning">恢复会用备份替换本设备上的所有事件、提醒、日历订阅、轮班周期、工作日配置和设置。此操作无法撤销。</string>
+  <string name="backup_restore_warning">恢复会用备份替换本设备上的所有事件、提醒、轮班周期、工作日配置和设置。此操作无法撤销。</string>
   <string name="backup_restore_confirm_title">替换你的数据吗？</string>
   <string name="backup_restore_confirm">替换</string>
   <string name="backup_error_not_a_backup">此文件不是 Taqvim 备份。</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">本设备上的数据</string>
   <string name="privacy_data_events">个人事件</string>
   <string name="privacy_data_reminders">提醒</string>
-  <string name="privacy_data_subscriptions">日历订阅</string>
   <string name="privacy_data_location">已选位置</string>
   <string name="privacy_data_diagnostics">诊断日志</string>
   <string name="privacy_data_searches">最近搜索</string>
   <string name="privacy_where_database">保存在应用的私有数据库中。</string>
-  <string name="privacy_where_subscriptions">地址保存在应用的私有数据库中；事件仅从你添加的地址下载。</string>
   <string name="privacy_where_settings">保存在应用的私有设置中。</string>
   <string name="privacy_entries">条目：%1$s</string>
   <string name="privacy_location_set">已保存一个位置。</string>

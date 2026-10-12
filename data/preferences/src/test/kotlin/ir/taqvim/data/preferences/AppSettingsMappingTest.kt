@@ -58,8 +58,6 @@ class AppSettingsMappingTest {
         AppSettings.DEFAULT.showWeekNumbers shouldBe false
         AppSettings.DEFAULT.dynamicColor shouldBe true
         AppSettings.DEFAULT.allDayReminderMinute shouldBe 9 * 60
-        // T-1804: no network use until the user allows subscriptions to refresh.
-        AppSettings.DEFAULT.subscriptionsNetworkAllowed shouldBe false
         // T-1213/T-1214: the large day number and the dynamic launcher icon are opt-in.
         AppSettings.DEFAULT.persistentNotificationLargeNumber shouldBe false
         AppSettings.DEFAULT.dynamicLauncherIcon shouldBe false
@@ -91,7 +89,6 @@ class AppSettingsMappingTest {
                         showWeekNumbers = flag[4],
                         enabledEventSources = enabled,
                         highLatitudeRule = rule,
-                        subscriptionsNetworkAllowed = flag[5],
                         persistentNotification = flag[6],
                         rememberRecentSearches = flag[7],
                         recentSearches = recent.distinct(),

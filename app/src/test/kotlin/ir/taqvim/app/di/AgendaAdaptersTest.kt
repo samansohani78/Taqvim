@@ -11,7 +11,6 @@ import ir.taqvim.core.model.CalendarDate
 import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.data.events.DayEvents
-import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferences
@@ -58,7 +57,6 @@ class AgendaAdaptersTest {
                             listOf(
                                 AgendaEvent(NOWRUZ, AgendaEventKind.OFFICIAL, nowruz.title.forLanguage("en"), true),
                                 AgendaEvent("7", AgendaEventKind.PERSONAL, "Birthday", false),
-                                AgendaEvent("2:uid-1", AgendaEventKind.SUBSCRIPTION, "Talk", false),
                             ),
                     ),
                 )
@@ -74,8 +72,6 @@ class AgendaAdaptersTest {
         }
 
     private fun day(): DayEvents {
-        val begin = Instant.parse("2026-03-21T06:30:00Z")
-        val end = Instant.parse("2026-03-21T07:30:00Z")
         val days = nowruz1405..nowruz1405
         return DayEvents(
             jdn = nowruz1405,
@@ -99,7 +95,6 @@ class AgendaAdaptersTest {
                         recurring = false,
                     ),
                 ),
-            ics = listOf(IcsOccurrence(2, "uid-1", "Talk", "", begin, end, allDay = false, days = days)),
         )
     }
 

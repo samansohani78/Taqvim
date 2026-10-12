@@ -4,7 +4,7 @@
   <string name="backup_title">پشتیبان‌گیری و بازیابی</string>
   <string name="backup_loading">در حال بارگذاری پشتیبان‌گیری و بازیابی</string>
   <string name="backup_export_title">پشتیبان‌گیری</string>
-  <string name="backup_export_explanation">رویدادها، یادآورها، اشتراک‌های تقویم، نوبت‌های کاری، نمایه‌های روز کاری و تنظیمات را در یک پرونده ذخیره کنید.</string>
+  <string name="backup_export_explanation">رویدادها، یادآورها، نوبت‌های کاری، نمایه‌های روز کاری و تنظیمات را در یک پرونده ذخیره کنید.</string>
   <string name="backup_export_encrypt">رمزگذاری با گذرواژه</string>
   <string name="backup_export_encrypt_on">فقط کسی که گذرواژه را بداند می‌تواند این پشتیبان را باز کند.</string>
   <string name="backup_export_encrypt_off">پرونده به صورت JSON ساده است: هر کسی که آن را داشته باشد می‌تواند داده‌های شما را بخواند.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">یادآورها</string>
   <string name="backup_table_shift_rotations">نوبت‌های کاری</string>
   <string name="backup_table_shift_records">سابقه نوبت‌ها</string>
-  <string name="backup_table_subscriptions">اشتراک‌های تقویم</string>
   <string name="backup_table_workdays">نمایه‌های روز کاری</string>
   <string name="backup_table_official_reminders">یادآورهای پیش از مناسبت‌های رسمی</string>
   <string name="backup_restore">بازیابی این پشتیبان</string>
-  <string name="backup_restore_warning">بازیابی، همه رویدادها، یادآورها، اشتراک‌های تقویم، نوبت‌های کاری، نمایه‌های روز کاری و تنظیمات این دستگاه را با پشتیبان جایگزین می‌کند. این کار برگشت‌پذیر نیست.</string>
+  <string name="backup_restore_warning">بازیابی، همه رویدادها، یادآورها، نوبت‌های کاری، نمایه‌های روز کاری و تنظیمات این دستگاه را با پشتیبان جایگزین می‌کند. این کار برگشت‌پذیر نیست.</string>
   <string name="backup_restore_confirm_title">داده‌های شما جایگزین شود؟</string>
   <string name="backup_restore_confirm">جایگزین کن</string>
   <string name="backup_error_not_a_backup">این پرونده پشتیبان تقویم نیست.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">داده‌های روی این دستگاه</string>
   <string name="privacy_data_events">رویدادهای شخصی</string>
   <string name="privacy_data_reminders">یادآورها</string>
-  <string name="privacy_data_subscriptions">اشتراک‌های تقویم</string>
   <string name="privacy_data_location">مکان انتخاب‌شده</string>
   <string name="privacy_data_diagnostics">گزارش عیب‌یابی</string>
   <string name="privacy_data_searches">جست‌وجوهای اخیر</string>
   <string name="privacy_where_database">در پایگاه داده خصوصی برنامه نگهداری می‌شود.</string>
-  <string name="privacy_where_subscriptions">نشانی‌ها در پایگاه داده خصوصی برنامه‌اند؛ رویدادها فقط از نشانی‌هایی که شما افزوده‌اید دریافت می‌شوند.</string>
   <string name="privacy_where_settings">در تنظیمات خصوصی برنامه نگهداری می‌شود.</string>
   <string name="privacy_entries">تعداد: %1$s</string>
   <string name="privacy_location_set">یک مکان ذخیره شده است.</string>

@@ -26,7 +26,6 @@ import ir.taqvim.feature.year.YearNavigation
 internal enum class EventOrigin {
     OFFICIAL,
     PERSONAL,
-    SUBSCRIPTION,
 }
 
 /** What the app does outside its own screens. */
@@ -171,7 +170,6 @@ internal fun settingsPage(destination: SettingsDestination): AppDestination =
     when (destination) {
         SettingsDestination.LOCATION -> AppDestination.LocationSettings
         SettingsDestination.ATHAN -> AppDestination.AthanSettings
-        SettingsDestination.SUBSCRIPTIONS -> AppDestination.Subscriptions
         SettingsDestination.ISLAMIC_OVERRIDE -> AppDestination.IslamicOverride
         SettingsDestination.WIDGETS -> AppDestination.Widgets
     }

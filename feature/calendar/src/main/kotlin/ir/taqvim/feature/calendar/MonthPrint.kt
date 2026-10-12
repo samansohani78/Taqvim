@@ -61,7 +61,7 @@ class MonthPrintTexts(
 
 /** Event dots are not printed, so the page is built without colors. */
 private val PRINT_PALETTE =
-    IndicatorPalette(Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified)
+    IndicatorPalette(Color.Unspecified, Color.Unspecified, Color.Unspecified)
 
 /** The shown month of [content] as a printable HTML document, with texts from [resources]. */
 internal fun monthPrintHtml(

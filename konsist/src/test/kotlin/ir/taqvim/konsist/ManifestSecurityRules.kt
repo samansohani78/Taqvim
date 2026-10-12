@@ -18,6 +18,25 @@ object ManifestSecurityRules {
     private val BROAD_PATH_TAGS = setOf("root-path", "external-path", "external-files-path", "external-media-path")
     private val BROAD_PATHS = setOf("", ".", "/")
     private const val INTERNET = "android.permission.INTERNET"
+    private const val NETWORK_STATE = "android.permission.ACCESS_NETWORK_STATE"
+
+    /**
+     * Ways production code could open a socket (ADR-0054).
+     *
+     * The permission's absence is the enforcement; this is the half that catches the attempt before the manifest
+     * does, so a fetch path cannot be written and sit dormant waiting for someone to add `INTERNET` back. The
+     * platform types are named as they are written in source, since an import is a reference like any other.
+     */
+    private val NETWORK_CLIENT_REFERENCES =
+        listOf(
+            "HttpURLConnection",
+            "java.net.URLConnection",
+            "okhttp3",
+            "retrofit2",
+            "io.ktor.client",
+            "java.net.Socket",
+            "javax.net.ssl.HttpsURLConnection",
+        )
 
     /** Calendar provider permissions. ADR-0051: Taqvim requests neither, and no manifest may bring one back. */
     private val CALENDAR_PERMISSIONS =
@@ -46,6 +65,26 @@ object ManifestSecurityRules {
         sourceManifests(root)
             .filter { manifest -> permissions(manifest).contains(INTERNET) }
             .map { it.relativeTo(root).invariantSeparatorsPath }
+
+    /** Source manifests (relative paths) that request `ACCESS_NETWORK_STATE` (ADR-0054). */
+    fun manifestsRequestingNetworkState(root: File): List<String> =
+        sourceManifests(root)
+            .filter { manifest -> permissions(manifest).contains(NETWORK_STATE) }
+            .map { it.relativeTo(root).invariantSeparatorsPath }
+
+    /**
+     * `file: reference` for every main Kotlin source that names an HTTP client (ADR-0054).
+     *
+     * `:konsist` has no Android toolchain, so this reads the source tree rather than the merged manifest; the
+     * manifest half is `auditReleasePermissions`, and the two fail independently.
+     */
+    fun networkClientUsers(root: File): List<String> =
+        mainKotlinFiles(root).flatMap { file ->
+            val text = file.readText()
+            NETWORK_CLIENT_REFERENCES
+                .filter { text.contains(it) }
+                .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
+        }
 
     /**
      * Source manifests (relative paths) that request a calendar permission.

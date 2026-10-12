@@ -98,7 +98,7 @@ class BackupCodecTest {
                 appVersion = "0.1.0",
                 createdAtEpochMillis = metadata.createdAtEpochMillis,
                 encrypted = false,
-                rowCounts = BackupTable.entries.zip(listOf(2, 1, 2, 1, 1, 1, 1, 2)).toMap(),
+                rowCounts = BackupTable.entries.zip(listOf(2, 1, 2, 1, 1, 1, 2)).toMap(),
                 preferences = preferences,
             )
     }

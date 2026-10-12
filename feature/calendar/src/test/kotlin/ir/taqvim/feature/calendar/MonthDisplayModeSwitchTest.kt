@@ -51,7 +51,7 @@ class MonthDisplayModeSwitchTest {
             newEvent = "NEW",
             week = { "W$it" },
         )
-    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Magenta)
+    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green)
     private val builder =
         MonthPageBuilder(
             CalendarCalendars(PERSIAN_FIRST),

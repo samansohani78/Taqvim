@@ -4,7 +4,7 @@
   <string name="backup_title">یەدەگ و گەڕاندنەوە</string>
   <string name="backup_loading">یەدەگ و گەڕاندنەوە بار دەکرێت</string>
   <string name="backup_export_title">یەدەگگرتن</string>
-  <string name="backup_export_explanation">ڕووداو، بیرخەرەوە، بەشداربوونەکانی ڕۆژژمێر، خولەکانی نۆرە، پرۆفایلەکانی ڕۆژی کار و ڕێکخستنەکانت لە یەک فایلدا پاشەکەوت بکە.</string>
+  <string name="backup_export_explanation">ڕووداو، بیرخەرەوە، خولەکانی نۆرە، پرۆفایلەکانی ڕۆژی کار و ڕێکخستنەکانت لە یەک فایلدا پاشەکەوت بکە.</string>
   <string name="backup_export_encrypt">نهێنیکردن بە دەستەواژەی نهێنی</string>
   <string name="backup_export_encrypt_on">تەنها کەسێک کە دەستەواژە نهێنییەکە بزانێت دەتوانێت ئەم یەدەگە بکاتەوە.</string>
   <string name="backup_export_encrypt_off">فایلەکە JSONی سادەیە: هەر کەسێک هەیبێت دەتوانێت داتاکانت بخوێنێتەوە.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">بیرخەرەوەکان</string>
   <string name="backup_table_shift_rotations">خولەکانی نۆرە</string>
   <string name="backup_table_shift_records">تۆمارەکانی نۆرە</string>
-  <string name="backup_table_subscriptions">بەشداربوونەکانی ڕۆژژمێر</string>
   <string name="backup_table_workdays">پرۆفایلەکانی ڕۆژی کار</string>
   <string name="backup_table_official_reminders">بیرخەرەوەکانی پێش ڕۆژە فەرمییەکان</string>
   <string name="backup_restore">گەڕاندنەوەی ئەم یەدەگە</string>
-  <string name="backup_restore_warning">گەڕاندنەوە هەموو ڕووداو، بیرخەرەوە، بەشداربوونەکانی ڕۆژژمێر، خولەکانی نۆرە، پرۆفایلەکانی ڕۆژی کار و ڕێکخستنەکانی ئەم ئامێرە بە یەدەگەکە دەگۆڕێت. ئەمە ناگەڕێتەوە.</string>
+  <string name="backup_restore_warning">گەڕاندنەوە هەموو ڕووداو، بیرخەرەوە، خولەکانی نۆرە، پرۆفایلەکانی ڕۆژی کار و ڕێکخستنەکانی ئەم ئامێرە بە یەدەگەکە دەگۆڕێت. ئەمە ناگەڕێتەوە.</string>
   <string name="backup_restore_confirm_title">داتاکانت بگۆڕدرێن؟</string>
   <string name="backup_restore_confirm">گۆڕین</string>
   <string name="backup_error_not_a_backup">ئەم فایلە یەدەگی Taqvim نییە.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">داتا لەسەر ئەم ئامێرە</string>
   <string name="privacy_data_events">ڕووداوە کەسییەکان</string>
   <string name="privacy_data_reminders">بیرخەرەوەکان</string>
-  <string name="privacy_data_subscriptions">بەشداربوونەکانی ڕۆژژمێر</string>
   <string name="privacy_data_location">شوێنی هەڵبژێردراو</string>
   <string name="privacy_data_diagnostics">تۆماری دەستنیشانکردن</string>
   <string name="privacy_data_searches">گەڕانە دوایینەکان</string>
   <string name="privacy_where_database">لە بنکەدراوەی تایبەتی ئەپەکەدا هەڵگیراوە.</string>
-  <string name="privacy_where_subscriptions">ناونیشانەکان لە بنکەدراوەی تایبەتی ئەپەکەدان؛ ڕووداوەکان تەنها لەو ناونیشانانەوە دادەبەزێنرێن کە زیادیان دەکەیت.</string>
   <string name="privacy_where_settings">لە ڕێکخستنە تایبەتییەکانی ئەپەکەدا هەڵگیراوە.</string>
   <string name="privacy_entries">تۆمارەکان: %1$s</string>
   <string name="privacy_location_set">شوێنێک پاشەکەوت کراوە.</string>

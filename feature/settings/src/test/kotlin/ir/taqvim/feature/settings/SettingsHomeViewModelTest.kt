@@ -168,8 +168,8 @@ class SettingsHomeViewModelTest {
             model.effects.test {
                 model.onRowClicked(SettingsItemId.ATHAN)
                 awaitItem() shouldBe SettingsEffect(SettingsDestination.ATHAN)
-                model.onRowClicked(SettingsItemId.SUBSCRIPTIONS)
-                awaitItem() shouldBe SettingsEffect(SettingsDestination.SUBSCRIPTIONS)
+                model.onRowClicked(SettingsItemId.WIDGETS)
+                awaitItem() shouldBe SettingsEffect(SettingsDestination.WIDGETS)
             }
             model.onRowClicked(SettingsItemId.CLEAR_SEARCHES)
             advanceUntilIdle()

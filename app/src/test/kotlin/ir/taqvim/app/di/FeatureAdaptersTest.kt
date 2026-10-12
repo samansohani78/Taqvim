@@ -190,7 +190,6 @@ class FeatureAdaptersTest {
                     isHoliday = true,
                     isWeekend = false,
                     personal = emptyList(),
-                    ics = emptyList(),
                 )
             RepositoryYearDaysSource { flowOf(listOf(day, day.copy(jdn = nowruz + 1, isHoliday = false))) }
                 .days(nowruz..nowruz + 1)

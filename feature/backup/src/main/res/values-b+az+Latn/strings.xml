@@ -4,7 +4,7 @@
   <string name="backup_title">Ehtiyat nüsxə və bərpa</string>
   <string name="backup_loading">Ehtiyat nüsxə və bərpa yüklənir</string>
   <string name="backup_export_title">Ehtiyat nüsxə</string>
-  <string name="backup_export_explanation">Tədbirlərinizi, xatırlatmalarınızı, təqvim abunəliklərinizi, növbə dövrlərinizi, iş günü profillərinizi və ayarlarınızı bir fayla saxlayın.</string>
+  <string name="backup_export_explanation">Tədbirlərinizi, xatırlatmalarınızı, növbə dövrlərinizi, iş günü profillərinizi və ayarlarınızı bir fayla saxlayın.</string>
   <string name="backup_export_encrypt">Parol ifadəsi ilə şifrələ</string>
   <string name="backup_export_encrypt_on">Bu ehtiyat nüsxəni yalnız parol ifadəsini bilən aça bilər.</string>
   <string name="backup_export_encrypt_off">Fayl sadə JSON-dur: ona sahib olan hər kəs məlumatlarınızı oxuya bilər.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Xatırlatmalar</string>
   <string name="backup_table_shift_rotations">Növbə dövrləri</string>
   <string name="backup_table_shift_records">Növbə qeydləri</string>
-  <string name="backup_table_subscriptions">Təqvim abunəlikləri</string>
   <string name="backup_table_workdays">İş günü profilləri</string>
   <string name="backup_table_official_reminders">Rəsmi günlərdən əvvəlki xatırlatmalar</string>
   <string name="backup_restore">Bu ehtiyat nüsxəni bərpa et</string>
-  <string name="backup_restore_warning">Bərpa bu cihazdakı bütün tədbirləri, xatırlatmaları, təqvim abunəliklərini, növbə dövrlərini, iş günü profillərini və ayarları ehtiyat nüsxə ilə əvəz edir. Bunu geri qaytarmaq olmaz.</string>
+  <string name="backup_restore_warning">Bərpa bu cihazdakı bütün tədbirləri, xatırlatmaları, növbə dövrlərini, iş günü profillərini və ayarları ehtiyat nüsxə ilə əvəz edir. Bunu geri qaytarmaq olmaz.</string>
   <string name="backup_restore_confirm_title">Məlumatlarınız əvəz edilsin?</string>
   <string name="backup_restore_confirm">Əvəz et</string>
   <string name="backup_error_not_a_backup">Bu fayl Taqvim ehtiyat nüsxəsi deyil.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Bu cihazdakı məlumatlar</string>
   <string name="privacy_data_events">Şəxsi tədbirlər</string>
   <string name="privacy_data_reminders">Xatırlatmalar</string>
-  <string name="privacy_data_subscriptions">Təqvim abunəlikləri</string>
   <string name="privacy_data_location">Seçilmiş məkan</string>
   <string name="privacy_data_diagnostics">Diaqnostika jurnalı</string>
   <string name="privacy_data_searches">Son axtarışlar</string>
   <string name="privacy_where_database">Tətbiqin şəxsi verilənlər bazasında saxlanılır.</string>
-  <string name="privacy_where_subscriptions">Ünvanlar tətbiqin şəxsi verilənlər bazasındadır; tədbirlər yalnız əlavə etdiyiniz ünvanlardan endirilir.</string>
   <string name="privacy_where_settings">Tətbiqin şəxsi ayarlarında saxlanılır.</string>
   <string name="privacy_entries">Qeydlər: %1$s</string>
   <string name="privacy_location_set">Məkan saxlanılıb.</string>

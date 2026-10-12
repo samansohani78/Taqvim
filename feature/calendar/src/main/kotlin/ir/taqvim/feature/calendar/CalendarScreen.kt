@@ -133,7 +133,6 @@ internal fun ColorScheme.indicatorPalette(): IndicatorPalette =
         holiday = error,
         official = primary,
         personal = tertiary,
-        subscription = outline,
     )
 
 /** Short standalone weekday names of [language] from the platform's CLDR data, in ISO order (Monday first). */

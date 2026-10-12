@@ -4,7 +4,7 @@
   <string name="backup_title">Cadangkan dan pulihkan</string>
   <string name="backup_loading">Memuat cadangkan dan pulihkan</string>
   <string name="backup_export_title">Cadangkan</string>
-  <string name="backup_export_explanation">Simpan acara, pengingat, langganan kalender, rotasi sif, profil hari kerja, dan setelan Anda ke satu berkas.</string>
+  <string name="backup_export_explanation">Simpan acara, pengingat, rotasi sif, profil hari kerja, dan setelan Anda ke satu berkas.</string>
   <string name="backup_export_encrypt">Enkripsi dengan frasa sandi</string>
   <string name="backup_export_encrypt_on">Hanya orang yang tahu frasa sandinya yang dapat membuka cadangan ini.</string>
   <string name="backup_export_encrypt_off">Berkasnya JSON biasa: siapa pun yang memilikinya dapat membaca data Anda.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Pengingat</string>
   <string name="backup_table_shift_rotations">Rotasi sif</string>
   <string name="backup_table_shift_records">Catatan sif</string>
-  <string name="backup_table_subscriptions">Langganan kalender</string>
   <string name="backup_table_workdays">Profil hari kerja</string>
   <string name="backup_table_official_reminders">Pengingat sebelum hari resmi</string>
   <string name="backup_restore">Pulihkan cadangan ini</string>
-  <string name="backup_restore_warning">Pemulihan mengganti semua acara, pengingat, langganan kalender, rotasi sif, profil hari kerja, dan setelan di perangkat ini dengan isi cadangan. Ini tidak dapat dibatalkan.</string>
+  <string name="backup_restore_warning">Pemulihan mengganti semua acara, pengingat, rotasi sif, profil hari kerja, dan setelan di perangkat ini dengan isi cadangan. Ini tidak dapat dibatalkan.</string>
   <string name="backup_restore_confirm_title">Ganti data Anda?</string>
   <string name="backup_restore_confirm">Ganti</string>
   <string name="backup_error_not_a_backup">Berkas ini bukan cadangan Taqvim.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Data di perangkat ini</string>
   <string name="privacy_data_events">Acara pribadi</string>
   <string name="privacy_data_reminders">Pengingat</string>
-  <string name="privacy_data_subscriptions">Langganan kalender</string>
   <string name="privacy_data_location">Lokasi yang dipilih</string>
   <string name="privacy_data_diagnostics">Log diagnostik</string>
   <string name="privacy_data_searches">Pencarian terbaru</string>
   <string name="privacy_where_database">Disimpan di basis data privat aplikasi.</string>
-  <string name="privacy_where_subscriptions">Alamat disimpan di basis data privat aplikasi; acara hanya diunduh dari alamat yang Anda tambahkan.</string>
   <string name="privacy_where_settings">Disimpan di setelan privat aplikasi.</string>
   <string name="privacy_entries">Entri: %1$s</string>
   <string name="privacy_location_set">Sebuah lokasi tersimpan.</string>

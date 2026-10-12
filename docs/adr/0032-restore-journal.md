@@ -1,6 +1,8 @@
 # ADR-0032: A restore is journalled so it can be finished or undone across the database and the preferences
 
-- **Status:** Accepted
+- **Status:** Accepted. The subscription refresh that also waited on the gate is gone with the feature
+  ([ADR-0054](0054-taqvim-has-no-network-access.md), 2026-10-13); the gate and the alarm rescheduling it
+  guards are unchanged.
 - **Date:** 2026-09-16
 - **Plan reference:** docs/PLAN.md T-605 (backup/restore), T-1503 (backup UI); ADR-0012 (Room schema and preference
   defaults); code review finding B09 (docs/CODE_REVIEW_2026-09-15.md)

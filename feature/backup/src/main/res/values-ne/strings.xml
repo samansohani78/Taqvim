@@ -4,7 +4,7 @@
   <string name="backup_title">ब्याकअप र पुनर्स्थापना</string>
   <string name="backup_loading">ब्याकअप र पुनर्स्थापना लोड हुँदैछ</string>
   <string name="backup_export_title">ब्याकअप गर्नुहोस्</string>
-  <string name="backup_export_explanation">आफ्ना कार्यक्रम, रिमाइन्डर, पात्रो सदस्यता, सिफ्ट चक्र, कार्यदिन प्रोफाइल र सेटिङ एउटै फाइलमा सुरक्षित गर्नुहोस्।</string>
+  <string name="backup_export_explanation">आफ्ना कार्यक्रम, रिमाइन्डर, सिफ्ट चक्र, कार्यदिन प्रोफाइल र सेटिङ एउटै फाइलमा सुरक्षित गर्नुहोस्।</string>
   <string name="backup_export_encrypt">पासफ्रेजले इन्क्रिप्ट गर्नुहोस्</string>
   <string name="backup_export_encrypt_on">पासफ्रेज थाहा भएकाले मात्र यो ब्याकअप खोल्न सक्छ।</string>
   <string name="backup_export_encrypt_off">फाइल सादा JSON हो: यो भएको जोसुकैले तपाईंको डाटा पढ्न सक्छ।</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">रिमाइन्डरहरू</string>
   <string name="backup_table_shift_rotations">सिफ्ट चक्र</string>
   <string name="backup_table_shift_records">सिफ्ट रेकर्ड</string>
-  <string name="backup_table_subscriptions">पात्रो सदस्यताहरू</string>
   <string name="backup_table_workdays">कार्यदिन प्रोफाइल</string>
   <string name="backup_table_official_reminders">आधिकारिक दिनअघिका रिमाइन्डर</string>
   <string name="backup_restore">यो ब्याकअप पुनर्स्थापना गर्नुहोस्</string>
-  <string name="backup_restore_warning">पुनर्स्थापनाले यो यन्त्रका सबै कार्यक्रम, रिमाइन्डर, पात्रो सदस्यता, सिफ्ट चक्र, कार्यदिन प्रोफाइल र सेटिङलाई ब्याकअपले बदल्छ। यसलाई फिर्ता गर्न सकिँदैन।</string>
+  <string name="backup_restore_warning">पुनर्स्थापनाले यो यन्त्रका सबै कार्यक्रम, रिमाइन्डर, सिफ्ट चक्र, कार्यदिन प्रोफाइल र सेटिङलाई ब्याकअपले बदल्छ। यसलाई फिर्ता गर्न सकिँदैन।</string>
   <string name="backup_restore_confirm_title">तपाईंको डाटा बदल्ने?</string>
   <string name="backup_restore_confirm">बदल्नुहोस्</string>
   <string name="backup_error_not_a_backup">यो फाइल Taqvim ब्याकअप होइन।</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">यो यन्त्रमा रहेको डाटा</string>
   <string name="privacy_data_events">व्यक्तिगत कार्यक्रम</string>
   <string name="privacy_data_reminders">रिमाइन्डरहरू</string>
-  <string name="privacy_data_subscriptions">पात्रो सदस्यताहरू</string>
   <string name="privacy_data_location">छानिएको स्थान</string>
   <string name="privacy_data_diagnostics">निदान लग</string>
   <string name="privacy_data_searches">हालका खोजहरू</string>
   <string name="privacy_where_database">एपको निजी डाटाबेसमा भण्डार गरिएको।</string>
-  <string name="privacy_where_subscriptions">ठेगाना एपको निजी डाटाबेसमा; कार्यक्रम तपाईंले थपेका ठेगानाबाट मात्र डाउनलोड हुन्छन्।</string>
   <string name="privacy_where_settings">एपको निजी सेटिङमा भण्डार गरिएको।</string>
   <string name="privacy_entries">प्रविष्टिहरू: %1$s</string>
   <string name="privacy_location_set">एक स्थान सुरक्षित गरिएको छ।</string>

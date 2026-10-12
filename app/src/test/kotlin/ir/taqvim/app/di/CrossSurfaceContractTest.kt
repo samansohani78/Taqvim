@@ -16,13 +16,11 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.database.EventOverrideEntity
-import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.database.PersonalEventEntity
 import ir.taqvim.data.database.ReminderEntity
 import ir.taqvim.data.events.EventInputs
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.EventsSettings
-import ir.taqvim.data.events.IcsEventsSource
 import ir.taqvim.data.events.PersonalEventRecord
 import ir.taqvim.data.events.PersonalEventsSource
 import ir.taqvim.feature.notification.OfficialEventSchedule
@@ -127,21 +125,6 @@ class CrossSurfaceContractTest {
         }
 
     @Test
-    fun `a subscription event is found on the day the timeline shows it`(): Unit =
-        runTest {
-            // 21:00 UTC on 15 September is 00:30 on 16 September in Tehran.
-            val begin = instant(day, 21 * 60, TimeZone.UTC).toEpochMilliseconds()
-            val row = IcsEventCacheEntity(4, "u1", begin, begin + HOUR, false, "Standup")
-            val shown =
-                timeline(record = null, zone = tehran, feed = listOf(row))
-                    .filter { it.second == TimelineEventKind.SUBSCRIPTION }
-                    .map { it.first }
-
-            shown shouldBe listOf(day + 1)
-            search(tehran, day, subscriptions = listOf(row)).single().nextDay shouldBe day + 1
-        }
-
-    @Test
     fun `search finds a Tokyo meeting on the day the timeline shows it`(): Unit =
         runTest {
             val tokyo = record("Asia/Tokyo", start = 30)
@@ -180,7 +163,6 @@ class CrossSurfaceContractTest {
         record: PersonalEventRecord?,
         zone: TimeZone,
         days: JdnRange = range,
-        feed: List<IcsEventCacheEntity> = emptyList(),
     ): List<Triple<Jdn, TimelineEventKind, Int?>> {
         val repository =
             EventsRepository(
@@ -188,7 +170,6 @@ class CrossSurfaceContractTest {
                 inputs =
                     EventInputs(
                         personal = PersonalEventsSource { flowOf(listOfNotNull(record)) },
-                        ics = IcsEventsSource { flowOf(feed) },
                     ),
                 clock = clock,
                 zones = flowOf(zone),
@@ -236,7 +217,6 @@ class CrossSurfaceContractTest {
         zone: TimeZone,
         today: Jdn,
         personal: List<PersonalEventRecord> = emptyList(),
-        subscriptions: List<IcsEventCacheEntity> = emptyList(),
     ) = CompositeSearchEventSource(
         official =
             OfficialEventSearchSource(
@@ -244,7 +224,7 @@ class CrossSurfaceContractTest {
                 today = { today },
                 settings = { everythingShown() },
             ),
-        stores = SearchEventStores({ personal }, { _, _ -> subscriptions }),
+        stores = SearchEventStores({ personal }),
         today = { today },
         zone = { zone },
         window = 30,

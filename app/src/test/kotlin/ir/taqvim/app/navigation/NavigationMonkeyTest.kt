@@ -158,7 +158,6 @@ class NavigationMonkeyTest {
                 AppDestination.Search,
                 AppDestination.LocationSettings,
                 AppDestination.AthanSettings,
-                AppDestination.Subscriptions,
                 AppDestination.Backup,
                 AppDestination.Privacy,
                 AppDestination.About,

@@ -77,7 +77,7 @@ Non-goals: cloud sync servers, accounts, ads, analytics SDKs.
 | F-02 | **Reminders on official events** ("1 day before Eid al-Fitr") via stable event IDs | Unique |
 | F-03 | **Natural-language date input** (`fa`/`en`): "سه روز قبل از نوروز", "next Friday", "۱۵ خرداد ۱۴۰۵" → date | Fast entry |
 | F-04 | **Text date detection**: share/select any text → app detects Persian/Gregorian/Hijri dates and offers "open in calendar" (Android `PROCESS_TEXT`) | Delight |
-| F-05 | **ICS import/export + WebCal subscription** (read-only subscriptions refreshed by WorkManager) | Interop |
+| F-05 | **ICS import/export** (file-based, Storage Access Framework). ~~WebCal subscription~~ — **withdrawn 2026-10-13, ADR-0054**: remote subscriptions were the only feature that opened a socket, and the permission they needed weakened every other privacy claim. | Interop |
 | F-06 | **Observational Islamic calendar by region** (Iran official, Umm al-Qura, Turkey, calculated) with per-year override tables and transparent "source of this date" | Accuracy |
 | F-07 | **Workday engine**: custom holiday sets, half-days, personal leave; "how many workdays until X"; export | Business |
 | F-08 | **Multiple shift-work rotations** with per-rotation color, exceptions, and calendar export | Workers |
@@ -124,7 +124,7 @@ app  → wires everything via DI
 | `:core:testing` | Fixtures, fakes, test rules, golden-file helpers |
 | `:core:ui` | Design system: theme, typography, components, painters, motion |
 | `:data:preferences` | Proto DataStore schema + accessors |
-| `:data:database` | Room: personal events, reminders, alarms, shift-work, subscriptions, caches |
+| `:data:database` | Room: personal events, reminders, alarms, shift-work, workday profiles, diagnostics |
 | `:data:events` | Repository impl over generated dataset + overrides |
 | ~~`:data:device-calendar`~~ | `CalendarContract` adapter, observer, cache — **withdrawn 2026-10-12, ADR-0051** |
 | `:data:location` | Cities DB, districts, GPS, geocoder |
@@ -187,7 +187,7 @@ sealed interface EventRule {
 Occurrences: `data class Occurrence(val definition: EventDefinition, val jdn: Jdn, val date: CalendarDate, val isHoliday: Boolean, val year: Int)`.
 
 ## 4.3 Personal data (Room)
-Tables: `personal_events`, `event_recurrences` (RRULE-lite: FREQ, INTERVAL, BYDAY, COUNT/UNTIL, calendar system), `reminders`, `scheduled_alarms`, `shift_rotations`, `shift_rotation_records`, `ics_subscriptions`, `ics_events_cache`, ~~`device_events_cache`~~ (dropped in schema 9, ADR-0051), `workday_profiles`, `diagnostics_log` (ring, max 2 000 rows).
+Tables: `personal_events`, `event_recurrences` (RRULE-lite: FREQ, INTERVAL, BYDAY, COUNT/UNTIL, calendar system), `reminders`, `scheduled_alarms`, `shift_rotations`, `shift_rotation_records`, ~~`ics_subscriptions`~~ and ~~`ics_events_cache`~~ (dropped in schema 10, ADR-0054), ~~`device_events_cache`~~ (dropped in schema 9, ADR-0051), `workday_profiles`, `diagnostics_log` (ring, max 2 000 rows).
 
 ## 4.4 Preferences (Proto DataStore)
 One `UserPrefs` message with typed enums; `schema_version`; migrations tested table-driven.
@@ -554,9 +554,10 @@ Core only; showing these calendars and observances to users needs a later decisi
 - Attach reminders to `EventId`; recalc yearly.
 - Tests: U next occurrence resolution across year boundary.
 
-### T-1003 ICS import/export & subscriptions (F-05)
-- SAF import/export; WebCal subscription with periodic refresh (WorkManager, network only when user enables); ETag caching.
-- Tests: R import fixture → events in DB; U refresh policy; UI subscription screen.
+### T-1003 ICS import/export (F-05)
+- SAF import/export. ~~WebCal subscription with periodic refresh (WorkManager, network only when user enables); ETag
+  caching~~ — **withdrawn 2026-10-13, ADR-0054**, with the `INTERNET` permission and WorkManager.
+- Tests: R import fixture → events in DB; UI import and export through the picker.
 
 ---
 
@@ -693,7 +694,7 @@ Core only; showing these calendars and observances to users needs a later decisi
 - LeakCanary debug; heap budget test on month screen < 80 MB.
 
 ### T-1804 Security
-- No network permission in v1 except optional ICS subscriptions (declared, off by default); `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug.
+- No network permission at all (ADR-0054); `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug.
 - Tests: L manifest audit test (no unexpected `exported=true`).
 
 ---
@@ -736,7 +737,7 @@ Core only; showing these calendars and observances to users needs a later decisi
 - Fixtures are immutable; updates require a PR with justification.
 
 ## 8.3 Core UI scenarios (40)
-Install fresh (fa/en/ne/ckb/ar) → defaults; onboarding skip/complete; month swipe & titles; select day → tabs; today button; long-press → editor; create personal event + reminder → notification fires (Robolectric clock); edit/delete event; official-event reminder; search jump; year view select; timeline drag-create; agenda scroll; converter (each calendar); NLP input 10 phrases; distance & workdays; enable athan → alarm scheduled → fires → stop; change location by city/GPS/coords; add each widget → tap → deep link; notification content; theme changes (6); font scale 2.0; RTL switch; backup → wipe → restore equals; ICS import/export; subscription refresh; compass orientation lock; map layers; astronomy slider; settings table-driven; deep links (10); PROCESS_TEXT detection; wear smoke.
+Install fresh (fa/en/ne/ckb/ar) → defaults; onboarding skip/complete; month swipe & titles; select day → tabs; today button; long-press → editor; create personal event + reminder → notification fires (Robolectric clock); edit/delete event; official-event reminder; search jump; year view select; timeline drag-create; agenda scroll; converter (each calendar); NLP input 10 phrases; distance & workdays; enable athan → alarm scheduled → fires → stop; change location by city/GPS/coords; add each widget → tap → deep link; notification content; theme changes (6); font scale 2.0; RTL switch; backup → wipe → restore equals; ICS import/export; compass orientation lock; map layers; astronomy slider; settings table-driven; deep links (10); PROCESS_TEXT detection; wear smoke.
 
 ---
 

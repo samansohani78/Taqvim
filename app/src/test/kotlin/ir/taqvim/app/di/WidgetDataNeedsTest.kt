@@ -73,7 +73,6 @@ class WidgetDataNeedsTest {
             isHoliday = true,
             isWeekend = false,
             personal = emptyList(),
-            ics = emptyList(),
         )
 
     private fun source() =

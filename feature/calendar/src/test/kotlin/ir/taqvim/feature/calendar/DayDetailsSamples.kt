@@ -33,8 +33,7 @@ internal object DayDetailsSamples {
     val uncited =
         DayEventItem("un.day", DayEventKind.OFFICIAL, "International day", false, source = EventSource.INTERNATIONAL)
     val personal = DayEventItem("7", DayEventKind.PERSONAL, "Birthday", isHoliday = false)
-    val subscription = DayEventItem("2:uid-1", DayEventKind.SUBSCRIPTION, "Talk", isHoliday = false)
-    val events = listOf(official, uncited, personal, subscription)
+    val events = listOf(official, uncited, personal)
 
     fun content(
         languageCode: String = "en",

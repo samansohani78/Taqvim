@@ -4,7 +4,7 @@
   <string name="backup_title">Нусхаи эҳтиётӣ ва барқарорсозӣ</string>
   <string name="backup_loading">Нусхаи эҳтиётӣ ва барқарорсозӣ бор шуда истодааст</string>
   <string name="backup_export_title">Нусхаи эҳтиётӣ</string>
-  <string name="backup_export_explanation">Рӯйдодҳо, ёдраскуниҳо, обунаҳои тақвим, давраҳои навбат, профилҳои рӯзҳои корӣ ва танзимоти худро дар як файл захира кунед.</string>
+  <string name="backup_export_explanation">Рӯйдодҳо, ёдраскуниҳо, давраҳои навбат, профилҳои рӯзҳои корӣ ва танзимоти худро дар як файл захира кунед.</string>
   <string name="backup_export_encrypt">Рамзгузорӣ бо ибораи рамз</string>
   <string name="backup_export_encrypt_on">Ин нусхаро танҳо касе кушода метавонад, ки ибораи рамзро медонад.</string>
   <string name="backup_export_encrypt_off">Файл JSON-и оддист: ҳар касе, ки онро дорад, маълумоти шуморо хонда метавонад.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Ёдраскуниҳо</string>
   <string name="backup_table_shift_rotations">Давраҳои навбат</string>
   <string name="backup_table_shift_records">Сабтҳои навбат</string>
-  <string name="backup_table_subscriptions">Обунаҳои тақвим</string>
   <string name="backup_table_workdays">Профилҳои рӯзҳои корӣ</string>
   <string name="backup_table_official_reminders">Ёдраскуниҳо пеш аз рӯзҳои расмӣ</string>
   <string name="backup_restore">Барқарор кардани ин нусха</string>
-  <string name="backup_restore_warning">Барқарорсозӣ ҳамаи рӯйдодҳо, ёдраскуниҳо, обунаҳои тақвим, давраҳои навбат, профилҳои рӯзҳои корӣ ва танзимоти ин дастгоҳро бо нусха иваз мекунад. Инро бекор кардан мумкин нест.</string>
+  <string name="backup_restore_warning">Барқарорсозӣ ҳамаи рӯйдодҳо, ёдраскуниҳо, давраҳои навбат, профилҳои рӯзҳои корӣ ва танзимоти ин дастгоҳро бо нусха иваз мекунад. Инро бекор кардан мумкин нест.</string>
   <string name="backup_restore_confirm_title">Маълумоти шумо иваз шавад?</string>
   <string name="backup_restore_confirm">Иваз кардан</string>
   <string name="backup_error_not_a_backup">Ин файл нусхаи эҳтиётии Taqvim нест.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Маълумот дар ин дастгоҳ</string>
   <string name="privacy_data_events">Рӯйдодҳои шахсӣ</string>
   <string name="privacy_data_reminders">Ёдраскуниҳо</string>
-  <string name="privacy_data_subscriptions">Обунаҳои тақвим</string>
   <string name="privacy_data_location">Макони интихобшуда</string>
   <string name="privacy_data_diagnostics">Сабти ташхис</string>
   <string name="privacy_data_searches">Ҷустуҷӯҳои охирин</string>
   <string name="privacy_where_database">Дар пойгоҳи додаҳои хусусии барнома нигоҳ дошта мешавад.</string>
-  <string name="privacy_where_subscriptions">Суроғаҳо дар пойгоҳи додаҳои хусусии барнома; рӯйдодҳо танҳо аз суроғаҳое, ки шумо илова мекунед, боргирӣ мешаванд.</string>
   <string name="privacy_where_settings">Дар танзимоти хусусии барнома нигоҳ дошта мешавад.</string>
   <string name="privacy_entries">Сабтҳо: %1$s</string>
   <string name="privacy_location_set">Макон захира шудааст.</string>

@@ -137,7 +137,6 @@ internal object JourneyRegistry {
             ),
             Journey("J31", "ICS import", JourneyStatus.MISSING),
             Journey("J32", "ICS export", JourneyStatus.MISSING),
-            Journey("J33", "Subscription refresh", JourneyStatus.MISSING),
             Journey("J34", "Compass orientation lock", JourneyStatus.PARTIAL, SMOKE_TABS),
             Journey("J35", "Map layers", JourneyStatus.PARTIAL, SMOKE_TABS),
             Journey("J36", "Astronomy slider", JourneyStatus.PARTIAL, SMOKE_LINKS),

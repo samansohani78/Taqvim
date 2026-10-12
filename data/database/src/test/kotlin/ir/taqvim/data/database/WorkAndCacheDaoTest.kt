@@ -8,7 +8,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.cash.turbine.test
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.model.Jdn
@@ -102,39 +101,6 @@ class WorkAndCacheDaoTest {
                 awaitItem().map { it.id } shouldBe listOf(emptyId)
                 cancelAndIgnoreRemainingEvents()
             }
-        }
-
-    @Test
-    fun icsSubscriptionsAndCache(): Unit =
-        runTest {
-            val dao = db.icsSubscriptionDao()
-            val feed =
-                IcsSubscriptionEntity(url = "https://example.org/a.ics", displayName = "A", refreshIntervalMinutes = 60)
-            val id = dao.insertSubscription(feed)
-            dao.getSubscription(id) shouldBe feed.copy(id = id)
-            val refreshed = feed.copy(id = id, lastFetchedAtEpochMillis = 5L, etag = "\"v1\"", colorArgb = 7)
-            dao.updateSubscription(refreshed)
-            dao.observeSubscriptions().test {
-                awaitItem() shouldBe listOf(refreshed)
-                cancelAndIgnoreRemainingEvents()
-            }
-
-            val first = IcsEventCacheEntity(id, "u1", 100L, 200L, allDay = false, summary = "s")
-            val second = IcsEventCacheEntity(id, "u2", 300L, 400L, allDay = true, summary = "t", location = "l")
-            dao.observeEvents(150L, 350L).test {
-                awaitItem() shouldBe emptyList()
-                dao.replaceEvents(id, listOf(first, second))
-                awaitItem() shouldBe listOf(first, second)
-                dao.replaceEvents(id, listOf(second))
-                awaitItem() shouldBe listOf(second)
-                dao.updateSubscription(refreshed.copy(enabled = false))
-                awaitItem() shouldBe emptyList()
-                cancelAndIgnoreRemainingEvents()
-            }
-            shouldThrow<IllegalArgumentException> { dao.replaceEvents(id + 1, listOf(first)) }
-
-            dao.deleteSubscription(id)
-            dao.getSubscription(id) shouldBe null
         }
 
     @Test

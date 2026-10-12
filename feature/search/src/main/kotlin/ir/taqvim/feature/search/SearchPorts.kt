@@ -24,7 +24,7 @@ data class SearchSettings(
     /** The user's calendars in order; the first available one writes result dates and reads typed numbers. */
     val calendars: List<CalendarSystem>,
     /**
-     * The device time zone id: personal, device and subscription results are dated in it, so a change re-runs the
+     * The device time zone id: personal results are dated in it, so a change re-runs the
      * search (review I06). Empty when the source does not track it.
      */
     val timeZoneId: String = "",
@@ -34,7 +34,6 @@ data class SearchSettings(
 enum class SearchEventKind {
     OFFICIAL,
     PERSONAL,
-    SUBSCRIPTION,
 }
 
 /** An event offered to the search, already titled in the app language. */
@@ -56,8 +55,8 @@ fun interface SearchSettingsSource {
 }
 
 /**
- * Events that may match [query]: official events (e.g. through the T-304 index), personal, device and subscription
- * events. The source may return extra candidates; the screen ranks them all the same way. Implemented in `:app`.
+ * Events that may match [query]: official events (e.g. through the T-304 index) and the user's own events. The
+ * source may return extra candidates; the screen ranks them all the same way. Implemented in `:app`.
  */
 fun interface SearchEventSource {
     suspend fun events(

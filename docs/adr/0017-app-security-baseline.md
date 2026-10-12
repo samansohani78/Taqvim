@@ -1,6 +1,9 @@
 # ADR-0017: App security baseline
 
-- **Status:** Accepted
+- **Status:** Accepted. The network section is superseded by
+  [ADR-0054](0054-taqvim-has-no-network-access.md) (2026-10-13): Taqvim now requests no network permission at
+  all, so there is no opt-in to default and no traffic for the network security config to constrain. Everything
+  else here — exported components, backup rules, the manifest audit — still holds.
 - **Date:** 2026-09-14
 - **Plan reference:** docs/PLAN.md T-1804 (no network permission in v1 except optional ICS subscriptions, declared and
   off by default; `FileProvider` scoped; backup encryption; exported components audited; StrictMode in debug; manifest

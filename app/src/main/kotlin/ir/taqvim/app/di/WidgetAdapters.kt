@@ -79,7 +79,7 @@ internal class PreferencesWidgetDataSource(
     /**
      * The day assembled, but only for a widget that reads its event lines.
      *
-     * Assembling a day subscribes to the personal and subscription sources and waits for both, so a widget that
+     * Assembling a day subscribes to the personal event source and waits for it, so a widget that
      * lists events must pay for it — but one that only colours a holiday can read that from the dataset, and one
      * that shows neither needs nothing. A date widget was waiting on Room to draw a date its own calendar engine
      * already knew, which is what made widgets show the host's placeholder.
@@ -162,11 +162,10 @@ internal fun widgetInputs(
     )
 }
 
-/** Dataset events (holidays first) in [language], then personal (opening the editor) and feed events. */
+/** Dataset events (holidays first) in [language], then the user's own events, which open the editor. */
 internal fun DayEvents.widgetEventLines(language: String): List<WidgetEventLine> =
     official.map { WidgetEventLine(it.definition.title.forLanguage(language), it.isHoliday) } +
-        personal.map { WidgetEventLine(it.title, isHoliday = false, eventId = it.eventId) } +
-        ics.map { WidgetEventLine(it.summary, isHoliday = false) }
+        personal.map { WidgetEventLine(it.title, isHoliday = false, eventId = it.eventId) }
 
 /** The chosen place with its zone and prayer conventions, or `null` without a place or with an unknown zone. */
 internal fun UserPreferences.widgetPlace(): WidgetPlace? {
@@ -337,7 +336,6 @@ internal fun widgetEventChanges(database: TaqvimDatabase): Flow<Set<String>> =
         // occurrence until something else happened to redraw it (T-1003).
         "event_overrides",
         "event_exceptions",
-        "ics_events_cache",
         emitInitialState = false,
     )
 

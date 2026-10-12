@@ -9,7 +9,6 @@ import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.data.database.EventRecurrenceEntity
-import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalData
 import ir.taqvim.data.database.PersonalEventEntity
@@ -119,7 +118,6 @@ private fun AppSettings.toRecord() =
         showWeekNumbers = showWeekNumbers,
         enabledEventSources = enabledEventSources,
         highLatitudeRule = highLatitudeRule,
-        subscriptionsNetworkAllowed = subscriptionsNetworkAllowed,
         persistentNotification = persistentNotification,
         rememberRecentSearches = rememberRecentSearches,
         timeZoneBoard = timeZoneBoard,
@@ -143,7 +141,6 @@ private fun AppSettingsRecord.toAppSettings(): AppSettings =
             showWeekNumbers = showWeekNumbers,
             enabledEventSources = enabledEventSources,
             highLatitudeRule = highLatitudeRule,
-            subscriptionsNetworkAllowed = subscriptionsNetworkAllowed,
             persistentNotification = persistentNotification,
             rememberRecentSearches = rememberRecentSearches,
             timeZoneBoard = timeZoneBoard,
@@ -183,17 +180,6 @@ internal fun PersonalData.toRecord(): DataRecord =
                 )
             },
         shiftRotationRecords = shiftRecords.map { ShiftDayRecord(it.rotationId, it.jdn, it.shift, it.note) },
-        icsSubscriptions =
-            icsSubscriptions.map {
-                IcsSubscriptionRecord(
-                    it.id,
-                    it.url,
-                    it.displayName,
-                    it.colorArgb,
-                    it.enabled,
-                    it.refreshIntervalMinutes,
-                )
-            },
         workdayProfiles = workdayProfiles.map { it.toRecord() },
         officialReminders =
             officialReminders.map { OfficialReminderRecord(it.id, it.eventId, it.daysBefore, it.enabled) },
@@ -231,17 +217,6 @@ internal fun DataRecord.toPersonalData(): PersonalData {
                     it.note,
                 )
             },
-        icsSubscriptions =
-            icsSubscriptions.map {
-                IcsSubscriptionEntity(
-                    id = it.id,
-                    url = it.url,
-                    displayName = it.displayName,
-                    colorArgb = it.colorArgb,
-                    enabled = it.enabled,
-                    refreshIntervalMinutes = it.refreshIntervalMinutes,
-                )
-            },
         workdayProfiles = workdayProfiles.map { it.toEntity() },
         officialReminders =
             officialReminders.map { OfficialReminderEntity(it.id, it.eventId, it.daysBefore, it.enabled) },
@@ -256,7 +231,6 @@ private fun DataRecord.requireConsistentKeys() {
     val rotationIds = uniqueIds("shift rotation", shiftRotations.map { it.id })
     uniqueIds("event recurrence", eventRecurrences.map { it.eventId })
     uniqueIds("reminder", reminders.map { it.id })
-    uniqueIds("ICS subscription", icsSubscriptions.map { it.id })
     uniqueIds("workday profile", workdayProfiles.map { it.id })
     require(shiftRotationRecords.distinctBy { it.rotationId to it.jdn }.size == shiftRotationRecords.size) {
         "duplicate shift rotation record"

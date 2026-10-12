@@ -4,7 +4,7 @@
   <string name="backup_title">Yedekleme ve geri yükleme</string>
   <string name="backup_loading">Yedekleme ve geri yükleme yükleniyor</string>
   <string name="backup_export_title">Yedekle</string>
-  <string name="backup_export_explanation">Etkinliklerinizi, hatırlatıcılarınızı, takvim aboneliklerinizi, vardiya düzenlerinizi, iş günü profillerinizi ve ayarlarınızı tek bir dosyaya kaydedin.</string>
+  <string name="backup_export_explanation">Etkinliklerinizi, hatırlatıcılarınızı, vardiya düzenlerinizi, iş günü profillerinizi ve ayarlarınızı tek bir dosyaya kaydedin.</string>
   <string name="backup_export_encrypt">Parolayla şifrele</string>
   <string name="backup_export_encrypt_on">Bu yedeği yalnızca parolayı bilen biri açabilir.</string>
   <string name="backup_export_encrypt_off">Dosya düz JSON\'dur: dosyaya sahip olan herkes verilerinizi okuyabilir.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Hatırlatıcılar</string>
   <string name="backup_table_shift_rotations">Vardiya düzenleri</string>
   <string name="backup_table_shift_records">Vardiya kayıtları</string>
-  <string name="backup_table_subscriptions">Takvim abonelikleri</string>
   <string name="backup_table_workdays">İş günü profilleri</string>
   <string name="backup_table_official_reminders">Resmî günlerden önceki hatırlatıcılar</string>
   <string name="backup_restore">Bu yedeği geri yükle</string>
-  <string name="backup_restore_warning">Geri yükleme, bu cihazdaki tüm etkinlikleri, hatırlatıcıları, takvim aboneliklerini, vardiya düzenlerini, iş günü profillerini ve ayarları yedektekilerle değiştirir. Bu işlem geri alınamaz.</string>
+  <string name="backup_restore_warning">Geri yükleme, bu cihazdaki tüm etkinlikleri, hatırlatıcıları, vardiya düzenlerini, iş günü profillerini ve ayarları yedektekilerle değiştirir. Bu işlem geri alınamaz.</string>
   <string name="backup_restore_confirm_title">Verileriniz değiştirilsin mi?</string>
   <string name="backup_restore_confirm">Değiştir</string>
   <string name="backup_error_not_a_backup">Bu dosya bir Taqvim yedeği değil.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Bu cihazdaki veriler</string>
   <string name="privacy_data_events">Kişisel etkinlikler</string>
   <string name="privacy_data_reminders">Hatırlatıcılar</string>
-  <string name="privacy_data_subscriptions">Takvim abonelikleri</string>
   <string name="privacy_data_location">Seçilen konum</string>
   <string name="privacy_data_diagnostics">Tanılama günlüğü</string>
   <string name="privacy_data_searches">Son aramalar</string>
   <string name="privacy_where_database">Uygulamanın özel veritabanında saklanır.</string>
-  <string name="privacy_where_subscriptions">Adresler uygulamanın özel veritabanındadır; etkinlikler yalnızca eklediğiniz adreslerden indirilir.</string>
   <string name="privacy_where_settings">Uygulamanın özel ayarlarında saklanır.</string>
   <string name="privacy_entries">Kayıt: %1$s</string>
   <string name="privacy_location_set">Bir konum kayıtlı.</string>

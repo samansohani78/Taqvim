@@ -28,7 +28,7 @@ import kotlinx.collections.immutable.ImmutableList
 /**
  * The Events tab: one chip per event of the selected day. An official event shows its source and citation and the
  * reminders before it (T-1002); other
- * events (personal, device, subscribed) open. A day without events offers to add one.
+ * events open their editor. A day without events offers to add one.
  */
 @Composable
 internal fun DayEventsTab(

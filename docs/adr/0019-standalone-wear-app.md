@@ -1,6 +1,7 @@
 # ADR-0019: A standalone Wear OS app
 
-- **Status:** Accepted
+- **Status:** Accepted. The watch no longer removes `INTERNET` from its merged manifest, because since
+  [ADR-0054](0054-taqvim-has-no-network-access.md) (2026-10-13) no module declares it; the rest holds.
 - **Date:** 2026-09-14
 - **Plan reference:** docs/PLAN.md T-1600 (screens: today, month, converter, settings on DataStore; tiles: month, next
   event/prayer; complications: date, month progress, next prayer), §2 (Wear: date app, month tile, complications), §3.1

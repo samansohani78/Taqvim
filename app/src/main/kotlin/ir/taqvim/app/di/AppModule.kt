@@ -4,22 +4,18 @@
  */
 package ir.taqvim.app.di
 
-import androidx.work.WorkManager
 import ir.taqvim.core.calendar.ClockTodayProvider
 import ir.taqvim.core.calendar.TodayProvider
 import ir.taqvim.core.events.EventSource
 import ir.taqvim.core.events.IslamicCalendarSelection
 import ir.taqvim.core.nlp.AnchorLookup
 import ir.taqvim.data.database.AlarmKind
-import ir.taqvim.data.database.IcsSubscriptionDao
 import ir.taqvim.data.database.PersonalEventDao
 import ir.taqvim.data.database.TaqvimDatabase
 import ir.taqvim.data.database.WorkdayProfileDao
 import ir.taqvim.data.database.backup.BackupService
 import ir.taqvim.data.events.EventsRepository
 import ir.taqvim.data.events.eventsDataModule
-import ir.taqvim.data.events.ics.SubscriptionRefreshScheduler
-import ir.taqvim.data.events.ics.SubscriptionRefresher
 import ir.taqvim.data.events.ics.icsDataModule
 import ir.taqvim.data.events.toEventsSettings
 import ir.taqvim.data.events.toRecord
@@ -75,7 +71,6 @@ import ir.taqvim.feature.settings.GeneralSettingsStore
 import ir.taqvim.feature.settings.IslamicOverrideStore
 import ir.taqvim.feature.settings.LocationSettingsStore
 import ir.taqvim.feature.settings.PlaceDescriber
-import ir.taqvim.feature.settings.SubscriptionsStore
 import ir.taqvim.feature.settings.athanSettingsFeatureModule
 import ir.taqvim.feature.settings.generalSettingsFeatureModule
 import ir.taqvim.feature.settings.locationSettingsFeatureModule
@@ -127,7 +122,6 @@ val appDataModule =
         single { get<TaqvimDatabase>().reminderDao() }
         single { get<TaqvimDatabase>().officialReminderDao() }
         single { get<TaqvimDatabase>().workdayProfileDao() }
-        single { get<TaqvimDatabase>().icsSubscriptionDao() }
         single {
             val dataStore =
                 UserPreferencesRepository.createDataStore(
@@ -149,10 +143,9 @@ val appDataModule =
                 replay = 1,
             )
         }
-        // T-1003: iCalendar documents and periodic subscription refresh; the worker factory is installed by the
-        // application's WorkManager configuration.
+        // T-1003: the content resolver behind iCalendar file import and export (ADR-0054); Taqvim reads and writes
+        // only the document the user picked.
         single { androidContext().contentResolver }
-        single { WorkManager.getInstance(androidContext()) }
         // T-604: preference changes that move alarm times reach the scheduler (started by the application).
         single { PreferenceChangeWatcher(get<UserPreferencesRepository>().preferences, get()) }
         // T-605: backup and restore of personal data and preferences (UI in T-1503).
@@ -245,7 +238,6 @@ val searchTimelineAthanPortsModule =
         single<SearchEventSource> {
             val preferences = get<UserPreferencesRepository>()
             val personal = get<PersonalEventDao>()
-            val feeds = get<IcsSubscriptionDao>()
             CompositeSearchEventSource(
                 official =
                     OfficialEventSearchSource(
@@ -253,11 +245,7 @@ val searchTimelineAthanPortsModule =
                         today = get(),
                         settings = { preferences.preferences.first().toEventsSettings() },
                     ),
-                stores =
-                    SearchEventStores(
-                        personal = { personal.allDetails().map { it.toRecord() } },
-                        subscriptions = { from, to -> feeds.observeEvents(from, to).first() },
-                    ),
+                stores = SearchEventStores(personal = { personal.allDetails().map { it.toRecord() } }),
                 today = get(),
                 calendars = {
                     val current = preferences.preferences.first()
@@ -306,27 +294,12 @@ val reminderAlarmPortsModule =
         single<AlarmDelivery>(named(REMINDER_ALARMS)) { ReminderAlarmDelivery(get()) }
     }
 
-/** The settings screens (T-1500) and calendar subscriptions (T-1003) over the preferences and the subscription DAO. */
+/** The settings screens (T-1500) over the stored preferences. */
 val settingsPortsModule =
     module {
-        single<GeneralSettingsStore> {
-            val preferences = get<UserPreferencesRepository>()
-            val scheduler = get<SubscriptionRefreshScheduler>()
-            PreferencesGeneralSettingsStore(preferences, subscriptionRescheduler(get(), preferences, scheduler::update))
-        }
+        single<GeneralSettingsStore> { PreferencesGeneralSettingsStore(get()) }
         single<IslamicOverrideStore> {
             PreferencesIslamicOverrideStore(get(), ContentOverrideFileReader(androidContext()), get())
-        }
-        single<SubscriptionsStore> {
-            val preferences = get<UserPreferencesRepository>()
-            val scheduler = get<SubscriptionRefreshScheduler>()
-            val refresher = get<SubscriptionRefresher>()
-            RoomSubscriptionsStore(
-                dao = get(),
-                refresh = { refresher.refresh(it) },
-                preferences = preferences,
-                reschedule = subscriptionRescheduler(get(), preferences, scheduler::update),
-            )
         }
     }
 

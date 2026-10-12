@@ -4,7 +4,7 @@
   <string name="backup_title">Sichern und wiederherstellen</string>
   <string name="backup_loading">Sichern und Wiederherstellen wird geladen</string>
   <string name="backup_export_title">Sichern</string>
-  <string name="backup_export_explanation">Speichern Sie Ihre Termine, Erinnerungen, Kalenderabonnements, Schichtpläne, Arbeitstagprofile und Einstellungen in einer Datei.</string>
+  <string name="backup_export_explanation">Speichern Sie Ihre Termine, Erinnerungen, Schichtpläne, Arbeitstagprofile und Einstellungen in einer Datei.</string>
   <string name="backup_export_encrypt">Mit einer Passphrase verschlüsseln</string>
   <string name="backup_export_encrypt_on">Nur wer die Passphrase kennt, kann diese Sicherung öffnen.</string>
   <string name="backup_export_encrypt_off">Die Datei ist reines JSON: Jeder, der sie hat, kann Ihre Daten lesen.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Erinnerungen</string>
   <string name="backup_table_shift_rotations">Schichtpläne</string>
   <string name="backup_table_shift_records">Schichteinträge</string>
-  <string name="backup_table_subscriptions">Kalenderabonnements</string>
   <string name="backup_table_workdays">Arbeitstagprofile</string>
   <string name="backup_table_official_reminders">Erinnerungen vor offiziellen Tagen</string>
   <string name="backup_restore">Diese Sicherung wiederherstellen</string>
-  <string name="backup_restore_warning">Beim Wiederherstellen werden alle Termine, Erinnerungen, Kalenderabonnements, Schichtpläne, Arbeitstagprofile und Einstellungen auf diesem Gerät durch die Sicherung ersetzt. Dies kann nicht rückgängig gemacht werden.</string>
+  <string name="backup_restore_warning">Beim Wiederherstellen werden alle Termine, Erinnerungen, Schichtpläne, Arbeitstagprofile und Einstellungen auf diesem Gerät durch die Sicherung ersetzt. Dies kann nicht rückgängig gemacht werden.</string>
   <string name="backup_restore_confirm_title">Ihre Daten ersetzen?</string>
   <string name="backup_restore_confirm">Ersetzen</string>
   <string name="backup_error_not_a_backup">Diese Datei ist keine Taqvim-Sicherung.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Daten auf diesem Gerät</string>
   <string name="privacy_data_events">Persönliche Termine</string>
   <string name="privacy_data_reminders">Erinnerungen</string>
-  <string name="privacy_data_subscriptions">Kalenderabonnements</string>
   <string name="privacy_data_location">Gewählter Ort</string>
   <string name="privacy_data_diagnostics">Diagnoseprotokoll</string>
   <string name="privacy_data_searches">Letzte Suchen</string>
   <string name="privacy_where_database">In der privaten Datenbank der App gespeichert.</string>
-  <string name="privacy_where_subscriptions">Adressen in der privaten Datenbank der App; Termine werden nur von den Adressen heruntergeladen, die Sie hinzufügen.</string>
   <string name="privacy_where_settings">In den privaten Einstellungen der App gespeichert.</string>
   <string name="privacy_entries">Einträge: %1$s</string>
   <string name="privacy_location_set">Ein Ort ist gespeichert.</string>

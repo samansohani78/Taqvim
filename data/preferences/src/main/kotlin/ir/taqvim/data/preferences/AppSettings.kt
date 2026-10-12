@@ -42,8 +42,6 @@ data class AppSettings(
     /** Dataset sources shown in the calendar; personal events ([EventSource.USER]) are always shown. */
     val enabledEventSources: Set<EventSource>,
     val highLatitudeRule: HighLatitudeRule,
-    /** Whether calendar subscriptions (T-1003) may refresh over the network. */
-    val subscriptionsNetworkAllowed: Boolean,
     /** Whether the persistent date notification (T-1213) is shown. */
     val persistentNotification: Boolean,
     val rememberRecentSearches: Boolean,
@@ -143,7 +141,6 @@ data class AppSettings(
                 showWeekNumbers = false,
                 enabledEventSources = setOf(EventSource.INTERNATIONAL),
                 highLatitudeRule = HighLatitudeRule.ANGLE_BASED,
-                subscriptionsNetworkAllowed = false,
                 persistentNotification = false,
                 rememberRecentSearches = true,
                 recentSearches = emptyList(),
@@ -183,7 +180,6 @@ internal fun AppSettingsProto.toDomain(): AppSettings =
         highLatitudeRule =
             HighLatitudeRule.entries.firstOrNull { RULE + it.name == highLatitudeRule.name }
                 ?: AppSettings.DEFAULT.highLatitudeRule,
-        subscriptionsNetworkAllowed = subscriptionsNetworkAllowed,
         persistentNotification = persistentNotification,
         rememberRecentSearches = rememberRecentSearches,
         recentSearches = recentSearchesList.cleaned(AppSettings.MAX_RECENT_SEARCHES),
@@ -233,7 +229,6 @@ internal fun AppSettings.toProto(): AppSettingsProto =
                 EventSourceProto.valueOf(SOURCE + it.name)
             },
         ).setHighLatitudeRule(HighLatitudeRuleProto.valueOf(RULE + highLatitudeRule.name))
-        .setSubscriptionsNetworkAllowed(subscriptionsNetworkAllowed)
         .setPersistentNotification(persistentNotification)
         .setRememberRecentSearches(rememberRecentSearches)
         .addAllRecentSearches(recentSearches)

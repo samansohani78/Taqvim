@@ -14,7 +14,6 @@ import ir.taqvim.core.model.CalendarSystem
 import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.praytimes.PrayerSettings
 import ir.taqvim.data.events.DayEvents
-import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferences
@@ -87,17 +86,6 @@ class TimelineAdaptersTest {
     @Test
     fun `day events keep their order with dataset events all day`() {
         val nowruz = OfficialEvents.ALL.first { it.id.value == "ir.holiday.nowruz-1" }
-        val talk =
-            IcsOccurrence(
-                2,
-                "u",
-                "Talk",
-                "",
-                at("2026-03-21T06:00:00Z"),
-                at("2026-03-21T07:00:00Z"),
-                false,
-                day..day,
-            )
         val events =
             dayEvents(
                 official =
@@ -105,7 +93,6 @@ class TimelineAdaptersTest {
                         Occurrence(nowruz, day, CalendarDate(CalendarSystem.PERSIAN, 1405, 1, 1), true, 1405),
                     ),
                 personal = listOf(personal(7, null, null), personal(8, 600, 690)),
-                ics = listOf(talk),
             )
 
         events.toTimelineDay("en", tehran).events shouldBe
@@ -113,7 +100,6 @@ class TimelineAdaptersTest {
                 TimelineEvent(nowruz.id.value, TimelineEventKind.OFFICIAL, nowruz.title.forLanguage("en"), true, true),
                 TimelineEvent("7", TimelineEventKind.PERSONAL, "Birthday", false, true),
                 TimelineEvent("8", TimelineEventKind.PERSONAL, "Birthday", false, false, 600, 690),
-                TimelineEvent("2:u", TimelineEventKind.SUBSCRIPTION, "Talk", false, false, 570, 630),
             )
     }
 
@@ -187,7 +173,6 @@ class TimelineAdaptersTest {
         official: List<Occurrence> = emptyList(),
         isHoliday: Boolean = false,
         personal: List<PersonalOccurrence> = emptyList(),
-        ics: List<IcsOccurrence> = emptyList(),
     ): DayEvents =
         DayEvents(
             jdn = day,
@@ -197,7 +182,6 @@ class TimelineAdaptersTest {
             isHoliday = isHoliday,
             isWeekend = false,
             personal = personal,
-            ics = ics,
         )
 
     private fun personal(

@@ -77,10 +77,16 @@ class DayChangeReceiver : BroadcastReceiver() {
         if (intent.action == DayChangeAlarm.ACTION_MIDNIGHT) {
             context.sendBroadcast(AutomationBroadcasts.dayChanged(now.toJdn(zone)))
         }
+        // An upgrade from a version with calendar subscriptions strands their periodic job (ADR-0054).
+        if (intent.action in UPGRADE_ACTIONS) StaleWork.cancelAll(context)
         DayChangeAlarm.schedule(context, now, zone)
     }
 
     private companion object {
+        /** The actions after which background work left by an earlier version can still be scheduled. */
+        val UPGRADE_ACTIONS: Set<String> =
+            setOf(Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED)
+
         val HANDLED_ACTIONS: Set<String> =
             setOf(
                 DayChangeAlarm.ACTION_MIDNIGHT,

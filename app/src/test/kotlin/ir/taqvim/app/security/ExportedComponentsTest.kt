@@ -10,7 +10,7 @@ import org.junit.Test
 
 /**
  * T-1804 manifest audit (ADR-0017): the merged manifest exports exactly the allowlisted components, nothing is
- * exported implicitly, and only the documented permissions are requested — network access only for subscriptions.
+ * exported implicitly, and only the documented permissions are requested — no network, no calendar.
  */
 class ExportedComponentsTest {
     private val manifest = MergedManifest.unitTestManifest()
@@ -62,6 +62,22 @@ class ExportedComponentsTest {
     }
 
     @Test
+    fun noNetworkPermissionIsRequested() {
+        // ADR-0054, named for the same reason as the calendar permissions above: without INTERNET no dependency can
+        // open a socket however it is written, and that is the whole weight behind "Taqvim sends nothing anywhere".
+        val permissions = MergedManifest.requestedPermissions(manifest)
+        val allowed = MergedManifest.permissionAllowlist(resource("security/requested-permissions.txt"))
+
+        NETWORK_PERMISSIONS.forEach { permission ->
+            assertTrue(
+                "$permission is in the merged manifest; Taqvim does not use the network",
+                permission !in permissions,
+            )
+            assertTrue("$permission is on the allowlist; it must never be", permission !in allowed)
+        }
+    }
+
+    @Test
     fun permissionAllowlistLinesAreValidated() {
         assertEquals(listOf("a.B"), MergedManifest.permissionAllowlist("# comment\n\na.B | why\n"))
         assertTrue(runCatching { MergedManifest.permissionAllowlist("a.B") }.isFailure)
@@ -89,5 +105,9 @@ class ExportedComponentsTest {
         /** ADR-0051: neither may ever appear, in the manifest or on the allowlist. */
         val CALENDAR_PERMISSIONS: Set<String> =
             setOf("android.permission.READ_CALENDAR", "android.permission.WRITE_CALENDAR")
+
+        /** ADR-0054: neither may ever appear either. */
+        val NETWORK_PERMISSIONS: Set<String> =
+            setOf("android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE")
     }
 }

@@ -100,7 +100,6 @@
   <string name="calendar_source_international">Journée internationale</string>
   <string name="calendar_source_ancient_iran">Fête de l\'Iran ancien</string>
   <string name="calendar_source_personal">Événement personnel</string>
-  <string name="calendar_source_subscription">Calendrier abonné</string>
   <string name="calendar_citation_page">%1$s, page %2$s</string>
   <string name="calendar_no_citation">Aucune source indiquée</string>
   <string name="calendar_open_source">Ouvrir la source</string>

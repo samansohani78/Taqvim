@@ -4,7 +4,7 @@
   <string name="backup_title">बैकअप और पुनर्स्थापना</string>
   <string name="backup_loading">बैकअप और पुनर्स्थापना लोड हो रहे हैं</string>
   <string name="backup_export_title">बैकअप लें</string>
-  <string name="backup_export_explanation">अपने इवेंट, रिमाइंडर, कैलेंडर सदस्यताएं, शिफ़्ट रोटेशन, कार्यदिवस प्रोफ़ाइल और सेटिंग एक फ़ाइल में सहेजें।</string>
+  <string name="backup_export_explanation">अपने इवेंट, रिमाइंडर, शिफ़्ट रोटेशन, कार्यदिवस प्रोफ़ाइल और सेटिंग एक फ़ाइल में सहेजें।</string>
   <string name="backup_export_encrypt">पासफ़्रेज़ से एन्क्रिप्ट करें</string>
   <string name="backup_export_encrypt_on">इस बैकअप को सिर्फ़ वही खोल सकता है जो पासफ़्रेज़ जानता है।</string>
   <string name="backup_export_encrypt_off">फ़ाइल सादा JSON है: जिसके पास भी यह हो, वह आपका डेटा पढ़ सकता है।</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">रिमाइंडर</string>
   <string name="backup_table_shift_rotations">शिफ़्ट रोटेशन</string>
   <string name="backup_table_shift_records">शिफ़्ट रिकॉर्ड</string>
-  <string name="backup_table_subscriptions">कैलेंडर सदस्यताएं</string>
   <string name="backup_table_workdays">कार्यदिवस प्रोफ़ाइल</string>
   <string name="backup_table_official_reminders">आधिकारिक दिनों से पहले के रिमाइंडर</string>
   <string name="backup_restore">यह बैकअप पुनर्स्थापित करें</string>
-  <string name="backup_restore_warning">पुनर्स्थापना इस डिवाइस के सभी इवेंट, रिमाइंडर, कैलेंडर सदस्यताएं, शिफ़्ट रोटेशन, कार्यदिवस प्रोफ़ाइल और सेटिंग को बैकअप से बदल देती है। इसे पूर्ववत नहीं किया जा सकता।</string>
+  <string name="backup_restore_warning">पुनर्स्थापना इस डिवाइस के सभी इवेंट, रिमाइंडर, शिफ़्ट रोटेशन, कार्यदिवस प्रोफ़ाइल और सेटिंग को बैकअप से बदल देती है। इसे पूर्ववत नहीं किया जा सकता।</string>
   <string name="backup_restore_confirm_title">अपना डेटा बदलें?</string>
   <string name="backup_restore_confirm">बदलें</string>
   <string name="backup_error_not_a_backup">यह फ़ाइल Taqvim बैकअप नहीं है।</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">इस डिवाइस पर डेटा</string>
   <string name="privacy_data_events">व्यक्तिगत इवेंट</string>
   <string name="privacy_data_reminders">रिमाइंडर</string>
-  <string name="privacy_data_subscriptions">कैलेंडर सदस्यताएं</string>
   <string name="privacy_data_location">चुना गया स्थान</string>
   <string name="privacy_data_diagnostics">निदान लॉग</string>
   <string name="privacy_data_searches">हाल की खोजें</string>
   <string name="privacy_where_database">ऐप के निजी डेटाबेस में सहेजा गया।</string>
-  <string name="privacy_where_subscriptions">पते ऐप के निजी डेटाबेस में; इवेंट सिर्फ़ आपके जोड़े पतों से डाउनलोड होते हैं।</string>
   <string name="privacy_where_settings">ऐप की निजी सेटिंग में सहेजा गया।</string>
   <string name="privacy_entries">प्रविष्टियां: %1$s</string>
   <string name="privacy_location_set">एक स्थान सहेजा गया है।</string>

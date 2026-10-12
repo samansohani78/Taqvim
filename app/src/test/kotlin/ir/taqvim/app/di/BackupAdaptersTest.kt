@@ -224,7 +224,7 @@ class BackupAdaptersTest {
             val privacy = RoomPrivacyDataSource(database, preferences)
 
             privacy.storedData().first() shouldBe
-                storedData(StoredRowCounts(1, 0, 0, 1), hasPlace = true, recentSearches = 2)
+                storedData(StoredRowCounts(1, 0, 1), hasPlace = true, recentSearches = 2)
 
             StoredDataKind.entries.forEach { kind -> privacy.clear(kind) shouldBe kind.clearable }
 
@@ -232,7 +232,6 @@ class BackupAdaptersTest {
                 listOf(
                     StoredData(StoredDataKind.PERSONAL_EVENTS, 1),
                     StoredData(StoredDataKind.REMINDERS, 0),
-                    StoredData(StoredDataKind.SUBSCRIPTIONS, 0),
                     StoredData(StoredDataKind.LOCATION, 0),
                     StoredData(StoredDataKind.DIAGNOSTICS, 0),
                     StoredData(StoredDataKind.RECENT_SEARCHES, 0),

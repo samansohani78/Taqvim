@@ -1,6 +1,7 @@
 # ADR-0035: One occurrence pipeline for personal events
 
-- **Status:** Accepted
+- **Status:** Accepted. The subscription feeds this record excludes from the shared pipeline no longer exist
+  ([ADR-0054](0054-taqvim-has-no-network-access.md), 2026-10-13); the pipeline itself is unchanged.
 - **Date:** 2026-09-17
 - **Plan reference:** docs/PLAN.md T-305, T-503, T-804, T-1000, T-1001, T-1003; review improvement I01
   (docs/CODE_REVIEW_2026-09-15.md); ADR-0011 (recurrence in the event's calendar), ADR-0031 (day assignment),

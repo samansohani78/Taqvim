@@ -4,7 +4,7 @@
   <string name="backup_title">ব্যাকআপ ও পুনরুদ্ধার</string>
   <string name="backup_loading">ব্যাকআপ ও পুনরুদ্ধার লোড হচ্ছে</string>
   <string name="backup_export_title">ব্যাকআপ নিন</string>
-  <string name="backup_export_explanation">আপনার ইভেন্ট, রিমাইন্ডার, ক্যালেন্ডার সাবস্ক্রিপশন, শিফট চক্র, কর্মদিবস প্রোফাইল ও সেটিংস একটি ফাইলে সংরক্ষণ করুন।</string>
+  <string name="backup_export_explanation">আপনার ইভেন্ট, রিমাইন্ডার, শিফট চক্র, কর্মদিবস প্রোফাইল ও সেটিংস একটি ফাইলে সংরক্ষণ করুন।</string>
   <string name="backup_export_encrypt">পাসফ্রেজ দিয়ে এনক্রিপ্ট করুন</string>
   <string name="backup_export_encrypt_on">পাসফ্রেজ জানা ব্যক্তিই শুধু এই ব্যাকআপ খুলতে পারবেন।</string>
   <string name="backup_export_encrypt_off">ফাইলটি সাধারণ JSON: যার কাছে এটি আছে সে আপনার ডেটা পড়তে পারবে।</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">রিমাইন্ডার</string>
   <string name="backup_table_shift_rotations">শিফট চক্র</string>
   <string name="backup_table_shift_records">শিফট রেকর্ড</string>
-  <string name="backup_table_subscriptions">ক্যালেন্ডার সাবস্ক্রিপশন</string>
   <string name="backup_table_workdays">কর্মদিবস প্রোফাইল</string>
   <string name="backup_table_official_reminders">আনুষ্ঠানিক দিনের আগের রিমাইন্ডার</string>
   <string name="backup_restore">এই ব্যাকআপ পুনরুদ্ধার করুন</string>
-  <string name="backup_restore_warning">পুনরুদ্ধার এই ডিভাইসের সব ইভেন্ট, রিমাইন্ডার, ক্যালেন্ডার সাবস্ক্রিপশন, শিফট চক্র, কর্মদিবস প্রোফাইল ও সেটিংস ব্যাকআপ দিয়ে প্রতিস্থাপন করে। এটি পূর্বাবস্থায় ফেরানো যায় না।</string>
+  <string name="backup_restore_warning">পুনরুদ্ধার এই ডিভাইসের সব ইভেন্ট, রিমাইন্ডার, শিফট চক্র, কর্মদিবস প্রোফাইল ও সেটিংস ব্যাকআপ দিয়ে প্রতিস্থাপন করে। এটি পূর্বাবস্থায় ফেরানো যায় না।</string>
   <string name="backup_restore_confirm_title">আপনার ডেটা প্রতিস্থাপন করবেন?</string>
   <string name="backup_restore_confirm">প্রতিস্থাপন করুন</string>
   <string name="backup_error_not_a_backup">এই ফাইলটি Taqvim ব্যাকআপ নয়।</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">এই ডিভাইসের ডেটা</string>
   <string name="privacy_data_events">ব্যক্তিগত ইভেন্ট</string>
   <string name="privacy_data_reminders">রিমাইন্ডার</string>
-  <string name="privacy_data_subscriptions">ক্যালেন্ডার সাবস্ক্রিপশন</string>
   <string name="privacy_data_location">বেছে নেওয়া অবস্থান</string>
   <string name="privacy_data_diagnostics">ডায়াগনস্টিক লগ</string>
   <string name="privacy_data_searches">সাম্প্রতিক অনুসন্ধান</string>
   <string name="privacy_where_database">অ্যাপের ব্যক্তিগত ডেটাবেসে সংরক্ষিত।</string>
-  <string name="privacy_where_subscriptions">ঠিকানাগুলো অ্যাপের ব্যক্তিগত ডেটাবেসে; ইভেন্ট শুধু আপনার যোগ করা ঠিকানা থেকে ডাউনলোড হয়।</string>
   <string name="privacy_where_settings">অ্যাপের ব্যক্তিগত সেটিংসে সংরক্ষিত।</string>
   <string name="privacy_entries">এন্ট্রি: %1$s</string>
   <string name="privacy_location_set">একটি অবস্থান সংরক্ষিত আছে।</string>

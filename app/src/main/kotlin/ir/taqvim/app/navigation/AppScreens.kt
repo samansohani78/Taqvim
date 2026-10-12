@@ -51,7 +51,6 @@ import ir.taqvim.feature.settings.IslamicOverrideRoute
 import ir.taqvim.feature.settings.LocationSettingsRoute
 import ir.taqvim.feature.settings.SettingsHomeRoute
 import ir.taqvim.feature.settings.SettingsItemId
-import ir.taqvim.feature.settings.SubscriptionsRoute
 import ir.taqvim.feature.timeline.TimelineRoute
 import ir.taqvim.feature.times.TimesRoute
 import ir.taqvim.feature.tools.ShiftRotationRoute
@@ -277,10 +276,6 @@ private fun SettingsPageScreen(
 
         AppDestination.AthanSettings -> {
             AthanSettingsRoute(modifier)
-        }
-
-        AppDestination.Subscriptions -> {
-            SubscriptionsRoute(modifier)
         }
 
         AppDestination.Backup -> {

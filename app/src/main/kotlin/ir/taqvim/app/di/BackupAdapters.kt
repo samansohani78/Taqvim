@@ -272,7 +272,6 @@ internal fun storedData(
     listOf(
         StoredData(StoredDataKind.PERSONAL_EVENTS, rows.personalEvents),
         StoredData(StoredDataKind.REMINDERS, rows.reminders),
-        StoredData(StoredDataKind.SUBSCRIPTIONS, rows.subscriptions),
         StoredData(StoredDataKind.LOCATION, if (hasPlace) 1 else 0),
         StoredData(StoredDataKind.DIAGNOSTICS, rows.diagnostics),
         StoredData(StoredDataKind.RECENT_SEARCHES, recentSearches),

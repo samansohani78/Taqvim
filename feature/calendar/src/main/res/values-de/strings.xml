@@ -94,7 +94,6 @@
   <string name="calendar_source_international">Internationaler Tag</string>
   <string name="calendar_source_ancient_iran">Altiranisches Fest</string>
   <string name="calendar_source_personal">Persönlicher Termin</string>
-  <string name="calendar_source_subscription">Abonnierter Kalender</string>
   <string name="calendar_citation_page">%1$s, Seite %2$s</string>
   <string name="calendar_no_citation">Keine Quelle angegeben</string>
   <string name="calendar_open_source">Quelle öffnen</string>

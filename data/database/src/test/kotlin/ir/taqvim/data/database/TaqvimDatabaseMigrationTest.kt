@@ -163,6 +163,49 @@ class TaqvimDatabaseMigrationTest {
     }
 
     @Test
+    fun migratingToTenDropsTheSubscriptionTablesAndKeepsTheUsersOwnRows() {
+        // ADR-0054. An installation that had calendar subscriptions holds the feed addresses in `ics_subscriptions`
+        // and a copy of somebody else's calendar in `ics_events_cache`. Neither can be refreshed or shown once the
+        // app has no network permission, so the upgrade deletes both — without touching what the user entered.
+        val name = "migration-9-10.db"
+        helper.createDatabase(name, 9).use { db ->
+            db.execSQL(
+                "INSERT INTO ics_subscriptions (id, url, display_name, enabled, refresh_interval_minutes) " +
+                    "VALUES (4, 'https://example.org/a.ics', 'A', 1, 60)",
+            )
+            db.execSQL(
+                "INSERT INTO ics_events_cache (subscription_id, uid, start_epoch_millis, end_epoch_millis, " +
+                    "all_day, summary, location, description) VALUES (4, 'u1', 0, 3600000, 0, 'Standup', '', '')",
+            )
+            db.execSQL(
+                "INSERT INTO personal_events (id, title, notes, calendar_system, start_jdn, end_jdn, time_zone_id, " +
+                    "created_at_epoch_millis, updated_at_epoch_millis) " +
+                    "VALUES (1, 'Birthday', '', 'PERSIAN', 10, 10, 'UTC', 0, 0)",
+            )
+            db.execSQL("INSERT INTO reminders (id, event_id, minutes_before, enabled) VALUES (1, 1, 30, 1)")
+        }
+        helper.runMigrationsAndValidate(name, 10, true, *TaqvimMigrations.ALL.toTypedArray()).use { db ->
+            // Both tables are gone, so nothing — not even a downgraded build — can read the feed or its addresses.
+            db
+                .query(
+                    "SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' " +
+                        "AND name IN ('ics_subscriptions', 'ics_events_cache')",
+                ).use { row ->
+                    row.moveToFirst() shouldBe true
+                    row.getInt(0) shouldBe 0
+                }
+            db.query("SELECT title FROM personal_events WHERE id = 1").use { row ->
+                row.moveToFirst() shouldBe true
+                row.getString(0) shouldBe "Birthday"
+            }
+            db.query("SELECT minutes_before FROM reminders WHERE event_id = 1").use { row ->
+                row.moveToFirst() shouldBe true
+                row.getInt(0) shouldBe 30
+            }
+        }
+    }
+
+    @Test
     fun appDatabaseOpensTheOldestSchema() {
         helper.createDatabase(TaqvimDatabase.NAME, 1).close()
         val db = TaqvimDatabase.build(ApplicationProvider.getApplicationContext<Context>())

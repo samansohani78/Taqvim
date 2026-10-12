@@ -27,7 +27,6 @@ import ir.taqvim.core.model.IslamicVariant
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.data.database.EventOverrideEntity
-import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.events.generated.OfficialEvents
 import kotlin.time.Clock
 import kotlin.time.Instant
@@ -114,7 +113,6 @@ internal class OfficialView(
 internal data class Snapshot(
     val official: OfficialView,
     val personal: List<PersonalEventRecord>,
-    val ics: List<IcsEventCacheEntity>,
 )
 
 /** One personal [occurrence] and the [days] it is shown on in the display zone (see [EventDays]). */
@@ -138,10 +136,8 @@ internal class DayEventsAssembler(
                 .flatMap { PersonalExpansion.expand(it, EventDays.widened(days), official.personalCalendars) }
                 .map { DatedPersonal(it, EventDays.of(it, zone)) }
                 .sortedWith(PERSONAL_ORDER)
-        val ics = snapshot.ics.map { it.toOccurrence(zone) }
         val resolver = HijriDateResolver(clock, official.iranCalendar)
         val personalByDay = personal.perDay(days) { it.days }
-        val icsByDay = ics.perDay(days) { it.days }
         return days.map { jdn ->
             val index = (jdn - days.start).toInt()
             val hijri = resolveIranian(official, resolver, jdn)
@@ -155,7 +151,6 @@ internal class DayEventsAssembler(
                 isHoliday = official.isHolidayIn(occurrences),
                 isWeekend = official.isWeekend(jdn),
                 personal = personalByDay[index].map { it.occurrence },
-                ics = icsByDay[index],
                 officialOrigins = official.originsOf(jdn, visible),
             )
         }
@@ -283,16 +278,3 @@ internal object PersonalExpansion {
             colorArgb = override.colorArgb ?: colorArgb,
         )
 }
-
-/** This cache row as an [IcsOccurrence]; all-day rows are UTC-midnight bounded (see [EventWindows.days]). */
-internal fun IcsEventCacheEntity.toOccurrence(zone: TimeZone): IcsOccurrence =
-    IcsOccurrence(
-        subscriptionId = subscriptionId,
-        uid = uid,
-        summary = summary,
-        location = location,
-        begin = Instant.fromEpochMilliseconds(startEpochMillis),
-        end = Instant.fromEpochMilliseconds(endEpochMillis),
-        allDay = allDay,
-        days = EventWindows.days(startEpochMillis, endEpochMillis, allDay, zone),
-    )

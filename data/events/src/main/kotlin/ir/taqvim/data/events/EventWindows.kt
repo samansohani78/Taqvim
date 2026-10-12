@@ -11,18 +11,12 @@ import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 
-/** A cache query window `[fromEpochMillis, toEpochMillis)` in UTC milliseconds. */
-data class InstantWindow(
-    val fromEpochMillis: Long,
-    val toEpochMillis: Long,
-)
-
 /**
- * Civil days and query windows for events stored as instants, independent of any one source (ADR-0031).
+ * Civil days for events stored as instants, independent of any one source (ADR-0031).
  *
- * This was `DeviceEventMapping` while the device calendar provider was one of those sources. The provider is gone
- * (ADR-0053) and subscribed iCalendar feeds are not, so the rule outlives the reader that first needed it: feed rows
- * and timed personal occurrences are still instants that have to be assigned to civil days.
+ * This was `DeviceEventMapping` while the device calendar provider was one of those sources. That provider is gone
+ * (ADR-0051) and so are subscribed feeds (ADR-0054), but the rule outlives both readers that needed it: a timed
+ * personal occurrence is still an instant that has to be assigned to a civil day.
  */
 object EventWindows {
     /**
@@ -40,19 +34,5 @@ object EventWindows {
         val lastMillis = maxOf(beginEpochMillis, endEpochMillis - 1)
         val first = Instant.fromEpochMilliseconds(beginEpochMillis).toJdn(dayZone)
         return first..Instant.fromEpochMilliseconds(lastMillis).toJdn(dayZone)
-    }
-
-    /**
-     * The cache window for [days] in [zone], widened by one day on each side so every all-day row of those days is
-     * included whatever the zone offset; results are narrowed again by the days each row is assigned.
-     */
-    fun window(
-        days: JdnRange,
-        zone: TimeZone,
-    ): InstantWindow {
-        require(!days.isEmpty()) { "days must not be empty" }
-        val from = (days.start - 1).toLocalDate().atStartOfDayIn(zone)
-        val to = (days.endInclusive + 2).toLocalDate().atStartOfDayIn(zone)
-        return InstantWindow(from.toEpochMilliseconds(), to.toEpochMilliseconds())
     }
 }

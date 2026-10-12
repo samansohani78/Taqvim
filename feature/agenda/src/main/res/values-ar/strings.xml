@@ -17,7 +17,6 @@
   <string name="agenda_empty_month">لا أحداث هذا الشهر</string>
   <string name="agenda_kind_official">رسمي</string>
   <string name="agenda_kind_personal">شخصي</string>
-  <string name="agenda_kind_subscription">اشتراك</string>
   <string name="agenda_event_description">%1$s، %2$s</string>
   <string name="agenda_export_title">جدول الأعمال: %1$s – %2$s</string>
   <string name="agenda_print_job">جدول أعمال Taqvim</string>

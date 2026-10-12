@@ -23,10 +23,21 @@ personal data.
 |---|---|---|
 | Personal events, reminders, official-day reminder choices, work profiles | Room database | In Taqvim backup files the user creates (T-605), and in encrypted Auto Backup |
 | Preferences, chosen place, athan and app settings | DataStore | Same as above |
-| Subscription caches, diagnostics | Room database | Diagnostics only inside a problem report the user shares, after redaction (T-1504) |
-| Subscription URLs | Room database | Fetched over HTTPS only while the user allows network use (T-1003) |
+| Diagnostics | Room database | Only inside a problem report the user shares, after redaction (T-1504) |
 
 Taqvim has no accounts, analytics, advertising or server of its own.
+
+### Taqvim has no network access
+
+Taqvim requests neither `INTERNET` nor `ACCESS_NETWORK_STATE`, so its process cannot open a socket at all. Remote
+calendar subscriptions were the only feature that did, and they were removed with the permission; upgrading drops
+the feeds and their cached events outright (schema migration 9 → 10). The decision and its reasoning are in
+[ADR-0054](adr/0054-taqvim-has-no-network-access.md).
+
+Without the permission this is not a property of the code anyone has to re-check: no dependency, present or future,
+can reach the network, however it is written. What remains are things the user starts in another app — opening a
+cited source in their browser, or picking a file through the Storage Access Framework, possibly from a cloud
+provider. Taqvim hands over a URL or reads a document; the fetching is done by an app the user chose.
 
 ### Taqvim does not read your device calendar
 
@@ -36,8 +47,7 @@ provider. It cannot see the events in your calendar app, and it keeps no copy of
 [ADR-0051](adr/0051-taqvim-does-not-read-the-device-calendar.md).
 
 This is not a claim that Taqvim has no calendar interoperability. It still reads and writes **.ics files** you
-choose, and still refreshes **subscribed feeds** from URLs you add (T-1003). Both are files and addresses you hand
-it; neither touches the calendar database on your device.
+choose (T-1003). That is a file you hand it; it never touches the calendar database on your device.
 
 Two checks keep this true rather than merely stated: `auditReleasePermissions` compares the merged **release**
 manifest against `app/src/test/resources/security/requested-permissions.txt`, which may never list a calendar
@@ -51,11 +61,11 @@ permission, and a Konsist rule fails if any source manifest requests one or any 
 | Another app starts Taqvim components or sends spoofed broadcasts | The release manifest exports the 56 components listed under [Exported components](#exported-components-release) below — entry points, launcher aliases, widget receivers and system-bound services — each with the protection stated there. Links only open screens and are size-limited (ADR-0016). Every other receiver and service is unexported and ignores unknown actions or extras. An allowlist test covers the merged debug and release manifests. |
 | Pending intents hijacked or modified | Every `PendingIntent` is immutable (Konsist rule). |
 | Files exposed through a content provider | The only `FileProvider` shares `cache/shared/` for QR images, granted per share (T-1400). |
-| Network interception | HTTPS only, system CAs only, cleartext refused (network security config). Subscriptions reject non-HTTPS URLs and scheme-changing redirects. The network is off until the user allows subscription refresh. |
+| Network interception | Taqvim requests no network permission, so it has no traffic to intercept (ADR-0054). The network security config stays as the standing answer if a dependency ever brings the permission back: cleartext refused, system CAs only, no user-installed CAs. |
 | Backup file theft | Passphrase backups use AES-256-GCM with PBKDF2-HMAC-SHA256, 600 000 iterations (T-605). Passphrases stay in memory only and are wiped after use (T-1503). |
 | Auto Backup or device transfer copying data in the clear | Cloud backup only when end-to-end encrypted (Android 9+). Android 8.x is excluded. |
 | Personal data in logs or reports | One `android.util.Log` call in Taqvim code, documented under [Logging](#logging). Problem reports and diagnostics are redacted: event titles, precise coordinates, links with tokens, e-mail addresses and passwords are removed (T-1504). Nothing is uploaded. |
-| A dependency adds a permission nobody asked for | `auditReleasePermissions` compares the merged release manifest with the documented permission list and fails on any difference, in either direction. Calendar permissions are additionally refused by name (ADR-0051). |
+| A dependency adds a permission nobody asked for | `auditReleasePermissions` compares the merged release manifest with the documented permission list and fails on any difference, in either direction. Calendar permissions (ADR-0051) and network permissions (ADR-0054) are additionally refused by name. |
 | Vulnerable or non-permissive dependencies | License gate with an LGPL canary (T-001), CycloneDX SBOM (T-003). |
 | Development regressions | StrictMode in debug builds. Manifest audit, Konsist security rules and the license gate run in CI. |
 

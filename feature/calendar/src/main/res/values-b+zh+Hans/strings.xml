@@ -88,7 +88,6 @@
   <string name="calendar_source_international">国际日</string>
   <string name="calendar_source_ancient_iran">古代伊朗节日</string>
   <string name="calendar_source_personal">个人事件</string>
-  <string name="calendar_source_subscription">已订阅日历</string>
   <string name="calendar_citation_page">%1$s，第 %2$s 页</string>
   <string name="calendar_no_citation">未记录来源</string>
   <string name="calendar_open_source">打开来源</string>

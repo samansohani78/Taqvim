@@ -20,7 +20,6 @@
   <string name="search_separator">" · "</string>
   <string name="search_kind_official">Resmî özel gün</string>
   <string name="search_kind_personal">Etkinliğim</string>
-  <string name="search_kind_subscription">Abone olunan takvim</string>
   <string name="search_settings_language">Dil</string>
   <string name="search_settings_language_keywords">yerel ayar|çeviri|Farsça|İngilizce|dil</string>
   <string name="search_settings_location">Konum</string>

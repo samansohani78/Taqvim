@@ -19,7 +19,6 @@ import ir.taqvim.core.workdays.LeaveRange
 import ir.taqvim.data.database.EventExceptionEntity
 import ir.taqvim.data.database.EventOverrideEntity
 import ir.taqvim.data.database.EventRecurrenceEntity
-import ir.taqvim.data.database.IcsSubscriptionEntity
 import ir.taqvim.data.database.OfficialReminderEntity
 import ir.taqvim.data.database.PersonalData
 import ir.taqvim.data.database.PersonalEventEntity
@@ -55,7 +54,6 @@ internal object BackupFixtures {
                     enabledEventSources = setOf(EventSource.IRAN_OFFICIAL, EventSource.ANCIENT_IRAN),
                     eventSourcesChosen = true,
                     highLatitudeRule = HighLatitudeRule.GEOPHYSICS_WHITE_NIGHTS,
-                    subscriptionsNetworkAllowed = false,
                     timeZoneBoard = listOf("Asia/Kabul", "Europe/Berlin"),
                     allDayReminderMinute = 480,
                     persistentNotificationLargeNumber = true,
@@ -123,16 +121,6 @@ internal object BackupFixtures {
             reminders = listOf(ReminderEntity(5, 3, 1_440), ReminderEntity(6, 9, 30, enabled = false)),
             shiftRotations = listOf(ShiftRotationEntity(2, "Hospital", NOWRUZ_1405, listOf("D", "N", "", "Off"))),
             shiftRecords = listOf(ShiftRotationRecordEntity(2, NOWRUZ_1405 + 1, "N", "swap")),
-            icsSubscriptions =
-                listOf(
-                    IcsSubscriptionEntity(
-                        id = 4,
-                        url = "https://example.org/feed.ics",
-                        displayName = "Team",
-                        colorArgb = 255,
-                        refreshIntervalMinutes = 360,
-                    ),
-                ),
             workdayProfiles =
                 listOf(
                     WorkdayProfileEntity(

@@ -6,7 +6,6 @@ package ir.taqvim.data.events
 
 import ir.taqvim.core.model.Jdn
 import ir.taqvim.core.model.JdnRange
-import ir.taqvim.data.database.IcsEventCacheEntity
 import ir.taqvim.data.preferences.DeviceTimeZone
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.time.Clock
@@ -59,7 +58,7 @@ class EventsRepository(
         val official = settings.distinctUntilChanged().map { viewFor(it) }
         val sourced = zones.distinctUntilChanged().flatMapLatest { zone -> sourcesIn(days, zone) }
         return combine(official, sourced) { view, zoned ->
-            zoned.assembler.assemble(days, Snapshot(view, zoned.personal, zoned.ics))
+            zoned.assembler.assemble(days, Snapshot(view, zoned.personal))
         }.distinctUntilChanged()
             .flowOn(computeDispatcher)
     }
@@ -101,10 +100,7 @@ class EventsRepository(
         zone: TimeZone,
     ): Flow<ZonedSources> {
         val assembler = DayEventsAssembler(clock, zone)
-        return combine(
-            inputs.personal.events(EventDays.widened(days)),
-            inputs.ics.events(EventWindows.window(days, zone)),
-        ) { personal, ics -> ZonedSources(assembler, personal, ics) }
+        return inputs.personal.events(EventDays.widened(days)).map { personal -> ZonedSources(assembler, personal) }
     }
 
     /** The events of the single day [jdn]. */
@@ -115,5 +111,4 @@ class EventsRepository(
 private class ZonedSources(
     val assembler: DayEventsAssembler,
     val personal: List<PersonalEventRecord>,
-    val ics: List<IcsEventCacheEntity>,
 )

@@ -101,7 +101,6 @@ class AppBackStackTest {
                 AppDestination.ShiftWork,
                 AppDestination.Pending(PendingFeature.SETTINGS),
                 AppDestination.Widgets,
-                AppDestination.Subscriptions,
                 AppDestination.About,
                 AppDestination.Settings(),
                 AppDestination.Settings("THEME"),

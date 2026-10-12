@@ -221,8 +221,9 @@ message AppSettingsProto {
   // Event sources shown in the calendar; personal events are always shown.
   repeated EventSourceProto enabled_event_sources = 6;
   HighLatitudeRuleProto high_latitude_rule = 7;
-  // Whether calendar subscriptions (T-1003) may refresh over the network.
-  bool subscriptions_network_allowed = 8;
+  // 8 was subscriptions_network_allowed: remote calendar subscriptions were removed with the app's network access
+  // (ADR-0054). Reserved so the tag is never reused and an older install's stored value is simply dropped on read.
+  reserved 8;
   // Whether the persistent date notification (T-1213) is shown.
   bool persistent_notification = 9;
   bool remember_recent_searches = 10;

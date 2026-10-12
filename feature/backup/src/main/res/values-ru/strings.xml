@@ -4,7 +4,7 @@
   <string name="backup_title">Резервное копирование и восстановление</string>
   <string name="backup_loading">Загрузка резервного копирования и восстановления</string>
   <string name="backup_export_title">Резервная копия</string>
-  <string name="backup_export_explanation">Сохраните события, напоминания, подписки на календари, графики смен, профили рабочих дней и настройки в один файл.</string>
+  <string name="backup_export_explanation">Сохраните события, напоминания, графики смен, профили рабочих дней и настройки в один файл.</string>
   <string name="backup_export_encrypt">Зашифровать кодовой фразой</string>
   <string name="backup_export_encrypt_on">Открыть эту копию сможет только тот, кто знает кодовую фразу.</string>
   <string name="backup_export_encrypt_off">Файл — обычный JSON: любой, у кого он есть, сможет прочитать ваши данные.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">Напоминания</string>
   <string name="backup_table_shift_rotations">Графики смен</string>
   <string name="backup_table_shift_records">Записи смен</string>
-  <string name="backup_table_subscriptions">Подписки на календари</string>
   <string name="backup_table_workdays">Профили рабочих дней</string>
   <string name="backup_table_official_reminders">Напоминания перед официальными днями</string>
   <string name="backup_restore">Восстановить эту копию</string>
-  <string name="backup_restore_warning">Восстановление заменит все события, напоминания, подписки на календари, графики смен, профили рабочих дней и настройки на этом устройстве данными копии. Это действие нельзя отменить.</string>
+  <string name="backup_restore_warning">Восстановление заменит все события, напоминания, графики смен, профили рабочих дней и настройки на этом устройстве данными копии. Это действие нельзя отменить.</string>
   <string name="backup_restore_confirm_title">Заменить ваши данные?</string>
   <string name="backup_restore_confirm">Заменить</string>
   <string name="backup_error_not_a_backup">Этот файл не является резервной копией Taqvim.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">Данные на этом устройстве</string>
   <string name="privacy_data_events">Личные события</string>
   <string name="privacy_data_reminders">Напоминания</string>
-  <string name="privacy_data_subscriptions">Подписки на календари</string>
   <string name="privacy_data_location">Выбранное место</string>
   <string name="privacy_data_diagnostics">Журнал диагностики</string>
   <string name="privacy_data_searches">Недавние запросы</string>
   <string name="privacy_where_database">Хранится в закрытой базе данных приложения.</string>
-  <string name="privacy_where_subscriptions">Адреса хранятся в закрытой базе данных приложения; события загружаются только с добавленных вами адресов.</string>
   <string name="privacy_where_settings">Хранится в закрытых настройках приложения.</string>
   <string name="privacy_entries">Записей: %1$s</string>
   <string name="privacy_location_set">Местоположение сохранено.</string>

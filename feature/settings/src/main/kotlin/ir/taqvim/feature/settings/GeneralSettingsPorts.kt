@@ -50,7 +50,6 @@ data class GeneralSettings(
     val prayerMethod: PrayerMethod,
     val asrJuristic: AsrJuristic,
     val highLatitudeRule: HighLatitudeRule,
-    val subscriptionsNetworkAllowed: Boolean,
     val persistentNotification: Boolean,
     val rememberRecentSearches: Boolean,
     /** Whether any recent search is stored, so clearing them does something. */
@@ -82,79 +81,6 @@ interface GeneralSettingsStore {
     suspend fun update(transform: (GeneralSettings) -> GeneralSettings)
 
     suspend fun clearRecentSearches()
-}
-
-/** A calendar subscription (T-1003) as listed in the settings. */
-data class SubscriptionItem(
-    val id: Long,
-    val name: String,
-    val url: String,
-    val enabled: Boolean,
-    /** When the feed was last downloaded, in epoch milliseconds, or `null` when never. */
-    val lastFetchedAtEpochMillis: Long?,
-    /** What the subscription page shows about the feed's state (F03). */
-    val health: SubscriptionHealthData = SubscriptionHealthData(),
-)
-
-/** Why the last refresh of a subscription failed (F03). */
-enum class SubscriptionError {
-    NETWORK,
-    TIMEOUT,
-
-    /** The server answered with an error of its own (HTTP 5xx or 429). */
-    SERVER,
-
-    /** The server has no calendar at the address (any other HTTP error). */
-    NOT_AVAILABLE,
-    TOO_LARGE,
-    INSECURE,
-    INVALID_ADDRESS,
-    UNREADABLE,
-}
-
-/**
- * The refresh state of a subscription (F03); times are epoch milliseconds. [refreshIntervalMinutes] is how often the
- * feed is due, [nextCheckAtEpochMillis] when it is next due (`null` while paused), and [problemCount] how many items of
- * the last downloaded feed were ignored or approximated.
- */
-data class SubscriptionHealthData(
-    val lastCheckedAtEpochMillis: Long? = null,
-    val nextCheckAtEpochMillis: Long? = null,
-    val refreshIntervalMinutes: Int = 0,
-    val cachedEvents: Int = 0,
-    val cachedFromEpochMillis: Long? = null,
-    val cachedUntilEpochMillis: Long? = null,
-    val problemCount: Int = 0,
-    val error: SubscriptionError? = null,
-    val httpStatus: Int? = null,
-    val errorAtEpochMillis: Long? = null,
-)
-
-/** The outcome of adding or refreshing a subscription. */
-enum class SubscriptionOutcome {
-    DONE,
-    INVALID_ADDRESS,
-    ALREADY_SUBSCRIBED,
-    NETWORK_NOT_ALLOWED,
-    FAILED,
-}
-
-/** Lists and changes calendar subscriptions; bound in `:app` over the T-1003 subscription code. */
-interface SubscriptionsStore {
-    fun subscriptions(): Flow<List<SubscriptionItem>>
-
-    /** Subscribes to the feed at [url] (`https://` or `webcal://`). */
-    suspend fun add(url: String): SubscriptionOutcome
-
-    suspend fun remove(id: Long)
-
-    suspend fun setEnabled(
-        id: Long,
-        enabled: Boolean,
-    )
-
-    /** Downloads the feed now. */
-    suspend fun refresh(id: Long): SubscriptionOutcome
 }
 
 /** The categories a user can choose, so the settings model does not depend on the preferences module. */

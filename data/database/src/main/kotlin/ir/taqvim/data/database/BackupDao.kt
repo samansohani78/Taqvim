@@ -10,8 +10,8 @@ import androidx.room.Query
 import androidx.room.Transaction
 
 /**
- * The user's own rows that a backup carries (T-605). Caches (`ics_events_cache`), the
- * diagnostics log and `scheduled_alarms` are derived or device-specific and are not part of it.
+ * The user's own rows that a backup carries (T-605). The diagnostics log and `scheduled_alarms` are derived or
+ * device-specific and are not part of it.
  */
 data class PersonalData(
     val events: List<PersonalEventEntity> = emptyList(),
@@ -19,7 +19,6 @@ data class PersonalData(
     val reminders: List<ReminderEntity> = emptyList(),
     val shiftRotations: List<ShiftRotationEntity> = emptyList(),
     val shiftRecords: List<ShiftRotationRecordEntity> = emptyList(),
-    val icsSubscriptions: List<IcsSubscriptionEntity> = emptyList(),
     val workdayProfiles: List<WorkdayProfileEntity> = emptyList(),
     /** Reminders before official events (T-1002). */
     val officialReminders: List<OfficialReminderEntity> = emptyList(),
@@ -41,7 +40,6 @@ abstract class BackupDao {
             reminders = reminders(),
             shiftRotations = shiftRotations(),
             shiftRecords = shiftRecords(),
-            icsSubscriptions = icsSubscriptions(),
             workdayProfiles = workdayProfiles(),
             officialReminders = officialReminders(),
             eventExceptions = eventExceptions(),
@@ -54,18 +52,15 @@ abstract class BackupDao {
      */
     @Transaction
     open suspend fun replaceAll(data: PersonalData) {
-        // Deleting parents cascades to recurrences, reminders, event exceptions and overrides, shift records and cached
-        // ICS occurrences.
+        // Deleting parents cascades to recurrences, reminders, event exceptions and overrides, and shift records.
         deleteEvents()
         deleteShiftRotations()
-        deleteIcsSubscriptions()
         deleteWorkdayProfiles()
         deleteOfficialReminders()
         insertEvents(data.events)
         insertEventDetails(data.recurrences, data.reminders, data.eventExceptions, data.eventOverrides)
         insertShiftRotations(data.shiftRotations)
         insertShiftRecords(data.shiftRecords)
-        insertIcsSubscriptions(data.icsSubscriptions)
         insertWorkdayProfiles(data.workdayProfiles)
         insertOfficialReminders(data.officialReminders)
     }
@@ -109,9 +104,6 @@ abstract class BackupDao {
     @Query("SELECT * FROM shift_rotation_records ORDER BY rotation_id, jdn")
     protected abstract suspend fun shiftRecords(): List<ShiftRotationRecordEntity>
 
-    @Query("SELECT * FROM ics_subscriptions ORDER BY id")
-    protected abstract suspend fun icsSubscriptions(): List<IcsSubscriptionEntity>
-
     @Query("SELECT * FROM workday_profiles ORDER BY id")
     protected abstract suspend fun workdayProfiles(): List<WorkdayProfileEntity>
 
@@ -120,9 +112,6 @@ abstract class BackupDao {
 
     @Query("DELETE FROM shift_rotations")
     protected abstract suspend fun deleteShiftRotations()
-
-    @Query("DELETE FROM ics_subscriptions")
-    protected abstract suspend fun deleteIcsSubscriptions()
 
     @Query("DELETE FROM workday_profiles")
     protected abstract suspend fun deleteWorkdayProfiles()
@@ -135,9 +124,6 @@ abstract class BackupDao {
 
     @Insert
     protected abstract suspend fun insertShiftRecords(rows: List<ShiftRotationRecordEntity>)
-
-    @Insert
-    protected abstract suspend fun insertIcsSubscriptions(rows: List<IcsSubscriptionEntity>)
 
     @Insert
     protected abstract suspend fun insertWorkdayProfiles(rows: List<WorkdayProfileEntity>)

@@ -21,13 +21,12 @@ import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 /**
- * Koin bindings of the settings home, subscriptions and official Islamic dates; `:app` binds [GeneralSettingsStore],
- * [SubscriptionsStore] and [IslamicOverrideStore].
+ * Koin bindings of the settings home and the official Islamic dates page; `:app` binds [GeneralSettingsStore] and
+ * [IslamicOverrideStore].
  */
 val generalSettingsFeatureModule: Module =
     module {
         viewModel { params -> SettingsHomeViewModel(get(), params.getOrNull()) }
-        viewModel { SubscriptionsViewModel(get(), get()) }
         viewModel { IslamicOverrideViewModel(get()) }
     }
 
@@ -62,28 +61,6 @@ fun SettingsHomeRoute(
             )
         }
     SettingsHomeScreen(state, actions, modifier)
-}
-
-/** The calendar subscriptions page bound to its [SubscriptionsViewModel]. */
-@Composable
-fun SubscriptionsRoute(
-    modifier: Modifier = Modifier,
-    viewModel: SubscriptionsViewModel = koinViewModel(),
-) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val actions =
-        remember(viewModel) {
-            SubscriptionsActions(
-                onDraftChanged = viewModel::onDraftChanged,
-                onAdd = viewModel::onAdd,
-                onRefresh = viewModel::onRefresh,
-                onRemove = viewModel::onRemove,
-                onEnabledChanged = viewModel::onEnabledChanged,
-                onNetworkAllowedChanged = viewModel::onNetworkAllowedChanged,
-                onDetailsToggled = viewModel::onDetailsToggled,
-            )
-        }
-    SubscriptionsScreen(state, actions, modifier)
 }
 
 /** Types the system file picker offers for an override file. */

@@ -32,15 +32,10 @@ internal object GeneralSettingsFixtures {
             prayerMethod = language.prayerMethod,
             asrJuristic = language.asrJuristic,
             highLatitudeRule = HighLatitudeRule.ANGLE_BASED,
-            subscriptionsNetworkAllowed = true,
             persistentNotification = false,
             rememberRecentSearches = true,
             hasRecentSearches = true,
         )
-
-    val calendarFeed =
-        SubscriptionItem(1, "Holidays feed", "https://example.org/holidays.ics", true, 1_789_000_000_000)
-    val teamFeed = SubscriptionItem(2, "Team", "webcal://example.org/team.ics", false, null)
 }
 
 /** Remembers the settings after every update and emits them back. */
@@ -64,53 +59,5 @@ internal class FakeGeneralSettingsStore(
     override suspend fun clearRecentSearches() {
         clears++
         state.update { it.copy(settings = it.settings.copy(hasRecentSearches = false)) }
-    }
-}
-
-/** Subscriptions kept in memory; [outcome] answers every add and refresh. */
-internal class FakeSubscriptionsStore(
-    items: List<SubscriptionItem> = listOf(GeneralSettingsFixtures.calendarFeed, GeneralSettingsFixtures.teamFeed),
-    var outcome: SubscriptionOutcome = SubscriptionOutcome.DONE,
-) : SubscriptionsStore {
-    private val state = MutableStateFlow(items)
-    val added = mutableListOf<String>()
-    val refreshed = mutableListOf<Long>()
-
-    val current: List<SubscriptionItem>
-        get() = state.value
-
-    override fun subscriptions(): Flow<List<SubscriptionItem>> = state
-
-    override suspend fun add(url: String): SubscriptionOutcome {
-        added += url
-        if (outcome == SubscriptionOutcome.DONE) {
-            state.update {
-                it +
-                    SubscriptionItem(
-                        (it.maxOfOrNull(SubscriptionItem::id) ?: 0) + 1,
-                        url,
-                        url,
-                        true,
-                        null,
-                    )
-            }
-        }
-        return outcome
-    }
-
-    override suspend fun remove(id: Long) {
-        state.update { items -> items.filterNot { it.id == id } }
-    }
-
-    override suspend fun setEnabled(
-        id: Long,
-        enabled: Boolean,
-    ) {
-        state.update { items -> items.map { if (it.id == id) it.copy(enabled = enabled) else it } }
-    }
-
-    override suspend fun refresh(id: Long): SubscriptionOutcome {
-        refreshed += id
-        return outcome
     }
 }

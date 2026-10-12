@@ -194,8 +194,8 @@ class TimelineViewModelTest {
 
             viewModel.effects.test {
                 viewModel.onAction(TimelineAction.ShowNext)
-                viewModel.onAction(TimelineAction.OpenEvent("x", TimelineEventKind.SUBSCRIPTION))
-                awaitItem() shouldBe TimelineEffect.NavigateToEvent("x", TimelineEventKind.SUBSCRIPTION)
+                viewModel.onAction(TimelineAction.OpenEvent("x", TimelineEventKind.OFFICIAL))
+                awaitItem() shouldBe TimelineEffect.NavigateToEvent("x", TimelineEventKind.OFFICIAL)
             }
             viewModel.uiState.test {
                 awaitItem().content shouldBe null

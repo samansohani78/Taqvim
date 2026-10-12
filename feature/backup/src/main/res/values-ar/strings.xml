@@ -4,7 +4,7 @@
   <string name="backup_title">النسخ الاحتياطي والاستعادة</string>
   <string name="backup_loading">جارٍ تحميل النسخ الاحتياطي والاستعادة</string>
   <string name="backup_export_title">نسخ احتياطي</string>
-  <string name="backup_export_explanation">احفظ أحداثك وتذكيراتك واشتراكات التقويم ونوبات العمل وملفات أيام العمل والإعدادات في ملف واحد.</string>
+  <string name="backup_export_explanation">احفظ أحداثك وتذكيراتك ونوبات العمل وملفات أيام العمل والإعدادات في ملف واحد.</string>
   <string name="backup_export_encrypt">التشفير بعبارة مرور</string>
   <string name="backup_export_encrypt_on">لا يستطيع فتح هذه النسخة إلا من يعرف عبارة المرور.</string>
   <string name="backup_export_encrypt_off">الملف JSON عادي: يستطيع أي شخص يملكه قراءة بياناتك.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">التذكيرات</string>
   <string name="backup_table_shift_rotations">نوبات العمل</string>
   <string name="backup_table_shift_records">سجلات النوبات</string>
-  <string name="backup_table_subscriptions">اشتراكات التقويم</string>
   <string name="backup_table_workdays">ملفات أيام العمل</string>
   <string name="backup_table_official_reminders">تذكيرات قبل الأيام الرسمية</string>
   <string name="backup_restore">استعادة هذه النسخة</string>
-  <string name="backup_restore_warning">تستبدل الاستعادة كل الأحداث والتذكيرات واشتراكات التقويم ونوبات العمل وملفات أيام العمل والإعدادات على هذا الجهاز بما في النسخة الاحتياطية. لا يمكن التراجع عن ذلك.</string>
+  <string name="backup_restore_warning">تستبدل الاستعادة كل الأحداث والتذكيرات ونوبات العمل وملفات أيام العمل والإعدادات على هذا الجهاز بما في النسخة الاحتياطية. لا يمكن التراجع عن ذلك.</string>
   <string name="backup_restore_confirm_title">هل تريد استبدال بياناتك؟</string>
   <string name="backup_restore_confirm">استبدال</string>
   <string name="backup_error_not_a_backup">هذا الملف ليس نسخة احتياطية من Taqvim.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">البيانات على هذا الجهاز</string>
   <string name="privacy_data_events">الأحداث الشخصية</string>
   <string name="privacy_data_reminders">التذكيرات</string>
-  <string name="privacy_data_subscriptions">اشتراكات التقويم</string>
   <string name="privacy_data_location">الموقع المختار</string>
   <string name="privacy_data_diagnostics">سجل التشخيص</string>
   <string name="privacy_data_searches">عمليات البحث الأخيرة</string>
   <string name="privacy_where_database">مخزّنة في قاعدة بيانات التطبيق الخاصة.</string>
-  <string name="privacy_where_subscriptions">العناوين في قاعدة بيانات التطبيق الخاصة؛ ولا تُنزَّل الأحداث إلا من العناوين التي تضيفها.</string>
   <string name="privacy_where_settings">مخزّنة في إعدادات التطبيق الخاصة.</string>
   <string name="privacy_entries">الإدخالات: %1$s</string>
   <string name="privacy_location_set">تم حفظ موقع.</string>

@@ -16,7 +16,6 @@ import ir.taqvim.core.model.Coordinates
 import ir.taqvim.core.model.JdnRange
 import ir.taqvim.core.praytimes.PrayerSettings
 import ir.taqvim.data.events.DayEvents
-import ir.taqvim.data.events.IcsOccurrence
 import ir.taqvim.data.events.PersonalOccurrence
 import ir.taqvim.data.events.generated.OfficialEvents
 import ir.taqvim.data.preferences.UserPreferences
@@ -39,8 +38,6 @@ class CalendarAdaptersTest {
 
     @Test
     fun `day events keep their order and are titled in the app language`() {
-        val begin = Instant.parse("2026-03-21T06:30:00Z")
-        val end = Instant.parse("2026-03-21T07:30:00Z")
         val days = nowruz1405..nowruz1405
         val events =
             DayEvents(
@@ -51,7 +48,6 @@ class CalendarAdaptersTest {
                 isHoliday = true,
                 isWeekend = false,
                 personal = listOf(birthday(days)),
-                ics = listOf(IcsOccurrence(2, "uid-1", "Talk", "", begin, end, allDay = false, days = days)),
             )
 
         val day = events.toCalendarDay("en")
@@ -76,7 +72,6 @@ class CalendarAdaptersTest {
                     citations = nowruz.citations,
                 ),
                 DayEventItem("7", DayEventKind.PERSONAL, "Birthday", isHoliday = false),
-                DayEventItem("2:uid-1", DayEventKind.SUBSCRIPTION, "Talk", isHoliday = false),
             )
     }
 

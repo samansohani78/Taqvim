@@ -62,8 +62,8 @@ internal class PreferencesTimelineSettingsSource(
 
 /**
  * Timeline days (T-900) from the events repository (T-305), titled in [language]. Dataset events are all-day; timed
- * personal and subscription events become minute spans of each civil day in the device zone from [zones], so a
- * zone change redraws the spans (review I06).
+ * personal events become minute spans of each civil day in the device zone from [zones], so a zone change redraws
+ * the spans (review I06).
  */
 internal class RepositoryTimelineDaysSource(
     private val days: (JdnRange) -> Flow<List<DayEvents>>,
@@ -80,7 +80,7 @@ internal class RepositoryTimelineDaysSource(
         }.distinctUntilChanged()
 }
 
-/** This day for the timeline: dataset events first, then personal and subscription events. */
+/** This day for the timeline: dataset events first, then the user's own events. */
 internal fun DayEvents.toTimelineDay(
     language: String,
     zone: TimeZone,
@@ -97,12 +97,7 @@ internal fun DayEvents.toTimelineDay(
             )
         }
     val personal = personal.mapNotNull { it.toTimelineEvent(jdn, zone) }
-    val subscriptions =
-        ics.mapNotNull {
-            val id = "${it.subscriptionId}:${it.uid}"
-            event(id, TimelineEventKind.SUBSCRIPTION, it.summary, it.allDay, jdn, it.begin, it.end, zone)
-        }
-    return TimelineDay(jdn, isHoliday, isWeekend, official + personal + subscriptions)
+    return TimelineDay(jdn, isHoliday, isWeekend, official + personal)
 }
 
 /** A personal occurrence on [day]: all-day without times, otherwise its span from its own time zone to [zone]. */

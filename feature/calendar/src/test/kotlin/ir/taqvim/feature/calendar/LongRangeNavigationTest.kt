@@ -41,7 +41,7 @@ class LongRangeNavigationTest {
             newEvent = "NEW",
             week = { "W$it" },
         )
-    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green, Color.Magenta)
+    private val palette = IndicatorPalette(Color.Red, Color.Blue, Color.Green)
     private val weekdays = listOf("Mo", "Tu", "We", "Th", "Fr", "Sa", "Su")
 
     /** 27 Shahrivar 1405 (18 September 2026). */

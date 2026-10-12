@@ -118,7 +118,6 @@
   <string name="calendar_source_international">يوم دولي</string>
   <string name="calendar_source_ancient_iran">عيد إيراني قديم</string>
   <string name="calendar_source_personal">حدث شخصي</string>
-  <string name="calendar_source_subscription">تقويم مشترك فيه</string>
   <string name="calendar_citation_page">%1$s، الصفحة %2$s</string>
   <string name="calendar_no_citation">لم يُسجَّل مصدر</string>
   <string name="calendar_open_source">فتح المصدر</string>

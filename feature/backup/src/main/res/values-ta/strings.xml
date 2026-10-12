@@ -4,7 +4,7 @@
   <string name="backup_title">காப்புப்பிரதி மற்றும் மீட்பு</string>
   <string name="backup_loading">காப்புப்பிரதியும் மீட்பும் ஏற்றப்படுகின்றன</string>
   <string name="backup_export_title">காப்புப்பிரதி எடு</string>
-  <string name="backup_export_explanation">உங்கள் நிகழ்வுகள், நினைவூட்டல்கள், நாட்காட்டி சந்தாக்கள், ஷிப்ட் சுழற்சிகள், வேலைநாள் விவரங்கள், அமைப்புகளை ஒரே கோப்பில் சேமிக்கவும்.</string>
+  <string name="backup_export_explanation">உங்கள் நிகழ்வுகள், நினைவூட்டல்கள், ஷிப்ட் சுழற்சிகள், வேலைநாள் விவரங்கள், அமைப்புகளை ஒரே கோப்பில் சேமிக்கவும்.</string>
   <string name="backup_export_encrypt">கடவுச்சொற்றொடருடன் மறையாக்கு</string>
   <string name="backup_export_encrypt_on">கடவுச்சொற்றொடர் தெரிந்தவர் மட்டுமே இந்தக் காப்புப்பிரதியைத் திறக்க முடியும்.</string>
   <string name="backup_export_encrypt_off">கோப்பு சாதாரண JSON: அது யாரிடம் இருந்தாலும் உங்கள் தரவைப் படிக்க முடியும்.</string>
@@ -45,11 +45,10 @@
   <string name="backup_table_reminders">நினைவூட்டல்கள்</string>
   <string name="backup_table_shift_rotations">ஷிப்ட் சுழற்சிகள்</string>
   <string name="backup_table_shift_records">ஷிப்ட் பதிவுகள்</string>
-  <string name="backup_table_subscriptions">நாட்காட்டி சந்தாக்கள்</string>
   <string name="backup_table_workdays">வேலைநாள் விவரங்கள்</string>
   <string name="backup_table_official_reminders">அதிகாரப்பூர்வ நாட்களுக்கு முந்தைய நினைவூட்டல்கள்</string>
   <string name="backup_restore">இந்தக் காப்புப்பிரதியை மீட்டெடு</string>
-  <string name="backup_restore_warning">மீட்பு இந்தச் சாதனத்தில் உள்ள எல்லா நிகழ்வுகள், நினைவூட்டல்கள், நாட்காட்டி சந்தாக்கள், ஷிப்ட் சுழற்சிகள், வேலைநாள் விவரங்கள், அமைப்புகளைக் காப்புப்பிரதியால் மாற்றுகிறது. இதைத் திரும்பப் பெற முடியாது.</string>
+  <string name="backup_restore_warning">மீட்பு இந்தச் சாதனத்தில் உள்ள எல்லா நிகழ்வுகள், நினைவூட்டல்கள், ஷிப்ட் சுழற்சிகள், வேலைநாள் விவரங்கள், அமைப்புகளைக் காப்புப்பிரதியால் மாற்றுகிறது. இதைத் திரும்பப் பெற முடியாது.</string>
   <string name="backup_restore_confirm_title">உங்கள் தரவை மாற்றவா?</string>
   <string name="backup_restore_confirm">மாற்று</string>
   <string name="backup_error_not_a_backup">இந்தக் கோப்பு Taqvim காப்புப்பிரதி அல்ல.</string>
@@ -70,12 +69,10 @@
   <string name="privacy_data_title">இந்தச் சாதனத்தில் உள்ள தரவு</string>
   <string name="privacy_data_events">தனிப்பட்ட நிகழ்வுகள்</string>
   <string name="privacy_data_reminders">நினைவூட்டல்கள்</string>
-  <string name="privacy_data_subscriptions">நாட்காட்டி சந்தாக்கள்</string>
   <string name="privacy_data_location">தேர்ந்தெடுத்த இடம்</string>
   <string name="privacy_data_diagnostics">கண்டறிதல் பதிவு</string>
   <string name="privacy_data_searches">சமீபத்திய தேடல்கள்</string>
   <string name="privacy_where_database">செயலியின் தனிப்பட்ட தரவுத்தளத்தில் சேமிக்கப்படுகிறது.</string>
-  <string name="privacy_where_subscriptions">முகவரிகள் செயலியின் தனிப்பட்ட தரவுத்தளத்தில்; நீங்கள் சேர்க்கும் முகவரிகளிலிருந்து மட்டுமே நிகழ்வுகள் பதிவிறக்கப்படும்.</string>
   <string name="privacy_where_settings">செயலியின் தனிப்பட்ட அமைப்புகளில் சேமிக்கப்படுகிறது.</string>
   <string name="privacy_entries">பதிவுகள்: %1$s</string>
   <string name="privacy_location_set">ஓர் இடம் சேமிக்கப்பட்டுள்ளது.</string>
