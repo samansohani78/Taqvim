@@ -110,7 +110,7 @@
   <string name="about_faq_prayer_method_q">Namoz vaqtlari qanday hisoblanadi?</string>
   <string name="about_faq_prayer_method_a">Taqvim ularni qurilmangizda, joylashuvingizdagi Quyosh holati va sozlamalarda tanlangan usul boʻyicha hisoblaydi. Tehron usulida Eron shaharlari vaqtlari Tehron universiteti Geofizika instituti jadvallariga taxminan bir daqiqa aniqlikda mos keladi.</string>
   <string name="about_faq_no_location_q">Namoz vaqtlarida joy belgilanmaganligi aytilmoqda</string>
-  <string name="about_faq_no_location_a">Joylashuv sozlamalarida shaharni qidiring, qurilma joylashuvidan foydalaning yoki koordinatalarni kiriting. Aynan shu joy namoz vaqtlari, astronomiya va kompas uchun ishlatiladi.</string>
+  <string name="about_faq_no_location_a">Joy sozlamalarida shahar qidiring, xaritadan nuqta tanlang yoki koordinata kiriting. Xuddi shu joy namoz vaqtlari, astronomiya va kompas uchun ishlatiladi. Taqvim hech qachon qurilmangizdan qayerdaligingizni so‘ramaydi.</string>
   <string name="about_faq_high_latitude_q">Nega yozda ekvatordan uzoqda Bomdod yoki Xufton yoʻq?</string>
   <string name="about_faq_high_latitude_a">Baʼzi joylarda yozgi tunlarda Quyosh ufqdan yetarlicha pastga tushmaydi, shuning uchun bu vaqtlarni Quyosh burchagidan aniqlab boʻlmaydi. Taxminiy vaqt olish uchun sozlamalarda yuqori kenglik qoidasini tanlang.</string>
   <string name="about_faq_athan_q">Nega azon chalinmadi yoki kech chalindi?</string>
@@ -120,7 +120,7 @@
   <string name="about_faq_passphrase_q">Zaxira parol iborasini unutdim</string>
   <string name="about_faq_passphrase_a">Himoyalangan zaxirani faqat uning parol iborasi bilan ochish mumkin. Taqvim uning nusxasini saqlamaydi, shuning uchun uni tiklab boʻlmaydi. Eslab qola oladigan parol iborasi bilan yangi zaxira yarating.</string>
   <string name="about_faq_privacy_q">Taqvim maʼlumotlarimni biror joyga yuboradimi?</string>
-  <string name="about_faq_privacy_a">Yoʻq. Taqvimda hisob ham, server ham yoʻq: tadbirlaringiz, joylaringiz va sozlamalaringiz shu qurilmada qoladi. Internet siz qoʻshgan taqvim obunalarini yangilash uchun ishlatiladi, qurilma joylashuvi nomi esa Android joylashuv xizmatidan kelishi mumkin. Muammo hisoboti faqat siz yuborishni tanlaganingizda, tadbir nomlari, joylar, manzillar va havolalar olib tashlangan holda yaratiladi.</string>
+  <string name="about_faq_privacy_a">Yo‘q. Taqvimda hisob, server va internet ruxsati yo‘q, shuning uchun u hech narsa yubora olmaydi: tadbirlaringiz, joylaringiz va sozlamalaringiz shu qurilmada qoladi va hech narsa bulutga o‘z-o‘zidan zaxiralanmaydi. Muammo hisoboti faqat siz yubormoqchi bo‘lganingizda tuziladi; tadbir nomlari, joylar, manzillar va havolalar olib tashlanadi. Keltirilgan manbani ochish havolani brauzeringizga beradi, sahifani u yuklaydi — Taqvim emas.</string>
   <string name="about_crash">Oxirgi nosozlik</string>
   <string name="about_crash_summary">Shu qurilmada saqlanadi va muammo hisobotiga qo‘shiladi</string>
   <string name="about_crash_clear">Tozalash</string>

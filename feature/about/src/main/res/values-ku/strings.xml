@@ -110,7 +110,7 @@
   <string name="about_faq_prayer_method_q">Demên nimêjê çawa tên hesabkirin?</string>
   <string name="about_faq_prayer_method_a">Taqvim wan li ser amûra te, ji cihê rojê li cihê te û bi rêbaza ku di mîhengan de hatiye hilbijartin hesab dike. Bi rêbaza Tehranê, demên bajarên Îranê bi tabloyên Enstîtuya Jeofîzîkê ya Zanîngeha Tehranê re bi qasî deqeyekê li hev dikin.</string>
   <string name="about_faq_no_location_q">Demên nimêjê dibêjin cih nehatiye danîn</string>
-  <string name="about_faq_no_location_a">Di mîhengên cih de li bajarekî bigere, cihê amûra xwe bi kar bîne, an koordînatan binivîse. Heman cih ji bo demên nimêjê, stêrnasî û pûsûleyê tê bikaranîn.</string>
+  <string name="about_faq_no_location_a">Di mîhengên cihî de bajarekî bigere, xalekê li ser nexşeyê hilbijêre, an koordînatan binivîse. Heman cih ji bo demên nimêjê, stêrnasî û pûsulayê tê bikaranîn. Taqvim tu caran ji amûra te napirse ku tu li ku yî.</string>
   <string name="about_faq_high_latitude_q">Çima havînê dûrî ekwatorê Sibê an Eşa tune ne?</string>
   <string name="about_faq_high_latitude_a">Li hin cihan di şevên havînê de roj têra xwe di bin asoyê re naçe, ji ber vê yekê ev dem ji goşeya rojê nayên dîtin. Ji bo demeke texmînî di mîhengan de qaîdeyeke firehiya bilind hilbijêre.</string>
   <string name="about_faq_athan_q">Çima bang nehat lêdan, an dereng hat lêdan?</string>
@@ -120,7 +120,7 @@
   <string name="about_faq_passphrase_q">Min şîfreya paşkopiyekê ji bîr kir</string>
   <string name="about_faq_passphrase_a">Paşkopiyeke parastî tenê bi şîfreya xwe vedibe. Taqvim kopiyekê wê nahêle, ji ber vê yekê nayê vegerandin. Paşkopiyeke nû bi şîfreyeke ku tu dikarî bi bîr bînî çêke.</string>
   <string name="about_faq_privacy_q">Taqvim daneyên min dişîne derekê?</string>
-  <string name="about_faq_privacy_a">Na. Taqvim ne hesab û ne jî pêşkêşker heye: bûyer, cih û mîhengên te li ser vê amûrê dimînin. Ew înternetê ji bo nûkirina abonetiyên salnameyê yên ku tu zêde dikî bi kar tîne, û dibe ku navê cihê amûra te ji xizmeta cihê ya Android were. Rapora pirsgirêkê tenê dema tu biryar bidî ku bişînî tê çêkirin, bi rakirina sernavên bûyeran, cih, navnîşan û girêdanan.</string>
+  <string name="about_faq_privacy_a">Na. Taqvim ne hesab, ne server û ne destûra înternetê heye, ji ber vê yekê nikare tiştekî bişîne: bûyer, cih û mîhengên te li ser vê amûrê dimînin û tiştek bixweberî li ewrê nayê paşgirkirin. Rapora pirsgirêkê tenê dema tu bixwazî bişînî tê çêkirin û sernavên bûyeran, cih, navnîşan û girêdan jê tên derxistin. Vekirina çavkaniyeke jêgirtî girêdanê dide geroka te û ew rûpelê bar dike — ne Taqvim.</string>
   <string name="about_crash">Xirabûna dawî</string>
   <string name="about_crash_summary">Li ser vê cîhazê tê parastin û li rapora pirsgirêkê tê zêdekirin</string>
   <string name="about_crash_clear">Paqij bike</string>

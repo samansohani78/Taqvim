@@ -110,7 +110,7 @@
   <string name="about_faq_prayer_method_q">Namaz vaxtları necə hesablanır?</string>
   <string name="about_faq_prayer_method_a">Taqvim onları cihazınızda, olduğunuz yerdəki Günəşin mövqeyinə görə və ayarlarda seçilmiş üsulla hesablayır. Tehran üsulu ilə İran şəhərlərinin vaxtları Tehran Universitetinin Geofizika İnstitutunun cədvəlləri ilə təxminən bir dəqiqə dəqiqliklə üst-üstə düşür.</string>
   <string name="about_faq_no_location_q">Namaz vaxtları yer təyin edilmədiyini deyir</string>
-  <string name="about_faq_no_location_a">Məkan ayarlarında şəhər axtarın, cihazınızın məkanından istifadə edin və ya koordinatları daxil edin. Eyni yer namaz vaxtları, astronomiya və kompas üçün istifadə olunur.</string>
+  <string name="about_faq_no_location_a">Məkan ayarlarında şəhər axtarın, xəritədə nöqtə seçin və ya koordinat daxil edin. Eyni yer namaz vaxtları, astronomiya və kompas üçün işlədilir. Taqvim heç vaxt cihazınızdan harada olduğunuzu soruşmur.</string>
   <string name="about_faq_high_latitude_q">Ekvatordan uzaqda yayda niyə Sübh və ya İşa yoxdur?</string>
   <string name="about_faq_high_latitude_a">Bəzi yerlərdə yay gecələri Günəş üfüqdən kifayət qədər aşağı enmir, ona görə də bu vaxtları Günəşin bucağından tapmaq olmur. Təxmini vaxt almaq üçün ayarlarda yüksək enlik qaydası seçin.</string>
   <string name="about_faq_athan_q">Azan niyə oxunmadı və ya gec oxundu?</string>
@@ -120,7 +120,7 @@
   <string name="about_faq_passphrase_q">Ehtiyat nüsxənin parol ifadəsini unutmuşam</string>
   <string name="about_faq_passphrase_a">Qorunan ehtiyat nüsxə yalnız öz parol ifadəsi ilə açıla bilər. Taqvim onun surətini saxlamır, ona görə bərpa etmək olmur. Yadda saxlaya biləcəyiniz parol ifadəsi ilə yeni ehtiyat nüsxə yaradın.</string>
   <string name="about_faq_privacy_q">Taqvim məlumatlarımı hara isə göndərir?</string>
-  <string name="about_faq_privacy_a">Xeyr. Taqvim-in hesabı və serveri yoxdur: tədbirləriniz, yerləriniz və ayarlarınız bu cihazda qalır. İnternet əlavə etdiyiniz təqvim abunəliklərini yeniləmək üçün istifadə olunur, cihaz məkanınızın adı isə Android-in məkan xidmətindən gələ bilər. Problem hesabatı yalnız siz göndərməyi seçəndə, tədbir adları, yerlər, ünvanlar və keçidlər silinməklə yaradılır.</string>
+  <string name="about_faq_privacy_a">Xeyr. Taqvimin hesabı, serveri və internet icazəsi yoxdur, buna görə heç nə göndərə bilmir: tədbirləriniz, yerləriniz və ayarlarınız bu cihazda qalır və heç nə buluda öz-özünə ehtiyat nüsxələnmir. Problem hesabatı yalnız siz göndərmək istədikdə yaradılır; tədbir adları, yerlər, ünvanlar və keçidlər çıxarılır. İstinad edilən mənbəyi açmaq keçidi brauzerinizə verir, səhifəni o yükləyir — Taqvim yox.</string>
   <string name="about_crash">Son çökmə</string>
   <string name="about_crash_summary">Bu cihazda saxlanılır və problem hesabatına əlavə olunur</string>
   <string name="about_crash_clear">Təmizlə</string>

@@ -107,7 +107,7 @@
   <string name="about_faq_prayer_method_q">礼拜时间是如何计算的？</string>
   <string name="about_faq_prayer_method_a">Taqvim 根据你所在地的太阳位置，使用设置中选择的方法在你的设备上计算。使用德黑兰方法时，伊朗城市的时间与德黑兰大学地球物理研究所的时间表相差约一分钟以内。</string>
   <string name="about_faq_no_location_q">礼拜时间提示尚未设置地点</string>
-  <string name="about_faq_no_location_a">在位置设置中搜索城市、使用设备定位或输入坐标。同一地点用于礼拜时间、天文和指南针。</string>
+  <string name="about_faq_no_location_a">在位置设置中搜索城市、在地图上选点，或输入坐标。同一个地点用于礼拜时间、天文和指南针。Taqvim 从不向你的设备询问你在哪里。</string>
   <string name="about_faq_high_latitude_q">为什么在远离赤道的夏季缺少晨礼或宵礼？</string>
   <string name="about_faq_high_latitude_a">在某些地方，夏夜的太阳不会落到地平线下足够深处，因此无法根据太阳高度角求得这些时间。请在设置中选择高纬度规则以获得估算时间。</string>
   <string name="about_faq_athan_q">为什么宣礼没有响，或者响得太晚？</string>
@@ -117,7 +117,7 @@
   <string name="about_faq_passphrase_q">我忘记了备份的口令</string>
   <string name="about_faq_passphrase_a">受保护的备份只能用其口令打开。Taqvim 不保存口令副本，因此无法找回。请使用你能记住的口令重新创建备份。</string>
   <string name="about_faq_privacy_q">Taqvim 会把我的数据发送到别处吗？</string>
-  <string name="about_faq_privacy_a">不会。Taqvim 没有账号也没有服务器：你的事件、地点和设置都保留在本设备上。它使用网络刷新你添加的日历订阅，设备位置的名称可能来自 Android 的定位服务。问题报告只有在你选择发送时才会生成，并且会移除事件标题、地点、地址和链接。</string>
+  <string name="about_faq_privacy_a">不会。Taqvim 没有账号、没有服务器，也没有联网权限，因此无法发送任何东西：你的事件、地点和设置都留在本机，也不会自动备份到云端。问题报告只在你选择发送时才会生成，其中会移除事件标题、地点、地址和链接。打开引用来源是把链接交给你的浏览器，由浏览器加载页面，而不是 Taqvim。</string>
   <string name="about_crash">最近一次崩溃</string>
   <string name="about_crash_summary">仅保存在本设备，并会加入问题报告</string>
   <string name="about_crash_clear">清除</string>

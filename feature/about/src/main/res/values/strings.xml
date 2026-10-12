@@ -125,7 +125,7 @@
   <string name="about_faq_prayer_method_q">How are prayer times calculated?</string>
   <string name="about_faq_prayer_method_a">Taqvim calculates them on your device from the position of the sun at your place, with the method chosen in settings. With the Tehran method, times for Iranian cities agree with the timetables of the Institute of Geophysics of the University of Tehran to within about a minute.</string>
   <string name="about_faq_no_location_q">Prayer times say that no place is set</string>
-  <string name="about_faq_no_location_a">In location settings, search for a city, use your device location, or enter coordinates. The same place is used for prayer times, astronomy and the compass.</string>
+  <string name="about_faq_no_location_a">In location settings, search for a city, pick a point on the map, or enter coordinates. The same place is used for prayer times, astronomy and the compass. Taqvim never asks your device where you are.</string>
   <string name="about_faq_high_latitude_q">Why are Fajr or Isha missing in summer far from the equator?</string>
   <string name="about_faq_high_latitude_a">In some places the sun does not go far enough below the horizon on summer nights, so these times cannot be found from the angle of the sun. Choose a high latitude rule in settings to get an estimated time.</string>
   <string name="about_faq_athan_q">Why did the athan not play, or play late?</string>
@@ -135,7 +135,7 @@
   <string name="about_faq_passphrase_q">I forgot the passphrase of a backup</string>
   <string name="about_faq_passphrase_a">A protected backup can be opened only with its passphrase. Taqvim keeps no copy of it, so it cannot be recovered. Make a new backup with a passphrase you can remember.</string>
   <string name="about_faq_privacy_q">Does Taqvim send my data anywhere?</string>
-  <string name="about_faq_privacy_a">No. Taqvim has no account and no server: your events, places and settings stay on this device. It uses the internet to refresh the calendar subscriptions you add, and the name of your device location may come from the location service of Android. A problem report is created only when you choose to send it, with event titles, places, addresses and links removed.</string>
+  <string name="about_faq_privacy_a">No. Taqvim has no account, no server and no internet permission, so it cannot send anything: your events, places and settings stay on this device, and nothing is backed up to the cloud automatically. A problem report is created only when you choose to send it, with event titles, places, addresses and links removed. Opening a cited source hands the link to your browser, which fetches the page — Taqvim does not.</string>
   <string name="about_crash">Last crash</string>
   <string name="about_crash_summary">Kept on this device and added to a problem report</string>
   <string name="about_crash_clear">Clear</string>

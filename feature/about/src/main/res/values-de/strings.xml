@@ -110,7 +110,7 @@
   <string name="about_faq_prayer_method_q">Wie werden die Gebetszeiten berechnet?</string>
   <string name="about_faq_prayer_method_a">Taqvim berechnet sie auf Ihrem Gerät aus dem Sonnenstand an Ihrem Ort, mit der in den Einstellungen gewählten Methode. Mit der Teheraner Methode stimmen die Zeiten für iranische Städte auf etwa eine Minute genau mit den Tabellen des Instituts für Geophysik der Universität Teheran überein.</string>
   <string name="about_faq_no_location_q">Die Gebetszeiten melden, dass kein Ort festgelegt ist</string>
-  <string name="about_faq_no_location_a">Suchen Sie in den Ortseinstellungen nach einer Stadt, verwenden Sie den Gerätestandort oder geben Sie Koordinaten ein. Derselbe Ort wird für Gebetszeiten, Astronomie und den Kompass verwendet.</string>
+  <string name="about_faq_no_location_a">Suchen Sie in den Standorteinstellungen eine Stadt, wählen Sie einen Punkt auf der Karte oder geben Sie Koordinaten ein. Derselbe Ort gilt für Gebetszeiten, Astronomie und Kompass. Taqvim fragt Ihr Gerät nie, wo Sie sind.</string>
   <string name="about_faq_high_latitude_q">Warum fehlen Fadschr oder Ischa im Sommer fern vom Äquator?</string>
   <string name="about_faq_high_latitude_a">An manchen Orten sinkt die Sonne in Sommernächten nicht tief genug unter den Horizont, sodass diese Zeiten nicht aus dem Sonnenwinkel bestimmt werden können. Wählen Sie in den Einstellungen eine Regel für hohe Breiten, um eine geschätzte Zeit zu erhalten.</string>
   <string name="about_faq_athan_q">Warum wurde der Adhan nicht oder verspätet abgespielt?</string>
@@ -120,7 +120,7 @@
   <string name="about_faq_passphrase_q">Ich habe die Passphrase einer Sicherung vergessen</string>
   <string name="about_faq_passphrase_a">Eine geschützte Sicherung lässt sich nur mit ihrer Passphrase öffnen. Taqvim speichert keine Kopie davon, daher kann sie nicht wiederhergestellt werden. Erstellen Sie eine neue Sicherung mit einer Passphrase, die Sie sich merken können.</string>
   <string name="about_faq_privacy_q">Sendet Taqvim meine Daten irgendwohin?</string>
-  <string name="about_faq_privacy_a">Nein. Taqvim hat kein Konto und keinen Server: Ihre Termine, Orte und Einstellungen bleiben auf diesem Gerät. Die App nutzt das Internet, um die von Ihnen hinzugefügten Kalenderabonnements zu aktualisieren, und der Name Ihres Gerätestandorts kann vom Standortdienst von Android stammen. Ein Problembericht wird nur erstellt, wenn Sie ihn senden möchten, und Termintitel, Orte, Adressen und Links werden daraus entfernt.</string>
+  <string name="about_faq_privacy_a">Nein. Taqvim hat kein Konto, keinen Server und keine Internetberechtigung und kann daher nichts senden: Ihre Termine, Orte und Einstellungen bleiben auf diesem Gerät, und nichts wird automatisch in der Cloud gesichert. Ein Problembericht entsteht nur, wenn Sie ihn senden wollen, ohne Terminnamen, Orte, Adressen und Links. Das Öffnen einer zitierten Quelle übergibt den Link Ihrem Browser, der die Seite lädt — nicht Taqvim.</string>
   <string name="about_crash">Letzter Absturz</string>
   <string name="about_crash_summary">Bleibt auf diesem Gerät und wird der Problemmeldung beigefügt</string>
   <string name="about_crash_clear">Löschen</string>

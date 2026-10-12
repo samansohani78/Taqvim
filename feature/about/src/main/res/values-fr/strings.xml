@@ -113,7 +113,7 @@
   <string name="about_faq_prayer_method_q">Comment les heures de prière sont-elles calculées ?</string>
   <string name="about_faq_prayer_method_a">Taqvim les calcule sur votre appareil à partir de la position du Soleil à votre emplacement, avec la méthode choisie dans les paramètres. Avec la méthode de Téhéran, les horaires des villes iraniennes concordent à environ une minute près avec les tables de l\'Institut de géophysique de l\'Université de Téhéran.</string>
   <string name="about_faq_no_location_q">Les heures de prière indiquent qu\'aucun lieu n\'est défini</string>
-  <string name="about_faq_no_location_a">Dans les paramètres de localisation, recherchez une ville, utilisez la position de votre appareil ou saisissez des coordonnées. Le même lieu sert aux heures de prière, à l\'astronomie et à la boussole.</string>
+  <string name="about_faq_no_location_a">Dans les réglages de lieu, cherchez une ville, choisissez un point sur la carte ou saisissez des coordonnées. Le même lieu sert aux heures de prière, à l’astronomie et à la boussole. Taqvim ne demande jamais à votre appareil où vous êtes.</string>
   <string name="about_faq_high_latitude_q">Pourquoi Fajr ou Isha manquent-ils en été loin de l\'équateur ?</string>
   <string name="about_faq_high_latitude_a">À certains endroits, le Soleil ne descend pas assez sous l\'horizon pendant les nuits d\'été ; ces horaires ne peuvent alors pas être déterminés à partir de l\'angle du Soleil. Choisissez une règle pour hautes latitudes dans les paramètres pour obtenir une heure estimée.</string>
   <string name="about_faq_athan_q">Pourquoi l\'adhan n\'a-t-il pas sonné, ou avec du retard ?</string>
@@ -123,7 +123,7 @@
   <string name="about_faq_passphrase_q">J\'ai oublié la phrase secrète d\'une sauvegarde</string>
   <string name="about_faq_passphrase_a">Une sauvegarde protégée ne peut être ouverte qu\'avec sa phrase secrète. Taqvim n\'en garde aucune copie, elle ne peut donc pas être récupérée. Créez une nouvelle sauvegarde avec une phrase secrète dont vous vous souviendrez.</string>
   <string name="about_faq_privacy_q">Taqvim envoie-t-il mes données quelque part ?</string>
-  <string name="about_faq_privacy_a">Non. Taqvim n\'a ni compte ni serveur : vos événements, lieux et paramètres restent sur cet appareil. L\'application utilise Internet pour actualiser les abonnements de calendrier que vous ajoutez, et le nom de la position de votre appareil peut provenir du service de localisation d\'Android. Un rapport de problème n\'est créé que si vous choisissez de l\'envoyer, sans les titres d\'événements, lieux, adresses et liens.</string>
+  <string name="about_faq_privacy_a">Non. Taqvim n’a ni compte, ni serveur, ni autorisation Internet, il ne peut donc rien envoyer : vos événements, lieux et réglages restent sur cet appareil, et rien n’est sauvegardé automatiquement dans le cloud. Un rapport de problème n’est créé que si vous choisissez de l’envoyer, sans les titres d’événements, lieux, adresses ni liens. Ouvrir une source citée confie le lien à votre navigateur, qui charge la page — pas Taqvim.</string>
   <string name="about_crash">Dernier plantage</string>
   <string name="about_crash_summary">Conservé sur cet appareil et ajouté au rapport de problème</string>
   <string name="about_crash_clear">Effacer</string>

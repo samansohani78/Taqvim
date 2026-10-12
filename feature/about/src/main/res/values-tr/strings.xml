@@ -110,7 +110,7 @@
   <string name="about_faq_prayer_method_q">Namaz vakitleri nasıl hesaplanır?</string>
   <string name="about_faq_prayer_method_a">Taqvim bunları cihazınızda, bulunduğunuz yerdeki Güneş konumundan ve ayarlarda seçilen yöntemle hesaplar. Tahran yöntemiyle İran şehirlerinin vakitleri Tahran Üniversitesi Jeofizik Enstitüsü çizelgeleriyle yaklaşık bir dakika içinde uyuşur.</string>
   <string name="about_faq_no_location_q">Namaz vakitleri yer ayarlanmadığını söylüyor</string>
-  <string name="about_faq_no_location_a">Konum ayarlarında bir şehir arayın, cihaz konumunuzu kullanın veya koordinat girin. Aynı yer namaz vakitleri, astronomi ve pusula için kullanılır.</string>
+  <string name="about_faq_no_location_a">Konum ayarlarında bir şehir arayın, haritadan bir nokta seçin veya koordinat girin. Aynı yer namaz vakitleri, gök bilimi ve pusula için kullanılır. Taqvim cihazınıza nerede olduğunuzu hiç sormaz.</string>
   <string name="about_faq_high_latitude_q">Ekvatordan uzakta yazın neden İmsak veya Yatsı eksik?</string>
   <string name="about_faq_high_latitude_a">Bazı yerlerde yaz gecelerinde Güneş ufkun yeterince altına inmez, bu yüzden bu vakitler Güneş\'in açısından bulunamaz. Tahmini bir vakit almak için ayarlarda bir yüksek enlem kuralı seçin.</string>
   <string name="about_faq_athan_q">Ezan neden çalmadı ya da geç çaldı?</string>
@@ -120,7 +120,7 @@
   <string name="about_faq_passphrase_q">Bir yedeğin parolasını unuttum</string>
   <string name="about_faq_passphrase_a">Korumalı bir yedek yalnızca parolasıyla açılabilir. Taqvim parolanın kopyasını tutmaz, bu yüzden kurtarılamaz. Hatırlayabileceğiniz bir parolayla yeni bir yedek oluşturun.</string>
   <string name="about_faq_privacy_q">Taqvim verilerimi bir yere gönderiyor mu?</string>
-  <string name="about_faq_privacy_a">Hayır. Taqvim\'in hesabı ve sunucusu yoktur: etkinlikleriniz, yerleriniz ve ayarlarınız bu cihazda kalır. İnternet, eklediğiniz takvim aboneliklerini yenilemek için kullanılır ve cihaz konumunuzun adı Android konum hizmetinden gelebilir. Sorun raporu yalnızca siz göndermeyi seçtiğinizde, etkinlik başlıkları, yerler, adresler ve bağlantılar kaldırılarak oluşturulur.</string>
+  <string name="about_faq_privacy_a">Hayır. Taqvim’in hesabı, sunucusu ve internet izni yok; bu yüzden hiçbir şey gönderemez: etkinlikleriniz, yerleriniz ve ayarlarınız bu cihazda kalır ve hiçbir şey buluta kendiliğinden yedeklenmez. Sorun bildirimi yalnızca siz göndermek istediğinizde oluşturulur; etkinlik başlıkları, yerler, adresler ve bağlantılar çıkarılır. Alıntılanan bir kaynağı açmak bağlantıyı tarayıcınıza verir, sayfayı o yükler — Taqvim değil.</string>
   <string name="about_crash">Son çökme</string>
   <string name="about_crash_summary">Bu cihazda saklanır ve sorun raporuna eklenir</string>
   <string name="about_crash_clear">Temizle</string>

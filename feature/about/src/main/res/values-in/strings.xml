@@ -107,7 +107,7 @@
   <string name="about_faq_prayer_method_q">Bagaimana waktu salat dihitung?</string>
   <string name="about_faq_prayer_method_a">Taqvim menghitungnya di perangkat Anda dari posisi matahari di tempat Anda, dengan metode yang dipilih di setelan. Dengan metode Teheran, waktu untuk kota-kota Iran sesuai dengan jadwal Institut Geofisika Universitas Teheran dalam selisih sekitar satu menit.</string>
   <string name="about_faq_no_location_q">Waktu salat menyatakan bahwa tempat belum ditetapkan</string>
-  <string name="about_faq_no_location_a">Di setelan lokasi, cari kota, gunakan lokasi perangkat, atau masukkan koordinat. Tempat yang sama dipakai untuk waktu salat, astronomi, dan kompas.</string>
+  <string name="about_faq_no_location_a">Di pengaturan lokasi, cari kota, pilih titik pada peta, atau masukkan koordinat. Tempat yang sama dipakai untuk waktu salat, astronomi, dan kompas. Taqvim tidak pernah menanyakan posisi Anda kepada perangkat.</string>
   <string name="about_faq_high_latitude_q">Mengapa Subuh atau Isya tidak ada pada musim panas jauh dari khatulistiwa?</string>
   <string name="about_faq_high_latitude_a">Di beberapa tempat matahari tidak turun cukup jauh di bawah ufuk pada malam musim panas, sehingga waktu-waktu ini tidak dapat ditentukan dari sudut matahari. Pilih aturan lintang tinggi di setelan untuk mendapatkan perkiraan waktu.</string>
   <string name="about_faq_athan_q">Mengapa azan tidak berbunyi, atau berbunyi terlambat?</string>
@@ -117,7 +117,7 @@
   <string name="about_faq_passphrase_q">Saya lupa frasa sandi sebuah cadangan</string>
   <string name="about_faq_passphrase_a">Cadangan terlindungi hanya dapat dibuka dengan frasa sandinya. Taqvim tidak menyimpan salinannya, sehingga tidak dapat dipulihkan. Buat cadangan baru dengan frasa sandi yang dapat Anda ingat.</string>
   <string name="about_faq_privacy_q">Apakah Taqvim mengirim data saya ke suatu tempat?</string>
-  <string name="about_faq_privacy_a">Tidak. Taqvim tidak punya akun dan server: acara, tempat, dan setelan Anda tetap di perangkat ini. Internet dipakai untuk menyegarkan langganan kalender yang Anda tambahkan, dan nama lokasi perangkat Anda bisa berasal dari layanan lokasi Android. Laporan masalah hanya dibuat saat Anda memilih mengirimnya, dengan judul acara, tempat, alamat, dan tautan dihapus.</string>
+  <string name="about_faq_privacy_a">Tidak. Taqvim tidak punya akun, server, maupun izin internet, jadi tidak bisa mengirim apa pun: acara, tempat, dan pengaturan Anda tetap di perangkat ini, dan tidak ada yang dicadangkan ke cloud secara otomatis. Laporan masalah dibuat hanya ketika Anda memilih mengirimnya, tanpa judul acara, tempat, alamat, dan tautan. Membuka sumber kutipan menyerahkan tautan ke peramban Anda, dan peramban itulah yang memuat halaman — bukan Taqvim.</string>
   <string name="about_crash">Kerusakan terakhir</string>
   <string name="about_crash_summary">Disimpan di perangkat ini dan ditambahkan ke laporan masalah</string>
   <string name="about_crash_clear">Hapus</string>

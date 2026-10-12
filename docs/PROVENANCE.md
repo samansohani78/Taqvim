@@ -919,13 +919,14 @@ the Persian date grammar (REVIEW R13). This file keeps PLAN §6's meaning and gi
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13
 - **Reviewer attestation:** pending — no forbidden sources consulted.
 
-### T-603 — City catalog, collation and device location
+### T-603 — City catalog and collation
 - **Module / files:** `data/location/src/main/kotlin/ir/taqvim/data/location/` — `CityCatalog.kt`,
-  `CityTableParser.kt`, `DeviceLocator.kt`, `PlatformGeocoder.kt`
+  `CityTableParser.kt` (`DeviceLocator.kt` and `PlatformGeocoder.kt` deleted 2026-10-13, ADR-0055)
 - **Task:** T-603
 - **References used (public only):** Unicode Collation Algorithm and CLDR tailorings via the platform
-  `android.icu.text.Collator`; haversine great-circle distance; Android `LocationManager` and `Geocoder` public APIs;
-  search keys from T-203 `PersianText.searchKey` after NFD with U+0300–U+036F removed.
+  `android.icu.text.Collator`; haversine great-circle distance; Android `LocationManager` and `Geocoder` public APIs
+  (both now removed with the device-location path, ADR-0055); search keys from T-203 `PersianText.searchKey` after
+  NFD with U+0300–U+036F removed.
 - **Implementation note:** own work. Collation test expectations follow the published alphabets (German DIN 5007-1,
   Turkish, Persian, Arabic) and collation strength levels.
 - **Author / date:** Saman Sohani (via Claude Code), 2026-09-13

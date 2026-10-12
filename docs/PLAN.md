@@ -43,7 +43,7 @@ Allow-list: Apache-2.0, MIT, BSD-2/3, ISC, Unicode-DFS, CC0, EPL-2.0 (test-only)
 A fast, beautiful, privacy-first calendar for Persian-speaking users (Iran, Afghanistan, Tajikistan) and the wider region, that:
 1. Shows Persian, Islamic, Gregorian and Nepali dates with official holidays and observances from cited sources.
 2. Provides prayer times, athan, Qibla, and rich astronomy.
-3. Lets users create their own events and reminders **without** depending on Google Calendar, while still integrating with the device calendar.
+3. Lets users create their own events and reminders **without** depending on Google Calendar, and exchanges them with any calendar app as `.ics` files (~~device calendar integration~~ withdrawn 2026-10-12, ADR-0051).
 4. Works entirely offline; never sends data anywhere.
 5. Runs on phone, tablet, foldable, Wear OS; widgets are first-class.
 6. Is accessible (TalkBack, high contrast, large fonts) and fully RTL.
@@ -59,7 +59,7 @@ Non-goals: cloud sync servers, accounts, ads, analytics SDKs.
 | Area | Features |
 |---|---|
 | Calendar | Month pager; day selection; today button; secondary calendar in cells; week numbers; weekend/holiday coloring; year view with zoom & year picker; week timeline; day timeline; horizontal month list; agenda list; swipe-up/down actions; keyboard shortcuts; shift-work overlay; search in events |
-| Events | Official holidays/observances (Iran, Afghanistan, Nepal, international, ancient Iranian); device calendar events (read, open, create via intent); event source tooltip with citation; equinox countdown |
+| Events | Official holidays/observances (Iran, Afghanistan, Nepal, international, ancient Iranian); personal events with `.ics` import and export; event source tooltip with citation; equinox countdown (~~device calendar events~~ withdrawn 2026-10-12, ADR-0051) |
 | Times | Prayer times (10+ calculation methods, Hanafi/Standard Asr, high-latitude methods, midnight methods); athan alarms per prayer with gap, sound picker, vibration, DND bypass for Fajr; monthly printable report; sun arc view |
 | Astronomy | Sun/Moon/Earth views; zodiac (tropical & IAU); moon phase & names; moon-in-Scorpio; seasons/equinox times; eclipses; horoscope (houses, lots, ascendant); planetary hours; Chinese/animal year names; Tithi |
 | Tools | Date converter; day-distance with workdays; duration calculator; time zones; QR generator; compass with Qibla & true north; bubble level; world map (day/night, moon visibility, magnetic field, time zones, tectonic plates, crescent visibility) with 3D globe |
