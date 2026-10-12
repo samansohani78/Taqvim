@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">அதிகாரப்பூர்வ ஹிஜ்ரி தேதிகள்</string>
   <string name="settings_islamic_override_title">அதிகாரப்பூர்வ ஹிஜ்ரி தேதிகள்</string>
   <string name="settings_islamic_override_loading">ஹிஜ்ரி தேதி அமைப்புகள் ஏற்றப்படுகின்றன</string>
-  <string name="settings_islamic_override_intro">ஹிஜ்ரி (சந்திர) தேதிகள் பிறைத் தெரிவு விதியிலிருந்து கணக்கிடப்படுகின்றன, எனவே செயலி எல்லா ஆண்டுகளுக்கும் வேலை செய்யும். அதற்குப் பதிலாக அதிகாரப்பூர்வமாக அறிவிக்கப்பட்ட தேதிகளைப் பயன்படுத்தலாம்; பிற்கால மாதங்கள் கணக்கிடப்பட்டதாகவே இருக்கும்.</string>
+  <string name="settings_islamic_override_intro">ஹிஜ்ரி (சந்திர) தேதிகள் நீங்கள் தேர்ந்தெடுக்கும் முறையில் கணக்கிடப்படுகின்றன, எனவே செயலி எல்லா ஆண்டுகளுக்கும் வேலை செய்யும். அதற்குப் பதிலாக அதிகாரப்பூர்வமாக அறிவிக்கப்பட்ட தேதிகளைப் பயன்படுத்தலாம்; பிற்கால மாதங்கள் கணக்கிடப்பட்டதாகவே இருக்கும்.</string>
   <string name="settings_islamic_override_status_computed">பயன்பாட்டில்: கணக்கிடப்பட்ட தேதிகள்</string>
   <string name="settings_islamic_override_status_official">பயன்பாட்டில்: ஈரானின் அதிகாரப்பூர்வ தேதிகள், %1$s முதல் %2$s வரை</string>
   <string name="settings_islamic_override_status_imported">பயன்பாட்டில்: இறக்குமதி செய்த தேதிகள், %1$s முதல் %2$s வரை</string>

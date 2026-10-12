@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Offizielle Hidschri-Daten</string>
   <string name="settings_islamic_override_title">Offizielle Hidschri-Daten</string>
   <string name="settings_islamic_override_loading">Einstellungen der Hidschri-Daten werden geladen</string>
-  <string name="settings_islamic_override_intro">Hidschri-Daten (Mondkalender) werden aus der Regel zur Sichelsichtbarkeit berechnet, sodass die App für jedes Jahr funktioniert. Sie können stattdessen offiziell verkündete Daten anwenden; spätere Monate bleiben berechnet.</string>
+  <string name="settings_islamic_override_intro">Hidschri-Daten (Mondkalender) werden mit der von Ihnen gewählten Methode berechnet, sodass die App für jedes Jahr funktioniert. Sie können stattdessen offiziell verkündete Daten anwenden; spätere Monate bleiben berechnet.</string>
   <string name="settings_islamic_override_status_computed">In Verwendung: berechnete Daten</string>
   <string name="settings_islamic_override_status_official">In Verwendung: offizielle Daten Irans, %1$s bis %2$s</string>
   <string name="settings_islamic_override_status_imported">In Verwendung: importierte Daten, %1$s bis %2$s</string>

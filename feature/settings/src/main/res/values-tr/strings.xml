@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Resmî Hicri tarihler</string>
   <string name="settings_islamic_override_title">Resmî Hicri tarihler</string>
   <string name="settings_islamic_override_loading">Hicri tarih ayarları yükleniyor</string>
-  <string name="settings_islamic_override_intro">Hicri (kameri) tarihler hilal görünürlüğü kuralıyla hesaplanır, bu yüzden uygulama her yıl için çalışır. Bunun yerine resmî olarak ilan edilen tarihleri uygulayabilirsiniz; sonraki aylar hesaplanmış kalır.</string>
+  <string name="settings_islamic_override_intro">Hicri (kameri) tarihler seçtiğiniz yöntemle hesaplanır, bu yüzden uygulama her yıl için çalışır. Bunun yerine resmî olarak ilan edilen tarihleri uygulayabilirsiniz; sonraki aylar hesaplanmış kalır.</string>
   <string name="settings_islamic_override_status_computed">Kullanımda: hesaplanan tarihler</string>
   <string name="settings_islamic_override_status_official">Kullanımda: İran resmî tarihleri, %1$s – %2$s</string>
   <string name="settings_islamic_override_status_imported">Kullanımda: içe aktarılan tarihler, %1$s – %2$s</string>

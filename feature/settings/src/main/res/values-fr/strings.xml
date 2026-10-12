@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Dates hégiriennes officielles</string>
   <string name="settings_islamic_override_title">Dates hégiriennes officielles</string>
   <string name="settings_islamic_override_loading">Chargement des paramètres des dates hégiriennes</string>
-  <string name="settings_islamic_override_intro">Les dates hégiriennes (lunaires) sont calculées d\'après la règle de visibilité du croissant, pour que l\'application fonctionne chaque année. Vous pouvez appliquer à la place les dates annoncées officiellement ; les mois suivants restent calculés.</string>
+  <string name="settings_islamic_override_intro">Les dates hégiriennes (lunaires) sont calculées selon la méthode que vous choisissez, pour que l\'application fonctionne chaque année. Vous pouvez appliquer à la place les dates annoncées officiellement ; les mois suivants restent calculés.</string>
   <string name="settings_islamic_override_status_computed">Utilisées : dates calculées</string>
   <string name="settings_islamic_override_status_official">Utilisées : dates officielles de l\'Iran, de %1$s à %2$s</string>
   <string name="settings_islamic_override_status_imported">Utilisées : dates importées, de %1$s à %2$s</string>

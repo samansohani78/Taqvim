@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">আনুষ্ঠানিক হিজরি তারিখ</string>
   <string name="settings_islamic_override_title">আনুষ্ঠানিক হিজরি তারিখ</string>
   <string name="settings_islamic_override_loading">হিজরি তারিখের সেটিংস লোড হচ্ছে</string>
-  <string name="settings_islamic_override_intro">হিজরি (চান্দ্র) তারিখ নতুন চাঁদের দৃশ্যমানতার নিয়ম থেকে গণনা করা হয়, তাই অ্যাপটি প্রতি বছরের জন্য কাজ করে। এর বদলে আপনি আনুষ্ঠানিকভাবে ঘোষিত তারিখ প্রয়োগ করতে পারেন; পরের মাসগুলো গণনাকৃত থাকে।</string>
+  <string name="settings_islamic_override_intro">হিজরি (চান্দ্র) তারিখ আপনার বেছে নেওয়া পদ্ধতিতে গণনা করা হয়, তাই অ্যাপটি প্রতি বছরের জন্য কাজ করে। এর বদলে আপনি আনুষ্ঠানিকভাবে ঘোষিত তারিখ প্রয়োগ করতে পারেন; পরের মাসগুলো গণনাকৃত থাকে।</string>
   <string name="settings_islamic_override_status_computed">ব্যবহৃত: গণনাকৃত তারিখ</string>
   <string name="settings_islamic_override_status_official">ব্যবহৃত: ইরানের আনুষ্ঠানিক তারিখ, %1$s থেকে %2$s</string>
   <string name="settings_islamic_override_status_imported">ব্যবহৃত: আমদানি করা তারিখ, %1$s থেকে %2$s</string>

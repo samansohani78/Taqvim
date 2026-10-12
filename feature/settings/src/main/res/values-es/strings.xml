@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Fechas oficiales de la hégira</string>
   <string name="settings_islamic_override_title">Fechas oficiales de la hégira</string>
   <string name="settings_islamic_override_loading">Cargando los ajustes de fechas de la hégira</string>
-  <string name="settings_islamic_override_intro">Las fechas de la hégira (lunares) se calculan con la regla de visibilidad del creciente, así que la aplicación funciona todos los años. Puedes aplicar en su lugar las fechas anunciadas oficialmente; los meses posteriores siguen siendo calculados.</string>
+  <string name="settings_islamic_override_intro">Las fechas de la hégira (lunares) se calculan con el método que elijas, así que la aplicación funciona todos los años. Puedes aplicar en su lugar las fechas anunciadas oficialmente; los meses posteriores siguen siendo calculados.</string>
   <string name="settings_islamic_override_status_computed">En uso: fechas calculadas</string>
   <string name="settings_islamic_override_status_official">En uso: fechas oficiales de Irán, de %1$s a %2$s</string>
   <string name="settings_islamic_override_status_imported">En uso: fechas importadas, de %1$s a %2$s</string>

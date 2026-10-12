@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">سرکاری ہجری تاریخیں</string>
   <string name="settings_islamic_override_title">سرکاری ہجری تاریخیں</string>
   <string name="settings_islamic_override_loading">ہجری تاریخ کی ترتیبات لوڈ ہو رہی ہیں</string>
-  <string name="settings_islamic_override_intro">ہجری (قمری) تاریخیں رویتِ ہلال کے اصول سے حساب کی جاتی ہیں، اس لیے ایپ ہر سال کے لیے کام کرتی ہے۔ آپ اس کی جگہ سرکاری طور پر اعلان کردہ تاریخیں لاگو کر سکتے ہیں؛ بعد کے مہینے حساب شدہ رہتے ہیں۔</string>
+  <string name="settings_islamic_override_intro">ہجری (قمری) تاریخیں آپ کے منتخب کردہ طریقے سے حساب کی جاتی ہیں، اس لیے ایپ ہر سال کے لیے کام کرتی ہے۔ آپ اس کی جگہ سرکاری طور پر اعلان کردہ تاریخیں لاگو کر سکتے ہیں؛ بعد کے مہینے حساب شدہ رہتے ہیں۔</string>
   <string name="settings_islamic_override_status_computed">زیرِ استعمال: حساب شدہ تاریخیں</string>
   <string name="settings_islamic_override_status_official">زیرِ استعمال: ایران کی سرکاری تاریخیں، %1$s سے %2$s تک</string>
   <string name="settings_islamic_override_status_imported">زیرِ استعمال: درآمد شدہ تاریخیں، %1$s سے %2$s تک</string>

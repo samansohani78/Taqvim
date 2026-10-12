@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">بەروارە فەرمییەکانی کۆچی</string>
   <string name="settings_islamic_override_title">بەروارە فەرمییەکانی کۆچی</string>
   <string name="settings_islamic_override_loading">ڕێکخستنەکانی بەرواری کۆچی بار دەکرێن</string>
-  <string name="settings_islamic_override_intro">بەروارە کۆچییەکان (مانگی) بە یاسای بینینی مانگی نوێ دەژمێردرێن، بۆیە ئەپەکە بۆ هەموو ساڵێک کار دەکات. دەتوانیت لە جیاتی ئەوە بەروارە ڕاگەیەندراوە فەرمییەکان جێبەجێ بکەیت؛ مانگەکانی دواتر ژمێردراو دەمێننەوە.</string>
+  <string name="settings_islamic_override_intro">بەروارە کۆچییەکان (مانگی) بەو شێوازەی کە هەڵیدەبژێریت دەژمێردرێن، بۆیە ئەپەکە بۆ هەموو ساڵێک کار دەکات. دەتوانیت لە جیاتی ئەوە بەروارە ڕاگەیەندراوە فەرمییەکان جێبەجێ بکەیت؛ مانگەکانی دواتر ژمێردراو دەمێننەوە.</string>
   <string name="settings_islamic_override_status_computed">لە بەکارهێناندا: بەروارە ژمێردراوەکان</string>
   <string name="settings_islamic_override_status_official">لە بەکارهێناندا: بەروارە فەرمییەکانی ئێران، %1$s تا %2$s</string>
   <string name="settings_islamic_override_status_imported">لە بەکارهێناندا: بەروارە هاوردەکراوەکان، %1$s تا %2$s</string>

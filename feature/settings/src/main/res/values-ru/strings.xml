@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Официальные даты хиджры</string>
   <string name="settings_islamic_override_title">Официальные даты хиджры</string>
   <string name="settings_islamic_override_loading">Загрузка настроек дат хиджры</string>
-  <string name="settings_islamic_override_intro">Даты хиджры (лунные) рассчитываются по правилу видимости полумесяца, поэтому приложение работает для любого года. Вместо этого можно применить официально объявленные даты; последующие месяцы остаются расчётными.</string>
+  <string name="settings_islamic_override_intro">Даты хиджры (лунные) рассчитываются выбранным вами методом, поэтому приложение работает для любого года. Вместо этого можно применить официально объявленные даты; последующие месяцы остаются расчётными.</string>
   <string name="settings_islamic_override_status_computed">Используются: расчётные даты</string>
   <string name="settings_islamic_override_status_official">Используются: официальные даты Ирана, с %1$s по %2$s</string>
   <string name="settings_islamic_override_status_imported">Используются: импортированные даты, с %1$s по %2$s</string>

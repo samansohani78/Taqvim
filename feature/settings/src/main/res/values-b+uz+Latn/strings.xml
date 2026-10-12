@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Rasmiy hijriy sanalar</string>
   <string name="settings_islamic_override_title">Rasmiy hijriy sanalar</string>
   <string name="settings_islamic_override_loading">Hijriy sana sozlamalari yuklanmoqda</string>
-  <string name="settings_islamic_override_intro">Hijriy (qamariy) sanalar hilol koʻrinishi qoidasi boʻyicha hisoblanadi, shuning uchun ilova har yil uchun ishlaydi. Buning oʻrniga rasman eʼlon qilingan sanalarni qoʻllashingiz mumkin; keyingi oylar hisoblangan holda qoladi.</string>
+  <string name="settings_islamic_override_intro">Hijriy (qamariy) sanalar siz tanlagan usul boʻyicha hisoblanadi, shuning uchun ilova har yil uchun ishlaydi. Buning oʻrniga rasman eʼlon qilingan sanalarni qoʻllashingiz mumkin; keyingi oylar hisoblangan holda qoladi.</string>
   <string name="settings_islamic_override_status_computed">Foydalanilmoqda: hisoblangan sanalar</string>
   <string name="settings_islamic_override_status_official">Foydalanilmoqda: Eron rasmiy sanalari, %1$s – %2$s</string>
   <string name="settings_islamic_override_status_imported">Foydalanilmoqda: import qilingan sanalar, %1$s – %2$s</string>

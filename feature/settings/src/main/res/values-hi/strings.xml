@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">आधिकारिक हिजरी तारीखें</string>
   <string name="settings_islamic_override_title">आधिकारिक हिजरी तारीखें</string>
   <string name="settings_islamic_override_loading">हिजरी तारीख सेटिंग लोड हो रही हैं</string>
-  <string name="settings_islamic_override_intro">हिजरी (चंद्र) तारीखें हिलाल दृश्यता नियम से गणना की जाती हैं, इसलिए ऐप हर वर्ष के लिए काम करता है। इसकी जगह आप आधिकारिक रूप से घोषित तारीखें लागू कर सकते हैं; बाद के महीने गणना वाले रहते हैं।</string>
+  <string name="settings_islamic_override_intro">हिजरी (चंद्र) तारीखें आपके चुने हुए तरीके से गणना की जाती हैं, इसलिए ऐप हर वर्ष के लिए काम करता है। इसकी जगह आप आधिकारिक रूप से घोषित तारीखें लागू कर सकते हैं; बाद के महीने गणना वाले रहते हैं।</string>
   <string name="settings_islamic_override_status_computed">उपयोग में: गणना की गई तारीखें</string>
   <string name="settings_islamic_override_status_official">उपयोग में: ईरान की आधिकारिक तारीखें, %1$s से %2$s</string>
   <string name="settings_islamic_override_status_imported">उपयोग में: आयात की गई तारीखें, %1$s से %2$s</string>

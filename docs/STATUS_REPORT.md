@@ -1101,8 +1101,9 @@ it is noise. It has not run on hardware yet.
   new.
 - **`settings_islamic_override_intro` was factually wrong in all 24 languages.** It said Hijri dates are computed
   from the crescent visibility rule; only `CALCULATED_OBSERVATIONAL` works that way and it is not the default.
-  English and Persian are corrected; **22 languages still carry the wrong sentence** and need a translation
-  refresh.
+  English and Persian were corrected first; the remaining **22 languages were refreshed from the corrected English
+  on 2026-10-12**, before v1.3.0. Only the first clause changed in each — the sentence after it is still the
+  original translator's — and the replacements are machine translations in files that still say `MT: needs review`.
 - **Persian event-settings wording reviewed in full and left as it is** — it already reads as occasions rather
   than as the names of internal categories.
 - **Azerbaijani `settings_category_cultural` flagged, not changed.** `mədəni münasibətlər` is the ordinary

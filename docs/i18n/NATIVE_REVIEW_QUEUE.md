@@ -40,6 +40,8 @@ visibility rule". Only one of the five Islamic calculations the app offers works
 `UMM_AL_QURA`. The Persian wording was worse than the English — `رؤیت هلال` reads as an actual sighting.
 
 English and Persian now say the dates are calculated with the method you choose, which is true for all five and
-is what the setting is about. **The other 22 languages still carry the inaccurate sentence** and need a
-translation refresh from the corrected English; it is a factual correction, not a style one, so it should not wait
-for the rest of a review pass.
+is what the setting is about. **All 22 remaining languages were refreshed from the corrected English on
+2026-10-12**, before v1.3.0: only the first clause changed in each, and the sentence that follows it is still the
+wording the original translator chose. The replacements are machine translations like the files that hold them —
+they are a factual correction, not a claim of review, and every one of those files still carries its
+`MT: needs review` header.

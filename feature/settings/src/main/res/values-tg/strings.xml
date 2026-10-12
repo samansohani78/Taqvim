@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Санаҳои расмии ҳиҷрӣ</string>
   <string name="settings_islamic_override_title">Санаҳои расмии ҳиҷрӣ</string>
   <string name="settings_islamic_override_loading">Танзимоти санаи ҳиҷрӣ бор шуда истодааст</string>
-  <string name="settings_islamic_override_intro">Санаҳои ҳиҷрии қамарӣ аз рӯи қоидаи намоёнии ҳилол ҳисоб карда мешаванд, бинобар ин барнома барои ҳар сол кор мекунад. Ба ҷояш метавонед санаҳои расман эълоншударо татбиқ кунед; моҳҳои баъдӣ ҳисобшуда мемонанд.</string>
+  <string name="settings_islamic_override_intro">Санаҳои ҳиҷрии қамарӣ бо усуле, ки шумо интихоб мекунед, ҳисоб карда мешаванд, бинобар ин барнома барои ҳар сол кор мекунад. Ба ҷояш метавонед санаҳои расман эълоншударо татбиқ кунед; моҳҳои баъдӣ ҳисобшуда мемонанд.</string>
   <string name="settings_islamic_override_status_computed">Дар истифода: санаҳои ҳисобшуда</string>
   <string name="settings_islamic_override_status_official">Дар истифода: санаҳои расмии Эрон, %1$s то %2$s</string>
   <string name="settings_islamic_override_status_imported">Дар истифода: санаҳои воридшуда, %1$s то %2$s</string>

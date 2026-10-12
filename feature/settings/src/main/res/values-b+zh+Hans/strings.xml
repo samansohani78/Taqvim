@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">官方希吉来日期</string>
   <string name="settings_islamic_override_title">官方希吉来日期</string>
   <string name="settings_islamic_override_loading">正在加载希吉来日期设置</string>
-  <string name="settings_islamic_override_intro">希吉来（太阴）日期按新月可见性规则计算，因此应用适用于任何年份。你也可以改用官方公布的日期；之后的月份仍为计算所得。</string>
+  <string name="settings_islamic_override_intro">希吉来（太阴）日期按你选择的方法计算，因此应用适用于任何年份。你也可以改用官方公布的日期；之后的月份仍为计算所得。</string>
   <string name="settings_islamic_override_status_computed">使用中：计算所得的日期</string>
   <string name="settings_islamic_override_status_official">使用中：伊朗官方日期，%1$s 至 %2$s</string>
   <string name="settings_islamic_override_status_imported">使用中：导入的日期，%1$s 至 %2$s</string>

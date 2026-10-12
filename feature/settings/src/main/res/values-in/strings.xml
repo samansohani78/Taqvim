@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Tanggal Hijriah resmi</string>
   <string name="settings_islamic_override_title">Tanggal Hijriah resmi</string>
   <string name="settings_islamic_override_loading">Memuat setelan tanggal Hijriah</string>
-  <string name="settings_islamic_override_intro">Tanggal Hijriah (kamariah) dihitung dengan aturan visibilitas hilal, sehingga aplikasi berfungsi untuk setiap tahun. Anda dapat menerapkan tanggal yang diumumkan resmi sebagai gantinya; bulan-bulan berikutnya tetap dihitung.</string>
+  <string name="settings_islamic_override_intro">Tanggal Hijriah (kamariah) dihitung dengan metode yang Anda pilih, sehingga aplikasi berfungsi untuk setiap tahun. Anda dapat menerapkan tanggal yang diumumkan resmi sebagai gantinya; bulan-bulan berikutnya tetap dihitung.</string>
   <string name="settings_islamic_override_status_computed">Dipakai: tanggal terhitung</string>
   <string name="settings_islamic_override_status_official">Dipakai: tanggal resmi Iran, %1$s sampai %2$s</string>
   <string name="settings_islamic_override_status_imported">Dipakai: tanggal impor, %1$s sampai %2$s</string>

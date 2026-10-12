@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">公式のヒジュラ暦日付</string>
   <string name="settings_islamic_override_title">公式のヒジュラ暦日付</string>
   <string name="settings_islamic_override_loading">ヒジュラ暦の日付設定を読み込み中</string>
-  <string name="settings_islamic_override_intro">ヒジュラ（太陰）暦の日付は新月の可視性の規則から計算するため、アプリはどの年でも動作します。代わりに公式に発表された日付を適用することもできます。その後の月は計算値のままです。</string>
+  <string name="settings_islamic_override_intro">ヒジュラ（太陰）暦の日付は選択した方法で計算されるため、アプリはどの年でも動作します。代わりに公式に発表された日付を適用することもできます。その後の月は計算値のままです。</string>
   <string name="settings_islamic_override_status_computed">使用中：計算による日付</string>
   <string name="settings_islamic_override_status_official">使用中：イランの公式日付、%1$s 〜 %2$s</string>
   <string name="settings_islamic_override_status_imported">使用中：読み込んだ日付、%1$s 〜 %2$s</string>

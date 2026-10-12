@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Tarikh Hijrah rasmi</string>
   <string name="settings_islamic_override_title">Tarikh Hijrah rasmi</string>
   <string name="settings_islamic_override_loading">Memuatkan tetapan tarikh Hijrah</string>
-  <string name="settings_islamic_override_intro">Tarikh Hijrah (qamariah) dikira daripada peraturan kebolehlihatan anak bulan, jadi apl berfungsi bagi setiap tahun. Anda boleh menggunakan tarikh yang diumumkan secara rasmi sebagai gantinya; bulan kemudian kekal dikira.</string>
+  <string name="settings_islamic_override_intro">Tarikh Hijrah (qamariah) dikira dengan kaedah yang anda pilih, jadi apl berfungsi bagi setiap tahun. Anda boleh menggunakan tarikh yang diumumkan secara rasmi sebagai gantinya; bulan kemudian kekal dikira.</string>
   <string name="settings_islamic_override_status_computed">Digunakan: tarikh dikira</string>
   <string name="settings_islamic_override_status_official">Digunakan: tarikh rasmi Iran, %1$s hingga %2$s</string>
   <string name="settings_islamic_override_status_imported">Digunakan: tarikh diimport, %1$s hingga %2$s</string>

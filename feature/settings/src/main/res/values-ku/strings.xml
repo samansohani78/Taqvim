@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">Dîrokên koçî yên fermî</string>
   <string name="settings_islamic_override_title">Dîrokên koçî yên fermî</string>
   <string name="settings_islamic_override_loading">Mîhengên dîroka koçî tên barkirin</string>
-  <string name="settings_islamic_override_intro">Dîrokên koçî (heyvî) bi qaîdeya dîtina heyva nû tên hesabkirin, ji ber vê yekê sepan ji bo her salê dixebite. Tu dikarî li şûna wê dîrokên bi fermî ragihandî bisepînî; mehên paşê hesabkirî dimînin.</string>
+  <string name="settings_islamic_override_intro">Dîrokên koçî (heyvî) bi rêbaza ku tu hildibijêrî tên hesabkirin, ji ber vê yekê sepan ji bo her salê dixebite. Tu dikarî li şûna wê dîrokên bi fermî ragihandî bisepînî; mehên paşê hesabkirî dimînin.</string>
   <string name="settings_islamic_override_status_computed">Di karanînê de: dîrokên hesabkirî</string>
   <string name="settings_islamic_override_status_official">Di karanînê de: dîrokên fermî yên Îranê, %1$s heta %2$s</string>
   <string name="settings_islamic_override_status_imported">Di karanînê de: dîrokên anîn, %1$s heta %2$s</string>

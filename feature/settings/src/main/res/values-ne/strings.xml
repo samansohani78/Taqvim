@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">आधिकारिक हिजरी मितिहरू</string>
   <string name="settings_islamic_override_title">आधिकारिक हिजरी मितिहरू</string>
   <string name="settings_islamic_override_loading">हिजरी मिति सेटिङ लोड हुँदैछ</string>
-  <string name="settings_islamic_override_intro">हिजरी (चन्द्र) मिति नयाँ चन्द्र दृश्यता नियमबाट गणना गरिन्छन्, त्यसैले एप हरेक वर्षका लागि काम गर्छ। त्यसको सट्टा तपाईं आधिकारिक रूपमा घोषित मिति लागू गर्न सक्नुहुन्छ; पछिका महिना गणना गरिएकै रहन्छन्।</string>
+  <string name="settings_islamic_override_intro">हिजरी (चन्द्र) मिति तपाईंले रोजेको विधिबाट गणना गरिन्छन्, त्यसैले एप हरेक वर्षका लागि काम गर्छ। त्यसको सट्टा तपाईं आधिकारिक रूपमा घोषित मिति लागू गर्न सक्नुहुन्छ; पछिका महिना गणना गरिएकै रहन्छन्।</string>
   <string name="settings_islamic_override_status_computed">प्रयोगमा: गणना गरिएका मिति</string>
   <string name="settings_islamic_override_status_official">प्रयोगमा: इरानका आधिकारिक मिति, %1$s देखि %2$s</string>
   <string name="settings_islamic_override_status_imported">प्रयोगमा: आयात गरिएका मिति, %1$s देखि %2$s</string>

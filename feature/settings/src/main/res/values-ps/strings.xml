@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">رسمي هجري نېټې</string>
   <string name="settings_islamic_override_title">رسمي هجري نېټې</string>
   <string name="settings_islamic_override_loading">د هجري نېټې تنظیمات پورته کېږي</string>
-  <string name="settings_islamic_override_intro">هجري (سپوږمیزې) نېټې د نوې میاشتې د لیدو له قاعدې محاسبه کېږي، نو اپ د هر کال لپاره کار کوي. تاسو کولی شئ پر ځای یې رسمي اعلان شوې نېټې پلي کړئ؛ وروسته میاشتې محاسبه شوې پاتې کېږي.</string>
+  <string name="settings_islamic_override_intro">هجري (سپوږمیزې) نېټې په هغه طریقه چې تاسو یې غوره کوئ محاسبه کېږي، نو اپ د هر کال لپاره کار کوي. تاسو کولی شئ پر ځای یې رسمي اعلان شوې نېټې پلي کړئ؛ وروسته میاشتې محاسبه شوې پاتې کېږي.</string>
   <string name="settings_islamic_override_status_computed">په کار کې: محاسبه شوې نېټې</string>
   <string name="settings_islamic_override_status_official">په کار کې: د ایران رسمي نېټې، له %1$s تر %2$s</string>
   <string name="settings_islamic_override_status_imported">په کار کې: وارد شوې نېټې، له %1$s تر %2$s</string>

@@ -245,7 +245,7 @@
   <string name="settings_item_islamic_override">التواريخ الهجرية الرسمية</string>
   <string name="settings_islamic_override_title">التواريخ الهجرية الرسمية</string>
   <string name="settings_islamic_override_loading">جارٍ تحميل إعدادات التاريخ الهجري</string>
-  <string name="settings_islamic_override_intro">تُحسب التواريخ الهجرية (القمرية) بقاعدة رؤية الهلال، فيعمل التطبيق لكل سنة. يمكنك بدلًا من ذلك تطبيق التواريخ المعلنة رسميًا؛ وتبقى الأشهر اللاحقة محسوبة.</string>
+  <string name="settings_islamic_override_intro">تُحسب التواريخ الهجرية (القمرية) بالطريقة التي تختارها، فيعمل التطبيق لكل سنة. يمكنك بدلًا من ذلك تطبيق التواريخ المعلنة رسميًا؛ وتبقى الأشهر اللاحقة محسوبة.</string>
   <string name="settings_islamic_override_status_computed">المستخدم: تواريخ محسوبة</string>
   <string name="settings_islamic_override_status_official">المستخدم: التواريخ الرسمية لإيران، من %1$s إلى %2$s</string>
   <string name="settings_islamic_override_status_imported">المستخدم: تواريخ مستوردة، من %1$s إلى %2$s</string>
