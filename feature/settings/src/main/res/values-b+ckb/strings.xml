@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">هەر مانگێک لە فایلەکەدا پێویستی بە سەرچاوەکەی هەیە.</string>
   <string name="settings_source_jewish">بۆنە جولەکەکان</string>
   <string name="settings_source_christian">جەژنە مەسیحییەکان</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">پەڕگەکانی ڕۆژژمێر</string>
+  <string name="settings_keywords_ics">ics|icalendar|هاوردن|دەرکردن|پەڕگە|پاڵپشت</string>
+  <string name="settings_ics_files_title">پەڕگەکانی ڕۆژژمێر</string>
+  <string name="settings_ics_files_loading">پەڕگەکانی ڕۆژژمێر بار دەکرێن</string>
+  <string name="settings_ics_files_intro">ڕووداوەکانی خۆت بە پەڕگەی iCalendar ⁦(.ics)⁩ لە نێوان تەقویم و ئەپێکی ڕۆژژمێری تر بگوازەوە. تەقویم تەنها ئەو پەڕگەیە دەخوێنێتەوە و دەینووسێت کە تۆ هەڵیدەبژێریت و بۆ هیچ شوێنێک نایەنێرێت.</string>
+  <string name="settings_ics_files_import_heading">هاوردن</string>
+  <string name="settings_ics_files_import_detail">ڕووداوەکانی پەڕگە بۆ ڕووداوەکانی خۆت زیاد دەکرێن. بۆنە فەرمییەکان نەگۆڕ دەمێننەوە.</string>
+  <string name="settings_ics_files_replace">نوێکردنەوەی ئەو ڕووداوانەی پێشتر لێرەن</string>
+  <string name="settings_ics_files_replace_detail">کاتێک کوژاوەیە، ئەو ڕووداوەی پەڕگە دووبارەی دەکاتەوە وەک خۆی دەمێنێتەوە.</string>
+  <string name="settings_ics_files_import">پەڕگەیەک بۆ هاوردن هەڵبژێرە</string>
+  <string name="settings_ics_files_export_heading">دەرکردن</string>
+  <string name="settings_ics_files_export_detail">ڕووداوەکانی خۆت لە پەڕگەیەکدا دەنووسێت. بۆنە فەرمییەکان نانووسرێن. ئەو ڕووداوانەی دەنووسرێن: %1$d</string>
+  <string name="settings_ics_files_export">هەڵبژێرە لە کوێ پاشەکەوت بکرێت</string>
+  <string name="settings_ics_files_imported">هاوردرا. زیادکراو: %1$d · نوێکراوە: %2$d · بێ گۆڕان: %3$d</string>
+  <string name="settings_ics_files_exported">دەرکرا. ڕووداوە نووسراوەکان: %1$d</string>
+  <string name="settings_ics_files_problems">ئەو بڕگانەی بە تەواوی نەخوێنرانەوە: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">ئەم پەڕگەیە ڕۆژژمێرێک نییە کە تەقویم بتوانێت بیخوێنێتەوە. هیچ نەگۆڕا.</string>
+  <string name="settings_ics_files_error_too_large">ئەم پەڕگەیە بۆ خوێندنەوە زۆر گەورەیە.</string>
+  <string name="settings_ics_files_error_unreadable">ئەم پەڕگەیە نەکرایەوە. دووبارە هەڵیبژێرە.</string>
+  <string name="settings_ics_files_error_unwritable">ئەم پەڕگەیە نەنووسرا. شوێنێکی تر هەڵبژێرە.</string>
+  <string name="settings_ics_files_error_failed">ئەمە سەرکەوتوو نەبوو. دووبارە هەوڵ بدە.</string>
 </resources>

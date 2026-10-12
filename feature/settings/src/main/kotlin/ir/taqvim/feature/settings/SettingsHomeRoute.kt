@@ -21,12 +21,13 @@ import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 /**
- * Koin bindings of the settings home and the official Islamic dates page; `:app` binds [GeneralSettingsStore] and
- * [IslamicOverrideStore].
+ * Koin bindings of the settings home, the calendar files page and the official Islamic dates page; `:app` binds
+ * [GeneralSettingsStore], [IcsFilesStore] and [IslamicOverrideStore].
  */
 val generalSettingsFeatureModule: Module =
     module {
         viewModel { params -> SettingsHomeViewModel(get(), params.getOrNull()) }
+        viewModel { IcsFilesViewModel(get()) }
         viewModel { IslamicOverrideViewModel(get()) }
     }
 
@@ -61,6 +62,52 @@ fun SettingsHomeRoute(
             )
         }
     SettingsHomeScreen(state, actions, modifier)
+}
+
+/**
+ * Types the system file picker offers for an iCalendar file.
+ *
+ * `text/calendar` is the registered type (RFC 5545 §8.1), but plenty of files arrive as `text/plain` or with no
+ * type at all, and a picker that hides them would look broken to the user holding the file.
+ */
+private val ICS_FILE_TYPES = arrayOf("text/calendar", "text/plain", "application/octet-stream")
+
+/** Name offered for a new export file; the user can change it in the picker. */
+private const val ICS_EXPORT_NAME = "taqvim.ics"
+
+/**
+ * The calendar files page (T-1003) bound to its [IcsFilesViewModel]; both files come from the system picker, so
+ * Taqvim touches one document the user chose and needs no storage permission for it (ADR-0054).
+ */
+@Composable
+fun IcsFilesRoute(
+    modifier: Modifier = Modifier,
+    viewModel: IcsFilesViewModel = koinViewModel(),
+) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val importPicker =
+        rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri?.let { viewModel.onImport(it.toString()) }
+        }
+    val exportPicker =
+        rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("text/calendar")) { uri ->
+            uri?.let { viewModel.onExport(it.toString()) }
+        }
+    val actions =
+        remember(viewModel) {
+            IcsFilesActions(
+                onDuplicatesChanged = viewModel::onDuplicatesChanged,
+                onImport = viewModel::onImport,
+                onExport = viewModel::onExport,
+            )
+        }
+    IcsFilesScreen(
+        state = state,
+        actions = actions,
+        onPickImport = { importPicker.launch(ICS_FILE_TYPES) },
+        onPickExport = { exportPicker.launch(ICS_EXPORT_NAME) },
+        modifier = modifier,
+    )
 }
 
 /** Types the system file picker offers for an override file. */

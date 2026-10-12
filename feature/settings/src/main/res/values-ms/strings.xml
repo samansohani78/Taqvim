@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Setiap bulan dalam fail memerlukan sumbernya.</string>
   <string name="settings_source_jewish">Perayaan Yahudi</string>
   <string name="settings_source_christian">Perayaan Kristian</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Fail kalendar</string>
+  <string name="settings_keywords_ics">ics|icalendar|import|eksport|fail|sandaran</string>
+  <string name="settings_ics_files_title">Fail kalendar</string>
+  <string name="settings_ics_files_loading">Memuatkan fail kalendar</string>
+  <string name="settings_ics_files_intro">Pindahkan acara anda sendiri antara Taqvim dan aplikasi kalendar lain dengan fail iCalendar (.ics). Taqvim hanya membaca dan menulis fail yang anda pilih, dan tidak pernah menghantarnya ke mana-mana.</string>
+  <string name="settings_ics_files_import_heading">Import</string>
+  <string name="settings_ics_files_import_detail">Acara daripada fail ditambahkan kepada acara anda sendiri. Hari rasmi tidak terjejas.</string>
+  <string name="settings_ics_files_replace">Kemas kini acara yang sudah ada di sini</string>
+  <string name="settings_ics_files_replace_detail">Apabila dimatikan, acara yang diulang oleh fail dibiarkan sahaja.</string>
+  <string name="settings_ics_files_import">Pilih fail untuk diimport</string>
+  <string name="settings_ics_files_export_heading">Eksport</string>
+  <string name="settings_ics_files_export_detail">Menulis acara anda sendiri ke sebuah fail. Hari rasmi tidak ditulis. Acara yang akan ditulis: %1$d</string>
+  <string name="settings_ics_files_export">Pilih tempat untuk menyimpan</string>
+  <string name="settings_ics_files_imported">Diimport. Ditambah: %1$d · Dikemas kini: %2$d · Tidak berubah: %3$d</string>
+  <string name="settings_ics_files_exported">Dieksport. Acara yang ditulis: %1$d</string>
+  <string name="settings_ics_files_problems">Item yang tidak dapat dibaca sepenuhnya: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Fail itu bukan kalendar yang boleh dibaca oleh Taqvim. Tiada apa yang diubah.</string>
+  <string name="settings_ics_files_error_too_large">Fail itu terlalu besar untuk dibaca.</string>
+  <string name="settings_ics_files_error_unreadable">Fail itu tidak dapat dibuka. Pilih semula.</string>
+  <string name="settings_ics_files_error_unwritable">Fail itu tidak dapat ditulis. Pilih tempat lain.</string>
+  <string name="settings_ics_files_error_failed">Itu tidak berjaya. Cuba lagi.</string>
 </resources>

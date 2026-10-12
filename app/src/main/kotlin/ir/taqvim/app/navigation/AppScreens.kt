@@ -47,6 +47,7 @@ import ir.taqvim.feature.events.NewEventDraft
 import ir.taqvim.feature.events.OccurrenceTarget
 import ir.taqvim.feature.search.SearchRoute
 import ir.taqvim.feature.settings.AthanSettingsRoute
+import ir.taqvim.feature.settings.IcsFilesRoute
 import ir.taqvim.feature.settings.IslamicOverrideRoute
 import ir.taqvim.feature.settings.LocationSettingsRoute
 import ir.taqvim.feature.settings.SettingsHomeRoute
@@ -276,6 +277,10 @@ private fun SettingsPageScreen(
 
         AppDestination.AthanSettings -> {
             AthanSettingsRoute(modifier)
+        }
+
+        AppDestination.IcsFiles -> {
+            IcsFilesRoute(modifier)
         }
 
         AppDestination.Backup -> {

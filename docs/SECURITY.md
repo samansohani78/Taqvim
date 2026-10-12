@@ -58,7 +58,8 @@ provider. It cannot see the events in your calendar app, and it keeps no copy of
 [ADR-0051](adr/0051-taqvim-does-not-read-the-device-calendar.md).
 
 This is not a claim that Taqvim has no calendar interoperability. It still reads and writes **.ics files** you
-choose (T-1003). That is a file you hand it; it never touches the calendar database on your device.
+choose, in Settings → Calendar files (T-1003). That is a file you hand it through the system file picker; it never
+touches the calendar database on your device, and needs no storage permission to read or write the one document.
 
 Two checks keep this true rather than merely stated: `auditReleasePermissions` compares the merged **release**
 manifest against `app/src/test/resources/security/requested-permissions.txt`, which may never list a calendar

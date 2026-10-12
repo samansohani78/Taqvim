@@ -454,8 +454,10 @@ Sign-off: ______
 6. Restore a backup made with the previous release (release checklist *Backup*).
 7. Kill the app during a restore (from recents, while the restore runs) and reopen it → a "finishing restore" screen
    is shown until recovery completes; data is either fully restored or fully the previous state.
-8. ICS: import an `.ics` file exported from Google Calendar and one from Outlook → events appear; export Taqvim events
-   and open the file in another calendar app.
+8. ICS (Settings → Calendar files): import an `.ics` file exported from Google Calendar and one from Outlook →
+   events appear with their repeats and reminders; export Taqvim events and open the file in another calendar app.
+   Import the exported file back with "Update events already here" on → the count is updated, not added; with it
+   off → unchanged. Pick a text file that is not a calendar → a clear message and nothing changes.
 9. No location permission (ADR-0055): open Settings → Apps → Taqvim → Permissions on the device → **Location is
    not listed at all**, and the location settings offer only City and Coordinates. Upgrade from a build that had it
    (install 1.3.0, grant location, use "My location", then install this build over it) → the place is still the

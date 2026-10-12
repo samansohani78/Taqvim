@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">ফাইলের প্রতিটি মাসের উৎস থাকতে হবে।</string>
   <string name="settings_source_jewish">ইহুদি পার্বণ</string>
   <string name="settings_source_christian">খ্রিষ্টীয় পার্বণ</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">ক্যালেন্ডার ফাইল</string>
+  <string name="settings_keywords_ics">ics|icalendar|আমদানি|রপ্তানি|ফাইল|ব্যাকআপ</string>
+  <string name="settings_ics_files_title">ক্যালেন্ডার ফাইল</string>
+  <string name="settings_ics_files_loading">ক্যালেন্ডার ফাইল লোড হচ্ছে</string>
+  <string name="settings_ics_files_intro">iCalendar (.ics) ফাইল দিয়ে নিজের ইভেন্টগুলো Taqvim ও অন্য ক্যালেন্ডার অ্যাপের মধ্যে সরান। Taqvim কেবল আপনার বেছে নেওয়া ফাইলটিই পড়ে ও লেখে, কোথাও পাঠায় না।</string>
+  <string name="settings_ics_files_import_heading">আমদানি</string>
+  <string name="settings_ics_files_import_detail">ফাইলের ইভেন্টগুলো আপনার নিজের ইভেন্টে যোগ হয়। সরকারি উপলক্ষ্যে কোনো প্রভাব পড়ে না।</string>
+  <string name="settings_ics_files_replace">এখানে আগে থেকেই থাকা ইভেন্ট হালনাগাদ করুন</string>
+  <string name="settings_ics_files_replace_detail">বন্ধ থাকলে ফাইলে পুনরাবৃত্ত ইভেন্ট যেমন আছে তেমনই থাকে।</string>
+  <string name="settings_ics_files_import">আমদানির জন্য ফাইল বেছে নিন</string>
+  <string name="settings_ics_files_export_heading">রপ্তানি</string>
+  <string name="settings_ics_files_export_detail">আপনার নিজের ইভেন্টগুলো একটি ফাইলে লেখে। সরকারি উপলক্ষ্য লেখা হয় না। যত ইভেন্ট লেখা হবে: %1$d</string>
+  <string name="settings_ics_files_export">কোথায় সংরক্ষণ হবে বেছে নিন</string>
+  <string name="settings_ics_files_imported">আমদানি হয়েছে। যোগ: %1$d · হালনাগাদ: %2$d · অপরিবর্তিত: %3$d</string>
+  <string name="settings_ics_files_exported">রপ্তানি হয়েছে। লেখা ইভেন্ট: %1$d</string>
+  <string name="settings_ics_files_problems">যেসব এন্ট্রি পুরোপুরি পড়া যায়নি: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">এই ফাইলটি এমন ক্যালেন্ডার নয় যা Taqvim পড়তে পারে। কিছুই বদলায়নি।</string>
+  <string name="settings_ics_files_error_too_large">এই ফাইলটি পড়ার জন্য খুব বড়।</string>
+  <string name="settings_ics_files_error_unreadable">এই ফাইলটি খোলা যায়নি। আবার বেছে নিন।</string>
+  <string name="settings_ics_files_error_unwritable">এই ফাইলটি লেখা যায়নি। অন্য জায়গা বেছে নিন।</string>
+  <string name="settings_ics_files_error_failed">এটি কাজ করেনি। আবার চেষ্টা করুন।</string>
 </resources>

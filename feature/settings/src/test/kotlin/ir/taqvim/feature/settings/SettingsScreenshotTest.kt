@@ -23,8 +23,8 @@ import org.robolectric.annotation.GraphicsMode
 
 /**
  * T-1500 screenshots: the settings home (interface tab in English, light LTR; location tab in Persian, dark RTL;
- * search results in Persian, light RTL) and the official Islamic dates page. Recorded to
- * `src/test/screenshots/settings_<sample>/`.
+ * search results in Persian, light RTL), the calendar files page after an import, and the official Islamic dates
+ * page. Recorded to `src/test/screenshots/settings_<sample>/`.
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -43,6 +43,10 @@ class SettingsScreenshotTest(
         composeRule.captureScreenshot("settings_$sample", environment) {
             LocationTestTheme(rtl = rtl, dark = environment.theme.isDark) {
                 when (sample) {
+                    "ics_files" -> {
+                        IcsFilesScreen(icsFiles, IcsFilesActions(), onPickImport = {}, onPickExport = {})
+                    }
+
                     "islamic_override" -> {
                         IslamicOverrideScreen(islamicOverride(language), IslamicOverrideActions(), onPickFile = {})
                     }
@@ -68,6 +72,13 @@ class SettingsScreenshotTest(
     }
 
     companion object {
+        /** T-1003: events to export, and the result of an import that left two items unread. */
+        private val icsFiles =
+            IcsFilesUiState(
+                eventCount = 12,
+                importOutcome = IcsImportOutcome.Imported(created = 3, replaced = 1, skipped = 2, problems = 2),
+            )
+
         /** ADR-0037: the official Iranian dates in use, with a refused import below. */
         private fun islamicOverride(language: LanguageSpec) =
             IslamicOverrideUiState(
@@ -93,6 +104,8 @@ class SettingsScreenshotTest(
                 arrayOf<Any>("home", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
                 arrayOf<Any>("home", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
                 arrayOf<Any>("search", environment(ScreenshotTheme.LIGHT, LayoutDirection.Rtl)),
+                arrayOf<Any>("ics_files", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
+                arrayOf<Any>("ics_files", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
                 arrayOf<Any>("islamic_override", environment(ScreenshotTheme.LIGHT, LayoutDirection.Ltr)),
                 arrayOf<Any>("islamic_override", environment(ScreenshotTheme.DARK, LayoutDirection.Rtl)),
             ) +

@@ -21,6 +21,9 @@ enum class SettingsTab(
 enum class SettingsDestination {
     LOCATION,
     ATHAN,
+
+    /** Import and export personal events as `.ics` files (T-1003). */
+    ICS_FILES,
     WIDGETS,
 
     /** Optional official Islamic dates (ADR-0037). */
@@ -116,6 +119,7 @@ enum class SettingsItemId(
         R.string.settings_item_holidays_only,
         R.string.settings_keywords_events,
     ),
+    ICS_FILES(SettingsTab.INTERFACE_CALENDAR, R.string.settings_item_ics_files, R.string.settings_keywords_ics),
     REMEMBER_SEARCHES(
         SettingsTab.INTERFACE_CALENDAR,
         R.string.settings_item_remember_searches,

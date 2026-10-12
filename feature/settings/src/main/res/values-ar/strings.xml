@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">يحتاج كل شهر في الملف إلى مصدره.</string>
   <string name="settings_source_jewish">المناسبات اليهودية</string>
   <string name="settings_source_christian">الأعياد المسيحية</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">ملفات التقويم</string>
+  <string name="settings_keywords_ics">ics|icalendar|استيراد|تصدير|ملف|نسخة احتياطية</string>
+  <string name="settings_ics_files_title">ملفات التقويم</string>
+  <string name="settings_ics_files_loading">جارٍ تحميل ملفات التقويم</string>
+  <string name="settings_ics_files_intro">انقل أحداثك الخاصة بين تقويم وتطبيق تقويم آخر بملف iCalendar ⁦(.ics)⁩. لا يقرأ تقويم ويكتب إلا الملف الذي تختاره، ولا يرسله إلى أي مكان.</string>
+  <string name="settings_ics_files_import_heading">استيراد</string>
+  <string name="settings_ics_files_import_detail">تُضاف أحداث الملف إلى أحداثك الخاصة. لا تتأثر المناسبات الرسمية.</string>
+  <string name="settings_ics_files_replace">تحديث الأحداث الموجودة هنا</string>
+  <string name="settings_ics_files_replace_detail">عند الإيقاف يُترك الحدث الذي يكرره الملف كما هو.</string>
+  <string name="settings_ics_files_import">اختر ملفًا للاستيراد</string>
+  <string name="settings_ics_files_export_heading">تصدير</string>
+  <string name="settings_ics_files_export_detail">يكتب أحداثك الخاصة في ملف. لا تُكتب المناسبات الرسمية. الأحداث التي ستُكتب: %1$d</string>
+  <string name="settings_ics_files_export">اختر مكان الحفظ</string>
+  <string name="settings_ics_files_imported">تم الاستيراد. مضافة: %1$d · محدَّثة: %2$d · دون تغيير: %3$d</string>
+  <string name="settings_ics_files_exported">تم التصدير. الأحداث المكتوبة: %1$d</string>
+  <string name="settings_ics_files_problems">عناصر تعذرت قراءتها كاملة: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">هذا الملف ليس تقويمًا يستطيع تقويم قراءته. لم يتغير شيء.</string>
+  <string name="settings_ics_files_error_too_large">هذا الملف أكبر من أن يُقرأ.</string>
+  <string name="settings_ics_files_error_unreadable">تعذر فتح هذا الملف. اختره مرة أخرى.</string>
+  <string name="settings_ics_files_error_unwritable">تعذرت الكتابة في هذا الملف. اختر مكانًا آخر.</string>
+  <string name="settings_ics_files_error_failed">لم ينجح ذلك. حاول مرة أخرى.</string>
 </resources>

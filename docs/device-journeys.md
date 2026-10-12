@@ -81,8 +81,8 @@ fails.
 | J28 | Font scale 2.0 | missing | (R10 also found the calendar's own font scale deliberately capped at 1.3) |
 | J29 | RTL switch | partial | `DeviceSmokeTest`, `DeviceAccessibilityTest` (fa vs en exercises RTL vs LTR layout; no RTL-specific assertion) |
 | J30 | Backup, wipe, restore: the event is back | **covered** | `DeviceBackupRestoreTest#backupWipeRestoreBringsTheEventBack` (new) |
-| J31 | ICS import | missing | — |
-| J32 | ICS export | missing | — |
+| J31 | ICS import | missing on a device | Covered off-device by `DocumentIcsFilesStoreTest` (round trip through the content resolver) and `IcsFilesScreenTest`; what is untested is the real system file picker |
+| J32 | ICS export | missing on a device | As J31 |
 | J34 | Compass orientation lock | partial | `DeviceSmokeTest#everyTabAndMoreEntryOpens` (opens Compass; no lock assertion) |
 | J35 | Map layers | partial | `DeviceSmokeTest#everyTabAndMoreEntryOpens` (`visitToggles` toggles every layer control on/off; no visual-effect assertion) |
 | J36 | Astronomy slider | partial | `DeviceSmokeTest` (opens Astronomy; no slider interaction) |

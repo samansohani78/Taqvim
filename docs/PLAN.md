@@ -557,7 +557,9 @@ Core only; showing these calendars and observances to users needs a later decisi
 ### T-1003 ICS import/export (F-05)
 - SAF import/export. ~~WebCal subscription with periodic refresh (WorkManager, network only when user enables); ETag
   caching~~ — **withdrawn 2026-10-13, ADR-0054**, with the `INTERNET` permission and WorkManager.
-- Tests: R import fixture → events in DB; UI import and export through the picker.
+- UI: **Settings → Calendar files** (`IcsFilesScreen`), reached from the Interface & calendar tab.
+- Tests: R import fixture → events in DB; `DocumentIcsFilesStoreTest` round-trips export → import through the
+  content resolver keeping rule, reminders, exceptions and overrides; `IcsFilesScreenTest` drives the screen.
 
 ---
 

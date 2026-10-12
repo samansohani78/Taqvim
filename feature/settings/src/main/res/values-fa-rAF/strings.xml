@@ -207,4 +207,26 @@
   <string name="settings_islamic_override_error_citation">هر ماه در پرونده باید منبع داشته باشد.</string>
   <string name="settings_source_jewish">مناسبت‌های یهودی</string>
   <string name="settings_source_christian">اعیاد مسیحی</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">فایل‌های تقویم</string>
+  <string name="settings_keywords_ics">ics|آی‌کلندر|واردات|صادرات|فایل|پشتیبان</string>
+  <string name="settings_ics_files_title">فایل‌های تقویم</string>
+  <string name="settings_ics_files_loading">در حال بارگیری فایل‌های تقویم</string>
+  <string name="settings_ics_files_intro">رویدادهای خود را با یک فایل آی‌کلندر ⁦(.ics)⁩ میان تقویم و برنامهٔ تقویم دیگری انتقال دهید. تقویم تنها همان فایلی را که انتخاب می‌کنید می‌خواند و می‌نویسد و آن را به هیچ‌جا نمی‌فرستد.</string>
+  <string name="settings_ics_files_import_heading">واردات</string>
+  <string name="settings_ics_files_import_detail">رویدادهای فایل به رویدادهای خود شما افزوده می‌شوند. مناسبت‌های رسمی تغییر نمی‌کنند.</string>
+  <string name="settings_ics_files_replace">به‌روزسازی رویدادهایی که از پیش موجود اند</string>
+  <string name="settings_ics_files_replace_detail">اگر خاموش باشد، رویدادی که فایل تکرار می‌کند دست‌ناخورده می‌ماند.</string>
+  <string name="settings_ics_files_import">انتخاب فایل برای واردات</string>
+  <string name="settings_ics_files_export_heading">صادرات</string>
+  <string name="settings_ics_files_export_detail">رویدادهای خود شما در یک فایل نوشته می‌شوند. مناسبت‌های رسمی نوشته نمی‌شوند. رویدادهای نوشتنی: %1$d</string>
+  <string name="settings_ics_files_export">انتخاب محل ذخیره</string>
+  <string name="settings_ics_files_imported">وارد شد. افزوده: %1$d · به‌روز: %2$d · بدون تغییر: %3$d</string>
+  <string name="settings_ics_files_exported">صادر شد. رویدادهای نوشته‌شده: %1$d</string>
+  <string name="settings_ics_files_problems">مواردی که کامل خوانده نشدند: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">این فایل تقویمی نیست که تقویم بتواند بخواند. چیزی تغییر نکرد.</string>
+  <string name="settings_ics_files_error_too_large">این فایل برای خواندن بسیار کلان است.</string>
+  <string name="settings_ics_files_error_unreadable">این فایل باز نشد. دوباره انتخابش کنید.</string>
+  <string name="settings_ics_files_error_unwritable">این فایل نوشته نشد. جای دیگری انتخاب کنید.</string>
+  <string name="settings_ics_files_error_failed">انجام نشد. دوباره کوشش کنید.</string>
 </resources>

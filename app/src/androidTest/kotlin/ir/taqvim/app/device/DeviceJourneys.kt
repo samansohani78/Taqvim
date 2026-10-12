@@ -135,6 +135,8 @@ internal object JourneyRegistry {
                 JourneyStatus.COVERED,
                 "DeviceBackupRestoreTest#backupWipeRestoreBringsTheEventBack",
             ),
+            // Covered off-device through the screen and the content resolver (T-1003); what no Robolectric test
+            // can reach is the real system file picker, so these stay missing here.
             Journey("J31", "ICS import", JourneyStatus.MISSING),
             Journey("J32", "ICS export", JourneyStatus.MISSING),
             Journey("J34", "Compass orientation lock", JourneyStatus.PARTIAL, SMOKE_TABS),

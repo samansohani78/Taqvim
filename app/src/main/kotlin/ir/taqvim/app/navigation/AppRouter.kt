@@ -170,6 +170,7 @@ internal fun settingsPage(destination: SettingsDestination): AppDestination =
     when (destination) {
         SettingsDestination.LOCATION -> AppDestination.LocationSettings
         SettingsDestination.ATHAN -> AppDestination.AthanSettings
+        SettingsDestination.ICS_FILES -> AppDestination.IcsFiles
         SettingsDestination.ISLAMIC_OVERRIDE -> AppDestination.IslamicOverride
         SettingsDestination.WIDGETS -> AppDestination.Widgets
     }

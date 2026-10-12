@@ -16,6 +16,19 @@ A line stays here until a native speaker of that language has looked at it. Remo
 The other three in that group read naturally against the English: `Milli günlər`, `Beynəlxalq günlər`,
 `Astronomik hadisələr`.
 
+## The calendar files page (2026-10-13, all 22 machine-translated languages)
+
+T-1003's import and export page reached the interface on 2026-10-13 (ADR-0054), and its 21 strings were written in
+English and Persian and machine-translated into the other 22 languages in the same pass. They have had no native
+reading at all — less than the rest of the file, which at least went through the 2026-09-17 generation and the
+structural checks since. The structural checks do pass for them (placeholders, punctuation, bidi, same-as-source),
+so what is open is wording, not mechanics.
+
+The two to look at first in any language are `settings_ics_files_replace` ("Update events already here") and its
+detail, because they describe what happens to an event the user already has, and a reader who takes them the wrong
+way round will overwrite something. `settings_ics_files_import_heading` is listed in
+`config/i18n/same-as-source.txt` for Malay and Uzbek, where "Import" is the ordinary word.
+
 ## Every other machine-translated language
 
 No specific doubt has been raised, which is not the same as being right. The structural checks (placeholders,

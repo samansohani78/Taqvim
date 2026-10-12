@@ -206,4 +206,33 @@
   <string name="settings_islamic_override_error_citation">هر ماه در پرونده باید منبع داشته باشد.</string>
   <string name="settings_source_jewish">مناسبت‌های یهودی</string>
   <string name="settings_source_christian">اعیاد مسیحی</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">فایل‌های تقویم</string>
+  <string name="settings_keywords_ics">ics|آی‌کلندر|درون‌ریزی|برون‌ریزی|فایل|پشتیبان</string>
+  <string name="settings_ics_files_title">فایل‌های تقویم</string>
+  <string name="settings_ics_files_loading">در حال بارگذاری فایل‌های تقویم</string>
+  <string name="settings_ics_files_intro">رویدادهای خودتان را با یک فایل آی‌کلندر ⁦(.ics)⁩ میان تقویم و برنامهٔ تقویم دیگری جابه‌جا کنید. تقویم فقط همان فایلی را که انتخاب می‌کنید می‌خواند و می‌نویسد و آن را به هیچ‌جا نمی‌فرستد.</string>
+  <string name="settings_ics_files_import_heading">درون‌ریزی</string>
+  <string name="settings_ics_files_import_detail">رویدادهای فایل به رویدادهای خودتان افزوده می‌شوند. مناسبت‌های رسمی تغییری نمی‌کنند.</string>
+  <!-- Switch: what to do with an event already in Taqvim that the file also contains. -->
+  <string name="settings_ics_files_replace">به‌روزرسانی رویدادهایی که از پیش هستند</string>
+  <string name="settings_ics_files_replace_detail">اگر خاموش باشد، رویدادی که فایل تکرار می‌کند دست‌نخورده می‌ماند.</string>
+  <!-- Button (verb) that opens the file picker to choose a file to import. -->
+  <string name="settings_ics_files_import">انتخاب فایل برای درون‌ریزی</string>
+  <string name="settings_ics_files_export_heading">برون‌ریزی</string>
+  <!-- %1$d is the number of personal events that would be written. -->
+  <string name="settings_ics_files_export_detail">رویدادهای خودتان در یک فایل نوشته می‌شوند. مناسبت‌های رسمی نوشته نمی‌شوند. رویدادهای نوشتنی: %1$d</string>
+  <!-- Button (verb) that opens the file picker to choose where to save. -->
+  <string name="settings_ics_files_export">انتخاب محل ذخیره</string>
+  <!-- %1$d added, %2$d updated, %3$d left as they were. -->
+  <string name="settings_ics_files_imported">درون‌ریزی شد. افزوده: %1$d · به‌روز: %2$d · بدون تغییر: %3$d</string>
+  <!-- %1$d is the number of events written to the file. -->
+  <string name="settings_ics_files_exported">برون‌ریزی شد. رویدادهای نوشته‌شده: %1$d</string>
+  <!-- %1$d is the number of items in the file Taqvim could not read fully. -->
+  <string name="settings_ics_files_problems">مواردی که کامل خوانده نشدند: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">این فایل تقویمی نیست که تقویم بتواند بخواند. چیزی تغییر نکرد.</string>
+  <string name="settings_ics_files_error_too_large">این فایل برای خواندن بسیار بزرگ است.</string>
+  <string name="settings_ics_files_error_unreadable">این فایل باز نشد. دوباره انتخابش کنید.</string>
+  <string name="settings_ics_files_error_unwritable">این فایل نوشته نشد. جای دیگری انتخاب کنید.</string>
+  <string name="settings_ics_files_error_failed">انجام نشد. دوباره تلاش کنید.</string>
 </resources>

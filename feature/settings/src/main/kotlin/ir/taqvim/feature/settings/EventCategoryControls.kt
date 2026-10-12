@@ -47,6 +47,10 @@ internal object EventCategoryControls {
                 SettingsCatalog.toggle({ it.holidaysOnly }) { s, v -> s.copy(holidaysOnly = v) }
             }
 
+            SettingsItemId.ICS_FILES -> {
+                SettingsControl.Link(SettingsDestination.ICS_FILES)
+            }
+
             SettingsItemId.REMEMBER_SEARCHES -> {
                 SettingsCatalog.toggle({ it.rememberRecentSearches }) { s, v -> s.copy(rememberRecentSearches = v) }
             }

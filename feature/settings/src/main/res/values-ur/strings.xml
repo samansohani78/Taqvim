@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">فائل کے ہر مہینے کا ماخذ ضروری ہے۔</string>
   <string name="settings_source_jewish">یہودی تہوار</string>
   <string name="settings_source_christian">مسیحی تہوار</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">کیلنڈر فائلیں</string>
+  <string name="settings_keywords_ics">ics|icalendar|درآمد|برآمد|فائل|بیک اپ</string>
+  <string name="settings_ics_files_title">کیلنڈر فائلیں</string>
+  <string name="settings_ics_files_loading">کیلنڈر فائلیں لوڈ ہو رہی ہیں</string>
+  <string name="settings_ics_files_intro">اپنے ذاتی واقعات iCalendar ⁦(.ics)⁩ فائل کے ذریعے تقویم اور کسی دوسری کیلنڈر ایپ کے درمیان منتقل کریں۔ تقویم صرف وہی فائل پڑھتا اور لکھتا ہے جو آپ منتخب کرتے ہیں اور اسے کہیں نہیں بھیجتا۔</string>
+  <string name="settings_ics_files_import_heading">درآمد</string>
+  <string name="settings_ics_files_import_detail">فائل کے واقعات آپ کے اپنے واقعات میں شامل ہو جاتے ہیں۔ سرکاری مواقع متاثر نہیں ہوتے۔</string>
+  <string name="settings_ics_files_replace">یہاں پہلے سے موجود واقعات تازہ کریں</string>
+  <string name="settings_ics_files_replace_detail">بند ہونے پر فائل میں دہرایا گیا واقعہ جوں کا توں رہتا ہے۔</string>
+  <string name="settings_ics_files_import">درآمد کے لیے فائل منتخب کریں</string>
+  <string name="settings_ics_files_export_heading">برآمد</string>
+  <string name="settings_ics_files_export_detail">آپ کے اپنے واقعات ایک فائل میں لکھتا ہے۔ سرکاری مواقع نہیں لکھے جاتے۔ لکھے جانے والے واقعات: %1$d</string>
+  <string name="settings_ics_files_export">محفوظ کرنے کی جگہ منتخب کریں</string>
+  <string name="settings_ics_files_imported">درآمد ہوئی۔ شامل: %1$d · تازہ: %2$d · بغیر تبدیلی: %3$d</string>
+  <string name="settings_ics_files_exported">برآمد ہوئی۔ لکھے گئے واقعات: %1$d</string>
+  <string name="settings_ics_files_problems">ایسے اندراجات جو مکمل نہ پڑھے جا سکے: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">یہ فائل ایسا کیلنڈر نہیں جسے تقویم پڑھ سکے۔ کچھ تبدیل نہیں ہوا۔</string>
+  <string name="settings_ics_files_error_too_large">یہ فائل پڑھنے کے لیے بہت بڑی ہے۔</string>
+  <string name="settings_ics_files_error_unreadable">یہ فائل نہیں کھل سکی۔ اسے دوبارہ منتخب کریں۔</string>
+  <string name="settings_ics_files_error_unwritable">یہ فائل نہیں لکھی جا سکی۔ کوئی اور جگہ منتخب کریں۔</string>
+  <string name="settings_ics_files_error_failed">یہ کام نہ ہو سکا۔ دوبارہ کوشش کریں۔</string>
 </resources>

@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Ҳар моҳ дар файл бояд манбаъ дошта бошад.</string>
   <string name="settings_source_jewish">Маросимҳои яҳудӣ</string>
   <string name="settings_source_christian">Ҷашнҳои масеҳӣ</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Файлҳои тақвим</string>
+  <string name="settings_keywords_ics">ics|icalendar|воридот|содирот|файл|нусхаи эҳтиётӣ</string>
+  <string name="settings_ics_files_title">Файлҳои тақвим</string>
+  <string name="settings_ics_files_loading">Файлҳои тақвим бор мешаванд</string>
+  <string name="settings_ics_files_intro">Рӯйдодҳои худро бо файли iCalendar (.ics) байни Taqvim ва барномаи дигари тақвим кӯчонед. Taqvim танҳо файли интихобкардаи шуморо мехонад ва менависад ва онро ба ҳеҷ ҷо намефиристад.</string>
+  <string name="settings_ics_files_import_heading">Воридот</string>
+  <string name="settings_ics_files_import_detail">Рӯйдодҳои файл ба рӯйдодҳои худи шумо илова мешаванд. Муносибатҳои расмӣ тағйир намеёбанд.</string>
+  <string name="settings_ics_files_replace">Рӯйдодҳои аллакай дар ин ҷобударо нав кун</string>
+  <string name="settings_ics_files_replace_detail">Вақте хомӯш аст, рӯйдоде ки файл такрор мекунад, чунон ки ҳаст мемонад.</string>
+  <string name="settings_ics_files_import">Файлро барои воридот интихоб кунед</string>
+  <string name="settings_ics_files_export_heading">Содирот</string>
+  <string name="settings_ics_files_export_detail">Рӯйдодҳои худи шуморо ба як файл менависад. Муносибатҳои расмӣ навишта намешаванд. Рӯйдодҳои навишташаванда: %1$d</string>
+  <string name="settings_ics_files_export">Интихоб кунед, ки дар куҷо нигоҳ дошта шавад</string>
+  <string name="settings_ics_files_imported">Ворид шуд. Иловашуда: %1$d · Навшуда: %2$d · Бетағйир: %3$d</string>
+  <string name="settings_ics_files_exported">Содир шуд. Рӯйдодҳои навишташуда: %1$d</string>
+  <string name="settings_ics_files_problems">Ҷузъҳое ки пурра хонда нашуданд: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Ин файл тақвиме нест, ки Taqvim хонда тавонад. Ҳеҷ чиз тағйир наёфт.</string>
+  <string name="settings_ics_files_error_too_large">Ин файл барои хондан хеле калон аст.</string>
+  <string name="settings_ics_files_error_unreadable">Ин файл кушода нашуд. Онро аз нав интихоб кунед.</string>
+  <string name="settings_ics_files_error_unwritable">Ин файл навишта нашуд. Ҷои дигарро интихоб кунед.</string>
+  <string name="settings_ics_files_error_failed">Ин кор накард. Аз нав кӯшиш кунед.</string>
 </resources>

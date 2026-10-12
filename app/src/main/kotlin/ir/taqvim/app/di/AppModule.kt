@@ -65,6 +65,7 @@ import ir.taqvim.feature.settings.AthanSoundLibrary
 import ir.taqvim.feature.settings.CitySearch
 import ir.taqvim.feature.settings.ExactAlarmAccess
 import ir.taqvim.feature.settings.GeneralSettingsStore
+import ir.taqvim.feature.settings.IcsFilesStore
 import ir.taqvim.feature.settings.IslamicOverrideStore
 import ir.taqvim.feature.settings.LocationSettingsStore
 import ir.taqvim.feature.settings.PlaceDescriber
@@ -290,6 +291,7 @@ val reminderAlarmPortsModule =
 val settingsPortsModule =
     module {
         single<GeneralSettingsStore> { PreferencesGeneralSettingsStore(get()) }
+        single<IcsFilesStore> { DocumentIcsFilesStore(get(), get(), get(), get()) }
         single<IslamicOverrideStore> {
             PreferencesIslamicOverrideStore(get(), ContentOverrideFileReader(androidContext()), get())
         }

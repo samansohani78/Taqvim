@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">ファイル内の各月には出典が必要です。</string>
   <string name="settings_source_jewish">ユダヤ教の記念日</string>
   <string name="settings_source_christian">キリスト教の祝日</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">カレンダーファイル</string>
+  <string name="settings_keywords_ics">ics|icalendar|インポート|エクスポート|ファイル|バックアップ</string>
+  <string name="settings_ics_files_title">カレンダーファイル</string>
+  <string name="settings_ics_files_loading">カレンダーファイルを読み込み中</string>
+  <string name="settings_ics_files_intro">iCalendar（.ics）ファイルで、自分のイベントを Taqvim と他のカレンダーアプリの間で移せます。Taqvim は選んだファイルだけを読み書きし、どこにも送信しません。</string>
+  <string name="settings_ics_files_import_heading">インポート</string>
+  <string name="settings_ics_files_import_detail">ファイル内のイベントが自分のイベントに追加されます。公式の行事は影響を受けません。</string>
+  <string name="settings_ics_files_replace">すでにあるイベントを更新する</string>
+  <string name="settings_ics_files_replace_detail">オフのとき、ファイルが重ねたイベントはそのまま残ります。</string>
+  <string name="settings_ics_files_import">インポートするファイルを選ぶ</string>
+  <string name="settings_ics_files_export_heading">エクスポート</string>
+  <string name="settings_ics_files_export_detail">自分のイベントをファイルに書き出します。公式の行事は書き出されません。書き出すイベント数: %1$d</string>
+  <string name="settings_ics_files_export">保存先を選ぶ</string>
+  <string name="settings_ics_files_imported">インポート完了。追加: %1$d · 更新: %2$d · 変更なし: %3$d</string>
+  <string name="settings_ics_files_exported">エクスポート完了。書き出したイベント数: %1$d</string>
+  <string name="settings_ics_files_problems">完全に読み取れなかった項目: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">このファイルは Taqvim が読めるカレンダーではありません。何も変更されていません。</string>
+  <string name="settings_ics_files_error_too_large">このファイルは大きすぎて読み取れません。</string>
+  <string name="settings_ics_files_error_unreadable">このファイルを開けませんでした。選び直してください。</string>
+  <string name="settings_ics_files_error_unwritable">このファイルに書き込めませんでした。別の場所を選んでください。</string>
+  <string name="settings_ics_files_error_failed">うまくいきませんでした。もう一度お試しください。</string>
 </resources>

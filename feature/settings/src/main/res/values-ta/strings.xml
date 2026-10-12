@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">கோப்பில் உள்ள ஒவ்வொரு மாதத்திற்கும் அதன் மூலம் தேவை.</string>
   <string name="settings_source_jewish">யூத நினைவு நாட்கள்</string>
   <string name="settings_source_christian">கிறிஸ்தவ பண்டிகைகள்</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">நாட்காட்டிக் கோப்புகள்</string>
+  <string name="settings_keywords_ics">ics|icalendar|இறக்குமதி|ஏற்றுமதி|கோப்பு|காப்புப்பிரதி</string>
+  <string name="settings_ics_files_title">நாட்காட்டிக் கோப்புகள்</string>
+  <string name="settings_ics_files_loading">நாட்காட்டிக் கோப்புகள் ஏற்றப்படுகின்றன</string>
+  <string name="settings_ics_files_intro">iCalendar (.ics) கோப்பின் மூலம் உங்கள் சொந்த நிகழ்வுகளை Taqvim-க்கும் வேறு நாட்காட்டி செயலிக்கும் இடையே நகர்த்தலாம். நீங்கள் தேர்ந்தெடுக்கும் கோப்பை மட்டுமே Taqvim படிக்கிறது, எழுதுகிறது; அதை எங்கும் அனுப்புவதில்லை.</string>
+  <string name="settings_ics_files_import_heading">இறக்குமதி</string>
+  <string name="settings_ics_files_import_detail">கோப்பிலுள்ள நிகழ்வுகள் உங்கள் சொந்த நிகழ்வுகளுடன் சேர்க்கப்படும். அதிகாரபூர்வ நாட்கள் பாதிக்கப்படா.</string>
+  <string name="settings_ics_files_replace">ஏற்கெனவே இங்குள்ள நிகழ்வுகளைப் புதுப்பி</string>
+  <string name="settings_ics_files_replace_detail">அணைத்திருந்தால் கோப்பு மீண்டும் தரும் நிகழ்வு அப்படியே விடப்படும்.</string>
+  <string name="settings_ics_files_import">இறக்குமதி செய்ய கோப்பைத் தேர்ந்தெடு</string>
+  <string name="settings_ics_files_export_heading">ஏற்றுமதி</string>
+  <string name="settings_ics_files_export_detail">உங்கள் சொந்த நிகழ்வுகளை ஒரு கோப்பில் எழுதும். அதிகாரபூர்வ நாட்கள் எழுதப்படா. எழுதப்படும் நிகழ்வுகள்: %1$d</string>
+  <string name="settings_ics_files_export">எங்கே சேமிப்பது எனத் தேர்ந்தெடு</string>
+  <string name="settings_ics_files_imported">இறக்குமதி ஆனது. சேர்க்கப்பட்டவை: %1$d · புதுப்பிக்கப்பட்டவை: %2$d · மாறாதவை: %3$d</string>
+  <string name="settings_ics_files_exported">ஏற்றுமதி ஆனது. எழுதப்பட்ட நிகழ்வுகள்: %1$d</string>
+  <string name="settings_ics_files_problems">முழுமையாகப் படிக்க முடியாத உருப்படிகள்: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">அந்தக் கோப்பு Taqvim படிக்கக்கூடிய நாட்காட்டி அல்ல. எதுவும் மாறவில்லை.</string>
+  <string name="settings_ics_files_error_too_large">அந்தக் கோப்பு படிக்க முடியாத அளவுக்குப் பெரியது.</string>
+  <string name="settings_ics_files_error_unreadable">அந்தக் கோப்பைத் திறக்க முடியவில்லை. மீண்டும் தேர்ந்தெடுங்கள்.</string>
+  <string name="settings_ics_files_error_unwritable">அந்தக் கோப்பில் எழுத முடியவில்லை. வேறு இடத்தைத் தேர்ந்தெடுங்கள்.</string>
+  <string name="settings_ics_files_error_failed">அது வேலை செய்யவில்லை. மீண்டும் முயலுங்கள்.</string>
 </resources>

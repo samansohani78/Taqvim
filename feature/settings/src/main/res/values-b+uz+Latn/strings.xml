@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Fayldagi har bir oyning manbasi boʻlishi kerak.</string>
   <string name="settings_source_jewish">Yahudiy marosimlari</string>
   <string name="settings_source_christian">Nasroniy bayramlari</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Taqvim fayllari</string>
+  <string name="settings_keywords_ics">ics|icalendar|import|eksport|fayl|zaxira</string>
+  <string name="settings_ics_files_title">Taqvim fayllari</string>
+  <string name="settings_ics_files_loading">Taqvim fayllari yuklanmoqda</string>
+  <string name="settings_ics_files_intro">O‘z tadbirlaringizni iCalendar (.ics) fayli yordamida Taqvim va boshqa taqvim ilovasi o‘rtasida ko‘chiring. Taqvim faqat siz tanlagan faylni o‘qiydi va yozadi, uni hech qayerga yubormaydi.</string>
+  <string name="settings_ics_files_import_heading">Import</string>
+  <string name="settings_ics_files_import_detail">Fayldagi tadbirlar o‘z tadbirlaringizga qo‘shiladi. Rasmiy sanalarga ta’sir qilmaydi.</string>
+  <string name="settings_ics_files_replace">Allaqachon shu yerdagi tadbirlarni yangilash</string>
+  <string name="settings_ics_files_replace_detail">O‘chirilganda fayl takrorlagan tadbir o‘z holicha qoladi.</string>
+  <string name="settings_ics_files_import">Import uchun fayl tanlang</string>
+  <string name="settings_ics_files_export_heading">Eksport</string>
+  <string name="settings_ics_files_export_detail">O‘z tadbirlaringizni faylga yozadi. Rasmiy sanalar yozilmaydi. Yoziladigan tadbirlar: %1$d</string>
+  <string name="settings_ics_files_export">Qayerga saqlashni tanlang</string>
+  <string name="settings_ics_files_imported">Import qilindi. Qo‘shilgan: %1$d · Yangilangan: %2$d · O‘zgarmagan: %3$d</string>
+  <string name="settings_ics_files_exported">Eksport qilindi. Yozilgan tadbirlar: %1$d</string>
+  <string name="settings_ics_files_problems">To‘liq o‘qib bo‘lmagan elementlar: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Bu fayl Taqvim o‘qiy oladigan taqvim emas. Hech narsa o‘zgarmadi.</string>
+  <string name="settings_ics_files_error_too_large">Bu fayl o‘qish uchun juda katta.</string>
+  <string name="settings_ics_files_error_unreadable">Bu fayl ochilmadi. Uni qayta tanlang.</string>
+  <string name="settings_ics_files_error_unwritable">Bu fayl yozilmadi. Boshqa joy tanlang.</string>
+  <string name="settings_ics_files_error_failed">Bu ish bermadi. Qayta urinib ko‘ring.</string>
 </resources>

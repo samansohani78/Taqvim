@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">फ़ाइल के हर महीने का स्रोत होना चाहिए।</string>
   <string name="settings_source_jewish">यहूदी पर्व</string>
   <string name="settings_source_christian">ईसाई पर्व</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">कैलेंडर फ़ाइलें</string>
+  <string name="settings_keywords_ics">ics|icalendar|आयात|निर्यात|फ़ाइल|बैकअप</string>
+  <string name="settings_ics_files_title">कैलेंडर फ़ाइलें</string>
+  <string name="settings_ics_files_loading">कैलेंडर फ़ाइलें लोड हो रही हैं</string>
+  <string name="settings_ics_files_intro">iCalendar (.ics) फ़ाइल से अपने अपने कार्यक्रम Taqvim और किसी दूसरे कैलेंडर ऐप के बीच ले जाएँ। Taqvim केवल वही फ़ाइल पढ़ता और लिखता है जो आप चुनते हैं, और उसे कहीं नहीं भेजता।</string>
+  <string name="settings_ics_files_import_heading">आयात</string>
+  <string name="settings_ics_files_import_detail">फ़ाइल के कार्यक्रम आपके अपने कार्यक्रमों में जुड़ जाते हैं। आधिकारिक अवसरों पर कोई असर नहीं पड़ता।</string>
+  <string name="settings_ics_files_replace">यहाँ पहले से मौजूद कार्यक्रम अपडेट करें</string>
+  <string name="settings_ics_files_replace_detail">बंद होने पर फ़ाइल में दोहराया गया कार्यक्रम जैसा है वैसा ही रहता है।</string>
+  <string name="settings_ics_files_import">आयात के लिए फ़ाइल चुनें</string>
+  <string name="settings_ics_files_export_heading">निर्यात</string>
+  <string name="settings_ics_files_export_detail">आपके अपने कार्यक्रम एक फ़ाइल में लिखता है। आधिकारिक अवसर नहीं लिखे जाते। लिखे जाने वाले कार्यक्रम: %1$d</string>
+  <string name="settings_ics_files_export">सहेजने की जगह चुनें</string>
+  <string name="settings_ics_files_imported">आयात हुआ। जुड़े: %1$d · अपडेट हुए: %2$d · अपरिवर्तित: %3$d</string>
+  <string name="settings_ics_files_exported">निर्यात हुआ। लिखे गए कार्यक्रम: %1$d</string>
+  <string name="settings_ics_files_problems">जो मदें पूरी तरह नहीं पढ़ी जा सकीं: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">यह फ़ाइल ऐसा कैलेंडर नहीं है जिसे Taqvim पढ़ सके। कुछ नहीं बदला।</string>
+  <string name="settings_ics_files_error_too_large">यह फ़ाइल पढ़ने के लिए बहुत बड़ी है।</string>
+  <string name="settings_ics_files_error_unreadable">यह फ़ाइल खुल नहीं सकी। इसे फिर चुनें।</string>
+  <string name="settings_ics_files_error_unwritable">यह फ़ाइल लिखी नहीं जा सकी। कोई दूसरी जगह चुनें।</string>
+  <string name="settings_ics_files_error_failed">यह काम नहीं आया। फिर कोशिश करें।</string>
 </resources>

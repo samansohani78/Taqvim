@@ -57,6 +57,10 @@ sealed interface AppDestination : NavKey {
     @Serializable
     data object AthanSettings : AppDestination
 
+    /** Import and export personal events as `.ics` files (T-1003). */
+    @Serializable
+    data object IcsFiles : AppDestination
+
     /** The user's shift rotations, reached from the calendar menu (F-08). */
     @Serializable
     data object ShiftWork : AppDestination

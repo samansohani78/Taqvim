@@ -268,4 +268,33 @@
   <!-- T-108/T-109: dataset sources a user can switch on; both are off by default. -->
   <string name="settings_source_jewish">Jewish observances</string>
   <string name="settings_source_christian">Christian feasts</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Calendar files</string>
+  <string name="settings_keywords_ics">ics|icalendar|import|export|file|backup</string>
+  <string name="settings_ics_files_title">Calendar files</string>
+  <string name="settings_ics_files_loading">Loading calendar files</string>
+  <string name="settings_ics_files_intro">Move your own events between Taqvim and another calendar app with an iCalendar (.ics) file. Taqvim reads and writes only the file you pick, and never sends it anywhere.</string>
+  <string name="settings_ics_files_import_heading">Import</string>
+  <string name="settings_ics_files_import_detail">Events from the file are added to your own events. Official occasions are not affected.</string>
+  <!-- Switch: what to do with an event already in Taqvim that the file also contains. -->
+  <string name="settings_ics_files_replace">Update events already here</string>
+  <string name="settings_ics_files_replace_detail">When off, an event the file repeats is left as it is.</string>
+  <!-- Button (verb) that opens the file picker to choose a file to import. -->
+  <string name="settings_ics_files_import">Choose a file to import</string>
+  <string name="settings_ics_files_export_heading">Export</string>
+  <!-- %1$d is the number of personal events that would be written. -->
+  <string name="settings_ics_files_export_detail">Writes your own events to a file. Official occasions are not written. Events to write: %1$d</string>
+  <!-- Button (verb) that opens the file picker to choose where to save. -->
+  <string name="settings_ics_files_export">Choose where to save</string>
+  <!-- %1$d added, %2$d updated, %3$d left as they were. -->
+  <string name="settings_ics_files_imported">Imported. Added: %1$d · Updated: %2$d · Unchanged: %3$d</string>
+  <!-- %1$d is the number of events written to the file. -->
+  <string name="settings_ics_files_exported">Exported. Events written: %1$d</string>
+  <!-- %1$d is the number of items in the file Taqvim could not read fully. -->
+  <string name="settings_ics_files_problems">Items that could not be read fully: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">That file is not a calendar Taqvim can read. Nothing was changed.</string>
+  <string name="settings_ics_files_error_too_large">That file is too large to read.</string>
+  <string name="settings_ics_files_error_unreadable">That file could not be opened. Choose it again.</string>
+  <string name="settings_ics_files_error_unwritable">That file could not be written. Choose somewhere else.</string>
+  <string name="settings_ics_files_error_failed">That did not work. Try again.</string>
 </resources>

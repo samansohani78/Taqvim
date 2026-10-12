@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">文件中的每个月都需要注明来源。</string>
   <string name="settings_source_jewish">犹太节日</string>
   <string name="settings_source_christian">基督教节日</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">日历文件</string>
+  <string name="settings_keywords_ics">ics|icalendar|导入|导出|文件|备份</string>
+  <string name="settings_ics_files_title">日历文件</string>
+  <string name="settings_ics_files_loading">正在加载日历文件</string>
+  <string name="settings_ics_files_intro">用 iCalendar（.ics）文件在 Taqvim 和其他日历应用之间转移你自己的事件。Taqvim 只读取和写入你选择的文件，绝不会把它发送到任何地方。</string>
+  <string name="settings_ics_files_import_heading">导入</string>
+  <string name="settings_ics_files_import_detail">文件中的事件会加入你自己的事件。官方节日不受影响。</string>
+  <string name="settings_ics_files_replace">更新此处已有的事件</string>
+  <string name="settings_ics_files_replace_detail">关闭时，文件中重复的事件保持原样。</string>
+  <string name="settings_ics_files_import">选择要导入的文件</string>
+  <string name="settings_ics_files_export_heading">导出</string>
+  <string name="settings_ics_files_export_detail">把你自己的事件写入文件。官方节日不会写入。将写入的事件数：%1$d</string>
+  <string name="settings_ics_files_export">选择保存位置</string>
+  <string name="settings_ics_files_imported">已导入。新增：%1$d · 更新：%2$d · 未变：%3$d</string>
+  <string name="settings_ics_files_exported">已导出。写入的事件数：%1$d</string>
+  <string name="settings_ics_files_problems">未能完整读取的条目：%1$d</string>
+  <string name="settings_ics_files_error_not_calendar">该文件不是 Taqvim 能读取的日历。没有任何改动。</string>
+  <string name="settings_ics_files_error_too_large">该文件太大，无法读取。</string>
+  <string name="settings_ics_files_error_unreadable">无法打开该文件。请重新选择。</string>
+  <string name="settings_ics_files_error_unwritable">无法写入该文件。请另选位置。</string>
+  <string name="settings_ics_files_error_failed">没有成功。请重试。</string>
 </resources>

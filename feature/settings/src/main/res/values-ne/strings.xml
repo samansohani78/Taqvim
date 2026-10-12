@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">फाइलको हरेक महिनाको स्रोत चाहिन्छ।</string>
   <string name="settings_source_jewish">यहूदी पर्वहरू</string>
   <string name="settings_source_christian">क्रिस्चियन पर्वहरू</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">पात्रो फाइलहरू</string>
+  <string name="settings_keywords_ics">ics|icalendar|आयात|निर्यात|फाइल|ब्याकअप</string>
+  <string name="settings_ics_files_title">पात्रो फाइलहरू</string>
+  <string name="settings_ics_files_loading">पात्रो फाइलहरू लोड हुँदै</string>
+  <string name="settings_ics_files_intro">iCalendar (.ics) फाइलमार्फत आफ्ना कार्यक्रम Taqvim र अर्को पात्रो एपबीच सार्नुहोस्। Taqvim ले तपाईंले छानेको फाइल मात्र पढ्छ र लेख्छ, र त्यसलाई कहीँ पठाउँदैन।</string>
+  <string name="settings_ics_files_import_heading">आयात</string>
+  <string name="settings_ics_files_import_detail">फाइलका कार्यक्रम तपाईंका आफ्नै कार्यक्रममा थपिन्छन्। सरकारी अवसरहरूमा असर पर्दैन।</string>
+  <string name="settings_ics_files_replace">यहाँ पहिल्यै भएका कार्यक्रम अद्यावधिक गर्नुहोस्</string>
+  <string name="settings_ics_files_replace_detail">बन्द हुँदा फाइलले दोहोर्‍याएको कार्यक्रम जस्ताको तस्तै रहन्छ।</string>
+  <string name="settings_ics_files_import">आयात गर्न फाइल छान्नुहोस्</string>
+  <string name="settings_ics_files_export_heading">निर्यात</string>
+  <string name="settings_ics_files_export_detail">तपाईंका आफ्नै कार्यक्रम एउटा फाइलमा लेख्छ। सरकारी अवसरहरू लेखिँदैनन्। लेखिने कार्यक्रम: %1$d</string>
+  <string name="settings_ics_files_export">कहाँ सुरक्षित गर्ने छान्नुहोस्</string>
+  <string name="settings_ics_files_imported">आयात भयो। थपिएका: %1$d · अद्यावधिक: %2$d · अपरिवर्तित: %3$d</string>
+  <string name="settings_ics_files_exported">निर्यात भयो। लेखिएका कार्यक्रम: %1$d</string>
+  <string name="settings_ics_files_problems">पूरै पढ्न नसकिएका वस्तुहरू: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">त्यो फाइल Taqvim ले पढ्न सक्ने पात्रो होइन। केही परिवर्तन भएन।</string>
+  <string name="settings_ics_files_error_too_large">त्यो फाइल पढ्नका लागि अति ठूलो छ।</string>
+  <string name="settings_ics_files_error_unreadable">त्यो फाइल खोल्न सकिएन। फेरि छान्नुहोस्।</string>
+  <string name="settings_ics_files_error_unwritable">त्यो फाइल लेख्न सकिएन। अर्को ठाउँ छान्नुहोस्।</string>
+  <string name="settings_ics_files_error_failed">त्यो काम लागेन। फेरि प्रयास गर्नुहोस्।</string>
 </resources>

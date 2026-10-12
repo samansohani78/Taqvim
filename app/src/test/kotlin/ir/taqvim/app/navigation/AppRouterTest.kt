@@ -133,6 +133,7 @@ class AppRouterTest {
             listOf(
                 AppDestination.LocationSettings,
                 AppDestination.AthanSettings,
+                AppDestination.IcsFiles,
                 AppDestination.Widgets,
                 AppDestination.IslamicOverride,
             )

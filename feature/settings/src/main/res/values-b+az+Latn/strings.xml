@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Fayldakı hər ayın mənbəyi olmalıdır.</string>
   <string name="settings_source_jewish">Yəhudi mərasimləri</string>
   <string name="settings_source_christian">Xristian bayramları</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Təqvim faylları</string>
+  <string name="settings_keywords_ics">ics|icalendar|idxal|ixrac|fayl|ehtiyat nüsxə</string>
+  <string name="settings_ics_files_title">Təqvim faylları</string>
+  <string name="settings_ics_files_loading">Təqvim faylları yüklənir</string>
+  <string name="settings_ics_files_intro">Öz tədbirlərinizi iCalendar (.ics) faylı ilə Taqvim və başqa təqvim tətbiqi arasında köçürün. Taqvim yalnız seçdiyiniz faylı oxuyur və yazır, onu heç yerə göndərmir.</string>
+  <string name="settings_ics_files_import_heading">İdxal</string>
+  <string name="settings_ics_files_import_detail">Fayldakı tədbirlər öz tədbirlərinizə əlavə olunur. Rəsmi günlərə toxunulmur.</string>
+  <string name="settings_ics_files_replace">Artıq burada olan tədbirləri yenilə</string>
+  <string name="settings_ics_files_replace_detail">Sönülü olanda faylın təkrarladığı tədbir olduğu kimi qalır.</string>
+  <string name="settings_ics_files_import">İdxal üçün fayl seçin</string>
+  <string name="settings_ics_files_export_heading">İxrac</string>
+  <string name="settings_ics_files_export_detail">Öz tədbirlərinizi bir fayla yazır. Rəsmi günlər yazılmır. Yazılacaq tədbir: %1$d</string>
+  <string name="settings_ics_files_export">Harada saxlanacağını seçin</string>
+  <string name="settings_ics_files_imported">İdxal olundu. Əlavə: %1$d · Yenilənən: %2$d · Dəyişməyən: %3$d</string>
+  <string name="settings_ics_files_exported">İxrac olundu. Yazılan tədbir: %1$d</string>
+  <string name="settings_ics_files_problems">Tam oxuna bilməyən ögələr: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Bu fayl Taqvimin oxuya biləcəyi təqvim deyil. Heç nə dəyişmədi.</string>
+  <string name="settings_ics_files_error_too_large">Bu fayl oxunmaq üçün çox böyükdür.</string>
+  <string name="settings_ics_files_error_unreadable">Bu fayl açıla bilmədi. Yenidən seçin.</string>
+  <string name="settings_ics_files_error_unwritable">Bu fayl yazıla bilmədi. Başqa yer seçin.</string>
+  <string name="settings_ics_files_error_failed">Alınmadı. Yenidən cəhd edin.</string>
 </resources>

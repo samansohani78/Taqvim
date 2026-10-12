@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Dosyadaki her ayın kaynağı olmalı.</string>
   <string name="settings_source_jewish">Yahudi anma günleri</string>
   <string name="settings_source_christian">Hristiyan bayramları</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Takvim dosyaları</string>
+  <string name="settings_keywords_ics">ics|icalendar|içe aktar|dışa aktar|dosya|yedek</string>
+  <string name="settings_ics_files_title">Takvim dosyaları</string>
+  <string name="settings_ics_files_loading">Takvim dosyaları yükleniyor</string>
+  <string name="settings_ics_files_intro">Kendi etkinliklerinizi bir iCalendar (.ics) dosyasıyla Taqvim ile başka bir takvim uygulaması arasında taşıyın. Taqvim yalnızca seçtiğiniz dosyayı okur ve yazar, hiçbir yere göndermez.</string>
+  <string name="settings_ics_files_import_heading">İçe aktarma</string>
+  <string name="settings_ics_files_import_detail">Dosyadaki etkinlikler kendi etkinliklerinize eklenir. Resmî günler etkilenmez.</string>
+  <string name="settings_ics_files_replace">Zaten burada olan etkinlikleri güncelle</string>
+  <string name="settings_ics_files_replace_detail">Kapalıyken dosyanın yinelediği etkinlik olduğu gibi bırakılır.</string>
+  <string name="settings_ics_files_import">İçe aktarılacak dosyayı seç</string>
+  <string name="settings_ics_files_export_heading">Dışa aktarma</string>
+  <string name="settings_ics_files_export_detail">Kendi etkinliklerinizi bir dosyaya yazar. Resmî günler yazılmaz. Yazılacak etkinlik: %1$d</string>
+  <string name="settings_ics_files_export">Nereye kaydedileceğini seç</string>
+  <string name="settings_ics_files_imported">İçe aktarıldı. Eklenen: %1$d · Güncellenen: %2$d · Değişmeyen: %3$d</string>
+  <string name="settings_ics_files_exported">Dışa aktarıldı. Yazılan etkinlik: %1$d</string>
+  <string name="settings_ics_files_problems">Tam olarak okunamayan ögeler: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Bu dosya Taqvim’in okuyabileceği bir takvim değil. Hiçbir şey değişmedi.</string>
+  <string name="settings_ics_files_error_too_large">Bu dosya okunamayacak kadar büyük.</string>
+  <string name="settings_ics_files_error_unreadable">Bu dosya açılamadı. Yeniden seçin.</string>
+  <string name="settings_ics_files_error_unwritable">Bu dosya yazılamadı. Başka bir yer seçin.</string>
+  <string name="settings_ics_files_error_failed">Bu işe yaramadı. Yeniden deneyin.</string>
 </resources>

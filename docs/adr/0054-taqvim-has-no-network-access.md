@@ -37,9 +37,16 @@ the `ics_subscriptions` and `ics_events_cache` tables.
 WorkManager goes too. It was there only to schedule the refresh, and it is what brought `ACCESS_NETWORK_STATE`.
 Taqvim's remaining background work is one `AlarmManager` alarm, which needs neither.
 
-**Local iCalendar import and export stay.** They are the half of T-1003 that never needed the network: the user
-picks a file through the Storage Access Framework and Taqvim reads or writes that document. This is now the only
-way an `.ics` file reaches the app, and it reaches it because the user handed it over.
+**Local iCalendar import and export stay, and are given a way in.** They are the half of T-1003 that never needed
+the network: the user picks a file through the Storage Access Framework and Taqvim reads or writes that document.
+This is now the only way an `.ics` file reaches the app, and it reaches it because the user handed it over.
+
+Until now they had no caller. `IcsImporter` and `IcsExporter` were built, bound in Koin and unit-tested, and
+nothing in `:app` or any `:feature` module resolved them — the permission allowlist cited file-based import and
+export as the interoperability that justified having no calendar permission, and that path could not be reached
+from the interface. **Settings → Calendar files** (`IcsFilesScreen`) is that caller. Its test goes through the
+screen and the view model to the store, deliberately: unit tests of a component cannot notice that nothing calls
+it, which is exactly how this survived.
 
 **Opening a citation is not network access.** Tapping a source link starts an `ACTION_VIEW` intent, and the user's
 browser — a different app, with its own permission — fetches the page. Taqvim passes a URL to the system and

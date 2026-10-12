@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Her mehek di pelê de çavkaniya xwe hewce dike.</string>
   <string name="settings_source_jewish">Bûyerên cihûyan</string>
   <string name="settings_source_christian">Cejnên mesîhiyan</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Pelên salnameyê</string>
+  <string name="settings_keywords_ics">ics|icalendar|anîn|şandin|pel|paşgir</string>
+  <string name="settings_ics_files_title">Pelên salnameyê</string>
+  <string name="settings_ics_files_loading">Pelên salnameyê tên barkirin</string>
+  <string name="settings_ics_files_intro">Bûyerên xwe bi pelekî iCalendar (.ics) di navbera Taqvim û sepaneke din a salnameyê de biguhêzin. Taqvim tenê wî pelî dixwîne û dinivîse ku hûn hilbijêrin û wî bo tu derê naşîne.</string>
+  <string name="settings_ics_files_import_heading">Anîn</string>
+  <string name="settings_ics_files_import_detail">Bûyerên pelî li bûyerên we yên xwe zêde dibin. Rojên fermî nayên guhertin.</string>
+  <string name="settings_ics_files_replace">Bûyerên ku jixwe li vir in nû bike</string>
+  <string name="settings_ics_files_replace_detail">Dema vemirandî be, bûyera ku pel dubare dike wek xwe dimîne.</string>
+  <string name="settings_ics_files_import">Pelekî ji bo anînê hilbijêre</string>
+  <string name="settings_ics_files_export_heading">Şandin</string>
+  <string name="settings_ics_files_export_detail">Bûyerên we yên xwe di pelekî de dinivîse. Rojên fermî nayên nivîsîn. Bûyerên ku dê bên nivîsîn: %1$d</string>
+  <string name="settings_ics_files_export">Hilbijêre ka li ku were tomarkirin</string>
+  <string name="settings_ics_files_imported">Hat anîn. Zêdekirî: %1$d · Nûkirî: %2$d · Neguherî: %3$d</string>
+  <string name="settings_ics_files_exported">Hat şandin. Bûyerên nivîsandî: %1$d</string>
+  <string name="settings_ics_files_problems">Hêmanên ku bi tevahî nehatin xwendin: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Ev pel ne salnameyek e ku Taqvim bikare bixwîne. Tiştek nehat guhertin.</string>
+  <string name="settings_ics_files_error_too_large">Ev pel ji bo xwendinê pir mezin e.</string>
+  <string name="settings_ics_files_error_unreadable">Ev pel nehat vekirin. Dîsa hilbijêre.</string>
+  <string name="settings_ics_files_error_unwritable">Ev pel nehat nivîsîn. Cihekî din hilbijêre.</string>
+  <string name="settings_ics_files_error_failed">Ev neçû serî. Dîsa biceribîne.</string>
 </resources>

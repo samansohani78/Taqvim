@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Для каждого месяца в файле нужен источник.</string>
   <string name="settings_source_jewish">Еврейские памятные дни</string>
   <string name="settings_source_christian">Христианские праздники</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Файлы календаря</string>
+  <string name="settings_keywords_ics">ics|icalendar|импорт|экспорт|файл|резервная копия</string>
+  <string name="settings_ics_files_title">Файлы календаря</string>
+  <string name="settings_ics_files_loading">Загрузка файлов календаря</string>
+  <string name="settings_ics_files_intro">Переносите свои события между Taqvim и другим календарным приложением с помощью файла iCalendar (.ics). Taqvim читает и записывает только выбранный вами файл и никуда его не отправляет.</string>
+  <string name="settings_ics_files_import_heading">Импорт</string>
+  <string name="settings_ics_files_import_detail">События из файла добавляются к вашим собственным событиям. Официальные даты не затрагиваются.</string>
+  <string name="settings_ics_files_replace">Обновлять события, которые уже здесь</string>
+  <string name="settings_ics_files_replace_detail">Если выключено, событие, повторяющееся в файле, остаётся без изменений.</string>
+  <string name="settings_ics_files_import">Выбрать файл для импорта</string>
+  <string name="settings_ics_files_export_heading">Экспорт</string>
+  <string name="settings_ics_files_export_detail">Записывает ваши собственные события в файл. Официальные даты не записываются. Событий к записи: %1$d</string>
+  <string name="settings_ics_files_export">Выбрать место сохранения</string>
+  <string name="settings_ics_files_imported">Импортировано. Добавлено: %1$d · Обновлено: %2$d · Без изменений: %3$d</string>
+  <string name="settings_ics_files_exported">Экспортировано. Записано событий: %1$d</string>
+  <string name="settings_ics_files_problems">Записи, которые не удалось прочитать полностью: %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Этот файл не является календарём, который Taqvim может прочитать. Ничего не изменено.</string>
+  <string name="settings_ics_files_error_too_large">Этот файл слишком велик для чтения.</string>
+  <string name="settings_ics_files_error_unreadable">Не удалось открыть этот файл. Выберите его снова.</string>
+  <string name="settings_ics_files_error_unwritable">Не удалось записать этот файл. Выберите другое место.</string>
+  <string name="settings_ics_files_error_failed">Не получилось. Попробуйте ещё раз.</string>
 </resources>

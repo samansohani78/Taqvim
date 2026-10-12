@@ -205,4 +205,26 @@
   <string name="settings_islamic_override_error_citation">Chaque mois du fichier doit indiquer sa source.</string>
   <string name="settings_source_jewish">Fêtes juives</string>
   <string name="settings_source_christian">Fêtes chrétiennes</string>
+  <!-- T-1003 calendar files: import and export personal events as .ics. -->
+  <string name="settings_item_ics_files">Fichiers de calendrier</string>
+  <string name="settings_keywords_ics">ics|icalendar|importer|exporter|fichier|sauvegarde</string>
+  <string name="settings_ics_files_title">Fichiers de calendrier</string>
+  <string name="settings_ics_files_loading">Chargement des fichiers de calendrier</string>
+  <string name="settings_ics_files_intro">Déplacez vos propres événements entre Taqvim et une autre application de calendrier avec un fichier iCalendar (.ics). Taqvim lit et écrit uniquement le fichier que vous choisissez et ne l’envoie nulle part.</string>
+  <string name="settings_ics_files_import_heading">Importer</string>
+  <string name="settings_ics_files_import_detail">Les événements du fichier sont ajoutés à vos propres événements. Les occasions officielles ne sont pas touchées.</string>
+  <string name="settings_ics_files_replace">Mettre à jour les événements déjà présents</string>
+  <string name="settings_ics_files_replace_detail">Si désactivé, un événement répété par le fichier reste tel quel.</string>
+  <string name="settings_ics_files_import">Choisir un fichier à importer</string>
+  <string name="settings_ics_files_export_heading">Exporter</string>
+  <string name="settings_ics_files_export_detail">Écrit vos propres événements dans un fichier. Les occasions officielles ne sont pas écrites. Événements à écrire : %1$d</string>
+  <string name="settings_ics_files_export">Choisir où enregistrer</string>
+  <string name="settings_ics_files_imported">Importé. Ajoutés : %1$d · Mis à jour : %2$d · Inchangés : %3$d</string>
+  <string name="settings_ics_files_exported">Exporté. Événements écrits : %1$d</string>
+  <string name="settings_ics_files_problems">Éléments qui n’ont pas pu être lus entièrement : %1$d</string>
+  <string name="settings_ics_files_error_not_calendar">Ce fichier n’est pas un calendrier que Taqvim peut lire. Rien n’a été modifié.</string>
+  <string name="settings_ics_files_error_too_large">Ce fichier est trop volumineux à lire.</string>
+  <string name="settings_ics_files_error_unreadable">Ce fichier n’a pas pu être ouvert. Choisissez-le à nouveau.</string>
+  <string name="settings_ics_files_error_unwritable">Ce fichier n’a pas pu être écrit. Choisissez un autre emplacement.</string>
+  <string name="settings_ics_files_error_failed">Cela n’a pas fonctionné. Réessayez.</string>
 </resources>
