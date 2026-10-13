@@ -60,6 +60,14 @@ class SecurityKonsistTest {
     }
 
     @Test
+    fun `no production code cancels background work wholesale`() {
+        // T-1200. JobScheduler.cancelAll() cancels every job the APP owns, including the ones Glance schedules to
+        // draw widgets. Calling it on MY_PACKAGE_REPLACED left every placed widget on the launcher's spinner after
+        // the v1.3.0 upgrade. "This app schedules no jobs" was true of our source and false of the APK.
+        ManifestSecurityRules.wholesaleWorkCancellers(root).shouldBeEmpty()
+    }
+
+    @Test
     fun `no manifest requests a device location permission`() {
         // ADR-0055: a place is a bundled city, a point on the map or typed coordinates. Taqvim never asks a device
         // where it is, so the question is never put to the user either.
@@ -210,6 +218,20 @@ class SecurityKonsistTest {
                 "feature/store/src/main/kotlin/Later.kt: androidx.work.",
                 "feature/store/src/main/kotlin/Later.kt: PeriodicWorkRequest",
             )
+    }
+
+    @Test
+    fun `a planted wholesale work cancel is detected`(
+        @TempDir fixture: File,
+    ) {
+        // The exact shape that shipped: a receiver cancelling every job the app owns on an upgrade.
+        write(
+            File(fixture, "app/src/main/kotlin/StaleWork.kt"),
+            "fun clear(jobs: android.app.job.JobScheduler) { jobs.cancelAll() }",
+        )
+
+        ManifestSecurityRules.wholesaleWorkCancellers(fixture) shouldBe
+            listOf("app/src/main/kotlin/StaleWork.kt: cancelAll()")
     }
 
     @Test

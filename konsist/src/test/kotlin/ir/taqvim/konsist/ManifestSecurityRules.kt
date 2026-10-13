@@ -65,6 +65,21 @@ object ManifestSecurityRules {
     private val BACKGROUND_WORK_REFERENCES =
         listOf("androidx.work.", "CoroutineWorker", "WorkManager.getInstance", "PeriodicWorkRequest")
 
+    /**
+     * Ways production code could cancel background work wholesale.
+     *
+     * `JobScheduler.cancelAll()` cancels every job the *app* owns, not every job the caller scheduled — and the app
+     * owns the jobs its libraries schedule on its behalf. Glance draws every widget through
+     * `androidx.glance.appwidget.AsyncRequestWorker`, which WorkManager schedules as a platform job, so one
+     * `cancelAll()` on `MY_PACKAGE_REPLACED` left every placed widget on the launcher's loading spinner after an
+     * upgrade (v1.3.0). The reasoning that justified it — "this app schedules no job of any kind" — was true of
+     * Taqvim's own source and false of the APK, which is precisely the gap a source-level grep cannot see.
+     *
+     * So the rule is about the dangerous verb, not about widgets: nothing may cancel work it did not schedule.
+     */
+    private val WHOLESALE_WORK_CANCELLERS =
+        listOf("cancelAll()", "cancelAllWork", "cancelAllWorkByTag")
+
     /** Device location permissions. ADR-0055: Taqvim requests neither, and no manifest may bring one back. */
     private val LOCATION_PERMISSIONS =
         setOf("android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION")
@@ -153,6 +168,15 @@ object ManifestSecurityRules {
         mainKotlinFiles(root).flatMap { file ->
             val text = file.readText()
             BACKGROUND_WORK_REFERENCES
+                .filter { text.contains(it) }
+                .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
+        }
+
+    /** `file: reference` for every main Kotlin source that cancels background work wholesale (T-1200). */
+    fun wholesaleWorkCancellers(root: File): List<String> =
+        mainKotlinFiles(root).flatMap { file ->
+            val text = file.readText()
+            WHOLESALE_WORK_CANCELLERS
                 .filter { text.contains(it) }
                 .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
         }
