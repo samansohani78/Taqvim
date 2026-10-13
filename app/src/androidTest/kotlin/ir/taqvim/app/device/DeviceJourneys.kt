@@ -32,6 +32,9 @@ internal enum class JourneyStatus {
  * - "edit/delete event" -> [J13], [J14];
  * - "ICS import/export" -> [J31], [J32].
  *
+ * [id] J33 no longer matches a PLAN group: its group ("subscription refresh") was removed with the feature
+ * (ADR-0054), and the id now carries the journey that removal created.
+ *
  * That is 4 groups turning into 5+2+2+2 = 11 ids, i.e. +7 ids over the 4 groups they replace: 33 + 7 = 40. Every
  * other group with a quantity in parentheses or "each X" ("NLP input 10 phrases", "theme changes (6)", "deep links
  * (10)", "converter (each calendar)", "add each widget") is read as a required *breadth* within one journey (the
@@ -139,6 +142,16 @@ internal object JourneyRegistry {
             // can reach is the real system file picker, so these stay missing here.
             Journey("J31", "ICS import", JourneyStatus.MISSING),
             Journey("J32", "ICS export", JourneyStatus.MISSING),
+            // Was "subscription refresh" until 2026-10-13, when the feature was removed with the app's network
+            // access (ADR-0054). The id is reused rather than retired: the ids are a contiguous J01…J40 by
+            // construction, and renumbering seven journeys to close a hole would invalidate every reference to
+            // them. What replaces it is the journey the removal created — the app running with nothing granted.
+            Journey(
+                "J33",
+                "No network, location or calendar permission is ever requested",
+                JourneyStatus.PARTIAL,
+                SMOKE_TABS,
+            ),
             Journey("J34", "Compass orientation lock", JourneyStatus.PARTIAL, SMOKE_TABS),
             Journey("J35", "Map layers", JourneyStatus.PARTIAL, SMOKE_TABS),
             Journey("J36", "Astronomy slider", JourneyStatus.PARTIAL, SMOKE_LINKS),

@@ -83,6 +83,7 @@ fails.
 | J30 | Backup, wipe, restore: the event is back | **covered** | `DeviceBackupRestoreTest#backupWipeRestoreBringsTheEventBack` (new) |
 | J31 | ICS import | missing on a device | Covered off-device by `DocumentIcsFilesStoreTest` (round trip through the content resolver) and `IcsFilesScreenTest`; what is untested is the real system file picker |
 | J32 | ICS export | missing on a device | As J31 |
+| J33 | No network, location or calendar permission is ever requested | partial | `DeviceSmokeTest#everyTabAndMoreEntryOpens` (the suite grants only `POST_NOTIFICATIONS`, so every screen it opens is running with no network, location or calendar access; no assertion that a prompt never appears). Was "subscription refresh" until 2026-10-13, when the feature went with the app's network access (ADR-0054); the id is reused rather than retired because the ids are contiguous J01…J40 by construction |
 | J34 | Compass orientation lock | partial | `DeviceSmokeTest#everyTabAndMoreEntryOpens` (opens Compass; no lock assertion) |
 | J35 | Map layers | partial | `DeviceSmokeTest#everyTabAndMoreEntryOpens` (`visitToggles` toggles every layer control on/off; no visual-effect assertion) |
 | J36 | Astronomy slider | partial | `DeviceSmokeTest` (opens Astronomy; no slider interaction) |

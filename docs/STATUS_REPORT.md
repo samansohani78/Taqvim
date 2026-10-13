@@ -1187,3 +1187,82 @@ source; the widget invalidation set lost a table; and `WidgetDataNeedsTest` coun
 `benchmark/METHODOLOGY.md` states, per benchmark, where each timer starts and stops and which numbers are absolute,
 and it says plainly that time-to-first-useful-widget-render is not measured anywhere and cannot be from inside this
 process.
+
+## The offline, permission-free pass (2026-10-13, ADR-0054 … ADR-0056)
+
+Four decisions, taken together because they are one claim: **Taqvim's process cannot reach the network, cannot ask
+where the device is, cannot read the device calendar, and copies nothing to anyone's cloud by itself.** Each half
+of that sentence is now a permission the app does not hold, not a property of the code that has to be re-read
+after every dependency bump.
+
+| Decision | What went | What replaced it |
+|---|---|---|
+| [ADR-0054](adr/0054-taqvim-has-no-network-access.md) | Remote iCalendar subscriptions, WorkManager, `INTERNET`, `ACCESS_NETWORK_STATE` | File-based `.ics` import and export, now reachable |
+| [ADR-0055](adr/0055-taqvim-does-not-ask-where-the-device-is.md) | `DeviceLocator`, the platform `Geocoder`, both location permissions | The bundled city catalog, the map picker, typed coordinates |
+| [ADR-0056](adr/0056-no-automatic-cloud-backup.md) | Automatic cloud backup on every Android version | The user's own encrypted backup file; device-to-device transfer on 12+ |
+| T-1003 (this pass) | Nothing | **Settings → Calendar files**, the first caller `IcsImporter` and `IcsExporter` ever had |
+
+### The merged release manifest
+
+Ten permissions became eight, and the two dangerous ones went:
+
+```
+ACCESS_NOTIFICATION_POLICY  FOREGROUND_SERVICE  FOREGROUND_SERVICE_MEDIA_PLAYBACK
+POST_NOTIFICATIONS  RECEIVE_BOOT_COMPLETED  SCHEDULE_EXACT_ALARM  VIBRATE  WAKE_LOCK
+```
+
+Every one is a notification or alarm permission for a feature the user switches on. None is dangerous; none is
+asked for at launch; and `POST_NOTIFICATIONS` is never requested at runtime at all — the app checks it before
+posting and stays quiet, and the privacy screen shows its state with a link to the system settings. That is
+stricter than "ask when the user enables the feature", and it has a cost worth naming: a user who turns on
+reminders on Android 13+ without having granted notifications gets silence and no explanation on the reminder
+screen itself. Closing that is a product decision, not part of a removal, so it is left open here.
+
+`ACCESS_NETWORK_STATE` is the one permission removed at the merge point rather than at its source: Glance depends
+on WorkManager, which declares it for network constraints Taqvim never sets. `tools:node="remove"` in the app
+manifest takes it back out. WorkManager only reads connectivity when a work request carries a network constraint,
+and Glance's session work carries none.
+
+### What was measured, and what was not
+
+- **Release APK**: 6 800 904 → 6 713 236 bytes, **80.0 % of the 8 388 608 budget**, 1 675 372 spare. Down 87 668
+  bytes net: −132 552 for the subscriptions and WorkManager, −43 300 for the location and geocoder code, then
+  +83 516 for the calendar-files page and its strings in 24 languages and +4 668 for the rewritten privacy answers.
+- **`timingTests` at `-Ptaqvim.timingScale=2`**: green.
+- **Instrumented suite on a local API 33 emulator**: 20 of 20 green, including
+  `DeviceSurfacesTest#everyWidgetIsBoundUpdatedAndDrawn`, which binds and draws every widget through a real
+  `AppWidgetHost`. That is the empirical half of the `ACCESS_NETWORK_STATE` reasoning above — Glance composes its
+  sessions through WorkManager without the permission. (CI runs API 26/30/33/36 and Wear 34; only 33 was run here.)
+- **Not measured**: cold start, warm start, startup without a profile, month scroll, search, year view and every
+  widget render. No device was attached, and `benchmark/METHODOLOGY.md` already states that the hosted emulator
+  cannot measure this app — its control benchmarks move by hundreds of percent inside one run. **Deletion is not
+  claimed as a speed-up.**
+
+What can be said from the code, and only that: `EventsRepository` reads one input flow instead of combining two,
+so a day assembly no longer waits on a second source; the widget invalidation set lost two tables; WorkManager is
+no longer initialised at all, which removes its `ForceStopRunnable` and scheduler from process start; and
+`TaqvimApplication` no longer implements `Configuration.Provider`, so the manifest no longer has to remove
+WorkManager's startup initializer.
+
+### Upgrades
+
+- Schema **9 → 10** drops `ics_subscriptions` and `ics_events_cache`, children first so the foreign key cannot
+  refuse. `TaqvimDatabaseMigrationTest` asserts both are gone and that personal events and their reminders are not.
+- `StaleWork.cancelAll` runs from `DayChangeReceiver` on `MY_PACKAGE_REPLACED` and `BOOT_COMPLETED`. JobScheduler
+  keeps a job across an app update and WorkManager is no longer in the APK to cancel its own; after this change
+  Taqvim schedules no job of any kind, so cancelling every pending job is safe to state absolutely.
+- A place stored as `PLACE_SOURCE_DEVICE` reads back as `COORDINATES` with the same coordinates, name and zone.
+- Backups written by an earlier version still restore: `BackupDocument` ignores unknown keys, so `icsSubscriptions`
+  and `subscriptionsNetworkAllowed` are dropped on read. The preference's proto tag is **reserved**, not deleted.
+
+### What this does not claim
+
+Not that nothing the user does can reach the internet. They can open a cited source in their browser, pick a file
+from a cloud provider through the Storage Access Framework, or export a backup into one. Each is an app they
+chose and started. The claim is about Taqvim's own process, and the in-app privacy answer now says exactly that in
+all 24 languages — it previously told users the app "uses the internet to refresh the calendar subscriptions you
+add", which stopped being true the moment the feature was removed.
+
+Nor that the 22 machine-translated languages have been reviewed. The calendar-files page's 21 strings were written
+in English and Persian and machine-translated in the same pass; `docs/i18n/NATIVE_REVIEW_QUEUE.md` says so and
+names the two strings a reviewer should read first.
