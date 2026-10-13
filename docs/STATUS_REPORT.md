@@ -1399,14 +1399,38 @@ says, whether a sentence reads as a warning or as a setting. Every one of the 22
 `MT: needs review` header, DT-044 stays open, and `docs/i18n/NATIVE_REVIEW_QUEUE.md` now lists what changed and
 why, plus the two notification strings as a new group to read first.
 
-### Performance: pending, not estimated
+### Performance: measured on the phone, except the jank budgets
 
-**No physical device was attached**, so none of plan §9's device budgets was measured on this tree. `adb devices`
-listed only the matrix emulators. Cold start, warm start, startup without the profile, month scroll, search, year
-view and the first useful render of `THREE_DATES` and of an event-capable widget are all **unmeasured for
-v1.3.0**, exactly as `benchmark/UNBENCHMARKED.md` already said and now says again with this date. Emulator numbers
-were not substituted: the hosted runner's own control benchmarks move by hundreds of percent inside one run, which
-is why that file exists.
+The owner attached the OnePlus 15 (CPH2745, Android 16, arm64) during this pass, so v1.3.0 is no longer an
+unmeasured release. The whole macro suite and the whole micro suite ran against `main@4121f5e3`, followed by the
+`dumpsys meminfo` check. Figures and the full account are in `MANUAL_TEST_CHECKLIST.md` §8a.
 
-What is measured on this tree is host-side: the APK size, `timingTests` at `-Ptaqvim.timingScale=2`, and the five
-instrumented legs above.
+| Metric (PLAN §9) | Budget | v1.2.0 (2026-10-07) | v1.3.0 (2026-10-13) | |
+|---|---|---|---|---|
+| Cold start | ≤ 350 ms | 134 ms | **155.67 ms** | ✅ 44 % of budget |
+| Warm start | ≤ 350 ms | 47 ms | **43.11 ms** | ✅ |
+| Cold start without the profile | — | — | 155.53 ms | — |
+| Month-screen memory (TOTAL PSS) | ≤ 80 MB | 67.1 MB | **65.1 MB** | ✅ |
+| Painter renders, each | < 30 ms | — | **0.49 – 12.99 ms** | ✅ |
+| Map masks, each | < 150 ms | — | **1.95 – 121.88 ms** | ✅ |
+| Month scroll / timeline / search / year / map jank | ≤ 16 ms P99 | 13.05 / 5.33 / 11.64 / 26.9→ / 5.88 ms | **not measured** | ⚠️ |
+
+Cold start is 21.7 ms slower than v1.2.0 — 16 % — while sitting at 44 % of its budget. The dataset's generated
+source grew from 42 files to 83 between the two releases and `OfficialEvents.ALL` was the slowest component ever
+measured on this phone, so that is the first place to look; this run did not isolate it.
+
+**The jank budgets are the hole.** `FrameTimingMetric` reported `frameCount` alone for all six frame journeys, so
+`frameDurationCpuMs.P99` is absent from the results. A frame count says how many frames were drawn, not whether
+any of them was late, and it is not recorded here as if it were. This phone did report P99 figures for v1.2.0, so
+the cause is not the device being incapable; it is unresolved.
+
+Two findings came out of the tooling rather than the app, and both are written up in §8a: `compare_benchmarks.py`
+refuses to compare these results at all, because every committed baseline was recorded on an emulator and the tool
+correctly will not compare machines; and the `THREE_DATES` and event-widget "first useful render" figures the
+request asked for are, as this report already established under L4, dominated by Glance's fixed ~408 ms harness
+cost. The paired measurement is the only honest form of them: an empty widget cost 408.76 ms and a populated one
+410.70 ms on the same alternating run, a difference of **3.07 ms**.
+
+What is still not measured anywhere: a per-query search time against the §9 "< 20 ms per query over 10 000
+events", which no benchmark reports.
+

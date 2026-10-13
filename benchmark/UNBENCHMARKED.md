@@ -77,14 +77,28 @@ figure above, because the device-calendar module was removed after this waiver w
 it. This is a correction of the host figures, not a new acceptance and not a measurement: the reason for the waiver
 is unchanged, and so is what it does not claim.
 
-Re-checked again on 2026-10-13, during the pre-release hardening pass that added the notification-permission
-UX: **no physical device was attached**, so none of the §9 device budgets was measured on this tree either.
-`adb devices` listed only the test emulators the instrumented matrix was running on, and emulator numbers are not
-substituted for the phone's — that substitution is the mistake this whole file exists to prevent. Physical
-performance verification for v1.3.0 is therefore **still pending**, on exactly the terms above: cold start, warm
-start, startup without the profile, month scroll, search, year view, and the first useful render of `THREE_DATES`
-and of one event-capable widget, compared with the v1.2.0 OnePlus 15 figures, with `OfficialEvents.ALL` the number
-to look at first. What is measured on this tree is listed in docs/STATUS_REPORT.md and is host-side only.
+Updated 2026-10-13, after the owner attached the phone: **most of this entry's "not measured" no longer holds.**
+The macro and micro suites both ran on the OnePlus 15 (CPH2745, Android 16, arm64) against `main@4121f5e3`,
+followed by the `dumpsys meminfo` check. Cold start 155.67 ms and warm start 43.11 ms against a 350 ms budget;
+month-screen TOTAL PSS 65.1 MB against 80 MB; every painter render under 30 ms and every map mask under 150 ms.
+So v1.3.0 does **not** ship unmeasured, and the waiver below covers only what it always covered: the hosted
+runner's silence.
+
+What the phone run did **not** establish, and what this waiver therefore still carries: the §9 jank budgets.
+`FrameTimingMetric` reported `frameCount` alone for all six frame journeys, so `frameDurationCpuMs.P99` — the
+metric the ≤ 16 ms budgets are written against — is absent from the results. This same phone reported 13.05 ms
+P99 for v1.2.0 on 2026-10-07, so the device is not the limitation and the cause is unresolved. Frame counts are
+not jank measurements and are not recorded as such. Month scroll, timeline, search, year view and map pan/zoom are
+accordingly **unverified against §9 for v1.3.0**, and that is accepted here rather than hidden.
+
+Cold start also moved: 134 ms for v1.2.0 to 155.67 ms here, +16 %, at 44 % of budget. The dataset's generated
+source grew from 42 files to 83 between the releases and `OfficialEvents.ALL` was the slowest component ever
+measured on this phone; that remains the first thing to look at, and this run did not isolate it.
+
+Two tooling findings, both in MANUAL_TEST_CHECKLIST §8a: `compare_benchmarks.py` refuses to compare these results
+because every committed baseline was recorded on an emulator, so there is still no physical-device baseline in the
+repository; and `ScreenScrollBenchmarks.searchTyping` failed once with `search_field is not shown` and passed on
+an immediate re-run, which is a journey flake and not a regression.
 
 ### v1.2.0
 Accepted by: Saman Sohani, 2026-10-10

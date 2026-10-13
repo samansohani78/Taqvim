@@ -391,15 +391,15 @@ numbers cannot be read (re-run on a cooled, idle phone).
 
 | Metric (PLAN §9) | Budget | OnePlus 15 result | Date | Run by |
 |---|---|---|---|---|
-| Cold start to first month frame (`StartupBenchmark.startupCold`) | ≤ 350 ms | | | |
-| Warm start (`startupWarm`) | ≤ 350 ms | | | |
-| Month scroll jank, 24 months (`MonthPagerScrollBenchmark`, `frameDurationCpuMs` P99) | ≤ 16 ms | | | |
-| Timeline and search scroll (`ScreenScrollBenchmarks`) | ≤ 16 ms P99 | | | |
-| Year view (`YearViewBenchmark`) | ≤ 16 ms P99 | | | |
-| Map pan and zoom (`MapScreenBenchmark`) | ≤ 16 ms P99 | | | |
-| Month screen memory (`dumpsys meminfo` TOTAL PSS, see below) | ≤ 80 MB | 67.1 MB (2026-10-07) | 2026-10-07 | OnePlus 15 |
-| Widget render, each (`WidgetRenderBenchmark`, `GlanceWidgetBenchmark`) | < 30 ms | | | |
-| Map mask, each (`MapMaskBenchmark`) | < 150 ms | | | |
+| Cold start to first month frame (`StartupBenchmark.startupCold`) | ≤ 350 ms | **155.67 ms** | 2026-10-13 | OnePlus 15 |
+| Warm start (`startupWarm`) | ≤ 350 ms | **43.11 ms** | 2026-10-13 | OnePlus 15 |
+| Month scroll jank, 24 months (`MonthPagerScrollBenchmark`, `frameDurationCpuMs` P99) | ≤ 16 ms | **not measured** — only `frameCount` (209) was reported | 2026-10-13 | OnePlus 15 |
+| Timeline and search scroll (`ScreenScrollBenchmarks`) | ≤ 16 ms P99 | **not measured** — only `frameCount` (timeline 244, search 18) | 2026-10-13 | OnePlus 15 |
+| Year view (`YearViewBenchmark`) | ≤ 16 ms P99 | **not measured** — only `frameCount` (61 / 53 / 100) | 2026-10-13 | OnePlus 15 |
+| Map pan and zoom (`MapScreenBenchmark`) | ≤ 16 ms P99 | **not measured** — only `frameCount` (501) | 2026-10-13 | OnePlus 15 |
+| Month screen memory (`dumpsys meminfo` TOTAL PSS, see below) | ≤ 80 MB | **66 698 KB = 65.1 MB** (67.1 MB on 2026-10-07) | 2026-10-13 | OnePlus 15 |
+| Widget render, each (`WidgetRenderBenchmark`) | < 30 ms | **0.49–12.99 ms** (moon 0.49, ring 0.77, sun arc 0.93, month 4×4 2.11, map thumbnail 11.71, map content 12.99) | 2026-10-13 | OnePlus 15 |
+| Map mask, each (`MapMaskBenchmark`) | < 150 ms | **1.95–121.88 ms** (moon visibility 1.95, day/night 3.16, crescent 121.88) | 2026-10-13 | OnePlus 15 |
 
 #### Running the instrumented suite on the OnePlus 15 (2026-10-07)
 
@@ -423,6 +423,38 @@ The thirteenth failure was real and is fixed: `DeviceHolidayTest` resolved the w
 context, which follows the **device** locale (`en-IR` here) rather than the per-app locale the test had just set, so
 it looked for "Holiday" on a Persian screen. `localizedString(id, language)` now resolves it in the language the test
 chose, and the test passes on this phone.
+
+#### What the 2026-10-13 run established, and what it did not (v1.3.0)
+
+Run on the owner's OnePlus 15 (CPH2745, Android 16, arm64) against `main@4121f5e3`: the whole macro suite
+(`:benchmark:connectedBenchmarkAndroidTest`, 1 h 4 min) and the whole micro suite
+(`:benchmark:micro:connectedReleaseAndroidTest`), then the `dumpsys meminfo` check above.
+
+**Established:** cold start 155.67 ms and warm start 43.11 ms against a 350 ms budget; month-screen TOTAL PSS
+65.1 MB against 80 MB; every painter render and every map mask inside its budget.
+
+**Not established: the §9 jank budgets.** `FrameTimingMetric` reported `frameCount` and nothing else for all six
+frame journeys, so `frameDurationCpuMs.P99` — the metric the ≤ 16 ms budgets are written against — does not exist
+in this run's results. That is the documented signature of a runner with no SurfaceFlinger frame timeline, which
+is expected of a hosted emulator and *not* of this phone, which reported 13.05 ms P99 for v1.2.0 on 2026-10-07.
+Why it did not this time is unresolved. **A frame count is not a jank measurement and must not be recorded as
+one.**
+
+Two further things the run exposed, neither of them about the app:
+
+- `compare_benchmarks.py` refuses to compare at all, because `benchmark/baselines` was recorded on
+  `sdk_gphone64_x86_64` — an emulator. There is no committed baseline for any physical device, so the v1.2.0
+  phone figures quoted here and in STATUS_REPORT live only in prose. Recording one with `--record-baseline`
+  under `benchmark/baselines/CPH2745/` is the obvious next step and was deliberately not done as part of a
+  release: a first baseline should be recorded from a run someone has read, on a commit that is not being
+  tagged the same hour.
+- `ScreenScrollBenchmarks.searchTyping` failed once with `search_field is not shown` and passed on an immediate
+  re-run of the same binary on the same phone. It is a flake of the journey, not a regression: nothing in this
+  release touches the search screen, and the other twelve benchmarks in the same run passed.
+
+`startupColdWithoutProfile` (155.53 ms) came out within 0.14 ms of `startupCold` (155.67 ms), which is consistent
+with the standing finding that the `benchmark` variant carries no app baseline profile — so neither number is
+evidence about what the profile does for a user's install.
 
 #### The §9 month-screen memory check
 
