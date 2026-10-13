@@ -214,7 +214,7 @@
   <string name="settings_ics_files_import_heading">インポート</string>
   <string name="settings_ics_files_import_detail">ファイル内のイベントが自分のイベントに追加されます。公式の行事は影響を受けません。</string>
   <string name="settings_ics_files_replace">すでにあるイベントを更新する</string>
-  <string name="settings_ics_files_replace_detail">オフのとき、ファイルが重ねたイベントはそのまま残ります。</string>
+  <string name="settings_ics_files_replace_detail">オフのとき、ファイルと重複するイベントはそのまま残ります。</string>
   <string name="settings_ics_files_import">インポートするファイルを選ぶ</string>
   <string name="settings_ics_files_export_heading">エクスポート</string>
   <string name="settings_ics_files_export_detail">自分のイベントをファイルに書き出します。公式の行事は書き出されません。書き出すイベント数: %1$d</string>

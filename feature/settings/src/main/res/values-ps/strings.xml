@@ -210,11 +210,11 @@
   <string name="settings_keywords_ics">ics|icalendar|واردول|صادرول|دوتنه|شاتړ</string>
   <string name="settings_ics_files_title">د تقویم دوتنې</string>
   <string name="settings_ics_files_loading">د تقویم دوتنې بارېږي</string>
-  <string name="settings_ics_files_intro">خپل پېښې د iCalendar ⁦(.ics)⁩ دوتنې په مرسته د تقویم او بلې تقویم اپلیکیشن ترمنځ ولېږدوئ. تقویم یوازې هغه دوتنه لولي او لیکي چې تاسو یې غوره کوئ، او هېڅ چېرې یې نه لېږي.</string>
+  <string name="settings_ics_files_intro">خپلې پېښې د iCalendar ⁦(.ics)⁩ دوتنې په مرسته د تقویم او بلې تقویم اپلیکیشن ترمنځ ولېږدوئ. تقویم یوازې هغه دوتنه لولي او لیکي چې تاسو یې غوره کوئ، او هېڅ چېرې یې نه لېږي.</string>
   <string name="settings_ics_files_import_heading">واردول</string>
-  <string name="settings_ics_files_import_detail">د دوتنې پېښې ستاسو خپلو پېښو ته ورزیاتېږي. رسمي مناسبتونه نه اغېزمن کېږي.</string>
+  <string name="settings_ics_files_import_detail">د دوتنې پېښې ستاسو خپلو پېښو ته ورزیاتېږي. رسمي مناسبتونه اغېزمن نه کېږي.</string>
   <string name="settings_ics_files_replace">هغه پېښې تازه کړه چې له مخکې دلته دي</string>
-  <string name="settings_ics_files_replace_detail">کله چې مړ وي، هغه پېښه چې دوتنه یې تکراروي لکه څنګه چې ده پاتې کېږي.</string>
+  <string name="settings_ics_files_replace_detail">کله چې بند وي، هغه پېښه چې دوتنه یې تکراروي لکه څنګه چې ده پاتې کېږي.</string>
   <string name="settings_ics_files_import">د واردولو لپاره دوتنه وټاکئ</string>
   <string name="settings_ics_files_export_heading">صادرول</string>
   <string name="settings_ics_files_export_detail">ستاسو خپلې پېښې په یوه دوتنه کې لیکي. رسمي مناسبتونه نه لیکل کېږي. هغه پېښې چې لیکل کېږي: %1$d</string>

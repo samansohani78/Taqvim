@@ -210,7 +210,7 @@
   <string name="settings_keywords_ics">ics|icalendar|आयात|निर्यात|फ़ाइल|बैकअप</string>
   <string name="settings_ics_files_title">कैलेंडर फ़ाइलें</string>
   <string name="settings_ics_files_loading">कैलेंडर फ़ाइलें लोड हो रही हैं</string>
-  <string name="settings_ics_files_intro">iCalendar (.ics) फ़ाइल से अपने अपने कार्यक्रम Taqvim और किसी दूसरे कैलेंडर ऐप के बीच ले जाएँ। Taqvim केवल वही फ़ाइल पढ़ता और लिखता है जो आप चुनते हैं, और उसे कहीं नहीं भेजता।</string>
+  <string name="settings_ics_files_intro">iCalendar (.ics) फ़ाइल से अपने कार्यक्रम Taqvim और किसी दूसरे कैलेंडर ऐप के बीच ले जाएँ। Taqvim केवल वही फ़ाइल पढ़ता और लिखता है जो आप चुनते हैं, और उसे कहीं नहीं भेजता।</string>
   <string name="settings_ics_files_import_heading">आयात</string>
   <string name="settings_ics_files_import_detail">फ़ाइल के कार्यक्रम आपके अपने कार्यक्रमों में जुड़ जाते हैं। आधिकारिक अवसरों पर कोई असर नहीं पड़ता।</string>
   <string name="settings_ics_files_replace">यहाँ पहले से मौजूद कार्यक्रम अपडेट करें</string>

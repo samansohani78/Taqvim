@@ -212,12 +212,12 @@
   <string name="settings_ics_files_loading">நாட்காட்டிக் கோப்புகள் ஏற்றப்படுகின்றன</string>
   <string name="settings_ics_files_intro">iCalendar (.ics) கோப்பின் மூலம் உங்கள் சொந்த நிகழ்வுகளை Taqvim-க்கும் வேறு நாட்காட்டி செயலிக்கும் இடையே நகர்த்தலாம். நீங்கள் தேர்ந்தெடுக்கும் கோப்பை மட்டுமே Taqvim படிக்கிறது, எழுதுகிறது; அதை எங்கும் அனுப்புவதில்லை.</string>
   <string name="settings_ics_files_import_heading">இறக்குமதி</string>
-  <string name="settings_ics_files_import_detail">கோப்பிலுள்ள நிகழ்வுகள் உங்கள் சொந்த நிகழ்வுகளுடன் சேர்க்கப்படும். அதிகாரபூர்வ நாட்கள் பாதிக்கப்படா.</string>
+  <string name="settings_ics_files_import_detail">கோப்பிலுள்ள நிகழ்வுகள் உங்கள் சொந்த நிகழ்வுகளுடன் சேர்க்கப்படும். அதிகாரபூர்வ நாட்கள் பாதிக்கப்படாது.</string>
   <string name="settings_ics_files_replace">ஏற்கெனவே இங்குள்ள நிகழ்வுகளைப் புதுப்பி</string>
   <string name="settings_ics_files_replace_detail">அணைத்திருந்தால் கோப்பு மீண்டும் தரும் நிகழ்வு அப்படியே விடப்படும்.</string>
   <string name="settings_ics_files_import">இறக்குமதி செய்ய கோப்பைத் தேர்ந்தெடு</string>
   <string name="settings_ics_files_export_heading">ஏற்றுமதி</string>
-  <string name="settings_ics_files_export_detail">உங்கள் சொந்த நிகழ்வுகளை ஒரு கோப்பில் எழுதும். அதிகாரபூர்வ நாட்கள் எழுதப்படா. எழுதப்படும் நிகழ்வுகள்: %1$d</string>
+  <string name="settings_ics_files_export_detail">உங்கள் சொந்த நிகழ்வுகளை ஒரு கோப்பில் எழுதும். அதிகாரபூர்வ நாட்கள் எழுதப்படாது. எழுதப்படும் நிகழ்வுகள்: %1$d</string>
   <string name="settings_ics_files_export">எங்கே சேமிப்பது எனத் தேர்ந்தெடு</string>
   <string name="settings_ics_files_imported">இறக்குமதி ஆனது. சேர்க்கப்பட்டவை: %1$d · புதுப்பிக்கப்பட்டவை: %2$d · மாறாதவை: %3$d</string>
   <string name="settings_ics_files_exported">ஏற்றுமதி ஆனது. எழுதப்பட்ட நிகழ்வுகள்: %1$d</string>

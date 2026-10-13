@@ -29,6 +29,39 @@ detail, because they describe what happens to an event the user already has, and
 way round will overwrite something. `settings_ics_files_import_heading` is listed in
 `config/i18n/same-as-source.txt` for Malay and Uzbek, where "Import" is the ordinary word.
 
+## The notification-permission warning (2026-10-13, all 22 machine-translated languages)
+
+`shared_notifications_blocked` and `shared_notifications_allow` in `:core:ui` are shown by four screens when the
+system will not display this app's notifications. They were written in English and machine-translated in the same
+pass, so they have had no native reading. The sentence has to carry one idea precisely — *the feature works, but
+it cannot alert you* — and a translation that turns it into *the feature is off* would be wrong in a way the
+structural checks cannot see.
+
+## Read by a model, not by a speaker (2026-10-13)
+
+Before v1.3.0 every string of the calendar files page, the two privacy answers and the two notification strings
+above were read again in all 24 languages, by a model, against the English. Twelve were changed:
+
+| Language | Key | Was | Why |
+|---|---|---|---|
+| ta | `settings_ics_files_import_detail` | `…பாதிக்கப்படா.` | truncated negative verb; `பாதிக்கப்படாது` |
+| ta | `settings_ics_files_export_detail` | `…எழுதப்படா.` | same |
+| hi | `settings_ics_files_intro` | `अपने अपने कार्यक्रम` | duplicated word |
+| ps | `settings_ics_files_intro` | `خپل پېښې` | `پېښې` is feminine plural: `خپلې` |
+| ps | `settings_ics_files_import_detail` | `…نه اغېزمن کېږي` | the negation particle belongs before the verb |
+| ps | `settings_ics_files_replace_detail` | `کله چې مړ وي` | `مړ` is "dead"; a switch is `بند` |
+| ku | `settings_ics_files_import_detail` | `bûyerên we yên xwe` | double possessive |
+| ku | `settings_ics_files_export_detail` | `Bûyerên we yên xwe` | double possessive |
+| tg | `settings_ics_files_replace` | `дар ин ҷобударо` | two words run together |
+| ja | `settings_ics_files_replace_detail` | `ファイルが重ねた…` | `重ねる` is to stack, not to duplicate |
+| ckb | `about_faq_privacy_a` | `لەسەر هەمان ئامێر` | "the same device" where the English says "this device" |
+| ckb | `about_faq_privacy_a` | `پاڵپشت ناکرێت` | `پاڵپشتی` is support, not backup |
+
+**This is not a native review and does not remove anything from this file.** A model reading its own output finds
+the mechanical faults above and is exactly the wrong instrument for the ones that matter — register, whether a
+word means to a speaker what the dictionary says, whether a sentence sounds like a warning or like a setting. The
+`MT: needs review` header stays on all 22 files, and the two groups above stay open.
+
 ## Every other machine-translated language
 
 No specific doubt has been raised, which is not the same as being right. The structural checks (placeholders,
