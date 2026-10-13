@@ -1433,4 +1433,3 @@ cost. The paired measurement is the only honest form of them: an empty widget co
 
 What is still not measured anywhere: a per-query search time against the §9 "< 20 ms per query over 10 000
 events", which no benchmark reports.
-
