@@ -149,8 +149,8 @@ internal object JourneyRegistry {
             Journey(
                 "J33",
                 "No network, location or calendar permission is ever requested",
-                JourneyStatus.PARTIAL,
-                SMOKE_TABS,
+                JourneyStatus.COVERED,
+                "DeviceEveryApiTest#theAppOpensHoldingNoRuntimePermission;" + SMOKE_TABS,
             ),
             Journey("J34", "Compass orientation lock", JourneyStatus.PARTIAL, SMOKE_TABS),
             Journey("J35", "Map layers", JourneyStatus.PARTIAL, SMOKE_TABS),
