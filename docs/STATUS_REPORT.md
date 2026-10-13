@@ -1227,19 +1227,32 @@ after every dependency bump.
 
 ### The merged release manifest
 
-Ten permissions became eight, and the two dangerous ones went:
+Ten permissions became eight, and the two location permissions went:
 
 ```
 ACCESS_NOTIFICATION_POLICY  FOREGROUND_SERVICE  FOREGROUND_SERVICE_MEDIA_PLAYBACK
 POST_NOTIFICATIONS  RECEIVE_BOOT_COMPLETED  SCHEDULE_EXACT_ALARM  VIBRATE  WAKE_LOCK
 ```
 
-Every one is a notification or alarm permission for a feature the user switches on. None is dangerous; none is
-asked for at launch; and `POST_NOTIFICATIONS` is never requested at runtime at all — the app checks it before
-posting and stays quiet, and the privacy screen shows its state with a link to the system settings. That is
-stricter than "ask when the user enables the feature", and it has a cost worth naming: a user who turns on
-reminders on Android 13+ without having granted notifications gets silence and no explanation on the reminder
-screen itself. Closing that is a product decision, not part of a removal, so it is left open here.
+Every one is a notification or alarm permission for a feature the user switches on, and none is asked for at
+launch. One of the eight is still **dangerous** in Android's sense: `POST_NOTIFICATIONS` is a runtime permission
+on API 33 and later, granted in a system dialog and revocable afterwards. An earlier draft of this section said
+otherwise, and also said the app never requests it at runtime; both were wrong. It is requested — at the moment
+the user turns on something that notifies, and nowhere else:
+
+| The user turns on | Asked from |
+|---|---|
+| A reminder on their own event | `EventEditorRoute`, on `ReminderIntent.Add` |
+| A reminder before an official occasion | `CalendarRoute`, on `CalendarEffect.RequestNotificationPermission` |
+| An athan | `AthanSettingsRoute`, on `onAlertToggled(enabled = true)` |
+| The date in the status bar | `SettingsHomeRoute`, on the `PERSISTENT_NOTIFICATION` switch |
+
+At most one dialog per screen: a refusal is an answer, and a second switch does not ask again. When the system
+will not show this app's notifications — refused, or turned off in the settings on any version — the switch that
+was just turned on gets the shared `NotificationsBlocked` warning next to it, with a link to the system screen
+that fixes it. The feature itself keeps working and storing what the user asked for; only the announcement is
+missing, which is what the warning says. `StartupAsksNothingTest` holds the other half: opening the app, and the
+first-run onboarding, request nothing.
 
 `ACCESS_NETWORK_STATE` is the one permission removed at the merge point rather than at its source: Glance depends
 on WorkManager, which declares it for network constraints Taqvim never sets. `tools:node="remove"` in the app
@@ -1312,3 +1325,88 @@ add", which stopped being true the moment the feature was removed.
 Nor that the 22 machine-translated languages have been reviewed. The calendar-files page's 21 strings were written
 in English and Persian and machine-translated in the same pass; `docs/i18n/NATIVE_REVIEW_QUEUE.md` says so and
 names the two strings a reviewer should read first.
+
+## The pre-release hardening pass (2026-10-13)
+
+Four things were asked for before v1.3.0 is tagged: finish the notification-permission UX, run the rest of the
+instrumented matrix, read the newly changed strings in every language, and measure the app on the owner's phone.
+Three were done. The fourth was not, and is marked pending rather than filled with emulator numbers.
+
+### Notifications: asked for where the user asks to be notified
+
+The gap named in the offline pass is closed. `POST_NOTIFICATIONS` is requested at the switch that turns a
+notifying feature on — a reminder on the user's own event, a reminder before an official occasion, an athan, or
+the date in the status bar — and nowhere else. The fourth of those did not ask at all before this pass.
+
+A refusal is an answer: `rememberNotificationPermission` asks at most once per screen, so turning on a second
+switch does not bring the dialog back. When the system will not show this app's notifications — refused on
+Android 13+, or turned off in the settings on any version — the switch that was just turned on carries the shared
+`NotificationsBlocked` warning, which says the feature cannot alert the user and links to the system screen that
+fixes it. The state is re-read when the screen resumes, so coming back from those settings clears the warning
+without restarting the app. Nothing degrades beyond the announcement: the reminder is still stored, the athan
+still sounds, the date notification is still configured.
+
+`StartupAsksNothingTest` holds the other half — opening the app, and the first-run onboarding, request nothing —
+and `DeviceEveryApiTest#theAppOpensHoldingNoRuntimePermission` holds it again on a real device at four API levels.
+
+An earlier draft of this report called `POST_NOTIFICATIONS` not dangerous and said it was never requested at
+runtime. Both were wrong, and both are corrected above and in `security/requested-permissions.txt`.
+
+### The instrumented matrix, and what it was actually running
+
+All five legs green on local emulators, against this tree:
+
+| Leg | Image | Tests | Result |
+|---|---|---|---|
+| API 26 | `google_apis;x86_64` | 6 | ✅ |
+| API 30 | `google_apis;x86_64` | 6 | ✅ |
+| API 33 | `google_apis;x86_64` | 22 | ✅ (run during the offline pass as 20; +2 here) |
+| API 36 | `google_apis;x86_64` | 22 | ✅ |
+| Wear OS 34 | `android-wear;x86_64` | 11 | ✅ |
+
+The API 26 and 30 legs ran **6** tests, not 22, and that is the finding of this part. Every behavioural device
+test in `:app` carries `@SdkSuppress(minSdkVersion = TIRAMISU)`, because it sets the per-app language through
+`LocaleManager` (API 33, ADR-0023) or needs `POST_NOTIFICATIONS` granted. Before this pass the two oldest legs
+therefore ran `DeviceJourneyCoverageTest` alone — four reflection checks that touch no Android surface. They were
+green, and they meant that the app's test APK installs.
+
+That is the wrong place to have a hole in the release that removed `ACCESS_NETWORK_STATE` at the manifest merge
+point. Glance still pulls in WorkManager, which declares that permission, and whether WorkManager tries to use it
+is a library behaviour that can differ by API level. `DeviceEveryApiTest` carries no `@SdkSuppress` and takes no
+language: it binds, updates and draws all twelve widget providers through a real `AppWidgetHost`, and it opens the
+app and asserts that `INTERNET`, `ACCESS_NETWORK_STATE`, both location permissions and both calendar permissions
+are denied and no permission dialog is in front. Both pass on 26, 30, 33 and 36, so the claim is now tested where
+it was previously only argued.
+
+Still not covered on a device: the `.ics` import and export (J31, J32). They go through the system file picker,
+which no instrumented test can drive; the adapter below it is covered off-device by `DocumentIcsFilesStoreTest`
+through a real `ContentResolver`, and the round trip is in `MANUAL_TEST_CHECKLIST.md` §9.
+
+No regression was found on any leg, so nothing was fixed there.
+
+### The strings, read again
+
+The calendar-files page, the two rewritten privacy answers and the two new notification strings were read in all
+24 languages against the English. Ten mechanical faults were corrected — a truncated Tamil negative in two
+strings, a duplicated Hindi word, Pashto gender agreement and a misplaced negation, `مړ` ("dead") where Pashto
+needs `بند` for a switch that is off, a Kurmanji double possessive in two strings, two Tajik words run together,
+a Japanese verb that means "stacked" rather than "duplicated", and two Sorani phrases in the privacy answer that
+said "the same device" and used the word for *support* where *backup* was meant.
+
+**This was a model reading its own output, and it is recorded as that.** It finds the mechanical faults and is
+the wrong instrument for the ones that matter — register, whether a word means to a speaker what the dictionary
+says, whether a sentence reads as a warning or as a setting. Every one of the 22 files still carries its
+`MT: needs review` header, DT-044 stays open, and `docs/i18n/NATIVE_REVIEW_QUEUE.md` now lists what changed and
+why, plus the two notification strings as a new group to read first.
+
+### Performance: pending, not estimated
+
+**No physical device was attached**, so none of plan §9's device budgets was measured on this tree. `adb devices`
+listed only the matrix emulators. Cold start, warm start, startup without the profile, month scroll, search, year
+view and the first useful render of `THREE_DATES` and of an event-capable widget are all **unmeasured for
+v1.3.0**, exactly as `benchmark/UNBENCHMARKED.md` already said and now says again with this date. Emulator numbers
+were not substituted: the hosted runner's own control benchmarks move by hundreds of percent inside one run, which
+is why that file exists.
+
+What is measured on this tree is host-side: the APK size, `timingTests` at `-Ptaqvim.timingScale=2`, and the five
+instrumented legs above.

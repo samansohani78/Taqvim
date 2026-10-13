@@ -297,6 +297,13 @@ saver exemptions) in the notes column.
 
 ## 7. Notification and platform surfaces (T-1213 – T-1215)
 
+0. **The notification permission, on a fresh install of Android 13+ (T-1001, T-1101, T-1213):** open the app and go
+   through the onboarding. *No permission dialog appears at any point.* Then turn on the date notification in
+   Settings → Widgets & Notification: the system dialog appears at that moment. **Refuse it.** The switch stays on,
+   a warning under it says notifications are turned off and offers "Turn on notifications"; turning on a second
+   switch (an athan, a reminder) does **not** ask again. Follow the button to the system settings, allow
+   notifications, come back: the warning is gone without restarting the app, and the date notification appears.
+   Then revoke notifications in the system settings and return: the warning comes back.
 1. **Persistent notification:** enable it in Settings → Widgets & Notification. The status-bar icon shows today's
    number; the notification shows the other calendars, holidays and prayer strip; it is visible on the lock screen;
    the large-number option changes the icon; it updates after midnight; tapping it opens the calendar.

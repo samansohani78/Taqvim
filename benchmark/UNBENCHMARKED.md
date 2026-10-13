@@ -77,6 +77,15 @@ figure above, because the device-calendar module was removed after this waiver w
 it. This is a correction of the host figures, not a new acceptance and not a measurement: the reason for the waiver
 is unchanged, and so is what it does not claim.
 
+Re-checked again on 2026-10-13, during the pre-release hardening pass that added the notification-permission
+UX: **no physical device was attached**, so none of the §9 device budgets was measured on this tree either.
+`adb devices` listed only the test emulators the instrumented matrix was running on, and emulator numbers are not
+substituted for the phone's — that substitution is the mistake this whole file exists to prevent. Physical
+performance verification for v1.3.0 is therefore **still pending**, on exactly the terms above: cold start, warm
+start, startup without the profile, month scroll, search, year view, and the first useful render of `THREE_DATES`
+and of one event-capable widget, compared with the v1.2.0 OnePlus 15 figures, with `OfficialEvents.ALL` the number
+to look at first. What is measured on this tree is listed in docs/STATUS_REPORT.md and is host-side only.
+
 ### v1.2.0
 Accepted by: Saman Sohani, 2026-10-10
 Why: the hosted runner cannot measure this app — its control benchmarks, which time fixed synthetic work the app
