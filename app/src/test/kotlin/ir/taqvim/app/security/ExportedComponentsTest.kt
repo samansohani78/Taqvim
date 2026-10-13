@@ -10,7 +10,8 @@ import org.junit.Test
 
 /**
  * T-1804 manifest audit (ADR-0017): the merged manifest exports exactly the allowlisted components, nothing is
- * exported implicitly, and only the documented permissions are requested — no network, calendar or location.
+ * exported implicitly, and only the documented permissions are requested — no network, calendar, location
+ * or storage.
  */
 class ExportedComponentsTest {
     private val manifest = MergedManifest.unitTestManifest()
@@ -94,6 +95,22 @@ class ExportedComponentsTest {
     }
 
     @Test
+    fun noBroadStoragePermissionIsRequested() {
+        // One document at a time, picked through the Storage Access Framework (T-1003), which needs none of these.
+        // The debug manifest removes LeakCanary's legacy pair; a removal is not a request.
+        val permissions = MergedManifest.requestedPermissions(manifest)
+        val allowed = MergedManifest.permissionAllowlist(resource("security/requested-permissions.txt"))
+
+        STORAGE_PERMISSIONS.forEach { permission ->
+            assertTrue(
+                "$permission is in the merged manifest; Taqvim reads only the file the user picked",
+                permission !in permissions,
+            )
+            assertTrue("$permission is on the allowlist; it must never be", permission !in allowed)
+        }
+    }
+
+    @Test
     fun permissionAllowlistLinesAreValidated() {
         assertEquals(listOf("a.B"), MergedManifest.permissionAllowlist("# comment\n\na.B | why\n"))
         assertTrue(runCatching { MergedManifest.permissionAllowlist("a.B") }.isFailure)
@@ -129,5 +146,16 @@ class ExportedComponentsTest {
         /** ADR-0055: Taqvim never asks a device where it is. */
         val LOCATION_PERMISSIONS: Set<String> =
             setOf("android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION")
+
+        /** T-1003: the Storage Access Framework hands over one document and needs none of these. */
+        val STORAGE_PERMISSIONS: Set<String> =
+            setOf(
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE",
+                "android.permission.MANAGE_EXTERNAL_STORAGE",
+                "android.permission.READ_MEDIA_IMAGES",
+                "android.permission.READ_MEDIA_VIDEO",
+                "android.permission.READ_MEDIA_AUDIO",
+            )
     }
 }

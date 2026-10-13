@@ -68,7 +68,7 @@ class AppModuleTest {
                     List::class,
                     Set::class,
                     OfficialCatalog::class,
-                    // Built inline from the three bound event sources in eventsDataModule.
+                    // Built inline from the personal event source bound in eventsDataModule.
                     EventInputs::class,
                     // Widget registrations (T-1201…) are constant values holding their receiver and widget classes.
                     Class::class,

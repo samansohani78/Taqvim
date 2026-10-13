@@ -1143,6 +1143,29 @@ Two things in that module were never about the calendar and survived it: `Device
 `:data:preferences`, and the instant-to-civil-day rules moved to `:data:events` as `EventWindows`. The subscription
 path still needs both.
 
+### The invariants, and what each one would catch
+
+Ten rules, each failing on its own, each with a planted violation proving it reads something:
+
+| # | Invariant | Where |
+|---|---|---|
+| A | No `INTERNET` in any source manifest or the merged release manifest | `SecurityKonsistTest`, `ExportedComponentsTest`, `auditReleasePermissions` |
+| B | No `READ_CALENDAR`/`WRITE_CALENDAR`, ever, in a manifest or on the allowlist | same three |
+| C | No `ACCESS_FINE_LOCATION`/`ACCESS_COARSE_LOCATION` | same three |
+| D | No production source names `CalendarContract` or the provider authority | `SecurityKonsistTest` |
+| E | No production source names an HTTP client type | `SecurityKonsistTest` |
+| F | No production source schedules background work (`androidx.work`, `CoroutineWorker`, …) | `SecurityKonsistTest` |
+| G | No broad storage or media permission | `SecurityKonsistTest`, `ExportedComponentsTest` |
+| H | Local `.ics` import and export work through the screen and the content resolver | `DocumentIcsFilesStoreTest`, `IcsFilesScreenTest` |
+| I | Prayer times and Qibla come from a bundled city with nothing granted | `OfflineOperationTest` |
+| J | The app starts with no runtime permission granted | `OfflineOperationTest`, and every Robolectric test by construction |
+
+E and F exist because a permission's absence stops the call from working, not from being written. A fetch path or
+a worker could sit in the tree, dormant, until someone adds the permission back "to make it work" — which is
+precisely how an app acquires a permission nobody decided to add. F also guards a second-order effect:
+WorkManager is still on the runtime classpath because Glance depends on it, and a work request with a network
+constraint brings `ACCESS_NETWORK_STATE` back with it.
+
 ### Upgrades
 
 Schema migration 8 → 9 drops `device_events_cache`, so an installation that had the permission loses its copy of
@@ -1243,6 +1266,29 @@ so a day assembly no longer waits on a second source; the widget invalidation se
 no longer initialised at all, which removes its `ForceStopRunnable` and scheduler from process start; and
 `TaqvimApplication` no longer implements `Configuration.Provider`, so the manifest no longer has to remove
 WorkManager's startup initializer.
+
+### The invariants, and what each one would catch
+
+Ten rules, each failing on its own, each with a planted violation proving it reads something:
+
+| # | Invariant | Where |
+|---|---|---|
+| A | No `INTERNET` in any source manifest or the merged release manifest | `SecurityKonsistTest`, `ExportedComponentsTest`, `auditReleasePermissions` |
+| B | No `READ_CALENDAR`/`WRITE_CALENDAR`, ever, in a manifest or on the allowlist | same three |
+| C | No `ACCESS_FINE_LOCATION`/`ACCESS_COARSE_LOCATION` | same three |
+| D | No production source names `CalendarContract` or the provider authority | `SecurityKonsistTest` |
+| E | No production source names an HTTP client type | `SecurityKonsistTest` |
+| F | No production source schedules background work (`androidx.work`, `CoroutineWorker`, …) | `SecurityKonsistTest` |
+| G | No broad storage or media permission | `SecurityKonsistTest`, `ExportedComponentsTest` |
+| H | Local `.ics` import and export work through the screen and the content resolver | `DocumentIcsFilesStoreTest`, `IcsFilesScreenTest` |
+| I | Prayer times and Qibla come from a bundled city with nothing granted | `OfflineOperationTest` |
+| J | The app starts with no runtime permission granted | `OfflineOperationTest`, and every Robolectric test by construction |
+
+E and F exist because a permission's absence stops the call from working, not from being written. A fetch path or
+a worker could sit in the tree, dormant, until someone adds the permission back "to make it work" — which is
+precisely how an app acquires a permission nobody decided to add. F also guards a second-order effect:
+WorkManager is still on the runtime classpath because Glance depends on it, and a work request with a network
+constraint brings `ACCESS_NETWORK_STATE` back with it.
 
 ### Upgrades
 

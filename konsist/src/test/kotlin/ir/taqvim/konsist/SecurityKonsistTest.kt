@@ -45,6 +45,21 @@ class SecurityKonsistTest {
     }
 
     @Test
+    fun `no manifest requests a broad storage permission`() {
+        // One document at a time, picked by the user through the Storage Access Framework (T-1003). The debug
+        // manifest removes LeakCanary's legacy pair; a removal is not a request, so it does not appear here.
+        ManifestSecurityRules.manifestsRequestingStorage(root).shouldBeEmpty()
+    }
+
+    @Test
+    fun `no production code schedules background work`() {
+        // ADR-0054: the only background work is one AlarmManager alarm. WorkManager stays on the runtime classpath
+        // because Glance depends on it, so nothing but this stops a worker being enqueued again — and a worker
+        // with a network constraint brings ACCESS_NETWORK_STATE back with it.
+        ManifestSecurityRules.backgroundWorkSchedulers(root).shouldBeEmpty()
+    }
+
+    @Test
     fun `no manifest requests a device location permission`() {
         // ADR-0055: a place is a bundled city, a point on the map or typed coordinates. Taqvim never asks a device
         // where it is, so the question is never put to the user either.
@@ -169,6 +184,32 @@ class SecurityKonsistTest {
             listOf("feature/where/src/main/AndroidManifest.xml")
         ManifestSecurityRules.locationReaders(fixture) shouldBe
             listOf("feature/where/src/main/kotlin/Here.kt: LocationManager")
+    }
+
+    @Test
+    fun `planted storage and background-work violations are detected`(
+        @TempDir fixture: File,
+    ) {
+        write(
+            File(fixture, "feature/store/src/main/AndroidManifest.xml"),
+            """<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              |<uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+              |</manifest>
+            """.trimMargin(),
+        )
+        write(
+            File(fixture, "feature/store/src/main/kotlin/Later.kt"),
+            "import androidx.work.PeriodicWorkRequestBuilder\nval w = 1",
+        )
+
+        ManifestSecurityRules.manifestsRequestingStorage(fixture) shouldBe
+            listOf("feature/store/src/main/AndroidManifest.xml")
+        // One file naming two of the shapes is reported once per shape, so a reviewer sees all of them.
+        ManifestSecurityRules.backgroundWorkSchedulers(fixture) shouldBe
+            listOf(
+                "feature/store/src/main/kotlin/Later.kt: androidx.work.",
+                "feature/store/src/main/kotlin/Later.kt: PeriodicWorkRequest",
+            )
     }
 
     @Test

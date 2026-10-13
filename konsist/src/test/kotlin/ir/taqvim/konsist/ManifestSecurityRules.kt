@@ -38,6 +38,33 @@ object ManifestSecurityRules {
             "javax.net.ssl.HttpsURLConnection",
         )
 
+    /**
+     * Broad storage permissions. Taqvim reads and writes one document at a time, picked by the user through the
+     * Storage Access Framework, which needs none of these; a manifest asking for one would be asking for the
+     * whole device's media instead.
+     */
+    private val STORAGE_PERMISSIONS =
+        setOf(
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.MANAGE_EXTERNAL_STORAGE",
+            "android.permission.READ_MEDIA_IMAGES",
+            "android.permission.READ_MEDIA_VIDEO",
+            "android.permission.READ_MEDIA_AUDIO",
+            "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+        )
+
+    /**
+     * Ways production code could schedule background work (ADR-0054).
+     *
+     * Taqvim's only background work is one `AlarmManager` alarm. WorkManager is still on the runtime classpath
+     * because Glance depends on it, so nothing stops a future change from enqueueing work again — and the
+     * subscription refresh that was removed was exactly that. A worker also brings `ACCESS_NETWORK_STATE` back
+     * the moment it carries a network constraint.
+     */
+    private val BACKGROUND_WORK_REFERENCES =
+        listOf("androidx.work.", "CoroutineWorker", "WorkManager.getInstance", "PeriodicWorkRequest")
+
     /** Device location permissions. ADR-0055: Taqvim requests neither, and no manifest may bring one back. */
     private val LOCATION_PERMISSIONS =
         setOf("android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION")
@@ -111,6 +138,21 @@ object ManifestSecurityRules {
         mainKotlinFiles(root).flatMap { file ->
             val text = file.readText()
             LOCATION_READER_REFERENCES
+                .filter { text.contains(it) }
+                .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
+        }
+
+    /** Source manifests (relative paths) that request a broad storage or media permission. */
+    fun manifestsRequestingStorage(root: File): List<String> =
+        sourceManifests(root)
+            .filter { manifest -> permissions(manifest).any { it in STORAGE_PERMISSIONS } }
+            .map { it.relativeTo(root).invariantSeparatorsPath }
+
+    /** `file: reference` for every main Kotlin source that schedules background work (ADR-0054). */
+    fun backgroundWorkSchedulers(root: File): List<String> =
+        mainKotlinFiles(root).flatMap { file ->
+            val text = file.readText()
+            BACKGROUND_WORK_REFERENCES
                 .filter { text.contains(it) }
                 .map { "${file.relativeTo(root).invariantSeparatorsPath}: $it" }
         }
