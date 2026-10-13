@@ -124,8 +124,17 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("release")
             isDebuggable = false
+            // Only used when the instrumented tests run against this variant (`-Ptaqvim.testBuildType=benchmark`).
+            proguardFile("proguard-instrumentation-rules.pro")
+            testProguardFiles("proguard-test-rules.pro")
         }
     }
+    // Which build type the instrumented tests run against. The default is `debug`; `-Ptaqvim.testBuildType=benchmark`
+    // runs them against the MINIFIED build instead, which is `initWith(release)` and so carries the same R8 output
+    // users install. A widget that composes in debug and hangs under R8 is invisible to a debug-only device suite,
+    // and that is exactly the shape of bug this switch exists to catch (T-1200).
+    testBuildType = providers.gradleProperty("taqvim.testBuildType").getOrElse("debug")
+
     testOptions {
         managedDevices {
             localDevices {
