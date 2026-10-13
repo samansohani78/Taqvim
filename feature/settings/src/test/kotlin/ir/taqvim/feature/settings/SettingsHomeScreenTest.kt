@@ -4,8 +4,15 @@
  */
 package ir.taqvim.feature.settings
 
+import android.app.Application
+import android.app.NotificationManager
 import android.content.Context
 import android.os.Looper
+import androidx.activity.compose.LocalActivityResultRegistryOwner
+import androidx.activity.result.ActivityResultRegistry
+import androidx.activity.result.ActivityResultRegistryOwner
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.hasAnyAncestor
@@ -21,8 +28,10 @@ import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
+import androidx.core.app.ActivityOptionsCompat
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.ui.permission.NOTIFICATION_PERMISSION
 import java.time.Duration
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -30,6 +39,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.GraphicsMode
+
+/** The shared warning shown when the system will not display this app's notifications. */
+private const val NOTIFICATIONS_BLOCKED = "Notifications are turned off for this app, so this cannot alert you."
 
 /**
  * T-1500 table-driven UI test: for every item of [SettingsCatalog], interacting with it on the settings home changes
@@ -164,6 +176,47 @@ class SettingsHomeScreenTest {
         composeRule.onNode(hasSetTextAction()).performTextReplacement("zzzz")
         settle()
         composeRule.onNodeWithText(context.getString(R.string.settings_search_no_results, "zzzz")).assertIsDisplayed()
+    }
+
+    @Test
+    fun theDateNotificationAsksForNotificationsWhenItIsSwitchedOnAndSaysWhenItCannotShow() {
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        shadowOf(application.getSystemService(NotificationManager::class.java)).setNotificationsEnabled(false)
+        val launched = mutableListOf<Any?>()
+        val registry =
+            object : ActivityResultRegistryOwner {
+                override val activityResultRegistry: ActivityResultRegistry =
+                    object : ActivityResultRegistry() {
+                        override fun <I, O> onLaunch(
+                            requestCode: Int,
+                            contract: ActivityResultContract<I, O>,
+                            input: I,
+                            options: ActivityOptionsCompat?,
+                        ) {
+                            launched += input
+                            dispatchResult(requestCode, false)
+                        }
+                    }
+            }
+        val store = FakeGeneralSettingsStore(LocationFixtures.english)
+        val viewModel = SettingsHomeViewModel(store, null)
+        composeRule.setContent {
+            CompositionLocalProvider(LocalActivityResultRegistryOwner provides registry) {
+                LocationTestTheme { SettingsHomeRoute(viewModel = viewModel) }
+            }
+        }
+        settle()
+        composeRule.onNodeWithText(NOTIFICATIONS_BLOCKED).assertDoesNotExist()
+
+        openRow(SettingsItemId.PERSISTENT_NOTIFICATION)
+        assertEquals(true, store.current.persistentNotification)
+        assertEquals(listOf<Any?>(NOTIFICATION_PERMISSION), launched)
+        composeRule.onNodeWithText(NOTIFICATIONS_BLOCKED).performScrollTo().assertIsDisplayed()
+
+        // Switching it off again neither asks a second time nor keeps warning about a promise withdrawn.
+        openRow(SettingsItemId.PERSISTENT_NOTIFICATION)
+        assertEquals(1, launched.size)
+        composeRule.onNodeWithText(NOTIFICATIONS_BLOCKED).assertDoesNotExist()
     }
 
     @Test

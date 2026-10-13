@@ -12,4 +12,6 @@
   <string name="shared_picker_day">日</string>
   <string name="shared_picker_confirm">完了</string>
   <string name="shared_picker_cancel">キャンセル</string>
+  <string name="shared_notifications_blocked">このアプリの通知はオフになっているため、お知らせできません。</string>
+  <string name="shared_notifications_allow">通知をオンにする</string>
 </resources>

@@ -37,6 +37,9 @@ import org.junit.runner.RunWith
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.GraphicsMode
 
+/** The shared warning shown when the system will not display this app's notifications. */
+private const val NOTIFICATIONS_BLOCKED = "Notifications are turned off for this app, so this cannot alert you."
+
 /** T-1101 UI tests: each athan control persists its value through the route; warnings and states are shown. */
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -192,6 +195,24 @@ class AthanSettingsScreenTest {
         shadowOf(ApplicationProvider.getApplicationContext<Application>()).grantPermissions(NOTIFICATION_PERMISSION)
         click("Isha")
         assertEquals(1, launchedInputs.size)
+    }
+
+    @Test
+    fun anAthanThatCannotBeAnnouncedSaysSoAndLeadsToTheFix() {
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        shadowOf(application.getSystemService(NotificationManager::class.java)).setNotificationsEnabled(false)
+        val store = FakeAthanStore(LocationFixtures.english)
+        showRoute(store)
+        // Nothing is promised while every athan is off, so nothing is warned about either.
+        composeRule.onNodeWithText(NOTIFICATIONS_BLOCKED).assertDoesNotExist()
+
+        click("Fajr")
+        composeRule.onNodeWithText(NOTIFICATIONS_BLOCKED).performScrollTo().assertIsDisplayed()
+        // The athan is still stored and will still sound; only the announcement cannot be shown.
+        assertEquals(true, store.current.alerts[AthanPrayerKind.FAJR]?.enabled)
+
+        click("Turn on notifications")
+        assertEquals(Settings.ACTION_APP_NOTIFICATION_SETTINGS, shadowOf(application).nextStartedActivity.action)
     }
 
     @Test

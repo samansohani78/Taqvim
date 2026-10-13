@@ -36,6 +36,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.TopBar
+import ir.taqvim.core.ui.permission.NotificationsBlocked
 import kotlin.math.roundToInt
 
 /** Athan settings (T-1101), stateless: renders [state] and reports user actions through [actions]. */
@@ -46,6 +47,8 @@ fun AthanSettingsScreen(
     modifier: Modifier = Modifier,
     /** Whether the app lacks Do Not Disturb access, which the Fajr bypass needs. */
     dndAccessMissing: Boolean = false,
+    /** Whether the system will not show this app's notifications, so no athan can be announced. */
+    notificationsBlocked: Boolean = false,
 ) {
     ScreenSurface(
         modifier = modifier,
@@ -58,7 +61,7 @@ fun AthanSettingsScreen(
                     Modifier.align(Alignment.Center).semantics { contentDescription = description },
                 )
             } else {
-                AthanContent(state, actions, dndAccessMissing)
+                AthanContent(state, actions, dndAccessMissing, notificationsBlocked)
             }
         }
     }
@@ -69,11 +72,16 @@ private fun AthanContent(
     state: AthanSettingsUiState,
     actions: AthanSettingsActions,
     dndAccessMissing: Boolean,
+    notificationsBlocked: Boolean,
 ) {
     Column(
         Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        // Only once an athan is on: before that there is nothing the user expects to be announced.
+        if (notificationsBlocked && state.alerts.any { it.enabled }) {
+            NotificationsBlocked()
+        }
         if (state.exactAlarmsBlocked) {
             WarningBanner(
                 R.string.settings_athan_exact_blocked,

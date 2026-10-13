@@ -25,7 +25,7 @@ android.permission.RECEIVE_BOOT_COMPLETED | T-604 re-plans alarms after a restar
 android.permission.SCHEDULE_EXACT_ALARM | T-1102 athan and T-1001 reminders have to sound at a time, not eventually
 android.permission.FOREGROUND_SERVICE | T-1102 plays the athan while the screen is off
 android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK | T-1102 the typed foreground service Android 14+ requires for it
-android.permission.POST_NOTIFICATIONS | T-1001 reminders and the persistent date notification
+android.permission.POST_NOTIFICATIONS | T-1001 reminders and the persistent date notification; the one dangerous permission left, requested at the switch that turns such a feature on and never at startup
 android.permission.VIBRATE | T-1101 optional vibration with an athan
 android.permission.WAKE_LOCK | T-604 finishes a scheduled alarm's work before the device sleeps again
 android.permission.ACCESS_NOTIFICATION_POLICY | T-1101 lets the Fajr athan sound during Do Not Disturb, only if the user turns that on

@@ -24,4 +24,8 @@
   <string name="shared_picker_day">Day</string>
   <string name="shared_picker_confirm">Done</string>
   <string name="shared_picker_cancel">Cancel</string>
+  <!-- Shown by a feature that notifies when the system will not show this app's notifications: the user turned
+       them off, or refused POST_NOTIFICATIONS on Android 13+. Shared because four screens say the same thing. -->
+  <string name="shared_notifications_blocked">Notifications are turned off for this app, so this cannot alert you.</string>
+  <string name="shared_notifications_allow">Turn on notifications</string>
 </resources>

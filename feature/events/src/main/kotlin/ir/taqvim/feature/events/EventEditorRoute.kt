@@ -5,13 +5,15 @@
 package ir.taqvim.feature.events
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import ir.taqvim.core.ui.permission.rememberNotificationPermissionRequest
+import ir.taqvim.core.ui.permission.LocalNotificationsAllowed
+import ir.taqvim.core.ui.permission.rememberNotificationPermission
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
@@ -55,14 +57,14 @@ fun EventEditorRoute(
     val currentOnClose by rememberUpdatedState(onClose)
     val finished = state.content as? EditorContent.Finished
     LaunchedEffect(finished) { finished?.let { currentOnClose(it.outcome) } }
-    val requestNotifications = rememberNotificationPermissionRequest()
+    val notifications = rememberNotificationPermission()
     val actions =
-        remember(viewModel, requestNotifications) {
+        remember(viewModel, notifications) {
             EventEditorActions(
                 onIntent = { intent ->
                     viewModel.onIntent(intent)
                     // A reminder needs notifications to show (T-1001).
-                    if (intent is ReminderIntent.Add) requestNotifications()
+                    if (intent is ReminderIntent.Add) notifications.request()
                 },
                 onDateTextChange = viewModel::onDateTextChange,
                 onApplyDateText = viewModel::onApplyDateText,
@@ -72,5 +74,7 @@ fun EventEditorRoute(
                 onChooseScope = viewModel::onChooseScope,
             )
         }
-    EventEditorScreen(state, actions, modifier)
+    CompositionLocalProvider(LocalNotificationsAllowed provides notifications.allowed) {
+        EventEditorScreen(state, actions, modifier)
+    }
 }

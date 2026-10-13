@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.calendar
 
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.v2.createComposeRule
@@ -11,6 +12,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import io.kotest.matchers.shouldBe
 import ir.taqvim.core.i18n.LanguageTable
+import ir.taqvim.core.ui.permission.LocalNotificationsAllowed
 import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Rule
 import org.junit.Test
@@ -55,6 +57,45 @@ class OfficialReminderRowTest {
                 CalendarAction.ToggleOfficialReminder(1, enabled = false),
                 CalendarAction.ToggleOfficialReminder(3, enabled = true),
             )
+    }
+
+    @Test
+    fun `a reminder that cannot notify is explained where it was switched on`() {
+        val blocked = "Notifications are turned off for this app, so this cannot alert you."
+        val content =
+            DayDetailsSamples.content(
+                tab = DayDetailsTab.EVENTS,
+                sourceEvent = DayDetailsSamples.official,
+                officialReminders = OfficialReminderChoices(DayDetailsSamples.official.id, persistentSetOf(1)),
+            )
+        composeRule.setContent {
+            CompositionLocalProvider(LocalNotificationsAllowed provides false) {
+                CalendarTestTheme { DayDetailsPanel(content, onAction = { actions += it }) }
+            }
+        }
+
+        composeRule.onNodeWithText(blocked).assertExists()
+        composeRule.onNodeWithText("1 day before").assertIsSelected()
+    }
+
+    @Test
+    fun `no chip is on, so nothing is warned about`() {
+        val content =
+            DayDetailsSamples.content(
+                tab = DayDetailsTab.EVENTS,
+                sourceEvent = DayDetailsSamples.official,
+                officialReminders = OfficialReminderChoices(DayDetailsSamples.official.id, persistentSetOf()),
+            )
+        composeRule.setContent {
+            CompositionLocalProvider(LocalNotificationsAllowed provides false) {
+                CalendarTestTheme { DayDetailsPanel(content, onAction = { actions += it }) }
+            }
+        }
+
+        composeRule.onNodeWithText("Remind me").assertExists()
+        composeRule
+            .onNodeWithText("Notifications are turned off for this app, so this cannot alert you.")
+            .assertDoesNotExist()
     }
 
     @Test

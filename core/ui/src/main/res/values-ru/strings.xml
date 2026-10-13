@@ -12,4 +12,6 @@
   <string name="shared_picker_day">День</string>
   <string name="shared_picker_confirm">Готово</string>
   <string name="shared_picker_cancel">Отмена</string>
+  <string name="shared_notifications_blocked">Уведомления для этого приложения выключены, поэтому оно не сможет вас предупредить.</string>
+  <string name="shared_notifications_allow">Включить уведомления</string>
 </resources>

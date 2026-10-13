@@ -12,4 +12,6 @@
   <string name="shared_picker_day">দিন</string>
   <string name="shared_picker_confirm">সম্পন্ন</string>
   <string name="shared_picker_cancel">বাতিল</string>
+  <string name="shared_notifications_blocked">এই অ্যাপের বিজ্ঞপ্তি বন্ধ আছে, তাই এটি আপনাকে জানাতে পারবে না।</string>
+  <string name="shared_notifications_allow">বিজ্ঞপ্তি চালু করুন</string>
 </resources>

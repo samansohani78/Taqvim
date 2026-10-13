@@ -41,6 +41,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import ir.taqvim.core.i18n.Numerals
+import ir.taqvim.core.ui.permission.LocalNotificationsAllowed
+import ir.taqvim.core.ui.permission.NotificationsBlocked
 
 @Composable
 internal fun TitleField(
@@ -103,6 +105,10 @@ internal fun ReminderSection(
                     modifier = Modifier.semantics { contentDescription = removeDescription },
                 ) { Text(stringResource(R.string.events_reminder_remove_short)) }
             }
+        }
+        // The reminder is stored either way; it just has no way to reach the user, which the user should know.
+        if (display.reminders.isNotEmpty() && !LocalNotificationsAllowed.current) {
+            NotificationsBlocked()
         }
         val canAdd = display.reminderChoices.isNotEmpty() && display.reminders.size < EventValidator.MAX_REMINDERS
         Box {

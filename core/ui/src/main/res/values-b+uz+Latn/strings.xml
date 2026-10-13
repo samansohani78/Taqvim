@@ -12,4 +12,6 @@
   <string name="shared_picker_day">Kun</string>
   <string name="shared_picker_confirm">Tayyor</string>
   <string name="shared_picker_cancel">Bekor qilish</string>
+  <string name="shared_notifications_blocked">Bu ilova uchun bildirishnomalar oʻchirilgan, shuning uchun sizni ogohlantira olmaydi.</string>
+  <string name="shared_notifications_allow">Bildirishnomalarni yoqish</string>
 </resources>

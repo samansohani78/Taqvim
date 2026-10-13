@@ -12,4 +12,6 @@
   <string name="shared_picker_day">நாள்</string>
   <string name="shared_picker_confirm">முடிந்தது</string>
   <string name="shared_picker_cancel">ரத்து</string>
+  <string name="shared_notifications_blocked">இந்த ஆப்ஸின் அறிவிப்புகள் அணைக்கப்பட்டுள்ளன, எனவே இது உங்களுக்குத் தெரிவிக்க முடியாது.</string>
+  <string name="shared_notifications_allow">அறிவிப்புகளை இயக்கு</string>
 </resources>

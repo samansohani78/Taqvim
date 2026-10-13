@@ -11,4 +11,6 @@
   <string name="shared_picker_day">روز</string>
   <string name="shared_picker_confirm">انجام شد</string>
   <string name="shared_picker_cancel">لغو</string>
+  <string name="shared_notifications_blocked">اعلان‌های این برنامه خاموش است، پس این نمی‌تواند به شما یادآوری کند.</string>
+  <string name="shared_notifications_allow">روشن کردن اعلان‌ها</string>
 </resources>

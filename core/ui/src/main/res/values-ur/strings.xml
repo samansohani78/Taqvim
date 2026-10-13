@@ -12,4 +12,6 @@
   <string name="shared_picker_day">دن</string>
   <string name="shared_picker_confirm">ہو گیا</string>
   <string name="shared_picker_cancel">منسوخ</string>
+  <string name="shared_notifications_blocked">اس ایپ کی اطلاعات بند ہیں، اس لیے یہ آپ کو مطلع نہیں کر سکتا۔</string>
+  <string name="shared_notifications_allow">اطلاعات آن کریں</string>
 </resources>

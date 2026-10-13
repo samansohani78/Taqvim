@@ -12,4 +12,6 @@
   <string name="shared_picker_day">Roj</string>
   <string name="shared_picker_confirm">Temam</string>
   <string name="shared_picker_cancel">Betal</string>
+  <string name="shared_notifications_blocked">Agahdarî ji bo vê sepanê girtî ne, ji ber vê yekê nikare we hişyar bike.</string>
+  <string name="shared_notifications_allow">Agahdariyan veke</string>
 </resources>

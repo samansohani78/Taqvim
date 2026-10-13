@@ -7,6 +7,7 @@ package ir.taqvim.feature.settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,6 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ir.taqvim.core.ui.permission.LocalNotificationsAllowed
+import ir.taqvim.core.ui.permission.rememberNotificationPermission
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModel
@@ -37,7 +40,11 @@ data class SettingsNavigation(
     val onOpen: (SettingsDestination) -> Unit = {},
 )
 
-/** The settings home bound to its [SettingsHomeViewModel]; [initialItem] opens its tab with the item highlighted. */
+/**
+ * The settings home bound to its [SettingsHomeViewModel]; [initialItem] opens its tab with the item highlighted.
+ * Switching the date notification on asks for the notification permission, because that switch is the moment the
+ * user asks to be shown something (T-1213).
+ */
 @Composable
 fun SettingsHomeRoute(
     modifier: Modifier = Modifier,
@@ -49,20 +56,32 @@ fun SettingsHomeRoute(
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val currentNavigation by rememberUpdatedState(navigation)
     LaunchedEffect(viewModel) { viewModel.effects.collect { currentNavigation.onOpen(it.destination) } }
+    val notifications = rememberNotificationPermission()
+    val currentState by rememberUpdatedState(state)
     val actions =
-        remember(viewModel) {
+        remember(viewModel, notifications) {
             SettingsHomeActions(
                 onTabSelected = viewModel::onTabSelected,
                 onQueryChanged = viewModel::onQueryChanged,
-                onRowClicked = viewModel::onRowClicked,
+                onRowClicked = { id ->
+                    val turningOn = currentState.isOff(id)
+                    viewModel.onRowClicked(id)
+                    if (id == SettingsItemId.PERSISTENT_NOTIFICATION && turningOn) notifications.request()
+                },
                 onOptionClicked = viewModel::onOptionClicked,
                 onDialogDismissed = viewModel::onDialogDismissed,
                 onConfirmationAccepted = viewModel::onConfirmationAccepted,
                 onConfirmationDismissed = viewModel::onConfirmationDismissed,
             )
         }
-    SettingsHomeScreen(state, actions, modifier)
+    CompositionLocalProvider(LocalNotificationsAllowed provides notifications.allowed) {
+        SettingsHomeScreen(state, actions, modifier)
+    }
 }
+
+/** Whether [id] is a switch that is currently off, so clicking it turns it on. */
+private fun SettingsHomeUiState.isOff(id: SettingsItemId): Boolean =
+    rows.firstOrNull { it.id == id }?.value.let { it is RowValue.Switch && !it.checked }
 
 /**
  * Types the system file picker offers for an iCalendar file.

@@ -12,4 +12,6 @@
   <string name="shared_picker_day">Jour</string>
   <string name="shared_picker_confirm">Terminé</string>
   <string name="shared_picker_cancel">Annuler</string>
+  <string name="shared_notifications_blocked">Les notifications sont désactivées pour cette application, elle ne peut donc pas vous alerter.</string>
+  <string name="shared_notifications_allow">Activer les notifications</string>
 </resources>

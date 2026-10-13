@@ -12,4 +12,6 @@
   <string name="shared_picker_day">日</string>
   <string name="shared_picker_confirm">完成</string>
   <string name="shared_picker_cancel">取消</string>
+  <string name="shared_notifications_blocked">此应用的通知已关闭，因此无法提醒你。</string>
+  <string name="shared_notifications_allow">开启通知</string>
 </resources>

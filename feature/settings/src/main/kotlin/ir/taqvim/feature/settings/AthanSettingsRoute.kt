@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import ir.taqvim.core.ui.permission.rememberNotificationPermissionRequest
+import ir.taqvim.core.ui.permission.rememberNotificationPermission
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
@@ -38,7 +38,8 @@ val athanSettingsFeatureModule: Module =
 
 /**
  * The athan settings bound to their [AthanSettingsViewModel]; picks sounds with the system file picker, asks for the
- * notification permission when an athan is turned on and offers Do Not Disturb access for the Fajr bypass.
+ * notification permission when an athan is turned on, says so when the athan cannot be announced because
+ * notifications are off, and offers Do Not Disturb access for the Fajr bypass.
  */
 @Composable
 fun AthanSettingsRoute(
@@ -47,7 +48,7 @@ fun AthanSettingsRoute(
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
-    val requestNotifications = rememberNotificationPermissionRequest()
+    val notifications = rememberNotificationPermission()
     var dndAccessGranted by remember { mutableStateOf(dndAccessGranted(context)) }
     LifecycleResumeEffect(context) {
         dndAccessGranted = dndAccessGranted(context)
@@ -58,11 +59,11 @@ fun AthanSettingsRoute(
             viewModel.onSoundPicked(uri?.toString())
         }
     val actions =
-        remember(viewModel, context, soundPicker, requestNotifications) {
+        remember(viewModel, context, soundPicker, notifications) {
             AthanSettingsActions(
                 onAlertToggled = { prayer, enabled ->
                     viewModel.onAlertToggled(prayer, enabled)
-                    if (enabled) requestNotifications()
+                    if (enabled) notifications.request()
                 },
                 onGapStep = viewModel::onGapStep,
                 onPickSound = { soundPicker.launch(arrayOf(SOUND_MIME_TYPE)) },
@@ -76,7 +77,13 @@ fun AthanSettingsRoute(
                 onOpenDndAccess = { openDndAccessSettings(context) },
             )
         }
-    AthanSettingsScreen(state, actions, modifier, dndAccessMissing = !dndAccessGranted)
+    AthanSettingsScreen(
+        state = state,
+        actions = actions,
+        modifier = modifier,
+        dndAccessMissing = !dndAccessGranted,
+        notificationsBlocked = !notifications.allowed,
+    )
 }
 
 /** MIME type offered in the sound picker. */

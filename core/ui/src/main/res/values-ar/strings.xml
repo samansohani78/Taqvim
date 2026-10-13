@@ -12,4 +12,6 @@
   <string name="shared_picker_day">اليوم</string>
   <string name="shared_picker_confirm">تم</string>
   <string name="shared_picker_cancel">إلغاء</string>
+  <string name="shared_notifications_blocked">الإشعارات موقوفة لهذا التطبيق، لذا لا يمكن تنبيهك.</string>
+  <string name="shared_notifications_allow">تشغيل الإشعارات</string>
 </resources>

@@ -6,8 +6,10 @@ plugins {
 dependencies {
     api(projects.core.model)
     api(projects.core.i18n)
-    // Runtime permission requests shared by features (notification permission, T-1001/T-1101).
+    // Runtime permission requests shared by features (notification permission, T-1001/T-1101), and the lifecycle
+    // hook that re-reads the answer when a screen resumes after the user visited the system settings.
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     testImplementation(projects.core.uiTesting)
 }

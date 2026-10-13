@@ -4,6 +4,8 @@
  */
 package ir.taqvim.feature.events
 
+import android.app.Application
+import android.app.NotificationManager
 import androidx.activity.compose.LocalActivityResultRegistryOwner
 import androidx.activity.result.ActivityResultRegistry
 import androidx.activity.result.ActivityResultRegistryOwner
@@ -25,6 +27,7 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.SavedStateHandle
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ir.taqvim.core.i18n.NumeralSystem
 import ir.taqvim.core.ics.Frequency
@@ -39,6 +42,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.GraphicsMode
 
 /** T-1000 UI tests: create, edit and delete through the route, and what each section shows and reports. */
@@ -295,6 +299,28 @@ class EventEditorScreenTest {
         composeRule.waitForIdle()
 
         assertEquals(listOf<Any?>(NOTIFICATION_PERMISSION), launched)
+    }
+
+    @Test
+    fun aReminderThatCannotNotifySaysSo() {
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        shadowOf(application.getSystemService(NotificationManager::class.java)).setNotificationsEnabled(false)
+        val store = FakeEventStore()
+        val viewModel =
+            EventEditorViewModel(null, store, FakeSettingsSource(), FakeClock(EditorFixtures.NOW), SavedStateHandle())
+        composeRule.setContent {
+            EditorTestTheme { EventEditorRoute(null, onClose = { outcomes += it }, viewModel = viewModel) }
+        }
+        val blocked = "Notifications are turned off for this app, so this cannot alert you."
+        composeRule.onNodeWithText(blocked).assertDoesNotExist()
+
+        composeRule.onNodeWithText("Add reminder").performScrollTo().performClick()
+        composeRule.onNodeWithText("At the start").performClick()
+        composeRule.waitForIdle()
+
+        // The reminder is kept — it is the event's, not the notification's — and the editor says why it is silent.
+        composeRule.onNodeWithText(blocked).performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("At the start").assertExists()
     }
 
     @Test

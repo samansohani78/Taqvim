@@ -12,4 +12,6 @@
   <string name="shared_picker_day">ڕۆژ</string>
   <string name="shared_picker_confirm">تەواو</string>
   <string name="shared_picker_cancel">پاشگەزبوونەوە</string>
+  <string name="shared_notifications_blocked">ئاگادارکردنەوەکان بۆ ئەم ئەپە کوژێنراونەتەوە، بۆیە ناتوانێت ئاگادارت بکاتەوە.</string>
+  <string name="shared_notifications_allow">ئاگادارکردنەوەکان بکەرەوە</string>
 </resources>

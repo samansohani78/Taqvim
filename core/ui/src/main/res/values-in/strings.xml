@@ -12,4 +12,6 @@
   <string name="shared_picker_day">Hari</string>
   <string name="shared_picker_confirm">Selesai</string>
   <string name="shared_picker_cancel">Batal</string>
+  <string name="shared_notifications_blocked">Notifikasi untuk aplikasi ini dimatikan, jadi ini tidak dapat memberi tahu Anda.</string>
+  <string name="shared_notifications_allow">Aktifkan notifikasi</string>
 </resources>

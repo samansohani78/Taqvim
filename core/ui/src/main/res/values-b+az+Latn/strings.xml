@@ -12,4 +12,6 @@
   <string name="shared_picker_day">Gün</string>
   <string name="shared_picker_confirm">Hazır</string>
   <string name="shared_picker_cancel">Ləğv et</string>
+  <string name="shared_notifications_blocked">Bu tətbiq üçün bildirişlər söndürülüb, ona görə sizi xəbərdar edə bilməz.</string>
+  <string name="shared_notifications_allow">Bildirişləri aç</string>
 </resources>

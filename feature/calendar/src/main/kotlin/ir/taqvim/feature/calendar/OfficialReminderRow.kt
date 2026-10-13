@@ -20,6 +20,8 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import ir.taqvim.core.i18n.LanguageSpec
+import ir.taqvim.core.ui.permission.LocalNotificationsAllowed
+import ir.taqvim.core.ui.permission.NotificationsBlocked
 
 /** "Remind me" choices under an official event's source card: one chip per lead time, on or off. */
 @Composable
@@ -44,6 +46,10 @@ internal fun OfficialReminderRow(
                     label = { Text(reminderLabel(resources, days, language)) },
                 )
             }
+        }
+        // Only once a chip is on: an untouched row promises nothing.
+        if (choices.enabled.isNotEmpty() && !LocalNotificationsAllowed.current) {
+            NotificationsBlocked()
         }
     }
 }

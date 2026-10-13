@@ -12,4 +12,6 @@
   <string name="shared_picker_day">दिन</string>
   <string name="shared_picker_confirm">हो गया</string>
   <string name="shared_picker_cancel">रद्द करें</string>
+  <string name="shared_notifications_blocked">इस ऐप की सूचनाएँ बंद हैं, इसलिए यह आपको सूचित नहीं कर सकता।</string>
+  <string name="shared_notifications_allow">सूचनाएँ चालू करें</string>
 </resources>

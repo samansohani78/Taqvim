@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import ir.taqvim.core.ui.component.ScreenSurface
 import ir.taqvim.core.ui.component.SegmentedTabs
 import ir.taqvim.core.ui.component.TopBar
+import ir.taqvim.core.ui.permission.LocalNotificationsAllowed
+import ir.taqvim.core.ui.permission.NotificationsBlocked
 
 /** Settings home (T-1500), stateless: renders [state] and reports user actions through [actions]. */
 @Composable
@@ -94,6 +96,13 @@ private fun SettingsHomeContent(
                     showTab = searching,
                     onClick = actions.onRowClicked,
                 )
+                // The switch promises a date in the status bar; say right there when it cannot appear (T-1213).
+                if (row.id == SettingsItemId.PERSISTENT_NOTIFICATION &&
+                    (row.value as? RowValue.Switch)?.checked == true &&
+                    !LocalNotificationsAllowed.current
+                ) {
+                    NotificationsBlocked()
+                }
             }
         }
     }

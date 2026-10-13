@@ -12,4 +12,6 @@
   <string name="shared_picker_day">Рӯз</string>
   <string name="shared_picker_confirm">Тайёр</string>
   <string name="shared_picker_cancel">Бекор</string>
+  <string name="shared_notifications_blocked">Огоҳиномаҳои ин барнома хомӯшанд, бинобар ин он шуморо огоҳ карда наметавонад.</string>
+  <string name="shared_notifications_allow">Огоҳиномаҳоро фаъол кунед</string>
 </resources>

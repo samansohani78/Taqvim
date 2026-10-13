@@ -12,4 +12,6 @@
   <string name="shared_picker_day">ورځ</string>
   <string name="shared_picker_confirm">ترسره شو</string>
   <string name="shared_picker_cancel">لغوه</string>
+  <string name="shared_notifications_blocked">د دې اپلیکېشن خبرتیاوې بندې دي، نو دا تاسو خبرولی نشي.</string>
+  <string name="shared_notifications_allow">خبرتیاوې چالانول</string>
 </resources>

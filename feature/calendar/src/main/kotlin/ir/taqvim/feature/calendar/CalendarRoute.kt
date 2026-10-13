@@ -5,6 +5,7 @@
 package ir.taqvim.feature.calendar
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
@@ -13,7 +14,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ir.taqvim.core.model.Jdn
-import ir.taqvim.core.ui.permission.rememberNotificationPermissionRequest
+import ir.taqvim.core.ui.permission.LocalNotificationsAllowed
+import ir.taqvim.core.ui.permission.rememberNotificationPermission
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -35,11 +37,11 @@ fun CalendarRoute(
     val currentPrinter by rememberUpdatedState(printer)
     val context = LocalContext.current
     val resources = LocalResources.current
-    val requestNotifications = rememberNotificationPermissionRequest()
+    val notifications = rememberNotificationPermission()
     LaunchedEffect(viewModel) {
         viewModel.effects.collect { effect ->
             if (effect == CalendarEffect.RequestNotificationPermission) {
-                requestNotifications()
+                notifications.request()
             } else if (effect == CalendarEffect.PrintMonth) {
                 state.content?.let { content ->
                     val job = resources.getString(R.string.calendar_print_job)
@@ -50,7 +52,9 @@ fun CalendarRoute(
             }
         }
     }
-    CalendarScreen(state, viewModel::onAction, modifier)
+    CompositionLocalProvider(LocalNotificationsAllowed provides notifications.allowed) {
+        CalendarScreen(state, viewModel::onAction, modifier)
+    }
 }
 
 private fun CalendarNavigation.handle(effect: CalendarEffect) {
