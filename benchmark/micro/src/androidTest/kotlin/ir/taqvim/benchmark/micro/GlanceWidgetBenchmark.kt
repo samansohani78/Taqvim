@@ -63,19 +63,19 @@ class GlanceWidgetBenchmark {
     private val context = InstrumentationRegistry.getInstrumentation().context
 
     @Test
-    fun date1x1(): Unit = compose("date1x1", DateWidget1x1(), WidgetSize.SMALL)
+    fun date1x1(): Unit = compose("date1x1", DateWidget1x1())
 
     @Test
-    fun dateClock4x1(): Unit = compose("dateClock4x1", DateClockWidget4x1(), WidgetSize.WIDE)
+    fun dateClock4x1(): Unit = compose("dateClock4x1", DateClockWidget4x1())
 
     @Test
-    fun daySummary2x2(): Unit = compose("daySummary2x2", DaySummaryWidget2x2(), WidgetSize.MEDIUM)
+    fun daySummary2x2(): Unit = compose("daySummary2x2", DaySummaryWidget2x2())
 
     @Test
-    fun prayerStrip4x2(): Unit = compose("prayerStrip4x2", PrayerStripWidget4x2(), WidgetSize.LARGE)
+    fun prayerStrip4x2(): Unit = compose("prayerStrip4x2", PrayerStripWidget4x2())
 
     @Test
-    fun threeDates(): Unit = compose("threeDates", ThreeDatesWidget(), WidgetSize.SMALL)
+    fun threeDates(): Unit = compose("threeDates", ThreeDatesWidget())
 
     /**
      * Empty and populated widgets measured alternately, to find out whether subtracting one from the other means
@@ -94,10 +94,11 @@ class GlanceWidgetBenchmark {
      */
     @Test
     fun pairedAgainstEmpty() {
-        val size = WidgetSize.SMALL
+        val populatedWidget = DateWidget1x1()
+        val size = populatedWidget.kind.defaultSize
         val dpSize = DpSize(size.widthDp.dp, size.heightDp.dp)
         val empty = EmptyWidget()
-        val populated = FixedContentWidget(DateWidget1x1(), DATA, size)
+        val populated = FixedContentWidget(populatedWidget, DATA, size)
 
         val paired =
             Timing.measurePaired(
@@ -117,11 +118,18 @@ class GlanceWidgetBenchmark {
         )
     }
 
+    /**
+     * Measures [widget] at the bucket its kind lays out for at its default span, so the number describes the
+     * widget the launcher actually draws.
+     *
+     * The size used to be passed in per case, and T-1216 was measured at [WidgetSize.SMALL] — a size it does not
+     * support — for as long as that was possible. Reading it from the kind makes that drift unrepresentable.
+     */
     private fun compose(
         name: String,
         widget: TaqvimGlanceWidget,
-        size: WidgetSize,
     ) {
+        val size = widget.kind.defaultSize
         val host = FixedContentWidget(widget, DATA, size)
         val dpSize = DpSize(size.widthDp.dp, size.heightDp.dp)
         val timing = Timing.measure(WARMUP, RUNS) { runBlocking { host.compose(context, size = dpSize) } }

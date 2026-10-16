@@ -140,6 +140,22 @@ enum class WidgetKind(
     ;
 
     /**
+     * The bucket this widget lays out for when the launcher gives it exactly its default [cells].
+     *
+     * Derived rather than declared so nothing can quote a span the kind does not offer. T-1216 was measured at
+     * [WidgetSize.SMALL] by `GlanceWidgetBenchmark` while shipping as a widget that supports no such size, so the
+     * one number anyone had for it described a composition no host can ask for. Anything that needs "the size this
+     * widget really gets" — benchmarks, previews, the span invariant — reads this.
+     */
+    val defaultSize: WidgetSize by lazy {
+        WidgetSize.forAvailable(
+            WidgetSize.cellsToDp(cells.columns).toFloat(),
+            WidgetSize.cellsToDp(cells.rows).toFloat(),
+            sizes,
+        )
+    }
+
+    /**
      * Everything this widget depends on: what it declares, [WidgetDependency.APPEARANCE], and
      * [WidgetDependency.HOLIDAYS] whenever it offers holiday colouring.
      *

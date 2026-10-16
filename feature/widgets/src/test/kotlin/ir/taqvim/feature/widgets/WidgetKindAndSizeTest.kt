@@ -33,7 +33,8 @@ class WidgetKindAndSizeTest {
         WidgetKind.entries.forEach { kind ->
             val widthDp = WidgetSize.cellsToDp(kind.cells.columns).toFloat()
             val heightDp = WidgetSize.cellsToDp(kind.cells.rows).toFloat()
-            val chosen = WidgetSize.forAvailable(widthDp, heightDp, kind.sizes)
+            val chosen = kind.defaultSize
+            chosen shouldBe WidgetSize.forAvailable(widthDp, heightDp, kind.sizes)
             withClue("$kind spans ${widthDp}x$heightDp dp but lays out as $chosen") {
                 (chosen.widthDp >= widthDp * MIN_SPAN_RATIO) shouldBe true
                 (chosen.heightDp >= heightDp * MIN_SPAN_RATIO) shouldBe true
