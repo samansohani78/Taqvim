@@ -37,31 +37,49 @@ import org.robolectric.annotation.GraphicsMode
 class ThreeDatesRenderingTest {
     @Test
     @Config(qualifiers = "en-mdpi")
-    fun english(): Unit = capture("en", listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"))
+    fun english(): Unit = capture("en", listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"), SATURDAY_EN)
 
     @Test
     @Config(qualifiers = "fa-mdpi")
     fun persianWithLatinGregorian(): Unit =
-        capture("fa", listOf("۱۸ مهر ۱۴۰۵", "10 October 2026", "۲۸ ربیع‌الثانی ۱۴۴۸"))
+        capture("fa", listOf("۱۸ مهر ۱۴۰۵", "10 October 2026", "۲۸ ربیع‌الثانی ۱۴۴۸"), SATURDAY_FA)
 
     @Test
     @Config(qualifiers = "ar-mdpi")
-    fun arabic(): Unit = capture("ar", listOf("١٨ مهر ١٤٠٥", "١٠ أكتوبر ٢٠٢٦", "٢٨ ربيع الآخر ١٤٤٨"))
+    fun arabic(): Unit = capture("ar", listOf("١٨ مهر ١٤٠٥", "١٠ أكتوبر ٢٠٢٦", "٢٨ ربيع الآخر ١٤٤٨"), SATURDAY_AR)
 
     @Test
     @Config(qualifiers = "en-mdpi")
     fun englishLargeText(): Unit =
-        capture("en_fs200", listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"), 2f, expectedLines = 1)
+        capture(
+            "en_fs200",
+            listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"),
+            SATURDAY_EN,
+            2f,
+            expectedLines = ONE_DATE_ONLY,
+        )
 
     @Test
     @Config(qualifiers = "fa-mdpi")
     fun persianLargeText(): Unit =
-        capture("fa_fs200", listOf("۱۸ مهر ۱۴۰۵", "10 October 2026", "۲۸ ربیع‌الثانی ۱۴۴۸"), 2f, expectedLines = 1)
+        capture(
+            "fa_fs200",
+            listOf("۱۸ مهر ۱۴۰۵", "10 October 2026", "۲۸ ربیع‌الثانی ۱۴۴۸"),
+            SATURDAY_FA,
+            2f,
+            expectedLines = ONE_DATE_ONLY,
+        )
 
     @Test
     @Config(qualifiers = "ar-mdpi")
     fun arabicLargeText(): Unit =
-        capture("ar_fs200", listOf("١٨ مهر ١٤٠٥", "١٠ أكتوبر ٢٠٢٦", "٢٨ ربيع الآخر ١٤٤٨"), 2f, expectedLines = 1)
+        capture(
+            "ar_fs200",
+            listOf("١٨ مهر ١٤٠٥", "١٠ أكتوبر ٢٠٢٦", "٢٨ ربيع الآخر ١٤٤٨"),
+            SATURDAY_AR,
+            2f,
+            expectedLines = ONE_DATE_ONLY,
+        )
 
     /** The widget resized up to three cells still has to lay out for that span, not for its default. */
     @Test
@@ -70,22 +88,27 @@ class ThreeDatesRenderingTest {
         capture(
             "en_3x3",
             listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"),
+            SATURDAY_EN,
             size = WidgetSize.MEDIUM_LARGE,
         )
 
     private fun capture(
         language: String,
         dates: List<String>,
+        weekday: String,
         fontScale: Float = 1f,
         size: WidgetSize = WidgetSize.MEDIUM,
-        expectedLines: Int = 3,
+        expectedLines: Int = WEEKDAY_AND_THREE_DATES,
     ) {
         val widthDp = size.widthDp
         val heightDp = size.heightDp
         RuntimeEnvironment.setFontScale(fontScale)
         val context = Robolectric.buildActivity(Activity::class.java).setup().get()
         val config = WidgetConfig.defaultFor(WidgetKind.THREE_DATES)
-        val data = WidgetSamples.data().copy(calendarDates = persistentListOf(*dates.toTypedArray()))
+        val data =
+            WidgetSamples
+                .data()
+                .copy(calendarDates = persistentListOf(*dates.toTypedArray()), weekday = weekday)
         val remoteViews =
             runBlocking {
                 GlanceRemoteViews()
@@ -116,8 +139,10 @@ class ThreeDatesRenderingTest {
      *
      * The widget drops calendars rather than clip them when two cells cannot hold three dates at a large font
      * scale, so the count is an outcome, not a constant: [expectedLines] says what this case should produce and
-     * the rest of the assertions hold regardless. Asserting a fixed three here would have made the degradation
+     * the rest of the assertions hold regardless. Asserting a fixed count here would have made the degradation
      * look like a failure and the clipping it replaced look like a pass.
+     *
+     * The count includes the weekday, which the widget drops first when the box is crowded.
      */
     private fun assertDatesFit(
         parent: FrameLayout,
@@ -160,4 +185,17 @@ class ThreeDatesRenderingTest {
             is ViewGroup -> (0 until view.childCount).flatMap { texts(view.getChildAt(it)) }
             else -> emptyList()
         }
+
+    private companion object {
+        /** 10 October 2026, in each reference image's own language. */
+        const val SATURDAY_EN = "Saturday"
+        const val SATURDAY_FA = "شنبه"
+        const val SATURDAY_AR = "السبت"
+
+        /** The weekday plus the user's three calendars: what two cells hold at the default font scale. */
+        const val WEEKDAY_AND_THREE_DATES = 4
+
+        /** At font scale 2.0 two cells hold one date, and the weekday gives way to it. */
+        const val ONE_DATE_ONLY = 1
+    }
 }

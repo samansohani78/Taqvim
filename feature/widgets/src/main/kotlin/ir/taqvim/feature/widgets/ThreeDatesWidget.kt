@@ -44,6 +44,13 @@ class ThreeDatesWidget : TaqvimGlanceWidget(WidgetKind.THREE_DATES) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            // The weekday is what a glance is usually for, and it costs nothing this widget does not already
+            // have: it comes from the same day number as the dates, so the DATE-only dependency is unchanged.
+            // It is the first thing dropped when the box is crowded, because a date without its weekday is
+            // still the date.
+            if (showsWeekday(size, fontScale)) {
+                Text(data.weekday, style = style.text(secondarySp(size)), maxLines = 1)
+            }
             lines.forEachIndexed { index, line ->
                 Text(
                     text = BidiText.isolate(line),
@@ -56,6 +63,12 @@ class ThreeDatesWidget : TaqvimGlanceWidget(WidgetKind.THREE_DATES) {
             }
         }
     }
+
+    /** The weekday fits whenever all three calendars do; below that the dates have the room. */
+    private fun showsWeekday(
+        size: WidgetSize,
+        fontScale: Float,
+    ): Boolean = linesFor(size, fontScale) == MAX_LINES
 
     /**
      * How many of the three calendars fit.
