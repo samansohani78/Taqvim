@@ -87,7 +87,7 @@ enum class WidgetKind(
      */
     THREE_DATES(
         "three_dates",
-        WidgetCells(3, 3),
+        WidgetCells(2, 2),
         setOf(D.DATE),
         emptySet(),
         listOf(WidgetSize.MEDIUM, WidgetSize.MEDIUM_LARGE, WidgetSize.EXTRA_LARGE),

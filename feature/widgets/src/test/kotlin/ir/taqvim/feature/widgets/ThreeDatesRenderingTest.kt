@@ -18,6 +18,7 @@ import androidx.glance.GlanceTheme
 import androidx.glance.appwidget.ExperimentalGlanceRemoteViewsApi
 import androidx.glance.appwidget.GlanceRemoteViews
 import com.github.takahirom.roborazzi.captureRoboImage
+import io.kotest.assertions.withClue
 import io.kotest.matchers.shouldBe
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.runBlocking
@@ -50,22 +51,37 @@ class ThreeDatesRenderingTest {
     @Test
     @Config(qualifiers = "en-mdpi")
     fun englishLargeText(): Unit =
-        capture("en_fs200", listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"), 2f)
+        capture("en_fs200", listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"), 2f, expectedLines = 1)
 
     @Test
     @Config(qualifiers = "fa-mdpi")
     fun persianLargeText(): Unit =
-        capture("fa_fs200", listOf("۱۸ مهر ۱۴۰۵", "10 October 2026", "۲۸ ربیع‌الثانی ۱۴۴۸"), 2f)
+        capture("fa_fs200", listOf("۱۸ مهر ۱۴۰۵", "10 October 2026", "۲۸ ربیع‌الثانی ۱۴۴۸"), 2f, expectedLines = 1)
 
     @Test
     @Config(qualifiers = "ar-mdpi")
-    fun arabicLargeText(): Unit = capture("ar_fs200", listOf("١٨ مهر ١٤٠٥", "١٠ أكتوبر ٢٠٢٦", "٢٨ ربيع الآخر ١٤٤٨"), 2f)
+    fun arabicLargeText(): Unit =
+        capture("ar_fs200", listOf("١٨ مهر ١٤٠٥", "١٠ أكتوبر ٢٠٢٦", "٢٨ ربيع الآخر ١٤٤٨"), 2f, expectedLines = 1)
+
+    /** The widget resized up to three cells still has to lay out for that span, not for its default. */
+    @Test
+    @Config(qualifiers = "en-mdpi")
+    fun englishResizedToThreeCells(): Unit =
+        capture(
+            "en_3x3",
+            listOf("18 Mehr 1405", "10 October 2026", "28 Rabiʻ II 1448"),
+            size = WidgetSize.MEDIUM_LARGE,
+        )
 
     private fun capture(
         language: String,
         dates: List<String>,
         fontScale: Float = 1f,
+        size: WidgetSize = WidgetSize.MEDIUM,
+        expectedLines: Int = 3,
     ) {
+        val widthDp = size.widthDp
+        val heightDp = size.heightDp
         RuntimeEnvironment.setFontScale(fontScale)
         val context = Robolectric.buildActivity(Activity::class.java).setup().get()
         val config = WidgetConfig.defaultFor(WidgetKind.THREE_DATES)
@@ -73,10 +89,10 @@ class ThreeDatesRenderingTest {
         val remoteViews =
             runBlocking {
                 GlanceRemoteViews()
-                    .compose(context, DpSize(WIDTH.dp, HEIGHT.dp)) {
+                    .compose(context, DpSize(widthDp.dp, heightDp.dp)) {
                         GlanceTheme {
                             WidgetFrame(config, onClick = null) { style ->
-                                ThreeDatesWidget().Content(data, config, style, WidgetSize.MEDIUM_LARGE)
+                                ThreeDatesWidget().Content(data, config, style, size)
                             }
                         }
                     }.remoteViews
@@ -84,24 +100,37 @@ class ThreeDatesRenderingTest {
         val parent = FrameLayout(context)
         context.setContentView(parent)
         parent.addView(remoteViews.apply(context, parent))
-        parent.measure(exactly(WIDTH), exactly(HEIGHT))
-        parent.layout(0, 0, WIDTH, HEIGHT)
-        val bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888)
+        parent.measure(exactly(widthDp), exactly(heightDp))
+        parent.layout(0, 0, widthDp, heightDp)
+        val bitmap = Bitmap.createBitmap(widthDp, heightDp, Bitmap.Config.ARGB_8888)
         parent.draw(Canvas(bitmap))
         bitmap.captureRoboImage("src/test/screenshots/three_dates/$language.png")
-        assertDatesFit(parent)
+        assertDatesFit(parent, heightDp, expectedLines)
+        if (fontScale == 1f) assertDatesAreNotWrapped(parent)
     }
 
     private fun exactly(size: Int) = View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.EXACTLY)
 
-    private fun assertDatesFit(parent: FrameLayout) {
+    /**
+     * What is shown fits — whatever that turns out to be.
+     *
+     * The widget drops calendars rather than clip them when two cells cannot hold three dates at a large font
+     * scale, so the count is an outcome, not a constant: [expectedLines] says what this case should produce and
+     * the rest of the assertions hold regardless. Asserting a fixed three here would have made the degradation
+     * look like a failure and the clipping it replaced look like a pass.
+     */
+    private fun assertDatesFit(
+        parent: FrameLayout,
+        heightDp: Int,
+        expectedLines: Int,
+    ) {
         val labels = texts(parent).filter { it.text.isNotBlank() }
-        labels.size shouldBe 3
+        labels.size shouldBe expectedLines
         labels.forEach { label ->
             val bounds = Rect()
             label.getDrawingRect(bounds)
             parent.offsetDescendantRectToMyCoords(label, bounds)
-            check(bounds.top >= 0 && bounds.bottom <= HEIGHT) { "Clipped date: ${label.text}, $bounds" }
+            check(bounds.top >= 0 && bounds.bottom <= heightDp) { "Clipped date: ${label.text}, $bounds" }
             val layout = requireNotNull(label.layout)
             check(layout.height <= label.height) {
                 "Vertically truncated date: ${label.text}; " +
@@ -111,15 +140,24 @@ class ThreeDatesRenderingTest {
         }
     }
 
+    /**
+     * At the default font scale every date is one line.
+     *
+     * [assertDatesFit] only refuses clipping and ellipsis, and a wrapped headline satisfies both while looking
+     * like a mistake: raising the primary to 30 sp split "18 Mehr 1405" across two lines and the suite stayed
+     * green. Wrapping is still allowed at large font scales, where fitting the text matters more than its shape.
+     */
+    private fun assertDatesAreNotWrapped(parent: FrameLayout) {
+        texts(parent).filter { it.text.isNotBlank() }.forEach { label ->
+            val layout = requireNotNull(label.layout)
+            withClue("wrapped onto ${layout.lineCount} lines: ${label.text}") { layout.lineCount shouldBe 1 }
+        }
+    }
+
     private fun texts(view: View): List<TextView> =
         when (view) {
             is TextView -> listOf(view)
             is ViewGroup -> (0 until view.childCount).flatMap { texts(view.getChildAt(it)) }
             else -> emptyList()
         }
-
-    private companion object {
-        const val WIDTH = 180
-        const val HEIGHT = 180
-    }
 }
