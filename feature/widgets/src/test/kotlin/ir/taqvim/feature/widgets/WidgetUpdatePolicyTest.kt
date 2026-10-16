@@ -4,6 +4,7 @@
  */
 package ir.taqvim.feature.widgets
 
+import io.kotest.assertions.withClue
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
@@ -38,6 +39,16 @@ class WidgetUpdatePolicyTest {
             WidgetKind.DAY_SUMMARY_2X2 to setOf(6),
         )
 
+    private val triggers =
+        listOf(
+            WidgetUpdateTrigger.DayChanged,
+            WidgetUpdateTrigger.PrayerTimeReached,
+            WidgetUpdateTrigger.MinuteTick,
+            WidgetUpdateTrigger.EventsChanged,
+            WidgetUpdateTrigger.PreferencesChanged(WidgetDependency.entries.toSet()),
+            WidgetUpdateTrigger.Everything,
+        )
+
     @Test
     fun `each trigger reaches only the widgets that depend on it`() {
         policy.targets(WidgetUpdateTrigger.DayChanged, installed).keys shouldBe
@@ -61,6 +72,30 @@ class WidgetUpdatePolicyTest {
         policy.targets(WidgetUpdateTrigger.PreferencesChanged(emptySet()), installed) shouldBe emptyMap()
         policy.targets(WidgetUpdateTrigger.Everything, installed) shouldBe installed
         policy.targets(WidgetUpdateTrigger.Everything, emptyMap()) shouldBe emptyMap()
+    }
+
+    /**
+     * Every dependency a widget can declare must have something that refreshes it.
+     *
+     * A dependency with no trigger is a widget that goes stale and stays stale, which is how date widgets kept
+     * colouring a day red after its source was switched off (the reason [WidgetDependency.HOLIDAYS] exists). The
+     * check is written against the enum rather than a list, so adding a dependency without a way to refresh it
+     * fails here instead of on someone's home screen.
+     */
+    @Test
+    fun `every dependency has a trigger that refreshes the widgets declaring it`() {
+        val everyKind = WidgetKind.entries.associateWith { setOf(1) }
+        WidgetDependency.entries.forEach { dependency ->
+            val declaring = WidgetKind.entries.filter { dependency in it.dependencies }.toSet()
+            if (declaring.isEmpty()) return@forEach
+            val refreshed =
+                triggers
+                    .flatMap { policy.targets(it, everyKind).keys }
+                    .toSet()
+            withClue("no trigger refreshes \$dependency, declared by \$declaring") {
+                refreshed.containsAll(declaring) shouldBe true
+            }
+        }
     }
 
     @Test

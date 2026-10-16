@@ -152,10 +152,8 @@ internal class WidgetHostProbe(
             view.walk { child ->
                 when (child) {
                     is TextView -> {
-                        child.text
-                            ?.toString()
-                            ?.takeIf { it.isNotBlank() }
-                            ?.let { texts += it }
+                        val text = child.text?.toString().orEmpty()
+                        if (text.isNotBlank()) texts += text
                     }
 
                     is ImageView -> {
@@ -164,10 +162,6 @@ internal class WidgetHostProbe(
 
                     is ProgressBar -> {
                         progress++
-                    }
-
-                    else -> {
-                        Unit
                     }
                 }
             }
