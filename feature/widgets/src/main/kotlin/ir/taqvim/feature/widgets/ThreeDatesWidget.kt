@@ -51,22 +51,46 @@ class ThreeDatesWidget : TaqvimGlanceWidget(WidgetKind.THREE_DATES) {
     }
 
     private fun primarySp(size: WidgetSize): Float =
-        if (size ==
-            WidgetSize.EXTRA_LARGE
-        ) {
-            PRIMARY_SP
-        } else {
-            SMALL_PRIMARY_SP
+        when (size) {
+            WidgetSize.EXTRA_LARGE -> PRIMARY_SP
+            WidgetSize.MEDIUM_LARGE -> MEDIUM_PRIMARY_SP
+            else -> SMALL_PRIMARY_SP
         }
 
     private fun secondarySp(size: WidgetSize): Float =
-        if (size == WidgetSize.EXTRA_LARGE) SECONDARY_SP else SMALL_SECONDARY_SP
+        when (size) {
+            WidgetSize.EXTRA_LARGE -> SECONDARY_SP
+            WidgetSize.MEDIUM_LARGE -> MEDIUM_SECONDARY_SP
+            else -> SMALL_SECONDARY_SP
+        }
 
     private companion object {
         /** Three calendars is the concept; a user who keeps more sees the three they put first. */
         const val MAX_LINES = 3
-        const val PRIMARY_SP = 16f
-        const val SECONDARY_SP = 12f
+
+        /**
+         * Type sized for the widget the user actually gets.
+         *
+         * `forAvailable` picks the largest supported bucket that *fits*. Until [WidgetSize.MEDIUM_LARGE] existed
+         * the kind offered only MEDIUM (110 dp) and EXTRA_LARGE (250 dp), so a 3×3 placement — this widget's
+         * `targetCell` span and its `minResizeWidth` floor, 180 dp — fell back to the MEDIUM numbers. Those were
+         * written for a 2×2 widget: 13 sp and 10 sp, three unreadable lines adrift in an empty box, with 10 sp
+         * under any sensible reading size.
+         *
+         * The ceiling is `ThreeDatesRenderingTest`, which requires all three dates to fit unwrapped at font scale
+         * 2.0 in 180 dp. The secondary lines bind it — the longest is an Islamic date like "28 Rabiʻ II 1448" —
+         * so the primary line can be much larger than them without breaking that contract, which is where the
+         * hierarchy below comes from. Raising the secondary lines past 11 sp fails it, and the contract is an
+         * accessibility promise, not an obstacle: it is not relaxed to make the type bigger.
+         */
+        const val PRIMARY_SP = 32f
+        const val SECONDARY_SP = 16f
+
+        /** The 3x3 span this widget targets, and the smallest a host should ever give it. */
+        const val MEDIUM_PRIMARY_SP = 26f
+        const val MEDIUM_SECONDARY_SP = 11f
+
+        /** Only reached by a host that ignores `minResizeWidth`; the old numbers, which fit 110 dp. */
         const val SMALL_PRIMARY_SP = 13f
         const val SMALL_SECONDARY_SP = 10f
     }

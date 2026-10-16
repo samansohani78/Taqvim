@@ -5,6 +5,7 @@
 package ir.taqvim.feature.widgets
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.assertions.withClue
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
@@ -19,6 +20,27 @@ import org.junit.jupiter.api.Test
 
 /** T-1200 kinds and responsive size buckets. */
 class WidgetKindAndSizeTest {
+    /**
+     * Every kind must support a bucket that actually matches the span it asks the launcher for.
+     *
+     * `forAvailable` picks the largest supported bucket that fits, so a kind whose target span has no bucket near
+     * it is laid out for something much smaller — which is exactly what happened to T-1216: a 3x3 widget drawn
+     * with type written for a 2x2 one, three lines of 13 sp and 10 sp in a 180 dp square. The rule is deliberately
+     * about the span a widget asks for rather than about fonts, because the fonts were the symptom.
+     */
+    @Test
+    fun `widgets are laid out for the span they ask for`() {
+        WidgetKind.entries.forEach { kind ->
+            val widthDp = WidgetSize.cellsToDp(kind.cells.columns).toFloat()
+            val heightDp = WidgetSize.cellsToDp(kind.cells.rows).toFloat()
+            val chosen = WidgetSize.forAvailable(widthDp, heightDp, kind.sizes)
+            withClue("$kind spans ${widthDp}x$heightDp dp but lays out as $chosen") {
+                (chosen.widthDp >= widthDp * MIN_SPAN_RATIO) shouldBe true
+                (chosen.heightDp >= heightDp * MIN_SPAN_RATIO) shouldBe true
+            }
+        }
+    }
+
     @Test
     fun `buckets follow the 70n minus 30 dp cell rule`() {
         WidgetSize.entries.associateWith { it.widthDp to it.heightDp } shouldBe
@@ -26,6 +48,7 @@ class WidgetKindAndSizeTest {
                 WidgetSize.SMALL to (40 to 40),
                 WidgetSize.WIDE to (250 to 40),
                 WidgetSize.MEDIUM to (110 to 110),
+                WidgetSize.MEDIUM_LARGE to (180 to 180),
                 WidgetSize.LARGE to (250 to 110),
                 WidgetSize.EXTRA_LARGE to (250 to 250),
             )
@@ -75,5 +98,10 @@ class WidgetKindAndSizeTest {
         WidgetKind.PRAYER_STRIP_4X2.cells shouldBe WidgetCells(4, 2)
         shouldThrow<IllegalArgumentException> { WidgetCells(0, 1) }
         shouldThrow<IllegalArgumentException> { WidgetCells(1, 9) }
+    }
+
+    private companion object {
+        /** How close the chosen bucket must come to the span: three quarters, so a bucket may round down a little. */
+        const val MIN_SPAN_RATIO = 0.75f
     }
 }

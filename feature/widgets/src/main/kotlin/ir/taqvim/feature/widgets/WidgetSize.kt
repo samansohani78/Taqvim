@@ -15,6 +15,16 @@ enum class WidgetSize(
     SMALL(1, 1),
     WIDE(4, 1),
     MEDIUM(2, 2),
+
+    /**
+     * Three cells square (180 dp), the span T-1216 targets.
+     *
+     * Without it the largest bucket fitting a 3x3 widget was [MEDIUM], so a 180 dp widget was laid out with type
+     * written for a 110 dp one: three lines of 13 sp and 10 sp adrift in an empty box. Every other kind's target
+     * span lands exactly on a bucket; this was the one that did not, and `widgetsAreLaidOutForTheSpanTheyAskFor`
+     * now fails if another is added.
+     */
+    MEDIUM_LARGE(3, 3),
     LARGE(4, 2),
     EXTRA_LARGE(4, 4),
     ;

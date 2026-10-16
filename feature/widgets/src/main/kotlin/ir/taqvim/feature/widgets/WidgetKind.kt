@@ -90,7 +90,7 @@ enum class WidgetKind(
         WidgetCells(3, 3),
         setOf(D.DATE),
         emptySet(),
-        listOf(WidgetSize.MEDIUM, WidgetSize.EXTRA_LARGE),
+        listOf(WidgetSize.MEDIUM, WidgetSize.MEDIUM_LARGE, WidgetSize.EXTRA_LARGE),
     ),
 
     // The clock is a launcher-ticked TextClock (T-1202), so the widget does not need a wake-up every minute.

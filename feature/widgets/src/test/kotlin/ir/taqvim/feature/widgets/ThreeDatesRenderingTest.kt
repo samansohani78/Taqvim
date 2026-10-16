@@ -76,7 +76,7 @@ class ThreeDatesRenderingTest {
                     .compose(context, DpSize(WIDTH.dp, HEIGHT.dp)) {
                         GlanceTheme {
                             WidgetFrame(config, onClick = null) { style ->
-                                ThreeDatesWidget().Content(data, config, style, WidgetSize.MEDIUM)
+                                ThreeDatesWidget().Content(data, config, style, WidgetSize.MEDIUM_LARGE)
                             }
                         }
                     }.remoteViews
