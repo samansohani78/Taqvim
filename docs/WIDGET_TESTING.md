@@ -58,6 +58,11 @@ Two numbers exist and they measure different things. Neither may be quoted as th
 The first cannot see the launcher and says so in its own KDoc. The second is what the user waits for, but it is
 polled at 200 ms, so it is an upper bound rounded up to that interval, not a precise figure.
 
+Measured on an API 30 emulator, 2026-10-17: every one of the thirteen kinds reached content between 601 ms and
+756 ms, against a budget of 15 s. Nine of them land within 2 ms of each other, which is the poll resolution
+rather than a finding — only `DATE_1X1` (662 ms) and `MONTH_INTERACTIVE` (756 ms, the one kind backed by a
+`LazyColumn` adapter) separate from the group by more than the measurement can distinguish.
+
 Each case in `GlanceWidgetBenchmark` composes at `WidgetKind.defaultSize` — the bucket the kind lays out for at its
 own span — rather than at a size written beside the test. T-1216 was measured at `SMALL`, which it does not
 support, for as long as the size was a parameter.
@@ -102,6 +107,12 @@ catches it. The point is that the next bug of that *class* is caught without a p
   device suite against the R8 output users install. Making the test APK attach to it needs keep rules for the
   Kotlin stdlib and the test runner, which changes the very shrinking being tested, so it is a smoke check and not
   evidence about R8's effect on the app.
+- **An adapter-backed widget's view tree fills and empties.** `MONTH_INTERACTIVE` draws its grid with a Glance
+  `LazyColumn`, whose rows come from a `RemoteViewsService`. A walk of the host's tree can therefore find it
+  momentarily bare *after* it has shown content, which is why `render` reports the capture that satisfied its wait
+  rather than a fresh walk afterwards. Caught on the API 30 leg of 2026-10-17, where the widget reported
+  `millisToContent=821` and no text in the same result — the probe contradicting itself. A genuine timeout still
+  reports the live tree, so a widget that never draws still fails.
 - **A real launcher is not a test host.** `AppWidgetHost` in a test process exercises the same binding and
   `RemoteViews` path, but not a launcher's own update scheduling, restore-after-reboot or resize behaviour. Those
   stay in `MANUAL_TEST_CHECKLIST.md` §1.

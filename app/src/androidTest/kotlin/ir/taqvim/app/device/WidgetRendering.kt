@@ -145,14 +145,20 @@ internal class WidgetHostProbe(
             )
             whileUpdating()
             // Waiting for readable content, not for a delivery: the first delivery may still be a placeholder.
-            val rendered =
-                runCatching {
-                    waitFor("${info.provider.shortClassName} to draw its content", timeoutMillis) {
-                        !capture(info, view).isLoadingPlaceholder
-                    }
-                }.isSuccess
+            //
+            // The capture that satisfied the wait is the one reported, not a fresh walk afterwards. The question
+            // is whether the user was shown their content, and re-walking answers a different one: a widget whose
+            // rows come from a `RemoteViewsService` adapter — the month grid is a Glance `LazyColumn` — has a view
+            // tree that fills and recycles, so a later walk can find it momentarily bare. Reporting that as "never
+            // rendered" would be false, and it would also contradict `millisToContent`, which times this moment.
+            var seen: RenderedWidget? = null
+            runCatching {
+                waitFor("${info.provider.shortClassName} to draw its content", timeoutMillis) {
+                    capture(info, view).takeIf { !it.isLoadingPlaceholder }?.also { seen = it } != null
+                }
+            }
             val elapsed = SystemClock.uptimeMillis() - startedAt
-            return capture(info, view).copy(millisToContent = elapsed.takeIf { rendered })
+            return seen?.copy(millisToContent = elapsed) ?: capture(info, view)
         } finally {
             host.deleteAppWidgetId(id)
         }
