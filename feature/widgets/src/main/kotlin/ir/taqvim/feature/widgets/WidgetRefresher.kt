@@ -117,9 +117,10 @@ class WidgetStateLoader(
     /**
      * [block]'s value, or `null` when it fails or outlasts [timeout].
      *
-     * The ordering matters: the `try` is *inside* [withTimeoutOrNull] and rethrows [CancellationException], so the
-     * timeout's own cancellation is not swallowed by the failure handling. A `runCatching` wrapped around a
-     * `withTimeout` would catch the timeout and turn a bounded wait back into an unbounded one.
+     * The nesting matters: the `runCatching` is *inside* [withTimeoutOrNull] and rethrows [CancellationException],
+     * so the timeout's own cancellation is not swallowed by the failure handling. Wrapping the other way round —
+     * `runCatching` around `withTimeout` — would catch the timeout and turn a bounded wait back into an unbounded
+     * one, which is the shape of the bug this guards against.
      */
     private suspend fun <T> bounded(block: suspend () -> T): T? =
         withTimeoutOrNull(timeout) {
@@ -128,7 +129,7 @@ class WidgetStateLoader(
                 .getOrElse { failure -> if (failure is CancellationException) throw failure else null }
         }
 
-    public companion object {
+    companion object {
         /**
          * How long one store may take before the widget draws without it.
          *
@@ -136,6 +137,6 @@ class WidgetStateLoader(
          * still wins — the dataset's first read alone was 148 ms on the owner's phone — and short enough that a
          * user watching a launcher does not conclude the widget is broken.
          */
-        public val LOAD_TIMEOUT: Duration = 10.seconds
+        val LOAD_TIMEOUT: Duration = 10.seconds
     }
 }
