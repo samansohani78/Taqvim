@@ -10,6 +10,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProviderInfo
 import android.content.Context
 import android.content.Intent
+import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -37,6 +38,18 @@ internal data class RenderedWidget(
     /** Images that actually carry a drawable, which is how the drawn widgets (month, Moon, sun, map) render. */
     val drawnImages: Int,
     val progressBars: Int,
+    /**
+     * Milliseconds from the update broadcast until the host first showed readable content, or `null` if it never
+     * did.
+     *
+     * This is the only latency figure in the project measured where the user experiences it: through a real
+     * [AppWidgetHost], from the trigger to content on screen. `GlanceWidgetBenchmark` measures composition inside
+     * the test process and says so — it cannot see the host inflate anything. Two honest limits apply here: the
+     * resolution is [WidgetHostProbe.POLL_RESOLUTION_MILLIS] because the wait polls, so this is an upper bound
+     * rounded up to that interval; and it counts whatever a `whileUpdating` hook did, so it only means latency
+     * when that hook is the default.
+     */
+    val millisToContent: Long? = null,
 ) {
     /**
      * Whether the host is still showing the loading placeholder: nothing was composed, or what was composed
@@ -47,7 +60,7 @@ internal data class RenderedWidget(
 
     override fun toString(): String =
         "$provider(updates=$updates, texts=$texts, drawnImages=$drawnImages, " +
-            "progressBars=$progressBars, errorView=$showedErrorView)"
+            "progressBars=$progressBars, errorView=$showedErrorView, millisToContent=$millisToContent)"
 }
 
 /**
@@ -120,9 +133,11 @@ internal class WidgetHostProbe(
     ): RenderedWidget {
         val manager = AppWidgetManager.getInstance(context)
         val id = host.allocateAppWidgetId()
+        var startedAt = SystemClock.uptimeMillis()
         try {
             check(manager.bindAppWidgetIdIfAllowed(id, info.provider)) { "Cannot bind ${info.provider}" }
             val view = checkNotNull(onMain { host.createView(activityContext, id, info) as? RecordingHostView })
+            startedAt = SystemClock.uptimeMillis()
             context.sendBroadcast(
                 Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE)
                     .setComponent(info.provider)
@@ -130,12 +145,14 @@ internal class WidgetHostProbe(
             )
             whileUpdating()
             // Waiting for readable content, not for a delivery: the first delivery may still be a placeholder.
-            runCatching {
-                waitFor("${info.provider.shortClassName} to draw its content", timeoutMillis) {
-                    !capture(info, view).isLoadingPlaceholder
-                }
-            }
-            return capture(info, view)
+            val rendered =
+                runCatching {
+                    waitFor("${info.provider.shortClassName} to draw its content", timeoutMillis) {
+                        !capture(info, view).isLoadingPlaceholder
+                    }
+                }.isSuccess
+            val elapsed = SystemClock.uptimeMillis() - startedAt
+            return capture(info, view).copy(millisToContent = elapsed.takeIf { rendered })
         } finally {
             host.deleteAppWidgetId(id)
         }
@@ -180,6 +197,15 @@ internal class WidgetHostProbe(
         var result: Result<T>? = null
         InstrumentationRegistry.getInstrumentation().runOnMainSync { result = runCatching(block) }
         return checkNotNull(result).getOrThrow()
+    }
+
+    companion object {
+        /**
+         * The granularity of [RenderedWidget.millisToContent]: `waitFor` polls, so a figure is the first poll at
+         * or after the content appeared. Kept in step with `POLL_MILLIS` in `DeviceApp.kt` by hand, because a
+         * measurement that silently claims more precision than it has is worse than no measurement.
+         */
+        const val POLL_RESOLUTION_MILLIS: Long = 200
     }
 
     /** A host whose views record their updates and whether the launcher's error view was shown. */

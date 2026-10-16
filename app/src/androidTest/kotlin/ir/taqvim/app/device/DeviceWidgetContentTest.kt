@@ -13,6 +13,7 @@ import androidx.test.core.app.ActivityScenario
 import ir.taqvim.app.MainActivity
 import ir.taqvim.app.automation.DayChangeReceiver
 import ir.taqvim.feature.widgets.WidgetKind
+import ir.taqvim.feature.widgets.WidgetStateLoader
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -157,7 +158,97 @@ class DeviceWidgetContentTest {
         }
     }
 
+    /**
+     * S17: what the user waits for, measured where they wait for it.
+     *
+     * The micro benchmark times `provideGlance` inside the test process and states in its own KDoc that
+     * end-to-end time to a first useful render "cannot be measured from inside this process". This can: the probe
+     * binds a real [android.appwidget.AppWidgetHost], and the figure runs from the update broadcast to readable
+     * content on screen, host inflation included.
+     *
+     * The ceiling is derived from [WidgetStateLoader.LOAD_TIMEOUT] rather than fitted to what the hardware
+     * happens to do. A widget may wait that long for one store and then draws regardless, so anything past it
+     * plus [DELIVERY_ALLOWANCE_MILLIS] for composition, `RemoteViews` delivery and host inflation is not a slow
+     * device, it is a widget that is not bounded at all — the v1.3.0 failure. It is deliberately not a tight
+     * performance budget: the numbers are printed so a regression is visible in the log, and the assertion
+     * catches only the class of bug this pass exists for.
+     */
+    @Test
+    fun everyWidgetReachesContentWithinItsBoundedBudget() {
+        val measured = mutableListOf<RenderedWidget>()
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            var activity: Activity? = null
+            scenario.onActivity { activity = it }
+            val context = checkNotNull(activity)
+            probe.providers().forEach { measured += probe.render(it, context) }
+        }
+
+        val report =
+            measured
+                .sortedBy { it.millisToContent ?: Long.MAX_VALUE }
+                .joinToString(separator = "\n") { "  ${it.millisToContent} ms  ${it.provider}" }
+        println("Host-visible time to content (±${WidgetHostProbe.POLL_RESOLUTION_MILLIS} ms):\n$report")
+
+        val late = measured.filter { (it.millisToContent ?: Long.MAX_VALUE) > BUDGET_MILLIS }
+        check(late.isEmpty()) {
+            "These widgets took longer than the ${BUDGET_MILLIS} ms a bounded load can justify:\n" +
+                late.joinToString(separator = "\n") { "  $it" }
+        }
+    }
+
+    /**
+     * S2/S11 at the device layer: a configuration change must reach a widget the host has already bound.
+     *
+     * The local suite proves the *content* follows the language — `ThreeDatesWidgetTest` asserts an English user
+     * reads Latin digits. What it cannot prove is that a preference written by the app arrives at a widget drawn
+     * by a separate host: that crosses a DataStore, a process boundary and Glance's session. So this changes the
+     * language between two real renders and reads the digits back off the host's own view tree.
+     *
+     * The language is set through the stored preferences rather than `useLanguage`, because the widgets format
+     * from [ir.taqvim.data.preferences.UserPreferences], not from the Android locale, and `LocaleManager` does not
+     * exist on the API 26 leg.
+     */
+    @Test
+    fun aLanguageChangeReachesAPlacedWidget() {
+        val provider = probe.providers().first { it.provider.shortClassName.contains("ThreeDates") }
+        val original = updatePreferences { it }
+        try {
+            ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+                var activity: Activity? = null
+                scenario.onActivity { activity = it }
+                val context = checkNotNull(activity)
+
+                updatePreferences { it.withLanguage("en") }
+                val english = probe.render(provider, context)
+                english.assertRenderedFinalContent()
+                check(english.texts.any { line -> line.any { it in LATIN_DIGITS } }) {
+                    "an English user must read Latin digits on the widget. $english"
+                }
+
+                updatePreferences { it.withLanguage("fa") }
+                val persian = probe.render(provider, context)
+                persian.assertRenderedFinalContent()
+                check(persian.texts.any { line -> line.any { it in PERSIAN_DIGITS } }) {
+                    "the language change never reached the placed widget. $persian"
+                }
+            }
+        } finally {
+            updatePreferences { original }
+        }
+    }
+
     private companion object {
+        /** Proof the widget formatted in the chosen language, read off the host's own view tree. */
+        val LATIN_DIGITS = '0'..'9'
+        val PERSIAN_DIGITS = '\u06F0'..'\u06F9'
+
+        /**
+         * Composition, `RemoteViews` delivery, host inflation and the poll granularity on top of the loader's own
+         * bound. Generous on purpose: see [everyWidgetReachesContentWithinItsBoundedBudget].
+         */
+        const val DELIVERY_ALLOWANCE_MILLIS = 5_000L
+        val BUDGET_MILLIS = WidgetStateLoader.LOAD_TIMEOUT.inWholeMilliseconds + DELIVERY_ALLOWANCE_MILLIS
+
         /** A real, declared service so JobScheduler accepts the sentinel; it is never actually run. */
         const val SENTINEL_SERVICE = "androidx.work.impl.background.systemjob.SystemJobService"
         const val SENTINEL_JOB_ID = 918_274
