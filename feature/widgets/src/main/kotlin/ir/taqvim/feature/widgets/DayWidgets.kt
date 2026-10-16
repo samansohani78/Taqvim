@@ -33,7 +33,7 @@ class DaySummaryWidget2x2 : TaqvimGlanceWidget(WidgetKind.DAY_SUMMARY_2X2) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            WidgetDateLines(data, config, style, compact = false)
+            WidgetDateLines(data, config, style, compact = false, size = size)
             if (config.shows(WidgetContent.EVENTS)) {
                 WidgetEventList(data, style, if (size == WidgetSize.LARGE) LARGE_EVENTS else MEDIUM_EVENTS)
             }
@@ -64,7 +64,7 @@ class PrayerStripWidget4x2 : TaqvimGlanceWidget(WidgetKind.PRAYER_STRIP_4X2) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             // A widget shrunk to one row keeps only the strip.
-            if (size != WidgetSize.WIDE) WidgetDateLines(data, config, style, compact = false)
+            if (size != WidgetSize.WIDE) WidgetDateLines(data, config, style, compact = false, size = size)
             WidgetPrayerStrip(data, config, style)
         }
     }

@@ -77,21 +77,54 @@ class DayWidgetsGlanceTest {
         }
     }
 
+    /**
+     * The same contract as [threeDatesKeepMixedDirectionLinesIsolatedInTheCompactWidget], for the date header every
+     * other widget draws.
+     *
+     * T-1216 isolated its three lines and `WidgetDateLines` did not, so the widget that exists to show mixed
+     * calendars was correct and the twelve that merely *can* show them were not: a Gregorian secondary date on a
+     * Persian widget was laid out in the widget's direction, which moves the year to the wrong end. Asserted here
+     * on both lines, under a Persian qualifier, because that is the configuration where it is visible.
+     */
+    @Test
+    @Config(qualifiers = "fa")
+    fun theSharedDateHeaderIsolatesBothItsDates() {
+        val persian = "۲۲ شهریور ۱۴۰۵"
+        val gregorian = "13 September 2026"
+        // The day summary at two cells, not the 4x1: one cell tall draws the day alone, so the secondary date
+        // would not be on screen to have a direction.
+        val data = full.copy(title = persian, secondaryDate = gregorian)
+        render(DaySummaryWidget2x2(), data, WidgetSize.MEDIUM) {
+            onNode(hasTextEqualTo(BidiText.isolate(persian))).assertExists()
+            onNode(hasTextEqualTo(persian)).assertDoesNotExist()
+            onNode(hasTextEqualTo(BidiText.isolate(gregorian))).assertExists()
+            onNode(hasTextEqualTo(gregorian)).assertDoesNotExist()
+        }
+    }
+
+    /**
+     * One cell is the day number and the link, and nothing else.
+     *
+     * It used to draw the weekday and the secondary date here too, which is what the widget's configuration asks
+     * for — but 40 dp less the frame's padding cannot hold them, so they were laid out past the bottom edge and
+     * the user saw a number and a sliver (`EveryWidgetFitsItsBoxTest`). What a widget *shows* is now what fits.
+     */
     @Test
     fun theOneByOneWidgetShowsTheDayNumber() {
         render(DateWidget1x1(), full, WidgetSize.SMALL) {
             onNode(hasTextEqualTo("22")).assertExists()
-            onNode(hasTextEqualTo("Sunday")).assertExists()
-            onNode(hasTextEqualTo("22 Shahrivar 1405")).assertDoesNotExist()
+            onNode(hasTextEqualTo("Sunday")).assertDoesNotExist()
+            onNode(hasTextEqualTo(BidiText.isolate("22 Shahrivar 1405"))).assertDoesNotExist()
             onNode(link(WidgetClickTarget.Today)).assertExists()
         }
     }
 
+    /** The 4x1 is one cell tall as well, so it draws the clock and the day — see above for why not more. */
     @Test
     fun theDateAndClockWidgetShowsTheFullDate() {
         render(DateClockWidget4x1(), full, WidgetSize.WIDE) {
-            onNode(hasTextEqualTo("22 Shahrivar 1405")).assertExists()
-            onNode(hasTextEqualTo("13 September 2026")).assertExists()
+            onNode(hasTextEqualTo(BidiText.isolate("22 Shahrivar 1405"))).assertExists()
+            onNode(hasTextEqualTo(BidiText.isolate("13 September 2026"))).assertDoesNotExist()
             onNode(hasTextEqualTo("Nowruz")).assertDoesNotExist()
         }
     }
@@ -118,7 +151,7 @@ class DayWidgetsGlanceTest {
         }
         val dateOnly = WidgetConfig.defaultFor(WidgetKind.DAY_SUMMARY_2X2).copy(contents = persistentSetOf())
         render(DaySummaryWidget2x2(), full, WidgetSize.MEDIUM, dateOnly) {
-            onNode(hasTextEqualTo("22 Shahrivar 1405")).assertExists()
+            onNode(hasTextEqualTo(BidiText.isolate("22 Shahrivar 1405"))).assertExists()
             onNode(hasTextEqualTo("Nowruz")).assertDoesNotExist()
             onNode(hasTextEqualTo("Asr 16:40")).assertDoesNotExist()
         }
@@ -127,13 +160,13 @@ class DayWidgetsGlanceTest {
     @Test
     fun thePrayerStripListsTheDayAndKeepsOnlyTheStripWhenShrunk() {
         render(PrayerStripWidget4x2(), full, WidgetSize.LARGE) {
-            onNode(hasTextEqualTo("22 Shahrivar 1405")).assertExists()
+            onNode(hasTextEqualTo(BidiText.isolate("22 Shahrivar 1405"))).assertExists()
             prayers.forEach { onNode(hasTextEqualTo(it.name)).assertExists() }
             onNode(hasTextEqualTo("16:40")).assertExists()
             onNode(link(WidgetClickTarget.PrayerTimes)).assertExists()
         }
         render(PrayerStripWidget4x2(), full, WidgetSize.WIDE) {
-            onNode(hasTextEqualTo("22 Shahrivar 1405")).assertDoesNotExist()
+            onNode(hasTextEqualTo(BidiText.isolate("22 Shahrivar 1405"))).assertDoesNotExist()
             onNode(hasTextEqualTo("Isha")).assertExists()
         }
         render(PrayerStripWidget4x2(), sample.copy(prayers = persistentListOf()), WidgetSize.LARGE) {
@@ -154,7 +187,7 @@ class DayWidgetsGlanceTest {
                 nextPrayer = WidgetPrayerLine("عصر", "۱۶:۴۰", isNext = true),
             )
         render(DaySummaryWidget2x2(), persian, WidgetSize.MEDIUM) {
-            onNode(hasTextEqualTo("۲۲ شهریور ۱۴۰۵")).assertExists()
+            onNode(hasTextEqualTo(BidiText.isolate("۲۲ شهریور ۱۴۰۵"))).assertExists()
             onNode(hasTextEqualTo("امروز رویدادی نیست")).assertExists()
             onNode(hasTextEqualTo("عصر ۱۶:۴۰")).assertExists()
         }

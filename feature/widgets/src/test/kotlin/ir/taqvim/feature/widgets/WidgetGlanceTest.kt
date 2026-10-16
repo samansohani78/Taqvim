@@ -12,6 +12,7 @@ import androidx.glance.appwidget.testing.unit.runGlanceAppWidgetUnitTest
 import androidx.glance.testing.unit.hasTextEqualTo
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import ir.taqvim.core.i18n.BidiText
 import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,10 +35,26 @@ class WidgetGlanceTest {
             setAppWidgetSize(DpSize(size.widthDp.dp, size.heightDp.dp))
             provideComposable {
                 WidgetFrame(config, WidgetLinks.intent(context, WidgetClickTarget.Today)) { style ->
-                    WidgetDateLines(data, config, style, compact)
+                    WidgetDateLines(data, config, style, compact, size)
                 }
             }
             checks()
+        }
+    }
+
+    /**
+     * One cell tall keeps the day and drops the rest, however the widget is configured.
+     *
+     * 40 dp less the frame's padding does not hold three lines, and before this the lower two were laid out past
+     * the bottom edge: `EveryWidgetFitsItsBoxTest` caught DATE_1X1 drawing its secondary date 24x0 px at y=32 in a
+     * 40 dp box. Dropping a line is the same answer T-1216 gives when two cells cannot hold three dates.
+     */
+    @Test
+    fun oneCellTallShowsTheDayAndNothingElse() {
+        render(allParts, compact = true, size = WidgetSize.SMALL) {
+            onNode(hasTextEqualTo("22")).assertExists()
+            onNode(hasTextEqualTo("Sunday")).assertDoesNotExist()
+            onNode(hasTextEqualTo(BidiText.isolate("13 September 2026"))).assertDoesNotExist()
         }
     }
 
@@ -45,20 +62,24 @@ class WidgetGlanceTest {
     fun dateLinesShowTheOfferedParts() {
         render(allParts, compact = false) {
             onNode(hasTextEqualTo("Sunday")).assertExists()
-            onNode(hasTextEqualTo("22 Shahrivar 1405")).assertExists()
-            onNode(hasTextEqualTo("13 September 2026")).assertExists()
+            onNode(hasTextEqualTo(BidiText.isolate("22 Shahrivar 1405"))).assertExists()
+            onNode(hasTextEqualTo(BidiText.isolate("13 September 2026"))).assertExists()
             onNode(hasTextEqualTo("22")).assertDoesNotExist()
         }
     }
 
+    /**
+     * Measured at [WidgetSize.MEDIUM], not at [WidgetSize.SMALL]: one cell has no room for the optional lines at
+     * all, so at that size this would pass whatever the configuration said, and the configuration is the subject.
+     */
     @Test
     fun compactLayoutsShowTheDayNumberAndSwitchedOffPartsAreHidden() {
         val numberOnly = allParts.copy(contents = persistentSetOf(WidgetContent.HOLIDAYS))
-        render(numberOnly, compact = true, size = WidgetSize.SMALL) {
+        render(numberOnly, compact = true, size = WidgetSize.MEDIUM) {
             onNode(hasTextEqualTo("22")).assertExists()
             onNode(hasTextEqualTo("Sunday")).assertDoesNotExist()
-            onNode(hasTextEqualTo("13 September 2026")).assertDoesNotExist()
-            onNode(hasTextEqualTo("22 Shahrivar 1405")).assertDoesNotExist()
+            onNode(hasTextEqualTo(BidiText.isolate("13 September 2026"))).assertDoesNotExist()
+            onNode(hasTextEqualTo(BidiText.isolate("22 Shahrivar 1405"))).assertDoesNotExist()
         }
     }
 

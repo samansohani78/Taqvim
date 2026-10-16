@@ -165,7 +165,7 @@ class WidgetPlatformTest {
             style: WidgetStyle,
             size: WidgetSize,
         ) {
-            WidgetDateLines(data, config, style, compact = size == WidgetSize.SMALL)
+            WidgetDateLines(data, config, style, compact = size == WidgetSize.SMALL, size = size)
         }
     }
 
