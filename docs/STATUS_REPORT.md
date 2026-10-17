@@ -1498,3 +1498,33 @@ on emulators and by committed pixel goldens, and the OnePlus 15 figures in the s
 v1.3.0. The §9 jank budgets remain unverified for the same reason they were for v1.3.0 —
 `FrameTimingMetric` returns `frameCount` alone — and `benchmark/UNBENCHMARKED.md` waives v1.4.0 on that basis
 rather than letting a hosted runner's silence read as a pass.
+
+### v1.4.0, published 2026-10-17
+
+Tag `v1.4.0` on main@e2aa9a40, released at
+[github.com/samansohani78/Taqvim/releases/tag/v1.4.0](https://github.com/samansohani78/Taqvim/releases/tag/v1.4.0).
+
+| | |
+|---|---|
+| Required checks on the tagged commit | 15/15 green |
+| APK | 6 734 376 bytes, 80.3 % of the 8 MB budget, `versionCode` 1040099 |
+| APK SHA-256 | `5425dd1c1640e6fd40d1ae5cdd7550216b3ecf8537a8071309ef93fce982ba75`, verified after download |
+| Signing certificate | SHA-256 `fd742bb2…53a5`, identical to v1.3.0's — an existing install updates in place |
+| Licence report | 661 modules, 0 violations; the LGPL canary still rejected |
+| SBOM | 242 runtime components |
+
+The `Performance qualified` check went red once before it went green, and that is the documented order rather
+than a fault: a waiver that names a *tag* is read only on a run whose ref is that tag, so the run dispatched on
+`main` could not consume it. Pushing the tag, dispatching `benchmark.yml` on the tag and re-running the release
+is what `docs/RELEASE.md` prescribes, and the second run superseded the first.
+
+Two environment faults are worth recording because neither is a property of the code. `github.com:22` times out
+from this machine, so the push and the tag went over HTTPS with the `gh` credential helper and the remote was
+left as the owner set it. And `dl.google.com` 404s here at present, which `licenseCheck --refresh-dependencies`
+turned into a local outage: re-resolving recorded the 404s, and until Google Maven answers again no local Gradle
+task can resolve `:build-logic:convention`'s own compile classpath. Everything before that step passed on this
+tree, and CI — which has the network — re-ran all of it.
+
+The six GPL-family rows in the licence report were read individually rather than trusted to the gate's exit
+code: all six are `scopes=['TEST']`, every one is dual-licensed with Apache-2.0 or MIT alongside, and none of
+them appears among the 242 runtime components in the SBOM. Nothing GPL ships in the APK.
