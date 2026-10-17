@@ -1433,3 +1433,68 @@ cost. The paired measurement is the only honest form of them: an empty widget co
 
 What is still not measured anywhere: a per-query search time against the §9 "< 20 ms per query over 10 000
 events", which no benchmark reports.
+
+---
+
+## The widget reliability pass, and v1.4.0 (2026-10-16 … 2026-10-17)
+
+v1.3.0 shipped with every placed widget stuck on the launcher's spinner after the upgrade that installed it. This
+pass found why, then stopped treating that as one bug and audited the whole widget pipeline. Thirteen commits,
+`v1.3.0..v1.4.0`, and nothing outside `feature/widgets`, `:app`'s automation and the tests.
+
+### What was actually broken
+
+`StaleWork.cancelAll` called `JobScheduler.cancelAll()` on `MY_PACKAGE_REPLACED` and `BOOT_COMPLETED`. Its premise
+was written down in its own KDoc — *"Taqvim now schedules no job of any kind"* — and it was true of this repository
+and false of the APK: Glance draws every widget from an `AsyncRequestWorker`, which WorkManager runs through
+JobScheduler. So the app cancelled the jobs that draw its own widgets, on exactly the two broadcasts a user cannot
+avoid. The file is deleted. `UpgradeKeepsScheduledWorkTest` fails on the previous commit, and a Konsist rule bans
+`cancelAll()` outright with a planted violation behind it.
+
+### Why four green device legs had not caught it
+
+Because the device assertion counted `RemoteViews` deliveries, and a widget that never composes delivers none —
+but every test placed its widget on a fresh install, the one situation in which neither broadcast fires. The
+definition was the defect: "the host received something" and "the user can read their date" are different facts.
+`RenderedWidget.isLoadingPlaceholder` now makes the first one a failure, and `assertRenderedFinalContent` is what
+every device test calls.
+
+### Five more defects, none of them visible to any test that existed
+
+| What shipped | Found by |
+|---|---|
+| A silent dependency would hang `provideGlance` forever and leave a permanent spinner | `WidgetLoadNeverHangsTest`, against a bounded `WidgetStateLoader.load` |
+| T-1216 was a 3×3 whose largest *fitting* bucket was `MEDIUM`, so a 180 dp widget drew type written for a 110 dp one | `widgetsAreLaidOutForTheSpanTheyAskFor` |
+| Its one performance figure described a `SMALL` composition the kind cannot be given | `WidgetKind.defaultSize`, which the benchmark now reads instead of taking a size per case |
+| `WidgetDateLines` — the header twelve widgets draw — did not isolate its dates, so a Gregorian secondary date on a Persian widget was laid out in the widget's direction | `theSharedDateHeaderIsolatesBothItsDates`, and `DateHeaderRenderingTest` for the picture |
+| `DATE_1X1` drew its secondary date past its own bottom edge, `DATE_CLOCK_4X1` measured its whole date column zero pixels wide beside the clock, and the day line was cut to "10 Octob…" in two cells | `EveryWidgetFitsItsBoxTest`, which inflates every kind at every span it offers |
+
+The last row is the one worth keeping: all three ship at the 40 dp `minHeight` a launcher may legitimately give
+those widgets, and nothing in the project had ever inflated a widget and looked at where its views landed.
+
+### The two layers, written down
+
+`docs/WIDGET_TESTING.md` now says what each layer can and cannot prove, and every device bug has a row saying why
+the local layer missed it and what catches the next one of that class without a phone. The rule it enforces: when
+a test could live in either layer, it lives in the local one.
+
+### What was verified, and where
+
+| | Result |
+|---|---|
+| API 26 / 30 / 33 / 36 | 7/7 each |
+| Wear OS 34 | 11/11 |
+| Host-visible time to content, API 30 | 601–756 ms for all thirteen kinds, against a 15 s bound |
+| Local gates | green on the release commit, including the licence gate at 661 modules and its LGPL canary failing as designed |
+
+One probe fault came out of the API 30 leg and was fixed rather than worked around:
+`MONTH_INTERACTIVE` reported `millisToContent=821` and no text in the same result, because `render` timed one
+moment and reported a walk taken later, and an adapter-backed `LazyColumn` empties between the two.
+
+### What this release does not claim
+
+**No physical device was attached during this pass.** Every layout, direction and sizing change here was verified
+on emulators and by committed pixel goldens, and the OnePlus 15 figures in the section above still belong to
+v1.3.0. The §9 jank budgets remain unverified for the same reason they were for v1.3.0 —
+`FrameTimingMetric` returns `frameCount` alone — and `benchmark/UNBENCHMARKED.md` waives v1.4.0 on that basis
+rather than letting a hosted runner's silence read as a pass.

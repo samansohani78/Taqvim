@@ -46,6 +46,38 @@ Why: <reason the run could not measure, and what was done instead>
 
 -->
 
+### v1.4.0
+Accepted by: Saman Sohani, 2026-10-17
+Why: the hosted runner still cannot measure this app, for the reason this file exists — its control benchmarks time
+fixed synthetic work the app cannot affect and move by hundreds of percent inside a single run, so the comparison
+says nothing either way. Nothing about that changed in this release.
+
+What this waiver does **not** say is that 1.4.0 was measured on a phone. It was not. No device was attached during
+this pass, so the OnePlus 15 figures still quoted in docs/STATUS_REPORT.md belong to `main@4121f5e3` and v1.3.0
+(2026-10-13) and are not reused here as if they were fresh.
+
+What changed since v1.3.0 is the widget pipeline and nothing else: a deleted `JobScheduler.cancelAll()`, a bounded
+`WidgetStateLoader.load`, a smaller default span for the three-date widget, and a date header that isolates its
+dates and is allowed a second line. None of it touches startup, the month grid, the timeline, search or the map,
+which is where every §9 budget lives, so no §9 figure is expected to move. That is reasoning, not measurement, and
+it is written here as such.
+
+The one performance figure this release does carry is a widget one, and it is an emulator figure, stated as such:
+`RenderedWidget.millisToContent` on an API 30 emulator, 2026-10-17, put every one of the thirteen kinds between
+601 ms and 756 ms from the update broadcast to readable content, against the 15 s bound
+`everyWidgetReachesContentWithinItsBoundedBudget` derives from `WidgetStateLoader.LOAD_TIMEOUT`. It is polled at
+200 ms, so it is an upper bound rounded up to that interval, and an emulator is not a phone. PLAN §9 has no
+host-visible widget budget for it to be checked against; it is a measurement, not a gate.
+
+Still carried, unchanged from the v1.3.0 entry above: the §9 jank budgets. `FrameTimingMetric` reported
+`frameCount` alone for all six frame journeys on 2026-10-13, so `frameDurationCpuMs.P99` is absent and month
+scroll, timeline, search, year view and map pan/zoom are **unverified against §9 for v1.4.0 as well**. The cause is
+still unresolved and the same phone measured 13.05 ms P99 for v1.2.0, so the device is not the limitation. Nothing
+in this release investigated it.
+
+The right close for this entry is the same as for the last one: a device run against the tagged commit, with the
+widget latency re-taken on the phone rather than on an emulator.
+
 ### v1.3.0
 Accepted by: Saman Sohani, 2026-10-12
 Why: the hosted runner still cannot measure this app, for the reason this file was written for — its control
